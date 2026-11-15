@@ -35,7 +35,7 @@ public final class gf {
             fArr[0] = chatActivityEnterView.f32214i1.getAudioLeft();
             z10 = true;
             fArr[1] = chatActivityEnterView.f32214i1.getAudioRight();
-            if (chatActivityEnterView.f32214i1.f37987p0) {
+            if (chatActivityEnterView.f32214i1.f37985p0) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
@@ -57,8 +57,8 @@ public final class gf {
         ChatActivityEnterView chatActivityEnterView = this.f34928a;
         if (chatActivityEnterView.f32248n3 && !chatActivityEnterView.G2 && !chatActivityEnterView.R2) {
             if ((!chatActivityEnterView.M2 || !chatActivityEnterView.f32178d1) && chatActivityEnterView.f32331z0 && chatActivityEnterView.f32319x3 != null && chatActivityEnterView.F0 != null && !MediaController.B().K()) {
-                ai.m0 m0Var = chatActivityEnterView.f32221j1;
-                if ((m0Var == null || m0Var.f1378r == 0) && !chatActivityEnterView.M1) {
+                ai.n0 n0Var = chatActivityEnterView.f32221j1;
+                if ((n0Var == null || n0Var.f1386r == 0) && !chatActivityEnterView.M1) {
                     return true;
                 }
                 return false;
@@ -90,10 +90,10 @@ public final class gf {
             return;
         }
         int i7 = ChatActivityEnterView.N6;
-        ai.m0 o02 = this.f34928a.o0();
+        ai.n0 o02 = this.f34928a.o0();
         o02.g();
         long uptimeMillis = SystemClock.uptimeMillis();
-        o02.H.a((ai.h) obj, str, new ai.c0(uptimeMillis, z10Var, 0));
+        o02.H.a((ai.h) obj, str, new ai.d0(uptimeMillis, z10Var, 0));
     }
 
     public final void g(float f10, float f11) {

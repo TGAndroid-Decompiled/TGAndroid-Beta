@@ -4,31 +4,31 @@ import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
 public final class p40 implements View.OnKeyListener {
-    public final int f50144a;
-    public boolean f50145b;
-    public final org.telegram.ui.ActionBar.e2 f50146c;
+    public final int f50121a;
+    public boolean f50122b;
+    public final org.telegram.ui.ActionBar.e2 f50123c;
 
     public p40(int i7, org.telegram.ui.ActionBar.e2 e2Var) {
-        this.f50144a = i7;
-        this.f50146c = e2Var;
+        this.f50121a = i7;
+        this.f50123c = e2Var;
     }
 
     @Override
     public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        int i10 = this.f50144a;
-        org.telegram.ui.ActionBar.e2 e2Var = this.f50146c;
+        int i10 = this.f50121a;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f50123c;
         boolean z10 = true;
         switch (i10) {
             case 0:
                 w40 w40Var = (w40) e2Var;
                 if (i7 == 67) {
                     if (keyEvent.getAction() == 0) {
-                        if (w40Var.f52407f.f40202r.length() != 0) {
+                        if (w40Var.f52410f.f40202r.length() != 0) {
                             z10 = false;
                         }
-                        this.f50145b = z10;
-                    } else if (keyEvent.getAction() == 1 && this.f50145b && !w40Var.f52401b0.isEmpty()) {
-                        w40Var.h.c((org.telegram.ui.Components.f20) i5.c.h(1, w40Var.f52401b0));
+                        this.f50122b = z10;
+                    } else if (keyEvent.getAction() == 1 && this.f50122b && !w40Var.f52404b0.isEmpty()) {
+                        w40Var.h.c((org.telegram.ui.Components.f20) i5.c.h(1, w40Var.f52404b0));
                         w40Var.x0();
                         w40Var.p0();
                         return true;
@@ -43,8 +43,8 @@ public final class p40 implements View.OnKeyListener {
                         if (usersSelectActivity.f43450c.length() != 0) {
                             z10 = false;
                         }
-                        this.f50145b = z10;
-                    } else if (keyEvent.getAction() == 1 && this.f50145b && !arrayList.isEmpty()) {
+                        this.f50122b = z10;
+                    } else if (keyEvent.getAction() == 1 && this.f50122b && !arrayList.isEmpty()) {
                         org.telegram.ui.Components.f20 f20Var = (org.telegram.ui.Components.f20) i5.c.h(1, arrayList);
                         usersSelectActivity.f43449b.b(f20Var);
                         if (usersSelectActivity.f43458y == 2) {

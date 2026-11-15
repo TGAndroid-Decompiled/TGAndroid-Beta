@@ -327,7 +327,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
         }
         int height = rootView.getHeight();
         if (rect.top != 0) {
-            i7 = org.telegram.messenger.g0.f23603m;
+            i7 = org.telegram.messenger.g0.f23605m;
         } else {
             i7 = 0;
         }
@@ -400,8 +400,8 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
         w4 w4Var;
         k kVar;
         if (!this.f28329b0 && !this.R && !i() && !this.V0.isEmpty()) {
-            s10 s10Var = s10.f39142f0;
-            if (s10Var != null && s10Var.f39159y) {
+            s10 s10Var = s10.f39139f0;
+            if (s10Var != null && s10Var.f39156y) {
                 s10Var.f(false);
                 return;
             }
@@ -461,9 +461,9 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
         if (runnable != null) {
             runnable.run();
         }
-        ArrayList arrayList = fc.D().f23464f;
+        ArrayList arrayList = fc.D().f23467f;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            ((org.telegram.ui.Components.t5) arrayList.get(i7)).f39543z0 = 0;
+            ((org.telegram.ui.Components.t5) arrayList.get(i7)).f39541z0 = 0;
         }
         g(str);
     }
@@ -574,7 +574,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
 
     public final boolean T(e2 e2Var, boolean z10) {
         m4 m4Var = new m4(e2Var);
-        m4Var.f29383b = z10;
+        m4Var.f29384b = z10;
         return U(m4Var);
     }
 
@@ -584,10 +584,10 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
 
     public final boolean V(e2 e2Var, boolean z10, boolean z11) {
         m4 m4Var = new m4(e2Var);
-        m4Var.f29383b = z10;
-        m4Var.f29384c = z11;
+        m4Var.f29384b = z10;
+        m4Var.f29385c = z11;
         m4Var.d = true;
-        m4Var.f29385e = false;
+        m4Var.f29386e = false;
         return U(m4Var);
     }
 
@@ -1074,7 +1074,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
     }
 
     public final void g(String str) {
-        boolean z10 = org.telegram.messenger.r2.f26198a;
+        boolean z10 = org.telegram.messenger.r2.f26206a;
         ArrayList arrayList = this.f28359p1;
         StringBuilder m10 = r.b.m(str, " ");
         m10.append(this.V0.size());
@@ -1408,8 +1408,8 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
                             }
                         } else {
                             this.L = animatorSet;
-                            xb xbVar = xb.f41635w;
-                            if (xbVar != null && xbVar.f41645l) {
+                            xb xbVar = xb.f41627w;
+                            if (xbVar != null && xbVar.f41637l) {
                                 xbVar.b();
                             }
                         }
@@ -1552,7 +1552,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
                 i7 = 0;
             }
             m3 m3Var = wVar.f29773x;
-            if (m3Var != m3.f29381c) {
+            if (m3Var != m3.f29382c) {
                 z13 = false;
             }
             if (!z13 && !z12) {
@@ -1575,7 +1575,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
             } else {
                 i13 = cVar2.f15576c;
             }
-            if (m3Var == m3.f29379a) {
+            if (m3Var == m3.f29380a) {
                 i7 = Math.max(i7, cVar2.d);
                 r0.i0.b(view, r0.k1.f55681b);
             } else {
@@ -1959,7 +1959,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
         }
         w wVar6 = new w(activity, this);
         this.f28376x = wVar6;
-        this.f28347i1.f39901a = wVar6;
+        this.f28347i1.f39898a = wVar6;
         addView(wVar6);
         FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.f28376x.getLayoutParams();
         layoutParams4.width = -1;
@@ -2136,7 +2136,7 @@ public class ActionBarLayout extends FrameLayout implements o4, pg.b {
         }
         vm vmVar = this.f28344h0;
         if (vmVar != null) {
-            ym ymVar2 = vmVar.f52248a;
+            ym ymVar2 = vmVar.f52247a;
             ymVar2.G.A0.invalidate();
             ymVar2.f53558t.K = f10;
             ymVar2.f53559u.K = f10;

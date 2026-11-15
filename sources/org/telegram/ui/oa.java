@@ -4,32 +4,32 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public final class oa implements eh.a {
-    public final int f49880a;
-    public final Object f49881b;
+    public final int f49870a;
+    public final Object f49871b;
 
     public oa(Object obj, int i7) {
-        this.f49880a = i7;
-        this.f49881b = obj;
+        this.f49870a = i7;
+        this.f49871b = obj;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f49880a) {
+        switch (this.f49870a) {
             case 0:
             case 1:
             case 2:
             case 3:
             case 4:
             default:
-                aVar.f8087a = true;
+                aVar.f8090a = true;
                 return;
         }
     }
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        int i7 = this.f49880a;
-        Object obj = this.f49881b;
+        int i7 = this.f49870a;
+        Object obj = this.f49871b;
         switch (i7) {
             case 0:
                 ((jb) obj).X(canvas, rectF);

@@ -21,18 +21,18 @@ public final class m70 implements View.OnClickListener {
         t70 t70Var = this.f37124b;
         switch (i10) {
             case 0:
-                t70Var.f39582r.f();
+                t70Var.f39580r.f();
                 return;
             case 1:
-                org.telegram.ui.ActionBar.g1 g1Var = t70Var.f39583s;
+                org.telegram.ui.ActionBar.g1 g1Var = t70Var.f39581s;
                 if (g1Var != null) {
                     g1Var.d(true);
                 }
-                t70Var.f39582r.d();
+                t70Var.f39580r.d();
                 return;
             case 2:
                 t70 t70Var2 = this.f37124b;
-                String str = t70Var2.f39577b;
+                String str = t70Var2.f39575b;
                 if (str != null && str.endsWith("?direct")) {
                     z10 = true;
                 } else {
@@ -40,7 +40,7 @@ public final class m70 implements View.OnClickListener {
                 }
                 Context context = t70Var2.getContext();
                 String M0 = org.telegram.messenger.hd.M0(2131749170, null);
-                String str2 = t70Var2.f39577b;
+                String str2 = t70Var2.f39575b;
                 String str3 = t70Var2.K;
                 if (str3 == null) {
                     if (t70Var2.I) {
@@ -58,18 +58,18 @@ public final class m70 implements View.OnClickListener {
                 t70Var2.F = q70Var;
                 q70Var.I0();
                 t70Var2.F.show();
-                org.telegram.ui.ActionBar.g1 g1Var2 = t70Var2.f39583s;
+                org.telegram.ui.ActionBar.g1 g1Var2 = t70Var2.f39581s;
                 if (g1Var2 != null) {
                     g1Var2.d(true);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.g1 g1Var3 = t70Var.f39583s;
+                org.telegram.ui.ActionBar.g1 g1Var3 = t70Var.f39581s;
                 if (g1Var3 != null) {
                     g1Var3.d(true);
                 }
-                org.telegram.ui.ActionBar.e2 e2Var = t70Var.f39578c;
+                org.telegram.ui.ActionBar.e2 e2Var = t70Var.f39576c;
                 if (e2Var.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e2Var.getParentActivity());
                     String M02 = org.telegram.messenger.hd.M0(2131746023, null);

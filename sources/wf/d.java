@@ -55,11 +55,11 @@ public final class d extends i {
         this.f59119k = new AtomicInteger();
         this.f59115f = new x(15);
         this.f59116g = new sa.d(11);
-        this.f59114e = new ExtendedDefaultDataSourceFactory(t0.f26600b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f59114e = new ExtendedDefaultDataSourceFactory(t0.f26609b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
-        int ipAddress = ((WifiManager) t0.f26600b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
+        int ipAddress = ((WifiManager) t0.f26609b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();

@@ -39,74 +39,74 @@ public final class xr0 extends Dialog {
     public float X;
     public float Y;
     public boolean Z;
-    public final Context f53288a;
-    public float f53289a0;
-    public final org.telegram.ui.ActionBar.e6 f53290b;
-    public float f53291b0;
-    public final tr0 f53292c;
-    public boolean f53293c0;
+    public final Context f53292a;
+    public float f53293a0;
+    public final org.telegram.ui.ActionBar.e6 f53294b;
+    public float f53295b0;
+    public final tr0 f53296c;
+    public boolean f53297c0;
     public final tr0 d;
-    public boolean f53294d0;
-    public final tr0 f53295e;
-    public boolean f53296e0;
-    public final hi.i1 f53297f;
-    public tl f53298f0;
-    public ValueAnimator f53299g0;
+    public boolean f53298d0;
+    public final tr0 f53299e;
+    public boolean f53300e0;
+    public final hi.i1 f53301f;
+    public tl f53302f0;
+    public ValueAnimator f53303g0;
     public final TextView h;
-    public ValueAnimator f53300h0;
-    public final org.telegram.ui.Components.ha0 f53301n;
-    public i0.c f53302r;
-    public Bitmap f53303s;
-    public BitmapShader f53304w;
-    public Paint f53305x;
-    public Matrix f53306y;
+    public ValueAnimator f53304h0;
+    public final org.telegram.ui.Components.ia0 f53305n;
+    public i0.c f53306r;
+    public Bitmap f53307s;
+    public BitmapShader f53308w;
+    public Paint f53309x;
+    public Matrix f53310y;
 
     public xr0(Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
         super(activity, 2131755352);
-        this.f53302r = i0.c.f15573e;
+        this.f53306r = i0.c.f15573e;
         this.N = 0.0f;
         this.O = 0.0f;
         this.T = -1.0f;
         this.V = -1.0f;
-        this.f53294d0 = false;
-        this.f53288a = activity;
-        this.f53290b = e6Var;
+        this.f53298d0 = false;
+        this.f53292a = activity;
+        this.f53294b = e6Var;
         tr0 tr0Var = new tr0(this, activity, 0);
-        this.f53292c = tr0Var;
+        this.f53296c = tr0Var;
         tr0Var.setOnClickListener(new g40(this, 23));
         ui.b bVar = new ui.b();
         this.G = bVar;
         dh.c cVar = new dh.c(bVar, bVar, bVar);
         this.H = cVar;
         cVar.h = new jh.k(tr0Var);
-        cVar.f8095i = tr0Var;
+        cVar.f8098i = tr0Var;
         tr0 tr0Var2 = new tr0(this, activity, 1);
         this.d = tr0Var2;
         tr0Var2.setClipToPadding(false);
         tr0Var.addView(tr0Var2, c8.ja.e(-1, -1, 119));
         hi.i1 i1Var = new hi.i1(5, activity, this);
-        this.f53297f = i1Var;
+        this.f53301f = i1Var;
         i1Var.setAdapter(new di.f4(4, activity, this));
         tr0Var2.addView(i1Var, c8.ja.e(-1, -1, 119));
         tr0 tr0Var3 = new tr0(this, activity, 2);
-        this.f53295e = tr0Var3;
+        this.f53299e = tr0Var3;
         tr0Var2.addView(tr0Var3, c8.ja.e(-1, -1, 119));
-        org.telegram.ui.Components.ha0 ha0Var = new org.telegram.ui.Components.ha0(activity, e6Var);
-        this.f53301n = ha0Var;
-        ha0Var.a(0, org.telegram.messenger.hd.M0(2131747168, null));
-        ha0Var.a(1, org.telegram.messenger.hd.M0(2131747167, null));
-        tr0Var2.addView(ha0Var, c8.ja.e(-1, 66, 80));
-        ha0Var.setOnTabClick(new r3(i1Var, 19));
-        fh.g c10 = cVar.c(ha0Var, null, false);
+        org.telegram.ui.Components.ia0 ia0Var = new org.telegram.ui.Components.ia0(activity, e6Var);
+        this.f53305n = ia0Var;
+        ia0Var.a(0, org.telegram.messenger.hd.M0(2131747168, null));
+        ia0Var.a(1, org.telegram.messenger.hd.M0(2131747167, null));
+        tr0Var2.addView(ia0Var, c8.ja.e(-1, 66, 80));
+        ia0Var.setOnTabClick(new r3(i1Var, 19));
+        fh.g c10 = cVar.c(ia0Var, null, false);
         c10.p(c8.g0.k(e6Var));
         c10.R.f11322e = true;
         c10.q(org.telegram.messenger.g0.L(8.0f));
         c10.r(org.telegram.messenger.g0.L(16.0f));
-        ha0Var.setBackground(c10);
+        ia0Var.setBackground(c10);
         TextView textView = new TextView(activity);
         this.h = textView;
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(ha0Var.getColor());
+        textView.setTextColor(ia0Var.getColor());
         textView.setText(org.telegram.messenger.hd.M0(2131747169, null));
         textView.setGravity(17);
         tr0Var2.addView(textView, c8.ja.d(-1, -2.0f, 80, 0.0f, 0.0f, 0.0f, 66.0f));
@@ -118,11 +118,11 @@ public final class xr0 extends Dialog {
     public final void b(boolean z10, or0 or0Var) {
         float f10;
         long j3;
-        ValueAnimator valueAnimator = this.f53299g0;
+        ValueAnimator valueAnimator = this.f53303g0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator valueAnimator2 = this.f53300h0;
+        ValueAnimator valueAnimator2 = this.f53304h0;
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
         }
@@ -135,12 +135,12 @@ public final class xr0 extends Dialog {
             f10 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-        this.f53299g0 = ofFloat;
+        this.f53303g0 = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final xr0 f50357b;
+            public final xr0 f50348b;
 
             {
-                this.f50357b = this;
+                this.f50348b = this;
             }
 
             @Override
@@ -148,9 +148,9 @@ public final class xr0 extends Dialog {
                 switch (r2) {
                     case 0:
                         float floatValue = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
-                        xr0 xr0Var = this.f50357b;
+                        xr0 xr0Var = this.f50348b;
                         xr0Var.E = floatValue;
-                        xr0Var.f53292c.invalidate();
+                        xr0Var.f53296c.invalidate();
                         xr0Var.d.invalidate();
                         vr0 vr0Var = xr0Var.K;
                         if (vr0Var != null) {
@@ -159,35 +159,35 @@ public final class xr0 extends Dialog {
                         xr0Var.e();
                         return;
                     default:
-                        xr0 xr0Var2 = this.f50357b;
+                        xr0 xr0Var2 = this.f50348b;
                         xr0Var2.getClass();
                         xr0Var2.F = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
                         return;
                 }
             }
         });
-        this.f53299g0.addListener(new androidx.fragment.app.g(this, z10, or0Var, 12));
+        this.f53303g0.addListener(new androidx.fragment.app.g(this, z10, or0Var, 12));
         if (!z10) {
             j3 = 330;
         } else {
             j3 = 520;
         }
-        ValueAnimator valueAnimator3 = this.f53299g0;
+        ValueAnimator valueAnimator3 = this.f53303g0;
         org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.h;
         valueAnimator3.setInterpolator(erVar);
-        this.f53299g0.setDuration(j3);
-        this.f53299g0.start();
+        this.f53303g0.setDuration(j3);
+        this.f53303g0.start();
         float f13 = this.F;
         if (z10) {
             f12 = 1.0f;
         }
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f13, f12);
-        this.f53300h0 = ofFloat2;
+        this.f53304h0 = ofFloat2;
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final xr0 f50357b;
+            public final xr0 f50348b;
 
             {
-                this.f50357b = this;
+                this.f50348b = this;
             }
 
             @Override
@@ -195,9 +195,9 @@ public final class xr0 extends Dialog {
                 switch (r2) {
                     case 0:
                         float floatValue = ((Float) valueAnimator32.getAnimatedValue()).floatValue();
-                        xr0 xr0Var = this.f50357b;
+                        xr0 xr0Var = this.f50348b;
                         xr0Var.E = floatValue;
-                        xr0Var.f53292c.invalidate();
+                        xr0Var.f53296c.invalidate();
                         xr0Var.d.invalidate();
                         vr0 vr0Var = xr0Var.K;
                         if (vr0Var != null) {
@@ -206,30 +206,30 @@ public final class xr0 extends Dialog {
                         xr0Var.e();
                         return;
                     default:
-                        xr0 xr0Var2 = this.f50357b;
+                        xr0 xr0Var2 = this.f50348b;
                         xr0Var2.getClass();
                         xr0Var2.F = ((Float) valueAnimator32.getAnimatedValue()).floatValue();
                         return;
                 }
             }
         });
-        this.f53300h0.addListener(new z20(5, this, z10));
-        this.f53300h0.setDuration(((float) j3) * 1.5f);
-        this.f53300h0.setInterpolator(erVar);
-        this.f53300h0.start();
+        this.f53304h0.addListener(new z20(5, this, z10));
+        this.f53304h0.setDuration(((float) j3) * 1.5f);
+        this.f53304h0.setInterpolator(erVar);
+        this.f53304h0.start();
     }
 
     public final void c(boolean z10) {
         boolean z11;
         org.telegram.ui.Cells.q1 q1Var;
         org.telegram.ui.Components.mi0 mi0Var;
-        if (z10 && (mi0Var = this.R) != null && mi0Var.getReactionsWindow() != null && !this.R.getReactionsWindow().f5022q) {
+        if (z10 && (mi0Var = this.R) != null && mi0Var.getReactionsWindow() != null && !this.R.getReactionsWindow().f5025q) {
             this.R.e();
-        } else if (this.f53294d0) {
+        } else if (this.f53298d0) {
         } else {
-            this.f53294d0 = true;
+            this.f53298d0 = true;
             this.Z = false;
-            hi.i1 i1Var = this.f53297f;
+            hi.i1 i1Var = this.f53301f;
             i1Var.g();
             if (i1Var.getCurrentPosition() == 1) {
                 z11 = true;
@@ -248,10 +248,10 @@ public final class xr0 extends Dialog {
                 q1Var3.f30948d6 = null;
                 q1Var3.invalidate();
             }
-            this.f53296e0 = !z10;
+            this.f53300e0 = !z10;
             d();
             b(false, new or0(this, z11));
-            this.f53292c.invalidate();
+            this.f53296c.invalidate();
         }
     }
 
@@ -259,53 +259,53 @@ public final class xr0 extends Dialog {
         int i7;
         ViewGroup viewGroup;
         if (!this.Z) {
-            tr0 tr0Var = this.f53292c;
+            tr0 tr0Var = this.f53296c;
             if (tr0Var.getWidth() > 0) {
                 org.telegram.ui.Cells.q1 q1Var = this.M;
                 if (q1Var != null) {
                     int[] iArr = new int[2];
                     q1Var.getLocationOnScreen(iArr);
                     int i10 = iArr[0];
-                    i0.c cVar = this.f53302r;
+                    i0.c cVar = this.f53306r;
                     this.X = i10 - cVar.f15574a;
                     float f10 = iArr[1] - cVar.f15575b;
                     this.Y = f10;
-                    if (!this.f53293c0) {
-                        this.f53293c0 = true;
-                        this.f53289a0 = f10;
+                    if (!this.f53297c0) {
+                        this.f53297c0 = true;
+                        this.f53293a0 = f10;
                         if (this.U != null) {
                             float height = f10 + this.M.getHeight() + this.U.getHeight();
                             int height2 = tr0Var.getHeight();
-                            i0.c cVar2 = this.f53302r;
+                            i0.c cVar2 = this.f53306r;
                             if (height > ((height2 - cVar2.f15575b) - cVar2.d) - org.telegram.messenger.g0.L(66.0f)) {
                                 int height3 = tr0Var.getHeight();
-                                i0.c cVar3 = this.f53302r;
-                                this.f53289a0 = ((((height3 - cVar3.f15575b) - cVar3.d) - org.telegram.messenger.g0.L(66.0f)) - this.M.getHeight()) - this.U.getHeight();
+                                i0.c cVar3 = this.f53306r;
+                                this.f53293a0 = ((((height3 - cVar3.f15575b) - cVar3.d) - org.telegram.messenger.g0.L(66.0f)) - this.M.getHeight()) - this.U.getHeight();
                             }
                         }
                         int W1 = this.K.W1(this.Q);
                         this.K.V1(W1);
                         float U1 = this.K.U1(W1);
                         float f11 = this.Y;
-                        this.f53291b0 = f11;
+                        this.f53295b0 = f11;
                         float f12 = (int) U1;
                         int height4 = tr0Var.getHeight();
-                        i0.c cVar4 = this.f53302r;
+                        i0.c cVar4 = this.f53306r;
                         int L = ((height4 - cVar4.f15575b) - cVar4.d) - org.telegram.messenger.g0.L(78.0f);
                         TextView textView = this.h;
                         if (f11 + f12 > L - textView.getHeight()) {
                             int height5 = tr0Var.getHeight();
-                            i0.c cVar5 = this.f53302r;
-                            this.f53291b0 = ((((height5 - cVar5.f15575b) - cVar5.d) - org.telegram.messenger.g0.L(78.0f)) - textView.getHeight()) - i7;
+                            i0.c cVar5 = this.f53306r;
+                            this.f53295b0 = ((((height5 - cVar5.f15575b) - cVar5.d) - org.telegram.messenger.g0.L(78.0f)) - textView.getHeight()) - i7;
                         }
                         if (this.S != null) {
-                            float height6 = this.f53291b0 + f12 + viewGroup.getHeight();
+                            float height6 = this.f53295b0 + f12 + viewGroup.getHeight();
                             int height7 = tr0Var.getHeight();
-                            i0.c cVar6 = this.f53302r;
+                            i0.c cVar6 = this.f53306r;
                             if (height6 > (((height7 - cVar6.f15575b) - cVar6.d) - org.telegram.messenger.g0.L(78.0f)) - textView.getHeight()) {
                                 int height8 = tr0Var.getHeight();
-                                i0.c cVar7 = this.f53302r;
-                                this.f53291b0 = (((((height8 - cVar7.f15575b) - cVar7.d) - org.telegram.messenger.g0.L(78.0f)) - textView.getHeight()) - i7) - this.S.getHeight();
+                                i0.c cVar7 = this.f53306r;
+                                this.f53295b0 = (((((height8 - cVar7.f15575b) - cVar7.d) - org.telegram.messenger.g0.L(78.0f)) - textView.getHeight()) - i7) - this.S.getHeight();
                             }
                         }
                     }
@@ -330,7 +330,7 @@ public final class xr0 extends Dialog {
         float f12;
         float f13;
         int i7;
-        hi.i1 i1Var = this.f53297f;
+        hi.i1 i1Var = this.f53301f;
         float positionAnimated = i1Var.getPositionAnimated();
         int i10 = 0;
         float W1 = org.telegram.messenger.g0.W1(positionAnimated, 0, -i1Var.getWidth());
@@ -340,21 +340,21 @@ public final class xr0 extends Dialog {
             if (viewGroup instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup;
                 float f14 = this.Y;
-                this.f53289a0 = f14;
+                this.f53293a0 = f14;
                 float height = f14 + this.M.getHeight() + actionBarPopupWindow$ActionBarPopupWindowLayout.getVisibleHeight();
-                tr0 tr0Var = this.f53292c;
+                tr0 tr0Var = this.f53296c;
                 int height2 = tr0Var.getHeight();
-                i0.c cVar = this.f53302r;
+                i0.c cVar = this.f53306r;
                 if (height > ((height2 - cVar.f15575b) - cVar.d) - org.telegram.messenger.g0.L(66.0f)) {
                     int height3 = tr0Var.getHeight();
-                    i0.c cVar2 = this.f53302r;
-                    this.f53289a0 = ((((height3 - cVar2.f15575b) - cVar2.d) - org.telegram.messenger.g0.L(66.0f)) - this.M.getHeight()) - actionBarPopupWindow$ActionBarPopupWindowLayout.getVisibleHeight();
+                    i0.c cVar2 = this.f53306r;
+                    this.f53293a0 = ((((height3 - cVar2.f15575b) - cVar2.d) - org.telegram.messenger.g0.L(66.0f)) - this.M.getHeight()) - actionBarPopupWindow$ActionBarPopupWindowLayout.getVisibleHeight();
                 }
             }
         }
         wr0 wr0Var = this.L;
         float f15 = this.X;
-        if (this.f53296e0) {
+        if (this.f53300e0) {
             f10 = 1.0f;
         } else {
             f10 = this.E;
@@ -362,15 +362,15 @@ public final class xr0 extends Dialog {
         wr0Var.setTranslationX(org.telegram.messenger.g0.T1(f15, 0.0f, f10) + W12);
         wr0 wr0Var2 = this.L;
         float f16 = this.Y;
-        float f17 = this.f53289a0;
-        if (this.f53296e0) {
+        float f17 = this.f53293a0;
+        if (this.f53300e0) {
             f11 = 1.0f;
         } else {
             f11 = this.E;
         }
         wr0Var2.setTranslationY(org.telegram.messenger.g0.T1(f16, f17, f11));
         ViewGroup viewGroup2 = this.U;
-        tr0 tr0Var2 = this.f53295e;
+        tr0 tr0Var2 = this.f53299e;
         if (viewGroup2 != null) {
             if (this.J) {
                 viewGroup2.setTranslationX(((this.L.getPollButtonsLeft() + ((W12 + 0.0f) + this.L.getLeft())) - org.telegram.messenger.g0.L(8.0f)) - this.U.getLeft());
@@ -392,7 +392,7 @@ public final class xr0 extends Dialog {
         }
         vr0 vr0Var = this.K;
         float f19 = this.X;
-        if (this.f53296e0) {
+        if (this.f53300e0) {
             f12 = 1.0f;
         } else {
             f12 = this.E;
@@ -400,8 +400,8 @@ public final class xr0 extends Dialog {
         vr0Var.setTranslationX(org.telegram.messenger.g0.T1(f19, 0.0f, f12) + W1);
         vr0 vr0Var2 = this.K;
         float f20 = this.Y;
-        float f21 = this.f53291b0;
-        if (this.f53296e0) {
+        float f21 = this.f53295b0;
+        if (this.f53300e0) {
             f13 = 1.0f;
         } else {
             f13 = this.E;
@@ -428,7 +428,7 @@ public final class xr0 extends Dialog {
             this.S.setScaleX(T12);
             this.S.setScaleY(T12);
         }
-        if (this.f53296e0) {
+        if (this.f53300e0) {
             this.L.setAlpha(this.E);
             this.K.setAlpha(this.E);
         }
@@ -446,9 +446,9 @@ public final class xr0 extends Dialog {
         TextView textView = this.h;
         textView.setTranslationX(W1);
         textView.setAlpha(this.E);
-        org.telegram.ui.Components.ha0 ha0Var = this.f53301n;
-        ha0Var.setSelectedTab(positionAnimated);
-        ha0Var.setAlpha(this.E);
+        org.telegram.ui.Components.ia0 ia0Var = this.f53305n;
+        ia0Var.setSelectedTab(positionAnimated);
+        ia0Var.setAlpha(this.E);
     }
 
     @Override
@@ -457,7 +457,7 @@ public final class xr0 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        tr0 tr0Var = this.f53292c;
+        tr0 tr0Var = this.f53296c;
         setContentView(tr0Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

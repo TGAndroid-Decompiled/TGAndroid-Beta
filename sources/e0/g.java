@@ -43,11 +43,11 @@ public final class g {
         g6Var.w(org.telegram.messenger.g0.L(11.0f));
         g6Var.r(true, true);
         g6Var.setCallback(view);
-        g6Var.N = (int) (org.telegram.messenger.g0.f23609q.x * 0.3f);
+        g6Var.N = (int) (org.telegram.messenger.g0.f23611q.x * 0.3f);
         this.f9888b = false;
         g6Var.t(hd.M0(2131746439, null), false, true);
         String M0 = hd.M0(2131746438, null);
-        TextPaint textPaint = g6Var.f34827a;
+        TextPaint textPaint = g6Var.f34831a;
         this.f9887a = (int) Math.ceil(Math.max(textPaint.measureText(M0), textPaint.measureText(hd.M0(2131746439, null))));
     }
 
@@ -175,7 +175,7 @@ public final class g {
         yi.j jVar = (yi.j) this.f9890e;
         jVar.getClass();
         yi.j.q();
-        if (jVar.e().f2963a == 5) {
+        if (jVar.e().f2966a == 5) {
             return true;
         }
         return false;
@@ -217,7 +217,7 @@ public final class g {
         this.f9887a = 1;
         a4 a4Var = new a4(context, 3);
         a4Var.f11407c = file;
-        yi.h hVar = (yi.h) aj.e.f1652c.a();
+        yi.h hVar = (yi.h) aj.e.f1659c.a();
         if (hVar != null) {
             a4Var.d = hVar;
             a4Var.f11405a = false;

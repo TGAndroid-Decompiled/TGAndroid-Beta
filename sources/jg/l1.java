@@ -32,7 +32,7 @@ public final class l1 extends tj0 implements is {
     public String f17189y;
     public final HashSet d = new HashSet();
     public final ArrayList f17182e = new ArrayList();
-    public final int f17185r = m10.f24934t0;
+    public final int f17185r = m10.f24940t0;
     public final hi.e1 F = new hi.e1(this, 22);
 
     public l1(Context context, an anVar, e6 e6Var, int i7, boolean z10) {
@@ -78,7 +78,7 @@ public final class l1 extends tj0 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25605x5 && objArr[0] == this.E) {
+        if (i7 == ns.f25606x5 && objArr[0] == this.E) {
             f();
         }
     }
@@ -96,7 +96,7 @@ public final class l1 extends tj0 implements is {
         if (i10 == 0) {
             arrayList = si.b0(i7).Z0;
         } else {
-            arrayList = na.a(i7).b(i10).f24997a;
+            arrayList = na.a(i7).b(i10).f25003a;
         }
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
@@ -109,8 +109,8 @@ public final class l1 extends tj0 implements is {
         int i13 = this.f17184n;
         this.h = arrayList2.size();
         if (i10 != 0) {
-            if (!na.a(i7).b(i10).f25008n && this.h != 0) {
-                i11 = Utilities.j(na.a(i7).b(i10).f25007m - this.h, 3, 0);
+            if (!na.a(i7).b(i10).f25014n && this.h != 0) {
+                i11 = Utilities.j(na.a(i7).b(i10).f25013m - this.h, 3, 0);
             }
             this.f17184n = i11;
         } else {
@@ -141,12 +141,12 @@ public final class l1 extends tj0 implements is {
             t2 t2Var = (t2) view;
             t2Var.f31637t2 = true;
             gj gjVar = (gj) E(i7);
-            long B0 = gj.B0(gjVar.f23817k);
-            int i13 = gjVar.f23817k.date;
+            long B0 = gj.B0(gjVar.f23819k);
+            int i13 = gjVar.f23819k.date;
             if (this.f17188x) {
                 t2Var.f31630s0 = true;
                 long P1 = gjVar.P1();
-                TLRPC.Message message = gjVar.f23817k;
+                TLRPC.Message message = gjVar.f23819k;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader != null && ((i10 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
                     if (i10 == 0) {

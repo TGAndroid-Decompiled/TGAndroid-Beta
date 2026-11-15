@@ -76,7 +76,7 @@ public final class t3 extends k.a {
             v1Var.setBackgroundColor(-15198184);
             actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(v1Var);
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) v1Var.getLayoutParams();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 layoutParams.gravity = 5;
             }
             layoutParams.width = -1;
@@ -95,7 +95,7 @@ public final class t3 extends k.a {
             v1Var2.setBackgroundColor(-15198184);
             actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(v1Var2);
             LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) v1Var2.getLayoutParams();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 layoutParams2.gravity = 5;
             }
             layoutParams2.width = -1;
@@ -241,7 +241,7 @@ public final class t3 extends k.a {
             b4Var.f11501n3.setRightIcon(2131232060);
             actionBarPopupWindow$ActionBarPopupWindowLayout.addView(b4Var.f11501n3);
             LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) b4Var.f11501n3.getLayoutParams();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 layoutParams3.gravity = 5;
             }
             layoutParams3.width = -1;

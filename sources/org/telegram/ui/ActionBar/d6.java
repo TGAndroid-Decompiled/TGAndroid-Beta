@@ -68,7 +68,7 @@ public final class d6 implements is {
             }
         }
         ?? obj = new Object();
-        obj.f28508a = m10.f24934t0;
+        obj.f28508a = m10.f24940t0;
         if (arrayList2 != null) {
             Utilities.f22416e.c(new oi.u4(21, obj, arrayList2));
         }
@@ -130,7 +130,7 @@ public final class d6 implements is {
                 V0 = org.telegram.messenger.g0.V0(i13, false);
             }
             if (bitmap == null) {
-                Point point = org.telegram.messenger.g0.f23609q;
+                Point point = org.telegram.messenger.g0.f23611q;
                 int min = Math.min(point.x, point.y);
                 int max = Math.max(point.x, point.y);
                 if (z10) {

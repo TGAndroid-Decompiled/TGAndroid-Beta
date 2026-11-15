@@ -6,10 +6,10 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hu implements org.telegram.ui.ls {
-    public final wu f35345a;
+    public final wu f35336a;
 
     public hu(wu wuVar) {
-        this.f35345a = wuVar;
+        this.f35336a = wuVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class hu implements org.telegram.ui.ls {
 
     @Override
     public final void B(TLRPC.Document document) {
-        wu wuVar = this.f35345a;
+        wu wuVar = this.f35336a;
         org.telegram.ui.ActionBar.e2 e2Var = wuVar.n1;
         if (e2Var instanceof org.telegram.ui.an) {
             ((org.telegram.ui.an) e2Var).Gb(document);
@@ -35,14 +35,14 @@ public final class hu implements org.telegram.ui.ls {
 
     @Override
     public final boolean D(TLRPC.Document document) {
-        if (org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q() && org.telegram.messenger.gj.H2(document)) {
+        if (org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q() && org.telegram.messenger.gj.H2(document)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final m60 E(ai.j0 j0Var) {
+    public final m60 E(ai.k0 k0Var) {
         return null;
     }
 
@@ -56,7 +56,7 @@ public final class hu implements org.telegram.ui.ls {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.gj.U(document));
         valueOf.setSpan(new p5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (org.telegram.messenger.g0.g(valueOf)) {
-            wu wuVar = this.f35345a;
+            wu wuVar = this.f35336a;
             org.telegram.messenger.i20.s(null, 2131751184, new cc((FrameLayout) wuVar.f29682b, wuVar.J0));
         }
     }
@@ -80,7 +80,7 @@ public final class hu implements org.telegram.ui.ls {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z10;
-        if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q() || !org.telegram.messenger.gj.H2(document) || (f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).f()) == null) {
+        if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q() || !org.telegram.messenger.gj.H2(document) || (f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).f()) == null) {
             return null;
         }
         Long h = org.telegram.messenger.q10.h(f10);
@@ -109,7 +109,7 @@ public final class hu implements org.telegram.ui.ls {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.e2 e2Var = this.f35345a.n1;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f35336a.n1;
         if (e2Var instanceof org.telegram.ui.an) {
             return ((org.telegram.ui.an) e2Var).c();
         }
@@ -148,10 +148,10 @@ public final class hu implements org.telegram.ui.ls {
 
     @Override
     public final boolean k(int i7) {
-        wu wuVar = this.f35345a;
+        wu wuVar = this.f35336a;
         org.telegram.ui.ActionBar.e2 e2Var = wuVar.n1;
         if ((e2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) e2Var).T6()) {
-            if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q()) {
+            if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q()) {
                 if (((org.telegram.ui.an) wuVar.n1).j() != null && org.telegram.messenger.q10.B(((org.telegram.ui.an) wuVar.n1).j())) {
                     return true;
                 }
@@ -178,13 +178,13 @@ public final class hu implements org.telegram.ui.ls {
             tL_emojiStatus.document_id = document.f28057id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).f();
+        TLRPC.User f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {
             obj = f10.emoji_status;
         }
-        wu wuVar = this.f35345a;
+        wu wuVar = this.f35336a;
         org.telegram.messenger.np.s1(wuVar.f29679a).i5(emojiStatus, null);
         vs vsVar = new vs(2, this, obj);
         if (document == null) {
@@ -192,7 +192,7 @@ public final class hu implements org.telegram.ui.ls {
             pbVar.f38262b.setText(org.telegram.messenger.hd.M0(2131746287, null));
             pbVar.f38261a.setImageResource(2131232363);
             vb vbVar = new vb(wuVar.getContext(), wuVar.J0, true);
-            vbVar.f40369b = vsVar;
+            vbVar.f40372b = vsVar;
             pbVar.setButton(vbVar);
             xb.f((FrameLayout) wuVar.f29682b, pbVar, 1500).j();
             return;

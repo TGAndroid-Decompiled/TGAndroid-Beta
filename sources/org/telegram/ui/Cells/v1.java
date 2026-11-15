@@ -37,7 +37,7 @@ public final class v1 {
         q1 q1Var = this.f31786a;
         boolean J4 = q1Var.Q5.J4();
         gj gjVar = q1Var.Q5;
-        if (gjVar.f23817k.action instanceof TLRPC.TL_messageActionConferenceCall) {
+        if (gjVar.f23819k.action instanceof TLRPC.TL_messageActionConferenceCall) {
             if (gjVar.P3()) {
                 drawable = org.telegram.ui.ActionBar.j6.O4;
             } else {
@@ -78,7 +78,7 @@ public final class v1 {
                 drawable2 = q1Var.Z1(str);
             }
         } else {
-            TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = q1Var.Q5.f23817k.action.reason;
+            TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = q1Var.Q5.f23819k.action.reason;
             if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy)) {
                 drawable = org.telegram.ui.ActionBar.j6.Q4;
             } else {
@@ -120,7 +120,7 @@ public final class v1 {
             L = org.telegram.messenger.g0.L(25.0f);
         }
         q1Var.S3 = L;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L = org.telegram.messenger.k5.C(12.0f, drawable5.getIntrinsicWidth(), L);
         }
         int i14 = L;
@@ -133,7 +133,7 @@ public final class v1 {
         float f11 = -19.0f;
         if (q1Var.f30958e3 != null) {
             canvas.save();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f10 = -19.0f;
             } else {
                 f10 = 19.0f;
@@ -144,7 +144,7 @@ public final class v1 {
         }
         if (this.f31788c != null && this.f31787b != null) {
             canvas.save();
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f11 = 19.0f;
             }
             canvas.translate(org.telegram.messenger.g0.L(6.0f) + org.telegram.messenger.g0.L(f11) + i14 + q1Var.f30972f3, org.telegram.messenger.g0.L(36.0f) + q1Var.Ua);
@@ -154,7 +154,7 @@ public final class v1 {
             canvas.restore();
         }
         int i15 = 0;
-        if (hd.f24101a0 && (staticLayout = q1Var.f30958e3) != null) {
+        if (hd.f24104a0 && (staticLayout = q1Var.f30958e3) != null) {
             i10 = staticLayout.getWidth() - drawable4.getIntrinsicWidth();
         } else {
             i10 = 0;
@@ -176,7 +176,7 @@ public final class v1 {
             q1Var.T3 = org.telegram.messenger.g0.L(19.0f);
         }
         int i16 = q1Var.S3;
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             i15 = q1Var.f30923b7 - org.telegram.messenger.g0.L(70.0f);
         }
         z.s(org.telegram.messenger.g0.L(!J4 ? 1 : 0) + i16 + i15, q1Var.T3, drawable5);

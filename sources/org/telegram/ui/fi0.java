@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class fi0 implements Runnable {
-    public final int f47145a;
-    public final PasscodeActivity f47146b;
+    public final int f47129a;
+    public final PasscodeActivity f47130b;
 
     public fi0(PasscodeActivity passcodeActivity, int i7) {
-        this.f47145a = i7;
-        this.f47146b = passcodeActivity;
+        this.f47129a = i7;
+        this.f47130b = passcodeActivity;
     }
 
     @Override
     public final void run() {
         long j3;
-        switch (this.f47145a) {
+        switch (this.f47129a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f47146b;
+                PasscodeActivity passcodeActivity = this.f47130b;
                 passcodeActivity.f42698n.postDelayed(passcodeActivity.T, 3000L);
                 passcodeActivity.S = true;
                 return;
             case 1:
-                PasscodeActivity passcodeActivity2 = this.f47146b;
+                PasscodeActivity passcodeActivity2 = this.f47130b;
                 fy0 fy0Var = passcodeActivity2.W;
                 if (fy0Var != null) {
                     org.telegram.messenger.g0.h3(fy0Var);
@@ -28,7 +28,7 @@ public final class fi0 implements Runnable {
                 return;
             case 2:
                 PasscodeActivity passcodeActivity3 = new PasscodeActivity(0);
-                PasscodeActivity passcodeActivity4 = this.f47146b;
+                PasscodeActivity passcodeActivity4 = this.f47130b;
                 passcodeActivity4.presentFragment(passcodeActivity3, true);
                 m90 m90Var = passcodeActivity4.V;
                 if (m90Var != null) {
@@ -38,7 +38,7 @@ public final class fi0 implements Runnable {
                 }
                 return;
             case 3:
-                PasscodeActivity passcodeActivity5 = this.f47146b;
+                PasscodeActivity passcodeActivity5 = this.f47130b;
                 fi0 fi0Var = new fi0(passcodeActivity5, 4);
                 if (passcodeActivity5.s0()) {
                     j3 = 150;
@@ -48,9 +48,9 @@ public final class fi0 implements Runnable {
                 org.telegram.messenger.g0.i3(fi0Var, j3);
                 return;
             case 4:
-                PasscodeActivity passcodeActivity6 = this.f47146b;
+                PasscodeActivity passcodeActivity6 = this.f47130b;
                 if (passcodeActivity6.s0()) {
-                    for (dr drVar : passcodeActivity6.f42698n.f45491f) {
+                    for (dr drVar : passcodeActivity6.f42698n.f45485f) {
                         drVar.A(0.0f);
                     }
                     return;
@@ -58,12 +58,12 @@ public final class fi0 implements Runnable {
                 passcodeActivity6.f42697f.a(0.0f);
                 return;
             case 5:
-                PasscodeActivity passcodeActivity7 = this.f47146b;
+                PasscodeActivity passcodeActivity7 = this.f47130b;
                 passcodeActivity7.S = false;
                 org.telegram.messenger.g0.W3(passcodeActivity7.f42699r, false);
                 return;
             default:
-                this.f47146b.y0();
+                this.f47130b.y0();
                 return;
         }
     }

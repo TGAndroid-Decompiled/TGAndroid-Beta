@@ -1,56 +1,78 @@
 package di;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class sa extends org.telegram.ui.Components.i9 {
-    public xh.e H;
-    public Path I;
-    public RectF J;
-    public Drawable K;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+public final class sa extends a41 {
+    public static final int f9407b = 0;
+
+    static {
+        a41.h(new a41());
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        RectF rectF = this.J;
-        Path path = this.I;
-        Drawable drawable = this.K;
-        super.dispatchDraw(canvas);
-        if (this.H == null) {
-            this.H = xh.e.e(this);
-        }
-        if (this.H != null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            path.rewind();
-            path.addRoundRect(rectF, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            canvas2 = canvas;
-            this.H.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
-            canvas2.restore();
+    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
+        boolean z11;
+        int i7;
+        int i10;
+        int i11;
+        ta taVar = (ta) view;
+        org.telegram.ui.Components.h6 h6Var = taVar.f9478a;
+        ImageView imageView = taVar.f9479b;
+        int i12 = taVar.f9480c;
+        int i13 = b41Var.d;
+        if (i12 == i13) {
+            z11 = true;
         } else {
-            canvas2 = canvas;
+            z11 = false;
         }
-        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
-        drawable.draw(canvas2);
+        taVar.f9480c = i13;
+        h6Var.c(b41Var.f33184l, z11, true);
+        if (b41Var.f33189q) {
+            i7 = org.telegram.ui.ActionBar.j6.f29049o6;
+        } else {
+            i7 = org.telegram.ui.ActionBar.j6.G6;
+        }
+        org.telegram.ui.ActionBar.j6.v0(i7);
+        if (b41Var.f33189q) {
+            i10 = org.telegram.ui.ActionBar.j6.f29049o6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.G6;
+        }
+        org.telegram.ui.ActionBar.q6.Y(h6Var, i10, null);
+        if (b41Var.f33189q) {
+            i11 = org.telegram.ui.ActionBar.j6.f29049o6;
+        } else {
+            i11 = org.telegram.ui.ActionBar.j6.G6;
+        }
+        org.telegram.ui.ActionBar.q6.s(imageView, i11, null, PorterDuff.Mode.SRC_IN);
+        float f10 = 180.0f;
+        if (z11) {
+            ViewPropertyAnimator animate = imageView.animate();
+            if (b41Var.f33179f) {
+                f10 = 0.0f;
+            }
+            animate.rotation(f10).setDuration(340L).setInterpolator(er.h);
+        } else {
+            if (b41Var.f33179f) {
+                f10 = 0.0f;
+            }
+            imageView.setRotation(f10);
+        }
+        taVar.d = z10;
+        taVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        xh.e eVar = this.H;
-        if (eVar != null) {
-            eVar.a(this);
-        }
-        super.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        xh.e eVar = this.H;
-        if (eVar != null) {
-            eVar.b(this);
-        }
-        super.onDetachedFromWindow();
+    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new ta(context);
     }
 }

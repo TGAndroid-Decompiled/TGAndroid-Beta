@@ -29,7 +29,7 @@ import bi.x0;
 import c8.he;
 import c8.k0;
 import c8.l0;
-import di.bc;
+import di.ac;
 import java.nio.MappedByteBuffer;
 import java.util.ArrayDeque;
 import java.util.Iterator;
@@ -61,7 +61,7 @@ public final class f implements Runnable {
         androidx.emoji2.text.r rVar = (androidx.emoji2.text.r) this.f82b;
         synchronized (rVar.d) {
             try {
-                if (rVar.f2282n == null) {
+                if (rVar.f2285n == null) {
                     return;
                 }
                 try {
@@ -74,22 +74,22 @@ public final class f implements Runnable {
                     if (i7 == 0) {
                         int i10 = n0.g.f20692a;
                         Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
-                        qb.a aVar = rVar.f2279c;
-                        Context context = rVar.f2277a;
+                        qb.a aVar = rVar.f2282c;
+                        Context context = rVar.f2280a;
                         aVar.getClass();
                         o0.h[] hVarArr = {d};
                         k0 k0Var = i0.f.f15580a;
                         he.a("TypefaceCompat.createFromFontInfo");
                         Typeface b10 = i0.f.f15580a.b(context, hVarArr, 0);
                         Trace.endSection();
-                        MappedByteBuffer e10 = l0.e(rVar.f2277a, d.f21212a);
+                        MappedByteBuffer e10 = l0.e(rVar.f2280a, d.f21212a);
                         if (e10 != null && b10 != null) {
                             Trace.beginSection("EmojiCompat.MetadataRepo.create");
                             c0 c0Var = new c0(b10, v6.a(e10));
                             Trace.endSection();
                             Trace.endSection();
                             synchronized (rVar.d) {
-                                u6 u6Var = rVar.f2282n;
+                                u6 u6Var = rVar.f2285n;
                                 if (u6Var != null) {
                                     u6Var.b(c0Var);
                                 }
@@ -103,7 +103,7 @@ public final class f implements Runnable {
                 } catch (Throwable th2) {
                     synchronized (rVar.d) {
                         try {
-                            u6 u6Var2 = rVar.f2282n;
+                            u6 u6Var2 = rVar.f2285n;
                             if (u6Var2 != null) {
                                 u6Var2.a(th2);
                             }
@@ -199,17 +199,17 @@ public final class f implements Runnable {
                 g0.J3((EditText) this.f82b);
                 return;
             case 7:
-                DictationAsr.V((ai.s) ((a0) this.f82b).f1706b, new Object());
+                DictationAsr.V((ai.t) ((a0) this.f82b).f1713b, new Object());
                 return;
             case 8:
                 ((androidx.activity.l) this.f82b).invalidateOptionsMenu();
                 return;
             case 9:
                 androidx.activity.k kVar = (androidx.activity.k) this.f82b;
-                Runnable runnable = kVar.f1773b;
+                Runnable runnable = kVar.f1780b;
                 if (runnable != null) {
                     runnable.run();
-                    kVar.f1773b = null;
+                    kVar.f1780b = null;
                     return;
                 }
                 return;
@@ -226,7 +226,7 @@ public final class f implements Runnable {
                 this$0.a(null);
                 return;
             case 13:
-                Iterator it2 = ((j0) this.f82b).f2362n.iterator();
+                Iterator it2 = ((j0) this.f82b).f2365n.iterator();
                 if (!it2.hasNext()) {
                     return;
                 }
@@ -234,12 +234,12 @@ public final class f implements Runnable {
                 throw new ClassCastException();
             case 14:
                 e0 e0Var = (e0) this.f82b;
-                androidx.lifecycle.v vVar = e0Var.f2507f;
-                if (e0Var.f2504b == 0) {
-                    e0Var.f2505c = true;
+                androidx.lifecycle.v vVar = e0Var.f2510f;
+                if (e0Var.f2507b == 0) {
+                    e0Var.f2508c = true;
                     vVar.e(androidx.lifecycle.m.ON_PAUSE);
                 }
-                if (e0Var.f2503a == 0 && e0Var.f2505c) {
+                if (e0Var.f2506a == 0 && e0Var.f2508c) {
                     vVar.e(androidx.lifecycle.m.ON_STOP);
                     e0Var.d = true;
                     return;
@@ -254,23 +254,23 @@ public final class f implements Runnable {
                 }
             case 16:
                 bg.q qVar = (bg.q) this.f82b;
-                long j3 = qVar.f3318b;
+                long j3 = qVar.f3321b;
                 if (j3 > 0) {
                     long j10 = j3 - 1;
-                    qVar.f3318b = j10;
-                    qVar.f3317a.g(j10);
+                    qVar.f3321b = j10;
+                    qVar.f3320a.g(j10);
                 }
-                if (qVar.f3318b <= 0) {
-                    qVar.f3319c = false;
+                if (qVar.f3321b <= 0) {
+                    qVar.f3322c = false;
                 }
-                if (qVar.f3319c) {
+                if (qVar.f3322c) {
                     g0.i3(qVar.d, 1000L);
                     return;
                 }
                 return;
             case 17:
                 bi.y yVar = (bi.y) this.f82b;
-                yVar.d2.setTranslationX(yVar.f3987c2.getAnimatedWidth() + g0.L(28.0f));
+                yVar.d2.setTranslationX(yVar.f3990c2.getAnimatedWidth() + g0.L(28.0f));
                 return;
             case 18:
                 ((t0) this.f82b).onBackPressed();
@@ -281,7 +281,7 @@ public final class f implements Runnable {
                 if (drawable != null && !x0Var.Q) {
                     drawable.setAlpha(255);
                 }
-                x0Var.f3966a.setAlpha(1.0f);
+                x0Var.f3969a.setAlpha(1.0f);
                 if (x0Var.getParent() instanceof ViewGroup) {
                     ((ViewGroup) x0Var.getParent()).removeView(x0Var);
                 }
@@ -306,9 +306,9 @@ public final class f implements Runnable {
                 return;
             case 23:
                 n2 n2Var = (n2) this.f82b;
-                bc bcVar = n2Var.f3728e;
-                if (bcVar != null) {
-                    bcVar.d();
+                ac acVar = n2Var.f3731e;
+                if (acVar != null) {
+                    acVar.d();
                     n2Var.invalidateSelf();
                     return;
                 }
@@ -326,12 +326,12 @@ public final class f implements Runnable {
                 f();
                 return;
             case 28:
-                ch.r rVar = (ch.r) ((d6.i) this.f82b).f7595b;
-                ch.q qVar2 = rVar.f5215b;
+                ch.r rVar = (ch.r) ((d6.i) this.f82b).f7598b;
+                ch.q qVar2 = rVar.f5218b;
                 if (qVar2 != null) {
                     qVar2.d(true);
                 }
-                rVar.f5214a.O7(true);
+                rVar.f5217a.O7(true);
                 return;
             default:
                 ((ValueAnimator) this.f82b).start();

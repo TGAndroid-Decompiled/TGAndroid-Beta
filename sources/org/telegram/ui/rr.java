@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
 public final class rr implements Runnable {
-    public final int f51007a;
-    public final ContactsActivity f51008b;
+    public final int f51003a;
+    public final ContactsActivity f51004b;
 
     public rr(ContactsActivity contactsActivity, int i7) {
-        this.f51007a = i7;
-        this.f51008b = contactsActivity;
+        this.f51003a = i7;
+        this.f51004b = contactsActivity;
     }
 
     @Override
     public final void run() {
         float f10;
         int i7;
-        switch (this.f51007a) {
+        switch (this.f51003a) {
             case 0:
-                ContactsActivity contactsActivity = this.f51008b;
+                ContactsActivity contactsActivity = this.f51004b;
                 te.c cVar = contactsActivity.f42532a;
                 if (contactsActivity.f42552r) {
                     f10 = 0.0f;
@@ -26,7 +26,7 @@ public final class rr implements Runnable {
                 }
                 cVar.c(f10);
                 vr vrVar = contactsActivity.f42534b;
-                float f11 = cVar.f57087f;
+                float f11 = cVar.f57091f;
                 ArrayList arrayList = vrVar.O;
                 vrVar.M = f11;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -44,13 +44,13 @@ public final class rr implements Runnable {
                 contactsActivity.f42542f0 = withEndAction;
                 withEndAction.start();
                 if (contactsActivity.f42552r) {
-                    cVar.f57086e = 80L;
+                    cVar.f57090e = 80L;
                     cVar.a(1.0f);
                     return;
                 }
                 return;
             default:
-                this.f51008b.f42542f0 = null;
+                this.f51004b.f42542f0 = null;
                 return;
         }
     }

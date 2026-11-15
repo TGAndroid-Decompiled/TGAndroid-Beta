@@ -124,7 +124,7 @@ public final class q8 extends FrameLayout {
                                 b();
                                 return true;
                             }
-                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f23608p;
+                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f23610p;
                             this.f44397c = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.f44400n, radians, this.f44397c);
                             this.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getY(findPointerIndex), this.f44401r, radians, this.d);
                             this.f44400n = motionEvent.getX(findPointerIndex);

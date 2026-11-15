@@ -19,7 +19,7 @@ public final class e5 implements is {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TL_wallet.walletTransaction[] wallettransactionArr;
         TL_wallet.walletTransaction wallettransaction;
-        if (i7 == ns.f25467a4 || i7 == ns.f25473b4) {
+        if (i7 == ns.f25468a4 || i7 == ns.f25474b4) {
             ArrayList arrayList = l0.x(this.f43793a).B().f44044c;
             int size = arrayList.size();
             int i11 = 0;

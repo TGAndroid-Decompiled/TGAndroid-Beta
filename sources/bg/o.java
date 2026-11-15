@@ -62,14 +62,14 @@ public abstract class o {
                     arrayList.add(tL_messageEntityStrike);
                 } else if (obj instanceof n) {
                     n nVar = (n) obj;
-                    int i7 = nVar.f3309a;
+                    int i7 = nVar.f3312a;
                     if (i7 == 0) {
                         TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
                         tL_messageEntitySpoiler.offset = spanStart;
                         tL_messageEntitySpoiler.length = spanEnd - spanStart;
                         arrayList.add(tL_messageEntitySpoiler);
                     } else if (i7 == 1) {
-                        if (!TextUtils.isEmpty(nVar.f3310b)) {
+                        if (!TextUtils.isEmpty(nVar.f3313b)) {
                             arrayList2.add(nVar);
                         } else {
                             TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
@@ -110,13 +110,13 @@ public abstract class o {
                 n nVar2 = (n) arrayList2.get(i10);
                 int spanStart3 = fromHtml.getSpanStart(nVar2);
                 int spanEnd3 = fromHtml.getSpanEnd(nVar2);
-                spannableStringBuilder.setSpan(new qi.g(nVar2.f3310b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString(), true), spanStart3, spanEnd3, 33);
+                spannableStringBuilder.setSpan(new qi.g(nVar2.f3313b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString(), true), spanStart3, spanEnd3, 33);
             }
             for (int i11 = 0; i11 < arrayList3.size(); i11++) {
                 n nVar3 = (n) arrayList3.get(i11);
                 int spanStart4 = fromHtml.getSpanStart(nVar3);
                 int spanEnd4 = fromHtml.getSpanEnd(nVar3);
-                if (nVar3.f3309a == 3) {
+                if (nVar3.f3312a == 3) {
                     z10 = true;
                 } else {
                     z10 = false;

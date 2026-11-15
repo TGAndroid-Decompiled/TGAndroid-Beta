@@ -16,42 +16,42 @@ import org.telegram.ui.cy0;
 import org.telegram.ui.m40;
 import org.telegram.ui.ts0;
 public final class lx implements RequestDelegate {
-    public final int f24904a;
-    public final int f24905b;
-    public final Object f24906c;
+    public final int f24910a;
+    public final int f24911b;
+    public final Object f24912c;
     public final Object d;
-    public final Object f24907e;
-    public final Object f24908f;
-    public final Object f24909g;
+    public final Object f24913e;
+    public final Object f24914f;
+    public final Object f24915g;
 
     public lx(int i7, int i10, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject) {
-        this.f24904a = i10;
+        this.f24910a = i10;
         this.d = obj;
-        this.f24907e = tLObject;
-        this.f24908f = obj2;
-        this.f24909g = obj3;
-        this.f24905b = i7;
-        this.f24906c = obj4;
+        this.f24913e = tLObject;
+        this.f24914f = obj2;
+        this.f24915g = obj3;
+        this.f24911b = i7;
+        this.f24912c = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f24904a;
-        int i10 = this.f24905b;
-        Object obj = this.f24906c;
-        Object obj2 = this.f24909g;
-        Object obj3 = this.f24908f;
-        Object obj4 = this.f24907e;
+        int i7 = this.f24910a;
+        int i10 = this.f24911b;
+        Object obj = this.f24912c;
+        Object obj2 = this.f24915g;
+        Object obj3 = this.f24914f;
+        Object obj4 = this.f24913e;
         Object obj5 = this.d;
         switch (i7) {
             case 0:
-                g0.h3(new bi.u2((ez) obj5, tLObject, (TLRPC.InputFile) obj4, (TLRPC.InputMedia) obj3, (qy) obj2, this.f24905b, (String) obj, 3));
+                g0.h3(new bi.u2((ez) obj5, tLObject, (TLRPC.InputFile) obj4, (TLRPC.InputMedia) obj3, (qy) obj2, this.f24911b, (String) obj, 3));
                 return;
             case 1:
-                g0.h3(new bi.u2((org.telegram.ui.g4) obj5, this.f24905b, (vf.b) obj4, tLObject, (String) obj, (org.telegram.ui.e0) obj3, (TLRPC.TL_messages_getWebPage) obj2));
+                g0.h3(new bi.u2((org.telegram.ui.g4) obj5, this.f24911b, (vf.b) obj4, tLObject, (String) obj, (org.telegram.ui.e0) obj3, (TLRPC.TL_messages_getWebPage) obj2));
                 return;
             case 2:
-                g0.h3(new bi.u2(tLObject, (org.telegram.ui.ActionBar.t1) obj5, (Context) obj4, this.f24905b, (TL_phone.exportGroupCallInvite) obj3, (org.telegram.ui.ActionBar.e6) obj2, (m40) obj));
+                g0.h3(new bi.u2(tLObject, (org.telegram.ui.ActionBar.t1) obj5, (Context) obj4, this.f24911b, (TL_phone.exportGroupCallInvite) obj3, (org.telegram.ui.ActionBar.e6) obj2, (m40) obj));
                 return;
             case 3:
                 boolean[] zArr = (boolean[]) obj5;
@@ -63,7 +63,7 @@ public final class lx implements RequestDelegate {
                     np.s1(i10).O3((TLRPC.TL_updates) tLObject, false);
                 }
                 if (zArr[0] && file.exists() && setcallrating.rating < 4) {
-                    ez.T(c.a(m10.f24934t0), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, true, null, null);
+                    ez.T(c.a(m10.f24940t0), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, true, null, null);
                     Toast.makeText(context, hd.M0(2131752602, null), 1).show();
                     return;
                 }
@@ -71,10 +71,10 @@ public final class lx implements RequestDelegate {
             case 4:
                 String str = (String) obj;
                 String str2 = LaunchActivity.C1;
-                g0.h3(new bi.u2((LaunchActivity) obj5, tLObject, this.f24905b, (org.telegram.ui.yw) obj4, (org.telegram.ui.ActionBar.e2) obj3, (TLRPC.User) obj2, str));
+                g0.h3(new bi.u2((LaunchActivity) obj5, tLObject, this.f24911b, (org.telegram.ui.yw) obj4, (org.telegram.ui.ActionBar.e2) obj3, (TLRPC.User) obj2, str));
                 return;
             case 5:
-                g0.h3(new de(tLObject, (org.telegram.ui.ActionBar.e2) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (ts0) obj3, (com.google.android.gms.internal.clearcut.y0) obj2, this.f24905b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj, 3));
+                g0.h3(new de(tLObject, (org.telegram.ui.ActionBar.e2) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (ts0) obj3, (com.google.android.gms.internal.clearcut.y0) obj2, this.f24911b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj, 3));
                 return;
             default:
                 Context context2 = (Context) obj5;
@@ -105,52 +105,52 @@ public final class lx implements RequestDelegate {
     }
 
     public lx(int i7, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context) {
-        this.f24904a = 3;
-        this.f24905b = i7;
+        this.f24910a = 3;
+        this.f24911b = i7;
         this.d = zArr;
-        this.f24907e = file;
-        this.f24908f = setcallrating;
-        this.f24909g = arrayList;
-        this.f24906c = context;
+        this.f24913e = file;
+        this.f24914f = setcallrating;
+        this.f24915g = arrayList;
+        this.f24912c = context;
     }
 
     public lx(Context context, org.telegram.ui.ActionBar.e6 e6Var, byte[] bArr, org.telegram.ui.ActionBar.e2 e2Var, hh0 hh0Var, int i7) {
-        this.f24904a = 6;
+        this.f24910a = 6;
         this.d = context;
-        this.f24907e = e6Var;
-        this.f24908f = bArr;
-        this.f24909g = e2Var;
-        this.f24906c = hh0Var;
-        this.f24905b = i7;
+        this.f24913e = e6Var;
+        this.f24914f = bArr;
+        this.f24915g = e2Var;
+        this.f24912c = hh0Var;
+        this.f24911b = i7;
     }
 
     public lx(org.telegram.ui.ActionBar.t1 t1Var, Context context, int i7, TL_phone.exportGroupCallInvite exportgroupcallinvite, org.telegram.ui.ActionBar.e6 e6Var, m40 m40Var) {
-        this.f24904a = 2;
+        this.f24910a = 2;
         this.d = t1Var;
-        this.f24907e = context;
-        this.f24905b = i7;
-        this.f24908f = exportgroupcallinvite;
-        this.f24909g = e6Var;
-        this.f24906c = m40Var;
+        this.f24913e = context;
+        this.f24911b = i7;
+        this.f24914f = exportgroupcallinvite;
+        this.f24915g = e6Var;
+        this.f24912c = m40Var;
     }
 
     public lx(org.telegram.ui.g4 g4Var, int i7, vf.b bVar, String str, org.telegram.ui.e0 e0Var, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
-        this.f24904a = 1;
+        this.f24910a = 1;
         this.d = g4Var;
-        this.f24905b = i7;
-        this.f24907e = bVar;
-        this.f24906c = str;
-        this.f24908f = e0Var;
-        this.f24909g = tL_messages_getWebPage;
+        this.f24911b = i7;
+        this.f24913e = bVar;
+        this.f24912c = str;
+        this.f24914f = e0Var;
+        this.f24915g = tL_messages_getWebPage;
     }
 
     public lx(LaunchActivity launchActivity, int i7, org.telegram.ui.yw ywVar, org.telegram.ui.ActionBar.e2 e2Var, TLRPC.User user, String str) {
-        this.f24904a = 4;
+        this.f24910a = 4;
         this.d = launchActivity;
-        this.f24905b = i7;
-        this.f24907e = ywVar;
-        this.f24908f = e2Var;
-        this.f24909g = user;
-        this.f24906c = str;
+        this.f24911b = i7;
+        this.f24913e = ywVar;
+        this.f24914f = e2Var;
+        this.f24915g = user;
+        this.f24912c = str;
     }
 }

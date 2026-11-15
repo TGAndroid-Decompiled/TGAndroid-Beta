@@ -12,20 +12,20 @@ import org.telegram.ui.Wallet.g8;
 import org.telegram.ui.Wallet.h8;
 import org.telegram.ui.x21;
 public final class e4 implements s10 {
-    public final int f3478a;
-    public final Object f3479b;
-    public final Object f3480c;
+    public final int f3481a;
+    public final Object f3482b;
+    public final Object f3483c;
 
     public e4(int i7, Object obj, Object obj2) {
-        this.f3478a = i7;
-        this.f3479b = obj;
-        this.f3480c = obj2;
+        this.f3481a = i7;
+        this.f3482b = obj;
+        this.f3483c = obj2;
     }
 
     private final void b(Object obj, Object obj2) {
         String str;
-        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f3479b;
-        g8 g8Var = (g8) this.f3480c;
+        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f3482b;
+        g8 g8Var = (g8) this.f3483c;
         org.telegram.ui.Wallet.i0 i0Var = (org.telegram.ui.Wallet.i0) obj;
         String str2 = (String) obj2;
         String str3 = "NULL_ERROR";
@@ -58,8 +58,8 @@ public final class e4 implements s10 {
 
     private final void c(Object obj, Object obj2) {
         String str;
-        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f3479b;
-        h8 h8Var = (h8) this.f3480c;
+        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f3482b;
+        h8 h8Var = (h8) this.f3483c;
         org.telegram.ui.Wallet.i0 i0Var = (org.telegram.ui.Wallet.i0) obj;
         String str2 = (String) obj2;
         if (i0Var == null) {
@@ -84,8 +84,8 @@ public final class e4 implements s10 {
     }
 
     private final void d(Object obj, Object obj2) {
-        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f3479b;
-        x21 x21Var = (x21) this.f3480c;
+        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f3482b;
+        x21 x21Var = (x21) this.f3483c;
         TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
         if (tL_error != null) {
@@ -103,10 +103,10 @@ public final class e4 implements s10 {
     }
 
     private final void e(Object obj, Object obj2) {
-        s10 s10Var = (s10) this.f3480c;
+        s10 s10Var = (s10) this.f3483c;
         TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
         String str = (String) obj2;
-        if (!((org.telegram.ui.Wallet.z) this.f3479b).f44768a) {
+        if (!((org.telegram.ui.Wallet.z) this.f3482b).f44768a) {
             s10Var.a(wallettransaction, str);
         }
     }
@@ -117,8 +117,8 @@ public final class e4 implements s10 {
     }
 
     public e4(org.telegram.ui.Wallet.l0 l0Var, String str, z10 z10Var) {
-        this.f3478a = 23;
-        this.f3479b = str;
-        this.f3480c = z10Var;
+        this.f3481a = 23;
+        this.f3482b = str;
+        this.f3483c = z10Var;
     }
 }

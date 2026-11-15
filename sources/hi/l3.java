@@ -298,7 +298,7 @@ public class l3 extends View {
                 i11 = Math.max(max, spanEnd2);
                 if (i11 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(y31VarArr[i12].f41864a);
+                    textPaint3.setTypeface(y31VarArr[i12].f41856a);
                     textPaint3.setTypeface(typeface);
                     f10 = textPaint3.measureText(spanned, max, i11) + f10;
                 }
@@ -399,7 +399,7 @@ public class l3 extends View {
             if (this.J) {
                 f10 = this.Q;
             } else {
-                f10 = g6Var.f34833e;
+                f10 = g6Var.f34837e;
             }
             if (this.f14569r) {
                 if (this.f14564n == null) {
@@ -765,7 +765,7 @@ public class l3 extends View {
         invalidate();
         Runnable runnable2 = this.f14570r0;
         if (runnable2 != null) {
-            org.telegram.messenger.g0.i3(runnable2, u5Var.f39903c * ((float) u5Var.f39906g));
+            org.telegram.messenger.g0.i3(runnable2, u5Var.f39900c * ((float) u5Var.f39903g));
         }
         this.R.f(true);
     }
@@ -794,7 +794,7 @@ public class l3 extends View {
             return charSequence;
         }
         if (!this.J) {
-            return this.I.f34836i;
+            return this.I.f34840i;
         }
         StaticLayout staticLayout = this.M;
         if (staticLayout != null) {
@@ -807,7 +807,7 @@ public class l3 extends View {
         if (this.J) {
             return this.K;
         }
-        return this.I.f34827a;
+        return this.I.f34831a;
     }
 
     public final void i(float f10) {
@@ -1037,8 +1037,8 @@ public class l3 extends View {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f14582z0 = ofFloat;
             ofFloat.addUpdateListener(new j3(this, 0));
-            this.f14582z0.addListener(new ai.i0(this, 21));
-            this.f14582z0.setInterpolator(er.f34424k);
+            this.f14582z0.addListener(new ai.j0(this, 21));
+            this.f14582z0.setInterpolator(er.f34423k);
             this.f14582z0.setDuration(300L);
             this.f14582z0.start();
         }

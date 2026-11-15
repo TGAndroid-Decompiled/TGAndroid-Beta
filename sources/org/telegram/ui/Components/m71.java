@@ -113,11 +113,11 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                     AsyncTask asyncTask2 = m71Var.S;
                     if (asyncTask2 instanceof l71) {
                         l71 l71Var = (l71) asyncTask2;
-                        String[] strArr = l71Var.f36735c;
+                        String[] strArr = l71Var.f36723c;
                         String str2 = strArr[0];
                         String str3 = l71Var.d;
                         strArr[0] = str2.replace(str3, "/signature/" + str);
-                        l71Var.f36734b.countDown();
+                        l71Var.f36722b.countDown();
                     }
                 }
             }
@@ -166,17 +166,17 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
         imageView2.setScaleType(scaleType);
         i71Var.addView(imageView2, c8.ja.d(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 5.0f));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final m71 f33861b;
+            public final m71 f33863b;
 
             {
-                this.f33861b = this;
+                this.f33863b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        m71 m71Var = this.f33861b;
+                        m71 m71Var = this.f33863b;
                         if (m71Var.f37159x && !m71Var.T && !m71Var.f37139a0 && m71Var.N) {
                             m71Var.U = !m71Var.U;
                             m71Var.l(true);
@@ -184,7 +184,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                         }
                         return;
                     case 1:
-                        m71 m71Var2 = this.f33861b;
+                        m71 m71Var2 = this.f33863b;
                         u51 u51Var2 = m71Var2.f37138a;
                         if (m71Var2.f37159x && m71Var2.f37160y != null) {
                             if (u51Var2.d == null) {
@@ -201,7 +201,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                         }
                         return;
                     default:
-                        m71 m71Var3 = this.f33861b;
+                        m71 m71Var3 = this.f33863b;
                         ViewGroup viewGroup = m71Var3.f37147f;
                         boolean z11 = m71Var3.J;
                         j71 j71Var2 = m71Var3.f37158w;
@@ -264,17 +264,17 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
         imageView3.setScaleType(scaleType);
         i71Var.addView(imageView3, c8.ja.e(48, 48, 17));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final m71 f33861b;
+            public final m71 f33863b;
 
             {
-                this.f33861b = this;
+                this.f33863b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        m71 m71Var = this.f33861b;
+                        m71 m71Var = this.f33863b;
                         if (m71Var.f37159x && !m71Var.T && !m71Var.f37139a0 && m71Var.N) {
                             m71Var.U = !m71Var.U;
                             m71Var.l(true);
@@ -282,7 +282,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                         }
                         return;
                     case 1:
-                        m71 m71Var2 = this.f33861b;
+                        m71 m71Var2 = this.f33863b;
                         u51 u51Var2 = m71Var2.f37138a;
                         if (m71Var2.f37159x && m71Var2.f37160y != null) {
                             if (u51Var2.d == null) {
@@ -299,7 +299,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                         }
                         return;
                     default:
-                        m71 m71Var3 = this.f33861b;
+                        m71 m71Var3 = this.f33863b;
                         ViewGroup viewGroup = m71Var3.f37147f;
                         boolean z11 = m71Var3.J;
                         j71 j71Var2 = m71Var3.f37158w;
@@ -363,17 +363,17 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
             imageView4.setScaleType(scaleType);
             i71Var.addView(imageView4, c8.ja.e(56, 48, 53));
             imageView4.setOnClickListener(new View.OnClickListener(this) {
-                public final m71 f33861b;
+                public final m71 f33863b;
 
                 {
-                    this.f33861b = this;
+                    this.f33863b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            m71 m71Var = this.f33861b;
+                            m71 m71Var = this.f33863b;
                             if (m71Var.f37159x && !m71Var.T && !m71Var.f37139a0 && m71Var.N) {
                                 m71Var.U = !m71Var.U;
                                 m71Var.l(true);
@@ -381,7 +381,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                             }
                             return;
                         case 1:
-                            m71 m71Var2 = this.f33861b;
+                            m71 m71Var2 = this.f33863b;
                             u51 u51Var2 = m71Var2.f37138a;
                             if (m71Var2.f37159x && m71Var2.f37160y != null) {
                                 if (u51Var2.d == null) {
@@ -398,7 +398,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
                             }
                             return;
                         default:
-                            m71 m71Var3 = this.f33861b;
+                            m71 m71Var3 = this.f33863b;
                             ViewGroup viewGroup = m71Var3.f37147f;
                             boolean z11 = m71Var3.J;
                             j71 j71Var2 = m71Var3.f37158w;
@@ -760,7 +760,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
         org.telegram.messenger.g0.i3(this.f37152j0, 500L);
         if (!this.K) {
             this.K = true;
-            ((AudioManager) org.telegram.messenger.t0.f26600b.getSystemService("audio")).requestAudioFocus(this, 3, 1);
+            ((AudioManager) org.telegram.messenger.t0.f26609b.getSystemService("audio")).requestAudioFocus(this, 3, 1);
         }
     }
 
@@ -796,7 +796,7 @@ public final class m71 extends ViewGroup implements s51, AudioManager.OnAudioFoc
         int measuredWidth2 = (i13 - radialProgressView.getMeasuredWidth()) / 2;
         int measuredHeight = (i14 - radialProgressView.getMeasuredHeight()) / 2;
         radialProgressView.layout(measuredWidth2, measuredHeight, radialProgressView.getMeasuredWidth() + measuredWidth2, radialProgressView.getMeasuredHeight() + measuredHeight);
-        i71Var.f35489a.y0(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - org.telegram.messenger.g0.L(10.0f));
+        i71Var.f35480a.y0(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - org.telegram.messenger.g0.L(10.0f));
     }
 
     @Override

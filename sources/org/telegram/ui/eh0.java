@@ -10,16 +10,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class eh0 extends FrameLayout {
-    public final int f46792a;
+    public final int f46782a;
 
     public eh0(Context context, int i7) {
         super(context);
-        this.f46792a = i7;
+        this.f46782a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 1:
                 super.dispatchDraw(canvas);
                 return;
@@ -36,7 +36,7 @@ public final class eh0 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 16:
                 return false;
             default:
@@ -46,7 +46,7 @@ public final class eh0 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 16:
                 return false;
             case 18:
@@ -60,7 +60,7 @@ public final class eh0 extends FrameLayout {
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 17:
                 return false;
             default:
@@ -70,7 +70,7 @@ public final class eh0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 3:
                 int intrinsicHeight = org.telegram.ui.ActionBar.j6.f28938i3.getIntrinsicHeight();
                 org.telegram.ui.ActionBar.j6.f28938i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
@@ -89,7 +89,7 @@ public final class eh0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 10:
                 int childCount = getChildCount();
                 int i13 = 0;
@@ -112,7 +112,7 @@ public final class eh0 extends FrameLayout {
     @Override
     public void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 2:
                 super.onMeasure(i7, i10);
                 setPivotY(getMeasuredHeight());
@@ -168,7 +168,7 @@ public final class eh0 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46792a) {
+        switch (this.f46782a) {
             case 16:
                 return false;
             case 19:
@@ -180,8 +180,8 @@ public final class eh0 extends FrameLayout {
 
     public eh0(org.telegram.ui.Components.p20 p20Var, Context context, int i7, String str, CharSequence charSequence) {
         super(context);
-        this.f46792a = 6;
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
+        this.f46782a = 6;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         int i10 = org.telegram.ui.ActionBar.j6.G6;
@@ -204,8 +204,8 @@ public final class eh0 extends FrameLayout {
 
     public eh0(qy0 qy0Var, Context context, int i7, String str, CharSequence charSequence) {
         super(context);
-        this.f46792a = 5;
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
+        this.f46782a = 5;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         int i10 = org.telegram.ui.ActionBar.j6.G6;
@@ -227,26 +227,26 @@ public final class eh0 extends FrameLayout {
 
     public eh0(int i7, Context context, String str) {
         super(context);
-        this.f46792a = 0;
+        this.f46782a = 0;
         setPadding(0, org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f));
         ImageView e10 = org.telegram.messenger.i20.e(context, i7);
         e10.setScaleType(ImageView.ScaleType.CENTER);
         int i10 = org.telegram.ui.ActionBar.j6.f28957j5;
         org.telegram.ui.ActionBar.q6.s(e10, i10, null, PorterDuff.Mode.MULTIPLY);
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
         addView(e10, c8.ja.d(24, 24.0f, (z10 ? 5 : 3) | 16, z10 ? 0.0f : 22.0f, 0.0f, z10 ? 22.0f : 0.0f, 0.0f));
         TextView textView = new TextView(context);
         org.telegram.ui.ActionBar.q6.U(textView, i10, null);
         textView.setTextSize(1, 14.0f);
-        textView.setGravity(org.telegram.messenger.hd.f24101a0 ? 5 : 3);
+        textView.setGravity(org.telegram.messenger.hd.f24104a0 ? 5 : 3);
         textView.setText(str);
-        boolean z11 = org.telegram.messenger.hd.f24101a0;
+        boolean z11 = org.telegram.messenger.hd.f24104a0;
         addView(textView, c8.ja.d(-1, -2.0f, 23, z11 ? 0.0f : 61.0f, 0.0f, z11 ? 61.0f : 0.0f, 0.0f));
     }
 
     public eh0(Context context) {
         super(context);
-        this.f46792a = 4;
+        this.f46782a = 4;
         setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f));
     }
 }

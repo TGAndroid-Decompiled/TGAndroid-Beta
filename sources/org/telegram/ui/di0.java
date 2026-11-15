@@ -20,7 +20,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class di0 {
-    public static org.telegram.ui.ActionBar.u2 f46411a;
+    public static org.telegram.ui.ActionBar.u2 f46383a;
 
     public static org.telegram.ui.Components.cc a() {
         Context context;
@@ -42,13 +42,13 @@ public abstract class di0 {
                 } else {
                     context2 = LaunchActivity.H1;
                     if (context2 == null) {
-                        context2 = org.telegram.messenger.t0.f26600b;
+                        context2 = org.telegram.messenger.t0.f26609b;
                     }
                 }
                 return new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(context2), null);
             }
         }
-        HashSet hashSet2 = g4.f47292d1;
+        HashSet hashSet2 = g4.f47282d1;
         if (!hashSet2.isEmpty()) {
             Iterator it2 = hashSet2.iterator();
             g4 g4Var = null;
@@ -64,7 +64,7 @@ public abstract class di0 {
                 } else {
                     context = LaunchActivity.H1;
                     if (context == null) {
-                        context = org.telegram.messenger.t0.f26600b;
+                        context = org.telegram.messenger.t0.f26609b;
                     }
                 }
                 return new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(context), null);
@@ -363,7 +363,7 @@ public abstract class di0 {
             frameLayout2.setOnClickListener(new fi.d0(k10, frameLayout3, arrayList, iArr, ai0Var));
             boolean[] zArr2 = new boolean[1];
             final hi.d dVar5 = dVar;
-            dVar2.setOnClickListener(new di.y9(dVar5, tL_messages_requestUrlAuth, zArr2, k10, dVar2, v0Var, i7));
+            dVar2.setOnClickListener(new di.x9(dVar5, tL_messages_requestUrlAuth, zArr2, k10, dVar2, v0Var, i7));
             final boolean[] zArr3 = new boolean[1];
             final boolean z17 = z12;
             final bg.l0 l0Var = new bg.l0(tL_urlAuthResultRequest2, strArr, context, i7, new bi0(dVar5, dVar2, tL_urlAuthResultRequest2, inputtonconnectoauthsessionArr, tL_messages_requestUrlAuth, strArr, q8Var3, zArr3, zArr, iArr, zArr2, k10, str6, resourceProvider, z10, str, v0Var), T5, 12);
@@ -429,14 +429,14 @@ public abstract class di0 {
                 }
             });
             k10.setOnDismissListener(new di.k6(zArr, inputtonconnectoauthsessionArr, u2VarArr, new org.telegram.ui.ActionBar.u2[1]));
-            org.telegram.ui.ActionBar.u2 u2Var = f46411a;
+            org.telegram.ui.ActionBar.u2 u2Var = f46383a;
             if (u2Var != null) {
                 u2Var.dismiss();
-                f46411a = null;
+                f46383a = null;
             }
             final org.telegram.ui.Components.d31 d31Var = new org.telegram.ui.Components.d31(tL_urlAuthResultRequest2, k10, u2VarArr, context, iArr, resourceProvider, zArr, inputtonconnectoauthsessionArr, l0Var);
             if (tL_urlAuthResultRequest2.match_codes_first && !tL_urlAuthResultRequest2.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                f46411a = c(context, i7, tL_urlAuthResultRequest2.match_codes, str6, new org.telegram.messenger.z10() {
+                f46383a = c(context, i7, tL_urlAuthResultRequest2.match_codes, str6, new org.telegram.messenger.z10() {
                     @Override
                     public final void a(Object obj2) {
                         String str7 = (String) obj2;

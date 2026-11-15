@@ -59,11 +59,11 @@ public abstract class s0 {
     }
 
     public static boolean c(TLRPC.Reaction reaction, p0 p0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && p0Var.f5189g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, p0Var.f5188f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && p0Var.f5192g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, p0Var.f5191f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = p0Var.f5189g;
+            long j3 = p0Var.f5192g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }
@@ -97,7 +97,7 @@ public abstract class s0 {
     public static void f(long j3, int i7, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         e2 Q = LaunchActivity.Q();
         if (Q != null && tL_premium_boostsStatus != null) {
-            ug.j0 j0Var = new ug.j0(21, m10.f24934t0, Q.getContext(), Q, Q.getResourceProvider());
+            ug.j0 j0Var = new ug.j0(21, m10.f24940t0, Q.getContext(), Q, Q.getResourceProvider());
             j0Var.N2 = i7;
             j0Var.z1(tL_premium_boostsStatus, true);
             j0Var.B1(j3);

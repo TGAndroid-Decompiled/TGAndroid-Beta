@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import org.telegram.tgnet.SerializedData;
 public final class fz {
-    public xi.a f23575a;
-    public long f23576b;
-    public boolean f23577c;
+    public xi.a f23577a;
+    public long f23578b;
+    public boolean f23579c;
     public boolean d;
-    public long f23578e;
+    public long f23580e;
 
     public fz(xi.a aVar) {
-        this.f23575a = aVar;
+        this.f23577a = aVar;
     }
 
     public static fz a(int i7, SerializedData serializedData) {
@@ -57,8 +57,8 @@ public final class fz {
             a10.q(i10);
         }
         fz fzVar = new fz(a10.d());
-        fzVar.f23578e = j10;
-        fzVar.f23576b = j3;
+        fzVar.f23580e = j10;
+        fzVar.f23578b = j3;
         if (j3 > 0) {
             z10 = true;
         }

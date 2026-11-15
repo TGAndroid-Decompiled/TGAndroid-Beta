@@ -4583,8 +4583,8 @@ public class TLRPC {
 
         public Document getDocument() {
             if (!this.alt_documents.isEmpty()) {
-                np s12 = np.s1(m10.f24934t0);
-                if (!s12.getUserConfig().q() || !s12.f25372q6) {
+                np s12 = np.s1(m10.f24940t0);
+                if (!s12.getUserConfig().q() || !s12.f25375q6) {
                     return this.alt_documents.get(0);
                 }
             }
@@ -27412,7 +27412,7 @@ public class TLRPC {
             if (TLObject.hasFlag(this.flags, 512)) {
                 int readInt322 = inputSerializedData.readInt32(z10);
                 if (!z10) {
-                    boolean z12 = r2.f26198a;
+                    boolean z12 = r2.f26206a;
                     z11 = false;
                 } else {
                     z11 = true;
@@ -78595,7 +78595,7 @@ public class TLRPC {
         public static Update TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
             t0 t0Var;
             Update fromConstructor = fromConstructor(i7);
-            if (fromConstructor == null && (t0Var = t0.f26599a) != null) {
+            if (fromConstructor == null && (t0Var = t0.f26608a) != null) {
                 t0Var.getClass();
                 fromConstructor = null;
             }

@@ -78,7 +78,7 @@ public final class w extends q6.h {
         CastDevice castDevice = this.G;
         q6.m.h(castDevice, "device should not be null");
         if (!castDevice.c(2048) && castDevice.c(4) && !castDevice.c(1)) {
-            "Chromecast Audio".equals(castDevice.f5863e);
+            "Chromecast Audio".equals(castDevice.f5866e);
         }
     }
 

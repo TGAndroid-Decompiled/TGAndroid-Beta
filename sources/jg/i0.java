@@ -5,10 +5,10 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.c11;
 import org.telegram.ui.Components.dz;
-import org.telegram.ui.Components.h90;
 import org.telegram.ui.Components.i90;
 import org.telegram.ui.Components.it0;
 import org.telegram.ui.Components.iz;
+import org.telegram.ui.Components.j90;
 import org.telegram.ui.Components.m60;
 import org.telegram.ui.Components.mi0;
 import org.telegram.ui.Components.q61;
@@ -54,13 +54,13 @@ public final class i0 extends v4.b0 {
     public int W0(v4.b1 b1Var) {
         switch (this.I) {
             case 6:
-                if (((u41) this.J).f39897i3) {
-                    return org.telegram.messenger.g0.f23609q.y;
+                if (((u41) this.J).f39894i3) {
+                    return org.telegram.messenger.g0.f23611q.y;
                 }
                 return super.W0(b1Var);
             case 7:
-                if (((c11) this.J).f39897i3) {
-                    return org.telegram.messenger.g0.f23609q.y;
+                if (((c11) this.J).f39894i3) {
+                    return org.telegram.messenger.g0.f23611q.y;
                 }
                 return super.W0(b1Var);
             default:
@@ -74,13 +74,13 @@ public final class i0 extends v4.b0 {
         switch (this.I) {
             case 3:
                 super.k1(z10);
-                h90 h90Var = ((i90) this.J).f35520b;
+                i90 i90Var = ((j90) this.J).f35920b;
                 if (z10) {
                     i7 = -1;
                 } else {
                     i7 = 1;
                 }
-                h90Var.setTranslationY(org.telegram.messenger.g0.L(6.0f) * i7);
+                i90Var.setTranslationY(org.telegram.messenger.g0.L(6.0f) * i7);
                 return;
             default:
                 super.k1(z10);
@@ -96,7 +96,7 @@ public final class i0 extends v4.b0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                m60 m60Var = ((pw) ((iz) this.J).K).f50385b.M0;
+                m60 m60Var = ((pw) ((iz) this.J).K).f50376b.M0;
                 if (m60Var != null && m60Var.D()) {
                     i7 = 0;
                 }
@@ -106,7 +106,7 @@ public final class i0 extends v4.b0 {
                 return super.m0(i7, w0Var, b1Var);
             case 4:
                 mi0 mi0Var = (mi0) this.J;
-                di.c1 c1Var = mi0Var.f37259b;
+                di.c1 c1Var = mi0Var.f37258b;
                 boolean z13 = false;
                 if (i7 < 0 && mi0Var.C0 != 0.0f) {
                     float pullingLeftProgress = mi0Var.getPullingLeftProgress();
@@ -135,18 +135,18 @@ public final class i0 extends v4.b0 {
                     } else {
                         i7 = 0;
                     }
-                    ai.j0 j0Var = mi0Var.T;
-                    if (j0Var != null) {
-                        j0Var.invalidate();
+                    ai.k0 k0Var = mi0Var.T;
+                    if (k0Var != null) {
+                        k0Var.invalidate();
                     }
                     c1Var.invalidate();
                 }
                 int m0 = super.m0(i7, w0Var, b1Var);
                 if (i7 > 0 && m0 == 0 && c1Var.getScrollState() == 1 && mi0Var.q()) {
-                    ValueAnimator valueAnimator = mi0Var.f37302z0;
+                    ValueAnimator valueAnimator = mi0Var.f37301z0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        mi0Var.f37302z0.cancel();
+                        mi0Var.f37301z0.cancel();
                     }
                     int i10 = (mi0Var.getPullingLeftProgress() > 1.0f ? 1 : (mi0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i10 > 0) {
@@ -170,9 +170,9 @@ public final class i0 extends v4.b0 {
                         } catch (Exception unused2) {
                         }
                     }
-                    ai.j0 j0Var2 = mi0Var.T;
-                    if (j0Var2 != null) {
-                        j0Var2.invalidate();
+                    ai.k0 k0Var2 = mi0Var.T;
+                    if (k0Var2 != null) {
+                        k0Var2.invalidate();
                     }
                     c1Var.invalidate();
                 }

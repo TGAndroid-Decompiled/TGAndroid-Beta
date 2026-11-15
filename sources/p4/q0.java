@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.List;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
-public final class q0 implements h2.j, a1, z0, q2.m, androidx.car.app.utils.c {
+public final class q0 implements h2.j, a1, z0, q2.m, androidx.car.app.utils.b {
     public final int f54841a;
 
     public q0(int i7) {
@@ -14,7 +14,7 @@ public final class q0 implements h2.j, a1, z0, q2.m, androidx.car.app.utils.c {
     }
 
     public static qi.a b() {
-        InputStream open = org.telegram.messenger.t0.f26600b.getAssets().open("grammars.dat");
+        InputStream open = org.telegram.messenger.t0.f26609b.getAssets().open("grammars.dat");
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[8192];

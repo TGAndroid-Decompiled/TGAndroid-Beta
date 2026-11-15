@@ -19,9 +19,9 @@ public final class l extends po0 {
             cc ccVar = new cc(frameLayout, this.J0);
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
-                if (j3 == org.telegram.messenger.m10.i(this.f29679a).f24953n) {
+                if (j3 == org.telegram.messenger.m10.i(this.f29679a).f24959n) {
                     xb G = ccVar.G(2131624191, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131754967, new Object[0])));
-                    G.f41651r = false;
+                    G.f41643r = false;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat M0 = org.telegram.messenger.np.s1(this.f29679a).M0(Long.valueOf(-j3));
@@ -31,16 +31,16 @@ public final class l extends po0 {
                         str = M0.title;
                     }
                     xb G2 = ccVar.G(2131624029, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131754971, str)));
-                    G2.f41651r = false;
+                    G2.f41643r = false;
                     G2.j();
                 } else {
                     xb G3 = ccVar.G(2131624029, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131754971, org.telegram.messenger.np.s1(this.f29679a).a2(Long.valueOf(j3)).first_name)));
-                    G3.f41651r = false;
+                    G3.f41643r = false;
                     G3.j();
                 }
             } else {
                 xb Q = ccVar.Q(2131624029, 36, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(hVar.m(), "AIEditorStyleSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f41651r = false;
+                Q.f41643r = false;
                 Q.j();
             }
             try {

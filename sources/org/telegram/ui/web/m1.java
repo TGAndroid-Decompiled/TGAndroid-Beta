@@ -18,21 +18,21 @@ import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.ActionBar.z5;
 import org.telegram.ui.Components.g5;
 public final class m1 extends FrameLayout implements z5 {
-    public final ImageView f52713a;
-    public final TextView f52714b;
-    public final l2 f52715c;
+    public final ImageView f52716a;
+    public final TextView f52717b;
+    public final l2 f52718c;
     public g5 d;
-    public String f52716e;
-    public boolean f52717f;
+    public String f52719e;
+    public boolean f52720f;
     public ShapeDrawable h;
 
     public m1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f52713a = imageView;
+        this.f52716a = imageView;
         addView(imageView, ja.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f52714b = textView;
+        this.f52717b = textView;
         q6.U(textView, j6.G6, null);
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
@@ -40,7 +40,7 @@ public final class m1 extends FrameLayout implements z5 {
         textView.setEllipsize(truncateAt);
         addView(textView, ja.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
         l2 l2Var = new l2(11, context, this);
-        this.f52715c = l2Var;
+        this.f52718c = l2Var;
         q6.U(l2Var, j6.f29241y6, null);
         l2Var.setTextSize(1, 13.0f);
         l2Var.setMaxLines(1);
@@ -57,7 +57,7 @@ public final class m1 extends FrameLayout implements z5 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f52717f) {
+        if (this.f52720f) {
             canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), j6.f28972k0);
         }
     }
@@ -73,7 +73,7 @@ public final class m1 extends FrameLayout implements z5 {
             ShapeDrawable shapeDrawable = this.h;
             if (shapeDrawable != null) {
                 j6.C1(j6.r1(0.1f, j6.x0(null, j6.G6, false)), shapeDrawable);
-                ImageView imageView = this.f52713a;
+                ImageView imageView = this.f52716a;
                 if (imageView != null) {
                     imageView.invalidate();
                 }

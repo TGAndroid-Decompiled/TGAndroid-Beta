@@ -37,7 +37,7 @@ public final class a0 implements Runnable, is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25467a4) {
+        if (i7 == ns.f25468a4) {
             a();
         }
     }
@@ -49,7 +49,7 @@ public final class a0 implements Runnable, is {
         }
         this.f43459a = true;
         org.telegram.messenger.g0.r(this);
-        this.f43460b.n(this, ns.f25467a4);
+        this.f43460b.n(this, ns.f25468a4);
         this.f43461c.run();
     }
 }

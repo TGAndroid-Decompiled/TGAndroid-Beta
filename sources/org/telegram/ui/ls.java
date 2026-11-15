@@ -11,7 +11,7 @@ public interface ls {
 
     boolean D(TLRPC.Document document);
 
-    org.telegram.ui.Components.m60 E(ai.j0 j0Var);
+    org.telegram.ui.Components.m60 E(ai.k0 k0Var);
 
     void F(TLRPC.Document document);
 

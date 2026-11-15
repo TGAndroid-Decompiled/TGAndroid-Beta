@@ -7,35 +7,35 @@ import android.animation.ObjectAnimator;
 import android.util.Property;
 import android.view.View;
 public final class lp0 extends AnimatorListenerAdapter {
-    public final int f49020a;
-    public final boolean f49021b;
-    public final PhotoViewer f49022c;
+    public final int f49016a;
+    public final boolean f49017b;
+    public final PhotoViewer f49018c;
 
     public lp0(PhotoViewer photoViewer, boolean z10, int i7) {
-        this.f49020a = i7;
-        this.f49022c = photoViewer;
-        this.f49021b = z10;
+        this.f49016a = i7;
+        this.f49018c = photoViewer;
+        this.f49017b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f49020a) {
+        switch (this.f49016a) {
             case 1:
-                PhotoViewer photoViewer = this.f49022c;
+                PhotoViewer photoViewer = this.f49018c;
                 if (animator.equals(photoViewer.f42920x)) {
                     photoViewer.f42920x = null;
                     return;
                 }
                 return;
             case 2:
-                PhotoViewer photoViewer2 = this.f49022c;
+                PhotoViewer photoViewer2 = this.f49018c;
                 if (animator.equals(photoViewer2.M)) {
                     photoViewer2.M = null;
                     return;
                 }
                 return;
             case 3:
-                this.f49022c.U7 = null;
+                this.f49018c.U7 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -46,9 +46,9 @@ public final class lp0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
-        int i10 = this.f49020a;
-        boolean z10 = this.f49021b;
-        PhotoViewer photoViewer = this.f49022c;
+        int i10 = this.f49016a;
+        boolean z10 = this.f49017b;
+        PhotoViewer photoViewer = this.f49018c;
         switch (i10) {
             case 0:
                 if (!z10) {

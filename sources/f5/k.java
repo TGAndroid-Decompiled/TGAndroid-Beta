@@ -27,13 +27,13 @@ public final class k implements z2.a {
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((c4.a) arrayList.get(0)).f4092b) {
-            return ((c4.a) arrayList.get(0)).f4092b;
+        if (j3 < ((c4.a) arrayList.get(0)).f4095b) {
+            return ((c4.a) arrayList.get(0)).f4095b;
         }
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
             c4.a aVar = (c4.a) arrayList.get(i7);
-            long j10 = aVar.f4092b;
-            long j11 = aVar.f4092b;
+            long j10 = aVar.f4095b;
+            long j11 = aVar.f4095b;
             if (j3 < j10) {
                 long j12 = ((c4.a) arrayList.get(i7 - 1)).d;
                 if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
@@ -62,7 +62,7 @@ public final class k implements z2.a {
             g0 g0Var2 = i0.f13686b;
             return s1.f13749e;
         }
-        return aVar.f4091a;
+        return aVar.f4094a;
     }
 
     @Override
@@ -78,11 +78,11 @@ public final class k implements z2.a {
     @Override
     public long d(long j3) {
         ArrayList arrayList = this.f10991a;
-        if (arrayList.isEmpty() || j3 < ((c4.a) arrayList.get(0)).f4092b) {
+        if (arrayList.isEmpty() || j3 < ((c4.a) arrayList.get(0)).f4095b) {
             return -9223372036854775807L;
         }
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
-            long j10 = ((c4.a) arrayList.get(i7)).f4092b;
+            long j10 = ((c4.a) arrayList.get(i7)).f4095b;
             int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
             if (i10 == 0) {
                 return j10;
@@ -93,7 +93,7 @@ public final class k implements z2.a {
                 if (j11 != -9223372036854775807L && j11 <= j3) {
                     return j11;
                 }
-                return aVar.f4092b;
+                return aVar.f4095b;
             }
         }
         c4.a aVar2 = (c4.a) h9.o.n(arrayList);
@@ -101,7 +101,7 @@ public final class k implements z2.a {
         if (j12 != -9223372036854775807L && j3 >= j12) {
             return j12;
         }
-        return aVar2.f4092b;
+        return aVar2.f4095b;
     }
 
     @Override
@@ -130,7 +130,7 @@ public final class k implements z2.a {
     public int g(long j3) {
         ArrayList arrayList = this.f10991a;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            if (j3 < ((c4.a) arrayList.get(i7)).f4092b) {
+            if (j3 < ((c4.a) arrayList.get(i7)).f4095b) {
                 return i7;
             }
         }

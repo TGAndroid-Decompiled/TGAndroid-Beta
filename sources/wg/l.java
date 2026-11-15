@@ -16,7 +16,7 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.ActionBar.u2;
 import org.telegram.ui.Components.xb;
-import tg.a2;
+import tg.z1;
 public final class l extends u2 {
     public static l f59202p1;
     public final j f59203m1;
@@ -134,8 +134,8 @@ public final class l extends u2 {
                 M0 = hd.M0(2131753595, "BoostingApplyChangesUsers");
             }
             t1Var.U = M0;
-            alertDialog$Builder.k(hd.M0(2131754216, "ApplyTheme"), new a2(p0Var, 11));
-            alertDialog$Builder.h(hd.M0(2131751406, "Discard"), new a2(p0Var2, 8));
+            alertDialog$Builder.k(hd.M0(2131754216, "ApplyTheme"), new z1(p0Var, 11));
+            alertDialog$Builder.h(hd.M0(2131751406, "Discard"), new z1(p0Var2, 8));
             alertDialog$Builder.p();
             return;
         }

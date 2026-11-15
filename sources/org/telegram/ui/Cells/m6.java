@@ -25,7 +25,7 @@ public final class m6 extends FrameLayout {
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
         checkBoxSquare.setClickable(false);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -39,14 +39,14 @@ public final class m6 extends FrameLayout {
         org.telegram.ui.ActionBar.q6.G(z70Var, org.telegram.ui.ActionBar.j6.J6, e6Var);
         z70Var.setTextSize(1, 15.0f);
         z70Var.setMaxLines(2);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         z70Var.setGravity(i10 | 16);
         z70Var.setEllipsize(TextUtils.TruncateAt.END);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         int i11 = (z10 ? 5 : 3) | 48;
         if (z10) {
             f10 = 16.0f;

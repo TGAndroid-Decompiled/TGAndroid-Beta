@@ -8,25 +8,25 @@ import org.telegram.messenger.ns;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 public final class d3 implements Runnable {
-    public final int f8398a;
-    public final c6 f8399b;
-    public final String f8400c;
+    public final int f8390a;
+    public final c6 f8391b;
+    public final String f8392c;
 
     public d3(c6 c6Var, String str, int i7) {
-        this.f8398a = i7;
-        this.f8399b = c6Var;
-        this.f8400c = str;
+        this.f8390a = i7;
+        this.f8391b = c6Var;
+        this.f8392c = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f8398a;
-        String str = this.f8400c;
-        c6 c6Var = this.f8399b;
+        int i7 = this.f8390a;
+        String str = this.f8392c;
+        c6 c6Var = this.f8391b;
         switch (i7) {
             case 0:
                 long j3 = c6Var.T1;
-                c6Var.f8318g2.setLoading(false);
+                c6Var.f8319g2.setLoading(false);
                 if (!TextUtils.isEmpty(str)) {
                     c6Var.dismiss();
                     org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
@@ -79,7 +79,7 @@ public final class d3 implements Runnable {
             case 7:
                 org.telegram.messenger.g0.g(str);
                 org.telegram.ui.Components.xb k10 = c6Var.k().k(false);
-                k10.f41653t = true;
+                k10.f41645t = true;
                 k10.j();
                 return;
             default:

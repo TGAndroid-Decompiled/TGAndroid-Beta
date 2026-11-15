@@ -27,7 +27,7 @@ public final class o0 extends ja {
         super(e2Var, false);
         this.T1 = new ArrayList();
         this.U1 = new ArrayList();
-        this.f35943v1 = 0.3f;
+        this.f35938v1 = 0.3f;
         this.V1 = chat;
         ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
         int size = arrayList.size();
@@ -41,7 +41,7 @@ public final class o0 extends ja {
                 this.U1.add(tL_myBoost2);
             }
         }
-        ah.a aVar = new ah.a(getContext(), this.J0, this.f35936o1);
+        ah.a aVar = new ah.a(getContext(), this.J0, this.f35931o1);
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
@@ -55,10 +55,10 @@ public final class o0 extends ja {
         ViewGroup viewGroup = this.f29682b;
         int i10 = this.f29717u0;
         viewGroup.addView(aVar, c8.ja.f(-2.0f, -1, 87, i10, 0, i10, 0));
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i11 = this.f29717u0;
         uj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
-        this.f35936o1.setOnItemClickListener(new i4(24, this, chat));
+        this.f35931o1.setOnItemClickListener(new i4(24, this, chat));
         O();
         b1();
         d1(false);

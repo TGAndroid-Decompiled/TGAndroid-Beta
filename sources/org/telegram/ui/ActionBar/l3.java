@@ -77,7 +77,7 @@ public final class l3 extends FrameLayout {
                     childAt.layout(layoutParams.leftMargin, layoutParams.topMargin + getPaddingTop(), layoutParams.leftMargin + childAt.getMeasuredWidth(), layoutParams.topMargin + childAt.getMeasuredHeight() + getPaddingTop());
                 } catch (Exception e10) {
                     a8.g(e10, true);
-                    boolean z11 = org.telegram.messenger.r2.f26198a;
+                    boolean z11 = org.telegram.messenger.r2.f26206a;
                     throw e10;
                 }
             }
@@ -94,7 +94,7 @@ public final class l3 extends FrameLayout {
         i0.c cVar = this.f29365f;
         int i11 = (size - cVar.f15574a) - cVar.f15576c;
         int i12 = (size2 - cVar.f15575b) - cVar.d;
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         point.x = i11;
         point.y = i12;
         int childCount = getChildCount();

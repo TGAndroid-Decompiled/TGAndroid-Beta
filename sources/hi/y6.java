@@ -6,12 +6,12 @@ import org.telegram.messenger.MediaController;
 public final class y6 implements Runnable {
     public final int f15424a;
     public final d7 f15425b;
-    public final ai.f0 f15426c;
+    public final ai.g0 f15426c;
 
-    public y6(d7 d7Var, ai.f0 f0Var, int i7) {
+    public y6(d7 d7Var, ai.g0 g0Var, int i7) {
         this.f15424a = i7;
         this.f15425b = d7Var;
-        this.f15426c = f0Var;
+        this.f15426c = g0Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class y6 implements Runnable {
         y6 y6Var;
         switch (this.f15424a) {
             case 0:
-                ai.f0 f0Var = this.f15426c;
+                ai.g0 g0Var = this.f15426c;
                 d7 d7Var = this.f15425b;
                 d7Var.getClass();
                 try {
@@ -46,17 +46,17 @@ public final class y6 implements Runnable {
                             trackFormat.getInteger("color-range");
                         }
                         d7Var.f14133d1 = d7Var.f14133d1;
-                        y6Var = new y6(d7Var, f0Var, 1);
+                        y6Var = new y6(d7Var, g0Var, 1);
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);
                         d7Var.f14133d1 = d7Var.f14133d1;
-                        y6Var = new y6(d7Var, f0Var, 1);
+                        y6Var = new y6(d7Var, g0Var, 1);
                     }
                     org.telegram.messenger.g0.h3(y6Var);
                     return;
                 } catch (Throwable th2) {
                     d7Var.f14133d1 = d7Var.f14133d1;
-                    org.telegram.messenger.g0.h3(new y6(d7Var, f0Var, 1));
+                    org.telegram.messenger.g0.h3(new y6(d7Var, g0Var, 1));
                     throw th2;
                 }
             default:

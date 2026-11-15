@@ -32,7 +32,6 @@ import org.telegram.ui.Components.fp0;
 import org.telegram.ui.Components.z30;
 import org.telegram.ui.f60;
 import org.telegram.ui.nb1;
-import tg.v1;
 import y7.f7;
 public final class l {
     public CameraCaptureSession A;
@@ -1126,7 +1125,7 @@ public final class l {
                     n0 n0Var2 = this.F;
                     Handler handler = uVar.f61728u;
                     if (uVar.f61723r0 && handler != null) {
-                        handler.post(new v1(uVar, n0Var2, n0Var, handler, 4));
+                        handler.post(new t5.a(uVar, n0Var2, n0Var, handler, 5));
                     }
                 }
                 s();

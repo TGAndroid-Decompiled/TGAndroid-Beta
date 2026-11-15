@@ -17,13 +17,13 @@ import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.ht;
 import org.telegram.ui.Components.pz;
 import org.telegram.ui.Components.vs;
-import org.telegram.ui.Components.y80;
+import org.telegram.ui.Components.z80;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 import v4.t0;
 public final class b extends e51 {
     public final int O1;
-    public final y80 P1;
+    public final z80 P1;
     public final pz Q1;
     public final cv0 R1;
     public final cv0 S1;
@@ -44,36 +44,36 @@ public final class b extends e51 {
         Q(i7);
         this.B1 = false;
         this.C1 = false;
-        y80 y80Var = new y80(this, e2Var, this.f29685c, j3);
-        this.P1 = y80Var;
-        y80Var.B = false;
+        z80 z80Var = new z80(this, e2Var, this.f29685c, j3);
+        this.P1 = z80Var;
+        z80Var.B = false;
         this.f29711q0 = 75;
-        this.f34212w1.K.setHint(hd.M0(2131745758, null));
-        g gVar = y80Var.f61446f;
-        this.f34206q1 = gVar;
-        this.f34205p1 = gVar;
-        this.f34204o1.setAdapter(gVar);
-        this.f34204o1.r1();
-        c1 c1Var = this.f34204o1;
-        y80Var.f61455p = c1Var;
-        c1Var.setOnItemClickListener(new b6(y80Var, 24));
+        this.f34199w1.K.setHint(hd.M0(2131745758, null));
+        g gVar = z80Var.f61446f;
+        this.f34193q1 = gVar;
+        this.f34192p1 = gVar;
+        this.f34191o1.setAdapter(gVar);
+        this.f34191o1.r1();
+        c1 c1Var = this.f34191o1;
+        z80Var.f61455p = c1Var;
+        c1Var.setOnItemClickListener(new b6(z80Var, 24));
         t0 onScrollListener = c1Var.getOnScrollListener();
         if (onScrollListener == null) {
-            c1Var.setOnScrollListener(y80Var.D);
+            c1Var.setOnScrollListener(z80Var.D);
         } else {
-            c1Var.setOnScrollListener(new w3(11, y80Var, onScrollListener));
+            c1Var.setOnScrollListener(new w3(11, z80Var, onScrollListener));
         }
-        int indexOfChild = ((ViewGroup) this.f34204o1.getParent()).indexOfChild(this.f34204o1);
-        pz b10 = y80Var.b();
+        int indexOfChild = ((ViewGroup) this.f34191o1.getParent()).indexOfChild(this.f34191o1);
+        pz b10 = z80Var.b();
         this.Q1 = b10;
         this.f29682b.addView(b10, indexOfChild, ja.c(-1.0f, -1));
-        cv0 a10 = y80Var.a();
+        cv0 a10 = z80Var.a();
         this.R1 = a10;
         this.f29682b.addView(a10, indexOfChild, ja.c(-1.0f, -1));
-        cv0 c10 = y80Var.c();
+        cv0 c10 = z80Var.c();
         this.S1 = c10;
         this.f29682b.addView(c10, indexOfChild, ja.c(-1.0f, -1));
-        y80Var.e();
+        z80Var.e();
     }
 
     @Override
@@ -81,11 +81,11 @@ public final class b extends e51 {
         e2 e2Var;
         long j3;
         int action = motionEvent.getAction();
-        y80 y80Var = this.P1;
+        z80 z80Var = this.P1;
         if (action == 0) {
-            this.T1 = this.f34214y1;
-            y80Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f34214y1 - this.T1) < this.O1 && !this.U1) {
+            this.T1 = this.f34201y1;
+            z80Var.i(false);
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f34201y1 - this.T1) < this.O1 && !this.U1) {
             Activity W = g0.W(getContext());
             if (W instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) W;
@@ -113,7 +113,7 @@ public final class b extends e51 {
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             return;
         }
-        y80Var.i(true);
+        z80Var.i(true);
     }
 
     @Override
@@ -133,15 +133,15 @@ public final class b extends e51 {
     @Override
     public final void Q0() {
         int i7;
-        c1 c1Var = this.f34204o1;
+        c1 c1Var = this.f34191o1;
         if (c1Var.getChildCount() <= 0) {
             if (c1Var.getVisibility() == 0) {
                 i7 = c1Var.getPaddingTop() - g0.L(8.0f);
             } else {
                 i7 = 0;
             }
-            if (this.f34214y1 != i7) {
-                this.f34214y1 = i7;
+            if (this.f34201y1 != i7) {
+                this.f34201y1 = i7;
                 N0(i7);
                 return;
             }
@@ -182,11 +182,11 @@ public final class b extends e51 {
 
     @Override
     public final void show() {
-        y80 y80Var = this.P1;
-        if (y80Var.f61443b && this.f34214y1 == 0) {
-            this.f34214y1 = g0.L(8.0f);
+        z80 z80Var = this.P1;
+        if (z80Var.f61443b && this.f34201y1 == 0) {
+            this.f34201y1 = g0.L(8.0f);
         }
         super.show();
-        y80Var.f61443b = false;
+        z80Var.f61443b = false;
     }
 }

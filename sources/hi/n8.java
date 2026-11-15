@@ -92,7 +92,7 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;

@@ -5,17 +5,17 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ki extends FrameLayout {
-    public final an f48707a;
+    public final an f48661a;
 
     public ki(an anVar, Activity activity) {
         super(activity);
-        this.f48707a = anVar;
+        this.f48661a = anVar;
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.f48707a.P7(true);
+            this.f48661a.P7(true);
         }
         return super.dispatchKeyEvent(keyEvent);
     }

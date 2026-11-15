@@ -26,7 +26,7 @@ public final class m80 extends c8.d1 {
     public static void A(int i7, List list, List list2) {
         for (Object obj : list) {
             if (obj instanceof k80) {
-                list2.add(((k80) obj).f36331a);
+                list2.add(((k80) obj).f36321a);
             } else if (obj instanceof l80) {
                 C((l80) obj, list2, i7);
             }
@@ -72,8 +72,8 @@ public final class m80 extends c8.d1 {
         String str;
         boolean z10;
         TL_iv.RichText n10;
-        ad.a aVar = l80Var.f36740a;
-        ArrayList arrayList = l80Var.f36742c;
+        ad.a aVar = l80Var.f36728a;
+        ArrayList arrayList = l80Var.f36730c;
         String str2 = aVar.f1033a;
         if (str2 == null) {
             lowerCase = "";
@@ -142,9 +142,9 @@ public final class m80 extends c8.d1 {
                         boolean z11 = obj instanceof l80;
                         if (z11) {
                             l80 l80Var2 = (l80) obj;
-                            if ("summary".equalsIgnoreCase(l80Var2.f36740a.f1033a)) {
+                            if ("summary".equalsIgnoreCase(l80Var2.f36728a.f1033a)) {
                                 StringBuilder sb2 = new StringBuilder();
-                                w(l80Var2.f36742c, sb2);
+                                w(l80Var2.f36730c, sb2);
                                 String trim = sb2.toString().trim();
                                 if (trim.isEmpty()) {
                                     n10 = new TL_iv.textEmpty();
@@ -155,7 +155,7 @@ public final class m80 extends c8.d1 {
                             }
                         }
                         if (obj instanceof k80) {
-                            arrayList2.add(((k80) obj).f36331a);
+                            arrayList2.add(((k80) obj).f36321a);
                         } else if (z11) {
                             C((l80) obj, arrayList2, i7 + 1);
                         }
@@ -176,7 +176,7 @@ public final class m80 extends c8.d1 {
     public static void w(List list, StringBuilder sb2) {
         for (Object obj : list) {
             if (obj instanceof k80) {
-                TL_iv.PageBlock pageBlock = ((k80) obj).f36331a;
+                TL_iv.PageBlock pageBlock = ((k80) obj).f36321a;
                 if (pageBlock instanceof TL_iv.pageBlockParagraph) {
                     if (sb2.length() > 0) {
                         sb2.append('\n');
@@ -194,7 +194,7 @@ public final class m80 extends c8.d1 {
                     sb2.append(q80.p(((TL_iv.pageBlockSubheader) pageBlock).text));
                 }
             } else if (obj instanceof l80) {
-                w(((l80) obj).f36742c, sb2);
+                w(((l80) obj).f36730c, sb2);
             }
         }
     }
@@ -448,7 +448,7 @@ public final class m80 extends c8.d1 {
             Object obj = arrayList4.get(i7);
             i7++;
             k80 k80Var = (k80) obj;
-            hashMap.put(Integer.valueOf(k80Var.f36332b), k80Var);
+            hashMap.put(Integer.valueOf(k80Var.f36322b), k80Var);
         }
         TreeSet treeSet = new TreeSet();
         treeSet.add(0);
@@ -498,27 +498,27 @@ public final class m80 extends c8.d1 {
             Object obj3 = arrayList5.get(i12);
             i12++;
             k80 k80Var2 = (k80) obj3;
-            while (i11 < arrayList3.size() && ((ad.a) arrayList3.get(i11)).f1034b <= k80Var2.f36332b) {
+            while (i11 < arrayList3.size() && ((ad.a) arrayList3.get(i11)).f1034b <= k80Var2.f36322b) {
                 int i13 = i11 + 1;
                 ad.a aVar4 = (ad.a) arrayList3.get(i11);
                 int i14 = aVar4.d;
                 int i15 = aVar4.f1034b;
-                if (i14 >= k80Var2.f36332b) {
-                    while (arrayDeque.peek() != l80Var && ((l80) arrayDeque.peek()).f36741b <= i15) {
+                if (i14 >= k80Var2.f36322b) {
+                    while (arrayDeque.peek() != l80Var && ((l80) arrayDeque.peek()).f36729b <= i15) {
                         arrayDeque.pop();
                     }
                     l80 l80Var2 = new l80(aVar4, aVar4.d);
-                    ((l80) arrayDeque.peek()).f36742c.add(l80Var2);
+                    ((l80) arrayDeque.peek()).f36730c.add(l80Var2);
                     arrayDeque.push(l80Var2);
                 }
                 i11 = i13;
             }
-            while (arrayDeque.peek() != l80Var && ((l80) arrayDeque.peek()).f36741b <= k80Var2.f36332b) {
+            while (arrayDeque.peek() != l80Var && ((l80) arrayDeque.peek()).f36729b <= k80Var2.f36322b) {
                 arrayDeque.pop();
             }
-            TL_iv.PageBlock pageBlock = k80Var2.f36331a;
-            ((l80) arrayDeque.peek()).f36742c.add(k80Var2);
+            TL_iv.PageBlock pageBlock = k80Var2.f36321a;
+            ((l80) arrayDeque.peek()).f36730c.add(k80Var2);
         }
-        A(0, l80Var.f36742c, this.f37166a);
+        A(0, l80Var.f36730c, this.f37166a);
     }
 }

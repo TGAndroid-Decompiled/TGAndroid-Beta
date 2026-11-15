@@ -73,7 +73,7 @@ public class h6 extends FrameLayout {
         float L;
         int i7;
         if (this.f30406c) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -81,7 +81,7 @@ public class h6 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
@@ -122,14 +122,14 @@ public class h6 extends FrameLayout {
         i20.p(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity((hd.f24101a0 ? 5 : 3) | 16);
+        textView.setGravity((hd.f24104a0 ? 5 : 3) | 16);
         float f10 = 21;
-        addView(textView, c8.ja.d(-1, -1.0f, (hd.f24101a0 ? 5 : 3) | 48, f10, 0.0f, f10, 0.0f));
+        addView(textView, c8.ja.d(-1, -1.0f, (hd.f24104a0 ? 5 : 3) | 48, f10, 0.0f, f10, 0.0f));
         RadioButton radioButton = new RadioButton(context);
         this.f30405b = radioButton;
         radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
         org.telegram.ui.ActionBar.q6.O(radioButton, org.telegram.ui.ActionBar.j6.f28905g7, org.telegram.ui.ActionBar.j6.h7, e6Var);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         addView(radioButton, c8.ja.d(22, 22.0f, (z10 ? 3 : 5) | 48, z10 ? 22 : 0, 14.0f, z10 ? 0 : 22, 0.0f));
     }
 }

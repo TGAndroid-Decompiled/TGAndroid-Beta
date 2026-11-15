@@ -13,30 +13,30 @@ import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.widget.TextView;
 public final class r9 extends TextView {
-    public final int f50876a = 0;
-    public final Paint f50877b;
-    public Path f50878c;
+    public final int f50875a = 0;
+    public final Paint f50876b;
+    public Path f50877c;
     public Object d;
-    public final Object f50879e;
+    public final Object f50878e;
 
     public r9(org.telegram.ui.Components.ul0 ul0Var, Context context) {
         super(context);
-        this.f50879e = ul0Var;
-        this.f50878c = new Path();
+        this.f50878e = ul0Var;
+        this.f50877c = new Path();
         this.d = new RectF();
-        this.f50877b = new Paint();
+        this.f50876b = new Paint();
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f50876a) {
+        switch (this.f50875a) {
             case 1:
-                int r12 = org.telegram.ui.ActionBar.j6.r1(0.15f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29049o6, ((org.telegram.ui.Components.ul0) this.f50879e).f40098c));
-                Paint paint = this.f50877b;
+                int r12 = org.telegram.ui.ActionBar.j6.r1(0.15f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29049o6, ((org.telegram.ui.Components.ul0) this.f50878e).f40098c));
+                Paint paint = this.f50876b;
                 paint.setColor(r12);
                 RectF rectF = (RectF) this.d;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                Path path = this.f50878c;
+                Path path = this.f50877c;
                 Paint paint2 = ch.q0.S;
                 ch.q0.h(rectF, org.telegram.messenger.g0.P, path);
                 canvas.drawPath(path, paint);
@@ -50,13 +50,13 @@ public final class r9 extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f50876a) {
+        switch (this.f50875a) {
             case 0:
-                org.telegram.ui.Components.u70 u70Var = (org.telegram.ui.Components.u70) this.f50878c;
+                org.telegram.ui.Components.u70 u70Var = (org.telegram.ui.Components.u70) this.f50877c;
                 if (u70Var != null) {
-                    canvas.drawPath(u70Var, this.f50877b);
+                    canvas.drawPath(u70Var, this.f50876b);
                 }
-                if (((n2.o0) this.f50879e).h(canvas)) {
+                if (((n2.o0) this.f50878e).h(canvas)) {
                     invalidate();
                 }
                 super.onDraw(canvas);
@@ -69,9 +69,9 @@ public final class r9 extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f50876a) {
+        switch (this.f50875a) {
             case 1:
-                org.telegram.ui.Components.ul0 ul0Var = (org.telegram.ui.Components.ul0) this.f50879e;
+                org.telegram.ui.Components.ul0 ul0Var = (org.telegram.ui.Components.ul0) this.f50878e;
                 super.onLayout(z10, i7, i10, i11, i12);
                 int width = getWidth();
                 int i13 = 0;
@@ -92,7 +92,7 @@ public final class r9 extends TextView {
         int i11;
         int i12;
         float f10;
-        switch (this.f50876a) {
+        switch (this.f50875a) {
             case 0:
                 super.onMeasure(i7, i10);
                 if (getText() instanceof Spanned) {
@@ -100,18 +100,18 @@ public final class r9 extends TextView {
                     org.telegram.ui.Components.f41[] f41VarArr = (org.telegram.ui.Components.f41[]) spanned.getSpans(0, spanned.length(), org.telegram.ui.Components.f41.class);
                     if (f41VarArr != null && f41VarArr.length > 0) {
                         org.telegram.ui.Components.u70 u70Var = new org.telegram.ui.Components.u70(0);
-                        this.f50878c = u70Var;
-                        u70Var.f39949n = false;
+                        this.f50877c = u70Var;
+                        u70Var.f39946n = false;
                         for (int i13 = 0; i13 < f41VarArr.length; i13++) {
                             int spanStart = spanned.getSpanStart(f41VarArr[i13]);
                             int spanEnd = spanned.getSpanEnd(f41VarArr[i13]);
-                            ((org.telegram.ui.Components.u70) this.f50878c).d(getLayout(), spanStart, 0.0f);
+                            ((org.telegram.ui.Components.u70) this.f50877c).d(getLayout(), spanStart, 0.0f);
                             if (getText() != null) {
                                 i11 = getPaint().baselineShift;
                             } else {
                                 i11 = 0;
                             }
-                            org.telegram.ui.Components.u70 u70Var2 = (org.telegram.ui.Components.u70) this.f50878c;
+                            org.telegram.ui.Components.u70 u70Var2 = (org.telegram.ui.Components.u70) this.f50877c;
                             if (i11 != 0) {
                                 if (i11 > 0) {
                                     f10 = 5.0f;
@@ -122,10 +122,10 @@ public final class r9 extends TextView {
                             } else {
                                 i12 = 0;
                             }
-                            u70Var2.f39950o = i12;
-                            getLayout().getSelectionPath(spanStart, spanEnd, (org.telegram.ui.Components.u70) this.f50878c);
+                            u70Var2.f39947o = i12;
+                            getLayout().getSelectionPath(spanStart, spanEnd, (org.telegram.ui.Components.u70) this.f50877c);
                         }
-                        ((org.telegram.ui.Components.u70) this.f50878c).f39949n = true;
+                        ((org.telegram.ui.Components.u70) this.f50877c).f39946n = true;
                         return;
                     }
                     return;
@@ -139,9 +139,9 @@ public final class r9 extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f50876a) {
+        switch (this.f50875a) {
             case 0:
-                n2.o0 o0Var = (n2.o0) this.f50879e;
+                n2.o0 o0Var = (n2.o0) this.f50878e;
                 Layout layout = getLayout();
                 float f10 = 0;
                 int x10 = (int) (motionEvent.getX() - f10);
@@ -196,7 +196,7 @@ public final class r9 extends TextView {
 
     public r9(Context context, Paint paint) {
         super(context);
-        this.f50877b = paint;
-        this.f50879e = new n2.o0(this);
+        this.f50876b = paint;
+        this.f50878e = new n2.o0(this);
     }
 }

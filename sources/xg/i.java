@@ -52,8 +52,8 @@ public final class i extends rg.b {
         this.f59942x = z10;
         this.d = e6Var;
         p1 p1Var = new p1(this, 7);
-        vr a02 = vr.a0(m10.f24934t0);
-        a02.f27220a.c(new t1(7, a02, p1Var));
+        vr a02 = vr.a0(m10.f24940t0);
+        a02.f27219a.c(new t1(7, a02, p1Var));
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class i extends rg.b {
     public final int F(TLRPC.Chat chat) {
         Integer num;
         int i7;
-        TLRPC.ChatFull N0 = np.s1(m10.f24934t0).N0(chat.f28051id);
+        TLRPC.ChatFull N0 = np.s1(m10.f24940t0).N0(chat.f28051id);
         if (N0 != null && (i7 = N0.participants_count) > 0) {
             return i7;
         }
@@ -164,14 +164,14 @@ public final class i extends rg.b {
                             TLRPC.InputPeer inputPeer = hVar.d;
                             if (inputPeer != null) {
                                 if (inputPeer instanceof TLRPC.TL_inputPeerSelf) {
-                                    rVar.setUser(m10.i(m10.f24934t0).f());
+                                    rVar.setUser(m10.i(m10.f24940t0).f());
                                 } else if (inputPeer instanceof TLRPC.TL_inputPeerUser) {
-                                    rVar.setUser(np.s1(m10.f24934t0).a2(Long.valueOf(inputPeer.user_id)));
+                                    rVar.setUser(np.s1(m10.f24940t0).a2(Long.valueOf(inputPeer.user_id)));
                                 } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                                    TLRPC.Chat M0 = np.s1(m10.f24934t0).M0(Long.valueOf(inputPeer.chat_id));
+                                    TLRPC.Chat M0 = np.s1(m10.f24940t0).M0(Long.valueOf(inputPeer.chat_id));
                                     rVar.h(F(M0), M0);
                                 } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                                    TLRPC.Chat M02 = np.s1(m10.f24934t0).M0(Long.valueOf(inputPeer.channel_id));
+                                    TLRPC.Chat M02 = np.s1(m10.f24940t0).M0(Long.valueOf(inputPeer.channel_id));
                                     rVar.h(F(M02), M02);
                                 }
                             }
@@ -230,14 +230,14 @@ public final class i extends rg.b {
             } else if (i13 == -1) {
                 int i16 = hVar.f59929l;
                 if (i16 < 0) {
-                    i16 = (int) (g0.f23609q.y * 0.3f);
+                    i16 = (int) (g0.f23611q.y * 0.3f);
                 }
                 view.setLayoutParams(new p0(-1, i16));
             } else if (i13 == 7) {
                 ((ah.f) view).setLetter(hVar.f59925g);
             } else if (i13 == 5) {
                 try {
-                    ((cv0) view).f33705b.getImageReceiver().P0(false);
+                    ((cv0) view).f33707b.getImageReceiver().P0(false);
                 } catch (Exception unused) {
                 }
             } else if (i13 == 8) {
@@ -289,8 +289,8 @@ public final class i extends rg.b {
             if (i7 == 5) {
                 cv0 cv0Var = new cv0(context, null, 1, e6Var);
                 cv0Var.d.setText(hd.M0(2131748167, null));
-                cv0Var.f33707e.setText(hd.M0(2131745807, null));
-                cv0Var.f33704a.setTranslationY(g0.L(24.0f));
+                cv0Var.f33709e.setText(hd.M0(2131745807, null));
+                cv0Var.f33706a.setTranslationY(g0.L(24.0f));
                 rVar = cv0Var;
             } else {
                 boolean z10 = this.h;

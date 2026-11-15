@@ -44,7 +44,7 @@ public final class c extends sh.c {
         this.f57645f = str2;
         int m12 = g0.m1(name, false);
         if (m12 != 0) {
-            this.h = t0.f26600b.getResources().getDrawable(m12);
+            this.h = t0.f26609b.getResources().getDrawable(m12);
         } else {
             this.h = null;
         }
@@ -125,7 +125,7 @@ public final class c extends sh.c {
         this.f57644e = 0L;
         int m12 = g0.m1(A, false);
         if (m12 != 0) {
-            this.h = t0.f26600b.getResources().getDrawable(m12);
+            this.h = t0.f26609b.getResources().getDrawable(m12);
         } else {
             this.h = null;
         }

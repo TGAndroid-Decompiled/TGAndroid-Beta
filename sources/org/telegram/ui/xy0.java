@@ -87,7 +87,7 @@ public final class xy0 extends rg.b {
             ((org.telegram.ui.Cells.n4) view).setText(((yy0) arrayList.get(i7)).d);
         } else if (((yy0) arrayList.get(i7)).f56015a == 2) {
             org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
-            org.telegram.messenger.ov ovVar = ((yy0) arrayList.get(i7)).f53784c;
+            org.telegram.messenger.ov ovVar = ((yy0) arrayList.get(i7)).f53749c;
             TLObject e22 = saveToGallerySettingsActivity.getMessagesController().e2(ovVar.d);
             if (e22 instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) e22;
@@ -209,7 +209,7 @@ public final class xy0 extends rg.b {
                     f10 = (((float) (j3 - 524288)) / ((float) 104333312)) * 0.7f;
                 }
                 qm0Var.setProgress(f10);
-                qm0Var.f38727y.l(false, qm0Var.getProgress());
+                qm0Var.f38725y.l(false, qm0Var.getProgress());
                 org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, linearLayout2, null);
                 linearLayout = linearLayout2;
                 view = linearLayout;

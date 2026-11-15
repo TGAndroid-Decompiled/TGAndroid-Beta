@@ -41,22 +41,22 @@ public final class p8 extends k8 {
         o8Var.c(getScaleX());
         g0Var.e(d);
         jxVar.getClass();
-        String str = d.f5188f;
-        str = str == null ? gj.U(org.telegram.ui.Components.g5.e(jxVar.f48481b, d.f5189g)) : str;
-        if (str != null && (arrayList = (ArrayList) jxVar.f48483e.get(str)) != null && !arrayList.isEmpty()) {
+        String str = d.f5191f;
+        str = str == null ? gj.U(org.telegram.ui.Components.g5.e(jxVar.f48435b, d.f5192g)) : str;
+        if (str != null && (arrayList = (ArrayList) jxVar.f48437e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i7 = 0; i7 < min; i7++) {
                 jxVar.l((TLRPC.Document) arrayList.get(i7));
             }
         }
-        if (this.J.f5188f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24934t0).f26495r.get(this.J.f5188f)) != null) {
+        if (this.J.f5191f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24940t0).f26505r.get(this.J.f5191f)) != null) {
             this.M.q0(gc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.g6 g6Var = this.O;
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
         g6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.O.w(org.telegram.messenger.g0.L(18.0f));
-        this.O.N = org.telegram.messenger.g0.f23609q.x;
+        this.O.N = org.telegram.messenger.g0.f23611q.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
             this.K.a();
             this.O.u(-1);
@@ -148,7 +148,7 @@ public final class p8 extends k8 {
     }
 
     public org.telegram.ui.Components.g5 getAnimatedEmojiDrawable() {
-        return this.L.f5073b;
+        return this.L.f5076b;
     }
 
     @Override

@@ -143,7 +143,7 @@ public final class o0 implements yb.a {
             return;
         }
         try {
-            IBinder b10 = b7.f.c(context, b7.f.f2948b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            IBinder b10 = b7.f.c(context, b7.f.f2951b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
             int i7 = fb.f408b;
             if (b10 == null) {
                 aVar = null;

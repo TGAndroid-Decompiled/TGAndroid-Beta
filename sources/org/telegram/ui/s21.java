@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class s21 {
-    public final SessionsActivity f51082a;
+    public final SessionsActivity f51078a;
 
     public s21(SessionsActivity sessionsActivity) {
-        this.f51082a = sessionsActivity;
+        this.f51078a = sessionsActivity;
     }
 }

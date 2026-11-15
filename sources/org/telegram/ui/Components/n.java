@@ -4,22 +4,22 @@ import android.view.View;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class n implements View.OnClickListener {
-    public final int f37417a;
-    public final q f37418b;
+    public final int f37416a;
+    public final q f37417b;
 
     public n(q qVar, int i7) {
-        this.f37417a = i7;
-        this.f37418b = qVar;
+        this.f37416a = i7;
+        this.f37417b = qVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f37417a) {
+        switch (this.f37416a) {
             case 0:
-                this.f37418b.dismiss();
+                this.f37417b.dismiss();
                 return;
             default:
-                q qVar = this.f37418b;
+                q qVar = this.f37417b;
                 TL_aicompose.AiComposeTone aiComposeTone = qVar.T1;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     int i7 = qVar.d2 + 1;

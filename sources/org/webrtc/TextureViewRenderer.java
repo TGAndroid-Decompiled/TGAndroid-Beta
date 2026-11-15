@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import ai.e1;
+import ai.f1;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -615,7 +615,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new e1(countDownLatch, 1), false);
+            releaseEglSurface(new f1(countDownLatch, 1), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

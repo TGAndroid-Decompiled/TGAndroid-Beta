@@ -7,8 +7,8 @@ public final class d6 {
     public final Boolean f60224c;
 
     public d6(ld0 ld0Var) {
-        this.f60222a = (Long) ld0Var.f48976b;
-        this.f60223b = (k6) ld0Var.f48977c;
+        this.f60222a = (Long) ld0Var.f48972b;
+        this.f60223b = (k6) ld0Var.f48973c;
         this.f60224c = (Boolean) ld0Var.d;
     }
 }

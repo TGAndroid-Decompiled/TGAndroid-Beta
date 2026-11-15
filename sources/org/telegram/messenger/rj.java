@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.ui.SecretMediaViewer;
 public final class rj implements Runnable {
-    public final int f26297a;
-    public final np f26298b;
-    public final a0.h f26299c;
+    public final int f26305a;
+    public final np f26306b;
+    public final a0.h f26307c;
     public final a0.h d;
 
     public rj(np npVar, a0.h hVar, a0.h hVar2, int i7) {
-        this.f26297a = i7;
-        this.f26298b = npVar;
-        this.f26299c = hVar;
+        this.f26305a = i7;
+        this.f26306b = npVar;
+        this.f26307c = hVar;
         this.d = hVar2;
     }
 
@@ -23,10 +23,10 @@ public final class rj implements Runnable {
         ArrayList arrayList;
         boolean z11;
         char c11 = 0;
-        switch (this.f26297a) {
+        switch (this.f26305a) {
             case 0:
-                np npVar = this.f26298b;
-                a0.h hVar = this.f26299c;
+                np npVar = this.f26306b;
+                a0.h hVar = this.f26307c;
                 a0.h hVar2 = this.d;
                 if (hVar != null) {
                     int i7 = 0;
@@ -60,7 +60,7 @@ public final class rj implements Runnable {
                     while (i10 < m11) {
                         long j10 = hVar3.j(i10);
                         ArrayList arrayList3 = (ArrayList) hVar3.n(i10);
-                        if (z10 && gjVar != null && gjVar.K1 == npVar.currentAccount && gj.B0(gjVar.f23817k) == j10 && arrayList3.contains(Integer.valueOf(gjVar.e1()))) {
+                        if (z10 && gjVar != null && gjVar.K1 == npVar.currentAccount && gj.B0(gjVar.f23819k) == j10 && arrayList3.contains(Integer.valueOf(gjVar.e1()))) {
                             int e12 = gjVar.e1();
                             arrayList3.remove(Integer.valueOf(e12));
                             gjVar.I0 = true;
@@ -72,7 +72,7 @@ public final class rj implements Runnable {
                             SecretMediaViewer.f().f43300o1 = new tk(e12, V, j10, npVar2);
                             ns notificationCenter = npVar.getNotificationCenter();
                             Object[] objArr = new Object[1];
-                            objArr[c10] = gjVar.f23817k;
+                            objArr[c10] = gjVar.f23819k;
                             notificationCenter.k(48, objArr);
                         } else {
                             c10 = c11;
@@ -80,7 +80,7 @@ public final class rj implements Runnable {
                         }
                         if (!arrayList.isEmpty()) {
                             vr messagesStorage = npVar.getMessagesStorage();
-                            messagesStorage.f27220a.c(new ir(messagesStorage, arrayList, j10, 1));
+                            messagesStorage.f27219a.c(new hr(messagesStorage, arrayList, j10, 2));
                         }
                         i10++;
                         c11 = c10;
@@ -89,23 +89,23 @@ public final class rj implements Runnable {
                 Utilities.d.c(new rj(npVar, hVar, hVar3, 3));
                 return;
             case 1:
-                np npVar3 = this.f26298b;
-                a0.h hVar4 = this.f26299c;
+                np npVar3 = this.f26306b;
+                a0.h hVar4 = this.f26307c;
                 a0.h hVar5 = this.d;
                 npVar3.X = hVar4;
                 npVar3.Y = hVar5;
                 return;
             case 2:
-                np npVar4 = this.f26298b;
-                a0.h hVar6 = this.f26299c;
+                np npVar4 = this.f26306b;
+                a0.h hVar6 = this.f26307c;
                 a0.h hVar7 = this.d;
                 npVar4.U1 = true;
                 vr messagesStorage2 = npVar4.getMessagesStorage();
-                messagesStorage2.f27220a.c(new kg(messagesStorage2, hVar6, hVar7, 17));
+                messagesStorage2.f27219a.c(new kg(messagesStorage2, hVar6, hVar7, 17));
                 return;
             default:
-                np npVar5 = this.f26298b;
-                Utilities.d.c(new rj(npVar5, this.f26299c, this.d, 2));
+                np npVar5 = this.f26306b;
+                Utilities.d.c(new rj(npVar5, this.f26307c, this.d, 2));
                 npVar5.V1 = 0;
                 npVar5.W1 = null;
                 npVar5.X1 = null;

@@ -4,15 +4,15 @@ import android.text.TextUtils;
 import org.telegram.messenger.z10;
 import org.telegram.ui.LaunchActivity;
 public final class g3 implements z10 {
-    public final int f8592a;
-    public final c6 f8593b;
-    public final vf.b f8594c;
+    public final int f8609a;
+    public final c6 f8610b;
+    public final vf.b f8611c;
     public final wg.c1 d;
 
     public g3(c6 c6Var, vf.b bVar, wg.c1 c1Var, int i7) {
-        this.f8592a = i7;
-        this.f8593b = c6Var;
-        this.f8594c = bVar;
+        this.f8609a = i7;
+        this.f8610b = c6Var;
+        this.f8611c = bVar;
         this.d = c1Var;
     }
 
@@ -21,10 +21,10 @@ public final class g3 implements z10 {
         org.telegram.ui.Components.cc k10;
         org.telegram.ui.Components.cc k11;
         String str = (String) obj;
-        switch (this.f8592a) {
+        switch (this.f8609a) {
             case 0:
-                this.f8594c.b();
-                c6 c6Var = this.f8593b;
+                this.f8611c.b();
+                c6 c6Var = this.f8610b;
                 wg.c1 c1Var = this.d;
                 if (str != null) {
                     if (c1Var != null) {
@@ -46,9 +46,9 @@ public final class g3 implements z10 {
                 }
                 return;
             default:
-                this.f8594c.c(false);
+                this.f8611c.c(false);
                 if (!TextUtils.isEmpty(str)) {
-                    c6 c6Var2 = this.f8593b;
+                    c6 c6Var2 = this.f8610b;
                     wg.c1 c1Var2 = this.d;
                     if (c1Var2 != null) {
                         k11 = new org.telegram.ui.Components.cc(c1Var2.f29685c, c6Var2.J0);

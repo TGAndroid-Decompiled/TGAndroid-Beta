@@ -120,7 +120,7 @@ public final class r extends View {
                 qVar2.f58262f = ofFloat;
                 ofFloat.addUpdateListener(new o(this, qVar2, 0));
                 qVar2.f58262f.addListener(new p(this, qVar2, 1));
-                qVar2.f58262f.setInterpolator(er.f34421g);
+                qVar2.f58262f.setInterpolator(er.f34420g);
                 qVar2.f58262f.setDuration(250L);
                 qVar2.f58262f.setStartDelay(((arrayList.size() - 1) - i10) * 60);
                 qVar2.f58262f.start();
@@ -284,7 +284,7 @@ public final class r extends View {
         if (limitPreviewView.f32637f0 != null) {
             canvas.restore();
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f58302y, 31);
-            canvas.drawRect(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(10.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(10.0f), ((t5) ((org.telegram.ui.w0) limitPreviewView.f32637f0).f52340b).v0(getX(), getY()));
+            canvas.drawRect(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(10.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(10.0f), ((t5) ((org.telegram.ui.w0) limitPreviewView.f32637f0).f52343b).v0(getX(), getY()));
             canvas.restore();
         }
     }

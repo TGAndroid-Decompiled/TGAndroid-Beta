@@ -129,7 +129,7 @@ public abstract class y4 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = a6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (xg0Var != null && xg0Var.f41687e) {
+                    if (xg0Var != null && xg0Var.f41679e) {
                         z11 = z10;
                     } else {
                         z11 = false;

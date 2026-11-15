@@ -49,7 +49,7 @@ public final class g0 extends ci implements z5, is, te.b {
         jiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f17944r = frameLayout;
-        gi giVar = new gi(context, e6Var, this.f33607b);
+        gi giVar = new gi(context, e6Var, this.f33609b);
         this.G = giVar;
         giVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         ah.j jVar = new ah.j(this, 9);
@@ -58,7 +58,7 @@ public final class g0 extends ci implements z5, is, te.b {
         iVar.setHint(hd.M0(2131752656, null));
         frameLayout.addView(jiVar, ja.g());
         FrameLayout.LayoutParams d = ja.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f23603m;
+        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f23605m;
         frameLayout.addView(giVar, d);
         ny nyVar = new ny(context, e6Var);
         this.F = nyVar;
@@ -70,8 +70,8 @@ public final class g0 extends ci implements z5, is, te.b {
         setBlur3Capture(c1Var);
         this.d = c1Var;
         this.h = true;
-        this.f33610f = true;
-        ns.e().h(c1Var, ns.f25514i4, new g7(this, 7));
+        this.f33612f = true;
+        ns.e().h(c1Var, ns.f25515i4, new g7(this, 7));
         c1Var.setClipToPadding(false);
         getContext();
         c0 c0Var = new c0(this, org.telegram.messenger.g0.L(9.0f), c1Var, 0);
@@ -89,7 +89,7 @@ public final class g0 extends ci implements z5, is, te.b {
         c1Var.setOnItemClickListener(new b6(this, 15));
         c1Var.setOnScrollListener(new z4(this, 18));
         FrameLayout.LayoutParams e10 = ja.e(-1, 60, 51);
-        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f23603m;
+        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f23605m;
         addView(frameLayout, e10);
         Q();
     }
@@ -119,13 +119,13 @@ public final class g0 extends ci implements z5, is, te.b {
     @Override
     public final void B(int i7, int i10) {
         int i11;
-        ki kiVar = this.f33607b;
-        if (kiVar.f36482p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        ki kiVar = this.f33609b;
+        if (kiVar.f36470p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
             kiVar.f29713r0 = false;
         } else {
             if (!org.telegram.messenger.g0.Q1()) {
-                Point point = org.telegram.messenger.g0.f23609q;
+                Point point = org.telegram.messenger.g0.f23611q;
                 if (point.x > point.y) {
                     i11 = (int) (i10 / 3.5f);
                     kiVar.f29713r0 = true;
@@ -134,7 +134,7 @@ public final class g0 extends ci implements z5, is, te.b {
             i11 = (i10 / 5) * 2;
             kiVar.f29713r0 = true;
         }
-        this.f17945s.q1(0, i11 + org.telegram.messenger.g0.f23603m, 0, this.f33609e);
+        this.f17945s.q1(0, i11 + org.telegram.messenger.g0.f23605m, 0, this.f33611e);
     }
 
     @Override
@@ -195,7 +195,7 @@ public final class g0 extends ci implements z5, is, te.b {
         }
         View childAt = c1Var.getChildAt(0);
         cj0 cj0Var = (cj0) c1Var.G(childAt);
-        int top = (childAt.getTop() - org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(8.0f);
+        int top = (childAt.getTop() - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(8.0f);
         if (top > 0 && cj0Var != null && cj0Var.b() == 0) {
             i7 = top;
         } else {
@@ -246,13 +246,13 @@ public final class g0 extends ci implements z5, is, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
         gi giVar = this.G;
         if (giVar != null) {
-            giVar.setupBlurredBackground(cVar.c(giVar, c8.g0.a(this.f33606a), false));
+            giVar.setupBlurredBackground(cVar.c(giVar, c8.g0.a(this.f33608a), false));
         }
     }
 

@@ -5,55 +5,55 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class ok implements Runnable {
-    public final int f25769a = 1;
-    public final np f25770b;
-    public final long f25771c;
+    public final int f25770a = 1;
+    public final np f25771b;
+    public final long f25772c;
     public final int d;
-    public final long f25772e;
-    public final Object f25773f;
+    public final long f25773e;
+    public final Object f25774f;
     public final Object h;
-    public final Object f25774n;
-    public final Object f25775r;
+    public final Object f25775n;
+    public final Object f25776r;
 
     public ok(np npVar, ArrayList arrayList, long j3, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i7, long j10) {
-        this.f25770b = npVar;
-        this.f25773f = arrayList;
-        this.f25771c = j3;
+        this.f25771b = npVar;
+        this.f25774f = arrayList;
+        this.f25772c = j3;
         this.h = updates_channeldifference;
-        this.f25774n = chat;
-        this.f25775r = hVar;
+        this.f25775n = chat;
+        this.f25776r = hVar;
         this.d = i7;
-        this.f25772e = j10;
+        this.f25773e = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.Chat chat;
         a0.h hVar;
-        switch (this.f25769a) {
+        switch (this.f25770a) {
             case 0:
-                np npVar = this.f25770b;
-                boolean[] zArr = (boolean[]) this.f25773f;
+                np npVar = this.f25771b;
+                boolean[] zArr = (boolean[]) this.f25774f;
                 vr vrVar = (vr) this.h;
-                long j3 = this.f25771c;
-                Runnable[] runnableArr = (Runnable[]) this.f25774n;
-                long j10 = this.f25772e;
+                long j3 = this.f25772c;
+                Runnable[] runnableArr = (Runnable[]) this.f25775n;
+                long j10 = this.f25773e;
                 int i7 = this.d;
-                bp bpVar = (bp) this.f25775r;
+                bp bpVar = (bp) this.f25776r;
                 if (!zArr[0]) {
                     g0.h3(new ob(npVar, zArr, vrVar.O(j3), runnableArr, j10, i7, bpVar));
                     return;
                 }
                 return;
             default:
-                np npVar2 = this.f25770b;
-                ArrayList arrayList = (ArrayList) this.f25773f;
-                long j11 = this.f25771c;
+                np npVar2 = this.f25771b;
+                ArrayList arrayList = (ArrayList) this.f25774f;
+                long j11 = this.f25772c;
                 TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
-                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25774n;
-                a0.h hVar2 = (a0.h) this.f25775r;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25775n;
+                a0.h hVar2 = (a0.h) this.f25776r;
                 int i10 = this.d;
-                long j12 = this.f25772e;
+                long j12 = this.f25773e;
                 if (!arrayList.isEmpty()) {
                     SparseArray sparseArray = new SparseArray();
                     int size = arrayList.size();
@@ -88,13 +88,13 @@ public final class ok implements Runnable {
     }
 
     public ok(np npVar, boolean[] zArr, vr vrVar, long j3, Runnable[] runnableArr, long j10, int i7, bp bpVar) {
-        this.f25770b = npVar;
-        this.f25773f = zArr;
+        this.f25771b = npVar;
+        this.f25774f = zArr;
         this.h = vrVar;
-        this.f25771c = j3;
-        this.f25774n = runnableArr;
-        this.f25772e = j10;
+        this.f25772c = j3;
+        this.f25775n = runnableArr;
+        this.f25773e = j10;
         this.d = i7;
-        this.f25775r = bpVar;
+        this.f25776r = bpVar;
     }
 }

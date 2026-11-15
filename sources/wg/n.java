@@ -5,7 +5,6 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.lv0;
-import tg.v1;
 public final class n implements RequestDelegate {
     public final int f59215a;
     public final z10 f59216b;
@@ -24,7 +23,7 @@ public final class n implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new lv0(tL_error, this.f59216b, this.f59217c, 25));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new v1(tL_error, this.f59216b, tLObject, this.f59217c, 2));
+                org.telegram.messenger.g0.h3(new t5.a(tL_error, this.f59216b, tLObject, this.f59217c, 3));
                 return;
         }
     }

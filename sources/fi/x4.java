@@ -25,15 +25,15 @@ public final class x4 extends cv0 {
                 super.e(z10, z11);
                 float f10 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = ((TextView) u91Var.f51863n.d).animate();
+                    ViewPropertyAnimator animate = ((TextView) u91Var.f51864n.d).animate();
                     if (z10) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                ((TextView) u91Var.f51863n.d).animate().cancel();
-                TextView textView = (TextView) u91Var.f51863n.d;
+                ((TextView) u91Var.f51864n.d).animate().cancel();
+                TextView textView = (TextView) u91Var.f51864n.d;
                 if (z10) {
                     f10 = 0.0f;
                 }

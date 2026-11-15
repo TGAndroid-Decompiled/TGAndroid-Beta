@@ -46,7 +46,7 @@ public final class m10 extends AnimatorListenerAdapter {
                 org.telegram.ui.i51 i51Var = (org.telegram.ui.i51) this.f37030f;
                 i51Var.D.e();
                 ji jiVar = (ji) this.f37027b;
-                ((ArrayList) jiVar.f36017c).remove(i51Var);
+                ((ArrayList) jiVar.f36007c).remove(i51Var);
                 jiVar.a();
                 ((ViewGroup) jiVar.d).invalidate();
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f37028c;
@@ -56,8 +56,8 @@ public final class m10 extends AnimatorListenerAdapter {
                 chatActivityEnterView.setTextTransitionIsRunning(false);
                 chatActivityEnterView.getEditField().setAlpha(1.0f);
                 org.telegram.ui.an anVar = (org.telegram.ui.an) this.f37029e;
-                ((jo[]) anVar.f45147c0.f3545b)[0].f36124c.setAlpha(1.0f);
-                ((jo[]) anVar.f45147c0.f3545b)[0].d.setAlpha(1.0f);
+                ((jo[]) anVar.f45146c0.f3548b)[0].f36114c.setAlpha(1.0f);
+                ((jo[]) anVar.f45146c0.f3548b)[0].d.setAlpha(1.0f);
                 p5.release((View) null, i51Var.H);
                 return;
         }

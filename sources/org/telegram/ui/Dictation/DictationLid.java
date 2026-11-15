@@ -1,13 +1,13 @@
 package org.telegram.ui.Dictation;
 
-import ai.b1;
+import ai.a1;
 import ai.c1;
-import ai.i1;
-import ai.u0;
+import ai.d1;
+import ai.j1;
 import ai.v0;
 import ai.w0;
 import ai.x0;
-import ai.z0;
+import ai.y0;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
@@ -27,7 +27,7 @@ public abstract class DictationLid {
     public static boolean f42588e;
     public static volatile boolean f42589f;
     public static volatile boolean f42590g;
-    public static final ExecutorService f42585a = Executors.newSingleThreadExecutor(new x0(0));
+    public static final ExecutorService f42585a = Executors.newSingleThreadExecutor(new y0(0));
     public static final ExecutorService f42586b = Executors.newSingleThreadExecutor();
     public static final Object h = new Object();
     public static final String[][] f42591i = {new String[]{"ru", "uk", "be", "pl", "cs", "sk", "bg", "sr", "hr", "bs", "sl", "mk"}, new String[]{"sv", "no", "nb", "nn", "da"}, new String[]{"es", "pt", "ca", "gl", "it"}, new String[]{"nl", "de", "af"}, new String[]{"ms", "id"}, new String[]{"hi", "ur"}};
@@ -55,7 +55,7 @@ public abstract class DictationLid {
         }
     }
 
-    public static void c(byte[] bArr, int i7, b1 b1Var) {
+    public static void c(byte[] bArr, int i7, c1 c1Var) {
         long j3 = f42587c;
         if (j3 == 0) {
             return;
@@ -64,11 +64,11 @@ public abstract class DictationLid {
         byte[] m10 = m(bArr);
         int length = m10.length / 32;
         if (length < i7) {
-            g0.h3(new v0(b1Var, length, 0));
+            g0.h3(new w0(c1Var, length, 0));
             return;
         }
         float[] fArr = new float[d.length];
-        g0.h3(new w0(b1Var, nativePredict(j3, m10, 0, m10.length, false, fArr), fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
+        g0.h3(new x0(c1Var, nativePredict(j3, m10, 0, m10.length, false, fArr), fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
     }
 
     public static void d(Context context) {
@@ -84,14 +84,14 @@ public abstract class DictationLid {
         if (file.exists()) {
             k(applicationContext);
         }
-        if (file.exists() || i1.b()) {
+        if (file.exists() || j1.b()) {
             if ((file.exists() && !z10) || f42589f) {
                 return;
             }
             f42589f = true;
             File file2 = new File(applicationContext.getFilesDir(), "tinylid.bin");
             if (!file2.exists()) {
-                TLRPC.TL_transcriptionModel f10 = i1.f(i1.a(), "tinylid");
+                TLRPC.TL_transcriptionModel f10 = j1.f(j1.a(), "tinylid");
                 if (f10 != null) {
                     j3 = f10.document.size;
                 } else {
@@ -100,7 +100,7 @@ public abstract class DictationLid {
                 DictationAsr.h.putIfAbsent("tinylid.bin", new long[]{0, Math.max(j3, 4400000L)});
                 DictationAsr.o();
             }
-            f42586b.execute(new u0(file2, 0));
+            f42586b.execute(new v0(file2, 0));
         }
     }
 
@@ -203,11 +203,11 @@ public abstract class DictationLid {
         return 0.5f;
     }
 
-    public static void j(byte[] bArr, int i7, b1 b1Var) {
+    public static void j(byte[] bArr, int i7, c1 c1Var) {
         if (f42587c == 0) {
             return;
         }
-        f42585a.execute(new z0(bArr, i7, b1Var, 0));
+        f42585a.execute(new a1(bArr, i7, c1Var, 0));
     }
 
     public static void k(Context context) {
@@ -218,7 +218,7 @@ public abstract class DictationLid {
             }
             f42588e = true;
             f42590g = true;
-            f42585a.execute(new u0(file, 1));
+            f42585a.execute(new v0(file, 1));
         }
     }
 
@@ -279,7 +279,7 @@ public abstract class DictationLid {
         return bArr2;
     }
 
-    public static c1 n(float f10, float[] fArr) {
+    public static d1 n(float f10, float[] fArr) {
         boolean z10;
         String[] strArr = d;
         if (fArr != null && strArr != null && strArr.length == fArr.length) {
@@ -300,7 +300,7 @@ public abstract class DictationLid {
             if (z10 && f11 >= f10) {
                 z11 = true;
             }
-            return new c1(str, f11, z11);
+            return new d1(str, f11, z11);
         }
         return null;
     }

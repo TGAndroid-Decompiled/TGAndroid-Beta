@@ -137,7 +137,7 @@ public abstract class ta extends FrameLayout implements org.telegram.ui.ActionBa
                     } else {
                         z13 = false;
                     }
-                    bg.p0 p0Var = bg.t0.f3332a;
+                    bg.p0 p0Var = bg.t0.f3335a;
                     if ((!z12 && !z13) || (!z10 && !z11)) {
                         z14 = z10;
                         z15 = z11;

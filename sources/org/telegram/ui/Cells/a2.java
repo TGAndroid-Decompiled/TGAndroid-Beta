@@ -25,8 +25,8 @@ public final class a2 extends org.telegram.ui.Components.h6 {
                 super.invalidate();
                 re0 re0Var = (re0) this.f29989w;
                 te0 te0Var = re0Var.d;
-                if (re0Var == te0Var.f39680m1.getPinnedHeader()) {
-                    te0Var.f39680m1.invalidate();
+                if (re0Var == te0Var.f39677m1.getPinnedHeader()) {
+                    te0Var.f39677m1.invalidate();
                     return;
                 }
                 return;
@@ -53,7 +53,7 @@ public final class a2 extends org.telegram.ui.Components.h6 {
                 canvas.translate(org.telegram.messenger.g0.L(15.0f), 0.0f);
                 super.onDraw(canvas);
                 canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(11.0f));
-                ((b51) this.f29989w).f33202b.draw(canvas);
+                ((b51) this.f29989w).f33205b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:
@@ -75,9 +75,9 @@ public final class a2 extends org.telegram.ui.Components.h6 {
                 v90 v90Var = (v90) this.f29989w;
                 int size = View.MeasureSpec.getSize(i7);
                 if (size <= 0) {
-                    size = org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(20.0f);
+                    size = org.telegram.messenger.g0.f23611q.x - org.telegram.messenger.g0.L(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - v90Var.d.getPaint().measureText(v90Var.d.getText().toString())) - v90Var.f52170f.getPaint().measureText(v90Var.f52170f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - v90Var.d.getPaint().measureText(v90Var.d.getText().toString())) - v90Var.f52168f.getPaint().measureText(v90Var.f52168f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);

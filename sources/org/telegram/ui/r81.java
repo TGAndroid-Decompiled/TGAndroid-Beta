@@ -6,21 +6,21 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class r81 extends n11 {
-    public boolean f50874f2;
-    public final s81 f50875g2;
+    public boolean f50873f2;
+    public final s81 f50874g2;
 
     public r81(s81 s81Var, s81 s81Var2, Activity activity) {
         super(s81Var2, activity, false, null, 3, null);
-        this.f50875g2 = s81Var;
-        this.f50874f2 = true;
+        this.f50874g2 = s81Var;
+        this.f50873f2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        if (this.f50874f2) {
-            this.f50874f2 = false;
-            this.f50875g2.f51154f.s(null);
+        if (this.f50873f2) {
+            this.f50873f2 = false;
+            this.f50874g2.f51150f.s(null);
         }
     }
 
@@ -29,13 +29,13 @@ public final class r81 extends n11 {
         int i7;
         int i10;
         long j3;
-        s81 s81Var = this.f50875g2;
+        s81 s81Var = this.f50874g2;
         i7 = ((org.telegram.ui.ActionBar.e2) s81Var).currentAccount;
         boolean z10 = false;
-        if (!TextUtils.isEmpty(org.telegram.messenger.m10.i(i7).f24946f0)) {
+        if (!TextUtils.isEmpty(org.telegram.messenger.m10.i(i7).f24952f0)) {
             org.telegram.messenger.si mediaDataController = s81Var.getMediaDataController();
             i10 = ((org.telegram.ui.ActionBar.e2) s81Var).currentAccount;
-            TLRPC.TL_messages_stickerSet n02 = mediaDataController.n0(org.telegram.messenger.m10.i(i10).f24946f0);
+            TLRPC.TL_messages_stickerSet n02 = mediaDataController.n0(org.telegram.messenger.m10.i(i10).f24952f0);
             if (n02 == null) {
                 j3 = 0;
             } else {

@@ -9,22 +9,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class xb0 implements RequestDelegate {
-    public final int f53163a;
-    public final dc0 f53164b;
-    public final TLRPC.TL_auth_signIn f53165c;
+    public final int f53162a;
+    public final dc0 f53163b;
+    public final TLRPC.TL_auth_signIn f53164c;
 
     public xb0(dc0 dc0Var, TLRPC.TL_auth_signIn tL_auth_signIn, int i7) {
-        this.f53163a = i7;
-        this.f53164b = dc0Var;
-        this.f53165c = tL_auth_signIn;
+        this.f53162a = i7;
+        this.f53163b = dc0Var;
+        this.f53164c = tL_auth_signIn;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f53163a) {
+        switch (this.f53162a) {
             case 0:
-                final dc0 dc0Var = this.f53164b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f53165c;
+                final dc0 dc0Var = this.f53163b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f53164c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,9 +36,9 @@ public final class xb0 implements RequestDelegate {
                         dc0 dc0Var2 = dc0Var;
                         switch (i10) {
                             case 0:
-                                int i11 = dc0Var2.f46354a;
-                                ah.i iVar = dc0Var2.f46358c;
-                                ce0 ce0Var = dc0Var2.f46357b0;
+                                int i11 = dc0Var2.f46326a;
+                                ah.i iVar = dc0Var2.f46330c;
+                                ce0 ce0Var = dc0Var2.f46329b0;
                                 ce0Var.C1(false, true);
                                 if (tL_error2 == null) {
                                     dc0Var2.S = false;
@@ -47,7 +47,7 @@ public final class xb0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            ce0Var.f46110s0 = tL_help_termsOfService;
+                                            ce0Var.f46099s0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", dc0Var2.H);
@@ -100,7 +100,7 @@ public final class xb0 implements RequestDelegate {
                                 return;
                             default:
                                 dc0Var2.S = false;
-                                ce0 ce0Var2 = dc0Var2.f46357b0;
+                                ce0 ce0Var2 = dc0Var2.f46329b0;
                                 ce0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
@@ -125,8 +125,8 @@ public final class xb0 implements RequestDelegate {
                 });
                 return;
             default:
-                final dc0 dc0Var2 = this.f53164b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f53165c;
+                final dc0 dc0Var2 = this.f53163b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f53164c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -138,9 +138,9 @@ public final class xb0 implements RequestDelegate {
                         dc0 dc0Var22 = dc0Var2;
                         switch (i10) {
                             case 0:
-                                int i11 = dc0Var22.f46354a;
-                                ah.i iVar = dc0Var22.f46358c;
-                                ce0 ce0Var = dc0Var22.f46357b0;
+                                int i11 = dc0Var22.f46326a;
+                                ah.i iVar = dc0Var22.f46330c;
+                                ce0 ce0Var = dc0Var22.f46329b0;
                                 ce0Var.C1(false, true);
                                 if (tL_error2 == null) {
                                     dc0Var22.S = false;
@@ -149,7 +149,7 @@ public final class xb0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            ce0Var.f46110s0 = tL_help_termsOfService;
+                                            ce0Var.f46099s0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", dc0Var22.H);
@@ -202,7 +202,7 @@ public final class xb0 implements RequestDelegate {
                                 return;
                             default:
                                 dc0Var22.S = false;
-                                ce0 ce0Var2 = dc0Var22.f46357b0;
+                                ce0 ce0Var2 = dc0Var22.f46329b0;
                                 ce0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;

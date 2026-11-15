@@ -21,13 +21,13 @@ public final class ph extends rt {
             emojiView.f37003x0 = false;
             emojiView.f37009y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(org.telegram.messenger.g0.f23604n);
+            emojiView.setBottomInset(org.telegram.messenger.g0.f23606n);
         }
     }
 
     @Override
     public final void i(ActionMode actionMode, Menu menu) {
-        org.telegram.ui.ActionBar.e2 e2Var = this.W.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = this.W.f36424a2;
         if (e2Var instanceof org.telegram.ui.an) {
             org.telegram.ui.an.C8(menu, ((org.telegram.ui.an) e2Var).h, true, true, true, true);
         }
@@ -37,7 +37,7 @@ public final class ph extends rt {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         ki kiVar = this.W;
         ph phVar = kiVar.N2;
-        if (!kiVar.f36494s3) {
+        if (!kiVar.f36482s3) {
             if (motionEvent.getX() > phVar.getEditText().getLeft() && motionEvent.getX() < phVar.getEditText().getRight() && motionEvent.getY() > phVar.getEditText().getTop() && motionEvent.getY() < phVar.getEditText().getBottom()) {
                 kiVar.h1(phVar.getEditText(), true);
             } else {

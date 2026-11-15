@@ -24,7 +24,7 @@ public final class xx extends av0 {
         super.H1(i7);
         yx yxVar = this.I3;
         ly lyVar = yxVar.H;
-        xx xxVar = yxVar.f42179r;
+        xx xxVar = yxVar.f42181r;
         boolean z11 = true;
         if (xxVar.getSelectedCategory() == null) {
             z10 = true;
@@ -43,7 +43,7 @@ public final class xx extends av0 {
             if (xxVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            zvVar.f41393p0 = z11;
+            zvVar.f41396p0 = z11;
             zvVar.invalidate();
         }
         yxVar.g(false);

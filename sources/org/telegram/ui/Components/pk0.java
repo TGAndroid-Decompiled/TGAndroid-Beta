@@ -16,19 +16,19 @@ public final class pk0 implements View.OnClickListener {
         wk0 wk0Var = this.f38324b;
         switch (i7) {
             case 0:
-                wk0Var.f41382f.a(((Integer) view.getTag(2131296461)).intValue());
+                wk0Var.f41385f.a(((Integer) view.getTag(2131296461)).intValue());
                 return;
             case 1:
-                wk0Var.f41382f.a(((Integer) view.getTag(2131296461)).intValue());
+                wk0Var.f41385f.a(((Integer) view.getTag(2131296461)).intValue());
                 return;
             case 2:
-                wk0Var.f41382f.a(((Integer) view.getTag(2131296461)).intValue());
+                wk0Var.f41385f.a(((Integer) view.getTag(2131296461)).intValue());
                 return;
             case 3:
-                wk0Var.f41382f.a(((Integer) view.getTag(2131296461)).intValue());
+                wk0Var.f41385f.a(((Integer) view.getTag(2131296461)).intValue());
                 return;
             default:
-                wk0Var.f41382f.a(((Integer) view.getTag(2131296461)).intValue());
+                wk0Var.f41385f.a(((Integer) view.getTag(2131296461)).intValue());
                 return;
         }
     }

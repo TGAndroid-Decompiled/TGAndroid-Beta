@@ -13,12 +13,12 @@ public final class zp0 extends org.telegram.ui.jx0 {
     @Override
     public final void b() {
         dq0 dq0Var;
-        Rect rect = this.f48498s;
+        Rect rect = this.f48452s;
         rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
         setClipBounds(rect);
         invalidate();
         ys0 ys0Var = this.f42413x;
-        tr0[] tr0VarArr = ys0Var.f42117n0;
+        tr0[] tr0VarArr = ys0Var.f42119n0;
         if (tr0VarArr != null) {
             for (tr0 tr0Var : tr0VarArr) {
                 if (tr0Var != null && (dq0Var = tr0Var.h) != null) {
@@ -29,14 +29,14 @@ public final class zp0 extends org.telegram.ui.jx0 {
                     int paddingRight = tr0Var.h.getPaddingRight();
                     dq0 dq0Var3 = tr0Var.h;
                     int i02 = ys0Var.i0(ys0Var.I0());
-                    dq0Var3.f39402i3 = i02;
+                    dq0Var3.f39400i3 = i02;
                     dq0Var2.setPadding(paddingLeft, j02, paddingRight, i02);
                     int paddingTop2 = paddingTop - tr0Var.h.getPaddingTop();
                     if (paddingTop2 != 0) {
                         org.telegram.messenger.g0.J(tr0Var.h, new ep0(tr0Var, paddingTop2, 2));
                     }
                 }
-                if (tr0Var != null && tr0Var.f39797s != null) {
+                if (tr0Var != null && tr0Var.f39794s != null) {
                     ys0Var.K1(tr0Var);
                 }
             }

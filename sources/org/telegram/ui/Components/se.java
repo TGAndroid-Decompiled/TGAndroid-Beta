@@ -4,12 +4,12 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 public final class se implements View.OnTouchListener {
-    public final int f39290a = 0;
-    public final Rect f39291b = new Rect();
-    public final org.telegram.messenger.is f39292c;
+    public final int f39288a = 0;
+    public final Rect f39289b = new Rect();
+    public final org.telegram.messenger.is f39290c;
 
-    public se(org.telegram.ui.nm0 nm0Var) {
-        this.f39292c = nm0Var;
+    public se(org.telegram.ui.om0 om0Var) {
+        this.f39290c = om0Var;
     }
 
     @Override
@@ -17,11 +17,11 @@ public final class se implements View.OnTouchListener {
         te teVar;
         org.telegram.ui.ActionBar.g1 g1Var;
         org.telegram.ui.ActionBar.g1 g1Var2;
-        switch (this.f39290a) {
+        switch (this.f39288a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f39292c;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f39290c;
                 if (motionEvent.getActionMasked() == 0 && (teVar = chatActivityEnterView.O0) != null && teVar.isShowing()) {
-                    Rect rect = this.f39291b;
+                    Rect rect = this.f39289b;
                     view.getHitRect(rect);
                     if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                         chatActivityEnterView.O0.dismiss();
@@ -31,24 +31,24 @@ public final class se implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.nm0 nm0Var = (org.telegram.ui.nm0) this.f39292c;
-                if (motionEvent.getActionMasked() == 0 && (g1Var = nm0Var.J) != null && g1Var.isShowing()) {
-                    Rect rect2 = this.f39291b;
+                org.telegram.ui.om0 om0Var = (org.telegram.ui.om0) this.f39290c;
+                if (motionEvent.getActionMasked() == 0 && (g1Var = om0Var.J) != null && g1Var.isShowing()) {
+                    Rect rect2 = this.f39289b;
                     view.getHitRect(rect2);
                     if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        nm0Var.J.d(true);
+                        om0Var.J.d(true);
                         return false;
                     }
                     return false;
                 }
                 return false;
             default:
-                org.telegram.ui.ym0 ym0Var = (org.telegram.ui.ym0) this.f39292c;
-                if (motionEvent.getActionMasked() == 0 && (g1Var2 = ym0Var.f53582n0) != null && g1Var2.isShowing()) {
-                    Rect rect3 = this.f39291b;
+                org.telegram.ui.zm0 zm0Var = (org.telegram.ui.zm0) this.f39290c;
+                if (motionEvent.getActionMasked() == 0 && (g1Var2 = zm0Var.f53973n0) != null && g1Var2.isShowing()) {
+                    Rect rect3 = this.f39289b;
                     view.getHitRect(rect3);
                     if (!rect3.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        ym0Var.f53582n0.d(true);
+                        zm0Var.f53973n0.d(true);
                         return false;
                     }
                     return false;
@@ -57,11 +57,11 @@ public final class se implements View.OnTouchListener {
         }
     }
 
-    public se(org.telegram.ui.ym0 ym0Var) {
-        this.f39292c = ym0Var;
+    public se(org.telegram.ui.zm0 zm0Var) {
+        this.f39290c = zm0Var;
     }
 
     public se(ChatActivityEnterView chatActivityEnterView) {
-        this.f39292c = chatActivityEnterView;
+        this.f39290c = chatActivityEnterView;
     }
 }

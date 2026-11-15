@@ -119,7 +119,7 @@ public final class ge0 extends View {
             this.F = ofFloat;
             ofFloat.addUpdateListener(new ee0(this, 1));
             this.F.addListener(new fe0(this, 0));
-            this.F.setInterpolator(er.f34420f);
+            this.F.setInterpolator(er.f34419f);
             this.F.setDuration(220L);
             this.F.start();
         }
@@ -187,7 +187,7 @@ public final class ge0 extends View {
             this.F = ofFloat;
             ofFloat.addUpdateListener(new ee0(this, 0));
             this.F.addListener(new fe0(this, 1));
-            this.F.setInterpolator(er.f34420f);
+            this.F.setInterpolator(er.f34419f);
             this.F.setDuration(220L);
             this.F.start();
         }

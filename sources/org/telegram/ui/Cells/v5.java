@@ -27,19 +27,19 @@ public final class v5 extends FrameLayout {
                 String str = ffVar.I;
                 if (str != null) {
                     i9Var.s(ffVar.J, ffVar.K, true);
-                    if (ffVar.f27708b) {
+                    if (ffVar.f27710b) {
                         i9Var.h("vthumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.j6.R4);
                     } else {
                         i9Var.h("thumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.j6.R4);
                     }
-                    ((TextView) t5Var.f31676c).setText(veVar.f26970c);
-                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(veVar.f26971e.size())));
+                    ((TextView) t5Var.f31676c).setText(veVar.f26971c);
+                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(veVar.f26972e.size())));
                     return;
                 }
             }
             i9Var.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
-            ((TextView) t5Var.f31676c).setText(veVar.f26970c);
-            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(veVar.f26971e.size())));
+            ((TextView) t5Var.f31676c).setText(veVar.f26971c);
+            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(veVar.f26972e.size())));
             return;
         }
         t5VarArr[i7].setVisibility(4);
@@ -52,7 +52,7 @@ public final class v5 extends FrameLayout {
         if (org.telegram.messenger.g0.Q1()) {
             A = i20.A(4.0f, this.f31810c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f31810c;
         } else {
-            A = i20.A(4.0f, this.f31810c - 1, org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(12.0f)) / this.f31810c;
+            A = i20.A(4.0f, this.f31810c - 1, org.telegram.messenger.g0.f23611q.x - org.telegram.messenger.g0.L(12.0f)) / this.f31810c;
         }
         for (int i11 = 0; i11 < this.f31810c; i11++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i11].getLayoutParams();

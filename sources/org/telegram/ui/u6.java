@@ -2,28 +2,28 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class u6 extends rg.a {
-    public final int f51772c;
+    public final int f51773c;
     public CharSequence d;
-    public String f51773e;
-    public int f51774f;
-    public long f51775g;
+    public String f51774e;
+    public int f51775f;
+    public long f51776g;
     public int h;
-    public boolean f51776i;
-    public boolean f51777j;
+    public boolean f51777i;
+    public boolean f51778j;
 
     public u6(int i7, String str) {
         super(i7, true);
-        this.f51772c = -1;
+        this.f51773c = -1;
         this.d = str;
     }
 
     public static u6 b(int i7, long j3, String str, int i10) {
         u6 u6Var = new u6(11);
-        u6Var.f51774f = i7;
+        u6Var.f51775f = i7;
         u6Var.d = str;
-        u6Var.f51775g = j3;
+        u6Var.f51776g = j3;
         u6Var.h = i10;
-        u6Var.f51777j = false;
+        u6Var.f51778j = false;
         return u6Var;
     }
 
@@ -38,13 +38,13 @@ public final class u6 extends rg.a {
                             return Objects.equals(this.d, u6Var.d);
                         }
                         if (i7 == 1) {
-                            return Objects.equals(this.f51773e, u6Var.f51773e);
+                            return Objects.equals(this.f51774e, u6Var.f51774e);
                         }
                         if (i7 == 11) {
-                            if (this.f51774f != u6Var.f51774f || this.f51775g != u6Var.f51775g) {
+                            if (this.f51775f != u6Var.f51775f || this.f51776g != u6Var.f51776g) {
                                 return false;
                             }
-                        } else if (i7 != 7 || this.f51772c != u6Var.f51772c) {
+                        } else if (i7 != 7 || this.f51773c != u6Var.f51773c) {
                             return false;
                         }
                     }
@@ -60,11 +60,11 @@ public final class u6 extends rg.a {
 
     public u6(int i7, int i10) {
         super(7, true);
-        this.f51772c = i7;
+        this.f51773c = i7;
     }
 
     public u6(int i7) {
         super(i7, true);
-        this.f51772c = -1;
+        this.f51773c = -1;
     }
 }

@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class e70 extends org.telegram.ui.ActionBar.u2 {
-    public static final int f34241u1 = 0;
-    public int f34242m1;
+    public static final int f34228u1 = 0;
+    public int f34229m1;
     public final String n1;
-    public final org.telegram.ui.ActionBar.e2 f34243o1;
-    public final TLRPC.ChatInvite f34244p1;
-    public final TLRPC.Chat f34245q1;
-    public final TextView f34246r1;
-    public final RadialProgressView f34247s1;
-    public cc f34248t1;
+    public final org.telegram.ui.ActionBar.e2 f34230o1;
+    public final TLRPC.ChatInvite f34231p1;
+    public final TLRPC.Chat f34232q1;
+    public final TextView f34233r1;
+    public final RadialProgressView f34234s1;
+    public cc f34235t1;
 
     public e70(android.content.Context r33, org.telegram.tgnet.TLObject r34, java.lang.String r35, org.telegram.ui.ActionBar.e2 r36, org.telegram.ui.ActionBar.e6 r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e70.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.e2, org.telegram.ui.ActionBar.e6):void");
@@ -56,9 +56,9 @@ public final class e70 extends org.telegram.ui.ActionBar.u2 {
         int w02;
         super.s0();
         try {
-            if (this.H0 == this.f34242m1 && (w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28849d6, this.J0)) != this.H0) {
+            if (this.H0 == this.f34229m1 && (w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28849d6, this.J0)) != this.H0) {
                 P(w02);
-                this.f34242m1 = this.H0;
+                this.f34229m1 = this.H0;
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

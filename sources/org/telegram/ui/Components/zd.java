@@ -83,7 +83,7 @@ public final class zd extends ImageView {
                 super.setAlpha(f10);
                 je jeVar = this.f42341b.f32275r2;
                 if (jeVar != null) {
-                    jeVar.setTranslationX(jeVar.f35968a);
+                    jeVar.setTranslationX(jeVar.f35958a);
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class zd extends ImageView {
                 super.setAlpha(f10);
                 je jeVar2 = this.f42341b.f32275r2;
                 if (jeVar2 != null) {
-                    jeVar2.setTranslationX(jeVar2.f35968a);
+                    jeVar2.setTranslationX(jeVar2.f35958a);
                     return;
                 }
                 return;

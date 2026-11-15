@@ -68,7 +68,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         ImageView imageView = this.f32110c;
         if (this.f32112f) {
             float f11 = 20.0f;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 if (imageView.getVisibility() == 0) {
@@ -81,7 +81,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
             float f12 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 if (imageView.getVisibility() == 0) {
                     f11 = 68.0f;
                 }
@@ -123,14 +123,14 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         int i17 = i11 - i7;
         org.telegram.ui.ActionBar.j5 j5Var2 = this.f32109b;
         int textHeight = (i16 - j5Var2.getTextHeight()) / 2;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i13 = org.telegram.messenger.g0.L(i15);
         } else {
             i13 = 0;
         }
         j5Var2.layout(i13, textHeight, j5Var2.getMeasuredWidth() + i13, j5Var2.getMeasuredHeight() + textHeight);
         int textHeight2 = (i16 - j5Var.getTextHeight()) / 2;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             int measuredWidth3 = getMeasuredWidth() - j5Var.getMeasuredWidth();
             if (imageView2.getVisibility() == 0) {
                 i15 = this.h;
@@ -147,7 +147,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         j5Var.layout(L, textHeight2, j5Var.getMeasuredWidth() + L, j5Var.getMeasuredHeight() + textHeight2);
         if (imageView2.getVisibility() == 0) {
             int L2 = org.telegram.messenger.g0.L(5.0f);
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 measuredWidth2 = org.telegram.messenger.g0.L(i14);
             } else {
                 measuredWidth2 = (i17 - imageView2.getMeasuredWidth()) - org.telegram.messenger.g0.L(i14);
@@ -156,7 +156,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         }
         if (imageView.getVisibility() == 0) {
             int measuredHeight = (i16 - imageView.getMeasuredHeight()) / 2;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 measuredWidth = org.telegram.messenger.g0.L(23.0f);
             } else {
                 measuredWidth = (i17 - imageView.getMeasuredWidth()) - org.telegram.messenger.g0.L(23.0f);

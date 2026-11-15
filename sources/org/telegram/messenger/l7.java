@@ -1,14 +1,14 @@
 package org.telegram.messenger;
 public final class l7 implements Runnable {
-    public final int f24805a;
-    public final int f24806b;
-    public final Object f24807c;
+    public final int f24811a;
+    public final int f24812b;
+    public final Object f24813c;
     public final Object d;
 
     public l7(Object obj, int i7, Object obj2, int i10) {
-        this.f24805a = i10;
-        this.f24807c = obj;
-        this.f24806b = i7;
+        this.f24811a = i10;
+        this.f24813c = obj;
+        this.f24812b = i7;
         this.d = obj2;
     }
 
@@ -22,9 +22,9 @@ public final class l7 implements Runnable {
     }
 
     public l7(Object obj, Object obj2, int i7, int i10) {
-        this.f24805a = i10;
-        this.f24807c = obj;
+        this.f24811a = i10;
+        this.f24813c = obj;
         this.d = obj2;
-        this.f24806b = i7;
+        this.f24812b = i7;
     }
 }

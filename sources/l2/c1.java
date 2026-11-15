@@ -40,7 +40,7 @@ public final class c1 implements x2.j0, q2.l {
     public final void I(int i7, x2.f0 f0Var, x2.t tVar, x2.b0 b0Var, int i10) {
         Pair a10 = a(i7, f0Var);
         if (a10 != null) {
-            this.f18909b.f18995i.d(new ai.f1(this, a10, tVar, b0Var, i10, 8));
+            this.f18909b.f18995i.d(new ai.g1(this, a10, tVar, b0Var, i10, 8));
         }
     }
 
@@ -56,7 +56,7 @@ public final class c1 implements x2.j0, q2.l {
     public final void N(int i7, x2.f0 f0Var, int i10) {
         Pair a10 = a(i7, f0Var);
         if (a10 != null) {
-            this.f18909b.f18995i.d(new ai.z0(this, a10, i10, 22));
+            this.f18909b.f18995i.d(new ai.a1(this, a10, i10, 22));
         }
     }
 

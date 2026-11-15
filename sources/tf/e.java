@@ -4,18 +4,18 @@ import java.io.EOFException;
 import java.io.InputStream;
 import org.telegram.messenger.ou;
 public final class e {
-    public static final b7.j f57120e = new b7.j(4);
-    public final uf.a f57121a;
-    public final h f57122b;
-    public final f f57123c;
+    public static final b7.j f57124e = new b7.j(4);
+    public final uf.a f57125a;
+    public final h f57126b;
+    public final f f57127c;
     public final ou d;
 
     public e(InputStream inputStream, long j3, int i7, h hVar, f fVar) {
         uf.a aVar = new uf.a(inputStream, j3, i7);
-        this.f57121a = aVar;
+        this.f57125a = aVar;
         this.d = new ou(aVar, 26);
-        this.f57122b = hVar;
-        this.f57123c = fVar;
+        this.f57126b = hVar;
+        this.f57127c = fVar;
     }
 
     public static String a(byte[] bArr, int i7, b bVar, boolean z10) {
@@ -24,7 +24,7 @@ public final class e {
             for (int i11 = 0; i11 < i7; i11++) {
                 if (bArr[i11] == 0 && (bVar != b.UTF_16 || i10 != 0 || i11 % 2 == 0)) {
                     i10++;
-                    int i12 = bVar.f57118b;
+                    int i12 = bVar.f57122b;
                     if (i10 == i12) {
                         i7 = (i11 + 1) - i12;
                         break;
@@ -35,7 +35,7 @@ public final class e {
             }
         }
         try {
-            String str = new String(bArr, 0, i7, bVar.f57117a.name());
+            String str = new String(bArr, 0, i7, bVar.f57121a.name());
             if (str.length() > 0 && str.charAt(0) == 65279) {
                 return str.substring(1);
             }
@@ -63,22 +63,22 @@ public final class e {
     }
 
     public final String c(int i7, b bVar) {
-        if (i7 <= this.f57121a.e()) {
-            d dVar = (d) f57120e.get();
-            byte[] bArr = dVar.f57119a;
+        if (i7 <= this.f57125a.e()) {
+            d dVar = (d) f57124e.get();
+            byte[] bArr = dVar.f57123a;
             if (i7 > bArr.length) {
                 int length = bArr.length;
                 do {
                     length *= 2;
                 } while (i7 > length);
-                dVar.f57119a = new byte[length];
+                dVar.f57123a = new byte[length];
             }
-            byte[] bArr2 = dVar.f57119a;
+            byte[] bArr2 = dVar.f57123a;
             int i10 = 0;
             while (true) {
                 ou ouVar = this.d;
                 if (i10 < i7) {
-                    int read = ((ab.d) ouVar.f25804b).read(bArr2, i10, i7 - i10);
+                    int read = ((ab.d) ouVar.f25806b).read(bArr2, i10, i7 - i10);
                     if (read > 0) {
                         i10 += read;
                     } else {
@@ -95,24 +95,24 @@ public final class e {
     }
 
     public final String d(int i7, b bVar) {
-        int min = Math.min(i7, (int) this.f57121a.e());
-        d dVar = (d) f57120e.get();
-        byte[] bArr = dVar.f57119a;
+        int min = Math.min(i7, (int) this.f57125a.e());
+        d dVar = (d) f57124e.get();
+        byte[] bArr = dVar.f57123a;
         if (min > bArr.length) {
             int length = bArr.length;
             do {
                 length *= 2;
             } while (min > length);
-            dVar.f57119a = new byte[length];
+            dVar.f57123a = new byte[length];
         }
-        byte[] bArr2 = dVar.f57119a;
+        byte[] bArr2 = dVar.f57123a;
         int i10 = 0;
         for (int i11 = 0; i11 < min; i11++) {
             byte g12 = this.d.g1();
             bArr2[i11] = g12;
             if (g12 == 0 && (bVar != b.UTF_16 || i10 != 0 || i11 % 2 == 0)) {
                 i10++;
-                int i12 = bVar.f57118b;
+                int i12 = bVar.f57122b;
                 if (i10 == i12) {
                     return a(bArr2, (i11 + 1) - i12, bVar, false);
                 }
@@ -125,7 +125,7 @@ public final class e {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("id3v2frame[pos=");
-        uf.a aVar = this.f57121a;
+        uf.a aVar = this.f57125a;
         sb2.append(aVar.f913b);
         sb2.append(", ");
         sb2.append(aVar.e());

@@ -7,21 +7,21 @@ import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.u51;
 import org.telegram.ui.PhotoViewer;
 public final class ke implements s51 {
-    public final int f24681a;
-    public final int f24682b;
-    public final gj f24683c;
+    public final int f24684a;
+    public final int f24685b;
+    public final gj f24686c;
     public final MediaController d;
 
     public ke(MediaController mediaController, int i7, gj gjVar, int i10) {
-        this.f24681a = i10;
+        this.f24684a = i10;
         this.d = mediaController;
-        this.f24682b = i7;
-        this.f24683c = gjVar;
+        this.f24685b = i7;
+        this.f24686c = gjVar;
     }
 
     @Override
     public final void onError(u51 u51Var, Exception exc) {
-        switch (this.f24681a) {
+        switch (this.f24684a) {
             case 0:
                 return;
             default:
@@ -32,43 +32,43 @@ public final class ke implements s51 {
 
     @Override
     public final void onRenderedFirstFrame(m2.a aVar) {
-        int i7 = this.f24681a;
+        int i7 = this.f24684a;
     }
 
     @Override
     public final void onSeekFinished(m2.a aVar) {
-        int i7 = this.f24681a;
+        int i7 = this.f24684a;
     }
 
     @Override
     public final void onSeekStarted(m2.a aVar) {
-        int i7 = this.f24681a;
+        int i7 = this.f24684a;
     }
 
     @Override
     public final void onStateChanged(boolean z10, int i7) {
-        int i10 = this.f24681a;
-        int i11 = this.f24682b;
+        int i10 = this.f24684a;
+        int i11 = this.f24685b;
         switch (i10) {
             case 0:
                 MediaController mediaController = this.d;
                 ArrayList arrayList = mediaController.S0;
                 if (i11 == mediaController.f22360n0) {
-                    gj gjVar = this.f24683c;
-                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z10 || gjVar.f23777b0 < 0.999f)) {
+                    gj gjVar = this.f24686c;
+                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z10 || gjVar.f23779b0 < 0.999f)) {
                         u51 u51Var = mediaController.f22353j0;
                         if (u51Var != null && mediaController.f22375u0 != 0.0f && (i7 == 3 || i7 == 1)) {
                             mediaController.f22353j0.q0((int) (((float) u51Var.U()) * mediaController.f22375u0), false);
                             mediaController.f22375u0 = 0.0f;
                         }
                     } else {
-                        gjVar.f23777b0 = 1.0f;
+                        gjVar.f23779b0 = 1.0f;
                         ns.f(gjVar.K1).k(148, Integer.valueOf(gjVar.e1()), 0);
                         if (!mediaController.a0()) {
-                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !gj.R4(gjVar.f23817k))) {
+                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !gj.R4(gjVar.f23819k))) {
                                 mediaController.U(true);
                             } else {
-                                mediaController.q(true, mediaController.F(), gj.R4(gjVar.f23817k), false);
+                                mediaController.q(true, mediaController.F(), gj.R4(gjVar.f23819k), false);
                             }
                         }
                     }
@@ -82,7 +82,7 @@ public final class ke implements s51 {
             default:
                 MediaController mediaController2 = this.d;
                 if (i11 == mediaController2.f22360n0) {
-                    MediaController.f(mediaController2, this.f24683c, null, true, z10, i7);
+                    MediaController.f(mediaController2, this.f24686c, null, true, z10, i7);
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class ke implements s51 {
 
     @Override
     public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f24681a) {
+        switch (this.f24684a) {
             case 0:
                 return false;
             default:
@@ -146,13 +146,13 @@ public final class ke implements s51 {
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i7 = this.f24681a;
+        int i7 = this.f24684a;
     }
 
     @Override
     public final void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        switch (this.f24681a) {
+        switch (this.f24684a) {
             case 0:
                 return;
             default:
@@ -174,7 +174,7 @@ public final class ke implements s51 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f24681a) {
+        switch (this.f24684a) {
             case 0:
                 return;
             default:

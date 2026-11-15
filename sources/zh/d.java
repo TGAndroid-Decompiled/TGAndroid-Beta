@@ -56,7 +56,7 @@ public final class d {
                 if (i7 == -1 && chat != null) {
                     np messagesController = e2Var.getMessagesController();
                     long j3 = chat.f28051id;
-                    this.f61419l = messagesController.f25280f7.getInt("chatPendingRequests" + j3, 0);
+                    this.f61419l = messagesController.f25283f7.getInt("chatPendingRequests" + j3, 0);
                 }
                 int i10 = this.f61418k;
                 int i11 = this.f61419l;
@@ -115,7 +115,7 @@ public final class d {
             u uVar = new u(1, e2Var.getParentActivity(), false);
             this.f61413e = uVar;
             uVar.setAvatarsTextSize(g0.L(18.0f));
-            v8 v8Var = this.f61413e.f41311a;
+            v8 v8Var = this.f61413e.f41314a;
             for (int i7 = 0; i7 < v8Var.f40325c.length; i7++) {
                 v8Var.j(0, 0, null);
             }

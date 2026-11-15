@@ -38,7 +38,7 @@ public final class g extends a41 {
         TLRPC.User user = fVar.f20658b;
         long j3 = fVar.f20657a;
         boolean z11 = fVar.f20659c;
-        boolean z12 = !b41Var.f33179j;
+        boolean z12 = !b41Var.f33182j;
         i9 i9Var = hVar.f20663c;
         TextView textView = hVar.f20666n;
         TextView textView2 = hVar.d;
@@ -48,7 +48,7 @@ public final class g extends a41 {
         int i10 = hVar.f20662b;
         TLRPC.Chat M0 = np.s1(i10).M0(Long.valueOf(-j3));
         TLRPC.User a22 = np.s1(i10).a2(Long.valueOf(j3));
-        hVar.f20665f.setText(m5.l(m10.f24934t0, j3));
+        hVar.f20665f.setText(m5.l(m10.f24940t0, j3));
         TextView textView3 = hVar.h;
         if (a22 != null) {
             i7 = 2131751898;

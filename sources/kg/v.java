@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import bi.v3;
 import c8.ja;
-import di.r9;
+import di.q9;
 import java.util.ArrayList;
 import org.telegram.messenger.g5;
 import org.telegram.messenger.hd;
@@ -133,7 +133,7 @@ public final class v extends r41 implements is {
         alertDialog$Builder2.o(e10);
         t1Var.f29614a = org.telegram.messenger.g0.L(292.0f);
         sVar.setOnEditorActionListener(new q(sVar, i7, tL_businessChatLink, t1VarArr, view, 0));
-        alertDialog$Builder2.k(hd.M0(2131751354, null), new ai.q1(sVar, i7, tL_businessChatLink, 2));
+        alertDialog$Builder2.k(hd.M0(2131751354, null), new ai.r1(sVar, i7, tL_businessChatLink, 2));
         alertDialog$Builder2.h(hd.M0(2131752589, null), new i0.b(11));
         if (z10) {
             f18119e = t1Var;
@@ -142,9 +142,9 @@ public final class v extends r41 implements is {
             f18119e.setOnShowListener(new bi.l(sVar, 2));
             f18119e.r(250L);
         } else {
-            t1Var.P = new ai.u1(21, view, sVar);
+            t1Var.P = new ai.v1(21, view, sVar);
             t1VarArr[0] = t1Var;
-            t1Var.setOnDismissListener(new r9(sVar, 5));
+            t1Var.setOnDismissListener(new q9(sVar, 5));
             t1VarArr[0].setOnShowListener(new o(view, sVar, 0));
             t1VarArr[0].show();
         }
@@ -158,15 +158,15 @@ public final class v extends r41 implements is {
         String M0 = hd.M0(2131752710, null);
         String M02 = hd.M0(2131752703, null);
         b41 b41Var = new b41(2);
-        b41Var.f33181l = M0;
-        b41Var.f33184o = M02;
-        b41Var.f33180k = 2131623940;
+        b41Var.f33184l = M0;
+        b41Var.f33187o = M02;
+        b41Var.f33183k = 2131623940;
         arrayList.add(b41Var);
         p41Var.V();
         y d = y.d(this.currentAccount);
         if (d.f18144b.size() < np.s1(d.f18143a).I5) {
             b41 c10 = b41.c(1, 2131231840, hd.M0(2131752709, null));
-            c10.f33186q = true;
+            c10.f33189q = true;
             arrayList.add(c10);
         }
         ArrayList arrayList2 = y.d(this.currentAccount).f18144b;
@@ -212,7 +212,7 @@ public final class v extends r41 implements is {
                 int indexOf = a02.indexOf(str);
                 if (indexOf > -1) {
                     g4 g4Var = new g4(r.b.k("https://", str), (wy0) null);
-                    g4Var.f34790f = this;
+                    g4Var.f34794f = this;
                     spannableString.setSpan(g4Var, indexOf, str.length() + indexOf, 33);
                 }
             }
@@ -378,7 +378,7 @@ public final class v extends r41 implements is {
                         }
                     }
                 }, true);
-                H.W(this.f38882a.U0(view, false));
+                H.W(this.f38880a.U0(view, false));
                 H.Z();
                 return true;
             }
@@ -391,17 +391,17 @@ public final class v extends r41 implements is {
         setHasOwnBackground(true);
         super.createView(context);
         this.simpleActionBar.setTitle(hd.M0(2131752710, null));
-        this.f38883b.setBackground(null);
-        this.f38882a.r1();
-        this.f38882a.setSectionsDrawBackground(true);
-        this.f38882a.f39895g3.f38201r = false;
+        this.f38881b.setBackground(null);
+        this.f38880a.r1();
+        this.f38880a.setSectionsDrawBackground(true);
+        this.f38880a.f39892g3.f38199r = false;
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         p41 p41Var;
-        if (i7 != ns.J1 && i7 != ns.f25521k0) {
+        if (i7 != ns.J1 && i7 != ns.f25522k0) {
             if (i7 == ns.K1) {
                 Bundle f10 = r.b.f(6, "chatMode");
                 f10.putString("business_link", ((TL_account.TL_businessChatLink) objArr[0]).link);
@@ -414,15 +414,15 @@ public final class v extends r41 implements is {
                 return;
             }
         }
-        v3 v3Var = this.f38882a;
-        if (v3Var != null && (p41Var = v3Var.f39895g3) != null) {
+        v3 v3Var = this.f38880a;
+        if (v3Var != null && (p41Var = v3Var.f39892g3) != null) {
             p41Var.O(true);
         }
     }
 
     @Override
     public final uj0 getListViewForSimpleGlass() {
-        return this.f38882a;
+        return this.f38880a;
     }
 
     @Override
@@ -448,7 +448,7 @@ public final class v extends r41 implements is {
         getNotificationCenter().c(this, ns.J1);
         getNotificationCenter().c(this, ns.K1);
         getNotificationCenter().c(this, ns.L1);
-        getNotificationCenter().c(this, ns.f25521k0);
+        getNotificationCenter().c(this, ns.f25522k0);
         y d = y.d(this.currentAccount);
         if (!d.d) {
             d.e(true, true);
@@ -464,7 +464,7 @@ public final class v extends r41 implements is {
         getNotificationCenter().n(this, ns.J1);
         getNotificationCenter().n(this, ns.K1);
         getNotificationCenter().n(this, ns.L1);
-        getNotificationCenter().n(this, ns.f25521k0);
+        getNotificationCenter().n(this, ns.f25522k0);
         xb.e();
         super.onFragmentDestroy();
     }

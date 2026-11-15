@@ -13,7 +13,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
 
     public static void a(c cVar, CharSequence charSequence, long j3, long j10, int i7, int[] iArr) {
         gj gjVar;
-        int i10 = cVar.f22778a;
+        int i10 = cVar.f22782a;
         gj gjVar2 = null;
         if (i7 != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
@@ -45,7 +45,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
             }
             vr a02 = vr.a0(i10);
             if (!arrayList.isEmpty()) {
-                a02.f27220a.c(new ir(a02, arrayList, j3, 0));
+                a02.f27219a.c(new hr(a02, arrayList, j3, 0));
             }
         }
         if (i11 == 0) {
@@ -68,12 +68,12 @@ public class WearReplyReceiver extends BroadcastReceiver {
                 if (longExtra != 0 && intExtra != 0 && m10.r(intExtra2)) {
                     final c a10 = c.a(intExtra2);
                     if (m5.E(longExtra)) {
-                        if (np.s1(a10.f22778a).a2(Long.valueOf(longExtra)) == null) {
+                        if (np.s1(a10.f22782a).a2(Long.valueOf(longExtra)) == null) {
                             Utilities.f22416e.c(new Runnable(this) {
-                                public final WearReplyReceiver f24510b;
+                                public final WearReplyReceiver f24515b;
 
                                 {
-                                    this.f24510b = this;
+                                    this.f24515b = this;
                                 }
 
                                 @Override
@@ -82,28 +82,28 @@ public class WearReplyReceiver extends BroadcastReceiver {
                                         case 0:
                                             int i7 = WearReplyReceiver.f22434a;
                                             c cVar = a10;
-                                            vr a02 = vr.a0(cVar.f22778a);
+                                            vr a02 = vr.a0(cVar.f22782a);
                                             long j3 = longExtra;
-                                            g0.h3(new cm(this.f24510b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
+                                            g0.h3(new cm(this.f24515b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
                                             return;
                                         default:
                                             int i10 = WearReplyReceiver.f22434a;
                                             c cVar2 = a10;
-                                            vr a03 = vr.a0(cVar2.f22778a);
+                                            vr a03 = vr.a0(cVar2.f22782a);
                                             long j10 = longExtra;
-                                            g0.h3(new cm(this.f24510b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
+                                            g0.h3(new cm(this.f24515b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
                                             return;
                                     }
                                 }
                             });
                             return;
                         }
-                    } else if (m5.z(longExtra) && np.s1(a10.f22778a).M0(Long.valueOf(-longExtra)) == null) {
+                    } else if (m5.z(longExtra) && np.s1(a10.f22782a).M0(Long.valueOf(-longExtra)) == null) {
                         Utilities.f22416e.c(new Runnable(this) {
-                            public final WearReplyReceiver f24510b;
+                            public final WearReplyReceiver f24515b;
 
                             {
-                                this.f24510b = this;
+                                this.f24515b = this;
                             }
 
                             @Override
@@ -112,16 +112,16 @@ public class WearReplyReceiver extends BroadcastReceiver {
                                     case 0:
                                         int i7 = WearReplyReceiver.f22434a;
                                         c cVar = a10;
-                                        vr a02 = vr.a0(cVar.f22778a);
+                                        vr a02 = vr.a0(cVar.f22782a);
                                         long j3 = longExtra;
-                                        g0.h3(new cm(this.f24510b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
+                                        g0.h3(new cm(this.f24515b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
                                         return;
                                     default:
                                         int i10 = WearReplyReceiver.f22434a;
                                         c cVar2 = a10;
-                                        vr a03 = vr.a0(cVar2.f22778a);
+                                        vr a03 = vr.a0(cVar2.f22782a);
                                         long j10 = longExtra;
-                                        g0.h3(new cm(this.f24510b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
+                                        g0.h3(new cm(this.f24515b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
                                         return;
                                 }
                             }

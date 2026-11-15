@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import di.vb;
+import di.ub;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -150,12 +150,12 @@ public final class x1 extends v4.h0 {
                     int L = org.telegram.messenger.g0.L(56.0f);
                     int L2 = org.telegram.messenger.g0.L(56.0f);
                     fqVar.h = L;
-                    fqVar.f34674n = L2;
+                    fqVar.f34678n = L2;
                     int L3 = org.telegram.messenger.g0.L(24.0f);
                     int L4 = org.telegram.messenger.g0.L(24.0f);
-                    fqVar.f34672e = L3;
-                    fqVar.f34673f = L4;
-                    fqVar.f34675r = true;
+                    fqVar.f34676e = L3;
+                    fqVar.f34677f = L4;
+                    fqVar.f34679r = true;
                     n1Var.f14730a = fqVar;
                 }
                 n1Var.setDrawable(n1Var.f14730a);
@@ -225,7 +225,7 @@ public final class x1 extends v4.h0 {
             int i17 = this.L;
             if (v1Var.f15214b != i17) {
                 v1Var.f15214b = i17;
-                n11.D(m10.f24934t0, v1Var.f15213a);
+                n11.D(m10.f24940t0, v1Var.f15213a);
             }
         }
     }
@@ -234,7 +234,7 @@ public final class x1 extends v4.h0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         boolean z10;
         int i10;
-        vb i8Var;
+        ub i8Var;
         y1 y1Var = this.O;
         i2 i2Var = y1Var.f15414s;
         if (i7 == 0) {
@@ -267,9 +267,9 @@ public final class x1 extends v4.h0 {
             frameLayout.addView(textView, c8.ja.d(-2, -2.0f, 17, 0.0f, 34.0f, 0.0f, 0.0f));
             i8Var = frameLayout;
         } else if (i7 == 4) {
-            vb vbVar = new vb(i2Var, y1Var.getContext());
-            vbVar.f9635f = new d1(i2Var, 2);
-            i8Var = vbVar;
+            ub ubVar = new ub(i2Var, y1Var.getContext());
+            ubVar.f9566f = new d1(i2Var, 2);
+            i8Var = ubVar;
         } else {
             i8Var = new n1(y1Var.getContext(), y1Var.f15408b);
         }

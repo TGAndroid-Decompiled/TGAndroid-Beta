@@ -33,33 +33,33 @@ public final class as implements Runnable {
         switch (this.f22555a) {
             case 0:
                 try {
-                    t0.f26600b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f22556b);
+                    t0.f26609b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f22556b);
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             case 1:
-                ns.f(((bt) this.f22556b).f22749a).k(42, new Object[0]);
+                ns.f(((bt) this.f22556b).f22753a).k(42, new Object[0]);
                 return;
             case 2:
                 nt ntVar = (nt) this.f22556b;
-                ntVar.f25636a = true;
-                int i7 = m10.f24934t0;
+                ntVar.f25637a = true;
+                int i7 = m10.f24940t0;
                 int i10 = 0;
                 boolean z11 = false;
                 while (true) {
-                    ArrayList arrayList = gz.f24000z1;
+                    ArrayList arrayList = gz.f24003z1;
                     if (i10 < arrayList.size()) {
                         fz fzVar = (fz) arrayList.get(i10);
-                        if (!fzVar.f23577c && SystemClock.elapsedRealtime() - fzVar.f23578e >= 120000) {
-                            fzVar.f23577c = true;
-                            ConnectionsManager.getInstance(i7).checkProxy(fzVar.f23575a, new j1(fzVar, 14));
+                        if (!fzVar.f23579c && SystemClock.elapsedRealtime() - fzVar.f23580e >= 120000) {
+                            fzVar.f23579c = true;
+                            ConnectionsManager.getInstance(i7).checkProxy(fzVar.f23577a, new j1(fzVar, 14));
                             z11 = true;
                         }
                         i10++;
                     } else if (!z11) {
-                        ntVar.f25636a = false;
+                        ntVar.f25637a = false;
                         ntVar.a();
                         return;
                     } else {
@@ -70,9 +70,9 @@ public final class as implements Runnable {
             case 3:
                 qt qtVar = (qt) this.f22556b;
                 try {
-                    gz.f23951i = SystemClock.elapsedRealtime();
-                    o9.g.f(t0.f26600b);
-                    ob.c cVar = FirebaseMessaging.f7273m;
+                    gz.f23954i = SystemClock.elapsedRealtime();
+                    o9.g.f(t0.f26609b);
+                    ob.c cVar = FirebaseMessaging.f7276m;
                     synchronized (FirebaseMessaging.class) {
                         firebaseMessaging = FirebaseMessaging.getInstance(o9.g.c());
                     }
@@ -80,7 +80,7 @@ public final class as implements Runnable {
                         task = Tasks.forException(new IllegalStateException("API disabled. Please use {@link #register()} instead or enable this API by removing {@code <meta-data android:name=\"firebase_messaging_installation_id_enabled\" android:value=\"true\" />} from your app's manifest."));
                     } else {
                         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                        firebaseMessaging.f7281g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
+                        firebaseMessaging.f7284g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
                         task = taskCompletionSource.getTask();
                     }
                     task.addOnCompleteListener(new fd(qtVar, 12));
@@ -91,9 +91,9 @@ public final class as implements Runnable {
                 }
             case 4:
                 xt xtVar = (xt) this.f22556b;
-                iv ivVar = xtVar.f27595e;
+                iv ivVar = xtVar.f27597e;
                 if (ivVar == null || !ivVar.H()) {
-                    xtVar.f27600w.l0();
+                    xtVar.f27602w.l0();
                     return;
                 }
                 return;
@@ -134,7 +134,7 @@ public final class as implements Runnable {
                     iv ivVar2 = hvVar.f24221a;
                     org.telegram.ui.Cells.q1 q1Var = ivVar2.E;
                     org.telegram.ui.Cells.l1 l1Var2 = ivVar2.F;
-                    TL_iv.textButton textbutton = fuVar.f23549b;
+                    TL_iv.textButton textbutton = fuVar.f23551b;
                     if (q1Var != null && l1Var2 != null) {
                         l1Var2.I1(q1Var, textbutton);
                         return;
@@ -161,7 +161,7 @@ public final class as implements Runnable {
                 }
             case 9:
                 bw bwVar = (bw) this.f22556b;
-                ArrayList arrayList2 = bwVar.f22761f;
+                ArrayList arrayList2 = bwVar.f22765f;
                 if (!arrayList2.isEmpty()) {
                     bwVar.getMessagesController().N3(arrayList2, null, null, false, 0);
                     arrayList2.clear();
@@ -189,7 +189,7 @@ public final class as implements Runnable {
                 return;
             case 13:
                 gj gjVar = (gj) this.f22556b;
-                if (gjVar != null && (message = gjVar.f23817k) != null) {
+                if (gjVar != null && (message = gjVar.f23819k) != null) {
                     message.reqId = 0;
                     return;
                 }
@@ -207,32 +207,32 @@ public final class as implements Runnable {
                 return;
             case 15:
                 uz uzVar = (uz) this.f22556b;
-                android.support.v4.media.session.a0 a0Var = uzVar.f26901b;
-                int i11 = m10.f24934t0;
-                uzVar.f26902c = i11;
-                uzVar.d = g0.b1(np.s1(i11).f25270e7, "auto_lastSelectedDialog", 0L);
-                uzVar.f26903e = false;
-                uzVar.f26904f = false;
-                uzVar.f26905g.clear();
+                android.support.v4.media.session.a0 a0Var = uzVar.f26902b;
+                int i11 = m10.f24940t0;
+                uzVar.f26903c = i11;
+                uzVar.d = g0.b1(np.s1(i11).f25273e7, "auto_lastSelectedDialog", 0L);
+                uzVar.f26904e = false;
+                uzVar.f26905f = false;
+                uzVar.f26906g.clear();
                 uzVar.h.b();
-                uzVar.f26906i.b();
-                uzVar.f26907j.b();
-                uzVar.f26908k.b();
-                uzVar.f26909l.b();
+                uzVar.f26907i.b();
+                uzVar.f26908j.b();
+                uzVar.f26909k.b();
+                uzVar.f26910l.b();
                 try {
                     a0Var.u(null);
-                    ((android.support.v4.media.session.u) a0Var.f1706b).f1736a.setQueueTitle(null);
+                    ((android.support.v4.media.session.u) a0Var.f1713b).f1743a.setQueueTitle(null);
                     return;
                 } catch (Throwable unused3) {
                     return;
                 }
             case 16:
-                ns.f(((tz) this.f22556b).f26760g.f26902c).k(150, 0);
+                ns.f(((tz) this.f22556b).f26762g.f26903c).k(150, 0);
                 return;
             default:
                 c10 c10Var = (c10) this.f22556b;
-                np npVar = c10Var.f22787n;
-                String string = npVar.f25280f7.getString("translating_dialog_languages2", null);
+                np npVar = c10Var.f22791n;
+                String string = npVar.f25283f7.getString("translating_dialog_languages2", null);
                 if (string != null) {
                     for (String str : string.split(";")) {
                         String[] split = str.split("=");
@@ -255,10 +255,10 @@ public final class as implements Runnable {
                                     str3 = null;
                                 }
                                 if (str2 != null) {
-                                    c10Var.f22785e.put(Long.valueOf(parseLong), str2);
+                                    c10Var.f22789e.put(Long.valueOf(parseLong), str2);
                                     if (!c10Var.w(str2)) {
-                                        c10Var.f22782a.put(parseLong, Boolean.valueOf(!z10));
-                                        c10Var.f22783b.add(Long.valueOf(parseLong));
+                                        c10Var.f22786a.put(parseLong, Boolean.valueOf(!z10));
+                                        c10Var.f22787b.add(Long.valueOf(parseLong));
                                     }
                                     if (str3 != null) {
                                         c10Var.d.put(Long.valueOf(parseLong), str3);
@@ -267,7 +267,7 @@ public final class as implements Runnable {
                             }
                         }
                     }
-                    Set<String> stringSet = npVar.f25280f7.getStringSet("hidden_translation_at", null);
+                    Set<String> stringSet = npVar.f25283f7.getStringSet("hidden_translation_at", null);
                     if (stringSet != null) {
                         for (String str4 : stringSet) {
                             try {

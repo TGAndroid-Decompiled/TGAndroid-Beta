@@ -95,8 +95,8 @@ public abstract class h4 extends View {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
             this.N = ofFloat;
             ofFloat.addUpdateListener(new f4(this, 0));
-            this.N.addListener(new ai.i0(this, 14));
-            this.N.setInterpolator(er.f34420f);
+            this.N.addListener(new ai.j0(this, 14));
+            this.N.setInterpolator(er.f34419f);
             this.N.setDuration(200L);
             this.N.start();
         }

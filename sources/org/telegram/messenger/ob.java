@@ -7,36 +7,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class ob implements Runnable {
-    public final int f25736a = 3;
-    public final long f25737b;
-    public final int f25738c;
+    public final int f25737a = 3;
+    public final long f25738b;
+    public final int f25739c;
     public final Object d;
-    public final Object f25739e;
-    public final Object f25740f;
+    public final Object f25740e;
+    public final Object f25741f;
     public final Object h;
-    public final Object f25741n;
+    public final Object f25742n;
 
     public ob(int i7, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, z10 z10Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f25738c = i7;
-        this.f25737b = j3;
+        this.f25739c = i7;
+        this.f25738b = j3;
         this.d = activity;
-        this.f25739e = arrayList;
-        this.f25740f = e6Var;
+        this.f25740e = arrayList;
+        this.f25741f = e6Var;
         this.h = z10Var;
-        this.f25741n = hashMap;
+        this.f25742n = hashMap;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25736a;
+        int i7 = this.f25737a;
         TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = null;
-        long j3 = this.f25737b;
-        int i10 = this.f25738c;
-        Object obj = this.f25741n;
+        long j3 = this.f25738b;
+        int i10 = this.f25739c;
+        Object obj = this.f25742n;
         Object obj2 = this.d;
         Object obj3 = this.h;
-        Object obj4 = this.f25740f;
-        Object obj5 = this.f25739e;
+        Object obj4 = this.f25741f;
+        Object obj5 = this.f25740e;
         switch (i7) {
             case 0:
                 ns.f(i10).k(138, (String) obj2, (TLRPC.InputFile) obj5, (TLRPC.InputEncryptedFile) obj4, (byte[]) obj3, (byte[]) obj, Long.valueOf(j3));
@@ -78,8 +78,8 @@ public final class ob implements Runnable {
                     }
                     if (tL_messageMediaWebPage == null) {
                         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                            ((gj) arrayList.get(i11)).f23817k.media.webpage = new TLRPC.TL_webPageEmpty();
-                            tL_messages_messages.messages.add(((gj) arrayList.get(i11)).f23817k);
+                            ((gj) arrayList.get(i11)).f23819k.media.webpage = new TLRPC.TL_webPageEmpty();
+                            tL_messages_messages.messages.add(((gj) arrayList.get(i11)).f23819k);
                         }
                     } else {
                         TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
@@ -87,18 +87,18 @@ public final class ob implements Runnable {
                             hVar.k(arrayList, webPage.f28206id);
                         } else {
                             for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                                ((gj) arrayList.get(i12)).f23817k.media.webpage = tL_messageMediaWebPage.webpage;
+                                ((gj) arrayList.get(i12)).f23819k.media.webpage = tL_messageMediaWebPage.webpage;
                                 if (i12 == 0) {
-                                    fc.W(((gj) arrayList.get(i12)).f23817k);
+                                    fc.W(((gj) arrayList.get(i12)).f23819k);
                                 }
-                                tL_messages_messages.messages.add(((gj) arrayList.get(i12)).f23817k);
+                                tL_messages_messages.messages.add(((gj) arrayList.get(i12)).f23819k);
                             }
                         }
                     }
                     if (!tL_messages_messages.messages.isEmpty()) {
                         vr messagesStorage = npVar2.getMessagesStorage();
-                        int i13 = this.f25738c;
-                        long j10 = this.f25737b;
+                        int i13 = this.f25739c;
+                        long j10 = this.f25738b;
                         messagesStorage.h1(-2, 0, i13, j10, 0L, tL_messages_messages, false);
                         npVar2.getNotificationCenter().k(49, Long.valueOf(j10), arrayList);
                         return;
@@ -112,12 +112,12 @@ public final class ob implements Runnable {
                 org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj4;
                 z10 z10Var = (z10) obj3;
                 HashMap hashMap = (HashMap) obj;
-                long j11 = di.v8.y(i10, false).p().amount;
-                long j12 = this.f25737b;
+                long j11 = di.u8.y(i10, false).p().amount;
+                long j12 = this.f25738b;
                 if (j11 < j12) {
                     if (activity != null) {
                         long longValue = ((Long) arrayList2.get(0)).longValue();
-                        new di.cb(activity, e6Var, j12, 13, m5.s(i10, longValue), new org.telegram.ui.Components.w1(z10Var, hashMap, 0), longValue).show();
+                        new di.bb(activity, e6Var, j12, 13, m5.s(i10, longValue), new org.telegram.ui.Components.w1(z10Var, hashMap, 0), longValue).show();
                         return;
                     }
                     return;
@@ -139,7 +139,7 @@ public final class ob implements Runnable {
                 if (d2Var.A(z1Var) && !d2Var.j(z1Var)) {
                     d2Var.f43734g = z1Var;
                     if ("sendTransaction".equals(str2) && z1Var.f44780f != null) {
-                        if (np.s1(d2Var.f43729a).f25280f7.contains(org.telegram.ui.Wallet.d2.l(j3, i10) + ".transfer")) {
+                        if (np.s1(d2Var.f43729a).f25283f7.contains(org.telegram.ui.Wallet.d2.l(j3, i10) + ".transfer")) {
                             z1Var.f44786m = true;
                             d2Var.B(z1Var, i0Var, new z10() {
                                 @Override
@@ -197,42 +197,42 @@ public final class ob implements Runnable {
     }
 
     public ob(int i7, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j3) {
-        this.f25738c = i7;
+        this.f25739c = i7;
         this.d = str;
-        this.f25739e = inputFile;
-        this.f25740f = inputEncryptedFile;
+        this.f25740e = inputFile;
+        this.f25741f = inputEncryptedFile;
         this.h = bArr;
-        this.f25741n = bArr2;
-        this.f25737b = j3;
+        this.f25742n = bArr2;
+        this.f25738b = j3;
     }
 
     public ob(np npVar, HashMap hashMap, String str, TLObject tLObject, a0.h hVar, long j3, int i7) {
-        this.f25739e = npVar;
-        this.f25740f = hashMap;
+        this.f25740e = npVar;
+        this.f25741f = hashMap;
         this.d = str;
         this.h = tLObject;
-        this.f25741n = hVar;
-        this.f25737b = j3;
-        this.f25738c = i7;
+        this.f25742n = hVar;
+        this.f25738b = j3;
+        this.f25739c = i7;
     }
 
     public ob(np npVar, boolean[] zArr, TLRPC.Chat chat, Runnable[] runnableArr, long j3, int i7, bp bpVar) {
         this.d = npVar;
-        this.f25739e = zArr;
-        this.f25740f = chat;
+        this.f25740e = zArr;
+        this.f25741f = chat;
         this.h = runnableArr;
-        this.f25737b = j3;
-        this.f25738c = i7;
-        this.f25741n = bpVar;
+        this.f25738b = j3;
+        this.f25739c = i7;
+        this.f25742n = bpVar;
     }
 
     public ob(org.telegram.ui.Wallet.d2 d2Var, org.telegram.ui.Wallet.z1 z1Var, org.telegram.ui.Wallet.t1 t1Var, String str, long j3, int i7, org.telegram.ui.Wallet.i0 i0Var) {
-        this.f25739e = d2Var;
-        this.f25740f = z1Var;
+        this.f25740e = d2Var;
+        this.f25741f = z1Var;
         this.h = t1Var;
         this.d = str;
-        this.f25737b = j3;
-        this.f25738c = i7;
-        this.f25741n = i0Var;
+        this.f25738b = j3;
+        this.f25739c = i7;
+        this.f25742n = i0Var;
     }
 }

@@ -6,7 +6,7 @@ import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.l5;
+import org.telegram.ui.ActionBar.m5;
 import org.telegram.ui.LaunchActivity;
 public final class g2 implements RequestDelegate {
     public final int f18315a;
@@ -32,7 +32,7 @@ public final class g2 implements RequestDelegate {
                 VoIPPreNotificationService.lambda$decline$4(i10, tLObject, tL_error);
                 return;
             case 3:
-                org.telegram.messenger.g0.h3(new l5(i10, tLObject));
+                org.telegram.messenger.g0.h3(new m5(i10, tLObject));
                 return;
             case 4:
                 if (tLObject instanceof TLRPC.TL_updates) {
@@ -42,11 +42,11 @@ public final class g2 implements RequestDelegate {
                 return;
             case 5:
                 String str = LaunchActivity.C1;
-                org.telegram.messenger.g0.h3(new l5(i10, 2, tLObject));
+                org.telegram.messenger.g0.h3(new m5(i10, 2, tLObject));
                 return;
             default:
                 String str2 = LaunchActivity.C1;
-                org.telegram.messenger.g0.h3(new l5(i10, 1, tLObject));
+                org.telegram.messenger.g0.h3(new m5(i10, 1, tLObject));
                 return;
         }
     }

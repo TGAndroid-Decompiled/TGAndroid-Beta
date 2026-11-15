@@ -38,7 +38,7 @@ public final class ak implements Runnable {
                 np npVar3 = this.f22531b;
                 vr messagesStorage = npVar3.getMessagesStorage();
                 bg.u uVar3 = this.f22532c;
-                ArrayList arrayList = uVar3.f3329a;
+                ArrayList arrayList = uVar3.f3332a;
                 ak akVar = new ak(npVar3, uVar3, this.d, this.f22533e, 1);
                 messagesStorage.getClass();
                 if (arrayList != null && !arrayList.isEmpty()) {

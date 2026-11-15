@@ -52,7 +52,7 @@ public final class b {
         mc.a aVar = new mc.a(1);
         qe.b bVar = qe.b.f55536c;
         synchronized (bVar) {
-            hd.d dVar = (hd.d) bVar.f2158b;
+            hd.d dVar = (hd.d) bVar.f2161b;
             cArr = null;
             if (dVar.isEmpty()) {
                 removeLast = null;
@@ -61,7 +61,7 @@ public final class b {
             }
             char[] cArr2 = (char[]) removeLast;
             if (cArr2 != null) {
-                bVar.f2157a -= cArr2.length;
+                bVar.f2160a -= cArr2.length;
                 cArr = cArr2;
             }
         }

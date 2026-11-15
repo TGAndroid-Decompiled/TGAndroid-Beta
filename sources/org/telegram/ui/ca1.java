@@ -6,19 +6,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ca1 implements RequestDelegate {
-    public final int f46065a;
-    public final TwoStepVerificationActivity f46066b;
+    public final int f46054a;
+    public final TwoStepVerificationActivity f46055b;
 
     public ca1(TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f46065a = i7;
-        this.f46066b = twoStepVerificationActivity;
+        this.f46054a = i7;
+        this.f46055b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f46065a) {
+        switch (this.f46054a) {
             case 0:
-                final TwoStepVerificationActivity twoStepVerificationActivity = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -71,7 +71,7 @@ public final class ca1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -96,7 +96,7 @@ public final class ca1 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -149,7 +149,7 @@ public final class ca1 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -174,7 +174,7 @@ public final class ca1 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -199,7 +199,7 @@ public final class ca1 implements RequestDelegate {
                 });
                 return;
             case 5:
-                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -224,7 +224,7 @@ public final class ca1 implements RequestDelegate {
                 });
                 return;
             default:
-                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f46066b;
+                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f46055b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {

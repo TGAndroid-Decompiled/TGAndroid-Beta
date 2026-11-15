@@ -147,9 +147,9 @@ public final class n6 extends LinearLayout {
                     i13++;
                     o6 o6Var = (o6) obj;
                     Context context = getContext();
-                    ai.q2 q2Var = new ai.q2(context, 3);
-                    org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, q2Var, null);
-                    q2Var.setOrientation(0);
+                    ai.r2 r2Var = new ai.r2(context, 3);
+                    org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, r2Var, null);
+                    r2Var.setOrientation(0);
                     ImageView imageView = new ImageView(context);
                     imageView.setScaleType(ImageView.ScaleType.CENTER);
                     if (o6Var.f30809a <= 0) {
@@ -159,14 +159,14 @@ public final class n6 extends LinearLayout {
                     }
                     imageView.setImageResource(i10);
                     org.telegram.ui.ActionBar.q6.s(imageView, org.telegram.ui.ActionBar.j6.L6, null, PorterDuff.Mode.MULTIPLY);
-                    q2Var.addView(imageView, c8.ja.q(20, 20, 0.0f, 51, (o6Var.f30809a * 16) + 17, -1, 0, 0));
+                    r2Var.addView(imageView, c8.ja.q(20, 20, 0.0f, 51, (o6Var.f30809a * 16) + 17, -1, 0, 0));
                     TextView textView = new TextView(context);
                     textView.setTextSize(1, 14.0f);
                     org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f29260z6, null);
                     textView.setSingleLine(false);
                     textView.setText(o6Var.f30810b);
-                    q2Var.addView(textView, c8.ja.t(-1, -2, 1, 6, 4, 24, 4));
-                    addView(q2Var, c8.ja.o(-1, -2));
+                    r2Var.addView(textView, c8.ja.t(-1, -2, 1, 6, 4, 24, 4));
+                    addView(r2Var, c8.ja.o(-1, -2));
                 }
                 int i14 = org.telegram.ui.ActionBar.j6.f28849d6;
                 View v3Var2 = new v3(getContext(), 12, 1);

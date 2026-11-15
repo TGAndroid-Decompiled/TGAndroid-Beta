@@ -59,13 +59,13 @@ public final class q {
         float[] fArr = this.f17657a;
         if (!str.isEmpty()) {
             if (i7 >= 0 && i10 >= 0) {
-                bc.b bVar = bc.b.f3113a;
+                bc.b bVar = bc.b.f3116a;
                 if (hashMap.containsKey(bVar)) {
                     cVar = gc.c.valueOf(hashMap.get(bVar).toString());
                 } else {
                     cVar = gc.c.L;
                 }
-                bc.b bVar2 = bc.b.f3115c;
+                bc.b bVar2 = bc.b.f3118c;
                 if (hashMap.containsKey(bVar2)) {
                     i13 = Integer.parseInt(hashMap.get(bVar2).toString());
                 } else {
@@ -74,8 +74,8 @@ public final class q {
                 cc.c cVar2 = (cc.c) ic.b.b(str, cVar, hashMap).f194f;
                 this.f17661f = cVar2;
                 if (cVar2 != null) {
-                    int i17 = cVar2.f4873b;
-                    int i18 = cVar2.f4874c;
+                    int i17 = cVar2.f4876b;
+                    int i18 = cVar2.f4877c;
                     for (int i19 = 0; i19 < i17 && b(i19, 0); i19++) {
                         this.d++;
                     }
@@ -329,12 +329,12 @@ public final class q {
             }
         }
         int i13 = this.d;
-        if ((i7 < i13 || i7 >= ((cc.c) this.f17661f).f4873b - i13) && i10 < i13) {
+        if ((i7 < i13 || i7 >= ((cc.c) this.f17661f).f4876b - i13) && i10 < i13) {
             return false;
         }
-        if ((i7 >= i13 || i10 < ((cc.c) this.f17661f).f4874c - i13) && i7 >= 0 && i10 >= 0) {
+        if ((i7 >= i13 || i10 < ((cc.c) this.f17661f).f4877c - i13) && i7 >= 0 && i10 >= 0) {
             cc.c cVar = (cc.c) this.f17661f;
-            if (i7 < cVar.f4873b && i10 < cVar.f4874c && cVar.e(i7, i10) == 1) {
+            if (i7 < cVar.f4876b && i10 < cVar.f4877c && cVar.e(i7, i10) == 1) {
                 return true;
             }
         }

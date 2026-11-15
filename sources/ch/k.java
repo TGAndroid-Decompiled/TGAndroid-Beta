@@ -6,18 +6,18 @@ import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.ActionBar.i1;
 import org.telegram.ui.ActionBar.o4;
 public final class k extends i1 {
-    public final ai.j0 f5100x;
+    public final ai.k0 f5103x;
 
-    public k(ai.j0 j0Var, ai.j0 j0Var2) {
-        super(j0Var2);
-        this.f5100x = j0Var;
+    public k(ai.k0 k0Var, ai.k0 k0Var2) {
+        super(k0Var2);
+        this.f5103x = k0Var;
     }
 
     @Override
     public final boolean b() {
         boolean z10;
         boolean z11;
-        o oVar = (o) this.f5100x.f1266c;
+        o oVar = (o) this.f5103x.f1273c;
         o4 parentLayout = oVar.getParentLayout();
         z10 = ((e2) oVar).inPreviewMode;
         if (!z10 && !org.telegram.messenger.g0.Q1()) {
@@ -32,7 +32,7 @@ public final class k extends i1 {
 
     @Override
     public final void e(float f10, float f11, boolean z10) {
-        o oVar = (o) this.f5100x.f1266c;
+        o oVar = (o) this.f5103x.f1273c;
         if (oVar.getParentLayout() != null) {
             boolean z11 = ((ActionBarLayout) oVar.getParentLayout()).f28354n;
         }
@@ -41,9 +41,9 @@ public final class k extends i1 {
     @Override
     public final void g(int i7, boolean z10) {
         float f10;
-        o oVar = (o) this.f5100x.f1266c;
-        oVar.f5178w.setVisibility(0);
-        ViewPropertyAnimator animate = oVar.f5178w.animate();
+        o oVar = (o) this.f5103x.f1273c;
+        oVar.f5181w.setVisibility(0);
+        ViewPropertyAnimator animate = oVar.f5181w.animate();
         if (!z10) {
             f10 = 1.0f;
         } else {

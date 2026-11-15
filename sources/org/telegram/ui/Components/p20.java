@@ -72,7 +72,7 @@ public final class p20 extends ja {
         dVar2.i(org.telegram.messenger.hd.a0(null, null, 2131749371, u10), false, true);
         dVar2.setOnClickListener(new e0(this, 24));
         linearLayout.addView(dVar2, c8.ja.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i10 = this.f29717u0;
         uj0Var.setPadding(i10, 0, i10, 0);
         this.V1.O(false);
@@ -92,9 +92,9 @@ public final class p20 extends ja {
     public final tj0 L0(uj0 uj0Var) {
         switch (this.T1) {
             case 0:
-                p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new d(this, 14), this.J0);
+                p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, true, new d(this, 14), this.J0);
                 this.V1 = p41Var;
-                p41Var.f38201r = false;
+                p41Var.f38199r = false;
                 return p41Var;
             case 1:
                 p41 p41Var2 = new p41(uj0Var, getContext(), this.f29679a, 0, true, new org.telegram.ui.a5(this, 22), this.J0);
@@ -121,9 +121,9 @@ public final class p20 extends ja {
 
     public p20(Context context) {
         super(context, null, false, false, null);
-        this.f35943v1 = 0.1f;
+        this.f35938v1 = 0.1f;
         O();
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i7 = this.f29717u0;
         uj0Var.setPadding(i7, 0, i7, 0);
         LinearLayout linearLayout = new LinearLayout(context);
@@ -132,14 +132,14 @@ public final class p20 extends ja {
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
-        di.ra raVar = new di.ra(context, 70, 0, 0);
-        frameLayout.addView(raVar, c8.ja.c(-1.0f, -1));
+        di.qa qaVar = new di.qa(context, 70, 0, 0);
+        frameLayout.addView(qaVar, c8.ja.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
         vg.f fVar = mVar.f58893b;
         fVar.f58877z = org.telegram.ui.ActionBar.j6.Wk;
         fVar.A = org.telegram.ui.ActionBar.j6.Xk;
         fVar.b();
-        mVar.setStarParticlesView(raVar);
+        mVar.setStarParticlesView(qaVar);
         frameLayout.addView(mVar, c8.ja.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         mVar.setPaused(false);
         linearLayout.addView(frameLayout, c8.ja.c(150.0f, -1));
@@ -168,7 +168,7 @@ public final class p20 extends ja {
     public p20(Context context, org.telegram.ui.ActionBar.e6 e6Var, hh0 hh0Var) {
         super(context, null, false, false, e6Var);
         O();
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         Paint paint = new Paint(1);
         paint.setStyle(Paint.Style.FILL);
         int i7 = org.telegram.ui.ActionBar.j6.Fi;

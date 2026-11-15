@@ -1,6 +1,6 @@
 package jh;
 
-import ai.z;
+import ai.a0;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -37,7 +37,7 @@ public final class f extends FrameLayout implements z5 {
     public final FrameLayout f17392c;
     public final g2 d;
     public boolean f17393e;
-    public z f17394f;
+    public a0 f17394f;
     public fh.g h;
     public fh.g f17395n;
     public final Path f17396r;

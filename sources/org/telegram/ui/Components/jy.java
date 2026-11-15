@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jy extends tj0 {
-    public final boolean f36200c;
+    public final boolean f36190c;
     public final ly d;
 
     public jy(ly lyVar, boolean z10) {
         this.d = lyVar;
-        this.f36200c = z10;
+        this.f36190c = z10;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class jy extends tj0 {
     @Override
     public final int b() {
         ArrayList arrayList;
-        boolean z10 = this.f36200c;
+        boolean z10 = this.f36190c;
         ly lyVar = this.d;
         if (z10) {
             arrayList = lyVar.f36973o1;
@@ -47,7 +47,7 @@ public final class jy extends tj0 {
         ColorFilter colorFilter;
         i9 i9Var = (i9) e1Var.f58535a;
         ly lyVar = this.d;
-        boolean z10 = this.f36200c;
+        boolean z10 = this.f36190c;
         if (z10) {
             arrayList = lyVar.f36973o1;
         } else {
@@ -131,7 +131,7 @@ public final class jy extends tj0 {
                     } else {
                         i9Var.l(org.telegram.messenger.gc.b(document), str2, gcVar, null, 0, stickerSetCovered);
                     }
-                } else if (gcVar.f23724p == 1) {
+                } else if (gcVar.f23726p == 1) {
                     i9Var.k(gcVar, str2, "tgs", d, stickerSetCovered);
                 } else {
                     i9Var.k(gcVar, null, "webp", d, stickerSetCovered);

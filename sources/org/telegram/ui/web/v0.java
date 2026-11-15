@@ -86,8 +86,8 @@ import org.telegram.ui.Components.lv0;
 import org.telegram.ui.Components.t8;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.g71;
-import org.telegram.ui.hn0;
 import org.telegram.ui.o9;
+import org.telegram.ui.ok0;
 public abstract class v0 extends FrameLayout implements is, z5 {
     public static boolean R0 = true;
     public static int S0;
@@ -128,50 +128,50 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public boolean U;
     public TLRPC.User V;
     public lv0 W;
-    public s0 f52811a;
-    public Activity f52812a0;
-    public String f52813b;
-    public boolean f52814b0;
-    public c0 f52815c;
-    public String f52816c0;
+    public s0 f52814a;
+    public Activity f52815a0;
+    public String f52816b;
+    public boolean f52817b0;
+    public c0 f52818c;
+    public String f52819c0;
     public u0 d;
-    public org.telegram.ui.ActionBar.t1 f52817d0;
-    public final e6 f52818e;
-    public int f52819e0;
-    public final TextView f52820f;
-    public long f52821f0;
-    public long f52822g0;
+    public org.telegram.ui.ActionBar.t1 f52820d0;
+    public final e6 f52821e;
+    public int f52822e0;
+    public final TextView f52823f;
+    public long f52824f0;
+    public long f52825g0;
     public boolean h;
-    public o9 f52823h0;
-    public boolean f52824i0;
-    public String f52825j0;
-    public ki.r f52826k0;
-    public ki.s0 f52827l0;
+    public o9 f52826h0;
+    public boolean f52827i0;
+    public String f52828j0;
+    public ki.r f52829k0;
+    public ki.s0 f52830l0;
     public ki.i0 m0;
-    public final org.telegram.ui.Components.voip.n f52828n;
-    public ki.n1 f52829n0;
-    public ki.n1 f52830o0;
-    public final boolean f52831p0;
-    public int f52832q0;
-    public pz f52833r;
-    public boolean f52834r0;
-    public final v3 f52835s;
-    public BotWebViewContainer$BotWebViewProxy f52836s0;
-    public long f52837t0;
-    public boolean f52838u0;
-    public BotWebViewContainer$WebViewProxy f52839v0;
-    public boolean f52840w;
-    public s0 f52841w0;
-    public q0.a f52842x;
-    public int f52843x0;
-    public ValueCallback f52844y;
-    public boolean f52845y0;
-    public boolean f52846z0;
+    public final org.telegram.ui.Components.voip.n f52831n;
+    public ki.n1 f52832n0;
+    public ki.n1 f52833o0;
+    public final boolean f52834p0;
+    public int f52835q0;
+    public pz f52836r;
+    public boolean f52837r0;
+    public final v3 f52838s;
+    public BotWebViewContainer$BotWebViewProxy f52839s0;
+    public long f52840t0;
+    public boolean f52841u0;
+    public BotWebViewContainer$WebViewProxy f52842v0;
+    public boolean f52843w;
+    public s0 f52844w0;
+    public q0.a f52845x;
+    public int f52846x0;
+    public ValueCallback f52847y;
+    public boolean f52848y0;
+    public boolean f52849z0;
 
     public v0(int i7, Context context, e6 e6Var, boolean z10) {
         super(context);
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-        this.f52828n = nVar;
+        this.f52831n = nVar;
         int i10 = j6.Fi;
         this.E = j(i10);
         int i11 = j6.Ji;
@@ -181,7 +181,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         this.J = j(i11);
         this.K = "";
         this.L = "";
-        this.N = m10.f24934t0;
+        this.N = m10.f24940t0;
         this.B0 = -1;
         this.I0 = new Rect(0, 0, 0, 0);
         this.J0 = 0;
@@ -191,23 +191,23 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         int i12 = S0;
         S0 = i12 + 1;
         this.P0 = i12;
-        this.f52831p0 = z10;
-        this.f52818e = e6Var;
+        this.f52834p0 = z10;
+        this.f52821e = e6Var;
         g("created new webview container");
         if (context instanceof Activity) {
-            this.f52812a0 = (Activity) context;
+            this.f52815a0 = (Activity) context;
         }
-        nVar.f40799k = false;
+        nVar.f40802k = false;
         nVar.b(i7, 153);
         v3 v3Var = new v3(this, context);
-        this.f52835s = v3Var;
+        this.f52838s = v3Var;
         int j3 = j(j6.Bj);
-        this.f52832q0 = j3;
+        this.f52835q0 = j3;
         v3Var.setColorFilter(new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN));
         v3Var.getImageReceiver().S0 = true;
         addView(v3Var, ja.e(-1, -2, 48));
         TextView textView = new TextView(context);
-        this.f52820f = textView;
+        this.f52823f = textView;
         textView.setText(hd.M0(2131752913, null));
         q6.U(textView, j6.f29241y6, e6Var);
         textView.setTextSize(1, 15.0f);
@@ -285,7 +285,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             sb2.append(split[i7].replaceAll("\\-", "-h"));
         }
         sb2.append(".");
-        sb2.append(np.s1(m10.f24934t0).V5);
+        sb2.append(np.s1(m10.f24940t0).V5);
         return sb2.toString();
     }
 
@@ -294,7 +294,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         for (String str : strArr) {
             if (v0Var.getContext().checkSelfPermission(str) != 0) {
                 v0Var.W = new lv0(v0Var, aVar, strArr, 7);
-                Activity activity = v0Var.f52812a0;
+                Activity activity = v0Var.f52815a0;
                 if (activity != null) {
                     activity.requestPermissions(strArr, 4000);
                     return;
@@ -365,8 +365,8 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     private void setupFlickerParams(boolean z10) {
         int i7;
-        this.f52840w = z10;
-        v3 v3Var = this.f52835s;
+        this.f52843w = z10;
+        v3 v3Var = this.f52838s;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) v3Var.getLayoutParams();
         if (z10) {
             i7 = 17;
@@ -396,7 +396,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
         String K0 = org.telegram.messenger.g0.K0(str, false);
         if (K0 != null) {
-            if (K0.endsWith("." + np.s1(m10.f24934t0).V5) && (str2 = (String) T0.get(K0)) != null) {
+            if (K0.endsWith("." + np.s1(m10.f24940t0).V5) && (str2 = (String) T0.get(K0)) != null) {
                 return vf.c.w(Uri.parse(str), "tonsite", null, str2, null);
             }
             return str;
@@ -408,11 +408,11 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (s0Var == null) {
             return;
         }
-        ns.f(i7).d(new hn0(23, s0Var, i7Var, jSONObject, str));
+        ns.f(i7).d(new ok0(s0Var, i7Var, str, jSONObject, 24));
     }
 
     public final boolean D() {
-        if (this.f52811a != null && this.S) {
+        if (this.f52814a != null && this.S) {
             y("back_button_pressed", null);
             return true;
         }
@@ -430,8 +430,8 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             jSONObject.put("status", str2);
             y("invoice_closed", jSONObject);
             a8.b("invoice_closed " + jSONObject);
-            if (!z10 && Objects.equals(this.f52816c0, str)) {
-                this.f52816c0 = null;
+            if (!z10 && Objects.equals(this.f52819c0, str)) {
+                this.f52819c0 = null;
             }
         } catch (JSONException e10) {
             a8.g(e10, true);
@@ -444,7 +444,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
         this.Q = 0L;
         boolean[] zArr = {false};
-        if (vf.c.g(uri, false, zArr) && !zArr[0] && this.f52815c != null) {
+        if (vf.c.g(uri, false, zArr) && !zArr[0] && this.f52818c != null) {
             setKeyboardFocusable(false);
         }
         vf.c.s(getContext(), uri, true, z10, false, null, str, false, true, z12, false);
@@ -455,22 +455,22 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void M() {
         g("preserveWebView");
         this.C0 = true;
-        if (this.f52831p0) {
+        if (this.f52834p0) {
             y("visibility_changed", A(Boolean.FALSE, "is_visible"));
-            this.f52837t0++;
+            this.f52840t0++;
         }
-        s0 s0Var = this.f52811a;
+        s0 s0Var = this.f52814a;
         if (s0Var != null) {
             s0Var.f(null, null);
-            this.f52811a.setCloseListener(null);
+            this.f52814a.setCloseListener(null);
         }
-        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f52836s0;
+        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f52839s0;
         if (botWebViewContainer$BotWebViewProxy != null) {
-            botWebViewContainer$BotWebViewProxy.f52558a = null;
+            botWebViewContainer$BotWebViewProxy.f52561a = null;
         }
-        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f52839v0;
+        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f52842v0;
         if (botWebViewContainer$WebViewProxy != null) {
-            botWebViewContainer$WebViewProxy.f52559a = null;
+            botWebViewContainer$WebViewProxy.f52562a = null;
         }
     }
 
@@ -478,10 +478,10 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         String str2;
         this.N = i7;
         this.C0 = false;
-        boolean z11 = this.f52831p0;
+        boolean z11 = this.f52834p0;
         if (z11) {
-            this.f52837t0++;
-            this.f52838u0 = z10;
+            this.f52840t0++;
+            this.f52841u0 = z10;
             if (z10) {
                 str2 = k(str);
             } else {
@@ -499,7 +499,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (!z10 && i7 == this.J0) {
             return;
         }
-        y("content_safe_area_changed", C("left", 0, "top", Float.valueOf(i7 / org.telegram.messenger.g0.f23608p), "right", 0, "bottom", 0));
+        y("content_safe_area_changed", C("left", 0, "top", Float.valueOf(i7 / org.telegram.messenger.g0.f23610p), "right", 0, "bottom", 0));
         this.J0 = i7;
     }
 
@@ -507,7 +507,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (rect != null) {
             Rect rect2 = this.I0;
             if (z10 || !rect2.equals(rect)) {
-                y("safe_area_changed", C("left", Float.valueOf(rect.left / org.telegram.messenger.g0.f23608p), "top", Float.valueOf(rect.top / org.telegram.messenger.g0.f23608p), "right", Float.valueOf(rect.right / org.telegram.messenger.g0.f23608p), "bottom", Float.valueOf(rect.bottom / org.telegram.messenger.g0.f23608p)));
+                y("safe_area_changed", C("left", Float.valueOf(rect.left / org.telegram.messenger.g0.f23610p), "top", Float.valueOf(rect.top / org.telegram.messenger.g0.f23610p), "right", Float.valueOf(rect.right / org.telegram.messenger.g0.f23610p), "bottom", Float.valueOf(rect.bottom / org.telegram.messenger.g0.f23610p)));
                 rect2.set(rect);
             }
         }
@@ -516,10 +516,10 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void R() {
         try {
             if (this.H != null) {
-                F(this.f52836s0, f(), "web_app_setup_main_button", this.H);
+                F(this.f52839s0, f(), "web_app_setup_main_button", this.H);
             }
             if (this.M != null) {
-                F(this.f52836s0, f(), "web_app_setup_secondary_button", this.M);
+                F(this.f52839s0, f(), "web_app_setup_secondary_button", this.M);
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -647,7 +647,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public void U(String str, boolean z10) {
         boolean z11;
         boolean z12;
-        s0 s0Var = this.f52811a;
+        s0 s0Var = this.f52814a;
         if (s0Var != null) {
             boolean z13 = s0Var.F;
         }
@@ -656,26 +656,26 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         } else {
             z11 = true;
         }
-        s0 s0Var2 = this.f52811a;
+        s0 s0Var2 = this.f52814a;
         if (s0Var2 != null && s0Var2.canGoForward()) {
             z12 = false;
         } else {
             z12 = true;
         }
         J(z11, z12);
-        s0 s0Var3 = this.f52811a;
+        s0 s0Var3 = this.f52814a;
         if (s0Var3 != null) {
-            s0Var3.f52767b = true;
+            s0Var3.f52770b = true;
         }
         if (this.O) {
             g("setPageLoaded: already loaded");
             return;
         }
-        v3 v3Var = this.f52835s;
+        v3 v3Var = this.f52838s;
         if (z10 && s0Var3 != null && v3Var != null) {
             AnimatorSet animatorSet = new AnimatorSet();
             Property property = View.ALPHA;
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f52811a, property, 1.0f), ObjectAnimator.ofFloat(v3Var, property, 0.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f52814a, property, 1.0f), ObjectAnimator.ofFloat(v3Var, property, 0.0f));
             animatorSet.addListener(new g71(this, 14));
             animatorSet.start();
         } else {
@@ -687,10 +687,10 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                 v3Var.setVisibility(8);
             }
         }
-        this.f52813b = str;
+        this.f52816b = str;
         g("setPageLoaded: isPageLoaded = true!");
         this.O = true;
-        this.f52815c.getClass();
+        this.f52818c.getClass();
     }
 
     public final void V(i7 i7Var, ki.n1 n1Var, String str, String str2, String str3) {
@@ -727,23 +727,23 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public final void W() {
-        s0 s0Var = this.f52811a;
-        if (s0Var != null && this.f52831p0) {
+        s0 s0Var = this.f52814a;
+        if (s0Var != null && this.f52834p0) {
             s0Var.removeJavascriptInterface("TelegramWebviewProxy");
             if (!p9.a("WEB_MESSAGE_LISTENER")) {
                 g("Bot WebMessageListener is unsupported; native bridge disabled");
                 return;
             }
             Set singleton = Collections.singleton("*");
-            s0 s0Var2 = this.f52811a;
+            s0 s0Var2 = this.f52814a;
             if (!s0Var2.S) {
                 d5.b.a(s0Var2, "TelegramWebviewProxyMessage", singleton, new org.telegram.ui.ActionBar.z(s0Var2, 8));
-                this.f52811a.S = true;
+                this.f52814a.S = true;
             }
             if (p9.a("DOCUMENT_START_SCRIPT")) {
-                s0 s0Var3 = this.f52811a;
+                s0 s0Var3 = this.f52814a;
                 if (s0Var3.T == null) {
-                    boolean z10 = d5.b.f7570a;
+                    boolean z10 = d5.b.f7573a;
                     if (e5.k.d.b()) {
                         s0Var3.T = new ob.c((ScriptHandlerBoundaryInterface) af.b.a(ScriptHandlerBoundaryInterface.class, d5.b.c(s0Var3).f10551a.addDocumentStartJavaScript("window.TelegramWebviewProxy={postEvent:function(eventType,eventData){window.TelegramWebviewProxyMessage.postMessage(JSON.stringify({eventType:eventType,eventData:eventData}));}};", (String[]) singleton.toArray(new String[0]))), 16);
                         return;
@@ -760,10 +760,10 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         TLRPC.User user;
         boolean z10;
         String str2 = "";
-        s0 s0Var3 = this.f52811a;
+        s0 s0Var3 = this.f52814a;
         if (s0Var3 != null) {
             s0Var3.destroy();
-            removeView(this.f52811a);
+            removeView(this.f52814a);
         }
         if (s0Var != null) {
             org.telegram.messenger.g0.E2(s0Var);
@@ -780,7 +780,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
         if (s0Var == null) {
             Context context = getContext();
-            boolean z11 = this.f52831p0;
+            boolean z11 = this.f52834p0;
             long j3 = 0;
             if (z11 && (user = this.V) != null) {
                 j3 = user.f28200id;
@@ -789,22 +789,22 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         } else {
             s0Var2 = s0Var;
         }
-        this.f52811a = s0Var2;
-        if (!this.f52831p0) {
+        this.f52814a = s0Var2;
+        if (!this.f52834p0) {
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
-            cookieManager.setAcceptThirdPartyCookies(this.f52811a, true);
+            cookieManager.setAcceptThirdPartyCookies(this.f52814a, true);
             CookieManager.getInstance().flush();
-            this.f52811a.f52770f = this.f52841w0;
+            this.f52814a.f52773f = this.f52844w0;
         } else {
             s0Var2.setBackgroundColor(j(j6.f28849d6));
         }
         if (!np.s1(this.N).H6) {
-            this.f52811a.setLayerType(2, null);
+            this.f52814a.setLayerType(2, null);
         }
-        this.f52811a.f(this, this.d);
-        this.f52811a.setCloseListener(this.E0);
-        WebSettings settings = this.f52811a.getSettings();
+        this.f52814a.f(this, this.d);
+        this.f52814a.setCloseListener(this.E0);
+        WebSettings settings = this.f52814a.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setGeolocationEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -814,7 +814,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         settings.setAllowContentAccess(false);
         settings.setAllowFileAccessFromFileURLs(false);
         settings.setAllowUniversalAccessFromFileURLs(false);
-        if (!this.f52831p0) {
+        if (!this.f52834p0) {
             settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
             settings.setCacheMode(-1);
             settings.setSaveFormData(true);
@@ -838,8 +838,8 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             sb2.append(str3);
             sb2.append("; K)");
             String replaceAll = replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb2.toString()).replaceAll("Version/[\\d\\.]+ ", "");
-            if (this.f52831p0) {
-                PackageInfo packageInfo = org.telegram.messenger.t0.f26600b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26600b.getPackageName(), 0);
+            if (this.f52834p0) {
+                PackageInfo packageInfo = org.telegram.messenger.t0.f26609b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26609b.getPackageName(), 0);
                 int o4 = gz.o();
                 if (o4 == 0) {
                     str = "LOW";
@@ -883,45 +883,45 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             settings.setDatabasePath(file.getAbsolutePath());
         }
         GeolocationPermissions.getInstance().clearAll();
-        this.f52811a.setVerticalScrollBarEnabled(false);
-        if (s0Var == null && this.f52831p0) {
-            this.f52811a.setAlpha(0.0f);
+        this.f52814a.setVerticalScrollBarEnabled(false);
+        if (s0Var == null && this.f52834p0) {
+            this.f52814a.setAlpha(0.0f);
         }
-        addView(this.f52811a);
-        if (this.f52831p0) {
+        addView(this.f52814a);
+        if (this.f52834p0) {
             if (obj instanceof BotWebViewContainer$BotWebViewProxy) {
-                this.f52836s0 = (BotWebViewContainer$BotWebViewProxy) obj;
+                this.f52839s0 = (BotWebViewContainer$BotWebViewProxy) obj;
             }
-            if (this.f52836s0 == null) {
+            if (this.f52839s0 == null) {
                 ?? obj2 = new Object();
-                obj2.f52558a = this;
-                this.f52836s0 = obj2;
+                obj2.f52561a = this;
+                this.f52839s0 = obj2;
             }
-            this.f52836s0.f52558a = this;
+            this.f52839s0.f52561a = this;
             W();
         } else {
             if (obj instanceof BotWebViewContainer$WebViewProxy) {
-                this.f52839v0 = (BotWebViewContainer$WebViewProxy) obj;
+                this.f52842v0 = (BotWebViewContainer$WebViewProxy) obj;
             }
-            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f52839v0;
+            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f52842v0;
             if (botWebViewContainer$WebViewProxy == null) {
-                s0 s0Var4 = this.f52811a;
+                s0 s0Var4 = this.f52814a;
                 BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy2 = new BotWebViewContainer$WebViewProxy(s0Var4, this);
-                this.f52839v0 = botWebViewContainer$WebViewProxy2;
+                this.f52842v0 = botWebViewContainer$WebViewProxy2;
                 s0Var4.addJavascriptInterface(botWebViewContainer$WebViewProxy2, "TelegramWebviewProxy");
             } else if (s0Var == null) {
-                this.f52811a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
+                this.f52814a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
             }
-            this.f52839v0.f52559a = this;
+            this.f52842v0.f52562a = this;
         }
-        K(this.f52811a);
+        K(this.f52814a);
         R0 = false;
     }
 
     public final void Y(int i7, org.telegram.ui.ActionBar.t1 t1Var, Runnable runnable) {
         if (t1Var != null && !m(i7)) {
             t1Var.setOnDismissListener(new a3(16, this, runnable));
-            this.f52817d0 = t1Var;
+            this.f52820d0 = t1Var;
             t1Var.f29639k0 = false;
             t1Var.show();
             if (this.M0 != i7) {
@@ -947,15 +947,15 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public final void c() {
-        if (this.f52811a == null && !this.h) {
+        if (this.f52814a == null && !this.h) {
             try {
                 setupWebView(null);
             } catch (Throwable th2) {
                 a8.g(th2, true);
-                this.f52835s.setVisibility(8);
+                this.f52838s.setVisibility(8);
                 this.h = true;
-                this.f52820f.setVisibility(0);
-                s0 s0Var = this.f52811a;
+                this.f52823f.setVisibility(0);
+                s0 s0Var = this.f52814a;
                 if (s0Var != null) {
                     removeView(s0Var);
                 }
@@ -986,31 +986,31 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         lv0 lv0Var;
         Uri[] uriArr;
-        if (i7 == ns.f25540n4) {
-            s0 s0Var = this.f52811a;
+        if (i7 == ns.f25541n4) {
+            s0 s0Var = this.f52814a;
             if (s0Var != null) {
                 s0Var.setBackgroundColor(j(j6.f28849d6));
             }
-            if (!this.f52834r0) {
+            if (!this.f52837r0) {
                 int i11 = j6.Bj;
                 int j3 = j(i11);
-                this.f52832q0 = j3;
+                this.f52835q0 = j3;
                 PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN);
-                v3 v3Var = this.f52835s;
+                v3 v3Var = this.f52838s;
                 v3Var.setColorFilter(porterDuffColorFilter);
-                pz pzVar = this.f52833r;
+                pz pzVar = this.f52836r;
                 if (pzVar != null) {
-                    pzVar.f26037n = Integer.valueOf(this.f52832q0);
-                    this.f52833r.f(i11, this.f52818e, 1.0f, false);
+                    pzVar.f26037n = Integer.valueOf(this.f52835q0);
+                    this.f52836r.f(i11, this.f52821e, 1.0f, false);
                 }
                 v3Var.invalidate();
             }
             z();
-        } else if (i7 == ns.f25480c5) {
+        } else if (i7 == ns.f25481c5) {
             int intValue = ((Integer) objArr[0]).intValue();
             int intValue2 = ((Integer) objArr[1]).intValue();
             Intent intent = (Intent) objArr[2];
-            if (intValue == 3000 && this.f52844y != null) {
+            if (intValue == 3000 && this.f52847y != null) {
                 if (intValue2 == -1 && intent != null) {
                     if (intent.getClipData() != null) {
                         ClipData clipData = intent.getClipData();
@@ -1021,14 +1021,14 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                     } else if (intent.getData() != null) {
                         uriArr = new Uri[]{intent.getData()};
                     }
-                    this.f52844y.onReceiveValue(uriArr);
-                    this.f52844y = null;
+                    this.f52847y.onReceiveValue(uriArr);
+                    this.f52847y = null;
                 }
                 uriArr = null;
-                this.f52844y.onReceiveValue(uriArr);
-                this.f52844y = null;
+                this.f52847y.onReceiveValue(uriArr);
+                this.f52847y = null;
             }
-        } else if (i7 == ns.f25485d5) {
+        } else if (i7 == ns.f25486d5) {
             int intValue3 = ((Integer) objArr[0]).intValue();
             String[] strArr = (String[]) objArr[1];
             int[] iArr = (int[]) objArr[2];
@@ -1041,30 +1041,30 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f52835s) {
-            if (this.f52840w) {
+        if (view == this.f52838s) {
+            if (this.f52843w) {
                 canvas.save();
                 canvas.translate(0.0f, (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
             }
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (this.f52840w) {
+            if (this.f52843w) {
                 canvas.restore();
             }
-            if (!this.f52840w) {
+            if (!this.f52843w) {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                this.f52828n.a(0.0f, canvas, rectF, this);
+                this.f52831n.a(0.0f, canvas, rectF, this);
                 invalidate();
             }
             return drawChild;
-        } else if (view == this.f52820f) {
+        } else if (view == this.f52823f) {
             canvas.save();
             canvas.translate(0.0f, (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
             boolean drawChild2 = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild2;
         } else {
-            if (view == this.f52811a) {
+            if (view == this.f52814a) {
                 if (!org.telegram.messenger.g0.m0) {
                     if (getLayerType() == 2 && !canvas.isHardwareAccelerated()) {
                         return true;
@@ -1081,18 +1081,18 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (this.V == null) {
             return;
         }
-        ki.r rVar = this.f52826k0;
+        ki.r rVar = this.f52829k0;
         if (rVar == null) {
-            this.f52826k0 = ki.r.c(getContext(), this.N, this.V.f28200id);
+            this.f52829k0 = ki.r.c(getContext(), this.N, this.V.f28200id);
         } else {
             rVar.h();
         }
     }
 
     public final i7 f() {
-        s0 s0Var = this.f52811a;
-        long j3 = this.f52837t0;
-        boolean z10 = this.f52838u0;
+        s0 s0Var = this.f52814a;
+        long j3 = this.f52840t0;
+        boolean z10 = this.f52841u0;
         String str = this.H0;
         ?? obj = new Object();
         obj.f11825c = this;
@@ -1108,7 +1108,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public BotWebViewContainer$BotWebViewProxy getBotProxy() {
-        return this.f52836s0;
+        return this.f52839s0;
     }
 
     public int getMinHeight() {
@@ -1123,7 +1123,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public String getOriginHost() {
-        s0 s0Var = this.f52811a;
+        s0 s0Var = this.f52814a;
         if (s0Var == null) {
             return null;
         }
@@ -1131,7 +1131,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public BotWebViewContainer$WebViewProxy getProxy() {
-        return this.f52839v0;
+        return this.f52842v0;
     }
 
     public String getTrustedOrigin() {
@@ -1139,49 +1139,49 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public String getUrlLoaded() {
-        return this.f52813b;
+        return this.f52816b;
     }
 
     public s0 getWebView() {
-        return this.f52811a;
+        return this.f52814a;
     }
 
     public final void h() {
         g("destroyWebView preserving=" + this.C0);
-        s0 s0Var = this.f52811a;
+        s0 s0Var = this.f52814a;
         if (s0Var != null) {
             if (s0Var.getParent() != null) {
-                removeView(this.f52811a);
+                removeView(this.f52814a);
             }
             if (!this.C0) {
-                this.f52811a.destroy();
-                L(this.f52811a);
+                this.f52814a.destroy();
+                L(this.f52814a);
             }
             this.O = false;
-            if (this.f52826k0 != null) {
-                this.f52826k0 = null;
+            if (this.f52829k0 != null) {
+                this.f52829k0 = null;
             }
-            if (this.f52829n0 != null) {
-                this.f52829n0 = null;
+            if (this.f52832n0 != null) {
+                this.f52832n0 = null;
             }
-            if (this.f52830o0 != null) {
-                this.f52830o0 = null;
+            if (this.f52833o0 != null) {
+                this.f52833o0 = null;
             }
-            ki.s0 s0Var2 = this.f52827l0;
+            ki.s0 s0Var2 = this.f52830l0;
             if (s0Var2 != null) {
                 s0Var2.f18542f.remove(this.L0);
-                this.f52827l0 = null;
+                this.f52830l0 = null;
                 this.K0 = null;
             }
         }
     }
 
     public final void i(String str) {
-        new cc(this, this.f52818e).Q(2131624012, 36, str).j();
+        new cc(this, this.f52821e).Q(2131624012, 36, str).j();
     }
 
     public final int j(int i7) {
-        e6 e6Var = this.f52818e;
+        e6 e6Var = this.f52821e;
         if (e6Var != null) {
             return e6Var.h(i7);
         }
@@ -1233,7 +1233,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public final boolean m(int i7) {
-        if (this.f52817d0 != null || (this.O0 > 0 && System.currentTimeMillis() < this.O0)) {
+        if (this.f52820d0 != null || (this.O0 > 0 && System.currentTimeMillis() < this.O0)) {
             return true;
         }
         if (this.M0 != i7 || this.N0 <= 3) {
@@ -1248,7 +1248,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         boolean z12;
         boolean z13;
         invalidate();
-        if ((this.O || z11) && (z12 = this.f52831p0) && (getParent() instanceof x3)) {
+        if ((this.O || z11) && (z12 = this.f52834p0) && (getParent() instanceof x3)) {
             x3 x3Var = (x3) getParent();
             if (z10) {
                 if (x3Var.getSwipeOffsetY() == x3Var.getTopActionBarOffsetY() + (-x3Var.getOffsetY())) {
@@ -1259,11 +1259,11 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                 this.P = z13;
             }
             int max = Math.max(getMinHeight(), (int) (x3Var.getTopActionBarOffsetY() + ((x3Var.getMeasuredHeight() - x3Var.getOffsetY()) - x3Var.getSwipeOffsetY()) + this.A0));
-            if (z11 || max != this.f52843x0 || this.f52845y0 != z10 || this.f52846z0 != this.P) {
-                this.f52843x0 = max;
-                this.f52845y0 = z10;
-                this.f52846z0 = this.P;
-                String str = "{height:" + (max / org.telegram.messenger.g0.f23608p) + ",is_state_stable:" + z10 + ",is_expanded:" + this.P + "}";
+            if (z11 || max != this.f52846x0 || this.f52848y0 != z10 || this.f52849z0 != this.P) {
+                this.f52846x0 = max;
+                this.f52848y0 = z10;
+                this.f52849z0 = this.P;
+                String str = "{height:" + (max / org.telegram.messenger.g0.f23610p) + ",is_state_stable:" + z10 + ",is_expanded:" + this.P + "}";
                 if (z12 && !q()) {
                     g("notifyEvent viewport_changed dropped for untrusted document");
                 } else {
@@ -1277,7 +1277,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         boolean z10;
         if (i7Var != null) {
             String str = (String) i7Var.f11826e;
-            if (((v0) i7Var.f11825c) == this && ((s0) i7Var.d) == this.f52811a && i7Var.f11823a == this.f52837t0 && (z10 = i7Var.f11824b) == this.f52838u0) {
+            if (((v0) i7Var.f11825c) == this && ((s0) i7Var.d) == this.f52814a && i7Var.f11823a == this.f52840t0 && (z10 = i7Var.f11824b) == this.f52841u0) {
                 if (z10) {
                     if (!TextUtils.isEmpty(str) && TextUtils.equals(str, this.H0) && TextUtils.equals(str, getOriginHost())) {
                         return true;
@@ -1295,9 +1295,9 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         g("attached");
-        ns.e().c(this, ns.f25540n4);
-        ns.e().c(this, ns.f25480c5);
-        ns.e().c(this, ns.f25485d5);
+        ns.e().c(this, ns.f25541n4);
+        ns.e().c(this, ns.f25481c5);
+        ns.e().c(this, ns.f25486d5);
         setTag(2131296351, new bi.e1(this, 11));
     }
 
@@ -1305,9 +1305,9 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         g("detached");
-        ns.e().n(this, ns.f25540n4);
-        ns.e().n(this, ns.f25480c5);
-        ns.e().n(this, ns.f25485d5);
+        ns.e().n(this, ns.f25541n4);
+        ns.e().n(this, ns.f25481c5);
+        ns.e().n(this, ns.f25486d5);
         setTag(2131296351, null);
     }
 
@@ -1318,22 +1318,22 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
         }
         super.onMeasure(i7, i10);
-        this.f52828n.f40795f = getMeasuredWidth();
+        this.f52831n.f40798f = getMeasuredWidth();
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        if (!this.f52814b0) {
+        if (!this.f52817b0) {
             n(true, false);
         }
     }
 
     public final boolean q() {
-        if (this.f52811a == null) {
+        if (this.f52814a == null) {
             return false;
         }
-        if (this.f52838u0) {
+        if (this.f52841u0) {
             if (TextUtils.isEmpty(this.H0) || !TextUtils.equals(this.H0, getOriginHost())) {
                 return false;
             }
@@ -1357,7 +1357,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(j3));
         TLRPC.UserFull b22 = np.s1(i7).b2(j3);
         String n10 = q10.n(a22);
-        v3 v3Var = this.f52835s;
+        v3 v3Var = this.f52838s;
         if (n10 != null && n10.equals("DurgerKingBot")) {
             v3Var.setVisibility(0);
             v3Var.setAlpha(1.0f);
@@ -1365,7 +1365,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             setupFlickerParams(false);
             return;
         }
-        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(i7).f26461b.bots;
+        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(i7).f26471b.bots;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -1413,17 +1413,17 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             }
             return;
         }
-        e6 e6Var = this.f52818e;
+        e6 e6Var = this.f52821e;
         if (b22 != null && (botInfo = b22.bot_info) != null && (botappsettings = botInfo.app_settings) != null && botappsettings.placeholder_svg_path != null) {
             v3Var.setVisibility(0);
             v3Var.setAlpha(1.0f);
             pz j10 = qz.j(512, 512, b22.bot_info.app_settings.placeholder_svg_path);
-            this.f52833r = j10;
+            this.f52836r = j10;
             if (j10 != null) {
-                j10.f26037n = Integer.valueOf(this.f52832q0);
-                this.f52833r.f(j6.Bj, e6Var, 1.0f, false);
+                j10.f26037n = Integer.valueOf(this.f52835q0);
+                this.f52836r.f(j6.Bj, e6Var, 1.0f, false);
             }
-            v3Var.h(null, null, this.f52833r);
+            v3Var.h(null, null, this.f52836r);
             setupFlickerParams(true);
             return;
         }
@@ -1441,12 +1441,12 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         v3Var.setVisibility(0);
         v3Var.setAlpha(1.0f);
         pz j11 = qz.j(512, 512, path);
-        this.f52833r = j11;
+        this.f52836r = j11;
         if (j11 != null) {
-            j11.f26037n = Integer.valueOf(this.f52832q0);
-            this.f52833r.f(j6.Bj, e6Var, 1.0f, false);
+            j11.f26037n = Integer.valueOf(this.f52835q0);
+            this.f52836r.f(j6.Bj, e6Var, 1.0f, false);
         }
-        v3Var.h(null, null, this.f52833r);
+        v3Var.h(null, null, this.f52836r);
         setupFlickerParams(true);
     }
 
@@ -1455,7 +1455,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public void setDelegate(c0 c0Var) {
-        this.f52815c = c0Var;
+        this.f52818c = c0Var;
     }
 
     public void setFlickerViewColor(int i7) {
@@ -1465,19 +1465,19 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         } else {
             b10 = j6.b(0.025f, 0.15f, i7);
         }
-        if (this.f52832q0 == b10) {
+        if (this.f52835q0 == b10) {
             return;
         }
-        this.f52832q0 = b10;
+        this.f52835q0 = b10;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(b10, PorterDuff.Mode.SRC_IN);
-        v3 v3Var = this.f52835s;
+        v3 v3Var = this.f52838s;
         v3Var.setColorFilter(porterDuffColorFilter);
-        pz pzVar = this.f52833r;
+        pz pzVar = this.f52836r;
         if (pzVar != null) {
-            pzVar.f26037n = Integer.valueOf(this.f52832q0);
-            this.f52833r.f(j6.Bj, this.f52818e, 1.0f, false);
+            pzVar.f26037n = Integer.valueOf(this.f52835q0);
+            this.f52836r.f(j6.Bj, this.f52821e, 1.0f, false);
         }
-        this.f52834r0 = true;
+        this.f52837r0 = true;
         v3Var.invalidate();
         invalidate();
     }
@@ -1496,7 +1496,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     public void setOnCloseRequestedListener(Runnable runnable) {
         this.E0 = runnable;
-        s0 s0Var = this.f52811a;
+        s0 s0Var = this.f52814a;
         if (s0Var != null) {
             s0Var.setCloseListener(runnable);
         }
@@ -1508,18 +1508,18 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     public void setOpener(s0 s0Var) {
         s0 s0Var2;
-        this.f52841w0 = s0Var;
-        if (!this.f52831p0 && (s0Var2 = this.f52811a) != null) {
-            s0Var2.f52770f = s0Var;
+        this.f52844w0 = s0Var;
+        if (!this.f52834p0 && (s0Var2 = this.f52814a) != null) {
+            s0Var2.f52773f = s0Var;
         }
     }
 
     public void setParentActivity(Activity activity) {
-        this.f52812a0 = activity;
+        this.f52815a0 = activity;
     }
 
     public void setViewPortByMeasureSuppressed(boolean z10) {
-        this.f52814b0 = z10;
+        this.f52817b0 = z10;
     }
 
     public void setViewPortHeightOffset(float f10) {
@@ -1535,12 +1535,12 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public void setWebViewProgressListener(q0.a aVar) {
-        this.f52842x = aVar;
+        this.f52845x = aVar;
     }
 
     public void setWebViewScrollListener(u0 u0Var) {
         this.d = u0Var;
-        s0 s0Var = this.f52811a;
+        s0 s0Var = this.f52814a;
         if (s0Var != null) {
             s0Var.f(this, u0Var);
         }
@@ -1549,16 +1549,16 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void t(int i7, String str, boolean z10) {
         String str2;
         this.N = i7;
-        if (this.f52831p0) {
-            this.f52837t0++;
-            this.f52838u0 = z10;
+        if (this.f52834p0) {
+            this.f52840t0++;
+            this.f52841u0 = z10;
             if (z10) {
                 str2 = k(str);
             } else {
                 str2 = null;
             }
             this.H0 = str2;
-            if (this.f52811a != null) {
+            if (this.f52814a != null) {
                 W();
             }
         }
@@ -1570,20 +1570,20 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         v3 v3Var;
         int j3;
         try {
-            if (this.f52811a != null && (j3 = j(j6.f28849d6)) != this.D0) {
+            if (this.f52814a != null && (j3 = j(j6.f28849d6)) != this.D0) {
                 this.D0 = j3;
-                this.f52811a.setBackgroundColor(j3);
+                this.f52814a.setBackgroundColor(j3);
             }
-            if (!this.f52834r0 && (v3Var = this.f52835s) != null) {
-                int i7 = this.f52832q0;
+            if (!this.f52837r0 && (v3Var = this.f52838s) != null) {
+                int i7 = this.f52835q0;
                 int i10 = j6.Bj;
                 if (i7 != j(i10)) {
                     int j10 = j(i10);
-                    this.f52832q0 = j10;
+                    this.f52835q0 = j10;
                     v3Var.setColorFilter(new PorterDuffColorFilter(j10, PorterDuff.Mode.SRC_IN));
-                    pz pzVar = this.f52833r;
+                    pz pzVar = this.f52836r;
                     if (pzVar != null) {
-                        pzVar.f26037n = Integer.valueOf(this.f52832q0);
+                        pzVar.f26037n = Integer.valueOf(this.f52835q0);
                     }
                     v3Var.invalidate();
                 }
@@ -1596,7 +1596,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void v(i7 i7Var) {
         if (this.V != null) {
             e();
-            ki.r rVar = this.f52826k0;
+            ki.r rVar = this.f52829k0;
             if (rVar == null) {
                 return;
             }
@@ -1617,7 +1617,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public final void y(String str, JSONObject jSONObject) {
-        if (this.f52831p0 && !q()) {
+        if (this.f52834p0 && !q()) {
             g("notifyEvent " + str + " dropped for untrusted document");
             return;
         }
@@ -1629,7 +1629,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         JSONObject jSONObject;
         JSONObject u10;
         try {
-            u10 = x2.u(this.f52818e, true);
+            u10 = x2.u(this.f52821e, true);
         } catch (Exception e10) {
             a8.g(e10, true);
         }

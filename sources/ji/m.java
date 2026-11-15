@@ -1,12 +1,12 @@
 package ji;
 
 import a8.p0;
-import ai.b2;
-import ai.m0;
-import ai.t1;
-import ai.v2;
-import ai.y;
-import ai.z1;
+import ai.a2;
+import ai.c2;
+import ai.n0;
+import ai.u1;
+import ai.x2;
+import ai.z;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Build;
@@ -37,7 +37,7 @@ import org.telegram.ui.Components.gf;
 import org.telegram.ui.Components.st0;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.an;
-public final class m implements z1 {
+public final class m implements a2 {
     public static boolean f17567n0;
     public static final HashMap f17568o0 = new HashMap();
     public volatile int E;
@@ -49,17 +49,17 @@ public final class m implements z1 {
     public long N;
     public long O;
     public boolean T;
-    public b2 U;
+    public c2 U;
     public EditTextBoldCursor X;
     public int Y;
     public int Z;
     public final Context f17569a;
     public final gf f17571b;
     public int f17572b0;
-    public y d;
+    public z d;
     public q f17576e;
     public String f17577e0;
-    public b2 f17578f;
+    public c2 f17578f;
     public int f17579f0;
     public String f17580g0;
     public p h;
@@ -94,8 +94,8 @@ public final class m implements z1 {
         this.f17571b = gfVar;
     }
 
-    public static void b(m mVar, b2 b2Var, String str, int i7) {
-        if (b2Var == mVar.f17578f || b2Var == mVar.U) {
+    public static void b(m mVar, c2 c2Var, String str, int i7) {
+        if (c2Var == mVar.f17578f || c2Var == mVar.U) {
             if (!mVar.J) {
                 mVar.M(i7, str);
                 return;
@@ -104,7 +104,7 @@ public final class m implements z1 {
             if (i10 != 2 && i10 != 4) {
                 return;
             }
-            mVar.u(b2Var, str);
+            mVar.u(c2Var, str);
             mVar.n();
         }
     }
@@ -129,7 +129,7 @@ public final class m implements z1 {
         if (str == null) {
             l10 = null;
         } else {
-            l10 = m0.l(str);
+            l10 = n0.l(str);
         }
         p pVar = this.h;
         if (pVar != null && this.f17573c == 2) {
@@ -153,8 +153,8 @@ public final class m implements z1 {
             u10.append(" (the voice recording goes on)");
             Log.d("VoiceLive", u10.toString());
             this.f17578f = null;
-            if (xr.f27575k == this) {
-                xr.f27575k = null;
+            if (xr.f27577k == this) {
+                xr.f27577k = null;
             }
             this.d = null;
             this.f17576e = null;
@@ -187,7 +187,7 @@ public final class m implements z1 {
     public final void d() {
         String U = DictationAsr.U();
         if (U != null) {
-            String l10 = m0.l(U);
+            String l10 = n0.l(U);
             p pVar = this.h;
             if (pVar != null) {
                 pVar.setLanguage(l10);
@@ -282,9 +282,9 @@ public final class m implements z1 {
             this.f17573c = 0;
             this.H = null;
             g0.r(this.W);
-            b2 b2Var = this.U;
-            if (b2Var != null) {
-                b2Var.c();
+            c2 c2Var = this.U;
+            if (c2Var != null) {
+                c2Var.c();
                 this.U = null;
             }
             i(true);
@@ -350,17 +350,17 @@ public final class m implements z1 {
             DictationAsr.N(this.m0);
             g0.r(this.f17584k0);
             g0.r(this.f17583j0);
-            if (xr.f27575k == this) {
-                xr.f27575k = null;
+            if (xr.f27577k == this) {
+                xr.f27577k = null;
             }
-            b2 b2Var2 = this.f17578f;
-            if (b2Var2 != null) {
-                b2Var2.c();
+            c2 c2Var2 = this.f17578f;
+            if (c2Var2 != null) {
+                c2Var2.c();
                 this.f17578f = null;
             }
-            y yVar = this.d;
-            if (yVar != null) {
-                yVar.d();
+            z zVar = this.d;
+            if (zVar != null) {
+                zVar.d();
                 this.d = null;
             }
             this.f17576e = null;
@@ -436,7 +436,7 @@ public final class m implements z1 {
                 gf gfVar = this.f17571b;
                 gfVar.getClass();
                 if (obj instanceof ai.h) {
-                    str = ((ai.h) obj).f1232a;
+                    str = ((ai.h) obj).f1216a;
                 } else {
                     str = null;
                 }
@@ -457,7 +457,7 @@ public final class m implements z1 {
             s();
             an anVar = gfVar.f34928a.f32319x3;
             if (anVar != null) {
-                anVar.presentFragment(new v2());
+                anVar.presentFragment(new x2());
             }
         } else if (i7 != 2) {
         } else {
@@ -489,9 +489,9 @@ public final class m implements z1 {
     }
 
     public final void m(ByteBuffer byteBuffer, int i7, int i10, int i11) {
-        y yVar = this.d;
+        z zVar = this.d;
         q qVar = this.f17576e;
-        if (yVar != null && qVar != null) {
+        if (zVar != null && qVar != null) {
             this.E = i10;
             this.F = i11;
             this.f17591y++;
@@ -506,27 +506,27 @@ public final class m implements z1 {
                 this.f17590x += c10;
                 byte[] bArr = (byte[]) qVar.f17662g;
                 if (c10 > 0) {
-                    synchronized (yVar.f1624a) {
+                    synchronized (zVar.f1636a) {
                         try {
-                            if (yVar.d) {
+                            if (zVar.d) {
                                 return;
                             }
-                            yVar.a(c10, bArr);
+                            zVar.a(c10, bArr);
                             int i12 = c10 / 2;
                             for (int i13 = 0; i13 < i12; i13++) {
                                 int i14 = i13 * 2;
                                 double d = (short) ((bArr[i14 + 1] << 8) | (bArr[i14] & 255));
-                                yVar.h = (d * d) + yVar.h;
+                                zVar.h = (d * d) + zVar.h;
                             }
-                            int i15 = yVar.f1630i + i12;
-                            yVar.f1630i = i15;
+                            int i15 = zVar.f1642i + i12;
+                            zVar.f1642i = i15;
                             if (i15 >= 1600) {
-                                double sqrt = Math.sqrt(yVar.h / Math.max(1, i15));
-                                yVar.h = 0.0d;
-                                yVar.f1630i = 0;
-                                t1 t1Var = yVar.f1629g;
-                                if (t1Var != null) {
-                                    t1Var.a((float) Math.max(0.0d, Math.min(1.0d, ((Math.log10(Math.max(1.0d, sqrt)) * 20.0d) - 42.0d) / 30.0d)));
+                                double sqrt = Math.sqrt(zVar.h / Math.max(1, i15));
+                                zVar.h = 0.0d;
+                                zVar.f1642i = 0;
+                                u1 u1Var = zVar.f1641g;
+                                if (u1Var != null) {
+                                    u1Var.a((float) Math.max(0.0d, Math.min(1.0d, ((Math.log10(Math.max(1.0d, sqrt)) * 20.0d) - 42.0d) / 30.0d)));
                                 }
                             }
                         } catch (Throwable th2) {
@@ -689,11 +689,11 @@ public final class m implements z1 {
     public final void q() {
         j jVar = new j(this);
         ChatActivityEnterView chatActivityEnterView = this.f17571b.f34928a;
-        b2 b2Var = new b2(this.f17569a, chatActivityEnterView.R, chatActivityEnterView.f32327y3, false, jVar);
-        jVar.f17555b = b2Var;
-        this.f17578f = b2Var;
-        b2Var.L = this.d;
-        b2Var.s();
+        c2 c2Var = new c2(this.f17569a, chatActivityEnterView.R, chatActivityEnterView.f32327y3, false, jVar);
+        jVar.f17555b = c2Var;
+        this.f17578f = c2Var;
+        c2Var.L = this.d;
+        c2Var.s();
     }
 
     @Override
@@ -852,10 +852,10 @@ public final class m implements z1 {
             if (this.f17573c == 4) {
                 if (this.f17571b.d()) {
                     g0.r(this.W);
-                    b2 b2Var = this.U;
-                    if (b2Var != null) {
+                    c2 c2Var = this.U;
+                    if (c2Var != null) {
                         this.U = null;
-                        b2Var.c();
+                        c2Var.c();
                         e();
                     }
                     e();
@@ -910,9 +910,9 @@ public final class m implements z1 {
                         this.Z = this.X.length();
                         this.f17570a0 = "";
                     }
-                    this.d = new y();
+                    this.d = new z();
                     this.f17576e = new q(0);
-                    xr.f27575k = this;
+                    xr.f27577k = this;
                     this.f17573c = 2;
                     q();
                     e eVar4 = this.K;
@@ -942,23 +942,23 @@ public final class m implements z1 {
                         i iVar3 = this.W;
                         this.f17573c = 4;
                         g0.r(this.f17583j0);
-                        y yVar = this.d;
-                        if (yVar != null) {
-                            j3 = yVar.c() / 32;
+                        z zVar = this.d;
+                        if (zVar != null) {
+                            j3 = zVar.c() / 32;
                         } else {
                             j3 = 0;
                         }
                         this.O = this.N + j3;
-                        if (xr.f27575k == this) {
-                            xr.f27575k = null;
+                        if (xr.f27577k == this) {
+                            xr.f27577k = null;
                         }
-                        b2 b2Var2 = this.f17578f;
-                        if (b2Var2 != null) {
-                            this.U = b2Var2;
+                        c2 c2Var2 = this.f17578f;
+                        if (c2Var2 != null) {
+                            this.U = c2Var2;
                             this.f17578f = null;
-                            y yVar2 = this.d;
-                            if (yVar2 != null) {
-                                yVar2.d();
+                            z zVar2 = this.d;
+                            if (zVar2 != null) {
+                                zVar2.d();
                             }
                             this.U.u();
                         } else {
@@ -1028,7 +1028,7 @@ public final class m implements z1 {
                         sb2.append(sb3.toString().trim());
                         Log.d("VoiceLive", sb2.toString());
                     }
-                    this.d = new y();
+                    this.d = new z();
                     this.f17576e = new q(0);
                     this.f17590x = 0L;
                     this.f17589w = 0L;
@@ -1047,7 +1047,7 @@ public final class m implements z1 {
                     this.f17587r = SystemClock.elapsedRealtime();
                     i17 = 1;
                     this.f17573c = 1;
-                    xr.f27575k = this;
+                    xr.f27577k = this;
                     g0.r(this.f17584k0);
                     g0.i3(this.f17584k0, 250L);
                     Log.d("VoiceLive", "buffering: recorder tap on");
@@ -1236,7 +1236,7 @@ public final class m implements z1 {
         }
     }
 
-    public final void u(ai.b2 r25, java.lang.String r26) {
-        throw new UnsupportedOperationException("Method not decompiled: ji.m.u(ai.b2, java.lang.String):void");
+    public final void u(ai.c2 r25, java.lang.String r26) {
+        throw new UnsupportedOperationException("Method not decompiled: ji.m.u(ai.c2, java.lang.String):void");
     }
 }

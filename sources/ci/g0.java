@@ -14,14 +14,14 @@ public final class g0 extends s {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         i0 i0Var = this.N;
-        float min = Math.min(getHeight(), i0Var.f5410w - (getTranslationY() + getTop()));
-        c cVar = i0Var.f5412y;
+        float min = Math.min(getHeight(), i0Var.f5413w - (getTranslationY() + getTop()));
+        c cVar = i0Var.f5415y;
         if (cVar != null) {
             cVar.H = min;
         }
         i0Var.L = min;
         if (cVar != null) {
-            cVar.V = i0Var.f5408s - cVar.getLeft();
+            cVar.V = i0Var.f5411s - cVar.getLeft();
         }
         super.dispatchDraw(canvas);
     }
@@ -30,10 +30,10 @@ public final class g0 extends s {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         i0 i0Var = this.N;
         z0 z0Var = i0Var.d;
-        if (z0Var != null && (z0Var.f5684m1 > 0.5f || z0Var.l1 > 0.5f)) {
+        if (z0Var != null && (z0Var.f5687m1 > 0.5f || z0Var.l1 > 0.5f)) {
             if (motionEvent.getActionMasked() == 1) {
                 z0 z0Var2 = i0Var.d;
-                z0Var2.f5684m1 = 0.0f;
+                z0Var2.f5687m1 = 0.0f;
                 z0Var2.invalidate();
             }
             return true;

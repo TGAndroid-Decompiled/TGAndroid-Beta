@@ -7,20 +7,20 @@ import org.telegram.messenger.s10;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.tp0;
 public final class i6 implements q0.a {
-    public final int f3619a;
-    public final Object f3620b;
+    public final int f3622a;
+    public final Object f3623b;
 
     public i6(Object obj, int i7) {
-        this.f3619a = i7;
-        this.f3620b = obj;
+        this.f3622a = i7;
+        this.f3623b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         String j3;
-        int i7 = this.f3619a;
+        int i7 = this.f3622a;
         boolean z10 = true;
-        Object obj2 = this.f3620b;
+        Object obj2 = this.f3623b;
         switch (i7) {
             case 0:
                 u6 u6Var = (u6) obj2;
@@ -55,9 +55,9 @@ public final class i6 implements q0.a {
                 x2Var.F.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(er.f34420f);
+                    duration.setInterpolator(er.f34419f);
                     duration.addUpdateListener(new ki.w1(x2Var, 1));
-                    duration.addListener(new ai.i0(x2Var, 29));
+                    duration.addListener(new ai.j0(x2Var, 29));
                     duration.start();
                     return;
                 }
@@ -68,7 +68,7 @@ public final class i6 implements q0.a {
                 y3Var.J.setLoadProgressAnimated(f11.floatValue());
                 if (f11.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(er.f34420f);
+                    duration2.setInterpolator(er.f34419f);
                     duration2.addUpdateListener(new ki.q3(y3Var, 1));
                     duration2.addListener(new ki.s3(y3Var, 0));
                     duration2.start();
@@ -79,11 +79,11 @@ public final class i6 implements q0.a {
             default:
                 androidx.activity.n nVar = (androidx.activity.n) obj2;
                 int intValue = ((Integer) obj).intValue();
-                switch (nVar.f1788a) {
+                switch (nVar.f1795a) {
                     case 1:
                         u9 u9Var = (u9) nVar.d;
                         u9Var.F0(false);
-                        sg.k0 k0Var = (sg.k0) nVar.f1790c;
+                        sg.k0 k0Var = (sg.k0) nVar.f1797c;
                         k0Var.h(intValue, true);
                         k0Var.g();
                         u9Var.setNewColor(intValue);
@@ -98,7 +98,7 @@ public final class i6 implements q0.a {
                         k0Var2.h(intValue, true);
                         k0Var2.g();
                         tp0Var.setNewColor(intValue);
-                        tg.d0 d0Var = tp0Var.f57288q1;
+                        tg.d0 d0Var = tp0Var.f57298q1;
                         d0Var.setSelectedColorIndex(k0Var2.d());
                         d0Var.getAdapter().f();
                         return;

@@ -30,7 +30,7 @@ public final class u0 extends qz {
             default:
                 return super.d();
             case 2:
-                pm0 pm0Var = ((qm0) viewGroup).f38727y;
+                pm0 pm0Var = ((qm0) viewGroup).f38725y;
                 if (pm0Var == null) {
                     return null;
                 }
@@ -47,7 +47,7 @@ public final class u0 extends qz {
             default:
                 return super.h();
             case 2:
-                int p02 = ((qm0) this.f29676f).f38727y.p0();
+                int p02 = ((qm0) this.f29676f).f38725y.p0();
                 if (p02 > 0) {
                     return 1.0f / p02;
                 }
@@ -87,19 +87,19 @@ public final class u0 extends qz {
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f29676f;
                 org.telegram.ui.Cells.i1 i1Var = q1Var.D4;
                 if (q1Var.Q5.I3()) {
-                    f10 = i1Var.f37638b;
-                    i7 = i1Var.f37641f;
+                    f10 = i1Var.f37627b;
+                    i7 = i1Var.f37630f;
                     i10 = nm0.E;
-                } else if (gj.R4(q1Var.Q5.f23817k)) {
+                } else if (gj.R4(q1Var.Q5.f23819k)) {
                     if (q1Var.C4) {
                         tm0 tm0Var = q1Var.E4;
-                        return tm0Var.f39725a / tm0Var.f39730g;
+                        return tm0Var.f39722a / tm0Var.f39727g;
                     }
-                    f10 = i1Var.f37638b;
-                    i7 = i1Var.f37641f;
+                    f10 = i1Var.f37627b;
+                    i7 = i1Var.f37630f;
                     i10 = nm0.E;
                 } else if (q1Var.Q5.h4()) {
-                    return q1Var.Q5.f23777b0;
+                    return q1Var.Q5.f23779b0;
                 } else {
                     return 0.0f;
                 }
@@ -121,7 +121,7 @@ public final class u0 extends qz {
                 org.telegram.ui.Cells.i1 i1Var = q1Var.D4;
                 if (q1Var.Q5.I3()) {
                     i1Var.h(f10);
-                } else if (gj.R4(q1Var.Q5.f23817k)) {
+                } else if (gj.R4(q1Var.Q5.f23819k)) {
                     if (q1Var.C4) {
                         tm0Var.g(false, f10);
                     } else {
@@ -135,7 +135,7 @@ public final class u0 extends qz {
                     } else if (i1Var != null) {
                         i1Var.h(f10);
                     }
-                    q1Var.Q5.f23777b0 = f10;
+                    q1Var.Q5.f23779b0 = f10;
                 } else {
                     return;
                 }
@@ -144,10 +144,10 @@ public final class u0 extends qz {
                 return;
             default:
                 qm0 qm0Var = (qm0) this.f29676f;
-                qm0Var.f38726x = true;
+                qm0Var.f38724x = true;
                 qm0Var.setProgress(f10);
                 qm0Var.f(true, f10);
-                qm0Var.f38726x = false;
+                qm0Var.f38724x = false;
                 return;
         }
     }

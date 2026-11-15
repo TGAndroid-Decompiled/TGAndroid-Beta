@@ -49,9 +49,9 @@ public final class af implements Runnable {
                             for (int i10 = 0; i10 < size; i10++) {
                                 gj gjVar = (gj) arrayList.get(i10);
                                 if (!bfVar3.b(gjVar)) {
-                                    String str2 = gjVar.f23817k.attachPath;
+                                    String str2 = gjVar.f23819k.attachPath;
                                     TLRPC.Document F0 = gjVar.F0();
-                                    TLRPC.Document document = gjVar.f23798f3;
+                                    TLRPC.Document document = gjVar.f23800f3;
                                     if (document != null) {
                                         str2 = null;
                                         F0 = document;
@@ -61,13 +61,13 @@ public final class af implements Runnable {
                                         str2 = null;
                                     }
                                     if (TextUtils.isEmpty(str2)) {
-                                        w7.G(cVar.f22778a);
+                                        w7.G(cVar.f22782a);
                                         TLRPC.MessageMedia m12 = gj.m1(gjVar);
-                                        TLRPC.Document document2 = gjVar.f23798f3;
+                                        TLRPC.Document document2 = gjVar.f23800f3;
                                         if (document2 != null) {
                                             file2 = w7.J(document2, null, false, true);
                                         } else {
-                                            File M = w7.M(gjVar.f23817k, false, true);
+                                            File M = w7.M(gjVar.f23819k, false, true);
                                             if (m12 instanceof TLRPC.TL_messageMediaDocument) {
                                                 TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) m12;
                                                 if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
@@ -86,8 +86,8 @@ public final class af implements Runnable {
                                     }
                                     if (!bfVar3.f22693f) {
                                         if (!file3.exists()) {
-                                            w7.G(cVar.f22778a);
-                                            file3 = w7.J(gjVar.f23817k, null, true, true);
+                                            w7.G(cVar.f22782a);
+                                            file3 = w7.J(gjVar.f23819k, null, true, true);
                                             StringBuilder sb2 = new StringBuilder();
                                             sb2.append("saving file: correcting path from ");
                                             sb2.append(str2);
@@ -124,7 +124,7 @@ public final class af implements Runnable {
                                 gj gjVar2 = (gj) arrayList.get(i11);
                                 if (!bfVar3.b(gjVar2)) {
                                     TLRPC.Document F02 = gjVar2.F0();
-                                    TLRPC.Document document3 = gjVar2.f23798f3;
+                                    TLRPC.Document document3 = gjVar2.f23800f3;
                                     if (document3 != null) {
                                         F02 = document3;
                                     }
@@ -146,20 +146,20 @@ public final class af implements Runnable {
                                     if (!file4.exists()) {
                                         file4.createNewFile();
                                     }
-                                    String str3 = gjVar2.f23817k.attachPath;
-                                    if (gjVar2.f23798f3 != null) {
+                                    String str3 = gjVar2.f23819k.attachPath;
+                                    if (gjVar2.f23800f3 != null) {
                                         str3 = null;
                                     }
                                     if (str3 != null && str3.length() > 0 && !new File(str3).exists()) {
                                         str3 = null;
                                     }
-                                    if (gjVar2.f23798f3 != null) {
-                                        w7.G(cVar.f22778a);
-                                        file = w7.J(gjVar2.f23798f3, null, false, true);
+                                    if (gjVar2.f23800f3 != null) {
+                                        w7.G(cVar.f22782a);
+                                        file = w7.J(gjVar2.f23800f3, null, false, true);
                                     } else {
                                         if (str3 == null || str3.length() == 0) {
-                                            w7.G(cVar.f22778a);
-                                            str3 = w7.M(gjVar2.f23817k, false, true).toString();
+                                            w7.G(cVar.f22782a);
+                                            str3 = w7.M(gjVar2.f23819k, false, true).toString();
                                         }
                                         file = new File(str3);
                                     }
@@ -215,7 +215,7 @@ public final class af implements Runnable {
                 } catch (Exception e13) {
                     a8.g(e13, true);
                 }
-                int i13 = cVar2.f22778a;
+                int i13 = cVar2.f22782a;
                 ns.f(i13).n(bfVar4, 142);
                 ns.f(i13).n(bfVar4, 141);
                 ns.f(i13).n(bfVar4, 143);

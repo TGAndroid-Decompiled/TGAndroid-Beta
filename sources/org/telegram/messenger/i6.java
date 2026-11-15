@@ -13,9 +13,9 @@ public final class i6 extends f6 {
 
     @Override
     public final boolean a() {
-        Bitmap[][] bitmapArr = j6.f24524f;
+        Bitmap[][] bitmapArr = j6.f24529f;
         e6 e6Var = this.f24291c;
-        if (bitmapArr[e6Var.f23267a][e6Var.f23268b] != null) {
+        if (bitmapArr[e6Var.f23274a][e6Var.f23275b] != null) {
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ public final class i6 extends f6 {
     public final void b() {
         if (!a()) {
             e6 e6Var = this.f24291c;
-            j6.i(e6Var.f23267a, e6Var.f23268b);
+            j6.i(e6Var.f23274a, e6Var.f23275b);
         }
     }
 
@@ -39,41 +39,41 @@ public final class i6 extends f6 {
         boolean z10 = this.d;
         e6 e6Var = this.f24291c;
         if (!a()) {
-            j6.i(e6Var.f23267a, e6Var.f23268b);
+            j6.i(e6Var.f23274a, e6Var.f23275b);
             Paint paint = j6.d;
-            paint.setColor(this.f23447b);
+            paint.setColor(this.f23450b);
             Rect bounds2 = getBounds();
             canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), bounds2.width() * 0.4f, paint);
             return;
         }
-        if (this.f23446a) {
+        if (this.f23449a) {
             Rect bounds3 = getBounds();
             int centerX = bounds3.centerX();
             int centerY = bounds3.centerY();
-            boolean z11 = this.f23446a;
+            boolean z11 = this.f23449a;
             if (z11) {
-                i7 = j6.f24522c;
+                i7 = j6.f24527c;
             } else {
-                i7 = j6.f24521b;
+                i7 = j6.f24526b;
             }
             bounds = f24290f;
             bounds.left = centerX - (i7 / 2);
             if (z11) {
-                i10 = j6.f24522c;
+                i10 = j6.f24527c;
             } else {
-                i10 = j6.f24521b;
+                i10 = j6.f24526b;
             }
             bounds.right = (i10 / 2) + centerX;
             if (z11) {
-                i11 = j6.f24522c;
+                i11 = j6.f24527c;
             } else {
-                i11 = j6.f24521b;
+                i11 = j6.f24526b;
             }
             bounds.top = centerY - (i11 / 2);
             if (z11) {
-                i12 = j6.f24522c;
+                i12 = j6.f24527c;
             } else {
-                i12 = j6.f24521b;
+                i12 = j6.f24526b;
             }
             bounds.bottom = (i12 / 2) + centerY;
         } else {
@@ -84,7 +84,7 @@ public final class i6 extends f6 {
                 canvas.save();
                 canvas.scale(-1.0f, 1.0f, bounds.centerX(), bounds.centerY());
             }
-            canvas.drawBitmap(j6.f24524f[e6Var.f23267a][e6Var.f23268b], (Rect) null, bounds, f24289e);
+            canvas.drawBitmap(j6.f24529f[e6Var.f23274a][e6Var.f23275b], (Rect) null, bounds, f24289e);
             if (z10) {
                 canvas.restore();
             }

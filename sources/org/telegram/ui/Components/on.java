@@ -25,13 +25,13 @@ public final class on extends i9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         sn snVar = this.L;
-        if (snVar.f39348b && this.f35511e == null) {
+        if (snVar.f39346b && this.f35502e == null) {
             org.telegram.ui.Cells.j6 j6Var = this.H;
             j6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             j6Var.f11778a = true;
             j6Var.v = true;
             j6Var.J = this.K;
-            Integer num = snVar.f39350c;
+            Integer num = snVar.f39348c;
             if (num != null) {
                 j6Var.f11800z = num.intValue();
             }
@@ -41,12 +41,12 @@ public final class on extends i9 {
             } else {
                 org.telegram.ui.ActionBar.e2 e2Var = this.I;
                 if (e2Var instanceof u91) {
-                    j3 = -((u91) e2Var).f51834a;
+                    j3 = -((u91) e2Var).f51835a;
                 } else {
                     j3 = 0;
                 }
             }
-            fi.l7.h(j3, canvas, this.f35508a, j6Var);
+            fi.l7.h(j3, canvas, this.f35499a, j6Var);
             return;
         }
         super.onDraw(canvas);
@@ -65,7 +65,7 @@ public final class on extends i9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.L.f39348b && this.H.a(this, motionEvent)) {
+        if (this.L.f39346b && this.H.a(this, motionEvent)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

@@ -4,16 +4,16 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class rv extends v4.n0 {
-    public final ly f39069a;
+    public final ly f39066a;
 
     public rv(ly lyVar) {
-        this.f39069a = lyVar;
+        this.f39066a = lyVar;
     }
 
     @Override
     public final void e(Rect rect, View view, RecyclerView recyclerView, v4.b1 b1Var) {
         int R = RecyclerView.R(view);
-        ly lyVar = this.f39069a;
+        ly lyVar = this.f39066a;
         v4.h0 adapter = lyVar.f36956i0.getAdapter();
         qx qxVar = lyVar.f36972o0;
         int i7 = 0;

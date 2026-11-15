@@ -47,7 +47,7 @@ public final class p6 extends FrameLayout implements org.telegram.ui.ActionBar.z
         if (h != null) {
             if (this.f30870w) {
                 String M0 = hd.M0(2131744838, null);
-                TLRPC.Message message = h.h.f23817k;
+                TLRPC.Message message = h.h.f23819k;
                 int i7 = message.edit_date;
                 if (i7 != 0) {
                     j3 = i7;
@@ -104,14 +104,14 @@ public final class p6 extends FrameLayout implements org.telegram.ui.ActionBar.z
         boolean z10 = this.f30872y;
         org.telegram.ui.ActionBar.e6 e6Var = this.f30871x;
         if (z10 && (W0 = org.telegram.ui.ActionBar.j6.W0("paintDivider", e6Var)) != null) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(73.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i10 = org.telegram.messenger.g0.L(73.0f);
             } else {
                 i10 = 0;
@@ -126,7 +126,7 @@ public final class p6 extends FrameLayout implements org.telegram.ui.ActionBar.z
             int i11 = this.d;
             qd h = rd.f(i11).h(this.f30867n);
             org.telegram.ui.Components.u5 u5Var = this.F;
-            float f12 = u5Var.f39903c;
+            float f12 = u5Var.f39900c;
             int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
             org.telegram.ui.Components.u5 u5Var2 = this.G;
             if (h != null && (i7 = h.f26080c) >= currentTime && h.d != Integer.MAX_VALUE) {
@@ -141,7 +141,7 @@ public final class p6 extends FrameLayout implements org.telegram.ui.ActionBar.z
             if (f13 <= 0.0f) {
                 return;
             }
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 this.f30868r.set(org.telegram.messenger.g0.L(13.0f), (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(43.0f), (getMeasuredHeight() / 2.0f) + org.telegram.messenger.g0.L(15.0f));
             } else {
                 this.f30868r.set(getMeasuredWidth() - org.telegram.messenger.g0.L(43.0f), (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(15.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(13.0f), (getMeasuredHeight() / 2.0f) + org.telegram.messenger.g0.L(15.0f));
@@ -162,7 +162,7 @@ public final class p6 extends FrameLayout implements org.telegram.ui.ActionBar.z
             if (h != null) {
                 g6Var.t(hd.C(Math.abs(h.f26080c - currentTime)), true, true);
             }
-            int length = g6Var.f34836i.length();
+            int length = g6Var.f34840i.length();
             if (length > 4) {
                 f10 = 0.75f;
             } else if (length > 3) {

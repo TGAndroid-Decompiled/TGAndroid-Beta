@@ -25,7 +25,7 @@ public final class k9 extends j9 {
         if (tL_mediaAreaSuggestedReaction.dark) {
             o8Var.a();
         }
-        g0Var.f5078i = true;
+        g0Var.f5081i = true;
         g0Var.e(ch.p0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
@@ -34,11 +34,11 @@ public final class k9 extends j9 {
         ImageReceiver imageReceiver;
         int i7;
         ch.g0 g0Var = this.f11976c;
-        org.telegram.ui.Components.g5 g5Var = g0Var.f5073b;
+        org.telegram.ui.Components.g5 g5Var = g0Var.f5076b;
         if (g5Var != null) {
-            imageReceiver = g5Var.f34809k;
+            imageReceiver = g5Var.f34813k;
         } else {
-            imageReceiver = g0Var.f5072a;
+            imageReceiver = g0Var.f5075a;
         }
         if (imageReceiver != null && imageReceiver.K() && imageReceiver.J()) {
             ch0 B = imageReceiver.B();
@@ -89,15 +89,15 @@ public final class k9 extends j9 {
     @Override
     public final void c(View view) {
         ch.g0 g0Var = this.f11976c;
-        if (g0Var.f5076f == view) {
+        if (g0Var.f5079f == view) {
             return;
         }
-        if (g0Var.f5077g) {
+        if (g0Var.f5080g) {
             g0Var.b(false);
-            g0Var.f5076f = view;
+            g0Var.f5079f = view;
             g0Var.b(true);
             return;
         }
-        g0Var.f5076f = view;
+        g0Var.f5079f = view;
     }
 }

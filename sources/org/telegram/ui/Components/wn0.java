@@ -4,22 +4,22 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class wn0 implements TextWatcher {
-    public final int f41408a;
-    public final po0 f41409b;
+    public final int f41411a;
+    public final po0 f41412b;
 
     public wn0(po0 po0Var, int i7) {
-        this.f41408a = i7;
-        this.f41409b = po0Var;
+        this.f41411a = i7;
+        this.f41412b = po0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f41408a) {
+        switch (this.f41411a) {
             case 0:
                 org.telegram.messenger.g0.h3(new wa0(this, 28));
                 return;
             default:
-                po0 po0Var = this.f41409b;
+                po0 po0Var = this.f41412b;
                 io0 io0Var = po0Var.G1;
                 cv0 cv0Var = po0Var.M1;
                 v00 v00Var = po0Var.f38367u2;
@@ -55,12 +55,12 @@ public final class wn0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f41408a;
+        int i12 = this.f41411a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f41408a;
+        int i12 = this.f41411a;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

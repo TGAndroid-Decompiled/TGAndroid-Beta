@@ -11,14 +11,14 @@ import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.e50;
 import org.telegram.ui.f60;
 import org.telegram.ui.ho;
-import org.telegram.ui.jl0;
+import org.telegram.ui.kl0;
 import org.telegram.ui.lm;
 import org.telegram.ui.ln;
 import org.telegram.ui.qn;
 import org.telegram.ui.sj0;
 import org.telegram.ui.wn;
 import org.telegram.ui.xa1;
-import org.telegram.ui.ym0;
+import org.telegram.ui.zm0;
 public final class b3 implements RequestDelegate {
     public final int f13921a;
     public final boolean f13922b;
@@ -85,12 +85,12 @@ public final class b3 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new wn((Object) ((sj0) this.f13923c), (Object) tL_error, (Object) tLObject, this.f13922b, 10));
                 return;
             case 9:
-                org.telegram.messenger.g0.h3(new wn((Object) ((jl0) this.f13923c), (Object) tL_error, (Object) tLObject, this.f13922b, 13));
+                org.telegram.messenger.g0.h3(new wn((Object) ((kl0) this.f13923c), (Object) tL_error, (Object) tLObject, this.f13922b, 13));
                 return;
             case 10:
-                ym0 ym0Var = (ym0) this.f13923c;
+                zm0 zm0Var = (zm0) this.f13923c;
                 if (tLObject != null) {
-                    org.telegram.messenger.g0.h3(new f60(ym0Var, tLObject, this.f13922b, 5));
+                    org.telegram.messenger.g0.h3(new f60(zm0Var, tLObject, this.f13922b, 5));
                     return;
                 }
                 return;

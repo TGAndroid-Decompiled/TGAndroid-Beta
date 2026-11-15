@@ -194,7 +194,7 @@ public final class c0 implements ib.b, li0, hy0 {
                 if (p10 == null) {
                     ((a0.f) this.f910c).put(obj, vVar);
                     ?? obj2 = new Object();
-                    obj2.f6071c = new Object();
+                    obj2.f6074c = new Object();
                     obj2.d = new a0.l(0);
                     ((a0.f) this.d).put(vVar, new p4.h(obj, obj2, j1Var, y0Var));
                 } else {
@@ -244,53 +244,53 @@ public final class c0 implements ib.b, li0, hy0 {
         float f10 = i7;
         rectF.set(0.0f, 0.0f, f10, org.telegram.messenger.g0.L(14.66f));
         canvas.saveLayerAlpha(rectF, 255, 31);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             canvas.translate(f10, 0.0f);
         }
         int L = i7 - org.telegram.messenger.g0.L(25.0f);
         int i10 = 0;
         while (i10 < arrayList.size()) {
             sr srVar = (sr) arrayList.get(i10);
-            L = i20.w(4.0f, srVar.f39398g, L);
+            L = i20.w(4.0f, srVar.f39396g, L);
             if (L < 0) {
                 break;
             }
-            if (hd.f24101a0) {
-                canvas.translate(-srVar.f39398g, 0.0f);
+            if (hd.f24104a0) {
+                canvas.translate(-srVar.f39396g, 0.0f);
                 srVar.a(canvas);
                 canvas.translate(-org.telegram.messenger.g0.L(4.0f), 0.0f);
             } else {
                 srVar.a(canvas);
-                canvas.translate(org.telegram.messenger.g0.L(4.0f) + srVar.f39398g, 0.0f);
+                canvas.translate(org.telegram.messenger.g0.L(4.0f) + srVar.f39396g, 0.0f);
             }
             i10++;
         }
         if (i10 < arrayList.size()) {
             int size = arrayList.size() - i10;
             sr srVar2 = (sr) this.f911e;
-            if (srVar2 == null || srVar2.f39393a != size) {
+            if (srVar2 == null || srVar2.f39391a != size) {
                 ?? obj = new Object();
-                obj.f39393a = size;
+                obj.f39391a = size;
                 oy0 oy0Var = new oy0(i5.c.i(size, "+"), 10.0f, org.telegram.messenger.g0.o());
                 oy0Var.r((t2) this.f909b);
-                obj.f39395c = oy0Var;
+                obj.f39393c = oy0Var;
                 int L2 = org.telegram.messenger.g0.L(9.32f);
-                oy0 oy0Var2 = obj.f39395c;
-                obj.f39398g = L2 + ((int) oy0Var2.f38105c);
+                oy0 oy0Var2 = obj.f39393c;
+                obj.f39396g = L2 + ((int) oy0Var2.f38103c);
                 oy0Var2.i();
                 int i11 = j6.f29033n8;
-                obj.f39397f = i11;
-                obj.f39396e = true;
+                obj.f39395f = i11;
+                obj.f39394e = true;
                 obj.d = j6.x0(null, i11, false);
                 this.f911e = obj;
             }
-            if (hd.f24101a0) {
-                canvas.translate(-((sr) this.f911e).f39398g, 0.0f);
+            if (hd.f24104a0) {
+                canvas.translate(-((sr) this.f911e).f39396g, 0.0f);
                 ((sr) this.f911e).a(canvas);
                 canvas.translate(-org.telegram.messenger.g0.L(4.0f), 0.0f);
             } else {
                 ((sr) this.f911e).a(canvas);
-                canvas.translate(org.telegram.messenger.g0.L(4.0f) + ((sr) this.f911e).f39398g, 0.0f);
+                canvas.translate(org.telegram.messenger.g0.L(4.0f) + ((sr) this.f911e).f39396g, 0.0f);
             }
         }
         canvas.restore();
@@ -304,7 +304,7 @@ public final class c0 implements ib.b, li0, hy0 {
 
     @Override
     public Object mo24get() {
-        return new gb.n((o9.g) ((d9.o) this.f909b).f7640b, (jb.l) ((ib.c) this.f910c).mo24get(), (id.h) ((ib.c) this.d).mo24get(), (w0) ((ib.c) this.f911e).mo24get());
+        return new gb.n((o9.g) ((d9.o) this.f909b).f7643b, (jb.l) ((ib.c) this.f910c).mo24get(), (id.h) ((ib.c) this.d).mo24get(), (w0) ((ib.c) this.f911e).mo24get());
     }
 
     @Override

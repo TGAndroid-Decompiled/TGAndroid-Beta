@@ -31,7 +31,7 @@ public final class h0 implements og.e {
             default:
                 fd0 fd0Var = ((gd0) frameLayout).f34906a;
                 if (fd0Var != null) {
-                    PhotoViewer photoViewer = ((po0) fd0Var).f50330a;
+                    PhotoViewer photoViewer = ((po0) fd0Var).f50321a;
                     Drawable[] drawableArr = PhotoViewer.Z8;
                     return photoViewer.H0();
                 }
@@ -93,7 +93,7 @@ public final class h0 implements og.e {
                 if (fd0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((po0) fd0Var).f50330a;
+                PhotoViewer photoViewer = ((po0) fd0Var).f50321a;
                 Drawable[] drawableArr = PhotoViewer.Z8;
                 return photoViewer.I0(-90.0f, false, null);
         }

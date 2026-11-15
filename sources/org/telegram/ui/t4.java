@@ -20,24 +20,24 @@ import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.RadialProgress2;
 public final class t4 extends FrameLayout {
-    public final int f51347a = 0;
-    public int f51348b;
-    public boolean f51349c;
+    public final int f51348a = 0;
+    public int f51349b;
+    public boolean f51350c;
     public Object d;
-    public final Object f51350e;
-    public Object f51351f;
+    public final Object f51351e;
+    public Object f51352f;
     public Object h;
 
     public t4(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f51348b = org.telegram.messenger.g0.L(64.0f);
+        this.f51349b = org.telegram.messenger.g0.L(64.0f);
         org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
         this.d = i9Var;
         i9Var.setAspectFit(true);
         i9Var.setRoundRadius(org.telegram.messenger.g0.L(12.0f));
         addView(i9Var, c8.ja.c(-1.0f, -1));
         RadialProgress2 radialProgress2 = new RadialProgress2(this, e6Var);
-        this.f51350e = radialProgress2;
+        this.f51351e = radialProgress2;
         radialProgress2.E = 0.0f;
         radialProgress2.setIcon(10, false, false);
         radialProgress2.setColors(1107296256, 1107296256, -1, -1);
@@ -45,8 +45,8 @@ public final class t4 extends FrameLayout {
 
     public void a(int i7) {
         TextView textView = (TextView) this.d;
-        this.f51348b = i7;
-        ((sg.m) this.f51350e).f56708c = i7;
+        this.f51349b = i7;
+        ((sg.m) this.f51351e).f56708c = i7;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
@@ -63,15 +63,15 @@ public final class t4 extends FrameLayout {
 
     public void b() {
         sg.q qVar = (sg.q) this.h;
-        this.f51349c = true;
-        sg.m mVar = (sg.m) this.f51350e;
+        this.f51350c = true;
+        sg.m mVar = (sg.m) this.f51351e;
         mVar.d = i0.a.o(mVar.f56709e.f56747q1, 255);
         mVar.a();
         mVar.invalidate();
-        EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f51351f;
+        EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f51352f;
         int selectionStart = editTextBoldCursor.getSelectionStart();
         int selectionEnd = editTextBoldCursor.getSelectionEnd();
-        int i7 = this.f51348b;
+        int i7 = this.f51349b;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
@@ -84,20 +84,20 @@ public final class t4 extends FrameLayout {
             editTextBoldCursor.setText(String.valueOf(Color.red(qVar.f56747q1)));
         }
         editTextBoldCursor.setSelection(selectionStart, selectionEnd);
-        this.f51349c = false;
+        this.f51350c = false;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         org.telegram.ui.Components.s80 s80Var;
-        int i7 = this.f51347a;
+        int i7 = this.f51348a;
         float f10 = 1.0f;
-        Object obj = this.f51350e;
+        Object obj = this.f51351e;
         switch (i7) {
             case 0:
                 RadialProgress2 radialProgress2 = (RadialProgress2) obj;
                 super.dispatchDraw(canvas);
-                if (this.f51349c) {
+                if (this.f51350c) {
                     Drawable t6 = ((org.telegram.ui.Components.i9) this.d).getImageReceiver().t();
                     if ((t6 instanceof org.telegram.ui.Components.t5) && ((org.telegram.ui.Components.t5) t6).d[4] > 0) {
                         ValueAnimator valueAnimator = (ValueAnimator) this.h;
@@ -108,54 +108,54 @@ public final class t4 extends FrameLayout {
                             } else {
                                 s80Var = radialProgress2.f32661i;
                             }
-                            if (s80Var.f39235w < 1.0f) {
+                            if (s80Var.f39232w < 1.0f) {
                                 radialProgress2.p(true, 1.0f);
                             }
                             ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ValueAnimator) this.h).getAnimatedValue()).floatValue(), 0.0f);
-                            this.f51351f = ofFloat;
+                            this.f51352f = ofFloat;
                             ofFloat.addListener(new ki.s3(this, 17));
-                            ((ValueAnimator) this.f51351f).addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                                public final t4 f51097b;
+                            ((ValueAnimator) this.f51352f).addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                                public final t4 f51093b;
 
                                 {
-                                    this.f51097b = this;
+                                    this.f51093b = this;
                                 }
 
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                                     switch (r2) {
                                         case 0:
-                                            this.f51097b.invalidate();
+                                            this.f51093b.invalidate();
                                             return;
                                         default:
-                                            this.f51097b.invalidate();
+                                            this.f51093b.invalidate();
                                             return;
                                     }
                                 }
                             });
-                            ((ValueAnimator) this.f51351f).setDuration(250L);
-                            ((ValueAnimator) this.f51351f).start();
+                            ((ValueAnimator) this.f51352f).setDuration(250L);
+                            ((ValueAnimator) this.f51352f).start();
                         } else {
-                            this.f51349c = false;
+                            this.f51350c = false;
                         }
                     } else if (((ValueAnimator) this.h) == null) {
                         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
                         this.h = ofFloat2;
                         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final t4 f51097b;
+                            public final t4 f51093b;
 
                             {
-                                this.f51097b = this;
+                                this.f51093b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                                 switch (r2) {
                                     case 0:
-                                        this.f51097b.invalidate();
+                                        this.f51093b.invalidate();
                                         return;
                                     default:
-                                        this.f51097b.invalidate();
+                                        this.f51093b.invalidate();
                                         return;
                                 }
                             }
@@ -164,7 +164,7 @@ public final class t4 extends FrameLayout {
                         ((ValueAnimator) this.h).setDuration(250L);
                         ((ValueAnimator) this.h).start();
                     }
-                    ValueAnimator valueAnimator2 = (ValueAnimator) this.f51351f;
+                    ValueAnimator valueAnimator2 = (ValueAnimator) this.f51352f;
                     if (valueAnimator2 != null) {
                         radialProgress2.E = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                         radialProgress2.draw(canvas);
@@ -182,16 +182,16 @@ public final class t4 extends FrameLayout {
             case 1:
                 Paint paint = (Paint) obj;
                 t71 t71Var = (t71) this.h;
-                s61 s61Var = t71Var.f51408a;
-                if (this.f51349c) {
+                s61 s61Var = t71Var.f51409a;
+                if (this.f51350c) {
                     RectF rectF = org.telegram.messenger.g0.P;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                    org.telegram.ui.ActionBar.j6.t(this, t71Var.f51477z0, s61Var);
+                    org.telegram.ui.ActionBar.j6.t(this, t71Var.f51478z0, s61Var);
                     Paint d = s61Var.d("paintChatActionBackground");
                     ColorFilter colorFilter = d.getColorFilter();
-                    d.setColorFilter((ColorMatrixColorFilter) this.f51351f);
-                    j71 j71Var = t71Var.f51477z0;
+                    d.setColorFilter((ColorMatrixColorFilter) this.f51352f);
+                    j71 j71Var = t71Var.f51478z0;
                     if (j71Var != null && (j71Var.getBackground() instanceof org.telegram.ui.Components.ra0) && t71Var.n1 < 0.0f) {
                         f10 = 0.33f;
                     }
@@ -201,15 +201,15 @@ public final class t4 extends FrameLayout {
                     d.setAlpha(alpha);
                     d.setColorFilter(colorFilter);
                     if (t71Var.O1) {
-                        float f11 = t71Var.f51453p1;
+                        float f11 = t71Var.f51454p1;
                         if (f11 > 0.0f) {
-                            canvas.drawColor(i0.a.o(-16777216, (int) (f11 * 255.0f * t71Var.f51455q1)));
+                            canvas.drawColor(i0.a.o(-16777216, (int) (f11 * 255.0f * t71Var.f51456q1)));
                         }
                     }
                     canvas.save();
-                    if (((LinearGradient) this.d) == null || this.f51348b != getHeight()) {
+                    if (((LinearGradient) this.d) == null || this.f51349b != getHeight()) {
                         int height = getHeight();
-                        this.f51348b = height;
+                        this.f51349b = height;
                         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                         this.d = linearGradient;
                         paint.setShader(linearGradient);
@@ -228,13 +228,13 @@ public final class t4 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f51347a) {
+        switch (this.f51348a) {
             case 0:
                 super.onLayout(z10, i7, i10, i11, i12);
                 int width = getWidth() / 2;
                 int height = getHeight() / 2;
-                int i13 = this.f51348b;
-                ((RadialProgress2) this.f51350e).r(width - i13, height - i13, width + i13, height + i13);
+                int i13 = this.f51349b;
+                ((RadialProgress2) this.f51351e).r(width - i13, height - i13, width + i13, height + i13);
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -244,7 +244,7 @@ public final class t4 extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f51347a) {
+        switch (this.f51348a) {
             case 1:
                 super.onMeasure(i7, i10);
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
@@ -273,10 +273,10 @@ public final class t4 extends FrameLayout {
         textView.setTypeface(org.telegram.messenger.g0.o());
         addView(textView, c8.ja.d(-2, -2.0f, 3, 8.0f, 0.0f, 8.0f, 0.0f));
         View mVar = new sg.m(qVar, context);
-        this.f51350e = mVar;
+        this.f51351e = mVar;
         addView(mVar, c8.ja.d(-1, -1.0f, 3, 0.0f, 16.0f, 78.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f51351f = editTextBoldCursor;
+        this.f51352f = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 16.0f);
         editTextBoldCursor.setBackground(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(10.0f), 436207615));
         editTextBoldCursor.setPadding(0, 0, 0, 0);
@@ -296,13 +296,13 @@ public final class t4 extends FrameLayout {
     public t4(t71 t71Var, Context context, boolean z10) {
         super(context);
         this.h = t71Var;
-        this.f51349c = z10;
+        this.f51350c = z10;
         Paint paint = new Paint(3);
-        this.f51350e = paint;
+        this.f51351e = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         ColorMatrix colorMatrix = new ColorMatrix();
         org.telegram.messenger.g0.i(colorMatrix, 0.4f);
         org.telegram.messenger.g0.n2(colorMatrix, 0.65f);
-        this.f51351f = new ColorMatrixColorFilter(colorMatrix);
+        this.f51352f = new ColorMatrixColorFilter(colorMatrix);
     }
 }

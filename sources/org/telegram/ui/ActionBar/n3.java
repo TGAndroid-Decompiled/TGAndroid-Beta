@@ -33,10 +33,10 @@ public final class n3 implements z10 {
         gc b10 = gc.b(wallPaper.document);
         ImageReceiver imageReceiver = new ImageReceiver(null);
         imageReceiver.A1 = false;
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         int min = Math.min(point.x, point.y);
         int max = Math.max(point.x, point.y);
-        imageReceiver.q0(b10, (min / org.telegram.messenger.g0.f23608p) + "_" + (max / org.telegram.messenger.g0.f23608p) + "_f", null, ".jpg", wallPaper, 1);
+        imageReceiver.q0(b10, (min / org.telegram.messenger.g0.f23610p) + "_" + (max / org.telegram.messenger.g0.f23610p) + "_f", null, ".jpg", wallPaper, 1);
         imageReceiver.f22276h1 = new org.telegram.tgnet.f(this.f29405c, this.d, this.f29406e, z10Var);
         fc.D().M(imageReceiver, null);
     }

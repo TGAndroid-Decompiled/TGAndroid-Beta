@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class e8 implements org.telegram.ui.ActionBar.q1, cq {
-    public final int f34251a;
-    public final q8 f34252b;
+    public final int f34238a;
+    public final q8 f34239b;
 
     public e8(q8 q8Var, int i7) {
-        this.f34251a = i7;
-        this.f34252b = q8Var;
+        this.f34238a = i7;
+        this.f34239b = q8Var;
     }
 
     @Override
     public void c(int i7, int i10, boolean z10) {
-        q8 q8Var = this.f34252b;
+        q8 q8Var = this.f34239b;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -58,7 +58,7 @@ public final class e8 implements org.telegram.ui.ActionBar.q1, cq {
             }
             q8Var.Z.f37163c = i7;
         }
-        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25564r4, new Object[0]);
+        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25565r4, new Object[0]);
         q8Var.f38562a.invalidate();
     }
 
@@ -69,12 +69,12 @@ public final class e8 implements org.telegram.ui.ActionBar.q1, cq {
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f34251a) {
+        switch (this.f34238a) {
             case 0:
-                this.f34252b.finishFragment();
+                this.f34239b.finishFragment();
                 return;
             default:
-                this.f34252b.finishFragment();
+                this.f34239b.finishFragment();
                 return;
         }
     }

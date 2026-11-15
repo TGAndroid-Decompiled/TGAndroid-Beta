@@ -100,8 +100,8 @@ public final class d implements tf {
         gg ggVar = (gg) this.f1020f;
         r7 r7Var = new r7(3, (byte) 0);
         a0 a0Var = new a0(17, false);
-        a0Var.f1706b = Long.valueOf(j3 & Long.MAX_VALUE);
-        a0Var.f1707c = (eb) this.d;
+        a0Var.f1713b = Long.valueOf(j3 & Long.MAX_VALUE);
+        a0Var.f1714c = (eb) this.d;
         a0Var.d = Boolean.valueOf(z10);
         r7Var.f617b = new ta(a0Var);
         int i10 = aVar.f58000e;
@@ -150,21 +150,21 @@ public final class d implements tf {
         r7Var.d = fVar.f1026e.a();
         if (ggVar != null) {
             List list = ggVar.d;
-            g gVar = c8.i.f4538b;
+            g gVar = c8.i.f4541b;
             Object[] array = list.toArray();
             int length = array.length;
             d8.a(length, array);
             r7Var.f620f = c8.i.m(length, array);
-            List<fg> list2 = ggVar.f4515a;
+            List<fg> list2 = ggVar.f4518a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i12 = 0;
                 for (fg fgVar : list2) {
                     c0 c0Var = new c0(2);
-                    c0Var.f909b = Integer.valueOf(fgVar.f4496c & Integer.MAX_VALUE);
+                    c0Var.f909b = Integer.valueOf(fgVar.f4499c & Integer.MAX_VALUE);
                     c0Var.f910c = Integer.valueOf(fgVar.d & Integer.MAX_VALUE);
-                    c0Var.d = Integer.valueOf(fgVar.f4497e & Integer.MAX_VALUE);
-                    c0Var.f911e = Integer.valueOf(fgVar.f4498f & Integer.MAX_VALUE);
+                    c0Var.d = Integer.valueOf(fgVar.f4500e & Integer.MAX_VALUE);
+                    c0Var.f911e = Integer.valueOf(fgVar.f4501f & Integer.MAX_VALUE);
                     re reVar = new re(c0Var);
                     int i13 = i12 + 1;
                     int length2 = objArr.length;

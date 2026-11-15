@@ -22,12 +22,12 @@ public final class oe extends fn0 {
         this.f28556f = -1L;
         this.f28559j = new h2.f((int[]) null);
         e();
-        this.f34660z = new ArrayList();
+        this.f34664z = new ArrayList();
         this.G = new ArrayList();
-        this.f34653r = peer;
-        this.f34654s = tL_channels_sendAsPeers;
+        this.f34657r = peer;
+        this.f34658s = tL_channels_sendAsPeers;
         bi.g2 g2Var = new bi.g2(25, context, this);
-        this.f34655t = g2Var;
+        this.f34659t = g2Var;
         g2Var.setLayoutParams(c8.ja.c(-2.0f, -2));
         setContentView(g2Var);
         setWidth(-2);
@@ -41,16 +41,16 @@ public final class oe extends fn0 {
         g2Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         int L = org.telegram.messenger.g0.L(450.0f);
         if (anVar == null) {
-            width = org.telegram.messenger.g0.f23609q.x;
+            width = org.telegram.messenger.g0.f23611q.x;
         } else {
-            width = anVar.f45278m1.getWidth();
+            width = anVar.f45277m1.getWidth();
         }
         int i7 = (int) (width * 0.75f);
         zm0 zm0Var = new zm0(context, i7, L);
-        this.f34650o = zm0Var;
+        this.f34654o = zm0Var;
         zm0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f34651p = textView;
+        this.f34655p = textView;
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f29013m5, e6Var);
         textView.setTextSize(1, 16.0f);
         textView.setText(org.telegram.messenger.hd.M0(2131745600, null));
@@ -63,29 +63,29 @@ public final class oe extends fn0 {
         uj0 uj0Var = new uj0(context, null);
         this.v = uj0Var;
         v4.b0 b0Var = new v4.b0();
-        this.f34657w = b0Var;
+        this.f34661w = b0Var;
         uj0Var.setLayoutManager(b0Var);
         uj0Var.setAdapter(new an0(e6Var, arrayList, npVar, i7, peer));
         uj0Var.j(new bn0(this));
         uj0Var.setOnItemClickListener(new gj0(arrayList, context, anVar, z10, hVar) {
-            public final List f42040b;
-            public final Context f42041c;
+            public final List f42042b;
+            public final Context f42043c;
             public final org.telegram.ui.an d;
-            public final a3.h f42042e;
+            public final a3.h f42044e;
 
             {
-                this.f42042e = hVar;
+                this.f42044e = hVar;
             }
 
             @Override
             public final void b(int i10, View view) {
-                fn0.k(oe.this, this.f42040b, this.f42041c, this.d, this.f42042e, view, i10);
+                fn0.k(oe.this, this.f42042b, this.f42043c, this.d, this.f42044e, view, i10);
             }
         });
         uj0Var.setOverScrollMode(2);
         frameLayout.addView(uj0Var);
         View view = new View(context);
-        this.f34656u = view;
+        this.f34660u = view;
         Drawable drawable = context.getDrawable(2131231237);
         drawable.setAlpha(153);
         view.setBackground(drawable);
@@ -97,7 +97,7 @@ public final class oe extends fn0 {
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f34660z;
+        ArrayList arrayList = this.f34664z;
         ChatActivityEnterView chatActivityEnterView = this.H;
         if (chatActivityEnterView.f32273r0 != this) {
             super.dismiss();
@@ -105,7 +105,7 @@ public final class oe extends fn0 {
         }
         chatActivityEnterView.f32273r0 = null;
         int i7 = 0;
-        if (!this.f34652q) {
+        if (!this.f34656q) {
             l(new r1.g[0]);
             chatActivityEnterView.f32265q0.a(true, true, 0.0f);
             return;

@@ -8,8 +8,8 @@ public class ImportingService extends Service implements is {
 
     public ImportingService() {
         for (int i7 = 0; i7 < 4; i7++) {
-            ns.f(i7).b(this, ns.f25587v1);
-            ns.f(i7).b(this, ns.f25594w1);
+            ns.f(i7).b(this, ns.f25588v1);
+            ns.f(i7).b(this, ns.f25595w1);
         }
     }
 
@@ -24,7 +24,7 @@ public class ImportingService extends Service implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if ((i7 == ns.f25587v1 || i7 == ns.f25594w1) && !a() && !a()) {
+        if ((i7 == ns.f25588v1 || i7 == ns.f25595w1) && !a() && !a()) {
             stopSelf();
         }
     }
@@ -41,12 +41,12 @@ public class ImportingService extends Service implements is {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.i0(t0.f26600b).b(5, null);
+        new e0.i0(t0.f26609b).b(5, null);
         for (int i7 = 0; i7 < 4; i7++) {
-            ns.f(i7).n(this, ns.f25587v1);
-            ns.f(i7).n(this, ns.f25594w1);
+            ns.f(i7).n(this, ns.f25588v1);
+            ns.f(i7).n(this, ns.f25595w1);
         }
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("destroy import service");
         }
     }
@@ -61,12 +61,12 @@ public class ImportingService extends Service implements is {
             stopSelf();
             return 2;
         }
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("start import service");
         }
         if (this.f22316a == null) {
             at.i();
-            e0.q qVar = new e0.q(t0.f26600b, null);
+            e0.q qVar = new e0.q(t0.f26609b, null);
             this.f22316a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
@@ -98,7 +98,7 @@ public class ImportingService extends Service implements is {
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        new e0.i0(t0.f26600b).e(null, 5, this.f22316a.b());
+        new e0.i0(t0.f26609b).e(null, 5, this.f22316a.b());
         return 2;
     }
 

@@ -60,7 +60,7 @@ public abstract class f {
         IconCompat c10;
         IconCompat iconCompat = bVar.h;
         if (iconCompat != null) {
-            int i7 = iconCompat.f2074a;
+            int i7 = iconCompat.f2077a;
             if (i7 != 6 && i7 != 4) {
                 return true;
             }
@@ -70,7 +70,7 @@ public abstract class f {
             }
             if (i7 == 6) {
                 c10 = new IconCompat(5);
-                c10.f2075b = decodeStream;
+                c10.f2078b = decodeStream;
             } else {
                 c10 = IconCompat.c(decodeStream);
             }

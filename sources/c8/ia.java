@@ -7,7 +7,7 @@ public abstract class ia {
     public static void a() {
         SharedPreferences.Editor edit = np.e1().edit();
         for (c30 c30Var : c30.values()) {
-            edit.remove(c30Var.f33491a);
+            edit.remove(c30Var.f33494a);
         }
         edit.apply();
     }

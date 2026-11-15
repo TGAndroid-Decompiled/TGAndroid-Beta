@@ -27,8 +27,8 @@ public final class s41 extends oy {
         switch (this.X) {
             case 2:
                 nt0 nt0Var = (nt0) this.Y;
-                nt0Var.f37714b = 100.0f;
-                nt0Var.f37713a = 100.0f;
+                nt0Var.f37703b = 100.0f;
+                nt0Var.f37702a = 100.0f;
                 return nt0Var;
             default:
                 return super.D1(i7);
@@ -67,13 +67,13 @@ public final class s41 extends oy {
     public int W0(v4.b1 b1Var) {
         switch (this.X) {
             case 0:
-                if (((u41) this.Y).f39897i3) {
-                    return org.telegram.messenger.g0.f23609q.y;
+                if (((u41) this.Y).f39894i3) {
+                    return org.telegram.messenger.g0.f23611q.y;
                 }
                 return super.W0(b1Var);
             case 1:
-                if (((u41) this.Y).f39897i3) {
-                    return org.telegram.messenger.g0.f23609q.y;
+                if (((u41) this.Y).f39894i3) {
+                    return org.telegram.messenger.g0.f23611q.y;
                 }
                 return super.W0(b1Var);
             default:

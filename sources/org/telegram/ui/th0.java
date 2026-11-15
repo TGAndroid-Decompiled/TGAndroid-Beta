@@ -7,18 +7,18 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.RadioButton;
 public final class th0 extends FrameLayout {
-    public TextView f51587a;
-    public RadioButton f51588b;
-    public org.telegram.ui.Components.fp f51589c;
+    public TextView f51588a;
+    public RadioButton f51589b;
+    public org.telegram.ui.Components.fp f51590c;
     public boolean d;
-    public sh0 f51590e;
+    public sh0 f51591e;
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
         if (this.d) {
             float f11 = 60.0f;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 60.0f;
@@ -26,7 +26,7 @@ public final class th0 extends FrameLayout {
             float L = org.telegram.messenger.g0.L(f10);
             float height = getHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (!org.telegram.messenger.hd.f24101a0) {
+            if (!org.telegram.messenger.hd.f24104a0) {
                 f11 = 0.0f;
             }
             canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
@@ -38,7 +38,7 @@ public final class th0 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f51588b.f32696f);
+        accessibilityNodeInfo.setChecked(this.f51589b.f32696f);
     }
 
     @Override

@@ -25,39 +25,39 @@ public final class y8 {
     public boolean P;
     public long S;
     public volatile boolean T;
-    public final int f27668a;
-    public boolean f27669b;
-    public boolean f27670c;
+    public final int f27670a;
+    public boolean f27671b;
+    public boolean f27672c;
     public int d;
-    public int f27671e;
-    public boolean f27674i;
-    public ArrayList f27675j;
-    public int f27676k;
-    public final String f27677l;
-    public int f27678m;
-    public byte[] f27679n;
-    public t7 f27680o;
-    public int f27683r;
-    public long f27684s;
-    public long f27685t;
-    public int f27686u;
+    public int f27673e;
+    public boolean f27676i;
+    public ArrayList f27677j;
+    public int f27678k;
+    public final String f27679l;
+    public int f27680m;
+    public byte[] f27681n;
+    public t7 f27682o;
+    public int f27685r;
+    public long f27686s;
+    public long f27687t;
+    public int f27688u;
     public long v;
-    public long f27687w;
-    public int f27688x;
-    public byte[] f27689y;
-    public byte[] f27690z;
-    public int f27672f = 4;
-    public final int[] f27673g = new int[8];
+    public long f27689w;
+    public int f27690x;
+    public byte[] f27691y;
+    public byte[] f27692z;
+    public int f27674f = 4;
+    public final int[] f27675g = new int[8];
     public int h = 65536;
-    public final SparseIntArray f27681p = new SparseIntArray();
-    public final ArrayList f27682q = new ArrayList();
+    public final SparseIntArray f27683p = new SparseIntArray();
+    public final ArrayList f27684q = new ArrayList();
     public final SparseArray Q = new SparseArray();
     public final boolean[] R = {false, false};
 
     public y8(int i7, int i10, long j3, String str, boolean z10) {
         boolean z11;
-        this.f27668a = i7;
-        this.f27677l = str;
+        this.f27670a = i7;
+        this.f27679l = str;
         this.B = z10;
         this.G = j3;
         this.M = i10;
@@ -72,23 +72,23 @@ public final class y8 {
     public final void a() {
         if (this.P) {
             if (this.D) {
-                long j3 = this.f27685t;
+                long j3 = this.f27687t;
                 long j10 = this.h;
-                this.f27686u = ((int) ((((j3 - j10) + j10) - 1) / j10)) + 1;
+                this.f27688u = ((int) ((((j3 - j10) + j10) - 1) / j10)) + 1;
                 return;
             }
             long j11 = this.h;
-            this.f27686u = ((int) ((((this.f27685t - 1024) + j11) - 1) / j11)) + 1;
+            this.f27688u = ((int) ((((this.f27687t - 1024) + j11) - 1) / j11)) + 1;
             return;
         }
-        long j12 = this.f27685t;
+        long j12 = this.f27687t;
         long j13 = this.h;
-        this.f27686u = (int) (((j12 + j13) - 1) / j13);
+        this.f27688u = (int) (((j12 + j13) - 1) / j13);
     }
 
     public final void b() {
         if (this.L == null) {
-            this.L = t0.f26600b.getSharedPreferences("uploadinfo", 0);
+            this.L = t0.f26609b.getSharedPreferences("uploadinfo", 0);
         }
         SharedPreferences.Editor edit = this.L.edit();
         SharedPreferences.Editor remove = edit.remove(this.F + "_time");
@@ -107,24 +107,24 @@ public final class y8 {
         } catch (Exception e10) {
             a8.g(e10, true);
         }
-        String str = this.f27677l;
+        String str = this.f27679l;
         if (str == null) {
-            Set set = z0.f27858a;
+            Set set = z0.f27868a;
         } else {
-            z0.f27858a.remove(str);
+            z0.f27868a.remove(str);
         }
     }
 
     public final void c() {
-        if (this.f27678m != 0) {
+        if (this.f27680m != 0) {
             return;
         }
-        this.f27678m = 1;
-        String str = this.f27677l;
+        this.f27680m = 1;
+        String str = this.f27679l;
         if (str == null) {
-            Set set = z0.f27858a;
+            Set set = z0.f27868a;
         } else {
-            z0.f27858a.add(str);
+            z0.f27868a.add(str);
         }
         Utilities.d.c(new u8(this, 0));
     }
@@ -135,7 +135,7 @@ public final class y8 {
 
     public final void e() {
         int i7;
-        while (this.f27678m == 1 && (i7 = this.K) < this.f27671e) {
+        while (this.f27680m == 1 && (i7 = this.K) < this.f27673e) {
             d();
             if (this.K == i7) {
                 return;
@@ -146,13 +146,13 @@ public final class y8 {
     public final void f() {
         SharedPreferences.Editor edit = this.L.edit();
         edit.putInt(a8.p0.s(new StringBuilder(), this.F, "_time"), this.H);
-        edit.putLong(a8.p0.s(new StringBuilder(), this.F, "_size"), this.f27685t);
-        edit.putLong(a8.p0.s(new StringBuilder(), this.F, "_id"), this.f27684s);
+        edit.putLong(a8.p0.s(new StringBuilder(), this.F, "_size"), this.f27687t);
+        edit.putLong(a8.p0.s(new StringBuilder(), this.F, "_id"), this.f27686s);
         edit.remove(this.F + "_uploaded");
         if (this.B) {
-            edit.putString(a8.p0.s(new StringBuilder(), this.F, "_iv"), Utilities.f(this.f27690z));
+            edit.putString(a8.p0.s(new StringBuilder(), this.F, "_iv"), Utilities.f(this.f27692z));
             edit.putString(a8.p0.s(new StringBuilder(), this.F, "_ivc"), Utilities.f(this.A));
-            edit.putString(a8.p0.s(new StringBuilder(), this.F, "_key"), Utilities.f(this.f27689y));
+            edit.putString(a8.p0.s(new StringBuilder(), this.F, "_key"), Utilities.f(this.f27691y));
         }
         edit.commit();
     }

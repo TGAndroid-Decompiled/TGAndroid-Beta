@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class b60 implements org.telegram.ui.ActionBar.e1 {
-    public final int f33208a;
-    public final m60 f33209b;
+    public final int f33211a;
+    public final m60 f33212b;
 
     public b60(m60 m60Var, int i7) {
-        this.f33208a = i7;
-        this.f33209b = m60Var;
+        this.f33211a = i7;
+        this.f33212b = m60Var;
     }
 
     @Override
@@ -16,15 +16,15 @@ public final class b60 implements org.telegram.ui.ActionBar.e1 {
         i60 i60Var;
         m60 m60Var2;
         i60 i60Var2;
-        switch (this.f33208a) {
+        switch (this.f33211a) {
             case 0:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i60Var = (m60Var = this.f33209b).f37101m) != null && i60Var.isShowing()) {
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i60Var = (m60Var = this.f33212b).f37101m) != null && i60Var.isShowing()) {
                     m60Var.u();
                     return;
                 }
                 return;
             default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i60Var2 = (m60Var2 = this.f33209b).f37101m) != null && i60Var2.isShowing()) {
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i60Var2 = (m60Var2 = this.f33212b).f37101m) != null && i60Var2.isShowing()) {
                     m60Var2.u();
                     return;
                 }

@@ -181,8 +181,8 @@ public final class i extends FrameLayout implements is {
         fq fqVar = new fq(mutate, j02, 0, 0);
         int L = g0.L(56.0f);
         int L2 = g0.L(56.0f);
-        fqVar.f34672e = L;
-        fqVar.f34673f = L2;
+        fqVar.f34676e = L;
+        fqVar.f34677f = L2;
         this.f55041b = fqVar;
         Drawable drawable = getResources().getDrawable(2131232567);
         q6.x(this, drawable, j6.f28922h5, null, mode);
@@ -193,7 +193,7 @@ public final class i extends FrameLayout implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25540n4) {
+        if (i7 == ns.f25541n4) {
             d();
             this.E.getAdapter().f();
         }
@@ -242,7 +242,7 @@ public final class i extends FrameLayout implements is {
         hVar2.a(0.75f);
         gVar2.f55748m = hVar2;
         this.d = gVar2;
-        ns.e().c(this, ns.f25540n4);
+        ns.e().c(this, ns.f25541n4);
     }
 
     @Override
@@ -269,7 +269,7 @@ public final class i extends FrameLayout implements is {
         super.onDetachedFromWindow();
         this.f55042c.d();
         this.d.d();
-        ns.e().n(this, ns.f25540n4);
+        ns.e().n(this, ns.f25541n4);
     }
 
     @Override

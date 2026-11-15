@@ -8,7 +8,7 @@ import android.widget.TextView;
 import bi.b6;
 import bi.x5;
 import c8.ja;
-import di.ub;
+import di.tb;
 import di.z6;
 import hi.q4;
 import java.util.ArrayList;
@@ -162,24 +162,24 @@ public final class k extends p00 implements is {
                 q6.U(textView, i11, kVar.resourceProvider);
                 textView.setText(org.telegram.messenger.g0.X2(hd.M0(2131754322, null)));
                 linearLayout.addView(textView, ja.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
-                ub ubVar = new ub(kVar.getParentActivity(), 3);
-                ubVar.setPadding(org.telegram.messenger.g0.L(15.0f), 0, 0, 0);
-                ubVar.setTextSize(1, 16.0f);
-                q6.U(ubVar, i11, kVar.resourceProvider);
-                ubVar.setText(org.telegram.messenger.g0.X2(hd.M0(2131754321, null)));
-                linearLayout.addView(ubVar, ja.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
-                ub ubVar2 = new ub(kVar.getParentActivity(), 3);
-                ubVar2.setPadding(org.telegram.messenger.g0.L(15.0f), 0, 0, 0);
-                ubVar2.setTextSize(1, 16.0f);
-                q6.U(ubVar2, i11, kVar.resourceProvider);
-                ubVar2.setText(org.telegram.messenger.g0.X2(hd.M0(2131754320, null)));
-                linearLayout.addView(ubVar2, ja.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
-                ub ubVar3 = new ub(kVar.getParentActivity(), 3);
-                ubVar3.setPadding(org.telegram.messenger.g0.L(15.0f), 0, 0, 0);
-                ubVar3.setTextSize(1, 16.0f);
-                q6.U(ubVar3, i11, kVar.resourceProvider);
-                ubVar3.setText(org.telegram.messenger.g0.X2(hd.M0(2131754319, null)));
-                linearLayout.addView(ubVar3, ja.k(0.0f, 0.0f, 0.0f, 10.0f, -1, -2));
+                tb tbVar = new tb(kVar.getParentActivity(), 3);
+                tbVar.setPadding(org.telegram.messenger.g0.L(15.0f), 0, 0, 0);
+                tbVar.setTextSize(1, 16.0f);
+                q6.U(tbVar, i11, kVar.resourceProvider);
+                tbVar.setText(org.telegram.messenger.g0.X2(hd.M0(2131754321, null)));
+                linearLayout.addView(tbVar, ja.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                tb tbVar2 = new tb(kVar.getParentActivity(), 3);
+                tbVar2.setPadding(org.telegram.messenger.g0.L(15.0f), 0, 0, 0);
+                tbVar2.setTextSize(1, 16.0f);
+                q6.U(tbVar2, i11, kVar.resourceProvider);
+                tbVar2.setText(org.telegram.messenger.g0.X2(hd.M0(2131754320, null)));
+                linearLayout.addView(tbVar2, ja.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                tb tbVar3 = new tb(kVar.getParentActivity(), 3);
+                tbVar3.setPadding(org.telegram.messenger.g0.L(15.0f), 0, 0, 0);
+                tbVar3.setTextSize(1, 16.0f);
+                q6.U(tbVar3, i11, kVar.resourceProvider);
+                tbVar3.setText(org.telegram.messenger.g0.X2(hd.M0(2131754319, null)));
+                linearLayout.addView(tbVar3, ja.k(0.0f, 0.0f, 0.0f, 10.0f, -1, -2));
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, kVar.getParentActivity(), kVar.resourceProvider);
                 alertDialog$Builder.f28392a.S = hd.M0(2131754347, null);
                 alertDialog$Builder.o(linearLayout);
@@ -249,20 +249,20 @@ public final class k extends p00 implements is {
             return;
         }
         b41 b41Var = new b41(-2);
-        b41Var.f33174c = (rv) super.o0(getParentActivity());
+        b41Var.f33177c = (rv) super.o0(getParentActivity());
         arrayList.add(b41Var);
         arrayList.add(i.i(2131231810, hd.M0(2131753151, null), hd.M0(2131753152, null)));
         arrayList.add(i.i(2131232089, hd.M0(2131753149, null), hd.M0(2131753150, null)));
         arrayList.add(i.i(2131231806, hd.M0(2131753147, null), hd.M0(2131753148, null)));
         arrayList.add(b41.B(1, null));
         arrayList.add(b41.u(hd.M0(2131754344, null)));
-        int i10 = getMessagesController().f25305i6;
+        int i10 = getMessagesController().f25308i6;
         int i11 = this.f18378b0.commission_permille;
-        int i12 = getMessagesController().f25312j6;
+        int i12 = getMessagesController().f25315j6;
         ci.x xVar = new ci.x(2);
         a aVar = new a(this, 1);
         b41 b41Var2 = new b41(15);
-        b41Var2.f33194z = i11;
+        b41Var2.f33197z = i11;
         b41Var2.C = aVar;
         r7 r7Var = new r7();
         r7Var.f31356a = i10;
@@ -299,8 +299,8 @@ public final class k extends p00 implements is {
         int indexOf = list.indexOf(Integer.valueOf(this.f18378b0.duration_months));
         a aVar2 = new a(this, 2);
         b41 b41Var3 = new b41(14);
-        b41Var3.f33185p = strArr2;
-        b41Var3.f33194z = indexOf;
+        b41Var3.f33188p = strArr2;
+        b41Var3.f33197z = indexOf;
         b41Var3.C = aVar2;
         b41Var3.B = -1L;
         TL_payments.starRefProgram starrefprogram2 = this.f18377a0;
@@ -327,7 +327,7 @@ public final class k extends p00 implements is {
         arrayList.add(b41.B(3, null));
         if (!this.Z && this.f18378b0.end_date == 0) {
             b41 e10 = b41.e(4, hd.M0(2131754324, null));
-            e10.f33187r = true;
+            e10.f33190r = true;
             arrayList.add(e10);
             arrayList.add(b41.B(5, null));
         }
@@ -337,7 +337,7 @@ public final class k extends p00 implements is {
 
     public final TL_payments.starRefProgram I0() {
         TL_payments.starRefProgram starrefprogram = new TL_payments.starRefProgram();
-        starrefprogram.commission_permille = Utilities.j(50, getMessagesController().f25312j6, getMessagesController().f25305i6);
+        starrefprogram.commission_permille = Utilities.j(50, getMessagesController().f25315j6, getMessagesController().f25308i6);
         starrefprogram.duration_months = 1;
         return starrefprogram;
     }
@@ -397,7 +397,7 @@ public final class k extends p00 implements is {
         fVar.f58877z = j6.Wk;
         fVar.A = j6.Xk;
         fVar.b();
-        this.U.setStarParticlesView(this.f50099e);
+        this.U.setStarParticlesView(this.f50076e);
         this.T.addView(this.U, ja.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         j0(hd.M0(2131753143, null), hd.M0(2131753144, null), this.T, null);
         LinearLayout linearLayout = new LinearLayout(context);
@@ -406,12 +406,12 @@ public final class k extends p00 implements is {
         q6.h(j6.f28849d6, this.V, getResourceProvider());
         View view = new View(context);
         q6.h(j6.f28850d7, view, getResourceProvider());
-        this.V.addView(view, new LinearLayout.LayoutParams(ja.z(-1.0f), ja.z(1.0f / org.telegram.messenger.g0.f23608p)));
+        this.V.addView(view, new LinearLayout.LayoutParams(ja.z(-1.0f), ja.z(1.0f / org.telegram.messenger.g0.f23610p)));
         bi.s sVar = new bi.s(3, context, this.resourceProvider, true);
         sVar.setRoundRadius(24);
         this.W = sVar;
         sVar.i(hd.M0(2131754332, null), false, true);
-        this.W.setOnClickListener(new ai.t2(25, this, context));
+        this.W.setOnClickListener(new ai.v2(25, this, context));
         this.V.addView(this.W, ja.k(10.0f, 10.0f, 10.0f, 7.0f, -1, 48));
         z70 z70Var = new z70(context, this.resourceProvider);
         this.X = z70Var;
@@ -422,14 +422,14 @@ public final class k extends p00 implements is {
         this.V.addView(this.X, ja.k(32.0f, 1.0f, 32.0f, 8.0f, -1, -2));
         K0(false);
         ((FrameLayout) this.fragmentView).addView(this.V, ja.e(-1, -2, 87));
-        this.f50098c.setPadding(0, 0, 0, org.telegram.messenger.g0.L(84.0f));
-        this.f50098c.setOnItemClickListener(new b6(this, 17));
+        this.f50075c.setPadding(0, 0, 0, org.telegram.messenger.g0.L(84.0f));
+        this.f50075c.setOnItemClickListener(new b6(this, 17));
         v4.k kVar = new v4.k();
         kVar.f58564m = false;
         kVar.C = false;
         kVar.o(er.h);
         kVar.n(350L);
-        this.f50098c.setItemAnimator(kVar);
+        this.f50075c.setItemAnimator(kVar);
         return this.fragmentView;
     }
 
@@ -440,7 +440,7 @@ public final class k extends p00 implements is {
 
     @Override
     public final v4.h0 k0() {
-        x5 x5Var = new x5(this, this.f50098c, getParentActivity(), this.currentAccount, this.classGuid, new q4(this, 16), getResourceProvider(), 4);
+        x5 x5Var = new x5(this, this.f50075c, getParentActivity(), this.currentAccount, this.classGuid, new q4(this, 16), getResourceProvider(), 4);
         this.f18382f0 = x5Var;
         return x5Var;
     }
@@ -499,8 +499,8 @@ public final class k extends p00 implements is {
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f50098c.setPadding(0, 0, 0, org.telegram.messenger.g0.L(84.0f) + i12);
-        this.f50098c.setClipToPadding(false);
+        this.f50075c.setPadding(0, 0, 0, org.telegram.messenger.g0.L(84.0f) + i12);
+        this.f50075c.setClipToPadding(false);
         this.V.setPadding(0, 0, 0, i12);
     }
 

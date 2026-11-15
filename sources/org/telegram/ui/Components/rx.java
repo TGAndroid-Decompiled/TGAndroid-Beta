@@ -19,7 +19,7 @@ public final class rx extends oy {
         ly lyVar = this.Y;
         v4.h0 adapter = lyVar.f36956i0.getAdapter();
         qx qxVar = lyVar.f36962k0;
-        if (adapter == qxVar && qxVar.f38790y.isEmpty()) {
+        if (adapter == qxVar && qxVar.f38788y.isEmpty()) {
             return 0;
         }
         return B() - 1;
@@ -39,7 +39,7 @@ public final class rx extends oy {
         if (adapter == qxVar2) {
             int i10 = qxVar2.I;
             if (i7 > i10) {
-                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) qxVar2.f38790y.get((i7 - i10) - 1);
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) qxVar2.f38788y.get((i7 - i10) - 1);
                 document = botInlineResult.document;
                 if (document != null) {
                     arrayList2 = document.attributes;
@@ -64,8 +64,8 @@ public final class rx extends oy {
                 arrayList = document2.attributes;
                 return F1(document2, arrayList);
             }
-        } else if (!qxVar.f38790y.isEmpty()) {
-            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) qxVar.f38790y.get(i7);
+        } else if (!qxVar.f38788y.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) qxVar.f38788y.get(i7);
             document = botInlineResult2.document;
             if (document != null) {
                 arrayList2 = document.attributes;
@@ -94,18 +94,18 @@ public final class rx extends oy {
         int i7;
         int i10;
         nt0 nt0Var = this.X;
-        nt0Var.f37714b = 100.0f;
-        nt0Var.f37713a = 100.0f;
+        nt0Var.f37703b = 100.0f;
+        nt0Var.f37702a = 100.0f;
         if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i7 = w10.f28076w) != 0 && (i10 = w10.h) != 0) {
-            nt0Var.f37713a = i7;
-            nt0Var.f37714b = i10;
+            nt0Var.f37702a = i7;
+            nt0Var.f37703b = i10;
         }
         if (list != null) {
             for (int i11 = 0; i11 < list.size(); i11++) {
                 TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i11);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    nt0Var.f37713a = documentAttribute.f28058w;
-                    nt0Var.f37714b = documentAttribute.h;
+                    nt0Var.f37702a = documentAttribute.f28058w;
+                    nt0Var.f37703b = documentAttribute.h;
                     break;
                 }
             }

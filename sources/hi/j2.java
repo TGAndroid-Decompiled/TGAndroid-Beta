@@ -21,7 +21,7 @@ public final class j2 implements Runnable {
             default:
                 n2 n2Var2 = this.f14456b;
                 n2Var2.getClass();
-                this.f14457c.a(new ai.f0(n2Var2, 23));
+                this.f14457c.a(new ai.g0(n2Var2, 23));
                 return;
         }
     }

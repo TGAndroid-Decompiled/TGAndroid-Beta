@@ -22,9 +22,9 @@ public final class p1 implements g9.k, ua.a, t3.g {
             default:
                 return (z3.q) obj;
             case 3:
-                return Long.valueOf(((c4.a) obj).f4092b);
+                return Long.valueOf(((c4.a) obj).f4095b);
             case 4:
-                return Long.valueOf(((c4.a) obj).f4093c);
+                return Long.valueOf(((c4.a) obj).f4096c);
         }
     }
 

@@ -29,7 +29,7 @@ public final class ia extends r {
     @Override
     public final boolean e() {
         xb xbVar;
-        if (np.s1(this.V).D3() || ((xbVar = xb.f41635w) != null && xbVar.f41636a == 2)) {
+        if (np.s1(this.V).D3() || ((xbVar = xb.f41627w) != null && xbVar.f41628a == 2)) {
             return false;
         }
         int i7 = np.s1(this.V).X4;
@@ -45,8 +45,8 @@ public final class ia extends r {
             }
         }
         xb I = new cc(this.S1.m0, this.f14614a).I(2131623970, hd.M0(2131752556, null), X2);
-        I.f41636a = 2;
-        I.f41643j = 5000;
+        I.f41628a = 2;
+        I.f41635j = 5000;
         I.k(false);
         return true;
     }

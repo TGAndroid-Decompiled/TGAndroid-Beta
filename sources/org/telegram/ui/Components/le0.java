@@ -7,7 +7,7 @@ import android.graphics.RectF;
 public final class le0 extends qu0 {
     public boolean f36758a = false;
     public final Paint f36759b = new Paint(1);
-    public final int f36760c = org.telegram.messenger.m10.f24934t0;
+    public final int f36760c = org.telegram.messenger.m10.f24940t0;
     public long d = 0;
     public boolean f36761e = false;
     public final RectF f36762f = new RectF();

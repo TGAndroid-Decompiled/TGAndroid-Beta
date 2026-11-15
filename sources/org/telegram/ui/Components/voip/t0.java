@@ -25,17 +25,17 @@ import org.telegram.ui.Components.y31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.i30;
 public final class t0 extends LinearLayout {
-    public final ArrayList f40951a;
-    public RenderNode f40952b;
-    public float f40953c;
+    public final ArrayList f40954a;
+    public RenderNode f40955b;
+    public float f40956c;
     public i30 d;
-    public Runnable f40954e;
-    public int f40955f;
+    public Runnable f40957e;
+    public int f40958f;
     public final org.telegram.ui.ActionBar.r0 h;
 
     public t0(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f40951a = new ArrayList();
+        this.f40954a = new ArrayList();
         this.h = new org.telegram.ui.ActionBar.r0(this, 15);
         setOrientation(1);
         setGravity(80);
@@ -62,7 +62,7 @@ public final class t0 extends LinearLayout {
     public final void a(int i7, long j3, long j10, String str, boolean z10) {
         s0 s0Var;
         String str2;
-        ArrayList arrayList = this.f40951a;
+        ArrayList arrayList = this.f40954a;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -70,7 +70,7 @@ public final class t0 extends LinearLayout {
                 Object obj = arrayList.get(i10);
                 i10++;
                 s0Var = (s0) obj;
-                if (s0Var.f40930a == j10) {
+                if (s0Var.f40933a == j10) {
                     break;
                 }
             } else {
@@ -95,8 +95,8 @@ public final class t0 extends LinearLayout {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str2);
                 spannableStringBuilder.setSpan(new y31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
                 spannableStringBuilder.append((CharSequence) "  ");
-                s0Var.f40939x = spannableStringBuilder.length();
-                s0Var.f40933e.setText(spannableStringBuilder, TextView.BufferType.EDITABLE);
+                s0Var.f40942x = spannableStringBuilder.length();
+                s0Var.f40936e.setText(spannableStringBuilder, TextView.BufferType.EDITABLE);
                 arrayList.add(s0Var);
                 addView(s0Var, ja.k(0.0f, 6.0f, 0.0f, 0.0f, -1, -2));
                 while (arrayList.size() > 3) {
@@ -108,9 +108,9 @@ public final class t0 extends LinearLayout {
                 return;
             }
         }
-        s0Var.f40934f.e(s0Var.f40939x, -1, str.trim());
-        s0Var.f40931b = z10;
-        s0Var.f40932c = SystemClock.uptimeMillis();
+        s0Var.f40937f.e(s0Var.f40942x, -1, str.trim());
+        s0Var.f40934b = z10;
+        s0Var.f40935c = SystemClock.uptimeMillis();
         Runnable runnable = this.h;
         removeCallbacks(runnable);
         if (!arrayList.isEmpty()) {
@@ -129,9 +129,9 @@ public final class t0 extends LinearLayout {
             }
         }
         int max = Math.max(0, Math.round(getHeight() - height));
-        if (max != this.f40955f) {
-            this.f40955f = max;
-            Runnable runnable = this.f40954e;
+        if (max != this.f40958f) {
+            this.f40958f = max;
+            Runnable runnable = this.f40957e;
             if (runnable != null) {
                 post(runnable);
             }
@@ -144,7 +144,7 @@ public final class t0 extends LinearLayout {
     }
 
     public int getContentHeight() {
-        return this.f40955f;
+        return this.f40958f;
     }
 
     @Override
@@ -154,6 +154,6 @@ public final class t0 extends LinearLayout {
     }
 
     public void setOnContentHeightChanged(Runnable runnable) {
-        this.f40954e = runnable;
+        this.f40957e = runnable;
     }
 }

@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.util.Property;
 public abstract class j6 extends Property {
-    public final int f35893a;
+    public final int f35880a;
 
     public j6(String str, int i7) {
         super(Float.class, str);
-        this.f35893a = i7;
+        this.f35880a = i7;
         switch (i7) {
             case 1:
                 super(Integer.class, str);
@@ -26,7 +26,7 @@ public abstract class j6 extends Property {
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f35893a) {
+        switch (this.f35880a) {
             case 0:
                 c(obj, ((Float) obj2).floatValue());
                 return;

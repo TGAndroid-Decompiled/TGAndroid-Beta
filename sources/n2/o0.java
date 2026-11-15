@@ -48,7 +48,7 @@ public final class o0 {
             u70Var.d(layout, spanStart, f10);
             layout.getSelectionPath(spanStart, spanEnd, u70Var);
             d80 d80Var = new d80();
-            d80Var.f33885y = u70Var;
+            d80Var.f33887y = u70Var;
             d80Var.D = true;
             d80Var.k(4.0f);
             d80Var.l();
@@ -191,7 +191,7 @@ public final class o0 {
             ((View) obj).invalidate();
         } else if (obj instanceof z2) {
             z2 z2Var = (z2) obj;
-            if (!z2Var.f53807c && (view2 = z2Var.f53806b) != null) {
+            if (!z2Var.f53772c && (view2 = z2Var.f53771b) != null) {
                 view2.invalidate();
             }
         } else if (z10 && (view = (View) this.f20831c) != null) {
@@ -280,8 +280,8 @@ public final class o0 {
                     }
                     vs vsVar = new vs(22, this, d80Var);
                     long j3 = 0;
-                    if (d80Var.f33866c > 0) {
-                        j3 = 320 - (SystemClock.elapsedRealtime() - d80Var.f33866c);
+                    if (d80Var.f33868c > 0) {
+                        j3 = 320 - (SystemClock.elapsedRealtime() - d80Var.f33868c);
                     }
                     org.telegram.messenger.g0.i3(vsVar, j3);
                     return;
@@ -290,8 +290,8 @@ public final class o0 {
                 return;
             }
             arrayList.remove(pair);
-            d80Var.f33865b = -1L;
-            d80Var.f33866c = -1L;
+            d80Var.f33867b = -1L;
+            d80Var.f33868c = -1L;
             this.f20830b = arrayList.size();
             j(pair.second, true);
         }

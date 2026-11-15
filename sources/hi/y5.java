@@ -54,9 +54,9 @@ public final class y5 implements Runnable {
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
                             ld0Var.d = bitmap2;
-                            b7.d dVar = (b7.d) ld0Var.f48976b;
-                            dVar.f2945a = width3;
-                            dVar.f2946b = height3;
+                            b7.d dVar = (b7.d) ld0Var.f48972b;
+                            dVar.f2948a = width3;
+                            dVar.f2949b = height3;
                             SparseArray e12 = nVar.e1(ld0Var);
                             for (int i7 = 0; i7 < e12.size(); i7++) {
                                 u8.m mVar = (u8.m) e12.valueAt(i7);

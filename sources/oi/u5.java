@@ -4,7 +4,7 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.xg0;
 import org.telegram.ui.Wallet.h6;
 import org.telegram.ui.Wallet.q7;
@@ -33,7 +33,7 @@ public final class u5 extends CharacterStyle {
                 textPaint.setTypeface(org.telegram.messenger.g0.o());
                 int alpha2 = textPaint.getAlpha();
                 int i7 = j6.f29031n6;
-                ((n90) this.f22036b).getClass();
+                ((o90) this.f22036b).getClass();
                 textPaint.setColor(j6.v0(i7));
                 textPaint.setAlpha(alpha2);
                 return;

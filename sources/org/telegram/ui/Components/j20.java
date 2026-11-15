@@ -4,20 +4,20 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class j20 extends tj0 {
-    public final Context f35836c;
+    public final Context f35823c;
     public final jg.z1 d;
-    public h20 f35837e;
-    public int f35838f;
+    public h20 f35824e;
+    public int f35825f;
     public boolean h;
-    public int f35839n;
-    public int f35840r;
-    public int f35841s;
-    public int f35842w;
-    public final k20 f35843x;
+    public int f35826n;
+    public int f35827r;
+    public int f35828s;
+    public int f35829w;
+    public final k20 f35830x;
 
     public j20(k20 k20Var, Context context) {
-        this.f35843x = k20Var;
-        this.f35836c = context;
+        this.f35830x = k20Var;
+        this.f35823c = context;
         jg.z1 z1Var = new jg.z1(true);
         this.d = z1Var;
         z1Var.f17344a = new i20(this);
@@ -34,7 +34,7 @@ public final class j20 extends tj0 {
     @Override
     public final boolean D(v4.e1 e1Var) {
         View view = e1Var.f58535a;
-        if ((!(view instanceof org.telegram.ui.Cells.a5) || !this.f35843x.f36252a2.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) && e1Var.f58539f == 0) {
+        if ((!(view instanceof org.telegram.ui.Cells.a5) || !this.f35830x.f36242a2.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) && e1Var.f58539f == 0) {
             return true;
         }
         return false;
@@ -42,7 +42,7 @@ public final class j20 extends tj0 {
 
     @Override
     public final int b() {
-        return this.f35838f;
+        return this.f35825f;
     }
 
     @Override
@@ -50,10 +50,10 @@ public final class j20 extends tj0 {
         if (i7 == 0) {
             return 2;
         }
-        if (i7 == this.f35840r) {
+        if (i7 == this.f35827r) {
             return 3;
         }
-        if (i7 != this.f35842w && i7 != this.f35841s) {
+        if (i7 != this.f35829w && i7 != this.f35828s) {
             return 0;
         }
         return 1;
@@ -61,27 +61,27 @@ public final class j20 extends tj0 {
 
     @Override
     public final void f() {
-        this.f35838f = 1;
+        this.f35825f = 1;
         jg.z1 z1Var = this.d;
         int size = z1Var.f17349g.size();
         if (size != 0) {
-            int i7 = this.f35838f;
-            this.f35841s = i7;
-            this.f35838f = size + 1 + i7;
+            int i7 = this.f35825f;
+            this.f35828s = i7;
+            this.f35825f = size + 1 + i7;
         } else {
-            this.f35841s = -1;
+            this.f35828s = -1;
         }
         int size2 = z1Var.f17347e.size();
         if (size2 != 0) {
-            int i10 = this.f35838f;
-            this.f35842w = i10;
-            this.f35838f = size2 + 1 + i10;
+            int i10 = this.f35825f;
+            this.f35829w = i10;
+            this.f35825f = size2 + 1 + i10;
         } else {
-            this.f35842w = -1;
+            this.f35829w = -1;
         }
-        int i11 = this.f35838f;
-        this.f35838f = i11 + 1;
-        this.f35840r = i11;
+        int i11 = this.f35825f;
+        this.f35825f = i11 + 1;
+        this.f35827r = i11;
         super.f();
     }
 
@@ -94,7 +94,7 @@ public final class j20 extends tj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.a5 a5Var;
         if (i7 != 0) {
-            Context context = this.f35836c;
+            Context context = this.f35823c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     a5Var = new View(context);
@@ -110,7 +110,7 @@ public final class j20 extends tj0 {
                 a5Var = x3Var;
             }
         } else {
-            org.telegram.ui.Cells.a5 a5Var2 = new org.telegram.ui.Cells.a5(this.f35836c, 2, 2, false, null);
+            org.telegram.ui.Cells.a5 a5Var2 = new org.telegram.ui.Cells.a5(this.f35823c, 2, 2, false, null);
             a5Var2.setCustomRightImage(2131232193);
             a5Var2.setNameColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28878eh, false));
             int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28842ch, false);

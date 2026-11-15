@@ -4,38 +4,38 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.w7;
 import org.telegram.ui.Components.fz0;
 public final class t1 implements Runnable {
-    public final int f57567a;
-    public final f2 f57568b;
+    public final int f57569a;
+    public final e2 f57570b;
 
-    public t1(f2 f2Var, int i7) {
-        this.f57567a = i7;
-        this.f57568b = f2Var;
+    public t1(e2 e2Var, int i7) {
+        this.f57569a = i7;
+        this.f57570b = e2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f57567a) {
+        switch (this.f57569a) {
             case 0:
-                f2 f2Var = this.f57568b;
-                d2 d2Var = f2Var.f57239a0;
-                if (d2Var != null) {
-                    if (d2Var.f57203r != null) {
-                        MediaController.B().i(f2Var.f57239a0.f57203r);
-                        w7.G(f2Var.f57238a).b(f2Var.f57239a0.f57189b, false);
-                        f2Var.f57239a0.getClass();
+                e2 e2Var = this.f57570b;
+                c2 c2Var = e2Var.f57230a0;
+                if (c2Var != null) {
+                    if (c2Var.f57196r != null) {
+                        MediaController.B().i(e2Var.f57230a0.f57196r);
+                        w7.G(e2Var.f57229a).b(e2Var.f57230a0.f57182b, false);
+                        e2Var.f57230a0.getClass();
                     }
-                    f2Var.f57239a0.a();
-                    f2Var.f57239a0 = null;
+                    e2Var.f57230a0.a();
+                    e2Var.f57230a0 = null;
                 }
-                f2Var.f57246e0.a();
-                f2Var.f57246e0 = null;
+                e2Var.f57237e0.a();
+                e2Var.f57237e0 = null;
                 return;
             default:
-                f2 f2Var2 = this.f57568b;
-                fz0 fz0Var = f2Var2.T;
+                e2 e2Var2 = this.f57570b;
+                fz0 fz0Var = e2Var2.T;
                 if (fz0Var != null) {
-                    f2Var2.T = null;
-                    f2Var2.removeView(fz0Var);
+                    e2Var2.T = null;
+                    e2Var2.removeView(fz0Var);
                     return;
                 }
                 return;

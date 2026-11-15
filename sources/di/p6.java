@@ -15,39 +15,39 @@ import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.r80;
 public final class p6 implements RequestDelegate {
-    public final int f9227a = 0;
-    public final Context f9228b;
-    public final long f9229c;
+    public final int f9219a = 0;
+    public final Context f9220b;
+    public final long f9221c;
     public final Object d;
-    public final Object f9230e;
-    public final Object f9231f;
-    public final Object f9232g;
+    public final Object f9222e;
+    public final Object f9223f;
+    public final Object f9224g;
     public final Object h;
-    public final TLObject f9233i;
+    public final TLObject f9225i;
 
-    public p6(v8 v8Var, s10 s10Var, long j3, String str, Context context, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.ChatInvite chatInvite, String str2) {
-        this.d = v8Var;
-        this.f9230e = s10Var;
-        this.f9229c = j3;
-        this.f9231f = str;
-        this.f9228b = context;
+    public p6(u8 u8Var, s10 s10Var, long j3, String str, Context context, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.ChatInvite chatInvite, String str2) {
+        this.d = u8Var;
+        this.f9222e = s10Var;
+        this.f9221c = j3;
+        this.f9223f = str;
+        this.f9220b = context;
         this.h = e6Var;
-        this.f9233i = chatInvite;
-        this.f9232g = str2;
+        this.f9225i = chatInvite;
+        this.f9224g = str2;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f9227a) {
+        switch (this.f9219a) {
             case 0:
-                final v8 v8Var = (v8) this.d;
-                final s10 s10Var = (s10) this.f9230e;
-                final String str = (String) this.f9231f;
+                final u8 u8Var = (u8) this.d;
+                final s10 s10Var = (s10) this.f9222e;
+                final String str = (String) this.f9223f;
                 final org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.h;
-                final TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) this.f9233i;
-                final String str2 = (String) this.f9232g;
-                final long j3 = this.f9229c;
-                final Context context = this.f9228b;
+                final TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) this.f9225i;
+                final String str2 = (String) this.f9224g;
+                final long j3 = this.f9221c;
+                final Context context = this.f9220b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -55,7 +55,7 @@ public final class p6 implements RequestDelegate {
                         String str3;
                         long j10;
                         r80 r80Var;
-                        v8 v8Var2 = v8.this;
+                        u8 u8Var2 = u8.this;
                         TLObject tLObject2 = tLObject;
                         s10 s10Var2 = s10Var;
                         long j11 = j3;
@@ -73,7 +73,7 @@ public final class p6 implements RequestDelegate {
                         }
                         if (tLObject2 instanceof TLRPC.TL_payments_paymentResult) {
                             TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject2;
-                            Utilities.d.c(new i7(v8Var2, tL_payments_paymentResult, 1));
+                            Utilities.d.c(new i7(u8Var2, tL_payments_paymentResult, 1));
                             TLRPC.Updates updates = tL_payments_paymentResult.updates;
                             TLRPC.Update update = updates.update;
                             if (update instanceof TL_update.TL_updateChannel) {
@@ -96,18 +96,18 @@ public final class p6 implements RequestDelegate {
                             if (launchActivity != null && (r80Var = launchActivity.f42663w0) != null) {
                                 r80Var.c(true);
                             }
-                            v8Var2.S(true);
-                            v8Var2.R();
+                            u8Var2.S(true);
+                            u8Var2.R();
                         } else if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                            if (np.s1(v8Var2.f9598a).f25322k7) {
+                            if (np.s1(u8Var2.f9529a).f25325k7) {
                                 s10Var2.a(0L, Boolean.FALSE);
-                                v8.c0(context2, e6Var2);
+                                u8.c0(context2, e6Var2);
                                 return;
                             }
                             boolean[] zArr = {false};
-                            cb cbVar = new cb(context2, e6Var2, j11, 1, chatInvite2.title, new ai.b(v8Var2, zArr, str5, chatInvite2, s10Var2), 0L);
-                            cbVar.setOnDismissListener(new m7(s10Var2, zArr, 0));
-                            cbVar.show();
+                            bb bbVar = new bb(context2, e6Var2, j11, 1, chatInvite2.title, new ai.b(u8Var2, zArr, str5, chatInvite2, s10Var2), 0L);
+                            bbVar.setOnDismissListener(new m7(s10Var2, zArr, 0));
+                            bbVar.show();
                         } else {
                             s10Var2.a(0L, Boolean.FALSE);
                             if (tL_error2 != null) {
@@ -122,19 +122,19 @@ public final class p6 implements RequestDelegate {
                 return;
             default:
                 np npVar = (np) this.d;
-                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.f9230e;
-                qr qrVar = (qr) this.f9231f;
-                Runnable runnable = (Runnable) this.f9232g;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.f9222e;
+                qr qrVar = (qr) this.f9223f;
+                Runnable runnable = (Runnable) this.f9224g;
                 org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.h;
-                TLRPC.TL_messages_migrateChat tL_messages_migrateChat = (TLRPC.TL_messages_migrateChat) this.f9233i;
-                Context context2 = this.f9228b;
+                TLRPC.TL_messages_migrateChat tL_messages_migrateChat = (TLRPC.TL_messages_migrateChat) this.f9225i;
+                Context context2 = this.f9220b;
                 if (tL_error == null) {
                     if (context2 != null) {
                         org.telegram.messenger.g0.h3(new cn(0, context2, t1Var));
                     }
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                     npVar.O3(updates, false);
-                    org.telegram.messenger.g0.h3(new org.telegram.messenger.a4(qrVar, updates, this.f9229c, 18));
+                    org.telegram.messenger.g0.h3(new org.telegram.messenger.a4(qrVar, updates, this.f9221c, 18));
                     return;
                 }
                 if (runnable != null) {
@@ -147,12 +147,12 @@ public final class p6 implements RequestDelegate {
 
     public p6(np npVar, Context context, org.telegram.ui.ActionBar.t1 t1Var, qr qrVar, long j3, Runnable runnable, org.telegram.ui.ActionBar.e2 e2Var, TLRPC.TL_messages_migrateChat tL_messages_migrateChat) {
         this.d = npVar;
-        this.f9228b = context;
-        this.f9230e = t1Var;
-        this.f9231f = qrVar;
-        this.f9229c = j3;
-        this.f9232g = runnable;
+        this.f9220b = context;
+        this.f9222e = t1Var;
+        this.f9223f = qrVar;
+        this.f9221c = j3;
+        this.f9224g = runnable;
         this.h = e2Var;
-        this.f9233i = tL_messages_migrateChat;
+        this.f9225i = tL_messages_migrateChat;
     }
 }

@@ -7,7 +7,7 @@ public final class r5 extends ga {
     @Override
     public final void b(int i7, int i10) {
         boolean z10;
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         boolean z11 = true;
         if (point.x <= point.y) {
             z10 = true;
@@ -18,7 +18,7 @@ public final class r5 extends ga {
             z11 = false;
         }
         if (z10 == z11) {
-            ns.e().k(ns.f25618z4, new Object[0]);
+            ns.e().k(ns.f25619z4, new Object[0]);
         }
     }
 }

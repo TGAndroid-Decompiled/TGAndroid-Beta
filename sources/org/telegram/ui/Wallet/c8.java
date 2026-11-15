@@ -285,7 +285,7 @@ public final class c8 extends View {
     public static boolean F(int i7, String str) {
         if (!TextUtils.isEmpty(str)) {
             int lastIndexOf = str.lastIndexOf(45);
-            HashSet hashSet = ((org.telegram.messenger.o0) np.s1(i7).f25448y7.m0.f14544b).f25689c;
+            HashSet hashSet = ((org.telegram.messenger.o0) np.s1(i7).f25451y7.m0.f14544b).f25690c;
             if (hashSet != null) {
                 if (lastIndexOf > 0) {
                     str = str.substring(0, lastIndexOf);
@@ -1580,7 +1580,7 @@ public final class c8 extends View {
     }
 
     public final float h() {
-        return (getHeight() - org.telegram.messenger.g0.L(64.0f)) - org.telegram.messenger.g0.f23604n;
+        return (getHeight() - org.telegram.messenger.g0.L(64.0f)) - org.telegram.messenger.g0.f23606n;
     }
 
     public final void i(p7 p7Var) {

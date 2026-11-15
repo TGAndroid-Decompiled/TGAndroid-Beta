@@ -1,20 +1,20 @@
 package org.telegram.messenger;
 public final class ce implements Runnable {
-    public final int f22858a;
-    public final boolean[] f22859b;
-    public final org.telegram.ui.ActionBar.t1 f22860c;
+    public final int f22862a;
+    public final boolean[] f22863b;
+    public final org.telegram.ui.ActionBar.t1 f22864c;
 
     public ce(org.telegram.ui.ActionBar.t1 t1Var, boolean[] zArr, int i7) {
-        this.f22858a = i7;
-        this.f22860c = t1Var;
-        this.f22859b = zArr;
+        this.f22862a = i7;
+        this.f22864c = t1Var;
+        this.f22863b = zArr;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f22858a;
-        boolean[] zArr = this.f22859b;
-        org.telegram.ui.ActionBar.t1 t1Var = this.f22860c;
+        int i7 = this.f22862a;
+        boolean[] zArr = this.f22863b;
+        org.telegram.ui.ActionBar.t1 t1Var = this.f22864c;
         switch (i7) {
             case 0:
                 String[] strArr = MediaController.W1;
@@ -60,8 +60,8 @@ public final class ce implements Runnable {
     }
 
     public ce(boolean[] zArr, org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        this.f22858a = i7;
-        this.f22859b = zArr;
-        this.f22860c = t1Var;
+        this.f22862a = i7;
+        this.f22863b = zArr;
+        this.f22864c = t1Var;
     }
 }

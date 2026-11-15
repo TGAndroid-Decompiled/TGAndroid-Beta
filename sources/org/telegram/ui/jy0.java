@@ -15,9 +15,9 @@ public final class jy0 extends org.telegram.ui.Cells.k3 {
     public final void b(Editable editable) {
         boolean z10;
         ly0 ly0Var = this.F;
-        hi.d dVar = ly0Var.f49068s;
+        hi.d dVar = ly0Var.f49064s;
         if (dVar != null) {
-            if (!ly0Var.d.optional && TextUtils.isEmpty(ly0Var.f49066n.getText())) {
+            if (!ly0Var.d.optional && TextUtils.isEmpty(ly0Var.f49062n.getText())) {
                 z10 = false;
             } else {
                 z10 = true;

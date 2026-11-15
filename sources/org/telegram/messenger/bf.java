@@ -39,10 +39,10 @@ public final class bf implements is {
         ?? r22;
         ?? r62;
         boolean z10 = false;
-        if (!gjVar.D3() || (n1 = gj.n1(gjVar.f23817k)) == null || (photo = n1.photo) == null || n1.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
+        if (!gjVar.D3() || (n1 = gj.n1(gjVar.f23819k)) == null || (photo = n1.photo) == null || n1.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
             return false;
         }
-        w7.G(this.f22689a.f22778a);
+        w7.G(this.f22689a.f22782a);
         File J = w7.J(w10, null, false, true);
         File J2 = w7.J(n1.document, null, false, true);
         if (J != null && J.exists()) {
@@ -84,9 +84,9 @@ public final class bf implements is {
                     contentValues.put("relative_path", new File(Environment.DIRECTORY_DOWNLOADS, "Telegram") + File.separator);
                     contentValues.put("_display_name", p02);
                     contentValues.put("mime_type", mimeTypeFromExtension);
-                    Uri insert = t0.f26600b.getContentResolver().insert(contentUri, contentValues);
+                    Uri insert = t0.f26609b.getContentResolver().insert(contentUri, contentValues);
                     if (insert != null) {
-                        OutputStream openOutputStream = t0.f26600b.getContentResolver().openOutputStream(insert);
+                        OutputStream openOutputStream = t0.f26609b.getContentResolver().openOutputStream(insert);
                         if (openOutputStream != null) {
                             try {
                                 MediaController.H0(J, J2, openOutputStream, null);
@@ -107,7 +107,7 @@ public final class bf implements is {
                             this.f22694n++;
                         } else {
                             try {
-                                t0.f26600b.getContentResolver().delete(insert, null, null);
+                                t0.f26609b.getContentResolver().delete(insert, null, null);
                             } catch (Exception unused) {
                             }
                         }
@@ -126,7 +126,7 @@ public final class bf implements is {
                         if (this.f22693f) {
                             file2.delete();
                         } else {
-                            ((DownloadManager) t0.f26600b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
+                            ((DownloadManager) t0.f26609b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
                             this.f22694n++;
                         }
                     } catch (Throwable th4) {

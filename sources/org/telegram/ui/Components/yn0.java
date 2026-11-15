@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.TLRPC;
 public final class yn0 implements org.telegram.messenger.is {
-    public final TLRPC.Dialog f42048a;
-    public final AtomicReference f42049b;
-    public final View f42050c;
+    public final TLRPC.Dialog f42050a;
+    public final AtomicReference f42051b;
+    public final View f42052c;
     public final po0 d;
 
     public yn0(po0 po0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
         this.d = po0Var;
-        this.f42048a = dialog;
-        this.f42049b = atomicReference;
-        this.f42050c = view;
+        this.f42050a = dialog;
+        this.f42051b = atomicReference;
+        this.f42052c = view;
     }
 
     @Override
@@ -26,23 +26,23 @@ public final class yn0 implements org.telegram.messenger.is {
         no0 no0Var = po0Var.H1;
         org.telegram.ui.ActionBar.k kVar = po0Var.f38369v2;
         long longValue = ((Long) objArr[0]).longValue();
-        TLRPC.Dialog dialog = this.f42048a;
+        TLRPC.Dialog dialog = this.f42050a;
         if (longValue == (-dialog.f28055id)) {
-            ArrayList arrayList = no0Var.f37668f;
-            AtomicReference atomicReference = this.f42049b;
-            if ((arrayList == null && org.telegram.messenger.np.s1(po0Var.f29679a).f25383r7.l(-dialog.f28055id) != null) || atomicReference.get() == null) {
+            ArrayList arrayList = no0Var.f37657f;
+            AtomicReference atomicReference = this.f42051b;
+            if ((arrayList == null && org.telegram.messenger.np.s1(po0Var.f29679a).f25386r7.l(-dialog.f28055id) != null) || atomicReference.get() == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            no0Var.f37668f = org.telegram.messenger.np.s1(po0Var.f29679a).f25383r7.l(-dialog.f28055id);
+            no0Var.f37657f = org.telegram.messenger.np.s1(po0Var.f29679a).f25386r7.l(-dialog.f28055id);
             no0Var.d = org.telegram.messenger.q10.u(org.telegram.messenger.np.s1(po0Var.f29679a).a2(Long.valueOf(dialog.f28055id)));
-            no0Var.f37667e = org.telegram.messenger.q10.v(org.telegram.messenger.np.s1(po0Var.f29679a).a2(Long.valueOf(dialog.f28055id)));
+            no0Var.f37656e = org.telegram.messenger.q10.v(org.telegram.messenger.np.s1(po0Var.f29679a).a2(Long.valueOf(dialog.f28055id)));
             if (z10) {
                 no0Var.f();
             }
-            if (no0Var.f37668f != null) {
-                org.telegram.messenger.ns.f(po0Var.f29679a).n(this, org.telegram.messenger.ns.f25558q5);
+            if (no0Var.f37657f != null) {
+                org.telegram.messenger.ns.f(po0Var.f29679a).n(this, org.telegram.messenger.ns.f25559q5);
             }
             if (z10) {
                 uj0Var.setVisibility(0);
@@ -69,7 +69,7 @@ public final class yn0 implements org.telegram.messenger.is {
                 r1.g gVar2 = new r1.g(new r1.f(0.0f));
                 r1.h hVar = new r1.h(1000.0f);
                 org.telegram.ui.an anVar = po0Var.f38341b2;
-                if (anVar != null && anVar.f45132b) {
+                if (anVar != null && anVar.f45131b) {
                     f10 = 10.0f;
                 } else {
                     f10 = 800.0f;
@@ -78,7 +78,7 @@ public final class yn0 implements org.telegram.messenger.is {
                 hVar.a(1.0f);
                 gVar2.f55748m = hVar;
                 po0Var.f38373x2 = gVar2;
-                gVar2.b(new jn0(this, this.f42050c, iArr, 1));
+                gVar2.b(new jn0(this, this.f42052c, iArr, 1));
                 po0Var.f38373x2.a(new pa(this, 6));
                 po0Var.f38373x2.h();
                 if (atomicReference.get() != null) {

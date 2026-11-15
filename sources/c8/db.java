@@ -5,14 +5,14 @@ public enum db implements u {
     TYPE_THICK(2),
     TYPE_GMV(3);
     
-    public final int f4257a;
+    public final int f4260a;
 
     db(int i7) {
-        this.f4257a = i7;
+        this.f4260a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f4257a;
+        return this.f4260a;
     }
 }

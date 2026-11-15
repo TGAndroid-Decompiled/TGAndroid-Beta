@@ -8,13 +8,13 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 public class ky extends v4.t0 {
-    public final int f36650a;
-    public boolean f36651b;
-    public final ly f36652c;
+    public final int f36638a;
+    public boolean f36639b;
+    public final ly f36640c;
 
     public ky(ly lyVar, int i7) {
-        this.f36652c = lyVar;
-        this.f36650a = i7;
+        this.f36640c = lyVar;
+        this.f36638a = i7;
     }
 
     @Override
@@ -23,17 +23,17 @@ public class ky extends v4.t0 {
         yx yxVar;
         float f10;
         int i10;
-        ly lyVar = this.f36652c;
+        ly lyVar = this.f36640c;
         ObjectAnimator[] objectAnimatorArr = lyVar.S0;
         v4.a1 a1Var = recyclerView.getLayoutManager().f58624e;
         boolean z10 = true;
         if (a1Var != null && a1Var.f58483e) {
-            this.f36651b = true;
+            this.f36639b = true;
             return;
         }
-        int i11 = this.f36650a;
+        int i11 = this.f36638a;
         if (i7 == 0) {
-            if (!this.f36651b) {
+            if (!this.f36639b) {
                 int[] iArr = lyVar.R0;
                 mx mxVar = lyVar.f36993u1;
                 if ((mxVar == null || !mxVar.z()) && i11 != 0) {
@@ -93,7 +93,7 @@ public class ky extends v4.t0 {
             if (lyVar.K0) {
                 lyVar.K0 = false;
             }
-            this.f36651b = false;
+            this.f36639b = false;
             return;
         }
         if (i7 == 1) {
@@ -116,9 +116,9 @@ public class ky extends v4.t0 {
             if (yxVar != null) {
                 yxVar.b();
             }
-            this.f36651b = false;
+            this.f36639b = false;
         }
-        if (!this.f36651b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
+        if (!this.f36639b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
             objectAnimatorArr[i11].cancel();
         }
         if (i11 == 0) {
@@ -134,8 +134,8 @@ public class ky extends v4.t0 {
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
         int L;
-        ly lyVar = this.f36652c;
-        int i11 = this.f36650a;
+        ly lyVar = this.f36640c;
+        int i11 = this.f36638a;
         lyVar.p(i11);
         ly.e(lyVar, i11, i10);
         if (i11 != 0) {
@@ -149,7 +149,7 @@ public class ky extends v4.t0 {
         } else {
             lyVar.q(false);
         }
-        if (!this.f36651b) {
+        if (!this.f36639b) {
             float f10 = i10;
             FrameLayout frameLayout = lyVar.f36969n;
             if (SystemClock.elapsedRealtime() - lyVar.E2 >= ViewConfiguration.getTapTimeout()) {

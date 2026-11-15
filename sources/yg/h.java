@@ -27,7 +27,7 @@ public final class h extends FrameLayout {
         j5 j5Var = new j5(context);
         j5Var.setTextSize(16);
         q6.X(j5Var, j6.f28957j5, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -38,7 +38,7 @@ public final class h extends FrameLayout {
         this.f60669a = j5Var2;
         j5Var2.setTextSize(16);
         q6.X(j5Var2, j6.L6, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -46,7 +46,7 @@ public final class h extends FrameLayout {
         j5Var2.setGravity(i10);
         addView(j5Var2);
         j5Var.l(hd.a0("BoostingDateAndTime", null, 2131753539, new Object[0]), false);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i11 = 5;
         } else {
@@ -64,7 +64,7 @@ public final class h extends FrameLayout {
             f11 = 0.0f;
         }
         j5Var.setLayoutParams(ja.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         int i13 = (z11 ? 3 : 5) | 16;
         if (z11) {
             f12 = 21.0f;

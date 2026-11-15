@@ -89,7 +89,7 @@ public abstract class n0 extends FrameLayout {
                             n1Var.H0 = new xe();
                             n0Var2.h.b(n0Var2.f14720b.H0);
                             tg.n1 n1Var2 = n0Var2.f14720b;
-                            n1Var2.H0.f27503z = n1Var2.getOrientation();
+                            n1Var2.H0.f27504z = n1Var2.getOrientation();
                             n0Var2.f14720b.k();
                             n0Var2.f14720b.requestLayout();
                             n0Var2.f14720b.A0.requestLayout();
@@ -137,7 +137,7 @@ public abstract class n0 extends FrameLayout {
                             n1Var.H0 = new xe();
                             n0Var2.h.b(n0Var2.f14720b.H0);
                             tg.n1 n1Var2 = n0Var2.f14720b;
-                            n1Var2.H0.f27503z = n1Var2.getOrientation();
+                            n1Var2.H0.f27504z = n1Var2.getOrientation();
                             n0Var2.f14720b.k();
                             n0Var2.f14720b.requestLayout();
                             n0Var2.f14720b.A0.requestLayout();
@@ -185,7 +185,7 @@ public abstract class n0 extends FrameLayout {
                             n1Var.H0 = new xe();
                             n0Var2.h.b(n0Var2.f14720b.H0);
                             tg.n1 n1Var2 = n0Var2.f14720b;
-                            n1Var2.H0.f27503z = n1Var2.getOrientation();
+                            n1Var2.H0.f27504z = n1Var2.getOrientation();
                             n0Var2.f14720b.k();
                             n0Var2.f14720b.requestLayout();
                             n0Var2.f14720b.A0.requestLayout();
@@ -263,12 +263,12 @@ public abstract class n0 extends FrameLayout {
         org.telegram.ui.Components.u5 u5Var = this.f14721c;
         if (xeVar != null) {
             fVar.b(xeVar.d);
-            if (xeVar.f27495k == 0) {
+            if (xeVar.f27496k == 0) {
                 z10 = false;
             }
             fVar.setRotated(z10);
-            fVar.setMirrored(xeVar.f27496l);
-            u5Var.f(xeVar.f27496l, false);
+            fVar.setMirrored(xeVar.f27497l);
+            u5Var.f(xeVar.f27497l, false);
         } else {
             fVar.b(0.0f);
             fVar.setRotated(false);

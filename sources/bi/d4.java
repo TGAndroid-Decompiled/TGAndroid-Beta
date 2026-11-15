@@ -10,7 +10,7 @@ import org.telegram.ui.Components.u41;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.z70;
 public final class d4 extends a41 {
-    public static final int f3442b = 0;
+    public static final int f3445b = 0;
 
     static {
         a41.h(new a41());
@@ -20,7 +20,7 @@ public final class d4 extends a41 {
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         org.telegram.ui.ActionBar.e6 e6Var;
         z70 z70Var = (z70) view;
-        z70Var.setGravity(b41Var.f33194z);
+        z70Var.setGravity(b41Var.f33197z);
         Object obj = b41Var.H;
         Typeface typeface = null;
         if (obj instanceof Integer) {
@@ -38,13 +38,13 @@ public final class d4 extends a41 {
             z70Var.setTextColor((int) b41Var.B);
         }
         z70Var.setTextSize(1, b41Var.A);
-        if (b41Var.f33186q) {
+        if (b41Var.f33189q) {
             typeface = org.telegram.messenger.g0.o();
         }
         z70Var.setTypeface(typeface);
-        int i7 = b41Var.f33178i;
-        z70Var.setPadding(i7, 0, i7, b41Var.f33180k);
-        z70Var.setText(b41Var.f33181l);
+        int i7 = b41Var.f33181i;
+        z70Var.setPadding(i7, 0, i7, b41Var.f33183k);
+        z70Var.setText(b41Var.f33184l);
     }
 
     @Override

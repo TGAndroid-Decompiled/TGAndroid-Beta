@@ -10,29 +10,29 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final int f49905a;
-    public final org.telegram.ui.ActionBar.e6 f49906b;
-    public final ArrayList f49907c;
+    public final int f49895a;
+    public final org.telegram.ui.ActionBar.e6 f49896b;
+    public final ArrayList f49897c;
     public final b61 d;
-    public final org.telegram.ui.Components.pz f49908e;
-    public boolean f49909f;
+    public final org.telegram.ui.Components.pz f49898e;
+    public boolean f49899f;
     public final mc h;
-    public boolean f49910n;
-    public org.telegram.messenger.z10 f49911r;
-    public String f49912s;
-    public TLRPC.WallPaper f49913w;
-    public final HashMap f49914x;
-    public final HashMap f49915y;
+    public boolean f49900n;
+    public org.telegram.messenger.z10 f49901r;
+    public String f49902s;
+    public TLRPC.WallPaper f49903w;
+    public final HashMap f49904x;
+    public final HashMap f49905y;
 
     public oc(int i7, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
         super(activity);
-        this.f49907c = new ArrayList();
-        this.f49914x = new HashMap();
-        this.f49915y = new HashMap();
-        this.f49905a = i7;
-        this.f49906b = e6Var;
+        this.f49897c = new ArrayList();
+        this.f49904x = new HashMap();
+        this.f49905y = new HashMap();
+        this.f49895a = i7;
+        this.f49896b = e6Var;
         org.telegram.ui.Components.pz pzVar = new org.telegram.ui.Components.pz(getContext(), e6Var);
-        this.f49908e = pzVar;
+        this.f49898e = pzVar;
         pzVar.setViewType(14);
         pzVar.setVisibility(0);
         addView(pzVar, c8.ja.d(-1, 104.0f, 8388611, 16.0f, 13.0f, 16.0f, 6.0f));
@@ -56,7 +56,7 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.z
         f10.l(true);
         f10.l(false);
         f10.q(new nc(this, i7), true);
-        if (!this.f49910n) {
+        if (!this.f49900n) {
             org.telegram.messenger.g0.Y3(pzVar, true, 1.0f, true, false);
         } else {
             org.telegram.messenger.g0.Y3(pzVar, false, 1.0f, true, false);
@@ -66,17 +66,17 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.z
     public final void a(String str, boolean z10) {
         ArrayList arrayList;
         int R;
-        this.f49912s = str;
+        this.f49902s = str;
         int i7 = -1;
         int i10 = 0;
         while (true) {
-            arrayList = this.f49907c;
+            arrayList = this.f49897c;
             boolean z11 = true;
             if (i10 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.dp dpVar = (org.telegram.ui.Components.dp) arrayList.get(i10);
-            if (!TextUtils.equals(this.f49912s, dpVar.a()) && (!TextUtils.isEmpty(str) || !dpVar.f34022a.f29470a)) {
+            if (!TextUtils.equals(this.f49902s, dpVar.a()) && (!TextUtils.isEmpty(str) || !dpVar.f34009a.f29470a)) {
                 z11 = false;
             }
             dpVar.d = z11;
@@ -87,7 +87,7 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.z
         }
         b61 b61Var = this.d;
         if (i7 >= 0 && !z10 && (b61Var.getLayoutManager() instanceof v4.b0)) {
-            ((v4.b0) b61Var.getLayoutManager()).h1(i7, (org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(83.0f)) / 2);
+            ((v4.b0) b61Var.getLayoutManager()).h1(i7, (org.telegram.messenger.g0.f23611q.x - org.telegram.messenger.g0.L(83.0f)) / 2);
         }
         for (int i11 = 0; i11 < b61Var.getChildCount(); i11++) {
             View childAt = b61Var.getChildAt(i11);
@@ -103,30 +103,30 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.z
     }
 
     public void setGalleryWallpaper(TLRPC.WallPaper wallPaper) {
-        this.f49913w = wallPaper;
+        this.f49903w = wallPaper;
         org.telegram.messenger.g0.d0(this.d, new kc(this, 1));
-        if (this.f49913w != null) {
-            ArrayList arrayList = this.f49907c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.dp) arrayList.get(0)).f34022a.f29470a) && this.f49909f) {
-                arrayList.add(0, new org.telegram.ui.Components.dp(org.telegram.ui.ActionBar.p3.a(this.f49905a)));
+        if (this.f49903w != null) {
+            ArrayList arrayList = this.f49897c;
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.dp) arrayList.get(0)).f34009a.f29470a) && this.f49899f) {
+                arrayList.add(0, new org.telegram.ui.Components.dp(org.telegram.ui.ActionBar.p3.a(this.f49895a)));
                 this.h.f();
             }
         }
     }
 
     public void setOnEmoticonSelected(org.telegram.messenger.z10 z10Var) {
-        this.f49911r = z10Var;
+        this.f49901r = z10Var;
     }
 
     public void setWithRemovedStub(boolean z10) {
-        this.f49909f = z10;
+        this.f49899f = z10;
     }
 
     @Override
     public final void updateColors() {
         ?? r02;
         mc mcVar;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f49906b;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f49896b;
         if (e6Var != null) {
             r02 = e6Var.a();
         } else {
@@ -135,13 +135,13 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.z
         int i7 = 0;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f49907c;
+            ArrayList arrayList = this.f49897c;
             if (i7 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.dp dpVar = (org.telegram.ui.Components.dp) arrayList.get(i7);
-            if (dpVar.f34024c != r02) {
-                dpVar.f34024c = r02;
+            if (dpVar.f34011c != r02) {
+                dpVar.f34011c = r02;
                 z10 = true;
             }
             i7++;

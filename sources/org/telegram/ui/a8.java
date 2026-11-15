@@ -17,12 +17,12 @@ public final class a8 implements View.OnClickListener {
         switch (this.f44956a) {
             case 0:
                 f8 f8Var = (f8) this.f44957b;
-                i8 i8Var = f8Var.f47058y;
-                if (f8Var.f47053n != null && i8Var.H) {
+                i8 i8Var = f8Var.f47042y;
+                if (f8Var.f47037n != null && i8Var.H) {
                     int i7 = -1;
                     int i10 = -1;
                     for (int i11 = 0; i11 < f8Var.d; i11++) {
-                        g8 g8Var = (g8) f8Var.f47053n.get(i11, null);
+                        g8 g8Var = (g8) f8Var.f47037n.get(i11, null);
                         if (g8Var != null) {
                             if (i7 == -1) {
                                 i7 = g8Var.h;
@@ -45,9 +45,9 @@ public final class a8 implements View.OnClickListener {
                 ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f44957b).getSwipeBack().b(true);
                 return;
             case 2:
-                if (((w21) this.f44957b).f52368a.getImageReceiver().B() != null && !((w21) this.f44957b).f52368a.getImageReceiver().B().f33586l0) {
-                    ((w21) this.f44957b).f52368a.getImageReceiver().B().N(0, false, false);
-                    ((w21) this.f44957b).f52368a.getImageReceiver().B().H(false);
+                if (((w21) this.f44957b).f52371a.getImageReceiver().B() != null && !((w21) this.f44957b).f52371a.getImageReceiver().B().f33588l0) {
+                    ((w21) this.f44957b).f52371a.getImageReceiver().B().N(0, false, false);
+                    ((w21) this.f44957b).f52371a.getImageReceiver().B().H(false);
                     return;
                 }
                 return;

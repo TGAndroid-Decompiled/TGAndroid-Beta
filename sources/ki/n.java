@@ -331,7 +331,7 @@ public final class n implements Runnable {
                 return;
             case 26:
                 org.telegram.ui.Components.d0 d0Var = (org.telegram.ui.Components.d0) this.f18456b;
-                t4.J((Context) this.f18457c, d0Var.f33753h2, new ia.d(d0Var, 28), (e6) this.d);
+                t4.J((Context) this.f18457c, d0Var.f33755h2, new ia.d(d0Var, 28), (e6) this.d);
                 return;
             case 27:
                 y7 y7Var = (y7) this.f18456b;
@@ -345,14 +345,14 @@ public final class n implements Runnable {
                     tL_inputDocument.f28063id = document.f28057id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    hp hpVar = y7Var.f41913q2;
+                    hp hpVar = y7Var.f41905q2;
                     if (hpVar != null) {
-                        hpVar.f24202c.add(0, hpVar.d(document));
+                        hpVar.f24205c.add(0, hpVar.d(document));
                         hpVar.e();
                     }
-                    y7Var.f41915r2.clear();
-                    y7Var.f41915r2.addAll(y7Var.f41913q2.f24202c);
-                    y7Var.f41920u1.f();
+                    y7Var.f41907r2.clear();
+                    y7Var.f41907r2.addAll(y7Var.f41905q2.f24205c);
+                    y7Var.f41912u1.f();
                     ConnectionsManager.getInstance(y7Var.f29679a).sendRequest(tL_account_saveMusic, null);
                     return;
                 }
@@ -385,7 +385,7 @@ public final class n implements Runnable {
                 pe peVar = (pe) this.f18456b;
                 peVar.getClass();
                 ((jt0) this.f18457c).getViewTreeObserver().removeOnDrawListener(peVar);
-                ((en0) this.d).f34376a.setHideAvatar(true);
+                ((en0) this.d).f34375a.setHideAvatar(true);
                 return;
         }
     }

@@ -22,7 +22,7 @@ public final class al extends AnimatorListenerAdapter {
         int i7;
         int i10;
         an anVar = this.d;
-        anVar.f45136b3 = null;
+        anVar.f45135b3 = null;
         ImageView imageView = anVar.Y2;
         int i11 = 4;
         if (this.f45098a) {
@@ -31,7 +31,7 @@ public final class al extends AnimatorListenerAdapter {
             i7 = 4;
         }
         imageView.setVisibility(i7);
-        ImageView imageView2 = anVar.f45121a3;
+        ImageView imageView2 = anVar.f45120a3;
         if (this.f45099b) {
             i10 = 0;
         } else {

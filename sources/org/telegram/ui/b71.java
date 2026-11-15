@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.graphics.Point;
 public final class b71 extends c8.ga {
-    public final int f45642a;
-    public final org.telegram.messenger.is f45643b;
+    public final int f45636a;
+    public final org.telegram.messenger.is f45637b;
 
     public b71(org.telegram.messenger.is isVar, int i7) {
-        this.f45642a = i7;
-        this.f45643b = isVar;
+        this.f45636a = i7;
+        this.f45637b = isVar;
     }
 
     @Override
     public void a() {
-        switch (this.f45642a) {
+        switch (this.f45636a) {
             case 1:
-                ((ec1) this.f45643b).f46721w.invalidate();
+                ((ec1) this.f45637b).f46711w.invalidate();
                 return;
             default:
                 return;
@@ -24,9 +24,9 @@ public final class b71 extends c8.ga {
     @Override
     public void b(int i7, int i10) {
         boolean z10;
-        switch (this.f45642a) {
+        switch (this.f45636a) {
             case 0:
-                Point point = org.telegram.messenger.g0.f23609q;
+                Point point = org.telegram.messenger.g0.f23611q;
                 boolean z11 = false;
                 if (point.x <= point.y) {
                     z10 = true;
@@ -37,7 +37,7 @@ public final class b71 extends c8.ga {
                     z11 = true;
                 }
                 if (z10 == z11) {
-                    ((t71) this.f45643b).f51477z0.invalidate();
+                    ((t71) this.f45637b).f51478z0.invalidate();
                     return;
                 }
                 return;

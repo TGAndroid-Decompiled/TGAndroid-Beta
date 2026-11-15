@@ -20,7 +20,7 @@ public final class v1 implements RequestDelegate {
             case 0:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    org.telegram.messenger.np.s1(cVar.f22778a).O3((TLRPC.Updates) tLObject, false);
+                    org.telegram.messenger.np.s1(cVar.f22782a).O3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
@@ -72,13 +72,13 @@ public final class v1 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new yf((bw0) obj, tL_error, tLObject, 29));
                 return;
             case 13:
-                org.telegram.messenger.g0.h3(new di.b8(tLObject, (org.telegram.messenger.z10) obj, 1));
+                org.telegram.messenger.g0.h3(new di.a8(tLObject, (org.telegram.messenger.z10) obj, 1));
                 return;
             case 14:
                 p11 p11Var = (p11) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    org.telegram.messenger.np.s1(p11Var.f38152e).O3(updates, false);
+                    org.telegram.messenger.np.s1(p11Var.f38150e).O3(updates, false);
                     if (!updates.chats.isEmpty()) {
                         org.telegram.messenger.g0.i3(new hh0(17, p11Var, updates), 1000L);
                         return;

@@ -58,9 +58,9 @@ public final class g4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
-                bw0 bw0Var = (bw0) ((sk0) obj).f39334b;
+                bw0 bw0Var = (bw0) ((sk0) obj).f39332b;
                 bw0Var.n1.setAlpha(animatedFraction);
-                bw0Var.f33416r1.setAlpha(animatedFraction);
+                bw0Var.f33419r1.setAlpha(animatedFraction);
                 if (i11 != 0) {
                     int i13 = (int) ((1.0f - animatedFraction) * i11);
                     bw0Var.W0(i10 + i13);
@@ -71,7 +71,7 @@ public final class g4 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 tg.g0 g0Var = (tg.g0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f57296u1.f56644a = i0.a.f(floatValue3, i11, i10);
+                g0Var.f57306u1.f56644a = i0.a.f(floatValue3, i11, i10);
                 g0Var.M0.invalidate();
                 return;
         }

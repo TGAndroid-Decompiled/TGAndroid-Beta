@@ -5,35 +5,35 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class bk0 extends Drawable {
-    public final fv f33296e;
-    public final fv f33297f;
+    public final fv f33299e;
+    public final fv f33300f;
     public float h;
-    public float f33299i;
-    public final Rect f33293a = new Rect();
-    public final er f33294b = qs.f38757b;
-    public final int f33295c = org.telegram.messenger.g0.L(24.0f);
+    public float f33302i;
+    public final Rect f33296a = new Rect();
+    public final er f33297b = qs.f38755b;
+    public final int f33298c = org.telegram.messenger.g0.L(24.0f);
     public final int d = org.telegram.messenger.g0.L(24.0f);
-    public long f33298g = -1;
+    public long f33301g = -1;
 
     public bk0() {
         fv fvVar = new fv(1, (byte) 0);
-        this.f33296e = fvVar;
-        fvVar.f34704c.setColor(-2130706433);
+        this.f33299e = fvVar;
+        fvVar.f34708c.setColor(-2130706433);
         fv fvVar2 = new fv(1, (byte) 0);
-        this.f33297f = fvVar2;
-        fvVar2.f34704c.setColor(-2130706433);
+        this.f33300f = fvVar2;
+        fvVar2.f34708c.setColor(-2130706433);
     }
 
     public final void a(Canvas canvas, float f10) {
         Rect bounds = getBounds();
-        float interpolation = this.f33294b.getInterpolation(f10);
-        Rect rect = this.f33293a;
+        float interpolation = this.f33297b.getInterpolation(f10);
+        Rect rect = this.f33296a;
         rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
-        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f33299i));
+        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f33302i));
         rect.bottom = L;
         rect.right = bounds.right - rect.left;
-        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f33299i));
-        fv fvVar = this.f33297f;
+        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f33302i));
+        fv fvVar = this.f33300f;
         fvVar.setBounds(rect);
         fvVar.draw(canvas);
         int L2 = org.telegram.messenger.g0.L(12.0f);
@@ -43,7 +43,7 @@ public final class bk0 extends Drawable {
         rect.bottom = L3;
         rect.top = L3;
         rect.inset(-org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 10, 11)), -org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 2, 3)));
-        fv fvVar2 = this.f33296e;
+        fv fvVar2 = this.f33299e;
         fvVar2.setBounds(rect);
         fvVar2.setAlpha(org.telegram.messenger.g0.W1(interpolation, 128, 255));
         fvVar2.draw(canvas);
@@ -51,24 +51,24 @@ public final class bk0 extends Drawable {
 
     public final void b(Canvas canvas, float f10) {
         Rect bounds = getBounds();
-        float interpolation = this.f33294b.getInterpolation(f10);
-        Rect rect = this.f33293a;
+        float interpolation = this.f33297b.getInterpolation(f10);
+        Rect rect = this.f33296a;
         rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
-        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f33299i));
+        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f33302i));
         rect.bottom = L;
         rect.right = bounds.right - rect.left;
-        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f33299i));
+        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f33302i));
         rect.offset(0, org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 0, -8)));
-        fv fvVar = this.f33297f;
+        fv fvVar = this.f33300f;
         fvVar.setBounds(rect);
         fvVar.draw(canvas);
         rect.left = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 1, 2)) * this.h);
-        int N = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 5, 6)) * this.f33299i);
+        int N = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 5, 6)) * this.f33302i);
         rect.top = N;
         rect.right = bounds.right - rect.left;
-        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 6, 4)) * this.f33299i));
+        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 6, 4)) * this.f33302i));
         rect.offset(0, org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 0, 8)));
-        fv fvVar2 = this.f33296e;
+        fv fvVar2 = this.f33299e;
         fvVar2.setBounds(rect);
         fvVar2.setAlpha(255);
         fvVar2.draw(canvas);
@@ -76,24 +76,24 @@ public final class bk0 extends Drawable {
 
     public final void c(Canvas canvas, float f10) {
         Rect bounds = getBounds();
-        float interpolation = this.f33294b.getInterpolation(f10);
-        Rect rect = this.f33293a;
+        float interpolation = this.f33297b.getInterpolation(f10);
+        Rect rect = this.f33296a;
         rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
-        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f33299i));
+        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f33302i));
         rect.bottom = L;
         rect.right = bounds.right - rect.left;
-        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f33299i));
+        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f33302i));
         rect.offset(0, org.telegram.messenger.g0.L(-8.0f));
-        fv fvVar = this.f33297f;
+        fv fvVar = this.f33300f;
         fvVar.setBounds(rect);
         fvVar.draw(canvas);
         rect.left = (int) (org.telegram.messenger.g0.N(2.0f) * this.h);
-        int N = (int) (org.telegram.messenger.g0.N(6.0f) * this.f33299i);
+        int N = (int) (org.telegram.messenger.g0.N(6.0f) * this.f33302i);
         rect.top = N;
         rect.right = bounds.right - rect.left;
-        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(4.0f) * this.f33299i));
+        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(4.0f) * this.f33302i));
         rect.offset(0, org.telegram.messenger.g0.L(8.0f));
-        fv fvVar2 = this.f33296e;
+        fv fvVar2 = this.f33299e;
         fvVar2.setBounds(rect);
         fvVar2.setAlpha(org.telegram.messenger.g0.W1(interpolation, 255, 128));
         fvVar2.draw(canvas);
@@ -101,8 +101,8 @@ public final class bk0 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f33298g > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f33298g);
+        if (this.f33301g > 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f33301g);
             int i7 = currentTimeMillis - 300;
             if (i7 >= 0) {
                 if (i7 < 150) {
@@ -120,7 +120,7 @@ public final class bk0 extends Drawable {
                                 } else {
                                     c(canvas, 1.0f);
                                     if (currentTimeMillis - 1400 >= 100) {
-                                        this.f33298g = System.currentTimeMillis();
+                                        this.f33301g = System.currentTimeMillis();
                                     }
                                 }
                             } else {
@@ -147,7 +147,7 @@ public final class bk0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f33295c;
+        return this.f33298c;
     }
 
     @Override
@@ -157,14 +157,14 @@ public final class bk0 extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.h = rect.width() / this.f33295c;
-        this.f33299i = rect.height() / this.d;
+        this.h = rect.width() / this.f33298c;
+        this.f33302i = rect.height() / this.d;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f33296e.setColorFilter(colorFilter);
-        this.f33297f.setColorFilter(colorFilter);
+        this.f33299e.setColorFilter(colorFilter);
+        this.f33300f.setColorFilter(colorFilter);
         invalidateSelf();
     }
 

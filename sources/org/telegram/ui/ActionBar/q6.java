@@ -94,7 +94,7 @@ public abstract class q6 {
     }
 
     public static k6 N(View view, int i7, int i10, int i11, int i12, float f10, e6 e6Var, int i13, PorterDuffColorFilter porterDuffColorFilter) {
-        k6[] k6VarArr = o(view, true).f29369a;
+        k6[] k6VarArr = o(view, true).f29370a;
         k6 k6Var = k6VarArr[i7];
         if (k6Var == null) {
             k6Var = new k6();
@@ -389,18 +389,18 @@ public abstract class q6 {
     public static void j(View view, Drawable drawable, m6 m6Var, m6 m6Var2, e6 e6Var) {
         l6 o4 = o(view, true);
         o4.d = drawable;
-        o4.f29372e = null;
-        o4.f29373f = null;
+        o4.f29373e = null;
+        o4.f29374f = null;
         if (drawable != null) {
             if (m6Var != null) {
                 k6 k6Var = new k6();
-                o4.f29372e = k6Var;
+                o4.f29373e = k6Var;
                 k6Var.c(m6Var.f29392a, m6Var.f29393b, m6Var.f29394c, m6Var.d, e6Var);
                 k6Var.f29348g = t(drawable);
             }
             if (m6Var2 != null) {
                 k6 k6Var2 = new k6();
-                o4.f29373f = k6Var2;
+                o4.f29374f = k6Var2;
                 k6Var2.c(m6Var2.f29392a, m6Var2.f29393b, m6Var2.f29394c, m6Var2.d, e6Var);
                 k6Var2.f29348g = k6Var2.b();
             }
@@ -416,23 +416,23 @@ public abstract class q6 {
         }
         boolean z10 = true;
         l6 o4 = o(view, true);
-        if (o4.f29370b == null) {
-            o4.f29370b = new ArrayList(2);
+        if (o4.f29371b == null) {
+            o4.f29371b = new ArrayList(2);
         }
         k6 k6Var = null;
-        for (int size = o4.f29370b.size() - 1; size >= 0; size--) {
-            k6 k6Var2 = (k6) o4.f29370b.get(size);
+        for (int size = o4.f29371b.size() - 1; size >= 0; size--) {
+            k6 k6Var2 = (k6) o4.f29371b.get(size);
             Drawable drawable2 = (Drawable) k6Var2.f29350j.get();
             if (drawable2 == drawable) {
                 k6Var = k6Var2;
             } else if (drawable2 == null || (!k6Var2.f29351k && drawable2.getColorFilter() != k6Var2.f29349i)) {
-                o4.f29370b.remove(size);
+                o4.f29371b.remove(size);
             }
         }
         if (k6Var == null) {
             k6Var = new k6();
             k6Var.f29350j = new WeakReference(drawable);
-            o4.f29370b.add(k6Var);
+            o4.f29371b.add(k6Var);
         }
         k6 k6Var3 = k6Var;
         k6Var3.c(i7, i10, i11, f10, e6Var);
@@ -558,17 +558,17 @@ public abstract class q6 {
 
     public static k6 w(int i7, View view) {
         l6 o4 = o(view, true);
-        if (o4.f29371c == null) {
-            o4.f29371c = new ArrayList(2);
+        if (o4.f29372c == null) {
+            o4.f29372c = new ArrayList(2);
         }
-        for (int i10 = 0; i10 < o4.f29371c.size(); i10++) {
-            if (((k6) o4.f29371c.get(i10)).f29352l == i7) {
-                return (k6) o4.f29371c.get(i10);
+        for (int i10 = 0; i10 < o4.f29372c.size(); i10++) {
+            if (((k6) o4.f29372c.get(i10)).f29352l == i7) {
+                return (k6) o4.f29372c.get(i10);
             }
         }
         k6 k6Var = new k6();
         k6Var.f29352l = i7;
-        o4.f29371c.add(k6Var);
+        o4.f29372c.add(k6Var);
         return k6Var;
     }
 

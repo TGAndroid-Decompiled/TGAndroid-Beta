@@ -20,7 +20,7 @@ public final class f extends n0 {
     @Override
     public final void g(Canvas canvas, RecyclerView recyclerView) {
         h hVar = this.f58996c;
-        int max = Math.max(0, g0.L(80.0f) + ((int) hVar.f59001c2.getTranslationY()) + ((int) hVar.T1.f57087f));
+        int max = Math.max(0, g0.L(80.0f) + ((int) hVar.f59001c2.getTranslationY()) + ((int) hVar.T1.f57091f));
         int w02 = j6.w0(j6.f28922h5, this.f58995b);
         c0 c0Var = this.f58994a;
         c0Var.b(w02);

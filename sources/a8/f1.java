@@ -5,8 +5,8 @@ public final class f1 {
     public final l7 f399c;
 
     public f1(android.support.v4.media.session.a0 a0Var) {
-        this.f397a = (e1) a0Var.f1706b;
-        this.f398b = (Integer) a0Var.f1707c;
+        this.f397a = (e1) a0Var.f1713b;
+        this.f398b = (Integer) a0Var.f1714c;
         this.f399c = (l7) a0Var.d;
     }
 }

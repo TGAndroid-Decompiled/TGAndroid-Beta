@@ -98,7 +98,7 @@ public abstract class b {
         t a10 = z6.b.a(context);
         a10.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a10.f1964a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a10.f1971a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i7, str);
                 return true;

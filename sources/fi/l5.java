@@ -90,8 +90,8 @@ public final class l5 implements View.OnClickListener {
                     tL_stories_activateStealthMode.past = true;
                     TL_stories.TL_storiesStealthMode tL_storiesStealthMode2 = new TL_stories.TL_storiesStealthMode();
                     tL_storiesStealthMode2.flags |= 3;
-                    tL_storiesStealthMode2.cooldown_until_date = ConnectionsManager.getInstance(o5Var.f29679a).getCurrentTime() + np.s1(o5Var.f29679a).f25291h0;
-                    tL_storiesStealthMode2.active_until_date = ConnectionsManager.getInstance(o5Var.f29679a).getCurrentTime() + np.s1(o5Var.f29679a).f25282g0;
+                    tL_storiesStealthMode2.cooldown_until_date = ConnectionsManager.getInstance(o5Var.f29679a).getCurrentTime() + np.s1(o5Var.f29679a).f25294h0;
+                    tL_storiesStealthMode2.active_until_date = ConnectionsManager.getInstance(o5Var.f29679a).getCurrentTime() + np.s1(o5Var.f29679a).f25285g0;
                     P1.i0(tL_storiesStealthMode2);
                     ConnectionsManager.getInstance(o5Var.f29679a).sendRequest(tL_stories_activateStealthMode, new m5(0));
                     try {
@@ -117,7 +117,7 @@ public final class l5 implements View.OnClickListener {
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) obj2;
                 ih0 ih0Var = (ih0) obj;
                 iArr[0] = ((Integer) view.getTag()).intValue();
-                SharedPreferences.Editor edit = np.s1(m10.f24934t0).f25270e7.edit();
+                SharedPreferences.Editor edit = np.s1(m10.f24940t0).f25273e7.edit();
                 if (i10 == 1) {
                     edit.putInt("popupAll", iArr[0]);
                 } else if (i10 == 0) {
@@ -139,7 +139,7 @@ public final class l5 implements View.OnClickListener {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     c40Var.C1(groupCallParticipant, gj.B1(groupCallParticipant.peer), ((Integer) arrayList.get(i10)).intValue());
-                    e30 e30Var = c40Var.f45914e5;
+                    e30 e30Var = c40Var.f45903e5;
                     if (e30Var != null) {
                         e30Var.dismiss();
                         return;
@@ -184,7 +184,7 @@ public final class l5 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj2;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) obj;
                 np messagesController = u91Var.getMessagesController();
-                long j3 = -u91Var.f51834a;
+                long j3 = -u91Var.f51835a;
                 if (messagesController.r2(j3, tL_forumTopic.f28103id, null)) {
                     u91Var.getNotificationsController().G(j3, tL_forumTopic.f28103id, false);
                     u91Var.finishPreviewFragment();

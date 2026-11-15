@@ -29,7 +29,7 @@ public final class r7 extends FrameLayout {
         paint.setColor(w02);
         u7 u7Var = this.d;
         float max = Math.max(0.0f, u7Var.I0());
-        if (max < org.telegram.messenger.g0.f23603m) {
+        if (max < org.telegram.messenger.g0.f23605m) {
             z10 = true;
         } else {
             z10 = false;
@@ -38,11 +38,11 @@ public final class r7 extends FrameLayout {
         float T1 = org.telegram.messenger.g0.T1(max, 0.0f, u5Var.d(z10));
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(u7Var.f29717u0, T1, getWidth() - u7Var.f29717u0, org.telegram.messenger.g0.L(14.0f) + getHeight());
-        float L = (1.0f - u5Var.f39903c) * org.telegram.messenger.g0.L(14.0f);
+        float L = (1.0f - u5Var.f39900c) * org.telegram.messenger.g0.L(14.0f);
         canvas.drawRoundRect(rectF, L, L, paint);
-        u7Var.f15196r1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f23603m, org.telegram.messenger.g0.L(14.0f) + T1));
+        u7Var.f15196r1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f23605m, org.telegram.messenger.g0.L(14.0f) + T1));
         canvas.save();
-        canvas.clipRect(u7Var.f29717u0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f23603m, getWidth() - u7Var.f29717u0, getHeight());
+        canvas.clipRect(u7Var.f29717u0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f23605m, getWidth() - u7Var.f29717u0, getHeight());
         super.dispatchDraw(canvas);
         canvas.restore();
     }

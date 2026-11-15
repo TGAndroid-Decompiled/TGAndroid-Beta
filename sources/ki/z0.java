@@ -92,7 +92,7 @@ public final class z0 implements Runnable {
                             TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                             getwebpagepreview.message = str;
                             int[] iArr = {ConnectionsManager.getInstance(i10).sendRequestTyped(getwebpagepreview, new d3.b(1), new di.k0(iArr, a1Var, isVarArr, i10, 2))};
-                            t1Var.setOnCancelListener(new lb(new ai.z0(iArr, i10, isVarArr, 20), 1));
+                            t1Var.setOnCancelListener(new lb(new ai.a1(iArr, i10, isVarArr, 20), 1));
                             return;
                         }
                     }
@@ -113,7 +113,7 @@ public final class z0 implements Runnable {
                             File z11 = w7.z(4);
                             File file = new File(z11, Utilities.a(str2) + k10);
                             if (!file.exists()) {
-                                HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new ai.u1(26, fileArr, b1Var), null);
+                                HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new ai.v1(26, fileArr, b1Var), null);
                                 httpGetFileTask.setDestFile(file);
                                 httpGetFileTask.setMaxSize(8388608L);
                                 httpGetFileTask.execute(str2);
@@ -134,7 +134,7 @@ public final class z0 implements Runnable {
                 String str3 = (String) obj6;
                 pbVar.getClass();
                 org.telegram.messenger.g0.h3(new ob(this.f18724b, str3, (TLRPC.InputFile) obj4, (TLRPC.InputEncryptedFile) obj3, (byte[]) obj2, (byte[]) obj, this.f18725c));
-                pbVar.f25919b.f23478u.remove(str3);
+                pbVar.f25921b.f23481u.remove(str3);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj6;
@@ -226,7 +226,7 @@ public final class z0 implements Runnable {
                                 if (anVar.j() != null) {
                                     tLObject = anVar.j();
                                 } else {
-                                    tLObject = anVar.f45173e;
+                                    tLObject = anVar.f45172e;
                                 }
                                 if (!si.t(tL_attachMenuBot, tLObject)) {
                                     a02 = cc.a0(e2Var);

@@ -163,7 +163,7 @@ public final class e implements org.telegram.ui.ActionBar.q1, x10, h2.o, i2.u, d
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
                 cf cfVar = cVar.f20473a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                pa.d dVar = (pa.d) cfVar.f33543a;
+                pa.d dVar = (pa.d) cfVar.f33545a;
                 pa.e eVar = new pa.e(bufferedWriter, dVar.f54930a, dVar.f54931b, dVar.f54932c, dVar.d);
                 eVar.h((n5.m) mVar.f13625c);
                 eVar.j();
@@ -346,10 +346,10 @@ public final class e implements org.telegram.ui.ActionBar.q1, x10, h2.o, i2.u, d
     @Override
     public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, u91 u91Var) {
         oi.d4 d4Var = (oi.d4) this.f18272b;
-        if (arrayList.isEmpty() || ((ur) arrayList.get(0)).f26860a <= 0) {
+        if (arrayList.isEmpty() || ((ur) arrayList.get(0)).f26861a <= 0) {
             return false;
         }
-        d4Var.run(((ur) arrayList.get(0)).f26860a);
+        d4Var.run(((ur) arrayList.get(0)).f26861a);
         ywVar.finishFragment();
         return true;
     }

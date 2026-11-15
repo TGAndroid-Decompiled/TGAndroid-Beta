@@ -2,19 +2,19 @@ package org.telegram.messenger;
 
 import java.io.OutputStreamWriter;
 public final class y7 implements Runnable {
-    public final int f27666a;
-    public final Throwable f27667b;
+    public final int f27668a;
+    public final Throwable f27669b;
 
     public y7(int i7, Throwable th2) {
-        this.f27666a = i7;
-        this.f27667b = th2;
+        this.f27668a = i7;
+        this.f27669b = th2;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27666a;
+        int i7 = this.f27668a;
         int i10 = 0;
-        Throwable th2 = this.f27667b;
+        Throwable th2 = this.f27669b;
         switch (i7) {
             case 0:
                 try {
@@ -66,7 +66,7 @@ public final class y7 implements Runnable {
                 } catch (Exception e11) {
                     e11.printStackTrace();
                 }
-                boolean z10 = r2.f26198a;
+                boolean z10 = r2.f26206a;
                 return;
         }
     }

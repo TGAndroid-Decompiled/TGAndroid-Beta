@@ -35,7 +35,7 @@ public final class ip extends hi.l3 {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.G.getAlpha(), m1Var.b().getAlpha()) * f10), 31);
                 Path path = this.F0;
                 canvas.drawPath(path, paint);
-                if (m1Var.f40778e) {
+                if (m1Var.f40781e) {
                     paint.setShader(((Paint) m1Var.d.f341a).getShader());
                     canvas.drawPath(path, paint);
                 }

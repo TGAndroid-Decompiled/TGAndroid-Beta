@@ -24,34 +24,34 @@ public final class t3 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 c6 c6Var2 = c6Var;
-                                l1 l1Var = c6Var2.f8338q3;
-                                c6Var2.f8332n3 = false;
+                                l1 l1Var = c6Var2.f8339q3;
+                                c6Var2.f8333n3 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
                                     np.s1(c6Var2.f29679a).Y3(paymentForm.users, false);
-                                    c6Var2.f8334o3 = paymentForm;
+                                    c6Var2.f8335o3 = paymentForm;
                                     org.telegram.messenger.g0.r(l1Var);
                                     org.telegram.messenger.g0.h3(l1Var);
                                     return;
                                 }
                                 org.telegram.ui.Components.xb Y = c6Var2.k().Y(tL_error);
-                                Y.f41653t = true;
+                                Y.f41645t = true;
                                 Y.j();
                                 return;
                             default:
                                 c6 c6Var3 = c6Var;
-                                c6Var3.f8332n3 = false;
+                                c6Var3.f8333n3 = false;
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject3;
                                     np.s1(c6Var3.f29679a).Y3(paymentForm2.users, false);
-                                    c6Var3.f8334o3 = paymentForm2;
+                                    c6Var3.f8335o3 = paymentForm2;
                                     c6Var3.b2();
                                     return;
                                 }
                                 org.telegram.ui.Components.xb Y2 = c6Var3.k().Y(tL_error);
-                                Y2.f41653t = true;
+                                Y2.f41645t = true;
                                 Y2.j();
                                 return;
                         }
@@ -66,34 +66,34 @@ public final class t3 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 c6 c6Var22 = c6Var2;
-                                l1 l1Var = c6Var22.f8338q3;
-                                c6Var22.f8332n3 = false;
+                                l1 l1Var = c6Var22.f8339q3;
+                                c6Var22.f8333n3 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
                                     np.s1(c6Var22.f29679a).Y3(paymentForm.users, false);
-                                    c6Var22.f8334o3 = paymentForm;
+                                    c6Var22.f8335o3 = paymentForm;
                                     org.telegram.messenger.g0.r(l1Var);
                                     org.telegram.messenger.g0.h3(l1Var);
                                     return;
                                 }
                                 org.telegram.ui.Components.xb Y = c6Var22.k().Y(tL_error);
-                                Y.f41653t = true;
+                                Y.f41645t = true;
                                 Y.j();
                                 return;
                             default:
                                 c6 c6Var3 = c6Var2;
-                                c6Var3.f8332n3 = false;
+                                c6Var3.f8333n3 = false;
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject3;
                                     np.s1(c6Var3.f29679a).Y3(paymentForm2.users, false);
-                                    c6Var3.f8334o3 = paymentForm2;
+                                    c6Var3.f8335o3 = paymentForm2;
                                     c6Var3.b2();
                                     return;
                                 }
                                 org.telegram.ui.Components.xb Y2 = c6Var3.k().Y(tL_error);
-                                Y2.f41653t = true;
+                                Y2.f41645t = true;
                                 Y2.j();
                                 return;
                         }

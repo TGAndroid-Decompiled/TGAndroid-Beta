@@ -8,24 +8,24 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.er;
 public abstract class w0 {
-    public static final float[][] f9639a;
-    public static final a4.k f9640b;
+    public static final float[][] f9628a;
+    public static final a4.k f9629b;
 
     static {
         float[][] fArr = {new float[]{83.33f, 24.0f, 27.33f, 0.22f, 68.66f, 75.33f, 25.33f, 0.21f, 0.0f, 86.0f, 25.33f, 0.12f, -68.66f, 75.33f, 25.33f, 0.21f, -82.66f, 13.66f, 27.33f, 0.22f, -80.0f, -33.33f, 20.0f, 0.24f, -46.5f, -63.16f, 27.0f, 0.21f, 1.0f, -82.66f, 20.0f, 0.15f, 46.5f, -63.16f, 27.0f, 0.21f, 80.0f, -33.33f, 19.33f, 0.24f, 115.66f, -63.0f, 20.0f, 0.15f, 134.0f, -10.66f, 20.0f, 0.18f, 118.66f, 55.66f, 20.0f, 0.15f, 124.33f, 98.33f, 20.0f, 0.11f, -128.0f, 98.33f, 20.0f, 0.11f, -108.0f, 55.66f, 20.0f, 0.15f, -123.33f, -10.66f, 20.0f, 0.18f, -116.0f, -63.33f, 20.0f, 0.15f}, new float[]{27.33f, -57.66f, 20.0f, 0.12f, 59.0f, -32.0f, 19.33f, 0.22f, 77.0f, 4.33f, 22.66f, 0.2f, 100.0f, 40.33f, 18.0f, 0.12f, 58.66f, 59.0f, 20.0f, 0.18f, 73.33f, 100.33f, 22.66f, 0.15f, 75.0f, 155.0f, 22.0f, 0.11f, -27.33f, -57.33f, 20.0f, 0.12f, -59.0f, -32.33f, 19.33f, 0.2f, -77.0f, 4.66f, 23.33f, 0.2f, -98.66f, 41.0f, 18.66f, 0.12f, -58.0f, 59.33f, 19.33f, 0.18f, -73.33f, 100.0f, 22.0f, 0.15f, -75.66f, 155.0f, 22.0f, 0.11f}, new float[]{-0.83f, -52.16f, 12.33f, 0.2f, 26.66f, -40.33f, 16.0f, 0.2f, 44.16f, -20.5f, 12.33f, 0.2f, 53.0f, 7.33f, 16.0f, 0.2f, 31.0f, 23.66f, 14.66f, 0.2f, 0.0f, 32.0f, 13.33f, 0.2f, -29.0f, 23.66f, 14.0f, 0.2f, -53.0f, 7.33f, 16.0f, 0.2f, -44.5f, -20.16f, 12.33f, 0.2f, -27.33f, -40.33f, 16.0f, 0.2f, 43.66f, 50.0f, 14.66f, 0.2f, -41.66f, 48.0f, 14.66f, 0.2f}, new float[]{-0.16f, -103.5f, 20.33f, 0.15f, 39.66f, -77.33f, 26.66f, 0.15f, 70.66f, -46.33f, 21.33f, 0.15f, 84.5f, -3.83f, 29.66f, 0.15f, 65.33f, 56.33f, 24.66f, 0.15f, 0.0f, 67.66f, 24.66f, 0.15f, -65.66f, 56.66f, 24.66f, 0.15f, -85.0f, -4.0f, 29.33f, 0.15f, -70.66f, -46.33f, 21.33f, 0.15f, -40.33f, -77.66f, 26.66f, 0.15f, 62.66f, -109.66f, 21.33f, 0.11f, 103.166f, -67.5f, 20.33f, 0.11f, 110.33f, 37.66f, 20.66f, 0.11f, 94.166f, 91.16f, 20.33f, 0.11f, 38.83f, 91.16f, 20.33f, 0.11f, 0.0f, 112.5f, 20.33f, 0.11f, -38.83f, 91.16f, 20.33f, 0.11f, -94.166f, 91.16f, 20.33f, 0.11f, -110.33f, 37.66f, 20.66f, 0.11f, -103.166f, -67.5f, 20.33f, 0.11f, -62.66f, -109.66f, 21.33f, 0.11f}};
-        f9639a = fArr;
+        f9628a = fArr;
         short s5 = 0;
         for (float[] fArr2 : fArr) {
             s5 = (short) Math.max((int) s5, fArr2.length / 4);
         }
-        f9640b = new a4.k(s5);
+        f9629b = new a4.k(s5);
     }
 
     public static void a(Canvas canvas, int i7, Drawable drawable, float f10, float f11, float f12, float f13) {
         if (f12 > 0.0f) {
             int i10 = 0;
             while (true) {
-                float[] fArr = f9639a[i7];
+                float[] fArr = f9628a[i7];
                 if (i10 < fArr.length) {
                     float f14 = fArr[i10];
                     float f15 = fArr[i10 + 1];
@@ -59,7 +59,7 @@ public abstract class w0 {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            kVar = f9640b;
+            kVar = f9629b;
             if (i11 >= kVar.f191b) {
                 break;
             }
@@ -67,7 +67,7 @@ public abstract class w0 {
             i11++;
         }
         while (true) {
-            float[] fArr = f9639a[i7];
+            float[] fArr = f9628a[i7];
             if (i10 < fArr.length) {
                 float f13 = fArr[i10];
                 float f14 = fArr[i10 + 1];
@@ -168,14 +168,14 @@ public abstract class w0 {
                 }
                 float f52 = f27;
                 if (i11 == 18 || i11 == 19 || i11 == 6 || i11 == 7) {
-                    l10 = er.f34422i.getInterpolation(l10);
+                    l10 = er.f34421i.getInterpolation(l10);
                 }
                 float[] fArr3 = fArr2;
                 float f53 = f46;
                 float t6 = com.google.android.gms.internal.vision.e2.t(f53, f16, org.telegram.messenger.g0.L(12.0f), f48);
                 int i13 = (l10 > f53 ? 1 : (l10 == f53 ? 0 : -1));
                 if (i13 < 0) {
-                    f47 = org.telegram.messenger.g0.T1(f19, f47, er.f34422i.getInterpolation(l10));
+                    f47 = org.telegram.messenger.g0.T1(f19, f47, er.f34421i.getInterpolation(l10));
                     t6 = org.telegram.messenger.g0.T1(f20, t6, l10);
                     N7 = org.telegram.messenger.g0.T1(org.telegram.messenger.g0.N(8.0f), N7, l10);
                 }
@@ -191,7 +191,7 @@ public abstract class w0 {
                     l12 = org.telegram.messenger.g0.T1(0.0f, l12, l10);
                 }
                 e5Var.setBounds((int) (f47 - N7), (int) (t6 - N7), (int) (f47 + N7), (int) (t6 + N7));
-                e5Var.f34198w = (int) (l12 * 255.0f);
+                e5Var.f34185w = (int) (l12 * 255.0f);
                 e5Var.draw(canvas);
                 i11 += 3;
                 i10 += 2;

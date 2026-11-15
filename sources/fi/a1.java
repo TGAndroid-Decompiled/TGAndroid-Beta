@@ -44,7 +44,7 @@ public final class a1 implements Runnable {
                 }
                 Integer num = (Integer) hashMap.get(str);
                 if (num != null) {
-                    ConnectionsManager.getInstance(org.telegram.messenger.c.a(e1Var.f11656e).f22778a).cancelRequest(num.intValue(), true);
+                    ConnectionsManager.getInstance(org.telegram.messenger.c.a(e1Var.f11656e).f22782a).cancelRequest(num.intValue(), true);
                     hashMap.remove(str);
                     return;
                 }
@@ -66,10 +66,10 @@ public final class a1 implements Runnable {
                     mediaController.f22348g1.mime_type = "audio/ogg";
                     gz.y();
                     try {
-                        e0.g gVar = new e0.g(org.telegram.messenger.t0.f26600b, org.telegram.messenger.w7.z(1), new le(mediaController));
+                        e0.g gVar = new e0.g(org.telegram.messenger.t0.f26609b, org.telegram.messenger.w7.z(1), new le(mediaController));
                         mediaController.G1 = gVar;
                         if (gVar.h()) {
-                            if (org.telegram.messenger.r2.f26198a) {
+                            if (org.telegram.messenger.r2.f26206a) {
                                 org.telegram.messenger.a8.b("AudioRecorderV2 selected: account=" + i11 + ", dialog=" + j10 + ", guid=" + i12);
                                 return;
                             }
@@ -91,10 +91,10 @@ public final class a1 implements Runnable {
                 int i14 = this.d;
                 vrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+                    SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("UPDATE OR REPLACE widget_state SET mid = " + i13 + " WHERE uid = " + j11 + " AND mid = " + i14).stepThis().dispose();
-                    vrVar.f27222b.executeFast("UPDATE OR REPLACE widget_heights SET mid = " + i13 + " WHERE uid = " + j11 + " AND mid = " + i14).stepThis().dispose();
+                    vrVar.f27221b.executeFast("UPDATE OR REPLACE widget_heights SET mid = " + i13 + " WHERE uid = " + j11 + " AND mid = " + i14).stepThis().dispose();
                     return;
                 } catch (Exception e11) {
                     vrVar.o(e11, true);

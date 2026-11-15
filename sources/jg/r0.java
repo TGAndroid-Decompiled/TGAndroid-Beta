@@ -68,7 +68,7 @@ public class r0 extends c {
 
     public r0(Context context, int i7, long j3, boolean z10, e6 e6Var, boolean z11, boolean z12, boolean z13) {
         super(z11, z13);
-        this.f17260x = m10.f24934t0;
+        this.f17260x = m10.f24940t0;
         this.N = -1;
         this.Q = new ArrayList();
         this.U = true;
@@ -262,7 +262,7 @@ public class r0 extends c {
         this.Q = new ArrayList(arrayList);
         long e10 = m10.i(this.f17260x).e();
         for (int i7 = 0; i7 < this.Q.size(); i7++) {
-            if (((la0) this.Q.get(i7)).f48921a == e10 || ((la0) this.Q.get(i7)).f48922b.out) {
+            if (((la0) this.Q.get(i7)).f48917a == e10 || ((la0) this.Q.get(i7)).f48918b.out) {
                 this.Q.remove(i7);
                 break;
             }
@@ -522,7 +522,7 @@ public class r0 extends c {
                                 TextView textView = q7Var.f31300f;
                                 Location location = q7Var.f31306y;
                                 i9 i9Var = q7Var.f31298c;
-                                q7Var.F = m10.f24934t0;
+                                q7Var.F = m10.f24940t0;
                                 String str = tL_channelLocation.address;
                                 q7Var.f31301n = null;
                                 String str2 = "";
@@ -571,25 +571,25 @@ public class r0 extends c {
                                 j5 j5Var = q7Var.d;
                                 Location location3 = q7Var.f31306y;
                                 q7Var.f31305x = la0Var;
-                                if (m5.E(la0Var.f48921a)) {
-                                    TLRPC.User a23 = np.s1(q7Var.F).a2(Long.valueOf(la0Var.f48921a));
+                                if (m5.E(la0Var.f48917a)) {
+                                    TLRPC.User a23 = np.s1(q7Var.F).a2(Long.valueOf(la0Var.f48917a));
                                     if (a23 != null) {
                                         q7Var.f31301n.r(a23);
                                         j5Var.l(g5.m(0, a23.first_name, a23.last_name), false);
                                         i9Var2.f(a23, q7Var.f31301n);
                                     }
                                 } else {
-                                    TLRPC.Chat M02 = np.s1(q7Var.F).M0(Long.valueOf(-la0Var.f48921a));
+                                    TLRPC.Chat M02 = np.s1(q7Var.F).M0(Long.valueOf(-la0Var.f48917a));
                                     if (M02 != null) {
                                         q7Var.f31301n.q(M02);
                                         j5Var.l(M02.title, false);
                                         i9Var2.f(M02, q7Var.f31301n);
                                     }
                                 }
-                                bb a10 = la0Var.f48924e.a();
+                                bb a10 = la0Var.f48920e.a();
                                 location3.setLatitude(a10.f22677a);
                                 location3.setLongitude(a10.f22678b);
-                                TLRPC.Message message = la0Var.f48922b;
+                                TLRPC.Message message = la0Var.f48918b;
                                 int i13 = message.edit_date;
                                 if (i13 != 0) {
                                     j3 = i13;
@@ -686,7 +686,7 @@ public class r0 extends c {
                             break;
                         case 10:
                             View x6Var = new x6(context, (org.telegram.ui.Cells.y0) null);
-                            new fq(new ColorDrawable(j6.w0(j6.f28792a7, e6Var)), j6.Y0(context, 2131231230, j6.f28813b7)).f34678x = true;
+                            new fq(new ColorDrawable(j6.w0(j6.f28792a7, e6Var)), j6.Y0(context, 2131231230, j6.f28813b7)).f34682x = true;
                             view2 = x6Var;
                             break;
                         case 11:

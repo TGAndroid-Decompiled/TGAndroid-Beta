@@ -26,17 +26,17 @@ public final class q00 implements z10 {
                 c10 c10Var = (c10) c1Var;
                 gj gjVar = (gj) obj2;
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
-                TLRPC.Message message = gjVar.f23817k;
+                TLRPC.Message message = gjVar.f23819k;
                 message.summaryText = tL_textWithEntities;
                 if (tL_textWithEntities == null) {
                     message.summarizedOpen = false;
                 }
-                c10Var.getMessagesStorage().X1(j3, gjVar.f23817k);
+                c10Var.getMessagesStorage().X1(j3, gjVar.f23819k);
                 ns.f(c10Var.currentAccount).k(128, gjVar, Boolean.TRUE);
                 return;
             default:
                 v9 v9Var = (v9) c1Var;
-                v9Var.d(j3).f26420c = (ArrayList) obj;
+                v9Var.d(j3).f26430c = (ArrayList) obj;
                 v9Var.f(j3, (TL_payments.TL_StarGiftAuctionState) obj2);
                 return;
         }

@@ -13,18 +13,18 @@ import org.telegram.messenger.yi;
 import org.telegram.ui.Components.tj0;
 import org.telegram.ui.Components.u9;
 public final class s0 extends tj0 {
-    public final Context f57549c;
+    public final Context f57551c;
     public final u9 d;
-    public final w5 f57550e;
-    public final boolean f57551f;
+    public final w5 f57552e;
+    public final boolean f57553f;
     public final c5 h;
 
     public s0(c5 c5Var, Context context, u9 u9Var, w5 w5Var, boolean z10) {
         this.h = c5Var;
-        this.f57549c = context;
+        this.f57551c = context;
         this.d = u9Var;
-        this.f57550e = w5Var;
-        this.f57551f = z10;
+        this.f57552e = w5Var;
+        this.f57553f = z10;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class s0 extends tj0 {
 
     @Override
     public final int b() {
-        return this.h.f57572t0.size();
+        return this.h.f57574t0.size();
     }
 
     @Override
     public final int d(int i7) {
-        ArrayList arrayList = this.h.f57572t0;
+        ArrayList arrayList = this.h.f57574t0;
         return ((gj) arrayList.get((arrayList.size() - 1) - i7)).U;
     }
 
@@ -50,14 +50,14 @@ public final class s0 extends tj0 {
         yi d;
         boolean z12;
         c5 c5Var = this.h;
-        ArrayList arrayList = c5Var.f57572t0;
+        ArrayList arrayList = c5Var.f57574t0;
         gj gjVar = (gj) arrayList.get((arrayList.size() - 1) - i7);
         View view = e1Var.f58535a;
         if (view instanceof org.telegram.ui.Cells.q1) {
             org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-            bj bjVar = c5Var.f57573u0;
+            bj bjVar = c5Var.f57575u0;
             if (bjVar != null && (d = bjVar.d(gjVar)) != null) {
-                if (d.f27746c != 0) {
+                if (d.f27748c != 0) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -66,7 +66,7 @@ public final class s0 extends tj0 {
             } else {
                 z10 = false;
             }
-            bj bjVar2 = c5Var.f57573u0;
+            bj bjVar2 = c5Var.f57575u0;
             if (bjVar2 != null) {
                 z11 = true;
             } else {
@@ -81,11 +81,11 @@ public final class s0 extends tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         t0 t0Var = this.h.E0;
-        Context context = this.f57549c;
+        Context context = this.f57551c;
         if (i7 == 1) {
             return new v4.e1(new q0(this, context, t0Var));
         }
-        r0 r0Var = new r0(this, context, m10.f24934t0, t0Var);
+        r0 r0Var = new r0(this, context, m10.f24940t0, t0Var);
         r0Var.f30975f6 = true;
         return new v4.e1(r0Var);
     }

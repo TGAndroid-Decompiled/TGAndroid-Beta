@@ -3,13 +3,13 @@ public final class i00 implements oc, nc {
     public final c10 f24258a;
     public final gj f24259b;
     public final f3.s f24260c;
-    public final di.m9 d;
+    public final di.l9 d;
 
-    public i00(c10 c10Var, gj gjVar, f3.s sVar, di.m9 m9Var) {
+    public i00(c10 c10Var, gj gjVar, f3.s sVar, di.l9 l9Var) {
         this.f24258a = c10Var;
         this.f24259b = gjVar;
         this.f24260c = sVar;
-        this.d = m9Var;
+        this.d = l9Var;
     }
 
     @Override

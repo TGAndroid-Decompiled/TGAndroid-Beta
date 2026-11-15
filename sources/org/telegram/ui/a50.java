@@ -117,7 +117,7 @@ public final class a50 extends org.telegram.ui.Components.tj0 {
                 l8Var.u(M0, str, z10, 2131232061, false);
                 return;
             case 5:
-                ((org.telegram.ui.Cells.y8) view).setText(((z40) arrayList.get(i7)).f53841c);
+                ((org.telegram.ui.Cells.y8) view).setText(((z40) arrayList.get(i7)).f53806c);
                 return;
             case 6:
                 org.telegram.ui.Cells.l8 l8Var2 = (org.telegram.ui.Cells.l8) view;

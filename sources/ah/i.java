@@ -199,7 +199,7 @@ public final class i extends EditTextBoldCursor {
                 super.onTextChanged(charSequence, i7, i10, i11);
                 be beVar = ((yh.a) this.N1).f60719b;
                 if (beVar != null) {
-                    ChatActivityEnterView chatActivityEnterView = beVar.f33264b;
+                    ChatActivityEnterView chatActivityEnterView = beVar.f33267b;
                     int i12 = ChatActivityEnterView.N6;
                     he heVar = chatActivityEnterView.K0;
                     if (heVar != null) {

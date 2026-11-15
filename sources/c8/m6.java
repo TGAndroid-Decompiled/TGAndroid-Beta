@@ -1,6 +1,6 @@
 package c8;
 public final class m6 implements na.d {
-    public static final m6 f4593a = new Object();
+    public static final m6 f4596a = new Object();
 
     static {
         r.b.u(a8.p0.x(w.class, new s(1)));

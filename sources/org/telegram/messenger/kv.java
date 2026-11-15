@@ -4,52 +4,52 @@ import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import org.telegram.tgnet.tl.TL_iv;
 public final class kv {
-    public final iv f24753a;
-    public final ArrayList f24754b;
-    public final int f24755c;
+    public final iv f24759a;
+    public final ArrayList f24760b;
+    public final int f24761c;
     public final int d;
-    public final lv f24756e;
-    public int f24757f;
-    public int f24758g;
+    public final lv f24762e;
+    public int f24763f;
+    public int f24764g;
     public lv h;
 
     public kv(iv ivVar, ArrayList arrayList, int i7, int i10, lv lvVar, int i11, int i12, lv lvVar2) {
-        this.f24753a = ivVar;
-        this.f24754b = arrayList;
-        this.f24755c = i7;
+        this.f24759a = ivVar;
+        this.f24760b = arrayList;
+        this.f24761c = i7;
         this.d = i10;
-        this.f24756e = lvVar;
-        this.f24757f = i11;
-        this.f24758g = i12;
+        this.f24762e = lvVar;
+        this.f24763f = i11;
+        this.f24764g = i12;
         this.h = lvVar2;
     }
 
     public final TL_iv.RichText a(int i7) {
         int i10;
         int i11;
-        if (i7 == this.f24755c) {
+        if (i7 == this.f24761c) {
             i10 = this.d;
         } else {
             i10 = 0;
         }
-        if (i7 == this.f24757f) {
-            i11 = this.f24758g;
+        if (i7 == this.f24763f) {
+            i11 = this.f24764g;
         } else {
             i11 = Integer.MAX_VALUE;
         }
         if (i10 == 0 && i11 == Integer.MAX_VALUE) {
-            return (TL_iv.RichText) this.f24754b.get(i7);
+            return (TL_iv.RichText) this.f24760b.get(i7);
         }
         return b(i7).b(i10, i11);
     }
 
     public final lv b(int i7) {
-        if (i7 == this.f24755c) {
-            return this.f24756e;
+        if (i7 == this.f24761c) {
+            return this.f24762e;
         }
-        int i10 = this.f24757f;
-        ArrayList arrayList = this.f24754b;
-        iv ivVar = this.f24753a;
+        int i10 = this.f24763f;
+        ArrayList arrayList = this.f24760b;
+        iv ivVar = this.f24759a;
         if (i7 == i10) {
             if (this.h == null) {
                 TL_iv.RichText richText = (TL_iv.RichText) arrayList.get(i7);

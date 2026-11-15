@@ -39,7 +39,7 @@ public final class bm implements Runnable {
         try {
             try {
                 if (document != null) {
-                    sQLitePreparedStatement = vrVar.f27222b.executeFast("UPDATE web_recent_v3 SET document = ? WHERE image_url = ?");
+                    sQLitePreparedStatement = vrVar.f27221b.executeFast("UPDATE web_recent_v3 SET document = ? WHERE image_url = ?");
                     sQLitePreparedStatement.requery();
                     NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(document.getObjectSize());
                     document.serializeToStream(nativeByteBuffer);
@@ -49,7 +49,7 @@ public final class bm implements Runnable {
                     sQLitePreparedStatement.dispose();
                     nativeByteBuffer.reuse();
                 } else {
-                    sQLitePreparedStatement = vrVar.f27222b.executeFast("UPDATE web_recent_v3 SET local_url = ? WHERE image_url = ?");
+                    sQLitePreparedStatement = vrVar.f27221b.executeFast("UPDATE web_recent_v3 SET local_url = ? WHERE image_url = ?");
                     sQLitePreparedStatement.requery();
                     sQLitePreparedStatement.bindString(1, str2);
                     sQLitePreparedStatement.bindString(2, str);
@@ -76,18 +76,18 @@ public final class bm implements Runnable {
         boolean z11;
         boolean z12;
         tv tvVar = (tv) this.f22735b;
-        rv rvVar = tvVar.f26744n;
+        rv rvVar = tvVar.f26746n;
         TLObject tLObject = (TLObject) this.f22736c;
         ArrayList arrayList = (ArrayList) this.d;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f22737e;
-        ArrayList arrayList2 = tvVar.f26735c;
-        ArrayList arrayList3 = tvVar.f26739i;
-        int i7 = tvVar.f26733a;
-        boolean z13 = tvVar.f26734b;
+        ArrayList arrayList2 = tvVar.f26737c;
+        ArrayList arrayList3 = tvVar.f26741i;
+        int i7 = tvVar.f26735a;
+        boolean z13 = tvVar.f26736b;
         int i10 = 0;
         boolean z14 = true;
         if (tLObject instanceof TLRPC.TL_messages_savedDialogs) {
-            tvVar.f26736e = true;
+            tvVar.f26738e = true;
             TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject;
             np.s1(i7).Y3(tL_messages_savedDialogs.users, false);
             np.s1(i7).S3(tL_messages_savedDialogs.chats, false);
@@ -100,9 +100,9 @@ public final class bm implements Runnable {
                 while (true) {
                     if (i12 < arrayList2.size()) {
                         z12 = z14;
-                        if (((sv) arrayList2.get(i12)).f26569a == b10.f26569a) {
-                            b10.f26572e = ((sv) arrayList2.get(i12)).f26572e;
-                            ((sv) arrayList2.get(i12)).f26570b = b10.f26570b;
+                        if (((sv) arrayList2.get(i12)).f26578a == b10.f26578a) {
+                            b10.f26581e = ((sv) arrayList2.get(i12)).f26581e;
+                            ((sv) arrayList2.get(i12)).f26579b = b10.f26579b;
                             break;
                         }
                         i12++;
@@ -115,7 +115,7 @@ public final class bm implements Runnable {
                 int i13 = 0;
                 while (true) {
                     if (i13 < arrayList3.size()) {
-                        if (((sv) arrayList3.get(i13)).f26569a == b10.f26569a) {
+                        if (((sv) arrayList3.get(i13)).f26578a == b10.f26578a) {
                             break;
                         }
                         i13++;
@@ -130,14 +130,14 @@ public final class bm implements Runnable {
                 z14 = z12;
                 i10 = 0;
             }
-            tvVar.f26737f = z14;
-            tvVar.f26738g = tL_messages_savedDialogs.dialogs.size();
+            tvVar.f26739f = z14;
+            tvVar.f26740g = tL_messages_savedDialogs.dialogs.size();
             tvVar.m();
             g0.r(rvVar);
             g0.i3(rvVar, 450L);
-            tvVar.f26734b = false;
+            tvVar.f26736b = false;
         } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsSlice) {
-            tvVar.f26736e = true;
+            tvVar.f26738e = true;
             TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice = (TLRPC.TL_messages_savedDialogsSlice) tLObject;
             np.s1(i7).Y3(tL_messages_savedDialogsSlice.users, false);
             np.s1(i7).S3(tL_messages_savedDialogsSlice.chats, false);
@@ -149,9 +149,9 @@ public final class bm implements Runnable {
                 while (true) {
                     if (i15 >= arrayList2.size()) {
                         break;
-                    } else if (((sv) arrayList2.get(i15)).f26569a == b11.f26569a) {
-                        b11.f26572e = ((sv) arrayList2.get(i15)).f26572e;
-                        ((sv) arrayList2.get(i15)).f26570b = b11.f26570b;
+                    } else if (((sv) arrayList2.get(i15)).f26578a == b11.f26578a) {
+                        b11.f26581e = ((sv) arrayList2.get(i15)).f26581e;
+                        ((sv) arrayList2.get(i15)).f26579b = b11.f26579b;
                         break;
                     } else {
                         i15++;
@@ -160,7 +160,7 @@ public final class bm implements Runnable {
                 int i16 = 0;
                 while (true) {
                     if (i16 < arrayList3.size()) {
-                        if (((sv) arrayList3.get(i16)).f26569a == b11.f26569a) {
+                        if (((sv) arrayList3.get(i16)).f26578a == b11.f26578a) {
                             break;
                         }
                         i16++;
@@ -172,53 +172,53 @@ public final class bm implements Runnable {
                     }
                 }
             }
-            tvVar.f26738g = tL_messages_savedDialogsSlice.count;
-            ArrayList arrayList4 = tvVar.f26740j;
+            tvVar.f26740g = tL_messages_savedDialogsSlice.count;
+            ArrayList arrayList4 = tvVar.f26742j;
             int i17 = 0;
             for (int i18 = 0; i18 < arrayList4.size(); i18++) {
-                if (((sv) arrayList4.get(i18)).f26570b) {
+                if (((sv) arrayList4.get(i18)).f26579b) {
                     i17++;
                 }
             }
-            if (arrayList3.size() + i17 < tvVar.f26738g && tL_messages_savedDialogsSlice.dialogs.size() != 0) {
+            if (arrayList3.size() + i17 < tvVar.f26740g && tL_messages_savedDialogsSlice.dialogs.size() != 0) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            tvVar.f26737f = z11;
+            tvVar.f26739f = z11;
             tvVar.m();
             g0.r(rvVar);
             g0.i3(rvVar, 450L);
-            tvVar.f26734b = false;
+            tvVar.f26736b = false;
         } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsNotModified) {
-            tvVar.f26736e = true;
+            tvVar.f26738e = true;
             arrayList3.addAll(arrayList);
-            tvVar.f26738g = ((TLRPC.TL_messages_savedDialogsNotModified) tLObject).count;
+            tvVar.f26740g = ((TLRPC.TL_messages_savedDialogsNotModified) tLObject).count;
             tvVar.h = 0;
             for (int i19 = 0; i19 < arrayList.size(); i19++) {
                 if (((sv) arrayList.get(i19)).d()) {
                     tvVar.h++;
                 }
             }
-            boolean z15 = tvVar.f26737f;
-            if (arrayList3.size() >= tvVar.f26738g) {
+            boolean z15 = tvVar.f26739f;
+            if (arrayList3.size() >= tvVar.f26740g) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            tvVar.f26737f = z10;
-            tvVar.f26734b = false;
+            tvVar.f26739f = z10;
+            tvVar.f26736b = false;
             if (z10 && !z15) {
                 tvVar.m();
             }
         } else if (tL_error != null) {
-            tvVar.f26736e = true;
+            tvVar.f26738e = true;
             if ("SAVED_DIALOGS_UNSUPPORTED".equals(tL_error.text)) {
-                tvVar.f26734b = true;
+                tvVar.f26736b = true;
             }
         }
-        if (tvVar.f26734b != z13) {
-            np.s1(i7).f25280f7.edit().putBoolean("savedMessagesUnsupported", tvVar.f26734b).apply();
+        if (tvVar.f26736b != z13) {
+            np.s1(i7).f25283f7.edit().putBoolean("savedMessagesUnsupported", tvVar.f26736b).apply();
         }
         tvVar.d = false;
     }
@@ -228,7 +228,7 @@ public final class bm implements Runnable {
         qy qyVar = (qy) this.f22736c;
         File file = (File) this.d;
         gj gjVar = (gj) this.f22737e;
-        TLRPC.Document F0 = qyVar.f26157m.F0();
+        TLRPC.Document F0 = qyVar.f26165m.F0();
         boolean z10 = false;
         if (F0.thumbs.isEmpty() || (F0.thumbs.get(0).location instanceof TLRPC.TL_fileLocationUnavailable)) {
             try {
@@ -275,13 +275,13 @@ public final class bm implements Runnable {
         } else {
             z10 = false;
         }
-        ArrayList arrayList = (ArrayList) ezVar.f23386a.remove(str);
+        ArrayList arrayList = (ArrayList) ezVar.f23389a.remove(str);
         if (arrayList != null && !arrayList.isEmpty()) {
             if (z10) {
-                ezVar.getMessagesStorage().r1(((qy) arrayList.get(0)).f26157m.f23817k, null, null, false);
+                ezVar.getMessagesStorage().r1(((qy) arrayList.get(0)).f26165m.f23819k, null, null, false);
             }
-            gj gjVar = qyVar.f26157m;
-            ezVar.getSecretChatHelper().j((TLRPC.DecryptedMessage) qyVar.d, gjVar.f23817k, qyVar.f26158n, null, null, gjVar);
+            gj gjVar = qyVar.f26165m;
+            ezVar.getSecretChatHelper().j((TLRPC.DecryptedMessage) qyVar.d, gjVar.f23819k, qyVar.f26166n, null, null, gjVar);
         }
     }
 
@@ -289,46 +289,46 @@ public final class bm implements Runnable {
         TLObject tLObject = (TLObject) this.f22736c;
         TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport = (TLRPC.TL_messages_initHistoryImport) this.d;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f22737e;
-        vy vyVar = ((sy) this.f22735b).f26593b;
-        ez ezVar = vyVar.f27280q;
+        vy vyVar = ((sy) this.f22735b).f26602b;
+        ez ezVar = vyVar.f27279q;
         boolean z10 = tLObject instanceof TLRPC.TL_messages_historyImport;
-        int i7 = ns.f25587v1;
+        int i7 = ns.f25588v1;
         if (z10) {
-            vyVar.f27274k = ((TLRPC.TL_messages_historyImport) tLObject).f28154id;
-            ArrayList arrayList = vyVar.f27270f;
-            HashSet hashSet = vyVar.f27268c;
-            hashSet.remove(vyVar.f27266a);
-            ezVar.getNotificationCenter().k(i7, Long.valueOf(vyVar.f27273j));
+            vyVar.f27273k = ((TLRPC.TL_messages_historyImport) tLObject).f28154id;
+            ArrayList arrayList = vyVar.f27269f;
+            HashSet hashSet = vyVar.f27267c;
+            hashSet.remove(vyVar.f27265a);
+            ezVar.getNotificationCenter().k(i7, Long.valueOf(vyVar.f27272j));
             if (hashSet.isEmpty()) {
                 vy.a(vyVar);
             }
-            vyVar.f27277n = SystemClock.elapsedRealtime();
+            vyVar.f27276n = SystemClock.elapsedRealtime();
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 ezVar.getFileLoader().h0(false, 67108864, (String) arrayList.get(i10), true);
             }
             return;
         }
-        ezVar.E.l(vyVar.f27273j);
-        ezVar.getNotificationCenter().k(i7, Long.valueOf(vyVar.f27273j), tL_messages_initHistoryImport, tL_error);
+        ezVar.E.l(vyVar.f27272j);
+        ezVar.getNotificationCenter().k(i7, Long.valueOf(vyVar.f27272j), tL_messages_initHistoryImport, tL_error);
     }
 
     private final void h() {
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f22736c;
         TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet = (TLRPC.TL_stickers_createStickerSet) this.d;
         TLObject tLObject = (TLObject) this.f22737e;
-        zy zyVar = ((yy) this.f22735b).f27852b;
+        zy zyVar = ((yy) this.f22735b).f27862b;
         ez ezVar = zyVar.f28043o;
         ezVar.G.remove(zyVar.f28034e);
-        int i7 = ns.f25594w1;
+        int i7 = ns.f25595w1;
         if (tL_error == null) {
             ezVar.getNotificationCenter().k(i7, zyVar.f28034e);
         } else {
             ezVar.getNotificationCenter().k(i7, zyVar.f28034e, tL_stickers_createStickerSet, tL_error);
         }
         if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
-            SparseArray sparseArray = ezVar.getNotificationCenter().f25620a;
-            int i10 = ns.f25601x1;
+            SparseArray sparseArray = ezVar.getNotificationCenter().f25621a;
+            int i10 = ns.f25602x1;
             if (sparseArray.indexOfKey(i10) >= 0) {
                 ezVar.getNotificationCenter().k(i10, tLObject);
             } else {
@@ -341,10 +341,10 @@ public final class bm implements Runnable {
         c10 c10Var = (c10) this.f22735b;
         gj gjVar = (gj) this.f22736c;
         f3.s sVar = (f3.s) this.d;
-        gjVar.f23817k.originalLanguage = "und";
-        c10Var.getMessagesStorage().X1(sVar.f10877a, gjVar.f23817k);
+        gjVar.f23819k.originalLanguage = "und";
+        c10Var.getMessagesStorage().X1(sVar.f10877a, gjVar.f23819k);
         c10Var.L.remove(sVar);
-        ((di.m9) this.f22737e).a("und");
+        ((di.l9) this.f22737e).a("und");
     }
 
     @Override

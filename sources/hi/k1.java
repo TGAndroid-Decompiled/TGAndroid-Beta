@@ -145,7 +145,7 @@ public final class k1 extends FrameLayout {
                     ((BitmapShader) this.f14492f).setLocalMatrix((Matrix) this.h);
                     canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), (Paint) this.f14490c);
                 }
-                if (rectF2.top < org.telegram.messenger.g0.f23603m) {
+                if (rectF2.top < org.telegram.messenger.g0.f23605m) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -227,7 +227,7 @@ public final class k1 extends FrameLayout {
                         return;
                     }
                     if (i2Var.f14413x1 != null && gz.o() > 0 && !qc.f()) {
-                        Point point = org.telegram.messenger.g0.f23609q;
+                        Point point = org.telegram.messenger.g0.f23611q;
                         Bitmap createBitmap = Bitmap.createBitmap(point.x / 16, point.y / 16, Bitmap.Config.ARGB_8888);
                         i2Var.f14413x1.a(createBitmap, Float.valueOf(16.0f));
                         Utilities.stackBlurBitmap(createBitmap, 8);
@@ -263,7 +263,7 @@ public final class k1 extends FrameLayout {
                 i2 i2Var = (i2) this.f14496w;
                 i2Var.f14408s1 = min;
                 i1 i1Var = i2Var.f14406q1;
-                i1Var.setPadding(0, org.telegram.messenger.g0.f23603m, 0, 0);
+                i1Var.setPadding(0, org.telegram.messenger.g0.f23605m, 0, 0);
                 i1Var.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                 h2 h2Var = i2Var.f14407r1;
                 if (h2Var != null) {

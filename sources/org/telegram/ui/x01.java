@@ -32,28 +32,28 @@ public final class x01 extends View {
     public float U;
     public final o30 V;
     public final n11 W;
-    public boolean f53054a;
-    public boolean f53055b;
-    public int f53056c;
+    public boolean f53053a;
+    public boolean f53054b;
+    public int f53055c;
     public TLRPC.Document d;
-    public org.telegram.ui.Components.p5 f53057e;
-    public final org.telegram.messenger.hc[] f53058f;
+    public org.telegram.ui.Components.p5 f53056e;
+    public final org.telegram.messenger.hc[] f53057f;
     public ImageReceiver h;
-    public final ImageReceiver f53059n;
-    public ImageReceiver f53060r;
-    public boolean f53061s;
-    public TL_stars.TL_starGiftUnique f53062w;
-    public Integer f53063x;
-    public ch.p0 f53064y;
+    public final ImageReceiver f53058n;
+    public ImageReceiver f53059r;
+    public boolean f53060s;
+    public TL_stars.TL_starGiftUnique f53061w;
+    public Integer f53062x;
+    public ch.p0 f53063y;
 
     public x01(n11 n11Var, Context context) {
         super(context);
         this.W = n11Var;
-        this.f53054a = false;
-        this.f53055b = false;
-        this.f53058f = new org.telegram.messenger.hc[2];
+        this.f53053a = false;
+        this.f53054b = false;
+        this.f53057f = new org.telegram.messenger.hc[2];
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f53059n = imageReceiver;
+        this.f53058n = imageReceiver;
         this.U = 1.0f;
         this.V = new o30(this, 1);
         imageReceiver.f22311y = true;
@@ -97,7 +97,7 @@ public final class x01 extends View {
         this.d = document;
         a(q01Var);
         org.telegram.messenger.pz f10 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.j6.f29014m6, 0.2f, null);
-        if (this.W.f49365a0 == 6) {
+        if (this.W.f49364a0 == 6) {
             ImageReceiver imageReceiver = this.h;
             org.telegram.messenger.gc b10 = org.telegram.messenger.gc.b(document);
             if (!org.telegram.messenger.qc.e(16388)) {
@@ -110,7 +110,7 @@ public final class x01 extends View {
             this.h.r0(org.telegram.messenger.gc.b(document), "100_100_firstframe", null, null, f10, 0L, "tgs", document, 0);
         }
         this.R = true;
-        this.f53057e = null;
+        this.f53056e = null;
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -134,7 +134,7 @@ public final class x01 extends View {
     }
 
     public final void e(boolean z10, boolean z11) {
-        if (!this.M && z10 && z11 && this.W.f49365a0 != 14) {
+        if (!this.M && z10 && z11 && this.W.f49364a0 != 14) {
             this.N = true;
             this.T = 1.0f;
             this.S = 1.0f;
@@ -157,7 +157,7 @@ public final class x01 extends View {
     }
 
     public final void f() {
-        if (this.M && this.W.f49365a0 != 14) {
+        if (this.M && this.W.f49364a0 != 14) {
             ValueAnimator valueAnimator = this.J;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -181,7 +181,7 @@ public final class x01 extends View {
 
     @Override
     public final void invalidate() {
-        if (ch.f0.f5065b || getParent() == null) {
+        if (ch.f0.f5068b || getParent() == null) {
             return;
         }
         ((View) getParent()).invalidate();
@@ -203,7 +203,7 @@ public final class x01 extends View {
             imageReceiver.H0((View) getParent());
             this.h.P();
         }
-        this.f53059n.P();
+        this.f53058n.P();
     }
 
     @Override
@@ -216,7 +216,7 @@ public final class x01 extends View {
         Drawable drawable = this.F;
         if (drawable instanceof org.telegram.ui.Components.g5) {
             ((org.telegram.ui.Components.g5) drawable).o(this.V);
-            fi.u2 u2Var = ((org.telegram.ui.Components.g5) this.F).f34809k;
+            fi.u2 u2Var = ((org.telegram.ui.Components.g5) this.F).f34813k;
             if (u2Var != null) {
                 u2Var.g0(false);
             }
@@ -226,7 +226,7 @@ public final class x01 extends View {
             imageReceiver.R();
             this.h.g0(false);
         }
-        this.f53059n.R();
+        this.f53058n.R();
     }
 
     @Override
@@ -235,15 +235,15 @@ public final class x01 extends View {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         String str2 = null;
-        if (this.f53054a) {
+        if (this.f53053a) {
             str2 = org.telegram.messenger.hd.M0(2131746288, null);
         } else {
-            ch.p0 p0Var = this.f53064y;
-            if (p0Var != null && (str = p0Var.f5188f) != null) {
+            ch.p0 p0Var = this.f53063y;
+            if (p0Var != null && (str = p0Var.f5191f) != null) {
                 str2 = str;
             } else {
                 TLRPC.Document document = this.d;
-                if (document == null && (p5Var = this.f53057e) != null && (document = p5Var.document) == null) {
+                if (document == null && (p5Var = this.f53056e) != null && (document = p5Var.document) == null) {
                     document = org.telegram.ui.Components.g5.e(this.W.W, p5Var.getDocumentId());
                 }
                 if (document != null) {
@@ -302,7 +302,7 @@ public final class x01 extends View {
             }
             if (!z10) {
                 float f10 = this.O;
-                if (f10 != 0.0f && this.W.f49365a0 != 14) {
+                if (f10 != 0.0f && this.W.f49364a0 != 14) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
                     this.J = ofFloat;
                     ofFloat.addUpdateListener(new u01(this, 0));
@@ -317,7 +317,7 @@ public final class x01 extends View {
 
     @Override
     public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (ch.f0.f5065b) {
+        if (ch.f0.f5068b) {
             return;
         }
         super.invalidate(i7, i10, i11, i12);

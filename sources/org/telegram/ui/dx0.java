@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dx0 extends org.telegram.ui.Components.tj0 {
-    public final Context f46500c;
+    public final Context f46490c;
     public final fx0 d;
 
     public dx0(fx0 fx0Var, Context context) {
         this.d = fx0Var;
-        this.f46500c = context;
+        this.f46490c = context;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
         int b10 = e1Var.b();
         fx0 fx0Var = this.d;
         if (b10 == fx0Var.G) {
-            return fx0Var.f47227r;
+            return fx0Var.f47217r;
         }
         if (e1Var.b() == fx0Var.Y) {
             return true;
@@ -34,7 +34,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
             case 1:
             case 3:
             case 4:
-                return fx0Var.f47227r;
+                return fx0Var.f47217r;
             default:
                 return true;
         }
@@ -42,13 +42,13 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.d.f47219a0;
+        return this.d.f47209a0;
     }
 
     @Override
     public final int d(int i7) {
         fx0 fx0Var = this.d;
-        if (i7 == fx0Var.f47230x || i7 == fx0Var.M || i7 == fx0Var.V || i7 == fx0Var.R) {
+        if (i7 == fx0Var.f47220x || i7 == fx0Var.M || i7 == fx0Var.V || i7 == fx0Var.R) {
             return 0;
         }
         if (i7 != fx0Var.H && i7 != fx0Var.I && i7 != fx0Var.K && i7 != fx0Var.J && i7 != fx0Var.S && i7 != fx0Var.T && i7 != fx0Var.Y) {
@@ -57,7 +57,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                     return 3;
                 }
                 if (i7 != fx0Var.N && i7 != fx0Var.O) {
-                    if (i7 == fx0Var.f47231y) {
+                    if (i7 == fx0Var.f47221y) {
                         return 5;
                     }
                     if (i7 != fx0Var.E && i7 != fx0Var.Z) {
@@ -88,9 +88,9 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
         boolean z10;
         int i16;
         fx0 fx0Var = this.d;
-        org.telegram.ui.ActionBar.e6 e6Var = fx0Var.f47224e;
+        org.telegram.ui.ActionBar.e6 e6Var = fx0Var.f47214e;
         long j3 = fx0Var.h;
-        long j10 = fx0Var.f47225f;
+        long j10 = fx0Var.f47215f;
         int i17 = e1Var.f58539f;
         View view = e1Var.f58535a;
         boolean z11 = true;
@@ -98,7 +98,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
         switch (i17) {
             case 0:
                 org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
-                if (i7 == fx0Var.f47230x) {
+                if (i7 == fx0Var.f47220x) {
                     n4Var.setText(org.telegram.messenger.hd.M0(2131750474, null));
                     return;
                 } else if (i7 == fx0Var.M) {
@@ -117,7 +117,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                 org.telegram.ui.Cells.v9 v9Var = (org.telegram.ui.Cells.v9) view;
                 String v = org.telegram.messenger.at.v(j10, j3, false);
                 i10 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-                SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i10).f25270e7;
+                SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i10).f25273e7;
                 if (i7 == fx0Var.Y) {
                     v9Var.b(org.telegram.messenger.hd.M0(2131746104, null), false);
                     org.telegram.ui.ActionBar.q6.U(v9Var.getTextView(), org.telegram.ui.ActionBar.j6.f29090q7, e6Var);
@@ -276,7 +276,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                 org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
                 String v10 = org.telegram.messenger.at.v(j10, j3, false);
                 i11 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-                SharedPreferences sharedPreferences2 = org.telegram.messenger.np.s1(i11).f25270e7;
+                SharedPreferences sharedPreferences2 = org.telegram.messenger.np.s1(i11).f25273e7;
                 if (sharedPreferences2.contains("color_" + v10)) {
                     i12 = org.telegram.messenger.k5.c("color_", v10, sharedPreferences2, -16776961);
                 } else if (org.telegram.messenger.m5.z(j10)) {
@@ -299,7 +299,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
             case 4:
                 org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) view;
                 i13 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-                SharedPreferences sharedPreferences3 = org.telegram.messenger.np.s1(i13).f25270e7;
+                SharedPreferences sharedPreferences3 = org.telegram.messenger.np.s1(i13).f25273e7;
                 int c16 = org.telegram.messenger.k5.c("popup_", org.telegram.messenger.at.v(j10, j3, false), sharedPreferences3, 0);
                 if (c16 == 0) {
                     if (org.telegram.messenger.m5.z(j10)) {
@@ -350,7 +350,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                 } else {
                     z10 = false;
                 }
-                if (i7 >= fx0Var.f47219a0 - 1) {
+                if (i7 >= fx0Var.f47209a0 - 1) {
                     z11 = false;
                 }
                 if (x6Var.f32042c != z10 || x6Var.d != z11) {
@@ -369,9 +369,9 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
             case 7:
                 org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
                 i16 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-                SharedPreferences sharedPreferences4 = org.telegram.messenger.np.s1(i16).f25270e7;
+                SharedPreferences sharedPreferences4 = org.telegram.messenger.np.s1(i16).f25273e7;
                 if (i7 == fx0Var.F) {
-                    q8Var.f(org.telegram.messenger.hd.M0(2131747924, null), fx0Var.f47227r, true);
+                    q8Var.f(org.telegram.messenger.hd.M0(2131747924, null), fx0Var.f47217r, true);
                     return;
                 } else if (i7 == fx0Var.G) {
                     String v11 = org.telegram.messenger.at.v(j10, j3, false);
@@ -379,7 +379,7 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                     return;
                 } else if (i7 == fx0Var.Q) {
                     String k10 = r.b.k("stories_", org.telegram.messenger.at.v(j10, j3, false));
-                    if (fx0Var.f47221b0 || (sharedPreferences4.contains("EnableAllStories") && sharedPreferences4.getBoolean("EnableAllStories", true))) {
+                    if (fx0Var.f47211b0 || (sharedPreferences4.contains("EnableAllStories") && sharedPreferences4.getBoolean("EnableAllStories", true))) {
                         z12 = true;
                     }
                     q8Var.f(org.telegram.messenger.hd.M0(2131744744, null), sharedPreferences4.getBoolean(k10, z12), true);
@@ -395,8 +395,8 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View n4Var;
-        org.telegram.ui.ActionBar.e6 e6Var = this.d.f47224e;
-        Context context = this.f46500c;
+        org.telegram.ui.ActionBar.e6 e6Var = this.d.f47214e;
+        Context context = this.f46490c;
         switch (i7) {
             case 0:
                 n4Var = new org.telegram.ui.Cells.n4(context, e6Var);
@@ -447,23 +447,23 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                             }
                             org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
                             if (e1Var.b() == fx0Var.G) {
-                                q8Var.e(null, fx0Var.f47227r);
+                                q8Var.e(null, fx0Var.f47217r);
                                 return;
                             } else if (e1Var.b() == fx0Var.Q) {
-                                q8Var.e(null, fx0Var.f47227r);
+                                q8Var.e(null, fx0Var.f47217r);
                                 return;
                             } else {
                                 q8Var.e(null, true);
                                 return;
                             }
                         }
-                        ((org.telegram.ui.Cells.h6) view).b(null, fx0Var.f47227r);
+                        ((org.telegram.ui.Cells.h6) view).b(null, fx0Var.f47217r);
                         return;
                     }
-                    ((org.telegram.ui.Cells.s8) view).a(null, fx0Var.f47227r);
+                    ((org.telegram.ui.Cells.s8) view).a(null, fx0Var.f47217r);
                     return;
                 }
-                ((org.telegram.ui.Cells.y8) view).c(null, fx0Var.f47227r);
+                ((org.telegram.ui.Cells.y8) view).c(null, fx0Var.f47217r);
                 return;
             }
             org.telegram.ui.Cells.v9 v9Var = (org.telegram.ui.Cells.v9) view;
@@ -471,10 +471,10 @@ public final class dx0 extends org.telegram.ui.Components.tj0 {
                 v9Var.a(null, true);
                 return;
             } else {
-                v9Var.a(null, fx0Var.f47227r);
+                v9Var.a(null, fx0Var.f47217r);
                 return;
             }
         }
-        ((org.telegram.ui.Cells.n4) view).a(null, fx0Var.f47227r);
+        ((org.telegram.ui.Cells.n4) view).a(null, fx0Var.f47217r);
     }
 }

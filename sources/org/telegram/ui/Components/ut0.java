@@ -51,20 +51,20 @@ public final class ut0 extends om0 {
             case 1:
                 qm0 qm0Var = ((org.telegram.ui.v90) this.f40159e).h;
                 float f10 = min / 100.0f;
-                qm0Var.f38727y.l(true, f10);
+                qm0Var.f38725y.l(true, f10);
                 qm0Var.setProgress(f10);
                 return;
             default:
-                if (((org.telegram.ui.vq0) this.f40159e).f52274s.Z7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.vq0) this.f40159e).f52274s.Z7 - 1, min))) != ((org.telegram.ui.vq0) this.f40159e).f52274s.Y7) {
+                if (((org.telegram.ui.vq0) this.f40159e).f52277s.Z7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.vq0) this.f40159e).f52277s.Z7 - 1, min))) != ((org.telegram.ui.vq0) this.f40159e).f52277s.Y7) {
                     org.telegram.ui.vq0 vq0Var = (org.telegram.ui.vq0) this.f40159e;
-                    vq0Var.f52273r = vq0Var.f52274s.Y7;
-                    ((org.telegram.ui.vq0) this.f40159e).f52274s.Y7 = max;
-                    ((org.telegram.ui.vq0) this.f40159e).f52274s.L0();
+                    vq0Var.f52276r = vq0Var.f52277s.Y7;
+                    ((org.telegram.ui.vq0) this.f40159e).f52277s.Y7 = max;
+                    ((org.telegram.ui.vq0) this.f40159e).f52277s.L0();
                     ((org.telegram.ui.vq0) this.f40159e).invalidate();
-                    int i10 = ((org.telegram.ui.vq0) this.f40159e).f52274s.Y7;
+                    int i10 = ((org.telegram.ui.vq0) this.f40159e).f52277s.Y7;
                     org.telegram.ui.vq0 vq0Var2 = (org.telegram.ui.vq0) this.f40159e;
-                    if (i10 != vq0Var2.f52273r) {
-                        vq0Var2.f52274s.n2(1);
+                    if (i10 != vq0Var2.f52276r) {
+                        vq0Var2.f52277s.n2(1);
                         return;
                     }
                     return;
@@ -90,16 +90,16 @@ public final class ut0 extends om0 {
             case 2:
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(org.telegram.messenger.hd.M0(2131754735, "AccDescrVideoQuality"));
-                if (((org.telegram.ui.vq0) this.f40159e).f52274s.Z7 > 0) {
+                if (((org.telegram.ui.vq0) this.f40159e).f52277s.Z7 > 0) {
                     sb2.append(", ");
-                    sb2.append(((org.telegram.ui.vq0) this.f40159e).f52274s.Y7 + 1);
+                    sb2.append(((org.telegram.ui.vq0) this.f40159e).f52277s.Y7 + 1);
                     sb2.append(" / ");
-                    sb2.append(((org.telegram.ui.vq0) this.f40159e).f52274s.Z7);
+                    sb2.append(((org.telegram.ui.vq0) this.f40159e).f52277s.Z7);
                 }
                 sb2.append(", ");
                 sb2.append(((org.telegram.ui.vq0) this.f40159e).h);
                 sb2.append(" – ");
-                sb2.append(((org.telegram.ui.vq0) this.f40159e).f52272n);
+                sb2.append(((org.telegram.ui.vq0) this.f40159e).f52275n);
                 return sb2.toString();
         }
     }
@@ -124,7 +124,7 @@ public final class ut0 extends om0 {
             case 1:
                 return 100;
             default:
-                return Math.max(0, ((org.telegram.ui.vq0) this.f40159e).f52274s.Z7 - 1);
+                return Math.max(0, ((org.telegram.ui.vq0) this.f40159e).f52277s.Z7 - 1);
         }
     }
 
@@ -135,7 +135,7 @@ public final class ut0 extends om0 {
             case 1:
                 return org.telegram.messenger.qc.c();
             default:
-                return ((org.telegram.ui.vq0) this.f40159e).f52274s.Y7;
+                return ((org.telegram.ui.vq0) this.f40159e).f52277s.Y7;
         }
     }
 

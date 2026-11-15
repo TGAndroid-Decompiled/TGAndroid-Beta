@@ -21,21 +21,21 @@ import org.telegram.ui.UsersSelectActivity;
 import org.telegram.ui.ec1;
 import org.telegram.ui.jb1;
 public final class y50 extends AnimatorListenerAdapter {
-    public final int f41883a;
-    public final Object f41884b;
-    public final Object f41885c;
+    public final int f41875a;
+    public final Object f41876b;
+    public final Object f41877c;
 
     public y50(int i7, Object obj, Object obj2) {
-        this.f41883a = i7;
-        this.f41885c = obj;
-        this.f41884b = obj2;
+        this.f41875a = i7;
+        this.f41877c = obj;
+        this.f41876b = obj2;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f41883a) {
+        switch (this.f41875a) {
             case 18:
-                ((r0.m0) this.f41884b).a();
+                ((r0.m0) this.f41876b).a();
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -46,23 +46,23 @@ public final class y50 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
-        int i7 = this.f41883a;
-        Object obj = this.f41884b;
-        Object obj2 = this.f41885c;
+        int i7 = this.f41875a;
+        Object obj = this.f41876b;
+        Object obj2 = this.f41877c;
         switch (i7) {
             case 0:
                 z50 z50Var = (z50) obj2;
                 z50Var.removeView((f20) obj);
-                z50Var.f42251c = null;
-                z50Var.f42252e.Y1 = null;
-                z50Var.f42249a = false;
+                z50Var.f42253c = null;
+                z50Var.f42254e.Y1 = null;
+                z50Var.f42251a = false;
                 return;
             case 1:
                 ti0 ti0Var = (ti0) obj2;
-                wi0 wi0Var = ti0Var.f39707e;
-                if (((ValueAnimator) wi0Var.f41358g) != null) {
-                    ((uj0) wi0Var.f41356e).W1 = false;
-                    ArrayList arrayList = ti0Var.f39705b;
+                wi0 wi0Var = ti0Var.f39704e;
+                if (((ValueAnimator) wi0Var.f41361g) != null) {
+                    ((uj0) wi0Var.f41359e).W1 = false;
+                    ArrayList arrayList = ti0Var.f39702b;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -73,20 +73,20 @@ public final class y50 extends AnimatorListenerAdapter {
                             ((org.telegram.ui.Cells.p4) view).b(false, true);
                         }
                         view.setTranslationY(0.0f);
-                        ((v4.b0) wi0Var.f41357f).getClass();
+                        ((v4.b0) wi0Var.f41360f).getClass();
                         v4.o0.x0(view);
-                        ((uj0) wi0Var.f41356e).removeView(view);
-                        c8.ma maVar = (c8.ma) wi0Var.f41359i;
+                        ((uj0) wi0Var.f41359e).removeView(view);
+                        c8.ma maVar = (c8.ma) wi0Var.f41362i;
                         if (maVar != null) {
                             maVar.d(view);
                         }
                     }
-                    ((uj0) wi0Var.f41356e).setScrollEnabled(true);
-                    ((uj0) wi0Var.f41356e).setVerticalScrollBarEnabled(true);
-                    boolean z11 = org.telegram.messenger.r2.f26198a;
-                    int childCount = ((uj0) wi0Var.f41356e).getChildCount();
+                    ((uj0) wi0Var.f41359e).setScrollEnabled(true);
+                    ((uj0) wi0Var.f41359e).setVerticalScrollBarEnabled(true);
+                    boolean z11 = org.telegram.messenger.r2.f26206a;
+                    int childCount = ((uj0) wi0Var.f41359e).getChildCount();
                     for (int i11 = 0; i11 < childCount; i11++) {
-                        View childAt = ((uj0) wi0Var.f41356e).getChildAt(i11);
+                        View childAt = ((uj0) wi0Var.f41359e).getChildAt(i11);
                         if (childAt instanceof org.telegram.ui.Cells.p4) {
                             ((org.telegram.ui.Cells.p4) childAt).b(false, false);
                         }
@@ -108,12 +108,12 @@ public final class y50 extends AnimatorListenerAdapter {
                     if (ui0Var != null) {
                         ui0Var.E();
                     }
-                    c8.ma maVar2 = (c8.ma) wi0Var.f41359i;
+                    c8.ma maVar2 = (c8.ma) wi0Var.f41362i;
                     if (maVar2 != null) {
                         maVar2.a();
                     }
-                    ((SparseArray) wi0Var.f41360j).clear();
-                    wi0Var.f41358g = null;
+                    ((SparseArray) wi0Var.f41363j).clear();
+                    wi0Var.f41361g = null;
                     return;
                 }
                 return;
@@ -122,18 +122,18 @@ public final class y50 extends AnimatorListenerAdapter {
                 pzVar.setAlpha(1.0f);
                 v4.o0.x0(pzVar);
                 xi0 xi0Var = (xi0) obj2;
-                xi0Var.f41707c.remove(pzVar);
-                xi0Var.f41705a.removeView(pzVar);
+                xi0Var.f41699c.remove(pzVar);
+                xi0Var.f41697a.removeView(pzVar);
                 return;
             case 3:
                 super.onAnimationEnd(animator);
                 org.telegram.ui.xp xpVar = (org.telegram.ui.xp) obj2;
-                ((xi0) xpVar.d).f41710g.remove((AnimatorSet) obj);
-                if (((xi0) xpVar.d).f41710g.isEmpty()) {
-                    ((xi0) xpVar.d).f41706b.clear();
+                ((xi0) xpVar.d).f41702g.remove((AnimatorSet) obj);
+                if (((xi0) xpVar.d).f41702g.isEmpty()) {
+                    ((xi0) xpVar.d).f41698b.clear();
                     xi0 xi0Var2 = (xi0) xpVar.d;
                     xi0Var2.d = true;
-                    xi0Var2.f41705a.invalidate();
+                    xi0Var2.f41697a.invalidate();
                     return;
                 }
                 return;
@@ -151,7 +151,7 @@ public final class y50 extends AnimatorListenerAdapter {
                 return;
             case 5:
                 hv0 hv0Var = (hv0) obj2;
-                hv0Var.f35353b = 0.0f;
+                hv0Var.f35344b = 0.0f;
                 hv0Var.invalidate();
                 ((wk0) obj).invalidate();
                 return;
@@ -175,8 +175,8 @@ public final class y50 extends AnimatorListenerAdapter {
                 org.telegram.ui.x50 x50Var = (org.telegram.ui.x50) obj2;
                 x50Var.removeView((f20) obj);
                 x50Var.d = null;
-                x50Var.f53098a = null;
-                x50Var.f53099b = false;
+                x50Var.f53097a = null;
+                x50Var.f53098b = false;
                 return;
             case 10:
                 xt0 xt0Var = (xt0) obj2;
@@ -217,17 +217,17 @@ public final class y50 extends AnimatorListenerAdapter {
                 photoViewer.B2 = animatorSet4;
                 animatorSet4.playTogether(ObjectAnimator.ofFloat(photoViewer.A2, photoViewer.f42747d4, 0.0f));
                 photoViewer.B2.setDuration(85L);
-                photoViewer.B2.setInterpolator(er.f34421g);
+                photoViewer.B2.setInterpolator(er.f34420g);
                 photoViewer.B2.addListener(new org.telegram.ui.xx(this, 11));
                 photoViewer.B2.start();
                 return;
             case 12:
                 org.telegram.ui.rs0 rs0Var = (org.telegram.ui.rs0) obj2;
-                PremiumPreviewFragment premiumPreviewFragment = rs0Var.f51020n;
+                PremiumPreviewFragment premiumPreviewFragment = rs0Var.f51016n;
                 ((View) obj).setVisibility(8);
                 for (int i13 = 0; i13 < premiumPreviewFragment.V.getChildCount(); i13++) {
                     View childAt2 = premiumPreviewFragment.V.getChildAt(i13);
-                    if (childAt2 != rs0Var.f51018e) {
+                    if (childAt2 != rs0Var.f51014e) {
                         childAt2.setTranslationY(0.0f);
                     }
                 }
@@ -236,9 +236,9 @@ public final class y50 extends AnimatorListenerAdapter {
                 org.telegram.ui.uy0 uy0Var = (org.telegram.ui.uy0) obj2;
                 if (uy0Var.h != null) {
                     uy0Var.h = null;
-                    uy0Var.f52062n.e();
+                    uy0Var.f52060n.e();
                     ((org.telegram.ui.bw) obj).onTransitionAnimationEnd(true, false);
-                    uy0Var.f52060e = 1.0f;
+                    uy0Var.f52058e = 1.0f;
                     uy0Var.g();
                     uy0Var.d(false);
                     return;
@@ -247,7 +247,7 @@ public final class y50 extends AnimatorListenerAdapter {
             case 14:
                 org.telegram.ui.uq0 uq0Var = (org.telegram.ui.uq0) obj;
                 if (uq0Var != null) {
-                    uq0Var.f51999a.O0(true, true);
+                    uq0Var.f51997a.O0(true, true);
                 }
                 ((SecretMediaViewer) obj2).f43308s = false;
                 org.telegram.messenger.g0.h3(new org.telegram.ui.pu0(this, 13));
@@ -265,10 +265,10 @@ public final class y50 extends AnimatorListenerAdapter {
             case 16:
                 jb1 jb1Var = (jb1) obj2;
                 jb1Var.removeView((f20) obj);
-                jb1Var.f48297e = null;
-                jb1Var.f48294a = null;
-                jb1Var.f48295b = false;
-                UsersSelectActivity usersSelectActivity = jb1Var.f48298f;
+                jb1Var.f48282e = null;
+                jb1Var.f48279a = null;
+                jb1Var.f48280b = false;
+                UsersSelectActivity usersSelectActivity = jb1Var.f48283f;
                 usersSelectActivity.f43450c.setAllowDrawCursor(true);
                 if (usersSelectActivity.Q.isEmpty()) {
                     usersSelectActivity.f43450c.t(true, true);
@@ -278,12 +278,12 @@ public final class y50 extends AnimatorListenerAdapter {
             case 17:
                 ((Runnable) obj).run();
                 ec1 ec1Var = (ec1) obj2;
-                ec1Var.f46696f0.setScaleX(1.15f);
-                ec1Var.f46696f0.setScaleY(1.15f);
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) ec1Var.f46696f0.getLayoutParams();
+                ec1Var.f46686f0.setScaleX(1.15f);
+                ec1Var.f46686f0.setScaleY(1.15f);
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) ec1Var.f46686f0.getLayoutParams();
                 marginLayoutParams.leftMargin = org.telegram.messenger.g0.L(10.0f);
                 marginLayoutParams.rightMargin = org.telegram.messenger.g0.L(10.0f);
-                ec1Var.f46696f0.setVisibility(8);
+                ec1Var.f46686f0.setVisibility(8);
                 return;
             case 18:
                 ((r0.m0) obj).c();
@@ -298,7 +298,7 @@ public final class y50 extends AnimatorListenerAdapter {
                 boolean[] zArr = (boolean[]) obj;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    q1Var.f57525s0.b(q1Var.f57532z0, false);
+                    q1Var.f57527s0.b(q1Var.f57534z0, false);
                 }
                 q1Var.setRotationY(0.0f);
                 q1Var.A0 = 1.0f;
@@ -329,12 +329,12 @@ public final class y50 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f41883a) {
+        switch (this.f41875a) {
             case 10:
-                ((xt0) this.f41884b).setVisibility(0);
+                ((xt0) this.f41876b).setVisibility(0);
                 return;
             case 18:
-                ((r0.m0) this.f41884b).b();
+                ((r0.m0) this.f41876b).b();
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -343,14 +343,14 @@ public final class y50 extends AnimatorListenerAdapter {
     }
 
     public y50(Object obj, View view, int i7) {
-        this.f41883a = i7;
-        this.f41884b = obj;
-        this.f41885c = view;
+        this.f41875a = i7;
+        this.f41876b = obj;
+        this.f41877c = view;
     }
 
     public y50(xi0 xi0Var, pz pzVar, v4.o0 o0Var) {
-        this.f41883a = 2;
-        this.f41885c = xi0Var;
-        this.f41884b = pzVar;
+        this.f41875a = 2;
+        this.f41877c = xi0Var;
+        this.f41876b = pzVar;
     }
 }

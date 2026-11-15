@@ -12,37 +12,37 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class le implements View.OnClickListener {
-    public final int f48978a;
-    public final an f48979b;
+    public final int f48974a;
+    public final an f48975b;
 
     public le(an anVar, int i7) {
-        this.f48978a = i7;
-        this.f48979b = anVar;
+        this.f48974a = i7;
+        this.f48975b = anVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         int i7;
-        int i10 = this.f48978a;
+        int i10 = this.f48974a;
         org.telegram.messenger.gj gjVar = null;
         String str = null;
         int i11 = 0;
-        an anVar = this.f48979b;
+        an anVar = this.f48975b;
         switch (i10) {
             case 0:
-                an anVar2 = this.f48979b;
-                ug.j0.w1(anVar2, anVar2.S1, anVar2.T1, anVar2.f45259k6, false);
+                an anVar2 = this.f48975b;
+                ug.j0.w1(anVar2, anVar2.S1, anVar2.T1, anVar2.f45258k6, false);
                 return;
             case 1:
                 anVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", anVar.f45339r);
+                bundle.putLong("user_id", anVar.f45338r);
                 anVar.presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 2:
                 if (anVar.Z3 != null) {
-                    anVar.sc(!anVar.f45199fd.f57082f);
+                    anVar.sc(!anVar.f45198fd.f57086f);
                     return;
                 }
                 return;
@@ -56,23 +56,23 @@ public final class le implements View.OnClickListener {
                     anVar.X1.getAdapter().f17131l0 = true;
                     anVar.B7();
                 }
-                anVar.f45217h3.setVisibility(8);
-                anVar.f45230i3.setVisibility(8);
+                anVar.f45216h3.setVisibility(8);
+                anVar.f45229i3.setVisibility(8);
                 anVar.C3 = true;
                 anVar.D3 = null;
                 anVar.E3 = null;
-                anVar.f45253k0.setSearchFieldHint(org.telegram.messenger.hd.M0(2131745757, null));
-                anVar.f45253k0.setSearchFieldCaption(org.telegram.messenger.hd.M0(2131745766, null));
-                org.telegram.messenger.g0.J3(anVar.f45253k0.getSearchField());
-                anVar.f45253k0.o();
+                anVar.f45252k0.setSearchFieldHint(org.telegram.messenger.hd.M0(2131745757, null));
+                anVar.f45252k0.setSearchFieldCaption(org.telegram.messenger.hd.M0(2131745766, null));
+                org.telegram.messenger.g0.J3(anVar.f45252k0.getSearchField());
+                anVar.f45252k0.o();
                 return;
             case 5:
                 if (anVar.getParentActivity() != null) {
-                    org.telegram.ui.ActionBar.q0 q0Var = anVar.f45253k0;
+                    org.telegram.ui.ActionBar.q0 q0Var = anVar.f45252k0;
                     if (q0Var != null) {
                         org.telegram.messenger.g0.v1(q0Var.getSearchField());
                     }
-                    anVar.showDialog((org.telegram.ui.ActionBar.u2) org.telegram.ui.Components.t4.o(anVar.getParentActivity(), new jk(anVar), anVar.Aa).f25804b);
+                    anVar.showDialog((org.telegram.ui.ActionBar.u2) org.telegram.ui.Components.t4.o(anVar.getParentActivity(), new jk(anVar), anVar.Aa).f25806b);
                     return;
                 }
                 return;
@@ -80,28 +80,28 @@ public final class le implements View.OnClickListener {
                 anVar.P7(true);
                 return;
             case 7:
-                org.telegram.messenger.gj gjVar2 = anVar.f45382u5;
+                org.telegram.messenger.gj gjVar2 = anVar.f45381u5;
                 if (gjVar2 != null) {
                     anVar.ma(gjVar2, false, false);
-                    vf.c.s(anVar.getParentActivity(), Uri.parse(anVar.f45382u5.T0), true, false, false, null, null, false, anVar.getMessagesController().f25269e6, false, false);
+                    vf.c.s(anVar.getParentActivity(), Uri.parse(anVar.f45381u5.T0), true, false, false, null, null, false, anVar.getMessagesController().f25272e6, false, false);
                     return;
                 }
                 return;
             case 8:
-                if (org.telegram.messenger.g0.g(anVar.f45382u5.W0)) {
+                if (org.telegram.messenger.g0.g(anVar.f45381u5.W0)) {
                     org.telegram.messenger.i20.s(null, 2131744194, new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(anVar.getParentActivity()), anVar.Aa));
                     return;
                 }
                 return;
             case 9:
-                if (org.telegram.messenger.g0.g(anVar.f45382u5.X0)) {
+                if (org.telegram.messenger.g0.g(anVar.f45381u5.X0)) {
                     org.telegram.messenger.i20.s(null, 2131744194, new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(anVar.getParentActivity()), anVar.Aa));
                     return;
                 }
                 return;
             case 10:
-                if (anVar.f45278m1 != null && anVar.getParentActivity() != null) {
-                    org.telegram.ui.ActionBar.u2 k10 = org.telegram.messenger.k5.k(1, anVar.f45278m1.getContext(), null, false);
+                if (anVar.f45277m1 != null && anVar.getParentActivity() != null) {
+                    org.telegram.ui.ActionBar.u2 k10 = org.telegram.messenger.k5.k(1, anVar.f45277m1.getContext(), null, false);
                     Activity parentActivity = anVar.getParentActivity();
                     ym ymVar = anVar.Aa;
                     final eh0 eh0Var = new eh0(parentActivity, 9);
@@ -226,26 +226,26 @@ public final class le implements View.OnClickListener {
                 anVar.showDialog(new ug.x0((org.telegram.ui.ActionBar.e2) anVar, 28, true));
                 return;
             case 13:
-                an anVar3 = this.f48979b;
-                long j3 = anVar3.f45259k6;
-                TLRPC.User user = anVar3.f45187f;
-                TLRPC.Chat chat = anVar3.f45173e;
+                an anVar3 = this.f48975b;
+                long j3 = anVar3.f45258k6;
+                TLRPC.User user = anVar3.f45186f;
+                TLRPC.Chat chat = anVar3.f45172e;
                 TLRPC.EncryptedChat encryptedChat = anVar3.h;
-                if (anVar3.f45149c2.getTag(2131296585) != null) {
+                if (anVar3.f45148c2.getTag(2131296585) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Components.t4.g0(anVar3, j3, user, chat, encryptedChat, z10, anVar3.f45334q8, new ag(anVar3, 2), anVar3.Aa);
+                org.telegram.ui.Components.t4.g0(anVar3, j3, user, chat, encryptedChat, z10, anVar3.f45333q8, new ag(anVar3, 2), anVar3.Aa);
                 return;
             case 14:
                 an.n0(anVar);
                 return;
             case 15:
-                if (anVar.f45344r4 != null) {
-                    org.telegram.messenger.h00 h00Var = anVar.getMessagesController().f25383r7;
-                    long j10 = anVar.f45173e.f28051id;
-                    TLRPC.TL_forumTopic tL_forumTopic = anVar.f45344r4;
+                if (anVar.f45343r4 != null) {
+                    org.telegram.messenger.h00 h00Var = anVar.getMessagesController().f25386r7;
+                    long j10 = anVar.f45172e.f28051id;
+                    TLRPC.TL_forumTopic tL_forumTopic = anVar.f45343r4;
                     int i15 = tL_forumTopic.f28103id;
                     tL_forumTopic.closed = false;
                     h00Var.z(i15, j10, false);
@@ -255,20 +255,20 @@ public final class le implements View.OnClickListener {
                 anVar.zd(true);
                 return;
             case 16:
-                long j11 = anVar.f45259k6;
+                long j11 = anVar.f45258k6;
                 if (anVar.h != null) {
-                    j11 = anVar.f45187f.f28200id;
+                    j11 = anVar.f45186f.f28200id;
                 }
                 anVar.Bc = false;
-                anVar.getMessagesController().i2(j11, anVar.f45187f, anVar.f45173e);
+                anVar.getMessagesController().i2(j11, anVar.f45186f, anVar.f45172e);
                 anVar.zd(true);
                 anVar.Wc(true);
                 return;
             case 17:
-                an anVar4 = this.f48979b;
+                an anVar4 = this.f48975b;
                 anVar4.Q4 = true;
-                if (anVar4.fa() && !anVar4.f45408w4) {
-                    anVar4.l((int) anVar4.f45358s4, 0, true, 0, true, 0);
+                if (anVar4.fa() && !anVar4.f45407w4) {
+                    anVar4.l((int) anVar4.f45357s4, 0, true, 0, true, 0);
                     return;
                 }
                 int i16 = anVar4.Y4;
@@ -276,14 +276,14 @@ public final class le implements View.OnClickListener {
                     if (!anVar4.U4.isEmpty()) {
                         if (i16 == ((Integer) i5.c.h(1, anVar4.U4)).intValue()) {
                             i11 = ((Integer) anVar4.U4.get(0)).intValue() + 1;
-                            anVar4.f45138b5 = true;
+                            anVar4.f45137b5 = true;
                         } else {
-                            anVar4.f45138b5 = false;
+                            anVar4.f45137b5 = false;
                             i11 = i16 - 1;
                         }
                     }
-                    anVar4.f45123a5 = i11;
-                    if (!anVar4.f45138b5) {
+                    anVar4.f45122a5 = i11;
+                    if (!anVar4.f45137b5) {
                         i11 = -i11;
                     }
                     anVar4.l(i16, 0, true, 0, true, i11);
@@ -315,17 +315,17 @@ public final class le implements View.OnClickListener {
                 anVar.Ea(false);
                 return;
             case 25:
-                SparseArray[] sparseArrayArr = anVar.f45294n6;
+                SparseArray[] sparseArrayArr = anVar.f45293n6;
                 for (int i17 = 1; i17 >= 0; i17--) {
                     if (gjVar == null && sparseArrayArr[i17].size() != 0) {
                         gjVar = (org.telegram.messenger.gj) anVar.F6[i17].get(sparseArrayArr[i17].keyAt(0));
                     }
                     sparseArrayArr[i17].clear();
-                    anVar.f45306o6[i17].clear();
-                    anVar.f45319p6[i17].clear();
+                    anVar.f45305o6[i17].clear();
+                    anVar.f45318p6[i17].clear();
                 }
                 anVar.B9();
-                if (gjVar != null && ((i7 = gjVar.f23817k.f28072id) > 0 || (i7 < 0 && anVar.h != null))) {
+                if (gjVar != null && ((i7 = gjVar.f23819k.f28072id) > 0 || (i7 < 0 && anVar.h != null))) {
                     anVar.ic(gjVar);
                 }
                 anVar.gd(0, true);
@@ -336,7 +336,7 @@ public final class le implements View.OnClickListener {
                 an.N0(anVar);
                 return;
             case 27:
-                an anVar5 = this.f48979b;
+                an anVar5 = this.f48975b;
                 org.telegram.messenger.gj gjVar3 = anVar5.G5;
                 if (gjVar3 != null) {
                     anVar5.l(gjVar3.e1(), 0, true, 0, true, 0);
@@ -351,7 +351,7 @@ public final class le implements View.OnClickListener {
                 return;
             default:
                 anVar.h8();
-                anVar.N3.m(anVar.f45259k6, org.telegram.messenger.hd.M0(2131752880, null), 18);
+                anVar.N3.m(anVar.f45258k6, org.telegram.messenger.hd.M0(2131752880, null), 18);
                 return;
         }
     }

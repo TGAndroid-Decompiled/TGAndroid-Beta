@@ -70,7 +70,7 @@ public final class a {
                 packageName = (packageName == null || packageName.trim().isEmpty()) ? context.getPackageName() : packageName;
                 if (context.getPackageManager() != null && packageName != null) {
                     try {
-                        ApplicationInfo applicationInfo = z6.b.a(context).f1964a.getPackageManager().getApplicationInfo(packageName, 0);
+                        ApplicationInfo applicationInfo = z6.b.a(context).f1971a.getPackageManager().getApplicationInfo(packageName, 0);
                         if (applicationInfo == null) {
                             Log.e("WorkSourceUtil", "Could not get applicationInfo from package: ".concat(packageName));
                         } else {

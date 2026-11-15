@@ -1,14 +1,14 @@
 package org.telegram.messenger;
 public final class rs implements Runnable {
-    public final int f26331a;
-    public final at f26332b;
-    public final long f26333c;
+    public final int f26341a;
+    public final at f26342b;
+    public final long f26343c;
     public final int d;
 
     public rs(at atVar, long j3, int i7, int i10) {
-        this.f26331a = i10;
-        this.f26332b = atVar;
-        this.f26333c = j3;
+        this.f26341a = i10;
+        this.f26342b = atVar;
+        this.f26343c = j3;
         this.d = i7;
     }
 

@@ -11,55 +11,55 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class c71 extends FrameLayout {
-    public static final int f33522f = 0;
-    public final org.telegram.ui.ActionBar.e6 f33523a;
-    public final ek0 f33524b;
-    public final RectF f33525c;
+    public static final int f33525f = 0;
+    public final org.telegram.ui.ActionBar.e6 f33526a;
+    public final ek0 f33527b;
+    public final RectF f33528c;
     public final RectF d;
-    public final Path f33526e;
+    public final Path f33529e;
 
     public c71(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         ek0 ek0Var = new ek0(this);
-        this.f33524b = ek0Var;
-        this.f33525c = new RectF();
+        this.f33527b = ek0Var;
+        this.f33528c = new RectF();
         this.d = new RectF();
-        this.f33526e = new Path();
+        this.f33529e = new Path();
         setWillNotDraw(false);
-        this.f33523a = e6Var;
+        this.f33526a = e6Var;
         int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Zl, e6Var);
         ek0Var.B = w02;
         ek0Var.A = w02;
-        ek0Var.f34361z = w02;
-        ek0Var.f34359x = org.telegram.ui.ActionBar.j6.r1(0.1f, w02);
-        ek0Var.f34346j = false;
-        ek0Var.f34345i = false;
+        ek0Var.f34360z = w02;
+        ek0Var.f34358x = org.telegram.ui.ActionBar.j6.r1(0.1f, w02);
+        ek0Var.f34345j = false;
+        ek0Var.f34344i = false;
         ek0Var.l();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f33525c;
+        RectF rectF = this.f33528c;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        ek0 ek0Var = this.f33524b;
-        float[] fArr = ek0Var.f34342e;
+        ek0 ek0Var = this.f33527b;
+        float[] fArr = ek0Var.f34341e;
         float L = org.telegram.messenger.g0.L(10.0f);
         fArr[7] = L;
         fArr[6] = L;
         fArr[1] = L;
         fArr[0] = L;
-        float[] fArr2 = ek0Var.f34342e;
+        float[] fArr2 = ek0Var.f34341e;
         float L2 = org.telegram.messenger.g0.L(10.0f);
         fArr2[5] = L2;
         fArr2[4] = L2;
         fArr2[3] = L2;
         fArr2[2] = L2;
-        Path path = this.f33526e;
+        Path path = this.f33529e;
         path.rewind();
         path.addRoundRect(rectF, fArr2, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(path);
-        this.f33524b.e(canvas, rectF, 1.0f, false, false);
+        this.f33527b.e(canvas, rectF, 1.0f, false, false);
         RectF rectF2 = this.d;
         rectF2.set(0.0f, 0.0f, org.telegram.messenger.g0.L(3.0f), getHeight());
         ek0Var.f(canvas, rectF2, 1.0f);
@@ -78,7 +78,7 @@ public final class c71 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         String str = webPage.site_name;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f33523a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f33526a;
         if (str != null) {
             TextView textView = new TextView(getContext());
             textView.setTypeface(org.telegram.messenger.g0.o());

@@ -1,11 +1,11 @@
 package ch;
 public final class w implements Runnable {
-    public final int f5239a;
-    public final Object f5240b;
+    public final int f5242a;
+    public final Object f5243b;
 
     public w(Object obj, int i7) {
-        this.f5239a = i7;
-        this.f5240b = obj;
+        this.f5242a = i7;
+        this.f5243b = obj;
     }
 
     @Override

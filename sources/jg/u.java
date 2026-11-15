@@ -50,7 +50,7 @@ public final class u implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ci.p0((c9) obj2, tLObject, this.f17295b, (TLRPC.User) obj, 15));
                 return;
             case 4:
-                org.telegram.messenger.g0.h3(new ai.f1(tLObject, this.f17295b, (HashSet) obj2, tL_error, (e2) obj, 11));
+                org.telegram.messenger.g0.h3(new ai.g1(tLObject, this.f17295b, (HashSet) obj2, tL_error, (e2) obj, 11));
                 return;
             case 5:
                 org.telegram.messenger.g0.h3(new ci.p0((e2) obj2, tLObject, this.f17295b, (z10) obj, 23));

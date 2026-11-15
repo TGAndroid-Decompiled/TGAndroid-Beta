@@ -2,23 +2,23 @@ package org.telegram.ui.Components;
 
 import java.util.HashMap;
 public final class mg extends HashMap {
-    public final int f37244a;
-    public final Object f37245b;
+    public final int f37243a;
+    public final Object f37244b;
 
     public mg(Object obj, int i7) {
-        this.f37244a = i7;
-        this.f37245b = obj;
+        this.f37243a = i7;
+        this.f37244b = obj;
     }
 
     @Override
     public Object get(Object obj) {
-        switch (this.f37244a) {
+        switch (this.f37243a) {
             case 0:
-                int i7 = ((pg) this.f37245b).f38298w;
+                int i7 = ((pg) this.f37244b).f38298w;
                 ch0 ch0Var = (ch0) super.get(obj);
                 if (ch0Var == null) {
                     og ogVar = (og) obj;
-                    ch0 ch0Var2 = new ch0(ogVar.f37945c, org.telegram.messenger.g0.L(i7), org.telegram.messenger.g0.L(i7));
+                    ch0 ch0Var2 = new ch0(ogVar.f37943c, org.telegram.messenger.g0.L(i7), org.telegram.messenger.g0.L(i7));
                     put(ogVar, ch0Var2);
                     return ch0Var2;
                 }
@@ -31,11 +31,11 @@ public final class mg extends HashMap {
     @Override
     public Object put(Object obj, Object obj2) {
         String lowerCase;
-        switch (this.f37244a) {
+        switch (this.f37243a) {
             case 1:
                 String str = (String) obj;
                 String str2 = (String) obj2;
-                HashMap hashMap = ((yc.g) this.f37245b).f60598f;
+                HashMap hashMap = ((yc.g) this.f37244b).f60598f;
                 if (str == null) {
                     lowerCase = str;
                 } else {

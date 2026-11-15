@@ -25,7 +25,7 @@ public final class e {
         if (eVar == eVar2) {
             q qVar = (q) this.f15908e.d;
             int i10 = this.f15906b;
-            return ((String) qVar.f989b).substring(i10, i7 + i10).getBytes(((f) qVar.f990c).f4886a[this.f15907c].charset()).length;
+            return ((String) qVar.f989b).substring(i10, i7 + i10).getBytes(((f) qVar.f990c).f4889a[this.f15907c].charset()).length;
         }
         return i7;
     }
@@ -37,7 +37,7 @@ public final class e {
         sb2.append(eVar);
         sb2.append('(');
         if (eVar == gc.e.ECI) {
-            sb2.append(((f) qVar.f990c).f4886a[this.f15907c].charset().displayName());
+            sb2.append(((f) qVar.f990c).f4889a[this.f15907c].charset().displayName());
         } else {
             int i7 = this.d;
             int i10 = this.f15906b;

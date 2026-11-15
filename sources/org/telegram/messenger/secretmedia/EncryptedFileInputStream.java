@@ -25,7 +25,7 @@ public class EncryptedFileInputStream extends FileInputStream {
     }
 
     public static void decryptBytesWithKeyFile(byte[] bArr, int i7, int i10, dw dwVar) {
-        Utilities.b(bArr, dwVar.f23163a, dwVar.f23164b, i7, i10, 0, 0);
+        Utilities.b(bArr, dwVar.f23170a, dwVar.f23171b, i7, i10, 0, 0);
     }
 
     @Override
@@ -75,8 +75,8 @@ public class EncryptedFileInputStream extends FileInputStream {
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(dwVar.f23163a, 0, bArr, 0, bArr.length);
-        byte[] bArr2 = dwVar.f23164b;
+        System.arraycopy(dwVar.f23170a, 0, bArr, 0, bArr.length);
+        byte[] bArr2 = dwVar.f23171b;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }

@@ -42,10 +42,10 @@ public abstract class g0 {
             q10 = org.telegram.ui.ActionBar.j6.I.q();
         }
         boolean f10 = gz.f();
-        if (f10 && !q10 && ((org.telegram.messenger.h0) np.s1(i7).f25448y7.B.f14544b).f24006c) {
+        if (f10 && !q10 && ((org.telegram.messenger.h0) np.s1(i7).f25451y7.B.f14544b).f24009c) {
             f10 = false;
         }
-        if (f10 && q10 && ((org.telegram.messenger.h0) np.s1(i7).f25448y7.C.f14544b).f24006c) {
+        if (f10 && q10 && ((org.telegram.messenger.h0) np.s1(i7).f25451y7.C.f14544b).f24009c) {
             return false;
         }
         return f10;

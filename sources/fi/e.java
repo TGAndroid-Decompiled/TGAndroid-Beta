@@ -171,7 +171,7 @@ public final class e implements z10 {
                 return;
             case 23:
                 HashSet hashSet = (HashSet) obj;
-                String str2 = hd.E0().B.f23062f;
+                String str2 = hd.E0().B.f23070f;
                 hashSet.addAll(oy0.d0());
                 SharedPreferences.Editor edit = np.e1().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str2)) {
@@ -180,10 +180,10 @@ public final class e implements z10 {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                oy0.f50082s = false;
+                oy0.f50059s = false;
                 for (int i11 = 0; i11 < 4; i11++) {
                     try {
-                        np.s1(i11).f25400t7.g();
+                        np.s1(i11).f25403t7.g();
                     } catch (Exception unused) {
                     }
                 }

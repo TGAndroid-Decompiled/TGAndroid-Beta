@@ -1,48 +1,48 @@
 package org.telegram.ui;
 public final class kk0 implements Runnable {
-    public final int f48716a;
-    public final jl0 f48717b;
+    public final int f48670a;
+    public final kl0 f48671b;
 
-    public kk0(jl0 jl0Var, int i7) {
-        this.f48716a = i7;
-        this.f48717b = jl0Var;
+    public kk0(kl0 kl0Var, int i7) {
+        this.f48670a = i7;
+        this.f48671b = kl0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f48716a) {
+        switch (this.f48670a) {
             case 0:
-                this.f48717b.z0();
+                this.f48671b.z0();
                 return;
             case 1:
-                jl0 jl0Var = this.f48717b;
-                jl0Var.getMessagesController().f25338m7 = null;
-                if (jl0Var.f48400g1 == 3 && !jl0Var.isFinishing()) {
-                    jl0Var.f48400g1 = 4;
-                    il0 il0Var = jl0Var.f48384a1;
-                    if (il0Var != null) {
-                        il0Var.e(4);
+                kl0 kl0Var = this.f48671b;
+                kl0Var.getMessagesController().f25341m7 = null;
+                if (kl0Var.f48692g1 == 3 && !kl0Var.isFinishing()) {
+                    kl0Var.f48692g1 = 4;
+                    jl0 jl0Var = kl0Var.f48676a1;
+                    if (jl0Var != null) {
+                        jl0Var.e(4);
                     }
-                    jl0Var.finishFragment();
+                    kl0Var.finishFragment();
                     return;
-                } else if (jl0Var.f48400g1 == 1 && !jl0Var.isFinishing()) {
-                    jl0Var.finishFragment();
+                } else if (kl0Var.f48692g1 == 1 && !kl0Var.isFinishing()) {
+                    kl0Var.finishFragment();
                     return;
                 } else {
                     return;
                 }
             case 2:
-                jl0 jl0Var2 = this.f48717b;
-                if (jl0Var2.f48394e0 != null) {
-                    jl0Var2.C0();
-                    jl0Var2.f48394e0 = null;
+                kl0 kl0Var2 = this.f48671b;
+                if (kl0Var2.f48686e0 != null) {
+                    kl0Var2.C0();
+                    kl0Var2.f48686e0 = null;
                     return;
                 }
                 return;
             default:
-                jl0 jl0Var3 = this.f48717b;
-                jl0Var3.f48396f[0].requestFocus();
-                org.telegram.messenger.g0.J3(jl0Var3.f48396f[0]);
+                kl0 kl0Var3 = this.f48671b;
+                kl0Var3.f48688f[0].requestFocus();
+                org.telegram.messenger.g0.J3(kl0Var3.f48688f[0]);
                 return;
         }
     }

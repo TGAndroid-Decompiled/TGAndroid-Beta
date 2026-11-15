@@ -27,7 +27,7 @@ public final class p6 extends Drawable {
     public p6(int i7, int i10) {
         this.f44322b = i7;
         this.f44323c = i10;
-        Drawable g10 = i5.c.g(org.telegram.messenger.t0.f26600b, 2131232809);
+        Drawable g10 = i5.c.g(org.telegram.messenger.t0.f26609b, 2131232809);
         this.d = g10;
         if (f44317l != null) {
             return;

@@ -6,21 +6,21 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class uf implements Runnable {
-    public final int f26808a = 1;
-    public final int f26809b;
-    public final boolean f26810c;
+    public final int f26810a = 1;
+    public final int f26811b;
+    public final boolean f26812c;
     public final boolean d;
-    public final int f26811e;
-    public final c1 f26812f;
+    public final int f26813e;
+    public final c1 f26814f;
     public final Object h;
 
     public uf(si siVar, boolean z10, int i7, ArrayList arrayList, boolean z11, int i10) {
-        this.f26812f = siVar;
-        this.f26810c = z10;
-        this.f26809b = i7;
+        this.f26814f = siVar;
+        this.f26812c = z10;
+        this.f26811b = i7;
         this.h = arrayList;
         this.d = z11;
-        this.f26811e = i10;
+        this.f26813e = i10;
     }
 
     @Override
@@ -28,28 +28,28 @@ public final class uf implements Runnable {
         int i7;
         int i10;
         int i11;
-        int i12 = this.f26808a;
+        int i12 = this.f26810a;
         int i13 = 3;
-        int i14 = this.f26811e;
+        int i14 = this.f26813e;
         boolean z10 = this.d;
-        boolean z11 = this.f26810c;
+        boolean z11 = this.f26812c;
         Object obj = this.h;
-        int i15 = this.f26809b;
-        c1 c1Var = this.f26812f;
+        int i15 = this.f26811b;
+        c1 c1Var = this.f26814f;
         switch (i12) {
             case 0:
                 si siVar = (si) c1Var;
                 ArrayList arrayList = (ArrayList) obj;
                 try {
-                    SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27222b;
+                    SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27221b;
                     if (z11) {
-                        i7 = siVar.getMessagesController().f25285g3;
+                        i7 = siVar.getMessagesController().f25288g3;
                     } else {
                         if (i15 != 3 && i15 != 7) {
                             if (i15 == 2) {
-                                i7 = siVar.getMessagesController().f25276f3;
+                                i7 = siVar.getMessagesController().f25279f3;
                             } else {
-                                i7 = siVar.getMessagesController().f25266e3;
+                                i7 = siVar.getMessagesController().f25269e3;
                             }
                         }
                         i7 = 200;
@@ -129,11 +129,11 @@ public final class uf implements Runnable {
     }
 
     public uf(np npVar, int i7, TLRPC.messages_Messages messages_messages, boolean z10, boolean z11, int i10) {
-        this.f26812f = npVar;
-        this.f26809b = i7;
+        this.f26814f = npVar;
+        this.f26811b = i7;
         this.h = messages_messages;
-        this.f26810c = z10;
+        this.f26812c = z10;
         this.d = z11;
-        this.f26811e = i10;
+        this.f26813e = i10;
     }
 }

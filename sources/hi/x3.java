@@ -72,7 +72,7 @@ public abstract class x3 extends FrameLayout {
         path.lineTo(org.telegram.messenger.g0.L(4.33f), -org.telegram.messenger.g0.L(4.33f));
         this.f15325a = new org.telegram.ui.Components.y9(u9Var, this, 0, !l9Var.P.f15093s0.c());
         setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(44.0f));
-        bi.v3 v3Var = new bi.v3(l9Var, context, m10.f24934t0, (s3) new s10() {
+        bi.v3 v3Var = new bi.v3(l9Var, context, m10.f24940t0, (s3) new s10() {
             @Override
             public final void a(Object obj, Object obj2) {
                 boolean z10;
@@ -92,14 +92,14 @@ public abstract class x3 extends FrameLayout {
                             b41 K = b41.K(v3.class);
                             K.d = intValue;
                             K.G = (d7) l9Var2.f15327c.get(intValue);
-                            K.f33194z = i11;
+                            K.f33197z = i11;
                             if (l9Var2.f15329f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             K.L(z10);
-                            K.f33176f = l9Var2.f15328e.contains(num);
+                            K.f33179f = l9Var2.f15328e.contains(num);
                             K.D = new ci.q(l9Var2, intValue, 3);
                             arrayList.add(K);
                             if (l9Var2.f15328e.contains(num)) {
@@ -118,13 +118,13 @@ public abstract class x3 extends FrameLayout {
                             i10++;
                             l9Var2.d.add(Integer.valueOf(((b41) obj3).d));
                         }
-                        org.telegram.messenger.g0.d0(l9Var2.f15326b, new ai.f0(l9Var2, 25));
+                        org.telegram.messenger.g0.d0(l9Var2.f15326b, new ai.g0(l9Var2, 25));
                         return;
                 }
             }
         }, new di.z6(l9Var, 19), bVar);
         this.f15326b = v3Var;
-        v3Var.f39895g3.f38201r = false;
+        v3Var.f39892g3.f38199r = false;
         v3Var.setClipToPadding(false);
         v3Var.setClipChildren(false);
         v3Var.setPadding(org.telegram.messenger.g0.L(2.0f), 0, org.telegram.messenger.g0.L(2.0f), 0);
@@ -150,14 +150,14 @@ public abstract class x3 extends FrameLayout {
                             b41 K = b41.K(v3.class);
                             K.d = intValue;
                             K.G = (d7) l9Var2.f15327c.get(intValue);
-                            K.f33194z = i11;
+                            K.f33197z = i11;
                             if (l9Var2.f15329f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             K.L(z10);
-                            K.f33176f = l9Var2.f15328e.contains(num);
+                            K.f33179f = l9Var2.f15328e.contains(num);
                             K.D = new ci.q(l9Var2, intValue, 3);
                             arrayList.add(K);
                             if (l9Var2.f15328e.contains(num)) {
@@ -176,7 +176,7 @@ public abstract class x3 extends FrameLayout {
                             i10++;
                             l9Var2.d.add(Integer.valueOf(((b41) obj3).d));
                         }
-                        org.telegram.messenger.g0.d0(l9Var2.f15326b, new ai.f0(l9Var2, 25));
+                        org.telegram.messenger.g0.d0(l9Var2.f15326b, new ai.g0(l9Var2, 25));
                         return;
                 }
             }
@@ -322,7 +322,7 @@ public abstract class x3 extends FrameLayout {
         oy0 oy0Var = this.f15334x;
         bi.v3 v3Var = this.f15326b;
         if (oy0Var != null) {
-            oy0Var.c(rectF.centerX() - (this.f15334x.f38105c / 2.0f), rectF.centerY() - org.telegram.messenger.g0.L(0.6f), 1.0f - v3Var.getAlpha(), -1, canvas);
+            oy0Var.c(rectF.centerX() - (this.f15334x.f38103c / 2.0f), rectF.centerY() - org.telegram.messenger.g0.L(0.6f), 1.0f - v3Var.getAlpha(), -1, canvas);
         }
         if (v3Var.getAlpha() > 0.0f) {
             canvas.save();
@@ -437,14 +437,14 @@ public abstract class x3 extends FrameLayout {
                 dcVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (dcVar.f33917i) {
+            if (dcVar.f33904i) {
                 c(!this.N, true);
             }
             dcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             dcVar.c(false);
         }
-        if (!dcVar.f33917i && !super.onTouchEvent(motionEvent)) {
+        if (!dcVar.f33904i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -455,6 +455,6 @@ public abstract class x3 extends FrameLayout {
             return;
         }
         this.f15329f = i7;
-        org.telegram.messenger.g0.d0(this.f15326b, new ai.x1(this, i7, 1));
+        org.telegram.messenger.g0.d0(this.f15326b, new ai.y1(this, i7, 1));
     }
 }

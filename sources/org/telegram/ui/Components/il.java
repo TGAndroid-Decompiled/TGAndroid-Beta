@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.util.ArrayList;
 public final class il implements q0.a {
-    public final int f35648a;
-    public final Object f35649b;
-    public final boolean f35650c;
+    public final int f35635a;
+    public final Object f35636b;
+    public final boolean f35637c;
 
     public il(int i7, Object obj, boolean z10) {
-        this.f35648a = i7;
-        this.f35649b = obj;
-        this.f35650c = z10;
+        this.f35635a = i7;
+        this.f35636b = obj;
+        this.f35637c = z10;
     }
 
     @Override
     public final void accept(Object obj) {
         xb xbVar;
-        int i7 = this.f35648a;
+        int i7 = this.f35635a;
         boolean z10 = false;
-        boolean z11 = this.f35650c;
-        Object obj2 = this.f35649b;
+        boolean z11 = this.f35637c;
+        Object obj2 = this.f35636b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj2;
@@ -51,9 +51,9 @@ public final class il implements q0.a {
                 return;
             default:
                 Float f10 = (Float) obj;
-                wa waVar = ((ra) obj2).f38911b.f41649p;
+                wa waVar = ((ra) obj2).f38908b.f41641p;
                 if (waVar != null && !z11) {
-                    waVar.c(xbVar.f41639e.getHeight() - f10.floatValue());
+                    waVar.c(xbVar.f41631e.getHeight() - f10.floatValue());
                     return;
                 }
                 return;

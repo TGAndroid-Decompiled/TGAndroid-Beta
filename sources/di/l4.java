@@ -27,13 +27,13 @@ public final class l4 implements View.OnClickListener {
         switch (i7) {
             case 0:
                 if (y4Var.Q.getAlpha() >= 1.0f) {
-                    y4Var.f9781h0.run();
+                    y4Var.f9770h0.run();
                     return;
                 }
                 return;
             case 1:
                 if (y4Var.Q.getAlpha() >= 1.0f) {
-                    y4Var.f9781h0.run();
+                    y4Var.f9770h0.run();
                     return;
                 }
                 return;
@@ -48,10 +48,10 @@ public final class l4 implements View.OnClickListener {
             case 4:
                 y4 y4Var2 = this.f8959b;
                 LinearLayout linearLayout = y4Var2.H;
-                w4[] w4VarArr = y4Var2.f9786n;
-                if (y4Var2.getAlpha() >= 1.0f && !y4Var2.f9782i0) {
-                    if (y4Var2.f9784k0) {
-                        y4Var2.a(y4Var2.f9770a0, y4Var2.f9772b0, y4Var2.f9774c0, y4Var2.f9775d0);
+                w4[] w4VarArr = y4Var2.f9775n;
+                if (y4Var2.getAlpha() >= 1.0f && !y4Var2.f9771i0) {
+                    if (y4Var2.f9773k0) {
+                        y4Var2.a(y4Var2.f9759a0, y4Var2.f9761b0, y4Var2.f9763c0, y4Var2.f9764d0);
                         return;
                     }
                     ArrayList arrayList = new ArrayList();
@@ -71,10 +71,10 @@ public final class l4 implements View.OnClickListener {
                             }
                         }
                     }
-                    if (!arrayList.isEmpty() && y4Var2.f9779f0 != null) {
+                    if (!arrayList.isEmpty() && y4Var2.f9768f0 != null) {
                         TextView textView = y4Var2.L;
-                        y4Var2.f9782i0 = true;
-                        y4Var2.f9784k0 = false;
+                        y4Var2.f9771i0 = true;
+                        y4Var2.f9773k0 = false;
                         hi.l3 l3Var = y4Var2.U;
                         if (l3Var != null) {
                             l3Var.f(true);
@@ -137,7 +137,7 @@ public final class l4 implements View.OnClickListener {
                                 arrayList2.add(starGift7);
                             }
                         }
-                        y4Var2.f9779f0.a(arrayList2, new bi.e4(1, y4Var2, arrayList2), new ch.w(y4Var2, 14));
+                        y4Var2.f9768f0.a(arrayList2, new bi.e4(1, y4Var2, arrayList2), new ch.w(y4Var2, 14));
                         return;
                     }
                     org.telegram.messenger.g0.G3(linearLayout);
@@ -150,14 +150,14 @@ public final class l4 implements View.OnClickListener {
                 if (starGift8 == null) {
                     starGift8 = null;
                 }
-                if (starGift8 != null && !w4Var7.f9656n) {
+                if (starGift8 != null && !w4Var7.f9645n) {
                     w4Var7.a(null, true);
                     y4Var.d(true);
                     return;
                 }
                 int i12 = 0;
                 while (true) {
-                    w4[] w4VarArr2 = y4Var.f9786n;
+                    w4[] w4VarArr2 = y4Var.f9775n;
                     if (i12 < w4VarArr2.length && (w4Var = w4VarArr2[i12]) != view) {
                         if (w4Var != null) {
                             TL_stars.StarGift starGift9 = w4Var.h;
@@ -171,7 +171,7 @@ public final class l4 implements View.OnClickListener {
                     }
                 }
                 z10 = true;
-                y4Var.f9780g0.a(new ai.u1(9, y4Var, w4Var7), Boolean.valueOf(z10));
+                y4Var.f9769g0.a(new ai.v1(9, y4Var, w4Var7), Boolean.valueOf(z10));
                 return;
         }
     }

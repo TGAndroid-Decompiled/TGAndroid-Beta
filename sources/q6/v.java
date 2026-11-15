@@ -22,13 +22,13 @@ public final class v implements com.google.android.gms.common.api.o {
             k8 k8Var = this.f55391a;
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
             BasePendingResult basePendingResult = (BasePendingResult) k8Var;
-            m.i("Result has already been consumed.", !basePendingResult.f5935j);
+            m.i("Result has already been consumed.", !basePendingResult.f5938j);
             try {
                 if (!basePendingResult.d.await(0L, timeUnit)) {
-                    basePendingResult.e(Status.f5909n);
+                    basePendingResult.e(Status.f5912n);
                 }
             } catch (InterruptedException unused) {
-                basePendingResult.e(Status.f5908f);
+                basePendingResult.e(Status.f5911f);
             }
             m.i("Result is not ready.", basePendingResult.g());
             this.f55392b.setResult(this.f55393c.q(basePendingResult.j()));

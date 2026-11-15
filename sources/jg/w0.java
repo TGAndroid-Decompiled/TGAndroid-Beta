@@ -15,7 +15,7 @@ import org.telegram.messenger.vr;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.e90;
 import org.telegram.ui.Components.i9;
 import org.telegram.ui.Wallet.d2;
 public final class w0 implements Runnable {
@@ -71,13 +71,13 @@ public final class w0 implements Runnable {
                 String str3 = (String) obj5;
                 vr vrVar = (vr) obj;
                 String str4 = (String) obj4;
-                d90 d90Var = h1Var.W;
+                e90 e90Var = h1Var.W;
                 if (str2.equals(h1Var.f17140s0)) {
                     h1Var.f17143v0 = 0;
                     if (z14 && tLObject == null) {
                         h1Var.T(false, user, str2, str3);
-                    } else if (d90Var != null) {
-                        d90Var.b(false);
+                    } else if (e90Var != null) {
+                        e90Var.b(false);
                     }
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
@@ -134,7 +134,7 @@ public final class w0 implements Runnable {
                         } else {
                             z11 = true;
                         }
-                        d90Var.a(z11);
+                        e90Var.a(z11);
                         if (z10) {
                             if (h1Var.U == null && h1Var.V == null) {
                                 i7 = 0;

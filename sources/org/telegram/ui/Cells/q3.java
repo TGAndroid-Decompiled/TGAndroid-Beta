@@ -61,7 +61,7 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
         float f14;
         float f15;
         this.f31262a = org.telegram.ui.ActionBar.j6.I.q();
-        this.f31263b = m10.f24934t0;
+        this.f31263b = m10.f24940t0;
         TextView textView = new TextView(context);
         this.f31264c = textView;
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
@@ -69,13 +69,13 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -98,13 +98,13 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
         i20.p(textView2, 1, 13.0f, 1, 1);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView2.setGravity(i11);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -125,7 +125,7 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
         this.f31265e = i9Var;
         i9Var.setAspectFit(true);
         i9Var.setLayerNum(1);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         int i13 = (z12 ? 5 : 3) | 48;
         if (z12) {
             f14 = 0.0f;
@@ -284,7 +284,7 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
                     } else {
                         i9Var.l(gc.b(document), "50_50", gcVar, null, 0, stickerSetCovered);
                     }
-                } else if (gcVar != null && gcVar.f23724p == 1) {
+                } else if (gcVar != null && gcVar.f23726p == 1) {
                     i9Var.k(gcVar, "50_50", "tgs", d, stickerSetCovered);
                 } else {
                     i9Var.k(gcVar, "50_50", "webp", d, stickerSetCovered);
@@ -480,7 +480,7 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
         float L;
         int i7;
         if (this.f31272y) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(71.0f);
@@ -488,7 +488,7 @@ public final class q3 extends FrameLayout implements is, org.telegram.ui.ActionB
             float f10 = L;
             float height = getHeight() - 1;
             int width = getWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(71.0f);
             } else {
                 i7 = 0;

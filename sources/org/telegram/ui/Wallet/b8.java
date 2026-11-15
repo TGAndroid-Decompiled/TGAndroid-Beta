@@ -150,7 +150,7 @@ public final class b8 {
             if (B == null) {
                 i7 = 0;
             } else {
-                i7 = B.f33573b0;
+                i7 = B.f33575b0;
             }
             Bitmap bitmap = this.v;
             if (bitmap != null && this.G == n10 && this.E == i7) {

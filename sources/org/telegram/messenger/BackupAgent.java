@@ -8,7 +8,7 @@ public class BackupAgent extends BackupAgentHelper {
 
     public static void a() {
         if (f22247a == null) {
-            f22247a = new BackupManager(t0.f26600b);
+            f22247a = new BackupManager(t0.f26609b);
         }
         f22247a.dataChanged();
     }

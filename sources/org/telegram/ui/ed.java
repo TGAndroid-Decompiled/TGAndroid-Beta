@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.EditText;
 public final class ed implements View.OnFocusChangeListener {
-    public final int f46728a;
-    public final Object f46729b;
+    public final int f46718a;
+    public final Object f46719b;
 
     public ed(Object obj, int i7) {
-        this.f46728a = i7;
-        this.f46729b = obj;
+        this.f46718a = i7;
+        this.f46719b = obj;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        int i7 = this.f46728a;
+        int i7 = this.f46718a;
         float f10 = 0.0f;
-        Object obj = this.f46729b;
+        Object obj = this.f46719b;
         switch (i7) {
             case 0:
                 di.p pVar = ((xd) obj).L0;
@@ -32,10 +32,10 @@ public final class ed implements View.OnFocusChangeListener {
                 }
                 return;
             case 2:
-                ce0 ce0Var = ((ob0) obj).f49891a0;
+                ce0 ce0Var = ((ob0) obj).f49881a0;
                 if (z10) {
-                    ce0Var.f46089c.setEditText((EditText) view);
-                    ce0Var.f46089c.setDispatchBackWhenEmpty(true);
+                    ce0Var.f46078c.setEditText((EditText) view);
+                    ce0Var.f46078c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
@@ -47,14 +47,14 @@ public final class ed implements View.OnFocusChangeListener {
                 mb0Var.b(f10, f10, true);
                 return;
             case 4:
-                org.telegram.ui.Components.mb0 mb0Var2 = ((wb0) obj).f52537y;
+                org.telegram.ui.Components.mb0 mb0Var2 = ((wb0) obj).f52540y;
                 if (z10) {
                     f10 = 1.0f;
                 }
                 mb0Var2.b(f10, f10, true);
                 return;
             case 5:
-                org.telegram.ui.Components.mb0 mb0Var3 = ((dc0) obj).f46356b;
+                org.telegram.ui.Components.mb0 mb0Var3 = ((dc0) obj).f46328b;
                 if (z10) {
                     f10 = 1.0f;
                 }
@@ -63,28 +63,28 @@ public final class ed implements View.OnFocusChangeListener {
             case 6:
                 ce0 ce0Var2 = ((gc0) obj).E;
                 if (z10) {
-                    ce0Var2.f46089c.setEditText((EditText) view);
-                    ce0Var2.f46089c.setDispatchBackWhenEmpty(true);
+                    ce0Var2.f46078c.setEditText((EditText) view);
+                    ce0Var2.f46078c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Components.mb0 mb0Var4 = ((rc0) obj).f50908a;
+                org.telegram.ui.Components.mb0 mb0Var4 = ((rc0) obj).f50907a;
                 if (z10) {
                     f10 = 1.0f;
                 }
                 mb0Var4.b(f10, f10, true);
                 return;
             case 8:
-                ce0 ce0Var3 = ((ed0) obj).f46759v0;
+                ce0 ce0Var3 = ((ed0) obj).f46749v0;
                 if (z10) {
-                    ce0Var3.f46089c.setEditText((EditText) view);
-                    ce0Var3.f46089c.setDispatchBackWhenEmpty(true);
+                    ce0Var3.f46078c.setEditText((EditText) view);
+                    ce0Var3.f46078c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 9:
-                org.telegram.ui.Components.mb0 mb0Var5 = ((be0) obj).f45694e;
+                org.telegram.ui.Components.mb0 mb0Var5 = ((be0) obj).f45688e;
                 if (z10) {
                     f10 = 1.0f;
                 }

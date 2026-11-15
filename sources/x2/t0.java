@@ -17,15 +17,15 @@ public final class t0 implements b1 {
         v0Var.M[i7].C();
         b3.o oVar = v0Var.f59699y;
         int R4 = v0Var.d.R4(v0Var.W);
-        IOException iOException = oVar.f2918c;
+        IOException iOException = oVar.f2921c;
         if (iOException == null) {
-            b3.k kVar = oVar.f2917b;
+            b3.k kVar = oVar.f2920b;
             if (kVar != null) {
                 if (R4 == Integer.MIN_VALUE) {
-                    R4 = kVar.f2906a;
+                    R4 = kVar.f2909a;
                 }
-                IOException iOException2 = kVar.f2909e;
-                if (iOException2 != null && kVar.f2910f > R4) {
+                IOException iOException2 = kVar.f2912e;
+                if (iOException2 != null && kVar.f2913f > R4) {
                     throw iOException2;
                 }
                 return;

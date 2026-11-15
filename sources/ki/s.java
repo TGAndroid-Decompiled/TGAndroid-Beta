@@ -74,7 +74,7 @@ public final class s extends org.telegram.ui.ActionBar.e2 {
             }
             edit.apply();
             u41 u41Var = sVar.f18534a;
-            if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+            if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
                 p41Var.O(true);
             }
         }

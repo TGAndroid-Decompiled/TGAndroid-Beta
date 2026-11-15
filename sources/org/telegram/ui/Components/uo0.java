@@ -26,7 +26,7 @@ public final class uo0 extends View implements org.telegram.ui.ActionBar.z5 {
         float f11 = 3.0f;
         int measuredWidth = (getMeasuredWidth() / 2) - org.telegram.messenger.g0.L(3.0f);
         int L = org.telegram.messenger.g0.L(1.0f) + ((org.telegram.messenger.g0.L(1.0f) + measuredWidth) * 7);
-        er erVar = er.f34421g;
+        er erVar = er.f34420g;
         float f12 = this.f40140f;
         if (f12 > 0.4f) {
             f10 = (f12 - 0.4f) / 0.6f;

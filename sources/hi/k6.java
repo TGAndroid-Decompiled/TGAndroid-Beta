@@ -42,7 +42,7 @@ public abstract class k6 extends FrameLayout {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f14505b = d7.x(m10.f24934t0, true);
+        this.f14505b = d7.x(m10.f24940t0, true);
         j6 j6Var = new j6(this, context);
         this.f14504a = j6Var;
         j6Var.setScaleX(0.0f);
@@ -79,7 +79,7 @@ public abstract class k6 extends FrameLayout {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.F, 1.0f);
         this.E = ofFloat;
         ofFloat.addUpdateListener(new j3(this, 4));
-        this.E.addListener(new ai.i0(this, 25));
+        this.E.addListener(new ai.j0(this, 25));
         this.E.setInterpolator(er.h);
         this.E.setDuration(280L);
         this.E.start();

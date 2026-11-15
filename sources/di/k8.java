@@ -1,323 +1,112 @@
 package di;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import org.telegram.messenger.gj;
 import org.telegram.messenger.m10;
 import org.telegram.messenger.np;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.si;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-public final class k8 {
-    public final int f8920a;
-    public final long f8921b;
-    public boolean f8922c;
-    public boolean d;
-    public m8 f8925g;
-    public boolean f8927j;
-    public boolean f8928k;
-    public final ArrayList f8923e = new ArrayList();
-    public final ArrayList f8924f = new ArrayList();
-    public final HashMap h = new HashMap();
-    public int f8926i = -1;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.pv0;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.c40;
+import org.telegram.ui.cf0;
+import org.telegram.ui.kl0;
+import org.telegram.ui.lw;
+import org.telegram.ui.qe0;
+import org.telegram.ui.wn;
+import org.telegram.ui.xd;
+public final class k8 implements RequestDelegate {
+    public final int f8921a;
+    public final boolean f8922b;
+    public final Object f8923c;
+    public final Object d;
 
-    public k8(int i7, long j3) {
-        this.f8920a = i7;
-        this.f8921b = j3;
-        i();
+    public k8(Object obj, Object obj2, boolean z10, int i7) {
+        this.f8921a = i7;
+        this.f8923c = obj;
+        this.d = obj2;
+        this.f8922b = z10;
     }
 
-    public final void a(int i7, ArrayList arrayList) {
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        m8 e10 = e(i7);
-        int i10 = 0;
-        long j3 = this.f8921b;
-        int i11 = this.f8920a;
-        if (e10 != null) {
-            e10.f9051l.addAll(0, arrayList);
-            e10.f9053n = arrayList.size() + e10.f9053n;
-            ns.f(i11).k(ns.G3, Long.valueOf(j3), e10);
-            n(i7);
-        }
-        TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
-        updatestargiftcollection.peer = np.s1(i11).j1(j3);
-        updatestargiftcollection.collection_id = i7;
-        updatestargiftcollection.flags |= 4;
-        int size = arrayList.size();
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-            l(savedStarGift, i7, true);
-            if (savedStarGift.msg_id > 0) {
-                TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser = new TL_stars.TL_inputSavedStarGiftUser();
-                tL_inputSavedStarGiftUser.msg_id = savedStarGift.msg_id;
-                updatestargiftcollection.add_stargift.add(tL_inputSavedStarGiftUser);
-            } else if (savedStarGift.saved_id != 0) {
-                TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
-                tL_inputSavedStarGiftChat.peer = np.s1(i11).j1(j3);
-                tL_inputSavedStarGiftChat.saved_id = savedStarGift.saved_id;
-                updatestargiftcollection.add_stargift.add(tL_inputSavedStarGiftChat);
-            } else {
-                org.telegram.messenger.a8.l("can't convert gift to inputgift to add into the collection");
-            }
-        }
-        ConnectionsManager.getInstance(i11).sendRequest(updatestargiftcollection, new i8(this, 1));
-    }
-
-    public final void b(String str, z10 z10Var) {
-        if (this.f8928k) {
-            return;
-        }
-        this.f8928k = true;
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = new TL_stars.TL_starGiftCollection();
-        tL_starGiftCollection.collection_id = -1;
-        tL_starGiftCollection.title = str;
-        this.f8923e.add(tL_starGiftCollection);
-        j();
-        int i7 = this.f8920a;
-        long j3 = this.f8921b;
-        m8 m8Var = new m8(i7, j3, false);
-        m8Var.f9044c = true;
-        m8Var.d = -1;
-        m8Var.f9053n = 0;
-        m8Var.f9049j = true;
-        this.h.put(-1, m8Var);
-        TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
-        createstargiftcollection.peer = np.s1(i7).j1(j3);
-        createstargiftcollection.title = str;
-        ConnectionsManager.getInstance(i7).sendRequest(createstargiftcollection, new bi.l1(this, tL_starGiftCollection, m8Var, z10Var, 5));
-    }
-
-    public final TL_stars.TL_starGiftCollection c(int i7) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f8923e;
-            if (i10 < arrayList.size()) {
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) arrayList.get(i10);
-                if (i7 == tL_starGiftCollection.collection_id) {
-                    return tL_starGiftCollection;
-                }
-                i10++;
-            } else {
-                return null;
-            }
-        }
-    }
-
-    public final ArrayList d() {
-        if (h()) {
-            return this.f8923e;
-        }
-        return this.f8924f;
-    }
-
-    public final m8 e(int i7) {
-        return (m8) this.h.get(Integer.valueOf(i7));
-    }
-
-    public final int f(int i7) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f8923e;
-            if (i10 < arrayList.size()) {
-                if (i7 == ((TL_stars.TL_starGiftCollection) arrayList.get(i10)).collection_id) {
-                    return i10;
-                }
-                i10++;
-            } else {
-                return -1;
-            }
-        }
-    }
-
-    public final void g() {
-        if (this.f8926i != -1) {
-            ConnectionsManager.getInstance(this.f8920a).cancelRequest(this.f8926i, true);
-            this.f8926i = -1;
-        }
-        this.f8922c = false;
-        this.d = false;
-        if (this.f8927j) {
-            i();
-        }
-    }
-
-    public final boolean h() {
-        long j3 = this.f8921b;
-        int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        int i10 = this.f8920a;
-        if (i7 >= 0) {
-            if (i7 != 0 && j3 != m10.i(i10).e()) {
-                return false;
-            }
-            return true;
-        }
-        return org.telegram.messenger.t3.w(5, np.s1(i10).M0(Long.valueOf(-j3)));
-    }
-
-    public final void i() {
-        if (!this.f8922c && !this.d) {
-            this.f8922c = true;
-            TL_stars.getStarGiftCollections getstargiftcollections = new TL_stars.getStarGiftCollections();
-            int i7 = this.f8920a;
-            getstargiftcollections.peer = np.s1(i7).j1(this.f8921b);
-            ArrayList arrayList = this.f8923e;
-            int size = arrayList.size();
-            long j3 = 0;
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                j3 = si.p(j3, ((TL_stars.TL_starGiftCollection) obj).hash);
-            }
-            getstargiftcollections.hash = j3;
-            this.f8926i = ConnectionsManager.getInstance(i7).sendRequest(getstargiftcollections, new i8(this, 0));
-        }
-    }
-
-    public final void j() {
-        ArrayList arrayList = this.f8924f;
-        arrayList.clear();
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f8923e;
-            if (i7 < arrayList2.size()) {
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) arrayList2.get(i7);
-                if (tL_starGiftCollection.gifts_count > 0) {
-                    arrayList.add(tL_starGiftCollection);
-                }
-                i7++;
-            } else {
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        switch (this.f8921a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new aa.c0((l8) this.f8923c, (int[]) this.d, tLObject, this.f8922b, 1));
                 return;
-            }
-        }
-    }
-
-    public final void k(int i7, TL_stars.SavedStarGift savedStarGift) {
-        char c10;
-        boolean z10;
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(savedStarGift);
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        m8 e10 = e(i7);
-        char c11 = 1;
-        boolean z11 = false;
-        if (e10 != null) {
-            ArrayList arrayList2 = e10.f9051l;
-            if (!arrayList2.isEmpty()) {
-                int i10 = 0;
-                while (i10 < arrayList2.size()) {
-                    TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) arrayList2.get(i10);
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 >= arrayList.size()) {
-                            break;
-                        } else if (v8.k(savedStarGift2, (TL_stars.SavedStarGift) arrayList.get(i11))) {
-                            arrayList2.remove(i10);
-                            e10.f9053n = Math.max(0, e10.f9053n - 1);
-                            i10--;
-                            break;
+            case 1:
+                org.telegram.messenger.g0.h3(new aa.c0((hi.r1) this.f8923c, tLObject, (String) this.d, this.f8922b, 3));
+                return;
+            case 2:
+                jg.z1 z1Var = (jg.z1) this.f8923c;
+                String str = (String) this.d;
+                a0.h hVar = z1Var.h;
+                ArrayList arrayList = z1Var.f17349g;
+                int i7 = z1Var.f17354m;
+                if (tL_error == null) {
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+                    z1Var.f17355n = str.toLowerCase();
+                    np.s1(i7).Y3(tL_channels_channelParticipants.users, false);
+                    np.s1(i7).S3(tL_channels_channelParticipants.chats, false);
+                    arrayList.clear();
+                    hVar.b();
+                    arrayList.addAll(tL_channels_channelParticipants.participants);
+                    long e10 = m10.i(i7).e();
+                    int size = tL_channels_channelParticipants.participants.size();
+                    for (int i10 = 0; i10 < size; i10++) {
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
+                        long B1 = gj.B1(channelParticipant.peer);
+                        if (!this.f8922b && B1 == e10) {
+                            arrayList.remove(channelParticipant);
                         } else {
-                            i11++;
+                            hVar.k(channelParticipant, B1);
                         }
                     }
-                    i10++;
+                    return;
                 }
-            }
-        }
-        n(i7);
-        TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
-        int i12 = this.f8920a;
-        np s12 = np.s1(i12);
-        long j3 = this.f8921b;
-        updatestargiftcollection.peer = s12.j1(j3);
-        updatestargiftcollection.collection_id = i7;
-        updatestargiftcollection.flags |= 2;
-        int size = arrayList.size();
-        int i13 = 0;
-        while (i13 < size) {
-            Object obj = arrayList.get(i13);
-            i13++;
-            TL_stars.SavedStarGift savedStarGift3 = (TL_stars.SavedStarGift) obj;
-            l(savedStarGift3, i7, z11);
-            if (savedStarGift3.msg_id > 0) {
-                TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser = new TL_stars.TL_inputSavedStarGiftUser();
-                tL_inputSavedStarGiftUser.msg_id = savedStarGift3.msg_id;
-                updatestargiftcollection.delete_stargift.add(tL_inputSavedStarGiftUser);
-                c10 = c11;
-                z10 = z11;
-            } else if (savedStarGift3.saved_id != 0) {
-                TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
-                tL_inputSavedStarGiftChat.peer = np.s1(i12).j1(j3);
-                c10 = c11;
-                z10 = z11;
-                tL_inputSavedStarGiftChat.saved_id = savedStarGift3.saved_id;
-                updatestargiftcollection.delete_stargift.add(tL_inputSavedStarGiftChat);
-            } else {
-                c10 = c11;
-                z10 = z11;
-                org.telegram.messenger.a8.l("can't convert gift to inputgift to add into the collection");
-            }
-            c11 = c10;
-            z11 = z10;
-        }
-        char c12 = c11;
-        updatestargiftcollection.delete_stargift.size();
-        ConnectionsManager.getInstance(i12).sendRequest(updatestargiftcollection, new i8(this, 2));
-        ns f10 = ns.f(i12);
-        Object[] objArr = new Object[2];
-        objArr[z11 ? 1 : 0] = Long.valueOf(j3);
-        objArr[c12] = e10;
-        f10.k(ns.G3, objArr);
-    }
-
-    public final void l(TL_stars.SavedStarGift savedStarGift, int i7, boolean z10) {
-        for (m8 m8Var : this.h.values()) {
-            m8Var.p(savedStarGift, i7, z10);
-        }
-        m8 m8Var2 = this.f8925g;
-        if (m8Var2 != null) {
-            m8Var2.p(savedStarGift, i7, z10);
+                return;
+            case 3:
+                org.telegram.messenger.g0.h3(new ai.j((xd) this.f8923c, tL_error, tLObject, (TwoStepVerificationActivity) this.d, this.f8922b, 6));
+                return;
+            case 4:
+                org.telegram.messenger.g0.h3(new wn((pv0) this.f8923c, tLObject, this.f8922b, (org.telegram.ui.ActionBar.t1) this.d));
+                return;
+            case 5:
+                org.telegram.messenger.g0.h3(new ai.j((lw) this.f8923c, tL_error, tLObject, (String) this.d, this.f8922b));
+                return;
+            case 6:
+                org.telegram.messenger.g0.h3(new wn((Object) ((c40) this.f8923c), tLObject, (Object) ((TLRPC.ChatFull) this.d), this.f8922b, 8));
+                return;
+            case 7:
+                cf0 cf0Var = (cf0) this.f8923c;
+                TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.d;
+                if (tL_error == null) {
+                    TLRPC.TL_messages_exportedChatInvites tL_messages_exportedChatInvites = (TLRPC.TL_messages_exportedChatInvites) tLObject;
+                    if (tL_messages_exportedChatInvites.invites.size() > 0 && tL_chatInviteExported2 != null) {
+                        for (int i11 = 0; i11 < tL_messages_exportedChatInvites.invites.size(); i11++) {
+                            if (((TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i11)).link.equals(tL_chatInviteExported2.link)) {
+                                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.remove(i11);
+                                org.telegram.messenger.g0.h3(new qe0(cf0Var, tL_chatInviteExported, tL_error, tLObject, this.f8922b, 0));
+                                return;
+                            }
+                        }
+                    }
+                }
+                tL_chatInviteExported = null;
+                org.telegram.messenger.g0.h3(new qe0(cf0Var, tL_chatInviteExported, tL_error, tLObject, this.f8922b, 0));
+                return;
+            default:
+                org.telegram.messenger.g0.h3(new ai.j((Object) ((kl0) this.f8923c), (TLObject) tL_error, this.f8922b, tLObject, (String) this.d, 14));
+                return;
         }
     }
 
-    public final void m(TL_stars.SavedStarGift savedStarGift, boolean z10) {
-        for (m8 m8Var : this.h.values()) {
-            m8Var.q(savedStarGift, z10);
-        }
-        m8 m8Var2 = this.f8925g;
-        if (m8Var2 != null) {
-            m8Var2.q(savedStarGift, z10);
-        }
-    }
-
-    public final void n(int i7) {
-        TL_stars.SavedStarGift savedStarGift;
-        m8 e10 = e(i7);
-        TL_stars.TL_starGiftCollection c10 = c(i7);
-        if (e10 != null) {
-            ArrayList arrayList = e10.f9051l;
-            if (c10 != null) {
-                if (arrayList.isEmpty()) {
-                    savedStarGift = null;
-                } else {
-                    savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
-                }
-                if (savedStarGift == null) {
-                    c10.flags &= -2;
-                    c10.icon = null;
-                } else {
-                    c10.flags |= 1;
-                    c10.icon = savedStarGift.gift.getDocument();
-                }
-                ns.f(this.f8920a).k(ns.H3, Long.valueOf(this.f8921b), this);
-            }
-        }
+    public k8(Object obj, boolean z10, Object obj2, int i7) {
+        this.f8921a = i7;
+        this.f8923c = obj;
+        this.f8922b = z10;
+        this.d = obj2;
     }
 }

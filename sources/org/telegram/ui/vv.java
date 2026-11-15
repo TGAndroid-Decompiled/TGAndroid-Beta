@@ -6,21 +6,21 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class vv extends n11 {
-    public final e11[] f52298f2;
-    public final yw f52299g2;
+    public final e11[] f52301f2;
+    public final yw f52302g2;
 
     public vv(yw ywVar, yw ywVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.e6 e6Var, e11[] e11VarArr) {
         super(ywVar2, activity, true, num, 0, e6Var);
-        this.f52299g2 = ywVar;
-        this.f52298f2 = e11VarArr;
+        this.f52302g2 = ywVar;
+        this.f52301f2 = e11VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i7;
         if (tL_starGiftUnique != null) {
-            i7 = ((org.telegram.ui.ActionBar.e2) this.f52299g2).currentAccount;
-            if (di.v8.y(i7, false).n(tL_starGiftUnique.f28280id) != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
+            i7 = ((org.telegram.ui.ActionBar.e2) this.f52302g2).currentAccount;
+            if (di.u8.y(i7, false).n(tL_starGiftUnique.f28280id) != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -36,14 +36,14 @@ public final class vv extends n11 {
         int i10;
         int i11;
         org.telegram.ui.ActionBar.e6 e6Var;
-        e11[] e11VarArr = this.f52298f2;
-        yw ywVar = this.f52299g2;
+        e11[] e11VarArr = this.f52301f2;
+        yw ywVar = this.f52302g2;
         if (l10 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i7 = ((org.telegram.ui.ActionBar.e2) ywVar).currentAccount;
-                TL_stars.SavedStarGift n10 = di.v8.y(i7, false).n(tL_starGiftUnique.f28280id);
+                TL_stars.SavedStarGift n10 = di.u8.y(i7, false).n(tL_starGiftUnique.f28280id);
                 if (n10 != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
                     org.telegram.messenger.np.e1().edit().putInt("statusgiftpage", org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -88,7 +88,7 @@ public final class vv extends n11 {
             org.telegram.ui.Cells.o oVar = ywVar.G3;
             ?? obj = new Object();
             long longValue = l10.longValue();
-            obj.f5189g = longValue;
+            obj.f5192g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }

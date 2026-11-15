@@ -11,7 +11,7 @@ public abstract class d {
 
     public static boolean a(p pVar) {
         x xVar = new x(8);
-        int i7 = i.b(pVar, xVar).f2904a;
+        int i7 = i.b(pVar, xVar).f2907a;
         if (i7 != 1380533830 && i7 != 1380333108) {
             return false;
         }
@@ -28,10 +28,10 @@ public abstract class d {
     public static i b(int i7, p pVar, x xVar) {
         i b10 = i.b(pVar, xVar);
         while (true) {
-            int i10 = b10.f2904a;
+            int i10 = b10.f2907a;
             if (i10 != i7) {
                 e2.o(i10, "Ignoring unknown WAV chunk: ", "WavHeaderReader");
-                long j3 = b10.f2905b;
+                long j3 = b10.f2908b;
                 long j10 = 8 + j3;
                 if (j3 % 2 != 0) {
                     j10 = 9 + j3;

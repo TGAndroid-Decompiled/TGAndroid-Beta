@@ -6,22 +6,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wh implements RequestDelegate {
-    public final int f27350a;
-    public final si f27351b;
-    public final String f27352c;
+    public final int f27349a;
+    public final si f27350b;
+    public final String f27351c;
 
     public wh(si siVar, String str, int i7) {
-        this.f27350a = i7;
-        this.f27351b = siVar;
-        this.f27352c = str;
+        this.f27349a = i7;
+        this.f27350b = siVar;
+        this.f27351c = str;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27350a) {
+        switch (this.f27349a) {
             case 0:
-                final si siVar = this.f27351b;
-                final String str = this.f27352c;
+                final si siVar = this.f27350b;
+                final String str = this.f27351c;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -50,7 +50,7 @@ public final class wh implements RequestDelegate {
                                 si siVar3 = siVar;
                                 String str3 = str;
                                 TLObject tLObject3 = tLObject;
-                                ArrayList arrayList4 = (ArrayList) siVar3.f26462b0.get(str3);
+                                ArrayList arrayList4 = (ArrayList) siVar3.f26472b0.get(str3);
                                 if (tLObject3 != null) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject3;
                                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
@@ -108,15 +108,15 @@ public final class wh implements RequestDelegate {
                                 notificationCenter.k(105, objArr);
                                 vr messagesStorage = siVar3.getMessagesStorage();
                                 messagesStorage.getClass();
-                                Utilities.d.c(new pp(messagesStorage, arrayList, 15));
+                                Utilities.d.c(new sp(messagesStorage, arrayList, 15));
                                 return;
                         }
                     }
                 });
                 return;
             default:
-                final si siVar2 = this.f27351b;
-                final String str2 = this.f27352c;
+                final si siVar2 = this.f27350b;
+                final String str2 = this.f27351c;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -145,7 +145,7 @@ public final class wh implements RequestDelegate {
                                 si siVar3 = siVar2;
                                 String str3 = str2;
                                 TLObject tLObject3 = tLObject;
-                                ArrayList arrayList4 = (ArrayList) siVar3.f26462b0.get(str3);
+                                ArrayList arrayList4 = (ArrayList) siVar3.f26472b0.get(str3);
                                 if (tLObject3 != null) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject3;
                                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
@@ -203,7 +203,7 @@ public final class wh implements RequestDelegate {
                                 notificationCenter.k(105, objArr);
                                 vr messagesStorage = siVar3.getMessagesStorage();
                                 messagesStorage.getClass();
-                                Utilities.d.c(new pp(messagesStorage, arrayList, 15));
+                                Utilities.d.c(new sp(messagesStorage, arrayList, 15));
                                 return;
                         }
                     }

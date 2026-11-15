@@ -1,32 +1,32 @@
 package org.telegram.ui;
 public final class m40 implements Runnable {
-    public final int f49105a;
-    public final w40 f49106b;
+    public final int f49101a;
+    public final w40 f49102b;
 
     public m40(w40 w40Var, int i7) {
-        this.f49105a = i7;
-        this.f49106b = w40Var;
+        this.f49101a = i7;
+        this.f49102b = w40Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49105a) {
+        switch (this.f49101a) {
             case 0:
-                this.f49106b.finishFragment();
+                this.f49102b.finishFragment();
                 return;
             case 1:
-                w40 w40Var = this.f49106b;
+                w40 w40Var = this.f49102b;
                 w40Var.n0();
                 w40Var.j0();
                 return;
             case 2:
-                w40 w40Var2 = this.f49106b;
+                w40 w40Var2 = this.f49102b;
                 w40Var2.getClass();
                 w40Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
                 return;
             default:
-                w40 w40Var3 = this.f49106b;
-                w40Var3.f52415n.postOnAnimation(new m40(w40Var3, 1));
+                w40 w40Var3 = this.f49102b;
+                w40Var3.f52418n.postOnAnimation(new m40(w40Var3, 1));
                 return;
         }
     }

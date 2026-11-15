@@ -43,7 +43,7 @@ public abstract class pu extends cu implements x5 {
         this.f25990n0 = new Path();
         this.f25991o0 = new dv();
         this.X = z10;
-        this.f25983f0 = z5.q(ivVar.f24440a).k();
+        this.f25983f0 = z5.q(ivVar.f24445a).k();
         imageReceiver.A1 = true;
         imageReceiver2.A1 = true;
         imageReceiver.f22276h1 = new ou(this, 0);
@@ -52,9 +52,9 @@ public abstract class pu extends cu implements x5 {
     @Override
     public final void A(int i7, Rect rect) {
         int i10;
-        Rect rect2 = this.f22934b;
+        Rect rect2 = this.f22942b;
         int i11 = rect2.left;
-        int i12 = (this.f22933a.C - i11) - rect2.right;
+        int i12 = (this.f22941a.C - i11) - rect2.right;
         int i13 = this.f25980c0;
         if (i12 > i13) {
             i10 = (i12 - i13) / 2;
@@ -93,7 +93,7 @@ public abstract class pu extends cu implements x5 {
 
     @Override
     public final int I() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return rect.top + this.f25981d0 + rect.bottom;
     }
 
@@ -104,7 +104,7 @@ public abstract class pu extends cu implements x5 {
 
     @Override
     public final int K() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return rect.left + this.f25980c0 + rect.right;
     }
 
@@ -137,7 +137,7 @@ public abstract class pu extends cu implements x5 {
     public final boolean U(int i7, View view) {
         if (r0()) {
             dv dvVar = this.f25991o0;
-            if (!dvVar.f23158b && dvVar.f23161f == null) {
+            if (!dvVar.f23165b && dvVar.f23168f == null) {
                 ImageReceiver imageReceiver = this.Y;
                 float f10 = imageReceiver.N0;
                 float f11 = imageReceiver.O0;
@@ -145,7 +145,7 @@ public abstract class pu extends cu implements x5 {
                 return true;
             }
         }
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         org.telegram.ui.Cells.l1 l1Var = ivVar.F;
         if (l1Var != null) {
             l1Var.p2(ivVar.E, n0());
@@ -159,7 +159,7 @@ public abstract class pu extends cu implements x5 {
         this.Y.R();
         this.Z.R();
         this.f25978a0 = null;
-        z5.q(this.f22933a.f24440a).v(this);
+        z5.q(this.f22941a.f24445a).v(this);
     }
 
     @Override
@@ -201,7 +201,7 @@ public abstract class pu extends cu implements x5 {
     public abstract void j0(boolean z10);
 
     public boolean k0() {
-        if ((z5.q(this.f22933a.f24440a).m() & 1) != 0) {
+        if ((z5.q(this.f22941a.f24445a).m() & 1) != 0) {
             return true;
         }
         return false;
@@ -300,11 +300,11 @@ public abstract class pu extends cu implements x5 {
             z11 = false;
         }
         boolean l02 = l0();
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         if (!l02 && (!p0() || !z11)) {
-            z5.q(ivVar.f24440a).a(o02, null, this);
+            z5.q(ivVar.f24445a).a(o02, null, this);
             float f10 = 0.0f;
-            if (!this.f25982e0 && !this.m0 && !w7.G(ivVar.f24440a).S(o02)) {
+            if (!this.f25982e0 && !this.m0 && !w7.G(ivVar.f24445a).S(o02)) {
                 if (q0()) {
                     this.f25984g0 = 3;
                     RadialProgress2 radialProgress26 = this.f25979b0;
@@ -334,7 +334,7 @@ public abstract class pu extends cu implements x5 {
                 radialProgress29.p(false, f10);
             }
         } else {
-            z5.q(ivVar.f24440a).v(this);
+            z5.q(ivVar.f24445a).v(this);
             if (q0() && !z11) {
                 this.f25984g0 = 3;
                 RadialProgress2 radialProgress210 = this.f25979b0;
@@ -375,7 +375,7 @@ public abstract class pu extends cu implements x5 {
             L = g0.L(i10);
         }
         int min = Math.min(g0.L(3.0f), L);
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         if (ivVar.D()) {
             imageReceiver.J0(g0.L(12.0f));
             return;

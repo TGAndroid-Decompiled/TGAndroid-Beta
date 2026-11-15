@@ -11,23 +11,23 @@ import org.telegram.ui.Components.gd0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.n30;
 public final class g6 extends AnimatorListenerAdapter {
-    public final int f8599a;
-    public final float f8600b;
-    public final Runnable f8601c;
+    public final int f8616a;
+    public final float f8617b;
+    public final Runnable f8618c;
     public final Object d;
 
     public g6(Object obj, float f10, Runnable runnable, int i7) {
-        this.f8599a = i7;
+        this.f8616a = i7;
         this.d = obj;
-        this.f8600b = f10;
-        this.f8601c = runnable;
+        this.f8617b = f10;
+        this.f8618c = runnable;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f8599a;
-        Runnable runnable = this.f8601c;
-        float f10 = this.f8600b;
+        int i7 = this.f8616a;
+        Runnable runnable = this.f8618c;
+        float f10 = this.f8617b;
         Object obj = this.d;
         switch (i7) {
             case 0:
@@ -80,7 +80,7 @@ public final class g6 extends AnimatorListenerAdapter {
             case 4:
                 n30 n30Var = (n30) obj;
                 n30Var.h = f10;
-                n30Var.f49432a.invalidate();
+                n30Var.f49431a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -117,12 +117,12 @@ public final class g6 extends AnimatorListenerAdapter {
                         photoViewer.f42736c1.setColorFilter((ColorFilter) null);
                     }
                 }
-                xe xeVar = photoViewer.X4.f49027c;
+                xe xeVar = photoViewer.X4.f49023c;
                 if (xeVar != null) {
-                    xeVar.f27489b = 0.0f;
-                    xeVar.f27488a = 0.0f;
-                    xeVar.f27492f = 1.0f;
-                    xeVar.f27491e = 1.0f;
+                    xeVar.f27490b = 0.0f;
+                    xeVar.f27489a = 0.0f;
+                    xeVar.f27493f = 1.0f;
+                    xeVar.f27492e = 1.0f;
                 }
                 if (runnable != null) {
                     runnable.run();

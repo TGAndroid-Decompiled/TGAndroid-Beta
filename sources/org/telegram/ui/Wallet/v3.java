@@ -243,7 +243,7 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.z
                         float centerY = a10.centerY();
                         r9 r9Var = this.J;
                         r9Var.getClass();
-                        float f12 = org.telegram.messenger.g0.f23608p;
+                        float f12 = org.telegram.messenger.g0.f23610p;
                         for (int i10 = 0; i10 < 56; i10++) {
                             int i11 = i10 % 10;
                             if (i11 <= 6) {
@@ -461,7 +461,7 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         TextView textView2 = this.f44595f;
         if (z19) {
             i9Var.setVisibility(8);
-            setIconColor(f30.f34499x);
+            setIconColor(f30.f34498x);
             imageView.setImageResource(2131232843);
             textView2.setText(hd.M0(2131743081, null));
             if (TextUtils.isEmpty(wallettransaction.peer.address)) {
@@ -475,10 +475,10 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.z
             TL_wallet.WalletTransactionPeer walletTransactionPeer = wallettransaction.peer;
             boolean z20 = walletTransactionPeer instanceof TL_wallet.walletTransactionPeerUser;
             int i18 = this.f44586a;
-            f30 f30Var = f30.f34495n;
+            f30 f30Var = f30.f34494n;
             z15 = true;
             org.telegram.ui.Components.t8 t8Var = this.f44590c;
-            f30 f30Var2 = f30.f34492c;
+            f30 f30Var2 = f30.f34491c;
             if (z20) {
                 TLRPC.User a22 = np.s1(i18).a2(Long.valueOf(((TL_wallet.walletTransactionPeerUser) wallettransaction.peer).user_id));
                 if (a22 != null) {
@@ -796,7 +796,7 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.z
             paint.setStyle(style);
             paint.setColor(org.telegram.ui.ActionBar.j6.f28972k0.getColor());
             paint.setAlpha(Math.round((1.0f - this.G) * org.telegram.ui.ActionBar.j6.f28972k0.getAlpha()));
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(71.0f);
@@ -804,7 +804,7 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.z
             float f10 = L;
             float height = getHeight() - 1;
             int width = getWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(71.0f);
             } else {
                 i7 = 0;

@@ -17,16 +17,16 @@ import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.i9;
 import org.telegram.ui.Components.z70;
 public final class v1 extends FrameLayout {
-    public final int f3930a;
+    public final int f3933a;
 
     public v1(Context context, int i7) {
         super(context);
-        this.f3930a = i7;
+        this.f3933a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 24:
                 super.dispatchDraw(canvas);
                 return;
@@ -38,7 +38,7 @@ public final class v1 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 16:
                 return false;
             default:
@@ -48,7 +48,7 @@ public final class v1 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 8:
                 int intrinsicHeight = org.telegram.ui.ActionBar.j6.f28938i3.getIntrinsicHeight();
                 org.telegram.ui.ActionBar.j6.f28938i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
@@ -66,7 +66,7 @@ public final class v1 extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 22:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 return true;
@@ -78,7 +78,7 @@ public final class v1 extends FrameLayout {
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         float f10;
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 7:
                 return;
             case 18:
@@ -120,7 +120,7 @@ public final class v1 extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(120.0f), 1073741824));
                 return;
@@ -216,7 +216,7 @@ public final class v1 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f3930a) {
+        switch (this.f3933a) {
             case 17:
                 super.setTranslationY(f10);
                 setPadding(0, 0, (int) f10, 0);
@@ -229,7 +229,7 @@ public final class v1 extends FrameLayout {
 
     public v1(Context context, k4 k4Var, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f3930a = 1;
+        this.f3933a = 1;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         addView(f10, ja.e(-1, -2, 23));
         i9 i9Var = new i9(context);
@@ -266,7 +266,7 @@ public final class v1 extends FrameLayout {
 
     public v1(Context context, int i7, String str, CharSequence charSequence, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f3930a = 11;
+        this.f3933a = 11;
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int i10 = org.telegram.ui.ActionBar.j6.G6;

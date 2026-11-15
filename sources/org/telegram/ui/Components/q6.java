@@ -25,11 +25,11 @@ public final class q6 implements org.telegram.ui.ActionBar.r6 {
             case 2:
                 dq dqVar = (dq) this.f38533b;
                 org.telegram.ui.ActionBar.q0 q0Var = dqVar.J;
-                q0Var.setIconColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.G6, dqVar.f34038e0));
-                org.telegram.ui.ActionBar.j6.C1(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.I5, dqVar.f34038e0), q0Var.getBackground());
-                q0Var.P(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.E8, dqVar.f34038e0), false);
-                q0Var.P(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.F8, dqVar.f34038e0), true);
-                q0Var.I(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.G8, dqVar.f34038e0));
+                q0Var.setIconColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.G6, dqVar.f34025e0));
+                org.telegram.ui.ActionBar.j6.C1(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.I5, dqVar.f34025e0), q0Var.getBackground());
+                q0Var.P(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.E8, dqVar.f34025e0), false);
+                q0Var.P(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.F8, dqVar.f34025e0), true);
+                q0Var.I(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.G8, dqVar.f34025e0));
                 return;
             case 3:
                 ((te0) this.f38533b).M0();

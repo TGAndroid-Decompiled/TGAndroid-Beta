@@ -17,10 +17,10 @@ public final class il implements Runnable {
         switch (this.f24411a) {
             case 0:
                 np npVar = this.f24412b;
-                tj tjVar = npVar.f25449y8;
+                tj tjVar = npVar.f25452y8;
                 TL_account.TL_webBrowserSettings tL_webBrowserSettings = this.f24413c;
                 if (tL_webBrowserSettings != null) {
-                    npVar.f25458z8 = tL_webBrowserSettings;
+                    npVar.f25461z8 = tL_webBrowserSettings;
                     npVar.getNotificationCenter().k(346, new Object[0]);
                 }
                 g0.r(tjVar);
@@ -30,7 +30,7 @@ public final class il implements Runnable {
                 TL_account.TL_webBrowserSettings tL_webBrowserSettings2 = this.f24413c;
                 if (tL_webBrowserSettings2 != null) {
                     np npVar2 = this.f24412b;
-                    npVar2.f25458z8 = tL_webBrowserSettings2;
+                    npVar2.f25461z8 = tL_webBrowserSettings2;
                     npVar2.getNotificationCenter().k(346, new Object[0]);
                     return;
                 }

@@ -5,19 +5,19 @@ import android.view.Window;
 import java.lang.ref.WeakReference;
 import org.telegram.ui.LaunchActivity;
 public final class u0 {
-    public final int f3336a;
-    public boolean f3337b;
-    public boolean f3338c;
+    public final int f3339a;
+    public boolean f3340b;
+    public boolean f3341c;
     public final Object d;
 
     public u0(Object obj, int i7) {
-        this.f3336a = i7;
+        this.f3339a = i7;
         this.d = obj;
     }
 
     public void a() {
-        if (!this.f3337b) {
-            this.f3337b = true;
+        if (!this.f3340b) {
+            this.f3340b = true;
             Runnable runnable = (Runnable) this.d;
             if (runnable != null) {
                 runnable.run();
@@ -26,14 +26,14 @@ public final class u0 {
     }
 
     public void b() {
-        switch (this.f3336a) {
+        switch (this.f3339a) {
             case 0:
                 c(false);
-                this.f3338c = true;
+                this.f3341c = true;
                 return;
             default:
                 c(false);
-                this.f3338c = true;
+                this.f3341c = true;
                 return;
         }
     }
@@ -41,24 +41,24 @@ public final class u0 {
     public void c(boolean z10) {
         int i7;
         int i10;
-        switch (this.f3336a) {
+        switch (this.f3339a) {
             case 0:
                 v0 v0Var = (v0) this.d;
-                if (this.f3337b != z10 && !this.f3338c) {
-                    this.f3337b = z10;
+                if (this.f3340b != z10 && !this.f3341c) {
+                    this.f3340b = z10;
                     boolean z11 = true;
                     if (z10) {
-                        v0Var.f3344b++;
+                        v0Var.f3347b++;
                     } else {
-                        v0Var.f3344b--;
+                        v0Var.f3347b--;
                     }
                     int i11 = 0;
-                    if (v0Var.f3344b <= 0) {
+                    if (v0Var.f3347b <= 0) {
                         z11 = false;
                     }
-                    if (v0Var.f3343a != z11) {
-                        v0Var.f3343a = z11;
-                        Window window = (Window) ((WeakReference) ((a1.c) v0Var.f3345c).f38b).get();
+                    if (v0Var.f3346a != z11) {
+                        v0Var.f3346a = z11;
+                        Window window = (Window) ((WeakReference) ((a1.c) v0Var.f3348c).f38b).get();
                         if (window != null) {
                             View decorView = window.getDecorView();
                             if (z11) {
@@ -73,8 +73,8 @@ public final class u0 {
                 }
                 return;
             default:
-                if (this.f3337b != z10 && !this.f3338c) {
-                    this.f3337b = z10;
+                if (this.f3340b != z10 && !this.f3341c) {
+                    this.f3340b = z10;
                     LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
                     if (launchActivity != null) {
                         int i12 = launchActivity.B1;
@@ -104,7 +104,7 @@ public final class u0 {
     }
 
     public u0(LaunchActivity launchActivity, boolean z10) {
-        this.f3336a = 1;
+        this.f3339a = 1;
         this.d = new WeakReference(launchActivity);
     }
 }

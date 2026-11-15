@@ -50,8 +50,8 @@ public final class v7 {
             eq eqVar = new eq(2131231188, 0);
             eqVar.c(org.telegram.messenger.g0.L(16.0f));
             eqVar.H = 1.0f;
-            eqVar.f34415r = -org.telegram.messenger.g0.L(1.0f);
-            eqVar.f34416s = org.telegram.messenger.g0.L(1.0f);
+            eqVar.f34414r = -org.telegram.messenger.g0.L(1.0f);
+            eqVar.f34415s = org.telegram.messenger.g0.L(1.0f);
             ((SpannableStringBuilder) f12427y[0]).setSpan(eqVar, 0, 1, 33);
         }
         return f12427y[0];
@@ -89,7 +89,7 @@ public final class v7 {
         float d = this.h.d(this.f12432f);
         Paint paint = this.f12445t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f10, Math.max(this.f12439n.f38105c, this.f12440o.f38105c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
+        int min = (int) Math.min(f10, Math.max(this.f12439n.f38103c, this.f12440o.f38103c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
         this.f12448x = min;
         int W1 = org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(22.0f));
         float f12 = min;
@@ -125,10 +125,10 @@ public final class v7 {
         }
         oy0 oy0Var = this.f12439n;
         float f14 = L;
-        oy0Var.f38116p = f14;
+        oy0Var.f38114p = f14;
         oy0Var.c(org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(7.0f)), org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(11.0f)), 1.0f, -1, canvas);
         oy0 oy0Var2 = this.f12440o;
-        oy0Var2.f38116p = f14;
+        oy0Var2.f38114p = f14;
         oy0Var2.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(30.0f), f13, -1, canvas);
         canvas.restore();
     }
@@ -146,7 +146,7 @@ public final class v7 {
     public final void c() {
         if (!this.f12441p && !this.f12442q && this.f12429b != null && this.f12430c != null && this.f12443r != null) {
             this.f12442q = true;
-            np.s1(this.f12428a).P1().g0(this.f12430c.intValue(), this.f12429b.longValue(), new ai.f0(this, 18));
+            np.s1(this.f12428a).P1().g0(this.f12430c.intValue(), this.f12429b.longValue(), new ai.g0(this, 18));
         }
     }
 

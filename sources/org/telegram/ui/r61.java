@@ -3,39 +3,39 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class r61 implements View.OnClickListener {
-    public final int f50861a;
-    public int f50862b = 0;
-    public final t71 f50863c;
+    public final int f50860a;
+    public int f50861b = 0;
+    public final t71 f50862c;
 
     public r61(t71 t71Var, int i7) {
-        this.f50861a = i7;
-        this.f50863c = t71Var;
+        this.f50860a = i7;
+        this.f50862c = t71Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f50861a) {
+        switch (this.f50860a) {
             case 0:
-                t71 t71Var = this.f50863c;
-                t71Var.H0.setRotation(this.f50862b);
-                this.f50862b -= 45;
-                t71Var.H0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.er.f34421g).start();
-                j71[] j71VarArr = t71Var.f51475y0;
+                t71 t71Var = this.f50862c;
+                t71Var.H0.setRotation(this.f50861b);
+                this.f50861b -= 45;
+                t71Var.H0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.er.f34420g).start();
+                j71[] j71VarArr = t71Var.f51476y0;
                 j71 j71Var = j71VarArr[0];
                 if (j71Var != null) {
                     Drawable background = j71Var.getBackground();
                     if (background instanceof org.telegram.ui.Components.ra0) {
                         ((org.telegram.ui.Components.ra0) background).w(false);
                     } else {
-                        org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51468w;
-                        if (t71Var.f51412b == 2) {
-                            t71Var.f51440j1 += 45;
+                        org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51469w;
+                        if (t71Var.f51413b == 2) {
+                            t71Var.f51441j1 += 45;
                             while (true) {
-                                int i7 = t71Var.f51440j1;
+                                int i7 = t71Var.f51441j1;
                                 if (i7 >= 360) {
-                                    t71Var.f51440j1 = i7 - 360;
+                                    t71Var.f51441j1 = i7 - 360;
                                 } else {
-                                    t71Var.f1(t71Var.f51414b1, 0, true);
+                                    t71Var.f1(t71Var.f51415b1, 0, true);
                                 }
                             }
                         } else if (g6Var != null) {
@@ -62,12 +62,12 @@ public final class r61 implements View.OnClickListener {
                 }
                 return;
             default:
-                t71 t71Var2 = this.f50863c;
+                t71 t71Var2 = this.f50862c;
                 org.telegram.ui.ActionBar.p5 p5Var = t71Var2.T;
-                t71Var2.I0.setRotation(this.f50862b);
-                this.f50862b -= 45;
-                t71Var2.I0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.er.f34421g).start();
-                org.telegram.ui.ActionBar.g6 g6Var2 = t71Var2.f51468w;
+                t71Var2.I0.setRotation(this.f50861b);
+                this.f50861b -= 45;
+                t71Var2.I0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.er.f34420g).start();
+                org.telegram.ui.ActionBar.g6 g6Var2 = t71Var2.f51469w;
                 if (g6Var2.f28608i) {
                     if (p5Var.j() != null) {
                         p5Var.j().w(false);
@@ -108,7 +108,7 @@ public final class r61 implements View.OnClickListener {
                 t71Var2.M0[1].b(2, g6Var2.f28607g);
                 t71Var2.M0[1].b(3, g6Var2.h);
                 org.telegram.ui.ActionBar.j6.t1(true, true);
-                t71Var2.f51469w0.g1();
+                t71Var2.f51470w0.g1();
                 return;
         }
     }

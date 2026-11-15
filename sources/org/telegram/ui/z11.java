@@ -19,7 +19,7 @@ public final class z11 extends org.telegram.ui.Components.ja implements org.tele
     public final org.telegram.ui.Components.tj0 L0(org.telegram.ui.Components.uj0 uj0Var) {
         org.telegram.ui.Components.p41 p41Var = new org.telegram.ui.Components.p41(uj0Var, getContext(), this.f29679a, 0, false, new a5(this, 26), this.J0);
         this.Z1 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -50,7 +50,7 @@ public final class z11 extends org.telegram.ui.Components.ja implements org.tele
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25605x5 && ((fi.k6) objArr[0]) == this.V1) {
+        if (i7 == org.telegram.messenger.ns.f25606x5 && ((fi.k6) objArr[0]) == this.V1) {
             this.Z1.O(false);
             d1();
         }
@@ -70,11 +70,11 @@ public final class z11 extends org.telegram.ui.Components.ja implements org.tele
             HashMap hashMap = this.W1;
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(e12));
-                G.f33175e = false;
+                G.f33178e = false;
                 ((org.telegram.ui.Cells.n7) view).i(false, true);
             } else {
-                hashMap.put(Integer.valueOf(e12), gjVar.f23822l);
-                G.f33175e = true;
+                hashMap.put(Integer.valueOf(e12), gjVar.f23824l);
+                G.f33178e = true;
                 ((org.telegram.ui.Cells.n7) view).i(true, true);
             }
             hi.d dVar = this.U1;
@@ -88,13 +88,13 @@ public final class z11 extends org.telegram.ui.Components.ja implements org.tele
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.Y1 = this.V1.o();
-        org.telegram.messenger.ns.f(this.f29679a).c(this, org.telegram.messenger.ns.f25605x5);
+        org.telegram.messenger.ns.f(this.f29679a).c(this, org.telegram.messenger.ns.f25606x5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.V1.z(this.Y1);
-        org.telegram.messenger.ns.f(this.f29679a).n(this, org.telegram.messenger.ns.f25605x5);
+        org.telegram.messenger.ns.f(this.f29679a).n(this, org.telegram.messenger.ns.f25606x5);
     }
 }

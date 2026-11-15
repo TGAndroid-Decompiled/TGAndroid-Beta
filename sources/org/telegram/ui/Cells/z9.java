@@ -182,7 +182,7 @@ public class z9 extends LinearLayout {
                             bitmapDrawable.setFilterBitmap(true);
                             if (bitmapDrawable.getTileModeX() == Shader.TileMode.REPEAT) {
                                 canvas.save();
-                                float f10 = 2.0f / org.telegram.messenger.g0.f23608p;
+                                float f10 = 2.0f / org.telegram.messenger.g0.f23610p;
                                 canvas.scale(f10, f10);
                                 drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f10), (int) Math.ceil(getMeasuredHeight() / f10));
                             } else {

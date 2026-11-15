@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ja;
-import di.vb;
+import di.ub;
 import java.util.HashSet;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.i20;
@@ -51,7 +51,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
     public j W;
     public final e6 f29806a;
     public boolean f29807a0;
-    public final vb f29808b;
+    public final ub f29808b;
     public int f29809b0;
     public final v4 f29810c;
     public boolean f29811c0;
@@ -101,12 +101,12 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
         v4 v4Var = new v4(this, context);
         this.f29810c = v4Var;
         addView(v4Var, ja.e(-1, -2, 51));
-        vb vbVar = new vb(this, context);
-        this.f29808b = vbVar;
-        vbVar.setVisibility(8);
-        vbVar.setContentDescription(hd.M0(2131754878, null));
-        vbVar.setOnClickListener(new t4(this, 0));
-        addView(vbVar, ja.e(46, 46, 51));
+        ub ubVar = new ub(this, context);
+        this.f29808b = ubVar;
+        ubVar.setVisibility(8);
+        ubVar.setContentDescription(hd.M0(2131754878, null));
+        ubVar.setOnClickListener(new t4(this, 0));
+        addView(ubVar, ja.e(46, 46, 51));
     }
 
     public static void B(View view, float f10) {
@@ -146,7 +146,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
 
     private int getRowTop() {
         if (this.f29807a0) {
-            return org.telegram.messenger.g0.f23603m;
+            return org.telegram.messenger.g0.f23605m;
         }
         return 0;
     }
@@ -161,7 +161,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
 
     private float getSearchPillLeft() {
         float f10;
-        if (((Drawable) this.f29808b.f9633c) != null) {
+        if (((Drawable) this.f29808b.f9564c) != null) {
             f10 = 58.0f;
         } else {
             f10 = 6.0f;
@@ -235,7 +235,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
             this.U.a(true, w());
             j();
             this.f29808b.b(true, w());
-            ns.e().k(ns.f25564r4, new Object[0]);
+            ns.e().k(ns.f25565r4, new Object[0]);
         }
     }
 
@@ -307,7 +307,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25540n4) {
+        if (i7 == ns.f25541n4) {
             updateColors();
         }
     }
@@ -319,14 +319,14 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
         this.f29811c0 = this.f29812d0;
         int L = org.telegram.messenger.g0.L(6.0f);
         if (this.I != null) {
-            vb vbVar = this.f29808b;
-            if (vbVar.getVisibility() == 0 && vbVar.getAlpha() > 0.0f) {
-                float width = (vbVar.getWidth() / 2.0f) + vbVar.getX();
-                float height = (vbVar.getHeight() / 2.0f) + vbVar.getY();
-                float scaleX = vbVar.getScaleX() * (vbVar.getWidth() / 2.0f);
-                float scaleY = vbVar.getScaleY() * (vbVar.getHeight() / 2.0f);
+            ub ubVar = this.f29808b;
+            if (ubVar.getVisibility() == 0 && ubVar.getAlpha() > 0.0f) {
+                float width = (ubVar.getWidth() / 2.0f) + ubVar.getX();
+                float height = (ubVar.getHeight() / 2.0f) + ubVar.getY();
+                float scaleX = ubVar.getScaleX() * (ubVar.getWidth() / 2.0f);
+                float scaleY = ubVar.getScaleY() * (ubVar.getHeight() / 2.0f);
                 this.I.setBounds(((int) (width - scaleX)) - L, ((int) (height - scaleY)) - L, ((int) (width + scaleX)) + L, ((int) (height + scaleY)) + L);
-                this.I.setAlpha((int) (vbVar.getAlpha() * 255.0f));
+                this.I.setAlpha((int) (ubVar.getAlpha() * 255.0f));
                 this.I.draw(canvas);
             }
         }
@@ -414,7 +414,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
     }
 
     public float getActionModeFactor() {
-        return this.U.f57081e;
+        return this.U.f57085e;
     }
 
     public org.telegram.ui.Components.h6 getActionModeTitle() {
@@ -427,7 +427,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
     }
 
     public Drawable getBackButtonDrawable() {
-        return (Drawable) this.f29808b.f9633c;
+        return (Drawable) this.f29808b.f9564c;
     }
 
     @Override
@@ -522,7 +522,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
     }
 
     public float getSearchFactor() {
-        return this.T.f57081e;
+        return this.T.f57085e;
     }
 
     public EditTextBoldCursor getSearchField() {
@@ -653,22 +653,22 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
             n(rectF);
             this.f29828r.setTranslationX(Math.max(0.0f, rectF.left - getSearchPillLeft()));
         }
-        vb vbVar = this.f29808b;
-        if (((Drawable) vbVar.f9633c) != null) {
-            vbVar.setVisibility(0);
-            vbVar.setAlpha(1.0f);
-            vbVar.setScaleX(1.0f);
-            vbVar.setScaleY(1.0f);
+        ub ubVar = this.f29808b;
+        if (((Drawable) ubVar.f9564c) != null) {
+            ubVar.setVisibility(0);
+            ubVar.setAlpha(1.0f);
+            ubVar.setScaleX(1.0f);
+            ubVar.setScaleY(1.0f);
         } else {
             if (actionModeFactor <= 0.0f) {
                 i7 = 8;
             }
-            vbVar.setVisibility(i7);
-            vbVar.setAlpha(actionModeFactor);
-            vbVar.setScaleX(org.telegram.messenger.g0.T1(0.6f, 1.0f, actionModeFactor));
-            vbVar.setScaleY(org.telegram.messenger.g0.T1(0.6f, 1.0f, actionModeFactor));
+            ubVar.setVisibility(i7);
+            ubVar.setAlpha(actionModeFactor);
+            ubVar.setScaleX(org.telegram.messenger.g0.T1(0.6f, 1.0f, actionModeFactor));
+            ubVar.setScaleY(org.telegram.messenger.g0.T1(0.6f, 1.0f, actionModeFactor));
         }
-        vbVar.invalidate();
+        ubVar.invalidate();
         invalidate();
     }
 
@@ -803,7 +803,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.f29812d0 = true;
-        ns.e().c(this, ns.f25540n4);
+        ns.e().c(this, ns.f25541n4);
     }
 
     @Override
@@ -811,7 +811,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
         super.onDetachedFromWindow();
         this.f29812d0 = false;
         this.f29811c0 = false;
-        ns.e().n(this, ns.f25540n4);
+        ns.e().n(this, ns.f25541n4);
     }
 
     @Override
@@ -859,14 +859,14 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
         int rowTop = getRowTop();
         int currentActionBarHeight = k.getCurrentActionBarHeight();
         int i11 = rowTop + currentActionBarHeight + this.f29809b0;
-        vb vbVar = this.f29808b;
-        if (((Drawable) vbVar.f9633c) != null) {
+        ub ubVar = this.f29808b;
+        if (((Drawable) ubVar.f9564c) != null) {
             z10 = true;
         } else {
             z10 = false;
         }
         int L3 = ((currentActionBarHeight - org.telegram.messenger.g0.L(46.0f)) / 2) + rowTop;
-        C(vbVar, org.telegram.messenger.g0.L(6.0f), L3, 0);
+        C(ubVar, org.telegram.messenger.g0.L(6.0f), L3, 0);
         c5 c5Var = this.d;
         float f11 = 0.0f;
         if (c5Var != null && c5Var.getVisibility() != 8) {
@@ -1036,7 +1036,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
         this.f29828r.addView(this.f29833w, ja.d(42, 42.0f, 21, 0.0f, 0.0f, 2.0f, 0.0f));
         H();
         k();
-        G(2, this.V.f57081e, 0.0f, null);
+        G(2, this.V.f57085e, 0.0f, null);
     }
 
     public void setActionBarMenuOnItemClick(j jVar) {
@@ -1066,21 +1066,21 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
     public void setBackButtonImageAnimated(int i7) {
         boolean z10;
         Drawable mutate = getContext().getDrawable(i7).mutate();
-        vb vbVar = this.f29808b;
-        Drawable drawable = (Drawable) vbVar.f9633c;
+        ub ubVar = this.f29808b;
+        Drawable drawable = (Drawable) ubVar.f9564c;
         if (drawable != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        te.c cVar = (te.c) vbVar.f9635f;
-        if (drawable != null && ((w4) vbVar.h).w()) {
-            vbVar.c(mutate);
-            vbVar.d = (Drawable) vbVar.f9633c;
+        te.c cVar = (te.c) ubVar.f9566f;
+        if (drawable != null && ((w4) ubVar.h).w()) {
+            ubVar.c(mutate);
+            ubVar.d = (Drawable) ubVar.f9564c;
             cVar.c(0.0f);
             cVar.a(1.0f);
         } else {
-            vbVar.c(mutate);
+            ubVar.c(mutate);
         }
         if (!z10) {
             j();
@@ -1306,7 +1306,7 @@ public class w4 extends FrameLayout implements te.b, is, z5, q4 {
             this.U.a(false, w());
             j();
             this.f29808b.b(false, w());
-            ns.e().k(ns.f25564r4, new Object[0]);
+            ns.e().k(ns.f25565r4, new Object[0]);
         }
     }
 

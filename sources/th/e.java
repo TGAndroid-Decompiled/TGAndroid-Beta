@@ -35,7 +35,7 @@ public final class e extends sh.c implements Drawable.Callback, te.b {
         this.f57655s = new te.a(0, this, erVar, 320L, false);
         this.f57649b = str;
         this.f56857a.J0(g0.L(7.0f));
-        this.d = i5.c.g(t0.f26600b, 2131231745);
+        this.d = i5.c.g(t0.f26609b, 2131231745);
         lpVar.setCallback(this);
         lpVar.b(j6.x0(null, j6.f29050o7, false));
         lpVar.f36868a = g0.L(15.0f);
@@ -72,11 +72,11 @@ public final class e extends sh.c implements Drawable.Callback, te.b {
         lpVar.setBounds(0, 0, i7, i10);
         int x02 = j6.x0(null, j6.f28792a7, false);
         te.a aVar = this.f57655s;
-        int f12 = i0.a.f(aVar.f57081e, x02, 1073741824);
+        int f12 = i0.a.f(aVar.f57085e, x02, 1073741824);
         Paint paint = this.f57651e;
         paint.setColor(f12);
         canvas.drawRoundRect(0.0f, 0.0f, f10, f11, g0.L(7.0f), g0.L(7.0f), paint);
-        int f13 = i0.a.f(aVar.f57081e, j6.x0(null, j6.f29050o7, false), -1);
+        int f13 = i0.a.f(aVar.f57085e, j6.x0(null, j6.f29050o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         xa xaVar = this.f57650c;
         xaVar.getClass();
@@ -89,8 +89,8 @@ public final class e extends sh.c implements Drawable.Callback, te.b {
         drawable.setColorFilter((PorterDuffColorFilter) xaVar.f714c);
         s.e(this.d, f10 / 2.0f, f11 / 2.0f, g0.L(24.0f), g0.L(24.0f), 17);
         te.a aVar2 = this.f57654r;
-        s.b(canvas, drawable, 1.0f - aVar2.f57081e);
-        s.b(canvas, lpVar, aVar2.f57081e);
+        s.b(canvas, drawable, 1.0f - aVar2.f57085e);
+        s.b(canvas, lpVar, aVar2.f57085e);
     }
 
     @Override

@@ -299,7 +299,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             t8Var.k(5L, null, null, null);
             adVar.f45004f.setImageDrawable(t8Var);
             fi.v3 v3Var2 = adVar.f45004f;
-            boolean z11 = org.telegram.messenger.hd.f24101a0;
+            boolean z11 = org.telegram.messenger.hd.f24104a0;
             if (z11) {
                 i15 = 5;
             } else {
@@ -323,7 +323,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.h = n5Var;
             n5Var.setContentDescription(org.telegram.messenger.hd.M0(2131752212, null));
             hi.n5 n5Var2 = adVar.h;
-            boolean z12 = org.telegram.messenger.hd.f24101a0;
+            boolean z12 = org.telegram.messenger.hd.f24104a0;
             if (z12) {
                 i16 = 5;
             } else {
@@ -351,7 +351,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.f45012n.setClickable(false);
             adVar.f45012n.setPadding(org.telegram.messenger.g0.L(0.0f), 0, 0, org.telegram.messenger.g0.L(1.0f));
             xc xcVar2 = adVar.f45012n;
-            boolean z13 = org.telegram.messenger.hd.f24101a0;
+            boolean z13 = org.telegram.messenger.hd.f24104a0;
             if (z13) {
                 i17 = 5;
             } else {
@@ -375,7 +375,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.f45019s.setProgressColor(-1);
             adVar.f45019s.setNoProgress(false);
             yc ycVar2 = adVar.f45019s;
-            boolean z14 = org.telegram.messenger.hd.f24101a0;
+            boolean z14 = org.telegram.messenger.hd.f24104a0;
             if (z14) {
                 i18 = 5;
             } else {
@@ -407,10 +407,10 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.d.getEditText().setSingleLine(true);
             adVar.d.getEditText().setImeOptions(5);
             adVar.d.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener(adVar) {
-                public final ad f51905b;
+                public final ad f51906b;
 
                 {
-                    this.f51905b = adVar;
+                    this.f51906b = adVar;
                 }
 
                 @Override
@@ -418,7 +418,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
                     org.telegram.ui.ActionBar.q0 q0Var;
                     switch (r2) {
                         case 0:
-                            ad adVar2 = this.f51905b;
+                            ad adVar2 = this.f51906b;
                             if (i29 == 5) {
                                 if (!TextUtils.isEmpty(adVar2.d.getEditText().getText())) {
                                     adVar2.f45028y.requestFocus();
@@ -429,7 +429,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
                             }
                             return false;
                         default:
-                            if (i29 == 6 && (q0Var = this.f51905b.f44995a) != null) {
+                            if (i29 == 6 && (q0Var = this.f51906b.f44995a) != null) {
                                 q0Var.performClick();
                                 return true;
                             }
@@ -438,7 +438,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
                 }
             });
             org.telegram.ui.Components.rt rtVar3 = adVar.d;
-            boolean z15 = org.telegram.messenger.hd.f24101a0;
+            boolean z15 = org.telegram.messenger.hd.f24104a0;
             if (z15) {
                 f18 = 5.0f;
             } else {
@@ -461,7 +461,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             org.telegram.ui.ActionBar.q6.F(adVar.f45028y, org.telegram.ui.ActionBar.j6.f28978k6, org.telegram.ui.ActionBar.j6.f28996l6, org.telegram.ui.ActionBar.j6.f29070p7, adVar.getResourceProvider());
             adVar.f45028y.setPadding(0, 0, 0, org.telegram.messenger.g0.L(6.0f));
             EditTextBoldCursor editTextBoldCursor3 = adVar.f45028y;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i19 = 5;
             } else {
                 i19 = 3;
@@ -476,10 +476,10 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.f45028y.setCursorWidth(1.5f);
             adVar.M.addView(adVar.f45028y, c8.ja.k(24.0f, 18.0f, 24.0f, 0.0f, -1, -2));
             adVar.f45028y.setOnEditorActionListener(new TextView.OnEditorActionListener(adVar) {
-                public final ad f51905b;
+                public final ad f51906b;
 
                 {
-                    this.f51905b = adVar;
+                    this.f51906b = adVar;
                 }
 
                 @Override
@@ -487,7 +487,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
                     org.telegram.ui.ActionBar.q0 q0Var;
                     switch (r2) {
                         case 0:
-                            ad adVar2 = this.f51905b;
+                            ad adVar2 = this.f51906b;
                             if (i292 == 5) {
                                 if (!TextUtils.isEmpty(adVar2.d.getEditText().getText())) {
                                     adVar2.f45028y.requestFocus();
@@ -498,7 +498,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
                             }
                             return false;
                         default:
-                            if (i292 == 6 && (q0Var = this.f51905b.f44995a) != null) {
+                            if (i292 == 6 && (q0Var = this.f51906b.f44995a) != null) {
                                 q0Var.performClick();
                                 return true;
                             }
@@ -512,7 +512,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             textView.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.q6.U(adVar.V, org.telegram.ui.ActionBar.j6.F6, null);
             TextView textView2 = adVar.V;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i20 = 5;
             } else {
                 i20 = 3;
@@ -521,7 +521,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.V.setText(org.telegram.messenger.hd.M0(2131751462, null));
             LinearLayout linearLayout2 = adVar.M;
             TextView textView3 = adVar.V;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i21 = 5;
             } else {
                 i21 = 3;
@@ -681,7 +681,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             org.telegram.ui.ActionBar.q6.C(adVar.W, org.telegram.ui.ActionBar.j6.K6, null);
             adVar.W.setTextSize(1, 15.0f);
             org.telegram.ui.Cells.b2 b2Var2 = adVar.W;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i13 = 5;
             } else {
                 i13 = 3;
@@ -691,7 +691,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             adVar.W.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
             LinearLayout linearLayout8 = adVar.O;
             org.telegram.ui.Cells.b2 b2Var3 = adVar.W;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i14 = 5;
             } else {
                 i14 = 3;
@@ -977,7 +977,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            float f11 = this.f44997b.f34054c;
+            float f11 = this.f44997b.f34041c;
             float f12 = 0.0f;
             if (z10) {
                 f10 = 1.0f;
@@ -988,12 +988,12 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
             this.f45029y0 = ofFloat;
             ofFloat.addUpdateListener(new a3(this, 3));
             ValueAnimator valueAnimator2 = this.f45029y0;
-            float f13 = this.f44997b.f34054c;
+            float f13 = this.f44997b.f34041c;
             if (z10) {
                 f12 = 1.0f;
             }
             valueAnimator2.setDuration(Math.abs(f13 - f12) * 200.0f);
-            this.f45029y0.setInterpolator(org.telegram.ui.Components.er.f34420f);
+            this.f45029y0.setInterpolator(org.telegram.ui.Components.er.f34419f);
             this.f45029y0.start();
         }
     }
@@ -1125,7 +1125,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Components.rt rtVar = this.d;
-        if (rtVar == null || !rtVar.f39059e) {
+        if (rtVar == null || !rtVar.f39056e) {
             return true;
         }
         if (z10) {
@@ -1244,7 +1244,7 @@ public final class ad extends org.telegram.ui.ActionBar.e2 implements org.telegr
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         if (z10 && this.f45009j0 != 1) {
             this.d.requestFocus();
-            org.telegram.ui.Components.mt mtVar = this.d.f39056a;
+            org.telegram.ui.Components.mt mtVar = this.d.f39053a;
             mtVar.requestFocus();
             org.telegram.messenger.g0.J3(mtVar);
         }

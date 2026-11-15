@@ -72,17 +72,17 @@ public final class v implements Parcelable.Creator {
                 }
                 xb.m(parcel, z10);
                 ?? obj = new Object();
-                obj.f7101a = str;
-                obj.f7102b = str2;
-                obj.f7103c = rVar;
+                obj.f7104a = str;
+                obj.f7105b = str2;
+                obj.f7106c = rVar;
                 obj.d = str3;
-                obj.f7104e = qVar;
-                obj.f7105f = qVar2;
+                obj.f7107e = qVar;
+                obj.f7108f = qVar2;
                 obj.h = strArr;
-                obj.f7106n = userAddress;
-                obj.f7107r = userAddress2;
-                obj.f7108s = dVarArr;
-                obj.f7109w = kVar;
+                obj.f7109n = userAddress;
+                obj.f7110r = userAddress2;
+                obj.f7111s = dVarArr;
+                obj.f7112w = kVar;
                 return obj;
             case 1:
                 int z11 = xb.z(parcel);
@@ -339,17 +339,17 @@ public final class v implements Parcelable.Creator {
                 }
                 xb.m(parcel, z16);
                 ?? obj5 = new Object();
-                obj5.f7110a = str21;
-                obj5.f7111b = str22;
-                obj5.f7112c = strArr2;
+                obj5.f7113a = str21;
+                obj5.f7114b = str22;
+                obj5.f7115c = strArr2;
                 obj5.d = str23;
-                obj5.f7113e = qVar3;
-                obj5.f7114f = qVar4;
+                obj5.f7116e = qVar3;
+                obj5.f7117f = qVar4;
                 obj5.h = fVarArr;
-                obj5.f7115n = gVarArr;
-                obj5.f7116r = userAddress3;
-                obj5.f7117s = userAddress4;
-                obj5.f7118w = dVarArr2;
+                obj5.f7118n = gVarArr;
+                obj5.f7119r = userAddress3;
+                obj5.f7120s = userAddress4;
+                obj5.f7121w = dVarArr2;
                 return obj5;
             case 5:
                 int z17 = xb.z(parcel);
@@ -486,19 +486,19 @@ public final class v implements Parcelable.Creator {
                 }
                 xb.m(parcel, z19);
                 ?? obj7 = new Object();
-                obj7.f7119a = str26;
-                obj7.f7120b = str35;
-                obj7.f7121c = str29;
+                obj7.f7122a = str26;
+                obj7.f7123b = str35;
+                obj7.f7124c = str29;
                 obj7.d = str30;
-                obj7.f7122e = str31;
-                obj7.f7123f = str32;
+                obj7.f7125e = str31;
+                obj7.f7126f = str32;
                 obj7.h = str33;
-                obj7.f7124n = str27;
-                obj7.f7125r = i12;
-                obj7.f7126s = arrayList11;
-                obj7.f7127w = fVar3;
-                obj7.f7128x = arrayList12;
-                obj7.f7129y = str28;
+                obj7.f7127n = str27;
+                obj7.f7128r = i12;
+                obj7.f7129s = arrayList11;
+                obj7.f7130w = fVar3;
+                obj7.f7131x = arrayList12;
+                obj7.f7132y = str28;
                 obj7.E = str34;
                 obj7.F = arrayList14;
                 obj7.G = z20;

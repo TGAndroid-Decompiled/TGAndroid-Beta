@@ -165,7 +165,7 @@ public final class c {
                 if (this.Q) {
                     this.Q = false;
                     gj gjVar2 = this.M;
-                    if (gjVar2 != null && gjVar2.f23817k != null) {
+                    if (gjVar2 != null && gjVar2.f23819k != null) {
                         q.d(gjVar2, new p1(gjVar2, 2), new pg.c(1));
                         return false;
                     }
@@ -305,7 +305,7 @@ public final class c {
                             if (e10 < 7) {
                                 w02 = j6.w0(j6.f29110r8[e10], e6Var);
                             } else {
-                                dp dpVar = np.s1(m10.f24934t0).f25380r4;
+                                dp dpVar = np.s1(m10.f24940t0).f25383r4;
                                 if (dpVar == null) {
                                     cpVar = hcVar;
                                 } else {
@@ -486,7 +486,7 @@ public final class c {
                 this.f61388e = new ch0(2131624040, g0.L(120.0f), g0.L(120.0f));
             }
             this.d.w0(this.f61388e);
-            TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) gjVar.f23817k.media;
+            TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) gjVar.f23819k.media;
             int size = tL_messageMediaGiveawayResults.winners.size();
             ImageReceiver[] imageReceiverArr2 = this.f61385a;
             if (imageReceiverArr2.length < size) {
@@ -563,7 +563,7 @@ public final class c {
             this.f61395m = max;
             if (this.N) {
                 if (this.f61398p == null) {
-                    this.f61398p = i5.c.g(t0.f26600b, 2131231124);
+                    this.f61398p = i5.c.g(t0.f26609b, 2131231124);
                 }
                 this.f61399q = hd.E((int) tL_messageMediaGiveawayResults.stars, ',');
             } else {
@@ -588,7 +588,7 @@ public final class c {
                 Long l10 = arrayList2.get(i12);
                 i12++;
                 Long l11 = l10;
-                if (np.s1(m10.f24934t0).a2(l11) != null) {
+                if (np.s1(m10.f24940t0).a2(l11) != null) {
                     arrayList.add(l11);
                 }
             }
@@ -597,7 +597,7 @@ public final class c {
             while (i13 < arrayList.size()) {
                 Long l12 = (Long) arrayList.get(i13);
                 long longValue = l12.longValue();
-                TLRPC.User a22 = np.s1(m10.f24934t0).a2(l12);
+                TLRPC.User a22 = np.s1(m10.f24940t0).a2(l12);
                 if (a22 != null) {
                     this.f61393k[i13] = true;
                     this.f61390g[i13] = a22;

@@ -78,7 +78,7 @@ public abstract class e2 {
     private g5 simpleMenuOverlay;
     private e2 simpleMenuOverlayHost;
     public Dialog visibleDialog;
-    protected int currentAccount = m10.f24934t0;
+    protected int currentAccount = m10.f24940t0;
     protected boolean hasOwnBackground = false;
     protected boolean isPaused = true;
     protected boolean inTransitionAnimation = false;
@@ -330,7 +330,7 @@ public abstract class e2 {
     }
 
     public void dumpCanvas() {
-        Typeface typeface = org.telegram.messenger.g0.f23581a;
+        Typeface typeface = org.telegram.messenger.g0.f23583a;
     }
 
     public boolean extendActionMode(Menu menu) {
@@ -343,7 +343,7 @@ public abstract class e2 {
         if (dialog != null) {
             dialog.dismiss();
         } else if (this.inPreviewMode && (d2Var = this.previewDelegate) != null) {
-            ((uy0) ((ni0) d2Var).f49570b).a();
+            ((uy0) ((ni0) d2Var).f49569b).a();
         } else {
             finishFragment(true);
         }
@@ -415,11 +415,11 @@ public abstract class e2 {
     }
 
     public ConnectionsManager getConnectionsManager() {
-        return ConnectionsManager.getInstance(getAccountInstance().f22778a);
+        return ConnectionsManager.getInstance(getAccountInstance().f22782a);
     }
 
     public org.telegram.messenger.g5 getContactsController() {
-        return org.telegram.messenger.g5.r(getAccountInstance().f22778a);
+        return org.telegram.messenger.g5.r(getAccountInstance().f22782a);
     }
 
     public Context getContext() {
@@ -435,18 +435,18 @@ public abstract class e2 {
     }
 
     public org.telegram.messenger.z5 getDownloadController() {
-        return org.telegram.messenger.z5.q(getAccountInstance().f22778a);
+        return org.telegram.messenger.z5.q(getAccountInstance().f22782a);
     }
 
     public m3 getEdgeToEdgeSupportMode() {
         if (isSupportEdgeToEdge()) {
-            return m3.f29380b;
+            return m3.f29381b;
         }
-        return m3.f29379a;
+        return m3.f29380a;
     }
 
     public w7 getFileLoader() {
-        return w7.G(getAccountInstance().f22778a);
+        return w7.G(getAccountInstance().f22782a);
     }
 
     public boolean getFragmentBeginToShow() {
@@ -466,7 +466,7 @@ public abstract class e2 {
     }
 
     public v9 getGiftAuctionsController() {
-        return v9.c(getAccountInstance().f22778a);
+        return v9.c(getAccountInstance().f22782a);
     }
 
     public boolean getInPassivePreviewMode() {
@@ -524,7 +524,7 @@ public abstract class e2 {
     }
 
     public rd getLocationController() {
-        return rd.f(getAccountInstance().f22778a);
+        return rd.f(getAccountInstance().f22782a);
     }
 
     public MediaController getMediaController() {
@@ -532,15 +532,15 @@ public abstract class e2 {
     }
 
     public si getMediaDataController() {
-        return si.b0(getAccountInstance().f22778a);
+        return si.b0(getAccountInstance().f22782a);
     }
 
     public np getMessagesController() {
-        return np.s1(getAccountInstance().f22778a);
+        return np.s1(getAccountInstance().f22782a);
     }
 
     public vr getMessagesStorage() {
-        return vr.a0(getAccountInstance().f22778a);
+        return vr.a0(getAccountInstance().f22782a);
     }
 
     public int getNavigationBarColor() {
@@ -557,11 +557,11 @@ public abstract class e2 {
     }
 
     public ns getNotificationCenter() {
-        return ns.f(getAccountInstance().f22778a);
+        return ns.f(getAccountInstance().f22782a);
     }
 
     public at getNotificationsController() {
-        return at.t(getAccountInstance().f22778a);
+        return at.t(getAccountInstance().f22782a);
     }
 
     public SharedPreferences getNotificationsSettings() {
@@ -610,11 +610,11 @@ public abstract class e2 {
     }
 
     public bw getSecretChatHelper() {
-        return bw.i(getAccountInstance().f22778a);
+        return bw.i(getAccountInstance().f22782a);
     }
 
     public ez getSendMessagesHelper() {
-        return ez.C(getAccountInstance().f22778a);
+        return ez.C(getAccountInstance().f22782a);
     }
 
     public w4 getSimpleActionBar() {
@@ -678,7 +678,7 @@ public abstract class e2 {
     }
 
     public m10 getUserConfig() {
-        return m10.i(getAccountInstance().f22778a);
+        return m10.i(getAccountInstance().f22782a);
     }
 
     public Dialog getVisibleDialog() {
@@ -859,7 +859,7 @@ public abstract class e2 {
         k actionBar;
         String title;
         this.isFullyVisible = true;
-        if (((AccessibilityManager) org.telegram.messenger.t0.f26600b.getSystemService("accessibility")).isEnabled() && ((actionBar = getActionBar()) != null || this.simpleActionBar != null)) {
+        if (((AccessibilityManager) org.telegram.messenger.t0.f26609b.getSystemService("accessibility")).isEnabled() && ((actionBar = getActionBar()) != null || this.simpleActionBar != null)) {
             if (actionBar != null) {
                 title = actionBar.getTitle();
             } else {
@@ -1142,7 +1142,7 @@ public abstract class e2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) o4Var;
             actionBarLayout.getClass();
             m4 m4Var = new m4(e2Var);
-            m4Var.f29385e = true;
+            m4Var.f29386e = true;
             if (actionBarLayout.U(m4Var)) {
                 return true;
             }
@@ -1157,8 +1157,8 @@ public abstract class e2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) o4Var;
             actionBarLayout.getClass();
             m4 m4Var = new m4(e2Var);
-            m4Var.f29385e = true;
-            m4Var.f29386f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+            m4Var.f29386e = true;
+            m4Var.f29387f = actionBarPopupWindow$ActionBarPopupWindowLayout;
             if (actionBarLayout.U(m4Var)) {
                 return true;
             }
@@ -1544,11 +1544,11 @@ public abstract class e2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) o4Var;
             actionBarLayout.getClass();
             m4 m4Var = new m4(e2Var);
-            m4Var.f29383b = z10;
-            m4Var.f29384c = z11;
+            m4Var.f29384b = z10;
+            m4Var.f29385c = z11;
             m4Var.d = true;
-            m4Var.f29385e = false;
-            m4Var.f29386f = null;
+            m4Var.f29386e = false;
+            m4Var.f29387f = null;
             if (actionBarLayout.U(m4Var)) {
                 return true;
             }

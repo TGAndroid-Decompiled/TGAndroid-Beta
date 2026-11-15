@@ -49,16 +49,16 @@ public final class o7 implements c5.h {
             default:
                 ug.x0 x0Var = (ug.x0) callback;
                 ArrayList arrayList = x0Var.f58371o1;
-                if (((ss0) arrayList.get(i7)).f51268a == 0) {
+                if (((ss0) arrayList.get(i7)).f51269a == 0) {
                     x0Var.I1.setTitle(hd.M0(2131751349, null));
                     x0Var.I1.requestLayout();
-                } else if (((ss0) arrayList.get(i7)).f51268a == 14) {
+                } else if (((ss0) arrayList.get(i7)).f51269a == 14) {
                     x0Var.I1.setTitle(hd.M0(2131743805, null));
                     x0Var.I1.requestLayout();
-                } else if (((ss0) arrayList.get(i7)).f51268a == 40) {
+                } else if (((ss0) arrayList.get(i7)).f51269a == 40) {
                     x0Var.I1.setTitle(hd.M0(2131750837, null));
                     x0Var.I1.requestLayout();
-                } else if (((ss0) arrayList.get(i7)).f51268a == 28) {
+                } else if (((ss0) arrayList.get(i7)).f51269a == 28) {
                     x0Var.I1.setTitle(hd.M0(2131744252, null));
                     x0Var.I1.requestLayout();
                 }
@@ -82,7 +82,7 @@ public final class o7 implements c5.h {
                 }
                 wVar.K0 = i11;
                 wVar.L0 = f10;
-                long j3 = m10.i(wVar.f12234z0).f24953n;
+                long j3 = m10.i(wVar.f12234z0).f24959n;
                 int i13 = wVar.J0;
                 if (i13 >= 0 && (wVar.f12233y0 != null ? wVar.f12232x0 == j3 : !(i13 >= wVar.B0.size() || ((Long) wVar.B0.get(wVar.J0)).longValue() != j3))) {
                     ((z8) wVar.C0).d(1.0f - wVar.L0);
@@ -97,8 +97,8 @@ public final class o7 implements c5.h {
                 return;
             default:
                 aa aaVar = (aa) this.f12126b;
-                aaVar.f32933b = f10;
-                aaVar.f32934c = i7;
+                aaVar.f32937b = f10;
+                aaVar.f32938c = i7;
                 aaVar.invalidate();
                 ug.x0 x0Var = (ug.x0) this.f12127c;
                 x0Var.B1 = i7;
@@ -173,13 +173,13 @@ public final class o7 implements c5.h {
             i11++;
         }
         int i13 = x0Var.B1;
-        if (i13 >= 0 && i13 < arrayList.size() && ((i10 = ((ss0) arrayList.get(x0Var.B1)).f51268a) == 0 || i10 == 14 || i10 == 28)) {
+        if (i13 >= 0 && i13 < arrayList.size() && ((i10 = ((ss0) arrayList.get(x0Var.B1)).f51269a) == 0 || i10 == 14 || i10 == 28)) {
             z10 = true;
         } else {
             z10 = false;
         }
         int i14 = x0Var.C1;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i7 = ((ss0) arrayList.get(x0Var.C1)).f51268a) == 0 || i7 == 14 || i7 == 28)) {
+        if (i14 >= 0 && i14 < arrayList.size() && ((i7 = ((ss0) arrayList.get(x0Var.C1)).f51269a) == 0 || i7 == 14 || i7 == 28)) {
             z11 = true;
         } else {
             z11 = false;

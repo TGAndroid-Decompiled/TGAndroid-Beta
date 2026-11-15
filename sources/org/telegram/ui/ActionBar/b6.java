@@ -29,7 +29,7 @@ public final class b6 {
     public TLRPC.WallPaper f28469t;
 
     public static void a(b6 b6Var) {
-        org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0).edit().remove(b6Var.b()).commit();
+        org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0).edit().remove(b6Var.b()).commit();
         new File(org.telegram.messenger.t0.h(), b6Var.f28452a).delete();
         new File(org.telegram.messenger.t0.h(), b6Var.f28453b).delete();
     }
@@ -47,7 +47,7 @@ public final class b6 {
     public final void c() {
         try {
             String b10 = b();
-            SharedPreferences.Editor edit = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0).edit();
+            SharedPreferences.Editor edit = org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0).edit();
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("wall", this.f28452a);
             jSONObject.put("owall", this.f28453b);

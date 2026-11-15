@@ -102,7 +102,7 @@ public abstract class k extends v4.k {
     @Override
     public final boolean J(v4.i iVar, e1 e1Var) {
         fz0 fz0Var;
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("end change if necessary");
         }
         Animator animator = (Animator) this.J.remove(e1Var);
@@ -165,9 +165,9 @@ public abstract class k extends v4.k {
             }
         }
         if (!this.K.isEmpty() && (fz0Var = (fz0) this.U.run()) != null) {
-            ArrayList arrayList2 = fz0Var.f34757c;
-            if (!fz0Var.f34758e) {
-                fz0Var.f34758e = true;
+            ArrayList arrayList2 = fz0Var.f34761c;
+            if (!fz0Var.f34762e) {
+                fz0Var.f34762e = true;
                 int size2 = arrayList2.size();
                 while (i7 < size2) {
                     Object obj2 = arrayList2.get(i7);
@@ -180,7 +180,7 @@ public abstract class k extends v4.k {
                     }
                 }
                 arrayList2.clear();
-                dz0 dz0Var = fz0Var.f34755a;
+                dz0 dz0Var = fz0Var.f34759a;
                 if (dz0Var != null) {
                     dz0Var.h();
                 }
@@ -348,7 +348,7 @@ public abstract class k extends v4.k {
 
     @Override
     public void g() {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("end animations");
         }
         ArrayList arrayList = this.I;
@@ -823,7 +823,7 @@ public abstract class k extends v4.k {
                 }
             }
             yi yiVar = q1Var.M;
-            if (yiVar != null && (yiVar.f27753l & 8) == 0 && q1Var.L.f22713i) {
+            if (yiVar != null && (yiVar.f27755l & 8) == 0 && q1Var.L.f22713i) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -889,7 +889,7 @@ public abstract class k extends v4.k {
 
     @Override
     public final void s(e1 e1Var, r0 r0Var) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("animate remove");
         }
         super.s(e1Var, r0Var);

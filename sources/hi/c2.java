@@ -26,7 +26,7 @@ public final class c2 extends av0 {
             while (true) {
                 if (i7 < wu0VarArr.length) {
                     wu0 wu0Var = wu0VarArr[i7];
-                    if (wu0Var != null && wu0Var.f41460b) {
+                    if (wu0Var != null && wu0Var.f41463b) {
                         break;
                     }
                     i7++;

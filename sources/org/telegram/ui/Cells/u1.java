@@ -41,7 +41,7 @@ public final class u1 {
         int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
         int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
         int A = (int) com.google.android.gms.internal.vision.e2.A(u2Var.N0, intrinsicWidth, 2.0f, u2Var.L0);
-        int interpolation = (int) ((((u2Var.O0 / 2.0f) - intrinsicHeight) + u2Var.M0) - ((1.0f - er.f34424k.getInterpolation(u2Var.f22278i1)) * org.telegram.messenger.g0.L(16.0f)));
+        int interpolation = (int) ((((u2Var.O0 / 2.0f) - intrinsicHeight) + u2Var.M0) - ((1.0f - er.f34423k.getInterpolation(u2Var.f22278i1)) * org.telegram.messenger.g0.L(16.0f)));
         drawable.setAlpha((int) (Math.min(1.0f, u2Var.f22278i1 * 5.0f) * 255.0f));
         drawable.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
         drawable.draw(canvas);
@@ -93,7 +93,7 @@ public final class u1 {
                 }
                 textPaint2.setColor(org.telegram.ui.ActionBar.j6.w0(i7, q1Var2.Qb));
             }
-            if (gj.n1(q1Var2.Q5.f23817k) instanceof TLRPC.TL_messageMediaGeoLive) {
+            if (gj.n1(q1Var2.Q5.f23819k) instanceof TLRPC.TL_messageMediaGeoLive) {
                 int A = (int) (u2Var.A() + org.telegram.messenger.g0.L(30.0f));
                 if (q1Var2.f30998h3 && !x1Var2.f31956j) {
                     x1Var2.f31965l = null;
@@ -123,7 +123,7 @@ public final class u1 {
                         f12 = 2.0f;
                     } else {
                         f11 = 255.0f;
-                        if (gj.n1(q1Var2.Q5.f23817k).period == Integer.MAX_VALUE) {
+                        if (gj.n1(q1Var2.Q5.f23819k).period == Integer.MAX_VALUE) {
                             C = "";
                             f13 = 1.0f;
                             abs = 1.0f;
@@ -131,8 +131,8 @@ public final class u1 {
                             z10 = true;
                         } else {
                             f12 = 2.0f;
-                            C = hd.C(Math.abs(gj.n1(q1Var2.Q5.f23817k).period - (ConnectionsManager.getInstance(i11).getCurrentTime() - q1Var2.Q5.f23817k.date)));
-                            abs = 1.0f - (Math.abs(ConnectionsManager.getInstance(i11).getCurrentTime() - q1Var2.Q5.f23817k.date) / gj.n1(q1Var2.Q5.f23817k).period);
+                            C = hd.C(Math.abs(gj.n1(q1Var2.Q5.f23819k).period - (ConnectionsManager.getInstance(i11).getCurrentTime() - q1Var2.Q5.f23819k.date)));
+                            abs = 1.0f - (Math.abs(ConnectionsManager.getInstance(i11).getCurrentTime() - q1Var2.Q5.f23819k.date) / gj.n1(q1Var2.Q5.f23819k).period);
                             f13 = 1.0f;
                         }
                     }
@@ -233,7 +233,7 @@ public final class u1 {
                 if (f17 > 0.0f) {
                     if (u2Var.L() || u2Var.N()) {
                         int L = (int) (((u2Var.N0 / f12) + u2Var.L0) - org.telegram.messenger.g0.L(31.0f));
-                        int L2 = (int) ((((u2Var.O0 / f12) + u2Var.M0) - org.telegram.messenger.g0.L(38.0f)) - ((f10 - er.f34424k.getInterpolation(f17)) * org.telegram.messenger.g0.L(16.0f)));
+                        int L2 = (int) ((((u2Var.O0 / f12) + u2Var.M0) - org.telegram.messenger.g0.L(38.0f)) - ((f10 - er.f34423k.getInterpolation(f17)) * org.telegram.messenger.g0.L(16.0f)));
                         h6.m mVar = q1Var.Sb;
                         if (((Drawable) mVar.f13625c) == null) {
                             mVar.f13625c = i5.c.g((Context) mVar.f13624b, 2131231634);

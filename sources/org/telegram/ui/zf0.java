@@ -22,7 +22,7 @@ public final class zf0 extends pi.k {
             org.telegram.messenger.g0.r(runnable);
             this.W = null;
         }
-        if (org.telegram.messenger.r2.f26198a) {
+        if (org.telegram.messenger.r2.f26206a) {
             org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
         }
     }

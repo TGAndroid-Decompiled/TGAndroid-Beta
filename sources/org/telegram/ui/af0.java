@@ -21,7 +21,7 @@ public final class af0 implements org.telegram.ui.Components.s70 {
         cf0 cf0Var = bf0Var.d;
         Context context = this.f45040a.getContext();
         cf0 cf0Var2 = bf0Var.d;
-        cf0Var.m0 = new org.telegram.ui.Components.p50(context, cf0Var2.f46131e, cf0Var2.d, cf0Var2.f46140l0, cf0Var2, cf0Var2.f46141n, true, cf0Var2.h);
+        cf0Var.m0 = new org.telegram.ui.Components.p50(context, cf0Var2.f46120e, cf0Var2.d, cf0Var2.f46129l0, cf0Var2, cf0Var2.f46130n, true, cf0Var2.h);
         bf0Var.d.m0.show();
     }
 

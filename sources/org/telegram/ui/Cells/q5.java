@@ -112,13 +112,13 @@ public final class q5 extends FrameLayout {
     }
 
     public final boolean a() {
-        return this.d.f34663a.f32441q;
+        return this.d.f34667a.f32441q;
     }
 
     public final void b(int i7, boolean z10, boolean z11) {
         float f10;
         float f11;
-        this.d.f34663a.f(i7, z10, z11);
+        this.d.f34667a.f(i7, z10, z11);
         boolean z12 = false;
         if (this.E) {
             AnimatorSet animatorSet = this.L;
@@ -203,14 +203,14 @@ public final class q5 extends FrameLayout {
             this.L = null;
             fp fpVar = this.d;
             float f11 = 1.0f;
-            if (fpVar.f34663a.f32441q) {
+            if (fpVar.f34667a.f32441q) {
                 f10 = 0.787f;
             } else {
                 f10 = 1.0f;
             }
             bi.g2 g2Var = this.f31282b;
             g2Var.setScaleX(f10);
-            if (fpVar.f34663a.f32441q) {
+            if (fpVar.f34667a.f32441q) {
                 f11 = 0.787f;
             }
             g2Var.setScaleY(f11);
@@ -229,7 +229,7 @@ public final class q5 extends FrameLayout {
             ffVar.k(this.f31290w);
         }
         ff ffVar2 = this.I;
-        boolean z16 = ffVar2.f27708b;
+        boolean z16 = ffVar2.f27710b;
         float f11 = 0.0f;
         ImageView imageView = this.f31285e;
         TextView textView = this.f31286f;
@@ -251,15 +251,15 @@ public final class q5 extends FrameLayout {
             n5Var.setVisibility(4);
         }
         ff ffVar3 = this.I;
-        String str = ffVar3.f27712g;
+        String str = ffVar3.f27714g;
         if (str != null) {
             m5Var.h(str, null, org.telegram.ui.ActionBar.j6.R4);
         } else {
-            String str2 = ffVar3.f27709c;
+            String str2 = ffVar3.f27711c;
             if (str2 != null) {
                 m5Var.h(str2, null, org.telegram.ui.ActionBar.j6.R4);
             } else if (ffVar3.I != null) {
-                if (ffVar3.f27708b && !ffVar3.d()) {
+                if (ffVar3.f27710b && !ffVar3.d()) {
                     m5Var.h("vthumb://" + this.I.C + ":" + this.I.I, null, org.telegram.ui.ActionBar.j6.R4);
                 } else {
                     ff ffVar4 = this.I;
@@ -443,7 +443,7 @@ public final class q5 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         ff ffVar;
         jf jfVar;
-        boolean z10 = this.d.f34663a.f32441q;
+        boolean z10 = this.d.f34667a.f32441q;
         m5 m5Var = this.f31280a;
         if (!z10 && this.f31282b.getScaleX() == 1.0f && m5Var.getImageReceiver().L() && m5Var.getImageReceiver().f22278i1 == 1.0f && (((ffVar = this.I) == null || !PhotoViewer.K1(ffVar.I)) && ((jfVar = this.J) == null || !PhotoViewer.K1(jfVar.g())))) {
             return;
@@ -464,7 +464,7 @@ public final class q5 extends FrameLayout {
             sb2.append(hd.M0(2131753962, null));
         } else {
             ff ffVar2 = this.I;
-            if (ffVar2 != null && ffVar2.f27708b) {
+            if (ffVar2 != null && ffVar2.f27710b) {
                 StringBuilder sb3 = new StringBuilder();
                 y0.r(null, 2131753933, sb3, ", ");
                 sb3.append(hd.z(this.I.E));
@@ -478,7 +478,7 @@ public final class q5 extends FrameLayout {
             sb2.append(hd.E0().z0().format(this.I.D * 1000));
         }
         accessibilityNodeInfo.setText(sb2);
-        if (this.d.f34663a.f32441q) {
+        if (this.d.f34667a.f32441q) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(2131296266, hd.M0(2131747817, null)));
@@ -543,7 +543,7 @@ public final class q5 extends FrameLayout {
             this.Q = z11;
             ff ffVar = this.I;
             if (ffVar != null) {
-                boolean z12 = ffVar.f27708b;
+                boolean z12 = ffVar.f27710b;
                 ImageView imageView = this.f31285e;
                 n5 n5Var = this.h;
                 TextView textView = this.f31286f;

@@ -112,9 +112,9 @@ public final class e implements m, js, hy0, q5.b {
                     if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
                         trim3 = e2.k(trim3, 1, 1);
                     }
-                    b1Var.f52579b.put(trim2, trim3);
+                    b1Var.f52582b.put(trim2, trim3);
                 } else {
-                    b1Var.f52578a = trim;
+                    b1Var.f52581a = trim;
                 }
             }
         }
@@ -122,13 +122,13 @@ public final class e implements m, js, hy0, q5.b {
     }
 
     public void A(p0 p0Var) {
-        s sVar = p0Var.f2421c;
-        String str = sVar.f2447e;
+        s sVar = p0Var.f2424c;
+        String str = sVar.f2450e;
         HashMap hashMap = (HashMap) this.f60056b;
         if (hashMap.get(str) != null) {
             return;
         }
-        hashMap.put(sVar.f2447e, p0Var);
+        hashMap.put(sVar.f2450e, p0Var);
         if (j0.K(2)) {
             Log.v("FragmentManager", "Added fragment to active set " + sVar);
         }
@@ -136,11 +136,11 @@ public final class e implements m, js, hy0, q5.b {
 
     public void B(p0 p0Var) {
         HashMap hashMap = (HashMap) this.f60056b;
-        s sVar = p0Var.f2421c;
+        s sVar = p0Var.f2424c;
         if (sVar.T) {
             ((m0) this.d).f(sVar);
         }
-        if (hashMap.get(sVar.f2447e) == p0Var && ((p0) hashMap.put(sVar.f2447e, null)) != null && j0.K(2)) {
+        if (hashMap.get(sVar.f2450e) == p0Var && ((p0) hashMap.put(sVar.f2450e, null)) != null && j0.K(2)) {
             Log.v("FragmentManager", "Removed fragment from active set " + sVar);
         }
     }
@@ -306,7 +306,7 @@ public final class e implements m, js, hy0, q5.b {
                                 i iVar2 = new i(k10, str2, f10);
                                 i.A = iVar2;
                                 iVar2.f60086x = cVar;
-                                r0 r0Var = r0.f26175f;
+                                r0 r0Var = r0.f26183f;
                                 if (r0Var != null) {
                                     r0Var.d.add(iVar2);
                                 }
@@ -629,7 +629,7 @@ public final class e implements m, js, hy0, q5.b {
             synchronized (((ArrayList) this.f60055a)) {
                 ((ArrayList) this.f60055a).add(sVar);
             }
-            sVar.f2458w = true;
+            sVar.f2461w = true;
             return;
         }
         throw new IllegalStateException("Fragment already added: " + sVar);
@@ -753,7 +753,7 @@ public final class e implements m, js, hy0, q5.b {
     public s n(String str) {
         p0 p0Var = (p0) ((HashMap) this.f60056b).get(str);
         if (p0Var != null) {
-            return p0Var.f2421c;
+            return p0Var.f2424c;
         }
         return null;
     }
@@ -761,9 +761,9 @@ public final class e implements m, js, hy0, q5.b {
     public s o(String str) {
         for (p0 p0Var : ((HashMap) this.f60056b).values()) {
             if (p0Var != null) {
-                s sVar = p0Var.f2421c;
-                if (!str.equals(sVar.f2447e)) {
-                    sVar = sVar.M.f2353c.o(str);
+                s sVar = p0Var.f2424c;
+                if (!str.equals(sVar.f2450e)) {
+                    sVar = sVar.M.f2356c.o(str);
                 }
                 if (sVar != null) {
                     return sVar;
@@ -787,7 +787,7 @@ public final class e implements m, js, hy0, q5.b {
         ArrayList arrayList = new ArrayList();
         for (p0 p0Var : ((HashMap) this.f60056b).values()) {
             if (p0Var != null) {
-                arrayList.add(p0Var.f2421c);
+                arrayList.add(p0Var.f2424c);
             } else {
                 arrayList.add(null);
             }
@@ -935,7 +935,7 @@ public final class e implements m, js, hy0, q5.b {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         hashMap.putAll(F(bufferedReader));
         b1 b1Var = (b1) hashMap.get("content-type");
-        String str = b1Var == null ? null : (String) b1Var.f52579b.get("boundary");
+        String str = b1Var == null ? null : (String) b1Var.f52582b.get("boundary");
         if (str != null) {
             int length = str.length() + 2;
             a1 a1Var = null;
@@ -949,19 +949,19 @@ public final class e implements m, js, hy0, q5.b {
                     if (a1Var != null) {
                         a1Var.d = (jArr[0] - length) - 2;
                         arrayList.add(a1Var);
-                        b1 b1Var2 = (b1) a1Var.f52569a.get("content-location");
-                        hashMap2.put(b1Var2 == null ? null : b1Var2.f52578a, a1Var);
+                        b1 b1Var2 = (b1) a1Var.f52572a.get("content-location");
+                        hashMap2.put(b1Var2 == null ? null : b1Var2.f52581a, a1Var);
                     }
                     a1Var = new a1();
-                    a1Var.f52570b = (File) this.f60055a;
-                    a1Var.f52569a.putAll(F(bufferedReader));
-                    a1Var.f52571c = jArr[0];
+                    a1Var.f52573b = (File) this.f60055a;
+                    a1Var.f52572a.putAll(F(bufferedReader));
+                    a1Var.f52574c = jArr[0];
                 }
             }
-            if (a1Var != null && a1Var.f52571c != 0 && a1Var.d != 0) {
+            if (a1Var != null && a1Var.f52574c != 0 && a1Var.d != 0) {
                 arrayList.add(a1Var);
-                b1 b1Var3 = (b1) a1Var.f52569a.get("content-location");
-                hashMap2.put(b1Var3 != null ? b1Var3.f52578a : null, a1Var);
+                b1 b1Var3 = (b1) a1Var.f52572a.get("content-location");
+                hashMap2.put(b1Var3 != null ? b1Var3.f52581a : null, a1Var);
             }
         }
         bufferedReader.close();

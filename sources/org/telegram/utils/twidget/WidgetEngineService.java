@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 public final class WidgetEngineService extends Service {
     public static volatile String f54152b;
     public static String f54153c;
-    public static final ExecutorService d = Executors.newSingleThreadExecutor(new ai.x0(6));
+    public static final ExecutorService d = Executors.newSingleThreadExecutor(new ai.y0(6));
     public final z f54154a = new z(this);
 
     public static String a(AssetManager assetManager) {

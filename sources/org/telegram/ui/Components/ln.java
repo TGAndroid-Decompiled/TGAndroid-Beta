@@ -15,7 +15,7 @@ public final class ln implements Runnable {
         switch (this.f36856a) {
             case 0:
                 sn snVar = this.f36857b;
-                AtomicReference atomicReference = snVar.f39363n;
+                AtomicReference atomicReference = snVar.f39361n;
                 org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
                 if (j5Var != null) {
                     snVar.removeView(j5Var);
@@ -25,12 +25,12 @@ public final class ln implements Runnable {
                 return;
             case 1:
                 sn snVar2 = this.f36857b;
-                AtomicReference atomicReference2 = snVar2.f39375w;
+                AtomicReference atomicReference2 = snVar2.f39373w;
                 org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
                 if (j5Var2 != null) {
                     snVar2.removeView(j5Var2);
                     atomicReference2.set(null);
-                    if (!snVar2.f39348b) {
+                    if (!snVar2.f39346b) {
                         snVar2.setClipChildren(true);
                         return;
                     }
@@ -39,8 +39,8 @@ public final class ln implements Runnable {
                 return;
             default:
                 sn snVar3 = this.f36857b;
-                snVar3.f39361k0 = false;
-                snVar3.f39359i0.c(false);
+                snVar3.f39359k0 = false;
+                snVar3.f39357i0.c(false);
                 if (snVar3.a()) {
                     snVar3.f();
                     return;

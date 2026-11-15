@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import android.transition.Transition;
 public final class sx0 implements Transition.TransitionListener {
-    public final Runnable f51298a;
+    public final Runnable f51299a;
 
     public sx0(Runnable runnable) {
-        this.f51298a = runnable;
+        this.f51299a = runnable;
     }
 
     @Override
     public final void onTransitionEnd(Transition transition) {
-        this.f51298a.run();
+        this.f51299a.run();
     }
 
     @Override

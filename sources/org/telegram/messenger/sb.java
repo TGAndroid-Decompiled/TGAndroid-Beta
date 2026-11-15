@@ -4,16 +4,16 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import java.net.HttpURLConnection;
 public final class sb extends AsyncTask {
-    public final tb f26424a;
-    public boolean f26425b = true;
-    public HttpURLConnection f26426c;
+    public final tb f26434a;
+    public boolean f26435b = true;
+    public HttpURLConnection f26436c;
     public final boolean d;
-    public final fc f26427e;
+    public final fc f26437e;
 
     public sb(fc fcVar, tb tbVar) {
-        this.f26427e = fcVar;
-        this.f26424a = tbVar;
-        this.d = Uri.parse(tbVar.f26640i.f23716g).getQueryParameter("s") != null;
+        this.f26437e = fcVar;
+        this.f26434a = tbVar;
+        this.d = Uri.parse(tbVar.f26649i.f23718g).getQueryParameter("s") != null;
     }
 
     @Override
@@ -23,18 +23,18 @@ public final class sb extends AsyncTask {
 
     @Override
     public final void onCancelled() {
-        this.f26427e.f23476s.c(new rb(this, 0));
+        this.f26437e.f23479s.c(new rb(this, 0));
     }
 
     @Override
     public final void onPostExecute(Object obj) {
         String str = (String) obj;
-        fc fcVar = this.f26427e;
-        p5 p5Var = fcVar.f23476s;
+        fc fcVar = this.f26437e;
+        p5 p5Var = fcVar.f23479s;
         if (str != null) {
             p5Var.c(new x4(18, this, str));
-        } else if (this.f26425b) {
-            p5Var.c(new hb(fcVar, this.f26424a.f26637e, 0));
+        } else if (this.f26435b) {
+            p5Var.c(new hb(fcVar, this.f26434a.f26646e, 0));
         }
         p5Var.c(new rb(this, 1));
     }

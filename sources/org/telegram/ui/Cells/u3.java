@@ -52,7 +52,7 @@ public final class u3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         ViewGroup.LayoutParams d2;
         ViewGroup.LayoutParams d10;
         ViewGroup.LayoutParams d11;
-        this.f31723x = m10.f24934t0;
+        this.f31723x = m10.f24940t0;
         this.f31724y = new Paint(1);
         this.f31714a = z11;
         this.J = e6Var;

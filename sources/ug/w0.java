@@ -29,7 +29,7 @@ public final class w0 extends LinearLayout {
         this.f58357n = x0Var;
         setOrientation(1);
         ss0 ss0Var = (ss0) x0Var.f58371o1.get(i7);
-        int i11 = ss0Var.f51268a;
+        int i11 = ss0Var.f51269a;
         if (i11 == 0) {
             ?? aVar = new a(context, x0Var.J0);
             aVar.f58030b.setOnScrollListener(new s0(x0Var, 1));
@@ -40,7 +40,7 @@ public final class w0 extends LinearLayout {
             } else if (i11 == 10) {
                 iVar = new o0(context, x0Var.J0);
             } else {
-                iVar = new w1(context, x0Var.f58380x1, x0Var.f29679a, ss0Var.f51268a, x0Var.J0);
+                iVar = new w1(context, x0Var.f58380x1, x0Var.f29679a, ss0Var.f51269a, x0Var.J0);
             }
         } else {
             if (i11 == 28) {

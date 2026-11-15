@@ -1,12 +1,12 @@
 package li;
 
 import android.view.View;
-import di.wa;
+import di.va;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.n61;
 import org.telegram.ui.Wallet.u2;
 import org.telegram.ui.Wallet.w2;
-import org.telegram.ui.im0;
+import org.telegram.ui.jm0;
 import org.telegram.ui.kt;
 import org.telegram.ui.nt;
 public final class x extends n61 {
@@ -27,14 +27,14 @@ public final class x extends n61 {
                 return;
             case 1:
                 kt ktVar = (kt) view;
-                ktVar.f48758g3 = i7;
-                ktVar.f48764n3.clear();
+                ktVar.f48754g3 = i7;
+                ktVar.f48760n3.clear();
                 if (ktVar.z1(6) + ktVar.B1(6) <= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                ktVar.f48771u3 = z10;
+                ktVar.f48767u3 = z10;
                 ktVar.C1();
                 ktVar.D1(false);
                 ktVar.v0(0);
@@ -67,28 +67,28 @@ public final class x extends n61 {
             case 1:
                 nt ntVar = (nt) this.f19646b;
                 kt ktVar = new kt(ntVar, ntVar.getParentActivity());
-                ntVar.f49691e.add(ktVar);
+                ntVar.f49681e.add(ktVar);
                 return ktVar;
             case 2:
-                im0 im0Var = (im0) this.f19646b;
+                jm0 jm0Var = (jm0) this.f19646b;
                 if (i7 == 1) {
-                    return im0Var.h;
+                    return jm0Var.h;
                 }
                 if (i7 == 0) {
-                    return im0Var.f48094n;
+                    return jm0Var.f48378n;
                 }
                 return null;
             case 3:
                 return (View) ((w2) this.f19646b).n1.get(i7);
             default:
-                wa waVar = (wa) this.f19646b;
+                va vaVar = (va) this.f19646b;
                 if (i7 != 1) {
                     if (i7 != 2) {
-                        return (sg.o) waVar.f9708b;
+                        return (sg.o) vaVar.f9622b;
                     }
-                    return (sg.p) waVar.d;
+                    return (sg.p) vaVar.d;
                 }
-                return (sg.n) waVar.f9709c;
+                return (sg.n) vaVar.f9623c;
         }
     }
 

@@ -14,21 +14,21 @@ import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
 public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
-    public final ActionBarLayout f37525a;
-    public final FrameLayout f37526b;
-    public final fc0 f37527c;
+    public final ActionBarLayout f37514a;
+    public final FrameLayout f37515b;
+    public final fc0 f37516c;
 
     public nb0(Context context) {
         super(context, 2131755352);
         ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
-        this.f37525a = actionBarLayout;
+        this.f37514a = actionBarLayout;
         actionBarLayout.setFragmentStack(new ArrayList());
         org.telegram.ui.ActionBar.m4 m4Var = new org.telegram.ui.ActionBar.m4(new bi.t6(this, 9));
-        m4Var.f29384c = true;
+        m4Var.f29385c = true;
         actionBarLayout.U(m4Var);
         actionBarLayout.setDelegate(this);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f37526b = frameLayout;
+        this.f37515b = frameLayout;
         frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
         if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
@@ -38,7 +38,7 @@ public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
             h6.m.g(actionBarLayout.getView());
         }
         fc0 fc0Var = new fc0(context);
-        this.f37527c = fc0Var;
+        this.f37516c = fc0Var;
         frameLayout.addView(fc0Var, c8.ja.c(-1.0f, -1));
         setContentView(frameLayout);
     }
@@ -50,7 +50,7 @@ public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
         } else {
             z10 = false;
         }
-        this.f37525a.T(e2Var, z10);
+        this.f37514a.T(e2Var, z10);
     }
 
     @Override
@@ -81,20 +81,20 @@ public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.m4 m4Var) {
-        org.telegram.ui.ActionBar.e2 e2Var = m4Var.f29382a;
+        org.telegram.ui.ActionBar.e2 e2Var = m4Var.f29383a;
         return true;
     }
 
     @Override
     public final void onBackPressed() {
-        if (this.f37527c.getVisibility() == 0) {
+        if (this.f37516c.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
                 return;
             }
             return;
         }
-        ActionBarLayout actionBarLayout = this.f37525a;
+        ActionBarLayout actionBarLayout = this.f37514a;
         actionBarLayout.I();
         if (actionBarLayout.getFragmentStack().size() <= 1) {
             dismiss();
@@ -125,7 +125,7 @@ public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
         }
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        FrameLayout frameLayout = this.f37526b;
+        FrameLayout frameLayout = this.f37515b;
         frameLayout.setSystemUiVisibility(1280);
         frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.v2(2));
         if (i7 >= 26) {
@@ -144,7 +144,7 @@ public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).A0.add(this.f37527c);
+            ((LaunchActivity) context).A0.add(this.f37516c);
         }
     }
 
@@ -156,7 +156,7 @@ public final class nb0 extends Dialog implements org.telegram.ui.ActionBar.l4 {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).A0.remove(this.f37527c);
+            ((LaunchActivity) context).A0.remove(this.f37516c);
         }
     }
 

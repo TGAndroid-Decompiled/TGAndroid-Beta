@@ -42,7 +42,7 @@ public final class y91 extends rg.b {
         if (((z91) arrayList.get(i7)).f56015a == 2) {
             org.telegram.ui.Cells.ia iaVar = (org.telegram.ui.Cells.ia) e1Var.f58535a;
             long j10 = aa1Var.f44982c;
-            TLRPC.TL_forumTopic tL_forumTopic = ((z91) arrayList.get(i7)).f53916c;
+            TLRPC.TL_forumTopic tL_forumTopic = ((z91) arrayList.get(i7)).f53881c;
             org.telegram.ui.Components.i9 i9Var = iaVar.f30457b;
             boolean z10 = false;
             qg.c.p(i9Var, tL_forumTopic, false, false, null);
@@ -51,9 +51,9 @@ public final class y91 extends rg.b {
             }
             iaVar.f30458c.setText(tL_forumTopic.title);
             TextView textView = iaVar.d;
-            org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0);
+            org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0);
             if (s12.getMessagesController().r2(j10, tL_forumTopic.f28103id, null)) {
-                int i10 = s12.f25270e7.getInt("notifyuntil_" + org.telegram.messenger.at.v(j10, j3, false), 0);
+                int i10 = s12.f25273e7.getInt("notifyuntil_" + org.telegram.messenger.at.v(j10, j3, false), 0);
                 if (i10 >= s12.getConnectionsManager().getCurrentTime()) {
                     M0 = org.telegram.messenger.hd.a0("NotificationsMutedForHint", null, 2131747900, org.telegram.messenger.hd.c0(i10));
                 } else {

@@ -57,7 +57,7 @@ public final class l {
             v0Var.getClass();
             String str = uVar3.f10450r;
             if (s0.l(str)) {
-                if (!v0Var.f3343a) {
+                if (!v0Var.f3346a) {
                     eVar2 = null;
                     mVar = mVar2;
                     jVarArr = jVarArr2;
@@ -71,14 +71,14 @@ public final class l {
                     d = j10;
                     i13 = 0;
                 } else {
-                    hVar2 = new c4.h(((nb.a) v0Var.f3345c).f(uVar3), uVar3);
+                    hVar2 = new c4.h(((nb.a) v0Var.f3348c).f(uVar3), uVar3);
                 }
             } else {
                 if (str != null && (str.startsWith("video/webm") || str.startsWith("audio/webm") || str.startsWith("application/webm") || str.startsWith("video/x-matroska") || str.startsWith("audio/x-matroska") || str.startsWith("application/x-matroska"))) {
                     mVar = mVar2;
                     uVar2 = uVar3;
                     jVarArr = jVarArr2;
-                    hVar2 = new x3.f((nb.a) v0Var.f3345c, v0Var.f3343a ? 1 : 3);
+                    hVar2 = new x3.f((nb.a) v0Var.f3348c, v0Var.f3346a ? 1 : 3);
                 } else if (Objects.equals(str, "image/jpeg")) {
                     hVar2 = new n3.a(1);
                 } else if (Objects.equals(str, "image/png")) {
@@ -89,11 +89,11 @@ public final class l {
                     } else {
                         i12 = 0;
                     }
-                    int g10 = (v0Var.f3343a ? i12 : i12 | 32) | z3.h.g(v0Var.f3344b);
+                    int g10 = (v0Var.f3346a ? i12 : i12 | 32) | z3.h.g(v0Var.f3347b);
                     mVar = mVar2;
                     jVarArr = jVarArr2;
                     uVar2 = uVar3;
-                    hVar2 = new z3.h((nb.a) v0Var.f3345c, g10, null, arrayList, oVar2);
+                    hVar2 = new z3.h((nb.a) v0Var.f3348c, g10, null, arrayList, oVar2);
                 }
                 eVar2 = new y2.e(hVar2, i10, uVar2);
                 y2.e eVar32 = eVar2;

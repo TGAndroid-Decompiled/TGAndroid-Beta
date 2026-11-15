@@ -3,7 +3,7 @@ package hi;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import di.vb;
+import di.ub;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Timer;
@@ -17,21 +17,21 @@ public final class g2 extends e2 {
     public Timer f14335m;
     public final fi.o8 f14336n;
     public final ArrayList f14337o;
-    public final vb f14338p;
+    public final ub f14338p;
 
-    public g2(vb vbVar) {
-        super(vbVar);
-        this.f14338p = vbVar;
-        this.f14331i = new ch.g0(vbVar);
-        this.f14332j = new ch.g0(vbVar);
-        this.f14334l = new org.telegram.ui.Components.u5(vbVar);
-        this.f14336n = new fi.o8(vbVar);
+    public g2(ub ubVar) {
+        super(ubVar);
+        this.f14338p = ubVar;
+        this.f14331i = new ch.g0(ubVar);
+        this.f14332j = new ch.g0(ubVar);
+        this.f14334l = new org.telegram.ui.Components.u5(ubVar);
+        this.f14336n = new fi.o8(ubVar);
         this.f14337o = new ArrayList();
         this.f14228a = 3;
         this.f14229b = org.telegram.messenger.g0.L(44.0f);
         this.f14230c = org.telegram.messenger.g0.L(36.0f);
         int i7 = i2.C1;
-        ArrayList arrayList = si.b0(((i2) vbVar.h).f29679a).h;
+        ArrayList arrayList = si.b0(((i2) ubVar.h).f29679a).h;
         for (int i10 = 0; i10 < Math.min(arrayList.size(), 8); i10++) {
             this.f14337o.add(ch.p0.c((TLRPC.TL_availableReaction) arrayList.get(i10)));
         }

@@ -5,33 +5,33 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class vo {
-    public final long f27088a;
-    public boolean f27091e;
+    public final long f27089a;
+    public boolean f27092e;
     public final np h;
-    public final ArrayList f27089b = new ArrayList();
-    public boolean f27090c = true;
+    public final ArrayList f27090b = new ArrayList();
+    public boolean f27091c = true;
     public boolean d = false;
-    public int f27092f = -1;
-    public int f27093g = -1;
+    public int f27093f = -1;
+    public int f27094g = -1;
 
     public vo(np npVar, long j3) {
         this.h = npVar;
-        this.f27088a = j3;
+        this.f27089a = j3;
     }
 
     public final void a(final int i7, final int i10) {
-        if (!this.f27091e && i10 > 0 && i7 >= 0) {
-            if (i10 != this.f27093g || i7 != this.f27092f) {
-                this.f27091e = true;
-                this.f27092f = i7;
-                this.f27093g = i10;
-                long j3 = this.f27088a;
+        if (!this.f27092e && i10 > 0 && i7 >= 0) {
+            if (i10 != this.f27094g || i7 != this.f27093f) {
+                this.f27092e = true;
+                this.f27093f = i7;
+                this.f27094g = i10;
+                long j3 = this.f27089a;
                 int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 np npVar = this.h;
                 if (i11 >= 0) {
                     TLRPC.User a22 = npVar.a2(Long.valueOf(j3));
                     if (a22 == null) {
-                        this.f27091e = false;
+                        this.f27092e = false;
                         return;
                     }
                     TLRPC.TL_photos_getUserPhotos tL_photos_getUserPhotos = new TLRPC.TL_photos_getUserPhotos();
@@ -40,10 +40,10 @@ public final class vo {
                     tL_photos_getUserPhotos.max_id = 0L;
                     tL_photos_getUserPhotos.user_id = npVar.q1(a22);
                     npVar.getConnectionsManager().sendRequest(tL_photos_getUserPhotos, new RequestDelegate(this) {
-                        public final vo f26850b;
+                        public final vo f26852b;
 
                         {
-                            this.f26850b = this;
+                            this.f26852b = this;
                         }
 
                         @Override
@@ -52,7 +52,7 @@ public final class vo {
                                 case 0:
                                     if (tL_error == null) {
                                         TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) tLObject;
-                                        vo voVar = this.f26850b;
+                                        vo voVar = this.f26852b;
                                         voVar.h.getMessagesStorage().m1(photos_photos.users, null, true, true);
                                         g0.h3(new l2.x(voVar, photos_photos, i7, i10, 5));
                                         return;
@@ -61,7 +61,7 @@ public final class vo {
                                 default:
                                     if (tL_error == null) {
                                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                                        vo voVar2 = this.f26850b;
+                                        vo voVar2 = this.f26852b;
                                         voVar2.h.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                                         g0.h3(new l2.x(voVar2, messages_messages, i7, i10, 6));
                                         return;
@@ -80,10 +80,10 @@ public final class vo {
                 tL_messages_search.f28162q = "";
                 tL_messages_search.peer = npVar.j1(j3);
                 npVar.getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate(this) {
-                    public final vo f26850b;
+                    public final vo f26852b;
 
                     {
-                        this.f26850b = this;
+                        this.f26852b = this;
                     }
 
                     @Override
@@ -92,7 +92,7 @@ public final class vo {
                             case 0:
                                 if (tL_error == null) {
                                     TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) tLObject;
-                                    vo voVar = this.f26850b;
+                                    vo voVar = this.f26852b;
                                     voVar.h.getMessagesStorage().m1(photos_photos.users, null, true, true);
                                     g0.h3(new l2.x(voVar, photos_photos, i7, i10, 5));
                                     return;
@@ -101,7 +101,7 @@ public final class vo {
                             default:
                                 if (tL_error == null) {
                                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                                    vo voVar2 = this.f26850b;
+                                    vo voVar2 = this.f26852b;
                                     voVar2.h.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                                     g0.h3(new l2.x(voVar2, messages_messages, i7, i10, 6));
                                     return;
@@ -115,7 +115,7 @@ public final class vo {
     }
 
     public final void b(int i7, boolean z10) {
-        ArrayList arrayList = this.f27089b;
+        ArrayList arrayList = this.f27090b;
         int i10 = 0;
         if (arrayList.isEmpty()) {
             a(0, 80);
@@ -175,11 +175,11 @@ public final class vo {
 
     public final void c(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f27089b;
+            ArrayList arrayList = this.f27090b;
             if (i7 < arrayList.size()) {
                 arrayList.add(0, (TLRPC.Photo) arrayList.remove(i7));
                 g();
-                this.h.getNotificationCenter().k(ns.f25489e3, this);
+                this.h.getNotificationCenter().k(ns.f25490e3, this);
             }
         }
     }
@@ -188,12 +188,12 @@ public final class vo {
         boolean z10;
         TLRPC.Photo photo;
         boolean z11 = this.d;
-        this.f27091e = false;
+        this.f27092e = false;
         this.d = true;
-        this.f27090c = false;
+        this.f27091c = false;
         int max = Math.max(photos_photos.count, photos_photos.photos.size());
         photos_photos.count = max;
-        ArrayList arrayList = this.f27089b;
+        ArrayList arrayList = this.f27090b;
         if (max == arrayList.size() && i7 + i10 <= arrayList.size()) {
             z10 = false;
         } else {
@@ -230,7 +230,7 @@ public final class vo {
             }
         }
         g();
-        this.h.getNotificationCenter().k(ns.f25489e3, this);
+        this.h.getNotificationCenter().k(ns.f25490e3, this);
         if (!z11 && i7 == 0 && i10 < arrayList.size() && arrayList.size() - i10 > 80) {
             a(arrayList.size() - 80, 80);
         }
@@ -240,7 +240,7 @@ public final class vo {
         int i7 = 0;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f27089b;
+            ArrayList arrayList = this.f27090b;
             if (i7 >= arrayList.size()) {
                 break;
             }
@@ -254,19 +254,19 @@ public final class vo {
         }
         if (z10) {
             g();
-            this.h.getNotificationCenter().k(ns.f25489e3, this);
+            this.h.getNotificationCenter().k(ns.f25490e3, this);
         }
     }
 
     public final void f() {
-        this.f27089b.clear();
-        this.f27092f = -1;
-        this.f27093g = -1;
-        this.f27090c = true;
+        this.f27090b.clear();
+        this.f27093f = -1;
+        this.f27094g = -1;
+        this.f27091c = true;
         g();
     }
 
     public final void g() {
-        this.h.getMessagesStorage().f27220a.c(new to(this, 1));
+        this.h.getMessagesStorage().f27219a.c(new to(this, 1));
     }
 }

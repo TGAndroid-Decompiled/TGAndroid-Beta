@@ -46,7 +46,7 @@ public abstract class gv extends al0 {
         super(context);
         boolean z15;
         this.h = 2131232126;
-        this.f35068n = !org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q();
+        this.f35068n = !org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q();
         this.f35069r = true;
         this.I = new HashMap();
         this.L = 0.0f;
@@ -69,14 +69,14 @@ public abstract class gv extends al0 {
         this.R = i10;
         this.Q = z14;
         yu yuVar = new yu(this, context, z13, z14);
-        this.f33010b = yuVar;
+        this.f33013b = yuVar;
         yuVar.setClipToPadding(false);
-        this.f33010b.setOrientation(0);
+        this.f33013b.setOrientation(0);
         setVerticalScrollBarEnabled(false);
         setHorizontalScrollBarEnabled(false);
-        addView(this.f33010b);
+        addView(this.f33013b);
         if (i7 == 4) {
-            LinearLayout linearLayout = this.f33010b;
+            LinearLayout linearLayout = this.f33013b;
             cv cvVar = new cv(this, context, 2131232128, false);
             this.f35073y = cvVar;
             linearLayout.addView(cvVar);
@@ -89,21 +89,21 @@ public abstract class gv extends al0 {
             this.h = 2131231063;
         }
         if (z10) {
-            LinearLayout linearLayout2 = this.f33010b;
+            LinearLayout linearLayout2 = this.f33013b;
             cv cvVar2 = new cv(this, context, this.h, false);
             this.E = cvVar2;
             linearLayout2.addView(cvVar2);
             cvVar2.setContentDescription(org.telegram.messenger.hd.M0(2131746361, null));
-            cvVar2.f33693a = Long.valueOf(-934918565);
+            cvVar2.f33695a = Long.valueOf(-934918565);
         }
         if (z11) {
-            LinearLayout linearLayout3 = this.f33010b;
+            LinearLayout linearLayout3 = this.f33013b;
             cv cvVar3 = new cv(this, context, 2131232122, false);
             this.F = cvVar3;
             linearLayout3.addView(cvVar3);
             cvVar3.setContentDescription(org.telegram.messenger.hd.M0(2131751175, null));
             cvVar3.setAlpha(0.0f);
-            cvVar3.f33693a = Long.valueOf(98352451);
+            cvVar3.f33695a = Long.valueOf(98352451);
         }
         if (!z13) {
             for (int i11 = 0; i11 < 8; i11++) {
@@ -115,26 +115,26 @@ public abstract class gv extends al0 {
                 }
                 cv cvVar4 = new cv(this, context, i12, z15);
                 cvVar4.setContentDescription(f(i11));
-                this.f33010b.addView(cvVar4);
+                this.f33013b.addView(cvVar4);
             }
             o();
             return;
         }
         if (z12) {
-            LinearLayout linearLayout4 = this.f33010b;
+            LinearLayout linearLayout4 = this.f33013b;
             ev evVar = new ev(this, context);
             this.H = evVar;
             linearLayout4.addView(evVar);
             evVar.h = 3552126;
         }
-        this.J = this.f33010b.getChildCount();
+        this.J = this.f33013b.getChildCount();
         if (runnable != null) {
-            LinearLayout linearLayout5 = this.f33010b;
+            LinearLayout linearLayout5 = this.f33013b;
             cv cvVar5 = new cv(this, context, 2131232743, true);
             this.G = cvVar5;
             linearLayout5.addView(cvVar5);
             cvVar5.setContentDescription(org.telegram.messenger.hd.M0(2131745495, null));
-            cvVar5.f33693a = Long.valueOf(1434631203);
+            cvVar5.f33695a = Long.valueOf(1434631203);
             cvVar5.setAlpha(0.0f);
         }
         o();
@@ -198,14 +198,14 @@ public abstract class gv extends al0 {
         int i11 = this.N;
         int i12 = 0;
         int i13 = 0;
-        while (i12 < this.f33010b.getChildCount()) {
-            View childAt = this.f33010b.getChildAt(i12);
+        while (i12 < this.f33013b.getChildCount()) {
+            View childAt = this.f33013b.getChildAt(i12);
             if (childAt instanceof ev) {
                 ev evVar = (ev) childAt;
                 int i14 = 0;
                 int i15 = i13;
-                while (i14 < evVar.f33010b.getChildCount()) {
-                    View childAt2 = evVar.f33010b.getChildAt(i14);
+                while (i14 < evVar.f33013b.getChildCount()) {
+                    View childAt2 = evVar.f33013b.getChildAt(i14);
                     if (childAt2 instanceof cv) {
                         cv cvVar2 = (cv) childAt2;
                         if (i7 == i15) {
@@ -257,7 +257,7 @@ public abstract class gv extends al0 {
             } else {
                 this.M = 1.0f;
                 this.L = org.telegram.messenger.g0.T1(f10, f11, 1.0f);
-                this.f33010b.invalidate();
+                this.f33013b.invalidate();
             }
             if (evVar2 != null) {
                 if (this.N != 1 && !this.f35068n) {
@@ -265,39 +265,39 @@ public abstract class gv extends al0 {
                 } else {
                     z12 = true;
                 }
-                if (z12 != evVar2.f34439n) {
-                    evVar2.f34439n = z12;
+                if (z12 != evVar2.f34438n) {
+                    evVar2.f34438n = z12;
                     if (!z12) {
                         evVar2.a(0);
                     }
-                    ValueAnimator valueAnimator2 = evVar2.f33011c;
+                    ValueAnimator valueAnimator2 = evVar2.f33014c;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
                     }
                     if (z11) {
-                        float f13 = evVar2.f34440r;
+                        float f13 = evVar2.f34439r;
                         if (!z12) {
                             f12 = 0.0f;
                         }
                         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f13, f12);
-                        evVar2.f33011c = ofFloat2;
+                        evVar2.f33014c = ofFloat2;
                         ofFloat2.addUpdateListener(new c6(evVar2, 20));
-                        evVar2.f33011c.setDuration(475L);
-                        evVar2.f33011c.setInterpolator(er.h);
-                        evVar2.f33011c.start();
+                        evVar2.f33014c.setDuration(475L);
+                        evVar2.f33014c.setInterpolator(er.h);
+                        evVar2.f33014c.start();
                     } else {
                         if (!z12) {
                             f12 = 0.0f;
                         }
-                        evVar2.f34440r = f12;
+                        evVar2.f34439r = f12;
                         evVar2.invalidate();
                         evVar2.requestLayout();
                         evVar2.c();
-                        evVar2.f34441s.f33010b.invalidate();
+                        evVar2.f34440s.f33013b.invalidate();
                     }
                 }
             }
-            View childAt3 = this.f33010b.getChildAt(this.N);
+            View childAt3 = this.f33013b.getChildAt(this.N);
             if (this.N >= 2) {
                 b(childAt3.getLeft(), childAt3.getRight());
             } else {
@@ -305,7 +305,7 @@ public abstract class gv extends al0 {
             }
         }
         if (this.O != i7) {
-            if (evVar2 != null && this.N == 1 && i7 >= 1 && i7 <= evVar2.f33010b.getChildCount() + 1) {
+            if (evVar2 != null && this.N == 1 && i7 >= 1 && i7 <= evVar2.f33013b.getChildCount() + 1) {
                 int i17 = (i7 - 1) * 36;
                 evVar2.b(org.telegram.messenger.g0.L(i17 - 6), org.telegram.messenger.g0.L(i17 + 24));
             }
@@ -353,7 +353,7 @@ public abstract class gv extends al0 {
                     }
                     animate.alpha(f10).setDuration(200L).setInterpolator(er.h).withEndAction(new ai.q(24, this, z10)).start();
                 }
-                this.f33010b.requestLayout();
+                this.f33013b.requestLayout();
                 this.f35064b0 = false;
             }
         }
@@ -373,33 +373,33 @@ public abstract class gv extends al0 {
 
     public final void n(boolean z10) {
         this.f35069r = z10;
-        this.f33010b.invalidate();
+        this.f33013b.invalidate();
     }
 
     public final void o() {
         int i7 = 0;
         final int i10 = 0;
-        while (i7 < this.f33010b.getChildCount()) {
-            View childAt = this.f33010b.getChildAt(i7);
+        while (i7 < this.f33013b.getChildCount()) {
+            View childAt = this.f33013b.getChildAt(i7);
             if (childAt instanceof ev) {
                 ev evVar = (ev) childAt;
                 int i11 = 0;
-                while (i11 < evVar.f33010b.getChildCount()) {
-                    evVar.f33010b.getChildAt(i11).setOnClickListener(new View.OnClickListener(this) {
-                        public final gv f41766b;
+                while (i11 < evVar.f33013b.getChildCount()) {
+                    evVar.f33013b.getChildAt(i11).setOnClickListener(new View.OnClickListener(this) {
+                        public final gv f41758b;
 
                         {
-                            this.f41766b = this;
+                            this.f41758b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r3) {
                                 case 0:
-                                    this.f41766b.h(i10);
+                                    this.f41758b.h(i10);
                                     return;
                                 default:
-                                    this.f41766b.h(i10);
+                                    this.f41758b.h(i10);
                                     return;
                             }
                         }
@@ -410,20 +410,20 @@ public abstract class gv extends al0 {
                 i10--;
             } else if (childAt != null) {
                 childAt.setOnClickListener(new View.OnClickListener(this) {
-                    public final gv f41766b;
+                    public final gv f41758b;
 
                     {
-                        this.f41766b = this;
+                        this.f41758b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r3) {
                             case 0:
-                                this.f41766b.h(i10);
+                                this.f41758b.h(i10);
                                 return;
                             default:
-                                this.f41766b.h(i10);
+                                this.f41758b.h(i10);
                                 return;
                         }
                     }
@@ -440,7 +440,7 @@ public abstract class gv extends al0 {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        this.f33010b.setPadding(org.telegram.messenger.g0.L(this.f35067e0), 0, org.telegram.messenger.g0.L(11.0f), 0);
+        this.f33013b.setPadding(org.telegram.messenger.g0.L(this.f35067e0), 0, org.telegram.messenger.g0.L(11.0f), 0);
         super.onMeasure(i7, i10);
     }
 

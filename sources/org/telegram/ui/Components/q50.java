@@ -21,9 +21,9 @@ public final class q50 extends c51 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         a60 a60Var = this.f38529w;
-        a60Var.Q1.setTranslationY(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.L(6.0f) + (a60Var.f34214y1 - a60Var.f29716t0));
+        a60Var.Q1.setTranslationY(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.L(6.0f) + (a60Var.f34201y1 - a60Var.f29716t0));
         float f10 = a60Var.f32875j2 + a60Var.f32881p2;
-        cv0 cv0Var = a60Var.f34210u1;
+        cv0 cv0Var = a60Var.f34197u1;
         if (cv0Var.getVisibility() != 0) {
             this.f38525f = f10;
             this.h = f10;
@@ -45,7 +45,7 @@ public final class q50 extends c51 {
                 invalidate();
             }
         }
-        cv0Var.setTranslationY(a60Var.f34214y1 + this.f38525f);
+        cv0Var.setTranslationY(a60Var.f34201y1 + this.f38525f);
         super.dispatchDraw(canvas);
     }
 

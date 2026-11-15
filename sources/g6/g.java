@@ -34,7 +34,7 @@ public final class g {
             Log.i(bVar.f16859a, bVar.d("End session for %s", this.f12910b.getPackageName()));
             y yVar = this.f12909a;
             Parcel p12 = yVar.p1();
-            int i7 = com.google.android.gms.internal.cast.t.f6380a;
+            int i7 = com.google.android.gms.internal.cast.t.f6383a;
             p12.writeInt(1);
             p12.writeInt(z10 ? 1 : 0);
             yVar.t1(p12, 6);

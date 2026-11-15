@@ -96,7 +96,7 @@ public final class d1 implements Runnable {
         int i13;
         RecyclerView recyclerView = this.h;
         int[] iArr = recyclerView.K0;
-        if (recyclerView.f2827y == null) {
+        if (recyclerView.f2830y == null) {
             recyclerView.P0 = true;
             recyclerView.removeCallbacks(this);
             this.f58528c.abortAnimation();
@@ -127,7 +127,7 @@ public final class d1 implements Runnable {
             if (recyclerView.getOverScrollMode() != 2) {
                 recyclerView.o(i7, i10);
             }
-            if (recyclerView.f2825x != null) {
+            if (recyclerView.f2828x != null) {
                 iArr[0] = 0;
                 iArr[1] = 0;
                 recyclerView.u0(i7, i10, iArr);
@@ -135,9 +135,9 @@ public final class d1 implements Runnable {
                 i12 = iArr[1];
                 i7 -= i11;
                 i10 -= i12;
-                a1 a1Var = recyclerView.f2827y.f58624e;
+                a1 a1Var = recyclerView.f2830y.f58624e;
                 if (a1Var != null && !a1Var.d && a1Var.f58483e) {
-                    int b10 = recyclerView.f2822v0.b();
+                    int b10 = recyclerView.f2825v0.b();
                     if (b10 == 0) {
                         a1Var.h();
                     } else if (a1Var.f58480a >= b10) {
@@ -182,7 +182,7 @@ public final class d1 implements Runnable {
             } else {
                 z12 = true;
             }
-            a1 a1Var2 = recyclerView.f2827y.f58624e;
+            a1 a1Var2 = recyclerView.f2830y.f58624e;
             if ((a1Var2 == null || !a1Var2.d) && z12) {
                 if (recyclerView.getOverScrollMode() != 2) {
                     int currVelocity = (int) overScroller.getCurrVelocity();
@@ -207,19 +207,19 @@ public final class d1 implements Runnable {
                             }
                         } else if (i13 > 0) {
                             recyclerView.A();
-                            if (recyclerView.f2797b0.isFinished()) {
-                                recyclerView.f2797b0.onAbsorb(i13);
+                            if (recyclerView.f2800b0.isFinished()) {
+                                recyclerView.f2800b0.onAbsorb(i13);
                             }
                         }
                         if (currVelocity < 0) {
                             recyclerView.B();
-                            if (recyclerView.f2795a0.isFinished()) {
-                                recyclerView.f2795a0.onAbsorb(-currVelocity);
+                            if (recyclerView.f2798a0.isFinished()) {
+                                recyclerView.f2798a0.onAbsorb(-currVelocity);
                             }
                         } else if (currVelocity > 0) {
                             recyclerView.y();
-                            if (recyclerView.f2799c0.isFinished()) {
-                                recyclerView.f2799c0.onAbsorb(currVelocity);
+                            if (recyclerView.f2802c0.isFinished()) {
+                                recyclerView.f2802c0.onAbsorb(currVelocity);
                             }
                         }
                         if (i13 != 0 || currVelocity != 0) {
@@ -228,7 +228,7 @@ public final class d1 implements Runnable {
                         }
                     }
                 }
-                h2.f fVar = recyclerView.f2821u0;
+                h2.f fVar = recyclerView.f2824u0;
                 int[] iArr4 = fVar.d;
                 if (iArr4 != null) {
                     Arrays.fill(iArr4, -1);
@@ -236,14 +236,14 @@ public final class d1 implements Runnable {
                 fVar.f13442c = 0;
             } else {
                 a();
-                q qVar = recyclerView.f2820t0;
+                q qVar = recyclerView.f2823t0;
                 if (qVar != null) {
                     qVar.a(recyclerView, i11, i12);
                 }
             }
         }
         recyclerView.Q0 = false;
-        a1 a1Var3 = recyclerView.f2827y.f58624e;
+        a1 a1Var3 = recyclerView.f2830y.f58624e;
         if (a1Var3 != null && a1Var3.d) {
             a1Var3.c(0, 0);
         }

@@ -28,8 +28,8 @@ public final class a81 implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         jf0 jf0Var = this.f44963a;
-        ArrayList arrayList = jf0Var.f48321b;
-        ArrayList arrayList2 = jf0Var.f48322c;
+        ArrayList arrayList = jf0Var.f48306b;
+        ArrayList arrayList2 = jf0Var.f48307c;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             e81 e81Var = this.h;
@@ -49,12 +49,12 @@ public final class a81 implements View.OnClickListener {
                 e81Var.c(false);
                 return;
             }
-            if (org.telegram.messenger.gz.f23937c1 > 0 && anVar.f45278m1.getKeyboardHeight() < org.telegram.messenger.g0.L(20.0f)) {
-                org.telegram.ui.Components.xb t6 = new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(e81Var.getContext()), e81Var.f46630a).t(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131748488, null)), null);
+            if (org.telegram.messenger.gz.f23940c1 > 0 && anVar.f45277m1.getKeyboardHeight() < org.telegram.messenger.g0.L(20.0f)) {
+                org.telegram.ui.Components.xb t6 = new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(e81Var.getContext()), e81Var.f46620a).t(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131748488, null)), null);
                 anVar.C1 = t6;
-                t6.f41643j = 4000;
+                t6.f41635j = 4000;
                 t6.j();
-                org.telegram.messenger.gz.S(org.telegram.messenger.gz.f23937c1 - 1);
+                org.telegram.messenger.gz.S(org.telegram.messenger.gz.f23940c1 - 1);
             }
             org.telegram.ui.Components.uj0 uj0Var = this.f44965c;
             uj0Var.requestLayout();

@@ -63,13 +63,13 @@ public final class o5 extends org.telegram.ui.ActionBar.u2 {
         linearLayout.addView(j5Var, ja.t(-2, -2, 1, 36, 10, 36, 0));
         di.e1 e1Var = new di.e1(this, getContext());
         ((ImageView) e1Var.d).setImageResource(2131232381);
-        ((TextView) e1Var.f8445b).setText(hd.M0(2131749311, null));
-        ((TextView) e1Var.f8446c).setText(hd.M0(2131749310, null));
+        ((TextView) e1Var.f8441b).setText(hd.M0(2131749311, null));
+        ((TextView) e1Var.f8442c).setText(hd.M0(2131749310, null));
         linearLayout.addView(e1Var, ja.t(-1, -2, 0, 0, 20, 0, 0));
         di.e1 e1Var2 = new di.e1(this, getContext());
         ((ImageView) e1Var2.d).setImageResource(2131232380);
-        ((TextView) e1Var2.f8445b).setText(hd.M0(2131749318, null));
-        ((TextView) e1Var2.f8446c).setText(hd.M0(2131749317, null));
+        ((TextView) e1Var2.f8441b).setText(hd.M0(2131749318, null));
+        ((TextView) e1Var2.f8442c).setText(hd.M0(2131749317, null));
         linearLayout.addView(e1Var2, ja.t(-1, -2, 0, 0, 10, 0, 0));
         ug.q0 q0Var = new ug.q0(org.telegram.messenger.g0.L(8.0f), context, e6Var, true);
         this.f12119m1 = q0Var;
@@ -100,10 +100,10 @@ public final class o5 extends org.telegram.ui.ActionBar.u2 {
         if (X != null) {
             String M0 = hd.M0(2131744881, null);
             String M02 = hd.M0(2131744880, null);
-            tb tbVar = new tb(X.W(), X.f33534c);
-            tbVar.f39628a.setImageResource(2131232394);
-            tbVar.f39629b.setText(M0);
-            TextView textView = tbVar.f39630c;
+            tb tbVar = new tb(X.W(), X.f33536c);
+            tbVar.f39625a.setImageResource(2131232394);
+            tbVar.f39626b.setText(M0);
+            TextView textView = tbVar.f39627c;
             textView.setText(M02);
             textView.setSingleLine(false);
             textView.setMaxLines(5);

@@ -168,12 +168,12 @@ public final class d implements m {
             f10 = 1.0f;
         }
         b5 b5Var = f15708r;
-        int i10 = b5Var.f8250b;
+        int i10 = b5Var.f8253b;
         String attributeValue3 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "subFrameRate");
         if (attributeValue3 != null) {
             i10 = Integer.parseInt(attributeValue3);
         }
-        int i11 = b5Var.f8251c;
+        int i11 = b5Var.f8254c;
         String attributeValue4 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "tickRate");
         if (attributeValue4 != null) {
             i11 = Integer.parseInt(attributeValue4);

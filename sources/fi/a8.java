@@ -117,7 +117,7 @@ public class a8 extends NestedScrollView implements l60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new s7(this, getScrollY(), f10, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(er.f34420f);
+        ofFloat.setInterpolator(er.f34419f);
         ofFloat.start();
     }
 
@@ -130,7 +130,7 @@ public class a8 extends NestedScrollView implements l60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new s7(this, getScrollY(), f10, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(er.f34420f);
+        ofFloat.setInterpolator(er.f34419f);
         ofFloat.start();
     }
 
@@ -231,7 +231,7 @@ public class a8 extends NestedScrollView implements l60 {
                             f10 = Float.NaN;
                         }
                         if (!Float.isNaN(f10)) {
-                            Point point = org.telegram.messenger.g0.f23609q;
+                            Point point = org.telegram.messenger.g0.f23611q;
                             if (point.x > point.y) {
                                 f12 = 3000.0f;
                             } else {

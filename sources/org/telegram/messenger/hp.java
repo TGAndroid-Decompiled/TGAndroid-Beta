@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class hp {
-    public final int f24200a;
-    public final long f24201b;
-    public final ArrayList f24202c = new ArrayList();
+    public final int f24203a;
+    public final long f24204b;
+    public final ArrayList f24205c = new ArrayList();
     public int d;
-    public boolean f24203e;
-    public boolean f24204f;
+    public boolean f24206e;
+    public boolean f24207f;
 
     public hp(int i7, long j3) {
-        this.f24200a = i7;
-        this.f24201b = j3;
+        this.f24203a = i7;
+        this.f24204b = j3;
     }
 
     public final TLRPC.Document a() {
         gj gjVar;
-        ArrayList arrayList = this.f24202c;
+        ArrayList arrayList = this.f24205c;
         if (arrayList.isEmpty() || (gjVar = (gj) arrayList.get(0)) == null) {
             return null;
         }
@@ -26,12 +26,12 @@ public final class hp {
     }
 
     public final void b() {
-        if (!this.f24204f && !this.f24203e) {
-            this.f24204f = true;
+        if (!this.f24207f && !this.f24206e) {
+            this.f24207f = true;
             TLRPC.TL_getSavedMusic tL_getSavedMusic = new TLRPC.TL_getSavedMusic();
-            int i7 = this.f24200a;
-            tL_getSavedMusic.f28105id = np.s1(i7).o1(this.f24201b);
-            tL_getSavedMusic.offset = this.f24202c.size();
+            int i7 = this.f24203a;
+            tL_getSavedMusic.f28105id = np.s1(i7).o1(this.f24204b);
+            tL_getSavedMusic.offset = this.f24205c.size();
             tL_getSavedMusic.limit = 30;
             ConnectionsManager.getInstance(i7).sendRequest(tL_getSavedMusic, new s1(this, 6));
         }
@@ -41,7 +41,7 @@ public final class hp {
         gj gjVar;
         TLRPC.Document F0;
         TLRPC.Document a10 = a();
-        ArrayList arrayList = this.f24202c;
+        ArrayList arrayList = this.f24205c;
         gj gjVar2 = (gj) arrayList.get(i7);
         arrayList.set(i7, (gj) arrayList.get(i10));
         arrayList.set(i10, gjVar2);
@@ -85,15 +85,15 @@ public final class hp {
             }
         }
         tL_account_saveMusic.unsave = false;
-        ConnectionsManager.getInstance(this.f24200a).sendRequest(tL_account_saveMusic, null);
+        ConnectionsManager.getInstance(this.f24203a).sendRequest(tL_account_saveMusic, null);
     }
 
     public final gj d(TLRPC.Document document) {
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.f28072id = gz.p();
-        int i7 = this.f24200a;
+        int i7 = this.f24203a;
         np s12 = np.s1(i7);
-        long j3 = this.f24201b;
+        long j3 = this.f24204b;
         tL_message.peer_id = s12.z1(j3);
         tL_message.from_id = np.s1(i7).z1(j3);
         TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
@@ -106,9 +106,9 @@ public final class hp {
 
     public final void e() {
         TLRPC.Document a10 = a();
-        int i7 = this.f24200a;
+        int i7 = this.f24203a;
         np s12 = np.s1(i7);
-        long j3 = this.f24201b;
+        long j3 = this.f24204b;
         TLRPC.UserFull b22 = s12.b2(j3);
         if (b22 == null) {
             return;

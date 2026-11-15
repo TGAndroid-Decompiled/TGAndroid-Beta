@@ -98,7 +98,7 @@ public final class u extends ja {
                                 TL_aicompose.inputAiComposeToneSingleUse inputaicomposetonesingleuse = new TL_aicompose.inputAiComposeToneSingleUse();
                                 inputaicomposetonesingleuse.custom_prompt = trim;
                                 tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
-                                uVar.d2 = ConnectionsManager.getInstance(uVar.T1).sendRequest(tL_messages_composeRichMessageWithAI, new ai.d1(uVar, 21));
+                                uVar.d2 = ConnectionsManager.getInstance(uVar.T1).sendRequest(tL_messages_composeRichMessageWithAI, new ai.e1(uVar, 21));
                                 org.telegram.messenger.g0.v1(k3Var.d);
                                 return;
                             }
@@ -124,7 +124,7 @@ public final class u extends ja {
         frameLayout2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.Z1 = frameLayout3;
-        org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context, hd.M0(2131754058, null), true, false, ((org.telegram.messenger.j0) np.s1(i7).f25448y7.R.f15881b).f24493c, e6Var);
+        org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context, hd.M0(2131754058, null), true, false, ((org.telegram.messenger.j0) np.s1(i7).f25451y7.R.f15881b).f24498c, e6Var);
         this.f22020a2 = k3Var;
         org.telegram.ui.Cells.i3 i3Var = k3Var.d;
         i3Var.setImeOptions(6);
@@ -173,7 +173,7 @@ public final class u extends ja {
                                 TL_aicompose.inputAiComposeToneSingleUse inputaicomposetonesingleuse = new TL_aicompose.inputAiComposeToneSingleUse();
                                 inputaicomposetonesingleuse.custom_prompt = trim;
                                 tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
-                                uVar.d2 = ConnectionsManager.getInstance(uVar.T1).sendRequest(tL_messages_composeRichMessageWithAI, new ai.d1(uVar, 21));
+                                uVar.d2 = ConnectionsManager.getInstance(uVar.T1).sendRequest(tL_messages_composeRichMessageWithAI, new ai.e1(uVar, 21));
                                 org.telegram.messenger.g0.v1(k3Var2.d);
                                 return;
                             }
@@ -191,11 +191,11 @@ public final class u extends ja {
         kVar.C = false;
         kVar.o(er.h);
         kVar.n(350L);
-        this.f35936o1.setItemAnimator(kVar);
-        uj0 uj0Var = this.f35936o1;
+        this.f35931o1.setItemAnimator(kVar);
+        uj0 uj0Var = this.f35931o1;
         int i13 = this.f29717u0;
         uj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(72.0f));
-        this.f35936o1.setClipToPadding(false);
+        this.f35931o1.setClipToPadding(false);
         this.V1.O(false);
         d1();
     }

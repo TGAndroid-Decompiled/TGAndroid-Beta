@@ -17,9 +17,9 @@ public class x2 extends org.telegram.ui.Components.ja implements org.telegram.ui
     public x2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context, null, true, false, e6Var);
         this.V1 = new Paint();
-        this.f35943v1 = 0.1f;
+        this.f35938v1 = 0.1f;
         this.U1 = viewGroup;
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i7 = this.f29717u0;
         uj0Var.setPadding(i7, 0, i7, 0);
         updateColors();
@@ -48,7 +48,7 @@ public class x2 extends org.telegram.ui.Components.ja implements org.telegram.ui
     public void T0(float f10) {
         this.W1 = f10;
         if (this.F != null) {
-            this.F.setTranslationY(Math.max((this.f29682b.getY() + f10) + this.f29716t0, this.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23603m)) - this.F.getBottom());
+            this.F.setTranslationY(Math.max((this.f29682b.getY() + f10) + this.f29716t0, this.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23605m)) - this.F.getBottom());
         }
     }
 
@@ -59,7 +59,7 @@ public class x2 extends org.telegram.ui.Components.ja implements org.telegram.ui
         float width;
         org.telegram.ui.ActionBar.k2 k2Var = this.f29685c;
         float height = k2Var.getHeight();
-        float max = Math.max(height - org.telegram.messenger.g0.f23604n, this.f29682b.getY() + this.W1 + this.f29716t0);
+        float max = Math.max(height - org.telegram.messenger.g0.f23606n, this.f29682b.getY() + this.W1 + this.f29716t0);
         if (max >= height) {
             return;
         }

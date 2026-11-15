@@ -44,7 +44,7 @@ public abstract class c extends FrameLayout {
         this.f60649r = view;
         addView(view, ja.o(-1, -1));
         q6.h(j6.f28922h5, view, e6Var);
-        t8Var.f39602r = g0.L(40.0f);
+        t8Var.f39600r = g0.L(40.0f);
         i9 i9Var = new i9(context);
         this.f60645c = i9Var;
         i9Var.setRoundRadius(g0.L(20.0f));
@@ -56,7 +56,7 @@ public abstract class c extends FrameLayout {
         w3Var.setTextSize(16);
         int i10 = j6.f28957j5;
         q6.X(w3Var, i10, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -67,7 +67,7 @@ public abstract class c extends FrameLayout {
         this.f60646e = j5Var;
         j5Var.setTextSize(14);
         q6.X(j5Var, i10, e6Var);
-        j5Var.setGravity(hd.f24101a0 ? 5 : 3);
+        j5Var.setGravity(hd.f24104a0 ? 5 : 3);
         addView(j5Var);
         RadioButton radioButton = new RadioButton(context);
         this.f60647f = radioButton;
@@ -109,7 +109,7 @@ public abstract class c extends FrameLayout {
         float f17;
         int i14;
         int i15 = 3;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -126,7 +126,7 @@ public abstract class c extends FrameLayout {
             f11 = 16.0f;
         }
         this.f60645c.setLayoutParams(ja.d(40, 40.0f, i16, f10, 0.0f, f11, 0.0f));
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -144,7 +144,7 @@ public abstract class c extends FrameLayout {
             }
             f12 = i11;
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             if (b()) {
                 i14 = 105;
             } else {
@@ -155,7 +155,7 @@ public abstract class c extends FrameLayout {
             f13 = 20.0f;
         }
         this.d.setLayoutParams(ja.d(-1, -2.0f, i17, f12, 0.0f, f13, 0.0f));
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -172,7 +172,7 @@ public abstract class c extends FrameLayout {
             }
             f14 = i13;
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             if (b()) {
                 i18 = 105;
             }
@@ -181,7 +181,7 @@ public abstract class c extends FrameLayout {
             f15 = 20.0f;
         }
         this.f60646e.setLayoutParams(ja.d(-1, -2.0f, i19, f14, 0.0f, f15, 0.0f));
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         if (z12) {
             i15 = 5;
         }
@@ -216,7 +216,7 @@ public abstract class c extends FrameLayout {
                 i7 -= 40;
             }
             int a10 = a() + i7;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 canvas.drawRect(0.0f, getHeight() - 1, getWidth() - g0.L(a10), getHeight(), paint);
             } else {
                 canvas.drawRect(g0.L(a10), getHeight() - 1, getWidth(), getHeight(), paint);
@@ -263,7 +263,7 @@ public abstract class c extends FrameLayout {
             j5Var.setVisibility(0);
         }
         if (this.f60645c.getVisibility() == 8) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 w3Var.setTranslationX(g0.L(40.0f));
                 j5Var.setTranslationX(g0.L(40.0f));
                 return;

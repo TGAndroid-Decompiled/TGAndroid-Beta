@@ -34,16 +34,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import q7.s0;
 public final class e extends b1.d {
-    public final Context f7327e;
-    public v0.g f7328f;
-    public Executor f7329g;
+    public final Context f7330e;
+    public v0.g f7331f;
+    public Executor f7332g;
     public CancellationSignal h;
-    public final c1.e f7330i;
+    public final c1.e f7333i;
 
     public e(Context context) {
         j.e(context, "context");
-        this.f7327e = context;
-        this.f7330i = new c1.e(this, new Handler(Looper.getMainLooper()), 1);
+        this.f7330e = context;
+        this.f7333i = new c1.e(this, new Handler(Looper.getMainLooper()), 1);
     }
 
     public static v0.f f(u uVar) {
@@ -136,9 +136,9 @@ public final class e extends b1.d {
         ArrayList arrayList;
         long j3;
         j.e(request, "request");
-        LinkedHashMap linkedHashMap = g.f7335a;
+        LinkedHashMap linkedHashMap = g.f7338a;
         String str4 = request.d;
-        Context context = this.f7327e;
+        Context context = this.f7330e;
         j.e(context, "context");
         if (n6.d.f21067e.d(context, n6.e.f21069a) == 0) {
             PackageManager packageManager = context.getPackageManager();
@@ -190,7 +190,7 @@ public final class e extends b1.d {
                             int i7 = 0;
                             while (i7 < length) {
                                 JSONObject jSONObject4 = jSONArray2.getJSONObject(i7);
-                                LinkedHashMap linkedHashMap2 = g.f7335a;
+                                LinkedHashMap linkedHashMap2 = g.f7338a;
                                 byte[] bArr = a10;
                                 int i10 = (int) jSONObject4.getLong("alg");
                                 String optString4 = jSONObject4.optString("type", "");
@@ -210,14 +210,14 @@ public final class e extends b1.d {
                             byte[] bArr2 = a10;
                             y yVar2 = yVar;
                             ArrayList arrayList3 = new ArrayList();
-                            LinkedHashMap linkedHashMap3 = g.f7335a;
+                            LinkedHashMap linkedHashMap3 = g.f7338a;
                             if (jSONObject.has("excludeCredentials")) {
                                 JSONArray jSONArray3 = jSONObject.getJSONArray("excludeCredentials");
                                 int length2 = jSONArray3.length();
                                 int i11 = 0;
                                 while (i11 < length2) {
                                     JSONObject jSONObject5 = jSONArray3.getJSONObject(i11);
-                                    LinkedHashMap linkedHashMap4 = g.f7335a;
+                                    LinkedHashMap linkedHashMap4 = g.f7338a;
                                     String string5 = jSONObject5.getString(str5);
                                     j.d(string5, "getString(...)");
                                     y yVar3 = yVar2;
@@ -264,7 +264,7 @@ public final class e extends b1.d {
                                 }
                             }
                             y yVar4 = yVar2;
-                            LinkedHashMap linkedHashMap5 = g.f7335a;
+                            LinkedHashMap linkedHashMap5 = g.f7338a;
                             String str6 = "none";
                             String optString5 = jSONObject.optString("attestation", "none");
                             j.b(optString5);

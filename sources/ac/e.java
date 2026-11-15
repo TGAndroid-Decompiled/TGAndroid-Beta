@@ -27,8 +27,8 @@ public final class e implements tf {
         dVar.d = db.TYPE_THIN;
         a0 a0Var = new a0(18, false);
         a0Var.d = ((f) this.f1022b).f1026e.a();
-        a0Var.f1706b = (eb) this.f1023c;
-        a0Var.f1707c = Long.valueOf((SystemClock.elapsedRealtime() - this.f1021a) & Long.MAX_VALUE);
+        a0Var.f1713b = (eb) this.f1023c;
+        a0Var.f1714c = Long.valueOf((SystemClock.elapsedRealtime() - this.f1021a) & Long.MAX_VALUE);
         dVar.f12966f = new de(a0Var);
         return new xa(dVar, 0);
     }

@@ -24,7 +24,7 @@ public final class k2 extends View {
             default:
                 n2 n2Var2 = this.f14498b;
                 n2Var2.f14753q.reset();
-                n2Var2.f14753q.postTranslate(-getX(), (-getY()) + org.telegram.messenger.g0.f23603m);
+                n2Var2.f14753q.postTranslate(-getX(), (-getY()) + org.telegram.messenger.g0.f23605m);
                 n2Var2.f14753q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
                 n2Var2.b(canvas, false);
                 return;

@@ -51,26 +51,26 @@ public final class x2 implements e40 {
         TL_stories.StoryItem storyItem = b4Var.f11543y1.f12579a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             storyItem.dialogId = b4Var.l1;
-            if (ffVar.f27708b) {
+            if (ffVar.f27710b) {
                 if (g20Var != null) {
                     accountInstance4 = b4Var.getAccountInstance();
                     String str = ffVar.I;
                     long j10 = b4Var.l1;
-                    ArrayList arrayList = ffVar.f27718n;
-                    ez.b0(ffVar.f27727x, i7, i10, j10, 0L, j3, 0L, ffVar.f27707a, str, null, arrayList, accountInstance4, null, null, null, null, null, g20Var, null, storyItem, null, z10, false, ffVar.M);
+                    ArrayList arrayList = ffVar.f27720n;
+                    ez.b0(ffVar.f27729x, i7, i10, j10, 0L, j3, 0L, ffVar.f27709a, str, null, arrayList, accountInstance4, null, null, null, null, null, g20Var, null, storyItem, null, z10, false, ffVar.M);
                 } else {
                     accountInstance3 = b4Var.getAccountInstance();
                     String str2 = ffVar.I;
                     long j11 = b4Var.l1;
-                    ArrayList arrayList2 = ffVar.f27718n;
-                    ez.b0(ffVar.f27727x, i7, i10, j11, 0L, j3, 0L, ffVar.f27707a, str2, null, arrayList2, accountInstance3, null, null, null, null, null, null, null, storyItem, null, z10, false, ffVar.M);
+                    ArrayList arrayList2 = ffVar.f27720n;
+                    ez.b0(ffVar.f27729x, i7, i10, j11, 0L, j3, 0L, ffVar.f27709a, str2, null, arrayList2, accountInstance3, null, null, null, null, null, null, null, storyItem, null, z10, false, ffVar.M);
                 }
             } else if (ffVar.h != null) {
                 accountInstance2 = b4Var.getAccountInstance();
-                ez.Z(accountInstance2, ffVar.h, ffVar.f27709c, null, b4Var.l1, null, null, null, ffVar.f27718n, ffVar.f27722r, null, ffVar.f27727x, null, g20Var, z10, i7, false, ffVar.f27707a, null, 0L, j3, 0L, null);
+                ez.Z(accountInstance2, ffVar.h, ffVar.f27711c, null, b4Var.l1, null, null, null, ffVar.f27720n, ffVar.f27724r, null, ffVar.f27729x, null, g20Var, z10, i7, false, ffVar.f27709a, null, 0L, j3, 0L, null);
             } else if (ffVar.I != null) {
                 accountInstance = b4Var.getAccountInstance();
-                ez.Z(accountInstance, ffVar.I, ffVar.f27709c, null, b4Var.l1, null, null, null, ffVar.f27718n, ffVar.f27722r, null, ffVar.f27727x, null, g20Var, z10, i7, false, ffVar.f27707a, null, 0L, j3, 0L, null);
+                ez.Z(accountInstance, ffVar.I, ffVar.f27711c, null, b4Var.l1, null, null, null, ffVar.f27720n, ffVar.f27724r, null, ffVar.f27729x, null, g20Var, z10, i7, false, ffVar.f27709a, null, 0L, j3, 0L, null);
             }
             if (j3 <= 0) {
                 z12 = true;

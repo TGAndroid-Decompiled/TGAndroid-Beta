@@ -70,7 +70,7 @@ public class AnimatedFileDrawableStream implements j7 {
                     int i7 = 0;
                     while (true) {
                         if (i7 < arrayList.size()) {
-                            if (((gj) arrayList.get(i7)).f23817k.f28072id == e12) {
+                            if (((gj) arrayList.get(i7)).f23819k.f28072id == e12) {
                                 z11 = true;
                                 break;
                             }
@@ -99,7 +99,7 @@ public class AnimatedFileDrawableStream implements j7 {
         w7.G(i7).f(this.f22235c);
         gc gcVar = this.d;
         if (gcVar != null) {
-            w7.G(i7).e(null, null, null, gcVar.f23715f, "mp4", null);
+            w7.G(i7).e(null, null, null, gcVar.f23717f, "mp4", null);
         }
     }
 

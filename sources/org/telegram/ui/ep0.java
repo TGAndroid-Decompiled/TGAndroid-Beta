@@ -7,12 +7,12 @@ import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class ep0 extends AnimatorListenerAdapter {
-    public final int f46892a;
-    public final PhotoViewer f46893b;
+    public final int f46876a;
+    public final PhotoViewer f46877b;
 
     public ep0(PhotoViewer photoViewer, int i7) {
-        this.f46892a = i7;
-        this.f46893b = photoViewer;
+        this.f46876a = i7;
+        this.f46877b = photoViewer;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class ep0 extends AnimatorListenerAdapter {
         boolean z10;
         boolean z11;
         org.telegram.ui.Components.ki kiVar;
-        int i7 = this.f46892a;
-        PhotoViewer photoViewer = this.f46893b;
+        int i7 = this.f46876a;
+        PhotoViewer photoViewer = this.f46877b;
         switch (i7) {
             case 0:
                 photoViewer.f42853p6 = null;
@@ -47,7 +47,7 @@ public final class ep0 extends AnimatorListenerAdapter {
             case 3:
                 photoViewer.M1.m0(false);
                 tp0 tp0Var = photoViewer.M1;
-                tp0Var.f57272e1.setTypeface(sg.k0.e(tp0Var.f57306z1).f56694j);
+                tp0Var.f57282e1.setTypeface(sg.k0.e(tp0Var.f57316z1).f56694j);
                 tp0Var.J0.setVisibility(0);
                 tp0Var.G0.setVisibility(0);
                 tp0Var.H0.setVisibility(0);
@@ -106,7 +106,7 @@ public final class ep0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     an anVar = photoViewer.f42817l4;
                     if (anVar == null && (kiVar = photoViewer.f42727b2) != null) {
-                        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+                        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
                         if (e2Var instanceof an) {
                             anVar = (an) e2Var;
                         }

@@ -27,7 +27,7 @@ public final class pa0 {
         int L2;
         SpannableStringBuilder spannableStringBuilder = this.f38254a;
         int i7 = this.f38258f;
-        if (spannableStringBuilder != null && this.f38256c != null && org.telegram.messenger.g0.f23608p == this.d) {
+        if (spannableStringBuilder != null && this.f38256c != null && org.telegram.messenger.g0.f23610p == this.d) {
             if (this.f38255b != org.telegram.ui.ActionBar.j6.w0(i7, e6Var)) {
                 Drawable drawable = this.f38256c;
                 int w02 = org.telegram.ui.ActionBar.j6.w0(i7, e6Var);
@@ -39,7 +39,7 @@ public final class pa0 {
             return null;
         } else {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
-            this.d = org.telegram.messenger.g0.f23608p;
+            this.d = org.telegram.messenger.g0.f23610p;
             Drawable mutate = context.getResources().getDrawable(this.f38257e).mutate();
             this.f38256c = mutate;
             int w03 = org.telegram.ui.ActionBar.j6.w0(i7, e6Var);

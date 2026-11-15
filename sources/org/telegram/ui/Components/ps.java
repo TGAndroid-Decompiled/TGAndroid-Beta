@@ -33,7 +33,7 @@ public final class ps implements SensorEventListener {
     public final float[] P = new float[3];
 
     public ps() {
-        SensorManager sensorManager = (SensorManager) org.telegram.messenger.t0.f26600b.getSystemService("sensor");
+        SensorManager sensorManager = (SensorManager) org.telegram.messenger.t0.f26609b.getSystemService("sensor");
         this.f38395a = sensorManager;
         this.f38397c = sensorManager.getDefaultSensor(8);
         Sensor defaultSensor = sensorManager.getDefaultSensor(10);
@@ -41,15 +41,15 @@ public final class ps implements SensorEventListener {
         Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
         this.f38399f = defaultSensor2;
         if (defaultSensor == null || defaultSensor2 == null) {
-            if (org.telegram.messenger.r2.f26198a) {
+            if (org.telegram.messenger.r2.f26206a) {
                 org.telegram.messenger.a8.b("gravity or linear sensor not found");
             }
             this.d = sensorManager.getDefaultSensor(1);
             this.f38398e = null;
             this.f38399f = null;
         }
-        this.h = ((PowerManager) org.telegram.messenger.t0.f26600b.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f38396b = (AudioManager) org.telegram.messenger.t0.f26600b.getSystemService("audio");
+        this.h = ((PowerManager) org.telegram.messenger.t0.f26609b.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
+        this.f38396b = (AudioManager) org.telegram.messenger.t0.f26609b.getSystemService("audio");
     }
 
     public final void a() {

@@ -10,64 +10,64 @@ import h9.i0;
 import h9.s1;
 import java.util.List;
 public final class a implements o {
-    public final int f2933a;
-    public final d0 f2934b;
+    public final int f2936a;
+    public final d0 f2937b;
 
     public a(int i7) {
-        this.f2933a = i7;
+        this.f2936a = i7;
         switch (i7) {
             case 1:
-                this.f2934b = new d0(16973, 2, "image/bmp");
+                this.f2937b = new d0(16973, 2, "image/bmp");
                 return;
             default:
-                this.f2934b = new d0(35152, 2, "image/png");
+                this.f2937b = new d0(35152, 2, "image/png");
                 return;
         }
     }
 
     @Override
     public final o a() {
-        int i7 = this.f2933a;
+        int i7 = this.f2936a;
         return this;
     }
 
     @Override
     public final boolean b(p pVar) {
-        switch (this.f2933a) {
+        switch (this.f2936a) {
             case 0:
-                return this.f2934b.b(pVar);
+                return this.f2937b.b(pVar);
             default:
-                return this.f2934b.b(pVar);
+                return this.f2937b.b(pVar);
         }
     }
 
     @Override
     public final void c(q qVar) {
-        switch (this.f2933a) {
+        switch (this.f2936a) {
             case 0:
-                this.f2934b.c(qVar);
+                this.f2937b.c(qVar);
                 return;
             default:
-                this.f2934b.c(qVar);
+                this.f2937b.c(qVar);
                 return;
         }
     }
 
     @Override
     public final void d(long j3, long j10) {
-        switch (this.f2933a) {
+        switch (this.f2936a) {
             case 0:
-                this.f2934b.d(j3, j10);
+                this.f2937b.d(j3, j10);
                 return;
             default:
-                this.f2934b.d(j3, j10);
+                this.f2937b.d(j3, j10);
                 return;
         }
     }
 
     @Override
     public final List e() {
-        switch (this.f2933a) {
+        switch (this.f2936a) {
             case 0:
             default:
                 g0 g0Var = i0.f13686b;
@@ -77,17 +77,17 @@ public final class a implements o {
 
     @Override
     public final int f(p pVar, s sVar) {
-        switch (this.f2933a) {
+        switch (this.f2936a) {
             case 0:
-                return this.f2934b.f(pVar, sVar);
+                return this.f2937b.f(pVar, sVar);
             default:
-                return this.f2934b.f(pVar, sVar);
+                return this.f2937b.f(pVar, sVar);
         }
     }
 
     @Override
     public final void release() {
-        int i7 = this.f2933a;
+        int i7 = this.f2936a;
     }
 
     private final void g() {

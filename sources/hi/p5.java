@@ -58,7 +58,7 @@ public final class p5 implements View.OnClickListener {
                 return;
             case 2:
                 jg.m mVar = (jg.m) obj;
-                np.s1(mVar.G).f25385s.clear();
+                np.s1(mVar.G).f25388s.clear();
                 np.e1().edit().remove("installReferer").commit();
                 mVar.f();
                 return;
@@ -76,7 +76,7 @@ public final class p5 implements View.OnClickListener {
                 if (stickerSet != null && c2Var.h.indexOfKey(stickerSet.set.f28078id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f28078id) < 0) {
                     if (u3Var.f31720r) {
                         longSparseArray.put(stickerSet.set.f28078id, stickerSet);
-                        c2Var.f17037e.f36720a.h(u3Var.getStickerSet());
+                        c2Var.f17037e.f36708a.h(u3Var.getStickerSet());
                         return;
                     }
                     c2Var.F(stickerSet, u3Var);
@@ -108,7 +108,7 @@ public final class p5 implements View.OnClickListener {
                 } else {
                     eVar.f17912x &= -2;
                 }
-                np.s1(i12).f25270e7.edit().putInt("dialog_botflags" + eVar.f17910s, eVar.f17912x).apply();
+                np.s1(i12).f25273e7.edit().putInt("dialog_botflags" + eVar.f17910s, eVar.f17912x).apply();
                 TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
                 toggleconnectedbotpaused.peer = np.s1(i12).j1(eVar.f17910s);
                 toggleconnectedbotpaused.paused = eVar.f17909r;
@@ -129,16 +129,16 @@ public final class p5 implements View.OnClickListener {
                 ((ye) obj).run();
                 return;
             case 10:
-                ChatActivityEnterView.g(((org.telegram.ui.Components.hd) ((ki.m0) obj).d).f35226a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.g(((org.telegram.ui.Components.hd) ((ki.m0) obj).d).f35217a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 11:
-                ((androidx.car.app.utils.a) obj).run();
+                ((ai.r) obj).run();
                 return;
             case 12:
                 li.n nVar = (li.n) obj;
                 TLRPC.Chat chat = nVar.J;
-                if (chat != null && !chat.title.equals(((di.q) nVar.f19615r.f3545b).getText().toString())) {
-                    nVar.getMessagesController().C(nVar.J.f28051id, ((di.q) nVar.f19615r.f3545b).getText().toString(), new li.g(nVar, 1));
+                if (chat != null && !chat.title.equals(((di.q) nVar.f19615r.f3548b).getText().toString())) {
+                    nVar.getMessagesController().C(nVar.J.f28051id, ((di.q) nVar.f19615r.f3548b).getText().toString(), new li.g(nVar, 1));
                 }
                 TLRPC.Chat chat2 = nVar.J;
                 if (chat2 != null && nVar.f19614n != nVar.h) {
@@ -196,7 +196,7 @@ public final class p5 implements View.OnClickListener {
                             d2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        q3Var.f39895g3.O(true);
+                        q3Var.f39892g3.O(true);
                         oi.d2 d2Var2 = q3Var.R3;
                         if (d2Var2 != null) {
                             d2Var2.h();
@@ -242,8 +242,8 @@ public final class p5 implements View.OnClickListener {
                 return;
             case 22:
                 org.telegram.ui.ActionBar.z4 z4Var = (org.telegram.ui.ActionBar.z4) obj;
-                if (!z4Var.f29950y.f57082f) {
-                    if (z4Var.f29949x.f57082f) {
+                if (!z4Var.f29950y.f57086f) {
+                    if (z4Var.f29949x.f57086f) {
                         org.telegram.ui.ActionBar.w4 w4Var = z4Var.f29940a;
                         int i13 = z4Var.f29941b;
                         org.telegram.ui.ActionBar.j jVar = w4Var.W;
@@ -269,8 +269,8 @@ public final class p5 implements View.OnClickListener {
                 return;
             case 24:
                 org.telegram.ui.Components.voip.x0 x0Var = (org.telegram.ui.Components.voip.x0) obj;
-                if (!x0Var.f41032a) {
-                    if (x0Var.f41042y == 0 && x0Var.E) {
+                if (!x0Var.f41035a) {
+                    if (x0Var.f41045y == 0 && x0Var.E) {
                         ((Activity) x0Var.getContext()).startActivityForResult(((MediaProjectionManager) x0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -281,8 +281,8 @@ public final class p5 implements View.OnClickListener {
                 return;
             case 25:
                 yb1 yb1Var = (yb1) obj;
-                if (!yb1Var.f40538a) {
-                    if (yb1Var.f40547x == 0) {
+                if (!yb1Var.f40541a) {
+                    if (yb1Var.f40550x == 0) {
                         ((Activity) yb1Var.getContext()).startActivityForResult(((MediaProjectionManager) yb1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {

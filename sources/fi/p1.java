@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import c8.na;
-import di.bc;
+import di.ac;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.eq;
 import org.telegram.ui.Components.er;
@@ -22,7 +22,7 @@ public final class p1 extends View {
     public final o1 f12159a;
     public final RectF f12160b;
     public final Path f12161c;
-    public final bc d;
+    public final ac d;
     public final org.telegram.ui.Components.u5 f12162e;
     public final org.telegram.ui.Components.u5 f12163f;
     public final org.telegram.ui.Components.g6 h;
@@ -51,7 +51,7 @@ public final class p1 extends View {
         this.f12166s = context.getResources().getDrawable(2131232749).mutate();
         dh.j jVar = new dh.j();
         this.f12167w = jVar;
-        jVar.f8160a = bVar;
+        jVar.f8163a = bVar;
         jVar.a();
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(false, true, true);
         this.h = g6Var;
@@ -66,7 +66,7 @@ public final class p1 extends View {
         eqVar.I = 1.8f;
         eqVar.J = 1.8f;
         setCount(0);
-        this.d = new bc(1, 50);
+        this.d = new ac(1, 50);
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class p1 extends View {
         paint.setColor(f10);
         dh.j jVar = this.f12167w;
         jVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        jVar.f8165g.setColor(f10);
+        jVar.f8168g.setColor(f10);
         jVar.invalidateSelf();
         jVar.draw(canvas);
         int L2 = org.telegram.messenger.g0.L(20.0f);
@@ -100,11 +100,11 @@ public final class p1 extends View {
         path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
         canvas.clipPath(path);
         float T1 = org.telegram.messenger.g0.T1(5.0f, 15.0f, d);
-        bc bcVar = this.d;
-        bcVar.h = T1;
-        bcVar.g(rectF);
-        bcVar.d();
-        bcVar.b(canvas, -1, org.telegram.messenger.g0.T1(0.5f, 1.0f, d));
+        ac acVar = this.d;
+        acVar.h = T1;
+        acVar.g(rectF);
+        acVar.d();
+        acVar.b(canvas, -1, org.telegram.messenger.g0.T1(0.5f, 1.0f, d));
         invalidate();
         canvas.restore();
         if (d2 > 0.0f) {

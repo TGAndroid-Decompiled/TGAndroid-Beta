@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.content.SharedPreferences;
 import org.telegram.tgnet.TLRPC;
 public final class cx0 extends org.telegram.ui.ActionBar.j {
-    public final String f46266a;
-    public final fx0 f46267b;
+    public final String f46238a;
+    public final fx0 f46239b;
 
     public cx0(fx0 fx0Var, String str) {
-        this.f46267b = fx0Var;
-        this.f46266a = str;
+        this.f46239b = fx0Var;
+        this.f46238a = str;
     }
 
     @Override
@@ -20,24 +20,24 @@ public final class cx0 extends org.telegram.ui.ActionBar.j {
         int i14;
         int i15;
         int i16;
-        fx0 fx0Var = this.f46267b;
+        fx0 fx0Var = this.f46239b;
         long j3 = fx0Var.h;
-        long j10 = fx0Var.f47225f;
-        String str = this.f46266a;
+        long j10 = fx0Var.f47215f;
+        String str = this.f46238a;
         if (i7 == -1) {
-            if (!fx0Var.f47226n && fx0Var.f47227r) {
+            if (!fx0Var.f47216n && fx0Var.f47217r) {
                 i16 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-                SharedPreferences.Editor edit = org.telegram.messenger.np.s1(i16).f25270e7.edit();
+                SharedPreferences.Editor edit = org.telegram.messenger.np.s1(i16).f25273e7.edit();
                 edit.putInt("notify2_" + str, 0).apply();
             }
         } else if (i7 == 1) {
             i10 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-            SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i10).f25270e7;
+            SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i10).f25273e7;
             SharedPreferences.Editor edit2 = sharedPreferences.edit();
             edit2.putBoolean("custom_" + str, true);
             i11 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
             TLRPC.Dialog dialog = (TLRPC.Dialog) org.telegram.messenger.np.s1(i11).R.f(j10);
-            if (fx0Var.f47227r) {
+            if (fx0Var.f47217r) {
                 edit2.putInt("notify2_" + str, 0);
                 if (j3 == 0) {
                     i15 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
@@ -62,17 +62,17 @@ public final class cx0 extends org.telegram.ui.ActionBar.j {
             }
             edit2.apply();
             i14 = ((org.telegram.ui.ActionBar.e2) fx0Var).currentAccount;
-            org.telegram.messenger.at.t(i14).c0(fx0Var.f47225f, fx0Var.h, true);
-            if (fx0Var.f47228s != null) {
+            org.telegram.messenger.at.t(i14).c0(fx0Var.f47215f, fx0Var.h, true);
+            if (fx0Var.f47218s != null) {
                 ?? obj = new Object();
                 obj.d = j10;
-                obj.f50623b = true;
+                obj.f50614b = true;
                 int c10 = org.telegram.messenger.k5.c("notify2_", str, sharedPreferences, 0);
-                obj.f50624c = c10;
+                obj.f50615c = c10;
                 if (c10 != 0) {
-                    obj.f50622a = org.telegram.messenger.k5.c("notifyuntil_", str, sharedPreferences, 0);
+                    obj.f50613a = org.telegram.messenger.k5.c("notifyuntil_", str, sharedPreferences, 0);
                 }
-                fx0Var.f47228s.d(obj);
+                fx0Var.f47218s.d(obj);
             }
         }
         fx0Var.finishFragment();

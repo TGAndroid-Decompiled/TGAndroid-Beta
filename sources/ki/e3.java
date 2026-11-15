@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import di.v7;
+import di.u7;
 import java.util.ArrayList;
 import org.telegram.messenger.m10;
 import org.telegram.messenger.np;
@@ -39,7 +39,7 @@ public final class e3 implements View.OnClickListener {
         boolean z10;
         switch (this.f18282a) {
             case 0:
-                androidx.car.app.utils.a aVar = (androidx.car.app.utils.a) this.f18287n;
+                ai.r rVar = (ai.r) this.f18287n;
                 TL_payments.connectedBotStarRef connectedbotstarref = this.h;
                 if (connectedbotstarref.revoked) {
                     int i7 = this.f18283b;
@@ -50,7 +50,7 @@ public final class e3 implements View.OnClickListener {
                     }
                     return;
                 }
-                aVar.run();
+                rVar.run();
                 return;
             default:
                 LinearLayout linearLayout = (LinearLayout) this.f18287n;
@@ -59,11 +59,11 @@ public final class e3 implements View.OnClickListener {
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f8441j;
+                ArrayList arrayList2 = g10.f8437j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f8443l;
+                ArrayList arrayList3 = g10.f8439l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
@@ -95,7 +95,7 @@ public final class e3 implements View.OnClickListener {
                     boolean z11 = z10;
                     int i12 = i10;
                     e6 e6Var2 = e6Var;
-                    m60Var.g(tLObject, z11, new v7(i12, j10, this.f18286f, this.h, u2Var, e6Var2));
+                    m60Var.g(tLObject, z11, new u7(i12, j10, this.f18286f, this.h, u2Var, e6Var2));
                     i10 = i12;
                     e6Var = e6Var2;
                 }
@@ -108,13 +108,13 @@ public final class e3 implements View.OnClickListener {
         }
     }
 
-    public e3(TL_payments.connectedBotStarRef connectedbotstarref, int i7, org.telegram.ui.ActionBar.u2 u2Var, Context context, long j3, e6 e6Var, androidx.car.app.utils.a aVar) {
+    public e3(TL_payments.connectedBotStarRef connectedbotstarref, int i7, org.telegram.ui.ActionBar.u2 u2Var, Context context, long j3, e6 e6Var, ai.r rVar) {
         this.h = connectedbotstarref;
         this.f18283b = i7;
         this.f18284c = u2Var;
         this.f18286f = context;
         this.f18285e = j3;
         this.d = e6Var;
-        this.f18287n = aVar;
+        this.f18287n = rVar;
     }
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import bi.b6;
-import di.j9;
+import di.i9;
 import hi.h4;
 import hi.p5;
 import java.util.ArrayList;
@@ -33,7 +33,6 @@ import org.telegram.ui.Cells.x3;
 import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.cm0;
 import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.i9;
 import org.telegram.ui.Components.pz;
 import org.telegram.ui.Components.tj0;
 import org.telegram.ui.b61;
@@ -82,7 +81,7 @@ public abstract class h0 extends tj0 {
     public long f17100o0;
     public View f17101p0;
     public h4 f17102q0;
-    public ai.z0 f17103r;
+    public ai.a1 f17103r;
     public ArrayList f17104r0;
     public final yw f17106s0;
     public final int f17107t0;
@@ -112,7 +111,7 @@ public abstract class h0 extends tj0 {
     public boolean f17099n0 = false;
 
     public h0(Context context, yw ywVar, int i7, int i10, v4.k kVar, boolean z10) {
-        int i11 = m10.f24934t0;
+        int i11 = m10.f24940t0;
         this.f17107t0 = i11;
         this.f17108u0 = new ArrayList();
         this.f17109v0 = new ArrayList();
@@ -135,7 +134,7 @@ public abstract class h0 extends tj0 {
         this.f17094i0 = i10;
         this.m0 = m10.i(i11).e();
         if (i10 != 15) {
-            vr.a0(i11).f27220a.c(new q(i11, i10, new s(this), 0));
+            vr.a0(i11).f27219a.c(new q(i11, i10, new s(this), 0));
         }
         si.b0(i11).M0(true);
     }
@@ -204,9 +203,9 @@ public abstract class h0 extends tj0 {
         boolean z11 = this.O;
         int i7 = this.f17107t0;
         if (!z11) {
-            vr.a0(i7).f27220a.c(new x(i7, 0));
+            vr.a0(i7).f27219a.c(new x(i7, 0));
         } else {
-            vr.a0(i7).f27220a.c(new h4(20, (cm0) this, sb2));
+            vr.a0(i7).f27219a.c(new h4(20, (cm0) this, sb2));
         }
     }
 
@@ -229,11 +228,11 @@ public abstract class h0 extends tj0 {
                 return ywVar.A2;
             }
             if (t3.n0(chat)) {
-                if (ywVar.f53765x2 || ywVar.f53771y2) {
+                if (ywVar.f53730x2 || ywVar.f53736y2) {
                     return true;
                 }
                 return false;
-            } else if (ywVar.f53765x2 || ywVar.f53776z2) {
+            } else if (ywVar.f53730x2 || ywVar.f53741z2) {
                 return true;
             } else {
                 return false;
@@ -495,7 +494,7 @@ public abstract class h0 extends tj0 {
     }
 
     public final boolean L() {
-        if (!this.O && !si.b0(this.f17107t0).f26482j1.isEmpty()) {
+        if (!this.O && !si.b0(this.f17107t0).f26492j1.isEmpty()) {
             if (this.f17094i0 != 14 || this.f17106s0.B2) {
                 return true;
             }
@@ -636,7 +635,7 @@ public abstract class h0 extends tj0 {
         G(str);
         f();
         int i7 = this.f17107t0;
-        vr.a0(i7).f27220a.c(new j9(i7, j3, 1));
+        vr.a0(i7).f27219a.c(new i9(i7, j3, 1));
     }
 
     public final boolean R() {
@@ -768,7 +767,7 @@ public abstract class h0 extends tj0 {
                         gj gjVar = (gj) i5.c.h(1, arrayList);
                         tL_messages_searchGlobal.offset_id = gjVar.e1();
                         tL_messages_searchGlobal.offset_rate = this.f17087d0;
-                        tL_messages_searchGlobal.offset_peer = np.s1(i11).j1(gj.B1(gjVar.f23817k.peer_id));
+                        tL_messages_searchGlobal.offset_peer = np.s1(i11).j1(gj.B1(gjVar.f23819k.peer_id));
                     } else {
                         tL_messages_searchGlobal.offset_rate = 0;
                         tL_messages_searchGlobal.offset_id = 0;
@@ -799,7 +798,7 @@ public abstract class h0 extends tj0 {
         jw jwVar = this.V;
         if (jwVar != null && jwVar.a() != 0) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList l10 = np.s1(this.f17107t0).f25383r7.l(-this.V.a());
+                ArrayList l10 = np.s1(this.f17107t0).f25386r7.l(-this.V.a());
                 String trim = str.trim();
                 for (int i7 = 0; i7 < l10.size(); i7++) {
                     if (l10.get(i7) != null && ((TLRPC.TL_forumTopic) l10.get(i7)).title.toLowerCase().contains(trim)) {
@@ -984,7 +983,7 @@ public abstract class h0 extends tj0 {
                 v vVar = new v(this, 1);
                 z51 z51Var2 = new z51(context, 6);
                 z51Var2.setOrientation(1);
-                i9 i9Var = new i9(context);
+                org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
                 i9Var.setImageDrawable(new ch0(2131624320, org.telegram.messenger.g0.L(120.0f), org.telegram.messenger.g0.L(120.0f)));
                 z51Var2.addView(i9Var, c8.ja.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView2 = new TextView(context);
@@ -996,7 +995,7 @@ public abstract class h0 extends tj0 {
                 textView2.setGravity(17);
                 z51Var2.addView(textView2, c8.ja.t(-1, -2, 1, 0, 8, 0, 9));
                 TextView textView3 = new TextView(context);
-                z51Var2.f53882b = textView3;
+                z51Var2.f53847b = textView3;
                 textView3.setTextSize(1, 14.0f);
                 q6.U(textView3, i11, null);
                 textView3.setText(hd.a0(null, null, 2131745750, ""));

@@ -7,15 +7,15 @@ import org.telegram.messenger.gj;
 import org.telegram.ui.Components.u51;
 import org.telegram.ui.PhotoViewer;
 public final class l implements c, g6.h {
-    public int f2963a;
+    public int f2966a;
 
     public l() {
-        this.f2963a = 3;
+        this.f2966a = 3;
     }
 
     @Override
     public int D(Context context, String str) {
-        return this.f2963a;
+        return this.f2966a;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class l implements c, g6.h {
             if (hVar == 0) {
                 return;
             }
-            AtomicInteger atomicInteger = d1.f.f7332b;
+            AtomicInteger atomicInteger = d1.f.f7335b;
             if (atomicInteger != null) {
                 atomicInteger.set(0);
             }
@@ -60,7 +60,7 @@ public final class l implements c, g6.h {
             } else {
                 h6.h.x(new h6.i(hVar, 3));
             }
-            int i7 = this.f2963a;
+            int i7 = this.f2966a;
             long j3 = -1;
             if (i7 == 0) {
                 u51 u51Var = PhotoViewer.p1().G2;
@@ -107,6 +107,6 @@ public final class l implements c, g6.h {
     }
 
     public l(int i7) {
-        this.f2963a = i7;
+        this.f2966a = i7;
     }
 }

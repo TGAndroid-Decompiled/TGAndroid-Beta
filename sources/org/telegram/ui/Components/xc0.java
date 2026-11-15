@@ -7,10 +7,10 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class xc0 implements DialogInterface.OnClickListener {
-    public final bd0 f41659a;
+    public final bd0 f41651a;
 
     public xc0(bd0 bd0Var) {
-        this.f41659a = bd0Var;
+        this.f41651a = bd0Var;
     }
 
     public static void a(String str, ContentValues contentValues) {
@@ -75,7 +75,7 @@ public final class xc0 implements DialogInterface.OnClickListener {
         Integer num10 = 5;
         Integer num11 = 4;
         Integer num12 = 6;
-        bd0 bd0Var2 = this.f41659a;
+        bd0 bd0Var2 = this.f41651a;
         ArrayList arrayList3 = bd0Var2.H1;
         ArrayList arrayList4 = bd0Var2.G1;
         Integer num13 = 0;
@@ -115,7 +115,7 @@ public final class xc0 implements DialogInterface.OnClickListener {
         while (i12 < arrayList4.size()) {
             org.telegram.messenger.f0 f0Var2 = (org.telegram.messenger.f0) arrayList4.get(i12);
             int i13 = i12;
-            int i14 = f0Var2.f23399c;
+            int i14 = f0Var2.f23402c;
             boolean z11 = z10;
             if (i14 == 1) {
                 ContentValues contentValues2 = new ContentValues();
@@ -326,7 +326,7 @@ public final class xc0 implements DialogInterface.OnClickListener {
                                             org.telegram.messenger.f0 f0Var3 = (org.telegram.messenger.f0) arrayList8.get(i15);
                                             int i16 = i15;
                                             String str11 = str10;
-                                            if (f0Var3.f23399c == 6) {
+                                            if (f0Var3.f23402c == 6) {
                                                 String a14 = f0Var3.a(true);
                                                 if ("ORG".equalsIgnoreCase(a14)) {
                                                     String[] b11 = f0Var3.b();
@@ -404,7 +404,7 @@ public final class xc0 implements DialogInterface.OnClickListener {
         intent3.putExtra("finishActivityOnSaveCompleted", true);
         intent3.putParcelableArrayListExtra("data", arrayList5);
         try {
-            bd0Var.f33256t1.getParentActivity().startActivity(intent3);
+            bd0Var.f33259t1.getParentActivity().startActivity(intent3);
             bd0Var.dismiss();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

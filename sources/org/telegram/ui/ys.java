@@ -5,29 +5,29 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.TextView;
 public final class ys extends org.telegram.ui.Cells.b5 {
-    public final int f53618e;
-    public final org.telegram.ui.Cells.y8 f53619f;
+    public final int f53583e;
+    public final org.telegram.ui.Cells.y8 f53584f;
     public final org.telegram.ui.Cells.q8[] h;
-    public final AnimatorSet[] f53620n;
-    public final DataAutoDownloadActivity f53621r;
+    public final AnimatorSet[] f53585n;
+    public final DataAutoDownloadActivity f53586r;
 
     public ys(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i7, org.telegram.ui.Cells.y8 y8Var, org.telegram.ui.Cells.q8[] q8VarArr, AnimatorSet[] animatorSetArr) {
         super(activity);
         int i10;
         int i11;
         int i12;
-        this.f53621r = dataAutoDownloadActivity;
-        this.f53618e = i7;
-        this.f53619f = y8Var;
+        this.f53586r = dataAutoDownloadActivity;
+        this.f53583e = i7;
+        this.f53584f = y8Var;
         this.h = q8VarArr;
-        this.f53620n = animatorSetArr;
+        this.f53585n = animatorSetArr;
         setWillNotDraw(false);
         TextView textView = new TextView(activity);
         this.f30042a = textView;
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f28957j5, null);
         org.telegram.messenger.i20.p(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -35,7 +35,7 @@ public final class ys extends org.telegram.ui.Cells.b5 {
         textView.setGravity(i10 | 48);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setImportantForAccessibility(2);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -46,14 +46,14 @@ public final class ys extends org.telegram.ui.Cells.b5 {
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29030n5, null);
         org.telegram.messenger.i20.p(textView2, 1, 16.0f, 1, 1);
         textView2.setSingleLine(true);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i12 = 3;
         } else {
             i12 = 5;
         }
         textView2.setGravity(i12 | 48);
         textView2.setImportantForAccessibility(2);
-        addView(textView2, c8.ja.d(-2, -1.0f, (org.telegram.messenger.hd.f24101a0 ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        addView(textView2, c8.ja.d(-2, -1.0f, (org.telegram.messenger.hd.f24104a0 ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         org.telegram.ui.Cells.h0 h0Var = new org.telegram.ui.Cells.h0(activity);
         this.f30044c = h0Var;
         h0Var.setReportChanges(true);

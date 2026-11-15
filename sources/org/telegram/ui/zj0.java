@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import java.util.TimerTask;
 public final class zj0 extends TimerTask {
-    public final ak0 f53982a;
+    public final ak0 f53947a;
 
     public zj0(ak0 ak0Var) {
-        this.f53982a = ak0Var;
+        this.f53947a = ak0Var;
     }
 
     @Override
     public final void run() {
-        ak0 ak0Var = this.f53982a;
+        ak0 ak0Var = this.f53947a;
         if (ak0Var.f45095w == null) {
             return;
         }

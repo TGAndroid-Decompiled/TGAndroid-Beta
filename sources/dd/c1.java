@@ -6,43 +6,43 @@ public enum c1 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        e eVar = lVar.f8051n;
+        e eVar = lVar.f8054n;
         char d = aVar.d();
-        a1 a1Var = b2.f8004k0;
+        a1 a1Var = b2.f8007k0;
         if (d != 0) {
             if (d != '!') {
                 if (d != '-') {
-                    w wVar = b2.f7989a;
+                    w wVar = b2.f7992a;
                     if (d != '>') {
                         if (d != 65535) {
                             lVar.m(this);
-                            StringBuilder sb2 = eVar.f8026c;
+                            StringBuilder sb2 = eVar.f8029c;
                             sb2.append("--");
                             sb2.append(d);
-                            lVar.f8042c = a1Var;
+                            lVar.f8045c = a1Var;
                             return;
                         }
                         lVar.l(this);
                         lVar.i();
-                        lVar.f8042c = wVar;
+                        lVar.f8045c = wVar;
                         return;
                     }
                     lVar.i();
-                    lVar.f8042c = wVar;
+                    lVar.f8045c = wVar;
                     return;
                 }
                 lVar.m(this);
-                eVar.f8026c.append('-');
+                eVar.f8029c.append('-');
                 return;
             }
             lVar.m(this);
-            lVar.f8042c = b2.f8007n0;
+            lVar.f8045c = b2.f8010n0;
             return;
         }
         lVar.m(this);
-        StringBuilder sb3 = eVar.f8026c;
+        StringBuilder sb3 = eVar.f8029c;
         sb3.append("--");
         sb3.append((char) 65533);
-        lVar.f8042c = a1Var;
+        lVar.f8045c = a1Var;
     }
 }

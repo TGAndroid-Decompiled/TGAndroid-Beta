@@ -5,28 +5,28 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 public final class kj0 implements Runnable {
-    public final int f36535a;
-    public final float f36536b;
-    public final float f36537c;
+    public final int f36523a;
+    public final float f36524b;
+    public final float f36525c;
     public final Object d;
 
     public kj0(Object obj, float f10, float f11, int i7) {
-        this.f36535a = i7;
+        this.f36523a = i7;
         this.d = obj;
-        this.f36536b = f10;
-        this.f36537c = f11;
+        this.f36524b = f10;
+        this.f36525c = f11;
     }
 
     @Override
     public final void run() {
         View view;
-        int i7 = this.f36535a;
-        float f10 = this.f36537c;
-        float f11 = this.f36536b;
+        int i7 = this.f36523a;
+        float f10 = this.f36525c;
+        float f11 = this.f36524b;
         Object obj = this.d;
         switch (i7) {
             case 0:
-                uj0 uj0Var = (uj0) ((nj0) obj).f37624b;
+                uj0 uj0Var = (uj0) ((nj0) obj).f37613b;
                 if (uj0Var.f40049d1 != null && (view = uj0Var.M1) != null) {
                     uj0Var.j1(view, f11, f10, true);
                     uj0Var.f40049d1 = null;

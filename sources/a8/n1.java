@@ -45,15 +45,15 @@ public abstract class n1 {
         if (vVar == null) {
             return null;
         }
-        Cipher cipher = vVar.f1968b;
+        Cipher cipher = vVar.f1975b;
         if (cipher != null) {
             return androidx.biometric.c0.b(cipher);
         }
-        Signature signature = vVar.f1967a;
+        Signature signature = vVar.f1974a;
         if (signature != null) {
             return androidx.biometric.c0.a(signature);
         }
-        Mac mac = vVar.f1969c;
+        Mac mac = vVar.f1976c;
         if (mac != null) {
             return androidx.biometric.c0.c(mac);
         }

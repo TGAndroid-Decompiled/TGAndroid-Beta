@@ -9,36 +9,36 @@ import org.telegram.messenger.MediaController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vy0 extends org.telegram.ui.ActionBar.e2 {
     public static final int[] d = {750000, 1000000, 1200000, 2000000};
-    public final int f52323a;
-    public org.telegram.ui.Components.uj0 f52324b;
-    public org.telegram.ui.Components.tj0 f52325c;
+    public final int f52326a;
+    public org.telegram.ui.Components.uj0 f52327b;
+    public org.telegram.ui.Components.tj0 f52328c;
 
     public vy0(int i7, Bundle bundle) {
         super(bundle);
-        this.f52323a = i7;
+        this.f52326a = i7;
     }
 
     public static void Z(vy0 vy0Var, int i7) {
         if (i7 == 5) {
             org.telegram.messenger.np.e1().edit().putBoolean("design_voice_live_transcript", !c8.z0.b()).apply();
-            ((l4) vy0Var.f52325c).g(5);
-            ((l4) vy0Var.f52325c).g(6);
+            ((l4) vy0Var.f52328c).g(5);
+            ((l4) vy0Var.f52328c).g(6);
         } else if (i7 == 6) {
             if (c8.z0.b()) {
                 org.telegram.messenger.np.e1().edit().putBoolean("design_voice_live_field", !c8.z0.c()).apply();
-                ((l4) vy0Var.f52325c).g(6);
-                ((l4) vy0Var.f52325c).g(7);
+                ((l4) vy0Var.f52328c).g(6);
+                ((l4) vy0Var.f52328c).g(7);
             }
         } else if (i7 == 1) {
-            aj.a aVar = aj.e.f1651b;
+            aj.a aVar = aj.e.f1658b;
             boolean z10 = !MediaController.s0(vy0Var.currentAccount);
             synchronized (aVar) {
                 aVar.d = z10;
-                aVar.f1643c = true;
-                aVar.f1642b = true;
-                aj.d.f1649a.edit().putBoolean("audio_recorder_v2_enabled", z10).apply();
+                aVar.f1650c = true;
+                aVar.f1649b = true;
+                aj.d.f1656a.edit().putBoolean("audio_recorder_v2_enabled", z10).apply();
             }
-            ((l4) vy0Var.f52325c).f();
+            ((l4) vy0Var.f52328c).f();
         } else if (MediaController.s0(vy0Var.currentAccount) && i7 == 2) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vy0Var.getParentActivity());
             alertDialog$Builder.f28392a.S = org.telegram.messenger.hd.M0(2131753922, null);
@@ -53,11 +53,11 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
             boolean z10 = !org.telegram.ui.Components.w40.e(vy0Var.currentAccount);
             synchronized (aVar) {
                 aVar.d = z10;
-                aVar.f1643c = true;
-                aVar.f1642b = true;
-                aj.d.f1649a.edit().putBoolean("round_video_camera2_enabled", z10).apply();
+                aVar.f1650c = true;
+                aVar.f1649b = true;
+                aj.d.f1656a.edit().putBoolean("round_video_camera2_enabled", z10).apply();
             }
-            ((l4) vy0Var.f52325c).f();
+            ((l4) vy0Var.f52328c).f();
         } else if (org.telegram.ui.Components.w40.e(vy0Var.currentAccount)) {
             int i10 = 0;
             if (i7 == 2) {
@@ -79,10 +79,10 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
                     }
                 }
             } else if (i7 == 8) {
-                aj.a aVar2 = aj.e.f1656i;
+                aj.a aVar2 = aj.e.f1663i;
                 aVar2.a();
                 aVar2.b(true ^ aVar2.d);
-                ((l4) vy0Var.f52325c).g(i7);
+                ((l4) vy0Var.f52328c).g(i7);
             }
         }
     }
@@ -99,7 +99,7 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
 
     @Override
     public final View createView(Context context) {
-        switch (this.f52323a) {
+        switch (this.f52326a) {
             case 0:
                 setHasOwnBackground(true);
                 this.simpleActionBar.setBackButtonImage(2131231240);
@@ -108,17 +108,17 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
                 FrameLayout frameLayout = new FrameLayout(context);
                 this.fragmentView = frameLayout;
                 org.telegram.ui.Components.uj0 uj0Var = new org.telegram.ui.Components.uj0(context, null);
-                this.f52324b = uj0Var;
+                this.f52327b = uj0Var;
                 uj0Var.r1();
-                this.f52324b.setSectionsDrawBackground(true);
-                this.f52324b.setLayoutManager(new v4.b0());
-                this.f52324b.setVerticalScrollBarEnabled(false);
-                org.telegram.ui.Components.uj0 uj0Var2 = this.f52324b;
+                this.f52327b.setSectionsDrawBackground(true);
+                this.f52327b.setLayoutManager(new v4.b0());
+                this.f52327b.setVerticalScrollBarEnabled(false);
+                org.telegram.ui.Components.uj0 uj0Var2 = this.f52327b;
                 l4 l4Var = new l4(17, this, context);
-                this.f52325c = l4Var;
+                this.f52328c = l4Var;
                 uj0Var2.setAdapter(l4Var);
-                this.f52324b.setOnItemClickListener(new ux0(this, 2));
-                frameLayout.addView(this.f52324b, c8.ja.c(-1.0f, -1));
+                this.f52327b.setOnItemClickListener(new ux0(this, 2));
+                frameLayout.addView(this.f52327b, c8.ja.c(-1.0f, -1));
                 return this.fragmentView;
             default:
                 setHasOwnBackground(true);
@@ -128,17 +128,17 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
                 FrameLayout frameLayout2 = new FrameLayout(context);
                 this.fragmentView = frameLayout2;
                 org.telegram.ui.Components.uj0 uj0Var3 = new org.telegram.ui.Components.uj0(context, null);
-                this.f52324b = uj0Var3;
+                this.f52327b = uj0Var3;
                 uj0Var3.setSectionsDrawBackground(true);
-                this.f52324b.r1();
-                this.f52324b.setLayoutManager(new v4.b0());
-                this.f52324b.setVerticalScrollBarEnabled(false);
-                org.telegram.ui.Components.uj0 uj0Var4 = this.f52324b;
+                this.f52327b.r1();
+                this.f52327b.setLayoutManager(new v4.b0());
+                this.f52327b.setVerticalScrollBarEnabled(false);
+                org.telegram.ui.Components.uj0 uj0Var4 = this.f52327b;
                 l4 l4Var2 = new l4(0, this, context);
-                this.f52325c = l4Var2;
+                this.f52328c = l4Var2;
                 uj0Var4.setAdapter(l4Var2);
-                this.f52324b.setOnItemClickListener(new h(this, 2));
-                frameLayout2.addView(this.f52324b, c8.ja.c(-1.0f, -1));
+                this.f52327b.setOnItemClickListener(new h(this, 2));
+                frameLayout2.addView(this.f52327b, c8.ja.c(-1.0f, -1));
                 return this.fragmentView;
         }
     }
@@ -152,17 +152,17 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
 
     @Override
     public final org.telegram.ui.Components.uj0 getListViewForSimpleGlass() {
-        switch (this.f52323a) {
+        switch (this.f52326a) {
             case 0:
-                return this.f52324b;
+                return this.f52327b;
             default:
-                return this.f52324b;
+                return this.f52327b;
         }
     }
 
     @Override
     public final boolean isSupportEdgeToEdge() {
-        switch (this.f52323a) {
+        switch (this.f52326a) {
             case 0:
                 return true;
             default:
@@ -172,7 +172,7 @@ public final class vy0 extends org.telegram.ui.ActionBar.e2 {
 
     @Override
     public final boolean useSimpleActionBar() {
-        switch (this.f52323a) {
+        switch (this.f52326a) {
             case 0:
                 return true;
             default:

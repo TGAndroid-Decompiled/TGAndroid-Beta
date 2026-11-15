@@ -14,6 +14,6 @@ public final class r3 extends ShapeDrawable.ShaderFactory {
     @Override
     public final Shader resize(int i7, int i10) {
         f30 f30Var = this.f44435a;
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i10, f30Var.f34501a, f30Var.f34502b, Shader.TileMode.CLAMP);
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i10, f30Var.f34500a, f30Var.f34501b, Shader.TileMode.CLAMP);
     }
 }

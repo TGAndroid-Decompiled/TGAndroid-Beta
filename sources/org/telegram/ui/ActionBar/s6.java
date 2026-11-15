@@ -36,7 +36,7 @@ import org.telegram.ui.Components.hq;
 import org.telegram.ui.Components.i9;
 import org.telegram.ui.Components.j70;
 import org.telegram.ui.Components.k70;
-import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.l90;
 import org.telegram.ui.Components.lk0;
 import org.telegram.ui.Components.ny;
 import org.telegram.ui.Components.qm0;
@@ -109,10 +109,10 @@ public final class s6 {
         if ((i10 & 1) != 0 && (obj instanceof View)) {
             View view2 = (View) obj;
             Drawable background = view2.getBackground();
-            if (background instanceof k90) {
-                k90 k90Var = (k90) background;
-                k90Var.f36340a.setColor(i7);
-                k90Var.f36341b = null;
+            if (background instanceof l90) {
+                l90 l90Var = (l90) background;
+                l90Var.f36731a.setColor(i7);
+                l90Var.f36732b = null;
                 return;
             }
             view2.setBackgroundColor(i7);
@@ -155,7 +155,7 @@ public final class s6 {
                         y31[] y31VarArr = (y31[]) spannedString.getSpans(0, spannedString.length(), y31.class);
                         if (y31VarArr != null && y31VarArr.length > 0) {
                             for (y31 y31Var : y31VarArr) {
-                                y31Var.f41865b = i7;
+                                y31Var.f41857b = i7;
                             }
                         }
                     }
@@ -167,9 +167,9 @@ public final class s6 {
                 Drawable drawable6 = imageView.getDrawable();
                 if (drawable6 instanceof fq) {
                     if ((i10 & 32) != 0) {
-                        drawable3 = ((fq) drawable6).f34669a;
+                        drawable3 = ((fq) drawable6).f34673a;
                     } else {
-                        drawable3 = ((fq) drawable6).f34670b;
+                        drawable3 = ((fq) drawable6).f34674b;
                     }
                     if (drawable3 != null) {
                         drawable3.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
@@ -185,9 +185,9 @@ public final class s6 {
                 }
                 if (drawable4 instanceof fq) {
                     if ((i10 & 32) != 0) {
-                        drawable2 = ((fq) drawable4).f34669a;
+                        drawable2 = ((fq) drawable4).f34673a;
                     } else {
-                        drawable2 = ((fq) drawable4).f34670b;
+                        drawable2 = ((fq) drawable4).f34674b;
                     }
                     if (drawable2 != null) {
                         drawable2.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
@@ -198,15 +198,15 @@ public final class s6 {
             } else if (obj instanceof Drawable) {
                 if (obj instanceof j70) {
                     if ((i10 & 32) != 0) {
-                        j70.f35900k.setColor(i7);
+                        j70.f35887k.setColor(i7);
                     } else {
                         ((j70) obj).h.setColor(i7);
                     }
                 } else if (obj instanceof fq) {
                     if ((i10 & 32) != 0) {
-                        drawable = ((fq) obj).f34669a;
+                        drawable = ((fq) obj).f34673a;
                     } else {
-                        drawable = ((fq) obj).f34670b;
+                        drawable = ((fq) obj).f34674b;
                     }
                     if (drawable != null) {
                         drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
@@ -280,7 +280,7 @@ public final class s6 {
                                     y31[] y31VarArr2 = (y31[]) spannedString2.getSpans(0, spannedString2.length(), y31.class);
                                     if (y31VarArr2 != null && y31VarArr2.length > 0) {
                                         for (y31 y31Var2 : y31VarArr2) {
-                                            y31Var2.f41865b = i7;
+                                            y31Var2.f41857b = i7;
                                         }
                                     }
                                 }
@@ -303,7 +303,7 @@ public final class s6 {
                                         y31[] y31VarArr3 = (y31[]) spannedString3.getSpans(0, spannedString3.length(), y31.class);
                                         if (y31VarArr3 != null && y31VarArr3.length > 0) {
                                             for (y31 y31Var3 : y31VarArr3) {
-                                                y31Var3.f41865b = i7;
+                                                y31Var3.f41857b = i7;
                                             }
                                         }
                                     }
@@ -360,14 +360,14 @@ public final class s6 {
                             if (background != null) {
                                 if ((i11 & 16) != 0) {
                                     if (background instanceof fq) {
-                                        Drawable drawable = ((fq) background).f34669a;
+                                        Drawable drawable = ((fq) background).f34673a;
                                         if (drawable instanceof ColorDrawable) {
                                             ((ColorDrawable) drawable).setColor(i7);
                                         }
                                     }
                                 } else {
                                     if (background instanceof fq) {
-                                        background = ((fq) background).f34670b;
+                                        background = ((fq) background).f34674b;
                                     } else if ((background instanceof StateListDrawable) || (background instanceof RippleDrawable)) {
                                         if ((i11 & 65536) != 0) {
                                             z11 = true;
@@ -486,9 +486,9 @@ public final class s6 {
                         }
                     } else if (drawable instanceof fq) {
                         if ((i11 & 32) != 0) {
-                            ((fq) drawable).f34669a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+                            ((fq) drawable).f34673a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                         } else {
-                            ((fq) drawable).f34670b.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+                            ((fq) drawable).f34674b.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                         }
                     } else if (drawable instanceof t8) {
                         ((t8) drawable).h(i7);
@@ -507,10 +507,10 @@ public final class s6 {
         if (view != null && clsArr == null && this.f29605k == null && ((i11 & 262144) == 0 || b(i10, view))) {
             if ((i11 & 1) != 0) {
                 Drawable background = view.getBackground();
-                if (background instanceof k90) {
-                    k90 k90Var = (k90) background;
-                    k90Var.f36340a.setColor(i7);
-                    k90Var.f36341b = null;
+                if (background instanceof l90) {
+                    l90 l90Var = (l90) background;
+                    l90Var.f36731a.setColor(i7);
+                    l90Var.f36732b = null;
                 } else {
                     view.setBackgroundColor(i7);
                 }
@@ -524,9 +524,9 @@ public final class s6 {
                     Drawable background2 = view.getBackground();
                     if (background2 instanceof fq) {
                         if ((i11 & 65536) != 0) {
-                            background2 = ((fq) background2).f34669a;
+                            background2 = ((fq) background2).f34673a;
                         } else {
-                            background2 = ((fq) background2).f34670b;
+                            background2 = ((fq) background2).f34674b;
                         }
                     }
                     if (background2 != null) {

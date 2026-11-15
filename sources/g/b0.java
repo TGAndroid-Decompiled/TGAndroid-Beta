@@ -178,7 +178,7 @@ public final class b0 extends da implements m.b {
             TypedArray obtainStyledAttributes = this.f12626a.obtainStyledAttributes(null, f.a.f10671a, 2130968581, 0);
             if (obtainStyledAttributes.getBoolean(14, false)) {
                 ActionBarOverlayLayout actionBarOverlayLayout2 = this.f12628c;
-                if (actionBarOverlayLayout2.f1876n) {
+                if (actionBarOverlayLayout2.f1883n) {
                     this.f12643t = true;
                     actionBarOverlayLayout2.setHideOnContentScrollEnabled(true);
                 } else {

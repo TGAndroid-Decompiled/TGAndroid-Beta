@@ -5,18 +5,18 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class ix0 extends org.telegram.ui.Components.n61 {
-    public boolean f48156a;
-    public final org.telegram.ui.Components.zp0 f48157b;
+    public boolean f48141a;
+    public final org.telegram.ui.Components.zp0 f48142b;
 
     public ix0(org.telegram.ui.Components.zp0 zp0Var) {
-        this.f48157b = zp0Var;
+        this.f48142b = zp0Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        org.telegram.ui.Components.zp0 zp0Var = this.f48157b;
-        pu0 pu0Var = zp0Var.f48499w;
-        org.telegram.ui.Components.v61 v61Var = zp0Var.f48492b;
+        org.telegram.ui.Components.zp0 zp0Var = this.f48142b;
+        pu0 pu0Var = zp0Var.f48453w;
+        org.telegram.ui.Components.v61 v61Var = zp0Var.f48446b;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i7 = 0;
@@ -31,7 +31,7 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
             }
         }
         int f10 = f(v61Var.getCurrentPosition());
-        fi.g6 g6Var = zp0Var.f48493c;
+        fi.g6 g6Var = zp0Var.f48447c;
         g6Var.getClass();
         HashMap hashMap = new HashMap();
         ArrayList arrayList3 = g6Var.h;
@@ -70,7 +70,7 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
         if (i7 == 0) {
             return false;
         }
-        if (this.f48156a && i7 == e() - 1) {
+        if (this.f48141a && i7 == e() - 1) {
             return false;
         }
         return true;
@@ -81,12 +81,12 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
         if (i7 == -1) {
             return null;
         }
-        return new View(this.f48157b.getContext());
+        return new View(this.f48142b.getContext());
     }
 
     @Override
     public final int e() {
-        return this.f48157b.f48493c.h.size() + 1 + (this.f48156a ? 1 : 0);
+        return this.f48142b.f48447c.h.size() + 1 + (this.f48141a ? 1 : 0);
     }
 
     @Override
@@ -94,10 +94,10 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
         if (i7 == 0) {
             return 0;
         }
-        if (this.f48156a && i7 == e() - 1) {
+        if (this.f48141a && i7 == e() - 1) {
             return -1;
         }
-        return ((fi.l6) this.f48157b.f48493c.h.get(i7 - 1)).f11998a;
+        return ((fi.l6) this.f48142b.f48447c.h.get(i7 - 1)).f11998a;
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
         if (i7 == 0) {
             return org.telegram.messenger.hd.M0(2131744786, null);
         }
-        if (this.f48156a && i7 == e() - 1) {
+        if (this.f48141a && i7 == e() - 1) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
             spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.M0(2131744807, null));
             org.telegram.ui.Components.eq eqVar = new org.telegram.ui.Components.eq(2131232561, 0);
@@ -113,12 +113,12 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
             spannableStringBuilder.setSpan(eqVar, 0, 1, 33);
             return spannableStringBuilder;
         }
-        return ((fi.l6) this.f48157b.f48493c.h.get(i7 - 1)).f11999b;
+        return ((fi.l6) this.f48142b.f48447c.h.get(i7 - 1)).f11999b;
     }
 
     @Override
     public final int h(int i7) {
-        if (this.f48156a && i7 == e() - 1) {
+        if (this.f48141a && i7 == e() - 1) {
             return -1;
         }
         return i7;
@@ -128,7 +128,7 @@ public final class ix0 extends org.telegram.ui.Components.n61 {
         if (i7 == 0) {
             return 0;
         }
-        int c10 = this.f48157b.f48493c.c(i7);
+        int c10 = this.f48142b.f48447c.c(i7);
         if (c10 == -1) {
             return -1;
         }

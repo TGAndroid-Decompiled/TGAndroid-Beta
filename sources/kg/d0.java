@@ -17,7 +17,7 @@ public final class d0 extends pj0 {
         this.f17899x = g0Var;
         ArrayList arrayList = new ArrayList();
         this.f17896r = arrayList;
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         this.f17897s = i7;
         this.f17898w = context;
         arrayList.addAll(v1.f(i7).e());
@@ -122,7 +122,7 @@ public final class d0 extends pj0 {
                 q1Var.setTag(-33024);
             }
         } else {
-            q1Var = new q1(context, this.f17899x.f33606a, false);
+            q1Var = new q1(context, this.f17899x.f33608a, false);
         }
         return new v4.e1(q1Var);
     }

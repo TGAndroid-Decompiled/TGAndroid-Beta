@@ -5,26 +5,26 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class q60 implements Runnable {
-    public final int f50480a;
-    public final LaunchActivity f50481b;
+    public final int f50471a;
+    public final LaunchActivity f50472b;
 
     public q60(LaunchActivity launchActivity, int i7) {
-        this.f50480a = i7;
-        this.f50481b = launchActivity;
+        this.f50471a = i7;
+        this.f50472b = launchActivity;
     }
 
     @Override
     public final void run() {
         WeakReference weakReference;
-        int i7 = this.f50480a;
+        int i7 = this.f50471a;
         org.telegram.ui.ActionBar.e2 e2Var = null;
-        LaunchActivity launchActivity = this.f50481b;
+        LaunchActivity launchActivity = this.f50472b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.C1;
                 org.telegram.ui.Components.fb fbVar = new org.telegram.ui.Components.fb(launchActivity, null);
                 fbVar.d(2131624009, new String[0]);
-                fbVar.f34552b.setText(org.telegram.messenger.hd.M0(2131742811, null));
+                fbVar.f34556b.setText(org.telegram.messenger.hd.M0(2131742811, null));
                 org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     org.telegram.ui.Components.xb.g(Q, fbVar, 1500).j();
@@ -72,17 +72,17 @@ public final class q60 implements Runnable {
             case 5:
                 String str3 = LaunchActivity.C1;
                 launchActivity.getClass();
-                org.telegram.ui.Components.s10.f39143g0 = false;
+                org.telegram.ui.Components.s10.f39140g0 = false;
                 org.telegram.ui.Components.s10.k(launchActivity);
                 return;
             case 6:
                 String str4 = LaunchActivity.C1;
-                if (org.telegram.messenger.g0.f23592g != -10 && org.telegram.messenger.g0.f23590f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f23595i) != null && weakReference.get() == launchActivity) {
+                if (org.telegram.messenger.g0.f23594g != -10 && org.telegram.messenger.g0.f23592f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f23597i) != null && weakReference.get() == launchActivity) {
                     int i10 = org.telegram.messenger.g0.h;
-                    int i11 = org.telegram.messenger.g0.f23592g;
-                    org.telegram.messenger.g0.f23592g = -10;
+                    int i11 = org.telegram.messenger.g0.f23594g;
+                    org.telegram.messenger.g0.f23594g = -10;
                     org.telegram.messenger.g0.h = -10;
-                    org.telegram.messenger.g0.f23595i = null;
+                    org.telegram.messenger.g0.f23597i = null;
                     try {
                         launchActivity.setRequestedOrientation(i10);
                         launchActivity.setRequestedOrientation(i11);

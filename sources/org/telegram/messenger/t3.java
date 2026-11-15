@@ -336,7 +336,7 @@ public abstract class t3 {
             }
             return j12;
         } else {
-            return m10.i(m10.f24934t0).e();
+            return m10.i(m10.f24940t0).e();
         }
     }
 
@@ -454,7 +454,7 @@ public abstract class t3 {
     }
 
     public static boolean a(TLRPC.Chat chat) {
-        if (!gz.f23964n) {
+        if (!gz.f23967n) {
             if (chat == null || !chat.forum_tabs) {
                 return false;
             }
@@ -603,7 +603,7 @@ public abstract class t3 {
 
     public static boolean h0(TLRPC.Chat chat) {
         if (chat != null) {
-            return i0(np.s1(m10.f24934t0).N0(chat.f28051id));
+            return i0(np.s1(m10.f24940t0).N0(chat.f28051id));
         }
         return false;
     }
@@ -754,7 +754,7 @@ public abstract class t3 {
         if (tL_forumTopic != null) {
             if (!tL_forumTopic.my) {
                 TLRPC.Peer peer = tL_forumTopic.from_id;
-                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == m10.i(i7).f24953n) {
+                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == m10.i(i7).f24959n) {
                     return true;
                 }
                 return false;
@@ -790,7 +790,7 @@ public abstract class t3 {
 
     public static boolean s0(TLRPC.Chat chat) {
         TLRPC.ChatFull N0;
-        if (chat == null || (N0 = np.s1(m10.f24934t0).N0(chat.f28051id)) == null || N0.boosts_unrestrict <= 0) {
+        if (chat == null || (N0 = np.s1(m10.f24940t0).N0(chat.f28051id)) == null || N0.boosts_unrestrict <= 0) {
             return false;
         }
         return true;

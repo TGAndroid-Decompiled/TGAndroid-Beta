@@ -343,10 +343,10 @@ public final class v0 implements d0, f3.q, b3.j, b3.m, z0 {
             }
         }
         ld0 ld0Var = this.E;
-        f3.o oVar = (f3.o) ld0Var.f48977c;
+        f3.o oVar = (f3.o) ld0Var.f48973c;
         if (oVar != null) {
             oVar.release();
-            ld0Var.f48977c = null;
+            ld0Var.f48973c = null;
         }
         ld0Var.d = null;
     }
@@ -402,15 +402,15 @@ public final class v0 implements d0, f3.q, b3.j, b3.m, z0 {
     public final void i() {
         int R4 = this.d.R4(this.W);
         b3.o oVar = this.f59699y;
-        IOException iOException = oVar.f2918c;
+        IOException iOException = oVar.f2921c;
         if (iOException == null) {
-            b3.k kVar = oVar.f2917b;
+            b3.k kVar = oVar.f2920b;
             if (kVar != null) {
                 if (R4 == Integer.MIN_VALUE) {
-                    R4 = kVar.f2906a;
+                    R4 = kVar.f2909a;
                 }
-                IOException iOException2 = kVar.f2909e;
-                if (iOException2 != null && kVar.f2910f > R4) {
+                IOException iOException2 = kVar.f2912e;
+                if (iOException2 != null && kVar.f2913f > R4) {
                     throw iOException2;
                 }
             }
@@ -446,7 +446,7 @@ public final class v0 implements d0, f3.q, b3.j, b3.m, z0 {
         }
         min = Math.min((i7 - 1) * 1000, 5000);
         if (min == -9223372036854775807L) {
-            iVar = b3.o.f2915f;
+            iVar = b3.o.f2918f;
         } else {
             int q10 = q();
             if (q10 > this.f59691g0) {
@@ -457,7 +457,7 @@ public final class v0 implements d0, f3.q, b3.j, b3.m, z0 {
             if (!this.f59685c0 && ((b0Var = this.T) == null || b0Var.h() == -9223372036854775807L)) {
                 if (this.P && !E()) {
                     this.f59690f0 = true;
-                    iVar = b3.o.f2914e;
+                    iVar = b3.o.f2917e;
                 } else {
                     this.Z = this.P;
                     this.f59686d0 = 0L;

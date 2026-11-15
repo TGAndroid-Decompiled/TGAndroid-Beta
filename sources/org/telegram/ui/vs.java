@@ -43,23 +43,23 @@ public final class vs extends org.telegram.ui.Components.ja {
         frameLayout.addView(imageView, c8.ja.d(24, 24.0f, 53, 0.0f, 14.0f, 14.0f, 0.0f));
         c8.na.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final vs f52019b;
+            public final vs f52017b;
 
             {
-                this.f52019b = this;
+                this.f52017b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f52019b.dismiss();
+                        this.f52017b.dismiss();
                         return;
                     case 1:
-                        this.f52019b.d1(false);
+                        this.f52017b.d1(false);
                         return;
                     default:
-                        this.f52019b.d1(true);
+                        this.f52017b.d1(true);
                         return;
                 }
             }
@@ -95,8 +95,8 @@ public final class vs extends org.telegram.ui.Components.ja {
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.er.h);
         kVar.n(350L);
-        this.f35936o1.setItemAnimator(kVar);
-        this.f35936o1.setOnItemClickListener(new zr(this, 1));
+        this.f35931o1.setItemAnimator(kVar);
+        this.f35931o1.setOnItemClickListener(new zr(this, 1));
         FrameLayout frameLayout3 = new FrameLayout(activity);
         LinearLayout e11 = org.telegram.messenger.k5.e(activity, 0);
         e11.setPadding(org.telegram.messenger.g0.L(14.0f) + this.f29717u0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + this.f29717u0, org.telegram.messenger.g0.L(14.0f));
@@ -110,23 +110,23 @@ public final class vs extends org.telegram.ui.Components.ja {
         dVar.i(spannableStringBuilder, false, true);
         e11.addView(dVar, c8.ja.q(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final vs f52019b;
+            public final vs f52017b;
 
             {
-                this.f52019b = this;
+                this.f52017b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f52019b.dismiss();
+                        this.f52017b.dismiss();
                         return;
                     case 1:
-                        this.f52019b.d1(false);
+                        this.f52017b.d1(false);
                         return;
                     default:
-                        this.f52019b.d1(true);
+                        this.f52017b.d1(true);
                         return;
                 }
             }
@@ -140,29 +140,29 @@ public final class vs extends org.telegram.ui.Components.ja {
         dVar2.i(spannableStringBuilder2, false, true);
         e11.addView(dVar2, c8.ja.q(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final vs f52019b;
+            public final vs f52017b;
 
             {
-                this.f52019b = this;
+                this.f52017b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f52019b.dismiss();
+                        this.f52017b.dismiss();
                         return;
                     case 1:
-                        this.f52019b.d1(false);
+                        this.f52017b.d1(false);
                         return;
                     default:
-                        this.f52019b.d1(true);
+                        this.f52017b.d1(true);
                         return;
                 }
             }
         });
         this.f29682b.addView(frameLayout3, c8.ja.e(-1, -2, 87));
-        org.telegram.ui.Components.uj0 uj0Var = this.f35936o1;
+        org.telegram.ui.Components.uj0 uj0Var = this.f35931o1;
         int i11 = this.f29717u0;
         uj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(76.0f));
     }

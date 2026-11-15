@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public abstract class x60 extends org.telegram.ui.ActionBar.u2 {
-    public boolean f41596m1;
+    public boolean f41599m1;
 
     public x60(Context context, TLRPC.Chat chat) {
         super(context, true);
@@ -29,14 +29,14 @@ public abstract class x60 extends org.telegram.ui.ActionBar.u2 {
         org.telegram.ui.ActionBar.q6.U(f11, org.telegram.ui.ActionBar.j6.f29107r5, null);
         f11.setGravity(1);
         f10.addView(f11, c8.ja.t(-2, -2, 49, 30, 8, 30, 0));
-        org.telegram.messenger.r3 g12 = org.telegram.messenger.np.s1(org.telegram.messenger.c.a(this.f29679a).f22778a).g1(chat.f28051id, false, null);
+        org.telegram.messenger.r3 g12 = org.telegram.messenger.np.s1(org.telegram.messenger.c.a(this.f29679a).f22782a).g1(chat.f28051id, false, null);
         if (g12 != null) {
-            if (TextUtils.isEmpty(g12.f26208b.title)) {
+            if (TextUtils.isEmpty(g12.f26216b.title)) {
                 textView.setText(chat.title);
             } else {
-                textView.setText(g12.f26208b.title);
+                textView.setText(g12.f26216b.title);
             }
-            int i7 = g12.f26208b.participants_count;
+            int i7 = g12.f26216b.participants_count;
             if (i7 == 0) {
                 f11.setText(org.telegram.messenger.hd.M0(2131748186, null));
             } else {
@@ -48,11 +48,11 @@ public abstract class x60 extends org.telegram.ui.ActionBar.u2 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        frameLayout.f41292a = view;
+        frameLayout.f41295a = view;
         view.setBackground(org.telegram.ui.ActionBar.y5.f(org.telegram.ui.ActionBar.j6.Fi, 4.0f));
         frameLayout.addView(view, c8.ja.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout.f41293b = textView2;
+        frameLayout.f41296b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -75,7 +75,7 @@ public abstract class x60 extends org.telegram.ui.ActionBar.u2 {
     @Override
     public final void L() {
         super.L();
-        if (this.f41596m1) {
+        if (this.f41599m1) {
             I0();
         }
     }

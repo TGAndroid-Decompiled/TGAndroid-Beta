@@ -12,7 +12,7 @@ public final class gr0 extends org.telegram.ui.cn {
 
     @Override
     public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.q0 q0Var = this.f35046f.f42125q0;
+        org.telegram.ui.ActionBar.q0 q0Var = this.f35046f.f42127q0;
         if (q0Var != null) {
             q0Var.setShowSearchProgress(z10);
         }

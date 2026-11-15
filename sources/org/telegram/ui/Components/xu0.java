@@ -4,20 +4,20 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xu0 implements RequestDelegate {
-    public final int f41768a;
-    public final org.telegram.messenger.w2 f41769b;
+    public final int f41760a;
+    public final org.telegram.messenger.w2 f41761b;
 
     public xu0(org.telegram.messenger.w2 w2Var, int i7) {
-        this.f41768a = i7;
-        this.f41769b = w2Var;
+        this.f41760a = i7;
+        this.f41761b = w2Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41768a) {
+        switch (this.f41760a) {
             case 0:
                 boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                org.telegram.messenger.w2 w2Var = this.f41769b;
+                org.telegram.messenger.w2 w2Var = this.f41761b;
                 if (z10) {
                     Boolean bool = Boolean.TRUE;
                     w2Var.a(bool, null, 0L, bool);
@@ -32,7 +32,7 @@ public final class xu0 implements RequestDelegate {
                 }
             default:
                 boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                org.telegram.messenger.w2 w2Var2 = this.f41769b;
+                org.telegram.messenger.w2 w2Var2 = this.f41761b;
                 if (z11) {
                     Boolean bool2 = Boolean.TRUE;
                     w2Var2.a(bool2, null, 0L, bool2);

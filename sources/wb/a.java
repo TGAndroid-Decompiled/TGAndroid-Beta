@@ -10,7 +10,7 @@ public final class a {
     public final String d;
 
     public a(float f10, int i7, String str, String str2) {
-        int i10 = b8.b.f2964a;
+        int i10 = b8.b.f2967a;
         this.f59090a = str == null ? "" : str;
         this.f59091b = f10;
         this.f59092c = i7;
@@ -40,24 +40,24 @@ public final class a {
         a0 a0Var2 = new a0(11, false);
         ((a0) a0Var.d).d = a0Var2;
         a0Var.d = a0Var2;
-        a0Var2.f1707c = this.f59090a;
-        a0Var2.f1706b = "text";
+        a0Var2.f1714c = this.f59090a;
+        a0Var2.f1713b = "text";
         String valueOf = String.valueOf(this.f59091b);
         a0 a0Var3 = new a0(11, false);
         ((a0) a0Var.d).d = a0Var3;
         a0Var.d = a0Var3;
-        a0Var3.f1707c = valueOf;
-        a0Var3.f1706b = "confidence";
+        a0Var3.f1714c = valueOf;
+        a0Var3.f1713b = "confidence";
         String valueOf2 = String.valueOf(this.f59092c);
         a0 a0Var4 = new a0(11, false);
         ((a0) a0Var.d).d = a0Var4;
-        a0Var4.f1707c = valueOf2;
-        a0Var4.f1706b = "index";
+        a0Var4.f1714c = valueOf2;
+        a0Var4.f1713b = "index";
         a0 a0Var5 = new a0(11, false);
         a0Var4.d = a0Var5;
         a0Var.d = a0Var5;
-        a0Var5.f1707c = this.d;
-        a0Var5.f1706b = "mid";
+        a0Var5.f1714c = this.d;
+        a0Var5.f1713b = "mid";
         return a0Var.toString();
     }
 }

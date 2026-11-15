@@ -49,7 +49,7 @@ public abstract class y0 {
     }
 
     public static boolean a(gj gjVar) {
-        if (gjVar != null && gj.B0(gjVar.f23817k) == 1271266957) {
+        if (gjVar != null && gj.B0(gjVar.f23819k) == 1271266957) {
             return true;
         }
         return false;

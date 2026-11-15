@@ -64,7 +64,7 @@ public final class u implements u10 {
         String str3 = wallettransaction.comment;
         boolean z11 = wallettransaction.comment_encrypted;
         if (gjVar != null) {
-            TLRPC.MessageAction messageAction = gjVar.f23817k.action;
+            TLRPC.MessageAction messageAction = gjVar.f23819k.action;
             if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
                 TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
                 tL_messageActionGramTransfer.comment = str3;
@@ -72,9 +72,9 @@ public final class u implements u10 {
                 tL_messageActionGramTransfer.comment_encrypted_preparing = false;
                 gjVar.M1 = true;
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(gjVar.f23817k);
+                arrayList.add(gjVar.f23819k);
                 ezVar.getMessagesStorage().j1(arrayList, false, true, false, 0, false, 0, 0L);
-                ezVar.getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23817k)), org.telegram.messenger.k5.j(gjVar));
+                ezVar.getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23819k)), org.telegram.messenger.k5.j(gjVar));
             }
         }
         if (sendtransfer.data_gasless != null) {

@@ -22,7 +22,7 @@ public final class zh0 extends AnimatorListenerAdapter {
                 super.onAnimationEnd(animator);
                 mi0 mi0Var = this.f42366b;
                 mi0Var.R = null;
-                mi0Var.f37286o0 = 0.0f;
+                mi0Var.f37285o0 = 0.0f;
                 mi0Var.m0 = null;
                 mi0Var.invalidate();
                 return;

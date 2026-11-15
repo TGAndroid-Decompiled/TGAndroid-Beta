@@ -55,7 +55,7 @@ public final class zv extends tw {
         for (int i15 = lyVar.f36947f0; i15 < arrayList.size(); i15 = com.google.android.gms.internal.vision.e2.g(i15, 1, ((TLRPC.TL_messages_stickerSet) arrayList.get(i15)).set.f28078id, tL_messages_reorderStickerSets.order)) {
         }
         ConnectionsManager.getInstance(i14).sendRequest(tL_messages_reorderStickerSets, new fi.m5(19));
-        org.telegram.messenger.ns.f(i14).k(org.telegram.messenger.ns.f25600x0, 0, Boolean.TRUE);
+        org.telegram.messenger.ns.f(i14).k(org.telegram.messenger.ns.f25601x0, 0, Boolean.TRUE);
         lyVar.Y(true);
         if (org.telegram.messenger.gz.X) {
             org.telegram.messenger.gz.P();

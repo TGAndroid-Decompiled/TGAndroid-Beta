@@ -11,19 +11,19 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class ww extends v4.v {
     public v4.e1 d;
-    public boolean f53012e;
-    public boolean f53013f;
-    public final xw f53014g;
+    public boolean f53011e;
+    public boolean f53012f;
+    public final xw f53013g;
     public final yw h;
 
     public ww(yw ywVar, xw xwVar) {
         this.h = ywVar;
-        this.f53014g = xwVar;
+        this.f53013g = xwVar;
     }
 
     @Override
     public final int b(int i7, int i10) {
-        if (this.f53013f) {
+        if (this.f53012f) {
             return 0;
         }
         return super.b(i7, i10);
@@ -37,7 +37,7 @@ public final class ww extends v4.v {
             return 200L;
         }
         if (i7 == 8 && (t2Var = (ywVar = this.h).Z0) != null) {
-            org.telegram.messenger.g0.i3(new sg(1, t2Var), this.f53014g.f53341y.f58609e);
+            org.telegram.messenger.g0.i3(new sg(1, t2Var), this.f53013g.f53345y.f58609e);
             ywVar.Z0 = null;
         }
         return super.d(recyclerView, i7, f10, f11);
@@ -68,7 +68,7 @@ public final class ww extends v4.v {
         char c10;
         int i7;
         yw ywVar = this.h;
-        ArrayList arrayList = ywVar.f53658c1;
+        ArrayList arrayList = ywVar.f53623c1;
         View view = e1Var2.f58535a;
         char c11 = 0;
         if (view instanceof org.telegram.ui.Cells.t2) {
@@ -77,9 +77,9 @@ public final class ww extends v4.v {
             if (dialog != null && ywVar.s4(dialog) && !org.telegram.messenger.m5.D(dialogId)) {
                 int b10 = e1Var.b();
                 int b11 = e1Var2.b();
-                xw xwVar = this.f53014g;
-                if (xwVar.f53331a.getItemAnimator() == null) {
-                    xwVar.f53331a.setItemAnimator(xwVar.f53341y);
+                xw xwVar = this.f53013g;
+                if (xwVar.f53335a.getItemAnimator() == null) {
+                    xwVar.f53335a.setItemAnimator(xwVar.f53345y);
                 }
                 hv hvVar = xwVar.d;
                 yw ywVar2 = hvVar.S;
@@ -101,25 +101,25 @@ public final class ww extends v4.v {
                     } else {
                         c10 = 0;
                     }
-                    LongSparseIntArray longSparseIntArray = soVarArr[c10].f26549j;
+                    LongSparseIntArray longSparseIntArray = soVarArr[c10].f26559j;
                     int i13 = longSparseIntArray.get(dialog2.f28055id);
                     longSparseIntArray.put(dialog2.f28055id, longSparseIntArray.get(dialog3.f28055id));
                     longSparseIntArray.put(dialog3.f28055id, i13);
                 }
                 Collections.swap(d42, H, H2);
                 hvVar.X(null);
-                int i14 = ywVar.f53673f0[0].f53338s;
+                int i14 = ywVar.f53638f0[0].f53342s;
                 if (i14 != 7) {
                     i7 = 8;
                     if (i14 != 8) {
-                        ywVar.f53652b1 = true;
+                        ywVar.f53617b1 = true;
                         return true;
                     }
                 } else {
                     i7 = 8;
                 }
                 org.telegram.messenger.so[] soVarArr2 = ywVar.getMessagesController().N;
-                if (ywVar.f53673f0[0].f53338s == i7) {
+                if (ywVar.f53638f0[0].f53342s == i7) {
                     c11 = 1;
                 }
                 org.telegram.messenger.so soVar = soVarArr2[c11];
@@ -136,7 +136,7 @@ public final class ww extends v4.v {
     @Override
     public final void p(v4.e1 e1Var, int i7) {
         if (e1Var != null) {
-            this.f53014g.f53331a.d1(false);
+            this.f53013g.f53335a.d1(false);
         }
         this.d = e1Var;
         if (e1Var != null) {
@@ -156,9 +156,9 @@ public final class ww extends v4.v {
             long dialogId = t2Var.getDialogId();
             boolean D = org.telegram.messenger.m5.D(dialogId);
             int i10 = 0;
-            xw xwVar = this.f53014g;
+            xw xwVar = this.f53013g;
             if (D) {
-                uw uwVar = xwVar.f53331a;
+                uw uwVar = xwVar.f53335a;
                 int i11 = uw.C3;
                 uwVar.C1(false, t2Var);
                 return;
@@ -191,24 +191,24 @@ public final class ww extends v4.v {
             ywVar.M4(true, true);
             if (Utilities.f22414b.nextInt(1000) == 1) {
                 if (ywVar.X0 == null) {
-                    uw uwVar2 = xwVar.f53331a;
+                    uw uwVar2 = xwVar.f53335a;
                     ?? obj = new Object();
-                    obj.f37913a = new Paint(1);
+                    obj.f37911a = new Paint(1);
                     Paint paint = new Paint(1);
-                    obj.f37914b = paint;
-                    obj.f37916e = 0L;
-                    obj.f37917f = new RectF();
+                    obj.f37912b = paint;
+                    obj.f37914e = 0L;
+                    obj.f37915f = new RectF();
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-                    obj.f37915c = uwVar2;
+                    obj.f37913c = uwVar2;
                     ywVar.X0 = obj;
                 }
                 org.telegram.ui.Components.ob0 ob0Var = ywVar.X0;
                 ob0Var.d = xVar;
                 ob0Var.h = 0.0f;
-                ob0Var.f37918g = 0.0f;
-                ob0Var.f37916e = System.currentTimeMillis();
-                ob0Var.f37915c.invalidate();
+                ob0Var.f37916g = 0.0f;
+                ob0Var.f37914e = System.currentTimeMillis();
+                ob0Var.f37913c.invalidate();
                 return;
             }
             xVar.run();

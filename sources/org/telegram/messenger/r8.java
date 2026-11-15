@@ -11,28 +11,28 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 public final class r8 extends c1 {
-    public static volatile r8[] f26250s = new r8[4];
-    public final HashMap f26251a;
-    public final HashMap f26252b;
-    public final HashMap f26253c;
+    public static volatile r8[] f26258s = new r8[4];
+    public final HashMap f26259a;
+    public final HashMap f26260b;
+    public final HashMap f26261c;
     public final HashMap d;
-    public long f26254e;
-    public final ArrayList f26255f;
+    public long f26262e;
+    public final ArrayList f26263f;
     public final ArrayList h;
-    public final ArrayList f26256n;
-    public final ArrayList f26257r;
+    public final ArrayList f26264n;
+    public final ArrayList f26265r;
 
     public r8(int i7) {
         super(i7);
-        this.f26251a = new HashMap();
-        this.f26252b = new HashMap();
-        this.f26253c = new HashMap();
+        this.f26259a = new HashMap();
+        this.f26260b = new HashMap();
+        this.f26261c = new HashMap();
         this.d = new HashMap();
-        this.f26254e = SystemClock.elapsedRealtime();
-        this.f26255f = new ArrayList();
+        this.f26262e = SystemClock.elapsedRealtime();
+        this.f26263f = new ArrayList();
         this.h = new ArrayList();
-        this.f26256n = new ArrayList();
-        this.f26257r = new ArrayList();
+        this.f26264n = new ArrayList();
+        this.f26265r = new ArrayList();
     }
 
     public static int c(String str) {
@@ -274,13 +274,13 @@ public final class r8 extends c1 {
 
     public static r8 n(int i7) {
         r8 r8Var;
-        r8 r8Var2 = f26250s[i7];
+        r8 r8Var2 = f26258s[i7];
         if (r8Var2 == null) {
             synchronized (r8.class) {
                 try {
-                    r8Var = f26250s[i7];
+                    r8Var = f26258s[i7];
                     if (r8Var == null) {
-                        r8[] r8VarArr = f26250s;
+                        r8[] r8VarArr = f26258s;
                         r8 r8Var3 = new r8(i7);
                         r8VarArr[i7] = r8Var3;
                         r8Var = r8Var3;
@@ -333,11 +333,11 @@ public final class r8 extends c1 {
             } else {
                 if (obj instanceof gj) {
                     gj gjVar = (gj) obj;
-                    long v02 = gj.v0(gjVar.f23817k);
-                    if (gjVar.D == 29 && (message = gjVar.f23817k) != null && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
+                    long v02 = gj.v0(gjVar.f23819k);
+                    if (gjVar.D == 29 && (message = gjVar.f23819k) != null && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                         v02 = m5.o(peer);
                     }
-                    return "message" + gjVar.L1() + "_" + v02 + "_" + gjVar.f23846r1 + "_" + gj.I1(gjVar.f23817k);
+                    return "message" + gjVar.L1() + "_" + v02 + "_" + gjVar.f23848r1 + "_" + gj.I1(gjVar.f23819k);
                 } else if (obj instanceof TLRPC.Message) {
                     TLRPC.Message message2 = (TLRPC.Message) obj;
                     TLRPC.Peer peer2 = message2.peer_id;
@@ -610,9 +610,9 @@ public final class r8 extends c1 {
     }
 
     public final o8 b(String str) {
-        HashMap hashMap = this.f26253c;
+        HashMap hashMap = this.f26261c;
         o8 o8Var = (o8) hashMap.get(str);
-        if (o8Var != null && Math.abs(System.currentTimeMillis() - o8Var.f25732b) >= 60000) {
+        if (o8Var != null && Math.abs(System.currentTimeMillis() - o8Var.f25733b) >= 60000) {
             hashMap.remove(str);
             return null;
         }

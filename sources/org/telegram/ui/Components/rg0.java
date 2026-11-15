@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class rg0 {
-    public float f38969a;
-    public float f38970b;
-    public float f38971c;
+    public float f38966a;
+    public float f38967b;
+    public float f38968c;
     public float d;
-    public boolean f38972e;
-    public boolean f38973f;
-    public float f38974g;
+    public boolean f38969e;
+    public boolean f38970f;
+    public float f38971g;
     public float h;
-    public int f38975i;
-    public org.telegram.ui.Cells.s9 f38976j;
-    public float f38977k;
-    public float f38978l;
+    public int f38972i;
+    public org.telegram.ui.Cells.s9 f38973j;
+    public float f38974k;
+    public float f38975l;
 }

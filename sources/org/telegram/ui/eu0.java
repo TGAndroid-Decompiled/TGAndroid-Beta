@@ -6,18 +6,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class eu0 implements RequestDelegate {
-    public final int f46923a;
-    public final ProfileActivity f46924b;
+    public final int f46907a;
+    public final ProfileActivity f46908b;
 
     public eu0(ProfileActivity profileActivity, int i7) {
-        this.f46923a = i7;
-        this.f46924b = profileActivity;
+        this.f46907a = i7;
+        this.f46908b = profileActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        int i7 = this.f46923a;
-        final ProfileActivity profileActivity = this.f46924b;
+        int i7 = this.f46907a;
+        final ProfileActivity profileActivity = this.f46908b;
         switch (i7) {
             case 0:
                 RectF rectF = ProfileActivity.X6;

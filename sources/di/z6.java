@@ -39,20 +39,20 @@ import org.telegram.ui.Components.hj0;
 import org.telegram.ui.Components.ij0;
 import org.telegram.ui.Components.vi0;
 import org.telegram.ui.Components.vp0;
-import org.telegram.ui.il0;
-public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.a7, fi.c9, xh.j, r0.m, h9.g1, org.telegram.ui.ActionBar.q1, vi0, sg.j1, CameraController.VideoTakeCallback, gt0, f3.g {
-    public final int f9837a;
-    public final Object f9838b;
+import org.telegram.ui.jl0;
+public final class z6 implements jl0, x10, OnSuccessListener, ij0, t10, hj0, fi.a7, fi.c9, xh.j, r0.m, h9.g1, org.telegram.ui.ActionBar.q1, vi0, sg.j1, CameraController.VideoTakeCallback, gt0, f3.g {
+    public final int f9835a;
+    public final Object f9836b;
 
     public z6(Object obj, int i7) {
-        this.f9837a = i7;
-        this.f9838b = obj;
+        this.f9835a = i7;
+        this.f9836b = obj;
     }
 
     @Override
     public void C() {
         float f10;
-        hi.u9 u9Var = (hi.u9) this.f9838b;
+        hi.u9 u9Var = (hi.u9) this.f9836b;
         TextView textView = u9Var.Y0;
         boolean a10 = u9Var.f14679n0.a();
         ImageView imageView = u9Var.X0;
@@ -78,7 +78,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
         int a10;
-        fi.i9 i9Var = (fi.i9) this.f9838b;
+        fi.i9 i9Var = (fi.i9) this.f9836b;
         int i7 = 0;
         i0.c I0 = org.telegram.messenger.g0.I0(k1Var, false);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) i9Var.f11879w.getLayoutParams();
@@ -107,7 +107,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public Object a(Object obj, Object obj2) {
-        return h9.o.y((List) ((Collection) obj2), new q4.q(((h9.l1) this.f9838b).f13703f, obj, false, 24));
+        return h9.o.y((List) ((Collection) obj2), new q4.q(((h9.l1) this.f9836b).f13703f, obj, false, 24));
     }
 
     @Override
@@ -117,7 +117,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public void c(boolean z10) {
-        fi.b5 b5Var = (fi.b5) this.f9838b;
+        fi.b5 b5Var = (fi.b5) this.f9836b;
         if (b5Var != null) {
             b5Var.c();
         }
@@ -130,8 +130,8 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public Object d(Number number, Object obj) {
-        int i7 = this.f9837a;
-        Object obj2 = this.f9838b;
+        int i7 = this.f9835a;
+        Object obj2 = this.f9836b;
         switch (i7) {
             case 5:
                 Long l10 = (Long) number;
@@ -140,7 +140,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                 vp0 vp0Var = (vp0) obj2;
                 Integer num = (Integer) obj;
                 if (((Integer) number).intValue() == -1) {
-                    new gi.p(vp0Var.f13352a, hd.M0(2131746693, null), new ai.f0(vp0Var, 19)).show();
+                    new gi.p(vp0Var.f13352a, hd.M0(2131746693, null), new ai.g0(vp0Var, 19)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
@@ -149,7 +149,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public void e(int i7) {
-        bi.v5 v5Var = (bi.v5) this.f9838b;
+        bi.v5 v5Var = (bi.v5) this.f9836b;
         if (i7 == 1) {
             v5Var.a(Boolean.TRUE, null);
         } else if (i7 != 3) {
@@ -164,7 +164,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
         int i10;
         int i11;
         int i12;
-        fi.c2 c2Var = (fi.c2) this.f9838b;
+        fi.c2 c2Var = (fi.c2) this.f9836b;
         c1 c1Var = c2Var.f12379c;
         ArrayList arrayList = c2Var.f12389r;
         fi.t0 t0Var = ((fi.r0) view).f12256f;
@@ -250,7 +250,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public void g(float f10, Canvas canvas, RectF rectF, boolean z10) {
-        Path path = (Path) this.f9838b;
+        Path path = (Path) this.f9836b;
         if (z10) {
             return;
         }
@@ -262,9 +262,9 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f9837a) {
+        switch (this.f9835a) {
             case 16:
-                hi.sa saVar = ((hi.ia) ((hi.r) this.f9838b)).S1;
+                hi.sa saVar = ((hi.ia) ((hi.r) this.f9836b)).S1;
                 hi.ga gaVar = saVar.Y0;
                 if (gaVar != null) {
                     gaVar.s(null, null, true);
@@ -299,10 +299,10 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                 }
                 return;
             case 21:
-                ((hi.f5) this.f9838b).f14274a.Z1.r();
+                ((hi.f5) this.f9836b).f14274a.Z1.r();
                 return;
             case 27:
-                kg.r1 r1Var = (kg.r1) ((bi.x4) this.f9838b).f3983b;
+                kg.r1 r1Var = (kg.r1) ((bi.x4) this.f9836b).f3986b;
                 kg.v1 f10 = kg.v1.f(kg.r1.g0(r1Var));
                 ArrayList arrayList = r1Var.f18083b;
                 int i10 = f10.f18123a;
@@ -342,26 +342,26 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                     }
                     f10.l();
                     vr a02 = vr.a0(i10);
-                    a02.f27220a.c(new hi.y0(a02, arrayList, 2));
+                    a02.f27219a.c(new hi.y0(a02, arrayList, 2));
                     ns.f(i10).k(121, new Object[0]);
                 }
                 kg.r1.c0(r1Var);
                 return;
             default:
-                ((ki.d) this.f9838b).run();
+                ((ki.d) this.f9836b).run();
                 return;
         }
     }
 
     @Override
     public void i() {
-        ((hi.o1) this.f9838b).invalidate();
+        ((hi.o1) this.f9836b).invalidate();
     }
 
     @Override
     public void j(xh.f fVar, float f10, float f11) {
         fi.z7 z7Var;
-        fi.y7 y7Var = (fi.y7) this.f9838b;
+        fi.y7 y7Var = (fi.y7) this.f9836b;
         if (!y7Var.v.f12604y) {
             fVar.f59995q = new fi.x7(y7Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(z7Var.getHeight(), 2.0d) + Math.pow(z7Var.getWidth(), 2.0d));
@@ -383,7 +383,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public long l(long j3) {
-        f3.u uVar = (f3.u) this.f9838b;
+        f3.u uVar = (f3.u) this.f9836b;
         return h2.l0.j((j3 * uVar.f10884e) / 1000000, 0L, uVar.f10888j - 1);
     }
 
@@ -393,21 +393,21 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
         kg.b1 b1Var;
         kg.b1 b1Var2;
         int i10;
-        switch (this.f9837a) {
+        switch (this.f9835a) {
             case 1:
-                jb jbVar = (jb) this.f9838b;
+                ib ibVar = (ib) this.f9836b;
                 b41 b41Var = (b41) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
                 if (b41Var.G instanceof TL_stars.StarsTransaction) {
-                    mb.k1(jbVar.getContext(), false, 0L, jbVar.f8871c, (TL_stars.StarsTransaction) b41Var.G, jbVar.f8870b);
+                    lb.k1(ibVar.getContext(), false, 0L, ibVar.f8818c, (TL_stars.StarsTransaction) b41Var.G, ibVar.f8817b);
                     return;
                 }
                 return;
             case 19:
-                hi.l9 l9Var = (hi.l9) this.f9838b;
+                hi.l9 l9Var = (hi.l9) this.f9836b;
                 b41 b41Var2 = (b41) obj;
                 View view2 = (View) obj2;
                 Integer num2 = (Integer) number;
@@ -420,24 +420,24 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                 if (d7Var != saVar.L1 && !saVar.Y1) {
                     saVar.f15051e1.setSelected(i11);
                     saVar.Y1 = true;
-                    ai.v0 v0Var = new ai.v0(saVar, i11, 9);
+                    ai.w0 w0Var = new ai.w0(saVar, i11, 9);
                     hi.u9 u9Var = saVar.f15107w1;
                     hi.d7 d7Var2 = saVar.L1;
                     if (u9Var != null && d7Var2 != null) {
                         if (!u9Var.r0()) {
-                            v0Var.run();
+                            w0Var.run();
                             return;
                         }
                         d7Var2.f();
-                        Utilities.f22418g.c(new hi.v8(saVar, u9Var, d7Var2.f14143i0, d7Var2.f14145j0, d7Var2, u9Var.f14700y0.getPainting().E, u9Var.r0(), v0Var, 0));
+                        Utilities.f22418g.c(new hi.v8(saVar, u9Var, d7Var2.f14143i0, d7Var2.f14145j0, d7Var2, u9Var.f14700y0.getPainting().E, u9Var.r0(), w0Var, 0));
                         return;
                     }
-                    v0Var.run();
+                    w0Var.run();
                     return;
                 }
                 return;
             case 25:
-                kg.c1 c1Var = (kg.c1) this.f9838b;
+                kg.c1 c1Var = (kg.c1) this.f9836b;
                 b41 b41Var3 = (b41) obj;
                 View view3 = (View) obj2;
                 Integer num3 = (Integer) number;
@@ -448,17 +448,17 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                     boolean z10 = !c1Var.d;
                     c1Var.d = z10;
                     ((org.telegram.ui.Cells.q8) view3).setChecked(z10);
-                    c1Var.f17888a.f39895g3.O(true);
+                    c1Var.f17888a.f39892g3.O(true);
                     c1Var.d0(true);
                     return;
                 } else if (i12 == -2) {
                     ?? e2Var = new org.telegram.ui.ActionBar.e2(null);
                     e2Var.f18152n = c1Var.f17893n;
-                    e2Var.f18149c = new ai.u1(23, c1Var, view3);
+                    e2Var.f18149c = new ai.v1(23, c1Var, view3);
                     c1Var.presentFragment((org.telegram.ui.ActionBar.e2) e2Var);
                     return;
                 } else if (b41Var3.f56015a == 5 && i12 >= 0 && i12 < c1Var.f17892f.length) {
-                    if (!hd.f24101a0 ? floatValue >= view3.getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f) : floatValue <= org.telegram.messenger.g0.L(76.0f)) {
+                    if (!hd.f24104a0 ? floatValue >= view3.getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f) : floatValue <= org.telegram.messenger.g0.L(76.0f)) {
                         if (c1Var.f17892f[b41Var3.d].isEmpty()) {
                             ((org.telegram.ui.Cells.h5) view3).setChecked(true);
                             c1Var.f17892f[b41Var3.d].add(new kg.b1(0, 1439));
@@ -487,7 +487,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = b41Var3.f33181l;
+                    CharSequence charSequence = b41Var3.f33184l;
                     ArrayList arrayList = c1Var.f17892f[b41Var3.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
@@ -505,7 +505,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                     return;
                 }
             case 26:
-                final kg.e1 e1Var2 = (kg.e1) this.f9838b;
+                final kg.e1 e1Var2 = (kg.e1) this.f9836b;
                 b41 b41Var4 = (b41) obj;
                 final View view4 = (View) obj2;
                 Integer num4 = (Integer) number;
@@ -523,7 +523,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                     }
                     org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view4;
                     boolean z11 = e1Var2.f17923r;
-                    b41Var4.f33175e = z11;
+                    b41Var4.f33178e = z11;
                     q8Var.setChecked(z11);
                     boolean z12 = e1Var2.f17923r;
                     if (z12) {
@@ -532,7 +532,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                         i10 = org.telegram.ui.ActionBar.j6.f28868e6;
                     }
                     q8Var.b(org.telegram.ui.ActionBar.j6.x0(null, i10, false), z12);
-                    e1Var2.f17922n.f39895g3.O(true);
+                    e1Var2.f17922n.f39892g3.O(true);
                     hi.e1 e1Var3 = e1Var2.f17921f;
                     if (e1Var3 != null) {
                         e1Var3.run();
@@ -555,7 +555,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                     if (e1Var4 != null) {
                         e1Var4.run();
                     }
-                    e1Var2.f17922n.f39895g3.O(true);
+                    e1Var2.f17922n.f39892g3.O(true);
                     return;
                 } else if (b41Var4.f56015a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
                     int i26 = i7 - 1;
@@ -591,7 +591,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                                         b1Var3.f17875a = intValue;
                                         ((l8) view4).w(b1.a(intValue), true);
                                         if (a02 != e1Var5.a0()) {
-                                            e1Var5.f17922n.f39895g3.O(true);
+                                            e1Var5.f17922n.f39892g3.O(true);
                                         }
                                         hi.e1 e1Var6 = e1Var5.f17921f;
                                         if (e1Var6 != null) {
@@ -606,7 +606,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                                         b1Var3.f17876b = intValue2;
                                         ((l8) view4).w(b1.a(intValue2), true);
                                         if (a03 != e1Var7.a0()) {
-                                            e1Var7.f17922n.f39895g3.O(true);
+                                            e1Var7.f17922n.f39892g3.O(true);
                                         }
                                         hi.e1 e1Var8 = e1Var7.f17921f;
                                         if (e1Var8 != null) {
@@ -638,7 +638,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                                         b1Var3.f17875a = intValue;
                                         ((l8) view4).w(b1.a(intValue), true);
                                         if (a02 != e1Var5.a0()) {
-                                            e1Var5.f17922n.f39895g3.O(true);
+                                            e1Var5.f17922n.f39892g3.O(true);
                                         }
                                         hi.e1 e1Var6 = e1Var5.f17921f;
                                         if (e1Var6 != null) {
@@ -653,7 +653,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                                         b1Var3.f17876b = intValue2;
                                         ((l8) view4).w(b1.a(intValue2), true);
                                         if (a03 != e1Var7.a0()) {
-                                            e1Var7.f17922n.f39895g3.O(true);
+                                            e1Var7.f17922n.f39892g3.O(true);
                                         }
                                         hi.e1 e1Var8 = e1Var7.f17921f;
                                         if (e1Var8 != null) {
@@ -670,7 +670,7 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new kg.b1(0, 1439));
                         }
-                        e1Var2.f17922n.f39895g3.O(true);
+                        e1Var2.f17922n.f39892g3.O(true);
                         hi.e1 e1Var5 = e1Var2.f17921f;
                         if (e1Var5 != null) {
                             e1Var5.run();
@@ -687,20 +687,20 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
                 Integer num5 = (Integer) number;
                 Float f17 = (Float) serializable;
                 Float f18 = (Float) serializable2;
-                kg.y1.Z((kg.y1) this.f9838b, (b41) obj, (View) obj2);
+                kg.y1.Z((kg.y1) this.f9836b, (b41) obj, (View) obj2);
                 return;
         }
     }
 
     @Override
     public RecyclerView n(View view) {
-        ((lb) this.f9838b).getClass();
-        return ((jb) view).f8869a;
+        ((kb) this.f9836b).getClass();
+        return ((ib) view).f8816a;
     }
 
     @Override
     public void onFinishVideoRecording(String str, long j3) {
-        hi.p9 p9Var = (hi.p9) this.f9838b;
+        hi.p9 p9Var = (hi.p9) this.f9836b;
         hi.sa saVar = p9Var.f14881a;
         hi.f6 f6Var = saVar.P0;
         int i7 = saVar.f15043c;
@@ -791,15 +791,15 @@ public final class z6 implements il0, x10, OnSuccessListener, ij0, t10, hj0, fi.
 
     @Override
     public void onSuccess(Object obj) {
-        switch (this.f9837a) {
+        switch (this.f9835a) {
             case 2:
-                ((e1.b) this.f9838b).invoke(obj);
+                ((e1.b) this.f9836b).invoke(obj);
                 return;
             case 3:
-                ((e1.b) this.f9838b).invoke(obj);
+                ((e1.b) this.f9836b).invoke(obj);
                 return;
             default:
-                ((ae.d) this.f9838b).invoke(obj);
+                ((ae.d) this.f9836b).invoke(obj);
                 return;
         }
     }

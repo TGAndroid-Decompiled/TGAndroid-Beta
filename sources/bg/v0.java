@@ -16,39 +16,39 @@ import org.telegram.ui.Components.st0;
 import org.telegram.ui.Components.sw;
 import org.telegram.ui.Components.xe;
 public final class v0 implements r0.m0, sw {
-    public boolean f3343a;
-    public int f3344b;
-    public Object f3345c;
+    public boolean f3346a;
+    public int f3347b;
+    public Object f3348c;
 
     public v0(FrameLayout frameLayout) {
-        this.f3345c = frameLayout;
+        this.f3348c = frameLayout;
     }
 
     @Override
     public void a() {
-        this.f3343a = true;
+        this.f3346a = true;
     }
 
     @Override
     public void b() {
         super/*android.view.ViewGroup*/.setVisibility(0);
-        this.f3343a = false;
+        this.f3346a = false;
     }
 
     @Override
     public void c() {
-        if (this.f3343a) {
+        if (this.f3346a) {
             return;
         }
-        ActionBarContextView actionBarContextView = (ActionBarContextView) this.f3345c;
-        actionBarContextView.f1864f = null;
-        super/*android.view.ViewGroup*/.setVisibility(this.f3344b);
+        ActionBarContextView actionBarContextView = (ActionBarContextView) this.f3348c;
+        actionBarContextView.f1871f = null;
+        super/*android.view.ViewGroup*/.setVisibility(this.f3347b);
     }
 
     public boolean d() {
         dy dyVar;
         xe xeVar;
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3345c;
+        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3348c;
         if (chatActivityEnterView.f32196f4) {
             if ((chatActivityEnterView.f32210h4 || (xeVar = chatActivityEnterView.F0) == null || xeVar.length() <= 0) && (dyVar = chatActivityEnterView.V0.f37010z0) != null && dyVar.b() > 0 && !chatActivityEnterView.S3) {
                 return true;
@@ -60,7 +60,7 @@ public final class v0 implements r0.m0, sw {
 
     public void e() {
         int i7;
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3345c;
+        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3348c;
         st0 st0Var = chatActivityEnterView.U1;
         if (d()) {
             AnimatorSet animatorSet = chatActivityEnterView.f32223j4;
@@ -68,14 +68,14 @@ public final class v0 implements r0.m0, sw {
                 animatorSet.cancel();
             }
             chatActivityEnterView.f32242m4 = true;
-            this.f3343a = chatActivityEnterView.f32210h4;
+            this.f3346a = chatActivityEnterView.f32210h4;
             chatActivityEnterView.f32210h4 = true;
-            ns.e().k(ns.f25517j1, 1);
-            int height = ((((st0Var.getHeight() - org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.f23604n) - org.telegram.messenger.g0.L(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
+            ns.e().k(ns.f25518j1, 1);
+            int height = ((((st0Var.getHeight() - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.f23606n) - org.telegram.messenger.g0.L(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
             chatActivityEnterView.f32236l4 = height;
             if (chatActivityEnterView.f32333z2 == 2) {
                 int L = org.telegram.messenger.g0.L(175.0f);
-                Point point = org.telegram.messenger.g0.f23609q;
+                Point point = org.telegram.messenger.g0.f23611q;
                 if (point.x > point.y) {
                     i7 = chatActivityEnterView.f32202g3;
                 } else {
@@ -91,7 +91,7 @@ public final class v0 implements r0.m0, sw {
             if (chatActivityEnterView.Q5) {
                 st0Var.setForeground(new jc(chatActivityEnterView));
             }
-            this.f3344b = (int) chatActivityEnterView.getTranslationY();
+            this.f3347b = (int) chatActivityEnterView.getTranslationY();
             cg cgVar = chatActivityEnterView.H3;
             if (cgVar != null) {
                 cgVar.q1();
@@ -101,7 +101,7 @@ public final class v0 implements r0.m0, sw {
 
     public v0(MessageDigest messageDigest, int i7) {
         ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN);
-        this.f3345c = messageDigest;
-        this.f3344b = i7;
+        this.f3348c = messageDigest;
+        this.f3347b = i7;
     }
 }

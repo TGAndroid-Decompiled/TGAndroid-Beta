@@ -65,33 +65,33 @@ public class b {
     public b(w7.s sVar, Context context, o oVar, androidx.emoji2.text.f fVar) {
         long nextLong = new Random().nextLong();
         this.A = Long.valueOf(nextLong);
-        this.B = com.google.android.gms.internal.play_billing.i.f6753a;
+        this.B = com.google.android.gms.internal.play_billing.i.f6756a;
         this.f10943c = "8.0.0";
         String w10 = w();
         this.d = w10;
         this.f10946g = context.getApplicationContext();
         o3 x10 = p3.x();
         x10.c();
-        p3.v((p3) x10.f6856b);
+        p3.v((p3) x10.f6859b);
         if (w10 != null) {
             x10.c();
-            p3.w((p3) x10.f6856b, w10);
+            p3.w((p3) x10.f6859b, w10);
         }
         String packageName = this.f10946g.getPackageName();
         x10.c();
-        p3.t((p3) x10.f6856b, packageName);
+        p3.t((p3) x10.f6859b, packageName);
         x10.c();
-        p3.q((p3) x10.f6856b, nextLong);
+        p3.q((p3) x10.f6859b, nextLong);
         x10.c();
-        p3.u((p3) x10.f6856b);
+        p3.u((p3) x10.f6859b);
         int i7 = Build.VERSION.SDK_INT;
         x10.c();
-        p3.n((p3) x10.f6856b, i7);
+        p3.n((p3) x10.f6859b, i7);
         x10.d();
         try {
             int i10 = this.f10946g.getPackageManager().getPackageInfo(this.f10946g.getPackageName(), 0).versionCode;
             x10.c();
-            p3.o((p3) x10.f6856b, i10);
+            p3.o((p3) x10.f6859b, i10);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Error getting app version code.", th2);
         }
@@ -225,8 +225,8 @@ public class b {
         if (f(new r(this, j1Var, cVar, 1), 30000L, new m9.u(16, this, j1Var), r(), e()) == null) {
             f u10 = u();
             y(25, 7, u10);
-            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f6831b;
-            ((q1) j1Var.f24500b).a(u10, com.google.android.gms.internal.play_billing.v.f6858e);
+            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f6834b;
+            ((q1) j1Var.f24505b).a(u10, com.google.android.gms.internal.play_billing.v.f6861e);
         }
     }
 
@@ -237,7 +237,7 @@ public class b {
     public final synchronized ExecutorService e() {
         try {
             if (this.f10963z == null) {
-                this.f10963z = Executors.newFixedThreadPool(com.google.android.gms.internal.play_billing.u.f6853a, new s(this));
+                this.f10963z = Executors.newFixedThreadPool(com.google.android.gms.internal.play_billing.u.f6856a, new s(this));
             }
         } catch (Throwable th2) {
             throw th2;
@@ -258,7 +258,7 @@ public class b {
             bVar.getClass();
             o3 o3Var = (o3) ((p3) bVar.f59107b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f6856b, i7);
+            p3.p((p3) o3Var.f6859b, i7);
             bVar.f59107b = (p3) o3Var.a();
             bVar.W(g3Var);
         } catch (Throwable th2) {
@@ -273,7 +273,7 @@ public class b {
             bVar.getClass();
             o3 o3Var = (o3) ((p3) bVar.f59107b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f6856b, i7);
+            p3.p((p3) o3Var.f6859b, i7);
             p3 p3Var = (p3) o3Var.a();
             bVar.f59107b = p3Var;
             bVar.e0(i3Var, p3Var);
@@ -360,8 +360,8 @@ public class b {
                     com.google.android.gms.internal.play_billing.u.g("BillingClient", "Starting in-app billing setup.");
                     this.f10948j = new t(this, cVar);
                     com.google.android.gms.internal.play_billing.m mVar = this.f10948j.f11013b;
-                    mVar.f6789c = 0L;
-                    mVar.f6788b = false;
+                    mVar.f6792c = 0L;
+                    mVar.f6791b = false;
                     mVar.a();
                     Intent intent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
                     intent.setPackage("com.android.vending");
@@ -516,14 +516,14 @@ public class b {
         com.google.android.gms.internal.play_billing.u.g("BillingClient", "Service connection is valid. No need to re-initialize.");
         h3 s5 = i3.s();
         s5.c();
-        i3.r((i3) s5.f6856b, 6);
+        i3.r((i3) s5.f6859b, 6);
         c4 r10 = d4.r();
         r10.c();
-        d4.q((d4) r10.f6856b);
+        d4.q((d4) r10.f6859b);
         r10.d(false);
         r10.e();
         s5.c();
-        i3.q((i3) s5.f6856b, (d4) r10.a());
+        i3.q((i3) s5.f6859b, (d4) r10.a());
         i((i3) s5.a());
         return a0.f10932g;
     }
@@ -574,33 +574,33 @@ public class b {
     public b(w7.s sVar, Context context, androidx.emoji2.text.f fVar) {
         long nextLong = new Random().nextLong();
         this.A = Long.valueOf(nextLong);
-        this.B = com.google.android.gms.internal.play_billing.i.f6753a;
+        this.B = com.google.android.gms.internal.play_billing.i.f6756a;
         this.f10943c = "8.0.0";
         String w10 = w();
         this.d = w10;
         this.f10946g = context.getApplicationContext();
         o3 x10 = p3.x();
         x10.c();
-        p3.v((p3) x10.f6856b);
+        p3.v((p3) x10.f6859b);
         if (w10 != null) {
             x10.c();
-            p3.w((p3) x10.f6856b, w10);
+            p3.w((p3) x10.f6859b, w10);
         }
         String packageName = this.f10946g.getPackageName();
         x10.c();
-        p3.t((p3) x10.f6856b, packageName);
+        p3.t((p3) x10.f6859b, packageName);
         x10.c();
-        p3.q((p3) x10.f6856b, nextLong);
+        p3.q((p3) x10.f6859b, nextLong);
         x10.c();
-        p3.u((p3) x10.f6856b);
+        p3.u((p3) x10.f6859b);
         int i7 = Build.VERSION.SDK_INT;
         x10.c();
-        p3.n((p3) x10.f6856b, i7);
+        p3.n((p3) x10.f6859b, i7);
         x10.d();
         try {
             int i10 = this.f10946g.getPackageManager().getPackageInfo(this.f10946g.getPackageName(), 0).versionCode;
             x10.c();
-            p3.o((p3) x10.f6856b, i10);
+            p3.o((p3) x10.f6859b, i10);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Error getting app version code.", th2);
         }

@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class oi extends gh.b {
-    public final int f49974s;
-    public final an f49975w;
+    public final int f49964s;
+    public final an f49965w;
 
     public oi(an anVar, org.telegram.ui.ActionBar.e6 e6Var, int i7, int i10) {
         super(i7, e6Var);
-        this.f49974s = i10;
-        this.f49975w = anVar;
+        this.f49964s = i10;
+        this.f49965w = anVar;
     }
 
     @Override
     public final int A2() {
         int i7;
         int i10;
-        switch (this.f49974s) {
+        switch (this.f49964s) {
             case 0:
-                an anVar = this.f49975w;
+                an anVar = this.f49965w;
                 i7 = ((org.telegram.ui.ActionBar.e2) anVar).currentAccount;
                 if (!c8.g0.c(i7, anVar.Aa)) {
                     return i0.a.o(anVar.getThemedColor(org.telegram.ui.ActionBar.j6.Je), 255);
@@ -28,9 +28,9 @@ public final class oi extends gh.b {
                 a();
                 return this.d;
             case 1:
-                return this.f49975w.f45416x.A2();
+                return this.f49965w.f45415x.A2();
             default:
-                an anVar2 = this.f49975w;
+                an anVar2 = this.f49965w;
                 i10 = ((org.telegram.ui.ActionBar.e2) anVar2).currentAccount;
                 if (!c8.g0.c(i10, anVar2.Aa)) {
                     return i0.a.o(anVar2.getThemedColor(org.telegram.ui.ActionBar.j6.f28849d6), 255);

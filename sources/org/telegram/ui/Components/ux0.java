@@ -12,7 +12,7 @@ public final class ux0 extends TextView {
     public ux0(vx0 vx0Var, CharSequence charSequence) {
         super(vx0Var.getContext());
         this.f40185a = vx0Var;
-        org.telegram.ui.ActionBar.e6 e6Var = vx0Var.f41174a;
+        org.telegram.ui.ActionBar.e6 e6Var = vx0Var.f41177a;
         setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
         org.telegram.ui.ActionBar.q6.U(this, org.telegram.ui.ActionBar.j6.G6, e6Var);
         setTypeface(org.telegram.messenger.g0.o());
@@ -29,7 +29,7 @@ public final class ux0 extends TextView {
         if (z10 || this.f40187c) {
             canvas2 = canvas;
             float L = org.telegram.messenger.g0.L(10.0f);
-            float[] fArr = vx0Var.f41176c;
+            float[] fArr = vx0Var.f41179c;
             if (this.f40186b) {
                 f10 = L;
             } else {
@@ -47,7 +47,7 @@ public final class ux0 extends TextView {
             }
             fArr[7] = L;
             fArr[6] = L;
-            vx0Var.f41175b.rewind();
+            vx0Var.f41178b.rewind();
             RectF rectF = org.telegram.messenger.g0.P;
             float f11 = vx0Var.h;
             float width = getWidth() + vx0Var.h;
@@ -57,15 +57,15 @@ public final class ux0 extends TextView {
                 i7 = -1;
             }
             rectF.set(f11, f11, width, (f12 * i7) + height);
-            vx0Var.f41175b.addRoundRect(rectF, vx0Var.f41176c, Path.Direction.CW);
-            canvas2.drawPath(vx0Var.f41175b, vx0Var.d);
-            canvas2.drawPath(vx0Var.f41175b, vx0Var.f41177e);
+            vx0Var.f41178b.addRoundRect(rectF, vx0Var.f41179c, Path.Direction.CW);
+            canvas2.drawPath(vx0Var.f41178b, vx0Var.d);
+            canvas2.drawPath(vx0Var.f41178b, vx0Var.f41180e);
         } else {
             float f13 = vx0Var.h;
             canvas2 = canvas;
             canvas2.drawRect(f13, f13, getWidth() + vx0Var.h, getHeight() + vx0Var.h, vx0Var.d);
             float f14 = vx0Var.h;
-            canvas2.drawRect(f14, f14, getWidth() + vx0Var.h, getHeight() + vx0Var.h, vx0Var.f41177e);
+            canvas2.drawRect(f14, f14, getWidth() + vx0Var.h, getHeight() + vx0Var.h, vx0Var.f41180e);
         }
         super.onDraw(canvas2);
     }

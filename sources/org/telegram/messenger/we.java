@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class we {
-    public String f27338a;
-    public String f27339b;
-    public int f27340c;
+    public String f27337a;
+    public String f27338b;
+    public int f27339c;
     public String d;
-    public gj f27341e;
+    public gj f27340e;
 }

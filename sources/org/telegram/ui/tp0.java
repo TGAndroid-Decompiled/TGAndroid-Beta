@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public final class tp0 extends tg.g0 {
     public final PhotoViewer Y1;
 
-    public tp0(PhotoViewer photoViewer, Context context, Activity activity, int i7, Bitmap bitmap, Bitmap bitmap2, int i10, ArrayList arrayList, org.telegram.messenger.xe xeVar, dn0 dn0Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, activity, i7, bitmap, bitmap2, i10, arrayList, xeVar, dn0Var, e6Var);
+    public tp0(PhotoViewer photoViewer, Context context, Activity activity, int i7, Bitmap bitmap, Bitmap bitmap2, int i10, ArrayList arrayList, org.telegram.messenger.xe xeVar, en0 en0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, activity, i7, bitmap, bitmap2, i10, arrayList, xeVar, en0Var, e6Var);
         this.Y1 = photoViewer;
     }
 

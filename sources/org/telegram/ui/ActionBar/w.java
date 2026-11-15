@@ -49,7 +49,7 @@ public final class w extends FrameLayout {
         int paddingRight = getPaddingRight();
         int paddingBottom = getPaddingBottom();
         Paint n02 = j6.n0(i7);
-        m3 m3Var = m3.f29381c;
+        m3 m3Var = m3.f29382c;
         if (paddingLeft > 0 && this.f29773x != m3Var) {
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), n02);
@@ -60,7 +60,7 @@ public final class w extends FrameLayout {
             canvas2.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), n02);
         }
         if (paddingBottom > 0) {
-            if (this.f29773x == m3.f29379a || z10) {
+            if (this.f29773x == m3.f29380a || z10) {
                 canvas2.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), n02);
             }
         }
@@ -112,7 +112,7 @@ public final class w extends FrameLayout {
         } else {
             e2 lastFragment = actionBarLayout.getLastFragment();
             if (lastFragment != null && !lastFragment.inPreviewMode) {
-                if (this == actionBarLayout.f28365s && this.f29773x != m3.f29379a) {
+                if (this == actionBarLayout.f28365s && this.f29773x != m3.f29380a) {
                     int childCount = getChildCount();
                     for (int i7 = 0; i7 < childCount; i7++) {
                         if (getChildAt(i7) instanceof b2) {
@@ -217,7 +217,7 @@ public final class w extends FrameLayout {
             ActionBarLayout.f28322w1.draw(canvas);
             ActionBarLayout.f28322w1.setAlpha(alpha);
         }
-        if (!actionBarLayout.T0 && this.E && this.f29774y && e2Var != null && e2Var.getListViewForSimpleGlass() == null && (i12 = org.telegram.messenger.g0.f23604n) >= org.telegram.messenger.g0.L(32.0f)) {
+        if (!actionBarLayout.T0 && this.E && this.f29774y && e2Var != null && e2Var.getListViewForSimpleGlass() == null && (i12 = org.telegram.messenger.g0.f23606n) >= org.telegram.messenger.g0.L(32.0f)) {
             int i15 = (int) (i12 * 1.33f);
             int navigationBarColor = e2Var.getNavigationBarColor();
             if (i15 != this.h || this.f29769n != navigationBarColor || this.f29772w == null) {
@@ -308,7 +308,7 @@ public final class w extends FrameLayout {
         getWindowVisibleDisplayFrame(rect);
         int height = rootView.getHeight();
         if (rect.top != 0) {
-            i14 = org.telegram.messenger.g0.f23603m;
+            i14 = org.telegram.messenger.g0.f23605m;
         } else {
             i14 = 0;
         }
@@ -348,7 +348,7 @@ public final class w extends FrameLayout {
         getWindowVisibleDisplayFrame(this.f29764a);
         c3 c3Var = actionBarLayout.F;
         if (c3Var != null) {
-            c3Var.setCurrentAccount(m10.f24934t0);
+            c3Var.setCurrentAccount(m10.f24940t0);
         }
         int i14 = 0;
         while (true) {
@@ -418,7 +418,7 @@ public final class w extends FrameLayout {
         boolean z10;
         if (this.f29773x != m3Var) {
             this.f29773x = m3Var;
-            if (m3Var != m3.f29379a) {
+            if (m3Var != m3.f29380a) {
                 z10 = true;
             } else {
                 z10 = false;

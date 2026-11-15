@@ -19,7 +19,7 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.z70;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.z51;
-import tg.i2;
+import tg.h2;
 import ug.g1;
 public final class h0 extends g1 {
     public final ArrayList M2;
@@ -34,10 +34,10 @@ public final class h0 extends g1 {
         this.f29718v0 = false;
         this.f29716t0 = 0;
         yg.a aVar = new yg.a(getContext(), this.J0);
-        aVar.setOnClickListener(new i2(this, 4));
+        aVar.setOnClickListener(new h2(this, 4));
         aVar.setCloseStyle(true);
         this.f29682b.addView(aVar, ja.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i10 = this.f29717u0;
         uj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(64.0f));
         Context context = getContext();
@@ -87,7 +87,7 @@ public final class h0 extends g1 {
         if (Q == null) {
             return;
         }
-        h0 h0Var = new h0(Q, m10.f24934t0, arrayList, Q.getResourceProvider());
+        h0 h0Var = new h0(Q, m10.f24940t0, arrayList, Q.getResourceProvider());
         h0Var.F2 = true;
         h0Var.G2 = true;
         h0Var.show();

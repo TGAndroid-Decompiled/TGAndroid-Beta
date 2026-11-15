@@ -86,7 +86,7 @@ public class g {
 
     public JSONObject d(y0 y0Var) {
         String str = this.f10981a;
-        int i7 = y0Var.f6681b;
+        int i7 = y0Var.f6684b;
         x9.b bVar = x9.b.f59856a;
         bVar.c("Settings response code was: " + i7);
         if (i7 != 200 && i7 != 201 && i7 != 202 && i7 != 203) {
@@ -96,7 +96,7 @@ public class g {
             }
             return null;
         }
-        String str3 = y0Var.f6682c;
+        String str3 = y0Var.f6685c;
         try {
             return new JSONObject(str3);
         } catch (Exception e10) {

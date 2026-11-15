@@ -18,22 +18,22 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class q90 {
-    public static final Pattern f50509k = Pattern.compile("^[a-z0-9_]{1,32}$");
-    public final LaunchActivity f50510a;
-    public final int f50511b;
-    public final vf.b f50512c;
+    public static final Pattern f50500k = Pattern.compile("^[a-z0-9_]{1,32}$");
+    public final LaunchActivity f50501a;
+    public final int f50502b;
+    public final vf.b f50503c;
     public final boolean d;
-    public org.telegram.ui.ActionBar.t1 f50513e;
-    public boolean f50514f;
-    public boolean f50515g;
+    public org.telegram.ui.ActionBar.t1 f50504e;
+    public boolean f50505f;
+    public boolean f50506g;
     public int h = -1;
-    public ai.f1 f50516i;
-    public boolean f50517j;
+    public ai.g1 f50507i;
+    public boolean f50508j;
 
     public q90(LaunchActivity launchActivity, int i7, vf.b bVar, boolean z10) {
-        this.f50510a = launchActivity;
-        this.f50511b = i7;
-        this.f50512c = bVar;
+        this.f50501a = launchActivity;
+        this.f50502b = i7;
+        this.f50503c = bVar;
         this.d = z10;
     }
 
@@ -81,9 +81,9 @@ public final class q90 {
     }
 
     public final boolean a() {
-        if (!this.f50517j) {
-            LaunchActivity launchActivity = this.f50510a;
-            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.G1 && !org.telegram.messenger.gz.f23992x && !org.telegram.messenger.gz.C && org.telegram.messenger.m10.f24934t0 == this.f50511b) {
+        if (!this.f50508j) {
+            LaunchActivity launchActivity = this.f50501a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.G1 && !org.telegram.messenger.gz.f23995x && !org.telegram.messenger.gz.C && org.telegram.messenger.m10.f24940t0 == this.f50502b) {
                 return true;
             }
             return false;
@@ -92,38 +92,38 @@ public final class q90 {
     }
 
     public final void b() {
-        this.f50517j = true;
-        ai.f1 f1Var = this.f50516i;
-        if (f1Var != null) {
-            org.telegram.messenger.g0.r(f1Var);
+        this.f50508j = true;
+        ai.g1 g1Var = this.f50507i;
+        if (g1Var != null) {
+            org.telegram.messenger.g0.r(g1Var);
         }
         if (this.h >= 0) {
-            ConnectionsManager.getInstance(this.f50511b).cancelRequest(this.h, true);
+            ConnectionsManager.getInstance(this.f50502b).cancelRequest(this.h, true);
             this.h = -1;
         }
     }
 
     public final void c() {
-        if (this.f50515g) {
+        if (this.f50506g) {
             return;
         }
-        org.telegram.ui.ActionBar.t1 t1Var = this.f50513e;
+        org.telegram.ui.ActionBar.t1 t1Var = this.f50504e;
         if (t1Var != null) {
             t1Var.dismiss();
         }
-        vf.b bVar = this.f50512c;
+        vf.b bVar = this.f50503c;
         if (bVar != null) {
             bVar.b();
         }
-        this.f50515g = true;
+        this.f50506g = true;
     }
 
     public final org.telegram.ui.ActionBar.o4 e() {
-        return this.f50510a.M();
+        return this.f50501a.M();
     }
 
     public final org.telegram.messenger.m10 f() {
-        return org.telegram.messenger.m10.i(this.f50511b);
+        return org.telegram.messenger.m10.i(this.f50502b);
     }
 
     public final boolean g(Uri uri) {
@@ -142,13 +142,13 @@ public final class q90 {
             org.telegram.messenger.a8.b("link manager handle " + uri2);
             String scheme = uri2.getScheme();
             boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme);
-            LaunchActivity launchActivity = this.f50510a;
+            LaunchActivity launchActivity = this.f50501a;
             if (equalsIgnoreCase) {
                 vf.c.q(launchActivity, uri2, true, true);
                 return true;
             } else if (!"http".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme)) {
                 boolean equalsIgnoreCase2 = "tg".equalsIgnoreCase(scheme);
-                int i7 = this.f50511b;
+                int i7 = this.f50502b;
                 if (equalsIgnoreCase2) {
                     Uri s9 = s(Uri.parse(uri2.toString().replaceFirst("(?i)^tg:(//)?sendgrams&", "tg://sendgrams?")));
                     List<String> pathSegments2 = s9.getPathSegments();
@@ -214,7 +214,7 @@ public final class q90 {
                                         return true;
                                     } else if ("channel".equalsIgnoreCase(str5)) {
                                         SharedPreferences e12 = org.telegram.messenger.np.e1();
-                                        boolean z11 = org.telegram.messenger.r2.f26198a;
+                                        boolean z11 = org.telegram.messenger.r2.f26206a;
                                         u(new g(0), false);
                                         e12.edit().putBoolean("channel_intro", true).commit();
                                         return true;
@@ -271,7 +271,7 @@ public final class q90 {
                         }
                     }
                 } else if ("ton".equalsIgnoreCase(scheme)) {
-                    if (((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i7).f25448y7.f25852j0.f14544b).f24006c && (pathSegments = (s5 = s(uri2)).getPathSegments()) != null) {
+                    if (((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i7).f25451y7.f25854j0.f14544b).f24009c && (pathSegments = (s5 = s(uri2)).getPathSegments()) != null) {
                         ArrayList arrayList3 = new ArrayList(pathSegments);
                         String authority3 = s5.getAuthority();
                         if (!TextUtils.isEmpty(authority3)) {
@@ -362,7 +362,7 @@ public final class q90 {
                                     String queryParameter4 = uri2.getQueryParameter("ref");
                                     if (queryParameter4 != null) {
                                         String lowerCase = queryParameter4.toLowerCase(Locale.ROOT);
-                                        if (f50509k.matcher(lowerCase).matches()) {
+                                        if (f50500k.matcher(lowerCase).matches()) {
                                             str3 = r.b.k("tme_getpremium_", lowerCase);
                                             u(new PremiumPreviewFragment(0, str3), false);
                                             return true;
@@ -414,7 +414,7 @@ public final class q90 {
         inputaicomposetoneslug.slug = str;
         gettone.tone = inputaicomposetoneslug;
         o();
-        ConnectionsManager.getInstance(this.f50511b).sendRequestTyped(gettone, new d3.b(1), new a5(this, 14));
+        ConnectionsManager.getInstance(this.f50502b).sendRequestTyped(gettone, new d3.b(1), new a5(this, 14));
         return true;
     }
 
@@ -427,7 +427,7 @@ public final class q90 {
         TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
         tL_inputInvoiceSlug.slug = str;
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        this.h = ConnectionsManager.getInstance(this.f50511b).sendRequest(tL_payments_getPaymentForm, new z9((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
+        this.h = ConnectionsManager.getInstance(this.f50502b).sendRequest(tL_payments_getPaymentForm, new z9((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
         return true;
     }
 
@@ -446,7 +446,7 @@ public final class q90 {
         if (T != null && T.getContext() != null) {
             o();
             TLRPC.User[] userArr = {null};
-            org.telegram.messenger.np.s1(this.f50511b).d2().a(str, null, new x(this, userArr, new org.telegram.ui.Components.ma0(this, T, userArr, tL_requestPeerTypeCreateBot, 17), 10));
+            org.telegram.messenger.np.s1(this.f50502b).d2().a(str, null, new x(this, userArr, new org.telegram.ui.Components.u80(this, T, userArr, tL_requestPeerTypeCreateBot, 18), 10));
         }
     }
 
@@ -461,15 +461,15 @@ public final class q90 {
         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
         tL_messages_requestUrlAuth.flags |= 4;
         tL_messages_requestUrlAuth.url = uri.toString();
-        ConnectionsManager.getInstance(this.f50511b).sendRequestTyped(tL_messages_requestUrlAuth, new d3.b(1), new bi.e4(19, this, tL_messages_requestUrlAuth));
+        ConnectionsManager.getInstance(this.f50502b).sendRequestTyped(tL_messages_requestUrlAuth, new d3.b(1), new bi.e4(19, this, tL_messages_requestUrlAuth));
         return true;
     }
 
     public final boolean l(Uri uri) {
         Uri uri2;
         long j3;
-        int i7 = this.f50511b;
-        if (!((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i7).f25448y7.f25852j0.f14544b).f24006c) {
+        int i7 = this.f50502b;
+        if (!((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i7).f25451y7.f25854j0.f14544b).f24009c) {
             return false;
         }
         String queryParameter = uri.getQueryParameter("startapp");
@@ -540,19 +540,19 @@ public final class q90 {
     }
 
     public final void o() {
-        if (!this.f50514f && !this.f50515g) {
-            vf.b bVar = this.f50512c;
+        if (!this.f50505f && !this.f50506g) {
+            vf.b bVar = this.f50503c;
             if (bVar == null) {
-                if (this.f50513e == null) {
-                    this.f50513e = new org.telegram.ui.ActionBar.t1(3, this.f50510a, null);
+                if (this.f50504e == null) {
+                    this.f50504e = new org.telegram.ui.ActionBar.t1(3, this.f50501a, null);
                 }
-                this.f50513e.setOnCancelListener(new tf(this, 3));
-                this.f50513e.r(300L);
+                this.f50504e.setOnCancelListener(new tf(this, 3));
+                this.f50504e.r(300L);
             } else {
                 bVar.f58805b = new l90(this, 0);
                 bVar.d();
             }
-            this.f50514f = true;
+            this.f50505f = true;
         }
     }
 
@@ -561,7 +561,7 @@ public final class q90 {
     }
 
     public final void u(org.telegram.ui.ActionBar.e2 e2Var, boolean z10) {
-        LaunchActivity launchActivity = this.f50510a;
+        LaunchActivity launchActivity = this.f50501a;
         launchActivity.u0(e2Var, z10, false);
         if (org.telegram.messenger.g0.Q1()) {
             launchActivity.f42649p0.X(true, true);
@@ -570,12 +570,12 @@ public final class q90 {
     }
 
     public final void v(String str, int i7, String str2, String str3) {
-        if (!this.f50517j) {
-            LaunchActivity launchActivity = this.f50510a;
+        if (!this.f50508j) {
+            LaunchActivity launchActivity = this.f50501a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 tonconnectgetpending.dapp_client_id = str;
-                this.h = ConnectionsManager.getInstance(this.f50511b).sendRequestTyped(tonconnectgetpending, new d3.b(1), new k60(this, str, str2, str3, i7));
+                this.h = ConnectionsManager.getInstance(this.f50502b).sendRequestTyped(tonconnectgetpending, new d3.b(1), new k60(this, str, str2, str3, i7));
                 return;
             }
         }
@@ -583,7 +583,7 @@ public final class q90 {
     }
 
     public final void w(String str) {
-        LaunchActivity launchActivity = this.f50510a;
+        LaunchActivity launchActivity = this.f50501a;
         if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && !"none".equals(str)) {
             if ("back".equals(str)) {
                 if (this.d) {
@@ -597,6 +597,6 @@ public final class q90 {
     }
 
     public final void x(String str) {
-        org.telegram.messenger.g0.k3(this.f50510a.M(), str);
+        org.telegram.messenger.g0.k3(this.f50501a.M(), str);
     }
 }

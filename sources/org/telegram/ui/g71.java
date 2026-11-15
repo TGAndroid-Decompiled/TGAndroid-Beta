@@ -8,26 +8,26 @@ import android.widget.TextView;
 import java.util.Iterator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class g71 extends AnimatorListenerAdapter {
-    public final int f47369a;
-    public final Object f47370b;
+    public final int f47359a;
+    public final Object f47360b;
 
     public g71(Object obj, int i7) {
-        this.f47369a = i7;
-        this.f47370b = obj;
+        this.f47359a = i7;
+        this.f47360b = obj;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
         int i10;
-        int i11 = this.f47369a;
+        int i11 = this.f47359a;
         int i12 = 4;
         float f10 = 1.0f;
-        Object obj = this.f47370b;
+        Object obj = this.f47360b;
         switch (i11) {
             case 0:
-                t71 t71Var = ((i71) obj).f47937a;
-                if (!t71Var.f51458r1.a()) {
+                t71 t71Var = ((i71) obj).f47927a;
+                if (!t71Var.f51459r1.a()) {
                     t71Var.T1.setVisibility(8);
                     return;
                 }
@@ -50,9 +50,9 @@ public final class g71 extends AnimatorListenerAdapter {
             case 4:
                 jb1 jb1Var = (jb1) obj;
                 jb1Var.d = null;
-                jb1Var.f48294a = null;
-                jb1Var.f48295b = false;
-                jb1Var.f48298f.f43450c.setAllowDrawCursor(true);
+                jb1Var.f48279a = null;
+                jb1Var.f48280b = false;
+                jb1Var.f48283f.f43450c.setAllowDrawCursor(true);
                 return;
             case 5:
                 ((org.telegram.ui.Wallet.v3) obj).L = null;
@@ -129,11 +129,11 @@ public final class g71 extends AnimatorListenerAdapter {
                 return;
             case 13:
                 n1 n1Var = (n1) obj;
-                ((zc1) n1Var.f49358b).getClass();
-                ((zc1) n1Var.f49358b).f53938c.setVisibility(4);
+                ((zc1) n1Var.f49357b).getClass();
+                ((zc1) n1Var.f49357b).f53903c.setVisibility(4);
                 return;
             case 14:
-                ((org.telegram.ui.web.v0) obj).f52835s.setVisibility(8);
+                ((org.telegram.ui.web.v0) obj).f52838s.setVisibility(8);
                 return;
             case 15:
                 org.telegram.messenger.aj ajVar = (org.telegram.messenger.aj) obj;
@@ -148,8 +148,8 @@ public final class g71 extends AnimatorListenerAdapter {
             case 17:
                 super.onAnimationEnd(animator);
                 tg.f0 f0Var = (tg.f0) obj;
-                ImageView imageView = f0Var.f57230c;
-                f0Var.f57230c = f0Var.d;
+                ImageView imageView = f0Var.f57261c;
+                f0Var.f57261c = f0Var.d;
                 f0Var.d = imageView;
                 imageView.bringToFront();
                 f0Var.d.setVisibility(8);
@@ -157,10 +157,10 @@ public final class g71 extends AnimatorListenerAdapter {
                 return;
             case 18:
                 tg.h1 h1Var = (tg.h1) obj;
-                if (animator == h1Var.f57328r) {
-                    h1Var.f57326f = h1Var.h;
+                if (animator == h1Var.f57332r) {
+                    h1Var.f57330f = h1Var.h;
                     h1Var.h = -1;
-                    h1Var.f57328r = null;
+                    h1Var.f57332r = null;
                     return;
                 }
                 return;

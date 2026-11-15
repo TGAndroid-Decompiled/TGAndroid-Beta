@@ -5,10 +5,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ea extends org.telegram.ui.Components.tj0 {
-    public final la f46657c;
+    public final la f46647c;
 
     public ea(la laVar) {
-        this.f46657c = laVar;
+        this.f46647c = laVar;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class ea extends org.telegram.ui.Components.tj0 {
     @Override
     public final int b() {
         int i7;
-        la laVar = this.f46657c;
-        org.telegram.ui.Components.uj0 uj0Var = laVar.f48911b;
-        ArrayList arrayList = laVar.f48918w;
+        la laVar = this.f46647c;
+        org.telegram.ui.Components.uj0 uj0Var = laVar.f48907b;
+        ArrayList arrayList = laVar.f48914w;
         if (uj0Var != null) {
             ArrayList arrayList2 = uj0Var.L2;
             if (arrayList2 != null) {
@@ -33,11 +33,11 @@ public final class ea extends org.telegram.ui.Components.tj0 {
                 uj0Var.L2 = new ArrayList();
             }
             if (arrayList.size() > 0) {
-                laVar.f48911b.L2.add(Long.valueOf(org.telegram.messenger.g0.w2(3, arrayList.size() + 3)));
+                laVar.f48907b.L2.add(Long.valueOf(org.telegram.messenger.g0.w2(3, arrayList.size() + 3)));
             }
         }
-        if (laVar.f48918w.size() > 0) {
-            i7 = laVar.f48918w.size() + 2;
+        if (laVar.f48914w.size() > 0) {
+            i7 = laVar.f48914w.size() + 2;
         } else {
             i7 = 0;
         }
@@ -69,8 +69,8 @@ public final class ea extends org.telegram.ui.Components.tj0 {
         int i10;
         int i11;
         boolean z10;
-        la laVar = this.f46657c;
-        long j3 = laVar.f48920y;
+        la laVar = this.f46647c;
+        long j3 = laVar.f48916y;
         int i12 = e1Var.f58539f;
         View view = e1Var.f58535a;
         if (i12 != 0) {
@@ -79,7 +79,7 @@ public final class ea extends org.telegram.ui.Components.tj0 {
                     if (i12 != 4) {
                         return;
                     }
-                    TLRPC.TL_username tL_username = (TLRPC.TL_username) laVar.f48918w.get(i7 - 4);
+                    TLRPC.TL_username tL_username = (TLRPC.TL_username) laVar.f48914w.get(i7 - 4);
                     ia iaVar = (ia) view;
                     if (tL_username.editable) {
                         laVar.F = iaVar;
@@ -91,14 +91,14 @@ public final class ea extends org.telegram.ui.Components.tj0 {
                     } else {
                         z10 = false;
                     }
-                    iaVar.a(tL_username, z10, false, laVar.f48920y);
+                    iaVar.a(tL_username, z10, false, laVar.f48916y);
                     return;
                 }
-                laVar.f48915n = true;
+                laVar.f48911n = true;
                 ga gaVar = (ga) view;
                 laVar.E = gaVar;
-                gaVar.f47390a.setText(laVar.f48916r);
-                laVar.f48915n = false;
+                gaVar.f47380a.setText(laVar.f48912r);
+                laVar.f48911n = false;
                 return;
             }
             org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
@@ -125,7 +125,7 @@ public final class ea extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        la laVar = this.f46657c;
+        la laVar = this.f46647c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {

@@ -35,15 +35,15 @@ public final class m01 extends FrameLayout {
                 canvas.restoreToCount(save);
                 return;
             case 10:
-                tg.m2 m2Var = (tg.m2) this.f37022b;
-                if (m2Var.E > 0.0f && m2Var.f57451s != null) {
-                    m2Var.f57452w.reset();
-                    float width = getWidth() / m2Var.f57449n.getWidth();
-                    m2Var.f57452w.postScale(width, width);
-                    m2Var.f57450r.setLocalMatrix(m2Var.f57452w);
-                    m2Var.f57451s.setAlpha((int) (m2Var.E * 255.0f));
+                tg.l2 l2Var = (tg.l2) this.f37022b;
+                if (l2Var.E > 0.0f && l2Var.f57429s != null) {
+                    l2Var.f57430w.reset();
+                    float width = getWidth() / l2Var.f57427n.getWidth();
+                    l2Var.f57430w.postScale(width, width);
+                    l2Var.f57428r.setLocalMatrix(l2Var.f57430w);
+                    l2Var.f57429s.setAlpha((int) (l2Var.E * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), m2Var.f57451s);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), l2Var.f57429s);
                 } else {
                     canvas2 = canvas;
                 }
@@ -60,7 +60,7 @@ public final class m01 extends FrameLayout {
         switch (this.f37021a) {
             case 10:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    ((tg.m2) this.f37022b).onBackPressed();
+                    ((tg.l2) this.f37022b).onBackPressed();
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -112,7 +112,7 @@ public final class m01 extends FrameLayout {
                 super.onDraw(canvas);
                 org.telegram.ui.tp0 tp0Var = (org.telegram.ui.tp0) this.f37022b;
                 Paint paint = tp0Var.l1;
-                tg.e1 e1Var = tp0Var.f57272e1;
+                tg.e1 e1Var = tp0Var.f57282e1;
                 paint.setAlpha((int) ((1.0f - tp0Var.n1) * e1Var.getAlpha() * 102.0f));
                 RectF rectF = org.telegram.messenger.g0.P;
                 e1Var.b(rectF);
@@ -120,10 +120,10 @@ public final class m01 extends FrameLayout {
                 int top = e0Var.getTop();
                 float translationY = e1Var.getTranslationY() + e0Var.getTranslationY() + e1Var.getTop() + top;
                 float f10 = rectF.left;
-                tg.j1 j1Var = tp0Var.f57273f1;
+                tg.j1 j1Var = tp0Var.f57283f1;
                 rectF.set(org.telegram.messenger.g0.T1(f10, j1Var.getLeft(), tp0Var.n1), org.telegram.messenger.g0.T1(rectF.top + translationY, j1Var.getTop() - j1Var.getTranslationY(), tp0Var.n1), org.telegram.messenger.g0.T1(rectF.right, j1Var.getRight(), tp0Var.n1), org.telegram.messenger.g0.T1(translationY + rectF.bottom, j1Var.getBottom() - j1Var.getTranslationY(), tp0Var.n1));
                 float L = org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(tp0Var.n1, 32, 16));
-                Paint paint2 = tp0Var.f57281m1;
+                Paint paint2 = tp0Var.f57291m1;
                 int alpha = paint2.getAlpha();
                 paint2.setAlpha((int) (alpha * tp0Var.n1));
                 canvas.drawRoundRect(rectF, L, L, paint2);
@@ -135,42 +135,42 @@ public final class m01 extends FrameLayout {
                 Rect rect = n1Var.F0;
                 Rect rect2 = n1Var.E0;
                 Paint paint3 = n1Var.G0;
-                nt0 nt0Var = n1Var.f57468w0;
+                nt0 nt0Var = n1Var.f57470w0;
                 Bitmap bitmap = n1Var.B0;
                 if (n1Var.A0 != null) {
                     canvas.save();
-                    float d = n1Var.f57467v0.d(n1Var.f57466u0);
-                    canvas.scale(1.0f - (d * 2.0f), 1.0f, nt0Var.f37713a / 2.0f, 0.0f);
+                    float d = n1Var.f57469v0.d(n1Var.f57468u0);
+                    canvas.scale(1.0f - (d * 2.0f), 1.0f, nt0Var.f37702a / 2.0f, 0.0f);
                     canvas.skew(0.0f, org.telegram.messenger.k5.A(1.0f, d, 4.0f * d, 0.25f));
-                    float d2 = n1Var.f57471z0.d(n1Var.f57470y0);
-                    if (!n1Var.f57470y0) {
+                    float d2 = n1Var.f57473z0.d(n1Var.f57472y0);
+                    if (!n1Var.f57472y0) {
                         canvas.save();
                         paint3.setAlpha((int) ((1.0f - d2) * 255.0f));
                         if (bitmap != null) {
                             canvas.translate(m01Var.getWidth() / 2.0f, m01Var.getHeight() / 2.0f);
-                            canvas.rotate(n1Var.f57469x0);
-                            float max = Math.max(nt0Var.f37713a / bitmap.getWidth(), nt0Var.f37714b / bitmap.getHeight());
+                            canvas.rotate(n1Var.f57471x0);
+                            float max = Math.max(nt0Var.f37702a / bitmap.getWidth(), nt0Var.f37703b / bitmap.getHeight());
                             canvas.scale(max, max);
                             if (n1Var.H0 != null) {
                                 canvas.rotate(-n1Var.getOrientation());
                                 int contentWidth = n1Var.getContentWidth();
                                 int contentHeight = n1Var.getContentHeight();
-                                if (((n1Var.getOrientation() + n1Var.H0.f27495k) / 90) % 2 == 1) {
+                                if (((n1Var.getOrientation() + n1Var.H0.f27496k) / 90) % 2 == 1) {
                                     contentWidth = n1Var.getContentHeight();
                                     contentHeight = n1Var.getContentWidth();
                                 }
                                 org.telegram.messenger.xe xeVar2 = n1Var.H0;
-                                float f11 = xeVar2.f27491e;
-                                float f12 = xeVar2.f27492f;
+                                float f11 = xeVar2.f27492e;
+                                float f12 = xeVar2.f27493f;
                                 float f13 = contentWidth;
                                 float f14 = contentHeight;
                                 canvas.clipRect(((-contentWidth) * f11) / 2.0f, ((-contentHeight) * f12) / 2.0f, (f11 * f13) / 2.0f, (f12 * f14) / 2.0f);
-                                float f15 = n1Var.H0.f27490c;
+                                float f15 = n1Var.H0.f27491c;
                                 canvas.scale(f15, f15);
                                 org.telegram.messenger.xe xeVar3 = n1Var.H0;
-                                canvas.translate(xeVar3.f27488a * f13, xeVar3.f27489b * f14);
-                                canvas.rotate(n1Var.H0.d + xeVar.f27495k);
-                                if (n1Var.H0.f27496l) {
+                                canvas.translate(xeVar3.f27489a * f13, xeVar3.f27490b * f14);
+                                canvas.rotate(n1Var.H0.d + xeVar.f27496k);
+                                if (n1Var.H0.f27497l) {
                                     canvas.scale(-1.0f, 1.0f);
                                 }
                                 canvas.rotate(n1Var.getOrientation());
@@ -187,15 +187,15 @@ public final class m01 extends FrameLayout {
                 }
                 return;
             case 9:
-                tg.g2 g2Var = (tg.g2) this.f37022b;
-                ImageReceiver imageReceiver = g2Var.f57314y0;
-                nt0 nt0Var2 = g2Var.f57312w0;
-                if (g2Var.f57313x0 != null) {
+                tg.f2 f2Var = (tg.f2) this.f37022b;
+                ImageReceiver imageReceiver = f2Var.f57275y0;
+                nt0 nt0Var2 = f2Var.f57273w0;
+                if (f2Var.f57274x0 != null) {
                     canvas.save();
-                    float d10 = g2Var.f57311v0.d(g2Var.f57310u0);
-                    canvas.scale(1.0f - (d10 * 2.0f), 1.0f, nt0Var2.f37713a / 2.0f, 0.0f);
+                    float d10 = f2Var.f57272v0.d(f2Var.f57271u0);
+                    canvas.scale(1.0f - (d10 * 2.0f), 1.0f, nt0Var2.f37702a / 2.0f, 0.0f);
                     canvas.skew(0.0f, org.telegram.messenger.k5.A(1.0f, d10, 4.0f * d10, 0.25f));
-                    imageReceiver.y0(0.0f, 0.0f, (int) nt0Var2.f37713a, (int) nt0Var2.f37714b);
+                    imageReceiver.y0(0.0f, 0.0f, (int) nt0Var2.f37702a, (int) nt0Var2.f37703b);
                     imageReceiver.h(canvas, null);
                     canvas.restore();
                     return;
@@ -283,9 +283,9 @@ public final class m01 extends FrameLayout {
             case 13:
                 super.onMeasure(i7, i10);
                 ug.g1 g1Var = (ug.g1) ((di.i4) this.f37022b).d;
-                di.yb ybVar = g1Var.f58099n2;
-                if (ybVar != null) {
-                    top = ybVar.getTop();
+                di.xb xbVar = g1Var.f58099n2;
+                if (xbVar != null) {
+                    top = xbVar.getTop();
                     measuredHeight = g1Var.f58099n2.getMeasuredHeight();
                 } else {
                     View view = g1Var.f58109x2;
@@ -339,7 +339,7 @@ public final class m01 extends FrameLayout {
             case 7:
                 if (motionEvent.getActionMasked() == 0) {
                     org.telegram.ui.tp0 tp0Var = (org.telegram.ui.tp0) this.f37022b;
-                    if (tp0Var.f57284o1) {
+                    if (tp0Var.f57294o1) {
                         tp0Var.z0(false);
                         return true;
                     }
@@ -392,10 +392,10 @@ public final class m01 extends FrameLayout {
         }
     }
 
-    public m01(tg.g2 g2Var, Context context) {
+    public m01(tg.f2 f2Var, Context context) {
         super(context);
         this.f37021a = 9;
-        this.f37022b = g2Var;
+        this.f37022b = f2Var;
         setWillNotDraw(false);
     }
 

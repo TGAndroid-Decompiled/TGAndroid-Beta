@@ -41,7 +41,7 @@ public final class b {
         int i16 = (int) f10;
         int i17 = i14 * 2;
         cc.b bVar = this.f13813a;
-        int i18 = bVar.f4870b;
+        int i18 = bVar.f4873b;
         int[] iArr2 = this.h;
         iArr2[0] = 0;
         iArr2[1] = 0;
@@ -100,8 +100,8 @@ public final class b {
                 i12++;
                 a aVar = (a) obj;
                 float f13 = aVar.f13812c;
-                float f14 = aVar.f3135a;
-                float f15 = aVar.f3136b;
+                float f14 = aVar.f3138a;
+                float f15 = aVar.f3139b;
                 if (Math.abs(f11 - f15) <= f12 && Math.abs(f10 - f14) <= f12) {
                     float abs = Math.abs(f12 - f13);
                     if (abs <= 1.0f || abs <= f13) {

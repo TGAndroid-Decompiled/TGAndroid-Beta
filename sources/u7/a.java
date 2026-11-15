@@ -26,7 +26,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     return;
                 }
                 n6.c cVar = null;
-                jVar.f57882b.i().f6052b = null;
+                jVar.f57882b.i().f6055b = null;
                 if (z10) {
                     h0 h0Var = lVar.B;
                     if (h0Var == null) {

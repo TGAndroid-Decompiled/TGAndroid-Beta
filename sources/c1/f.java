@@ -19,16 +19,16 @@ import v0.h;
 import v0.m;
 import v0.p;
 public final class f extends b1.d {
-    public final Context f4076e;
-    public g f4077f;
-    public Executor f4078g;
+    public final Context f4079e;
+    public g f4080f;
+    public Executor f4081g;
     public CancellationSignal h;
-    public final e f4079i;
+    public final e f4082i;
 
     public f(Context context) {
         j.e(context, "context");
-        this.f4076e = context;
-        this.f4079i = new e(this, new Handler(Looper.getMainLooper()), 0);
+        this.f4079e = context;
+        this.f4082i = new e(this, new Handler(Looper.getMainLooper()), 0);
     }
 
     public final v0.n e(a6.g r14) {
@@ -36,7 +36,7 @@ public final class f extends b1.d {
     }
 
     public final g f() {
-        g gVar = this.f4077f;
+        g gVar = this.f4080f;
         if (gVar != null) {
             return gVar;
         }
@@ -45,7 +45,7 @@ public final class f extends b1.d {
     }
 
     public final Executor g() {
-        Executor executor = this.f4078g;
+        Executor executor = this.f4081g;
         if (executor != null) {
             return executor;
         }
@@ -59,13 +59,13 @@ public final class f extends b1.d {
         j.e(callback, "callback");
         j.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f4077f = callback;
-        this.f4078g = executor;
+        this.f4080f = callback;
+        this.f4081g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (a1.g.a(cancellationSignal)) {
             return;
         }
-        Context context = this.f4076e;
+        Context context = this.f4079e;
         j.e(context, "context");
         a6.d dVar = new a6.d(false);
         a6.a aVar = new a6.a(false, null, null, true, null, null, false);
@@ -79,10 +79,10 @@ public final class f extends b1.d {
         for (h hVar : request.f58456a) {
             if ((hVar instanceof p) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = d1.g.f7335a;
+                    LinkedHashMap linkedHashMap = d1.g.f7338a;
                     bVar2 = new a6.b(((p) hVar).f58460e, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = d1.g.f7335a;
+                    LinkedHashMap linkedHashMap2 = d1.g.f7338a;
                     JSONObject jSONObject = new JSONObject(((p) hVar).f58460e);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
@@ -105,9 +105,9 @@ public final class f extends b1.d {
         a6.e eVar = new a6.e(dVar, aVar, a10.f19331l, false, 0, cVar, bVar2, z10);
         t b10 = u.b();
         b10.d = new n6.c[]{new n6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f6071c = new ia.d(a10, eVar, 8);
-        b10.f6070b = false;
-        b10.f6069a = 1553;
+        b10.f6074c = new ia.d(a10, eVar, 8);
+        b10.f6073b = false;
+        b10.f6072a = 1553;
         a10.e(0, b10.a()).addOnSuccessListener(new a1.c(new ae.d(2, cancellationSignal, this), 15)).addOnFailureListener(new ab.g(8, this, cancellationSignal));
     }
 }

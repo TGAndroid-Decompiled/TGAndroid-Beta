@@ -22,8 +22,8 @@ public final class uu0 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 vu0 vu0Var2 = this.f40166b;
-                vu0Var2.m(((Float) vu0Var2.f41154w.getAnimatedValue()).floatValue());
-                vu0Var2.f41154w = null;
+                vu0Var2.m(((Float) vu0Var2.f41157w.getAnimatedValue()).floatValue());
+                vu0Var2.f41157w = null;
                 return;
             default:
                 super.onAnimationEnd(animator);

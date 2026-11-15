@@ -1,94 +1,67 @@
 package di;
 
-import android.content.Context;
-import org.telegram.ui.rs0;
-public final class yb extends vg.m {
-    public final int f9813j0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.r80;
+public final class yb extends AnimatorListenerAdapter {
+    public final ch.n0 f9807a;
+    public final View f9808b;
+    public final fi.n0[] f9809c;
+    public final boolean[] d;
+    public final RectF f9810e;
+    public final Runnable f9811f;
+    public final ic h;
 
-    public yb(Context context, int i7, int i10, int i11) {
-        super(context, i7, i10);
-        this.f9813j0 = i11;
+    public yb(ic icVar, ch.n0 n0Var, View view, fi.n0[] n0VarArr, boolean[] zArr, RectF rectF, Runnable runnable) {
+        this.h = icVar;
+        this.f9807a = n0Var;
+        this.f9808b = view;
+        this.f9809c = n0VarArr;
+        this.d = zArr;
+        this.f9810e = rectF;
+        this.f9811f = runnable;
     }
 
     @Override
-    public void h() {
-        switch (this.f9813j0) {
-            case 2:
-                boolean z10 = org.telegram.messenger.r2.f26198a;
-                return;
-            default:
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        r80 r80Var;
+        ic icVar = this.h;
+        xb xbVar = icVar.F1;
+        xbVar.setVisibility(4);
+        xbVar.setPaused(true);
+        ch.n0 n0Var = this.f9807a;
+        if (n0Var != null) {
+            n0Var.f5156k = true;
         }
-    }
-
-    @Override
-    public void n() {
-        switch (this.f9813j0) {
-            case 0:
-                return;
-            default:
-                super.n();
-                return;
+        View view = this.f9808b;
+        if (view != null) {
+            view.invalidate();
         }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f9813j0) {
-            case 1:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 2:
-            default:
-                super.onAttachedToWindow();
-                return;
-            case 3:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 4:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 5:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
+        fi.n0 n0Var2 = this.f9809c[0];
+        if (n0Var2 != null) {
+            n0Var2.setDrawStar(true);
         }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f9813j0) {
-            case 1:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 2:
-            default:
-                super.onDetachedFromWindow();
-                return;
-            case 3:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 4:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 5:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
+        super/*org.telegram.ui.ActionBar.u2*/.L();
+        boolean[] zArr = this.d;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            RectF rectF = this.f9810e;
+            LaunchActivity.b0(rectF.centerX(), rectF.centerY(), 1.5f);
+            try {
+                icVar.f29685c.performHapticFeedback(0, 1);
+            } catch (Exception unused) {
+            }
+            Runnable runnable = this.f9811f;
+            if (runnable != null) {
+                runnable.run();
+            }
         }
-    }
-
-    public yb(rs0 rs0Var, Context context, int i7, int i10, Context context2) {
-        super(context, i7, i10);
-        this.f9813j0 = 2;
-    }
-
-    private final void p() {
+        LaunchActivity launchActivity = LaunchActivity.H1;
+        if (launchActivity != null && (r80Var = launchActivity.f42663w0) != null) {
+            r80Var.c(true);
+        }
     }
 }

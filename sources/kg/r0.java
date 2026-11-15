@@ -40,21 +40,21 @@ public final class r0 implements org.telegram.ui.ActionBar.q1, x10 {
             if (i7 != 2 && b41Var.f56015a != 17) {
                 if (i7 == 1) {
                     s0Var.f18092r = !s0Var.f18092r;
-                    s0Var.f18087b.f39895g3.O(true);
+                    s0Var.f18087b.f39892g3.O(true);
                     s0Var.a0(true);
                     return;
                 } else if (i7 == 3) {
                     a0 a0Var = s0Var.f18088c;
                     s0Var.f18093s = true;
                     a0Var.h = true;
-                    s0Var.f18087b.f39895g3.O(true);
+                    s0Var.f18087b.f39892g3.O(true);
                     s0Var.a0(true);
                     return;
                 } else if (i7 == 4) {
                     a0 a0Var2 = s0Var.f18088c;
                     s0Var.f18093s = false;
                     a0Var2.h = false;
-                    s0Var.f18087b.f39895g3.O(true);
+                    s0Var.f18087b.f39892g3.O(true);
                     s0Var.a0(true);
                     return;
                 } else {

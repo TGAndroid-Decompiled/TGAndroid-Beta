@@ -7,19 +7,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class c9 extends w40 {
-    public final int f46055w0;
-    public final org.telegram.ui.ActionBar.e2 f46056x0;
+    public final int f46044w0;
+    public final org.telegram.ui.ActionBar.e2 f46045x0;
 
     public c9(Bundle bundle, int i7, org.telegram.ui.ActionBar.e2 e2Var) {
         super(bundle);
-        this.f46055w0 = i7;
-        this.f46056x0 = e2Var;
+        this.f46044w0 = i7;
+        this.f46045x0 = e2Var;
     }
 
     @Override
     public final void s0(HashSet hashSet) {
         int size = hashSet.size();
-        int i7 = this.f46055w0;
+        int i7 = this.f46044w0;
         if (size == 1) {
             TLRPC.User a22 = org.telegram.messenger.np.s1(i7).a2((Long) hashSet.iterator().next());
             TLRPC.UserFull b22 = org.telegram.messenger.np.s1(i7).b2(a22.f28200id);
@@ -33,7 +33,7 @@ public final class c9 extends w40 {
         } else {
             TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
             createconferencecall.random_id = Utilities.f22414b.nextInt();
-            ConnectionsManager.getInstance(i7).sendRequest(createconferencecall, new jg.u(i7, hashSet, this.f46056x0));
+            ConnectionsManager.getInstance(i7).sendRequest(createconferencecall, new jg.u(i7, hashSet, this.f46045x0));
         }
         finishFragment();
     }

@@ -35,7 +35,7 @@ public abstract class d4 {
     }
 
     public static File c(TLObject tLObject) {
-        org.telegram.messenger.w7.G(org.telegram.messenger.m10.f24934t0);
+        org.telegram.messenger.w7.G(org.telegram.messenger.m10.f24940t0);
         File J = org.telegram.messenger.w7.J(tLObject, null, false, true);
         if (J != null && J.exists()) {
             return J;

@@ -48,7 +48,7 @@ public final class b9 extends org.telegram.ui.ActionBar.u2 {
         }
         if (z11 && z10) {
             boolean z12 = FilesMigrationService.f22250c;
-            t0.f26600b.startService(new Intent(t0.f26600b, FilesMigrationService.class));
+            t0.f26609b.startService(new Intent(t0.f26609b, FilesMigrationService.class));
             dismiss();
             return;
         }

@@ -5,17 +5,17 @@ import android.util.LongSparseArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class ti extends c1 {
-    public static final ti[] f26682b = new ti[4];
-    public final LongSparseArray f26683a;
+    public static final ti[] f26691b = new ti[4];
+    public final LongSparseArray f26692a;
 
     public ti(int i7) {
         super(i7);
-        this.f26683a = new LongSparseArray();
+        this.f26692a = new LongSparseArray();
     }
 
     public static ti b(int i7) {
         ti tiVar;
-        ti[] tiVarArr = f26682b;
+        ti[] tiVarArr = f26691b;
         ti tiVar2 = tiVarArr[i7];
         if (tiVar2 == null) {
             synchronized (ti.class) {
@@ -55,7 +55,7 @@ public final class ti extends c1 {
 
     public final void c(TL_update.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
         long j3 = -gj.B1(tL_updatePendingJoinRequests.peer);
-        this.f26683a.put(j3, null);
+        this.f26692a.put(j3, null);
         TLRPC.ChatFull N0 = getMessagesController().N0(j3);
         if (N0 != null) {
             N0.requests_pending = tL_updatePendingJoinRequests.requests_pending;

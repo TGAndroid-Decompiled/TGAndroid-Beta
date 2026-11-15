@@ -12,19 +12,19 @@ import org.telegram.ui.i9;
 import org.telegram.ui.vy0;
 import org.telegram.ui.y6;
 public final class x4 extends org.telegram.ui.ActionBar.j {
-    public final int f3982a;
-    public final Object f3983b;
+    public final int f3985a;
+    public final Object f3986b;
 
     public x4(Object obj, int i7) {
-        this.f3982a = i7;
-        this.f3983b = obj;
+        this.f3985a = i7;
+        this.f3986b = obj;
     }
 
     @Override
     public final void b(int i7) {
         org.telegram.ui.ActionBar.w4 w4Var;
-        int i10 = this.f3982a;
-        Object obj = this.f3983b;
+        int i10 = this.f3985a;
+        Object obj = this.f3986b;
         switch (i10) {
             case 0:
                 if (i7 == -1) {
@@ -166,7 +166,7 @@ public final class x4 extends org.telegram.ui.ActionBar.j {
                         int intValue = ((Integer) arrayList.get(0)).intValue();
                         kg.u1 c10 = kg.v1.f(kg.r1.d0(r1Var)).c(intValue);
                         if (c10 != null) {
-                            kg.r1.i0(r1Var.getParentActivity(), kg.r1.e0(r1Var), null, c10, kg.r1.f0(r1Var), new ai.x1(this, intValue, 3));
+                            kg.r1.i0(r1Var.getParentActivity(), kg.r1.e0(r1Var), null, c10, kg.r1.f0(r1Var), new ai.y1(this, intValue, 3));
                             return;
                         }
                         return;
@@ -228,14 +228,14 @@ public final class x4 extends org.telegram.ui.ActionBar.j {
                         d0Var.dismiss();
                         return;
                     }
-                    d0Var.f19548v1.d.f39895g3.O(false);
+                    d0Var.f19548v1.d.f39892g3.O(false);
                     d0Var.f19541o1.C(0);
                     return;
                 } else if (i7 == 3) {
                     d0Var.n1.a(true, true);
                     d0Var.u0(false);
                     d0Var.N1 = null;
-                    d0Var.B1.f39895g3.O(true);
+                    d0Var.B1.f39892g3.O(true);
                     d0Var.f19552z1.f40202r.getText().clear();
                     d0Var.f19552z1.f40202r.requestFocus();
                     org.telegram.messenger.g0.J3(d0Var.f19552z1.f40202r);
@@ -267,7 +267,7 @@ public final class x4 extends org.telegram.ui.ActionBar.j {
             case 20:
                 li.d0 d0Var3 = ((li.y) obj).f19647n;
                 if (i7 == -1) {
-                    d0Var3.f19548v1.d.f39895g3.O(false);
+                    d0Var3.f19548v1.d.f39892g3.O(false);
                     d0Var3.f19541o1.C(0);
                     return;
                 }
@@ -312,7 +312,7 @@ public final class x4 extends org.telegram.ui.ActionBar.j {
                 y6 y6Var = (y6) obj;
                 if (i7 == -1) {
                     if (y6.e0(y6Var).v()) {
-                        ei.c cVar2 = y6Var.f53442e0;
+                        ei.c cVar2 = y6Var.f53446e0;
                         if (cVar2 != null) {
                             cVar2.d();
                         }

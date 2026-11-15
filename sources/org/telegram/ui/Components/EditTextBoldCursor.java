@@ -132,27 +132,27 @@ public class EditTextBoldCursor extends kt {
         String str;
         boolean z10;
         ArrayList arrayList = new ArrayList();
-        this.f36616a = arrayList;
-        this.f36617b = new Stack();
-        this.f36618c = new ArrayList();
-        this.f36619e = true;
-        this.f36621n = new Path();
+        this.f36604a = arrayList;
+        this.f36605b = new Stack();
+        this.f36606c = new ArrayList();
+        this.f36607e = true;
+        this.f36609n = new Path();
         this.H = true;
         this.I = null;
         this.K = new ht(this, 0);
         this.L = new Rect();
-        if (kt.f36615a0 == null) {
+        if (kt.f36603a0 == null) {
             String str2 = Build.MANUFACTURER;
             if ((str2 != null && (str2.toLowerCase().contains("honor") || str2.toLowerCase().contains("huawei") || str2.toLowerCase().contains("alps") || str2.toLowerCase().contains("vivo"))) || ((str = Build.MODEL) != null && str.toLowerCase().contains("mediapad"))) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            kt.f36615a0 = Boolean.valueOf(z10);
+            kt.f36603a0 = Boolean.valueOf(z10);
         }
-        this.Q = kt.f36615a0.booleanValue();
+        this.Q = kt.f36603a0.booleanValue();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            this.f36620f = new gf.c(this, arrayList, new jt(this));
+            this.f36608f = new gf.c(this, arrayList, new jt(this));
         }
         this.f32516f0 = new s5(this, 1);
         this.f32531o0 = new Rect();
@@ -616,7 +616,7 @@ public class EditTextBoldCursor extends kt {
         CharSequence charSequence4 = charSequence;
         ys ysVar = this.f32543u0;
         if (ysVar != null) {
-            ysVar.t(charSequence4, !org.telegram.messenger.hd.f24101a0, true);
+            ysVar.t(charSequence4, !org.telegram.messenger.hd.f24104a0, true);
             return;
         }
         if (charSequence4 == null) {
@@ -692,7 +692,7 @@ public class EditTextBoldCursor extends kt {
                 ofFloat.addUpdateListener(new f60(lw0Var, 24));
                 lw0Var.f36917j.addListener(new h60(lw0Var, 27));
                 lw0Var.f36917j.setDuration(150L);
-                lw0Var.f36917j.setInterpolator(er.f34420f);
+                lw0Var.f36917j.setInterpolator(er.f34419f);
                 lw0Var.f36917j.start();
             }
         } else {

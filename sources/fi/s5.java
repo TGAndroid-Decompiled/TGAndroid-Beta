@@ -37,7 +37,7 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.e90;
 import org.telegram.ui.Components.l31;
 import org.telegram.ui.LaunchActivity;
 public final class s5 implements Runnable {
@@ -104,7 +104,7 @@ public final class s5 implements Runnable {
                 ArrayList arrayList2 = ((c6) this.f12317b).f11944i;
                 for (int i15 = 0; i15 < arrayList2.size(); i15++) {
                     gj gjVar2 = (gj) arrayList2.get(i15);
-                    if (gjVar2 != null && (storyItem = gjVar2.f23822l) != null && (messageMedia = storyItem.media) != null) {
+                    if (gjVar2 != null && (storyItem = gjVar2.f23824l) != null && (messageMedia = storyItem.media) != null) {
                         TLRPC.MessageMedia messageMedia2 = b6Var.media;
                         TLRPC.Document document = messageMedia2.document;
                         if (document != null) {
@@ -169,7 +169,7 @@ public final class s5 implements Runnable {
                     int i18 = 0;
                     while (true) {
                         if (i18 < arrayList8.size()) {
-                            if (np.t0(((gj) arrayList8.get(i18)).f23822l.media, botpreviewmedia.media)) {
+                            if (np.t0(((gj) arrayList8.get(i18)).f23824l.media, botpreviewmedia.media)) {
                                 gjVar = (gj) arrayList8.get(i18);
                             } else {
                                 i18++;
@@ -178,8 +178,8 @@ public final class s5 implements Runnable {
                             gjVar = null;
                         }
                     }
-                    TL_stories.StoryItem storyItem2 = gjVar3.f23822l;
-                    TLRPC.Message message = gjVar3.f23817k;
+                    TL_stories.StoryItem storyItem2 = gjVar3.f23824l;
+                    TLRPC.Message message = gjVar3.f23819k;
                     if (gjVar == null) {
                         e12 = c6Var.I;
                         c6Var.I = e12 + 1;
@@ -188,7 +188,7 @@ public final class s5 implements Runnable {
                     }
                     message.f28072id = e12;
                     storyItem2.f28290id = e12;
-                    gjVar3.f23813j = c6Var;
+                    gjVar3.f23815j = c6Var;
                     gjVar3.r0(false);
                     if (arrayList5.isEmpty()) {
                         arrayList5.add(new ArrayList());
@@ -312,7 +312,7 @@ public final class s5 implements Runnable {
                 String str = (String) this.d;
                 float f10 = z2Var.L;
                 if (obj3 != null) {
-                    int min = (int) Math.min(org.telegram.messenger.g0.f23609q.x / 3.0f, org.telegram.messenger.g0.L(330.0f));
+                    int min = (int) Math.min(org.telegram.messenger.g0.f23611q.x / 3.0f, org.telegram.messenger.g0.L(330.0f));
                     if (obj3 instanceof ff) {
                         ff ffVar = (ff) obj3;
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -408,18 +408,18 @@ public final class s5 implements Runnable {
             case 11:
                 String[] strArr = (String[]) this.f12317b;
                 int[][] iArr4 = (int[][]) this.f12318c;
-                androidx.car.app.utils.a aVar = (androidx.car.app.utils.a) this.d;
+                ai.r rVar = (ai.r) this.d;
                 for (int i21 = 0; i21 < strArr.length; i21++) {
                     String str3 = strArr[i21];
                     if (str3 != null) {
                         AnimatedFileNative.d(str3, iArr4[i21], 0L);
                     }
                 }
-                org.telegram.messenger.g0.h3(aVar);
+                org.telegram.messenger.g0.h3(rVar);
                 return;
             case 12:
                 AnimatedFileNative.d((String) this.f12317b, ((int[][]) this.f12318c)[0], 0L);
-                org.telegram.messenger.g0.h3((androidx.car.app.utils.a) this.d);
+                org.telegram.messenger.g0.h3((ai.r) this.d);
                 return;
             case 13:
                 hi.l8 l8Var = (hi.l8) this.f12317b;
@@ -456,7 +456,7 @@ public final class s5 implements Runnable {
                 ((hi.d7) this.f12318c).O0 = (File) this.d;
                 hi.l9 l9Var = ((sa) this.f12317b).f15051e1;
                 if (l9Var != null) {
-                    l9Var.f15326b.f39895g3.O(false);
+                    l9Var.f15326b.f39892g3.O(false);
                     return;
                 }
                 return;
@@ -503,7 +503,7 @@ public final class s5 implements Runnable {
                     vr a02 = vr.a0(i24);
                     if (booleanValue) {
                         try {
-                            sQLiteCursor = a02.f27222b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                            sQLiteCursor = a02.f27221b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                             try {
                                 try {
                                     if (sQLiteCursor.next()) {
@@ -536,7 +536,7 @@ public final class s5 implements Runnable {
                             th = th5;
                         }
                     } else {
-                        sQLiteCursor = a02.f27222b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                        sQLiteCursor = a02.f27221b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                         if (sQLiteCursor.next()) {
                             int intValue = sQLiteCursor.intValue(0);
                             int intValue2 = sQLiteCursor.intValue(1);
@@ -577,11 +577,11 @@ public final class s5 implements Runnable {
                     }
                     if (!h1Var.f17135p0 && (arrayList = h1Var.B0) != null && !arrayList.isEmpty()) {
                         h1Var.H();
-                        d90 d90Var = h1Var.W;
+                        e90 e90Var = h1Var.W;
                         if (h1Var.K() > 0) {
                             z10 = true;
                         }
-                        d90Var.a(z10);
+                        e90Var.a(z10);
                         h1Var.f17135p0 = true;
                     }
                     if (i12 != i13) {
@@ -614,7 +614,7 @@ public final class s5 implements Runnable {
                 l31 l31Var = c2Var.f17037e;
                 if (str5.equals(str6)) {
                     a2Var.a();
-                    l31Var.f36721b.h.getProgressDrawable().f41417e = false;
+                    l31Var.f36709b.h.getProgressDrawable().f41420e = false;
                     c2Var.O = 0;
                     l31Var.b(true);
                     c2Var.F.addAll(tL_messages_foundStickerSets.sets);

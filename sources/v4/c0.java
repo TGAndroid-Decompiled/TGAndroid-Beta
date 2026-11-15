@@ -20,7 +20,7 @@ public class c0 extends a1 {
     public int f58522p = 0;
 
     static {
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
         f58514q = true;
     }
 
@@ -31,7 +31,7 @@ public class c0 extends a1 {
     @Override
     public final void d(int i7, int i10, z0 z0Var) {
         PointF pointF;
-        if (this.f58481b.f2827y.r() == 0) {
+        if (this.f58481b.f2830y.r() == 0) {
             h();
         } else if (f58514q && (pointF = this.f58517k) != null && (pointF.x * i7 < 0.0f || pointF.y * i10 < 0.0f)) {
             throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");

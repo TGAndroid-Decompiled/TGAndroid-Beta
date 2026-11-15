@@ -41,7 +41,7 @@ public final class bl implements RequestDelegate {
                             messagesStorage.getClass();
                             CountDownLatch countDownLatch = new CountDownLatch(1);
                             boolean[] zArr = new boolean[1];
-                            messagesStorage.f27220a.c(new cq(messagesStorage, j10, zArr, countDownLatch, 0));
+                            messagesStorage.f27219a.c(new bq(messagesStorage, j10, zArr, countDownLatch, 0));
                             try {
                                 countDownLatch.await();
                             } catch (Exception e10) {
@@ -61,7 +61,7 @@ public final class bl implements RequestDelegate {
                             j3 = j11;
                             CountDownLatch countDownLatch2 = new CountDownLatch(1);
                             boolean[] zArr2 = new boolean[1];
-                            messagesStorage2.f27220a.c(new cq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
+                            messagesStorage2.f27219a.c(new bq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
                             try {
                                 countDownLatch2.await();
                             } catch (Exception e11) {
@@ -101,13 +101,13 @@ public final class bl implements RequestDelegate {
                                 arrayList2.add(tL_messageService);
                                 arrayList.add(new gj(npVar.currentAccount, (TLRPC.Message) tL_messageService, (AbstractMap) concurrentHashMap, (AbstractMap) null, true, false));
                                 if (tL_messageService.from_id.user_id != npVar.getUserConfig().e()) {
-                                    npVar.getMessagesStorage().f27220a.c(new oj(npVar, arrayList, 2));
+                                    npVar.getMessagesStorage().f27219a.c(new oj(npVar, arrayList, 2));
                                 }
                                 npVar.getMessagesStorage().j1(arrayList2, true, true, false, 0, false, 0, 0L);
                                 ArrayList arrayList3 = arrayList;
                                 vr messagesStorage3 = npVar.getMessagesStorage();
                                 long j13 = j3;
-                                messagesStorage3.f27220a.c(new sp(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
+                                messagesStorage3.f27219a.c(new pp(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
                                 g0.h3(new gm(npVar, j13, arrayList3, tL_channels_channelParticipant, 5));
                                 return;
                             }
@@ -118,7 +118,7 @@ public final class bl implements RequestDelegate {
                         ArrayList arrayList32 = arrayList;
                         vr messagesStorage32 = npVar.getMessagesStorage();
                         long j132 = j3;
-                        messagesStorage32.f27220a.c(new sp(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
+                        messagesStorage32.f27219a.c(new pp(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
                         g0.h3(new gm(npVar, j132, arrayList32, tL_channels_channelParticipant, 5));
                         return;
                     }

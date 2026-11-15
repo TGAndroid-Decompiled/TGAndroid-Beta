@@ -23,11 +23,11 @@ public final class v3 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f18604a) {
             case 1:
                 ir irVar = (ir) this.f18606c;
-                fr frVar = irVar.f35707r;
-                if (irVar.f35706n) {
+                fr frVar = irVar.f35694r;
+                if (irVar.f35693n) {
                     irVar.removeCallbacks(frVar);
                 }
-                irVar.f35706n = true;
+                irVar.f35693n = true;
                 irVar.postDelayed(frVar, 200L);
                 irVar.h.run();
                 return true;
@@ -59,7 +59,7 @@ public final class v3 extends GestureDetector.SimpleOnGestureListener {
                 float y10 = motionEvent.getY();
                 float x11 = motionEvent2.getX();
                 float y11 = motionEvent2.getY();
-                Typeface typeface = org.telegram.messenger.g0.f23581a;
+                Typeface typeface = org.telegram.messenger.g0.f23583a;
                 float f12 = x11 - x10;
                 float f13 = y11 - y10;
                 float sqrt = (float) Math.sqrt((f13 * f13) + (f12 * f12));
@@ -95,8 +95,8 @@ public final class v3 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f10, f11);
             case 2:
                 ye0 ye0Var = (ye0) viewGroup;
-                if (!ye0Var.f41983f && !ye0Var.h && f10 >= 600.0f) {
-                    ye0Var.f41982e = false;
+                if (!ye0Var.f41985f && !ye0Var.h && f10 >= 600.0f) {
+                    ye0Var.f41984e = false;
                     ye0Var.h = false;
                     ye0Var.a(0.0f, f10 / 6000.0f);
                 }

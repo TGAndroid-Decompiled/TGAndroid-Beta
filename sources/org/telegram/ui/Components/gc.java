@@ -50,7 +50,7 @@ public final class gc {
         er erVar = er.h;
         this.f34883e = new u5(icVar, 650L, erVar);
         this.f34884f = new u5(icVar, 650L, erVar);
-        er erVar2 = er.f34421g;
+        er erVar2 = er.f34420g;
         this.h = new u5(icVar, 0L, 150L, erVar2);
         this.f34886i = 1.0f;
         this.f34887j = new u5(icVar, 0L, 150L, erVar2);
@@ -62,7 +62,7 @@ public final class gc {
         g6Var.n(0.35f, 200L, erVar);
         g6Var.x(org.telegram.messenger.g0.o());
         g6Var.w(org.telegram.messenger.g0.L(15.0f));
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
         this.f34893p = new Path();
         Paint paint2 = new Paint(1);
         this.f34894q = paint2;
@@ -81,10 +81,10 @@ public final class gc {
         if (f19 > 0.0f && org.telegram.messenger.qc.e(360928)) {
             long currentTimeMillis = System.currentTimeMillis();
             float sqrt = (float) Math.sqrt(2.0d);
-            if (ic.f35582c0 < 0) {
-                ic.f35582c0 = currentTimeMillis;
+            if (ic.f35569c0 < 0) {
+                ic.f35569c0 = currentTimeMillis;
             }
-            float f20 = ((float) (currentTimeMillis - ic.f35582c0)) / 10000.0f;
+            float f20 = ((float) (currentTimeMillis - ic.f35569c0)) / 10000.0f;
             Bitmap bitmap = this.f34881b;
             if (bitmap != null) {
                 int width = bitmap.getWidth();

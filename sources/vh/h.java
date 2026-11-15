@@ -1,6 +1,6 @@
 package vh;
 
-import ai.d1;
+import ai.e1;
 import android.content.Context;
 import android.graphics.Rect;
 import android.text.TextUtils;
@@ -82,15 +82,15 @@ public final class h extends ja implements te.b {
         this.f29721x = true;
         this.f29707n = false;
         this.G1 = false;
-        this.f35944w1 = false;
-        this.f59006i2 = ((j0) np.s1(this.f29679a).f25448y7.H.f15881b).f24493c;
+        this.f35939w1 = false;
+        this.f59006i2 = ((j0) np.s1(this.f29679a).f25451y7.H.f15881b).f24498c;
         g0.S(getWindow());
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i7 = this.f29717u0;
-        uj0Var.setPadding(i7, 0, i7, g0.L(68.0f) + g0.f23604n);
-        this.f35936o1.setClipToPadding(false);
-        this.f35936o1.j(new d(this, 0));
-        this.f35936o1.setOnItemClickListener(new e(context, e6Var, this));
+        uj0Var.setPadding(i7, 0, i7, g0.L(68.0f) + g0.f23606n);
+        this.f35931o1.setClipToPadding(false);
+        this.f35931o1.j(new d(this, 0));
+        this.f35931o1.setOnItemClickListener(new e(context, e6Var, this));
         hi.d dVar = new hi.d(context, e6Var, true);
         this.f58999a2 = dVar;
         dVar.f();
@@ -107,7 +107,7 @@ public final class h extends ja implements te.b {
         jVar.setPadding(g0.L(16.0f), 0, g0.L(16.0f), 0);
         jVar.setVisibility(8);
         na.a(jVar);
-        this.f35937p1.s().addView(jVar, c8.ja.t(-2, 48, 16, 12, 0, 12, 0));
+        this.f35932p1.s().addView(jVar, c8.ja.t(-2, 48, 16, 12, 0, 12, 0));
         jVar.setOnClickListener(new a(this, 1));
         v00 v00Var = new v00(context, e6Var);
         String M0 = hd.M0(2131747127, null);
@@ -130,22 +130,22 @@ public final class h extends ja implements te.b {
         k4Var.addView(x3Var, c8.ja.e(-1, 32, 48));
         this.f29682b.addView(k4Var, c8.ja.e(-1, 216, 48));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setPadding(g0.L(10.0f) + this.f29717u0, g0.L(10.0f), g0.L(10.0f) + this.f29717u0, g0.L(10.0f) + g0.f23604n);
+        frameLayout.setPadding(g0.L(10.0f) + this.f29717u0, g0.L(10.0f), g0.L(10.0f) + this.f29717u0, g0.L(10.0f) + g0.f23606n);
         frameLayout.addView(dVar, c8.ja.c(48.0f, -1));
         this.f29682b.addView(frameLayout, c8.ja.e(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.f59007j2 = frameLayout2;
-        frameLayout2.setTranslationY((-g0.f23604n) - g0.L(68.0f));
+        frameLayout2.setTranslationY((-g0.f23606n) - g0.L(68.0f));
         this.f29682b.addView(frameLayout2, c8.ja.e(-1, 150, 80));
         k kVar = new k();
         kVar.n(350L);
         kVar.o(erVar);
         kVar.C = false;
         kVar.f58564m = false;
-        this.f35936o1.setItemAnimator(kVar);
-        this.f35936o1.i(new f(this, e6Var));
+        this.f35931o1.setItemAnimator(kVar);
+        this.f35931o1.i(new f(this, e6Var));
         p1 p1Var = new p1(this, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24940t0);
         TLRPC.TL_help_getCountriesList tL_help_getCountriesList = new TLRPC.TL_help_getCountriesList();
         if (hd.E0().B != null) {
             country = hd.E0().B.c();
@@ -153,7 +153,7 @@ public final class h extends ja implements te.b {
             country = Locale.getDefault().getCountry();
         }
         tL_help_getCountriesList.lang_code = country;
-        connectionsManager.sendRequest(tL_help_getCountriesList, new d1(p1Var, 25));
+        connectionsManager.sendRequest(tL_help_getCountriesList, new e1(p1Var, 25));
         a0.i(this.f29685c, new b(this));
     }
 
@@ -212,7 +212,7 @@ public final class h extends ja implements te.b {
     public final tj0 L0(uj0 uj0Var) {
         p41 p41Var = new p41(uj0Var, getContext(), this.f29679a, 0, true, new org.telegram.ui.web.b(this, 2), this.J0);
         this.Z1 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -229,8 +229,8 @@ public final class h extends ja implements te.b {
 
     public final void e1() {
         boolean z10;
-        int L = g0.L(56.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + g0.f23603m + ((int) this.T1.f57087f);
-        int measuredHeight = (this.f29682b.getMeasuredHeight() - g0.f23604n) - g0.L(34.0f);
+        int L = g0.L(56.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + g0.f23605m + ((int) this.T1.f57091f);
+        int measuredHeight = (this.f29682b.getMeasuredHeight() - g0.f23606n) - g0.L(34.0f);
         Rect rect = this.f59009l2;
         if (rect.top == L && rect.bottom == measuredHeight) {
             z10 = false;
@@ -238,7 +238,7 @@ public final class h extends ja implements te.b {
             z10 = true;
         }
         rect.set(0, L, this.f29682b.getMeasuredWidth(), measuredHeight);
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         uj0Var.setClipBounds(rect);
         if (z10) {
             uj0Var.invalidate();
@@ -247,10 +247,10 @@ public final class h extends ja implements te.b {
 
     public final void f1() {
         uj0 uj0Var;
-        float f10 = g0.f23609q.y;
+        float f10 = g0.f23611q.y;
         int i7 = 0;
         while (true) {
-            uj0Var = this.f35936o1;
+            uj0Var = this.f35931o1;
             if (i7 >= uj0Var.getChildCount()) {
                 break;
             }
@@ -260,7 +260,7 @@ public final class h extends ja implements te.b {
             }
             i7++;
         }
-        float max = Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + g0.f23603m, f10 + g0.L(8.0f));
+        float max = Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + g0.f23605m, f10 + g0.L(8.0f));
         k4 k4Var = this.f59001c2;
         if (k4Var.getTranslationY() != max) {
             k4Var.setTranslationY(max);

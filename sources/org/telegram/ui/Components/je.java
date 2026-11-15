@@ -3,27 +3,27 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.ImageView;
 public final class je extends ImageView {
-    public float f35968a;
-    public final ChatActivityEnterView f35969b;
+    public float f35958a;
+    public final ChatActivityEnterView f35959b;
 
     public je(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f35969b = chatActivityEnterView;
+        this.f35959b = chatActivityEnterView;
     }
 
     @Override
     public final float getTranslationX() {
-        return this.f35968a;
+        return this.f35958a;
     }
 
     @Override
     public final void setTranslationX(float f10) {
         float f11;
         float alpha;
-        this.f35968a = f10;
+        this.f35958a = f10;
         float f12 = -44.0f;
-        float L = org.telegram.messenger.g0.L(-44.0f) + this.f35968a;
-        ChatActivityEnterView chatActivityEnterView = this.f35969b;
+        float L = org.telegram.messenger.g0.L(-44.0f) + this.f35958a;
+        ChatActivityEnterView chatActivityEnterView = this.f35959b;
         float f13 = L + chatActivityEnterView.E + chatActivityEnterView.f32323y;
         zd zdVar = chatActivityEnterView.f32283s2;
         float f14 = 0.0f;

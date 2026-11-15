@@ -4,19 +4,19 @@ import java.text.Collator;
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
 public final class t4 implements Comparator {
-    public final int f26620a;
-    public final Collator f26621b;
+    public final int f26629a;
+    public final Collator f26630b;
 
     public t4(Collator collator, int i7) {
-        this.f26620a = i7;
-        this.f26621b = collator;
+        this.f26629a = i7;
+        this.f26630b = collator;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         String str;
         String m10;
-        switch (this.f26620a) {
+        switch (this.f26629a) {
             case 0:
                 String str2 = (String) obj;
                 String str3 = (String) obj2;
@@ -28,19 +28,19 @@ public final class t4 implements Comparator {
                 if (charAt2 == '#') {
                     return -1;
                 }
-                return this.f26621b.compare(str2, str3);
+                return this.f26630b.compare(str2, str3);
             case 1:
                 d5 d5Var = (d5) obj;
                 d5 d5Var2 = (d5) obj2;
-                String str4 = d5Var.f23037i;
+                String str4 = d5Var.f23045i;
                 if (str4.length() == 0) {
-                    str4 = d5Var.f23038j;
+                    str4 = d5Var.f23046j;
                 }
-                String str5 = d5Var2.f23037i;
+                String str5 = d5Var2.f23045i;
                 if (str5.length() == 0) {
-                    str5 = d5Var2.f23038j;
+                    str5 = d5Var2.f23046j;
                 }
-                return this.f26621b.compare(str4, str5);
+                return this.f26630b.compare(str4, str5);
             case 2:
                 String str6 = "";
                 if (obj instanceof TLRPC.User) {
@@ -50,11 +50,11 @@ public final class t4 implements Comparator {
                     str = "";
                 } else {
                     d5 d5Var3 = (d5) obj;
-                    TLRPC.User user2 = d5Var3.f23041m;
+                    TLRPC.User user2 = d5Var3.f23049m;
                     if (user2 != null) {
                         str = g5.m(0, user2.first_name, user2.last_name);
                     } else {
-                        str = g5.m(0, d5Var3.f23037i, d5Var3.f23038j);
+                        str = g5.m(0, d5Var3.f23045i, d5Var3.f23046j);
                     }
                 }
                 if (obj2 instanceof TLRPC.User) {
@@ -62,15 +62,15 @@ public final class t4 implements Comparator {
                     str6 = g5.m(0, user3.first_name, user3.last_name);
                 } else if (obj2 instanceof d5) {
                     d5 d5Var4 = (d5) obj2;
-                    TLRPC.User user4 = d5Var4.f23041m;
+                    TLRPC.User user4 = d5Var4.f23049m;
                     if (user4 != null) {
                         m10 = g5.m(0, user4.first_name, user4.last_name);
                     } else {
-                        m10 = g5.m(0, d5Var4.f23037i, d5Var4.f23038j);
+                        m10 = g5.m(0, d5Var4.f23045i, d5Var4.f23046j);
                     }
                     str6 = m10;
                 }
-                return this.f26621b.compare(str, str6);
+                return this.f26630b.compare(str, str6);
             case 3:
                 String str7 = (String) obj;
                 String str8 = (String) obj2;
@@ -82,7 +82,7 @@ public final class t4 implements Comparator {
                 if (charAt4 == '#') {
                     return -1;
                 }
-                return this.f26621b.compare(str7, str8);
+                return this.f26630b.compare(str7, str8);
             case 4:
                 String str9 = (String) obj;
                 String str10 = (String) obj2;
@@ -94,7 +94,7 @@ public final class t4 implements Comparator {
                 if (charAt6 == '#') {
                     return -1;
                 }
-                return this.f26621b.compare(str9, str10);
+                return this.f26630b.compare(str9, str10);
             default:
                 String str11 = (String) obj;
                 String str12 = (String) obj2;
@@ -106,7 +106,7 @@ public final class t4 implements Comparator {
                 if (charAt8 == '#') {
                     return -1;
                 }
-                return this.f26621b.compare(str11, str12);
+                return this.f26630b.compare(str11, str12);
         }
     }
 }

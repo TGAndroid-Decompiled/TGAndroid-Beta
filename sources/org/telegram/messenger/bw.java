@@ -9,26 +9,26 @@ import java.util.Collections;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class bw extends c1 {
-    public static volatile bw[] f22756r = new bw[4];
-    public final ArrayList f22757a;
-    public final SparseArray f22758b;
-    public final SparseArray f22759c;
+    public static volatile bw[] f22760r = new bw[4];
+    public final ArrayList f22761a;
+    public final SparseArray f22762b;
+    public final SparseArray f22763c;
     public final SparseArray d;
-    public final SparseArray f22760e;
-    public final ArrayList f22761f;
+    public final SparseArray f22764e;
+    public final ArrayList f22765f;
     public final ArrayList h;
-    public boolean f22762n;
+    public boolean f22766n;
 
     public bw(int i7) {
         super(i7);
-        this.f22757a = new ArrayList();
-        this.f22758b = new SparseArray();
-        this.f22759c = new SparseArray();
+        this.f22761a = new ArrayList();
+        this.f22762b = new SparseArray();
+        this.f22763c = new SparseArray();
         this.d = new SparseArray();
-        this.f22760e = new SparseArray();
-        this.f22761f = new ArrayList();
+        this.f22764e = new SparseArray();
+        this.f22765f = new ArrayList();
         this.h = new ArrayList();
-        this.f22762n = false;
+        this.f22766n = false;
     }
 
     public static boolean h(org.telegram.tgnet.NativeByteBuffer r23, byte[] r24, byte[] r25, int r26, boolean r27, boolean r28) {
@@ -37,13 +37,13 @@ public final class bw extends c1 {
 
     public static bw i(int i7) {
         bw bwVar;
-        bw bwVar2 = f22756r[i7];
+        bw bwVar2 = f22760r[i7];
         if (bwVar2 == null) {
             synchronized (bw.class) {
                 try {
-                    bwVar = f22756r[i7];
+                    bwVar = f22760r[i7];
                     if (bwVar == null) {
-                        bw[] bwVarArr = f22756r;
+                        bw[] bwVarArr = f22760r;
                         bw bwVar3 = new bw(i7);
                         bwVarArr[i7] = bwVar3;
                         bwVar = bwVar3;
@@ -63,13 +63,13 @@ public final class bw extends c1 {
                 org.telegram.ui.b.b(this.currentAccount);
                 return;
             }
-            this.f22762n = true;
+            this.f22766n = true;
             org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, activity, null);
             TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
             tL_messages_getDhConfig.random_length = 256;
             vr messagesStorage = getMessagesStorage();
             messagesStorage.H();
-            tL_messages_getDhConfig.version = messagesStorage.f27234x;
+            tL_messages_getDhConfig.version = messagesStorage.f27233x;
             t1Var.setOnCancelListener(new dm(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new q6(this, activity, t1Var, user, 4), 2), 2));
             try {
                 t1Var.show();
@@ -98,7 +98,7 @@ public final class bw extends c1 {
         }
         encryptedChat.layer = (i7 << 16) | (encryptedChat.layer & 65535);
         vr messagesStorage = getMessagesStorage();
-        messagesStorage.f27220a.c(new bq(messagesStorage, encryptedChat, 2));
+        messagesStorage.f27219a.c(new aq(messagesStorage, encryptedChat, 2));
         if (X0 < 151) {
             w(encryptedChat, null);
         }
@@ -111,7 +111,7 @@ public final class bw extends c1 {
         int i7;
         int i10;
         int i11 = encryptedChat.f28059id;
-        SparseArray sparseArray = this.f22758b;
+        SparseArray sparseArray = this.f22762b;
         ArrayList arrayList2 = (ArrayList) sparseArray.get(i11);
         if (arrayList2 != null) {
             Collections.sort(arrayList2, new gl(17));
@@ -139,7 +139,7 @@ public final class bw extends c1 {
             }
             if (z10) {
                 vr messagesStorage = getMessagesStorage();
-                messagesStorage.f27220a.c(new xf((Object) messagesStorage, (Object) encryptedChat3, true, 10));
+                messagesStorage.f27219a.c(new xf((Object) messagesStorage, (Object) encryptedChat3, true, 10));
             }
         }
     }
@@ -258,7 +258,7 @@ public final class bw extends c1 {
 
     public final void k(TLRPC.TL_messages_sendEncryptedMultiMedia tL_messages_sendEncryptedMultiMedia, qy qyVar) {
         for (int i7 = 0; i7 < tL_messages_sendEncryptedMultiMedia.files.size(); i7++) {
-            j(tL_messages_sendEncryptedMultiMedia.messages.get(i7), (TLRPC.Message) qyVar.f26169z.get(i7), qyVar.f26158n, tL_messages_sendEncryptedMultiMedia.files.get(i7), (String) qyVar.B.get(i7), (gj) qyVar.f26167x.get(i7));
+            j(tL_messages_sendEncryptedMultiMedia.messages.get(i7), (TLRPC.Message) qyVar.f26177z.get(i7), qyVar.f26166n, tL_messages_sendEncryptedMultiMedia.files.get(i7), (String) qyVar.B.get(i7), (gj) qyVar.f26175x.get(i7));
         }
     }
 
@@ -274,7 +274,7 @@ public final class bw extends c1 {
             vr messagesStorage = getMessagesStorage();
             messagesStorage.getClass();
             if (!arrayList2.isEmpty()) {
-                messagesStorage.f27220a.c(new pp(messagesStorage, arrayList2, 3));
+                messagesStorage.f27219a.c(new sp(messagesStorage, arrayList2, 2));
             }
             arrayList.clear();
         }
@@ -293,7 +293,7 @@ public final class bw extends c1 {
         BigInteger bigInteger = new BigInteger(1, bArr);
         vr messagesStorage2 = getMessagesStorage();
         messagesStorage2.H();
-        byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.f27235y)).toByteArray();
+        byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.f27234y)).toByteArray();
         if (byteArray.length > 256) {
             byte[] bArr2 = new byte[256];
             System.arraycopy(byteArray, 1, bArr2, 0, 256);
@@ -437,7 +437,7 @@ public final class bw extends c1 {
     public final void w(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
         if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
             Integer valueOf = Integer.valueOf(encryptedChat.f28059id);
-            ArrayList arrayList = this.f22757a;
+            ArrayList arrayList = this.f22761a;
             if (arrayList.contains(valueOf)) {
                 return;
             }
@@ -518,10 +518,10 @@ public final class bw extends c1 {
             tL_decryptedMessageActionSetMessageTTL.ttl_seconds = encryptedChat.ttl;
             message = d(encryptedChat, tL_decryptedMessageActionSetMessageTTL);
             gj gjVar = new gj(this.currentAccount, message, false, false);
-            gjVar.f23817k.send_state = 1;
+            gjVar.f23819k.send_state = 1;
             gjVar.X1 = true;
             getMessagesController().m5(0, message.dialog_id, k5.j(gjVar));
-            getNotificationCenter().k(ns.f25566s, new Object[0]);
+            getNotificationCenter().k(ns.f25567s, new Object[0]);
         }
         TLRPC.Message message2 = message;
         tL_decryptedMessageService.random_id = message2.random_id;

@@ -91,7 +91,7 @@ public final class n {
                 if (z10 && hVar.f59386g) {
                     AnimatorSet animatorSet = new AnimatorSet();
                     animatorSet.setDuration(250L);
-                    animatorSet.setInterpolator(er.f34420f);
+                    animatorSet.setInterpolator(er.f34419f);
                     animatorSet.playTogether(ObjectAnimator.ofFloat(hVar.h, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_Y, 0.1f));
                     animatorSet.addListener(new y50(23, hVar, oVar));
                     animatorSet.start();
@@ -166,12 +166,12 @@ public final class n {
             l lVar = hVar.f59382b;
             h.j(rectF, lVar.L(), lVar.b0());
             hVar.f59403z = ((SharedPreferences) u7.i.b().f57880a).getFloat("scale_factor", 1.0f);
-            Point point = g0.f23609q;
+            Point point = g0.f23611q;
             hVar.A = (Math.min(point.x, point.y) - (h.m() * 2.0f)) / hVar.h();
             hVar.f59401x = (int) rectF.width();
             hVar.f59402y = (int) rectF.height();
             hVar.B = rectF.left;
-            hVar.C = rectF.top - g0.f23603m;
+            hVar.C = rectF.top - g0.f23605m;
             int L = lVar.L();
             int b02 = lVar.b0();
             if (L > 0 && b02 > 0) {
@@ -213,7 +213,7 @@ public final class n {
             hVar.h = eVar;
             eVar.addView(hVar.f59387i, ja.c(-1.0f, -1));
             d dVar = hVar.f59387i;
-            p0 p0Var = t0.f3332a;
+            p0 p0Var = t0.f3335a;
             dVar.setOutlineProvider(new r0(0, g0.L(10.0f)));
             hVar.f59387i.setClipToOutline(true);
             q6.h(j6.Xg, hVar.f59387i, null);
@@ -264,9 +264,9 @@ public final class n {
                                 ((ArrayList) iVar2.d).add(oVar);
                                 if (((LaunchActivity) iVar2.f19044f) != null && !iVar2.f19040a) {
                                     try {
-                                        Intent intent = new Intent(org.telegram.messenger.t0.f26600b, ((LaunchActivity) iVar2.f19044f).getClass());
+                                        Intent intent = new Intent(org.telegram.messenger.t0.f26609b, ((LaunchActivity) iVar2.f19044f).getClass());
                                         intent.addFlags(268435456);
-                                        org.telegram.messenger.t0.f26600b.startActivity(intent);
+                                        org.telegram.messenger.t0.f26609b.startActivity(intent);
                                         return;
                                     } catch (Exception e10) {
                                         a8.g(e10, true);
@@ -323,9 +323,9 @@ public final class n {
                                 ((ArrayList) iVar2.d).add(oVar);
                                 if (((LaunchActivity) iVar2.f19044f) != null && !iVar2.f19040a) {
                                     try {
-                                        Intent intent = new Intent(org.telegram.messenger.t0.f26600b, ((LaunchActivity) iVar2.f19044f).getClass());
+                                        Intent intent = new Intent(org.telegram.messenger.t0.f26609b, ((LaunchActivity) iVar2.f19044f).getClass());
                                         intent.addFlags(268435456);
-                                        org.telegram.messenger.t0.f26600b.startActivity(intent);
+                                        org.telegram.messenger.t0.f26609b.startActivity(intent);
                                         return;
                                     } catch (Exception e10) {
                                         a8.g(e10, true);
@@ -378,9 +378,9 @@ public final class n {
                                 ((ArrayList) iVar2.d).add(oVar);
                                 if (((LaunchActivity) iVar2.f19044f) != null && !iVar2.f19040a) {
                                     try {
-                                        Intent intent = new Intent(org.telegram.messenger.t0.f26600b, ((LaunchActivity) iVar2.f19044f).getClass());
+                                        Intent intent = new Intent(org.telegram.messenger.t0.f26609b, ((LaunchActivity) iVar2.f19044f).getClass());
                                         intent.addFlags(268435456);
-                                        org.telegram.messenger.t0.f26600b.startActivity(intent);
+                                        org.telegram.messenger.t0.f26609b.startActivity(intent);
                                         return;
                                     } catch (Exception e10) {
                                         a8.g(e10, true);
@@ -448,7 +448,7 @@ public final class n {
                 hVar.h.setScaleY(0.1f);
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.setDuration(250L);
-                animatorSet.setInterpolator(er.f34420f);
+                animatorSet.setInterpolator(er.f34419f);
                 i11 = 1;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(hVar.h, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_Y, 1.0f));
                 animatorSet.start();

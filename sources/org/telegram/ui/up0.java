@@ -4,20 +4,20 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 public final class up0 extends hq0 {
-    public final int f51994q0;
-    public final org.telegram.messenger.is f51995r0;
+    public final int f51992q0;
+    public final org.telegram.messenger.is f51993r0;
 
     public up0(org.telegram.messenger.is isVar, Context context, kq0 kq0Var, FrameLayout frameLayout, int i7) {
         super(context, kq0Var, frameLayout);
-        this.f51994q0 = i7;
-        this.f51995r0 = isVar;
+        this.f51992q0 = i7;
+        this.f51993r0 = isVar;
     }
 
     @Override
     public boolean D() {
-        switch (this.f51994q0) {
+        switch (this.f51992q0) {
             case 0:
-                return !((PhotoViewer) this.f51995r0).f42875s;
+                return !((PhotoViewer) this.f51993r0).f42875s;
             default:
                 return super.D();
         }
@@ -25,9 +25,9 @@ public final class up0 extends hq0 {
 
     @Override
     public void E() {
-        switch (this.f51994q0) {
+        switch (this.f51992q0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f51995r0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f51993r0;
                 if (secretMediaViewer.K && getScrollY() <= 0) {
                     org.telegram.messenger.g0.i3(secretMediaViewer.f43304q1, 3000L);
                     return;
@@ -40,9 +40,9 @@ public final class up0 extends hq0 {
 
     @Override
     public void F() {
-        switch (this.f51994q0) {
+        switch (this.f51992q0) {
             case 1:
-                org.telegram.messenger.g0.r(((SecretMediaViewer) this.f51995r0).f43304q1);
+                org.telegram.messenger.g0.r(((SecretMediaViewer) this.f51993r0).f43304q1);
                 return;
             default:
                 return;
@@ -52,9 +52,9 @@ public final class up0 extends hq0 {
     @Override
     public void G() {
         boolean z10;
-        switch (this.f51994q0) {
+        switch (this.f51992q0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f51995r0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f51993r0;
                 if (secretMediaViewer.J0 == null) {
                     if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f43291j0) {
                         z10 = true;
@@ -76,10 +76,10 @@ public final class up0 extends hq0 {
         boolean z11;
         int i7;
         boolean z12;
-        switch (this.f51994q0) {
+        switch (this.f51992q0) {
             case 0:
                 super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f51995r0;
+                PhotoViewer photoViewer = (PhotoViewer) this.f51993r0;
                 to0[] to0VarArr = photoViewer.X0;
                 ImageView[] imageViewArr = photoViewer.f42934y3;
                 if (photoViewer.K) {
@@ -97,9 +97,9 @@ public final class up0 extends hq0 {
                         z11 = false;
                     }
                     if (!z10) {
-                        int b10 = to0VarArr[0].b() + to0VarArr[0].f51635j;
+                        int b10 = to0VarArr[0].b() + to0VarArr[0].f51636j;
                         if (D()) {
-                            i7 = org.telegram.messenger.g0.f23603m;
+                            i7 = org.telegram.messenger.g0.f23605m;
                         } else {
                             i7 = 0;
                         }

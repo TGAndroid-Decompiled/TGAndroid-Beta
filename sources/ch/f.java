@@ -13,17 +13,17 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.q6;
 public final class f extends FrameLayout {
-    public static final int f5060e = 0;
-    public final e f5061a;
-    public boolean f5062b;
-    public boolean f5063c;
+    public static final int f5063e = 0;
+    public final e f5064a;
+    public boolean f5065b;
+    public boolean f5066c;
     public z10 d;
 
     public f(Activity activity, e6 e6Var) {
         super(activity);
         int x02;
         e eVar = new e(this, activity);
-        this.f5061a = eVar;
+        this.f5064a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(2131232740);
         q6.s(eVar, j6.Jf, e6Var, PorterDuff.Mode.MULTIPLY);

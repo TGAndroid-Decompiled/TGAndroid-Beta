@@ -33,7 +33,7 @@ public class c0 extends tj0 {
 
     @Override
     public final int b() {
-        return si.b0(this.d).f26482j1.size();
+        return si.b0(this.d).f26492j1.size();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class c0 extends tj0 {
         String str;
         o4 o4Var = (o4) e1Var.f58535a;
         int i10 = this.d;
-        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) si.b0(i10).f26482j1.get(i7);
+        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) si.b0(i10).f26492j1.get(i7);
         new TLRPC.TL_dialog();
         TLRPC.Peer peer = tL_topPeer.peer;
         long j3 = peer.user_id;
@@ -87,7 +87,7 @@ public class c0 extends tj0 {
         o4 o4Var = new o4(this.f17028c, this.h, z10);
         if (this.f17030f && !o4Var.f30808y) {
             o4Var.f30808y = true;
-            ns.f(o4Var.h).h(o4Var, ns.f25513i3, new l2(o4Var, 1));
+            ns.f(o4Var.h).h(o4Var, ns.f25514i3, new l2(o4Var, 1));
         }
         o4Var.setLayoutParams(new v4.p0(org.telegram.messenger.g0.L(80.0f), org.telegram.messenger.g0.L(86.0f)));
         return new v4.e1(o4Var);

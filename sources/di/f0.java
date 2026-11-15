@@ -29,7 +29,7 @@ public final class f0 extends p41 {
                 if (i7 == org.telegram.ui.ActionBar.j6.f28940i5) {
                     return -15921907;
                 }
-                return org.telegram.ui.ActionBar.j6.w0(i7, this.f38204x);
+                return org.telegram.ui.ActionBar.j6.w0(i7, this.f38202x);
             default:
                 return super.I(i7);
         }

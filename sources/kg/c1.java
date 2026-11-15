@@ -62,9 +62,9 @@ public final class c1 extends e2 implements is {
         String M0 = hd.M0(2131752764, null);
         String M02 = hd.M0(2131752749, null);
         b41 b41Var = new b41(2);
-        b41Var.f33181l = M0;
-        b41Var.f33184o = M02;
-        b41Var.f33180k = 2131623939;
+        b41Var.f33184l = M0;
+        b41Var.f33187o = M02;
+        b41Var.f33183k = 2131623939;
         arrayList.add(b41Var);
         b41 i7 = b41.i(-1, hd.M0(2131752729, null));
         i7.L(c1Var.d);
@@ -79,12 +79,12 @@ public final class c1 extends e2 implements is {
                     if (arrayListArr[i10] == null) {
                         arrayListArr[i10] = new ArrayList();
                     }
-                    String displayName = DayOfWeek.values()[i10].getDisplayName(TextStyle.FULL, hd.E0().f24129y);
+                    String displayName = DayOfWeek.values()[i10].getDisplayName(TextStyle.FULL, hd.E0().f24132y);
                     String f02 = f0(c1Var.f17892f[i10]);
                     b41 b41Var2 = new b41(5);
                     b41Var2.d = i10;
-                    b41Var2.f33181l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    b41Var2.f33182m = f02;
+                    b41Var2.f33184l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    b41Var2.f33185m = f02;
                     b41Var2.L(!c1Var.f17892f[i10].isEmpty());
                     arrayList.add(b41Var2);
                     i10++;
@@ -211,7 +211,7 @@ public final class c1 extends e2 implements is {
         }
         for (int i11 = 0; i11 < 7; i11++) {
             ArrayList arrayList = e02[i11];
-            String displayName = DayOfWeek.values()[i11].getDisplayName(TextStyle.FULL, hd.E0().f24129y);
+            String displayName = DayOfWeek.values()[i11].getDisplayName(TextStyle.FULL, hd.E0().f24132y);
             sb2.append(displayName.substring(0, 1).toUpperCase() + displayName.substring(1));
             sb2.append(": ");
             if (h0(arrayList)) {
@@ -267,7 +267,7 @@ public final class c1 extends e2 implements is {
                 if (B1 instanceof h5) {
                     ((h5) B1).setValue(f0(this.f17892f[i10]));
                 } else {
-                    this.f17888a.f39895g3.O(true);
+                    this.f17888a.f39892g3.O(true);
                 }
             }
         }
@@ -286,7 +286,7 @@ public final class c1 extends e2 implements is {
         this.f17888a = u41Var;
         u41Var.r1();
         u41 u41Var2 = this.f17888a;
-        u41Var2.f39895g3.f38201r = false;
+        u41Var2.f39892g3.f38199r = false;
         u41Var2.setSectionsDrawBackground(true);
         frameLayout.addView(this.f17888a, ja.c(-1.0f, -1));
         j0();
@@ -306,12 +306,12 @@ public final class c1 extends e2 implements is {
         p41 p41Var;
         if (i7 == ns.E0) {
             j0();
-        } else if (i7 == ns.f25563r3) {
+        } else if (i7 == ns.f25564r3) {
             if (this.f17891e == null) {
                 this.f17893n = z1.b(this.currentAccount).c();
             }
             u41 u41Var = this.f17888a;
-            if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+            if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
                 p41Var.O(true);
             }
         }
@@ -327,7 +327,7 @@ public final class c1 extends e2 implements is {
     }
 
     public final void i0() {
-        if (this.f17889b.f29950y.f57082f) {
+        if (this.f17889b.f29950y.f57086f) {
             return;
         }
         if (!g0()) {
@@ -367,7 +367,7 @@ public final class c1 extends e2 implements is {
             b22.flags2 &= -2;
             b22.business_work_hours = null;
         }
-        getConnectionsManager().sendRequest(updatebusinessworkhours, new ai.d1(this, 18));
+        getConnectionsManager().sendRequest(updatebusinessworkhours, new ai.e1(this, 18));
         getMessagesStorage().j2(b22, false);
     }
 
@@ -420,7 +420,7 @@ public final class c1 extends e2 implements is {
             }
         }
         u41 u41Var = this.f17888a;
-        if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+        if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
             p41Var.O(true);
         }
         d0(false);

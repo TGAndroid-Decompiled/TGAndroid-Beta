@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.c40;
 import org.telegram.ui.me;
 public abstract class g {
-    public static boolean f40614a;
+    public static boolean f40617a;
 
     public static void a(int i7, List list, boolean z10) {
         boolean z11;
@@ -51,9 +51,9 @@ public abstract class g {
             int videoState = sharedInstance.getVideoState(false);
             if (videoState == 2) {
                 arrayList.add(new f(new wi.k(2, 2131232542, hd.M0(2131743237, null), true), 90, 1));
-            } else if (f40614a || videoState == 1) {
+            } else if (f40617a || videoState == 1) {
                 String M0 = hd.M0(2131743238, null);
-                if (org.telegram.messenger.t0.f26600b.checkSelfPermission("android.permission.CAMERA") != 0 || (z10 && ((r3Var = sharedInstance.groupCall) == null || !r3Var.c()))) {
+                if (org.telegram.messenger.t0.f26609b.checkSelfPermission("android.permission.CAMERA") != 0 || (z10 && ((r3Var = sharedInstance.groupCall) == null || !r3Var.c()))) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -75,7 +75,7 @@ public abstract class g {
             while (i12 < size) {
                 Object obj = arrayList.get(i12);
                 i12++;
-                list.add(((f) obj).f40600a);
+                list.add(((f) obj).f40603a);
             }
         }
     }
@@ -84,7 +84,7 @@ public abstract class g {
         r3 r3Var;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            if (org.telegram.messenger.r2.f26198a) {
+            if (org.telegram.messenger.r2.f26206a) {
                 StringBuilder m10 = i5.c.m(i7, "call pip: action ", ", camera ");
                 m10.append(sharedInstance.getVideoState(false));
                 m10.append(", mic muted ");
@@ -101,7 +101,7 @@ public abstract class g {
                 int videoState = sharedInstance.getVideoState(false);
                 if (videoState == 2) {
                     sharedInstance.setVideoState(false, 0);
-                } else if (org.telegram.messenger.t0.f26600b.checkSelfPermission("android.permission.CAMERA") == 0) {
+                } else if (org.telegram.messenger.t0.f26609b.checkSelfPermission("android.permission.CAMERA") == 0) {
                     if (!z10 || ((r3Var = sharedInstance.groupCall) != null && r3Var.c())) {
                         if (videoState == 0) {
                             sharedInstance.createCaptureDevice(false);
@@ -112,7 +112,7 @@ public abstract class g {
                 }
             } else if (i7 == 3) {
                 if (z10) {
-                    c40.w1(org.telegram.messenger.t0.f26600b, null, false, true);
+                    c40.w1(org.telegram.messenger.t0.f26609b, null, false, true);
                 } else {
                     sharedInstance.hangUp();
                 }

@@ -115,12 +115,12 @@ public class p0 extends FrameLayout implements te.b, z5 {
             TLObject tLObject = o0Var.f17223f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (m10.i(m10.f24934t0).f().f28200id == user.f28200id) {
+                if (m10.i(m10.f24940t0).f().f28200id == user.f28200id) {
                     fq N2 = j6.N(org.telegram.messenger.g0.L(32.0f), 2131231000);
                     int L = org.telegram.messenger.g0.L(16.0f);
                     int L2 = org.telegram.messenger.g0.L(16.0f);
-                    N2.f34672e = L;
-                    N2.f34673f = L2;
+                    N2.f34676e = L;
+                    N2.f34677f = L2;
                     j6.B1(N2, j6.w0(i7, e6Var), false);
                     j6.B1(N2, j6.w0(i10, e6Var), true);
                     i9Var.setImageDrawable(N2);
@@ -144,8 +144,8 @@ public class p0 extends FrameLayout implements te.b, z5 {
             fq N3 = j6.N(org.telegram.messenger.g0.L(32.0f), 2131230993);
             int L4 = org.telegram.messenger.g0.L(16.0f);
             int L5 = org.telegram.messenger.g0.L(16.0f);
-            N3.f34672e = L4;
-            N3.f34673f = L5;
+            N3.f34676e = L4;
+            N3.f34677f = L5;
             j6.B1(N3, j6.w0(i7, e6Var), false);
             j6.B1(N3, j6.w0(i10, e6Var), true);
             i9Var.setImageDrawable(N3);
@@ -169,7 +169,7 @@ public class p0 extends FrameLayout implements te.b, z5 {
 
     public void setSelectedForDelete(boolean z10) {
         te.a aVar = this.f29454a;
-        if (aVar.f57082f != z10) {
+        if (aVar.f57086f != z10) {
             kg.j1 j1Var = this.h;
             org.telegram.messenger.g0.r(j1Var);
             aVar.a(z10, true);
@@ -182,7 +182,7 @@ public class p0 extends FrameLayout implements te.b, z5 {
     @Override
     public final void updateColors() {
         int w02;
-        float f10 = this.f29454a.f57081e;
+        float f10 = this.f29454a.f57085e;
         boolean z10 = this.f29460r;
         e6 e6Var = this.f29459n;
         if (z10) {

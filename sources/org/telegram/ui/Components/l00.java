@@ -11,20 +11,20 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class l00 extends FrameLayout {
-    public final RectF f36685a;
-    public final FragmentContextView f36686b;
+    public final RectF f36673a;
+    public final FragmentContextView f36674b;
 
     public l00(FragmentContextView fragmentContextView, Context context) {
         super(context);
-        this.f36686b = fragmentContextView;
-        this.f36685a = new RectF();
+        this.f36674b = fragmentContextView;
+        this.f36673a = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f10;
         super.dispatchDraw(canvas);
-        FragmentContextView fragmentContextView = this.f36686b;
+        FragmentContextView fragmentContextView = this.f36674b;
         org.telegram.ui.ActionBar.e2 e2Var = fragmentContextView.h;
         g6 g6Var = fragmentContextView.f32570k0;
         if (fragmentContextView.V == 4 && fragmentContextView.f32568i0) {
@@ -37,7 +37,7 @@ public final class l00 extends FrameLayout {
             }
             org.telegram.messenger.r3 groupCall = fragmentContextView.f32572n.getGroupCall();
             if (e2Var != null && groupCall != null && groupCall.j()) {
-                long currentTimeMillis = (groupCall.f26208b.schedule_date * 1000) - e2Var.getConnectionsManager().getCurrentTimeMillis();
+                long currentTimeMillis = (groupCall.f26216b.schedule_date * 1000) - e2Var.getConnectionsManager().getCurrentTimeMillis();
                 f10 = 1.0f;
                 if (currentTimeMillis >= 0) {
                     if (currentTimeMillis < 5000) {
@@ -60,7 +60,7 @@ public final class l00 extends FrameLayout {
             float f11 = measuredWidth;
             float f12 = L2;
             float L3 = org.telegram.messenger.g0.L(28.0f) + L2;
-            RectF rectF = this.f36685a;
+            RectF rectF = this.f36673a;
             rectF.set(f11, f12, measuredWidth + L, L3);
             canvas.save();
             float a10 = fragmentContextView.f32571l0.a(0.1f);
@@ -70,7 +70,7 @@ public final class l00 extends FrameLayout {
             rectF2.set(0.0f, 0.0f, L, org.telegram.messenger.g0.L(28.0f));
             canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), fragmentContextView.f32561d0);
             canvas.translate(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
-            g6Var.setBounds(0, 0, org.telegram.messenger.g0.f23609q.x, org.telegram.messenger.g0.L(16.0f));
+            g6Var.setBounds(0, 0, org.telegram.messenger.g0.f23611q.x, org.telegram.messenger.g0.L(16.0f));
             g6Var.draw(canvas);
             canvas.restore();
         }
@@ -82,9 +82,9 @@ public final class l00 extends FrameLayout {
         org.telegram.messenger.r3 groupCall;
         int i7;
         int i10;
-        FragmentContextView fragmentContextView = this.f36686b;
+        FragmentContextView fragmentContextView = this.f36674b;
         if (fragmentContextView.V == 4 && fragmentContextView.f32568i0 && fragmentContextView.f32571l0 != null) {
-            boolean contains = this.f36685a.contains(motionEvent.getX(), motionEvent.getY());
+            boolean contains = this.f36673a.contains(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() == 0) {
                 fragmentContextView.f32571l0.c(contains);
             } else if (motionEvent.getAction() == 2) {
@@ -95,14 +95,14 @@ public final class l00 extends FrameLayout {
                 if (contains) {
                     k00 k00Var = fragmentContextView.f32573n0;
                     org.telegram.ui.ActionBar.e2 e2Var = fragmentContextView.h;
-                    if (e2Var != null && (qgVar = fragmentContextView.f32572n) != null && (groupCall = qgVar.getGroupCall()) != null && groupCall.f26208b != null) {
+                    if (e2Var != null && (qgVar = fragmentContextView.f32572n) != null && (groupCall = qgVar.getGroupCall()) != null && groupCall.f26216b != null) {
                         if (fragmentContextView.T0 != 0) {
                             e2Var.getConnectionsManager().cancelRequest(fragmentContextView.T0, true);
                             fragmentContextView.T0 = 0;
                         }
                         TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
-                        togglegroupcallstartsubscription.call = groupCall.g(groupCall.f26207a);
-                        TLRPC.GroupCall groupCall2 = groupCall.f26208b;
+                        togglegroupcallstartsubscription.call = groupCall.g(groupCall.f26215a);
+                        TLRPC.GroupCall groupCall2 = groupCall.f26216b;
                         boolean z10 = !fragmentContextView.f32569j0;
                         fragmentContextView.f32569j0 = z10;
                         groupCall2.schedule_start_subscribed = z10;
@@ -139,7 +139,7 @@ public final class l00 extends FrameLayout {
             }
         }
         dc dcVar2 = fragmentContextView.f32571l0;
-        if ((dcVar2 != null && dcVar2.f33917i) || super.dispatchTouchEvent(motionEvent)) {
+        if ((dcVar2 != null && dcVar2.f33904i) || super.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -148,7 +148,7 @@ public final class l00 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        FragmentContextView fragmentContextView = this.f36686b;
+        FragmentContextView fragmentContextView = this.f36674b;
         w8 w8Var = fragmentContextView.f32560c0;
         if (w8Var != null && w8Var.getVisibility() == 0) {
             fragmentContextView.f32560c0.invalidate();
@@ -157,7 +157,7 @@ public final class l00 extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f36686b.f32570k0 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f36674b.f32570k0 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

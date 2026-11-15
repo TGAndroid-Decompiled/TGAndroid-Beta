@@ -149,7 +149,7 @@ public final class pz extends Drawable {
                     }
                     c6 c6Var2 = new c6(16);
                     f26024y = c6Var2;
-                    g0.i3(c6Var2, ((int) (1000.0f / g0.f23610r)) - 1);
+                    g0.i3(c6Var2, ((int) (1000.0f / g0.f23612r)) - 1);
                 }
                 ImageReceiver imageReceiver = this.f26034k;
                 if (imageReceiver != null && !z10) {
@@ -221,16 +221,16 @@ public final class pz extends Drawable {
                     canvas.drawRect((RectF) obj, paint);
                 } else if (obj instanceof jz) {
                     jz jzVar = (jz) obj;
-                    canvas.drawLine(jzVar.f24615a, jzVar.f24616b, jzVar.f24617c, jzVar.d, paint);
+                    canvas.drawLine(jzVar.f24618a, jzVar.f24619b, jzVar.f24620c, jzVar.d, paint);
                 } else if (obj instanceof iz) {
                     iz izVar = (iz) obj;
-                    canvas.drawCircle(izVar.f24487a, izVar.f24488b, izVar.f24489c, paint);
+                    canvas.drawCircle(izVar.f24492a, izVar.f24493b, izVar.f24494c, paint);
                 } else if (obj instanceof kz) {
-                    canvas.drawOval(((kz) obj).f24779a, paint);
+                    canvas.drawOval(((kz) obj).f24785a, paint);
                 } else if (obj instanceof mz) {
                     mz mzVar = (mz) obj;
-                    RectF rectF = mzVar.f25124a;
-                    float f22 = mzVar.f25125b;
+                    RectF rectF = mzVar.f25127a;
+                    float f22 = mzVar.f25128b;
                     canvas.drawRoundRect(rectF, f22, f22, paint);
                 }
                 paint.setAlpha(alpha);
@@ -268,7 +268,7 @@ public final class pz extends Drawable {
             this.f26039p = f10;
             this.f26036m = i7;
             iArr[z10 ? 1 : 0] = intValue;
-            f26022w = g0.f23609q.x * 2;
+            f26022w = g0.f23611q.x * 2;
             boolean z11 = A;
             HashMap hashMap = this.f26027b;
             if (!z11) {

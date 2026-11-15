@@ -5,18 +5,18 @@ import java.util.Locale;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k20 extends TLObject {
-    public static final int f24629i = 0;
-    public String f24630a;
-    public TLRPC.InputWebFileLocation f24631b;
-    public ArrayList f24632c;
+    public static final int f24632i = 0;
+    public String f24633a;
+    public TLRPC.InputWebFileLocation f24634b;
+    public ArrayList f24635c;
     public int d;
-    public String f24633e;
-    public boolean f24634f;
+    public String f24636e;
+    public boolean f24637f;
 
     public static k20 a(double d, double d2, long j3, int i7, int i10, int i11, int i12) {
         ?? tLObject = new TLObject();
         TLRPC.TL_inputWebFileGeoPointLocation tL_inputWebFileGeoPointLocation = new TLRPC.TL_inputWebFileGeoPointLocation();
-        tLObject.f24631b = tL_inputWebFileGeoPointLocation;
+        tLObject.f24634b = tL_inputWebFileGeoPointLocation;
         TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
         tL_inputWebFileGeoPointLocation.geo_point = tL_inputGeoPoint;
         tL_inputWebFileGeoPointLocation.access_hash = j3;
@@ -26,9 +26,9 @@ public final class k20 extends TLObject {
         tL_inputWebFileGeoPointLocation.h = i10;
         tL_inputWebFileGeoPointLocation.zoom = i11;
         tL_inputWebFileGeoPointLocation.scale = i12;
-        tLObject.f24633e = "image/png";
-        tLObject.f24630a = String.format(Locale.US, "maps_%.6f_%.6f_%d_%d_%d_%d.png", Double.valueOf(d), Double.valueOf(d2), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12));
-        tLObject.f24632c = new ArrayList();
+        tLObject.f24636e = "image/png";
+        tLObject.f24633a = String.format(Locale.US, "maps_%.6f_%.6f_%d_%d_%d_%d.png", Double.valueOf(d), Double.valueOf(d2), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12));
+        tLObject.f24635c = new ArrayList();
         return tLObject;
     }
 
@@ -41,28 +41,28 @@ public final class k20 extends TLObject {
             ?? tLObject = new TLObject();
             TLRPC.TL_webDocument tL_webDocument = (TLRPC.TL_webDocument) webDocument;
             TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation = new TLRPC.TL_inputWebFileLocation();
-            tLObject.f24631b = tL_inputWebFileLocation;
+            tLObject.f24634b = tL_inputWebFileLocation;
             String str = webDocument.url;
-            tLObject.f24630a = str;
+            tLObject.f24633a = str;
             tL_inputWebFileLocation.url = str;
             tL_inputWebFileLocation.access_hash = tL_webDocument.access_hash;
             tLObject.d = tL_webDocument.size;
-            tLObject.f24633e = tL_webDocument.mime_type;
-            tLObject.f24632c = tL_webDocument.attributes;
+            tLObject.f24636e = tL_webDocument.mime_type;
+            tLObject.f24635c = tL_webDocument.attributes;
             return tLObject;
         } else if (webDocument instanceof TLRPC.TL_webDocumentNoProxy) {
             ?? tLObject2 = new TLObject();
             TLRPC.TL_webDocumentNoProxy tL_webDocumentNoProxy = (TLRPC.TL_webDocumentNoProxy) webDocument;
             TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation2 = new TLRPC.TL_inputWebFileLocation();
-            tLObject2.f24631b = tL_inputWebFileLocation2;
+            tLObject2.f24634b = tL_inputWebFileLocation2;
             String str2 = webDocument.url;
-            tLObject2.f24630a = str2;
+            tLObject2.f24633a = str2;
             tL_inputWebFileLocation2.url = str2;
             tL_inputWebFileLocation2.access_hash = tL_webDocumentNoProxy.access_hash;
             tLObject2.d = tL_webDocumentNoProxy.size;
-            tLObject2.f24633e = tL_webDocumentNoProxy.mime_type;
-            tLObject2.f24632c = tL_webDocumentNoProxy.attributes;
-            tLObject2.f24634f = true;
+            tLObject2.f24636e = tL_webDocumentNoProxy.mime_type;
+            tLObject2.f24635c = tL_webDocumentNoProxy.attributes;
+            tLObject2.f24637f = true;
             return tLObject2;
         } else {
             return null;

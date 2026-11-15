@@ -39,7 +39,7 @@ public final class a4 {
         ?? obj = new Object();
         obj.f11406b = new org.telegram.messenger.h5(obj, 0);
         obj.d = trVar;
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         obj.f11410g = new org.telegram.messenger.a(obj, 6);
         obj.f11409f = org.telegram.messenger.g5.r(i7);
         obj.f11408e = ns.f(i7);
@@ -122,9 +122,9 @@ public final class a4 {
                     this.f11405a = true;
                 }
                 tr trVar = (tr) this.d;
-                Intent intent = (Intent) trVar.f51654c;
+                Intent intent = (Intent) trVar.f51655c;
                 String str = LaunchActivity.C1;
-                ((LaunchActivity) trVar.f51653b).W(intent, true, false, false, null, true, false);
+                ((LaunchActivity) trVar.f51654b).W(intent, true, false, false, null, true, false);
                 return true;
             }
             return false;

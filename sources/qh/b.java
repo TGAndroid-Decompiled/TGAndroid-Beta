@@ -96,7 +96,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
         this.f55586f = g6Var;
         g6Var.x(g0.o());
         g6Var.setCallback(this);
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
         g6Var.u(-1);
         g6Var.w(g0.L(10.0f));
     }
@@ -127,8 +127,8 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
         int i7 = this.f55591x;
         int i10 = this.f55589s;
         te.a aVar = this.h;
-        int f10 = i0.a.f(aVar.f57081e, i7, i10);
-        int f11 = i0.a.f(aVar.f57081e, this.f55591x, this.f55590w);
+        int f10 = i0.a.f(aVar.f57085e, i7, i10);
+        int f11 = i0.a.f(aVar.f57085e, this.f55591x, this.f55590w);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(f10, PorterDuff.Mode.SRC_IN);
         i9 i9Var = this.f55584c;
         if (i9Var != null && this.N) {
@@ -152,7 +152,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
         TLRPC.TL_attachMenuBotIcon tL_attachMenuBotIcon;
         TLRPC.Document document;
         String str;
-        boolean z12 = this.h.f57082f;
+        boolean z12 = this.h.f57086f;
         TLRPC.TL_attachMenuBot tL_attachMenuBot = this.F;
         pz pzVar = null;
         boolean z13 = true;
@@ -233,10 +233,10 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
                     if (animatedDrawable != null) {
                         if (z12) {
                             animatedDrawable.P(this.E.d);
-                            if (animatedDrawable.f33573b0 >= this.E.f55581e - 2) {
+                            if (animatedDrawable.f33575b0 >= this.E.f55581e - 2) {
                                 animatedDrawable.N(0, false, false);
                             }
-                            int i14 = animatedDrawable.f33573b0;
+                            int i14 = animatedDrawable.f33575b0;
                             int i15 = this.E.d;
                             if (i14 <= i15) {
                                 animatedDrawable.start();
@@ -244,7 +244,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
                                 animatedDrawable.M(i15);
                             }
                         } else {
-                            int i16 = animatedDrawable.f33573b0;
+                            int i16 = animatedDrawable.f33575b0;
                             a aVar2 = this.E;
                             if (i16 >= aVar2.d - 1) {
                                 animatedDrawable.P(aVar2.f55581e - 1);
@@ -277,7 +277,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
                 }
                 ch0 animatedDrawable2 = fh0Var.getAnimatedDrawable();
                 if (animatedDrawable2 != null) {
-                    int[] iArr = animatedDrawable2.f33577e;
+                    int[] iArr = animatedDrawable2.f33579e;
                     if (this.O != z12) {
                         this.O = z12;
                         if (z12) {
@@ -315,7 +315,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
         if (this.J) {
             f10 = this.K;
         } else {
-            f10 = this.h.f57081e;
+            f10 = this.h.f57085e;
         }
         int i7 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
         RectF rectF = W;
@@ -332,7 +332,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
             canvas.restore();
         }
         if (!this.f55592y) {
-            f12 = this.f55587n.f57081e;
+            f12 = this.f55587n.f57085e;
         }
         float f13 = f12 * this.T;
         int i10 = (f13 > 0.0f ? 1 : (f13 == 0.0f ? 0 : -1));
@@ -372,7 +372,7 @@ public final class b extends FrameLayout implements ke0, te.b, z5 {
                 this.M.setBounds(N7, N8, g0.L(14.0f) + N7, g0.L(14.0f) + N8);
                 this.M.draw(canvas);
             } else {
-                paint.setColor(i0.a.f(this.f55588r.f57081e, j6.x0(null, j6.Yl, false), j6.x0(null, j6.f29109r7, false)));
+                paint.setColor(i0.a.f(this.f55588r.f57085e, j6.x0(null, j6.Yl, false), j6.x0(null, j6.f29109r7, false)));
                 canvas.drawRoundRect(rectF, N6, N6, paint);
                 g6Var.p(rectF);
                 g6Var.draw(canvas);

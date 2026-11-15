@@ -55,12 +55,12 @@ public final class a extends c implements te.b {
 
     public final void b() {
         Drawable drawable = this.f58404f;
-        drawable.setAlpha((int) ((1.0f - this.d.f57081e) * this.f58421c));
+        drawable.setAlpha((int) ((1.0f - this.d.f57085e) * this.f58421c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.f57081e) * this.f58421c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f57085e) * this.f58421c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -71,7 +71,7 @@ public final class a extends c implements te.b {
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         this.f58419a.draw(canvas);
-        s.b(canvas, this.f58404f, 1.0f - this.d.f57081e);
+        s.b(canvas, this.f58404f, 1.0f - this.d.f57085e);
         if (this.f58405n != null) {
             canvas.save();
             canvas.translate(g0.L(44.0f) + bounds.left, g0.L(13.66f) + bounds.top);

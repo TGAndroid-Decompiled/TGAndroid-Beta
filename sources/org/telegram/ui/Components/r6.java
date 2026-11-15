@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.MediaController;
 public final class r6 implements org.telegram.ui.ActionBar.l0, ij0 {
-    public final int f38890a;
-    public final y7 f38891b;
+    public final int f38888a;
+    public final y7 f38889b;
 
     public r6(y7 y7Var, int i7) {
-        this.f38890a = i7;
-        this.f38891b = y7Var;
+        this.f38888a = i7;
+        this.f38889b = y7Var;
     }
 
     @Override
     public boolean b(int i7, View view) {
         boolean z10 = view instanceof org.telegram.ui.Cells.w;
-        y7 y7Var = this.f38891b;
+        y7 y7Var = this.f38889b;
         if (z10) {
             if (!y7Var.O0()) {
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
@@ -29,9 +29,9 @@ public final class r6 implements org.telegram.ui.ActionBar.l0, ij0 {
 
     @Override
     public void g(int i7) {
-        switch (this.f38890a) {
+        switch (this.f38888a) {
             case 0:
-                y7 y7Var = this.f38891b;
+                y7 y7Var = this.f38889b;
                 y7Var.getClass();
                 if (i7 >= 0) {
                     float[] fArr = y7.U2;
@@ -44,7 +44,7 @@ public final class r6 implements org.telegram.ui.ActionBar.l0, ij0 {
                 }
                 return;
             case 1:
-                y7 y7Var2 = this.f38891b;
+                y7 y7Var2 = this.f38889b;
                 if (i7 != 1 && i7 != 2) {
                     if (i7 == 4) {
                         if (org.telegram.messenger.gz.S0 == 1) {
@@ -64,16 +64,16 @@ public final class r6 implements org.telegram.ui.ActionBar.l0, ij0 {
                     } else {
                         MediaController.B().l0(i7);
                     }
-                    y7Var2.f41920u1.f();
+                    y7Var2.f41912u1.f();
                     if (z10 != org.telegram.messenger.gz.O0) {
-                        y7Var2.f41916s1.C0();
+                        y7Var2.f41908s1.C0();
                         y7Var2.S0(false);
                     }
                 }
                 y7Var2.c1();
                 return;
             default:
-                this.f38891b.P0(i7);
+                this.f38889b.P0(i7);
                 return;
         }
     }

@@ -25,14 +25,14 @@ public final class uf0 extends np {
     @Override
     public final void a(c5.l lVar, Object obj) {
         sf0 sf0Var = (sf0) obj;
-        View view = sf0Var.f39299b;
+        View view = sf0Var.f39297b;
         if (view != null) {
             lVar.removeView(view);
         }
-        if (sf0Var.f39298a) {
+        if (sf0Var.f39296a) {
             return;
         }
-        qf0 qf0Var = sf0Var.f39300c;
+        qf0 qf0Var = sf0Var.f39298c;
         if (qf0Var.getImageReceiver().f22286n0 != null) {
             Drawable t6 = qf0Var.getImageReceiver().t();
             if (t6 instanceof t5) {
@@ -71,12 +71,12 @@ public final class uf0 extends np {
     @Override
     public final boolean f(View view, Object obj) {
         sf0 sf0Var = (sf0) obj;
-        if (sf0Var.f39298a) {
-            if (view == sf0Var.f39299b) {
+        if (sf0Var.f39296a) {
+            if (view == sf0Var.f39297b) {
                 return true;
             }
             return false;
-        } else if (view == sf0Var.f39300c) {
+        } else if (view == sf0Var.f39298c) {
             return true;
         } else {
             return false;
@@ -103,14 +103,14 @@ public final class uf0 extends np {
         arrayList.clear();
         vf0 vf0Var = this.h;
         int size2 = vf0Var.Y0.size();
-        if (vf0Var.f40399j1) {
+        if (vf0Var.f40402j1) {
             size2++;
         }
         org.telegram.messenger.vo voVar = vf0Var.T0;
         if (voVar == null) {
             size = 0;
         } else {
-            size = voVar.f27089b.size();
+            size = voVar.f27090b.size();
         }
         int j3 = (j() * 2) + Math.max(size, size2);
         for (int i10 = 0; i10 < j3; i10++) {
@@ -124,7 +124,7 @@ public final class uf0 extends np {
     public final int j() {
         vf0 vf0Var = this.h;
         int size = vf0Var.Y0.size();
-        if (vf0Var.f40399j1) {
+        if (vf0Var.f40402j1) {
             size++;
         }
         if (size >= 2) {

@@ -9,14 +9,14 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class x6 extends FrameLayout implements org.telegram.messenger.is {
-    public s6 f53106a;
-    public final org.telegram.ui.ActionBar.e6 f53107b;
-    public final TextView f53108c;
+    public s6 f53105a;
+    public final org.telegram.ui.ActionBar.e6 f53106b;
+    public final TextView f53107c;
     public final org.telegram.ui.Components.h6 d;
-    public final org.telegram.ui.Components.i9 f53109e;
-    public boolean f53110f;
+    public final org.telegram.ui.Components.i9 f53108e;
+    public boolean f53109f;
     public boolean h;
-    public org.telegram.ui.Components.fp f53111n;
+    public org.telegram.ui.Components.fp f53110n;
 
     public x6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
@@ -28,22 +28,22 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
         int i12;
         float f12;
         float f13;
-        this.f53107b = e6Var;
+        this.f53106b = e6Var;
         TextView textView = new TextView(context);
-        this.f53108c = textView;
+        this.f53107c = textView;
         textView.setSingleLine();
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setTextSize(1, 16.0f);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, e6Var);
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -61,18 +61,18 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
             f11 = 21.0f;
         }
         addView(textView, c8.ja.d(-1, -1.0f, i13, f10, 0.0f, f11, 0.0f));
-        org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(context, true, true, !org.telegram.messenger.hd.f24101a0);
+        org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(context, true, true, !org.telegram.messenger.hd.f24104a0);
         this.d = h6Var;
         h6Var.b(0.55f, 320L, org.telegram.ui.Components.er.h);
         h6Var.setTextSize(org.telegram.messenger.g0.L(16.0f));
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i11 = 3;
         } else {
             i11 = 5;
         }
         h6Var.setGravity(i11 | 16);
         org.telegram.ui.ActionBar.q6.Y(h6Var, org.telegram.ui.ActionBar.j6.I6, e6Var);
-        boolean z11 = org.telegram.messenger.hd.f24101a0;
+        boolean z11 = org.telegram.messenger.hd.f24104a0;
         if (z11) {
             i12 = 3;
         } else {
@@ -91,15 +91,15 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
         }
         addView(h6Var, c8.ja.d(-2, -1.0f, i14, f12, 0.0f, f13, 0.0f));
         org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
-        this.f53109e = i9Var;
-        i9Var.getAvatarDrawable().f39600p = 0.8f;
-        addView(i9Var, c8.ja.d(38, 38.0f, (org.telegram.messenger.hd.f24101a0 ? 5 : 3) | 16, 17.0f, 0.0f, 17.0f, 0.0f));
+        this.f53108e = i9Var;
+        i9Var.getAvatarDrawable().f39598p = 0.8f;
+        addView(i9Var, c8.ja.d(38, 38.0f, (org.telegram.messenger.hd.f24104a0 ? 5 : 3) | 16, 17.0f, 0.0f, 17.0f, 0.0f));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TextView textView;
-        if (i7 == org.telegram.messenger.ns.f25514i4 && (textView = this.f53108c) != null) {
+        if (i7 == org.telegram.messenger.ns.f25515i4 && (textView = this.f53107c) != null) {
             textView.invalidate();
         }
     }
@@ -109,8 +109,8 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
         float L;
         int i7;
         super.dispatchDraw(canvas);
-        if (this.f53110f) {
-            if (org.telegram.messenger.hd.f24101a0) {
+        if (this.f53109f) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(72.0f);
@@ -118,7 +118,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(72.0f);
             } else {
                 i7 = 0;
@@ -128,11 +128,11 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
     }
 
     public org.telegram.ui.Components.i9 getImageView() {
-        return this.f53109e;
+        return this.f53108e;
     }
 
     public TextView getTextView() {
-        return this.f53108c;
+        return this.f53107c;
     }
 
     public org.telegram.ui.Components.h6 getValueTextView() {
@@ -142,13 +142,13 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25515i4);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25515i4);
     }
 
     @Override
@@ -156,7 +156,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         StringBuilder sb2 = new StringBuilder();
-        sb2.append((Object) this.f53108c.getText());
+        sb2.append((Object) this.f53107c.getText());
         org.telegram.ui.Components.h6 h6Var = this.d;
         if (h6Var != null && h6Var.getVisibility() == 0) {
             str = "\n" + ((Object) h6Var.getText());
@@ -170,10 +170,10 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f53110f ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f53109f ? 1 : 0));
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(34.0f);
         int i11 = measuredWidth / 2;
-        org.telegram.ui.Components.i9 i9Var = this.f53109e;
+        org.telegram.ui.Components.i9 i9Var = this.f53108e;
         if (i9Var.getVisibility() == 0) {
             i9Var.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(38.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(38.0f), 1073741824));
         }
@@ -183,15 +183,15 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
             measuredWidth = (measuredWidth - h6Var.getMeasuredWidth()) - org.telegram.messenger.g0.L(8.0f);
         }
         int L = org.telegram.messenger.g0.L(12.0f) + h6Var.getMeasuredWidth();
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
-        TextView textView = this.f53108c;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
+        TextView textView = this.f53107c;
         if (z10) {
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = L;
         } else {
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = L;
         }
         textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth - L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-        org.telegram.ui.Components.fp fpVar = this.f53111n;
+        org.telegram.ui.Components.fp fpVar = this.f53110n;
         if (fpVar != null) {
             fpVar.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
         }
@@ -211,7 +211,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
         } else {
             f10 = 1.0f;
         }
-        this.f53108c.setAlpha(f10);
+        this.f53107c.setAlpha(f10);
         org.telegram.ui.Components.h6 h6Var = this.d;
         if (h6Var.getVisibility() == 0) {
             if (!z10 && this.h) {
@@ -222,7 +222,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.is {
     }
 
     public void setTextColor(int i7) {
-        this.f53108c.setTextColor(i7);
+        this.f53107c.setTextColor(i7);
     }
 
     public void setTextValueColor(int i7) {

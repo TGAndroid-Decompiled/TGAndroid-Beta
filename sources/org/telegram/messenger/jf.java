@@ -21,10 +21,10 @@ public final class jf extends ye {
     @Override
     public final String a() {
         if (this.L != null) {
-            w7.G(m10.f24934t0);
+            w7.G(m10.f24940t0);
             return w7.J(this.L, null, true, true).getAbsolutePath();
         } else if (this.J != null) {
-            w7.G(m10.f24934t0);
+            w7.G(m10.f24940t0);
             return w7.J(this.J, null, true, true).getAbsolutePath();
         } else {
             return fc.A(this.C).getAbsolutePath();
@@ -52,10 +52,10 @@ public final class jf extends ye {
 
     public final String g() {
         if (this.L != null) {
-            w7.G(m10.f24934t0);
+            w7.G(m10.f24940t0);
             return w7.J(this.L, null, true, true).getAbsolutePath();
         } else if (this.J != null) {
-            w7.G(m10.f24934t0);
+            w7.G(m10.f24940t0);
             return w7.J(this.J, null, true, true).getAbsolutePath();
         } else {
             return this.C;

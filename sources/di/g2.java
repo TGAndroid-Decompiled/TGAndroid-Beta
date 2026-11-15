@@ -11,30 +11,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class g2 implements RequestDelegate {
-    public final int f8587a = 0;
-    public final long f8588b;
-    public final long f8589c;
+    public final int f8604a = 0;
+    public final long f8605b;
+    public final long f8606c;
     public final Object d;
-    public final Object f8590e;
-    public final Object f8591f;
+    public final Object f8607e;
+    public final Object f8608f;
 
     public g2(c6 c6Var, TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, long j3, long j10, z10 z10Var) {
         this.d = c6Var;
-        this.f8590e = tL_inputInvoiceStarGiftTransfer;
-        this.f8588b = j3;
-        this.f8589c = j10;
-        this.f8591f = z10Var;
+        this.f8607e = tL_inputInvoiceStarGiftTransfer;
+        this.f8605b = j3;
+        this.f8606c = j10;
+        this.f8608f = z10Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f8587a) {
+        switch (this.f8604a) {
             case 0:
                 final c6 c6Var = (c6) this.d;
-                final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer = (TLRPC.TL_inputInvoiceStarGiftTransfer) this.f8590e;
-                final z10 z10Var = (z10) this.f8591f;
-                final long j3 = this.f8588b;
-                final long j10 = this.f8589c;
+                final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer = (TLRPC.TL_inputInvoiceStarGiftTransfer) this.f8607e;
+                final z10 z10Var = (z10) this.f8608f;
+                final long j3 = this.f8605b;
+                final long j10 = this.f8606c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -63,22 +63,22 @@ public final class g2 implements RequestDelegate {
                         TLRPC.TL_error tL_error2 = tL_error;
                         z10Var2.a(tL_error2);
                         org.telegram.ui.Components.xb Y = c6Var2.k().Y(tL_error2);
-                        Y.f41653t = true;
+                        Y.f41645t = true;
                         Y.j();
                     }
                 });
                 return;
             default:
-                ((GroupCallMessagesController) this.d).lambda$sendCallMessage$6((org.telegram.messenger.voip.f) this.f8590e, (GroupCallMessage) this.f8591f, this.f8588b, this.f8589c, tLObject, tL_error);
+                ((GroupCallMessagesController) this.d).lambda$sendCallMessage$6((org.telegram.messenger.voip.f) this.f8607e, (GroupCallMessage) this.f8608f, this.f8605b, this.f8606c, tLObject, tL_error);
                 return;
         }
     }
 
     public g2(GroupCallMessagesController groupCallMessagesController, org.telegram.messenger.voip.f fVar, GroupCallMessage groupCallMessage, long j3, long j10) {
         this.d = groupCallMessagesController;
-        this.f8590e = fVar;
-        this.f8591f = groupCallMessage;
-        this.f8588b = j3;
-        this.f8589c = j10;
+        this.f8607e = fVar;
+        this.f8608f = groupCallMessage;
+        this.f8605b = j3;
+        this.f8606c = j10;
     }
 }

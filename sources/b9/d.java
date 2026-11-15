@@ -1,9 +1,9 @@
 package b9;
 public final class d implements a9.a {
-    public final qb.a f2988a;
+    public final qb.a f2991a;
 
     public d(qb.a aVar) {
-        this.f2988a = aVar;
+        this.f2991a = aVar;
     }
 
     @Override
@@ -31,12 +31,12 @@ public final class d implements a9.a {
             return true;
         }
         if (obj != null && d.class == obj.getClass()) {
-            return this.f2988a.equals(((d) obj).f2988a);
+            return this.f2991a.equals(((d) obj).f2991a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f2988a.hashCode();
+        return this.f2991a.hashCode();
     }
 }

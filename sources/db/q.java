@@ -6,18 +6,18 @@ import c8.yb;
 import java.util.List;
 public final class q extends r6.a {
     public static final Parcelable.Creator<q> CREATOR = new k(4);
-    public final List f7979a;
+    public final List f7982a;
 
     public q(List simSlots) {
         kotlin.jvm.internal.j.e(simSlots, "simSlots");
-        this.f7979a = simSlots;
+        this.f7982a = simSlots;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
         int r10 = yb.r(dest, 20293);
-        yb.h(dest, 1, this.f7979a);
+        yb.h(dest, 1, this.f7982a);
         yb.s(dest, r10);
     }
 }

@@ -121,7 +121,7 @@ public final class e1 implements Runnable {
                                 str = "";
                             }
                             org.telegram.ui.Cells.y0.t(str, sb2);
-                            if (z10 && h7 != null && (hk0Var = h7.f54285w) != null && hk0Var.f35280f0 && hk0Var.Y != null) {
+                            if (z10 && h7 != null && (hk0Var = h7.f54285w) != null && hk0Var.f35271f0 && hk0Var.Y != null) {
                                 hk0Var.s0();
                                 hk0Var.r0();
                             }
@@ -149,7 +149,7 @@ public final class e1 implements Runnable {
                 l1 l1Var5 = this.f54208b;
                 long j3 = l1Var5.v;
                 long nanoTime = System.nanoTime();
-                long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f23610r));
+                long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f23612r));
                 if (!l1Var5.f54318w && j3 != 0 && l1Var5.F && l1Var5.f54312p.get() && nanoTime - l1Var5.S >= (max * 9) / 10 && l1Var5.f54311o.compareAndSet(false, true)) {
                     l1Var5.f54312p.set(false);
                     l1Var5.S = nanoTime;

@@ -18,7 +18,7 @@ public final class i extends a41 {
     @Override
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         long j3 = b41Var.B;
-        ((j) view).a((int) j3, (int) (j3 >>> 32), b41Var.f33180k, b41Var.f33181l, b41Var.f33183n, b41Var.f33186q);
+        ((j) view).a((int) j3, (int) (j3 >>> 32), b41Var.f33183k, b41Var.f33184l, b41Var.f33186n, b41Var.f33189q);
     }
 
     @Override

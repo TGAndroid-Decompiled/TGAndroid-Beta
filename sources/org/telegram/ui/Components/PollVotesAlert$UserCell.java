@@ -44,7 +44,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
         org.telegram.ui.ActionBar.q6.X(j5Var, i7, null);
         j5Var.setTypeface(org.telegram.messenger.g0.o());
         j5Var.setTextSize(16);
-        j5Var.setGravity((org.telegram.messenger.hd.f24101a0 ? 5 : 3) | 16);
+        j5Var.setGravity((org.telegram.messenger.hd.f24104a0 ? 5 : 3) | 16);
         addView(j5Var, c8.ja.q(0, 24, 1.0f, 16, 0, 0, 0, 0));
         TextView textView = new TextView(context);
         this.f32617c = textView;
@@ -106,7 +106,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                 L = org.telegram.messenger.g0.L(65.0f);
                 L2 = org.telegram.messenger.g0.L(60.0f);
             }
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 L = (getMeasuredWidth() - L) - L2;
             }
             te0Var.H1.set(L, measuredHeight - org.telegram.messenger.g0.L(4.0f), L + L2, org.telegram.messenger.g0.L(4.0f) + measuredHeight);
@@ -118,20 +118,20 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                 L3 = org.telegram.messenger.g0.L(131.0f);
                 L4 = org.telegram.messenger.g0.L(80.0f);
             }
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 L3 = (getMeasuredWidth() - L3) - L4;
             }
             te0Var.H1.set(L3, measuredHeight - org.telegram.messenger.g0.L(4.0f), L3 + L4, org.telegram.messenger.g0.L(4.0f) + measuredHeight);
             canvas.drawRoundRect(te0Var.H1, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), te0Var.B1);
         }
         if (this.f32622s) {
-            if (!org.telegram.messenger.hd.f24101a0) {
+            if (!org.telegram.messenger.hd.f24104a0) {
                 f10 = org.telegram.messenger.g0.L(64.0f);
             }
             float f11 = f10;
             float measuredHeight2 = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(64.0f);
             } else {
                 i7 = 0;

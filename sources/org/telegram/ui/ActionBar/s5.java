@@ -18,7 +18,7 @@ public final class s5 extends ga {
         boolean z11 = this.f29595a;
         View view = this.f29596b;
         if (!z11) {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             boolean z12 = false;
             if (point.x <= point.y) {
                 z10 = true;

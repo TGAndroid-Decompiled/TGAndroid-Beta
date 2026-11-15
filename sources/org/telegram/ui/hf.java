@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hf implements org.telegram.ui.Components.uh0 {
-    public final int f47697a;
-    public final an f47698b;
-    public final boolean f47699c;
+    public final int f47687a;
+    public final an f47688b;
+    public final boolean f47689c;
     public final org.telegram.messenger.gj d;
 
     public hf(an anVar, boolean z10, org.telegram.messenger.gj gjVar, int i7) {
-        this.f47697a = i7;
-        this.f47698b = anVar;
-        this.f47699c = z10;
+        this.f47687a = i7;
+        this.f47688b = anVar;
+        this.f47689c = z10;
         this.d = gjVar;
     }
 
     @Override
     public final void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f47697a) {
+        switch (this.f47687a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final an anVar = this.f47698b;
-                    if (j3 != anVar.getUserConfig().e() && this.f47699c) {
+                    final an anVar = this.f47688b;
+                    if (j3 != anVar.getUserConfig().e() && this.f47689c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject e22 = anVar.getMessagesController().e2(j3);
@@ -30,7 +30,7 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                         arrayList2.add(e22);
                         final TLRPC.ChannelParticipant[] channelParticipantArr = new TLRPC.ChannelParticipant[1];
                         TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
-                        tL_channels_getParticipant.channel = org.telegram.messenger.np.i1(anVar.f45173e);
+                        tL_channels_getParticipant.channel = org.telegram.messenger.np.i1(anVar.f45172e);
                         tL_channels_getParticipant.participant = org.telegram.messenger.np.k1(e22);
                         anVar.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new d3.b(1), new org.telegram.messenger.s10() {
                             @Override
@@ -48,9 +48,9 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                                         } else {
                                             anVar2.getClass();
                                         }
-                                        int i7 = anVar2.f45204g4;
+                                        int i7 = anVar2.f45203g4;
                                         org.telegram.messenger.c6 c6Var = new org.telegram.messenger.c6(18);
-                                        new org.telegram.ui.Components.rr(anVar2, anVar2.f45173e, arrayList, arrayList2, channelParticipantArr2, anVar2.f45154c7, (int) anVar2.b(), i7, true, c6Var).show();
+                                        new org.telegram.ui.Components.rr(anVar2, anVar2.f45172e, arrayList, arrayList2, channelParticipantArr2, anVar2.f45153c7, (int) anVar2.b(), i7, true, c6Var).show();
                                         return;
                                     default:
                                         an anVar3 = anVar;
@@ -62,9 +62,9 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                                         } else {
                                             anVar3.getClass();
                                         }
-                                        int i10 = anVar3.f45204g4;
+                                        int i10 = anVar3.f45203g4;
                                         org.telegram.messenger.c6 c6Var2 = new org.telegram.messenger.c6(18);
-                                        new org.telegram.ui.Components.rr(anVar3, anVar3.f45173e, arrayList, arrayList2, channelParticipantArr3, anVar3.f45154c7, (int) anVar3.b(), i10, true, c6Var2).show();
+                                        new org.telegram.ui.Components.rr(anVar3, anVar3.f45172e, arrayList, arrayList2, channelParticipantArr3, anVar3.f45153c7, (int) anVar3.b(), i10, true, c6Var2).show();
                                         return;
                                 }
                             }
@@ -76,9 +76,9 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                 }
                 return;
             default:
-                final an anVar2 = this.f47698b;
+                final an anVar2 = this.f47688b;
                 anVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != anVar2.getUserConfig().e() && this.f47699c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != anVar2.getUserConfig().e() && this.f47689c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject e23 = anVar2.getMessagesController().e2(j3);
@@ -86,7 +86,7 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                     arrayList4.add(e23);
                     final TLRPC.ChannelParticipant[] channelParticipantArr2 = new TLRPC.ChannelParticipant[1];
                     TLRPC.TL_channels_getParticipant tL_channels_getParticipant2 = new TLRPC.TL_channels_getParticipant();
-                    tL_channels_getParticipant2.channel = org.telegram.messenger.np.i1(anVar2.f45173e);
+                    tL_channels_getParticipant2.channel = org.telegram.messenger.np.i1(anVar2.f45172e);
                     tL_channels_getParticipant2.participant = org.telegram.messenger.np.k1(e23);
                     anVar2.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant2, new d3.b(1), new org.telegram.messenger.s10() {
                         @Override
@@ -104,9 +104,9 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                                     } else {
                                         anVar22.getClass();
                                     }
-                                    int i7 = anVar22.f45204g4;
+                                    int i7 = anVar22.f45203g4;
                                     org.telegram.messenger.c6 c6Var = new org.telegram.messenger.c6(18);
-                                    new org.telegram.ui.Components.rr(anVar22, anVar22.f45173e, arrayList3, arrayList4, channelParticipantArr22, anVar22.f45154c7, (int) anVar22.b(), i7, true, c6Var).show();
+                                    new org.telegram.ui.Components.rr(anVar22, anVar22.f45172e, arrayList3, arrayList4, channelParticipantArr22, anVar22.f45153c7, (int) anVar22.b(), i7, true, c6Var).show();
                                     return;
                                 default:
                                     an anVar3 = anVar2;
@@ -118,9 +118,9 @@ public final class hf implements org.telegram.ui.Components.uh0 {
                                     } else {
                                         anVar3.getClass();
                                     }
-                                    int i10 = anVar3.f45204g4;
+                                    int i10 = anVar3.f45203g4;
                                     org.telegram.messenger.c6 c6Var2 = new org.telegram.messenger.c6(18);
-                                    new org.telegram.ui.Components.rr(anVar3, anVar3.f45173e, arrayList3, arrayList4, channelParticipantArr3, anVar3.f45154c7, (int) anVar3.b(), i10, true, c6Var2).show();
+                                    new org.telegram.ui.Components.rr(anVar3, anVar3.f45172e, arrayList3, arrayList4, channelParticipantArr3, anVar3.f45153c7, (int) anVar3.b(), i10, true, c6Var2).show();
                                     return;
                             }
                         }

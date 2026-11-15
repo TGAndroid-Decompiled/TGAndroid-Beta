@@ -153,7 +153,7 @@ public final class h implements f6.f {
                 mediaInfo = qVar.f11123a;
             }
             if (mediaInfo != null) {
-                j3 = mediaInfo.f5879e;
+                j3 = mediaInfo.f5882e;
             } else {
                 j3 = 0;
             }
@@ -186,7 +186,7 @@ public final class h implements f6.f {
     public final boolean j() {
         q6.m.d("Must be called from the main thread.");
         MediaInfo d = d();
-        if (d != null && d.f5877b == 2) {
+        if (d != null && d.f5880b == 2) {
             return true;
         }
         return false;
@@ -308,8 +308,8 @@ public final class h implements f6.f {
             e0Var.D.put(str, this);
         }
         t b10 = u.b();
-        b10.f6071c = new a0(e0Var, str, this);
-        b10.f6069a = 8413;
+        b10.f6074c = new a0(e0Var, str, this);
+        b10.f6072a = 8413;
         e0Var.e(1, b10.a());
         q6.m.d("Must be called from the main thread.");
         if (!w()) {
@@ -334,8 +334,8 @@ public final class h implements f6.f {
                         fVar = (f6.f) e0Var2.D.remove(str);
                     }
                     t b10 = u.b();
-                    b10.f6071c = new a0(e0Var2, fVar, str);
-                    b10.f6069a = 8414;
+                    b10.f6074c = new a0(e0Var2, fVar, str);
+                    b10.f6072a = 8414;
                     e0Var2.e(1, b10.a());
                     this.d.f13624b = null;
                     this.f13608b.removeCallbacksAndMessages(null);

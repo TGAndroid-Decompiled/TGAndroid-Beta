@@ -12,7 +12,7 @@ public abstract class b extends tj0 {
             arrayList2 = new ArrayList();
         }
         p01 p01Var = this.f56017c;
-        p01Var.f38141c = arrayList;
+        p01Var.f38139c = arrayList;
         p01Var.d = arrayList2;
         o.c(p01Var, true).c(this);
     }

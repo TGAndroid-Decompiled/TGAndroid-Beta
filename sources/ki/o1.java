@@ -16,7 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ja;
-import di.o9;
+import di.n9;
 import fi.m5;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
@@ -184,7 +184,7 @@ public final class o1 implements sw, org.telegram.ui.ActionBar.q1, ResultCallbac
         dp dpVar = (dp) this.f18476e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f18475c) {
-            Drawable drawable = dpVar.f34023b;
+            Drawable drawable = dpVar.f34010b;
             if (drawable instanceof ra0) {
                 ra0 ra0Var = (ra0) drawable;
                 if (this.f18474b >= 0) {
@@ -219,7 +219,7 @@ public final class o1 implements sw, org.telegram.ui.ActionBar.q1, ResultCallbac
         if (arrayList.isEmpty()) {
             return false;
         }
-        final long j3 = ((ur) arrayList.get(0)).f26860a;
+        final long j3 = ((ur) arrayList.get(0)).f26861a;
         Activity parentActivity = ywVar2.getParentActivity();
         final int i13 = this.f18474b;
         final p1 p1Var = new p1(u91Var, ywVar2, j3, i13);
@@ -319,7 +319,7 @@ public final class o1 implements sw, org.telegram.ui.ActionBar.q1, ResultCallbac
         ns.i(textView2);
         textView2.setText(org.telegram.messenger.j6.m(org.telegram.messenger.g0.X2(hd.a0(null, null, 2131752922, str2)), textView2.getPaint().getFontMetricsInt(), false, null, 0));
         e10.addView(textView2, ja.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
-        final int i19 = np.s1(i13).f25321k6;
+        final int i19 = np.s1(i13).f25324k6;
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
         final mb0 mb0Var = new mb0(parentActivity, null);
         mb0Var.setForceForceUseCenter(true);
@@ -336,11 +336,11 @@ public final class o1 implements sw, org.telegram.ui.ActionBar.q1, ResultCallbac
         editTextBoldCursor.setSelectAllOnFocus(true);
         q6.C(editTextBoldCursor, j6.f29005lg, null);
         q6.l(editTextBoldCursor, 36, j6.f29022mg, null);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i17 = 5;
         }
         editTextBoldCursor.setGravity(i17);
-        editTextBoldCursor.setOnFocusChangeListener(new o9(mb0Var, editTextBoldCursor, 1));
+        editTextBoldCursor.setOnFocusChangeListener(new n9(mb0Var, editTextBoldCursor, 1));
         mb0Var.e(editTextBoldCursor);
         mb0Var.addView(editTextBoldCursor, ja.d(-1, -2.0f, 48, 12.0f, 4.0f, 12.0f, 4.0f));
         e10.addView(mb0Var, ja.o(-1, -2));

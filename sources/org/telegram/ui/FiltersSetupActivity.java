@@ -49,7 +49,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
                 tL_messages_toggleDialogFilterTags.enabled = true ^ filtersSetupActivity.getMessagesController().B7;
                 org.telegram.messenger.np messagesController = filtersSetupActivity.getMessagesController();
                 boolean z10 = tL_messages_toggleDialogFilterTags.enabled;
-                SharedPreferences.Editor edit = messagesController.f25280f7.edit();
+                SharedPreferences.Editor edit = messagesController.f25283f7.edit();
                 messagesController.B7 = z10;
                 edit.putBoolean("folderTags", z10).apply();
                 filtersSetupActivity.getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new b00(0, filtersSetupActivity, tL_messages_toggleDialogFilterTags));
@@ -60,7 +60,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
             } else if (i10 == 2) {
                 org.telegram.messenger.so soVar = e00Var.d;
                 if (soVar != null && !soVar.e()) {
-                    if (soVar.f26555p) {
+                    if (soVar.f26565p) {
                         filtersSetupActivity.showDialog(new ug.j0(3, filtersSetupActivity.currentAccount, context, filtersSetupActivity, null));
                     } else {
                         filtersSetupActivity.presentFragment(new hz(soVar, null));
@@ -179,7 +179,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
         TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
         ArrayList T0 = getMessagesController().T0();
         int size = T0.size();
-        for (int i7 = 0; i7 < size; i7 = com.google.android.gms.internal.vision.e2.f(((org.telegram.messenger.so) T0.get(i7)).f26542a, i7, 1, tL_messages_updateDialogFiltersOrder.order)) {
+        for (int i7 = 0; i7 < size; i7 = com.google.android.gms.internal.vision.e2.f(((org.telegram.messenger.so) T0.get(i7)).f26552a, i7, 1, tL_messages_updateDialogFiltersOrder.order)) {
         }
         getConnectionsManager().sendRequest(tL_messages_updateDialogFiltersOrder, new l(a00Var, 8));
     }
@@ -209,11 +209,11 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
             int size = arrayList3.size();
             String M02 = org.telegram.messenger.hd.M0(2131750718, null);
             ?? aVar = new rg.a(0, false);
-            aVar.f46514c = M02;
+            aVar.f46504c = M02;
             arrayList3.add(aVar);
             for (int i10 = 0; i10 < arrayList4.size(); i10++) {
                 ?? aVar2 = new rg.a(5, false);
-                aVar2.f46515e = (TLRPC.TL_dialogFilterSuggested) arrayList4.get(i10);
+                aVar2.f46505e = (TLRPC.TL_dialogFilterSuggested) arrayList4.get(i10);
                 arrayList3.add(aVar2);
             }
             ct ctVar2 = this.f42604a;
@@ -221,21 +221,21 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
                 ctVar2.L2.add(Long.valueOf(org.telegram.messenger.g0.w2(size, arrayList3.size() - 1)));
             }
             ?? aVar3 = new rg.a(3, false);
-            aVar3.f46514c = null;
+            aVar3.f46504c = null;
             arrayList3.add(aVar3);
         }
         if (!T0.isEmpty()) {
             this.f42611s = arrayList3.size();
             String M03 = org.telegram.messenger.hd.M0(2131750696, null);
             ?? aVar4 = new rg.a(0, false);
-            aVar4.f46514c = M03;
+            aVar4.f46504c = M03;
             arrayList3.add(aVar4);
             this.f42610r = arrayList3.size();
             for (int i11 = 0; i11 < T0.size(); i11++) {
                 ?? aVar5 = new rg.a(2, false);
                 aVar5.d = (org.telegram.messenger.so) T0.get(i11);
                 arrayList3.add(aVar5);
-                if (org.telegram.messenger.np.s1(this.currentAccount).B7 && ((org.telegram.messenger.so) T0.get(i11)).f26552m >= 0) {
+                if (org.telegram.messenger.np.s1(this.currentAccount).B7 && ((org.telegram.messenger.so) T0.get(i11)).f26562m >= 0) {
                     this.f42614y = true;
                 }
             }
@@ -258,17 +258,17 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
         if (T0.size() < getMessagesController().N4) {
             String M04 = org.telegram.messenger.hd.M0(2131751716, null);
             ?? aVar6 = new rg.a(4, false);
-            aVar6.f46514c = M04;
+            aVar6.f46504c = M04;
             arrayList3.add(aVar6);
         }
         ?? aVar7 = new rg.a(3, false);
-        aVar7.f46514c = null;
+        aVar7.f46504c = null;
         arrayList3.add(aVar7);
         this.f42613x = arrayList3.size();
         this.showTagsRow = arrayList3.size();
         String M05 = org.telegram.messenger.hd.M0(2131750625, null);
         ?? aVar8 = new rg.a(6, false);
-        aVar8.f46514c = M05;
+        aVar8.f46504c = M05;
         arrayList3.add(aVar8);
         if (!getUserConfig().q()) {
             M0 = org.telegram.messenger.g0.S2(org.telegram.messenger.hd.M0(2131750623, null), org.telegram.ui.ActionBar.j6.L6, 2, new a00(this, 0), null);
@@ -276,7 +276,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e2 implement
             M0 = org.telegram.messenger.hd.M0(2131750624, null);
         }
         ?? aVar9 = new rg.a(3, false);
-        aVar9.f46514c = M0;
+        aVar9.f46504c = M0;
         arrayList3.add(aVar9);
         g00 g00Var = this.f42605b;
         if (g00Var != null) {

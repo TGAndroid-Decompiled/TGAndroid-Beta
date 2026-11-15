@@ -28,7 +28,7 @@ public abstract class w0 {
         int[] iArr = f61774c;
         if (!f61775e) {
             f61775e = true;
-            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26600b.getSharedPreferences("mainconfig", 0);
+            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26609b.getSharedPreferences("mainconfig", 0);
             int i7 = 0;
             while (true) {
                 String[] strArr = f61772a;
@@ -71,7 +71,7 @@ public abstract class w0 {
             }
             sb2.append(f61773b[i7][(i10 + i12) % 8]);
         }
-        org.telegram.messenger.t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putString(f61772a[i7], sb2.toString()).apply();
+        org.telegram.messenger.t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putString(f61772a[i7], sb2.toString()).apply();
     }
 
     public static synchronized int d(n0 n0Var, n0 n0Var2, int i7) {

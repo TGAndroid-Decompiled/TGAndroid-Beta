@@ -198,7 +198,7 @@ public class y8 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
         b2 b2Var = new b2(this, context, o0Var, e6Var);
         this.f32078a = b2Var;
         b2Var.setTextSize(1, 14.0f);
-        b2Var.setGravity(hd.f24101a0 ? 5 : 3);
+        b2Var.setGravity(hd.f24104a0 ? 5 : 3);
         b2Var.setPadding(0, org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(17.0f));
         b2Var.setMovementMethod(LinkMovementMethod.getInstance());
         int i10 = org.telegram.ui.ActionBar.j6.B6;
@@ -209,8 +209,8 @@ public class y8 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
         org.telegram.ui.ActionBar.q6.G(b2Var, this.f32080c, e6Var);
         b2Var.setImportantForAccessibility(2);
         float f10 = i7;
-        addView(b2Var, c8.ja.d(-1, -2.0f, (hd.f24101a0 ? 5 : 3) | 48, f10, 0.0f, f10, 0.0f));
-        this.f32083n = hd.f24101a0;
+        addView(b2Var, c8.ja.d(-1, -2.0f, (hd.f24104a0 ? 5 : 3) | 48, f10, 0.0f, f10, 0.0f));
+        this.f32083n = hd.f24104a0;
         setWillNotDraw(false);
     }
 

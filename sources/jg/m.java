@@ -94,7 +94,7 @@ public class m extends tj0 implements p2 {
     public int f17191b0 = -1;
 
     static {
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
     }
 
     public m(yw ywVar, Context context, int i7, int i10, boolean z10, ArrayList arrayList, int i11, TLRPC.RequestPeerType requestPeerType) {
@@ -112,7 +112,7 @@ public class m extends tj0 implements p2 {
         this.E = z11;
         this.f17200y = arrayList;
         this.G = i11;
-        this.W = ywVar.f53648a3;
+        this.W = ywVar.f53613a3;
         if (i10 == 0) {
             ?? obj = new Object();
             obj.f17154a = new HashSet();
@@ -167,7 +167,7 @@ public class m extends tj0 implements p2 {
                 return 1;
             }
             return 0;
-        } else if (np.s1(this.G).f25247c2.get(i10)) {
+        } else if (np.s1(this.G).f25250c2.get(i10)) {
             return 2;
         } else {
             return 3;
@@ -188,7 +188,7 @@ public class m extends tj0 implements p2 {
             i7--;
         }
         if (this.E) {
-            i7 = i5.c.f(2, i7, np.s1(this.G).f25385s);
+            i7 = i5.c.f(2, i7, np.s1(this.G).f25388s);
         }
         if (this.f17195n && this.h == 3) {
             i7--;
@@ -310,7 +310,7 @@ public class m extends tj0 implements p2 {
 
     public final void V() {
         boolean z10;
-        if (this.f17196r == 0 && this.h == 0 && !this.f17199x && !np.s1(this.G).f25385s.isEmpty()) {
+        if (this.f17196r == 0 && this.h == 0 && !this.f17199x && !np.s1(this.G).f25388s.isEmpty()) {
             z10 = true;
         } else {
             z10 = false;
@@ -477,7 +477,7 @@ public class m extends tj0 implements p2 {
                     r22.setIgnoreHeightCheck(true);
                 }
                 if (i7 == 13) {
-                    r22.setItemsCount((int) ((org.telegram.messenger.g0.f23609q.y * 0.5f) / org.telegram.messenger.g0.L(64.0f)));
+                    r22.setItemsCount((int) ((org.telegram.messenger.g0.f23611q.y * 0.5f) / org.telegram.messenger.g0.L(64.0f)));
                     break;
                 }
                 break;
@@ -487,13 +487,13 @@ public class m extends tj0 implements p2 {
                 TextView textView = new TextView(context);
                 i5.c.v(textView, 1, 15.0f);
                 i20.q(textView, j6.L6, null, null, 2131746359);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i11 = 3;
                 } else {
                     i11 = 5;
                 }
                 textView.setGravity(i11 | 16);
-                if (!hd.f24101a0) {
+                if (!hd.f24104a0) {
                     i13 = 5;
                 }
                 n4Var2.addView(textView, ja.d(-1, -1.0f, i13 | 48, 17.0f, 15.0f, 17.0f, 0.0f));
@@ -514,7 +514,7 @@ public class m extends tj0 implements p2 {
                 r22.f31708n = new t8((e6) null);
                 r22.f31712x = org.telegram.messenger.g0.L(40.0f);
                 r22.G = org.telegram.messenger.g0.L(10.0f);
-                r22.I = m10.f24934t0;
+                r22.I = m10.f24940t0;
                 j6.T(context);
                 imageReceiver.J0(org.telegram.messenger.g0.L(26.0f));
                 break;
@@ -536,7 +536,7 @@ public class m extends tj0 implements p2 {
                 r22 = new x6(context, (org.telegram.ui.Cells.y0) null);
                 Drawable Y0 = j6.Y0(context, 2131231229, j6.f28813b7);
                 fq fqVar = new fq(new ColorDrawable(j6.x0(null, j6.f28792a7, false)), Y0);
-                fqVar.f34678x = true;
+                fqVar.f34682x = true;
                 r22.setBackgroundDrawable(fqVar);
                 E(r22, Y0);
                 break;
@@ -556,7 +556,7 @@ public class m extends tj0 implements p2 {
                 r22 = new i(this, context);
                 Drawable Y02 = j6.Y0(context, 2131231229, j6.f28813b7);
                 fq fqVar2 = new fq(new ColorDrawable(j6.x0(null, j6.f28792a7, false)), Y02);
-                fqVar2.f34678x = true;
+                fqVar2.f34682x = true;
                 r22.setBackgroundDrawable(fqVar2);
                 E(r22, Y02);
                 break;

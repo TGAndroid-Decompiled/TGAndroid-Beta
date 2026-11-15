@@ -21,9 +21,9 @@ public final class s6 extends a41 {
         Object obj = b41Var.G;
         if (obj instanceof rw0) {
             rw0 rw0Var = (rw0) obj;
-            ((u6) view).b(b41Var.f33181l, rw0Var.d, rw0Var.f51046e, z10);
+            ((u6) view).b(b41Var.f33184l, rw0Var.d, rw0Var.f51042e, z10);
         } else if (obj instanceof zo) {
-            ((u6) view).a(b41Var.f33181l, ((zo) obj).f27981b, true, z10);
+            ((u6) view).a(b41Var.f33184l, ((zo) obj).f27991b, true, z10);
         }
     }
 

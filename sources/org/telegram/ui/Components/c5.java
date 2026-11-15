@@ -6,19 +6,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class c5 {
-    public HashMap f33502a;
-    public HashMap f33503b;
-    public HashSet f33504c;
+    public HashMap f33505a;
+    public HashMap f33506b;
+    public HashSet f33507c;
     public dg d;
-    public final int f33505e;
+    public final int f33508e;
 
     public c5(int i7) {
-        this.f33505e = i7;
+        this.f33508e = i7;
     }
 
     public static boolean a() {
         if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            boolean z10 = org.telegram.messenger.r2.f26198a;
+            boolean z10 = org.telegram.messenger.r2.f26206a;
             org.telegram.messenger.a8.e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
             return false;
         }
@@ -30,27 +30,27 @@ public final class c5 {
         if (j3 != 0) {
             synchronized (this) {
                 try {
-                    HashMap hashMap = this.f33502a;
+                    HashMap hashMap = this.f33505a;
                     if (hashMap != null && (document = (TLRPC.Document) hashMap.get(Long.valueOf(j3))) != null) {
                         if (d5Var != null) {
                             d5Var.a(document);
                         }
                     } else if (a()) {
-                        if (this.f33503b == null) {
-                            this.f33503b = new HashMap();
+                        if (this.f33506b == null) {
+                            this.f33506b = new HashMap();
                         }
-                        ArrayList arrayList = (ArrayList) this.f33503b.get(Long.valueOf(j3));
+                        ArrayList arrayList = (ArrayList) this.f33506b.get(Long.valueOf(j3));
                         if (arrayList != null) {
                             arrayList.add(d5Var);
                             return;
                         }
                         ArrayList arrayList2 = new ArrayList(1);
                         arrayList2.add(d5Var);
-                        this.f33503b.put(Long.valueOf(j3), arrayList2);
-                        if (this.f33504c == null) {
-                            this.f33504c = new HashSet();
+                        this.f33506b.put(Long.valueOf(j3), arrayList2);
+                        if (this.f33507c == null) {
+                            this.f33507c = new HashSet();
                         }
-                        this.f33504c.add(Long.valueOf(j3));
+                        this.f33507c.add(Long.valueOf(j3));
                         if (this.d != null) {
                             return;
                         }
@@ -68,7 +68,7 @@ public final class c5 {
     public final TLRPC.InputStickerSet c(long j3) {
         synchronized (this) {
             try {
-                HashMap hashMap = this.f33502a;
+                HashMap hashMap = this.f33505a;
                 if (hashMap == null) {
                     return null;
                 }
@@ -91,7 +91,7 @@ public final class c5 {
                 if (arrayList.get(i7) instanceof TLRPC.Document) {
                     TLRPC.Document document = (TLRPC.Document) arrayList.get(i7);
                     e(document);
-                    HashMap hashMap = this.f33503b;
+                    HashMap hashMap = this.f33506b;
                     if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f28057id))) != null) {
                         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                             d5 d5Var = (d5) arrayList2.get(i10);
@@ -112,10 +112,10 @@ public final class c5 {
         }
         synchronized (this) {
             try {
-                if (this.f33502a == null) {
-                    this.f33502a = new HashMap();
+                if (this.f33505a == null) {
+                    this.f33505a = new HashMap();
                 }
-                this.f33502a.put(Long.valueOf(document.f28057id), document);
+                this.f33505a.put(Long.valueOf(document.f28057id), document);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -128,8 +128,8 @@ public final class c5 {
         }
         synchronized (this) {
             try {
-                if (this.f33502a == null) {
-                    this.f33502a = new HashMap();
+                if (this.f33505a == null) {
+                    this.f33505a = new HashMap();
                 }
                 int size = arrayList.size();
                 int i7 = 0;
@@ -137,7 +137,7 @@ public final class c5 {
                     Object obj = arrayList.get(i7);
                     i7++;
                     TLRPC.Document document = (TLRPC.Document) obj;
-                    this.f33502a.put(Long.valueOf(document.f28057id), document);
+                    this.f33505a.put(Long.valueOf(document.f28057id), document);
                 }
             } catch (Throwable th2) {
                 throw th2;

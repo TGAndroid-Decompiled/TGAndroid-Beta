@@ -11,9 +11,9 @@ public final class yt extends org.telegram.ui.Components.ja {
     public final org.telegram.ui.Components.hw0[] X1;
     public final org.telegram.ui.Cells.c2[] Y1;
     public final LinearLayout Z1;
-    public final j6 f53624a2;
-    public final long f53625b2;
-    public final ei.c f53626c2;
+    public final j6 f53589a2;
+    public final long f53590b2;
+    public final ei.c f53591c2;
 
     public yt(y6 y6Var, s6 s6Var, ei.c cVar, k8.a aVar) {
         super((org.telegram.ui.ActionBar.e2) y6Var, false, !cVar.h(), (org.telegram.ui.ActionBar.e6) null);
@@ -29,19 +29,19 @@ public final class yt extends org.telegram.ui.Components.ja {
         this.Y1 = new org.telegram.ui.Cells.c2[8];
         this.V1 = aVar;
         this.U1 = s6Var;
-        this.f53626c2 = cVar;
-        this.f53625b2 = s6Var.f51116a;
+        this.f53591c2 = cVar;
+        this.f53590b2 = s6Var.f51112a;
         this.f29713r0 = false;
         b1();
         this.f29713r0 = true;
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         Activity parentActivity = y6Var.getParentActivity();
         O();
         this.f29720w0 = false;
         LinearLayout linearLayout = new LinearLayout(parentActivity);
         this.Z1 = linearLayout;
         linearLayout.setOrientation(1);
-        xt xtVar = new xt(getContext(), s6Var.f51116a, aVar);
+        xt xtVar = new xt(getContext(), s6Var.f51112a, aVar);
         this.T1 = xtVar;
         linearLayout.addView(xtVar, c8.ja.t(-2, -2, 1, 0, 16, 0, 16));
         int i11 = 0;
@@ -77,7 +77,7 @@ public final class yt extends org.telegram.ui.Components.ja {
             t6 t6Var = (t6) s6Var.d.get(i11);
             if (t6Var != null) {
                 activity = parentActivity;
-                j3 = t6Var.f51388a;
+                j3 = t6Var.f51389a;
             } else {
                 activity = parentActivity;
                 j3 = 0;
@@ -86,8 +86,8 @@ public final class yt extends org.telegram.ui.Components.ja {
                 org.telegram.ui.Components.hw0[] hw0VarArr = this.X1;
                 ?? obj = new Object();
                 Paint paint = new Paint((int) r62);
-                obj.f35367e = paint;
-                obj.f35366c = r62;
+                obj.f35358e = paint;
+                obj.f35357c = r62;
                 obj.d = false;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeWidth(org.telegram.messenger.g0.L(5.0f));
@@ -95,8 +95,8 @@ public final class yt extends org.telegram.ui.Components.ja {
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 hw0VarArr[i11] = obj;
                 org.telegram.ui.Components.hw0 hw0Var = this.X1[i11];
-                hw0Var.f35364a = j3;
-                hw0Var.f35365b = i12;
+                hw0Var.f35355a = j3;
+                hw0Var.f35356b = i12;
                 parentActivity = activity;
                 org.telegram.ui.Cells.c2 c2Var2 = new org.telegram.ui.Cells.c2(parentActivity, 4, 21, false, null);
                 c2Var2.setTag(Integer.valueOf(i11));
@@ -133,26 +133,26 @@ public final class yt extends org.telegram.ui.Components.ja {
         }
         xt xtVar2 = this.T1;
         org.telegram.ui.Components.hw0[] hw0VarArr2 = this.X1;
-        xtVar2.f35747b = hw0VarArr2;
+        xtVar2.f35734b = hw0VarArr2;
         xtVar2.G = cVar;
         xtVar2.invalidate();
-        xtVar2.f35748c = new float[hw0VarArr2.length];
+        xtVar2.f35735c = new float[hw0VarArr2.length];
         xtVar2.d = new float[hw0VarArr2.length];
-        xtVar2.f35749e = new float[hw0VarArr2.length];
+        xtVar2.f35736e = new float[hw0VarArr2.length];
         xtVar2.c(false);
         if (xtVar2.E > 1) {
-            xtVar2.f35750f = 0.0f;
+            xtVar2.f35737f = 0.0f;
         } else {
-            xtVar2.f35750f = 1.0f;
+            xtVar2.f35737f = 1.0f;
         }
         j6 j6Var = new j6(this, getContext(), y6Var);
-        this.f53624a2 = j6Var;
+        this.f53589a2 = j6Var;
         int L = org.telegram.messenger.g0.L(80.0f);
-        if (j6Var.f51405x == null) {
-            j6Var.f51404w = L;
+        if (j6Var.f51406x == null) {
+            j6Var.f51405w = L;
             int i14 = 0;
             while (true) {
-                org.telegram.ui.Components.w61 w61Var = j6Var.f51401n;
+                org.telegram.ui.Components.w61 w61Var = j6Var.f51402n;
                 if (i14 >= w61Var.getViewPages().length) {
                     break;
                 }
@@ -163,11 +163,11 @@ public final class yt extends org.telegram.ui.Components.ja {
                 i14++;
             }
         }
-        this.f53624a2.setCacheModel(cVar);
-        this.f53624a2.setDelegate(new ji.j(this, cVar, false, 16));
-        org.telegram.ui.Components.da daVar = this.f35942u1;
+        this.f53589a2.setCacheModel(cVar);
+        this.f53589a2.setDelegate(new ji.j(this, cVar, false, 16));
+        org.telegram.ui.Components.da daVar = this.f35937u1;
         if (daVar != null) {
-            daVar.setChildLayout(this.f53624a2);
+            daVar.setChildLayout(this.f53589a2);
         } else {
             d1();
             this.Z1.addView(this.W1, c8.ja.r(-1, 72, 80));
@@ -184,13 +184,13 @@ public final class yt extends org.telegram.ui.Components.ja {
 
     @Override
     public final CharSequence O0() {
-        return this.f35940s1.getMessagesController().c1(this.f53625b2);
+        return this.f35935s1.getMessagesController().c1(this.f53590b2);
     }
 
     @Override
     public final void U0(org.telegram.ui.Components.st0 st0Var) {
-        this.f35936o1.j(new g3(this, 10));
-        if (this.f35942u1 != null) {
+        this.f35931o1.j(new g3(this, 10));
+        if (this.f35937u1 != null) {
             d1();
             st0Var.addView(this.W1, c8.ja.e(-1, 72, 80));
         }
@@ -199,7 +199,7 @@ public final class yt extends org.telegram.ui.Components.ja {
     public final void d1() {
         m6 m6Var = new m6(getContext());
         this.W1 = m6Var;
-        m6Var.f49136a.setOnClickListener(new a(this, 19));
+        m6Var.f49132a.setOnClickListener(new a(this, 19));
         xt xtVar = this.T1;
         if (xtVar != null) {
             this.W1.a(xtVar.a(), true);

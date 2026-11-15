@@ -5,17 +5,17 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 public final class t70 implements org.telegram.messenger.i9, org.telegram.messenger.j9, org.telegram.messenger.db, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.eb0, org.telegram.messenger.t10, org.telegram.ui.Components.vt0, org.telegram.ui.ActionBar.n6, org.telegram.ui.ActionBar.o6 {
-    public final int f51407a;
+    public final int f51408a;
 
     public t70(int i7) {
-        this.f51407a = i7;
+        this.f51408a = i7;
     }
 
     @Override
     public Object d(Number number, Object obj) {
         Integer num = (Integer) obj;
         if (((Integer) number).intValue() == 0) {
-            return di.mb.a1(false, org.telegram.messenger.hd.H(',', "Stars", num.intValue()), 0.66f, null);
+            return di.lb.a1(false, org.telegram.messenger.hd.H(',', "Stars", num.intValue()), 0.66f, null);
         }
         return org.telegram.messenger.hd.E(num.intValue(), ',');
     }
@@ -61,7 +61,7 @@ public final class t70 implements org.telegram.messenger.i9, org.telegram.messen
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f51407a) {
+        switch (this.f51408a) {
             case 3:
                 t1Var.dismiss();
                 return;
@@ -110,7 +110,7 @@ public final class t70 implements org.telegram.messenger.i9, org.telegram.messen
 
     @Override
     public void l(int i7) {
-        org.telegram.messenger.gz.f23934b1 = i7;
+        org.telegram.messenger.gz.f23937b1 = i7;
         org.telegram.messenger.gz.y();
     }
 
@@ -124,7 +124,7 @@ public final class t70 implements org.telegram.messenger.i9, org.telegram.messen
     @Override
     public boolean run() {
         String str = LaunchActivity.C1;
-        if (org.telegram.messenger.gz.f23978s.length() > 0 && !org.telegram.messenger.gz.A) {
+        if (org.telegram.messenger.gz.f23981s.length() > 0 && !org.telegram.messenger.gz.A) {
             return true;
         }
         return false;

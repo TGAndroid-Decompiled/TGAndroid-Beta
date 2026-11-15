@@ -87,11 +87,11 @@ public final class px0 extends View {
 
     public static void k(kx0 kx0Var, int i7, int i10, int i11, int i12) {
         jx0 jx0Var = new jx0(i7, i10 + i7);
-        mx0 mx0Var = kx0Var.f36648a;
-        kx0Var.f36648a = new mx0(mx0Var.f37402a, jx0Var, mx0Var.f37404c, mx0Var.d);
+        mx0 mx0Var = kx0Var.f36636a;
+        kx0Var.f36636a = new mx0(mx0Var.f37401a, jx0Var, mx0Var.f37403c, mx0Var.d);
         jx0 jx0Var2 = new jx0(i11, i12 + i11);
-        mx0 mx0Var2 = kx0Var.f36649b;
-        kx0Var.f36649b = new mx0(mx0Var2.f37402a, jx0Var2, mx0Var2.f37404c, mx0Var2.d);
+        mx0 mx0Var2 = kx0Var.f36637b;
+        kx0Var.f36637b = new mx0(mx0Var2.f37401a, jx0Var2, mx0Var2.f37403c, mx0Var2.d);
     }
 
     public final void a(int i7, int i10, int i11, int i12) {
@@ -100,10 +100,10 @@ public final class px0 extends View {
         kx0 kx0Var = new kx0();
         jx0 jx0Var = new jx0(i10, i12 + i10);
         bx0 bx0Var = W;
-        kx0Var.f36648a = new mx0(false, jx0Var, bx0Var, 0.0f);
-        kx0Var.f36649b = new mx0(false, new jx0(i7, i11 + i7), bx0Var, 0.0f);
-        ix0Var.f35760a = kx0Var;
-        ix0Var.f35767j = i10;
+        kx0Var.f36636a = new mx0(false, jx0Var, bx0Var, 0.0f);
+        kx0Var.f36637b = new mx0(false, new jx0(i7, i11 + i7), bx0Var, 0.0f);
+        ix0Var.f35747a = kx0Var;
+        ix0Var.f35754j = i10;
         arrayList.add(ix0Var);
         h();
     }
@@ -115,7 +115,7 @@ public final class px0 extends View {
         }
         ArrayList arrayList = this.Q;
         ix0 ix0Var = new ix0(this, arrayList.size());
-        ix0Var.f35762c = pagetablecell;
+        ix0Var.f35749c = pagetablecell;
         kx0 kx0Var = new kx0();
         int i13 = pagetablecell.rowspan;
         if (i13 == 0) {
@@ -123,10 +123,10 @@ public final class px0 extends View {
         }
         jx0 jx0Var = new jx0(i10, i13 + i10);
         bx0 bx0Var = W;
-        kx0Var.f36648a = new mx0(false, jx0Var, bx0Var, 0.0f);
-        kx0Var.f36649b = new mx0(false, new jx0(i7, i11 + i7), bx0Var, 1.0f);
-        ix0Var.f35760a = kx0Var;
-        ix0Var.f35767j = i10;
+        kx0Var.f36636a = new mx0(false, jx0Var, bx0Var, 0.0f);
+        kx0Var.f36637b = new mx0(false, new jx0(i7, i11 + i7), bx0Var, 1.0f);
+        ix0Var.f35747a = kx0Var;
+        ix0Var.f35754j = i10;
         arrayList.add(ix0Var);
         if (pagetablecell.rowspan > 1) {
             this.L.add(new PointF(i10, i10 + i12));
@@ -153,7 +153,7 @@ public final class px0 extends View {
             } else {
                 fx0Var = this.d;
             }
-            int i11 = fx0Var.f34715b;
+            int i11 = fx0Var.f34719b;
             if (i11 == Integer.MIN_VALUE) {
                 i11 = 0;
             }
@@ -163,31 +163,31 @@ public final class px0 extends View {
                 int i12 = 0;
                 int i13 = 0;
                 for (int i14 = 0; i14 < childCount; i14++) {
-                    kx0 kx0Var = d(i14).f35760a;
+                    kx0 kx0Var = d(i14).f35747a;
                     if (z10) {
-                        mx0Var = kx0Var.f36648a;
+                        mx0Var = kx0Var.f36636a;
                     } else {
-                        mx0Var = kx0Var.f36649b;
+                        mx0Var = kx0Var.f36637b;
                     }
-                    jx0 jx0Var = mx0Var.f37403b;
-                    boolean z11 = mx0Var.f37402a;
+                    jx0 jx0Var = mx0Var.f37402b;
+                    boolean z11 = mx0Var.f37401a;
                     int a10 = jx0Var.a();
                     if (a10 > 0 && a10 <= 1024) {
                         if (z11) {
-                            i12 = jx0Var.f36198a;
+                            i12 = jx0Var.f36188a;
                         }
                         if (z10) {
-                            mx0Var2 = kx0Var.f36649b;
+                            mx0Var2 = kx0Var.f36637b;
                         } else {
-                            mx0Var2 = kx0Var.f36648a;
+                            mx0Var2 = kx0Var.f36636a;
                         }
-                        jx0 jx0Var2 = mx0Var2.f37403b;
+                        jx0 jx0Var2 = mx0Var2.f37402b;
                         int a11 = jx0Var2.a();
-                        int i15 = jx0Var2.f36198a;
+                        int i15 = jx0Var2.f36188a;
                         if (a11 > 0) {
                             th2 = null;
                             if (jx0Var2.a() <= 1024) {
-                                boolean z12 = mx0Var2.f37402a;
+                                boolean z12 = mx0Var2.f37401a;
                                 int a12 = jx0Var2.a();
                                 if (i11 != 0) {
                                     if (z12) {
@@ -242,7 +242,7 @@ public final class px0 extends View {
                 int childCount2 = getChildCount();
                 int i18 = 1;
                 for (int i19 = 0; i19 < childCount2; i19++) {
-                    i18 = (i18 * 31) + d(i19).f35760a.hashCode();
+                    i18 = (i18 * 31) + d(i19).f35747a.hashCode();
                 }
                 this.f38428n = i18;
                 return;
@@ -253,7 +253,7 @@ public final class px0 extends View {
         int childCount3 = getChildCount();
         int i20 = 1;
         for (int i21 = 0; i21 < childCount3; i21++) {
-            i20 = (i20 * 31) + d(i21).f35760a.hashCode();
+            i20 = (i20 * 31) + d(i21).f35747a.hashCode();
         }
         if (i10 != i20) {
             h();
@@ -295,35 +295,35 @@ public final class px0 extends View {
             fx0Var = this.d;
         }
         if (z11) {
-            if (fx0Var.f34721j == null) {
-                fx0Var.f34721j = new int[fx0Var.e() + 1];
+            if (fx0Var.f34725j == null) {
+                fx0Var.f34725j = new int[fx0Var.e() + 1];
             }
-            if (!fx0Var.f34722k) {
+            if (!fx0Var.f34726k) {
                 fx0Var.b(true);
-                fx0Var.f34722k = true;
+                fx0Var.f34726k = true;
             }
-            iArr = fx0Var.f34721j;
+            iArr = fx0Var.f34725j;
         } else {
-            if (fx0Var.f34723l == null) {
-                fx0Var.f34723l = new int[fx0Var.e() + 1];
+            if (fx0Var.f34727l == null) {
+                fx0Var.f34727l = new int[fx0Var.e() + 1];
             }
-            if (!fx0Var.f34724m) {
+            if (!fx0Var.f34728m) {
                 fx0Var.b(false);
-                fx0Var.f34724m = true;
+                fx0Var.f34728m = true;
             }
-            iArr = fx0Var.f34723l;
+            iArr = fx0Var.f34727l;
         }
-        kx0 kx0Var = ix0Var.f35760a;
+        kx0 kx0Var = ix0Var.f35747a;
         if (z10) {
-            mx0Var = kx0Var.f36649b;
+            mx0Var = kx0Var.f36637b;
         } else {
-            mx0Var = kx0Var.f36648a;
+            mx0Var = kx0Var.f36636a;
         }
-        jx0 jx0Var = mx0Var.f37403b;
+        jx0 jx0Var = mx0Var.f37402b;
         if (z11) {
-            i7 = jx0Var.f36198a;
+            i7 = jx0Var.f36188a;
         } else {
-            i7 = jx0Var.f36199b;
+            i7 = jx0Var.f36189b;
         }
         return iArr[i7];
     }
@@ -333,7 +333,7 @@ public final class px0 extends View {
         mx0 mx0Var;
         fx0 fx0Var;
         boolean z12;
-        kx0 kx0Var = ix0Var.f35760a;
+        kx0 kx0Var = ix0Var.f35747a;
         if (z10) {
             if (z11) {
                 i7 = ((ViewGroup.MarginLayoutParams) kx0Var).leftMargin;
@@ -350,26 +350,26 @@ public final class px0 extends View {
                 return 0;
             }
             if (z10) {
-                mx0Var = kx0Var.f36649b;
+                mx0Var = kx0Var.f36637b;
             } else {
-                mx0Var = kx0Var.f36648a;
+                mx0Var = kx0Var.f36636a;
             }
             if (z10) {
                 fx0Var = this.f38425c;
             } else {
                 fx0Var = this.d;
             }
-            jx0 jx0Var = mx0Var.f37403b;
+            jx0 jx0Var = mx0Var.f37402b;
             if (z10 && this.J) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             if (z12 != z11) {
-                int i10 = jx0Var.f36198a;
+                int i10 = jx0Var.f36188a;
                 return 0;
             }
-            int i11 = jx0Var.f36199b;
+            int i11 = jx0Var.f36189b;
             fx0Var.e();
             return 0;
         }
@@ -447,30 +447,30 @@ public final class px0 extends View {
             int i16 = 0;
             while (i16 < childCount) {
                 ix0 d = d(i16);
-                kx0 kx0Var = d.f35760a;
-                jx0 jx0Var = kx0Var.f36649b.f37403b;
-                d.e(ox0Var.c(d.f35762c, max));
-                if (d.f35761b == null) {
+                kx0 kx0Var = d.f35747a;
+                jx0 jx0Var = kx0Var.f36637b.f37402b;
+                d.e(ox0Var.c(d.f35749c, max));
+                if (d.f35748b == null) {
                     ((ViewGroup.MarginLayoutParams) kx0Var).width = i14;
                     ((ViewGroup.MarginLayoutParams) kx0Var).height = i14;
                     i(d, i14, i14, true);
                 } else {
-                    ((ViewGroup.MarginLayoutParams) kx0Var).height = Math.max(this.f38432x, d.f35764f + this.f38429r + this.f38430s);
-                    int b10 = d.f35761b.b();
+                    ((ViewGroup.MarginLayoutParams) kx0Var).height = Math.max(this.f38432x, d.f35751f + this.f38429r + this.f38430s);
+                    int b10 = d.f35748b.b();
                     if (b10 > 0) {
-                        int i17 = jx0Var.f36198a;
+                        int i17 = jx0Var.f36188a;
                         int a10 = jx0Var.a();
                         int i18 = ((ViewGroup.MarginLayoutParams) kx0Var).height * b10;
                         ?? obj = new Object();
-                        obj.f33100a = i17;
-                        obj.f33101b = Math.max(1, a10);
-                        obj.f33105g = true;
+                        obj.f33103a = i17;
+                        obj.f33104b = Math.max(1, a10);
+                        obj.f33108g = true;
                         int max2 = Math.max(0, i18);
-                        obj.f33103e = max2;
+                        obj.f33106e = max2;
                         obj.d = max2;
                         ax0Var = obj;
                     } else {
-                        Layout a11 = d.f35761b.a();
+                        Layout a11 = d.f35748b.a();
                         TextPaint textPaint = null;
                         if (a11 != null) {
                             charSequence = a11.getText();
@@ -480,7 +480,7 @@ public final class px0 extends View {
                         if (a11 != null) {
                             textPaint = a11.getPaint();
                         }
-                        ax0Var = c8.ra.b(charSequence, textPaint, jx0Var.f36198a, jx0Var.a(), i15, max, d.f35763e);
+                        ax0Var = c8.ra.b(charSequence, textPaint, jx0Var.f36188a, jx0Var.a(), i15, max, d.f35750e);
                     }
                     ax0VarArr[i16] = ax0Var;
                     arrayList.add(ax0Var);
@@ -493,21 +493,21 @@ public final class px0 extends View {
                 ix0 d2 = d(i19);
                 ax0 ax0Var2 = ax0VarArr[i19];
                 if (ax0Var2 != null) {
-                    kx0 kx0Var2 = d2.f35760a;
-                    if (d2.f35761b.b() > 0) {
-                        ((ViewGroup.MarginLayoutParams) kx0Var2).width = ax0Var2.f33103e;
+                    kx0 kx0Var2 = d2.f35747a;
+                    if (d2.f35748b.b() > 0) {
+                        ((ViewGroup.MarginLayoutParams) kx0Var2).width = ax0Var2.f33106e;
                     } else {
-                        jx0 jx0Var2 = kx0Var2.f36649b.f37403b;
+                        jx0 jx0Var2 = kx0Var2.f36637b.f37402b;
                         int i20 = 0;
-                        for (int max3 = Math.max(0, jx0Var2.f36198a); max3 < Math.min(this.f38424b, jx0Var2.f36199b); max3++) {
+                        for (int max3 = Math.max(0, jx0Var2.f36188a); max3 < Math.min(this.f38424b, jx0Var2.f36189b); max3++) {
                             i20 += a12[max3];
                         }
                         int max4 = Math.max(1, i20 - i15);
-                        if (d2.f35763e > max4) {
-                            d2.e(ox0Var.c(d2.f35762c, max4));
-                            ((ViewGroup.MarginLayoutParams) kx0Var2).height = Math.max(this.f38432x, d2.f35764f + this.f38429r + this.f38430s);
+                        if (d2.f35750e > max4) {
+                            d2.e(ox0Var.c(d2.f35749c, max4));
+                            ((ViewGroup.MarginLayoutParams) kx0Var2).height = Math.max(this.f38432x, d2.f35751f + this.f38429r + this.f38430s);
                         }
-                        ((ViewGroup.MarginLayoutParams) kx0Var2).width = d2.f35763e + i15;
+                        ((ViewGroup.MarginLayoutParams) kx0Var2).width = d2.f35750e + i15;
                     }
                     i(d2, ((ViewGroup.MarginLayoutParams) kx0Var2).width, ((ViewGroup.MarginLayoutParams) kx0Var2).height, true);
                 }
@@ -517,7 +517,7 @@ public final class px0 extends View {
         int childCount2 = getChildCount();
         for (int i21 = 0; i21 < childCount2; i21++) {
             ix0 d10 = d(i21);
-            kx0 kx0Var3 = d10.f35760a;
+            kx0 kx0Var3 = d10.f35747a;
             if (z10) {
                 int size2 = View.MeasureSpec.getSize(i7);
                 if (this.f38424b == 2) {
@@ -525,14 +525,14 @@ public final class px0 extends View {
                 } else {
                     i11 = (int) (size2 / 1.5f);
                 }
-                d10.e(ox0Var.c(d10.f35762c, i11));
-                if (d10.f35761b != null) {
-                    ((ViewGroup.MarginLayoutParams) kx0Var3).height = Math.max(this.f38432x, d10.f35764f + this.f38429r + this.f38430s);
-                    int b11 = d10.f35761b.b();
+                d10.e(ox0Var.c(d10.f35749c, i11));
+                if (d10.f35748b != null) {
+                    ((ViewGroup.MarginLayoutParams) kx0Var3).height = Math.max(this.f38432x, d10.f35751f + this.f38429r + this.f38430s);
+                    int b11 = d10.f35748b.b();
                     if (b11 > 0) {
                         i12 = ((ViewGroup.MarginLayoutParams) kx0Var3).height * b11;
                     } else {
-                        i12 = (this.f38431w * 2) + d10.f35763e;
+                        i12 = (this.f38431w * 2) + d10.f35750e;
                     }
                     ((ViewGroup.MarginLayoutParams) kx0Var3).width = i12;
                 } else {
@@ -547,21 +547,21 @@ public final class px0 extends View {
                     z11 = false;
                 }
                 if (z11) {
-                    mx0Var = kx0Var3.f36649b;
+                    mx0Var = kx0Var3.f36637b;
                 } else {
-                    mx0Var = kx0Var3.f36648a;
+                    mx0Var = kx0Var3.f36636a;
                 }
                 if (mx0.a(mx0Var, z11) == W) {
-                    jx0 jx0Var3 = mx0Var.f37403b;
+                    jx0 jx0Var3 = mx0Var.f37402b;
                     if (z11) {
                         fx0Var = this.f38425c;
                     } else {
                         fx0Var = this.d;
                     }
                     int[] g10 = fx0Var.g();
-                    int e10 = (g10[jx0Var3.f36199b] - g10[jx0Var3.f36198a]) - (e(d10, z11, false) + e(d10, z11, true));
+                    int e10 = (g10[jx0Var3.f36189b] - g10[jx0Var3.f36188a]) - (e(d10, z11, false) + e(d10, z11, true));
                     if (z11) {
-                        hx0 hx0Var = d10.f35761b;
+                        hx0 hx0Var = d10.f35748b;
                         if (hx0Var != null) {
                             i10 = hx0Var.b();
                         } else {
@@ -570,7 +570,7 @@ public final class px0 extends View {
                         if (i10 > 0) {
                             int max5 = Math.max(1, Math.round(e10 / i10));
                             ((ViewGroup.MarginLayoutParams) kx0Var3).height = max5;
-                            d10.f35770m = max5;
+                            d10.f35757m = max5;
                         }
                         i(d10, e10, ((ViewGroup.MarginLayoutParams) kx0Var3).height, false);
                     } else {
@@ -613,7 +613,7 @@ public final class px0 extends View {
         px0Var.f38424b = 0;
         int childCount = px0Var.getChildCount();
         for (int i16 = 0; i16 < childCount; i16++) {
-            px0Var.f38424b = Math.max(px0Var.f38424b, px0Var.d(i16).f35760a.f36649b.f37403b.f36199b);
+            px0Var.f38424b = Math.max(px0Var.f38424b, px0Var.d(i16).f35747a.f36637b.f37402b.f36189b);
         }
         px0Var.j(i7, true);
         if (px0Var.f38426e == 0) {
@@ -621,8 +621,8 @@ public final class px0 extends View {
             if (px0Var.f38433y) {
                 i11 = Math.max(i11, View.MeasureSpec.getSize(i7));
                 fx0Var2.v.f36927a = i11;
-                fx0Var2.f34733w.f36927a = -i11;
-                fx0Var2.f34728q = false;
+                fx0Var2.f34737w.f36927a = -i11;
+                fx0Var2.f34732q = false;
                 fx0Var2.g();
             }
             px0Var.j(i7, false);
@@ -636,12 +636,12 @@ public final class px0 extends View {
         int max = Math.max(i12, px0Var.getSuggestedMinimumHeight());
         px0Var.setMeasuredDimension(i11, max);
         fx0Var2.v.f36927a = i11;
-        fx0Var2.f34733w.f36927a = -i11;
-        fx0Var2.f34728q = false;
+        fx0Var2.f34737w.f36927a = -i11;
+        fx0Var2.f34732q = false;
         fx0Var2.g();
         fx0Var.v.f36927a = max;
-        fx0Var.f34733w.f36927a = -max;
-        fx0Var.f34728q = false;
+        fx0Var.f34737w.f36927a = -max;
+        fx0Var.f34732q = false;
         fx0Var.g();
         int[] g10 = fx0Var2.g();
         int[] g11 = fx0Var.g();
@@ -654,19 +654,19 @@ public final class px0 extends View {
         while (i19 < childCount2) {
             int i20 = i19;
             ix0 d = px0Var.d(i20);
-            kx0 kx0Var = d.f35760a;
-            mx0 mx0Var = kx0Var.f36649b;
-            mx0 mx0Var2 = kx0Var.f36648a;
-            jx0 jx0Var = mx0Var.f37403b;
-            jx0 jx0Var2 = mx0Var2.f37403b;
+            kx0 kx0Var = d.f35747a;
+            mx0 mx0Var = kx0Var.f36637b;
+            mx0 mx0Var2 = kx0Var.f36636a;
+            jx0 jx0Var = mx0Var.f37402b;
+            jx0 jx0Var2 = mx0Var2.f37402b;
             int i21 = childCount2;
-            int i22 = g10[jx0Var.f36198a];
-            int i23 = g11[jx0Var2.f36198a];
-            int i24 = g10[jx0Var.f36199b] - i22;
-            int i25 = g11[jx0Var2.f36199b] - i23;
-            int i26 = d.f35768k;
+            int i22 = g10[jx0Var.f36188a];
+            int i23 = g11[jx0Var2.f36188a];
+            int i24 = g10[jx0Var.f36189b] - i22;
+            int i25 = g11[jx0Var2.f36189b] - i23;
+            int i26 = d.f35755k;
             fx0 fx0Var3 = fx0Var;
-            int i27 = d.f35769l;
+            int i27 = d.f35756l;
             bx0 a10 = mx0.a(mx0Var, true);
             bx0 a11 = mx0.a(mx0Var2, false);
             h6.m f10 = fx0Var2.f();
@@ -694,17 +694,17 @@ public final class px0 extends View {
             }
             int i30 = i14;
             int i31 = i23 + b11 + a13 + e11;
-            if (d.f35762c != null) {
-                if (c10 != d.f35768k || c11 != d.f35769l) {
+            if (d.f35749c != null) {
+                if (c10 != d.f35755k || c11 != d.f35756l) {
                     i15 = 0;
                     d.d(c10, c11, false);
                 } else {
                     i15 = 0;
                 }
-                int i32 = d.f35770m;
+                int i32 = d.f35757m;
                 if (i32 != 0 && i32 != c11) {
-                    jx0 jx0Var3 = d.f35760a.f36648a.f37403b;
-                    if (jx0Var3.f36199b - jx0Var3.f36198a <= 1) {
+                    jx0 jx0Var3 = d.f35747a.f36636a.f37402b;
+                    if (jx0Var3.f36189b - jx0Var3.f36188a <= 1) {
                         ArrayList arrayList2 = px0Var.L;
                         int size = arrayList2.size();
                         int i33 = i15;
@@ -712,7 +712,7 @@ public final class px0 extends View {
                             if (i33 < size) {
                                 PointF pointF = (PointF) arrayList2.get(i33);
                                 float f12 = pointF.x;
-                                float f13 = d.f35760a.f36648a.f37403b.f36198a;
+                                float f13 = d.f35747a.f36636a.f37402b.f36188a;
                                 if (f12 > f13 || pointF.y <= f13) {
                                     i33++;
                                 }
@@ -724,8 +724,8 @@ public final class px0 extends View {
                     }
                 }
             }
-            d.f35773p = i30;
-            d.f35774q = i31;
+            d.f35760p = i30;
+            d.f35761q = i31;
             i19 = i20 + 1;
             fx0Var = fx0Var3;
             childCount2 = i21;
@@ -735,23 +735,23 @@ public final class px0 extends View {
         int i34 = 0;
         while (i34 < size2) {
             ix0 ix0Var = (ix0) arrayList.get(i34);
-            int i35 = ix0Var.f35769l;
+            int i35 = ix0Var.f35756l;
             int i36 = ix0Var.d;
-            int i37 = i35 - ix0Var.f35770m;
+            int i37 = i35 - ix0Var.f35757m;
             ArrayList arrayList3 = px0Var.Q;
             int size3 = arrayList3.size();
             for (int i38 = i36 + 1; i38 < size3; i38++) {
                 ix0 ix0Var2 = (ix0) arrayList3.get(i38);
-                if (ix0Var.f35760a.f36648a.f37403b.f36198a != ix0Var2.f35760a.f36648a.f37403b.f36198a) {
+                if (ix0Var.f35747a.f36636a.f37402b.f36188a != ix0Var2.f35747a.f36636a.f37402b.f36188a) {
                     break;
                 }
-                int i39 = ix0Var.f35770m;
-                int i40 = ix0Var2.f35770m;
+                int i39 = ix0Var.f35757m;
+                int i40 = ix0Var2.f35757m;
                 if (i39 < i40) {
                     z10 = true;
                     break;
                 }
-                int i41 = ix0Var2.f35769l - i40;
+                int i41 = ix0Var2.f35756l - i40;
                 if (i41 > 0) {
                     i37 = Math.min(i37, i41);
                 }
@@ -764,16 +764,16 @@ public final class px0 extends View {
                         break;
                     }
                     ix0 ix0Var3 = (ix0) arrayList3.get(i42);
-                    if (ix0Var.f35760a.f36648a.f37403b.f36198a != ix0Var3.f35760a.f36648a.f37403b.f36198a) {
+                    if (ix0Var.f35747a.f36636a.f37402b.f36188a != ix0Var3.f35747a.f36636a.f37402b.f36188a) {
                         break;
                     }
-                    int i43 = ix0Var.f35770m;
-                    int i44 = ix0Var3.f35770m;
+                    int i43 = ix0Var.f35757m;
+                    int i44 = ix0Var3.f35757m;
                     if (i43 < i44) {
                         z10 = true;
                         break;
                     }
-                    int i45 = ix0Var3.f35769l - i44;
+                    int i45 = ix0Var3.f35756l - i44;
                     if (i45 > 0) {
                         i37 = Math.min(i37, i45);
                     }
@@ -781,10 +781,10 @@ public final class px0 extends View {
                 }
             }
             if (!z10) {
-                ix0Var.f35769l = ix0Var.f35770m;
+                ix0Var.f35756l = ix0Var.f35757m;
                 ix0Var.g();
                 max -= i37;
-                int i46 = ix0Var.f35760a.f36648a.f37403b.f36198a;
+                int i46 = ix0Var.f35747a.f36636a.f37402b.f36188a;
                 while (true) {
                     i46++;
                     if (i46 >= copyOf.length) {
@@ -801,24 +801,24 @@ public final class px0 extends View {
                     if (ix0Var == ix0Var4) {
                         i13 = i49;
                     } else {
-                        int i50 = ix0Var.f35760a.f36648a.f37403b.f36198a;
-                        int i51 = ix0Var4.f35760a.f36648a.f37403b.f36198a;
+                        int i50 = ix0Var.f35747a.f36636a.f37402b.f36188a;
+                        int i51 = ix0Var4.f35747a.f36636a.f37402b.f36188a;
                         if (i50 == i51) {
-                            if (ix0Var4.f35770m != ix0Var4.f35769l) {
+                            if (ix0Var4.f35757m != ix0Var4.f35756l) {
                                 arrayList.remove(ix0Var4);
                                 if (ix0Var4.d < i36) {
                                     i48--;
                                 }
                                 i47--;
                             }
-                            int i52 = ix0Var4.f35769l - i37;
-                            ix0Var4.f35769l = i52;
+                            int i52 = ix0Var4.f35756l - i37;
+                            ix0Var4.f35756l = i52;
                             i13 = i49;
-                            ix0Var4.d(ix0Var4.f35768k, i52, true);
+                            ix0Var4.d(ix0Var4.f35755k, i52, true);
                         } else {
                             i13 = i49;
                             if (i50 < i51) {
-                                ix0Var4.f35774q -= i37;
+                                ix0Var4.f35761q -= i37;
                             }
                         }
                     }
@@ -832,9 +832,9 @@ public final class px0 extends View {
         int childCount3 = px0Var.getChildCount();
         for (int i53 = 0; i53 < childCount3; i53++) {
             ix0 d2 = px0Var.d(i53);
-            px0Var.P.g(d2.f35761b, d2.c());
-            d2.f35771n = d2.f35773p;
-            d2.f35772o = d2.f35768k;
+            px0Var.P.g(d2.f35748b, d2.c());
+            d2.f35758n = d2.f35760p;
+            d2.f35759o = d2.f35755k;
         }
         px0Var.E = i18;
         px0Var.F = max;
@@ -874,7 +874,7 @@ public final class px0 extends View {
 
     public void setColumnOrderPreserved(boolean z10) {
         fx0 fx0Var = this.f38425c;
-        fx0Var.f34732u = z10;
+        fx0Var.f34736u = z10;
         fx0Var.k();
         h();
         requestLayout();
@@ -914,18 +914,18 @@ public final class px0 extends View {
             ix0 d = d(i12);
             if (measuredWidth > 0 && (i11 = this.E) != measuredWidth) {
                 float f10 = measuredWidth;
-                int round = Math.round((d.f35771n * i11) / f10);
-                int round2 = Math.round(((d.f35771n + d.f35772o) * this.E) / f10);
-                d.f35773p = round;
-                d.f35768k = Math.max(0, round2 - round);
-                if (d.f35762c != null && d.f35761b != null) {
+                int round = Math.round((d.f35758n * i11) / f10);
+                int round2 = Math.round(((d.f35758n + d.f35759o) * this.E) / f10);
+                d.f35760p = round;
+                d.f35755k = Math.max(0, round2 - round);
+                if (d.f35749c != null && d.f35748b != null) {
                     d.f();
                 }
             } else {
-                int i13 = d.f35771n;
-                d.f35773p = i13;
-                d.f35768k = Math.max(0, (d.f35772o + i13) - i13);
-                if (d.f35762c != null && d.f35761b != null) {
+                int i13 = d.f35758n;
+                d.f35760p = i13;
+                d.f35755k = Math.max(0, (d.f35759o + i13) - i13);
+                if (d.f35749c != null && d.f35748b != null) {
                     d.f();
                 }
             }
@@ -946,22 +946,22 @@ public final class px0 extends View {
             }
             for (int i17 = 0; i17 < getChildCount(); i17++) {
                 ix0 d2 = d(i17);
-                hx0 hx0Var = d2.f35761b;
+                hx0 hx0Var = d2.f35748b;
                 if (hx0Var != null) {
                     i10 = hx0Var.b();
                 } else {
                     i10 = 0;
                 }
                 if (i10 > 0) {
-                    jx0 jx0Var = d2.f35760a.f36648a.f37403b;
-                    int max = Math.max(0, jx0Var.f36198a);
-                    int min = Math.min(i14, jx0Var.f36199b);
+                    jx0 jx0Var = d2.f35747a.f36636a.f37402b;
+                    int max = Math.max(0, jx0Var.f36188a);
+                    int min = Math.min(i14, jx0Var.f36189b);
                     if (max < min) {
                         int i18 = 0;
                         for (int i19 = max; i19 < min; i19++) {
                             i18 += iArr2[i19];
                         }
-                        int max2 = Math.max(1, Math.round(d2.f35768k / i10)) - i18;
+                        int max2 = Math.max(1, Math.round(d2.f35755k / i10)) - i18;
                         while (max < min && max2 > 0) {
                             int i20 = min - max;
                             int i21 = ((max2 + i20) - 1) / i20;
@@ -982,17 +982,17 @@ public final class px0 extends View {
             this.F = iArr4[i14];
             for (int i24 = 0; i24 < getChildCount(); i24++) {
                 ix0 d10 = d(i24);
-                jx0 jx0Var2 = d10.f35760a.f36648a.f37403b;
-                int max3 = Math.max(0, Math.min(i14, jx0Var2.f36198a));
-                int max4 = Math.max(max3, Math.min(i14, jx0Var2.f36199b));
+                jx0 jx0Var2 = d10.f35747a.f36636a.f37402b;
+                int max3 = Math.max(0, Math.min(i14, jx0Var2.f36188a));
+                int max4 = Math.max(max3, Math.min(i14, jx0Var2.f36189b));
                 int i25 = iArr4[max3];
                 int i26 = iArr4[max4];
-                d10.f35774q = i25;
-                d10.f35769l = Math.max(0, i26 - i25);
-                if (d10.f35762c != null) {
+                d10.f35761q = i25;
+                d10.f35756l = Math.max(0, i26 - i25);
+                if (d10.f35749c != null) {
                     d10.g();
                 }
-                this.P.g(d10.f35761b, d10.c());
+                this.P.g(d10.f35748b, d10.c());
             }
         }
         invalidate();
@@ -1006,7 +1006,7 @@ public final class px0 extends View {
 
     public void setRowOrderPreserved(boolean z10) {
         fx0 fx0Var = this.d;
-        fx0Var.f34732u = z10;
+        fx0Var.f34736u = z10;
         fx0Var.k();
         h();
         requestLayout();

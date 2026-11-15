@@ -8,14 +8,14 @@ import org.telegram.messenger.ns;
 public class MusicSongsScreen extends m implements e, is {
     @Override
     public final void a(t tVar) {
-        ns.e().c(this, ns.f25506h2);
-        ns.e().c(this, ns.f25500g2);
-        ns.e().c(this, ns.f25479c4);
+        ns.e().c(this, ns.f25507h2);
+        ns.e().c(this, ns.f25501g2);
+        ns.e().c(this, ns.f25480c4);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25479c4) {
+        if (i7 == ns.f25480c4) {
             throw null;
         }
         throw null;
@@ -23,9 +23,9 @@ public class MusicSongsScreen extends m implements e, is {
 
     @Override
     public final void e(t tVar) {
-        ns.e().n(this, ns.f25506h2);
-        ns.e().n(this, ns.f25500g2);
-        ns.e().n(this, ns.f25479c4);
+        ns.e().n(this, ns.f25507h2);
+        ns.e().n(this, ns.f25501g2);
+        ns.e().n(this, ns.f25480c4);
     }
 
     @Override

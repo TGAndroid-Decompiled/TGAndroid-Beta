@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class bh implements org.telegram.messenger.w10 {
-    public final int f33277a;
-    public final KeyEvent.Callback f33278b;
+    public final int f33280a;
+    public final KeyEvent.Callback f33281b;
 
     public bh(KeyEvent.Callback callback, int i7) {
-        this.f33277a = i7;
-        this.f33278b = callback;
+        this.f33280a = i7;
+        this.f33281b = callback;
     }
 
     @Override
     public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f33277a) {
+        switch (this.f33280a) {
             case 0:
-                ki kiVar = (ki) this.f33278b;
+                ki kiVar = (ki) this.f33281b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
@@ -25,7 +25,7 @@ public final class bh implements org.telegram.messenger.w10 {
                 kiVar.n1();
                 return;
             case 1:
-                ki kiVar2 = (ki) this.f33278b;
+                ki kiVar2 = (ki) this.f33281b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -36,7 +36,7 @@ public final class bh implements org.telegram.messenger.w10 {
                 kiVar2.n1();
                 return;
             default:
-                pc pcVar = (pc) this.f33278b;
+                pc pcVar = (pc) this.f33281b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;

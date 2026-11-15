@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ja;
-import di.ua;
+import di.ta;
 import java.util.ArrayList;
 import java.util.Calendar;
 import org.telegram.messenger.hd;
@@ -135,7 +135,7 @@ public final class i4 implements gj0 {
                 }
             } else {
                 yg.c cVar = (yg.c) view;
-                uj0 uj0Var = yVar.f35936o1;
+                uj0 uj0Var = yVar.f35931o1;
                 if (cVar.b()) {
                     for (int i15 = 0; i15 < uj0Var.getChildCount(); i15++) {
                         View childAt = uj0Var.getChildAt(i15);
@@ -171,7 +171,7 @@ public final class i4 implements gj0 {
             org.telegram.ui.ActionBar.e6 e6Var = yVar.J0;
             org.telegram.ui.Components.q4 q4Var = new org.telegram.ui.Components.q4(e6Var);
             ou ouVar = new ou(context, e6Var);
-            ((org.telegram.ui.ActionBar.u2) ouVar.f25804b).f29720w0 = false;
+            ((org.telegram.ui.ActionBar.u2) ouVar.f25806b).f29720w0 = false;
             ib0 ib0Var = new ib0(context, e6Var);
             int i16 = q4Var.f38480a;
             ib0Var.setTextColor(i16);
@@ -209,7 +209,7 @@ public final class i4 implements gj0 {
             calendar.setTimeInMillis(currentTimeMillis);
             int i17 = calendar.get(1);
             mb0 mb0Var = new mb0(context, 5);
-            long j10 = np.s1(m10.f24934t0).f25357p0 * 1000;
+            long j10 = np.s1(m10.f24940t0).f25360p0 * 1000;
             Calendar calendar2 = Calendar.getInstance();
             calendar2.setTimeInMillis(j10);
             int i18 = calendar2.get(6);
@@ -263,7 +263,7 @@ public final class i4 implements gj0 {
             mb0Var.setText(hd.M0(2131753543, "BoostingConfirm"));
             w3Var.addView(mb0Var, ja.t(-1, 48, 83, 16, 15, 16, 16));
             mb0Var.setOnClickListener(new org.telegram.ui.Components.l1(calendar, ib0Var, ib0Var2, ib0Var3, sVar, ouVar));
-            org.telegram.ui.ActionBar.u2 u2Var = (org.telegram.ui.ActionBar.u2) ouVar.f25804b;
+            org.telegram.ui.ActionBar.u2 u2Var = (org.telegram.ui.ActionBar.u2) ouVar.f25806b;
             u2Var.O = w3Var;
             u2Var.show();
             int i21 = q4Var.f38481b;
@@ -289,7 +289,7 @@ public final class i4 implements gj0 {
                 yVar.j1(true);
                 yVar.b1();
             }
-        } else if (view instanceof ua) {
+        } else if (view instanceof ta) {
             yVar.f59278g2 = true;
             yVar.k1(true, true);
         }

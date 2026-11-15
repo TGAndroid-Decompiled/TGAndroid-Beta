@@ -31,7 +31,7 @@ public final class a31 extends ja {
     public final tj0 L0(uj0 uj0Var) {
         p41 p41Var = new p41(uj0Var, getContext(), this.f29679a, 0, true, new s21(this, 0), this.J0);
         this.f32839f2 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -137,7 +137,7 @@ public final class a31 extends ja {
     public final void show() {
         hi.d dVar = this.V1;
         super.show();
-        fa faVar = this.f35937p1;
+        fa faVar = this.f35932p1;
         if (faVar != null) {
             faVar.setTitle("Translate");
         }

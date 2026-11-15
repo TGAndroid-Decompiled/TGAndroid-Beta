@@ -73,7 +73,7 @@ public final class h extends FrameLayout implements z5 {
         addView(i9Var, ja.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         eq eqVar = new eq(2131231978, 0);
         this.f20668s = eqVar;
-        eqVar.f34415r = g0.L(2.0f);
+        eqVar.f34414r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());

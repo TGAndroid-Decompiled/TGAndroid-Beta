@@ -8,10 +8,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class gw0 {
     public static void a(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, org.telegram.ui.ActionBar.e2 e2Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        int i7 = org.telegram.messenger.m10.f24934t0;
+        int i7 = org.telegram.messenger.m10.f24940t0;
         Context context = e2Var.getContext();
         hi.i2 i2Var = new hi.i2(context, e6Var, true, false);
-        i2Var.f14415z1 = new ai.q1(i7, context, tL_messages_stickerSet, 9);
+        i2Var.f14415z1 = new ai.r1(i7, context, tL_messages_stickerSet, 9);
         if (e2Var.visibleDialog != null) {
             i2Var.show();
         } else {
@@ -75,13 +75,13 @@ public abstract class gw0 {
         editTextBoldCursor.setBackground(null);
         editTextBoldCursor.requestFocus();
         float f11 = 0.0f;
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             f10 = 28.0f;
         } else {
             f10 = 0.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        if (!org.telegram.messenger.hd.f24101a0) {
+        if (!org.telegram.messenger.hd.f24104a0) {
             f11 = 28.0f;
         }
         editTextBoldCursor.setPadding(L, 0, org.telegram.messenger.g0.L(f11), 0);
@@ -92,7 +92,7 @@ public abstract class gw0 {
         numberTextView.a(50, false);
         numberTextView.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.B6, false));
         numberTextView.setImportantForAccessibility(2);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 3;
         } else {
             i10 = 5;

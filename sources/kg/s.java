@@ -25,7 +25,7 @@ public final class s extends EditTextBoldCursor {
         g6Var.n(0.2f, 160L, er.h);
         g6Var.w(org.telegram.messenger.g0.L(15.33f));
         g6Var.setCallback(this);
-        g6Var.f34829b = 5;
+        g6Var.f34833b = 5;
     }
 
     @Override

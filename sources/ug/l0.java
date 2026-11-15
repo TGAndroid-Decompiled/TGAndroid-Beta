@@ -85,8 +85,8 @@ public final class l0 {
                     int i12 = aVar.d;
                     RecyclerView recyclerView = gVar.f17401a;
                     recyclerView.f0(i11, i12, true);
-                    recyclerView.f2828y0 = true;
-                    recyclerView.f2822v0.f58502c += i12;
+                    recyclerView.f2831y0 = true;
+                    recyclerView.f2825v0.f58502c += i12;
                 }
             } else {
                 gVar.a(aVar);
@@ -161,8 +161,8 @@ public final class l0 {
         int i11 = aVar.d;
         RecyclerView recyclerView = gVar.f17401a;
         recyclerView.f0(i7, i11, true);
-        recyclerView.f2828y0 = true;
-        recyclerView.f2822v0.f58502c += i11;
+        recyclerView.f2831y0 = true;
+        recyclerView.f2825v0.f58502c += i11;
     }
 
     public int f(int i7, int i10) {
@@ -277,7 +277,7 @@ public final class l0 {
             int i11 = aVar.d;
             RecyclerView recyclerView = gVar.f17401a;
             recyclerView.f0(i10, i11, false);
-            recyclerView.f2828y0 = true;
+            recyclerView.f2831y0 = true;
             return;
         }
         gVar.c(aVar.f58475b, aVar.d);
@@ -393,7 +393,7 @@ public final class l0 {
         this.d = new ArrayList();
         this.f58199e = new ArrayList();
         this.f58197b = 0;
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
         this.h = new ArrayList();
         this.f58200f = gVar;
         this.f58201g = new cf(this);

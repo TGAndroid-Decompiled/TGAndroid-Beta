@@ -4,40 +4,40 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 public final class fn implements TextWatcher {
-    public final en f34647a;
-    public final int f34648b;
-    public final org.telegram.ui.l4 f34649c;
+    public final en f34651a;
+    public final int f34652b;
+    public final org.telegram.ui.l4 f34653c;
 
     public fn(org.telegram.ui.l4 l4Var, en enVar, int i7) {
-        this.f34649c = l4Var;
-        this.f34647a = enVar;
-        this.f34648b = i7;
+        this.f34653c = l4Var;
+        this.f34651a = enVar;
+        this.f34652b = i7;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
-        jn jnVar = (jn) this.f34649c.f48827e;
-        en enVar = this.f34647a;
+        jn jnVar = (jn) this.f34653c.f48823e;
+        en enVar = this.f34651a;
         if (enVar.getTag() != null) {
             return;
         }
-        int i10 = this.f34648b;
+        int i10 = this.f34652b;
         if (i10 == 11) {
-            i7 = jnVar.f36098o0;
+            i7 = jnVar.f36088o0;
         } else {
-            i7 = jnVar.f36097n0;
+            i7 = jnVar.f36087n0;
         }
-        v4.e1 K = jnVar.f36107s.K(i7);
-        if (K != null && jnVar.f36116y != null) {
+        v4.e1 K = jnVar.f36097s.K(i7);
+        if (K != null && jnVar.f36106y != null) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             org.telegram.messenger.j6.l(editable, enVar.getEditField().getPaint().getFontMetricsInt(), false);
-            jnVar.f36116y.setDirection(1);
-            jnVar.f36116y.setDelegate(enVar);
-            jnVar.f36116y.setTranslationY(K.f58535a.getY());
-            jnVar.f36116y.e();
+            jnVar.f36106y.setDirection(1);
+            jnVar.f36106y.setDelegate(enVar);
+            jnVar.f36106y.setTranslationY(K.f58535a.getY());
+            jnVar.f36106y.e();
         }
         if (i10 == 11) {
             jnVar.P = editable;

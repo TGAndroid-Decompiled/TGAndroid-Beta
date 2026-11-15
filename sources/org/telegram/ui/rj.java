@@ -20,7 +20,7 @@ public final class rj extends org.telegram.ui.Components.tc {
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
         an anVar = this.d;
-        qj qjVar = anVar.f45118a0;
+        qj qjVar = anVar.f45117a0;
         if (qjVar != null) {
             qjVar.invalidate();
         }

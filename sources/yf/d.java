@@ -1,6 +1,6 @@
 package yf;
 
-import ai.d1;
+import ai.e1;
 import java.io.File;
 import org.telegram.messenger.is;
 import org.telegram.messenger.ns;
@@ -43,7 +43,7 @@ public final class d implements is {
                 } else {
                     uploadringtone.mime_type = "audio/mpeg";
                 }
-                ConnectionsManager.getInstance(this.f60629a).sendRequest(uploadringtone, new d1(this, 28));
+                ConnectionsManager.getInstance(this.f60629a).sendRequest(uploadringtone, new e1(this, 28));
             }
         }
     }

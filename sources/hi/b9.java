@@ -62,7 +62,7 @@ public final class b9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                     SerializedData serializedData2 = new SerializedData(serializedData.length());
                     serializedData.cleanup();
                     r8.c(serializedData2, o8Var);
-                    np.s1(i10).f25280f7.edit().putString("story_privacy2", Utilities.f(serializedData2.toByteArray())).apply();
+                    np.s1(i10).f25283f7.edit().putString("story_privacy2", Utilities.f(serializedData2.toByteArray())).apply();
                     serializedData2.cleanup();
                     d7 d7Var = saVar.L1;
                     d7Var.G0 = z12;
@@ -191,7 +191,7 @@ public final class b9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 sa saVar = this.f13940b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                     saVar.f15039b.startActivity(intent);
                     return;
                 } catch (Exception e10) {
@@ -202,7 +202,7 @@ public final class b9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 sa saVar2 = this.f13940b;
                 try {
                     Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                     saVar2.f15039b.startActivity(intent2);
                     return;
                 } catch (Exception e11) {
@@ -215,7 +215,7 @@ public final class b9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 sa saVar3 = this.f13940b;
                 try {
                     Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent3.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    intent3.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                     saVar3.f15039b.startActivity(intent3);
                     return;
                 } catch (Exception e12) {
@@ -226,7 +226,7 @@ public final class b9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 sa saVar4 = this.f13940b;
                 try {
                     Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent4.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    intent4.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                     saVar4.f15039b.startActivity(intent4);
                     return;
                 } catch (Exception e13) {

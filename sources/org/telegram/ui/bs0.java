@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class bs0 implements org.telegram.ui.Components.cg {
-    public final PopupNotificationActivity f45824a;
+    public final PopupNotificationActivity f45813a;
 
     public bs0(PopupNotificationActivity popupNotificationActivity) {
-        this.f45824a = popupNotificationActivity;
+        this.f45813a = popupNotificationActivity;
     }
 
     @Override
@@ -17,16 +17,16 @@ public final class bs0 implements org.telegram.ui.Components.cg {
 
     @Override
     public final void G1() {
-        PopupNotificationActivity popupNotificationActivity = this.f45824a;
+        PopupNotificationActivity popupNotificationActivity = this.f45813a;
         org.telegram.messenger.gj gjVar = popupNotificationActivity.R;
         if (gjVar != null) {
-            org.telegram.messenger.np.s1(gjVar.K1).D4(0, popupNotificationActivity.L, org.telegram.messenger.gj.B0(popupNotificationActivity.R.f23817k), 0L, null);
+            org.telegram.messenger.np.s1(gjVar.K1).D4(0, popupNotificationActivity.L, org.telegram.messenger.gj.B0(popupNotificationActivity.R.f23819k), 0L, null);
         }
     }
 
     @Override
     public final void M(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f45824a;
+        PopupNotificationActivity popupNotificationActivity = this.f45813a;
         if (popupNotificationActivity.R == null) {
             return;
         }
@@ -34,7 +34,7 @@ public final class bs0 implements org.telegram.ui.Components.cg {
         if (i11 >= 0 && i11 < popupNotificationActivity.f42965b0.size()) {
             popupNotificationActivity.f42965b0.remove(popupNotificationActivity.T);
         }
-        org.telegram.messenger.np.s1(popupNotificationActivity.R.K1).j3(org.telegram.messenger.gj.B0(popupNotificationActivity.R.f23817k), popupNotificationActivity.R.e1(), Math.max(0, popupNotificationActivity.R.e1()), popupNotificationActivity.R.f23817k.date, true, 0L, 0, true, 0);
+        org.telegram.messenger.np.s1(popupNotificationActivity.R.K1).j3(org.telegram.messenger.gj.B0(popupNotificationActivity.R.f23819k), popupNotificationActivity.R.e1(), Math.max(0, popupNotificationActivity.R.e1()), popupNotificationActivity.R.f23819k.date, true, 0L, 0, true, 0);
         popupNotificationActivity.R = null;
         popupNotificationActivity.f();
     }

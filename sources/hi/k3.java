@@ -40,7 +40,7 @@ public final class k3 extends Drawable {
             case 2:
                 ActionBarContainer actionBarContainer = (ActionBarContainer) this.f14500b;
                 if (actionBarContainer.h) {
-                    Drawable drawable = actionBarContainer.f1857f;
+                    Drawable drawable = actionBarContainer.f1864f;
                     if (drawable != null) {
                         drawable.draw(canvas);
                         return;
@@ -51,8 +51,8 @@ public final class k3 extends Drawable {
                 if (drawable2 != null) {
                     drawable2.draw(canvas);
                 }
-                Drawable drawable3 = actionBarContainer.f1856e;
-                if (drawable3 != null && actionBarContainer.f1858n) {
+                Drawable drawable3 = actionBarContainer.f1863e;
+                if (drawable3 != null && actionBarContainer.f1865n) {
                     drawable3.draw(canvas);
                     return;
                 }
@@ -80,7 +80,7 @@ public final class k3 extends Drawable {
                 imageReceiver.h(canvas, null);
                 return;
             case 7:
-                ((oy0) this.f14500b).c(getBounds().centerX() - (((oy0) this.f14500b).f38105c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.G6, false), canvas);
+                ((oy0) this.f14500b).c(getBounds().centerX() - (((oy0) this.f14500b).f38103c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.G6, false), canvas);
                 return;
             case 8:
                 canvas.save();
@@ -164,7 +164,7 @@ public final class k3 extends Drawable {
             case 2:
                 ActionBarContainer actionBarContainer = (ActionBarContainer) this.f14500b;
                 if (actionBarContainer.h) {
-                    if (actionBarContainer.f1857f != null) {
+                    if (actionBarContainer.f1864f != null) {
                         actionBarContainer.d.getOutline(outline);
                         return;
                     }

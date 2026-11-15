@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import android.graphics.Point;
 public final class sy implements Runnable {
-    public final int f39453a;
-    public final wy f39454b;
-    public final int f39455c;
+    public final int f39451a;
+    public final wy f39452b;
+    public final int f39453c;
     public final int d;
 
     public sy(wy wyVar, int i7, int i10, int i11) {
-        this.f39453a = i11;
-        this.f39454b = wyVar;
-        this.f39455c = i7;
+        this.f39451a = i11;
+        this.f39452b = wyVar;
+        this.f39453c = i7;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         int i7;
-        switch (this.f39453a) {
+        switch (this.f39451a) {
             case 0:
-                wy wyVar = this.f39454b;
-                int i10 = this.f39455c;
+                wy wyVar = this.f39452b;
+                int i10 = this.f39453c;
                 int i11 = this.d;
                 if (wyVar.X != i10 || wyVar.Y != i11) {
                     wyVar.X = i10;
@@ -31,7 +31,7 @@ public final class sy implements Runnable {
                         if (o4 != 2) {
                             i12 = 720;
                         } else {
-                            Point point = org.telegram.messenger.g0.f23609q;
+                            Point point = org.telegram.messenger.g0.f23611q;
                             i12 = Math.min(1920, Math.max(point.x, point.y));
                         }
                     }
@@ -50,26 +50,26 @@ public final class sy implements Runnable {
                             wyVar.Y = i12;
                         }
                     }
-                    wyVar.f41469a0 = false;
+                    wyVar.f41472a0 = false;
                     wyVar.f();
-                    wyVar.f41476e0.run();
+                    wyVar.f41479e0.run();
                     return;
                 }
                 return;
             case 1:
-                wy wyVar2 = this.f39454b;
-                int i15 = this.f39455c;
+                wy wyVar2 = this.f39452b;
+                int i15 = this.f39453c;
                 int i16 = this.d;
-                wyVar2.f41478n = i15;
-                wyVar2.f41479r = i16;
+                wyVar2.f41481n = i15;
+                wyVar2.f41482r = i16;
                 return;
             default:
-                wy wyVar3 = this.f39454b;
-                int i17 = this.f39455c;
+                wy wyVar3 = this.f39452b;
+                int i17 = this.f39453c;
                 int i18 = this.d;
                 z9 z9Var = wyVar3.J;
-                z9Var.f42317l = i17;
-                z9Var.f42318m = i18;
+                z9Var.f42315l = i17;
+                z9Var.f42316m = i18;
                 return;
         }
     }

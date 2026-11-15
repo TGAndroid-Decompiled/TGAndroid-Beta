@@ -29,21 +29,21 @@ import p4.v;
 import p4.y0;
 import w7.s;
 public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0, a1 {
-    public final int f4115a;
-    public final int f4116b;
-    public final long f4117c;
+    public final int f4118a;
+    public final int f4119b;
+    public final long f4120c;
     public final Object d;
 
     public n(long j3, int i7, Object obj, int i10) {
-        this.f4115a = i10;
-        this.f4117c = j3;
-        this.f4116b = i7;
+        this.f4118a = i10;
+        this.f4120c = j3;
+        this.f4119b = i7;
         this.d = obj;
     }
 
     @Override
     public void a(String str) {
-        ys0.f((ys0) this.d, this.f4117c, this.f4116b, str);
+        ys0.f((ys0) this.d, this.f4120c, this.f4119b, str);
     }
 
     @Override
@@ -52,14 +52,14 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0
         o oVar = (o) this.d;
         a aVar = (a) obj;
         oVar.h.getClass();
-        byte[] k02 = s.k0(aVar.f4091a, aVar.f4093c);
-        x xVar = oVar.f4120c;
+        byte[] k02 = s.k0(aVar.f4094a, aVar.f4096c);
+        x xVar = oVar.f4123c;
         xVar.getClass();
         xVar.L(k02.length, k02);
-        oVar.f4118a.b(k02.length, xVar);
-        long j3 = aVar.f4092b;
+        oVar.f4121a.b(k02.length, xVar);
+        long j3 = aVar.f4095b;
         int i7 = (j3 > (-9223372036854775807L) ? 1 : (j3 == (-9223372036854775807L) ? 0 : -1));
-        long j10 = this.f4117c;
+        long j10 = this.f4120c;
         if (i7 == 0) {
             if (oVar.h.f10455x == Long.MAX_VALUE) {
                 z10 = true;
@@ -75,20 +75,20 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0
                 j10 = j3 + j11;
             }
         }
-        oVar.f4118a.c(j10, this.f4116b | 1, k02.length, 0, null);
+        oVar.f4121a.c(j10, this.f4119b | 1, k02.length, 0, null);
     }
 
     @Override
     public void c(g1 g1Var, v vVar) {
-        g1Var.s(((c1) this.d).m1(vVar, g1Var, this.f4116b), this.f4117c);
+        g1Var.s(((c1) this.d).m1(vVar, g1Var, this.f4119b), this.f4120c);
     }
 
     @Override
     public void h(t1 t1Var, int i7) {
-        int i10 = this.f4115a;
+        int i10 = this.f4118a;
         Object obj = this.d;
-        int i11 = this.f4116b;
-        long j3 = this.f4117c;
+        int i11 = this.f4119b;
+        long j3 = this.f4120c;
         switch (i10) {
             case 3:
                 EditText editText = (EditText) obj;
@@ -144,7 +144,7 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
-                SharedPreferences.Editor edit = np.s1(m10.f24934t0).f25270e7.edit();
+                SharedPreferences.Editor edit = np.s1(m10.f24940t0).f25273e7.edit();
                 if (j3 != 0) {
                     edit.putInt("color_" + j3, 0);
                 } else if (i11 == 1) {
@@ -170,7 +170,7 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0
     @Override
     public void invoke(Object obj) {
         m2.b bVar = (m2.b) obj;
-        bVar.p((m2.a) this.d, this.f4116b, this.f4117c);
+        bVar.p((m2.a) this.d, this.f4119b, this.f4120c);
     }
 
     @Override
@@ -178,7 +178,7 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0
         int i10;
         long j3;
         List list = (List) this.d;
-        int i11 = this.f4116b;
+        int i11 = this.f4119b;
         if (i11 == -1) {
             i10 = d0Var.f54635t.o0();
         } else {
@@ -187,34 +187,34 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0
         if (i11 == -1) {
             j3 = d0Var.f54635t.l();
         } else {
-            j3 = this.f4117c;
+            j3 = this.f4120c;
         }
         return d0Var.q(vVar, list, i10, j3);
     }
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f4116b, this.f4117c, tLObject, tL_error, j3);
+        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f4119b, this.f4120c, tLObject, tL_error, j3);
     }
 
     public n(Object obj, int i7, long j3, int i10) {
-        this.f4115a = i10;
+        this.f4118a = i10;
         this.d = obj;
-        this.f4116b = i7;
-        this.f4117c = j3;
+        this.f4119b = i7;
+        this.f4120c = j3;
     }
 
     public n(Object obj, long j3, int i7, int i10) {
-        this.f4115a = i10;
+        this.f4118a = i10;
         this.d = obj;
-        this.f4117c = j3;
-        this.f4116b = i7;
+        this.f4120c = j3;
+        this.f4119b = i7;
     }
 
     public n(m2.a aVar, int i7, long j3, long j10) {
-        this.f4115a = 1;
+        this.f4118a = 1;
         this.d = aVar;
-        this.f4116b = i7;
-        this.f4117c = j3;
+        this.f4119b = i7;
+        this.f4120c = j3;
     }
 }

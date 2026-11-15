@@ -37,7 +37,7 @@ import org.telegram.ui.Components.lv0;
 import org.telegram.ui.ld0;
 import org.telegram.ui.n1;
 import org.telegram.ui.web.p1;
-import tg.a2;
+import tg.z1;
 import ug.t1;
 public final class i implements c00 {
     public static i A;
@@ -70,10 +70,10 @@ public final class i implements c00 {
 
     public i(ld0 ld0Var, String str, byte[] bArr) {
         String l10;
-        this.f60067b = (String) ld0Var.f48977c;
+        this.f60067b = (String) ld0Var.f48973c;
         String str2 = (String) ld0Var.d;
         this.f60068c = str2;
-        String str3 = (String) ld0Var.f48976b;
+        String str3 = (String) ld0Var.f48972b;
         String p10 = str3.isEmpty() ? "/" : p0.p("/", str3, "/");
         this.d = p10;
         this.f60069e = str;
@@ -100,9 +100,9 @@ public final class i implements c00 {
         synchronized (iVar.f60066a) {
             try {
                 if (!iVar.f60084u && iVar.f60078o == null) {
-                    r0 r0Var = r0.f26175f;
+                    r0 r0Var = r0.f26183f;
                     if (r0Var != null) {
-                        if (r0Var.f26176a == 0) {
+                        if (r0Var.f26184a == 0) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -115,7 +115,7 @@ public final class i implements c00 {
                     iVar.v = false;
                     iVar.g();
                     try {
-                        WebView webView = new WebView(t0.f26600b);
+                        WebView webView = new WebView(t0.f26609b);
                         iVar.f60078o = webView;
                         iVar.f60080q = p9.a("WEB_MESSAGE_ARRAY_BUFFER");
                         iVar.f60081r = false;
@@ -138,7 +138,7 @@ public final class i implements c00 {
                         webView.setWebViewClient(new n1(iVar, 4));
                         HashSet hashSet = new HashSet();
                         hashSet.add(iVar.f60070f);
-                        d5.b.a(webView, "TelegramWebProxy", hashSet, new a2(iVar, 16));
+                        d5.b.a(webView, "TelegramWebProxy", hashSet, new z1(iVar, 16));
                         webView.loadUrl(iVar.f60071g);
                     } catch (Exception e10) {
                         a8.g(e10, true);
@@ -297,7 +297,7 @@ public final class i implements c00 {
                 synchronized (f60064y) {
                     try {
                         i iVar = f60065z;
-                        if (iVar != null && !iVar.f60072i.isClosed() && f60065z.f60067b.equals((String) k10.f48977c) && f60065z.f60069e.equals(str2)) {
+                        if (iVar != null && !iVar.f60072i.isClosed() && f60065z.f60067b.equals((String) k10.f48973c) && f60065z.f60069e.equals(str2)) {
                             return f60065z.f60072i.getLocalPort();
                         }
                         i iVar2 = f60065z;
@@ -308,7 +308,7 @@ public final class i implements c00 {
                         try {
                             i iVar3 = new i(k10, str2, f10);
                             f60065z = iVar3;
-                            r0 r0Var = r0.f26175f;
+                            r0 r0Var = r0.f26183f;
                             if (r0Var != null) {
                                 r0Var.d.add(iVar3);
                             }
@@ -505,7 +505,7 @@ public final class i implements c00 {
                     this.f60072i.close();
                 } catch (Exception unused) {
                 }
-                r0 r0Var = r0.f26175f;
+                r0 r0Var = r0.f26183f;
                 if (r0Var != null) {
                     r0Var.d.remove(this);
                 }

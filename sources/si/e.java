@@ -1,6 +1,6 @@
 package si;
 
-import ai.q0;
+import ai.r0;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RecordingCanvas;
@@ -14,7 +14,7 @@ import c8.hc;
 import java.util.Arrays;
 public final class e extends hc {
     public final RenderNode f56919a = w.o();
-    public final RuntimeShader f56920b = q0.d();
+    public final RuntimeShader f56920b = r0.d();
     public int f56921c = -1;
     public int d = -1;
     public int f56922e;

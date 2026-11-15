@@ -26,7 +26,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.Components.fa0 {
+public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.Components.ga0 {
     public Bitmap A;
     public int B;
     public boolean C;
@@ -68,9 +68,9 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
         boolean z10 = false;
         if (q(false)) {
             i7 = ((org.telegram.ui.ActionBar.e2) anVar).currentAccount;
-            this.f53545f = org.telegram.messenger.d4.f(i7).c(anVar.f45259k6);
+            this.f53545f = org.telegram.messenger.d4.f(i7).c(anVar.f45258k6);
             i10 = ((org.telegram.ui.ActionBar.e2) anVar).currentAccount;
-            TLRPC.WallPaper d = org.telegram.messenger.d4.f(i10).d(anVar.f45259k6);
+            TLRPC.WallPaper d = org.telegram.messenger.d4.f(i10).d(anVar.f45258k6);
             this.f53546g = d;
             org.telegram.ui.ActionBar.p3 p3Var = this.f53545f;
             if (p3Var != null || d != null) {
@@ -360,7 +360,7 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
         an anVar = this.G;
         if (anVar.h == null) {
             if (z10) {
-                if (anVar.f45173e == null && (user = anVar.f45187f) != null && !user.bot) {
+                if (anVar.f45172e == null && (user = anVar.f45186f) != null && !user.bot) {
                     return true;
                 }
                 return false;
@@ -400,7 +400,7 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
         this.f53545f = p3Var2;
         this.f53546g = wallPaper;
         if (anVar.fragmentView != null) {
-            drawable = anVar.f45278m1.getBackgroundImage();
+            drawable = anVar.f45277m1.getBackgroundImage();
         } else {
             drawable = null;
         }
@@ -410,7 +410,7 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
             ra0Var = null;
         }
         if (ra0Var != null) {
-            i7 = ra0Var.f38924i;
+            i7 = ra0Var.f38921i;
         } else {
             i7 = 0;
         }
@@ -436,7 +436,7 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
             if (org.telegram.ui.ActionBar.j6.I.q() == this.f53555q) {
                 Q02 = org.telegram.ui.ActionBar.j6.I;
             } else {
-                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0);
+                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0);
                 String string = sharedPreferences.getString("lastDayTheme", "Blue");
                 if (org.telegram.ui.ActionBar.j6.Q0(string) != null && !org.telegram.ui.ActionBar.j6.Q0(string).q()) {
                     str2 = string;
@@ -458,8 +458,8 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
             return;
         }
         this.f53557s = false;
-        if (org.telegram.messenger.t0.f26600b != null) {
-            org.telegram.ui.ActionBar.j6.K(org.telegram.messenger.t0.f26600b, false);
+        if (org.telegram.messenger.t0.f26609b != null) {
+            org.telegram.ui.ActionBar.j6.K(org.telegram.messenger.t0.f26609b, false);
         }
         if (p3Var2 != null) {
             i10 = ((org.telegram.ui.ActionBar.e2) this.G).currentAccount;
@@ -545,23 +545,23 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
                 int h10 = h(org.telegram.ui.ActionBar.j6.Ge);
                 int h11 = h(org.telegram.ui.ActionBar.j6.He);
                 org.telegram.ui.Components.ra0 ra0Var2 = new org.telegram.ui.Components.ra0();
-                ra0Var2.s(p3Var2.j(this.f53555q ? 1 : 0).settings.intensity, ra0Var2.f38936u);
+                ra0Var2.s(p3Var2.j(this.f53555q ? 1 : 0).settings.intensity, ra0Var2.f38933u);
                 TLRPC.Document e10 = p3Var2.e();
-                if (ra0Var2.f38939y == null) {
+                if (ra0Var2.f38936y == null) {
                     ImageReceiver imageReceiver = new ImageReceiver(null);
-                    ra0Var2.f38939y = imageReceiver;
+                    ra0Var2.f38936y = imageReceiver;
                     imageReceiver.setAlpha(0.5f);
-                    WeakReference weakReference = ra0Var2.f38918c;
+                    WeakReference weakReference = ra0Var2.f38915c;
                     if (weakReference != null) {
-                        ra0Var2.f38939y.H0((View) weakReference.get());
+                        ra0Var2.f38936y.H0((View) weakReference.get());
                     }
                     if (ra0Var2.T) {
-                        ra0Var2.f38939y.P();
+                        ra0Var2.f38936y.P();
                     }
                 }
-                ra0Var2.f38939y.q0(org.telegram.messenger.gc.b(e10), "80_80", null, null, null, 0);
-                ra0Var2.f38939y.X(1);
-                ra0Var2.f38939y.W(1);
+                ra0Var2.f38936y.q0(org.telegram.messenger.gc.b(e10), "80_80", null, null, null, 0);
+                ra0Var2.f38936y.X(1);
+                ra0Var2.f38936y.W(1);
                 ra0Var2.o(h, h7, h10, h11, 0, true);
                 ra0Var2.u(i7);
                 int f10 = ra0Var2.f();
@@ -601,7 +601,7 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
                     ImageReceiver imageReceiver2 = new ImageReceiver(null);
                     imageReceiver2.A1 = false;
                     imageReceiver2.q0(b11, "40_40_firstframe", null, ".jpg", document2, 1);
-                    imageReceiver2.f22276h1 = new ai.c0(dVar, h12, 3);
+                    imageReceiver2.f22276h1 = new ai.d0(dVar, h12, 3);
                     org.telegram.messenger.fc.D().M(imageReceiver2, null);
                 } else {
                     z11 = z13 ? 1 : 0;
@@ -637,11 +637,11 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
             }
             this.f53556r.start();
         }
-        if (p3Var2 == null && this.G.f45259k6 >= 0) {
+        if (p3Var2 == null && this.G.f45258k6 >= 0) {
             if (org.telegram.ui.ActionBar.j6.I.q() == this.f53555q) {
                 Q0 = org.telegram.ui.ActionBar.j6.I;
             } else {
-                SharedPreferences sharedPreferences2 = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0);
+                SharedPreferences sharedPreferences2 = org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0);
                 String string3 = sharedPreferences2.getString("lastDayTheme", "Blue");
                 if (org.telegram.ui.ActionBar.j6.Q0(string3) != null && !org.telegram.ui.ActionBar.j6.Q0(string3).q()) {
                     str2 = string3;
@@ -682,8 +682,8 @@ public final class ym implements org.telegram.ui.ActionBar.e6, org.telegram.ui.C
                 this.f53542b.clear();
                 this.f53541a.clear();
                 if (z10) {
-                    if (org.telegram.messenger.t0.f26600b != null) {
-                        org.telegram.ui.ActionBar.j6.K(org.telegram.messenger.t0.f26600b, false);
+                    if (org.telegram.messenger.t0.f26609b != null) {
+                        org.telegram.ui.ActionBar.j6.K(org.telegram.messenger.t0.f26609b, false);
                     }
                     n();
                     o();

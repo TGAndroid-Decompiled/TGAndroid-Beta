@@ -19,11 +19,11 @@ public final class gb extends mi0 {
             case 0:
                 ib ibVar = (ib) this.f34879o1;
                 if (motionEvent.getAction() == 0) {
-                    xb xbVar2 = ibVar.f35544n;
+                    xb xbVar2 = ibVar.f35531n;
                     if (xbVar2 != null) {
                         xbVar2.i(false);
                     }
-                } else if (motionEvent.getAction() == 1 && (xbVar = ibVar.f35544n) != null) {
+                } else if (motionEvent.getAction() == 1 && (xbVar = ibVar.f35531n) != null) {
                     xbVar.i(true);
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -39,14 +39,14 @@ public final class gb extends mi0 {
                 super.j();
                 org.telegram.ui.ns nsVar = (org.telegram.ui.ns) this.f34879o1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = nsVar.f49677x;
+                    WindowManager.LayoutParams layoutParams = nsVar.f49667x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    nsVar.f49677x.flags |= 131072;
+                    nsVar.f49667x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) nsVar.f49676w.getSystemService("window")).updateViewLayout(nsVar.f49678y, nsVar.f49677x);
+                    ((WindowManager) nsVar.f49666w.getSystemService("window")).updateViewLayout(nsVar.f49668y, nsVar.f49667x);
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -62,11 +62,11 @@ public final class gb extends mi0 {
     public void m() {
         switch (this.n1) {
             case 0:
-                xb xbVar = xb.f41635w;
+                xb xbVar = xb.f41627w;
                 if (xbVar != null) {
                     xbVar.i(false);
                 }
-                ((ib) this.f34879o1).d.getReactionsWindow().f5010c.setOnClickListener(new e0(this, 3));
+                ((ib) this.f34879o1).d.getReactionsWindow().f5013c.setOnClickListener(new e0(this, 3));
                 return;
             default:
                 return;

@@ -2,11 +2,11 @@ package dh;
 
 import org.telegram.messenger.si;
 public final class a {
-    public boolean f8087a;
-    public long f8088b;
+    public boolean f8090a;
+    public long f8091b;
 
     public void a(long j3) {
-        this.f8088b = si.p(this.f8088b, j3);
+        this.f8091b = si.p(this.f8091b, j3);
     }
 
     public void b(boolean z10) {

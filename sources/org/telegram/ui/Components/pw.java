@@ -26,7 +26,7 @@ public final class pw extends ky {
         super.b(recyclerView, i7, i10);
         lx lxVar = lyVar.T;
         if (lxVar != null && lyVar.Q.getAdapter() == lxVar) {
-            lx lxVar2 = lxVar.f36926y.f36647a;
+            lx lxVar2 = lxVar.f36926y.f36635a;
             if (!lxVar2.G.W.G && !lxVar2.F) {
                 if (mwVar.N0() + 20 > lxVar.b()) {
                     kx kxVar = lxVar.f36926y;

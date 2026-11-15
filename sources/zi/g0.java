@@ -69,11 +69,11 @@ public final class g0 implements Runnable {
                     long j13 = v0Var2.I;
                     long j14 = v0Var2.K;
                     long j15 = v0Var2.L;
-                    ((q40) ffVar.f34586b).f38512w.setProgress(((float) j13) / 60000.0f);
-                    q40 q40Var = (q40) ffVar.f34586b;
+                    ((q40) ffVar.f34590b).f38512w.setProgress(((float) j13) / 60000.0f);
+                    q40 q40Var = (q40) ffVar.f34590b;
                     q40Var.f38498k0 = false;
                     q40Var.I.setAlpha(0.0f);
-                    q40 q40Var2 = (q40) ffVar.f34586b;
+                    q40 q40Var2 = (q40) ffVar.f34590b;
                     if (q40Var2.V == null) {
                         v0 v0Var3 = q40Var2.P;
                         if (v0Var3 == null) {
@@ -83,31 +83,31 @@ public final class g0 implements Runnable {
                             file = v0Var3.V;
                         }
                         if (file != null) {
-                            q40 q40Var3 = (q40) ffVar.f34586b;
+                            q40 q40Var3 = (q40) ffVar.f34590b;
                             q40Var3.U = q40Var3.t(file, j13, null);
-                            q40 q40Var4 = (q40) ffVar.f34586b;
+                            q40 q40Var4 = (q40) ffVar.f34590b;
                             g20 g20Var = q40Var4.U;
                             if (j14 > 0) {
                                 j3 = j14;
                             } else {
                                 j3 = -1;
                             }
-                            g20Var.f23632a = j3;
+                            g20Var.f23634a = j3;
                             if (j15 < j13) {
                                 j10 = j15;
                             } else {
                                 j10 = -1;
                             }
-                            g20Var.f23634b = j10;
-                            ns.f(q40Var4.f38492f).k(162, Integer.valueOf(((q40) ffVar.f34586b).h), ((q40) ffVar.f34586b).U, file.getAbsolutePath(), new ArrayList());
+                            g20Var.f23636b = j10;
+                            ns.f(q40Var4.f38492f).k(162, Integer.valueOf(((q40) ffVar.f34590b).h), ((q40) ffVar.f34590b).U, file.getAbsolutePath(), new ArrayList());
                             float max = (float) Math.max(1L, j13);
                             float f10 = ((float) j14) / max;
                             float f11 = ((float) j15) / max;
-                            v40 v40Var = ((q40) ffVar.f34586b).f41253b;
-                            if (v40Var != null && (qjVar = ((ce) v40Var).f46084b.f45118a0) != null && (i61Var = qjVar.f32200g1) != null) {
+                            v40 v40Var = ((q40) ffVar.f34590b).f41256b;
+                            if (v40Var != null && (qjVar = ((ce) v40Var).f46073b.f45117a0) != null && (i61Var = qjVar.f32200g1) != null) {
                                 float max2 = Math.max(0.0f, Math.min(1.0f, f10));
-                                i61Var.f35465b = max2;
-                                i61Var.f35466c = Math.max(max2, Math.min(1.0f, f11));
+                                i61Var.f35456b = max2;
+                                i61Var.f35457c = Math.max(max2, Math.min(1.0f, f11));
                                 i61Var.invalidate();
                             }
                         }

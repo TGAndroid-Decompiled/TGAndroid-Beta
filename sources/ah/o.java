@@ -108,7 +108,7 @@ public abstract class o extends ScrollView implements z5 {
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -173,7 +173,7 @@ public abstract class o extends ScrollView implements z5 {
         np npVar;
         TLRPC.TL_help_country tL_help_country;
         ArrayList arrayList3 = arrayList;
-        np s12 = np.s1(m10.f24934t0);
+        np s12 = np.s1(m10.f24940t0);
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
         int i10 = 0;

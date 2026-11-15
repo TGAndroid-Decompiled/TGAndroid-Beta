@@ -7,23 +7,23 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class w21 extends FrameLayout implements org.telegram.ui.ActionBar.z5, org.telegram.messenger.is {
-    public final org.telegram.ui.Components.i9 f52368a;
-    public final org.telegram.ui.ActionBar.l2 f52369b;
-    public final org.telegram.ui.Components.voip.n f52370c;
+    public final org.telegram.ui.Components.i9 f52371a;
+    public final org.telegram.ui.ActionBar.l2 f52372b;
+    public final org.telegram.ui.Components.voip.n f52373c;
     public int d;
-    public int f52371e;
-    public final SessionsActivity f52372f;
+    public int f52374e;
+    public final SessionsActivity f52375f;
 
     public w21(SessionsActivity sessionsActivity, Context context) {
         super(context);
-        this.f52372f = sessionsActivity;
+        this.f52375f = sessionsActivity;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-        this.f52370c = nVar;
+        this.f52373c = nVar;
         org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
-        this.f52368a = i9Var;
+        this.f52371a = i9Var;
         addView(i9Var, c8.ja.d(120, 120.0f, 1, 0.0f, 16.0f, 0.0f, 0.0f));
-        nVar.f40798j = false;
-        nVar.f40802n = 1.2f;
+        nVar.f40801j = false;
+        nVar.f40805n = 1.2f;
         i9Var.setOnClickListener(new a8(this, 2));
         int i7 = org.telegram.ui.ActionBar.j6.G6;
         org.telegram.ui.ActionBar.j6.x0(null, i7, false);
@@ -62,7 +62,7 @@ public final class w21 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         z70Var.setText(spannableStringBuilder);
         org.telegram.ui.ActionBar.l2 l2Var = new org.telegram.ui.ActionBar.l2(6, context, this);
-        this.f52369b = l2Var;
+        this.f52372b = l2Var;
         l2Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
         l2Var.setGravity(17);
         l2Var.setTextSize(1, 14.0f);
@@ -87,7 +87,7 @@ public final class w21 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i10;
         boolean z10;
         int i11;
-        SessionsActivity sessionsActivity = this.f52372f;
+        SessionsActivity sessionsActivity = this.f52375f;
         i7 = ((org.telegram.ui.ActionBar.e2) sessionsActivity).currentAccount;
         TLRPC.TL_messages_stickerSet p02 = org.telegram.messenger.si.b0(i7).p0("tg_placeholders_android");
         if (p02 == null) {
@@ -121,14 +121,14 @@ public final class w21 extends FrameLayout implements org.telegram.ui.ActionBar.
             return;
         }
         org.telegram.messenger.gc b10 = org.telegram.messenger.gc.b(document);
-        org.telegram.ui.Components.i9 i9Var = this.f52368a;
+        org.telegram.ui.Components.i9 i9Var = this.f52371a;
         i9Var.k(b10, "130_130", "tgs", pzVar2, tL_messages_stickerSet);
         i9Var.getImageReceiver().W(2);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25607y0 && "tg_placeholders_android".equals((String) objArr[0])) {
+        if (i7 == org.telegram.messenger.ns.f25608y0 && "tg_placeholders_android".equals((String) objArr[0])) {
             a();
         }
     }
@@ -138,16 +138,16 @@ public final class w21 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i7;
         super.onAttachedToWindow();
         a();
-        i7 = ((org.telegram.ui.ActionBar.e2) this.f52372f).currentAccount;
-        org.telegram.messenger.ns.f(i7).c(this, org.telegram.messenger.ns.f25607y0);
+        i7 = ((org.telegram.ui.ActionBar.e2) this.f52375f).currentAccount;
+        org.telegram.messenger.ns.f(i7).c(this, org.telegram.messenger.ns.f25608y0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         int i7;
         super.onDetachedFromWindow();
-        i7 = ((org.telegram.ui.ActionBar.e2) this.f52372f).currentAccount;
-        org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25607y0);
+        i7 = ((org.telegram.ui.ActionBar.e2) this.f52375f).currentAccount;
+        org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25608y0);
     }
 
     @Override
@@ -160,14 +160,14 @@ public final class w21 extends FrameLayout implements org.telegram.ui.ActionBar.
         try {
             int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Fi, false);
             int x03 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Hi, false);
-            org.telegram.ui.ActionBar.l2 l2Var = this.f52369b;
+            org.telegram.ui.ActionBar.l2 l2Var = this.f52372b;
             if (l2Var != null) {
                 if (x02 == this.d) {
-                    if (x03 != this.f52371e) {
+                    if (x03 != this.f52374e) {
                     }
                 }
                 this.d = x02;
-                this.f52371e = x03;
+                this.f52374e = x03;
                 int L = org.telegram.messenger.g0.L(24.0f);
                 l2Var.setBackground(org.telegram.ui.ActionBar.j6.k0(L, L, L, L, x02, x03, x03));
             }

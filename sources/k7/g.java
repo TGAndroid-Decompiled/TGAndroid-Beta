@@ -11,9 +11,9 @@ public final class g extends j {
 
     public final Task f(GetCredentialRequest getCredentialRequest) {
         t b10 = u.b();
-        b10.d = new n6.c[]{t7.b.f57045a};
-        b10.f6071c = new l0(getCredentialRequest, 5);
-        b10.f6069a = 32701;
+        b10.d = new n6.c[]{t7.b.f57049a};
+        b10.f6074c = new l0(getCredentialRequest, 5);
+        b10.f6072a = 32701;
         Task e10 = e(0, b10.a());
         kotlin.jvm.internal.j.d(e10, "doRead(...)");
         return e10;

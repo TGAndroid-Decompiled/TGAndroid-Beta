@@ -19,16 +19,16 @@ public final class r implements Runnable {
         final y yVar = this.f59232b;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.v1(yVar.f35936o1);
+                org.telegram.messenger.g0.v1(yVar.f35931o1);
                 return;
             case 1:
-                ns.f(m10.f24934t0).k(191, yVar.X1, Boolean.TRUE);
+                ns.f(m10.f24940t0).k(191, yVar.X1, Boolean.TRUE);
                 return;
             case 2:
-                ns.f(m10.f24934t0).k(191, yVar.X1, Boolean.FALSE);
+                ns.f(m10.f24940t0).k(191, yVar.X1, Boolean.FALSE);
                 return;
             case 3:
-                g1 g1Var = new g1(yVar.f35940s1, yVar.f29679a, null, yVar.J0);
+                g1 g1Var = new g1(yVar.f35935s1, yVar.f29679a, null, yVar.J0);
                 g1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
@@ -74,7 +74,7 @@ public final class r implements Runnable {
                 g1Var.show();
                 return;
             default:
-                g1 g1Var2 = new g1(yVar.f35940s1, yVar.f29679a, null, yVar.J0);
+                g1 g1Var2 = new g1(yVar.f35935s1, yVar.f29679a, null, yVar.J0);
                 g1Var2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {

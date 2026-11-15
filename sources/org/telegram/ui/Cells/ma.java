@@ -80,10 +80,10 @@ public final class ma extends FrameLayout implements org.telegram.ui.ActionBar.z
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
         if (size <= 0) {
-            size = org.telegram.messenger.g0.f23609q.x;
+            size = org.telegram.messenger.g0.f23611q.x;
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f23609q.y, Integer.MIN_VALUE);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f23611q.y, Integer.MIN_VALUE);
         LinearLayout linearLayout = this.f30698a;
         linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));

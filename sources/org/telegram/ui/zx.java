@@ -14,8 +14,8 @@ public abstract class zx extends FrameLayout {
     public org.telegram.ui.ActionBar.j5 f54045c;
     public ImageView d;
     public yx f54046e;
-    public di.ub f54047f;
-    public di.ub h;
+    public di.tb f54047f;
+    public di.tb h;
     public TextView f54048n;
     public org.telegram.ui.ActionBar.e2 f54049r;
     public String f54050s;

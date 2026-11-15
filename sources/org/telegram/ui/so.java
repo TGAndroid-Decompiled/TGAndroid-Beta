@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class so extends org.telegram.ui.Components.tj0 {
-    public final Context f51250c;
+    public final Context f51251c;
     public ArrayList d = new ArrayList();
-    public ArrayList f51251e = new ArrayList();
-    public ro f51252f;
+    public ArrayList f51252e = new ArrayList();
+    public ro f51253f;
     public final to h;
 
     public so(to toVar, Context context) {
         this.h = toVar;
-        this.f51250c = context;
+        this.f51251c = context;
     }
 
     public static void E(so soVar, ArrayList arrayList, ArrayList arrayList2) {
@@ -25,8 +25,8 @@ public final class so extends org.telegram.ui.Components.tj0 {
             return;
         }
         soVar.d = arrayList;
-        soVar.f51251e = arrayList2;
-        if (toVar.f51618b.getAdapter() == toVar.f51620e) {
+        soVar.f51252e = arrayList2;
+        if (toVar.f51619b.getAdapter() == toVar.f51621e) {
             toVar.d.c();
         }
         super.f();
@@ -49,19 +49,19 @@ public final class so extends org.telegram.ui.Components.tj0 {
     }
 
     public final void F(String str) {
-        if (this.f51252f != null) {
-            Utilities.f22418g.a(this.f51252f);
-            this.f51252f = null;
+        if (this.f51253f != null) {
+            Utilities.f22418g.a(this.f51253f);
+            this.f51253f = null;
         }
         if (TextUtils.isEmpty(str)) {
             this.d.clear();
-            this.f51251e.clear();
+            this.f51252e.clear();
             super.f();
             return;
         }
         org.telegram.messenger.p5 p5Var = Utilities.f22418g;
         ro roVar = new ro(this, str, 0);
-        this.f51252f = roVar;
+        this.f51253f = roVar;
         p5Var.d(roVar, 300L);
     }
 
@@ -79,7 +79,7 @@ public final class so extends org.telegram.ui.Components.tj0 {
     public final void t(v4.e1 e1Var, int i7) {
         TLRPC.Chat chat = (TLRPC.Chat) this.d.get(i7);
         String K = org.telegram.messenger.t3.K(chat, false);
-        CharSequence charSequence = (CharSequence) this.f51251e.get(i7);
+        CharSequence charSequence = (CharSequence) this.f51252e.get(i7);
         CharSequence charSequence2 = null;
         if (charSequence != null && !TextUtils.isEmpty(K)) {
             if (charSequence.toString().startsWith("@" + K)) {
@@ -94,7 +94,7 @@ public final class so extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f51250c, 6, 2, false, null);
+        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f51251c, 6, 2, false, null);
         org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, a5Var, null);
         return new v4.e1(a5Var);
     }

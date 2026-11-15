@@ -17,11 +17,11 @@ public final class m9 extends j9 {
         ?? tLObject = new TLObject();
         tLObject.f14885c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-        l9 l9Var = new l9(this, org.telegram.messenger.t0.f26600b, org.telegram.messenger.g0.f23608p);
+        l9 l9Var = new l9(this, org.telegram.messenger.t0.f26609b, org.telegram.messenger.g0.f23610p);
         this.f12046a = l9Var;
-        l9Var.setMaxWidth(org.telegram.messenger.g0.f23609q.x);
+        l9Var.setMaxWidth(org.telegram.messenger.g0.f23611q.x);
         l9Var.setIsVideo(false);
-        l9Var.d(m10.f24934t0, tLObject.f14885c);
+        l9Var.d(m10.f24940t0, tLObject.f14885c);
         l9Var.setText(tLObject.a());
         l9Var.e(3, tL_mediaAreaWeather.color);
         l9Var.f();
@@ -59,16 +59,16 @@ public final class m9 extends j9 {
         if (z10) {
             l9Var.L = true;
             if (l9Var.M) {
-                l9Var.f57429s.P();
+                l9Var.f57442s.P();
                 return;
             } else {
-                l9Var.f57428r.P();
+                l9Var.f57441r.P();
                 return;
             }
         }
         l9Var.L = false;
-        l9Var.f57428r.R();
-        l9Var.f57429s.R();
+        l9Var.f57441r.R();
+        l9Var.f57442s.R();
     }
 
     @Override

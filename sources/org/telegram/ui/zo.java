@@ -19,7 +19,7 @@ public final class zo extends v4.h0 {
         int i7;
         ap apVar = this.d;
         if (!apVar.d.isEmpty()) {
-            i7 = apVar.f45474n.size() + 1;
+            i7 = apVar.f45468n.size() + 1;
         } else {
             i7 = 0;
         }
@@ -49,7 +49,7 @@ public final class zo extends v4.h0 {
         if (d != 0) {
             if (d != 1) {
                 if (d == 2) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) apVar.f45474n.get(i7 - 3);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) apVar.f45468n.get(i7 - 3);
                     boolean contains = apVar.d.contains(tL_availableReaction.reaction);
                     i10 = ((org.telegram.ui.ActionBar.e2) apVar).currentAccount;
                     ((org.telegram.ui.Cells.x) view).a(tL_availableReaction, contains, i10);
@@ -62,7 +62,7 @@ public final class zo extends v4.h0 {
         }
         org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
         org.telegram.ui.ActionBar.q6.U(y8Var.getTextView(), org.telegram.ui.ActionBar.j6.B6, null);
-        int i11 = apVar.f45476s;
+        int i11 = apVar.f45470s;
         if (i11 == 1) {
             y8Var.setText(org.telegram.messenger.hd.M0(2131751147, null));
         } else if (i11 == 0) {
@@ -82,8 +82,8 @@ public final class zo extends v4.h0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 ap apVar = this.d;
-                org.telegram.messenger.g0.E2(apVar.f45475r);
-                frameLayout.addView(apVar.f45475r);
+                org.telegram.messenger.g0.E2(apVar.f45469r);
+                frameLayout.addView(apVar.f45469r);
                 frameLayout.setLayoutParams(new v4.p0(-1, -2));
                 return new v4.e1(frameLayout);
             }

@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import di.jc;
 import di.kc;
-import di.lc;
 import fi.c1;
 import hi.b8;
 import hi.d3;
@@ -145,9 +145,9 @@ public final class l extends AnimatorListenerAdapter {
                 ((o) nVar.f1093n).f1095b.setAllowDrawCursor(true);
                 return;
             case 1:
-                lc lcVar = (lc) obj2;
-                lcVar.f9005b.remove((kc) obj);
-                lcVar.f1();
+                kc kcVar = (kc) obj2;
+                kcVar.f8934b.remove((jc) obj);
+                kcVar.f1();
                 return;
             case 2:
                 super.onAnimationEnd(animator);
@@ -241,8 +241,8 @@ public final class l extends AnimatorListenerAdapter {
                 return;
             case 12:
                 dv dvVar = (dv) obj2;
-                dvVar.f23158b = true;
-                dvVar.f23161f = null;
+                dvVar.f23165b = true;
+                dvVar.f23168f = null;
                 View view2 = (View) obj;
                 if (view2 != null) {
                     view2.invalidate();
@@ -319,13 +319,13 @@ public final class l extends AnimatorListenerAdapter {
                     if (viewGroup != null) {
                         viewGroup.removeView(view4);
                     }
-                    anVar.f45304o3 = null;
+                    anVar.f45303o3 = null;
                     anVar.Fb = null;
                     return;
                 }
                 return;
             case 17:
-                q1 q1Var = ((hl) obj2).f47737b;
+                q1 q1Var = ((hl) obj2).f47727b;
                 q1Var.setAlpha(1.0f);
                 q1Var.getTransitionParams().f32016y0 = false;
                 q0 q0Var = new q0("alpha", 2);
@@ -394,16 +394,16 @@ public final class l extends AnimatorListenerAdapter {
             case 25:
                 ki kiVar = (ki) obj2;
                 AnimatorSet animatorSet3 = kiVar.A0;
-                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = kiVar.f36476n4) != null && !gVar.f55742f) {
+                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = kiVar.f36464n4) != null && !gVar.f55742f) {
                     ((yf) obj).run();
                     return;
                 }
                 return;
             case 26:
                 yt ytVar = (yt) obj2;
-                if (ytVar.f42153a.f33378p1.getVisibility() == 0) {
-                    ytVar.f42153a.f33378p1.setAlpha(1.0f);
-                    ytVar.f42153a.f33378p1.setVisibility(4);
+                if (ytVar.f42155a.f33381p1.getVisibility() == 0) {
+                    ytVar.f42155a.f33381p1.setAlpha(1.0f);
+                    ytVar.f42155a.f33381p1.setVisibility(4);
                 }
                 ((Runnable) obj).run();
                 return;
@@ -426,9 +426,9 @@ public final class l extends AnimatorListenerAdapter {
             case 28:
                 y00 y00Var = (y00) obj2;
                 y00Var.removeView((f20) obj);
-                y00Var.f41834e.clear();
-                y00Var.f41831a = null;
-                y00Var.f41832b = false;
+                y00Var.f41826e.clear();
+                y00Var.f41823a = null;
+                y00Var.f41824b = false;
                 return;
             default:
                 ArrayList arrayList = (ArrayList) obj;
@@ -436,9 +436,9 @@ public final class l extends AnimatorListenerAdapter {
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     y00Var2.removeView((View) arrayList.get(i12));
                 }
-                y00Var2.f41834e.clear();
-                y00Var2.f41831a = null;
-                y00Var2.f41832b = false;
+                y00Var2.f41826e.clear();
+                y00Var2.f41823a = null;
+                y00Var2.f41824b = false;
                 return;
         }
     }

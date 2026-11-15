@@ -4,29 +4,29 @@ import android.view.View;
 import java.util.Comparator;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class qv0 implements Comparator {
-    public final int f50796a;
+    public final int f50795a;
 
     public qv0(int i7) {
-        this.f50796a = i7;
+        this.f50795a = i7;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int i7;
         int i10;
-        switch (this.f50796a) {
+        switch (this.f50795a) {
             case 0:
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 1:
                 if (obj instanceof rw0) {
-                    i7 = ((rw0) obj).f51048g;
+                    i7 = ((rw0) obj).f51044g;
                 } else if (obj instanceof org.telegram.messenger.zo) {
                     i7 = ((org.telegram.messenger.zo) obj).d;
                 } else {
                     i7 = 0;
                 }
                 if (obj2 instanceof rw0) {
-                    i10 = ((rw0) obj2).f51048g;
+                    i10 = ((rw0) obj2).f51044g;
                 } else if (obj2 instanceof org.telegram.messenger.zo) {
                     i10 = ((org.telegram.messenger.zo) obj2).d;
                 } else {
@@ -73,9 +73,9 @@ public final class qv0 implements Comparator {
                 }
                 return 0;
             case 8:
-                return (int) (((org.telegram.ui.web.j) obj2).f52640c - ((org.telegram.ui.web.j) obj).f52640c);
+                return (int) (((org.telegram.ui.web.j) obj2).f52643c - ((org.telegram.ui.web.j) obj).f52643c);
             case 9:
-                return (int) (((org.telegram.ui.web.j) obj2).f52640c - ((org.telegram.ui.web.j) obj).f52640c);
+                return (int) (((org.telegram.ui.web.j) obj2).f52643c - ((org.telegram.ui.web.j) obj).f52643c);
             case 10:
                 return Long.compare(((org.telegram.utils.twidget.k0) obj2).f54287y, ((org.telegram.utils.twidget.k0) obj).f54287y);
             case 11:

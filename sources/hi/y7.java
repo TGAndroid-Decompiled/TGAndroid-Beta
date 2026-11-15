@@ -206,7 +206,7 @@ public final class y7 extends FrameLayout {
         }
         imageView.setVisibility(i7);
         TextView textView = (TextView) this.d;
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (!z11 && z10) {
             f10 = 53.0f;
         } else {
@@ -301,9 +301,9 @@ public final class y7 extends FrameLayout {
         TextView textView = new TextView(context);
         this.d = textView;
         i20.o(textView, 1, 20.0f);
-        textView.setGravity(hd.f24101a0 ? 5 : 3);
+        textView.setGravity(hd.f24104a0 ? 5 : 3);
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f28957j5, e6Var);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         addView(textView, c8.ja.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.f15429c = imageView;
@@ -313,7 +313,7 @@ public final class y7 extends FrameLayout {
         x1Var.a(-1);
         x1Var.b(-1);
         x1Var.f29864k = 220.0f;
-        addView(imageView, c8.ja.d(24, 24.0f, (hd.f24101a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(imageView, c8.ja.d(24, 24.0f, (hd.f24104a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new p5(this, 1));
     }
 }

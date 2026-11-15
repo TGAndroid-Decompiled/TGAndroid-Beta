@@ -44,7 +44,7 @@ public final class d implements Callable {
                 }
                 iaVar.a();
                 try {
-                    Object e10 = mobileVisionBase.f7300b.e(aVar);
+                    Object e10 = mobileVisionBase.f7303b.e(aVar);
                     iaVar.close();
                     return e10;
                 } catch (Throwable th2) {
@@ -59,7 +59,7 @@ public final class d implements Callable {
                     throw th2;
                 }
             default:
-                return (f) ((ShortcutInfoCompatSaverImpl) obj2).f2833b.get((String) obj);
+                return (f) ((ShortcutInfoCompatSaverImpl) obj2).f2836b.get((String) obj);
         }
     }
 

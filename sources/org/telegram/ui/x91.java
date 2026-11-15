@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class x91 implements org.telegram.ui.Components.gj0 {
-    public final aa1 f53133a;
+    public final aa1 f53132a;
 
     public x91(aa1 aa1Var) {
-        this.f53133a = aa1Var;
+        this.f53132a = aa1Var;
     }
 
     @Override
     public final void b(int i7, View view) {
-        aa1 aa1Var = this.f53133a;
+        aa1 aa1Var = this.f53132a;
         ArrayList arrayList = aa1Var.d;
         if (((z91) arrayList.get(i7)).f56015a == 1) {
             Bundle bundle = new Bundle();
@@ -23,17 +23,17 @@ public final class x91 implements org.telegram.ui.Components.gj0 {
             bundle.putBoolean("for_select", true);
             u91 u91Var = new u91(bundle);
             u91Var.B0 = aa1Var.f44983e;
-            u91Var.f51878w = new v91(this);
+            u91Var.f51879w = new v91(this);
             aa1Var.presentFragment(u91Var);
         }
         if (((z91) arrayList.get(i7)).f56015a == 2) {
-            TLRPC.TL_forumTopic tL_forumTopic = ((z91) arrayList.get(i7)).f53916c;
+            TLRPC.TL_forumTopic tL_forumTopic = ((z91) arrayList.get(i7)).f53881c;
             Bundle bundle2 = new Bundle();
             bundle2.putLong("dialog_id", aa1Var.f44982c);
             bundle2.putLong("topic_id", tL_forumTopic.f28103id);
             bundle2.putBoolean("exception", false);
             fx0 fx0Var = new fx0(bundle2, null);
-            fx0Var.f47228s = new w91(this, tL_forumTopic);
+            fx0Var.f47218s = new w91(this, tL_forumTopic);
             aa1Var.presentFragment(fx0Var);
         }
         if (((z91) arrayList.get(i7)).f56015a == 4) {

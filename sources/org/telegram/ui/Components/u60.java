@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u60 extends tj0 {
-    public final Context f39939c;
+    public final Context f39936c;
     public final v60 d;
 
     public u60(v60 v60Var, Context context) {
         this.d = v60Var;
-        this.f39939c = context;
+        this.f39936c = context;
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class u60 extends tj0 {
         View h4Var;
         v60 v60Var = this.d;
         if (v60Var.f40286w1 == 0) {
-            h4Var = new org.telegram.ui.Cells.c7(2, this.f39939c, null);
+            h4Var = new org.telegram.ui.Cells.c7(2, this.f39936c, null);
             h4Var.setLayoutParams(new v4.p0(org.telegram.messenger.g0.L(80.0f), org.telegram.messenger.g0.L(100.0f)));
         } else {
             if (v60Var.f40286w1 == 2) {
@@ -73,7 +73,7 @@ public final class u60 extends tj0 {
             } else {
                 z10 = false;
             }
-            h4Var = new org.telegram.ui.Cells.h4(2, 0, this.f39939c, null, false, z10);
+            h4Var = new org.telegram.ui.Cells.h4(2, 0, this.f39936c, null, false, z10);
         }
         return new v4.e1(h4Var);
     }

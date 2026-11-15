@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.messenger.is {
-    public final dh0 f47140m1;
+    public final dh0 f47124m1;
     public final org.telegram.ui.Components.fh0 n1;
-    public org.telegram.messenger.z10 f47141o1;
+    public org.telegram.messenger.z10 f47125o1;
 
     public fh0(Context context, boolean z10, org.telegram.messenger.z10 z10Var) {
         super(context, false);
         int i7;
-        this.f47141o1 = z10Var;
+        this.f47125o1 = z10Var;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         FrameLayout frameLayout = new FrameLayout(context);
         ?? imageView = new ImageView(context);
@@ -32,21 +32,21 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
         org.telegram.ui.ActionBar.q6.j(imageView, L2, M, null, null);
         frameLayout.addView((View) imageView, c8.ja.e(72, 72, 17));
         dh0 dh0Var = new dh0(context);
-        this.f47140m1 = dh0Var;
+        this.f47124m1 = dh0Var;
         frameLayout.addView(dh0Var, c8.ja.d(64, 32.0f, 49, 29.0f, 16.0f, 0.0f, 0.0f));
         dh0Var.a(0);
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final fh0 f46168b;
+            public final fh0 f46157b;
 
             {
-                this.f46168b = this;
+                this.f46157b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.fh0 fh0Var = this.f46168b.n1;
+                        org.telegram.ui.Components.fh0 fh0Var = this.f46157b.n1;
                         if (!fh0Var.b()) {
                             fh0Var.setProgress(0.0f);
                             fh0Var.d();
@@ -54,11 +54,11 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
                         }
                         return;
                     default:
-                        fh0 fh0Var2 = this.f46168b;
-                        org.telegram.messenger.z10 z10Var2 = fh0Var2.f47141o1;
+                        fh0 fh0Var2 = this.f46157b;
+                        org.telegram.messenger.z10 z10Var2 = fh0Var2.f47125o1;
                         if (z10Var2 != null) {
                             z10Var2.a(Boolean.TRUE);
-                            fh0Var2.f47141o1 = null;
+                            fh0Var2.f47125o1 = null;
                         }
                         fh0Var2.dismiss();
                         return;
@@ -104,17 +104,17 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
         textView3.setBackground(e10);
         org.telegram.ui.ActionBar.q6.j(textView3, e10, M2, e11, null);
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final fh0 f46168b;
+            public final fh0 f46157b;
 
             {
-                this.f46168b = this;
+                this.f46157b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.fh0 fh0Var = this.f46168b.n1;
+                        org.telegram.ui.Components.fh0 fh0Var = this.f46157b.n1;
                         if (!fh0Var.b()) {
                             fh0Var.setProgress(0.0f);
                             fh0Var.d();
@@ -122,11 +122,11 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
                         }
                         return;
                     default:
-                        fh0 fh0Var2 = this.f46168b;
-                        org.telegram.messenger.z10 z10Var2 = fh0Var2.f47141o1;
+                        fh0 fh0Var2 = this.f46157b;
+                        org.telegram.messenger.z10 z10Var2 = fh0Var2.f47125o1;
                         if (z10Var2 != null) {
                             z10Var2.a(Boolean.TRUE);
-                            fh0Var2.f47141o1 = null;
+                            fh0Var2.f47125o1 = null;
                         }
                         fh0Var2.dismiss();
                         return;
@@ -136,7 +136,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
         f10.addView(textView3, c8.ja.k(14.0f, 14.0f, 14.0f, 10.0f, -1, 48));
         for (int i12 = 0; i12 < 4; i12++) {
             try {
-                org.telegram.messenger.ns.f(i12).c(this, org.telegram.messenger.ns.f25559r);
+                org.telegram.messenger.ns.f(i12).c(this, org.telegram.messenger.ns.f25560r);
             } catch (Exception unused) {
             }
         }
@@ -171,7 +171,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25559r) {
+        if (i7 == org.telegram.messenger.ns.f25560r) {
             int intValue = ((Integer) objArr[0]).intValue();
             int i11 = org.telegram.messenger.np.D8;
             if ((intValue & 256) >= 0) {
@@ -179,7 +179,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
                 for (int i13 = 0; i13 < 4; i13++) {
                     i12 += org.telegram.messenger.vr.a0(i13).L;
                 }
-                if (this.f47140m1.a(i12)) {
+                if (this.f47124m1.a(i12)) {
                     org.telegram.ui.Components.fh0 fh0Var = this.n1;
                     if (!fh0Var.b()) {
                         fh0Var.setProgress(0.0f);
@@ -193,15 +193,15 @@ public final class fh0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
     @Override
     public final void dismiss() {
         super.dismiss();
-        org.telegram.messenger.z10 z10Var = this.f47141o1;
+        org.telegram.messenger.z10 z10Var = this.f47125o1;
         if (z10Var != null) {
             z10Var.a(Boolean.FALSE);
-            this.f47141o1 = null;
+            this.f47125o1 = null;
             I0();
         }
         for (int i7 = 0; i7 < 4; i7++) {
             try {
-                org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25559r);
+                org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25560r);
             } catch (Exception unused) {
             }
         }

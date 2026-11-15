@@ -82,7 +82,7 @@ public final class h implements q0 {
         if (this.f19037p.isEmpty()) {
             b3.e eVar = this.f19026c;
             synchronized (eVar) {
-                if (eVar.f2876a) {
+                if (eVar.f2879a) {
                     eVar.d(0);
                 }
             }

@@ -65,7 +65,7 @@ public final class w implements s10 {
                     String str3 = z1Var.f44779e;
                     TL_wallet.tonConnectSession tonconnectsession = z1Var.f44776a;
                     if ("sendTransaction".equals(str3)) {
-                        SharedPreferences sharedPreferences = np.s1(d2Var.f43729a).f25280f7;
+                        SharedPreferences sharedPreferences = np.s1(d2Var.f43729a).f25283f7;
                         if (sharedPreferences.contains(d2.l(tonconnectsession.f28313id, z1Var.f44777b) + ".transfer")) {
                             d2Var.B(z1Var, b10, x21Var);
                             return;

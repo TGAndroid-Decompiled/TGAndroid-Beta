@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class pn implements Runnable {
-    public final int f25957a;
-    public final np f25958b;
+    public final int f25959a;
+    public final np f25960b;
 
     public pn(np npVar, int i7) {
-        this.f25957a = i7;
-        this.f25958b = npVar;
+        this.f25959a = i7;
+        this.f25960b = npVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25957a;
-        np npVar = this.f25958b;
+        int i7 = this.f25959a;
+        np npVar = this.f25960b;
         switch (i7) {
             case 0:
                 npVar.I(true);
@@ -21,7 +21,7 @@ public final class pn implements Runnable {
                 npVar.getNotificationCenter().k(3, Boolean.TRUE);
                 return;
             case 2:
-                npVar.f25275f2 = false;
+                npVar.f25278f2 = false;
                 return;
             case 3:
                 npVar.getNotificationCenter().k(2, 8192);
@@ -34,26 +34,26 @@ public final class pn implements Runnable {
                 npVar.R1.b();
                 npVar.S1.clear();
                 npVar.T1.clear();
-                npVar.f25274f1.clear();
-                npVar.f25283g1.clear();
-                npVar.f25292h1.clear();
-                npVar.f25246c1.b();
-                npVar.f25255d1.b();
-                npVar.f25300i1 = 0L;
-                npVar.f25308j1 = 0L;
-                npVar.f25316k1 = 0L;
-                npVar.f25411v0.clear();
-                npVar.f25421w0.clear();
-                npVar.f25284g2 = false;
-                npVar.f25342n2 = null;
-                npVar.f25351o2 = null;
+                npVar.f25277f1.clear();
+                npVar.f25286g1.clear();
+                npVar.f25295h1.clear();
+                npVar.f25249c1.b();
+                npVar.f25258d1.b();
+                npVar.f25303i1 = 0L;
+                npVar.f25311j1 = 0L;
+                npVar.f25319k1 = 0L;
+                npVar.f25414v0.clear();
+                npVar.f25424w0.clear();
+                npVar.f25287g2 = false;
+                npVar.f25345n2 = null;
+                npVar.f25354o2 = null;
                 return;
             case 6:
                 a8.b("cleanup: isUpdating = false");
                 npVar.getConnectionsManager().setIsUpdating(false);
                 npVar.X0.b();
                 npVar.Y0.clear();
-                npVar.f25226a1.b();
+                npVar.f25229a1.b();
                 npVar.Z0.clear();
                 npVar.A0.clear();
                 npVar.B0.b();

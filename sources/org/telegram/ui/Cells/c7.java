@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import di.ub;
+import di.tb;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.is;
 import org.telegram.messenger.m10;
@@ -34,7 +34,7 @@ public class c7 extends FrameLayout implements is {
     public long M;
     public oy0 N;
     public final org.telegram.ui.Components.i9 f30109a;
-    public final ub f30110b;
+    public final tb f30110b;
     public final org.telegram.ui.ActionBar.j5 f30111c;
     public final fp d;
     public final a7 f30112e;
@@ -53,7 +53,7 @@ public class c7 extends FrameLayout implements is {
         float f10;
         float f11;
         float f12;
-        this.f30119y = m10.f24934t0;
+        this.f30119y = m10.f24940t0;
         er erVar = er.h;
         this.F = new org.telegram.ui.Components.u5(this, 0L, 350L, erVar);
         this.H = new org.telegram.ui.Components.u5(this, 0L, 350L, erVar);
@@ -70,26 +70,26 @@ public class c7 extends FrameLayout implements is {
         } else {
             addView(i9Var, c8.ja.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         }
-        ub ubVar = new ub(context, 8);
-        this.f30110b = ubVar;
-        ns.i(ubVar);
+        tb tbVar = new tb(context, 8);
+        this.f30110b = tbVar;
+        ns.i(tbVar);
         if (this.G) {
             i10 = org.telegram.ui.ActionBar.j6.C6;
         } else {
             i10 = org.telegram.ui.ActionBar.j6.f28957j5;
         }
-        org.telegram.ui.ActionBar.q6.U(ubVar, i10, e6Var);
-        ubVar.setTextSize(1, 12.0f);
-        ubVar.setMaxLines(2);
-        ubVar.setGravity(49);
-        ubVar.setLines(2);
-        ubVar.setEllipsize(TextUtils.TruncateAt.END);
+        org.telegram.ui.ActionBar.q6.U(tbVar, i10, e6Var);
+        tbVar.setTextSize(1, 12.0f);
+        tbVar.setMaxLines(2);
+        tbVar.setGravity(49);
+        tbVar.setLines(2);
+        tbVar.setEllipsize(TextUtils.TruncateAt.END);
         if (i7 == 2) {
             f10 = 58.0f;
         } else {
             f10 = 66.0f;
         }
-        addView(ubVar, c8.ja.d(-1, -2.0f, 51, 6.0f, f10, 6.0f, 0.0f));
+        addView(tbVar, c8.ja.d(-1, -2.0f, 51, 6.0f, f10, 6.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
         this.f30111c = j5Var;
         org.telegram.ui.ActionBar.q6.X(j5Var, org.telegram.ui.ActionBar.j6.f28957j5, e6Var);
@@ -138,12 +138,12 @@ public class c7 extends FrameLayout implements is {
         int i7;
         boolean z11;
         a7 a7Var = this.f30112e;
-        a7Var.f39600p = 1.0f;
+        a7Var.f39598p = 1.0f;
         int i10 = (j3 > Long.MAX_VALUE ? 1 : (j3 == Long.MAX_VALUE ? 0 : -1));
         org.telegram.ui.Components.i9 i9Var = this.f30109a;
-        ub ubVar = this.f30110b;
+        tb tbVar = this.f30110b;
         if (i10 == 0) {
-            ubVar.setText(a());
+            tbVar.setText(a());
             if (this.f30113f == null) {
                 this.f30113f = new b7(getContext(), i9Var, true, 2131231615, this.E);
             }
@@ -163,7 +163,7 @@ public class c7 extends FrameLayout implements is {
                 } else {
                     i7 = org.telegram.ui.ActionBar.j6.f28957j5;
                 }
-                org.telegram.ui.ActionBar.q6.U(ubVar, i7, this.E);
+                org.telegram.ui.ActionBar.q6.U(tbVar, i7, this.E);
                 u5Var2.a(this.G);
                 if (this.I > 0) {
                     z11 = true;
@@ -175,22 +175,22 @@ public class c7 extends FrameLayout implements is {
                 a7Var.r(this.h);
                 int i12 = this.f30114n;
                 if (i12 != 2 && q10.z(this.h)) {
-                    ubVar.setText(hd.M0(2131746266, null));
+                    tbVar.setText(hd.M0(2131746266, null));
                     a7Var.g(12);
                     i9Var.j(null, null, a7Var, this.h);
                 } else if (i12 != 2 && q10.B(this.h)) {
-                    ubVar.setText(hd.M0(2131745901, null));
+                    tbVar.setText(hd.M0(2131745901, null));
                     a7Var.g(1);
                     i9Var.j(null, null, a7Var, this.h);
                 } else {
                     if (charSequence != null) {
-                        ubVar.setText(charSequence);
+                        tbVar.setText(charSequence);
                     } else {
                         TLRPC.User user = this.h;
                         if (user != null) {
-                            ubVar.setText(org.telegram.messenger.g5.m(0, user.first_name, user.last_name));
+                            tbVar.setText(org.telegram.messenger.g5.m(0, user.first_name, user.last_name));
                         } else {
-                            ubVar.setText("");
+                            tbVar.setText("");
                         }
                     }
                     i9Var.f(this.h, a7Var);
@@ -205,15 +205,15 @@ public class c7 extends FrameLayout implements is {
                 u5Var.e(true, 0.0f);
                 TLRPC.Chat M0 = np.s1(i11).M0(Long.valueOf(-j3));
                 if (charSequence != null) {
-                    ubVar.setText(charSequence);
+                    tbVar.setText(charSequence);
                 } else if (M0 != null) {
                     if (M0.monoforum) {
-                        ubVar.setText(qg.c.i(i11, M0, false));
+                        tbVar.setText(qg.c.i(i11, M0, false));
                     } else {
-                        ubVar.setText(M0.title);
+                        tbVar.setText(M0.title);
                     }
                 } else {
-                    ubVar.setText("");
+                    tbVar.setText("");
                 }
                 if (org.telegram.messenger.t3.p0(M0)) {
                     qg.c.o(i11, M0, a7Var, i9Var);
@@ -280,11 +280,11 @@ public class c7 extends FrameLayout implements is {
                     c7 c7Var = c7.this;
                     org.telegram.ui.ActionBar.j5 j5Var2 = c7Var.f30111c;
                     j5Var2.setAlpha(f14);
-                    ub ubVar = c7Var.f30110b;
+                    tb tbVar = c7Var.f30110b;
                     float f15 = 1.0f - f14;
-                    ubVar.setAlpha(f15);
+                    tbVar.setAlpha(f15);
                     j5Var2.setTranslationX(f15 * (-org.telegram.messenger.g0.L(10.0f)));
-                    ubVar.setTranslationX(f14 * org.telegram.messenger.g0.L(10.0f));
+                    tbVar.setTranslationX(f14 * org.telegram.messenger.g0.L(10.0f));
                 }
             });
             gVar2.a(new r1.c() {
@@ -296,17 +296,17 @@ public class c7 extends FrameLayout implements is {
             j5Var.setTag(2131296663, gVar2);
             gVar2.h();
         } else {
-            ub ubVar = this.f30110b;
+            tb tbVar = this.f30110b;
             if (z12) {
                 j5Var.setAlpha(1.0f);
-                ubVar.setAlpha(0.0f);
+                tbVar.setAlpha(0.0f);
                 j5Var.setTranslationX(0.0f);
-                ubVar.setTranslationX(org.telegram.messenger.g0.L(10.0f));
+                tbVar.setTranslationX(org.telegram.messenger.g0.L(10.0f));
             } else {
                 j5Var.setAlpha(0.0f);
-                ubVar.setAlpha(1.0f);
+                tbVar.setAlpha(1.0f);
                 j5Var.setTranslationX(-org.telegram.messenger.g0.L(10.0f));
-                ubVar.setTranslationX(0.0f);
+                tbVar.setTranslationX(0.0f);
             }
         }
         this.f30118x = z12;
@@ -317,7 +317,7 @@ public class c7 extends FrameLayout implements is {
         TL_account.RequirementToContact requirementToContact;
         long k10;
         int i11;
-        if (i7 == ns.f25513i3) {
+        if (i7 == ns.f25514i3) {
             TLRPC.User user = this.h;
             int i12 = this.f30119y;
             if (user != null) {
@@ -365,13 +365,13 @@ public class c7 extends FrameLayout implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f30119y).c(this, ns.f25513i3);
+        ns.f(this.f30119y).c(this, ns.f25514i3);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f30119y).n(this, ns.f25513i3);
+        ns.f(this.f30119y).n(this, ns.f25514i3);
     }
 
     @Override
@@ -397,7 +397,7 @@ public class c7 extends FrameLayout implements is {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.d.f34663a.f32441q) {
+        if (this.d.f34667a.f32441q) {
             accessibilityNodeInfo.setSelected(true);
         }
     }

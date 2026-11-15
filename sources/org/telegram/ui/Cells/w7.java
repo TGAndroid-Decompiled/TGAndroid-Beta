@@ -75,9 +75,9 @@ public final class w7 extends FrameLayout {
         ?? obj = new Object();
         int[] iArr = new int[2];
         i9Var.getLocationInWindow(iArr);
-        obj.f22885a = imageReceiver.r() + iArr[0];
-        obj.f22886b = imageReceiver.s() + iArr[1];
-        obj.f22887c = imageReceiver.N0;
+        obj.f22889a = imageReceiver.r() + iArr[0];
+        obj.f22890b = imageReceiver.s() + iArr[1];
+        obj.f22891c = imageReceiver.N0;
         return obj;
     }
 

@@ -403,15 +403,15 @@ public final class f extends Drawable {
                     i12++;
                 }
                 i7 = 128;
-                hVar.a(new Canvas((Bitmap) xVarArr[0].f57596b), new Rect(0, 0, i10, i10));
-                hVar.f60013g.setShader((BitmapShader) xVarArr[0].f57597c);
+                hVar.a(new Canvas((Bitmap) xVarArr[0].f57597b), new Rect(0, 0, i10, i10));
+                hVar.f60013g.setShader((BitmapShader) xVarArr[0].f57598c);
                 hVar.h = System.currentTimeMillis();
             } else {
                 i7 = 128;
                 if (hVar.f60021p && !qc.e(128)) {
                     hVar.d = 0;
-                    hVar.a(new Canvas((Bitmap) xVarArr[0].f57596b), new Rect(0, 0, i10, i10));
-                    hVar.f60013g.setShader((BitmapShader) xVarArr[0].f57597c);
+                    hVar.a(new Canvas((Bitmap) xVarArr[0].f57597b), new Rect(0, 0, i10, i10));
+                    hVar.f60013g.setShader((BitmapShader) xVarArr[0].f57598c);
                     hVar.h = System.currentTimeMillis();
                     hVar.f60021p = false;
                 }
@@ -423,7 +423,7 @@ public final class f extends Drawable {
                 bg.k d = bg.k.d();
                 d.getClass();
                 bg.k.c();
-                d.f3292c.add(this);
+                d.f3295c.add(this);
                 if (h.f60007q == null) {
                     h.f60007q = new h();
                 }

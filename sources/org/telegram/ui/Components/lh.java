@@ -126,7 +126,7 @@ public final class lh extends uj0 {
                     canvas.saveLayer(L, getPaddingTop(), org.telegram.messenger.g0.L(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.t(1.0f, ((te.a) this.f36801k3).f57081e, org.telegram.messenger.g0.L(8.0f), L), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.t(1.0f, ((te.a) this.f36801k3).f57085e, org.telegram.messenger.g0.L(8.0f), L), 0.0f);
                     canvas.drawPaint(this.f36798g3);
                     canvas.restore();
                     canvas.restore();
@@ -136,7 +136,7 @@ public final class lh extends uj0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - org.telegram.messenger.g0.L(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((te.a) this.f36802l3).f57081e, org.telegram.messenger.g0.L(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((te.a) this.f36802l3).f57085e, org.telegram.messenger.g0.L(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.f36799h3);
                     canvas.restore();
                     canvas.restore();
@@ -177,7 +177,7 @@ public final class lh extends uj0 {
                 for (int i12 = 0; i12 < childCount; i12++) {
                     View childAt = getChildAt(i12);
                     if (childAt instanceof fi) {
-                        f11 = ((fi) childAt).f34612a.d() + f11;
+                        f11 = ((fi) childAt).f34616a.d() + f11;
                     }
                 }
                 if (size > f11 && childCount > 0) {
@@ -188,7 +188,7 @@ public final class lh extends uj0 {
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt2 = getChildAt(i13);
                     if (childAt2 instanceof fi) {
-                        ((fi) childAt2).f34612a.setAdditionalWidth(i11);
+                        ((fi) childAt2).f34616a.setAdditionalWidth(i11);
                     }
                 }
                 super.onMeasure(i7, i10);

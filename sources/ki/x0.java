@@ -10,7 +10,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.ma0;
+import org.telegram.ui.Components.u80;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 import org.telegram.ui.ay0;
@@ -65,7 +65,7 @@ public final class x0 implements RequestDelegate {
                     hashSet.add(Long.valueOf(j3));
                 }
                 if (atomicInteger.incrementAndGet() == i10 && !hashSet.isEmpty()) {
-                    org.telegram.messenger.g0.h3(new ma0(c40Var, hashSet, r3Var, str, 10));
+                    org.telegram.messenger.g0.h3(new u80(c40Var, hashSet, r3Var, str, 11));
                     return;
                 }
                 return;

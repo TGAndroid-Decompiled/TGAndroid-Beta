@@ -3,12 +3,12 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gt0 implements org.telegram.messenger.z10 {
-    public final int f47521a;
-    public final ht0 f47522b;
+    public final int f47511a;
+    public final ht0 f47512b;
 
     public gt0(ht0 ht0Var, int i7) {
-        this.f47521a = i7;
-        this.f47522b = ht0Var;
+        this.f47511a = i7;
+        this.f47512b = ht0Var;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class gt0 implements org.telegram.messenger.z10 {
         TL_account.TL_birthday tL_birthday;
         int i7;
         int i10;
-        switch (this.f47521a) {
+        switch (this.f47511a) {
             case 0:
-                PrivacyControlActivity privacyControlActivity = this.f47522b.d;
+                PrivacyControlActivity privacyControlActivity = this.f47512b.d;
                 privacyControlActivity.N = ((Integer) obj).intValue();
                 org.telegram.messenger.g0.Z3(privacyControlActivity.f43027l0, privacyControlActivity.f43015c);
                 privacyControlActivity.P0();
@@ -28,7 +28,7 @@ public final class gt0 implements org.telegram.messenger.z10 {
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                ht0 ht0Var = this.f47522b;
+                ht0 ht0Var = this.f47512b;
                 PrivacyControlActivity privacyControlActivity2 = ht0Var.d;
                 TLRPC.UserFull b22 = privacyControlActivity2.getMessagesController().b2(privacyControlActivity2.getUserConfig().e());
                 if (b22 != null) {

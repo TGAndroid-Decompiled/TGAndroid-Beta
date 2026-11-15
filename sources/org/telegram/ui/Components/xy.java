@@ -3,13 +3,13 @@ package org.telegram.ui.Components;
 import android.opengl.GLES20;
 import java.util.Locale;
 public final class xy {
-    public final String f41796a;
-    public final String f41797b;
-    public int f41798c;
+    public final String f41788a;
+    public final String f41789b;
+    public int f41790c;
     public int d;
-    public int f41799e;
-    public int f41800f;
-    public int f41801g;
+    public int f41791e;
+    public int f41792f;
+    public int f41793g;
     public int h;
 
     public xy(float f10, float f11, boolean z10) {
@@ -98,7 +98,7 @@ public final class xy {
             }
         }
         sb2.append("gl_FragColor = sum;\n}\n");
-        this.f41797b = sb2.toString();
+        this.f41789b = sb2.toString();
         float[] fArr4 = new float[i12];
         int i25 = 0;
         float f18 = 0.0f;
@@ -150,33 +150,33 @@ public final class xy {
             sb3.append(String.format(locale5, "blurCoordinates[%d] = inputTexCoord.xy + singleStepOffset * %f;\nblurCoordinates[%d] = inputTexCoord.xy - singleStepOffset * %f;\n", objArr2));
         }
         sb3.append("}");
-        this.f41796a = sb3.toString();
+        this.f41788a = sb3.toString();
     }
 
     public final boolean a() {
-        int h = zy.h(35633, this.f41796a);
-        int h7 = zy.h(35632, this.f41797b);
+        int h = zy.h(35633, this.f41788a);
+        int h7 = zy.h(35632, this.f41789b);
         if (h == 0 || h7 == 0) {
             return false;
         }
         int glCreateProgram = GLES20.glCreateProgram();
-        this.f41798c = glCreateProgram;
+        this.f41790c = glCreateProgram;
         GLES20.glAttachShader(glCreateProgram, h);
-        GLES20.glAttachShader(this.f41798c, h7);
-        GLES20.glBindAttribLocation(this.f41798c, 0, "position");
-        GLES20.glBindAttribLocation(this.f41798c, 1, "inputTexCoord");
-        GLES20.glLinkProgram(this.f41798c);
+        GLES20.glAttachShader(this.f41790c, h7);
+        GLES20.glBindAttribLocation(this.f41790c, 0, "position");
+        GLES20.glBindAttribLocation(this.f41790c, 1, "inputTexCoord");
+        GLES20.glLinkProgram(this.f41790c);
         int[] iArr = new int[1];
-        GLES20.glGetProgramiv(this.f41798c, 35714, iArr, 0);
+        GLES20.glGetProgramiv(this.f41790c, 35714, iArr, 0);
         if (iArr[0] == 0) {
-            GLES20.glDeleteProgram(this.f41798c);
-            this.f41798c = 0;
+            GLES20.glDeleteProgram(this.f41790c);
+            this.f41790c = 0;
         } else {
-            this.d = GLES20.glGetAttribLocation(this.f41798c, "position");
-            this.f41799e = GLES20.glGetAttribLocation(this.f41798c, "inputTexCoord");
-            this.f41800f = GLES20.glGetUniformLocation(this.f41798c, "sTexture");
-            this.f41801g = GLES20.glGetUniformLocation(this.f41798c, "texelWidthOffset");
-            this.h = GLES20.glGetUniformLocation(this.f41798c, "texelHeightOffset");
+            this.d = GLES20.glGetAttribLocation(this.f41790c, "position");
+            this.f41791e = GLES20.glGetAttribLocation(this.f41790c, "inputTexCoord");
+            this.f41792f = GLES20.glGetUniformLocation(this.f41790c, "sTexture");
+            this.f41793g = GLES20.glGetUniformLocation(this.f41790c, "texelWidthOffset");
+            this.h = GLES20.glGetUniformLocation(this.f41790c, "texelHeightOffset");
         }
         return true;
     }

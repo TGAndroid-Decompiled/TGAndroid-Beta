@@ -21,11 +21,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 public final class g5 extends c1 {
-    public static Locale f23664o0;
-    public static Collator f23665p0;
-    public static final String[] f23666q0 = {"lookup", "data1", "data2", "data3", "display_name", "account_type"};
-    public static final String[] f23667r0 = {"lookup", "data2", "data3", "data5"};
-    public static volatile g5[] f23668s0 = new g5[4];
+    public static Locale f23666o0;
+    public static Collator f23667p0;
+    public static final String[] f23668q0 = {"lookup", "data1", "data2", "data3", "display_name", "account_type"};
+    public static final String[] f23669r0 = {"lookup", "data2", "data3", "data5"};
+    public static volatile g5[] f23670s0 = new g5[4];
     public boolean E;
     public final HashMap F;
     public int G;
@@ -48,58 +48,58 @@ public final class g5 extends c1 {
     public ArrayList X;
     public TLRPC.GlobalPrivacySettings Y;
     public HashMap Z;
-    public Account f23669a;
-    public HashMap f23670a0;
-    public boolean f23671b;
-    public ArrayList f23672b0;
-    public final Object f23673c;
-    public HashMap f23674c0;
+    public Account f23671a;
+    public HashMap f23672a0;
+    public boolean f23673b;
+    public ArrayList f23674b0;
+    public final Object f23675c;
+    public HashMap f23676c0;
     public boolean d;
-    public ArrayList f23675d0;
-    public boolean f23676e;
-    public HashMap f23677e0;
-    public final Object f23678f;
-    public ArrayList f23679f0;
-    public ConcurrentHashMap f23680g0;
+    public ArrayList f23677d0;
+    public boolean f23678e;
+    public HashMap f23679e0;
+    public final Object f23680f;
+    public ArrayList f23681f0;
+    public ConcurrentHashMap f23682g0;
     public boolean h;
-    public HashMap f23681h0;
-    public ArrayList f23682i0;
-    public HashMap f23683j0;
-    public ArrayList f23684k0;
-    public HashMap f23685l0;
+    public HashMap f23683h0;
+    public ArrayList f23684i0;
+    public HashMap f23685j0;
+    public ArrayList f23686k0;
+    public HashMap f23687l0;
     public HashMap m0;
-    public boolean f23686n;
-    public int f23687n0;
-    public boolean f23688r;
-    public boolean f23689s;
-    public String f23690w;
-    public final ArrayList f23691x;
-    public String f23692y;
+    public boolean f23688n;
+    public int f23689n0;
+    public boolean f23690r;
+    public boolean f23691s;
+    public String f23692w;
+    public final ArrayList f23693x;
+    public String f23694y;
 
     public g5(int i7) {
         super(i7);
-        this.f23673c = new Object();
-        this.f23678f = new Object();
-        this.f23690w = "";
-        this.f23691x = new ArrayList();
+        this.f23675c = new Object();
+        this.f23680f = new Object();
+        this.f23692w = "";
+        this.f23693x = new ArrayList();
         HashMap hashMap = new HashMap();
         this.F = hashMap;
         this.J = new int[15];
         this.Z = new HashMap();
-        this.f23670a0 = new HashMap();
-        this.f23672b0 = new ArrayList();
-        this.f23674c0 = new HashMap();
-        this.f23675d0 = new ArrayList();
-        this.f23677e0 = new HashMap();
-        this.f23679f0 = new ArrayList();
-        this.f23680g0 = new ConcurrentHashMap(20, 1.0f, 2);
-        this.f23681h0 = new HashMap();
-        this.f23682i0 = new ArrayList();
-        this.f23683j0 = new HashMap();
-        this.f23684k0 = new ArrayList();
-        this.f23685l0 = new HashMap();
+        this.f23672a0 = new HashMap();
+        this.f23674b0 = new ArrayList();
+        this.f23676c0 = new HashMap();
+        this.f23677d0 = new ArrayList();
+        this.f23679e0 = new HashMap();
+        this.f23681f0 = new ArrayList();
+        this.f23682g0 = new ConcurrentHashMap(20, 1.0f, 2);
+        this.f23683h0 = new HashMap();
+        this.f23684i0 = new ArrayList();
+        this.f23685j0 = new HashMap();
+        this.f23686k0 = new ArrayList();
+        this.f23687l0 = new HashMap();
         this.m0 = new HashMap();
-        if (np.s1(this.currentAccount).f25280f7.getBoolean("needGetStatuses", false)) {
+        if (np.s1(this.currentAccount).f25283f7.getBoolean("needGetStatuses", false)) {
             I();
         }
         hashMap.put("À", "A");
@@ -154,7 +154,7 @@ public final class g5 extends c1 {
             i11 = 0;
         }
         StringBuilder sb2 = new StringBuilder(i10 + i11 + 1);
-        if (hd.f24102b0 == 1) {
+        if (hd.f24105b0 == 1) {
             if (str != null && str.length() > 0) {
                 if (i7 > 0 && str.length() > i7 + 2) {
                     return str.substring(0, i7) + "…";
@@ -225,14 +225,14 @@ public final class g5 extends c1 {
             d5 d5Var = new d5();
             d5 d5Var2 = (d5) entry.getValue();
             d5Var.h.addAll(d5Var2.h);
-            d5Var.f23034e.addAll(d5Var2.f23034e);
-            d5Var.f23035f.addAll(d5Var2.f23035f);
-            d5Var.f23036g.addAll(d5Var2.f23036g);
-            d5Var.f23037i = d5Var2.f23037i;
-            d5Var.f23038j = d5Var2.f23038j;
-            d5Var.f23031a = d5Var2.f23031a;
-            String str = d5Var2.f23032b;
-            d5Var.f23032b = str;
+            d5Var.f23042e.addAll(d5Var2.f23042e);
+            d5Var.f23043f.addAll(d5Var2.f23043f);
+            d5Var.f23044g.addAll(d5Var2.f23044g);
+            d5Var.f23045i = d5Var2.f23045i;
+            d5Var.f23046j = d5Var2.f23046j;
+            d5Var.f23039a = d5Var2.f23039a;
+            String str = d5Var2.f23040b;
+            d5Var.f23040b = str;
             hashMap2.put(str, d5Var);
         }
         return hashMap2;
@@ -240,13 +240,13 @@ public final class g5 extends c1 {
 
     public static g5 r(int i7) {
         g5 g5Var;
-        g5 g5Var2 = f23668s0[i7];
+        g5 g5Var2 = f23670s0[i7];
         if (g5Var2 == null) {
             synchronized (g5.class) {
                 try {
-                    g5Var = f23668s0[i7];
+                    g5Var = f23670s0[i7];
                     if (g5Var == null) {
-                        g5[] g5VarArr = f23668s0;
+                        g5[] g5VarArr = f23670s0;
                         g5 g5Var3 = new g5(i7);
                         g5VarArr[i7] = g5Var3;
                         g5Var = g5Var3;
@@ -261,34 +261,34 @@ public final class g5 extends c1 {
     }
 
     public static Collator u() {
-        if (f23665p0 == null || f23664o0 != Locale.getDefault()) {
+        if (f23667p0 == null || f23666o0 != Locale.getDefault()) {
             try {
                 Locale locale = Locale.getDefault();
-                f23664o0 = locale;
+                f23666o0 = locale;
                 Collator collator = Collator.getInstance(locale);
-                f23665p0 = collator;
+                f23667p0 = collator;
                 collator.setStrength(1);
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
         }
-        if (f23665p0 == null) {
+        if (f23667p0 == null) {
             try {
                 Collator collator2 = Collator.getInstance();
-                f23665p0 = collator2;
+                f23667p0 = collator2;
                 collator2.setStrength(1);
             } catch (Exception e11) {
                 a8.g(e11, true);
             }
         }
-        if (f23665p0 == null) {
-            f23665p0 = new c5();
+        if (f23667p0 == null) {
+            f23667p0 = new c5();
         }
-        return f23665p0;
+        return f23667p0;
     }
 
     public static boolean w() {
-        if (t0.f26600b.checkSelfPermission("android.permission.READ_CONTACTS") == 0) {
+        if (t0.f26609b.checkSelfPermission("android.permission.READ_CONTACTS") == 0) {
             return true;
         }
         return false;
@@ -313,18 +313,18 @@ public final class g5 extends c1 {
     }
 
     public final void A(long j3, boolean z10) {
-        synchronized (this.f23673c) {
-            this.f23671b = true;
+        synchronized (this.f23675c) {
+            this.f23673b = true;
         }
         if (z10) {
-            if (r2.f26198a) {
+            if (r2.f26206a) {
                 a8.b("load contacts from cache");
             }
             vr messagesStorage = getMessagesStorage();
-            messagesStorage.f27220a.c(new oq(messagesStorage, 18));
+            messagesStorage.f27219a.c(new nq(messagesStorage, 17));
             return;
         }
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("load contacts from server");
         }
         TLRPC.TL_contacts_getContacts tL_contacts_getContacts = new TLRPC.TL_contacts_getContacts();
@@ -348,11 +348,11 @@ public final class g5 extends c1 {
     }
 
     public final void E(HashMap hashMap, ArrayList arrayList, HashMap hashMap2, boolean z10) {
-        Utilities.f22416e.c(new ey(this, z10, new ArrayList(this.f23679f0), hashMap2, hashMap, arrayList));
+        Utilities.f22416e.c(new ey(this, z10, new ArrayList(this.f23681f0), hashMap2, hashMap, arrayList));
     }
 
     public final void F(final HashMap hashMap, final boolean z10, final boolean z11, final boolean z12, final boolean z13, final boolean z14, final boolean z15) {
-        if (!z11 && !this.f23688r) {
+        if (!z11 && !this.f23690r) {
             return;
         }
         Utilities.f22416e.c(new Runnable() {
@@ -372,7 +372,7 @@ public final class g5 extends c1 {
         int size = arrayList.size();
         int i7 = 0;
         while (true) {
-            arrayList2 = this.f23691x;
+            arrayList2 = this.f23693x;
             if (i7 >= size) {
                 break;
             }
@@ -397,18 +397,18 @@ public final class g5 extends c1 {
             vr messagesStorage = getMessagesStorage();
             messagesStorage.getClass();
             if (!arrayList4.isEmpty()) {
-                messagesStorage.f27220a.c(new pp(messagesStorage, arrayList4, 0));
+                messagesStorage.f27219a.c(new sp(messagesStorage, arrayList4, 20));
             }
         }
         if (!arrayList3.isEmpty()) {
             getMessagesStorage().c1(arrayList3, false);
         }
-        if (this.h && this.f23688r) {
+        if (this.h && this.f23690r) {
             c(arrayList, concurrentHashMap, arrayList3, arrayList4);
             return;
         }
         arrayList2.addAll(arrayList);
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("delay update - contacts add = " + arrayList3.size() + " delete = " + arrayList4.size());
         }
     }
@@ -420,16 +420,16 @@ public final class g5 extends c1 {
     public final void I() {
         L();
         np messagesController = getMessagesController();
-        messagesController.f25387s1.clear();
-        messagesController.f25432x1.clear();
-        SharedPreferences.Editor edit = np.s1(this.currentAccount).f25280f7.edit();
+        messagesController.f25390s1.clear();
+        messagesController.f25435x1.clear();
+        SharedPreferences.Editor edit = np.s1(this.currentAccount).f25283f7.edit();
         edit.putBoolean("needGetStatuses", true).commit();
         getConnectionsManager().sendRequest(new TLRPC.TL_contacts_getStatuses(), new r4(2, this, edit));
     }
 
     public final void J(boolean z10) {
         try {
-            if (np.s1(this.currentAccount).f25280f7.getLong("lastReloadStatusTime", 0L) >= System.currentTimeMillis() - 10800000 && !z10) {
+            if (np.s1(this.currentAccount).f25283f7.getLong("lastReloadStatusTime", 0L) >= System.currentTimeMillis() - 10800000 && !z10) {
                 return;
             }
             I();
@@ -444,7 +444,7 @@ public final class g5 extends c1 {
 
     public final void L() {
         try {
-            np.s1(this.currentAccount).f25280f7.edit().putLong("lastReloadStatusTime", System.currentTimeMillis()).commit();
+            np.s1(this.currentAccount).f25283f7.edit().putLong("lastReloadStatusTime", System.currentTimeMillis()).commit();
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -495,15 +495,15 @@ public final class g5 extends c1 {
                 this.Q = arrayList;
                 break;
         }
-        getNotificationCenter().k(ns.f25521k0, new Object[0]);
+        getNotificationCenter().k(ns.f25522k0, new Object[0]);
         I();
     }
 
     public final void N() {
         HashMap hashMap = new HashMap();
-        int size = this.f23679f0.size();
+        int size = this.f23681f0.size();
         for (int i7 = 0; i7 < size; i7++) {
-            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f23679f0.get(i7);
+            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f23681f0.get(i7);
             TLRPC.User a22 = getMessagesController().a2(Long.valueOf(tL_contact.user_id));
             if (a22 != null && !TextUtils.isEmpty(a22.phone)) {
                 hashMap.put(a22.phone, tL_contact);
@@ -514,8 +514,8 @@ public final class g5 extends c1 {
             d5 d5Var = (d5) entry.getValue();
             int i10 = 0;
             while (true) {
-                if (i10 < d5Var.f23034e.size()) {
-                    if (!hashMap.containsKey((String) d5Var.f23036g.get(i10)) && ((Integer) d5Var.h.get(i10)).intValue() != 1) {
+                if (i10 < d5Var.f23042e.size()) {
+                    if (!hashMap.containsKey((String) d5Var.f23044g.get(i10)) && ((Integer) d5Var.h.get(i10)).intValue() != 1) {
                         i10++;
                     }
                 } else {
@@ -525,18 +525,18 @@ public final class g5 extends c1 {
             }
         }
         Collections.sort(arrayList, new t4(u(), 1));
-        this.f23672b0 = arrayList;
+        this.f23674b0 = arrayList;
     }
 
     public final void a(TLRPC.User user) {
         Uri uri;
-        if (this.f23669a != null && t0.f26600b.checkSelfPermission("android.permission.WRITE_CONTACTS") == 0) {
-            synchronized (this.f23678f) {
+        if (this.f23671a != null && t0.f26609b.checkSelfPermission("android.permission.WRITE_CONTACTS") == 0) {
+            synchronized (this.f23680f) {
                 this.d = true;
             }
-            ContentResolver contentResolver = t0.f26600b.getContentResolver();
+            ContentResolver contentResolver = t0.f26609b.getContentResolver();
             try {
-                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.f23669a.name).appendQueryParameter("account_type", this.f23669a.type).build();
+                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.f23671a.name).appendQueryParameter("account_type", this.f23671a.type).build();
                 contentResolver.delete(build, "sync2 = " + user.f28200id, null);
             } catch (Exception unused) {
             }
@@ -550,7 +550,7 @@ public final class g5 extends c1 {
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
-            synchronized (this.f23678f) {
+            synchronized (this.f23680f) {
                 this.d = false;
             }
         }
@@ -564,8 +564,8 @@ public final class g5 extends c1 {
         }
         int size = arrayList.size();
         ContentProviderOperation.Builder newInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
-        newInsert.withValue("account_name", this.f23669a.name);
-        newInsert.withValue("account_type", this.f23669a.type);
+        newInsert.withValue("account_name", this.f23671a.name);
+        newInsert.withValue("account_type", this.f23671a.type);
         if (TextUtils.isEmpty(user.phone)) {
             str = "";
         } else {
@@ -636,7 +636,7 @@ public final class g5 extends c1 {
                 }
             }
         }
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("process update - contacts add = " + arrayList4.size() + " delete = " + arrayList5.size());
         }
         StringBuilder sb2 = new StringBuilder();
@@ -655,8 +655,8 @@ public final class g5 extends c1 {
                 getMessagesController().X3(user2, true, false);
             }
             if (user2 != null && !TextUtils.isEmpty(user2.phone)) {
-                d5 d5Var = (d5) this.f23670a0.get(user2.phone);
-                if (d5Var != null && (indexOf2 = d5Var.f23036g.indexOf(user2.phone)) != -1) {
+                d5 d5Var = (d5) this.f23672a0.get(user2.phone);
+                if (d5Var != null && (indexOf2 = d5Var.f23044g.indexOf(user2.phone)) != -1) {
                     d5Var.h.set(indexOf2, 0);
                 }
                 if (sb2.length() != 0) {
@@ -683,8 +683,8 @@ public final class g5 extends c1 {
             if (user == null) {
                 z10 = true;
             } else if (!TextUtils.isEmpty(user.phone)) {
-                d5 d5Var2 = (d5) this.f23670a0.get(user.phone);
-                if (d5Var2 != null && (indexOf = d5Var2.f23036g.indexOf(user.phone)) != -1) {
+                d5 d5Var2 = (d5) this.f23672a0.get(user.phone);
+                if (d5Var2 != null && (indexOf = d5Var2.f23044g.indexOf(user.phone)) != -1) {
                     d5Var2.h.set(indexOf, 1);
                 }
                 if (sb3.length() != 0) {
@@ -707,12 +707,12 @@ public final class g5 extends c1 {
         String upperCase;
         Collator u10 = u();
         if (z10) {
-            Collections.sort(this.f23679f0, new s4(this, u10, 0));
+            Collections.sort(this.f23681f0, new s4(this, u10, 0));
         }
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
-        for (int i7 = 0; i7 < this.f23679f0.size(); i7++) {
-            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f23679f0.get(i7);
+        for (int i7 = 0; i7 < this.f23681f0.size(); i7++) {
+            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f23681f0.get(i7);
             TLRPC.User a22 = getMessagesController().a2(Long.valueOf(tL_contact.user_id));
             if (a22 != null) {
                 String j3 = q10.j(a22, true);
@@ -738,8 +738,8 @@ public final class g5 extends c1 {
             }
         }
         Collections.sort(arrayList, new t4(u10, 0));
-        this.f23681h0 = hashMap;
-        this.f23682i0 = arrayList;
+        this.f23683h0 = hashMap;
+        this.f23684i0 = arrayList;
     }
 
     public final boolean e() {
@@ -752,7 +752,7 @@ public final class g5 extends c1 {
             return false;
         }
         try {
-            Cursor query = t0.f26600b.getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI, new String[]{"version"}, null, null, null);
+            Cursor query = t0.f26609b.getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI, new String[]{"version"}, null, null, null);
             if (query != null) {
                 try {
                     StringBuilder sb2 = new StringBuilder();
@@ -760,10 +760,10 @@ public final class g5 extends c1 {
                         sb2.append(query.getString(query.getColumnIndex("version")));
                     }
                     String sb3 = sb2.toString();
-                    if (this.f23690w.length() != 0 && !this.f23690w.equals(sb3)) {
+                    if (this.f23692w.length() != 0 && !this.f23692w.equals(sb3)) {
                         z10 = true;
                     }
-                    this.f23690w = sb3;
+                    this.f23692w = sb3;
                 } catch (Throwable th2) {
                     try {
                         query.close();
@@ -781,11 +781,11 @@ public final class g5 extends c1 {
     }
 
     public final void f() {
-        SharedPreferences sharedPreferences = np.s1(this.currentAccount).f25280f7;
-        this.f23692y = sharedPreferences.getString("invitelink", null);
+        SharedPreferences sharedPreferences = np.s1(this.currentAccount).f25283f7;
+        this.f23694y = sharedPreferences.getString("invitelink", null);
         int i7 = sharedPreferences.getInt("invitelinktime", 0);
         if (!this.E) {
-            if (this.f23692y == null || Math.abs((System.currentTimeMillis() / 1000) - i7) >= 86400) {
+            if (this.f23694y == null || Math.abs((System.currentTimeMillis() / 1000) - i7) >= 86400) {
                 this.E = true;
                 getConnectionsManager().sendRequest(new TLRPC.TL_help_getInviteText(), new q4(this, 0), 2);
             }
@@ -799,8 +799,8 @@ public final class g5 extends c1 {
     public final void h() {
         if (w()) {
             try {
-                ContentResolver contentResolver = t0.f26600b.getContentResolver();
-                Account account = this.f23669a;
+                ContentResolver contentResolver = t0.f26609b.getContentResolver();
+                Account account = this.f23671a;
                 Cursor query = contentResolver.query(ContactsContract.Groups.CONTENT_URI, new String[]{"_id"}, "title=? AND account_type=? AND account_name=?", new String[]{"TelegramConnectionService", account.type, account.name}, null);
                 if (query != null && query.moveToFirst()) {
                     int i7 = query.getInt(0);
@@ -860,9 +860,9 @@ public final class g5 extends c1 {
                 }
             }
             fi.f7 f7Var = P1.f12327k;
-            f7Var.f11709b.f27220a.c(new di.x2(f7Var, j3, 6));
+            f7Var.f11709b.f27219a.c(new di.x2(f7Var, j3, 6));
             np.s1(i10).D();
-            ns.f(i10).k(ns.f25591v5, new Object[0]);
+            ns.f(i10).k(ns.f25592v5, new Object[0]);
             TLRPC.InputUser q12 = getMessagesController().q1(user);
             user.contact = false;
             arrayList2.add(Long.valueOf(user.f28200id));
@@ -873,24 +873,24 @@ public final class g5 extends c1 {
 
     public final void j(long j3) {
         if (w()) {
-            synchronized (this.f23678f) {
+            synchronized (this.f23680f) {
                 this.d = true;
             }
             try {
-                ContentResolver contentResolver = t0.f26600b.getContentResolver();
-                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.f23669a.name).appendQueryParameter("account_type", this.f23669a.type).build();
+                ContentResolver contentResolver = t0.f26609b.getContentResolver();
+                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.f23671a.name).appendQueryParameter("account_type", this.f23671a.type).build();
                 contentResolver.delete(build, "sync2 = " + j3, null);
             } catch (Exception e10) {
                 a8.g(e10, false);
             }
-            synchronized (this.f23678f) {
+            synchronized (this.f23680f) {
                 this.d = false;
             }
         }
     }
 
     public final void k(ContentResolver contentResolver, Account account, ArrayList arrayList, a0.h hVar, a0.h hVar2) {
-        synchronized (this.f23678f) {
+        synchronized (this.f23680f) {
             this.d = true;
         }
         try {
@@ -922,7 +922,7 @@ public final class g5 extends c1 {
         } catch (Exception e10) {
             a8.g(e10, true);
         }
-        synchronized (this.f23678f) {
+        synchronized (this.f23680f) {
             this.d = false;
         }
     }
@@ -932,7 +932,7 @@ public final class g5 extends c1 {
     }
 
     public final String s(int i7) {
-        String str = this.f23692y;
+        String str = this.f23694y;
         if (str == null) {
             str = "https://telegram.org/dl";
         }
@@ -990,7 +990,7 @@ public final class g5 extends c1 {
     }
 
     public final boolean x(long j3) {
-        if (this.f23680g0.get(Long.valueOf(j3)) != null) {
+        if (this.f23682g0.get(Long.valueOf(j3)) != null) {
             return true;
         }
         return false;
@@ -998,8 +998,8 @@ public final class g5 extends c1 {
 
     public final boolean y() {
         boolean z10;
-        synchronized (this.f23673c) {
-            z10 = this.f23671b;
+        synchronized (this.f23675c) {
+            z10 = this.f23673b;
         }
         return z10;
     }

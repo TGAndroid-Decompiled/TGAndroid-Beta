@@ -19,11 +19,11 @@ public final class c0 implements Runnable {
                 return;
             default:
                 e0 e0Var = this.f59143b;
-                g1 g1Var = new g1(e0Var.f35940s1, m10.f24934t0, null, null, null, e0Var.J0);
+                g1 g1Var = new g1(e0Var.f35935s1, m10.f24940t0, null, null, null, e0Var.J0);
                 g1Var.F2 = true;
                 g1Var.G2 = true;
                 g1Var.Y1 = true;
-                e0Var.f35940s1.showDialog(g1Var);
+                e0Var.f35935s1.showDialog(g1Var);
                 return;
         }
     }

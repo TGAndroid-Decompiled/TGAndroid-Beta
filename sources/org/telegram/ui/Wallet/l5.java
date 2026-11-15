@@ -22,7 +22,7 @@ public final class l5 implements ViewTreeObserver.OnPreDrawListener {
         hi.y4 y4Var3;
         switch (this.f44121a) {
             case 0:
-                y5 y5Var = (y5) ((w61) this.f44122b).f52475c;
+                y5 y5Var = (y5) ((w61) this.f44122b).f52478c;
                 if (y5Var.G) {
                     y5Var.T0();
                     return true;
@@ -33,7 +33,7 @@ public final class l5 implements ViewTreeObserver.OnPreDrawListener {
                 y5 y5Var2 = n5Var.f44194e;
                 float f10 = 0.0f;
                 int i7 = 0;
-                if (y5Var2.f44727a0 != null && (v3Var = y5Var2.f38882a) != null) {
+                if (y5Var2.f44727a0 != null && (v3Var = y5Var2.f38880a) != null) {
                     if (y5Var2.f44744p0 && !v3Var.canScrollVertically(1)) {
                         z10 = true;
                     } else {
@@ -44,14 +44,14 @@ public final class l5 implements ViewTreeObserver.OnPreDrawListener {
                         y5Var2.f44727a0.animate().cancel();
                         if (z10) {
                             y5Var2.f44727a0.setVisibility(0);
-                            y5Var2.f44727a0.animate().alpha(1.0f).setDuration(180L).setInterpolator(er.f34421g).start();
+                            y5Var2.f44727a0.animate().alpha(1.0f).setDuration(180L).setInterpolator(er.f34420g).start();
                         } else {
                             y5Var2.f44727a0.setAlpha(0.0f);
                             y5Var2.f44727a0.setVisibility(4);
                         }
                     }
                 }
-                View m10 = y5Var2.f38882a.f39894f3.m(y5Var2.h);
+                View m10 = y5Var2.f38880a.f39891f3.m(y5Var2.h);
                 if (m10 != null) {
                     f10 = m10.getY();
                 }

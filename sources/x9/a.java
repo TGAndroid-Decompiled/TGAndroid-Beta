@@ -4,7 +4,7 @@ import android.util.Log;
 import da.p1;
 import di.h;
 import java.util.concurrent.atomic.AtomicReference;
-import tg.a2;
+import tg.z1;
 import u9.o;
 public final class a {
     public static final b f59853c = new Object();
@@ -13,7 +13,7 @@ public final class a {
 
     public a(o oVar) {
         this.f59854a = oVar;
-        oVar.a(new a2(this, 15));
+        oVar.a(new z1(this, 15));
     }
 
     public final b a(String str) {

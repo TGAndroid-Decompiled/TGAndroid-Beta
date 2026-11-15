@@ -98,7 +98,7 @@ public final class g extends AnimatorListenerAdapter {
                 q8Var.n0(false, f10);
                 if (this.f28545c) {
                     j8 j8Var = q8Var.f38562a;
-                    j8Var.f38247x = -1.0f;
+                    j8Var.f38245x = -1.0f;
                     j8Var.setExpanded(z10);
                     return;
                 }
@@ -112,18 +112,18 @@ public final class g extends AnimatorListenerAdapter {
                             kiVar.B2.setVisibility(4);
                         }
                         kiVar.F2.setVisibility(4);
-                    } else if (kiVar.Q2 && ((ciVar = kiVar.f36509w2) == null || ciVar.N())) {
-                        kiVar.f36506v3.setVisibility(4);
+                    } else if (kiVar.Q2 && ((ciVar = kiVar.f36497w2) == null || ciVar.N())) {
+                        kiVar.f36494v3.setVisibility(4);
                     }
                     if (this.f28545c) {
                         kiVar.Q1();
-                        ai.j0 j0Var = kiVar.M2;
+                        ai.k0 k0Var = kiVar.M2;
                         if (z11) {
                             i7 = 0;
                         } else {
                             i7 = 8;
                         }
-                        j0Var.setVisibility(i7);
+                        k0Var.setVisibility(i7);
                     }
                     kiVar.K2 = null;
                     return;

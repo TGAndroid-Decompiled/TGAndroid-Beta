@@ -28,7 +28,7 @@ public final class d0 {
 
     public d0(e0 e0Var) {
         this.f14085p = e0Var;
-        this.f14073b = new org.telegram.ui.Components.u5(e0Var, 0L, 1200L, er.f34421g);
+        this.f14073b = new org.telegram.ui.Components.u5(e0Var, 0L, 1200L, er.f34420g);
         this.f14074c = new ImageReceiver(e0Var);
     }
 
@@ -49,10 +49,10 @@ public final class d0 {
         this.f14076f = false;
         this.f14083n = d7Var;
         StringBuilder sb2 = new StringBuilder();
-        Point point = org.telegram.messenger.g0.f23609q;
-        sb2.append((int) Math.ceil(point.x / org.telegram.messenger.g0.f23608p));
+        Point point = org.telegram.messenger.g0.f23611q;
+        sb2.append((int) Math.ceil(point.x / org.telegram.messenger.g0.f23610p));
         sb2.append("_");
-        sb2.append((int) Math.ceil(point.y / org.telegram.messenger.g0.f23608p));
+        sb2.append((int) Math.ceil(point.y / org.telegram.messenger.g0.f23610p));
         if (d7Var != null && d7Var.K) {
             str = "_g";
         } else {
@@ -142,7 +142,7 @@ public final class d0 {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f14084o = ofFloat;
             ofFloat.addUpdateListener(new fi.f4(this, 2));
-            this.f14084o.addListener(new ai.i0(this, 19));
+            this.f14084o.addListener(new ai.j0(this, 19));
             this.f14084o.setInterpolator(er.h);
             this.f14084o.setDuration(360L);
             this.f14084o.start();

@@ -12,14 +12,14 @@ import java.util.HashMap;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.r2;
 public final class q1 extends WebViewClient {
-    public boolean f52755a = true;
-    public boolean f52756b;
-    public final InputStream f52757c;
+    public boolean f52758a = true;
+    public boolean f52759b;
+    public final InputStream f52760c;
     public final v1 d;
 
     public q1(v1 v1Var, InputStream inputStream) {
         this.d = v1Var;
-        this.f52757c = inputStream;
+        this.f52760c = inputStream;
     }
 
     @Override
@@ -29,17 +29,17 @@ public final class q1 extends WebViewClient {
         InputStream a10;
         String str3;
         a1 a1Var2;
-        if (this.f52755a) {
-            this.f52755a = false;
+        if (this.f52758a) {
+            this.f52758a = false;
             String y22 = org.telegram.messenger.g0.y2(null, 2131624069);
-            boolean z10 = r2.f26198a;
+            boolean z10 = r2.f26206a;
             return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a8.p0.p("<script>\n", y22.replace("$DEBUG$", "true"), "\n</script>").getBytes(StandardCharsets.UTF_8)));
         }
         v1 v1Var = this.d;
         if (str != null && str.endsWith("/index.html")) {
             str3 = "application/octet-stream";
-            if (this.f52756b) {
-                xi.e eVar = v1Var.f52850b;
+            if (this.f52759b) {
+                xi.e eVar = v1Var.f52853b;
                 if (eVar != null) {
                     a1Var2 = (a1) ((ArrayList) eVar.f60056b).get(0);
                 } else {
@@ -55,11 +55,11 @@ public final class q1 extends WebViewClient {
                     return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
                 }
             } else {
-                this.f52756b = true;
-                a10 = this.f52757c;
+                this.f52759b = true;
+                a10 = this.f52760c;
             }
         } else {
-            xi.e eVar2 = v1Var.f52850b;
+            xi.e eVar2 = v1Var.f52853b;
             if (eVar2 != null) {
                 a1Var = (a1) ((HashMap) eVar2.f60057c).get(str);
             } else {
@@ -68,11 +68,11 @@ public final class q1 extends WebViewClient {
             if (a1Var == null) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
-            b1 b1Var = (b1) a1Var.f52569a.get("content-type");
+            b1 b1Var = (b1) a1Var.f52572a.get("content-type");
             if (b1Var == null) {
                 str2 = null;
             } else {
-                str2 = b1Var.f52578a;
+                str2 = b1Var.f52581a;
             }
             if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);

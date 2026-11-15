@@ -39,12 +39,12 @@ import org.telegram.ui.uo0;
 import v4.d0;
 import v4.h0;
 public class i implements l, d0, s51, a0 {
-    public final int f4839a;
-    public boolean f4840b;
-    public Object f4841c;
+    public final int f4842a;
+    public boolean f4843b;
+    public Object f4844c;
 
     public i(int i7) {
-        this.f4839a = i7;
+        this.f4842a = i7;
     }
 
     public static i g(Bundle bundle) {
@@ -70,21 +70,21 @@ public class i implements l, d0, s51, a0 {
 
     @Override
     public void E(int i7, int i10) {
-        this.f4840b = true;
-        ((h0) this.f4841c).j(i7, i10);
+        this.f4843b = true;
+        ((h0) this.f4844c).j(i7, i10);
     }
 
     @Override
     public void K0(int i7, int i10) {
-        this.f4840b = true;
-        ((h0) this.f4841c).p(i7, i10);
+        this.f4843b = true;
+        ((h0) this.f4844c).p(i7, i10);
     }
 
     @Override
     public void a(k kVar, int i7) {
-        StringBuilder sb2 = (StringBuilder) this.f4841c;
-        if (this.f4840b) {
-            this.f4840b = false;
+        StringBuilder sb2 = (StringBuilder) this.f4844c;
+        if (this.f4843b) {
+            this.f4843b = false;
         } else {
             sb2.append(", ");
         }
@@ -92,8 +92,8 @@ public class i implements l, d0, s51, a0 {
     }
 
     public void b(int i7) {
-        ja.p(!this.f4840b);
-        ((SparseBooleanArray) this.f4841c).append(i7, true);
+        ja.p(!this.f4843b);
+        ((SparseBooleanArray) this.f4844c).append(i7, true);
     }
 
     public void c(s sVar) {
@@ -103,19 +103,19 @@ public class i implements l, d0, s51, a0 {
     }
 
     public s d() {
-        ja.p(!this.f4840b);
-        this.f4840b = true;
-        return new s((SparseBooleanArray) this.f4841c);
+        ja.p(!this.f4843b);
+        this.f4843b = true;
+        return new s((SparseBooleanArray) this.f4844c);
     }
 
     public void e() {
         synchronized (this) {
             try {
-                if (this.f4840b) {
+                if (this.f4843b) {
                     return;
                 }
-                this.f4840b = true;
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f4841c;
+                this.f4843b = true;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f4844c;
                 if (cancellationSignal != null) {
                     try {
                         cancellationSignal.cancel();
@@ -136,12 +136,12 @@ public class i implements l, d0, s51, a0 {
     }
 
     public boolean f() {
-        return this.f4840b;
+        return this.f4843b;
     }
 
     public boolean h(int i7, CharSequence charSequence) {
         if (charSequence != null && i7 >= 0 && charSequence.length() - i7 >= 0) {
-            p0.e eVar = (p0.e) this.f4841c;
+            p0.e eVar = (p0.e) this.f4844c;
             if (eVar == null) {
                 return f();
             }
@@ -181,15 +181,15 @@ public class i implements l, d0, s51, a0 {
 
     @Override
     public void h1(int i7, int i10) {
-        ((h0) this.f4841c).n(i7, i10, null);
+        ((h0) this.f4844c).n(i7, i10, null);
     }
 
     public void i() {
-        this.f4840b = false;
+        this.f4843b = false;
     }
 
     public void j(char c10) {
-        mc.a aVar = (mc.a) this.f4841c;
+        mc.a aVar = (mc.a) this.f4844c;
         aVar.a(aVar.f20602c, 1);
         char[] cArr = aVar.f20601b;
         int i7 = aVar.f20602c;
@@ -198,12 +198,12 @@ public class i implements l, d0, s51, a0 {
     }
 
     public void m(x3 x3Var) {
-        if (this.f4840b) {
+        if (this.f4843b) {
             u.h("BillingLogger", "Skipping logging since initialization failed.");
             return;
         }
         try {
-            ((o5.s) this.f4841c).a(l5.a.a(x3Var), new n2.a0(7));
+            ((o5.s) this.f4844c).a(l5.a.a(x3Var), new n2.a0(7));
         } catch (Throwable unused) {
             u.h("BillingLogger", "logging failed.");
         }
@@ -211,14 +211,14 @@ public class i implements l, d0, s51, a0 {
 
     @Override
     public void m0(int i7, int i10) {
-        this.f4840b = true;
-        ((h0) this.f4841c).o(i7, i10);
+        this.f4843b = true;
+        ((h0) this.f4844c).o(i7, i10);
     }
 
     @Override
     public void o(Object obj) {
-        this.f4840b = true;
-        ob.c cVar = (ob.c) this.f4841c;
+        this.f4843b = true;
+        ob.c cVar = (ob.c) this.f4844c;
         cVar.getClass();
         Void r32 = (Void) obj;
         SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f21417b;
@@ -229,7 +229,7 @@ public class i implements l, d0, s51, a0 {
     @Override
     public void onError(u51 u51Var, Exception exc) {
         View findViewWithTag;
-        PhotoViewer photoViewer = (PhotoViewer) this.f4841c;
+        PhotoViewer photoViewer = (PhotoViewer) this.f4844c;
         if (photoViewer.G2 == u51Var) {
             a8.g(exc, true);
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f42847p0.f29497b;
@@ -248,7 +248,7 @@ public class i implements l, d0, s51, a0 {
 
     @Override
     public void onRenderedFirstFrame() {
-        PhotoViewer photoViewer = (PhotoViewer) this.f4841c;
+        PhotoViewer photoViewer = (PhotoViewer) this.f4844c;
         if (!photoViewer.H3) {
             photoViewer.H3 = true;
             photoViewer.f42763f0.invalidate();
@@ -268,7 +268,7 @@ public class i implements l, d0, s51, a0 {
         g20 g20Var;
         u51 u51Var2;
         boolean z11;
-        PhotoViewer photoViewer = (PhotoViewer) this.f4841c;
+        PhotoViewer photoViewer = (PhotoViewer) this.f4844c;
         ArrayList arrayList = photoViewer.f42779g7;
         u51 u51Var3 = photoViewer.G2;
         if (u51Var3 != null) {
@@ -279,17 +279,17 @@ public class i implements l, d0, s51, a0 {
             }
             u51Var3.t0(z11);
         }
-        if (this.f4840b && (u51Var = photoViewer.G2) != null && u51Var.U() != -9223372036854775807L) {
-            this.f4840b = false;
+        if (this.f4843b && (u51Var = photoViewer.G2) != null && u51Var.U() != -9223372036854775807L) {
+            this.f4843b = false;
             if (photoViewer.Y6.isEmpty() && photoViewer.f42760e7.isEmpty() && photoViewer.f42722a7.isEmpty() && !arrayList.isEmpty() && (i10 = photoViewer.Q4) >= 0 && i10 < arrayList.size()) {
                 Object obj = arrayList.get(photoViewer.Q4);
                 if (obj instanceof ff) {
                     ff ffVar = (ff) obj;
-                    if (ffVar.f27708b && (g20Var = ffVar.f27723s) != null) {
+                    if (ffVar.f27710b && (g20Var = ffVar.f27725s) != null) {
                         photoViewer.G2.p0(g20Var.d * ((float) u51Var2.U()));
                         uo0 uo0Var = photoViewer.S7;
                         if (uo0Var != null) {
-                            uo0Var.setProgress(ffVar.f27723s.d);
+                            uo0Var.setProgress(ffVar.f27725s.d);
                         }
                     }
                 }
@@ -300,7 +300,7 @@ public class i implements l, d0, s51, a0 {
 
     @Override
     public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        PhotoViewer photoViewer = (PhotoViewer) this.f4841c;
+        PhotoViewer photoViewer = (PhotoViewer) this.f4844c;
         wi.o oVar = photoViewer.Q8;
         if (oVar != null) {
             photoViewer.Q8 = null;
@@ -327,14 +327,14 @@ public class i implements l, d0, s51, a0 {
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         Drawable[] drawableArr = PhotoViewer.Z8;
-        ((PhotoViewer) this.f4841c).q0(false);
+        ((PhotoViewer) this.f4844c).q0(false);
         g0.h3(new jp0(this, 0));
     }
 
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        PhotoViewer photoViewer = (PhotoViewer) this.f4841c;
+        PhotoViewer photoViewer = (PhotoViewer) this.f4844c;
         if (photoViewer.f42942z2 != null) {
             float f12 = i7 * f10;
             int i12 = (int) f12;
@@ -356,8 +356,8 @@ public class i implements l, d0, s51, a0 {
                 ((k51) photoViewer.C2).setHDRInfo(photoViewer.G2.V(null));
                 k51 k51Var = (k51) photoViewer.C2;
                 k51Var.d = i12;
-                k51Var.f36292e = i10;
-                wy wyVar = k51Var.f36290b;
+                k51Var.f36282e = i10;
+                wy wyVar = k51Var.f36280b;
                 if (wyVar != null) {
                     wyVar.postRunnable(new sy(wyVar, i12, i10, 0));
                 }
@@ -370,10 +370,10 @@ public class i implements l, d0, s51, a0 {
     }
 
     public String toString() {
-        switch (this.f4839a) {
+        switch (this.f4842a) {
             case 9:
                 StringBuilder sb2 = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
-                List list = (List) this.f4841c;
+                List list = (List) this.f4844c;
                 sb2.append(Arrays.toString(list.toArray()));
                 sb2.append(", isValid=");
                 int size = list.size();
@@ -396,40 +396,40 @@ public class i implements l, d0, s51, a0 {
             default:
                 return super.toString();
             case 11:
-                return ((ob.c) this.f4841c).toString();
+                return ((ob.c) this.f4844c).toString();
         }
     }
 
     public i(int i7, Object obj, boolean z10) {
-        this.f4839a = i7;
-        this.f4841c = obj;
+        this.f4842a = i7;
+        this.f4844c = obj;
     }
 
     public i(Object obj, int i7) {
-        this.f4839a = i7;
-        this.f4841c = obj;
-        this.f4840b = true;
+        this.f4842a = i7;
+        this.f4844c = obj;
+        this.f4843b = true;
     }
 
     public i() {
-        this.f4839a = 1;
-        this.f4841c = new SparseBooleanArray();
+        this.f4842a = 1;
+        this.f4844c = new SparseBooleanArray();
     }
 
     public i(ArrayList arrayList, boolean z10) {
-        this.f4839a = 9;
+        this.f4842a = 9;
         if (arrayList.isEmpty()) {
-            this.f4841c = Collections.EMPTY_LIST;
+            this.f4844c = Collections.EMPTY_LIST;
         } else {
-            this.f4841c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
+            this.f4844c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
         }
-        this.f4840b = z10;
+        this.f4843b = z10;
     }
 
     @Override
     public void onRenderedFirstFrame(m2.a aVar) {
         long j3 = aVar.f20115e;
-        PhotoViewer photoViewer = (PhotoViewer) this.f4841c;
+        PhotoViewer photoViewer = (PhotoViewer) this.f4844c;
         if (j3 == photoViewer.X7) {
             photoViewer.W7 = j3;
             photoViewer.X7 = -1L;
@@ -444,21 +444,21 @@ public class i implements l, d0, s51, a0 {
     }
 
     public i(je0 je0Var, boolean z10) {
-        this.f4839a = 5;
-        this.f4841c = je0Var;
-        this.f4840b = z10;
+        this.f4842a = 5;
+        this.f4844c = je0Var;
+        this.f4843b = z10;
     }
 
     public i(p0.e eVar, boolean z10) {
         this(7, eVar, false);
-        this.f4839a = 7;
-        this.f4840b = z10;
+        this.f4842a = 7;
+        this.f4843b = z10;
     }
 
     public i(d6.d dVar, ob.c cVar) {
-        this.f4839a = 11;
-        this.f4840b = false;
-        this.f4841c = cVar;
+        this.f4842a = 11;
+        this.f4843b = false;
+        this.f4844c = cVar;
     }
 
     public void k() {

@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import android.graphics.SurfaceTexture;
 public final class oz0 implements org.telegram.ui.Components.s51, org.telegram.ui.Components.o51 {
-    public final pz0 f50092a;
+    public final pz0 f50069a;
 
     public oz0(pz0 pz0Var) {
-        this.f50092a = pz0Var;
+        this.f50069a = pz0Var;
     }
 
     @Override
     public void A(boolean z10, float[] fArr) {
-        this.f50092a.W.e(z10, fArr);
+        this.f50069a.W.e(z10, fArr);
     }
 
     @Override
@@ -19,13 +19,13 @@ public final class oz0 implements org.telegram.ui.Components.s51, org.telegram.u
 
     @Override
     public void onStateChanged(boolean z10, int i7) {
-        pz0 pz0Var = this.f50092a;
+        pz0 pz0Var = this.f50069a;
         if (i7 == 4) {
             pz0Var.dismiss();
             return;
         }
-        org.telegram.messenger.g0.r(pz0Var.f50400a0);
-        org.telegram.messenger.g0.i3(pz0Var.f50400a0, 16L);
+        org.telegram.messenger.g0.r(pz0Var.f50391a0);
+        org.telegram.messenger.g0.i3(pz0Var.f50391a0, 16L);
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class oz0 implements org.telegram.ui.Components.s51, org.telegram.u
 
     @Override
     public boolean v() {
-        if (this.f50092a.W.f42277i != null) {
+        if (this.f50069a.W.f42279i != null) {
             return true;
         }
         return false;

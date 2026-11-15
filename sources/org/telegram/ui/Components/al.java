@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class al extends v4.t0 {
-    public final int f33007a;
-    public final dl f33008b;
+    public final int f33010a;
+    public final dl f33011b;
 
     public al(dl dlVar, int i7) {
-        this.f33007a = i7;
-        this.f33008b = dlVar;
+        this.f33010a = i7;
+        this.f33011b = dlVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         boolean z10;
         cj0 cj0Var;
-        switch (this.f33007a) {
+        switch (this.f33010a) {
             case 0:
-                dl dlVar = this.f33008b;
+                dl dlVar = this.f33011b;
                 di.c1 c1Var = dlVar.M;
                 if (i7 != 0) {
                     z10 = true;
@@ -30,7 +30,7 @@ public final class al extends v4.t0 {
                 }
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
-                    ki kiVar = dlVar.f33607b;
+                    ki kiVar = dlVar.f33609b;
                     int i10 = kiVar.f29716t0;
                     if (((kiVar.Z3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (cj0Var = (cj0) c1Var.K(0)) != null) {
                         View view = cj0Var.f58535a;
@@ -45,9 +45,9 @@ public final class al extends v4.t0 {
                 return;
             default:
                 if (i7 == 1) {
-                    dl dlVar2 = this.f33008b;
-                    if (dlVar2.f33977d0 && dlVar2.f33978e0) {
-                        org.telegram.messenger.g0.v1(dlVar2.f33607b.getCurrentFocus());
+                    dl dlVar2 = this.f33011b;
+                    if (dlVar2.f33964d0 && dlVar2.f33965e0) {
+                        org.telegram.messenger.g0.v1(dlVar2.f33609b.getCurrentFocus());
                         return;
                     }
                     return;
@@ -58,14 +58,14 @@ public final class al extends v4.t0 {
 
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f33007a) {
+        switch (this.f33010a) {
             case 0:
-                dl dlVar = this.f33008b;
+                dl dlVar = this.f33011b;
                 dlVar.i0();
                 if (dlVar.G != null) {
                     dlVar.H += i10;
                 }
-                dlVar.f33607b.M1(dlVar, i10);
+                dlVar.f33609b.M1(dlVar, i10);
                 return;
             default:
                 return;

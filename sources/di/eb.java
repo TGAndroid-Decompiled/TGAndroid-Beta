@@ -1,161 +1,87 @@
 package di;
 
 import android.content.Context;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.graphics.Canvas;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i20;
-import org.telegram.messenger.k20;
-import org.telegram.messenger.np;
-import org.telegram.messenger.q10;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.Components.uj0;
-import org.telegram.ui.p50;
-public final class eb extends a41 {
-    public static final int f8514b = 0;
+import org.telegram.messenger.ns;
+public final class eb extends LinearLayout {
+    public final int f8513a;
+    public final org.telegram.ui.ActionBar.e6 f8514b;
+    public final org.telegram.ui.Components.i9 f8515c;
+    public final org.telegram.ui.ActionBar.j5 d;
+    public final TextView f8516e;
+    public final TextView f8517f;
+    public final TextView h;
+    public final TextView f8518n;
+    public boolean f8519r;
+    public boolean f8520s;
 
-    static {
-        a41.h(new a41());
+    public eb(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f8513a = i7;
+        this.f8514b = e6Var;
+        setOrientation(0);
+        org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
+        this.f8515c = i9Var;
+        i9Var.setRoundRadius(org.telegram.messenger.g0.L(46.0f));
+        addView(i9Var, c8.ja.q(46, 46, 0.0f, 19, 13, 0, 13, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, c8.ja.q(-1, -2, 1.0f, 16, 0, 0, 0, 0));
+        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
+        this.d = j5Var;
+        int i10 = org.telegram.ui.ActionBar.j6.G6;
+        org.telegram.ui.ActionBar.q6.X(j5Var, i10, e6Var);
+        j5Var.setTextSize(16);
+        j5Var.setTypeface(org.telegram.messenger.g0.o());
+        ns.i(j5Var);
+        linearLayout.addView(j5Var, c8.ja.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
+        TextView textView = new TextView(context);
+        this.f8516e = textView;
+        org.telegram.ui.ActionBar.q6.U(textView, i10, e6Var);
+        textView.setTextSize(1, 13.0f);
+        textView.setVisibility(8);
+        TextView f10 = i20.f(linearLayout, textView, c8.ja.k(0.0f, 0.0f, 0.0f, 1.0f, -1, -2), context);
+        this.f8517f = f10;
+        int i11 = org.telegram.ui.ActionBar.j6.f29260z6;
+        org.telegram.ui.ActionBar.q6.U(f10, i11, e6Var);
+        f10.setTextSize(1, 14.0f);
+        linearLayout.addView(f10, c8.ja.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        addView(linearLayout2, c8.ja.q(-2, -2, 0.0f, 16, 0, 0, 18, 0));
+        TextView textView2 = new TextView(context);
+        this.h = textView2;
+        org.telegram.messenger.k5.m(textView2, i10, e6Var, 1, 16.0f);
+        textView2.setGravity(5);
+        TextView f11 = i20.f(linearLayout2, textView2, c8.ja.t(-1, -2, 5, 0, 0, 0, 1), context);
+        this.f8518n = f11;
+        org.telegram.ui.ActionBar.q6.U(f11, i11, e6Var);
+        f11.setTextSize(1, 13.0f);
+        f11.setGravity(5);
+        linearLayout2.addView(f11, c8.ja.t(-1, -2, 5, 0, 0, 0, 0));
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        String p10;
-        boolean z11;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f8520s) {
+            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f28972k0);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
         float f10;
-        int i7;
-        org.telegram.ui.ActionBar.j5 j5Var;
-        fb fbVar = (fb) view;
-        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) b41Var.G;
-        org.telegram.ui.ActionBar.j5 j5Var2 = fbVar.d;
-        org.telegram.ui.Components.i9 i9Var = fbVar.f8566c;
-        org.telegram.ui.ActionBar.e6 e6Var = fbVar.f8565b;
-        TextView textView = fbVar.h;
-        TextView textView2 = fbVar.f8568f;
-        TextView textView3 = fbVar.f8567e;
-        int i10 = fbVar.f8564a;
-        TextView textView4 = fbVar.f8569n;
-        long o4 = org.telegram.messenger.m5.o(starsSubscription.peer);
-        fbVar.f8570r = !TextUtils.isEmpty(starsSubscription.title);
-        if (o4 < 0) {
-            TLRPC.Chat M0 = np.s1(i10).M0(Long.valueOf(-o4));
-            org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
-            t8Var.q(M0);
-            i9Var.f(M0, t8Var);
-            if (M0 != null) {
-                p10 = M0.title;
-            } else {
-                p10 = null;
-            }
-            z11 = false;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824);
+        if (this.f8519r) {
+            f10 = 68.0f;
         } else {
-            TLRPC.User a22 = np.s1(i10).a2(Long.valueOf(o4));
-            org.telegram.ui.Components.t8 t8Var2 = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
-            t8Var2.r(a22);
-            i9Var.f(a22, t8Var2);
-            p10 = q10.p(a22);
-            z11 = !q10.t(a22);
+            f10 = 58.0f;
         }
-        long currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
-        boolean z12 = z11;
-        j5Var2.l(org.telegram.messenger.j6.m(p10, j5Var2.getPaint().getFontMetricsInt(), false, null, 0), false);
-        if (!TextUtils.isEmpty(starsSubscription.title)) {
-            textView3.setVisibility(0);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (starsSubscription.photo != null) {
-                p50 p50Var = new p50(14.0f, i10, textView3);
-                p50Var.a(4.0f);
-                p50Var.f50158f = false;
-                SpannableString spannableString = new SpannableString("x");
-                j5Var = j5Var2;
-                spannableString.setSpan(p50Var, 0, 1, 33);
-                p50Var.f50155b.q0(org.telegram.messenger.gc.p(k20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
-                spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
-            } else {
-                j5Var = j5Var2;
-            }
-            spannableStringBuilder.append(org.telegram.messenger.j6.m(starsSubscription.title, j5Var.getPaint().getFontMetricsInt(), false, null, 0));
-            textView3.setText(spannableStringBuilder);
-        } else {
-            textView3.setVisibility(8);
-        }
-        if (fbVar.f8570r) {
-            f10 = 13.0f;
-        } else {
-            f10 = 14.0f;
-        }
-        textView2.setTextSize(1, f10);
-        int i11 = 2131744990;
-        if (!starsSubscription.canceled && !starsSubscription.bot_canceled) {
-            long j3 = starsSubscription.until_date;
-            if (j3 < currentTime) {
-                textView2.setText(hd.a0(null, null, 2131744990, hd.u(j3, false)));
-                textView.setVisibility(8);
-                i20.q(textView4, org.telegram.ui.ActionBar.j6.nk, e6Var, null, 2131744972);
-            } else {
-                textView2.setText(hd.a0(null, null, 2131744977, hd.u(j3, false)));
-                textView.setVisibility(0);
-                textView.setText(mb.a1(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                org.telegram.ui.ActionBar.q6.U(textView4, org.telegram.ui.ActionBar.j6.f29260z6, e6Var);
-                int i12 = starsSubscription.pricing.period;
-                if (i12 == 2592000) {
-                    textView4.setText(hd.M0(2131745056, null));
-                } else if (i12 == 60) {
-                    textView4.setText("per minute");
-                } else if (i12 == 300) {
-                    textView4.setText("per 5 minutes");
-                }
-            }
-        } else {
-            long j10 = starsSubscription.until_date;
-            if (j10 >= currentTime) {
-                i11 = 2131744984;
-            }
-            textView2.setText(hd.a0(null, null, i11, hd.u(j10, false)));
-            textView.setVisibility(8);
-            org.telegram.ui.ActionBar.q6.U(textView4, org.telegram.ui.ActionBar.j6.nk, e6Var);
-            if (starsSubscription.bot_canceled) {
-                if (z12) {
-                    i7 = 2131744975;
-                } else {
-                    i7 = 2131744974;
-                }
-            } else {
-                i7 = 2131744973;
-            }
-            textView4.setText(hd.M0(i7, null));
-        }
-        fbVar.f8571s = z10;
-        fbVar.setWillNotDraw(!z10);
-    }
-
-    @Override
-    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new fb(i7, context, e6Var);
-    }
-
-    @Override
-    public final boolean e(b41 b41Var, b41 b41Var2) {
-        if (b41Var2 != null) {
-            Object obj = b41Var.G;
-            if (obj instanceof TL_stars.StarsSubscription) {
-                Object obj2 = b41Var2.G;
-                if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f28281id, ((TL_stars.StarsSubscription) obj2).f28281id);
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f10), 1073741824));
     }
 }

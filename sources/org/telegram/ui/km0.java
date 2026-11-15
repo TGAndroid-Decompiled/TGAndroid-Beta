@@ -1,90 +1,38 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class km0 implements xm0 {
-    public final int f48720a;
-    public final HashMap f48721b;
-    public final ArrayList f48722c;
-    public final nm0 d;
+import android.view.KeyEvent;
+public final class km0 implements org.telegram.ui.Components.r4, org.telegram.ui.ActionBar.e1 {
+    public final int f48717a;
+    public final om0 f48718b;
 
-    public km0(nm0 nm0Var, HashMap hashMap, ArrayList arrayList, int i7) {
-        this.f48720a = i7;
-        this.d = nm0Var;
-        this.f48721b = hashMap;
-        this.f48722c = arrayList;
+    public km0(om0 om0Var, int i7) {
+        this.f48717a = i7;
+        this.f48718b = om0Var;
     }
 
     @Override
-    public final void A(Editable editable) {
-        switch (this.f48720a) {
+    public void L(int i7, int i10, boolean z10) {
+        switch (this.f48717a) {
             case 0:
-                nm0 nm0Var = this.d;
-                org.telegram.ui.Components.rt rtVar = nm0Var.N;
-                nm0Var.f49583a = editable;
-                rtVar.setText(editable);
+                om0 om0Var = this.f48718b;
+                om0Var.a0(om0Var.f49995b, om0Var.f49996c, z10, i7);
+                om0Var.finishFragment();
                 return;
             default:
-                nm0 nm0Var2 = this.d;
-                org.telegram.ui.Components.rt rtVar2 = nm0Var2.N;
-                nm0Var2.f49583a = editable;
-                rtVar2.setText(editable);
+                om0 om0Var2 = this.f48718b;
+                om0Var2.a0(om0Var2.f49995b, om0Var2.f49996c, z10, i7);
+                om0Var2.finishFragment();
                 return;
         }
     }
 
     @Override
-    public final void d0() {
-        int i7 = this.f48720a;
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f48720a) {
-            case 0:
-                return true;
-            default:
-                return true;
+    public void j(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.g1 g1Var;
+        om0 om0Var = this.f48718b;
+        om0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = om0Var.J) != null && g1Var.isShowing()) {
+            om0Var.J.d(true);
         }
-    }
-
-    @Override
-    public final void t0(int i7, boolean z10, boolean z11) {
-        switch (this.f48720a) {
-            case 0:
-                nm0 nm0Var = this.d;
-                nm0Var.removeSelfFromStack();
-                if (!z10) {
-                    nm0Var.a0(this.f48721b, this.f48722c, z11, i7);
-                    return;
-                }
-                return;
-            default:
-                nm0 nm0Var2 = this.d;
-                nm0Var2.removeSelfFromStack();
-                if (!z10) {
-                    nm0Var2.a0(this.f48721b, this.f48722c, z11, i7);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void y() {
-        int i7 = this.f48720a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
     }
 }

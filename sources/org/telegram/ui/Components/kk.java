@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 public final class kk implements Runnable {
-    public final int f36538a;
-    public final qk f36539b;
+    public final int f36526a;
+    public final qk f36527b;
 
     public kk(qk qkVar, int i7) {
-        this.f36538a = i7;
-        this.f36539b = qkVar;
+        this.f36526a = i7;
+        this.f36527b = qkVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f36538a) {
+        switch (this.f36526a) {
             case 0:
-                this.f36539b.b0();
+                this.f36527b.b0();
                 return;
             case 1:
-                qk qkVar = this.f36539b;
+                qk qkVar = this.f36527b;
                 EditTextBoldCursor editTextBoldCursor = qkVar.T;
-                if (!qkVar.L && !qkVar.O0 && !qkVar.f33607b.J && qkVar.M0 && qkVar.U0 == null && editTextBoldCursor.hasFocus() && qkVar.isShown()) {
+                if (!qkVar.L && !qkVar.O0 && !qkVar.f33609b.J && qkVar.M0 && qkVar.U0 == null && editTextBoldCursor.hasFocus() && qkVar.isShown()) {
                     org.telegram.messenger.g0.J3(editTextBoldCursor);
                     return;
                 }
                 return;
             case 2:
-                qk qkVar2 = this.f36539b;
+                qk qkVar2 = this.f36527b;
                 if (!qkVar2.L && qkVar2.M0 && qkVar2.isShown()) {
                     qkVar2.e0();
                     return;
                 }
                 return;
             case 3:
-                qk qkVar3 = this.f36539b;
+                qk qkVar3 = this.f36527b;
                 if (!qkVar3.L) {
-                    float f10 = qkVar3.f38679n0;
+                    float f10 = qkVar3.f38677n0;
                     if (f10 < 1.0f && qkVar3.m0 == null) {
                         r1.g gVar = new r1.g(new r1.f(f10));
                         qkVar3.m0 = gVar;
@@ -50,7 +50,7 @@ public final class kk implements Runnable {
                 }
                 return;
             case 4:
-                qk qkVar4 = this.f36539b;
+                qk qkVar4 = this.f36527b;
                 if (qkVar4.M0 && !qkVar4.L) {
                     qkVar4.d0();
                     if (qkVar4.N0) {
@@ -61,9 +61,9 @@ public final class kk implements Runnable {
                 }
                 return;
             default:
-                qk qkVar5 = this.f36539b;
-                if (!qkVar5.f38682q0) {
-                    qkVar5.f38681p0.setVisibility(4);
+                qk qkVar5 = this.f36527b;
+                if (!qkVar5.f38680q0) {
+                    qkVar5.f38679p0.setVisibility(4);
                     return;
                 }
                 return;

@@ -9,29 +9,29 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.util.SparseArray;
 public final class ae implements r4, ni0 {
-    public final int f32966a;
-    public final ChatActivityEnterView f32967b;
+    public final int f32969a;
+    public final ChatActivityEnterView f32970b;
 
     public ae(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f32966a = i7;
-        this.f32967b = chatActivityEnterView;
+        this.f32969a = i7;
+        this.f32970b = chatActivityEnterView;
     }
 
     @Override
     public void L(int i7, int i10, boolean z10) {
-        switch (this.f32966a) {
+        switch (this.f32969a) {
             case 0:
-                this.f32967b.k1(z10, i7, i10, 0L, true);
+                this.f32970b.k1(z10, i7, i10, 0L, true);
                 return;
             default:
-                this.f32967b.k1(z10, i7, 0, 0L, true);
+                this.f32970b.k1(z10, i7, 0, 0L, true);
                 return;
         }
     }
 
     public void a(Canvas canvas) {
         org.telegram.ui.aj ajVar;
-        ChatActivityEnterView chatActivityEnterView = this.f32967b;
+        ChatActivityEnterView chatActivityEnterView = this.f32970b;
         Drawable backgroundImage = chatActivityEnterView.U1.getBackgroundImage();
         if (backgroundImage != null) {
             backgroundImage.draw(canvas);
@@ -53,10 +53,10 @@ public final class ae implements r4, ni0 {
     public void b() {
         boolean z10;
         Editable text;
-        ChatActivityEnterView chatActivityEnterView = this.f32967b;
-        ai.m0 m0Var = chatActivityEnterView.f32221j1;
+        ChatActivityEnterView chatActivityEnterView = this.f32970b;
+        ai.n0 n0Var = chatActivityEnterView.f32221j1;
         boolean z11 = false;
-        if (m0Var != null && m0Var.f1378r != 0) {
+        if (n0Var != null && n0Var.f1386r != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -76,7 +76,7 @@ public final class ae implements r4, ni0 {
         org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
         if (anVar != null) {
             anVar.dd();
-            rw0 rw0Var = anVar.f45355s1;
+            rw0 rw0Var = anVar.f45354s1;
             if (rw0Var != null) {
                 rw0Var.e();
             }
@@ -84,7 +84,7 @@ public final class ae implements r4, ni0 {
     }
 
     public void c(boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f32967b;
+        ChatActivityEnterView chatActivityEnterView = this.f32970b;
         uc ucVar = chatActivityEnterView.P1;
         gg ggVar = chatActivityEnterView.f32310w2;
         if (ggVar != null) {
@@ -94,7 +94,7 @@ public final class ae implements r4, ni0 {
             yh.a aVar = chatActivityEnterView.L1;
             if (aVar != null) {
                 oi0 oi0Var = chatActivityEnterView.f32214i1;
-                aVar.c(Math.round(Math.max(1.0f, (oi0Var.f37996w - oi0Var.f37991s) * oi0Var.f37989r)));
+                aVar.c(Math.round(Math.max(1.0f, (oi0Var.f37994w - oi0Var.f37989s) * oi0Var.f37987r)));
             }
             org.telegram.messenger.g0.r(ucVar);
             org.telegram.messenger.g0.i3(ucVar, 300L);
@@ -102,7 +102,7 @@ public final class ae implements r4, ni0 {
     }
 
     public void d(float f10, int i7) {
-        ChatActivityEnterView chatActivityEnterView = this.f32967b;
+        ChatActivityEnterView chatActivityEnterView = this.f32970b;
         wd wdVar = chatActivityEnterView.R0;
         SparseArray sparseArray = chatActivityEnterView.f32301v1;
         int i10 = org.telegram.ui.ActionBar.j6.Nl;
@@ -134,7 +134,7 @@ public final class ae implements r4, ni0 {
 
     public void e(float f10) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f32967b;
+        ChatActivityEnterView chatActivityEnterView = this.f32970b;
         chatActivityEnterView.f32274r1 = f10;
         if (f10 >= 1.0f || f10 <= 0.0f) {
             Editable text = chatActivityEnterView.F0.getText();

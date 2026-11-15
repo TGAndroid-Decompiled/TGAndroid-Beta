@@ -2,7 +2,7 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class oo {
-    public boolean f25785a;
-    public final ArrayList f25786b = new ArrayList();
-    public int f25787c;
+    public boolean f25786a;
+    public final ArrayList f25787b = new ArrayList();
+    public int f25788c;
 }

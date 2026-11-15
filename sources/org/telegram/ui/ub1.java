@@ -3,44 +3,44 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class ub1 extends AnimatorListenerAdapter {
-    public final int f51902a;
-    public final ec1 f51903b;
+    public final int f51903a;
+    public final ec1 f51904b;
 
     public ub1(ec1 ec1Var, int i7) {
-        this.f51902a = i7;
-        this.f51903b = ec1Var;
+        this.f51903a = i7;
+        this.f51904b = ec1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         fi.u2 u2Var;
         fi.u2 u2Var2;
-        int i7 = this.f51902a;
-        ec1 ec1Var = this.f51903b;
+        int i7 = this.f51903a;
+        ec1 ec1Var = this.f51904b;
         switch (i7) {
             case 0:
-                ec1Var.f46703i1 = null;
-                ec1Var.f46697f1 = 1.0f;
+                ec1Var.f46693i1 = null;
+                ec1Var.f46687f1 = 1.0f;
                 ec1Var.Y0 = 0.0f;
                 ec1Var.Z0 = 0.0f;
-                ec1Var.f46716s.invalidate();
+                ec1Var.f46706s.invalidate();
                 return;
             case 1:
-                org.telegram.ui.Components.voip.i2.d().f40654a.setAlpha(1.0f);
+                org.telegram.ui.Components.voip.i2.d().f40657a.setAlpha(1.0f);
                 org.telegram.messenger.g0.i3(new pu0(this, 26), 200L);
                 return;
             case 2:
                 ec1Var.L0.e();
                 ec1Var.Z.setCornerRadius(-1.0f);
                 ec1Var.E0 = false;
-                ec1Var.Z.f40899c0 = false;
-                ec1Var.f46713q0 = ec1Var.f46712p0;
+                ec1Var.Z.f40902c0 = false;
+                ec1Var.f46703q0 = ec1Var.f46702p0;
                 ec1Var.y();
                 return;
             case 3:
                 for (org.telegram.ui.Components.i9 i9Var : ec1Var.W) {
-                    org.telegram.ui.Components.g5 g5Var = i9Var.f35511e;
-                    if (g5Var != null && (u2Var = g5Var.f34809k) != null) {
+                    org.telegram.ui.Components.g5 g5Var = i9Var.f35502e;
+                    if (g5Var != null && (u2Var = g5Var.f34813k) != null) {
                         u2Var.f22301u0 = true;
                         u2Var.P0(false);
                     }
@@ -49,8 +49,8 @@ public final class ub1 extends AnimatorListenerAdapter {
             case 4:
                 ec1Var.s();
                 for (org.telegram.ui.Components.i9 i9Var2 : ec1Var.W) {
-                    org.telegram.ui.Components.g5 g5Var2 = i9Var2.f35511e;
-                    if (g5Var2 != null && (u2Var2 = g5Var2.f34809k) != null) {
+                    org.telegram.ui.Components.g5 g5Var2 = i9Var2.f35502e;
+                    if (g5Var2 != null && (u2Var2 = g5Var2.f34813k) != null) {
                         u2Var2.f22301u0 = false;
                         u2Var2.Q0();
                     }
@@ -62,8 +62,8 @@ public final class ub1 extends AnimatorListenerAdapter {
                 ec1Var.F.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
                 return;
             case 6:
-                if (ec1Var.f46682a0.getTag() == null) {
-                    ec1Var.f46682a0.setVisibility(8);
+                if (ec1Var.f46672a0.getTag() == null) {
+                    ec1Var.f46672a0.setVisibility(8);
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class ub1 extends AnimatorListenerAdapter {
                 ec1Var.E.setVisibility(8);
                 return;
             default:
-                ec1Var.f46696f0.setVisibility(8);
+                ec1Var.f46686f0.setVisibility(8);
                 return;
         }
     }

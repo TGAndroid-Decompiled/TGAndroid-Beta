@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.tgnet.TLRPC;
 public final class s70 implements Runnable {
-    public final LaunchActivity f51135a;
-    public final org.telegram.ui.ActionBar.e2 f51136b;
-    public final int f51137c;
+    public final LaunchActivity f51131a;
+    public final org.telegram.ui.ActionBar.e2 f51132b;
+    public final int f51133c;
     public final TLRPC.User d;
-    public final TLRPC.TL_messages_botApp f51138e;
-    public final AtomicBoolean f51139f;
+    public final TLRPC.TL_messages_botApp f51134e;
+    public final AtomicBoolean f51135f;
     public final String h;
-    public final boolean f51140n;
-    public final boolean f51141r;
-    public final boolean f51142s;
-    public final boolean f51143w;
+    public final boolean f51136n;
+    public final boolean f51137r;
+    public final boolean f51138s;
+    public final boolean f51139w;
 
     public s70(LaunchActivity launchActivity, org.telegram.ui.ActionBar.e2 e2Var, int i7, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f51135a = launchActivity;
-        this.f51136b = e2Var;
-        this.f51137c = i7;
+        this.f51131a = launchActivity;
+        this.f51132b = e2Var;
+        this.f51133c = i7;
         this.d = user;
-        this.f51138e = tL_messages_botApp;
-        this.f51139f = atomicBoolean;
+        this.f51134e = tL_messages_botApp;
+        this.f51135f = atomicBoolean;
         this.h = str;
-        this.f51140n = z10;
-        this.f51141r = z11;
-        this.f51142s = z12;
-        this.f51143w = z13;
+        this.f51136n = z10;
+        this.f51137r = z11;
+        this.f51138s = z12;
+        this.f51139w = z13;
     }
 
     @Override
@@ -35,26 +35,26 @@ public final class s70 implements Runnable {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
         String a02;
         String str = LaunchActivity.C1;
-        org.telegram.ui.ActionBar.e2 e2Var = this.f51136b;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f51132b;
         if (e2Var != null && LaunchActivity.E1) {
-            LaunchActivity launchActivity = this.f51135a;
+            LaunchActivity launchActivity = this.f51131a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TLRPC.User user = this.d;
                 long j3 = user.f28200id;
-                TLRPC.TL_messages_botApp tL_messages_botApp = this.f51138e;
+                TLRPC.TL_messages_botApp tL_messages_botApp = this.f51134e;
                 TLRPC.BotApp botApp = tL_messages_botApp.app;
-                boolean z10 = this.f51139f.get();
-                int i7 = this.f51137c;
+                boolean z10 = this.f51135f.get();
+                int i7 = this.f51133c;
                 String str2 = this.h;
-                boolean z11 = this.f51140n;
-                boolean z12 = this.f51141r;
+                boolean z11 = this.f51136n;
+                boolean z12 = this.f51137r;
                 ki.k4 b10 = ki.k4.b(i7, j3, j3, null, null, 3, 0, 0L, botApp, z10, str2, user, 0, z11, z12);
                 if (launchActivity.N() == null || launchActivity.N().k(b10) == null) {
                     org.telegram.messenger.b6.p(launchActivity.P, user.f28200id);
                     ki.x2 x2Var = new ki.x2(launchActivity, e2Var.getResourceProvider());
                     ki.p2 p2Var = x2Var.E;
                     if (p2Var != null) {
-                        p2Var.setWasOpenedByLinkIntent(this.f51142s);
+                        p2Var.setWasOpenedByLinkIntent(this.f51138s);
                     }
                     x2Var.B(!z11);
                     if (z12) {
@@ -64,9 +64,9 @@ public final class s70 implements Runnable {
                     x2Var.m0 = launchActivity;
                     x2Var.x(e2Var, b10);
                     x2Var.show();
-                    if (tL_messages_botApp.inactive || this.f51143w) {
+                    if (tL_messages_botApp.inactive || this.f51139w) {
                         TLRPC.User a22 = org.telegram.messenger.np.s1(x2Var.I).a2(Long.valueOf(x2Var.J));
-                        ArrayList<TLRPC.TL_attachMenuBot> arrayList = org.telegram.messenger.si.b0(x2Var.I).f26461b.bots;
+                        ArrayList<TLRPC.TL_attachMenuBot> arrayList = org.telegram.messenger.si.b0(x2Var.I).f26471b.bots;
                         int size = arrayList.size();
                         int i10 = 0;
                         while (true) {

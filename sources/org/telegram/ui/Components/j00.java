@@ -4,19 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class j00 extends AnimatorListenerAdapter {
-    public final int f35823a;
-    public final FragmentContextView f35824b;
+    public final int f35810a;
+    public final FragmentContextView f35811b;
 
     public j00(FragmentContextView fragmentContextView, int i7) {
-        this.f35823a = i7;
-        this.f35824b = fragmentContextView;
+        this.f35810a = i7;
+        this.f35811b = fragmentContextView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f35823a) {
+        switch (this.f35810a) {
             case 0:
-                FragmentContextView fragmentContextView = this.f35824b;
+                FragmentContextView fragmentContextView = this.f35811b;
                 AnimatorSet animatorSet = fragmentContextView.f32564f;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     fragmentContextView.f32564f = null;
@@ -24,7 +24,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                FragmentContextView fragmentContextView2 = this.f35824b;
+                FragmentContextView fragmentContextView2 = this.f35811b;
                 fragmentContextView2.f32583v0.e();
                 AnimatorSet animatorSet2 = fragmentContextView2.f32564f;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
@@ -51,7 +51,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 2:
-                FragmentContextView fragmentContextView3 = this.f35824b;
+                FragmentContextView fragmentContextView3 = this.f35811b;
                 fragmentContextView3.f32583v0.e();
                 AnimatorSet animatorSet3 = fragmentContextView3.f32564f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
@@ -77,7 +77,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 3:
-                FragmentContextView fragmentContextView4 = this.f35824b;
+                FragmentContextView fragmentContextView4 = this.f35811b;
                 fragmentContextView4.f32583v0.e();
                 AnimatorSet animatorSet4 = fragmentContextView4.f32564f;
                 if (animatorSet4 != null && animatorSet4.equals(animator)) {
@@ -100,7 +100,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 4:
-                FragmentContextView fragmentContextView5 = this.f35824b;
+                FragmentContextView fragmentContextView5 = this.f35811b;
                 fragmentContextView5.f32583v0.e();
                 AnimatorSet animatorSet5 = fragmentContextView5.f32564f;
                 if (animatorSet5 != null && animatorSet5.equals(animator)) {
@@ -126,7 +126,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 5:
-                FragmentContextView fragmentContextView6 = this.f35824b;
+                FragmentContextView fragmentContextView6 = this.f35811b;
                 fragmentContextView6.f32583v0.e();
                 AnimatorSet animatorSet6 = fragmentContextView6.f32564f;
                 if (animatorSet6 != null && animatorSet6.equals(animator)) {
@@ -149,7 +149,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 6:
-                FragmentContextView fragmentContextView7 = this.f35824b;
+                FragmentContextView fragmentContextView7 = this.f35811b;
                 fragmentContextView7.f32583v0.e();
                 AnimatorSet animatorSet7 = fragmentContextView7.f32564f;
                 if (animatorSet7 != null && animatorSet7.equals(animator)) {
@@ -160,7 +160,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 7:
-                FragmentContextView fragmentContextView8 = this.f35824b;
+                FragmentContextView fragmentContextView8 = this.f35811b;
                 fragmentContextView8.f32585w0.e();
                 AnimatorSet animatorSet8 = fragmentContextView8.f32564f;
                 if (animatorSet8 != null && animatorSet8.equals(animator)) {
@@ -182,7 +182,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 fragmentContextView8.n();
                 return;
             case 8:
-                FragmentContextView fragmentContextView9 = this.f35824b;
+                FragmentContextView fragmentContextView9 = this.f35811b;
                 fragmentContextView9.f32583v0.e();
                 AnimatorSet animatorSet9 = fragmentContextView9.f32564f;
                 if (animatorSet9 != null && animatorSet9.equals(animator)) {
@@ -205,7 +205,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 9:
-                FragmentContextView fragmentContextView10 = this.f35824b;
+                FragmentContextView fragmentContextView10 = this.f35811b;
                 fragmentContextView10.f32583v0.e();
                 AnimatorSet animatorSet10 = fragmentContextView10.f32564f;
                 if (animatorSet10 != null && animatorSet10.equals(animator)) {
@@ -216,7 +216,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 }
                 return;
             case 10:
-                FragmentContextView fragmentContextView11 = this.f35824b;
+                FragmentContextView fragmentContextView11 = this.f35811b;
                 fragmentContextView11.f32585w0.e();
                 AnimatorSet animatorSet11 = fragmentContextView11.f32564f;
                 if (animatorSet11 != null && animatorSet11.equals(animator)) {
@@ -238,7 +238,7 @@ public final class j00 extends AnimatorListenerAdapter {
                 fragmentContextView11.n();
                 return;
             default:
-                FragmentContextView fragmentContextView12 = this.f35824b;
+                FragmentContextView fragmentContextView12 = this.f35811b;
                 AnimatorSet animatorSet12 = fragmentContextView12.f32564f;
                 if (animatorSet12 != null && animatorSet12.equals(animator)) {
                     fragmentContextView12.setVisibility(8);

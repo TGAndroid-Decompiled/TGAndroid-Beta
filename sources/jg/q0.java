@@ -310,7 +310,7 @@ public final class q0 extends uj0 implements z5 {
                 Object obj = arrayList.get(i7);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (m10.i(m10.f24934t0).f().f28200id == user.f28200id) {
+                    if (m10.i(m10.f24940t0).f().f28200id == user.f28200id) {
                         m10 = hd.M0(2131745901, null);
                     } else {
                         m10 = g5.m(10, user.first_name, user.last_name);
@@ -344,7 +344,7 @@ public final class q0 extends uj0 implements z5 {
         if (getAdapter() != null) {
             ca.i iVar = new ca.i(3, getAdapter(), false);
             v4.o.c(this.j3, true).b(iVar);
-            if (!arrayList4.isEmpty() && iVar.f4840b) {
+            if (!arrayList4.isEmpty() && iVar.f4843b) {
                 this.f17246h3.h1(0, 0);
             }
         }

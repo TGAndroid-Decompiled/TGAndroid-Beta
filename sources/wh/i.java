@@ -22,7 +22,7 @@ public final class i extends View {
         this.f59363a = new HashMap();
         this.f59364b = new ArrayList();
         this.f59365c = new ArrayList();
-        this.d = m10.f24934t0;
+        this.d = m10.f24940t0;
     }
 
     public static String b(q1 q1Var) {

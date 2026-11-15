@@ -56,10 +56,10 @@ public final class w3 extends View implements org.telegram.ui.ActionBar.z5 {
         this.G = new org.telegram.ui.Components.u5(this, 0L, 320L, erVar);
         g6Var.setCallback(this);
         g6Var.u(-1);
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
         g6Var.w(org.telegram.messenger.g0.L(16.0f));
         g6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        g6Var.N = org.telegram.messenger.g0.f23609q.x;
+        g6Var.N = org.telegram.messenger.g0.f23611q.x;
         g6Var.n(0.65f, 480L, erVar);
         g6Var.B = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
@@ -338,14 +338,14 @@ public final class w3 extends View implements org.telegram.ui.ActionBar.z5 {
         if (action == 0) {
             dcVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (dcVar.f33917i && z10 && (onClickListener = this.f15281n) != null) {
+            if (dcVar.f33904i && z10 && (onClickListener = this.f15281n) != null) {
                 onClickListener.onClick(this);
             }
             dcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             dcVar.c(false);
         }
-        if (dcVar.f33917i || super.onTouchEvent(motionEvent)) {
+        if (dcVar.f33904i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

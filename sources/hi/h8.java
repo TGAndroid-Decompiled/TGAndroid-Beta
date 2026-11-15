@@ -120,7 +120,7 @@ public final class h8 extends rg.b {
                         if (uj0Var != null && uj0Var.getMeasuredHeight() > 0) {
                             i11 = this.h.getMeasuredHeight() + l8Var.U;
                         } else {
-                            i11 = org.telegram.messenger.g0.f23609q.y;
+                            i11 = org.telegram.messenger.g0.f23611q.y;
                         }
                         i10 = Math.max(i11 - z7Var2.f15518o, org.telegram.messenger.g0.L(120.0f));
                         view.setTag(33);
@@ -129,7 +129,7 @@ public final class h8 extends rg.b {
                         if (i10 >= 0) {
                             view.setTag(null);
                         } else {
-                            i10 = (int) (org.telegram.messenger.g0.f23609q.y * 0.3f);
+                            i10 = (int) (org.telegram.messenger.g0.f23611q.y * 0.3f);
                             view.setTag(33);
                         }
                     }
@@ -148,7 +148,7 @@ public final class h8 extends rg.b {
                     x7Var2.f15386b.setText((CharSequence) null);
                 } else if (i13 == 5) {
                     try {
-                        ((cv0) view).f33705b.getImageReceiver().P0(false);
+                        ((cv0) view).f33707b.getImageReceiver().P0(false);
                     } catch (Exception unused) {
                     }
                 } else if (i13 == 6) {
@@ -223,8 +223,8 @@ public final class h8 extends rg.b {
                 } else if (i7 == 5) {
                     cv0 cv0Var2 = new cv0(context, null, 1, e6Var);
                     cv0Var2.d.setText(hd.M0(2131748167, null));
-                    cv0Var2.f33707e.setText(hd.M0(2131745807, null));
-                    cv0Var2.f33704a.setTranslationY(org.telegram.messenger.g0.L(24.0f));
+                    cv0Var2.f33709e.setText(hd.M0(2131745807, null));
+                    cv0Var2.f33706a.setTranslationY(org.telegram.messenger.g0.L(24.0f));
                     cv0Var = cv0Var2;
                 } else if (i7 == 6) {
                     s7Var = new org.telegram.ui.Cells.y8(context, e6Var);

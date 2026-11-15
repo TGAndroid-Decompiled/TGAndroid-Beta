@@ -27,7 +27,7 @@ public final class n1 extends View {
 
     public n1(Context context, o1 o1Var) {
         super(context);
-        this.f14732c = m10.f24934t0;
+        this.f14732c = m10.f24940t0;
         this.f14735n = new hc[2];
         this.f14737s = new dc(this);
         setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));

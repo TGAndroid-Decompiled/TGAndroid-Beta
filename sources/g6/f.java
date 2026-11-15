@@ -12,7 +12,7 @@ public abstract class f {
         try {
             xVar = com.google.android.gms.internal.cast.d.b(context).z1(str, str2, new j(this));
         } catch (RemoteException | d e10) {
-            com.google.android.gms.internal.cast.d.f6226a.a(e10, "Unable to call %s on %s.", "newSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+            com.google.android.gms.internal.cast.d.f6229a.a(e10, "Unable to call %s on %s.", "newSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
             xVar = null;
         }
         this.f12907a = xVar;
@@ -43,7 +43,7 @@ public abstract class f {
             try {
                 v vVar = (v) xVar;
                 Parcel r12 = vVar.r1(vVar.p1(), 5);
-                int i7 = com.google.android.gms.internal.cast.t.f6380a;
+                int i7 = com.google.android.gms.internal.cast.t.f6383a;
                 if (r12.readInt() != 0) {
                     z10 = true;
                 } else {
@@ -66,7 +66,7 @@ public abstract class f {
             try {
                 v vVar = (v) xVar;
                 Parcel r12 = vVar.r1(vVar.p1(), 6);
-                int i7 = com.google.android.gms.internal.cast.t.f6380a;
+                int i7 = com.google.android.gms.internal.cast.t.f6383a;
                 if (r12.readInt() != 0) {
                     z10 = true;
                 } else {

@@ -78,7 +78,7 @@ public final class k0 extends tj0 {
             TLRPC.Chat chat = o0Var.V1;
             z70 z70Var = n0Var.f59221e;
             try {
-                int i11 = (int) np.s1(m10.f24934t0).f25386s0;
+                int i11 = (int) np.s1(m10.f24940t0).f25389s0;
                 if (chat == null) {
                     str = "";
                 } else {

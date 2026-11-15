@@ -91,7 +91,7 @@ public final class zi0 extends View implements org.telegram.ui.ActionBar.z5 {
         this.S = i7;
         if (i7 == 0) {
             textPaint.setTextSize(org.telegram.messenger.g0.L(45.0f));
-            this.f42380h0 = org.telegram.messenger.hd.f24101a0;
+            this.f42380h0 = org.telegram.messenger.hd.f24104a0;
         } else {
             this.f42380h0 = false;
             textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));

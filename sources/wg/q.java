@@ -28,8 +28,8 @@ public abstract class q {
     public static HashMap f59228a;
 
     public static void a(long j3, List list, z10 z10Var, z10 z10Var2) {
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
-        np s12 = np.s1(m10.f24934t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24940t0);
+        np s12 = np.s1(m10.f24940t0);
         TL_stories.TL_premium_applyBoost tL_premium_applyBoost = new TL_stories.TL_premium_applyBoost();
         tL_premium_applyBoost.peer = s12.j1(-j3);
         tL_premium_applyBoost.flags |= 1;
@@ -78,18 +78,18 @@ public abstract class q {
     }
 
     public static void d(gj gjVar, z10 z10Var, z10 z10Var2) {
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
-        np s12 = np.s1(m10.f24934t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24940t0);
+        np s12 = np.s1(m10.f24940t0);
         TLRPC.TL_payments_getGiveawayInfo tL_payments_getGiveawayInfo = new TLRPC.TL_payments_getGiveawayInfo();
         tL_payments_getGiveawayInfo.msg_id = gjVar.e1();
-        tL_payments_getGiveawayInfo.peer = s12.j1(gj.B1(gjVar.f23817k.peer_id));
+        tL_payments_getGiveawayInfo.peer = s12.j1(gj.B1(gjVar.f23819k.peer_id));
         connectionsManager.sendRequest(tL_payments_getGiveawayInfo, new n(z10Var2, z10Var, 1));
     }
 
     public static ArrayList e(long j3) {
         ArrayList arrayList = new ArrayList();
-        np s12 = np.s1(m10.f24934t0);
-        ArrayList arrayList2 = s12.f25440y;
+        np s12 = np.s1(m10.f24940t0);
+        ArrayList arrayList2 = s12.f25443y;
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList2.get(i7);
             if (m5.z(dialog.f28055id) && t3.R(s12.M0(Long.valueOf(-dialog.f28055id)))) {
@@ -103,11 +103,11 @@ public abstract class q {
     }
 
     public static long f() {
-        return np.s1(m10.f24934t0).f25349o0;
+        return np.s1(m10.f24940t0).f25352o0;
     }
 
     public static int g() {
-        return (int) np.s1(m10.f24934t0).f25376r0;
+        return (int) np.s1(m10.f24940t0).f25379r0;
     }
 
     public static boolean h() {
@@ -118,7 +118,7 @@ public abstract class q {
     }
 
     public static boolean i() {
-        if (np.s1(m10.f24934t0).f25386s0 > 0) {
+        if (np.s1(m10.f24940t0).f25389s0 > 0) {
             return true;
         }
         return false;
@@ -148,14 +148,14 @@ public abstract class q {
     }
 
     public static void k(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, e2 e2Var, z10 z10Var, z10 z10Var2) {
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         HashMap hashMap = f59228a;
         if (hashMap != null) {
             hashMap.remove(Integer.valueOf(i7));
         }
         if (!h()) {
-            np s12 = np.s1(m10.f24934t0);
-            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
+            np s12 = np.s1(m10.f24940t0);
+            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24940t0);
             TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
             TLRPC.TL_inputInvoicePremiumGiftCode tL_inputInvoicePremiumGiftCode = new TLRPC.TL_inputInvoicePremiumGiftCode();
             TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = new TLRPC.TL_inputStorePaymentPremiumGiftCode();
@@ -193,8 +193,8 @@ public abstract class q {
             connectionsManager.sendRequest(tL_payments_getPaymentForm, new k7(z10Var2, s12, tL_inputInvoicePremiumGiftCode, e2Var, z10Var));
             return;
         }
-        np s13 = np.s1(m10.f24934t0);
-        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(m10.f24934t0);
+        np s13 = np.s1(m10.f24940t0);
+        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(m10.f24940t0);
         TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode2 = new TLRPC.TL_inputStorePaymentPremiumGiftCode();
         tL_inputStorePaymentPremiumGiftCode2.users = new ArrayList<>();
         int size2 = arrayList.size();

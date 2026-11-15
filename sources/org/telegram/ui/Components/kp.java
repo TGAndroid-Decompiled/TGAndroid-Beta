@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class kp {
-    public float f36579g;
-    public float f36582k;
-    public final Path f36574a = new Path();
-    public final float[] f36575b = new float[4];
-    public final float[] f36576c = new float[4];
+    public float f36567g;
+    public float f36570k;
+    public final Path f36562a = new Path();
+    public final float[] f36563b = new float[4];
+    public final float[] f36564c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f36580i = new Random();
-    public final int f36578f = 6;
-    public final float f36577e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f36581j = new float[6];
+    public final Random f36568i = new Random();
+    public final int f36566f = 6;
+    public final float f36565e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f36569j = new float[6];
 
     public kp() {
-        for (int i7 = 0; i7 < this.f36578f; i7++) {
-            this.f36581j[i7] = (this.f36580i.nextInt() % 100) / 100.0f;
+        for (int i7 = 0; i7 < this.f36566f; i7++) {
+            this.f36569j[i7] = (this.f36568i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class kp {
         int i7;
         float f13;
         kp kpVar = this;
-        float f14 = kpVar.f36579g;
+        float f14 = kpVar.f36567g;
         float f15 = (f14 - 0.0f) - 0.0f;
         float f16 = f14 + 0.0f + 0.0f;
         float max = Math.max(f15, f16);
-        float f17 = kpVar.f36577e;
+        float f17 = kpVar.f36565e;
         float f18 = max * f17 * kpVar.h;
-        Path path = kpVar.f36574a;
+        Path path = kpVar.f36562a;
         path.reset();
         int i10 = 0;
         while (true) {
-            int i11 = kpVar.f36578f;
+            int i11 = kpVar.f36566f;
             if (i10 < i11) {
                 Matrix matrix = kpVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class kp {
                 } else {
                     f12 = f16;
                 }
-                float f20 = kpVar.f36582k;
-                float[] fArr = kpVar.f36581j;
+                float f20 = kpVar.f36570k;
+                float[] fArr = kpVar.f36569j;
                 float f21 = (fArr[i10] * f20) + f12;
-                float[] fArr2 = kpVar.f36575b;
+                float[] fArr2 = kpVar.f36563b;
                 fArr2[0] = f10;
                 float f22 = f11 - f21;
                 fArr2[1] = f22;
@@ -72,8 +72,8 @@ public final class kp {
                 } else {
                     f13 = f23;
                 }
-                float f24 = kpVar.f36582k;
-                float[] fArr3 = kpVar.f36576c;
+                float f24 = kpVar.f36570k;
+                float[] fArr3 = kpVar.f36564c;
                 fArr3[0] = f10;
                 float f25 = f11 - ((fArr[i7] * f24) + f13);
                 fArr3[1] = f25;

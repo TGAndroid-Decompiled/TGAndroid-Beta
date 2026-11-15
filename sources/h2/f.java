@@ -12,7 +12,7 @@ public final class f {
     public int[] d;
 
     public f(int[] iArr) {
-        this.f13440a = m10.f24934t0;
+        this.f13440a = m10.f24940t0;
         this.f13441b = -1;
         this.f13442c = -1;
         this.d = iArr;
@@ -74,11 +74,11 @@ public final class f {
         if (iArr != null) {
             Arrays.fill(iArr, -1);
         }
-        v4.o0 o0Var = recyclerView.f2827y;
-        if (recyclerView.f2825x != null && o0Var != null && o0Var.h) {
+        v4.o0 o0Var = recyclerView.f2830y;
+        if (recyclerView.f2828x != null && o0Var != null && o0Var.h) {
             if (z10) {
                 if (!recyclerView.d.g()) {
-                    int b10 = recyclerView.f2825x.b();
+                    int b10 = recyclerView.f2828x.b();
                     v4.b0 b0Var = (v4.b0) o0Var;
                     v4.a0 a0Var = b0Var.B;
                     if (a0Var != null && (i7 = a0Var.f58477a) >= 0) {
@@ -102,7 +102,7 @@ public final class f {
             } else if (!recyclerView.Z()) {
                 int i12 = this.f13440a;
                 int i13 = this.f13441b;
-                b1 b1Var = recyclerView.f2822v0;
+                b1 b1Var = recyclerView.f2825v0;
                 v4.b0 b0Var2 = (v4.b0) o0Var;
                 if (b0Var2.f58489o != 0) {
                     i12 = i13;
@@ -120,14 +120,14 @@ public final class f {
             if (i14 > o0Var.f58627i) {
                 o0Var.f58627i = i14;
                 o0Var.f58628j = z10;
-                recyclerView.f2796b.l();
+                recyclerView.f2799b.l();
             }
         }
     }
 
     public void d() {
         int[] iArr = this.d;
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         if (this.f13440a != i7) {
             ns.f(i7).j(this.f13441b);
             this.f13441b = -1;

@@ -1,11 +1,11 @@
 package ce;
 public final class h implements c {
-    public final ia.d f4931a;
-    public final m1.n f4932b;
+    public final ia.d f4934a;
+    public final m1.n f4935b;
 
     public h(ia.d dVar, m1.n nVar) {
-        this.f4931a = dVar;
-        this.f4932b = nVar;
+        this.f4934a = dVar;
+        this.f4935b = nVar;
     }
 
     @Override

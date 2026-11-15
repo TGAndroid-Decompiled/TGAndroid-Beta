@@ -5,13 +5,13 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.support.LongSparseIntArray;
 public final class k30 extends org.telegram.ui.Components.uj0 {
-    public final LongSparseIntArray f48559f3;
-    public final c40 f48560g3;
+    public final LongSparseIntArray f48513f3;
+    public final c40 f48514g3;
 
     public k30(c40 c40Var, LaunchActivity launchActivity) {
         super(launchActivity, null);
-        this.f48560g3 = c40Var;
-        this.f48559f3 = new LongSparseIntArray();
+        this.f48514g3 = c40Var;
+        this.f48513f3 = new LongSparseIntArray();
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class k30 extends org.telegram.ui.Components.uj0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f48560g3.W4) {
+        if (view == this.f48514g3.W4) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
@@ -31,7 +31,7 @@ public final class k30 extends org.telegram.ui.Components.uj0 {
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
         super.onLayout(z10, i7, i10, i11, i12);
-        q30 q30Var = this.f48560g3.S1;
+        q30 q30Var = this.f48514g3.S1;
         HashSet hashSet = q30Var.I;
         c40 c40Var = q30Var.L;
         HashSet hashSet2 = q30Var.H;
@@ -73,7 +73,7 @@ public final class k30 extends org.telegram.ui.Components.uj0 {
                     } else {
                         z10 = false;
                     }
-                    c40.J0(this.f48560g3, rVar, z10);
+                    c40.J0(this.f48514g3, rVar, z10);
                 }
             }
         }

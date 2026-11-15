@@ -38,8 +38,8 @@ public final class ca implements ij0, bg.p, kc, org.telegram.messenger.i9, gp, t
                 t0 t0Var = (t0) this.f30126b;
                 if (z10 && (B = t0Var.J.B()) != null) {
                     gj gjVar2 = t0Var.Q0;
-                    if (gjVar2 != null && !gjVar2.f23834o1) {
-                        gjVar2.f23834o1 = true;
+                    if (gjVar2 != null && !gjVar2.f23836o1) {
+                        gjVar2.f23836o1 = true;
                         B.N(0, false, false);
                         org.telegram.messenger.g0.h3(new o0(B, 0));
                         if (gjVar2.n1 || t0Var.M1) {
@@ -60,9 +60,9 @@ public final class ca implements ij0, bg.p, kc, org.telegram.messenger.i9, gp, t
                             return;
                         }
                         return;
-                    } else if (B.f33573b0 < 1) {
+                    } else if (B.f33575b0 < 1) {
                         B.stop();
-                        B.N(B.f33577e[0] - 1, false, false);
+                        B.N(B.f33579e[0] - 1, false, false);
                         return;
                     } else {
                         return;
@@ -146,7 +146,7 @@ public final class ca implements ij0, bg.p, kc, org.telegram.messenger.i9, gp, t
         l4 l4Var;
         q1 q1Var = (q1) this.f30126b;
         gj gjVar = q1Var.Q5;
-        if (gjVar != null && (message = gjVar.f23817k) != null) {
+        if (gjVar != null && (message = gjVar.f23819k) != null) {
             if (gjVar.D != 29 || ((l4Var = q1Var.X5) != null && l4Var.f30615i)) {
                 if ((message.noforwards && !gj.c3(message)) || q1Var.Q5.S4() || q1Var.Q5.y2()) {
                     return true;

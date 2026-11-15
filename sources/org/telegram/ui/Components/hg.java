@@ -5,13 +5,13 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class hg extends k1.b {
-    public final int[] f35247o;
-    public final ChatActivityEnterView.RecordCircle f35248p;
+    public final int[] f35238o;
+    public final ChatActivityEnterView.RecordCircle f35239p;
 
     public hg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
         super(recordCircle2);
-        this.f35248p = recordCircle;
-        this.f35247o = new int[2];
+        this.f35239p = recordCircle;
+        this.f35238o = new int[2];
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class hg extends k1.b {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(rect);
                 ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.S1;
-                int[] iArr = this.f35247o;
+                int[] iArr = this.f35238o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rectF.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.f32302v2.getLocationOnScreen(iArr);
@@ -77,7 +77,7 @@ public final class hg extends k1.b {
                 Rect rect3 = org.telegram.messenger.g0.Q;
                 rect3.set(rect);
                 ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.S1;
-                int[] iArr = this.f35247o;
+                int[] iArr = this.f35238o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rect3.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.f32302v2.getLocationOnScreen(iArr);

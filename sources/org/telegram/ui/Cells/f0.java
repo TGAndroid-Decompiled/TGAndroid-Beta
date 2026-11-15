@@ -101,7 +101,7 @@ public abstract class f0 extends View {
             k10.setBounds(width, L, this.f30200e + width, this.f30201f + L);
             k10.draw(canvas);
         }
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         int i7 = point.x;
         int i10 = point.y;
         if (getParent() instanceof View) {

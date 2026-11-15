@@ -84,7 +84,7 @@ public abstract class b6 {
     public static void d(String str, oc ocVar, nc ncVar, boolean z10) {
         if (z10) {
             try {
-                Context context = t0.f26600b;
+                Context context = t0.f26609b;
                 synchronized (pb.g.f54946b) {
                     pb.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
@@ -114,7 +114,7 @@ public abstract class b6 {
             if (f22663b != 0 && SystemClock.elapsedRealtime() - f22663b <= 60000) {
                 return (long) f22662a;
             }
-            return b3.g.c(t0.f26600b).a();
+            return b3.g.c(t0.f26609b).a();
         }
     }
 
@@ -134,7 +134,7 @@ public abstract class b6 {
     public static boolean g() {
         try {
             Class cls = Integer.TYPE;
-            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) t0.f26600b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), t0.f26600b.getPackageName())).intValue() == 0) {
+            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) t0.f26609b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), t0.f26609b.getPackageName())).intValue() == 0) {
                 return true;
             }
             return false;
@@ -164,7 +164,7 @@ public abstract class b6 {
         boolean z10;
         boolean z11;
         boolean z12 = false;
-        if (sharedPreferences.getBoolean("save_gallery", false) && r2.f26199b) {
+        if (sharedPreferences.getBoolean("save_gallery", false) && r2.f26207b) {
             i7 = 7;
         } else {
             i7 = sharedPreferences.getInt("save_gallery_flags", -1);
@@ -245,9 +245,9 @@ public abstract class b6 {
             return false;
         }
         qvVar.getClass();
-        ov ovVar = (ov) m10.i(i10).m(qvVar.d).get(e8Var.f23272a);
+        ov ovVar = (ov) m10.i(i10).m(qvVar.d).get(e8Var.f23279a);
         if (gjVar == null || (!gjVar.P3() && !gjVar.l4())) {
-            if ((gjVar != null && gj.L4(gjVar.f23817k)) || e8Var.f23274c == 3) {
+            if ((gjVar != null && gj.L4(gjVar.f23819k)) || e8Var.f23281c == 3) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -287,7 +287,7 @@ public abstract class b6 {
     }
 
     public static void o(int i7) {
-        SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("mainconfig", 0);
+        SharedPreferences sharedPreferences = t0.f26609b.getSharedPreferences("mainconfig", 0);
         if (i7 == 1) {
             qv.c(d, "user", sharedPreferences);
         } else if (i7 == 2) {

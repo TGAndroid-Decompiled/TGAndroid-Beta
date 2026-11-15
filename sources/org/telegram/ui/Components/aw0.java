@@ -3,48 +3,48 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import java.util.ArrayList;
 public final class aw0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33094a;
-    public final a8.b8 f33095b;
-    public final int f33096c;
+    public final int f33097a;
+    public final a8.b8 f33098b;
+    public final int f33099c;
 
     public aw0(a8.b8 b8Var, int i7, int i10) {
-        this.f33094a = i10;
-        this.f33095b = b8Var;
-        this.f33096c = i7;
+        this.f33097a = i10;
+        this.f33098b = b8Var;
+        this.f33099c = i7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33094a) {
+        switch (this.f33097a) {
             case 0:
                 Float f10 = (Float) valueAnimator.getAnimatedValue();
                 f10.getClass();
-                ((ArrayList) this.f33095b.d).set(this.f33096c, f10);
+                ((ArrayList) this.f33098b.d).set(this.f33099c, f10);
                 return;
             case 1:
                 Float f11 = (Float) valueAnimator.getAnimatedValue();
                 f11.getClass();
-                ((ArrayList) this.f33095b.f344e).set(this.f33096c, f11);
+                ((ArrayList) this.f33098b.f344e).set(this.f33099c, f11);
                 return;
             case 2:
                 Float f12 = (Float) valueAnimator.getAnimatedValue();
                 f12.getClass();
-                ((ArrayList) this.f33095b.f345f).set(this.f33096c, f12);
+                ((ArrayList) this.f33098b.f345f).set(this.f33099c, f12);
                 return;
             case 3:
                 Float f13 = (Float) valueAnimator.getAnimatedValue();
                 f13.getClass();
-                ((ArrayList) this.f33095b.d).set(this.f33096c, f13);
+                ((ArrayList) this.f33098b.d).set(this.f33099c, f13);
                 return;
             case 4:
                 Float f14 = (Float) valueAnimator.getAnimatedValue();
                 f14.getClass();
-                ((ArrayList) this.f33095b.f344e).set(this.f33096c, f14);
+                ((ArrayList) this.f33098b.f344e).set(this.f33099c, f14);
                 return;
             default:
                 Float f15 = (Float) valueAnimator.getAnimatedValue();
                 f15.getClass();
-                ((ArrayList) this.f33095b.f345f).set(this.f33096c, f15);
+                ((ArrayList) this.f33098b.f345f).set(this.f33099c, f15);
                 return;
         }
     }

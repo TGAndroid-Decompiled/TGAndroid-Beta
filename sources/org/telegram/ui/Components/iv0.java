@@ -13,12 +13,12 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class iv0 implements View.OnClickListener {
-    public final int f35741a;
-    public final bw0 f35742b;
+    public final int f35728a;
+    public final bw0 f35729b;
 
     public iv0(bw0 bw0Var, int i7) {
-        this.f35741a = i7;
-        this.f35742b = bw0Var;
+        this.f35728a = i7;
+        this.f35729b = bw0Var;
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class iv0 implements View.OnClickListener {
         TLRPC.StickerSet stickerSet;
         int i7;
         org.telegram.ui.ActionBar.w4 w4Var;
-        int i10 = this.f35741a;
-        bw0 bw0Var = this.f35742b;
+        int i10 = this.f35728a;
+        bw0 bw0Var = this.f35729b;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.e2 e2Var = bw0Var.G1;
@@ -50,11 +50,11 @@ public final class iv0 implements View.OnClickListener {
                     z10 = true;
                 }
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = bw0Var.N1;
-                if (tL_messages_stickerSet2 != null && (stickerSet = tL_messages_stickerSet2.set) != null && stickerSet.creator && bw0Var.f33418t1 == null) {
-                    bw0Var.f33417s1.e(3, 2131232774, org.telegram.messenger.hd.M0(2131744851, null));
-                    bw0Var.f33417s1.e(4, 2131232117, org.telegram.messenger.hd.M0(2131751264, null));
+                if (tL_messages_stickerSet2 != null && (stickerSet = tL_messages_stickerSet2.set) != null && stickerSet.creator && bw0Var.f33421t1 == null) {
+                    bw0Var.f33420s1.e(3, 2131232774, org.telegram.messenger.hd.M0(2131744851, null));
+                    bw0Var.f33420s1.e(4, 2131232117, org.telegram.messenger.hd.M0(2131751264, null));
                     if (z10) {
-                        bw0Var.f33418t1 = bw0Var.f33417s1.e(5, 2131232109, org.telegram.messenger.hd.M0(2131751598, null));
+                        bw0Var.f33421t1 = bw0Var.f33420s1.e(5, 2131232109, org.telegram.messenger.hd.M0(2131751598, null));
                     } else {
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, bw0Var.getContext(), bw0Var.J0);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
@@ -66,26 +66,26 @@ public final class iv0 implements View.OnClickListener {
                         c10.h(0.1f, i11);
                         org.telegram.ui.ActionBar.q0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.M0(2131744854, null), false, bw0Var.J0).setOnClickListener(new iv0(bw0Var, 6));
                         c10.setOnClickListener(new iv0(bw0Var, 7));
-                        bw0Var.f33418t1 = bw0Var.f33417s1.i(2131232109, null, org.telegram.messenger.hd.M0(2131751598, null), actionBarPopupWindow$ActionBarPopupWindowLayout);
+                        bw0Var.f33421t1 = bw0Var.f33420s1.i(2131232109, null, org.telegram.messenger.hd.M0(2131751598, null), actionBarPopupWindow$ActionBarPopupWindowLayout);
                     }
-                    bw0Var.f33417s1.a(-1);
-                    n90 n90Var = new n90(bw0Var.f29679a, 4, bw0Var.getContext(), new ArrayList(), bw0Var.J0);
-                    n90Var.setOnClickListener(new iv0(bw0Var, 8));
-                    n90Var.setTag(2131296437, 1);
-                    org.telegram.ui.ActionBar.q0 q0Var = bw0Var.f33417s1;
+                    bw0Var.f33420s1.a(-1);
+                    o90 o90Var = new o90(bw0Var.f29679a, 4, bw0Var.getContext(), new ArrayList(), bw0Var.J0);
+                    o90Var.setOnClickListener(new iv0(bw0Var, 8));
+                    o90Var.setTag(2131296437, 1);
+                    org.telegram.ui.ActionBar.q0 q0Var = bw0Var.f33420s1;
                     q0Var.q();
-                    q0Var.f29497b.a(n90Var, new LinearLayout.LayoutParams(-1, -2));
+                    q0Var.f29497b.a(o90Var, new LinearLayout.LayoutParams(-1, -2));
                     int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29090q7, bw0Var.J0);
-                    bw0Var.f33418t1.d(w02, w02);
-                    bw0Var.f33418t1.setSelectorColor(org.telegram.ui.ActionBar.j6.r1(0.1f, w02));
-                    if (bw0Var.f33418t1.getRightIcon() != null) {
-                        bw0Var.f33418t1.getRightIcon().setColorFilter(w02);
+                    bw0Var.f33421t1.d(w02, w02);
+                    bw0Var.f33421t1.setSelectorColor(org.telegram.ui.ActionBar.j6.r1(0.1f, w02));
+                    if (bw0Var.f33421t1.getRightIcon() != null) {
+                        bw0Var.f33421t1.getRightIcon().setColorFilter(w02);
                     }
                 }
-                if (bw0Var.f33417s1.getPopupLayout() != null) {
-                    bw0Var.f33417s1.getPopupLayout().requestLayout();
+                if (bw0Var.f33420s1.getPopupLayout() != null) {
+                    bw0Var.f33420s1.getPopupLayout().requestLayout();
                 }
-                bw0Var.f33417s1.V(null, null);
+                bw0Var.f33420s1.V(null, null);
                 return;
             case 2:
                 bw0Var.O0();
@@ -101,11 +101,11 @@ public final class iv0 implements View.OnClickListener {
                 bw0Var.dismiss();
                 return;
             case 4:
-                bw0Var.f33417s1.getPopupLayout().getSwipeBack().b(true);
+                bw0Var.f33420s1.getPopupLayout().getSwipeBack().b(true);
                 return;
             case 5:
                 org.telegram.ui.f50 f50Var = bw0Var.Y1;
-                org.telegram.ui.l50 l50Var = f50Var.f47010c;
+                org.telegram.ui.l50 l50Var = f50Var.f46994c;
                 v4.b0 b0Var = l50Var.h;
                 boolean z11 = l50Var.O;
                 int L0 = b0Var.L0();
@@ -115,19 +115,19 @@ public final class iv0 implements View.OnClickListener {
                 } else {
                     i7 = Integer.MAX_VALUE;
                 }
-                int i12 = l50Var.f48850n;
-                if (f50Var.f47008a) {
-                    l50Var.f48851r = null;
-                    l50Var.f48852s = true;
+                int i12 = l50Var.f48846n;
+                if (f50Var.f46992a) {
+                    l50Var.f48847r = null;
+                    l50Var.f48848s = true;
                 } else {
-                    l50Var.f48851r = f50Var.f47009b;
-                    l50Var.f48852s = false;
+                    l50Var.f48847r = f50Var.f46993b;
+                    l50Var.f48848s = false;
                 }
                 if (z11) {
                     org.telegram.messenger.g0.i3(new org.telegram.ui.iz(f50Var, 10), 350L);
                 }
                 l50Var.m0();
-                l50Var.k0(l50Var.f48851r, true);
+                l50Var.k0(l50Var.f48847r, true);
                 if (i12 != -1) {
                     if (!l50Var.N) {
                         for (int i13 = 0; i13 < l50Var.d.getChildCount(); i13++) {
@@ -137,18 +137,18 @@ public final class iv0 implements View.OnClickListener {
                             }
                         }
                     }
-                    l50Var.f48848e.g(i12);
+                    l50Var.f48844e.g(i12);
                 }
-                if (l50Var.f48850n != -1) {
+                if (l50Var.f48846n != -1) {
                     if (!l50Var.N) {
                         for (int i14 = 0; i14 < l50Var.d.getChildCount(); i14++) {
                             View childAt2 = l50Var.d.getChildAt(i14);
-                            if (l50Var.d.T(childAt2).b() == l50Var.F + l50Var.f48850n) {
+                            if (l50Var.d.T(childAt2).b() == l50Var.F + l50Var.f48846n) {
                                 ((org.telegram.ui.Cells.f8) childAt2).b(true, true);
                             }
                         }
                     }
-                    l50Var.f48848e.g(l50Var.f48850n);
+                    l50Var.f48844e.g(l50Var.f48846n);
                 }
                 if (i7 != Integer.MAX_VALUE && !z11) {
                     l50Var.h.h1(L0 + 1, i7);
@@ -161,16 +161,16 @@ public final class iv0 implements View.OnClickListener {
                 bw0Var.dismiss();
                 return;
             case 6:
-                bw0Var.f33417s1.p();
+                bw0Var.f33420s1.p();
                 bw0Var.dismiss();
                 org.telegram.messenger.si.b0(bw0Var.f29679a).f2(bw0Var.getContext(), bw0Var.N1, 1, bw0Var.G1, true, true);
                 return;
             case 7:
-                bw0Var.f33417s1.p();
+                bw0Var.f33420s1.p();
                 gw0.b(bw0Var.N1.set, bw0Var.J0, bw0Var.getContext(), new kv0(bw0Var, 4));
                 return;
             case 8:
-                bw0Var.f33417s1.p();
+                bw0Var.f33420s1.p();
                 bw0Var.dismiss();
                 org.telegram.messenger.g0.i3(new kv0(bw0Var, 3), 200L);
                 return;
@@ -202,14 +202,14 @@ public final class iv0 implements View.OnClickListener {
                 }
             case 11:
                 bw0Var.dismiss();
-                org.telegram.messenger.si.b0(bw0Var.f29679a).f2(bw0Var.getContext(), bw0Var.N1, 1, bw0Var.G1, true, bw0Var.f33399e2);
+                org.telegram.messenger.si.b0(bw0Var.f29679a).f2(bw0Var.getContext(), bw0Var.N1, 1, bw0Var.G1, true, bw0Var.f33402e2);
                 return;
             case 12:
                 bw0Var.dismiss();
-                org.telegram.messenger.si.b0(bw0Var.f29679a).f2(bw0Var.getContext(), bw0Var.N1, 0, bw0Var.G1, true, bw0Var.f33399e2);
+                org.telegram.messenger.si.b0(bw0Var.f29679a).f2(bw0Var.getContext(), bw0Var.N1, 0, bw0Var.G1, true, bw0Var.f33402e2);
                 return;
             case 13:
-                bw0 bw0Var2 = this.f35742b;
+                bw0 bw0Var2 = this.f35729b;
                 Context context = bw0Var2.getContext();
                 int[] iArr = {0};
                 FrameLayout frameLayout = new FrameLayout(context);

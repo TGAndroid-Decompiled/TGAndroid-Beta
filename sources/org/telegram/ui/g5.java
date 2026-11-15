@@ -24,7 +24,7 @@ public abstract class g5 extends androidx.fragment.app.v {
             if (z10) {
                 c40 c40Var = c40.C5;
                 if (c40Var != null) {
-                    c40Var.f45970s1.callOnClick();
+                    c40Var.f45959s1.callOnClick();
                     return true;
                 }
             } else {
@@ -41,8 +41,8 @@ public abstract class g5 extends androidx.fragment.app.v {
                 return true;
             } else if (i7 != 3 && i7 != 150) {
                 if (i7 != 18 && i7 != 19 && i7 != 20 && i7 != 22) {
-                    int i10 = org.telegram.messenger.ns.f25597w4;
-                    int i11 = org.telegram.messenger.ns.f25590v4;
+                    int i10 = org.telegram.messenger.ns.f25598w4;
+                    int i11 = org.telegram.messenger.ns.f25591v4;
                     if (i7 == 2) {
                         org.telegram.messenger.ns e10 = org.telegram.messenger.ns.e();
                         if (z10) {
@@ -90,7 +90,7 @@ public abstract class g5 extends androidx.fragment.app.v {
                     w(2131624117, org.telegram.messenger.hd.M0(2131747308, null));
                     return true;
                 } else {
-                    if (org.telegram.messenger.gz.f23996y0) {
+                    if (org.telegram.messenger.gz.f23999y0) {
                         CameraController.getInstance().initCamera(null);
                     }
                     return false;

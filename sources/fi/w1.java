@@ -28,7 +28,7 @@ public final class w1 implements z10 {
                     return;
                 }
                 b4Var.f11525t3 = tL_premium_boostsStatus;
-                np.s1(b4Var.f11497m2).G0().b(b4Var.l1, tL_premium_boostsStatus, new ai.u1(12, b4Var, tL_premium_boostsStatus));
+                np.s1(b4Var.f11497m2).G0().b(b4Var.l1, tL_premium_boostsStatus, new ai.v1(12, b4Var, tL_premium_boostsStatus));
                 return;
             default:
                 long longValue = ((Long) obj).longValue();

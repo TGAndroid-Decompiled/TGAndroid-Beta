@@ -2,13 +2,13 @@ package cb;
 
 import a8.p0;
 public final class a {
-    public final String f4859a;
-    public final String f4860b;
+    public final String f4862a;
+    public final String f4863b;
 
     public a(String str, String str2) {
-        this.f4859a = str;
+        this.f4862a = str;
         if (str2 != null) {
-            this.f4860b = str2;
+            this.f4863b = str2;
             return;
         }
         throw new NullPointerException("Null version");
@@ -20,7 +20,7 @@ public final class a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f4859a.equals(aVar.f4859a) && this.f4860b.equals(aVar.f4860b)) {
+            if (this.f4862a.equals(aVar.f4862a) && this.f4863b.equals(aVar.f4863b)) {
                 return true;
             }
         }
@@ -28,13 +28,13 @@ public final class a {
     }
 
     public final int hashCode() {
-        return ((this.f4859a.hashCode() ^ 1000003) * 1000003) ^ this.f4860b.hashCode();
+        return ((this.f4862a.hashCode() ^ 1000003) * 1000003) ^ this.f4863b.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("LibraryVersion{libraryName=");
-        sb2.append(this.f4859a);
+        sb2.append(this.f4862a);
         sb2.append(", version=");
-        return p0.s(sb2, this.f4860b, "}");
+        return p0.s(sb2, this.f4863b, "}");
     }
 }

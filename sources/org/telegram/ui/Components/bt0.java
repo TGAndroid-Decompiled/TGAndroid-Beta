@@ -12,22 +12,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class bt0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.messenger.is {
-    public final di.c1 f33369m1;
+    public final di.c1 f33372m1;
     public final org.telegram.ui.l4 n1;
-    public final Drawable f33370o1;
-    public TextView f33371p1;
-    public int f33372q1;
-    public boolean f33373r1;
-    public final at0 f33374s1;
-    public int f33375t1;
+    public final Drawable f33373o1;
+    public TextView f33374p1;
+    public int f33375q1;
+    public boolean f33376r1;
+    public final at0 f33377s1;
+    public int f33378t1;
 
     public bt0(Context context, at0 at0Var, org.telegram.ui.ActionBar.e6 e6Var) {
         super(1, context, e6Var, false);
         org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.D4);
-        this.f33374s1 = at0Var;
+        this.f33377s1 = at0Var;
         O();
         Drawable mutate = context.getResources().getDrawable(2131232729).mutate();
-        this.f33370o1 = mutate;
+        this.f33373o1 = mutate;
         int i7 = org.telegram.ui.ActionBar.j6.f28922h5;
         mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(i7, this.J0), PorterDuff.Mode.MULTIPLY));
         bi.g2 g2Var = new bi.g2(26, context, this);
@@ -37,7 +37,7 @@ public final class bt0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
         int i10 = this.f29717u0;
         viewGroup.setPadding(i10, 0, i10, 0);
         di.c1 c1Var = new di.c1(26, context, this);
-        this.f33369m1 = c1Var;
+        this.f33372m1 = c1Var;
         getContext();
         c1Var.setLayoutManager(new v4.b0(1, false));
         org.telegram.ui.l4 l4Var = new org.telegram.ui.l4(5, this, context);
@@ -154,10 +154,10 @@ public final class bt0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
     }
 
     public static void I0(bt0 bt0Var) {
-        di.c1 c1Var = bt0Var.f33369m1;
+        di.c1 c1Var = bt0Var.f33372m1;
         if (c1Var.getChildCount() <= 0) {
             int paddingTop = c1Var.getPaddingTop();
-            bt0Var.f33372q1 = paddingTop;
+            bt0Var.f33375q1 = paddingTop;
             c1Var.setTopGlowOffset(paddingTop);
             bt0Var.f29682b.invalidate();
             return;
@@ -169,8 +169,8 @@ public final class bt0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
         if (top > 0 && cj0Var != null && cj0Var.b() == 0) {
             i7 = top;
         }
-        if (bt0Var.f33372q1 != i7) {
-            bt0Var.f33372q1 = i7;
+        if (bt0Var.f33375q1 != i7) {
+            bt0Var.f33375q1 = i7;
             c1Var.setTopGlowOffset(i7);
             bt0Var.f29682b.invalidate();
         }
@@ -215,9 +215,9 @@ public final class bt0 extends org.telegram.ui.ActionBar.u2 implements org.teleg
         try {
             super.s0();
             int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28922h5, this.J0);
-            Drawable drawable = this.f33370o1;
-            if (drawable != null && w02 != this.f33375t1) {
-                this.f33375t1 = w02;
+            Drawable drawable = this.f33373o1;
+            if (drawable != null && w02 != this.f33378t1) {
+                this.f33378t1 = w02;
                 drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
             }
         } catch (Exception e10) {

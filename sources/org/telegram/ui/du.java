@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.content.Context;
 public final class du implements Runnable {
-    public final int f46489a;
-    public final Context f46490b;
+    public final int f46479a;
+    public final Context f46480b;
 
     public du(Context context, int i7) {
-        this.f46489a = i7;
-        this.f46490b = context;
+        this.f46479a = i7;
+        this.f46480b = context;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f46489a;
-        Context context = this.f46490b;
+        int i7 = this.f46479a;
+        Context context = this.f46480b;
         switch (i7) {
             case 0:
                 org.telegram.ui.ActionBar.j6.K(context, false);

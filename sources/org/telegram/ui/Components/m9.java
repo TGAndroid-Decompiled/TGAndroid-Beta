@@ -56,7 +56,7 @@ public final class m9 extends View {
                 this.f37174e = i7;
                 l9 l9Var = this.f37175f;
                 if (l9Var != null) {
-                    View view = ((org.telegram.ui.Components.voip.s1) l9Var).f40941a;
+                    View view = ((org.telegram.ui.Components.voip.s1) l9Var).f40944a;
                     if (i7 > 0) {
                         z10 = true;
                     }

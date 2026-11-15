@@ -4,19 +4,19 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 public final class cs0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f46238a;
-    public final PopupNotificationActivity f46239b;
+    public final int f46210a;
+    public final PopupNotificationActivity f46211b;
 
     public cs0(PopupNotificationActivity popupNotificationActivity, int i7) {
-        this.f46238a = i7;
-        this.f46239b = popupNotificationActivity;
+        this.f46210a = i7;
+        this.f46211b = popupNotificationActivity;
     }
 
     @Override
     public final boolean onPreDraw() {
-        switch (this.f46238a) {
+        switch (this.f46210a) {
             case 0:
-                PopupNotificationActivity popupNotificationActivity = this.f46239b;
+                PopupNotificationActivity popupNotificationActivity = this.f46211b;
                 FrameLayout frameLayout = popupNotificationActivity.f42968f;
                 if (frameLayout != null) {
                     frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
@@ -26,7 +26,7 @@ public final class cs0 implements ViewTreeObserver.OnPreDrawListener {
                 frameLayout2.setPadding(frameLayout2.getPaddingLeft(), y10, popupNotificationActivity.f42968f.getPaddingRight(), y10);
                 return true;
             default:
-                PopupNotificationActivity popupNotificationActivity2 = this.f46239b;
+                PopupNotificationActivity popupNotificationActivity2 = this.f46211b;
                 popupNotificationActivity2.f42969n.getViewTreeObserver().removeOnPreDrawListener(this);
                 if (!popupNotificationActivity2.c() && !popupNotificationActivity2.Y) {
                     ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity2.f42969n.getLayoutParams();

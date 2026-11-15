@@ -19,30 +19,30 @@ public final class f3 implements l.x {
     public final boolean b(l.m mVar) {
         Toolbar toolbar = this.f19690c;
         toolbar.c();
-        ViewParent parent = toolbar.f1933n.getParent();
+        ViewParent parent = toolbar.f1940n.getParent();
         if (parent != toolbar) {
             if (parent instanceof ViewGroup) {
-                ((ViewGroup) parent).removeView(toolbar.f1933n);
+                ((ViewGroup) parent).removeView(toolbar.f1940n);
             }
-            toolbar.addView(toolbar.f1933n);
+            toolbar.addView(toolbar.f1940n);
         }
         View actionView = mVar.getActionView();
-        toolbar.f1934r = actionView;
+        toolbar.f1941r = actionView;
         this.f19689b = mVar;
         ViewParent parent2 = actionView.getParent();
         if (parent2 != toolbar) {
             if (parent2 instanceof ViewGroup) {
-                ((ViewGroup) parent2).removeView(toolbar.f1934r);
+                ((ViewGroup) parent2).removeView(toolbar.f1941r);
             }
             g3 h = Toolbar.h();
             h.f19702a = (toolbar.E & 112) | 8388611;
             h.f19703b = 2;
-            toolbar.f1934r.setLayoutParams(h);
-            toolbar.addView(toolbar.f1934r);
+            toolbar.f1941r.setLayoutParams(h);
+            toolbar.addView(toolbar.f1941r);
         }
         for (int childCount = toolbar.getChildCount() - 1; childCount >= 0; childCount--) {
             View childAt = toolbar.getChildAt(childCount);
-            if (((g3) childAt.getLayoutParams()).f19703b != 2 && childAt != toolbar.f1917a) {
+            if (((g3) childAt.getLayoutParams()).f19703b != 2 && childAt != toolbar.f1924a) {
                 toolbar.removeViewAt(childCount);
                 toolbar.V.add(childAt);
             }
@@ -50,7 +50,7 @@ public final class f3 implements l.x {
         toolbar.requestLayout();
         mVar.C = true;
         mVar.f18848n.p(false);
-        View view = toolbar.f1934r;
+        View view = toolbar.f1941r;
         if (view instanceof k.b) {
             ((k.b) view).onActionViewExpanded();
         }
@@ -97,13 +97,13 @@ public final class f3 implements l.x {
     @Override
     public final boolean k(l.m mVar) {
         Toolbar toolbar = this.f19690c;
-        View view = toolbar.f1934r;
+        View view = toolbar.f1941r;
         if (view instanceof k.b) {
             ((k.b) view).onActionViewCollapsed();
         }
-        toolbar.removeView(toolbar.f1934r);
-        toolbar.removeView(toolbar.f1933n);
-        toolbar.f1934r = null;
+        toolbar.removeView(toolbar.f1941r);
+        toolbar.removeView(toolbar.f1940n);
+        toolbar.f1941r = null;
         ArrayList arrayList = toolbar.V;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             toolbar.addView((View) arrayList.get(size));

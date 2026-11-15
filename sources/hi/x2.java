@@ -61,7 +61,7 @@ public final class x2 extends aj0 {
         float f11 = gVar.J;
         int width = (int) (((int) (((uj0Var.getWidth() - uj0Var.getPaddingLeft()) - uj0Var.getPaddingRight()) / f11)) * d3Var.P);
         int ceil = (int) Math.ceil(e10 / f11);
-        float W1 = (org.telegram.messenger.g0.W1(f10, 0, Math.max(0, i7 - ((org.telegram.messenger.g0.f23609q.y - uj0Var.getPaddingTop()) - uj0Var.getPaddingBottom()))) / (ceil * width)) * ceil;
+        float W1 = (org.telegram.messenger.g0.W1(f10, 0, Math.max(0, i7 - ((org.telegram.messenger.g0.f23611q.y - uj0Var.getPaddingTop()) - uj0Var.getPaddingBottom()))) / (ceil * width)) * ceil;
         int round = Math.round(W1);
         iArr[0] = Math.max(0, gVar.J * round) + 2;
         iArr[1] = uj0Var.getPaddingTop() + ((int) ((W1 - round) * width));
@@ -72,7 +72,7 @@ public final class x2 extends aj0 {
         d3 d3Var;
         int e10 = e();
         float f10 = this.f15324c.f14106e.J;
-        return (Math.max(0, uj0Var.computeVerticalScrollOffset() - d3Var.getPadding()) - uj0Var.getPaddingTop()) / ((((int) Math.ceil(e10 / f10)) * ((int) (((int) (((uj0Var.getWidth() - uj0Var.getPaddingLeft()) - uj0Var.getPaddingRight()) / f10)) * d3Var.P))) - (org.telegram.messenger.g0.f23609q.y - uj0Var.getPaddingTop()));
+        return (Math.max(0, uj0Var.computeVerticalScrollOffset() - d3Var.getPadding()) - uj0Var.getPaddingTop()) / ((((int) Math.ceil(e10 / f10)) * ((int) (((int) (((uj0Var.getWidth() - uj0Var.getPaddingLeft()) - uj0Var.getPaddingRight()) / f10)) * d3Var.P))) - (org.telegram.messenger.g0.f23611q.y - uj0Var.getPaddingTop()));
     }
 
     @Override
@@ -175,7 +175,7 @@ public final class x2 extends aj0 {
                 }
                 z2Var.f(indexOf, z12, z13);
                 z2Var.T = ffVar;
-                if (ffVar != null && ffVar.f27708b && !ffVar.d()) {
+                if (ffVar != null && ffVar.f27710b && !ffVar.d()) {
                     str = org.telegram.messenger.g0.g0(ffVar.E, false, false);
                 } else {
                     str = null;
@@ -184,7 +184,7 @@ public final class x2 extends aj0 {
                 z2Var.G = null;
                 if (ffVar == null) {
                     z2Var.P = null;
-                } else if (ffVar.f27708b) {
+                } else if (ffVar.f27710b) {
                     StringBuilder sb2 = new StringBuilder();
                     org.telegram.ui.Cells.y0.r(null, 2131753933, sb2, ", ");
                     sb2.append(hd.z(ffVar.E));

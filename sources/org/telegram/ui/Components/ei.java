@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.TextView;
 public final class ei extends fi {
-    public int f34322b;
-    public final ki f34323c;
+    public int f34321b;
+    public final ki f34322c;
 
     public ei(ki kiVar, Context context) {
         super(context);
-        this.f34323c = kiVar;
+        this.f34322c = kiVar;
         setWillNotDraw(false);
         setFocusable(true);
         int i7 = ki.I4;
@@ -25,14 +25,14 @@ public final class ei extends fi {
         bVar.f55589s = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Rl, e6Var);
         bVar.f55590w = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Sl, e6Var);
         bVar.a();
-        this.f34612a = bVar;
+        this.f34616a = bVar;
         addView(bVar, c8.ja.c(-1.0f, -1));
     }
 
     public final void a(int i7, String str, qh.a aVar) {
-        this.f34612a.setText(str);
-        this.f34612a.setTabAnimation(aVar);
-        this.f34322b = i7;
+        this.f34616a.setText(str);
+        this.f34616a.setTabAnimation(aVar);
+        this.f34321b = i7;
     }
 
     @Override
@@ -44,11 +44,11 @@ public final class ei extends fi {
     public final void onAttachedToWindow() {
         boolean z10;
         super.onAttachedToWindow();
-        if (this.f34322b == this.f34323c.U2) {
+        if (this.f34321b == this.f34322c.U2) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f34612a.f(z10, false);
+        this.f34616a.f(z10, false);
     }
 }

@@ -28,7 +28,7 @@ public final class i4 implements Runnable {
             case 0:
                 g5 g5Var = (g5) obj2;
                 HashMap hashMap = (HashMap) obj;
-                if (r2.f26198a) {
+                if (r2.f26206a) {
                     a8.b("sync contacts by alert");
                 }
                 g5Var.F(hashMap, true, this.f24279b, this.f24280c, false, false, this.d);
@@ -37,7 +37,7 @@ public final class i4 implements Runnable {
                 org.telegram.ui.yw ywVar = (org.telegram.ui.yw) obj2;
                 Activity activity = (Activity) obj;
                 if (ywVar.getParentActivity() != null) {
-                    ywVar.f53753v2 = false;
+                    ywVar.f53718v2 = false;
                     boolean z10 = this.f24279b;
                     boolean z11 = this.f24280c;
                     boolean z12 = this.d;

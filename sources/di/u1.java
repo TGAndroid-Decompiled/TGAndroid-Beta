@@ -2,14 +2,14 @@ package di;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class u1 implements RequestDelegate {
-    public final int f9511a;
-    public final int f9512b;
-    public final Object f9513c;
+    public final int f9496a;
+    public final int f9497b;
+    public final Object f9498c;
 
-    public u1(int i7, m9 m9Var) {
-        this.f9511a = 3;
-        this.f9512b = i7;
-        this.f9513c = m9Var;
+    public u1(int i7, l9 l9Var) {
+        this.f9496a = 3;
+        this.f9497b = i7;
+        this.f9498c = l9Var;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class u1 implements RequestDelegate {
     }
 
     public u1(Object obj, int i7, int i10) {
-        this.f9511a = i10;
-        this.f9513c = obj;
-        this.f9512b = i7;
+        this.f9496a = i10;
+        this.f9498c = obj;
+        this.f9497b = i7;
     }
 }

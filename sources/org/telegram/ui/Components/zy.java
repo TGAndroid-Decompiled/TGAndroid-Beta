@@ -157,7 +157,7 @@ public final class zy {
         int[] iArr = new int[1];
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
         if (iArr[0] == 0) {
-            if (org.telegram.messenger.r2.f26198a) {
+            if (org.telegram.messenger.r2.f26206a) {
                 org.telegram.messenger.a8.d(GLES20.glGetShaderInfoLog(glCreateShader));
                 org.telegram.messenger.a8.d("shader code:\n " + str);
             }
@@ -356,7 +356,7 @@ public final class zy {
                                         }
                                         org.telegram.messenger.ou ouVar = new org.telegram.messenger.ou(7);
                                         int[] iArr4 = new int[1];
-                                        ouVar.f25804b = iArr4;
+                                        ouVar.f25806b = iArr4;
                                         ArrayList arrayList = new ArrayList();
                                         arrayList.add(new PointF(0.0f, 0.0f));
                                         arrayList.add(new PointF(0.5f, 0.5f));
@@ -426,24 +426,24 @@ public final class zy {
                 GLES20.glTexImage2D(3553, 0, 6408, this.X0, this.Y0, 0, 6408, 5121, null);
                 this.f42444c = true;
             }
-            GLES20.glUseProgram(this.f42455g.f41798c);
-            GLES20.glUniform1i(this.f42455g.f41800f, 0);
-            GLES20.glEnableVertexAttribArray(this.f42455g.f41799e);
-            GLES20.glVertexAttribPointer(this.f42455g.f41799e, 2, 5126, false, 8, (Buffer) this.f42440a1);
+            GLES20.glUseProgram(this.f42455g.f41790c);
+            GLES20.glUniform1i(this.f42455g.f41792f, 0);
+            GLES20.glEnableVertexAttribArray(this.f42455g.f41791e);
+            GLES20.glVertexAttribPointer(this.f42455g.f41791e, 2, 5126, false, 8, (Buffer) this.f42440a1);
             GLES20.glEnableVertexAttribArray(this.f42455g.d);
             GLES20.glVertexAttribPointer(this.f42455g.d, 2, 5126, false, 8, (Buffer) this.f42443b1);
             GLES20.glBindFramebuffer(36160, this.U0[0]);
             GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr[0], 0);
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(3553, iArr[1]);
-            GLES20.glUniform1f(this.f42455g.f41801g, 0.0f);
+            GLES20.glUniform1f(this.f42455g.f41793g, 0.0f);
             GLES20.glUniform1f(this.f42455g.h, 1.0f / this.Y0);
             GLES20.glDrawArrays(5, 0, 4);
             GLES20.glBindFramebuffer(36160, this.U0[2]);
             GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr[2], 0);
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(3553, iArr[0]);
-            GLES20.glUniform1f(this.f42455g.f41801g, 1.0f / this.X0);
+            GLES20.glUniform1f(this.f42455g.f41793g, 1.0f / this.X0);
             GLES20.glUniform1f(this.f42455g.h, 0.0f);
             GLES20.glDrawArrays(5, 0, 4);
             this.f42438a = false;
@@ -694,9 +694,9 @@ public final class zy {
                 float f10 = i7 * 0.006f;
                 if (this.f42449e == null || Math.abs(this.f42452f - f10) > 1.0E-4d) {
                     xy xyVar = this.f42449e;
-                    if (xyVar != null && (i10 = xyVar.f41798c) != 0) {
+                    if (xyVar != null && (i10 = xyVar.f41790c) != 0) {
                         GLES20.glDeleteProgram(i10);
-                        xyVar.f41798c = 0;
+                        xyVar.f41790c = 0;
                     }
                     this.f42452f = f10;
                     xy xyVar2 = new xy(f10, 2.0f, true);
@@ -734,24 +734,24 @@ public final class zy {
                     GLES20.glBindTexture(3553, iArr[0]);
                 }
                 GLES20.glDrawArrays(5, 0, 4);
-                GLES20.glUseProgram(this.f42449e.f41798c);
-                GLES20.glUniform1i(this.f42449e.f41800f, 0);
-                GLES20.glEnableVertexAttribArray(this.f42449e.f41799e);
-                GLES20.glVertexAttribPointer(this.f42449e.f41799e, 2, 5126, false, 8, (Buffer) this.f42440a1);
+                GLES20.glUseProgram(this.f42449e.f41790c);
+                GLES20.glUniform1i(this.f42449e.f41792f, 0);
+                GLES20.glEnableVertexAttribArray(this.f42449e.f41791e);
+                GLES20.glVertexAttribPointer(this.f42449e.f41791e, 2, 5126, false, 8, (Buffer) this.f42440a1);
                 GLES20.glEnableVertexAttribArray(this.f42449e.d);
                 GLES20.glVertexAttribPointer(this.f42449e.d, 2, 5126, false, 8, (Buffer) this.f42443b1);
                 GLES20.glBindFramebuffer(36160, this.U0[1]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[1], 0);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, iArr2[0]);
-                GLES20.glUniform1f(this.f42449e.f41801g, 0.0f);
+                GLES20.glUniform1f(this.f42449e.f41793g, 0.0f);
                 GLES20.glUniform1f(this.f42449e.h, 1.0f / this.Y0);
                 GLES20.glDrawArrays(5, 0, 4);
                 GLES20.glBindFramebuffer(36160, this.U0[3]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[3], 0);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, iArr2[1]);
-                GLES20.glUniform1f(this.f42449e.f41801g, 1.0f / this.X0);
+                GLES20.glUniform1f(this.f42449e.f41793g, 1.0f / this.X0);
                 GLES20.glUniform1f(this.f42449e.h, 0.0f);
                 GLES20.glDrawArrays(5, 0, 4);
                 GLES20.glUseProgram(this.f42474p);
@@ -810,7 +810,7 @@ public final class zy {
             GLES20.glActiveTexture(33985);
             GLES20.glBindTexture(3553, iArr2[3]);
             GLES20.glActiveTexture(33986);
-            GLES20.glBindTexture(3553, ((int[]) this.f42472o.f25804b)[0]);
+            GLES20.glBindTexture(3553, ((int[]) this.f42472o.f25806b)[0]);
             GLES20.glDrawArrays(5, 0, 4);
         } else if (this.h) {
             this.W0 = false;

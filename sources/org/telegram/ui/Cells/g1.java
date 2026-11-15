@@ -21,11 +21,11 @@ public final class g1 extends Property {
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((mi0) obj).f37296w);
+                return Float.valueOf(((mi0) obj).f37295w);
             case 3:
                 return Float.valueOf(((zz0) obj).h);
             default:
-                return Float.valueOf(((ar0) obj).f45492a);
+                return Float.valueOf(((ar0) obj).f45486a);
         }
     }
 

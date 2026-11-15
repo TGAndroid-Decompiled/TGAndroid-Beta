@@ -59,8 +59,8 @@ public final class h extends FrameLayout implements te.b {
                 m mVar = mVarArr[i10];
                 if (mVar != null) {
                     kh.b bVar = (kh.b) mVar.f13624b;
-                    float f11 = ((te.a) mVar.f13625c).f57081e;
-                    float f12 = ((te.a) mVar.d).f57081e;
+                    float f11 = ((te.a) mVar.f13625c).f57085e;
+                    float f12 = ((te.a) mVar.d).f57085e;
                     if (f11 > 0.0f) {
                         i7 = 0;
                     } else {
@@ -86,9 +86,9 @@ public final class h extends FrameLayout implements te.b {
         bg.f[] fVarArr = this.f19520f;
         if (fVarArr[i7] == 0) {
             ?? obj = new Object();
-            obj.f3230a = 0;
-            obj.f3231b = false;
-            obj.f3232c = true;
+            obj.f3233a = 0;
+            obj.f3234b = false;
+            obj.f3235c = true;
             fVarArr[i7] = obj;
         }
         return fVarArr[i7];
@@ -96,7 +96,7 @@ public final class h extends FrameLayout implements te.b {
 
     public final void c(int i7, int i10, boolean z10) {
         boolean z11;
-        b(i7).f3230a = i10;
+        b(i7).f3233a = i10;
         m mVar = this.f19519e[i7];
         if (mVar != null) {
             ((kh.b) mVar.f13624b).a(i10, z10);
@@ -111,7 +111,7 @@ public final class h extends FrameLayout implements te.b {
     }
 
     public final void d(boolean z10) {
-        b(1).f3231b = z10;
+        b(1).f3234b = z10;
         m mVar = this.f19519e[1];
         if (mVar != null) {
             ((kh.b) mVar.f13624b).c(z10, true);
@@ -198,14 +198,14 @@ public final class h extends FrameLayout implements te.b {
             mVarArr[i7] = new m(bVar, aVar, aVar2, false, 10);
             bg.f fVar = this.f19520f[i7];
             if (fVar != null) {
-                bVar.a(fVar.f3230a, false);
+                bVar.a(fVar.f3233a, false);
                 aVar.a(false, false);
-                if (fVar.f3230a <= 0) {
+                if (fVar.f3233a <= 0) {
                     z12 = false;
                 }
                 aVar2.a(z12, false);
-                bVar.c(fVar.f3231b, false);
-                bVar.b(fVar.f3232c, false);
+                bVar.c(fVar.f3234b, false);
+                bVar.b(fVar.f3235c, false);
             }
             a();
         }

@@ -46,14 +46,14 @@ import org.telegram.ui.th;
 import org.telegram.ui.yw;
 import org.telegram.ui.z41;
 public final class x2 implements Runnable {
-    public final int f9720a;
-    public final long f9721b;
-    public final Object f9722c;
+    public final int f9708a;
+    public final long f9709b;
+    public final Object f9710c;
 
     public x2(Object obj, long j3, int i7) {
-        this.f9720a = i7;
-        this.f9722c = obj;
-        this.f9721b = j3;
+        this.f9708a = i7;
+        this.f9710c = obj;
+        this.f9709b = j3;
     }
 
     @Override
@@ -66,16 +66,16 @@ public final class x2 implements Runnable {
         int L;
         boolean z11;
         int i11;
-        int i12 = this.f9720a;
+        int i12 = this.f9708a;
         org.telegram.ui.ActionBar.e6 e6Var = null;
         boolean z12 = false;
         r11 = 0;
         int i13 = 0;
-        long j3 = this.f9721b;
-        Object obj = this.f9722c;
+        long j3 = this.f9709b;
+        Object obj = this.f9710c;
         switch (i12) {
             case 0:
-                org.telegram.ui.Components.cc.a0((mb) obj).I(2131624227, hd.M0(2131750221, null), hd.H(',', "Gift2Converted", (int) j3)).k(true);
+                org.telegram.ui.Components.cc.a0((lb) obj).I(2131624227, hd.M0(2131750221, null), hd.H(',', "Gift2Converted", (int) j3)).k(true);
                 return;
             case 1:
                 org.telegram.ui.Components.cc.a0((z41) obj).I(2131624227, hd.M0(2131750221, null), hd.H(',', "Gift2ConvertedChannel", (int) j3)).k(true);
@@ -110,7 +110,7 @@ public final class x2 implements Runnable {
                 return;
             case 6:
                 vr vrVar = ((fi.f7) obj).f11709b;
-                SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+                SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
                 try {
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM stories WHERE dialog_id = " + j3).stepThis().dispose();
@@ -125,7 +125,7 @@ public final class x2 implements Runnable {
                 hi.q8 q8Var = l8Var.f14600a0;
                 org.telegram.ui.ActionBar.e2 e2Var = q8Var.f29703j1;
                 int i14 = hi.q8.Y1;
-                org.telegram.ui.Components.t4.P(context2, e2Var, q8Var.J0, new ai.c0(l8Var, j3, 2));
+                org.telegram.ui.Components.t4.P(context2, e2Var, q8Var.J0, new ai.d0(l8Var, j3, 2));
                 return;
             case 8:
                 hi.sa saVar2 = (hi.sa) obj;
@@ -178,7 +178,7 @@ public final class x2 implements Runnable {
                 jg.h0 h0Var = (jg.h0) obj;
                 h0Var.getClass();
                 try {
-                    vr.a0(h0Var.f17107t0).f27222b.executeFast("DELETE FROM search_recent WHERE did = " + j3).stepThis().dispose();
+                    vr.a0(h0Var.f17107t0).f27221b.executeFast("DELETE FROM search_recent WHERE did = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -186,7 +186,7 @@ public final class x2 implements Runnable {
                 }
             case 11:
                 li.d0 d0Var = (li.d0) obj;
-                np.s1(d0Var.f29679a).Q2(this.f9721b, d0Var.f19542p1, true, false, new li.s(d0Var, 1));
+                np.s1(d0Var.f29679a).Q2(this.f9709b, d0Var.f19542p1, true, false, new li.s(d0Var, 1));
                 return;
             case 12:
                 li.k0 k0Var = (li.k0) obj;
@@ -208,7 +208,7 @@ public final class x2 implements Runnable {
                 return;
             case 14:
                 oi.o oVar = (oi.o) obj;
-                org.telegram.ui.Components.t4.J(oVar.f33607b.f36436a2.getParentActivity(), j3, new ia.d(oVar, 15), oVar.f33606a);
+                org.telegram.ui.Components.t4.J(oVar.f33609b.f36424a2.getParentActivity(), j3, new ia.d(oVar, 15), oVar.f33608a);
                 return;
             case 15:
                 oi.z1 z1Var = (oi.z1) obj;
@@ -236,7 +236,7 @@ public final class x2 implements Runnable {
                 return;
             case 20:
                 org.telegram.ui.Components.xb Q2 = org.telegram.ui.Components.cc.a0((org.telegram.ui.y6) obj).Q(2131624052, 36, hd.a0(null, null, 2131752645, org.telegram.messenger.g0.i0(j3, false, false)));
-                Q2.f41651r = false;
+                Q2.f41643r = false;
                 Q2.j();
                 return;
             case 21:
@@ -246,16 +246,16 @@ public final class x2 implements Runnable {
                 return;
             case 22:
                 qk qkVar = (qk) obj;
-                ki kiVar = qkVar.f33607b;
+                ki kiVar = qkVar.f33609b;
                 if (!qkVar.L && qkVar.M0 && qkVar.isShown()) {
-                    xh xhVar = kiVar.f36482p3;
-                    org.telegram.ui.ActionBar.e2 e2Var2 = kiVar.f36436a2;
+                    xh xhVar = kiVar.f36470p3;
+                    org.telegram.ui.ActionBar.e2 e2Var2 = kiVar.f36424a2;
                     if ((xhVar.Q() <= org.telegram.messenger.g0.L(20.0f) || qkVar.C0 || qkVar.L0) && SystemClock.uptimeMillis() < j3) {
                         qkVar.postDelayed(qkVar.P0, 32L);
                         return;
                     }
                     qkVar.P0 = null;
-                    org.telegram.ui.ActionBar.e6 e6Var2 = qkVar.f33606a;
+                    org.telegram.ui.ActionBar.e6 e6Var2 = qkVar.f33608a;
                     if (e2Var2 != null && e2Var2.getParentActivity() != null) {
                         context = e2Var2.getParentActivity();
                     } else {
@@ -271,7 +271,7 @@ public final class x2 implements Runnable {
                         org.telegram.ui.ActionBar.q6.U(x0Var, org.telegram.ui.ActionBar.j6.f28957j5, e6Var2);
                         org.telegram.ui.ActionBar.q6.D(x0Var, org.telegram.ui.ActionBar.j6.f29145t5, e6Var2);
                         x0Var.setHint(hd.M0(2131743169, null));
-                        x0Var.setText(qkVar.f38687t0);
+                        x0Var.setText(qkVar.f38685t0);
                         x0Var.setSelection(x0Var.length());
                         x0Var.setInputType(147457);
                         x0Var.setMaxLines(5);
@@ -286,7 +286,7 @@ public final class x2 implements Runnable {
                         c2Var.setBackground(h02);
                         org.telegram.ui.ActionBar.q6.j(c2Var, h02, null, M, e6Var2);
                         String M02 = hd.M0(2131743077, null);
-                        if (qkVar.f38688u0 && qkVar.getPublicKey() != null) {
+                        if (qkVar.f38686u0 && qkVar.getPublicKey() != null) {
                             z10 = false;
                         } else {
                             z10 = true;
@@ -295,20 +295,20 @@ public final class x2 implements Runnable {
                         c2Var.setMultiline(true);
                         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) c2Var.getCheckBoxView().getLayoutParams();
                         layoutParams.topMargin = 0;
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i7 = 5;
                         } else {
                             i7 = 3;
                         }
                         layoutParams.gravity = i7 | 16;
                         c2Var.getCheckBoxView().setLayoutParams(layoutParams);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i10 = org.telegram.messenger.g0.L(4.0f);
                         } else {
                             i10 = 0;
                         }
                         int L2 = org.telegram.messenger.g0.L(12.0f);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             L = 0;
                         } else {
                             L = org.telegram.messenger.g0.L(4.0f);
@@ -357,7 +357,7 @@ public final class x2 implements Runnable {
                         }
                         t1Var.show();
                         View d = t1Var.d(-1);
-                        if ((d instanceof TextView) && !TextUtils.isEmpty(qkVar.f38687t0)) {
+                        if ((d instanceof TextView) && !TextUtils.isEmpty(qkVar.f38685t0)) {
                             x0Var.addTextChangedListener(new pk(x0Var, (TextView) d));
                             return;
                         }
@@ -384,7 +384,7 @@ public final class x2 implements Runnable {
                 } else {
                     e6Var = new fi.b();
                 }
-                new cb(u02, e6Var, this.f9721b, 15, "", new ze0(cf0Var, 0), 0L).show();
+                new bb(u02, e6Var, this.f9709b, 15, "", new ze0(cf0Var, 0), 0L).show();
                 return;
             case 25:
                 yw ywVar = (yw) obj;
@@ -402,7 +402,7 @@ public final class x2 implements Runnable {
                 p90Var.presentFragment(an.ua(j3));
                 return;
             case 28:
-                an anVar = ((th) obj).f51586f;
+                an anVar = ((th) obj).f51587f;
                 anVar.P7(true);
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", j3);
@@ -413,13 +413,13 @@ public final class x2 implements Runnable {
                 return;
             default:
                 fz fzVar = (fz) obj;
-                fzVar.f23578e = SystemClock.elapsedRealtime();
-                fzVar.f23577c = false;
+                fzVar.f23580e = SystemClock.elapsedRealtime();
+                fzVar.f23579c = false;
                 if (j3 == -1) {
                     fzVar.d = false;
-                    fzVar.f23576b = 0L;
+                    fzVar.f23578b = 0L;
                 } else {
-                    fzVar.f23576b = j3;
+                    fzVar.f23578b = j3;
                     fzVar.d = true;
                 }
                 ns.e().k(278, fzVar);

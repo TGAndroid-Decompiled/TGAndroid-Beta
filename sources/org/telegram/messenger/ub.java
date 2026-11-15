@@ -11,15 +11,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.ra0;
 public final class ub implements Runnable {
-    public Thread f26796a;
-    public final Object f26797b = new Object();
-    public final tb f26798c;
+    public Thread f26798a;
+    public final Object f26799b = new Object();
+    public final tb f26800c;
     public boolean d;
-    public final fc f26799e;
+    public final fc f26801e;
 
     public ub(fc fcVar, tb tbVar) {
-        this.f26799e = fcVar;
-        this.f26798c = tbVar;
+        this.f26801e = fcVar;
+        this.f26800c = tbVar;
     }
 
     public static Bitmap a(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
@@ -91,9 +91,9 @@ public final class ub implements Runnable {
             canvas = new Canvas(createBitmap);
         }
         ch0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(ch0Var.f33572b, ch0Var.f33574c, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap2 = Bitmap.createBitmap(ch0Var.f33574b, ch0Var.f33576c, Bitmap.Config.ARGB_8888);
         if (z10) {
-            i11 = ch0Var.f33577e[0] - 1;
+            i11 = ch0Var.f33579e[0] - 1;
         } else {
             i11 = 0;
         }
@@ -130,13 +130,13 @@ public final class ub implements Runnable {
     public final void run() {
         try {
             d();
-            synchronized (this.f26797b) {
-                this.f26796a = null;
+            synchronized (this.f26799b) {
+                this.f26798a = null;
             }
             Thread.interrupted();
         } catch (Throwable th2) {
-            synchronized (this.f26797b) {
-                this.f26796a = null;
+            synchronized (this.f26799b) {
+                this.f26798a = null;
                 Thread.interrupted();
                 throw th2;
             }

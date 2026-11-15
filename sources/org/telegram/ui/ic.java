@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.widget.TextView;
-public final class ic extends gm0 {
+public final class ic extends hm0 {
     public final jc H;
 
     public ic(jc jcVar, Context context, int i7, long j3, org.telegram.ui.ActionBar.e6 e6Var) {
@@ -16,7 +16,7 @@ public final class ic extends gm0 {
         jc jcVar = this.H;
         TextView textView = jcVar.d;
         if (textView != null) {
-            textView.setTextColor(jcVar.f48300b.h.getTextColor());
+            textView.setTextColor(jcVar.f48285b.h.getTextColor());
         }
     }
 }

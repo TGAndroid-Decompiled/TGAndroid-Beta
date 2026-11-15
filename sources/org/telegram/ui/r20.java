@@ -14,7 +14,7 @@ public final class r20 extends dr0 {
     @Override
     public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
         c40 c40Var = this.T;
-        a20 a20Var = c40Var.f45942m1;
+        a20 a20Var = c40Var.f45931m1;
         b20 b20Var = c40Var.B4;
         if (f10 > 0.0f) {
             float x10 = c40Var.f29682b.getX() + b20Var.getX();
@@ -30,7 +30,7 @@ public final class r20 extends dr0 {
 
     @Override
     public final void e() {
-        a20 a20Var = this.T.f45942m1;
+        a20 a20Var = this.T.f45931m1;
         super.e();
         for (int i7 = 0; i7 < a20Var.getChildCount(); i7++) {
             a20Var.getChildAt(i7).invalidate();

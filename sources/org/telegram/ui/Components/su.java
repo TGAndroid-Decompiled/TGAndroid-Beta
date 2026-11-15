@@ -11,29 +11,29 @@ import android.widget.TextView;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public final class su extends FrameLayout {
-    public final z70 f39426a;
-    public final TextView f39427b;
-    public final TextView f39428c;
+    public final z70 f39424a;
+    public final TextView f39425b;
+    public final TextView f39426c;
     public final TextView d;
-    public final ug.q0 f39429e;
-    public final org.telegram.ui.ActionBar.q0 f39430f;
+    public final ug.q0 f39427e;
+    public final org.telegram.ui.ActionBar.q0 f39428f;
     public final boolean h;
-    public final bi.t6 f39431n;
-    public TLRPC.TL_messages_stickerSet f39432r;
-    public boolean f39433s;
-    public float f39434w;
-    public ValueAnimator f39435x;
-    public final wu f39436y;
+    public final bi.t6 f39429n;
+    public TLRPC.TL_messages_stickerSet f39430r;
+    public boolean f39431s;
+    public float f39432w;
+    public ValueAnimator f39433x;
+    public final wu f39434y;
 
     public su(wu wuVar, Context context, boolean z10) {
         super(context);
         float f10;
         float f11;
         float f12;
-        this.f39436y = wuVar;
-        this.f39431n = new bi.t6(this, 7);
-        this.f39433s = false;
-        this.f39434w = 0.0f;
+        this.f39434y = wuVar;
+        this.f39429n = new bi.t6(this, 7);
+        this.f39431s = false;
+        this.f39432w = 0.0f;
         this.h = z10;
         if (!z10) {
             Pattern pattern = wu.Q1;
@@ -42,31 +42,31 @@ public final class su extends FrameLayout {
                 f12 = 16.0f;
                 f11 = 28.0f;
                 ug.q0 q0Var = new ug.q0(org.telegram.messenger.g0.L(4.0f), context, wuVar.J0, false);
-                this.f39429e = q0Var;
+                this.f39427e = q0Var;
                 q0Var.b(org.telegram.messenger.hd.M0(2131743876, null), new View.OnClickListener(this) {
-                    public final su f38772b;
+                    public final su f38770b;
 
                     {
-                        this.f38772b = this;
+                        this.f38770b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i7 = r2;
-                        su suVar = this.f38772b;
+                        su suVar = this.f38770b;
                         switch (i7) {
                             case 0:
-                                wu wuVar2 = suVar.f39436y;
+                                wu wuVar2 = suVar.f39434y;
                                 wuVar2.L1 = SystemClock.elapsedRealtime();
                                 wuVar2.M0();
                                 return;
                             case 1:
-                                wu.J0(suVar.f39431n, suVar.f39432r, true, null, null);
+                                wu.J0(suVar.f39429n, suVar.f39430r, true, null, null);
                                 suVar.a(true, true);
                                 return;
                             case 2:
-                                bi.t6 t6Var = suVar.f39431n;
-                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39432r;
+                                bi.t6 t6Var = suVar.f39429n;
+                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39430r;
                                 fo foVar = new fo(suVar, 13);
                                 Pattern pattern2 = wu.Q1;
                                 if (t6Var != null && tL_messages_stickerSet != null && t6Var.getFragmentView() != null) {
@@ -75,7 +75,7 @@ public final class su extends FrameLayout {
                                 suVar.a(false, true);
                                 return;
                             default:
-                                suVar.f39430f.V(null, null);
+                                suVar.f39428f.V(null, null);
                                 return;
                         }
                     }
@@ -91,14 +91,14 @@ public final class su extends FrameLayout {
                 q0Var.getChildAt(0).setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
                 addView(q0Var, c8.ja.i(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
                 q0Var.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
-                f13 = (org.telegram.messenger.g0.L(16.0f) + q0Var.getMeasuredWidth()) / org.telegram.messenger.g0.f23608p;
+                f13 = (org.telegram.messenger.g0.L(16.0f) + q0Var.getMeasuredWidth()) / org.telegram.messenger.g0.f23610p;
             } else {
                 f11 = 28.0f;
                 f12 = 16.0f;
             }
             float f14 = f13;
             TextView textView = new TextView(context);
-            this.f39428c = textView;
+            this.f39426c = textView;
             textView.setTypeface(org.telegram.messenger.g0.o());
             org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.Ji, wuVar.J0);
             int i7 = org.telegram.ui.ActionBar.j6.Fi;
@@ -112,29 +112,29 @@ public final class su extends FrameLayout {
             textView.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final su f38772b;
+                public final su f38770b;
 
                 {
-                    this.f38772b = this;
+                    this.f38770b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    su suVar = this.f38772b;
+                    su suVar = this.f38770b;
                     switch (i72) {
                         case 0:
-                            wu wuVar2 = suVar.f39436y;
+                            wu wuVar2 = suVar.f39434y;
                             wuVar2.L1 = SystemClock.elapsedRealtime();
                             wuVar2.M0();
                             return;
                         case 1:
-                            wu.J0(suVar.f39431n, suVar.f39432r, true, null, null);
+                            wu.J0(suVar.f39429n, suVar.f39430r, true, null, null);
                             suVar.a(true, true);
                             return;
                         case 2:
-                            bi.t6 t6Var = suVar.f39431n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39432r;
+                            bi.t6 t6Var = suVar.f39429n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39430r;
                             fo foVar = new fo(suVar, 13);
                             Pattern pattern2 = wu.Q1;
                             if (t6Var != null && tL_messages_stickerSet != null && t6Var.getFragmentView() != null) {
@@ -143,14 +143,14 @@ public final class su extends FrameLayout {
                             suVar.a(false, true);
                             return;
                         default:
-                            suVar.f39430f.V(null, null);
+                            suVar.f39428f.V(null, null);
                             return;
                     }
                 }
             });
             addView(textView, c8.ja.i(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
             textView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
-            float max = Math.max(f14, (org.telegram.messenger.g0.L(f12) + textView.getMeasuredWidth()) / org.telegram.messenger.g0.f23608p);
+            float max = Math.max(f14, (org.telegram.messenger.g0.L(f12) + textView.getMeasuredWidth()) / org.telegram.messenger.g0.f23610p);
             TextView textView2 = new TextView(context);
             this.d = textView2;
             textView2.setTypeface(org.telegram.messenger.g0.o());
@@ -164,29 +164,29 @@ public final class su extends FrameLayout {
             textView2.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final su f38772b;
+                public final su f38770b;
 
                 {
-                    this.f38772b = this;
+                    this.f38770b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    su suVar = this.f38772b;
+                    su suVar = this.f38770b;
                     switch (i72) {
                         case 0:
-                            wu wuVar2 = suVar.f39436y;
+                            wu wuVar2 = suVar.f39434y;
                             wuVar2.L1 = SystemClock.elapsedRealtime();
                             wuVar2.M0();
                             return;
                         case 1:
-                            wu.J0(suVar.f39431n, suVar.f39432r, true, null, null);
+                            wu.J0(suVar.f39429n, suVar.f39430r, true, null, null);
                             suVar.a(true, true);
                             return;
                         case 2:
-                            bi.t6 t6Var = suVar.f39431n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39432r;
+                            bi.t6 t6Var = suVar.f39429n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39430r;
                             fo foVar = new fo(suVar, 13);
                             Pattern pattern2 = wu.Q1;
                             if (t6Var != null && tL_messages_stickerSet != null && t6Var.getFragmentView() != null) {
@@ -195,7 +195,7 @@ public final class su extends FrameLayout {
                             suVar.a(false, true);
                             return;
                         default:
-                            suVar.f39430f.V(null, null);
+                            suVar.f39428f.V(null, null);
                             return;
                     }
                 }
@@ -206,14 +206,14 @@ public final class su extends FrameLayout {
             textView2.setScaleY(0.0f);
             textView2.setAlpha(0.0f);
             textView2.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
-            f10 = Math.max(max, (org.telegram.messenger.g0.L(f12) + textView2.getMeasuredWidth()) / org.telegram.messenger.g0.f23608p);
+            f10 = Math.max(max, (org.telegram.messenger.g0.L(f12) + textView2.getMeasuredWidth()) / org.telegram.messenger.g0.f23610p);
         } else {
             f10 = 32.0f;
         }
         float f15 = f10;
         Pattern pattern2 = wu.Q1;
         z70 z70Var = new z70(context, wuVar.J0);
-        this.f39426a = z70Var;
+        this.f39424a = z70Var;
         z70Var.setPadding(org.telegram.messenger.g0.L(2.0f), 0, org.telegram.messenger.g0.L(2.0f), 0);
         z70Var.setTypeface(org.telegram.messenger.g0.o());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -231,7 +231,7 @@ public final class su extends FrameLayout {
         }
         if (!z10) {
             TextView textView3 = new TextView(context);
-            this.f39427b = textView3;
+            this.f39425b = textView3;
             textView3.setTextSize(1, 13.0f);
             org.telegram.ui.ActionBar.q6.U(textView3, org.telegram.ui.ActionBar.j6.f29088q5, wuVar.J0);
             textView3.setEllipsize(truncateAt);
@@ -241,7 +241,7 @@ public final class su extends FrameLayout {
         }
         if (z10) {
             org.telegram.ui.ActionBar.q0 q0Var2 = new org.telegram.ui.ActionBar.q0(context, null, 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Aj, wuVar.J0), false, wuVar.J0);
-            this.f39430f = q0Var2;
+            this.f39428f = q0Var2;
             q0Var2.setLongClickEnabled(false);
             q0Var2.setSubMenuOpenSide(2);
             q0Var2.setIcon(2131231244);
@@ -251,33 +251,33 @@ public final class su extends FrameLayout {
             org.telegram.ui.ActionBar.e6 e6Var3 = wuVar.J0;
             q0Var2.setBackground(h02);
             org.telegram.ui.ActionBar.q6.j(q0Var2, h02, null, M2, e6Var3);
-            addView(q0Var2, c8.ja.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (wuVar.f29717u0 / org.telegram.messenger.g0.f23608p), 0.0f));
+            addView(q0Var2, c8.ja.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (wuVar.f29717u0 / org.telegram.messenger.g0.f23610p), 0.0f));
             q0Var2.e(1, 2131232364, org.telegram.messenger.hd.M0(2131744846, null));
             q0Var2.e(2, 2131232204, org.telegram.messenger.hd.M0(2131751762, null));
             q0Var2.setOnClickListener(new View.OnClickListener(this) {
-                public final su f38772b;
+                public final su f38770b;
 
                 {
-                    this.f38772b = this;
+                    this.f38770b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    su suVar = this.f38772b;
+                    su suVar = this.f38770b;
                     switch (i72) {
                         case 0:
-                            wu wuVar2 = suVar.f39436y;
+                            wu wuVar2 = suVar.f39434y;
                             wuVar2.L1 = SystemClock.elapsedRealtime();
                             wuVar2.M0();
                             return;
                         case 1:
-                            wu.J0(suVar.f39431n, suVar.f39432r, true, null, null);
+                            wu.J0(suVar.f39429n, suVar.f39430r, true, null, null);
                             suVar.a(true, true);
                             return;
                         case 2:
-                            bi.t6 t6Var = suVar.f39431n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39432r;
+                            bi.t6 t6Var = suVar.f39429n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = suVar.f39430r;
                             fo foVar = new fo(suVar, 13);
                             Pattern pattern22 = wu.Q1;
                             if (t6Var != null && tL_messages_stickerSet != null && t6Var.getFragmentView() != null) {
@@ -286,7 +286,7 @@ public final class su extends FrameLayout {
                             suVar.a(false, true);
                             return;
                         default:
-                            suVar.f39430f.V(null, null);
+                            suVar.f39428f.V(null, null);
                             return;
                     }
                 }
@@ -304,29 +304,29 @@ public final class su extends FrameLayout {
         float f13;
         float f14;
         float f15;
-        if (this.f39433s != z10) {
-            this.f39433s = z10;
-            ValueAnimator valueAnimator = this.f39435x;
+        if (this.f39431s != z10) {
+            this.f39431s = z10;
+            ValueAnimator valueAnimator = this.f39433x;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f39435x = null;
+                this.f39433x = null;
             }
-            TextView textView2 = this.f39428c;
+            TextView textView2 = this.f39426c;
             if (textView2 != null && (textView = this.d) != null) {
                 textView2.setClickable(!z10);
                 textView.setClickable(z10);
                 float f16 = 0.0f;
                 if (z11) {
-                    float f17 = this.f39434w;
+                    float f17 = this.f39432w;
                     if (z10) {
                         f16 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f17, f16);
-                    this.f39435x = ofFloat;
+                    this.f39433x = ofFloat;
                     ofFloat.addUpdateListener(new c6(this, 18));
-                    this.f39435x.setInterpolator(er.h);
-                    this.f39435x.setDuration(250L);
-                    this.f39435x.start();
+                    this.f39433x.setInterpolator(er.h);
+                    this.f39433x.setDuration(250L);
+                    this.f39433x.start();
                     return;
                 }
                 if (z10) {
@@ -334,7 +334,7 @@ public final class su extends FrameLayout {
                 } else {
                     f10 = 0.0f;
                 }
-                this.f39434w = f10;
+                this.f39432w = f10;
                 if (z10) {
                     f11 = 0.0f;
                 } else {

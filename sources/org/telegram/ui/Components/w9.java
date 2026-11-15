@@ -5,21 +5,21 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 public final class w9 implements View.OnAttachStateChangeListener {
-    public final int f41315a;
-    public final Object f41316b;
-    public final Object f41317c;
+    public final int f41318a;
+    public final Object f41319b;
+    public final Object f41320c;
 
     public w9(int i7, Object obj, Object obj2) {
-        this.f41315a = i7;
-        this.f41317c = obj;
-        this.f41316b = obj2;
+        this.f41318a = i7;
+        this.f41320c = obj;
+        this.f41319b = obj2;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        int i7 = this.f41315a;
-        Object obj = this.f41316b;
-        Object obj2 = this.f41317c;
+        int i7 = this.f41318a;
+        Object obj = this.f41319b;
+        Object obj2 = this.f41320c;
         switch (i7) {
             case 0:
                 u9 u9Var = (u9) obj;
@@ -30,7 +30,7 @@ public final class w9 implements View.OnAttachStateChangeListener {
                 return;
             case 1:
                 oy0 oy0Var = (oy0) obj2;
-                oy0Var.f38111k = p5.update(oy0Var.f38112l, (View) obj, oy0Var.f38111k, oy0Var.f38104b);
+                oy0Var.f38109k = p5.update(oy0Var.f38110l, (View) obj, oy0Var.f38109k, oy0Var.f38102b);
                 return;
             default:
                 org.telegram.ui.Wallet.c4 c4Var = (org.telegram.ui.Wallet.c4) obj2;
@@ -53,27 +53,27 @@ public final class w9 implements View.OnAttachStateChangeListener {
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f41315a) {
+        switch (this.f41318a) {
             case 0:
-                y9 y9Var = (y9) this.f41317c;
-                u9 u9Var = (u9) this.f41316b;
+                y9 y9Var = (y9) this.f41320c;
+                u9 u9Var = (u9) this.f41319b;
                 if (u9Var != null) {
                     ArrayList arrayList = u9Var.d;
                     arrayList.remove(y9Var);
-                    if (u9Var.f39970e.isEmpty() && arrayList.isEmpty()) {
-                        u9Var.f39978n.o();
+                    if (u9Var.f39969e.isEmpty() && arrayList.isEmpty()) {
+                        u9Var.f39977n.o();
                     }
                 }
-                y9Var.f41950n = null;
+                y9Var.f41953n = null;
                 Paint paint = y9Var.h;
-                y9Var.f41951o = null;
+                y9Var.f41954o = null;
                 paint.setShader(null);
                 return;
             case 1:
-                p5.release((View) this.f41316b, ((oy0) this.f41317c).f38111k);
+                p5.release((View) this.f41319b, ((oy0) this.f41320c).f38109k);
                 return;
             default:
-                org.telegram.ui.Wallet.c4 c4Var = (org.telegram.ui.Wallet.c4) this.f41317c;
+                org.telegram.ui.Wallet.c4 c4Var = (org.telegram.ui.Wallet.c4) this.f41320c;
                 org.telegram.ui.Cells.t0 t0Var = c4Var.f43571a;
                 c4Var.f();
                 c4Var.M = false;
@@ -92,7 +92,7 @@ public final class w9 implements View.OnAttachStateChangeListener {
                 c4Var.l();
                 org.telegram.ui.Wallet.i6 i6Var = c4Var.f43589k;
                 WeakHashMap weakHashMap = i6Var.f43979e;
-                weakHashMap.remove((org.telegram.ui.Cells.t0) this.f41316b);
+                weakHashMap.remove((org.telegram.ui.Cells.t0) this.f41319b);
                 if (weakHashMap.isEmpty()) {
                     i6Var.a();
                 }

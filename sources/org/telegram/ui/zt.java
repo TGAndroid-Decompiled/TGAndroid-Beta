@@ -27,7 +27,7 @@ public final class zt implements sw, yr {
     @Override
     public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, u91 u91Var) {
         if (!arrayList.isEmpty()) {
-            long j3 = ((org.telegram.messenger.ur) arrayList.get(0)).f26860a;
+            long j3 = ((org.telegram.messenger.ur) arrayList.get(0)).f26861a;
             if (org.telegram.messenger.m5.E(j3)) {
                 cu cuVar = this.f54024a;
                 cuVar.q0(cuVar.getMessagesController().a2(Long.valueOf(j3)));

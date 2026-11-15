@@ -67,8 +67,8 @@ public final class v0 {
     public final Object f61751g = new Object();
     public final Matrix h = new Matrix();
     public final Handler f61752i = new Handler(Looper.getMainLooper());
-    public final ExecutorService f61753j = Executors.newSingleThreadExecutor(new ai.x0(11));
-    public final ExecutorService f61754k = Executors.newSingleThreadExecutor(new ai.x0(12));
+    public final ExecutorService f61753j = Executors.newSingleThreadExecutor(new ai.y0(11));
+    public final ExecutorService f61754k = Executors.newSingleThreadExecutor(new ai.y0(12));
     public int f61745a0 = 1;
     public int f61747b0 = 1;
     public float v = 1.0f;
@@ -238,7 +238,7 @@ public final class v0 {
                 }
                 x(9);
                 m("error");
-                q40 q40Var = (q40) this.d.f34586b;
+                q40 q40Var = (q40) this.d.f34590b;
                 q40Var.C();
                 a8.g(exc, true);
                 jy0 jy0Var = q40Var.T;
@@ -254,7 +254,7 @@ public final class v0 {
                     if (q40Var.f38495h0) {
                         q40Var.z(6);
                     } else {
-                        ns.f(q40Var.f38492f).k(ns.f25533m2, Integer.valueOf(q40Var.h));
+                        ns.f(q40Var.f38492f).k(ns.f25534m2, Integer.valueOf(q40Var.h));
                     }
                     q40Var.B(false, false);
                 }
@@ -358,10 +358,10 @@ public final class v0 {
         n0 n0Var = this.f61761r;
         n0 n0Var2 = this.f61762s;
         m0 m0Var = new m0(n0Var, n0Var2, this.f61747b0, this.v);
-        q40 q40Var = (q40) this.d.f34586b;
+        q40 q40Var = (q40) this.d.f34590b;
         q40Var.S = m0Var;
         if (n0Var2 != null) {
-            aj.e.f1657j.b(n0Var2);
+            aj.e.f1664j.b(n0Var2);
         }
         q40Var.D();
     }
@@ -376,7 +376,7 @@ public final class v0 {
         boolean z12 = this.f61765w;
         long j11 = this.f61760q;
         u0 u0Var = new u0(i10, j3, j10, j11, z10, z11, z12);
-        q40 q40Var = (q40) this.d.f34586b;
+        q40 q40Var = (q40) this.d.f34590b;
         u0 u0Var2 = q40Var.R;
         int i11 = q40Var.f38492f;
         if (u0Var2 == null) {
@@ -395,17 +395,17 @@ public final class v0 {
         } else {
             if (!q40Var.E0) {
                 q40Var.E0 = true;
-                ns.e().k(ns.f25517j1, 512);
+                ns.e().k(ns.f25518j1, 512);
             }
             q40.o(q40Var);
             q40Var.setRecordingUiFrameClockActive(true);
             q40Var.F();
             if (!q40Var.f38495h0) {
                 q40Var.f38495h0 = true;
-                ns.f(i11).k(ns.f25528l2, Integer.valueOf(q40Var.h), Boolean.FALSE);
+                ns.f(i11).k(ns.f25529l2, Integer.valueOf(q40Var.h), Boolean.FALSE);
             } else if (q40Var.f38496i0) {
                 q40Var.f38496i0 = false;
-                ns.f(i11).k(ns.f25549p2, new Object[0]);
+                ns.f(i11).k(ns.f25550p2, new Object[0]);
             }
         }
         if (i10 == 8 || i10 == 9 || i10 == 10) {

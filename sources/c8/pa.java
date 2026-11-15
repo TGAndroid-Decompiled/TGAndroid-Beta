@@ -11,14 +11,14 @@ public enum pa implements u {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f4630a;
+    public final int f4633a;
 
     pa(int i7) {
-        this.f4630a = i7;
+        this.f4633a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f4630a;
+        return this.f4633a;
     }
 }

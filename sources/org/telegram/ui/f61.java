@@ -3,27 +3,27 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.content.SharedPreferences;
 public final class f61 implements Runnable {
-    public final int f47018a;
-    public final t71 f47019b;
+    public final int f47002a;
+    public final t71 f47003b;
 
     public f61(t71 t71Var, int i7) {
-        this.f47018a = i7;
-        this.f47019b = t71Var;
+        this.f47002a = i7;
+        this.f47003b = t71Var;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f47018a;
+        int i10 = this.f47002a;
         float f10 = 0.0f;
-        t71 t71Var = this.f47019b;
+        t71 t71Var = this.f47003b;
         switch (i10) {
             case 0:
-                t71Var.f51413b0 = false;
+                t71Var.f51414b0 = false;
                 int i11 = t71Var.Y;
                 int i12 = t71Var.Z;
-                org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51468w;
-                int i13 = t71Var.f51448n;
+                org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51469w;
+                int i13 = t71Var.f51449n;
                 if (i13 == 1) {
                     if (i12 == 0) {
                         g6Var.f28604c = i11;
@@ -31,8 +31,8 @@ public final class f61 implements Runnable {
                     } else if (i12 == 1) {
                         g6Var.d = i11;
                         org.telegram.ui.ActionBar.j6.t1(true, true);
-                        t71Var.f51469w0.g1();
-                        t71Var.X.setHasChanges(t71Var.Y0(t71Var.f51448n));
+                        t71Var.f51470w0.g1();
+                        t71Var.X.setHasChanges(t71Var.Y0(t71Var.f51449n));
                         t71Var.r1(true);
                     }
                 } else if (i13 == 2) {
@@ -61,7 +61,7 @@ public final class f61 implements Runnable {
                         }
                     }
                     org.telegram.ui.ActionBar.j6.t1(true, false);
-                    t71Var.X.setHasChanges(t71Var.Y0(t71Var.f51448n));
+                    t71Var.X.setHasChanges(t71Var.Y0(t71Var.f51449n));
                     t71Var.r1(true);
                 } else if (i13 == 3) {
                     if (i12 == 0) {
@@ -72,9 +72,9 @@ public final class f61 implements Runnable {
                         int i14 = g6Var.f28607g;
                         g6Var.f28607g = i11;
                         if (i14 != 0 && i11 == 0) {
-                            t71Var.f51472x0.s(0);
+                            t71Var.f51473x0.s(0);
                         } else if (i14 == 0 && i11 != 0) {
-                            t71Var.f51472x0.i(0);
+                            t71Var.f51473x0.i(0);
                             t71Var.j1();
                         }
                     } else {
@@ -85,18 +85,18 @@ public final class f61 implements Runnable {
                         t71Var.M0[1].b(i15, i11);
                     }
                     org.telegram.ui.ActionBar.j6.t1(true, true);
-                    t71Var.f51469w0.g1();
-                    t71Var.X.setHasChanges(t71Var.Y0(t71Var.f51448n));
+                    t71Var.f51470w0.g1();
+                    t71Var.X.setHasChanges(t71Var.Y0(t71Var.f51449n));
                     t71Var.r1(true);
                 }
-                int size = t71Var.f51442k0.size();
+                int size = t71Var.f51443k0.size();
                 for (int i16 = 0; i16 < size; i16++) {
-                    org.telegram.ui.ActionBar.s6 s6Var = (org.telegram.ui.ActionBar.s6) t71Var.f51442k0.get(i16);
+                    org.telegram.ui.ActionBar.s6 s6Var = (org.telegram.ui.ActionBar.s6) t71Var.f51443k0.get(i16);
                     s6Var.e(t71Var.getThemedColor(s6Var.f29600e), false, false);
                 }
-                t71Var.f51452p0.g1();
-                t71Var.f51469w0.g1();
-                hi.n5 n5Var = t71Var.f51417c0;
+                t71Var.f51453p0.g1();
+                t71Var.f51470w0.g1();
+                hi.n5 n5Var = t71Var.f51418c0;
                 if (n5Var != null) {
                     n5Var.invalidate();
                 }
@@ -106,11 +106,11 @@ public final class f61 implements Runnable {
                 t71Var.presentFragment(z41.g0(t71Var.getMessagesController().M0(Long.valueOf(-t71Var.L1)), true));
                 return;
             case 2:
-                t71Var.f51458r1.m1(false);
-                boolean a10 = t71Var.f51408a.a();
+                t71Var.f51459r1.m1(false);
+                boolean a10 = t71Var.f51409a.a();
                 org.telegram.ui.Components.ch0 ch0Var = t71Var.P1;
                 if (a10) {
-                    i7 = ch0Var.f33577e[0];
+                    i7 = ch0Var.f33579e[0];
                 } else {
                     i7 = 0;
                 }
@@ -122,16 +122,16 @@ public final class f61 implements Runnable {
                 t71Var.g1(false);
                 t71Var.a1();
                 t71Var.n1();
-                if (t71Var.f51442k0 != null) {
-                    for (int i17 = 0; i17 < t71Var.f51442k0.size(); i17++) {
-                        ((org.telegram.ui.ActionBar.s6) t71Var.f51442k0.get(i17)).e(t71Var.getThemedColor(((org.telegram.ui.ActionBar.s6) t71Var.f51442k0.get(i17)).f29600e), false, false);
+                if (t71Var.f51443k0 != null) {
+                    for (int i17 = 0; i17 < t71Var.f51443k0.size(); i17++) {
+                        ((org.telegram.ui.ActionBar.s6) t71Var.f51443k0.get(i17)).e(t71Var.getThemedColor(((org.telegram.ui.ActionBar.s6) t71Var.f51443k0.get(i17)).f29600e), false, false);
                     }
                 }
                 if (t71Var.O1) {
-                    l71 l71Var = t71Var.f51458r1;
+                    l71 l71Var = t71Var.f51459r1;
                     if (l71Var != null && l71Var.a()) {
                         t71Var.T1.setVisibility(0);
-                        t71Var.T1.a(t71Var.f51453p1);
+                        t71Var.T1.a(t71Var.f51454p1);
                     } else {
                         t71Var.T1.a(0.0f);
                     }
@@ -140,8 +140,8 @@ public final class f61 implements Runnable {
                         valueAnimator.removeAllListeners();
                         t71Var.R1.cancel();
                     }
-                    float f11 = t71Var.f51455q1;
-                    if (t71Var.f51458r1.a()) {
+                    float f11 = t71Var.f51456q1;
+                    if (t71Var.f51459r1.a()) {
                         f10 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
@@ -149,14 +149,14 @@ public final class f61 implements Runnable {
                     ofFloat.addUpdateListener(new ez0(t71Var, 9));
                     t71Var.R1.addListener(new x61(t71Var, 5));
                     t71Var.R1.setDuration(250L);
-                    t71Var.R1.setInterpolator(org.telegram.ui.Components.er.f34420f);
+                    t71Var.R1.setInterpolator(org.telegram.ui.Components.er.f34419f);
                     t71Var.R1.start();
                     return;
                 }
                 return;
             default:
                 if (t71Var.getParentActivity() != null && t71Var.getParentActivity() != null) {
-                    int i18 = org.telegram.messenger.gz.f23929a;
+                    int i18 = org.telegram.messenger.gz.f23932a;
                     SharedPreferences.Editor edit = org.telegram.messenger.np.e1().edit();
                     int i19 = org.telegram.messenger.gz.S + 1;
                     org.telegram.messenger.gz.S = i19;
@@ -167,7 +167,7 @@ public final class f61 implements Runnable {
                     b30Var.setVisibility(4);
                     b30Var.setShowingDuration(4000L);
                     t71Var.m0.addView(b30Var, c8.ja.d(-2, -2.0f, 51, 4.0f, 0.0f, 4.0f, 0.0f));
-                    if (t71Var.f51458r1.a()) {
+                    if (t71Var.f51459r1.a()) {
                         b30Var.setText(org.telegram.messenger.hd.M0(2131746878, null));
                     } else {
                         b30Var.setText(org.telegram.messenger.hd.M0(2131746877, null));

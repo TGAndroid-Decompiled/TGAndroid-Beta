@@ -80,8 +80,8 @@ public final class u {
         ArrayList arrayList = new ArrayList();
         for (StackTraceElement stackTraceElement : stackTraceElementArr) {
             ?? obj = new Object();
-            obj.f7668e = i7;
-            obj.f7669f = (byte) (obj.f7669f | 4);
+            obj.f7671e = i7;
+            obj.f7672f = (byte) (obj.f7672f | 4);
             long j10 = 0;
             if (stackTraceElement.isNativeMethod()) {
                 j3 = Math.max(stackTraceElement.getLineNumber(), 0L);
@@ -93,14 +93,14 @@ public final class u {
             if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
                 j10 = stackTraceElement.getLineNumber();
             }
-            obj.f7665a = j3;
-            byte b10 = (byte) (obj.f7669f | 1);
-            obj.f7669f = b10;
+            obj.f7668a = j3;
+            byte b10 = (byte) (obj.f7672f | 1);
+            obj.f7672f = b10;
             if (str != null) {
-                obj.f7666b = str;
-                obj.f7667c = fileName;
+                obj.f7669b = str;
+                obj.f7670c = fileName;
                 obj.d = j10;
-                obj.f7669f = (byte) (b10 | 2);
+                obj.f7672f = (byte) (b10 | 2);
                 arrayList.add(obj.a());
             } else {
                 throw new NullPointerException("Null symbol");

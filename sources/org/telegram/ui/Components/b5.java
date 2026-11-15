@@ -7,32 +7,32 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class b5 implements Runnable {
-    public final int f33195a;
-    public final c5 f33196b;
-    public final ArrayList f33197c;
+    public final int f33198a;
+    public final c5 f33199b;
+    public final ArrayList f33200c;
     public final TLObject d;
 
     public b5(c5 c5Var, ArrayList arrayList, TLObject tLObject, int i7) {
-        this.f33195a = i7;
-        this.f33196b = c5Var;
-        this.f33197c = arrayList;
+        this.f33198a = i7;
+        this.f33199b = c5Var;
+        this.f33200c = arrayList;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f33195a) {
+        switch (this.f33198a) {
             case 0:
-                org.telegram.messenger.g0.h3(new b5(this.f33196b, this.f33197c, this.d, 1));
+                org.telegram.messenger.g0.h3(new b5(this.f33199b, this.f33200c, this.d, 1));
                 return;
             default:
-                c5 c5Var = this.f33196b;
-                int i7 = c5Var.f33505e;
-                HashSet hashSet = new HashSet(this.f33197c);
+                c5 c5Var = this.f33199b;
+                int i7 = c5Var.f33508e;
+                HashSet hashSet = new HashSet(this.f33200c);
                 TLObject tLObject = this.d;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = ((Vector) tLObject).objects;
-                    org.telegram.messenger.vr.a0(i7).f27220a.c(new z4(c5Var, arrayList, 1));
+                    org.telegram.messenger.vr.a0(i7).f27219a.c(new z4(c5Var, arrayList, 1));
                     c5Var.d(arrayList);
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         if (arrayList.get(i10) instanceof TLRPC.Document) {

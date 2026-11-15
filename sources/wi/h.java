@@ -24,7 +24,7 @@ import org.telegram.ui.Components.m51;
 import org.telegram.ui.Components.mt0;
 import org.telegram.ui.Components.um0;
 import org.telegram.ui.g71;
-import tg.y1;
+import tg.x1;
 import ug.x;
 public final class h {
     public static final mt0 Q = new mt0(new x(21), new x(22));
@@ -79,12 +79,12 @@ public final class h {
     }
 
     public static float e(float f10, float f11) {
-        return i9.a(f10, m(), (g0.f23609q.y - f11) - m());
+        return i9.a(f10, m(), (g0.f23611q.y - f11) - m());
     }
 
     public static int i(float f10) {
         float f11;
-        Point point = g0.f23609q;
+        Point point = g0.f23611q;
         float min = Math.min(point.x, point.y);
         if (f10 >= 1.0f) {
             f11 = 0.35f;
@@ -113,14 +113,14 @@ public final class h {
         if (f12 != -1.0f) {
             m10 = n(f12, i11);
         } else {
-            m10 = (g0.f23609q.x - i11) - m();
+            m10 = (g0.f23611q.x - i11) - m();
         }
         if (f13 != -1.0f) {
             m11 = e(f13, i12);
         } else {
             m11 = m();
         }
-        float f14 = m11 + g0.f23603m;
+        float f14 = m11 + g0.f23605m;
         rectF.set(m10, f14, i11 + m10, i12 + f14);
     }
 
@@ -130,7 +130,7 @@ public final class h {
 
     public static float n(float f10, float f11) {
         float f12 = (f11 / 2.0f) + f10;
-        int i7 = g0.f23609q.x;
+        int i7 = g0.f23611q.x;
         if (f12 >= i7 / 2.0f) {
             return (i7 - f11) - m();
         }
@@ -151,7 +151,7 @@ public final class h {
         }
         this.f59385f = z10;
         if (z10) {
-            context = t0.f26600b;
+            context = t0.f26609b;
         } else {
             context = this.f59383c;
         }
@@ -257,7 +257,7 @@ public final class h {
             return;
         }
         float f10 = this.B;
-        float f11 = this.C + g0.f23603m;
+        float f11 = this.C + g0.f23605m;
         rectF.set(f10, f11, this.f59401x + f10, this.f59402y + f11);
     }
 
@@ -310,8 +310,8 @@ public final class h {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(200L);
         this.v = duration;
-        duration.setInterpolator(er.f34420f);
-        this.v.addUpdateListener(new y1(this, 7));
+        duration.setInterpolator(er.f34419f);
+        this.v.addUpdateListener(new x1(this, 7));
         this.v.addListener(new g71(this, 25));
         this.v.start();
     }

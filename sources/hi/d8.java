@@ -66,7 +66,7 @@ public final class d8 implements z10 {
                 av0 av0Var = (av0) this.f14178c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    ns.f(m10.f24934t0).d(new bi.m1(av0Var, tL_messages_emojiGroups, this.f14177b, 26));
+                    ns.f(m10.f24940t0).d(new bi.m1(av0Var, tL_messages_emojiGroups, this.f14177b, 26));
                     return;
                 }
                 return;

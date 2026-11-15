@@ -75,8 +75,8 @@ public final class z9 extends r41 {
         public final void didReceivedNotification(int i7, int i10, Object[] objArr) {
             bi.v3 v3Var;
             z9 z9Var = z9.this;
-            if (!z9Var.f44861r && (v3Var = z9Var.f38882a) != null) {
-                v3Var.f39895g3.O(true);
+            if (!z9Var.f44861r && (v3Var = z9Var.f38880a) != null) {
+                v3Var.f39892g3.O(true);
             }
         }
     };
@@ -119,7 +119,7 @@ public final class z9 extends r41 {
         if (!z9Var.isFinished && z9Var.O != null && l02 != null) {
             if (l02.startsWith("@")) {
                 int i7 = z9Var.currentAccount;
-                np.s1(i7).d2().a(l02.substring(1), null, new ai.x1(new t9(z9Var, 1), i7));
+                np.s1(i7).d2().a(l02.substring(1), null, new ai.y1(new t9(z9Var, 1), i7));
                 return;
             }
             z9Var.O.setText(l02);
@@ -133,11 +133,11 @@ public final class z9 extends r41 {
     public static void f0(z9 z9Var, String str, int i7) {
         z9Var.L = null;
         int i10 = z9Var.currentAccount;
-        ai.x1 x1Var = new ai.x1(z9Var, i7, 8);
+        ai.y1 y1Var = new ai.y1(z9Var, i7, 8);
         TL_toncenter.performApiRequest performapirequest = new TL_toncenter.performApiRequest();
         performapirequest.endpoint = "/api/v3/dns/records";
         performapirequest.query = "domain=" + Uri.encode(str) + "&limit=2";
-        z9Var.F = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new bi.e4(29, str, x1Var), np.s1(i10).O3, 0);
+        z9Var.F = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new bi.e4(29, str, y1Var), np.s1(i10).O3, 0);
     }
 
     public static void g0(View view, boolean z10, boolean z11) {
@@ -231,8 +231,8 @@ public final class z9 extends r41 {
             arrayList.add(b41.u(hd.M0(2131743040, null)));
             m01 m01Var = this.N;
             b41 b41Var = new b41(-1);
-            b41Var.f33174c = m01Var;
-            b41Var.f33194z = 50;
+            b41Var.f33177c = m01Var;
+            b41Var.f33197z = 50;
             arrayList.add(b41Var);
             p41Var.U();
             String trim = this.O.getText().toString().trim();
@@ -243,7 +243,7 @@ public final class z9 extends r41 {
                 if (this.H == null) {
                     FrameLayout frameLayout = new FrameLayout(getParentActivity());
                     frameLayout.setBackground(org.telegram.ui.ActionBar.j6.h0(getThemedColor(org.telegram.ui.ActionBar.j6.f28941i6), 2, -1));
-                    boolean z10 = hd.f24101a0;
+                    boolean z10 = hd.f24104a0;
                     if (z10) {
                         i11 = 5;
                     } else {
@@ -318,8 +318,8 @@ public final class z9 extends r41 {
                 p41Var.V();
                 FrameLayout frameLayout2 = this.H;
                 b41 b41Var2 = new b41(-1);
-                b41Var2.f33174c = frameLayout2;
-                b41Var2.f33194z = 60;
+                b41Var2.f33177c = frameLayout2;
+                b41Var2.f33197z = 60;
                 arrayList.add(b41Var2);
                 p41Var.U();
                 return;
@@ -327,7 +327,7 @@ public final class z9 extends r41 {
             if (TextUtils.isEmpty(lowerCase)) {
                 arrayList2 = new ArrayList();
                 HashSet hashSet = new HashSet();
-                ArrayList arrayList3 = si.b0(this.currentAccount).f26482j1;
+                ArrayList arrayList3 = si.b0(this.currentAccount).f26492j1;
                 int size = arrayList3.size();
                 int i14 = 0;
                 while (i14 < size) {
@@ -372,13 +372,13 @@ public final class z9 extends r41 {
                 }
                 b41 w10 = b41.w(user2);
                 if (!TextUtils.isEmpty(lowerCase)) {
-                    w10.f33181l = org.telegram.messenger.g0.r0(user2.first_name, user2.last_name, trim);
+                    w10.f33184l = org.telegram.messenger.g0.r0(user2.first_name, user2.last_name, trim);
                     String n10 = q10.n(user2);
                     if (!TextUtils.isEmpty(n10)) {
-                        w10.f33182m = org.telegram.messenger.g0.r0(r.b.k("@", n10), null, "@".concat(trim));
+                        w10.f33185m = org.telegram.messenger.g0.r0(r.b.k("@", n10), null, "@".concat(trim));
                     }
                     i10 = i12;
-                    w10.F = new m(user2, w10.f33181l, w10.f33182m, 8);
+                    w10.F = new m(user2, w10.f33184l, w10.f33185m, 8);
                 } else {
                     i10 = i12;
                 }
@@ -409,10 +409,10 @@ public final class z9 extends r41 {
                 Object[] objArr = new Object[1];
                 objArr[i18] = lowerCase;
                 String a02 = hd.a0(null, null, 2131743025, objArr);
-                int i20 = ti.f39703b;
+                int i20 = ti.f39700b;
                 b41 K = b41.K(ti.class);
-                K.f33181l = M0;
-                K.f33182m = a02;
+                K.f33184l = M0;
+                K.f33185m = a02;
                 arrayList.add(K);
             }
         }
@@ -435,7 +435,7 @@ public final class z9 extends r41 {
         if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             int i7 = this.currentAccount;
-            vr.a0(i7).f27220a.c(new di.j9(i7, user.f28200id, 1));
+            vr.a0(i7).f27219a.c(new di.i9(i7, user.f28200id, 1));
             org.telegram.messenger.g0.v1(this.O);
             m0(null, user);
         }
@@ -449,12 +449,12 @@ public final class z9 extends r41 {
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f38882a);
-        this.f38882a.r1();
-        this.f38882a.setPadding(0, 0, 0, org.telegram.messenger.g0.L(68.0f));
-        this.f38882a.setClipToPadding(false);
-        bi.v3 v3Var = this.f38882a;
-        v3Var.f39895g3.f38201r = false;
+        this.actionBar.setAdaptiveBackground(this.f38880a);
+        this.f38880a.r1();
+        this.f38880a.setPadding(0, 0, 0, org.telegram.messenger.g0.L(68.0f));
+        this.f38880a.setClipToPadding(false);
+        bi.v3 v3Var = this.f38880a;
+        v3Var.f39892g3.f38199r = false;
         v3Var.j(new ri(this, 25));
         m01 m01Var = new m01(6, context, this);
         this.U = (ClipboardManager) context.getSystemService("clipboard");
@@ -512,7 +512,7 @@ public final class z9 extends r41 {
         si.b0(this.currentAccount).M0(true);
         this.f44862s.clear();
         int i10 = this.currentAccount;
-        vr.a0(i10).f27220a.c(new jg.q(i10, 0, new v9(this), 0));
+        vr.a0(i10).f27219a.c(new jg.q(i10, 0, new v9(this), 0));
         if (!TextUtils.isEmpty(null)) {
             this.O.setText((CharSequence) null);
             ah.i iVar3 = this.O;
@@ -539,7 +539,7 @@ public final class z9 extends r41 {
         this.W.addView(this.f44853a0, c8.ja.e(-1, 48, 119));
         ((FrameLayout) this.fragmentView).addView(this.W, c8.ja.e(-1, 68, 87));
         o0();
-        this.f38882a.f39895g3.O(false);
+        this.f38880a.f39892g3.O(false);
         return this.fragmentView;
     }
 
@@ -597,16 +597,16 @@ public final class z9 extends r41 {
                     }
                 }
             }
-            bi.v3 v3Var = this.f38882a;
+            bi.v3 v3Var = this.f38880a;
             if (v3Var != null) {
-                v3Var.f39895g3.O(true);
+                v3Var.f39892g3.O(true);
                 return;
             }
             return;
         }
-        bi.v3 v3Var2 = this.f38882a;
+        bi.v3 v3Var2 = this.f38880a;
         if (v3Var2 != null) {
-            v3Var2.f39895g3.O(true);
+            v3Var2.f39892g3.O(true);
         }
     }
 
@@ -660,10 +660,10 @@ public final class z9 extends r41 {
 
     public final void o0() {
         int max = Math.max(0, this.f44855c0 - this.f44854b0);
-        bi.v3 v3Var = this.f38882a;
+        bi.v3 v3Var = this.f38880a;
         if (v3Var != null) {
             v3Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(68.0f) + this.f44854b0 + max);
-            this.f38882a.setClipToPadding(false);
+            this.f38880a.setClipToPadding(false);
         }
         FrameLayout frameLayout = this.W;
         if (frameLayout != null) {

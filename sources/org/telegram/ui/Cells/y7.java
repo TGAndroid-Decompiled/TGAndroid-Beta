@@ -49,7 +49,7 @@ public class y7 extends FrameLayout implements is, rg.c {
     public y7(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         super(context);
         this.f32072n = 1.0f;
-        this.F = m10.f24934t0;
+        this.F = m10.f24940t0;
         this.I = 1.0f;
         this.N = e6Var;
         this.G = z10;
@@ -86,7 +86,7 @@ public class y7 extends FrameLayout implements is, rg.c {
     public final void a(boolean z10) {
         ImageView imageView = this.K;
         if (z10) {
-            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(er.f34420f).start();
+            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(er.f34419f).start();
         } else {
             imageView.setAlpha(0.0f);
         }
@@ -157,7 +157,7 @@ public class y7 extends FrameLayout implements is, rg.c {
             imageView.setAlpha(0.0f);
             imageView.setScaleX(0.4f);
             imageView.setScaleY(0.4f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(er.f34420f).start();
+            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(er.f34419f).start();
             return;
         }
         imageView.setAlpha(1.0f);
@@ -171,7 +171,7 @@ public class y7 extends FrameLayout implements is, rg.c {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25497f5) {
+        if (i7 == ns.f25498f5) {
             e(true);
         }
     }
@@ -235,9 +235,9 @@ public class y7 extends FrameLayout implements is, rg.c {
         ?? obj = new Object();
         int[] iArr = new int[2];
         getLocationInWindow(iArr);
-        obj.f22885a = x7Var.r() + iArr[0];
-        obj.f22886b = x7Var.s() + iArr[1];
-        obj.f22887c = x7Var.N0;
+        obj.f22889a = x7Var.r() + iArr[0];
+        obj.f22890b = x7Var.s() + iArr[1];
+        obj.f22891c = x7Var.N0;
         return obj;
     }
 
@@ -247,7 +247,7 @@ public class y7 extends FrameLayout implements is, rg.c {
 
     public xy getStickerPath() {
         xy xyVar = this.d;
-        if (xyVar != null && xyVar.f27624c) {
+        if (xyVar != null && xyVar.f27626c) {
             return xyVar;
         }
         return null;
@@ -274,14 +274,14 @@ public class y7 extends FrameLayout implements is, rg.c {
             x7Var.H0(this);
         }
         x7Var.P();
-        ns.f(this.F).c(this, ns.f25497f5);
+        ns.f(this.F).c(this, ns.f25498f5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.f32067a.R();
-        ns.f(this.F).n(this, ns.f25497f5);
+        ns.f(this.F).n(this, ns.f25498f5);
     }
 
     @Override
@@ -324,7 +324,7 @@ public class y7 extends FrameLayout implements is, rg.c {
 
     public void setSticker(xy xyVar) {
         boolean z10;
-        String str = xyVar.f27623b;
+        String str = xyVar.f27625b;
         if (str != null) {
             z10 = true;
         } else {

@@ -80,13 +80,13 @@ public final class y3 {
             }
             ch0Var.P(i10);
         } else if (z10) {
-            if (ch0Var.f33573b0 > 20) {
+            if (ch0Var.f33575b0 > 20) {
                 ch0Var.N(0, false, false);
             }
             ch0Var.P(20);
             ch0Var.start();
         } else {
-            int i11 = ch0Var.f33573b0;
+            int i11 = ch0Var.f33575b0;
             if (i11 != 0 && i11 < 43) {
                 ch0Var.P(43);
                 ch0Var.start();

@@ -17,15 +17,15 @@ public final class a7 implements Runnable {
                 i7 i7Var = this.f22470b;
                 i7Var.getClass();
                 h7 h7Var = this.f22471c;
-                h7Var.f24069l = null;
+                h7Var.f24072l = null;
                 i7Var.H0.remove(h7Var);
-                h7Var.f24068k = true;
+                h7Var.f24071k = true;
                 return;
             default:
                 i7 i7Var2 = this.f22470b;
                 h7 h7Var2 = this.f22471c;
                 i7Var2.m(h7Var2, null);
-                h7Var2.f24064f.freeResources();
+                h7Var2.f24067f.freeResources();
                 return;
         }
     }

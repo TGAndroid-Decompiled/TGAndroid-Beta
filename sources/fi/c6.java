@@ -41,7 +41,7 @@ public final class c6 extends k6 {
             Integer num = (Integer) obj;
             gj f10 = f(num.intValue());
             if (f10 != null) {
-                reorderpreviewmedias.order.add(np.a5(f10.f23822l.media));
+                reorderpreviewmedias.order.add(np.a5(f10.f23824l.media));
                 arrayList2.add(f10);
                 arrayList3.add(num);
             }
@@ -70,7 +70,7 @@ public final class c6 extends k6 {
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (np.t0(gjVar.f23822l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
+                } else if (np.t0(gjVar.f23824l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
                     arrayList2.remove(i7);
                     ArrayList arrayList3 = this.H;
                     if (!arrayList3.isEmpty() && gjVar.e1() < ((ArrayList) arrayList3.get(0)).size()) {
@@ -107,7 +107,7 @@ public final class c6 extends k6 {
             arrayList = this.f11944i;
             if (i7 < arrayList.size()) {
                 gjVar = (gj) arrayList.get(i7);
-                if (inputMedia != null && (storyItem = gjVar.f23822l) != null && (messageMedia = storyItem.media) != null) {
+                if (inputMedia != null && (storyItem = gjVar.f23824l) != null && (messageMedia = storyItem.media) != null) {
                     if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
                         TLRPC.Photo photo = messageMedia.photo;
                         if (photo != null && photo.f28075id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f28114id.f28070id) {
@@ -136,7 +136,7 @@ public final class c6 extends k6 {
         }
         b6 b6Var = new b6(this, this.d, botpreviewmedia);
         gj gjVar2 = new gj(this.f11940c, b6Var);
-        TLRPC.Message message = gjVar2.f23817k;
+        TLRPC.Message message = gjVar2.f23819k;
         if (gjVar == null) {
             e12 = this.I;
             this.I = e12 + 1;
@@ -145,7 +145,7 @@ public final class c6 extends k6 {
         }
         message.f28072id = e12;
         b6Var.f28290id = e12;
-        gjVar2.f23813j = this;
+        gjVar2.f23815j = this;
         gjVar2.r0(false);
         if (arrayList2.isEmpty()) {
             arrayList2.add(new ArrayList());
@@ -183,12 +183,12 @@ public final class c6 extends k6 {
     public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
         b6 b6Var = new b6(this, this.d, botpreviewmedia);
         gj gjVar = new gj(this.f11940c, b6Var);
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         int i7 = this.I;
         this.I = i7 + 1;
         message.f28072id = i7;
         b6Var.f28290id = i7;
-        gjVar.f23813j = this;
+        gjVar.f23815j = this;
         gjVar.r0(false);
         ArrayList arrayList = this.H;
         if (arrayList.isEmpty()) {

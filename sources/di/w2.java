@@ -8,22 +8,22 @@ import org.telegram.ui.an;
 import org.telegram.ui.uf;
 import org.telegram.ui.yd;
 public final class w2 implements z10 {
-    public final int f9643a;
-    public final long f9644b;
-    public final Object f9645c;
+    public final int f9632a;
+    public final long f9633b;
+    public final Object f9634c;
     public final Object d;
-    public final Object f9646e;
-    public final Object f9647f;
-    public final Object f9648g;
+    public final Object f9635e;
+    public final Object f9636f;
+    public final Object f9637g;
 
     public w2(KeyEvent.Callback callback, Object obj, Object obj2, long j3, TLObject tLObject, TLObject tLObject2, int i7) {
-        this.f9643a = i7;
-        this.f9645c = callback;
+        this.f9632a = i7;
+        this.f9634c = callback;
         this.d = obj;
-        this.f9646e = obj2;
-        this.f9644b = j3;
-        this.f9647f = tLObject;
-        this.f9648g = tLObject2;
+        this.f9635e = obj2;
+        this.f9633b = j3;
+        this.f9636f = tLObject;
+        this.f9637g = tLObject2;
     }
 
     @Override
@@ -32,12 +32,12 @@ public final class w2 implements z10 {
     }
 
     public w2(np npVar, org.telegram.ui.ActionBar.t1 t1Var, an anVar, uf ufVar, long j3, yd ydVar) {
-        this.f9643a = 1;
-        this.f9645c = npVar;
+        this.f9632a = 1;
+        this.f9634c = npVar;
         this.d = t1Var;
-        this.f9646e = anVar;
-        this.f9647f = ufVar;
-        this.f9644b = j3;
-        this.f9648g = ydVar;
+        this.f9635e = anVar;
+        this.f9636f = ufVar;
+        this.f9633b = j3;
+        this.f9637g = ydVar;
     }
 }

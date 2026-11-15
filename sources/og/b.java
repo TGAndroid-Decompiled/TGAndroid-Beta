@@ -63,7 +63,7 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                         scaleFactor = 30.0f / f11;
                     }
                     if (!oVar.f21536r) {
-                        i7 = g0.f23603m;
+                        i7 = g0.f23605m;
                     } else {
                         i7 = 0;
                     }
@@ -85,7 +85,7 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 }
                 hVar.f59402y = (int) (((int) (wi.h.i(f10) * f10)) * hVar.f59403z);
                 g0.h3(new vg.o(this, 8));
-                if (scaleGestureDetector.getFocusX() >= g0.f23609q.x / 2.0f) {
+                if (scaleGestureDetector.getFocusX() >= g0.f23611q.x / 2.0f) {
                     m10 = (i10 - hVar.f59401x) - wi.h.m();
                 } else {
                     m10 = wi.h.m();

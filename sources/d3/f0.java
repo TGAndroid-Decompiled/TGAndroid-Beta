@@ -2,23 +2,23 @@ package d3;
 
 import h2.l0;
 public final class f0 implements Runnable {
-    public final int f7398a = 0;
-    public final wf.b f7399b;
-    public final long f7400c;
+    public final int f7401a = 0;
+    public final wf.b f7402b;
+    public final long f7403c;
     public final int d;
 
     public f0(wf.b bVar, int i7, long j3) {
-        this.f7399b = bVar;
+        this.f7402b = bVar;
         this.d = i7;
-        this.f7400c = j3;
+        this.f7403c = j3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f7398a;
+        int i7 = this.f7401a;
         int i10 = this.d;
-        long j3 = this.f7400c;
-        wf.b bVar = this.f7399b;
+        long j3 = this.f7403c;
+        wf.b bVar = this.f7402b;
         switch (i7) {
             case 0:
                 String str = l0.f13471a;
@@ -36,8 +36,8 @@ public final class f0 implements Runnable {
     }
 
     public f0(wf.b bVar, long j3, int i7) {
-        this.f7399b = bVar;
-        this.f7400c = j3;
+        this.f7402b = bVar;
+        this.f7403c = j3;
         this.d = i7;
     }
 }

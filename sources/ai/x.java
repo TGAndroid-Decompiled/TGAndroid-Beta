@@ -1,41 +1,63 @@
 package ai;
 
-import android.os.ParcelFileDescriptor;
+import android.content.Context;
+import org.telegram.ui.Dictation.DictationAsr;
 public final class x {
-    public final ParcelFileDescriptor f1612a;
-    public final ParcelFileDescriptor f1613b;
-    public final Thread f1614c;
-    public volatile int d;
-    public volatile boolean f1615e;
-    public final int f1616f;
-    public final int f1617g;
-    public final int h;
-    public long f1618i;
-    public final y f1619j;
+    public boolean f1608a;
+    public boolean f1609b;
+    public long f1610c;
+    public final Object d;
+    public final Object f1611e;
+    public Object f1612f;
+    public Object f1613g;
+    public Object h;
 
-    public x(y yVar, int i7, int i10, int i11) {
-        this.f1619j = yVar;
-        ParcelFileDescriptor[] createPipe = ParcelFileDescriptor.createPipe();
-        this.f1612a = createPipe[0];
-        this.f1613b = createPipe[1];
-        this.d = i7;
-        this.f1616f = i7;
-        this.f1617g = i10;
-        this.h = i11;
-        Thread thread = new Thread(new a3.f(this, 5), "DictationFeed");
-        this.f1614c = thread;
-        thread.start();
+    public x(Context context, d3.x xVar) {
+        this.d = context.getApplicationContext();
+        this.f1611e = xVar;
+        this.f1610c = 15000L;
+        this.h = new d3.y();
+        this.f1613g = h2.g0.f13448a;
     }
 
-    public final void a() {
-        this.f1615e = true;
-        synchronized (this.f1619j.f1624a) {
-            this.f1619j.f1624a.notifyAll();
+    public static x c(android.support.v4.media.session.a0 a0Var, o2 o2Var) {
+        long nativeSessionNew;
+        long k10 = DictationAsr.k((t) a0Var.f1713b);
+        if (k10 == 0) {
+            return null;
         }
-        this.f1614c.interrupt();
-        try {
-            this.f1612a.close();
-        } catch (Exception unused) {
+        x xVar = new x(a0Var, o2Var);
+        String str = (String) a0Var.f1714c;
+        nativeSessionNew = DictationAsr.nativeSessionNew(k10, str, str.split(",")[0]);
+        xVar.f1610c = nativeSessionNew;
+        if (nativeSessionNew == 0) {
+            DictationAsr.M((t) a0Var.f1713b);
+            return null;
         }
+        return xVar;
+    }
+
+    public void a() {
+        String nativeSessionFinish;
+        long j3 = this.f1610c;
+        if (j3 != 0) {
+            nativeSessionFinish = DictationAsr.nativeSessionFinish(j3);
+            b(nativeSessionFinish);
+            DictationAsr.nativeSessionFree(this.f1610c);
+            this.f1610c = 0L;
+            DictationAsr.M((t) this.f1611e);
+        }
+    }
+
+    public void b(java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.x.b(java.lang.String):void");
+    }
+
+    public x(android.support.v4.media.session.a0 a0Var, o2 o2Var) {
+        this.f1613g = new StringBuilder();
+        this.h = "";
+        this.d = a0Var;
+        this.f1611e = (t) a0Var.f1713b;
+        this.f1612f = o2Var;
     }
 }

@@ -267,7 +267,7 @@ public final class g5 extends FrameLayout {
                 swipeBack.setForegroundOnGlass(true);
                 if (this.f28587b != swipeBack) {
                     this.f28587b = swipeBack;
-                    swipeBack.f41989y.add(new xe0() {
+                    swipeBack.f41991y.add(new xe0() {
                         @Override
                         public final void a(float f10, float f11) {
                             g5.this.invalidate();
@@ -738,9 +738,9 @@ public final class g5 extends FrameLayout {
         if (this.d != null && (actionBarPopupWindow$ActionBarPopupWindowLayout = this.f28594f) != null && actionBarPopupWindow$ActionBarPopupWindowLayout.getParent() == this) {
             b();
             if (this.f28598s) {
-                contentTop = (int) (((this.Q.bottom + this.d.getMenuExtraBelow()) - org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(16.0f));
+                contentTop = (int) (((this.Q.bottom + this.d.getMenuExtraBelow()) - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(16.0f));
             } else {
-                contentTop = ((size2 - getContentTop()) - org.telegram.messenger.g0.L(16.0f)) - org.telegram.messenger.g0.f23604n;
+                contentTop = ((size2 - getContentTop()) - org.telegram.messenger.g0.L(16.0f)) - org.telegram.messenger.g0.f23606n;
             }
             int menuMaxHeight = this.d.getMenuMaxHeight();
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f28594f;

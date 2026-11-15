@@ -69,7 +69,7 @@ public abstract class x3 extends FrameLayout {
         this.U = org.telegram.messenger.g0.L(60.0f);
         this.V = true;
         this.f18691b = new ou(context, new v3(this, ViewConfiguration.get(context).getScaledTouchSlop(), 0));
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         if (point.x > point.y) {
             f10 = 8.0f;
         } else {
@@ -108,7 +108,7 @@ public abstract class x3 extends FrameLayout {
         if (runnable != null) {
             runnable.run();
         }
-        xb xbVar = xb.f41635w;
+        xb xbVar = xb.f41627w;
         if (xbVar != null) {
             xbVar.l();
         }
@@ -164,7 +164,7 @@ public abstract class x3 extends FrameLayout {
             } else {
                 obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
             }
-            boolean onTouchEvent = ((GestureDetector) this.f18691b.f25804b).onTouchEvent(obtain);
+            boolean onTouchEvent = ((GestureDetector) this.f18691b.f25806b).onTouchEvent(obtain);
             obtain.recycle();
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 boolean z10 = this.f18693c;
@@ -192,7 +192,7 @@ public abstract class x3 extends FrameLayout {
                             float y10 = motionEvent.getY();
                             float f12 = this.f18690a0;
                             float f13 = this.f18692b0;
-                            Typeface typeface = org.telegram.messenger.g0.f23581a;
+                            Typeface typeface = org.telegram.messenger.g0.f23583a;
                             float f14 = f12 - x10;
                             float f15 = f13 - y10;
                             float sqrt = (float) Math.sqrt((f15 * f15) + (f14 * f14));
@@ -272,7 +272,7 @@ public abstract class x3 extends FrameLayout {
     public final void onConfigurationChanged(Configuration configuration) {
         float f10;
         super.onConfigurationChanged(configuration);
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         if (point.x > point.y) {
             f10 = 8.0f;
         } else {

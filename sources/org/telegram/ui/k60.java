@@ -22,19 +22,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class k60 implements org.telegram.messenger.s10 {
-    public final int f48596a = 2;
-    public final int f48597b;
-    public final Object f48598c;
+    public final int f48550a = 2;
+    public final int f48551b;
+    public final Object f48552c;
     public final Object d;
-    public final Object f48599e;
-    public final Object f48600f;
+    public final Object f48553e;
+    public final Object f48554f;
 
     public k60(Context context, int i7, org.telegram.ui.Wallet.l0 l0Var, org.telegram.ui.ActionBar.e6 e6Var, Runnable runnable) {
-        this.f48598c = context;
-        this.f48597b = i7;
+        this.f48552c = context;
+        this.f48551b = i7;
         this.d = l0Var;
-        this.f48599e = e6Var;
-        this.f48600f = runnable;
+        this.f48553e = e6Var;
+        this.f48554f = runnable;
     }
 
     @Override
@@ -56,12 +56,12 @@ public final class k60 implements org.telegram.messenger.s10 {
         int i15;
         int i16;
         int i17;
-        int i18 = this.f48596a;
-        int i19 = this.f48597b;
-        Object obj3 = this.f48600f;
-        Object obj4 = this.f48599e;
+        int i18 = this.f48550a;
+        int i19 = this.f48551b;
+        Object obj3 = this.f48554f;
+        Object obj4 = this.f48553e;
         Object obj5 = this.d;
-        Object obj6 = this.f48598c;
+        Object obj6 = this.f48552c;
         switch (i18) {
             case 0:
                 LaunchActivity launchActivity = (LaunchActivity) obj6;
@@ -88,9 +88,9 @@ public final class k60 implements org.telegram.messenger.s10 {
                 String str5 = (String) obj3;
                 TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                LaunchActivity launchActivity2 = q90Var.f50510a;
+                LaunchActivity launchActivity2 = q90Var.f50501a;
                 q90Var.h = -1;
-                if (!q90Var.f50517j && !launchActivity2.isFinishing() && !launchActivity2.isDestroyed()) {
+                if (!q90Var.f50508j && !launchActivity2.isFinishing() && !launchActivity2.isDestroyed()) {
                     if (tL_error2 != null) {
                         q90Var.c();
                         if (q90Var.a()) {
@@ -106,20 +106,20 @@ public final class k60 implements org.telegram.messenger.s10 {
                                     TL_wallet.tonConnectRequest tonconnectrequest = arrayList.get(i20);
                                     i20++;
                                     TL_wallet.tonConnectRequest tonconnectrequest2 = tonconnectrequest;
-                                    if (str4.equals(tonconnectrequest2.trace_id) && tonconnectrequest2.session_id == tonconnectpending.session.f28313id && tonconnectrequest2.expires > ConnectionsManager.getInstance(q90Var.f50511b).getCurrentTime()) {
+                                    if (str4.equals(tonconnectrequest2.trace_id) && tonconnectrequest2.session_id == tonconnectpending.session.f28313id && tonconnectrequest2.expires > ConnectionsManager.getInstance(q90Var.f50502b).getCurrentTime()) {
                                         if (q90Var.a() && (T = LaunchActivity.T()) != null && T.getContext() != null) {
                                             q90Var.c();
-                                            org.telegram.ui.Wallet.d2.q(q90Var.f50510a, q90Var.f50511b, tonconnectrequest2.session_id, tonconnectrequest2.msg_id, T.getResourceProvider(), new m90(q90Var, str5, 0));
+                                            org.telegram.ui.Wallet.d2.q(q90Var.f50501a, q90Var.f50502b, tonconnectrequest2.session_id, tonconnectrequest2.msg_id, T.getResourceProvider(), new m90(q90Var, str5, 0));
                                         }
                                     }
                                 }
                             }
                         }
-                        int i21 = this.f48597b;
+                        int i21 = this.f48551b;
                         if (i21 < 10) {
-                            ai.f1 f1Var = new ai.f1(q90Var, str3, str4, str5, i21, 23);
-                            q90Var.f50516i = f1Var;
-                            org.telegram.messenger.g0.i3(f1Var, 500L);
+                            ai.g1 g1Var = new ai.g1(q90Var, str3, str4, str5, i21, 23);
+                            q90Var.f50507i = g1Var;
+                            org.telegram.messenger.g0.i3(g1Var, 500L);
                             return;
                         }
                         q90Var.c();
@@ -146,7 +146,7 @@ public final class k60 implements org.telegram.messenger.s10 {
                     String str7 = z1Var2.f44779e;
                     if (context instanceof Activity) {
                         Activity activity = (Activity) context;
-                        if (activity.isFinishing() || activity.isDestroyed() || !LaunchActivity.G1 || org.telegram.messenger.gz.f23992x || org.telegram.messenger.gz.C || org.telegram.messenger.m10.f24934t0 != i19) {
+                        if (activity.isFinishing() || activity.isDestroyed() || !LaunchActivity.G1 || org.telegram.messenger.gz.f23995x || org.telegram.messenger.gz.C || org.telegram.messenger.m10.f24940t0 != i19) {
                             l0Var.f44083g.u(z1Var2);
                             return;
                         }
@@ -582,16 +582,16 @@ public final class k60 implements org.telegram.messenger.s10 {
                     boolean[] zArr3 = {false};
                     final org.telegram.ui.Wallet.z1 z1Var3 = z1Var;
                     final org.telegram.ui.Wallet.d2 d2Var4 = d2Var;
-                    final org.telegram.ui.Wallet.f1 f1Var2 = new org.telegram.ui.Wallet.f1(z1Var3, zArr3, g11, dVar2, d2Var4, w2Var2, zArr2, e6Var3);
+                    final org.telegram.ui.Wallet.f1 f1Var = new org.telegram.ui.Wallet.f1(z1Var3, zArr3, g11, dVar2, d2Var4, w2Var2, zArr2, e6Var3);
                     g11.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    f1Var2.a(Boolean.FALSE);
+                                    f1Var.a(Boolean.FALSE);
                                     return;
                                 default:
-                                    f1Var2.a(Boolean.TRUE);
+                                    f1Var.a(Boolean.TRUE);
                                     return;
                             }
                         }
@@ -601,10 +601,10 @@ public final class k60 implements org.telegram.messenger.s10 {
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    f1Var2.a(Boolean.FALSE);
+                                    f1Var.a(Boolean.FALSE);
                                     return;
                                 default:
-                                    f1Var2.a(Boolean.TRUE);
+                                    f1Var.a(Boolean.TRUE);
                                     return;
                             }
                         }
@@ -687,10 +687,10 @@ public final class k60 implements org.telegram.messenger.s10 {
                     Context applicationContext = view.getContext().getApplicationContext();
                     try {
                         byte[] c10 = vc1.c(r7Var, queryParameter, currentDatacenterId, isTestBackend);
-                        com.google.android.gms.common.api.internal.p0 p0Var = new b9.k0(applicationContext, com.google.android.gms.common.api.i.f5924c).f6108i;
+                        com.google.android.gms.common.api.internal.p0 p0Var = new b9.k0(applicationContext, com.google.android.gms.common.api.i.f5927c).f6111i;
                         b9.h0 h0Var = new b9.h0(p0Var, (String) r7Var.d, "/tg-wear-auth/token", c10);
-                        p0Var.f6063b.d(0, h0Var);
-                        q6.m.m(h0Var, b9.j0.f3020a).addOnSuccessListener(new org.telegram.ui.Wallet.k8(2, r7Var, dVar3)).addOnFailureListener(new tc1(dVar3, 1));
+                        p0Var.f6066b.d(0, h0Var);
+                        q6.m.m(h0Var, b9.j0.f3023a).addOnSuccessListener(new org.telegram.ui.Wallet.k8(2, r7Var, dVar3)).addOnFailureListener(new tc1(dVar3, 1));
                         u2Var.dismiss();
                         return;
                     } catch (Exception e12) {
@@ -709,26 +709,26 @@ public final class k60 implements org.telegram.messenger.s10 {
     }
 
     public k60(hi.d dVar, org.telegram.ui.ActionBar.u2 u2Var, int i7, View view, a8.r7 r7Var) {
-        this.f48598c = dVar;
+        this.f48552c = dVar;
         this.d = u2Var;
-        this.f48597b = i7;
-        this.f48599e = view;
-        this.f48600f = r7Var;
+        this.f48551b = i7;
+        this.f48553e = view;
+        this.f48554f = r7Var;
     }
 
     public k60(LaunchActivity launchActivity, vf.b bVar, org.telegram.messenger.np npVar, int i7, TLRPC.User user) {
-        this.f48598c = launchActivity;
+        this.f48552c = launchActivity;
         this.d = bVar;
-        this.f48599e = npVar;
-        this.f48597b = i7;
-        this.f48600f = user;
+        this.f48553e = npVar;
+        this.f48551b = i7;
+        this.f48554f = user;
     }
 
     public k60(q90 q90Var, String str, String str2, String str3, int i7) {
-        this.f48598c = q90Var;
+        this.f48552c = q90Var;
         this.d = str;
-        this.f48599e = str2;
-        this.f48600f = str3;
-        this.f48597b = i7;
+        this.f48553e = str2;
+        this.f48554f = str3;
+        this.f48551b = i7;
     }
 }

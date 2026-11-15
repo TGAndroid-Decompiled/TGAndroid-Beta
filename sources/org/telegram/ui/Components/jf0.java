@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.os.Build;
 public final class jf0 implements ui.a, si.a {
-    public final dh.c f35972a;
+    public final dh.c f35962a;
 
     public jf0(dh.c cVar) {
-        this.f35972a = cVar;
+        this.f35962a = cVar;
     }
 
     @Override
@@ -18,14 +18,14 @@ public final class jf0 implements ui.a, si.a {
     public final ui.a b() {
         ri.r f10 = ri.q.f();
         boolean z10 = f10.f56143a;
-        dh.c cVar = this.f35972a;
+        dh.c cVar = this.f35962a;
         if (!z10) {
-            return cVar.f8091c;
+            return cVar.f8094c;
         }
         if (f10.f56144b && Build.VERSION.SDK_INT >= 33) {
-            return cVar.f8089a;
+            return cVar.f8092a;
         }
-        return cVar.f8090b;
+        return cVar.f8093b;
     }
 
     @Override

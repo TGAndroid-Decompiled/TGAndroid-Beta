@@ -31,14 +31,14 @@ public final class ji0 extends i9 {
         switch (this.H) {
             case 0:
                 ki0 ki0Var = this.I;
-                ji0 ji0Var = ki0Var.f36525b;
+                ji0 ji0Var = ki0Var.f36513b;
                 super.dispatchDraw(canvas);
-                if (this.f35508a.B() != null && !ki0Var.F) {
-                    this.f35508a.B().start();
+                if (this.f35499a.B() != null && !ki0Var.F) {
+                    this.f35499a.B().start();
                 }
-                if (ki0Var.f36531s && !ki0Var.f36532w && this.f35508a.B() != null && this.f35508a.B().A() && ji0Var.f35508a.B() != null && ji0Var.f35508a.B().u()) {
-                    ki0Var.f36532w = true;
-                    ji0Var.f35508a.B().N(0, false, true);
+                if (ki0Var.f36519s && !ki0Var.f36520w && this.f35499a.B() != null && this.f35499a.B().A() && ji0Var.f35499a.B() != null && ji0Var.f35499a.B().u()) {
+                    ki0Var.f36520w = true;
+                    ji0Var.f35499a.B().N(0, false, true);
                     ji0Var.setVisibility(0);
                     Runnable runnable = ki0Var.Q.Q0;
                     if (runnable != null) {
@@ -80,11 +80,11 @@ public final class ji0 extends i9 {
                 super.onDraw(canvas);
                 return;
             case 2:
-                g5 g5Var = this.f35511e;
+                g5 g5Var = this.f35502e;
                 if (g5Var != null) {
-                    imageReceiver = g5Var.f34809k;
+                    imageReceiver = g5Var.f34813k;
                 } else {
-                    imageReceiver = this.f35508a;
+                    imageReceiver = this.f35499a;
                 }
                 if (imageReceiver != null && imageReceiver.B() != null) {
                     imageReceiver.B().start();

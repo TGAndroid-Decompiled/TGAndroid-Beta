@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class ie implements Runnable {
-    public final int f48036a;
-    public final an f48037b;
-    public final org.telegram.ui.Components.ok0 f48038c;
+    public final int f48026a;
+    public final an f48027b;
+    public final org.telegram.ui.Components.ok0 f48028c;
     public final String d;
 
     public ie(an anVar, org.telegram.ui.Components.ok0 ok0Var, String str, int i7) {
-        this.f48036a = i7;
-        this.f48037b = anVar;
-        this.f48038c = ok0Var;
+        this.f48026a = i7;
+        this.f48027b = anVar;
+        this.f48028c = ok0Var;
         this.d = str;
     }
 
@@ -16,10 +16,10 @@ public final class ie implements Runnable {
     public final void run() {
         org.telegram.ui.Components.cc a02;
         int i7;
-        int i10 = this.f48036a;
+        int i10 = this.f48026a;
         String str = this.d;
-        org.telegram.ui.Components.ok0 ok0Var = this.f48038c;
-        an anVar = this.f48037b;
+        org.telegram.ui.Components.ok0 ok0Var = this.f48028c;
+        an anVar = this.f48027b;
         switch (i10) {
             case 0:
                 ok0Var.dismiss();

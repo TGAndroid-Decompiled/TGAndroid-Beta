@@ -2,12 +2,12 @@ package bi;
 
 import org.telegram.messenger.s10;
 public final class f6 implements s10 {
-    public final int f3521a;
-    public final u6 f3522b;
+    public final int f3524a;
+    public final u6 f3525b;
 
     public f6(u6 u6Var, int i7) {
-        this.f3521a = i7;
-        this.f3522b = u6Var;
+        this.f3524a = i7;
+        this.f3525b = u6Var;
     }
 
     @Override

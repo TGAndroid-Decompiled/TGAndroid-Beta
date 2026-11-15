@@ -47,7 +47,7 @@ public final class g {
         q6.m.e(str);
         this.f21398b = str;
         this.f21399c = iVar;
-        a aVar = FirebaseInitProvider.f7286a;
+        a aVar = FirebaseInitProvider.f7289a;
         Trace.beginSection("Firebase");
         Trace.beginSection("ComponentDiscovery");
         ArrayList b10 = new h0(4, context, new cf(ComponentDiscoveryService.class)).b();
@@ -68,7 +68,7 @@ public final class g {
         } else {
             z10 = true;
         }
-        if (z10 && FirebaseInitProvider.f7287b.get()) {
+        if (z10 && FirebaseInitProvider.f7290b.get()) {
             arrayList2.add(u9.a.c(aVar, a.class, new Class[0]));
         }
         u9.f fVar = new u9.f(jVar, arrayList, arrayList2, aVar2);
@@ -79,7 +79,7 @@ public final class g {
         d dVar = new d(this);
         a();
         if (atomicBoolean.get()) {
-            com.google.android.gms.common.api.internal.c.f5948e.f5949a.get();
+            com.google.android.gms.common.api.internal.c.f5951e.f5952a.get();
         }
         copyOnWriteArrayList.add(dVar);
         Trace.endSection();
@@ -131,7 +131,7 @@ public final class g {
                 while (true) {
                     if (atomicReference2.compareAndSet(null, obj)) {
                         com.google.android.gms.common.api.internal.c.b(application);
-                        com.google.android.gms.common.api.internal.c.f5948e.a(obj);
+                        com.google.android.gms.common.api.internal.c.f5951e.a(obj);
                         break;
                     } else if (atomicReference2.get() != null) {
                         break;

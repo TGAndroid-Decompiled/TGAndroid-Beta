@@ -14,7 +14,7 @@ public final class pz0 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         ThemeEditorView.EditorAlert editorAlert = this.f38450a;
         if (editorAlert.n1.getAdapter() == editorAlert.f32767t1) {
-            vz0 vz0Var = editorAlert.f32764q1.f41816b;
+            vz0 vz0Var = editorAlert.f32764q1.f41808b;
             vz0Var.requestFocus();
             org.telegram.messenger.g0.J3(vz0Var);
         }

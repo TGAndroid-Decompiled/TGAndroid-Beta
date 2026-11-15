@@ -58,7 +58,7 @@ public final class p1 implements z10 {
             case 2:
                 gj gjVar = (gj) obj2;
                 TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj;
-                TLRPC.MessageMedia messageMedia = gjVar.f23817k.media;
+                TLRPC.MessageMedia messageMedia = gjVar.f23819k.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {
                     TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageMedia;
                     tL_messageMediaGiveaway = new TLRPC.TL_messageMediaGiveaway();
@@ -75,11 +75,11 @@ public final class p1 implements z10 {
                     tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
                 }
                 TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
-                long j3 = 1000 * gjVar.f23817k.date;
+                long j3 = 1000 * gjVar.f23819k.date;
                 e2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     String b10 = wg.h.b(gjVar);
-                    TLRPC.Chat M0 = np.s1(m10.f24934t0).M0(Long.valueOf(-gjVar.Z0()));
+                    TLRPC.Chat M0 = np.s1(m10.f24940t0).M0(Long.valueOf(-gjVar.Z0()));
                     if (M0 != null && t3.V(M0)) {
                         z10 = true;
                     } else {
@@ -88,21 +88,21 @@ public final class p1 implements z10 {
                     fb fbVar = new fb(Q.getParentActivity(), Q.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         fbVar.c(2131623982, 30, 30, new String[0]);
-                        fbVar.f34552b.setText(hd.M0(2131753371, null));
+                        fbVar.f34556b.setText(hd.M0(2131753371, null));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             fbVar.c(2131624029, 30, 30, new String[0]);
-                            fbVar.f34552b.setText(hd.M0(2131753369, null));
+                            fbVar.f34556b.setText(hd.M0(2131753369, null));
                         } else {
                             fbVar.c(2131623982, 30, 30, new String[0]);
-                            fbVar.f34552b.setText(hd.M0(2131753370, null));
+                            fbVar.f34556b.setText(hd.M0(2131753370, null));
                         }
                     }
-                    fbVar.f34552b.setSingleLine(false);
-                    fbVar.f34552b.setMaxLines(2);
+                    fbVar.f34556b.setSingleLine(false);
+                    fbVar.f34556b.setMaxLines(2);
                     vb vbVar = new vb(Q.getParentActivity(), Q.getResourceProvider(), true);
                     vbVar.e(hd.M0(2131749010, null));
-                    vbVar.f40369b = new ai.j(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
+                    vbVar.f40372b = new ai.j(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
                     fbVar.setButton(vbVar);
                     xb.g(Q, fbVar, 2750).j();
                     return;

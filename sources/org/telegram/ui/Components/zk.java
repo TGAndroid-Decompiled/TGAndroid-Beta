@@ -14,7 +14,7 @@ public final class zk extends v4.c0 {
     public final int k(int i7, View view) {
         int k10 = super.k(i7, view);
         dl dlVar = (dl) this.f42398r.V;
-        return k10 - (dlVar.M.getPaddingTop() - (dlVar.f33992r0 - dlVar.f33990q0));
+        return k10 - (dlVar.M.getPaddingTop() - (dlVar.f33979r0 - dlVar.f33977q0));
     }
 
     @Override

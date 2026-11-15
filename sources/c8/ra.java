@@ -48,12 +48,12 @@ public abstract class ra {
         float measureText;
         float measureText2;
         ?? obj = new Object();
-        obj.f33100a = i7;
+        obj.f33103a = i7;
         int i14 = 1;
-        obj.f33101b = Math.max(1, i10);
-        obj.f33102c = i11;
+        obj.f33104b = Math.max(1, i10);
+        obj.f33105c = i11;
         int i15 = 0;
-        obj.f33103e = Math.max(0, Math.min(i12, i13));
+        obj.f33106e = Math.max(0, Math.min(i12, i13));
         if (charSequence != null && charSequence.length() != 0 && textPaint != null) {
             int length = charSequence.length();
             for (int i16 = 0; i16 < length; i16++) {
@@ -61,7 +61,7 @@ public abstract class ra {
                     i14++;
                 }
             }
-            obj.f33104f = new float[i14];
+            obj.f33107f = new float[i14];
             int length2 = charSequence.length();
             int i17 = 0;
             int i18 = 0;
@@ -71,7 +71,7 @@ public abstract class ra {
                     break;
                 }
                 if (i15 == length2 || charSequence.charAt(i15) == '\n') {
-                    float[] fArr = obj.f33104f;
+                    float[] fArr = obj.f33107f;
                     int i19 = i18 + 1;
                     if (i15 > i17) {
                         try {
@@ -108,13 +108,13 @@ public abstract class ra {
                         f10 = Math.max(f10, measureText);
                     }
                 } else {
-                    obj.d = Math.min(obj.f33103e, (int) Math.ceil(f10));
+                    obj.d = Math.min(obj.f33106e, (int) Math.ceil(f10));
                     return obj;
                 }
             }
         } else {
-            obj.d = obj.f33103e;
-            obj.f33105g = true;
+            obj.d = obj.f33106e;
+            obj.f33108g = true;
             return obj;
         }
     }
@@ -130,22 +130,22 @@ public abstract class ra {
         int size = arrayList.size();
         for (int i15 = 0; i15 < size; i15++) {
             ax0 ax0Var = (ax0) arrayList.get(i15);
-            if (ax0Var.f33101b == 1 && (i13 = ax0Var.f33100a) >= 0 && i13 < i7) {
+            if (ax0Var.f33104b == 1 && (i13 = ax0Var.f33103a) >= 0 && i13 < i7) {
                 iArr[i13] = Math.max(iArr[i13], ax0Var.b(i10));
             }
         }
         int size2 = arrayList.size();
         for (int i16 = 0; i16 < size2; i16++) {
             ax0 ax0Var2 = (ax0) arrayList.get(i16);
-            int i17 = ax0Var2.f33101b;
-            if (i17 > 1 && (i12 = ax0Var2.f33100a) >= 0 && i12 < i7) {
+            int i17 = ax0Var2.f33104b;
+            if (i17 > 1 && (i12 = ax0Var2.f33103a) >= 0 && i12 < i7) {
                 int min = Math.min(i7, i12 + i17);
                 int i18 = 0;
-                for (int i19 = ax0Var2.f33100a; i19 < min; i19++) {
+                for (int i19 = ax0Var2.f33103a; i19 < min; i19++) {
                     i18 += iArr[i19];
                 }
                 int b10 = ax0Var2.b(i10) - i18;
-                for (int i20 = ax0Var2.f33100a; i20 < min && b10 > 0; i20++) {
+                for (int i20 = ax0Var2.f33103a; i20 < min && b10 > 0; i20++) {
                     int i21 = min - i20;
                     int i22 = ((b10 + i21) - 1) / i21;
                     iArr[i20] = iArr[i20] + i22;

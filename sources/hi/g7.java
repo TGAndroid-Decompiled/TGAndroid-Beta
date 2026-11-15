@@ -61,8 +61,8 @@ public final class g7 implements z10 {
                     l7Var.e1();
                     return;
                 }
-                l7Var.f14598k2 = h0Var.f57319e;
-                l7Var.f14597j2 = h0Var.f57320f;
+                l7Var.f14598k2 = h0Var.f57323e;
+                l7Var.f14597j2 = h0Var.f57324f;
                 return;
             case 1:
                 ((h8) this.f14346b).f14384n.f14600a0.C1 = ((Integer) obj).intValue();
@@ -100,7 +100,7 @@ public final class g7 implements z10 {
                 if (nVar.G != z10) {
                     nVar.G = z10;
                     if (!z10) {
-                        nVar.f38882a.y0(0);
+                        nVar.f38880a.y0(0);
                         return;
                     }
                     return;
@@ -149,7 +149,7 @@ public final class g7 implements z10 {
                     a0Var.i(tL_businessBotRecipients);
                 }
                 u41 u41Var = q0Var.f18061c;
-                if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+                if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
                     p41Var.O(true);
                 }
                 q0Var.d0(true);
@@ -181,7 +181,7 @@ public final class g7 implements z10 {
                 arrayList.clear();
                 arrayList.addAll((ArrayList) obj);
                 u41 u41Var2 = sVar.f18534a;
-                if (u41Var2 != null && (p41Var2 = u41Var2.f39895g3) != null) {
+                if (u41Var2 != null && (p41Var2 = u41Var2.f39892g3) != null) {
                     p41Var2.O(true);
                     return;
                 }
@@ -198,7 +198,7 @@ public final class g7 implements z10 {
                 eVar.f19558n = arrayList2;
                 u41 u41Var3 = eVar.f19557f;
                 if (u41Var3 != null) {
-                    u41Var3.f39895g3.O(z12);
+                    u41Var3.f39892g3.O(z12);
                     return;
                 }
                 return;
@@ -289,7 +289,7 @@ public final class g7 implements z10 {
                         }
                         arrayList5.addAll(i11, arrayList6);
                         q3Var.v4();
-                        q3Var.f39895g3.O(false);
+                        q3Var.f39892g3.O(false);
                         oi.d2 d2Var2 = q3Var.R3;
                         if (d2Var2 != null) {
                             d2Var2.h();
@@ -378,7 +378,7 @@ public final class g7 implements z10 {
                 org.telegram.messenger.g0.i3((Runnable) obj, 80L);
                 return;
             case 21:
-                org.telegram.ui.web.s0 s0Var2 = ((BotWebViewContainer$WebViewProxy) this.f14346b).f52560b;
+                org.telegram.ui.web.s0 s0Var2 = ((BotWebViewContainer$WebViewProxy) this.f14346b).f52563b;
                 StringBuilder sb2 = new StringBuilder("window.navigator.__share__receive(");
                 if (((Boolean) obj).booleanValue()) {
                     str = "";
@@ -391,18 +391,18 @@ public final class g7 implements z10 {
                 return;
             case 22:
                 org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) this.f14346b;
-                x0Var.f52866f = (ArrayList) obj;
-                bi.v3 v3Var = x0Var.f38882a;
+                x0Var.f52869f = (ArrayList) obj;
+                bi.v3 v3Var = x0Var.f38880a;
                 if (v3Var.H) {
-                    v3Var.f39895g3.O(true);
+                    v3Var.f39892g3.O(true);
                     return;
                 }
                 return;
             case 23:
                 org.telegram.ui.web.n1 n1Var = (org.telegram.ui.web.n1) this.f14346b;
-                n1Var.f52728r = ((ArrayList) obj).size();
-                bi.v3 v3Var2 = n1Var.f38882a;
-                if (v3Var2 != null && (p41Var3 = v3Var2.f39895g3) != null && v3Var2.H) {
+                n1Var.f52731r = ((ArrayList) obj).size();
+                bi.v3 v3Var2 = n1Var.f38880a;
+                if (v3Var2 != null && (p41Var3 = v3Var2.f39892g3) != null && v3Var2.H) {
                     p41Var3.O(true);
                     return;
                 }
@@ -445,21 +445,21 @@ public final class g7 implements z10 {
             case 27:
                 c5 c5Var = (c5) this.f14346b;
                 TextureView textureView = (TextureView) obj;
-                c5Var.f57576x0 = textureView;
+                c5Var.f57578x0 = textureView;
                 if (textureView != null) {
-                    c5Var.f57570r0.addView(textureView, 0);
+                    c5Var.f57572r0.addView(textureView, 0);
                     return;
                 }
                 return;
             case 28:
-                tg.m2 m2Var = (tg.m2) this.f14346b;
-                m2Var.f57449n = (Bitmap) obj;
+                tg.l2 l2Var = (tg.l2) this.f14346b;
+                l2Var.f57427n = (Bitmap) obj;
                 Paint paint2 = new Paint(1);
-                m2Var.f57451s = paint2;
-                Bitmap bitmap4 = m2Var.f57449n;
+                l2Var.f57429s = paint2;
+                Bitmap bitmap4 = l2Var.f57427n;
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode3, tileMode3);
-                m2Var.f57450r = bitmapShader2;
+                l2Var.f57428r = bitmapShader2;
                 paint2.setShader(bitmapShader2);
                 ColorMatrix colorMatrix2 = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.j6.I.q()) {
@@ -474,8 +474,8 @@ public final class g7 implements z10 {
                     f11 = -0.07f;
                 }
                 org.telegram.messenger.g0.h(colorMatrix2, f11);
-                m2Var.f57451s.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-                m2Var.f57452w = new Matrix();
+                l2Var.f57429s.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+                l2Var.f57430w = new Matrix();
                 return;
             default:
                 ((ug.j0) this.f14346b).y1((HashMap) obj);

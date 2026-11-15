@@ -81,7 +81,7 @@ public final class t5 extends FrameLayout {
                         }
                     }
                 }
-                float interpolation = er.f34420f.getInterpolation(dr0Var.P) * dr0Var.A;
+                float interpolation = er.f34419f.getInterpolation(dr0Var.P) * dr0Var.A;
                 float measuredHeight = getMeasuredHeight();
                 float f13 = 0.0f;
                 if (interpolation != 1.0f && (cr0Var = dr0Var.F) != null) {
@@ -101,7 +101,7 @@ public final class t5 extends FrameLayout {
                     super.dispatchDraw(canvas);
                     f10 = measuredHeight;
                 }
-                dr0Var.c(canvas, 1.0f - interpolation, dr0Var.f46470o - getLeft(), dr0Var.f46471p - getTop(), f13, f10);
+                dr0Var.c(canvas, 1.0f - interpolation, dr0Var.f46460o - getLeft(), dr0Var.f46461p - getTop(), f13, f10);
                 return;
             default:
                 super.dispatchDraw(canvas);

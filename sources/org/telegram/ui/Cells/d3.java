@@ -51,7 +51,7 @@ public abstract class d3 extends LinearLayout implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25607y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
+        if (i7 == ns.f25608y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
             a();
         }
     }
@@ -59,13 +59,13 @@ public abstract class d3 extends LinearLayout implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f30136a).c(this, ns.f25607y0);
+        ns.f(this.f30136a).c(this, ns.f25608y0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f30136a).n(this, ns.f25607y0);
+        ns.f(this.f30136a).n(this, ns.f25608y0);
     }
 
     public void set(TLRPC.RequestPeerType requestPeerType) {

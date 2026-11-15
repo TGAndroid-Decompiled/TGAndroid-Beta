@@ -129,11 +129,11 @@ public final class gd0 extends FrameLayout {
         fVar.setRotated(false);
         if (xeVar2 != null) {
             fVar.b(xeVar2.d);
-            if (xeVar2.f27495k == 0) {
+            if (xeVar2.f27496k == 0) {
                 z13 = false;
             }
             fVar.setRotated(z13);
-            fVar.setMirrored(xeVar2.f27496l);
+            fVar.setMirrored(xeVar2.f27497l);
         } else {
             fVar.setRotated(false);
             fVar.setMirrored(false);
@@ -153,7 +153,7 @@ public final class gd0 extends FrameLayout {
             int L = org.telegram.messenger.g0.L(32.0f);
             org.telegram.ui.po0 po0Var = (org.telegram.ui.po0) this.f34906a;
             po0Var.getClass();
-            PhotoViewer photoViewer = po0Var.f50330a;
+            PhotoViewer photoViewer = po0Var.f50321a;
             float measuredWidth = (photoViewer.S7.getMeasuredWidth() - org.telegram.messenger.g0.L(32.0f)) * photoViewer.f42919w8;
             int i7 = L / 2;
             int L2 = org.telegram.messenger.g0.L(2.0f) + (((int) (measuredWidth + org.telegram.messenger.g0.L(16.0f))) - i7);
@@ -199,7 +199,7 @@ public final class gd0 extends FrameLayout {
         int i7;
         float cropTop = this.f34907b.getCropTop() - org.telegram.messenger.g0.L(14.0f);
         if (!this.d) {
-            i7 = org.telegram.messenger.g0.f23603m;
+            i7 = org.telegram.messenger.g0.f23605m;
         } else {
             i7 = 0;
         }

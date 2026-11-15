@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 public final class i4 extends gk0 {
-    public final bi.z f35444o1;
+    public final bi.z f35435o1;
 
     public i4(Context context, int i7, fi.b bVar, bi.z zVar) {
         super(1, context, bVar, true);
         int i10;
-        this.f35444o1 = zVar;
+        this.f35435o1 = zVar;
         this.f29720w0 = false;
         this.f29718v0 = false;
         ScrollView scrollView = new ScrollView(context);
@@ -58,7 +58,7 @@ public final class i4 extends gk0 {
         editTextBoldCursor.setLines(1);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
         editTextBoldCursor.setSingleLine(true);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -74,11 +74,11 @@ public final class i4 extends gk0 {
         frameLayout.addView(editTextBoldCursor, c8.ja.d(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
         ?? frameLayout2 = new FrameLayout(context);
         View view = new View(context);
-        frameLayout2.f34619a = view;
+        frameLayout2.f34623a = view;
         view.setBackground(org.telegram.ui.ActionBar.y5.f(org.telegram.ui.ActionBar.j6.Fi, 8.0f));
         frameLayout2.addView(view, c8.ja.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout2.f34620b = textView2;
+        frameLayout2.f34624b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);

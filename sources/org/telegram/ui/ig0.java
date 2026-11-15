@@ -5,16 +5,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class ig0 extends LinearLayout {
     public static final int d = 0;
-    public final TextView[] f48048a;
-    public final TextView[] f48049b;
-    public final jg0 f48050c;
+    public final TextView[] f48038a;
+    public final TextView[] f48039b;
+    public final jg0 f48040c;
 
     public ig0(jg0 jg0Var, Context context) {
         super(context);
         float f10;
-        this.f48050c = jg0Var;
-        this.f48048a = new TextView[4];
-        this.f48049b = new TextView[4];
+        this.f48040c = jg0Var;
+        this.f48038a = new TextView[4];
+        this.f48039b = new TextView[4];
         setOrientation(1);
         setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
         for (int i7 = 0; i7 < 2; i7++) {
@@ -23,15 +23,15 @@ public final class ig0 extends LinearLayout {
                 LinearLayout f12 = org.telegram.messenger.k5.f(context, 1);
                 LinearLayout f13 = org.telegram.messenger.k5.f(context, 0);
                 int i11 = (i7 * 2) + i10;
-                this.f48048a[i11] = new TextView(context);
-                this.f48049b[i11] = new TextView(context);
-                this.f48048a[i11].setTypeface(org.telegram.messenger.g0.o());
-                this.f48048a[i11].setTextSize(1, 17.0f);
-                this.f48049b[i11].setTextSize(1, 13.0f);
-                this.f48049b[i11].setGravity(3);
-                f13.addView(this.f48048a[i11]);
+                this.f48038a[i11] = new TextView(context);
+                this.f48039b[i11] = new TextView(context);
+                this.f48038a[i11].setTypeface(org.telegram.messenger.g0.o());
+                this.f48038a[i11].setTextSize(1, 17.0f);
+                this.f48039b[i11].setTextSize(1, 13.0f);
+                this.f48039b[i11].setGravity(3);
+                f13.addView(this.f48038a[i11]);
                 f12.addView(f13);
-                f12.addView(this.f48049b[i11]);
+                f12.addView(this.f48039b[i11]);
                 f11.addView(f12, c8.ja.l(1.0f, -1, -2));
             }
             if (i7 == 0) {
@@ -45,11 +45,11 @@ public final class ig0 extends LinearLayout {
 
     public final void a() {
         for (int i7 = 0; i7 < 4; i7++) {
-            TextView textView = this.f48048a[i7];
+            TextView textView = this.f48038a[i7];
             int i10 = org.telegram.ui.ActionBar.j6.G6;
-            jg0 jg0Var = this.f48050c;
+            jg0 jg0Var = this.f48040c;
             textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(i10, jg0Var.getResourceProvider()));
-            this.f48049b[i7].setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29260z6, jg0Var.getResourceProvider()));
+            this.f48039b[i7].setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29260z6, jg0Var.getResourceProvider()));
         }
     }
 }

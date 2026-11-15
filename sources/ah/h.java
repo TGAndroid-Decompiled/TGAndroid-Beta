@@ -1,5 +1,6 @@
 package ah;
 
+import ai.j0;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -9,13 +10,13 @@ import bi.a6;
 import ci.a0;
 import ci.i0;
 import di.ab;
-import di.bb;
 import di.c6;
-import di.gc;
+import di.fc;
 import di.h6;
 import di.r4;
 import di.s4;
 import di.y4;
+import di.za;
 import fi.c2;
 import fi.k5;
 import fi.n0;
@@ -60,7 +61,7 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ch.q qVar = ((ch.r) this.f1076b).f5215b;
+                ch.q qVar = ((ch.r) this.f1076b).f5218b;
                 if (qVar != null) {
                     qVar.setAlpha(floatValue);
                     return;
@@ -77,7 +78,7 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 5:
                 c6 c6Var = (c6) this.f1076b;
-                c6Var.X2.f8249a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c6Var.X2.f8252a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c6Var.P1();
                 return;
             case 6:
@@ -88,8 +89,8 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 s4Var.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s4Var.F = floatValue2;
-                if (floatValue2 >= 0.8f && (r4Var = s4Var.I) != null && (z10 = r4Var.f9334l) && z10) {
-                    r4Var.f9334l = false;
+                if (floatValue2 >= 0.8f && (r4Var = s4Var.I) != null && (z10 = r4Var.f9324l) && z10) {
+                    r4Var.f9324l = false;
                     r4Var.b();
                 }
                 s4Var.invalidate();
@@ -108,15 +109,15 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 10:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ab abVar = ((bb) this.f1076b).f8263c;
-                abVar.setScaleX(floatValue3);
-                abVar.setScaleY(floatValue3);
+                za zaVar = ((ab) this.f1076b).f8214c;
+                zaVar.setScaleX(floatValue3);
+                zaVar.setScaleY(floatValue3);
                 return;
             case 11:
-                gc gcVar = (gc) this.f1076b;
-                gcVar.getClass();
-                gcVar.f8631d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gcVar.invalidate();
+                fc fcVar = (fc) this.f1076b;
+                fcVar.getClass();
+                fcVar.f8575d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fcVar.invalidate();
                 return;
             case 12:
                 fi.a aVar = (fi.a) this.f1076b;
@@ -151,7 +152,7 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 17:
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n0 n0Var2 = (n0) ((ai.i0) this.f1076b).f1249b;
+                n0 n0Var2 = (n0) ((j0) this.f1076b).f1259b;
                 Drawable drawable2 = n0Var2.f12053e;
                 if (drawable2 != null) {
                     drawable2.setAlpha((int) (g0.T1(1.0f, n0Var2.f12054f, floatValue6) * 255.0f));

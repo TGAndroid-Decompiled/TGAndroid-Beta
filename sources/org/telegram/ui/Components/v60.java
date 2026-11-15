@@ -69,7 +69,7 @@ public final class v60 extends org.telegram.ui.ActionBar.u2 {
 
     public static void J0(Activity activity, long j3, org.telegram.messenger.c cVar, org.telegram.messenger.nr nrVar) {
         int i7 = G1;
-        int i10 = cVar.f22778a;
+        int i10 = cVar.f22782a;
         if (i7 == i10 && F1 == j3 && D1 != null && SystemClock.elapsedRealtime() - E1 < 240000) {
             boolean z10 = true;
             if (D1.size() != 1) {
@@ -91,7 +91,7 @@ public final class v60 extends org.telegram.ui.ActionBar.u2 {
     public static void K0(Context context, long j3, org.telegram.messenger.c cVar, org.telegram.ui.ActionBar.e2 e2Var, int i7, TLRPC.Peer peer, t60 t60Var) {
         if (context != null) {
             int i10 = G1;
-            int i11 = cVar.f22778a;
+            int i11 = cVar.f22782a;
             if (i10 == i11 && F1 == j3 && D1 != null && SystemClock.elapsedRealtime() - E1 < 300000) {
                 if (D1.size() == 1 && i7 != 0) {
                     t60Var.a(org.telegram.messenger.np.s1(i11).j1(org.telegram.messenger.gj.B1((TLRPC.Peer) D1.get(0))), false, false, false);
@@ -307,7 +307,7 @@ public final class v60 extends org.telegram.ui.ActionBar.u2 {
                 u2Var.f40282s1.setText(org.telegram.messenger.hd.M0(2131743332, null));
             }
             TextView textView3 = u2Var.f40282s1;
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i12 = 5;
             } else {
                 i12 = 3;

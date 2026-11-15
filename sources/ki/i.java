@@ -15,15 +15,15 @@ public final class i extends a41 {
 
     public static b41 i(int i7, String str, String str2) {
         b41 K = b41.K(i.class);
-        K.f33180k = i7;
-        K.f33181l = str;
-        K.f33182m = str2;
+        K.f33183k = i7;
+        K.f33184l = str;
+        K.f33185m = str2;
         return K;
     }
 
     @Override
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        ((j) view).a(b41Var.f33180k, b41Var.f33181l, b41Var.f33182m);
+        ((j) view).a(b41Var.f33183k, b41Var.f33184l, b41Var.f33185m);
     }
 
     @Override

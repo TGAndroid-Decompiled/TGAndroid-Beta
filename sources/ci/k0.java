@@ -10,34 +10,34 @@ import org.telegram.ui.Cells.l8;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.qq;
 public final class k0 implements s10 {
-    public final int f5416a;
-    public final boolean f5417b;
-    public final is f5418c;
+    public final int f5419a;
+    public final boolean f5420b;
+    public final is f5421c;
     public final Object d;
 
     public k0(is isVar, Object obj, boolean z10, int i7) {
-        this.f5416a = i7;
-        this.f5418c = isVar;
+        this.f5419a = i7;
+        this.f5421c = isVar;
         this.d = obj;
-        this.f5417b = z10;
+        this.f5420b = z10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
-        int i7 = this.f5416a;
+        int i7 = this.f5419a;
         boolean z10 = false;
-        boolean z11 = this.f5417b;
+        boolean z11 = this.f5420b;
         Object obj3 = this.d;
-        is isVar = this.f5418c;
+        is isVar = this.f5421c;
         switch (i7) {
             case 0:
                 n0 n0Var = (n0) isVar;
                 TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                z0 z0Var = n0Var.f5440b;
-                if (n0Var.f5444n == ((int[]) obj3)[0] && !n0Var.F) {
-                    n0Var.f5444n = 0;
+                z0 z0Var = n0Var.f5443b;
+                if (n0Var.f5447n == ((int[]) obj3)[0] && !n0Var.F) {
+                    n0Var.f5447n = 0;
                     boolean z12 = true;
                     if (tL_exportedNoPaidMessagesToken == null) {
                         String str2 = null;
@@ -47,7 +47,7 @@ public final class k0 implements s10 {
                             str = null;
                         }
                         a8.d("QrShare: exportNoPaidMessagesToken " + str);
-                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = n0Var.f5443f;
+                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = n0Var.f5446f;
                         if (tL_exportedNoPaidMessagesToken2 != null) {
                             if (tL_exportedNoPaidMessagesToken2.expires == 0) {
                                 z12 = false;
@@ -63,7 +63,7 @@ public final class k0 implements s10 {
                         }
                         n0Var.d = 0;
                         n0Var.f().edit().putBoolean("qrNoPaidPermanent", false).apply();
-                        if (z0Var.f5782w0) {
+                        if (z0Var.f5785w0) {
                             if (str != null) {
                                 str2 = hd.M0(2131751105, null);
                             }
@@ -85,7 +85,7 @@ public final class k0 implements s10 {
                             if (tL_exportedNoPaidMessagesToken.expires == 0) {
                                 n0Var.f().edit().putString("qrNoPaidToken", tL_exportedNoPaidMessagesToken.token).putString("qrNoPaidUrl", tL_exportedNoPaidMessagesToken.url).apply();
                             }
-                            n0Var.f5443f = tL_exportedNoPaidMessagesToken;
+                            n0Var.f5446f = tL_exportedNoPaidMessagesToken;
                             n0Var.h = SystemClock.elapsedRealtime();
                             z0Var.setFreeLink(n0Var.d(tL_exportedNoPaidMessagesToken));
                             return;

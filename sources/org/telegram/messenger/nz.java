@@ -17,19 +17,19 @@ public final class nz extends DefaultHandler {
     public boolean I;
     public int J;
     public ArrayList K;
-    public Canvas f25673a;
-    public Bitmap f25674b;
-    public final pz f25675c;
+    public Canvas f25674a;
+    public Bitmap f25675b;
+    public final pz f25676c;
     public final int d;
-    public final int f25676e;
-    public float f25677f;
+    public final int f25677e;
+    public float f25678f;
     public final Paint h;
-    public final RectF f25678n;
-    public final RectF f25679r;
-    public final Integer f25680s;
-    public final float f25681w;
-    public final int f25682x;
-    public boolean f25683y;
+    public final RectF f25679n;
+    public final RectF f25680r;
+    public final Integer f25681s;
+    public final float f25682w;
+    public final int f25683x;
+    public boolean f25684y;
 
     public nz(int i7, int i10, Integer num, boolean z10) {
         this(i7, i10, num, z10, 1.0f, 1);
@@ -54,7 +54,7 @@ public final class nz extends DefaultHandler {
                 return true;
             } else if (jVar.c0("fill") == null && jVar.c0("stroke") == null) {
                 paint.setStyle(Paint.Style.FILL);
-                Integer num = this.f25680s;
+                Integer num = this.f25681s;
                 if (num != null) {
                     paint.setColor(num.intValue());
                     return true;
@@ -79,7 +79,7 @@ public final class nz extends DefaultHandler {
     }
 
     public final Bitmap d() {
-        return this.f25674b;
+        return this.f25675b;
     }
 
     public final ArrayList e() {
@@ -153,12 +153,12 @@ public final class nz extends DefaultHandler {
     }
 
     public final void f() {
-        if (this.f25683y) {
-            pz pzVar = this.f25675c;
+        if (this.f25684y) {
+            pz pzVar = this.f25676c;
             if (pzVar != null) {
                 pzVar.f26026a.add(null);
             } else {
-                this.f25673a.restore();
+                this.f25674a.restore();
             }
         }
     }
@@ -171,16 +171,16 @@ public final class nz extends DefaultHandler {
         } else {
             z10 = false;
         }
-        this.f25683y = z10;
+        this.f25684y = z10;
         if (z10) {
             Matrix o4 = qz.o(l10);
-            pz pzVar = this.f25675c;
+            pz pzVar = this.f25676c;
             if (pzVar != null) {
                 pzVar.f26026a.add(o4);
                 return;
             }
-            this.f25673a.save();
-            this.f25673a.concat(o4);
+            this.f25674a.save();
+            this.f25674a.concat(o4);
         }
     }
 
@@ -190,22 +190,22 @@ public final class nz extends DefaultHandler {
     }
 
     public nz(int i7, int i10, Integer num, boolean z10, float f10, int i11) {
-        this.f25677f = 1.0f;
+        this.f25678f = 1.0f;
         this.h = new Paint(1);
-        this.f25678n = new RectF();
-        this.f25679r = new RectF();
-        this.f25681w = 1.0f;
-        this.f25683y = false;
+        this.f25679n = new RectF();
+        this.f25680r = new RectF();
+        this.f25682w = 1.0f;
+        this.f25684y = false;
         this.E = new HashMap();
         this.I = false;
         this.J = 0;
-        this.f25681w = f10;
+        this.f25682w = f10;
         this.d = i7;
-        this.f25676e = i10;
-        this.f25680s = num;
-        this.f25682x = i11;
+        this.f25677e = i10;
+        this.f25681s = num;
+        this.f25683x = i11;
         if (z10) {
-            this.f25675c = new pz();
+            this.f25676c = new pz();
         }
     }
 

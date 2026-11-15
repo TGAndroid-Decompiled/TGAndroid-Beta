@@ -9,7 +9,7 @@ import org.telegram.messenger.g0;
 import org.telegram.ui.Cells.q5;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.am;
-import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.r40;
 import org.telegram.ui.Components.voip.o2;
@@ -51,7 +51,7 @@ public final class a extends ViewOutlineProvider {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                ki kiVar = chatAttachAlertPhotoLayout.f33607b;
+                ki kiVar = chatAttachAlertPhotoLayout.f33609b;
                 float f12 = kiVar.E2[1];
                 hi.i iVar = kiVar.C4;
                 if (iVar != null) {
@@ -88,7 +88,7 @@ public final class a extends ViewOutlineProvider {
                 if (q5Var.getTag() != null) {
                     int intValue = ((Integer) q5Var.getTag()).intValue();
                     am amVar = (am) obj;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = amVar.f33020w;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = amVar.f33023w;
                     if (amVar.d && chatAttachAlertPhotoLayout2.U0 == chatAttachAlertPhotoLayout2.V0 && !chatAttachAlertPhotoLayout2.P0) {
                         intValue++;
                     }
@@ -114,7 +114,7 @@ public final class a extends ViewOutlineProvider {
                 outline.setOval(0, 0, i12, i12);
                 return;
             case 5:
-                outline.setRoundRect(0, ((da0) obj).U + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), g0.L(8.0f));
+                outline.setRoundRect(0, ((ea0) obj).U + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), g0.L(8.0f));
                 return;
             case 6:
                 outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), ((org.telegram.ui.Components.voip.k) obj).d);
@@ -144,11 +144,11 @@ public final class a extends ViewOutlineProvider {
                 }
             case 8:
                 o2 o2Var = (o2) obj;
-                if (o2Var.f40828b < 1.0f) {
+                if (o2Var.f40831b < 1.0f) {
                     outline.setRect((int) o2Var.P, (int) o2Var.O, (int) (view.getMeasuredWidth() - o2Var.P), (int) (view.getMeasuredHeight() - o2Var.O));
                     return;
                 } else {
-                    outline.setRoundRect((int) o2Var.P, (int) o2Var.O, (int) (view.getMeasuredWidth() - o2Var.P), (int) (view.getMeasuredHeight() - o2Var.O), o2Var.f40828b);
+                    outline.setRoundRect((int) o2Var.P, (int) o2Var.O, (int) (view.getMeasuredWidth() - o2Var.P), (int) (view.getMeasuredHeight() - o2Var.O), o2Var.f40831b);
                     return;
                 }
             default:

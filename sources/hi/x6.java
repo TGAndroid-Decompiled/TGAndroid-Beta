@@ -81,7 +81,7 @@ public class x6 extends View {
         g6Var.n(0.3f, 40L, erVar);
         g6Var.setCallback(this);
         g6Var.u(-1);
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         g6Var.N = point.x;
         if (i7 == 0) {
             g6Var.w(org.telegram.messenger.g0.L(15.0f));
@@ -94,7 +94,7 @@ public class x6 extends View {
             paint5.setStrokeCap(Paint.Cap.ROUND);
         } else {
             g6Var.w(org.telegram.messenger.g0.L(14.0f));
-            g6Var.f34829b = 5;
+            g6Var.f34833b = 5;
             org.telegram.ui.Components.g6 g6Var2 = new org.telegram.ui.Components.g6(false, true, true);
             this.E = g6Var2;
             g6Var2.N = point.x;
@@ -276,7 +276,7 @@ public class x6 extends View {
         long j3;
         String str = Math.round(100.0f * f10) + "%";
         org.telegram.ui.Components.g6 g6Var = this.f15384y;
-        if (!TextUtils.equals(g6Var.f34836i, str)) {
+        if (!TextUtils.equals(g6Var.f34840i, str)) {
             g6Var.a();
             if (this.f15377e) {
                 j3 = 320;

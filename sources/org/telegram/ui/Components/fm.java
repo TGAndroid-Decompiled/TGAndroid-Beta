@@ -12,32 +12,32 @@ public final class fm {
     public TextPaint B;
     public TextPaint C;
     public final gm O;
-    public gm f34624a;
-    public org.telegram.messenger.ff f34625b;
-    public ImageReceiver f34626c;
+    public gm f34628a;
+    public org.telegram.messenger.ff f34629b;
+    public ImageReceiver f34630c;
     public ImageReceiver d;
-    public boolean f34627e;
-    public float f34633l;
-    public float f34634m;
-    public float f34635n;
-    public float f34636o;
-    public xh.e f34640s;
+    public boolean f34631e;
+    public float f34637l;
+    public float f34638m;
+    public float f34639n;
+    public float f34640o;
+    public xh.e f34644s;
     public Bitmap v;
-    public RectF f34628f = null;
-    public final RectF f34629g = new RectF();
+    public RectF f34632f = null;
+    public final RectF f34633g = new RectF();
     public long h = 0;
-    public int f34630i = 0;
-    public float f34631j = 1.0f;
-    public float f34632k = 0.0f;
-    public RectF f34637p = null;
-    public final RectF f34638q = new RectF();
-    public String f34639r = null;
-    public final Path f34641t = new Path();
-    public final float[] f34642u = new float[8];
-    public float f34643w = 1.0f;
-    public final Paint f34644x = new Paint(1);
-    public final RectF f34645y = new RectF();
-    public final Paint f34646z = new Paint(1);
+    public int f34634i = 0;
+    public float f34635j = 1.0f;
+    public float f34636k = 0.0f;
+    public RectF f34641p = null;
+    public final RectF f34642q = new RectF();
+    public String f34643r = null;
+    public final Path f34645t = new Path();
+    public final float[] f34646u = new float[8];
+    public float f34647w = 1.0f;
+    public final Paint f34648x = new Paint(1);
+    public final RectF f34649y = new RectF();
+    public final Paint f34650z = new Paint(1);
     public final Paint A = new Paint(1);
     public final Paint D = new Paint(1);
     public Bitmap E = null;
@@ -53,39 +53,39 @@ public final class fm {
 
     public fm(gm gmVar) {
         this.O = gmVar;
-        this.f34624a = gmVar;
+        this.f34628a = gmVar;
     }
 
     public static void a(fm fmVar, org.telegram.messenger.ff ffVar) {
         gm gmVar = fmVar.O;
-        fmVar.f34625b = ffVar;
-        if (ffVar.f27708b) {
-            fmVar.f34639r = org.telegram.messenger.g0.g0(ffVar.E, false, false);
+        fmVar.f34629b = ffVar;
+        if (ffVar.f27710b) {
+            fmVar.f34643r = org.telegram.messenger.g0.g0(ffVar.E, false, false);
         } else {
-            fmVar.f34639r = null;
+            fmVar.f34643r = null;
         }
-        if (fmVar.f34626c == null) {
-            fmVar.f34626c = new ImageReceiver(gmVar.f35025z);
+        if (fmVar.f34630c == null) {
+            fmVar.f34630c = new ImageReceiver(gmVar.f35025z);
             fmVar.d = new ImageReceiver(gmVar.f35025z);
-            fmVar.f34626c.f22276h1 = new f1(13, fmVar, ffVar);
+            fmVar.f34630c.f22276h1 = new f1(13, fmVar, ffVar);
         }
         int i7 = ffVar.C;
         String str = ffVar.I;
-        String str2 = ffVar.f27709c;
+        String str2 = ffVar.f27711c;
         if (str2 != null) {
-            fmVar.f34626c.r0(org.telegram.messenger.gc.g(str2), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
+            fmVar.f34630c.r0(org.telegram.messenger.gc.g(str2), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
         } else if (str != null) {
-            if (ffVar.f27708b) {
-                ImageReceiver imageReceiver = fmVar.f34626c;
+            if (ffVar.f27710b) {
+                ImageReceiver imageReceiver = fmVar.f34630c;
                 imageReceiver.r0(org.telegram.messenger.gc.g("vthumb://" + i7 + ":" + str), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
-                fmVar.f34626c.f22301u0 = true;
+                fmVar.f34630c.f22301u0 = true;
                 return;
             }
-            fmVar.f34626c.G0(ffVar.J, 0, true);
-            ImageReceiver imageReceiver2 = fmVar.f34626c;
+            fmVar.f34630c.G0(ffVar.J, 0, true);
+            ImageReceiver imageReceiver2 = fmVar.f34630c;
             imageReceiver2.r0(org.telegram.messenger.gc.g("thumb://" + i7 + ":" + str), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
         } else {
-            fmVar.f34626c.w0(org.telegram.ui.ActionBar.j6.R4);
+            fmVar.f34630c.w0(org.telegram.ui.ActionBar.j6.R4);
         }
     }
 
@@ -93,34 +93,34 @@ public final class fm {
         float f10;
         float f11;
         float f12;
-        RectF rectF = fmVar.f34638q;
-        RectF rectF2 = fmVar.f34629g;
+        RectF rectF = fmVar.f34642q;
+        RectF rectF2 = fmVar.f34633g;
         if (cmVar != null && yiVar != null) {
-            fmVar.f34630i = yiVar.f27753l;
+            fmVar.f34634i = yiVar.f27755l;
             if (z10) {
                 float e10 = fmVar.e();
-                RectF rectF3 = fmVar.f34628f;
+                RectF rectF3 = fmVar.f34632f;
                 if (rectF3 != null) {
                     org.telegram.messenger.g0.Z1(rectF3, rectF2, e10, rectF3);
                 }
-                RectF rectF4 = fmVar.f34637p;
+                RectF rectF4 = fmVar.f34641p;
                 if (rectF4 != null) {
                     org.telegram.messenger.g0.Z1(rectF4, rectF, e10, rectF4);
                 }
-                fmVar.f34631j = org.telegram.messenger.g0.T1(fmVar.f34631j, fmVar.f34632k, e10);
+                fmVar.f34635j = org.telegram.messenger.g0.T1(fmVar.f34635j, fmVar.f34636k, e10);
                 fmVar.h = SystemClock.elapsedRealtime();
             }
-            float f13 = yiVar.f27758q;
-            float f14 = cmVar.f33631b;
+            float f13 = yiVar.f27760q;
+            float f14 = cmVar.f33633b;
             float f15 = f13 / f14;
-            float f16 = yiVar.f27757p;
-            float f17 = cmVar.f33630a;
+            float f16 = yiVar.f27759p;
+            float f17 = cmVar.f33632a;
             float f18 = f16 / f17;
-            fmVar.f34632k = 1.0f;
-            rectF2.set(f15, f18, (yiVar.f27747e / f14) + f15, (yiVar.f27748f / f17) + f18);
+            fmVar.f34636k = 1.0f;
+            rectF2.set(f15, f18, (yiVar.f27749e / f14) + f15, (yiVar.f27750f / f17) + f18);
             float L = org.telegram.messenger.g0.L(2.0f);
             float L2 = org.telegram.messenger.g0.L(org.telegram.messenger.gz.Y0 - 1);
-            int i7 = fmVar.f34630i;
+            int i7 = fmVar.f34634i;
             if ((i7 & 5) == 5) {
                 f10 = L2;
             } else {
@@ -140,28 +140,28 @@ public final class fm {
                 L = L2;
             }
             rectF.set(f10, f11, f12, L);
-            if (fmVar.f34628f == null) {
+            if (fmVar.f34632f == null) {
                 RectF rectF5 = new RectF();
-                fmVar.f34628f = rectF5;
+                fmVar.f34632f = rectF5;
                 rectF5.set(rectF2);
             }
-            if (fmVar.f34637p == null) {
+            if (fmVar.f34641p == null) {
                 RectF rectF6 = new RectF();
-                fmVar.f34637p = rectF6;
+                fmVar.f34641p = rectF6;
                 rectF6.set(rectF);
             }
         } else if (z10) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            fmVar.f34631j = org.telegram.messenger.g0.T1(fmVar.f34631j, fmVar.f34632k, fmVar.e());
-            RectF rectF7 = fmVar.f34628f;
+            fmVar.f34635j = org.telegram.messenger.g0.T1(fmVar.f34635j, fmVar.f34636k, fmVar.e());
+            RectF rectF7 = fmVar.f34632f;
             if (rectF7 != null) {
-                org.telegram.messenger.g0.Z1(rectF7, rectF2, fmVar.e(), fmVar.f34628f);
+                org.telegram.messenger.g0.Z1(rectF7, rectF2, fmVar.e(), fmVar.f34632f);
             }
-            fmVar.f34632k = 0.0f;
+            fmVar.f34636k = 0.0f;
             fmVar.h = elapsedRealtime;
         } else {
-            fmVar.f34631j = 0.0f;
-            fmVar.f34632k = 0.0f;
+            fmVar.f34635j = 0.0f;
+            fmVar.f34636k = 0.0f;
         }
     }
 
@@ -171,28 +171,28 @@ public final class fm {
 
     public final Object clone() {
         fm fmVar = new fm(this.O);
-        fmVar.f34629g.set(this.f34629g);
-        fmVar.f34626c = this.f34626c;
-        fmVar.f34625b = this.f34625b;
+        fmVar.f34633g.set(this.f34633g);
+        fmVar.f34630c = this.f34630c;
+        fmVar.f34629b = this.f34629b;
         return fmVar;
     }
 
     public final RectF d() {
         float f10 = 0.0f;
-        if (this.f34629g != null && this.f34626c != null) {
+        if (this.f34633g != null && this.f34630c != null) {
             hm hmVar = this.O.f35025z;
             fm fmVar = hmVar.Q.K;
-            if (fmVar != null && fmVar.f34625b == this.f34625b) {
+            if (fmVar != null && fmVar.f34629b == this.f34629b) {
                 f10 = hmVar.H;
             }
-            float T1 = (((1.0f - f10) * 0.2f) + 0.8f) * org.telegram.messenger.g0.T1(this.f34631j, this.f34632k, e());
+            float T1 = (((1.0f - f10) * 0.2f) + 0.8f) * org.telegram.messenger.g0.T1(this.f34635j, this.f34636k, e());
             RectF f11 = f(e());
             float f12 = 1.0f - T1;
             float f13 = T1 + 1.0f;
             f11.set(a8.p0.f(f11.width(), f12, 2.0f, f11.left), ((f11.height() * f12) / 2.0f) + f11.top, a8.p0.f(f11.width(), f13, 2.0f, f11.left), ((f11.height() * f13) / 2.0f) + f11.top);
             return f11;
         }
-        RectF rectF = this.f34645y;
+        RectF rectF = this.f34649y;
         rectF.set(0.0f, 0.0f, 0.0f, 0.0f);
         return rectF;
     }
@@ -203,21 +203,21 @@ public final class fm {
 
     public final RectF f(float f10) {
         RectF rectF;
-        RectF rectF2 = this.f34645y;
-        RectF rectF3 = this.f34629g;
-        if (rectF3 != null && this.f34626c != null) {
+        RectF rectF2 = this.f34649y;
+        RectF rectF3 = this.f34633g;
+        if (rectF3 != null && this.f34630c != null) {
             gm gmVar = this.O;
             float f11 = (rectF3.left * gmVar.f35018r) + gmVar.f35014n;
             float f12 = (rectF3.top * gmVar.f35019s) + gmVar.f35016p;
             float width = rectF3.width() * gmVar.f35018r;
             float height = rectF3.height() * gmVar.f35019s;
-            if (f10 < 1.0f && (rectF = this.f34628f) != null) {
+            if (f10 < 1.0f && (rectF = this.f34632f) != null) {
                 f11 = org.telegram.messenger.g0.T1((rectF.left * gmVar.f35018r) + gmVar.f35014n, f11, f10);
-                f12 = org.telegram.messenger.g0.T1((this.f34628f.top * gmVar.f35019s) + gmVar.f35016p, f12, f10);
-                width = org.telegram.messenger.g0.T1(this.f34628f.width() * gmVar.f35018r, width, f10);
-                height = org.telegram.messenger.g0.T1(this.f34628f.height() * gmVar.f35019s, height, f10);
+                f12 = org.telegram.messenger.g0.T1((this.f34632f.top * gmVar.f35019s) + gmVar.f35016p, f12, f10);
+                width = org.telegram.messenger.g0.T1(this.f34632f.width() * gmVar.f35018r, width, f10);
+                height = org.telegram.messenger.g0.T1(this.f34632f.height() * gmVar.f35019s, height, f10);
             }
-            int i7 = this.f34630i;
+            int i7 = this.f34634i;
             if ((i7 & 4) == 0) {
                 int i10 = gmVar.f35013m;
                 f12 += i10;

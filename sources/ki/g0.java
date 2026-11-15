@@ -72,7 +72,7 @@ public final class g0 extends va {
             if (i7 == 1) {
                 vb vbVar = new vb(getContext(), e6Var, true);
                 vbVar.e(hd.M0(2131753074, null));
-                vbVar.f40369b = new Runnable(this) {
+                vbVar.f40372b = new Runnable(this) {
                     public final g0 f18251b;
 
                     {
@@ -87,7 +87,7 @@ public final class g0 extends va {
                                 g0 g0Var = this.f18251b;
                                 xb bulletin = g0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f41643j = 2750;
+                                    bulletin.f41635j = 2750;
                                     bulletin.i(true);
                                 }
                                 h0 h0Var = g0Var.f18314f;
@@ -119,7 +119,7 @@ public final class g0 extends va {
             } else if (i7 == 2) {
                 vb vbVar2 = new vb(getContext(), e6Var, true);
                 vbVar2.e(hd.M0(2131753073, null));
-                vbVar2.f40369b = new Runnable(this) {
+                vbVar2.f40372b = new Runnable(this) {
                     public final g0 f18251b;
 
                     {
@@ -134,7 +134,7 @@ public final class g0 extends va {
                                 g0 g0Var = this.f18251b;
                                 xb bulletin = g0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f41643j = 2750;
+                                    bulletin.f41635j = 2750;
                                     bulletin.i(true);
                                 }
                                 h0 h0Var = g0Var.f18314f;
@@ -234,7 +234,7 @@ public final class g0 extends va {
                 xb bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f41643j = 5000;
+                    bulletin2.f41635j = 5000;
                     bulletin2.i(true);
                 }
             }

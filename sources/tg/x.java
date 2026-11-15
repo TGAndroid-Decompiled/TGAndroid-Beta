@@ -24,14 +24,14 @@ import org.telegram.ui.Components.ii;
 import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.vg;
 public final class x implements ii, com.google.android.gms.common.api.internal.q {
-    public final int f57595a;
-    public Object f57596b;
-    public Object f57597c;
+    public final int f57596a;
+    public Object f57597b;
+    public Object f57598c;
 
     public x(int i7, Object obj, Object obj2) {
-        this.f57595a = i7;
-        this.f57596b = obj;
-        this.f57597c = obj2;
+        this.f57596a = i7;
+        this.f57597b = obj;
+        this.f57598c = obj2;
     }
 
     public static tg.x a(android.content.Context r5) {
@@ -50,7 +50,7 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     }
 
     public void b(v4.e1 e1Var, e2.r0 r0Var) {
-        a0.f fVar = (a0.f) this.f57596b;
+        a0.f fVar = (a0.f) this.f57597b;
         v4.k1 k1Var = (v4.k1) fVar.get(e1Var);
         if (k1Var == null) {
             k1Var = v4.k1.a();
@@ -61,22 +61,22 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     }
 
     public File c() {
-        if (((File) this.f57596b) == null) {
+        if (((File) this.f57597b) == null) {
             synchronized (this) {
                 try {
-                    if (((File) this.f57596b) == null) {
-                        String str = "PersistedInstallation." + ((o9.g) this.f57597c).d() + ".json";
-                        o9.g gVar = (o9.g) this.f57597c;
+                    if (((File) this.f57597b) == null) {
+                        String str = "PersistedInstallation." + ((o9.g) this.f57598c).d() + ".json";
+                        o9.g gVar = (o9.g) this.f57598c;
                         gVar.a();
                         File file = new File(gVar.f21397a.getNoBackupFilesDir(), str);
-                        this.f57596b = file;
+                        this.f57597b = file;
                         if (file.exists()) {
-                            return (File) this.f57596b;
+                            return (File) this.f57597b;
                         }
-                        o9.g gVar2 = (o9.g) this.f57597c;
+                        o9.g gVar2 = (o9.g) this.f57598c;
                         gVar2.a();
                         File file2 = new File(gVar2.f21397a.getFilesDir(), str);
-                        if (file2.exists() && !file2.renameTo((File) this.f57596b)) {
+                        if (file2.exists() && !file2.renameTo((File) this.f57597b)) {
                             Log.e("PersistedInstallation", "Unable to move the file from back up to non back up directory", new IOException("Unable to move the file from back up to non back up directory"));
                             return file2;
                         }
@@ -85,7 +85,7 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
                 }
             }
         }
-        return (File) this.f57596b;
+        return (File) this.f57597b;
     }
 
     public void d(wa.b bVar) {
@@ -98,7 +98,7 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
             jSONObject.put("TokenCreationEpochInSecs", bVar.f59084f);
             jSONObject.put("ExpiresInSecs", bVar.f59083e);
             jSONObject.put("FisError", bVar.f59085g);
-            o9.g gVar = (o9.g) this.f57597c;
+            o9.g gVar = (o9.g) this.f57598c;
             gVar.a();
             File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f21397a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
@@ -119,7 +119,7 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     public e2.r0 e(v4.e1 e1Var, int i7) {
         v4.k1 k1Var;
         e2.r0 r0Var;
-        a0.f fVar = (a0.f) this.f57596b;
+        a0.f fVar = (a0.f) this.f57597b;
         int d = fVar.d(e1Var);
         if (d >= 0 && (k1Var = (v4.k1) fVar.i(d)) != null) {
             int i10 = k1Var.f58597a;
@@ -196,8 +196,8 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
 
     public void g() {
         try {
-            ((FileLock) this.f57597c).release();
-            ((FileChannel) this.f57596b).close();
+            ((FileLock) this.f57598c).release();
+            ((FileChannel) this.f57597b).close();
         } catch (IOException e10) {
             Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e10);
         }
@@ -209,7 +209,7 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     }
 
     public void h(v4.e1 e1Var) {
-        v4.k1 k1Var = (v4.k1) ((a0.f) this.f57596b).get(e1Var);
+        v4.k1 k1Var = (v4.k1) ((a0.f) this.f57597b).get(e1Var);
         if (k1Var == null) {
             return;
         }
@@ -217,8 +217,8 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     }
 
     public void i(v4.e1 e1Var) {
-        a0.f fVar = (a0.f) this.f57596b;
-        a0.h hVar = (a0.h) this.f57597c;
+        a0.f fVar = (a0.f) this.f57597b;
+        a0.h hVar = (a0.h) this.f57598c;
         int m10 = hVar.m() - 1;
         while (true) {
             if (m10 < 0) {
@@ -247,16 +247,16 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
 
     @Override
     public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ki kiVar = (ki) this.f57596b;
+        ki kiVar = (ki) this.f57597b;
         try {
-            HashMap<Object, Object> selectedPhotos = kiVar.f36447e2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = kiVar.f36435e2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 ff ffVar = (ff) selectedPhotos.values().iterator().next();
                 String str = ffVar.h;
                 if (str == null) {
                     str = ffVar.I;
                 }
-                g0 g0Var = (g0) this.f57597c;
+                g0 g0Var = (g0) this.f57598c;
                 g0Var.d0(g0Var.f0(str, true));
                 kiVar.dismiss();
             }
@@ -266,49 +266,49 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     }
 
     public x(Context context) {
-        this.f57595a = 8;
-        this.f57597c = new AtomicLong(-1L);
-        this.f57596b = new com.google.android.gms.common.api.j(context, s6.d.f56500m, new q6.q("mlkit:natural_language"), com.google.android.gms.common.api.i.f5924c);
+        this.f57596a = 8;
+        this.f57598c = new AtomicLong(-1L);
+        this.f57597b = new com.google.android.gms.common.api.j(context, s6.d.f56500m, new q6.q("mlkit:natural_language"), com.google.android.gms.common.api.i.f5927c);
     }
 
     public x(int i7, byte b10) {
-        this.f57595a = i7;
+        this.f57596a = i7;
         switch (i7) {
             case 9:
                 return;
             default:
-                this.f57596b = new a0.l(0);
-                this.f57597c = new a0.h();
+                this.f57597b = new a0.l(0);
+                this.f57598c = new a0.h();
                 return;
         }
     }
 
     public x(o9.g gVar) {
-        this.f57595a = 6;
-        this.f57597c = gVar;
+        this.f57596a = 6;
+        this.f57598c = gVar;
     }
 
     public x(String str, String str2) {
-        this.f57595a = 2;
-        this.f57596b = str;
-        this.f57597c = str2;
+        this.f57596a = 2;
+        this.f57597b = str;
+        this.f57598c = str2;
         if (str.length() <= 0) {
             throw new IllegalArgumentException("userId should not be empty");
         }
     }
 
     public x(int i7) {
-        this.f57595a = 7;
+        this.f57596a = 7;
         Bitmap createBitmap = Bitmap.createBitmap(i7, i7, Bitmap.Config.ALPHA_8);
-        this.f57596b = createBitmap;
+        this.f57597b = createBitmap;
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f57597c = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.f57598c = new BitmapShader(createBitmap, tileMode, tileMode);
     }
 
     public x(g0 g0Var, ki kiVar) {
-        this.f57595a = 0;
-        this.f57597c = g0Var;
-        this.f57596b = kiVar;
+        this.f57596a = 0;
+        this.f57598c = g0Var;
+        this.f57597b = kiVar;
     }
 
     @Override

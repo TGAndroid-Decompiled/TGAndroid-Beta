@@ -46,7 +46,7 @@ public final class k0 extends ReplacementSpan {
                 Paint paint4 = this.f11916c;
                 paint4.setColor(w02);
                 RectF rectF3 = org.telegram.messenger.g0.P;
-                rectF3.set(f10, L3 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f) + f10 + this.d.f38105c, org.telegram.messenger.g0.L(9.0f) + L3);
+                rectF3.set(f10, L3 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f) + f10 + this.d.f38103c, org.telegram.messenger.g0.L(9.0f) + L3);
                 canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), paint4);
                 this.d.c(f10 + org.telegram.messenger.g0.L(8.0f), L3, 1.0f, -1, canvas);
                 return;
@@ -71,7 +71,7 @@ public final class k0 extends ReplacementSpan {
                 break;
             default:
                 k10 = org.telegram.messenger.g0.L(16.0f);
-                f10 = this.d.f38105c;
+                f10 = this.d.f38103c;
                 break;
         }
         return (int) (k10 + f10);

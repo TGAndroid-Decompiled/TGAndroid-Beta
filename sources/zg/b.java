@@ -28,7 +28,7 @@ public final class b implements Runnable {
                 return;
             default:
                 q1 q1Var = this.f61383b.f61387c;
-                long B0 = gj.B0(this.f61384c.f23817k);
+                long B0 = gj.B0(this.f61384c.f23819k);
                 TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
                 if (B0 == (-tL_messageMediaGiveawayResults.channel_id)) {
                     q1Var.getDelegate().g2(q1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);

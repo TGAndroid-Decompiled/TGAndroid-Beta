@@ -28,13 +28,13 @@ public final class j4 extends org.telegram.ui.ActionBar.e2 implements is {
 
     public final void Z(ArrayList arrayList, p41 p41Var) {
         di.c0 e10 = di.e0.g(this.currentAccount).e(this.f18374a);
-        ArrayList arrayList2 = e10.f8284e;
+        ArrayList arrayList2 = e10.f8285e;
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             Object obj = arrayList2.get(i7);
             int i10 = j3.f18373b;
             b41 K = b41.K(j3.class);
             K.G = obj;
-            K.f33187r = false;
+            K.f33190r = false;
             arrayList.add(K);
         }
         if (e10.h) {

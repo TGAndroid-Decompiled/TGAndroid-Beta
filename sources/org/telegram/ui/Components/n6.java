@@ -14,15 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class n6 extends FrameLayout implements org.telegram.messenger.is {
-    public final int f37458a;
-    public final z70 f37459b;
-    public final Runnable f37460c;
+    public final int f37457a;
+    public final z70 f37458b;
+    public final Runnable f37459c;
 
     public n6(Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var, Runnable runnable, org.telegram.ui.bh bhVar) {
         super(context);
         int i10;
-        this.f37458a = i7;
-        this.f37460c = runnable;
+        this.f37457a = i7;
+        this.f37459c = runnable;
         org.telegram.messenger.g5.r(i7).B();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -50,7 +50,7 @@ public final class n6 extends FrameLayout implements org.telegram.messenger.is {
         textView.setText(org.telegram.messenger.hd.M0(2131754167, null));
         linearLayout.addView(textView, c8.ja.t(-1, -2, 1, 32, 0, 32, 9));
         z70 z70Var = new z70(context, null);
-        this.f37459b = z70Var;
+        this.f37458b = z70Var;
         z70Var.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.q6.U(z70Var, org.telegram.ui.ActionBar.j6.f29260z6, e6Var);
         z70Var.setGravity(1);
@@ -94,7 +94,7 @@ public final class n6 extends FrameLayout implements org.telegram.messenger.is {
     public final void b() {
         boolean z10;
         String str;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = org.telegram.messenger.g5.r(this.f37458a).Y;
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = org.telegram.messenger.g5.r(this.f37457a).Y;
         if (globalPrivacySettings != null) {
             z10 = globalPrivacySettings.keep_archived_unmuted;
         } else {
@@ -107,7 +107,7 @@ public final class n6 extends FrameLayout implements org.telegram.messenger.is {
         }
         String N0 = org.telegram.messenger.hd.N0(str);
         int i7 = org.telegram.ui.ActionBar.j6.Xc;
-        SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(N0, i7, 0, this.f37460c, null);
+        SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(N0, i7, 0, this.f37459c, null);
         SpannableString spannableString = new SpannableString(">");
         Drawable mutate = getContext().getResources().getDrawable(2131232060).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
@@ -115,14 +115,14 @@ public final class n6 extends FrameLayout implements org.telegram.messenger.is {
         eqVar.a(i7);
         eqVar.c(org.telegram.messenger.g0.L(18.0f));
         eqVar.F = org.telegram.messenger.g0.L(11.0f);
-        eqVar.f34415r = -org.telegram.messenger.g0.L(5.0f);
+        eqVar.f34414r = -org.telegram.messenger.g0.L(5.0f);
         spannableString.setSpan(eqVar, 0, spannableString.length(), 33);
-        this.f37459b.setText(org.telegram.messenger.g0.K2(S2, spannableString, ">"));
+        this.f37458b.setText(org.telegram.messenger.g0.K2(S2, spannableString, ">"));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25521k0) {
+        if (i7 == org.telegram.messenger.ns.f25522k0) {
             b();
         }
     }
@@ -130,14 +130,14 @@ public final class n6 extends FrameLayout implements org.telegram.messenger.is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ns.f(this.f37458a).c(this, org.telegram.messenger.ns.f25521k0);
+        org.telegram.messenger.ns.f(this.f37457a).c(this, org.telegram.messenger.ns.f25522k0);
         b();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ns.f(this.f37458a).n(this, org.telegram.messenger.ns.f25521k0);
+        org.telegram.messenger.ns.f(this.f37457a).n(this, org.telegram.messenger.ns.f25522k0);
     }
 
     @Override

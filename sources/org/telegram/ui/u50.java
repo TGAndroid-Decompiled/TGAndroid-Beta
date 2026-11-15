@@ -3,26 +3,26 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class u50 implements Runnable {
-    public final int f51768a;
-    public final jg.q1 f51769b;
-    public final String f51770c;
+    public final int f51769a;
+    public final jg.q1 f51770b;
+    public final String f51771c;
 
     public u50(jg.q1 q1Var, String str, int i7) {
-        this.f51768a = i7;
-        this.f51769b = q1Var;
-        this.f51770c = str;
+        this.f51769a = i7;
+        this.f51770b = q1Var;
+        this.f51771c = str;
     }
 
     @Override
     public final void run() {
         int i7;
-        switch (this.f51768a) {
+        switch (this.f51769a) {
             case 0:
-                Utilities.f22418g.c(new u50(this.f51769b, this.f51770c, 1));
+                Utilities.f22418g.c(new u50(this.f51770b, this.f51771c, 1));
                 return;
             default:
-                jg.q1 q1Var = this.f51769b;
-                String str = this.f51770c;
+                jg.q1 q1Var = this.f51770b;
+                String str = this.f51771c;
                 v50 v50Var = (v50) q1Var.f17250c;
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
@@ -51,9 +51,9 @@ public final class u50 implements Runnable {
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
                 int i11 = 0;
-                while (i11 < v50Var.f52136n.f53425w.size()) {
-                    org.telegram.messenger.d5 d5Var = (org.telegram.messenger.d5) v50Var.f52136n.f53425w.get(i11);
-                    String lowerCase2 = org.telegram.messenger.g5.m(0, d5Var.f23037i, d5Var.f23038j).toLowerCase();
+                while (i11 < v50Var.f52134n.f53429w.size()) {
+                    org.telegram.messenger.d5 d5Var = (org.telegram.messenger.d5) v50Var.f52134n.f53429w.get(i11);
+                    String lowerCase2 = org.telegram.messenger.g5.m(0, d5Var.f23045i, d5Var.f23046j).toLowerCase();
                     String S02 = org.telegram.messenger.hd.E0().S0(lowerCase2, z10, false);
                     if (lowerCase2.equals(S02)) {
                         S02 = null;
@@ -67,7 +67,7 @@ public final class u50 implements Runnable {
                                 z11 = true;
                             }
                             if (z11) {
-                                arrayList4.add(org.telegram.messenger.g0.r0(d5Var.f23037i, d5Var.f23038j, str2));
+                                arrayList4.add(org.telegram.messenger.g0.r0(d5Var.f23045i, d5Var.f23046j, str2));
                                 arrayList3.add(d5Var);
                             } else {
                                 i12++;

@@ -28,7 +28,7 @@ public final class av extends cu {
         super(ivVar, rect, i7);
         this.f22604b0 = new Matrix();
         this.f22605c0 = new Paint(1);
-        hv hvVar = new hv(ivVar, spannableStringBuilder, this.f22935c);
+        hv hvVar = new hv(ivVar, spannableStringBuilder, this.f22943c);
         this.X = hvVar;
         this.Y = r2;
         hv[] hvVarArr = {hvVar};
@@ -36,19 +36,19 @@ public final class av extends cu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return this.X.f24222b.getHeight() + rect.top + rect.bottom;
     }
 
     @Override
     public final int J() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return this.X.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return this.X.r() + rect.left + rect.right;
     }
 
@@ -69,12 +69,12 @@ public final class av extends cu {
 
     @Override
     public final void W(Canvas canvas) {
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         canvas.saveLayerAlpha(0.0f, 0.0f, ivVar.C, I(), 255, 31);
         int i02 = i0();
         hv hvVar = this.X;
         if (i02 != 0) {
-            hvVar.f24223c = (this.f22934b.left + i02) - hvVar.f24225f;
+            hvVar.f24223c = (this.f22942b.left + i02) - hvVar.f24225f;
             canvas.save();
             canvas.translate(i02, 0.0f);
         }
@@ -91,7 +91,7 @@ public final class av extends cu {
         j0();
         Matrix matrix = this.f22604b0;
         matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22935c, 0.0f);
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22943c, 0.0f);
         this.f22603a0.setLocalMatrix(matrix);
         canvas.drawRect(0.0f, 0.0f, ivVar.C, I(), this.f22605c0);
         canvas.restore();
@@ -104,14 +104,14 @@ public final class av extends cu {
     @Override
     public final void X(Canvas canvas, int i7, float f10) {
         int i10;
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         int i11 = ivVar.C;
-        TextPaint textPaint = ivVar.f24459w;
+        TextPaint textPaint = ivVar.f24464w;
         canvas.saveLayerAlpha(0.0f, 0.0f, i11, I(), 255, 31);
         int i02 = i0();
         hv hvVar = this.X;
         if (i02 != 0) {
-            hvVar.f24223c = (this.f22934b.left + i02) - hvVar.f24225f;
+            hvVar.f24223c = (this.f22942b.left + i02) - hvVar.f24225f;
         }
         canvas.save();
         canvas.translate(i02 - hvVar.f24225f, 0.0f);
@@ -129,7 +129,7 @@ public final class av extends cu {
         j0();
         Matrix matrix = this.f22604b0;
         matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22935c, 0.0f);
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22943c, 0.0f);
         this.f22603a0.setLocalMatrix(matrix);
         canvas.drawRect(0.0f, 0.0f, ivVar.C, I(), this.f22605c0);
         canvas.restore();
@@ -169,18 +169,18 @@ public final class av extends cu {
     }
 
     public final int i0() {
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         if (!ivVar.I()) {
             return 0;
         }
         int L = (ivVar.C + ivVar.T) - g0.L(14.0f);
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return ((L - rect.right) - rect.left) - this.X.r();
     }
 
     public final void j0() {
         int i7;
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         if (ivVar.E()) {
             i7 = org.telegram.ui.ActionBar.j6.Wc;
         } else {
@@ -191,7 +191,7 @@ public final class av extends cu {
             return;
         }
         this.Z = w02;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22935c, 0.0f, new int[]{org.telegram.ui.ActionBar.j6.r1(0.7f, w02), org.telegram.ui.ActionBar.j6.r1(0.25f, w02), org.telegram.ui.ActionBar.j6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22943c, 0.0f, new int[]{org.telegram.ui.ActionBar.j6.r1(0.7f, w02), org.telegram.ui.ActionBar.j6.r1(0.25f, w02), org.telegram.ui.ActionBar.j6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
         this.f22603a0 = linearGradient;
         Paint paint = this.f22605c0;
         paint.setShader(linearGradient);
@@ -212,9 +212,9 @@ public final class av extends cu {
     public final boolean u(CharacterStyle characterStyle, int i7, tt ttVar) {
         hv hvVar = this.X;
         if (hvVar.o(characterStyle, ttVar)) {
-            Rect rect = this.f22934b;
-            ttVar.f26731e = (i0() + rect.left) - hvVar.f24225f;
-            ttVar.f26732f = i7 + rect.top;
+            Rect rect = this.f22942b;
+            ttVar.f26733e = (i0() + rect.left) - hvVar.f24225f;
+            ttVar.f26734f = i7 + rect.top;
             return true;
         }
         return false;

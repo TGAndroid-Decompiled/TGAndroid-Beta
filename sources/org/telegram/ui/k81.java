@@ -4,10 +4,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class k81 extends org.telegram.ui.Components.tj0 {
-    public final ArrayList f48645c = new ArrayList();
+    public final ArrayList f48599c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public j81 f48646e;
-    public int f48647f;
+    public j81 f48600e;
+    public int f48601f;
     public final l81 h;
 
     public k81(l81 l81Var) {
@@ -21,12 +21,12 @@ public final class k81 extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.f48645c.size();
+        return this.f48599c.size();
     }
 
     @Override
     public final void t(v4.e1 e1Var, int i7) {
-        ArrayList arrayList = this.f48645c;
+        ArrayList arrayList = this.f48599c;
         TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i7);
         String str = (String) this.d.get(i7);
         org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) e1Var.f58535a;
@@ -36,7 +36,7 @@ public final class k81 extends org.telegram.ui.Components.tj0 {
             z10 = false;
         }
         h4Var.e(chat, str2, str, z10);
-        h4Var.c(this.h.f48904x.contains(Long.valueOf(chat.f28051id)), false);
+        h4Var.c(this.h.f48900x.contains(Long.valueOf(chat.f28051id)), false);
     }
 
     @Override

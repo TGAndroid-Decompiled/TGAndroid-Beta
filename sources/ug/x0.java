@@ -65,7 +65,7 @@ public final class x0 extends u2 implements is {
     public final boolean f58382z1;
 
     public x0(int i7, Context context, e6 e6Var) {
-        this(null, context, m10.f24934t0, false, i7, true, null, e6Var);
+        this(null, context, m10.f24940t0, false, i7, true, null, e6Var);
     }
 
     @Override
@@ -191,8 +191,8 @@ public final class x0 extends u2 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 != ns.f25520j5 && i7 != ns.f25503g5) {
-            if (i7 == ns.f25497f5) {
+        if (i7 != ns.f25521j5 && i7 != ns.f25504g5) {
+            if (i7 == ns.f25498f5) {
                 boolean q10 = m10.i(this.f29679a).q();
                 q0 q0Var = this.n1;
                 if (q10) {
@@ -211,10 +211,10 @@ public final class x0 extends u2 implements is {
     @Override
     public final void dismiss() {
         super.dismiss();
-        ns.e().n(this, ns.f25520j5);
-        ns.f(this.f29679a).n(this, ns.f25503g5);
-        ns.f(this.f29679a).n(this, ns.f25497f5);
-        ns.e().k(ns.f25522k1, 16);
+        ns.e().n(this, ns.f25521j5);
+        ns.f(this.f29679a).n(this, ns.f25504g5);
+        ns.f(this.f29679a).n(this, ns.f25498f5);
+        ns.e().k(ns.f25523k1, 16);
     }
 
     @Override
@@ -242,9 +242,9 @@ public final class x0 extends u2 implements is {
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        ns.e().c(this, ns.f25520j5);
-        ns.f(this.f29679a).c(this, ns.f25503g5);
-        ns.f(this.f29679a).c(this, ns.f25497f5);
+        ns.e().c(this, ns.f25521j5);
+        ns.f(this.f29679a).c(this, ns.f25504g5);
+        ns.f(this.f29679a).c(this, ns.f25498f5);
         o7 o7Var = new o7(7, getContext(), this);
         this.I1 = o7Var;
         q6.h(j6.f28922h5, o7Var, this.J0);
@@ -263,13 +263,13 @@ public final class x0 extends u2 implements is {
         org.telegram.messenger.g0.Y3(this.I1, false, 1.0f, true, false);
         int i10 = this.B1;
         ArrayList arrayList = this.f58371o1;
-        if (((ss0) arrayList.get(i10)).f51268a == 14) {
+        if (((ss0) arrayList.get(i10)).f51269a == 14) {
             this.I1.setTitle(hd.M0(2131743805, null));
             this.I1.requestLayout();
-        } else if (((ss0) arrayList.get(this.B1)).f51268a == 28) {
+        } else if (((ss0) arrayList.get(this.B1)).f51269a == 28) {
             this.I1.setTitle(hd.M0(2131744252, null));
             this.I1.requestLayout();
-        } else if (((ss0) arrayList.get(this.B1)).f51268a == 40) {
+        } else if (((ss0) arrayList.get(this.B1)).f51269a == 40) {
             this.I1.setTitle(hd.M0(2131750837, null));
             this.I1.requestLayout();
         } else {
@@ -281,7 +281,7 @@ public final class x0 extends u2 implements is {
     @Override
     public final void show() {
         super.show();
-        ns.e().k(ns.f25517j1, 16);
+        ns.e().k(ns.f25518j1, 16);
     }
 
     public x0(e2 e2Var, int i7, boolean z10) {
@@ -323,7 +323,7 @@ public final class x0 extends u2 implements is {
             if (i11 >= this.f58371o1.size()) {
                 i11 = 0;
                 break;
-            } else if (((ss0) this.f58371o1.get(i11)).f51268a == i10) {
+            } else if (((ss0) this.f58371o1.get(i11)).f51269a == i10) {
                 break;
             } else {
                 i11++;
@@ -391,8 +391,8 @@ public final class x0 extends u2 implements is {
         linearLayout.setOrientation(1);
         int i12 = j6.V8;
         int i13 = j6.P9;
-        aaVar.f32937n = i12;
-        aaVar.f32938r = i13;
+        aaVar.f32941n = i12;
+        aaVar.f32942r = i13;
         if (!z11) {
             linearLayout.addView(aaVar, ja.t(this.f58371o1.size() * 11, 5, 1, 0, 0, 0, 10));
         }

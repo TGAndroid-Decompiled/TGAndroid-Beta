@@ -14,7 +14,7 @@ public final class nq0 extends pz {
 
     @Override
     public final int getColumnsCount() {
-        return this.W.f42123p1[ys0.z0(this.V.F) ? 1 : 0];
+        return this.W.f42125p1[ys0.z0(this.V.F) ? 1 : 0];
     }
 
     @Override

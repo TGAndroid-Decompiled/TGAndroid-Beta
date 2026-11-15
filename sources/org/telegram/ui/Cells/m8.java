@@ -30,7 +30,7 @@ public final class m8 extends FrameLayout {
         float L;
         int i7;
         if (this.f30695c) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -38,7 +38,7 @@ public final class m8 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;

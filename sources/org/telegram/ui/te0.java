@@ -3,33 +3,33 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class te0 implements h90 {
-    public final cf0 f51568a;
+    public final cf0 f51569a;
 
     public te0(cf0 cf0Var) {
-        this.f51568a = cf0Var;
+        this.f51569a = cf0Var;
     }
 
     @Override
     public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-        this.f51568a.k0(tL_chatInviteExported);
+        this.f51569a.k0(tL_chatInviteExported);
     }
 
     @Override
     public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
         if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
             TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
-            cf0 cf0Var = this.f51568a;
+            cf0 cf0Var = this.f51569a;
             cf0Var.i0(tL_chatInviteExported2);
-            for (int i7 = 0; i7 < cf0Var.f46138j0.size(); i7++) {
-                if (((TLRPC.TL_chatInviteExported) cf0Var.f46138j0.get(i7)).link.equals(tL_chatInviteExported.link)) {
+            for (int i7 = 0; i7 < cf0Var.f46127j0.size(); i7++) {
+                if (((TLRPC.TL_chatInviteExported) cf0Var.f46127j0.get(i7)).link.equals(tL_chatInviteExported.link)) {
                     if (tL_chatInviteExported2.revoked) {
                         ue0 l02 = cf0Var.l0();
-                        cf0Var.f46138j0.remove(i7);
-                        cf0Var.f46139k0.add(0, tL_chatInviteExported2);
+                        cf0Var.f46127j0.remove(i7);
+                        cf0Var.f46128k0.add(0, tL_chatInviteExported2);
                         cf0Var.n0(l02);
                         return;
                     }
-                    cf0Var.f46138j0.set(i7, tL_chatInviteExported2);
+                    cf0Var.f46127j0.set(i7, tL_chatInviteExported2);
                     cf0Var.o0(true);
                     return;
                 }

@@ -66,8 +66,8 @@ public abstract class q extends FrameLayout implements z5, is {
         this.f13356f = new ArrayList();
         this.h = new ArrayList();
         this.f13359s = null;
-        this.f13360w = g0.f23609q.y;
-        this.E = Utilities.j(gz.f23986u1, 6, 2);
+        this.f13360w = g0.f23611q.y;
+        this.E = Utilities.j(gz.f23989u1, 6, 2);
         this.f13352a = e2Var;
         int currentAccount = e2Var.getCurrentAccount();
         this.f13353b = currentAccount;
@@ -114,8 +114,8 @@ public abstract class q extends FrameLayout implements z5, is {
             kiVar.y1(1, false);
             kiVar.R2 = true;
             kiVar.Q2 = false;
-            kiVar.f36457h3.setText(hd.M0(2131752121, null));
-            kiVar.f36447e2.i0();
+            kiVar.f36445h3.setText(hd.M0(2131752121, null));
+            kiVar.f36435e2.i0();
             kiVar.X3 = new a0(this, kiVar, str);
             kiVar.e1();
             kiVar.show();
@@ -151,7 +151,7 @@ public abstract class q extends FrameLayout implements z5, is {
             deletepreviewmedia.bot = np.s1(i10).o1(this.d);
             deletepreviewmedia.lang_code = str;
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                TL_stories.StoryItem storyItem = ((gj) arrayList2.get(i11)).f23822l;
+                TL_stories.StoryItem storyItem = ((gj) arrayList2.get(i11)).f23824l;
                 if (storyItem != null && (messageMedia = storyItem.media) != null) {
                     deletepreviewmedia.media.add(np.a5(messageMedia));
                 }
@@ -181,7 +181,7 @@ public abstract class q extends FrameLayout implements z5, is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = ns.f25605x5;
+        int i11 = ns.f25606x5;
         f3 f3Var = this.f13357n;
         int i12 = 0;
         if (i7 == i11) {
@@ -212,7 +212,7 @@ public abstract class q extends FrameLayout implements z5, is {
                     }
                 }
             }
-        } else if (i7 == ns.f25591v5) {
+        } else if (i7 == ns.f25592v5) {
             i(true);
             View[] viewPages3 = f3Var.getViewPages();
             int length2 = viewPages3.length;
@@ -257,11 +257,11 @@ public abstract class q extends FrameLayout implements z5, is {
                 i10 = 0;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     gj gjVar = (gj) arrayList.get(i11);
-                    TL_stories.StoryItem storyItem = gjVar.f23822l;
+                    TL_stories.StoryItem storyItem = gjVar.f23824l;
                     if (storyItem != null && (messageMedia = storyItem.media) != null) {
                         if (gj.K4(messageMedia.document)) {
                             i10++;
-                        } else if (gjVar.f23822l.media.photo != null) {
+                        } else if (gjVar.f23824l.media.photo != null) {
                             i7++;
                         }
                     }
@@ -493,8 +493,8 @@ public abstract class q extends FrameLayout implements z5, is {
             longSparseArray2 = longSparseArray4;
         }
         longSparseArray2.put(this.d, this);
-        ns.f(i7).c(this, ns.f25605x5);
-        ns.f(i7).c(this, ns.f25591v5);
+        ns.f(i7).c(this, ns.f25606x5);
+        ns.f(i7).c(this, ns.f25592v5);
     }
 
     @Override
@@ -509,8 +509,8 @@ public abstract class q extends FrameLayout implements z5, is {
         if (longSparseArray2 != null) {
             longSparseArray2.remove(this.d);
         }
-        ns.f(i7).n(this, ns.f25605x5);
-        ns.f(i7).n(this, ns.f25591v5);
+        ns.f(i7).n(this, ns.f25606x5);
+        ns.f(i7).n(this, ns.f25592v5);
     }
 
     public void setVisibleHeight(int i7) {

@@ -4,36 +4,36 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ml0 implements gj0 {
-    public final int f37320a;
-    public final int f37321b;
-    public final org.telegram.ui.ActionBar.e2 f37322c;
+    public final int f37319a;
+    public final int f37320b;
+    public final org.telegram.ui.ActionBar.e2 f37321c;
     public final Object d;
 
     public ml0(Object obj, int i7, org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        this.f37320a = i10;
+        this.f37319a = i10;
         this.d = obj;
-        this.f37321b = i7;
-        this.f37322c = e2Var;
+        this.f37320b = i7;
+        this.f37321c = e2Var;
     }
 
     @Override
     public final void b(int i7, View view) {
         ch.p0 p0Var;
-        switch (this.f37320a) {
+        switch (this.f37319a) {
             case 0:
                 ul0 ul0Var = (ul0) this.d;
                 ArrayList arrayList = ul0Var.f40102r;
                 di.c1 c1Var = ul0Var.d;
                 if (i7 >= 0 && i7 < arrayList.size()) {
-                    if (!org.telegram.messenger.m10.i(this.f37321b).q()) {
-                        new ug.x0(this.f37322c, 24, true).show();
+                    if (!org.telegram.messenger.m10.i(this.f37320b).q()) {
+                        new ug.x0(this.f37321c, 24, true).show();
                         return;
                     }
-                    long j3 = ((rl0) arrayList.get(i7)).f38998a.h;
+                    long j3 = ((rl0) arrayList.get(i7)).f38995a.h;
                     if (ul0Var.h == j3) {
                         p0Var = null;
                     } else {
-                        p0Var = ((rl0) arrayList.get(i7)).f38998a;
+                        p0Var = ((rl0) arrayList.get(i7)).f38995a;
                     }
                     if (ul0Var.f(p0Var)) {
                         for (int i10 = 0; i10 < c1Var.getChildCount(); i10++) {
@@ -68,8 +68,8 @@ public final class ml0 implements gj0 {
                 ug.g1 g1Var = (ug.g1) this.d;
                 if (view instanceof org.telegram.ui.fs0) {
                     org.telegram.ui.fs0 fs0Var = (org.telegram.ui.fs0) view;
-                    PremiumPreviewFragment.v0(this.f37321b, fs0Var.f47190f.f51268a);
-                    g1Var.t(new ug.x0(this.f37322c, fs0Var.f47190f.f51268a, false));
+                    PremiumPreviewFragment.v0(this.f37320b, fs0Var.f47180f.f51269a);
+                    g1Var.t(new ug.x0(this.f37321c, fs0Var.f47180f.f51269a, false));
                     return;
                 }
                 return;

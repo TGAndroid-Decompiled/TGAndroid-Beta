@@ -63,7 +63,7 @@ public abstract class lo extends LinearLayout {
         actionBarPopupWindow$ActionBarPopupWindowLayout.setOnSizeChangedListener(new f1(16, this, actionBarPopupWindow$ActionBarPopupWindowLayout));
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             ye0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
-            swipeBack.f41989y.add(new xe0() {
+            swipeBack.f41991y.add(new xe0() {
                 @Override
                 public final void a(float f10, float f11) {
                     lo loVar = lo.this;

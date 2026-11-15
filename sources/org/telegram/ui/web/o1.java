@@ -19,36 +19,36 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.eh0;
 public final class o1 implements z10 {
-    public final int f52736a;
-    public final wz f52737b;
-    public final boolean[] f52738c;
+    public final int f52739a;
+    public final wz f52740b;
+    public final boolean[] f52741c;
     public final xz d;
-    public final v1 f52739e;
-    public final z10 f52740f;
+    public final v1 f52742e;
+    public final z10 f52743f;
 
     public o1(wz wzVar, boolean[] zArr, xz xzVar, v1 v1Var, z10 z10Var, int i7) {
-        this.f52736a = i7;
-        this.f52737b = wzVar;
-        this.f52738c = zArr;
+        this.f52739a = i7;
+        this.f52740b = wzVar;
+        this.f52741c = zArr;
         this.d = xzVar;
-        this.f52739e = v1Var;
-        this.f52740f = z10Var;
+        this.f52742e = v1Var;
+        this.f52743f = z10Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f52736a) {
+        switch (this.f52739a) {
             case 0:
-                wz wzVar = this.f52737b;
-                boolean[] zArr = this.f52738c;
+                wz wzVar = this.f52740b;
+                boolean[] zArr = this.f52741c;
                 xz xzVar = this.d;
-                v1 v1Var = this.f52739e;
-                z10 z10Var = this.f52740f;
+                v1 v1Var = this.f52742e;
+                z10 z10Var = this.f52743f;
                 InputStream inputStream = (InputStream) obj;
                 xz.a(wzVar);
                 if (!zArr[0]) {
                     wz d = xz.d(xzVar, "readHTML");
-                    String str = v1Var.f52849a;
+                    String str = v1Var.f52852a;
                     final o1 o1Var = new o1(d, zArr, xzVar, v1Var, z10Var, 1);
                     if (inputStream == null) {
                         o1Var.a(null);
@@ -56,7 +56,7 @@ public final class o1 implements z10 {
                     }
                     Context context = LaunchActivity.H1;
                     if (context == null) {
-                        context = org.telegram.messenger.t0.f26600b;
+                        context = org.telegram.messenger.t0.f26609b;
                     }
                     Activity W = org.telegram.messenger.g0.W(context);
                     if (W == null) {
@@ -96,26 +96,26 @@ public final class o1 implements z10 {
                 }
                 return;
             default:
-                wz wzVar2 = this.f52737b;
-                boolean[] zArr3 = this.f52738c;
+                wz wzVar2 = this.f52740b;
+                boolean[] zArr3 = this.f52741c;
                 xz xzVar2 = this.d;
-                v1 v1Var2 = this.f52739e;
-                z10 z10Var2 = this.f52740f;
+                v1 v1Var2 = this.f52742e;
+                z10 z10Var2 = this.f52743f;
                 JSONObject jSONObject = (JSONObject) obj;
                 xz.a(wzVar2);
                 if (!zArr3[0]) {
                     wz d2 = xz.d(xzVar2, "parseJSON");
                     try {
-                        v1Var2.f52851c = v1Var2.i(v1Var2.f52849a, jSONObject);
+                        v1Var2.f52854c = v1Var2.i(v1Var2.f52852a, jSONObject);
                     } catch (Exception e10) {
                         xz.c(xzVar2, "error: " + e10);
                         a8.g(e10, true);
                     }
                     xz.a(d2);
                     z10Var2.a(v1Var2);
-                    TLRPC.TL_webPage tL_webPage = v1Var2.f52851c;
+                    TLRPC.TL_webPage tL_webPage = v1Var2.f52854c;
                     if (tL_webPage != null) {
-                        v1.f52847e.put(tL_webPage, v1Var2);
+                        v1.f52850e.put(tL_webPage, v1Var2);
                     }
                     xz.b(xzVar2);
                     return;

@@ -28,12 +28,12 @@ public final class l5 {
 
     public l5(w5 w5Var) {
         this.f8960a = w5Var;
-        w5Var.f9661c.addOnAttachStateChangeListener(new bi.x1(this, 4));
+        w5Var.f9650c.addOnAttachStateChangeListener(new bi.x1(this, 4));
     }
 
     public final void a() {
         this.f8972o = false;
-        this.f8960a.f9661c.c();
+        this.f8960a.f9650c.c();
         h5 h5Var = this.h;
         if (h5Var != null) {
             h5Var.a();

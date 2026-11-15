@@ -6,32 +6,32 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
 public final class l21 extends h6 {
-    public final Paint f36716s;
-    public final n2.o0 f36717w;
-    public final n21 f36718x;
+    public final Paint f36704s;
+    public final n2.o0 f36705w;
+    public final n21 f36706x;
 
     public l21(n21 n21Var, Context context) {
         super(context, false, false, false);
-        this.f36718x = n21Var;
-        this.f36716s = new Paint(1);
-        this.f36717w = new n2.o0();
+        this.f36706x = n21Var;
+        this.f36704s = new Paint(1);
+        this.f36705w = new n2.o0();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
         } else {
             org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
         }
-        p21 p21Var = this.f36718x.f37440n;
+        p21 p21Var = this.f36706x.f37439n;
         int i7 = org.telegram.ui.ActionBar.j6.Gj;
         String[] strArr = p21.S1;
         int r12 = org.telegram.ui.ActionBar.j6.r1(0.1175f, org.telegram.ui.ActionBar.j6.w0(i7, p21Var.J0));
-        Paint paint = this.f36716s;
+        Paint paint = this.f36704s;
         paint.setColor(r12);
         canvas.drawRoundRect(org.telegram.messenger.g0.P, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
-        if (this.f36717w.h(canvas)) {
+        if (this.f36705w.h(canvas)) {
             invalidate();
         }
         super.onDraw(canvas);
@@ -39,15 +39,15 @@ public final class l21 extends h6 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        p21 p21Var = this.f36718x.f37440n;
+        p21 p21Var = this.f36706x.f37439n;
         int action = motionEvent.getAction();
-        n2.o0 o0Var = this.f36717w;
+        n2.o0 o0Var = this.f36705w;
         if (action == 0) {
             String[] strArr = p21.S1;
             a80 a80Var = new a80(null, p21Var.J0, motionEvent.getX(), motionEvent.getY(), 0);
             a80Var.d(org.telegram.ui.ActionBar.j6.r1(0.1175f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Gj, p21Var.J0)));
             u70 b10 = a80Var.b();
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
             } else {
                 org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);

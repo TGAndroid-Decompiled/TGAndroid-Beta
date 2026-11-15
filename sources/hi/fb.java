@@ -45,12 +45,12 @@ public final class fb extends View {
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(true, true, false);
         this.f14323b = g6Var;
         g6Var.n(0.3f, 250L, erVar);
-        g6Var.N = org.telegram.messenger.g0.f23609q.x;
+        g6Var.N = org.telegram.messenger.g0.f23611q.x;
         g6Var.w(org.telegram.messenger.g0.L(14.0f));
         g6Var.u(-1);
         g6Var.s(org.telegram.messenger.g0.N(1.33f), org.telegram.messenger.g0.L(1.0f), 1073741824);
         g6Var.t(hd.M0(2131743945, null), true, true);
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -70,7 +70,7 @@ public final class fb extends View {
         this.f14326f = z12;
         ch0 ch0Var = this.f14322a;
         if (z12) {
-            if (ch0Var.f33573b0 > 34) {
+            if (ch0Var.f33575b0 > 34) {
                 ch0Var.N(0, false, false);
             }
             ch0Var.P(33);

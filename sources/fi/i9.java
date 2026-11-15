@@ -22,7 +22,7 @@ import android.view.WindowManager;
 import android.window.OnBackInvokedDispatcher;
 import c8.ja;
 import c8.zc;
-import di.ub;
+import di.tb;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.ImageReceiver;
@@ -150,7 +150,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     public static float B1 = 1.0f;
     public static boolean C1 = true;
     public static final LongSparseArray E1 = new LongSparseArray();
-    public boolean f11830a = gz.f23933b0;
+    public boolean f11830a = gz.f23936b0;
     public boolean f11833b = true;
     public boolean f11836c = false;
     public boolean d = false;
@@ -231,10 +231,10 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     }
 
     public static void g(i9 i9Var) {
-        ub ubVar;
+        tb tbVar;
         ft editField;
         b4 currentPeerView = i9Var.f11861o0.getCurrentPeerView();
-        if (currentPeerView != null && currentPeerView.L1 != null && (((ubVar = currentPeerView.L2) == null || ubVar.getVisibility() != 0) && (editField = currentPeerView.L1.getEditField()) != null)) {
+        if (currentPeerView != null && currentPeerView.L1 != null && (((tbVar = currentPeerView.L2) == null || tbVar.getVisibility() != 0) && (editField = currentPeerView.L1.getEditField()) != null)) {
             editField.requestFocus();
             org.telegram.messenger.g0.J3(editField);
             org.telegram.messenger.g0.i3(new g3(i9Var, 6), 200L);
@@ -399,7 +399,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
             z11 = false;
         }
         this.f11833b = z11;
-        if (gz.f23933b0 && z11) {
+        if (gz.f23936b0 && z11) {
             z12 = true;
         } else {
             z12 = false;
@@ -576,7 +576,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     }
 
     public final void I(Context context, int i7, k6 k6Var, b7 b7Var) {
-        this.h = m10.f24934t0;
+        this.h = m10.f24940t0;
         ArrayList arrayList = new ArrayList();
         arrayList.add(Long.valueOf(k6Var.d));
         this.P0 = i7;
@@ -584,7 +584,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     }
 
     public final void J(Context context, long j3, e9 e9Var) {
-        this.h = m10.f24934t0;
+        this.h = m10.f24940t0;
         ArrayList arrayList = new ArrayList();
         arrayList.add(Long.valueOf(j3));
         s6 P1 = np.s1(this.h).P1();
@@ -602,7 +602,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
             if (y10.stories.isEmpty() && !P1.L(j3)) {
                 P1.f12324g.remove(y10);
                 P1.h.remove(y10);
-                ns.f(i7).k(ns.f25591v5, new Object[0]);
+                ns.f(i7).k(ns.f25592v5, new Object[0]);
             }
         }
         M(context, null, arrayList, 0, null, null, e9Var, false);
@@ -611,7 +611,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     public final void K(Context context, TL_stories.PeerStories peerStories, e9 e9Var) {
         ArrayList<TL_stories.StoryItem> arrayList;
         if (peerStories != null && (arrayList = peerStories.stories) != null && !arrayList.isEmpty()) {
-            this.h = m10.f24934t0;
+            this.h = m10.f24940t0;
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(Long.valueOf(org.telegram.messenger.m5.o(peerStories.peer)));
             M(context, peerStories.stories.get(0), arrayList2, 0, null, peerStories, e9Var, false);
@@ -621,11 +621,11 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     }
 
     public final void L(Context context, TL_stories.StoryItem storyItem, b7 b7Var) {
-        G(m10.f24934t0, context, storyItem, b7Var);
+        G(m10.f24940t0, context, storyItem, b7Var);
     }
 
     public final void M(Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i7, k6 k6Var, TL_stories.PeerStories peerStories, e9 e9Var, boolean z10) {
-        H(m10.f24934t0, context, storyItem, arrayList, i7, k6Var, peerStories, e9Var, z10);
+        H(m10.f24940t0, context, storyItem, arrayList, i7, k6Var, peerStories, e9Var, z10);
     }
 
     public final void N(org.telegram.ui.ActionBar.e2 e2Var) {
@@ -756,7 +756,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
         if (this.f11833b && launchActivity != null) {
             if (z10) {
                 Window window = launchActivity.getWindow();
-                Typeface typeface = org.telegram.messenger.g0.f23581a;
+                Typeface typeface = org.telegram.messenger.g0.f23583a;
                 if (Build.VERSION.SDK_INT >= 26) {
                     z11 = zc.a(window.getDecorView().getSystemUiVisibility(), 16);
                 } else {
@@ -844,7 +844,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         ArrayList arrayList;
         int i11 = 0;
-        if (i7 == ns.f25605x5) {
+        if (i7 == ns.f25606x5) {
             if (this.O0 == ((k6) objArr[0])) {
                 z();
                 y8 y8Var = this.f11861o0;
@@ -856,16 +856,16 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
                     ArrayList arrayList2 = new ArrayList();
                     int i12 = 0;
                     while (i11 < this.O0.f11944i.size()) {
-                        if (selectedStory != null && selectedStory.f28290id == ((gj) this.O0.f11944i.get(i11)).f23822l.f28290id) {
+                        if (selectedStory != null && selectedStory.f28290id == ((gj) this.O0.f11944i.get(i11)).f23824l.f28290id) {
                             i12 = i11;
                         }
-                        arrayList2.add(((gj) this.O0.f11944i.get(i11)).f23822l);
+                        arrayList2.add(((gj) this.O0.f11944i.get(i11)).f23824l);
                         i11++;
                     }
                     this.f11882x.b(i12, this.O0.d, arrayList2);
                 }
             }
-        } else if (i7 == ns.f25591v5) {
+        } else if (i7 == ns.f25592v5) {
             e9 e9Var = this.f11875u0;
             if (e9Var instanceof b7) {
                 b7 b7Var = (b7) e9Var;
@@ -901,9 +901,9 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
                 }
             }
         } else {
-            int i14 = ns.f25476c1;
-            if (i7 != i14 && i7 != ns.f25482d1) {
-                if (i7 == ns.f25598w5) {
+            int i14 = ns.f25477c1;
+            if (i7 != i14 && i7 != ns.f25483d1) {
+                if (i7 == ns.f25599w5) {
                     long longValue = ((Long) objArr[0]).longValue();
                     int intValue = ((Integer) objArr[1]).intValue();
                     TL_stories.StoryItem storyItem = this.T0;
@@ -971,7 +971,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
 
     public final void l(boolean z10) {
         boolean z11;
-        boolean z12 = org.telegram.messenger.r2.f26198a;
+        boolean z12 = org.telegram.messenger.r2.f26206a;
         if (this.f11860n0 && !z10) {
             z11 = false;
         } else {
@@ -1064,7 +1064,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
                 this.f11878v1.setInterpolator(er.h);
             } else {
                 this.f11878v1.setDuration(350L);
-                this.f11878v1.setInterpolator(er.f34420f);
+                this.f11878v1.setInterpolator(er.f34419f);
             }
             this.f11878v1.start();
         }
@@ -1124,7 +1124,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
             if (this.O0 != null) {
                 ArrayList arrayList = new ArrayList();
                 for (int i7 = 0; i7 < this.O0.f11944i.size(); i7++) {
-                    arrayList.add(((gj) this.O0.f11944i.get(i7)).f23822l);
+                    arrayList.add(((gj) this.O0.f11944i.get(i7)).f23824l);
                 }
                 this.f11882x.b(currentPeerView.getListPosition(), this.O0.d, arrayList);
                 return;
@@ -1142,7 +1142,7 @@ public final class i9 implements is, org.telegram.ui.ActionBar.a2 {
     public final boolean t(Dialog dialog) {
         try {
             this.f11877v0 = dialog;
-            dialog.setOnDismissListener(new di.r9(this, 4));
+            dialog.setOnDismissListener(new di.q9(this, 4));
             dialog.show();
             V();
             return true;

@@ -26,7 +26,7 @@ public final class g extends s {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((bw0) this.R).R1 != null && hd.f24101a0) {
+                if (((bw0) this.R).R1 != null && hd.f24104a0) {
                     return true;
                 }
                 return false;

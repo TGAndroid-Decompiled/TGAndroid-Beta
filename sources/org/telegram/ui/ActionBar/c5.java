@@ -129,15 +129,15 @@ public final class c5 extends LinearLayout {
         }
         float width = getWidth() - getPaddingRight();
         te.h hVar = this.f28495e;
-        float f10 = hVar.d.f57099f.f57107a;
+        float f10 = hVar.d.f57103f.f57111a;
         float min = Math.min(1.0f, getPillWidth() / org.telegram.messenger.g0.L(46.0f));
-        ArrayList arrayList = hVar.f57102b;
+        ArrayList arrayList = hVar.f57106b;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             te.e eVar = (te.e) obj;
-            b5 b5Var = (b5) eVar.f57090a;
+            b5 b5Var = (b5) eVar.f57094a;
             View view = b5Var.f28448a;
             RectF b10 = eVar.b();
             b5Var.f28449b = true;
@@ -158,7 +158,7 @@ public final class c5 extends LinearLayout {
 
     public float getPillWidth() {
         te.g gVar = this.f28495e.d;
-        return (org.telegram.messenger.g0.L(8.0f) * gVar.f57097c.f57107a) + gVar.f57099f.f57107a;
+        return (org.telegram.messenger.g0.L(8.0f) * gVar.f57101c.f57111a) + gVar.f57103f.f57111a;
     }
 
     public float getTargetPillWidth() {

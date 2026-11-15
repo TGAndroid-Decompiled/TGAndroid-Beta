@@ -56,7 +56,7 @@ public final class zy {
         int i7 = (int) ((((float) j10) / ((float) this.h)) * 100.0f);
         if (this.f28038j != i7) {
             this.f28038j = i7;
-            this.f28043o.getNotificationCenter().k(ns.f25594w1, this.f28034e);
+            this.f28043o.getNotificationCenter().k(ns.f25595w1, this.f28034e);
         }
     }
 
@@ -73,7 +73,7 @@ public final class zy {
         ArrayList arrayList = this.d;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem = ((xy) arrayList.get(i7)).f27626f;
+            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem = ((xy) arrayList.get(i7)).f27628f;
             if (tL_inputStickerSetItem != null) {
                 tL_stickers_createStickerSet.stickers.add(tL_inputStickerSetItem);
             }

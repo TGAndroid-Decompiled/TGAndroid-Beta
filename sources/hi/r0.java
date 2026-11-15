@@ -24,14 +24,14 @@ public final class r0 implements is {
         if (this.f14961c != null) {
             return;
         }
-        ns.f(i7).b(this, ns.f25465a2);
-        ns.f(i7).b(this, ns.f25471b2);
-        ns.f(i7).b(this, ns.f25477c2);
+        ns.f(i7).b(this, ns.f25466a2);
+        ns.f(i7).b(this, ns.f25472b2);
+        ns.f(i7).b(this, ns.f25478c2);
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.f28072id = 1;
         tL_message.attachPath = file.getAbsolutePath();
         this.f14961c = new gj(i7, tL_message, null, false, false);
-        d7Var.s(new ai.f0(this, 22));
+        d7Var.s(new ai.g0(this, 22));
     }
 
     public final void a(boolean z10) {
@@ -39,9 +39,9 @@ public final class r0 implements is {
             return;
         }
         int i7 = this.f14959a;
-        ns.f(i7).n(this, ns.f25465a2);
-        ns.f(i7).n(this, ns.f25471b2);
-        ns.f(i7).n(this, ns.f25477c2);
+        ns.f(i7).n(this, ns.f25466a2);
+        ns.f(i7).n(this, ns.f25472b2);
+        ns.f(i7).n(this, ns.f25478c2);
         if (z10) {
             MediaController.B().i(this.f14961c);
         }
@@ -50,9 +50,9 @@ public final class r0 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25465a2) {
+        if (i7 == ns.f25466a2) {
             gj gjVar = (gj) objArr[0];
-        } else if (i7 == ns.f25471b2) {
+        } else if (i7 == ns.f25472b2) {
             if (((gj) objArr[0]) == this.f14961c) {
                 String str = (String) objArr[1];
                 ((Long) objArr[2]).getClass();
@@ -69,7 +69,7 @@ public final class r0 implements is {
                     a(false);
                 }
             }
-        } else if (i7 == ns.f25477c2 && ((gj) objArr[0]) == this.f14961c) {
+        } else if (i7 == ns.f25478c2 && ((gj) objArr[0]) == this.f14961c) {
             a(false);
             try {
                 File file = this.f14960b;

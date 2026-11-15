@@ -23,19 +23,19 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.ta;
 public final class z implements s10 {
-    public final int f4018a = 2;
-    public final int f4019b;
-    public final long f4020c;
+    public final int f4021a = 2;
+    public final int f4022b;
+    public final long f4023c;
     public final Object d;
-    public final Object f4021e;
-    public final Object f4022f;
+    public final Object f4024e;
+    public final Object f4025f;
 
     public z(int i7, long j3, TLRPC.Photo photo, Context context, fi.b bVar) {
-        this.f4019b = i7;
-        this.f4020c = j3;
-        this.f4021e = photo;
+        this.f4022b = i7;
+        this.f4023c = j3;
+        this.f4024e = photo;
         this.d = context;
-        this.f4022f = bVar;
+        this.f4025f = bVar;
     }
 
     @Override
@@ -48,11 +48,11 @@ public final class z implements s10 {
         TLObject M02;
         int i13;
         int i14;
-        int i15 = this.f4018a;
-        long j3 = this.f4020c;
-        int i16 = this.f4019b;
-        Object obj3 = this.f4022f;
-        Object obj4 = this.f4021e;
+        int i15 = this.f4021a;
+        long j3 = this.f4023c;
+        int i16 = this.f4022b;
+        Object obj3 = this.f4025f;
+        Object obj4 = this.f4024e;
         Object obj5 = this.d;
         switch (i15) {
             case 0:
@@ -62,10 +62,10 @@ public final class z implements s10 {
                 r9 r9Var = (r9) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (r9Var != null) {
-                    int i17 = this.f4019b;
+                    int i17 = this.f4022b;
                     m10.i(i17);
-                    long o4 = org.telegram.messenger.m5.o(r9Var.f26261e.peer);
-                    long j10 = this.f4020c;
+                    long o4 = org.telegram.messenger.m5.o(r9Var.f26269e.peer);
+                    long j10 = this.f4023c;
                     if (j10 != o4 && j10 != 0 && o4 != 0) {
                         e0 e0Var = new e0(context, i17, r9Var, j10, runnable);
                         if (i10 >= 0) {
@@ -89,13 +89,13 @@ public final class z implements s10 {
                         textView.setText(hd.M0(2131750305, null));
                         int i18 = org.telegram.ui.ActionBar.j6.f28957j5;
                         org.telegram.messenger.k5.m(textView, i18, e6Var, 1, 20.0f);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i13 = 5;
                         } else {
                             i13 = 3;
                         }
                         textView.setGravity(i13);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i14 = 5;
                         } else {
                             i14 = 3;
@@ -117,9 +117,9 @@ public final class z implements s10 {
                         alertDialog$Builder.h(hd.M0(2131752589, null), null);
                         alertDialog$Builder.f28392a.show();
                         return;
-                    } else if (r9Var.f26261e.bid_date > 0 && !r9Var.f()) {
+                    } else if (r9Var.f26269e.bid_date > 0 && !r9Var.f()) {
                         y yVar = new y(context, e6Var, null, r9Var);
-                        yVar.f3993j2 = runnable;
+                        yVar.f3996j2 = runnable;
                         yVar.show();
                         return;
                     } else {
@@ -133,12 +133,12 @@ public final class z implements s10 {
                 ci.m0 m0Var = (ci.m0) obj3;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (n0Var.f5448x == ((int[]) obj4)[0]) {
-                    n0Var.f5448x = 0;
+                if (n0Var.f5451x == ((int[]) obj4)[0]) {
+                    n0Var.f5451x = 0;
                 }
                 if (m0Var != null && ci.n0.h(i16).get(j3) == m0Var) {
                     if (tL_error2 == null) {
-                        m0Var.f5435b = SystemClock.elapsedRealtime();
+                        m0Var.f5438b = SystemClock.elapsedRealtime();
                     } else {
                         ci.n0.h(i16).remove(j3);
                     }
@@ -146,7 +146,7 @@ public final class z implements s10 {
                 if (tL_error2 != null) {
                     a8.d("QrShare: setShareTheme " + tL_error2.text);
                     if (!n0Var.F) {
-                        ci.z0 z0Var = n0Var.f5440b;
+                        ci.z0 z0Var = n0Var.f5443b;
                         z0Var.getClass();
                         z0Var.d1(2131232437, hd.M0(2131751105, null), null);
                         return;
@@ -192,8 +192,8 @@ public final class z implements s10 {
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 if (tL_error3 == null && (bool2 instanceof TLRPC.TL_boolTrue)) {
                     boolean optBoolean = jSONObject.optBoolean("disconnect");
-                    long j11 = this.f4020c;
-                    int i19 = this.f4019b;
+                    long j11 = this.f4023c;
+                    int i19 = this.f4022b;
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j11;
@@ -210,25 +210,25 @@ public final class z implements s10 {
 
     public z(Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7, long j3, Runnable runnable) {
         this.d = context;
-        this.f4021e = e6Var;
-        this.f4019b = i7;
-        this.f4020c = j3;
-        this.f4022f = runnable;
+        this.f4024e = e6Var;
+        this.f4022b = i7;
+        this.f4023c = j3;
+        this.f4025f = runnable;
     }
 
     public z(ci.n0 n0Var, int[] iArr, ci.m0 m0Var, int i7, long j3) {
         this.d = n0Var;
-        this.f4021e = iArr;
-        this.f4022f = m0Var;
-        this.f4019b = i7;
-        this.f4020c = j3;
+        this.f4024e = iArr;
+        this.f4025f = m0Var;
+        this.f4022b = i7;
+        this.f4023c = j3;
     }
 
     public z(org.telegram.ui.Wallet.d2 d2Var, z10 z10Var, JSONObject jSONObject, long j3, int i7) {
         this.d = d2Var;
-        this.f4021e = z10Var;
-        this.f4022f = jSONObject;
-        this.f4020c = j3;
-        this.f4019b = i7;
+        this.f4024e = z10Var;
+        this.f4025f = jSONObject;
+        this.f4023c = j3;
+        this.f4022b = i7;
     }
 }

@@ -18,7 +18,7 @@ public final class h51 implements View.OnLayoutChangeListener {
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
         boolean z10;
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         if (point.x > point.y) {
             z10 = true;
         } else {

@@ -4,20 +4,20 @@ import android.text.style.ClickableSpan;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class s21 implements org.telegram.messenger.s10 {
-    public final int f39170a;
-    public final a31 f39171b;
+    public final int f39167a;
+    public final a31 f39168b;
 
     public s21(a31 a31Var, int i7) {
-        this.f39170a = i7;
-        this.f39171b = a31Var;
+        this.f39167a = i7;
+        this.f39168b = a31Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String M0;
         String str;
-        int i7 = this.f39170a;
-        final a31 a31Var = this.f39171b;
+        int i7 = this.f39167a;
+        final a31 a31Var = this.f39168b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;

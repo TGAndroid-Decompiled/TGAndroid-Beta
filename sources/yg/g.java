@@ -43,7 +43,7 @@ public final class g extends c implements z5 {
         imageView.setImageResource(2131232562);
         q6.s(imageView, j6.f29014m6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setContentDescription(hd.M0(2131751598, null));
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i7 = 3;
         } else {
@@ -62,12 +62,12 @@ public final class g extends c implements z5 {
         }
         addView(imageView, ja.d(48, 50.0f, i10, f10, 0.0f, f11, 0.0f));
         w3 w3Var = this.d;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f12 = 24.0f;
         } else {
             f12 = 0.0f;
         }
-        w3Var.setPadding(g0.L(f12), 0, g0.L(hd.f24101a0 ? 0.0f : 24.0f), 0);
+        w3Var.setPadding(g0.L(f12), 0, g0.L(hd.f24104a0 ? 0.0f : 24.0f), 0);
     }
 
     @Override

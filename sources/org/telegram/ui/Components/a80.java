@@ -124,7 +124,7 @@ public final class a80 {
         if (this.f32928o < 0) {
             this.f32928o = elapsedRealtime;
         }
-        float interpolation = er.f34420f.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.f32928o)) / ((float) this.f32930q)));
+        float interpolation = er.f34419f.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.f32928o)) / ((float) this.f32930q)));
         long j3 = this.f32929p;
         if (j3 < 0) {
             min = 0.0f;
@@ -171,7 +171,7 @@ public final class a80 {
         } else {
             u70Var = new u70(0);
         }
-        u70Var.f35696c = !this.f32931r;
+        u70Var.f35683c = !this.f32931r;
         u70Var.reset();
         ArrayList arrayList2 = this.f32921g;
         arrayList2.add(u70Var);

@@ -64,23 +64,23 @@ public final class aj extends sl {
         gVar.f55743g = 2000.0f;
         gVar.f55748m = org.telegram.ui.Cells.y0.n(0.0f, 1500.0f, 1.0f);
         gVar.b(new r1.d(this) {
-            public final aj f53978b;
+            public final aj f53943b;
 
             {
-                this.f53978b = this;
+                this.f53943b = this;
             }
 
             @Override
             public final void a(r1.g gVar2, float f10, float f11) {
                 switch (r2) {
                     case 0:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                     case 1:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                     default:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                 }
             }
@@ -92,23 +92,23 @@ public final class aj extends sl {
         gVar2.h = 0.0f;
         gVar2.f55748m = org.telegram.ui.Cells.y0.n(0.0f, 400.0f, 0.5f);
         gVar2.b(new r1.d(this) {
-            public final aj f53978b;
+            public final aj f53943b;
 
             {
-                this.f53978b = this;
+                this.f53943b = this;
             }
 
             @Override
             public final void a(r1.g gVar22, float f10, float f11) {
                 switch (r2) {
                     case 0:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                     case 1:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                     default:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                 }
             }
@@ -120,23 +120,23 @@ public final class aj extends sl {
         gVar3.h = 0.0f;
         gVar3.f55748m = org.telegram.ui.Cells.y0.n(0.0f, 200.0f, 1.0f);
         gVar3.b(new r1.d(this) {
-            public final aj f53978b;
+            public final aj f53943b;
 
             {
-                this.f53978b = this;
+                this.f53943b = this;
             }
 
             @Override
             public final void a(r1.g gVar22, float f10, float f11) {
                 switch (r2) {
                     case 0:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                     case 1:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                     default:
-                        this.f53978b.invalidate();
+                        this.f53943b.invalidate();
                         return;
                 }
             }
@@ -217,7 +217,7 @@ public final class aj extends sl {
                 if (an.m2(anVar, q1Var3, rectF)) {
                     arrayList = arrayList4;
                 } else {
-                    if (q1Var3.getCurrentPosition() != null && (q1Var3.getCurrentPosition().f27753l & z12) == 0) {
+                    if (q1Var3.getCurrentPosition() != null && (q1Var3.getCurrentPosition().f27755l & z12) == 0) {
                         z11 = z12;
                     } else {
                         z11 = z13;
@@ -275,7 +275,7 @@ public final class aj extends sl {
             for (int i12 = 0; i12 < size4; i12++) {
                 org.telegram.ui.Cells.q1 q1Var4 = (org.telegram.ui.Cells.q1) arrayList5.get(i12);
                 if (!an.m2(anVar, q1Var4, rectF)) {
-                    if (q1Var4.getCurrentPosition() != null && (q1Var4.getCurrentPosition().f27753l & 1) == 0) {
+                    if (q1Var4.getCurrentPosition() != null && (q1Var4.getCurrentPosition().f27755l & 1) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -333,9 +333,9 @@ public final class aj extends sl {
             velocityTracker2.recycle();
             anVar.A9 = null;
         }
-        anVar.f45426x9 = false;
+        anVar.f45425x9 = false;
         anVar.C0.R = true;
-        org.telegram.ui.Components.v01 v01Var = anVar.f45289n0;
+        org.telegram.ui.Components.v01 v01Var = anVar.f45288n0;
         if (v01Var != null) {
             v01Var.settle(f10);
         }
@@ -357,12 +357,12 @@ public final class aj extends sl {
         if (motionEvent != null) {
             anVar.Q4 = true;
         }
-        if (anVar.ga() && anVar.f45386u9 == null) {
+        if (anVar.ga() && anVar.f45385u9 == null) {
             if (motionEvent == null) {
-                if (anVar.f45426x9) {
+                if (anVar.f45425x9) {
                     B1(false);
                 }
-                anVar.f45413w9 = false;
+                anVar.f45412w9 = false;
             } else {
                 int actionMasked = motionEvent.getActionMasked();
                 if (actionMasked == 0) {
@@ -372,13 +372,13 @@ public final class aj extends sl {
                     } else {
                         z12 = false;
                     }
-                    anVar.f45413w9 = z12;
+                    anVar.f45412w9 = z12;
                     if (!z12) {
-                        anVar.f45426x9 = false;
+                        anVar.f45425x9 = false;
                     } else {
-                        anVar.f45426x9 = false;
-                        anVar.f45439y9 = motionEvent.getX();
-                        anVar.f45451z9 = motionEvent.getY();
+                        anVar.f45425x9 = false;
+                        anVar.f45438y9 = motionEvent.getX();
+                        anVar.f45450z9 = motionEvent.getY();
                         VelocityTracker velocityTracker = anVar.A9;
                         if (velocityTracker != null) {
                             velocityTracker.recycle();
@@ -388,42 +388,42 @@ public final class aj extends sl {
                         obtain.addMovement(motionEvent);
                         return;
                     }
-                } else if (anVar.f45413w9 || anVar.f45426x9) {
+                } else if (anVar.f45412w9 || anVar.f45425x9) {
                     if (actionMasked == 2) {
                         VelocityTracker velocityTracker2 = anVar.A9;
                         if (velocityTracker2 != null) {
                             velocityTracker2.addMovement(motionEvent);
                         }
-                        float x10 = motionEvent.getX() - anVar.f45439y9;
-                        float abs = Math.abs(motionEvent.getY() - anVar.f45451z9);
-                        if (anVar.f45413w9 && !anVar.f45426x9 && getScrollState() == 0 && x10 <= (-org.telegram.messenger.g0.a1(true, 0.4f)) && Math.abs(x10) / 3.0f > abs && anVar.A8() != null) {
+                        float x10 = motionEvent.getX() - anVar.f45438y9;
+                        float abs = Math.abs(motionEvent.getY() - anVar.f45450z9);
+                        if (anVar.f45412w9 && !anVar.f45425x9 && getScrollState() == 0 && x10 <= (-org.telegram.messenger.g0.a1(true, 0.4f)) && Math.abs(x10) / 3.0f > abs && anVar.A8() != null) {
                             MotionEvent obtain2 = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                             super.onInterceptTouchEvent(obtain2);
                             obtain2.recycle();
                             anVar.C0.R = false;
-                            anVar.f45413w9 = false;
-                            anVar.f45426x9 = true;
-                            anVar.f45439y9 = motionEvent.getX();
-                            org.telegram.ui.Components.v01 v01Var = anVar.f45289n0;
+                            anVar.f45412w9 = false;
+                            anVar.f45425x9 = true;
+                            anVar.f45438y9 = motionEvent.getX();
+                            org.telegram.ui.Components.v01 v01Var = anVar.f45288n0;
                             ValueAnimator valueAnimator = v01Var.K;
                             if (valueAnimator != null) {
                                 valueAnimator.cancel();
                                 v01Var.K = null;
                             }
-                            org.telegram.messenger.g0.v1(anVar.f45278m1);
+                            org.telegram.messenger.g0.v1(anVar.f45277m1);
                             if (getParent() != null) {
                                 getParent().requestDisallowInterceptTouchEvent(true);
                                 return;
                             }
                             return;
-                        } else if (anVar.f45426x9) {
-                            anVar.f45289n0.setProgress((-(motionEvent.getX() - anVar.f45439y9)) / anVar.f45289n0.getContentWidth());
+                        } else if (anVar.f45425x9) {
+                            anVar.f45288n0.setProgress((-(motionEvent.getX() - anVar.f45438y9)) / anVar.f45288n0.getContentWidth());
                             return;
                         } else {
                             return;
                         }
                     } else if (actionMasked == 1 || actionMasked == 3) {
-                        if (anVar.f45426x9) {
+                        if (anVar.f45425x9) {
                             VelocityTracker velocityTracker3 = anVar.A9;
                             if (velocityTracker3 != null) {
                                 velocityTracker3.addMovement(motionEvent);
@@ -433,7 +433,7 @@ public final class aj extends sl {
                             }
                             B1(z13);
                         }
-                        anVar.f45413w9 = false;
+                        anVar.f45412w9 = false;
                         return;
                     } else {
                         return;
@@ -441,7 +441,7 @@ public final class aj extends sl {
                 }
             }
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !anVar.B9 && !anVar.f45399v9 && anVar.f45386u9 == null) {
+        if (motionEvent != null && motionEvent.getAction() == 0 && !anVar.B9 && !anVar.f45398v9 && anVar.f45385u9 == null) {
             z10 = ((org.telegram.ui.ActionBar.e2) anVar).inPreviewMode;
             if (!z10) {
                 View pressedChildView = getPressedChildView();
@@ -465,35 +465,35 @@ public final class aj extends sl {
                         return;
                     }
                 }
-                if (anVar.f45386u9 != null) {
+                if (anVar.f45385u9 != null) {
                     an.e2(anVar, 0.0f);
                 }
-                anVar.f45386u9 = pressedChildView;
+                anVar.f45385u9 = pressedChildView;
                 org.telegram.messenger.gj a22 = an.a2(anVar);
                 boolean U6 = anVar.U6(a22);
-                int i7 = anVar.f45204g4;
-                if ((i7 == 0 || i7 == 5 || i7 == 8 || (i7 == 3 && anVar.f45358s4 == anVar.getUserConfig().e())) && (((arrayList = anVar.f45317p4) == null || !arrayList.contains(a22)) && ((anVar.a9(a22) != 1 || (org.telegram.messenger.gj.B0(a22.f23817k) != anVar.f45154c7 && !a22.m5())) && ((anVar.h != null || a22.e1() >= 0) && (((chat2 = anVar.f45173e) == null || !org.telegram.messenger.t3.c0(chat2) || U6) && !anVar.A9() && (!org.telegram.messenger.gj.c3(a22.f23817k) || !a22.N3())))))) {
+                int i7 = anVar.f45203g4;
+                if ((i7 == 0 || i7 == 5 || i7 == 8 || (i7 == 3 && anVar.f45357s4 == anVar.getUserConfig().e())) && (((arrayList = anVar.f45316p4) == null || !arrayList.contains(a22)) && ((anVar.a9(a22) != 1 || (org.telegram.messenger.gj.B0(a22.f23819k) != anVar.f45153c7 && !a22.m5())) && ((anVar.h != null || a22.e1() >= 0) && (((chat2 = anVar.f45172e) == null || !org.telegram.messenger.t3.c0(chat2) || U6) && !anVar.A9() && (!org.telegram.messenger.gj.c3(a22.f23819k) || !a22.N3())))))) {
                     this.f45068o3 = motionEvent.getPointerId(0);
-                    anVar.f45399v9 = true;
+                    anVar.f45398v9 = true;
                     this.f45066m3 = (int) motionEvent.getX();
                     this.f45067n3 = (int) motionEvent.getY();
                     return;
                 }
                 an.e2(anVar, 0.0f);
-                anVar.f45386u9 = null;
+                anVar.f45385u9 = null;
                 return;
             }
         }
-        if (anVar.f45386u9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f45068o3) {
+        if (anVar.f45385u9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f45068o3) {
             int max = Math.max(org.telegram.messenger.g0.L(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f45066m3)));
             int abs2 = Math.abs(((int) motionEvent.getY()) - this.f45067n3);
-            if (getScrollState() == 0 && anVar.f45399v9 && !anVar.B9 && max <= (-org.telegram.messenger.g0.a1(true, 0.4f)) && Math.abs(max) / 3 > abs2) {
+            if (getScrollState() == 0 && anVar.f45398v9 && !anVar.B9 && max <= (-org.telegram.messenger.g0.a1(true, 0.4f)) && Math.abs(max) / 3 > abs2) {
                 MotionEvent obtain3 = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                anVar.f45386u9.onTouchEvent(obtain3);
+                anVar.f45385u9.onTouchEvent(obtain3);
                 super.onInterceptTouchEvent(obtain3);
                 obtain3.recycle();
                 anVar.C0.R = false;
-                anVar.f45399v9 = false;
+                anVar.f45398v9 = false;
                 anVar.B9 = true;
                 this.f45066m3 = (int) motionEvent.getX();
                 if (getParent() != null) {
@@ -514,16 +514,16 @@ public final class aj extends sl {
                 float f13 = max;
                 an.e2(anVar, f13);
                 org.telegram.messenger.gj a23 = an.a2(anVar);
-                if (a23 != null && (a23.h4() || org.telegram.messenger.gj.L4(a23.f23817k))) {
+                if (a23 != null && (a23.h4() || org.telegram.messenger.gj.L4(a23.f23819k))) {
                     anVar.vd(false, false);
                 }
-                View view = anVar.f45386u9;
+                View view = anVar.f45385u9;
                 if (view instanceof org.telegram.ui.Cells.q1) {
                     D1((org.telegram.ui.Cells.q1) view, f13);
                 }
                 invalidate();
             }
-        } else if (anVar.f45386u9 != null) {
+        } else if (anVar.f45385u9 != null) {
             if (motionEvent != null) {
                 if (motionEvent.getPointerId(0) == this.f45068o3) {
                     if (motionEvent.getAction() != 3 && motionEvent.getAction() != 1 && motionEvent.getAction() != 6) {
@@ -534,7 +534,7 @@ public final class aj extends sl {
                 }
             }
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                View view2 = anVar.f45386u9;
+                View view2 = anVar.f45385u9;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
                     f11 = ((org.telegram.ui.Cells.q1) view2).S1(false);
                 } else if (view2 instanceof org.telegram.ui.Cells.t0) {
@@ -545,8 +545,8 @@ public final class aj extends sl {
                 if (Math.abs(f11) >= org.telegram.messenger.g0.L(50.0f)) {
                     org.telegram.messenger.gj a24 = an.a2(anVar);
                     boolean U62 = anVar.U6(a24);
-                    uj ujVar = anVar.f45162d1;
-                    if ((ujVar != null && ujVar.getVisibility() == 0 && ((!anVar.X0 || !U62) && !a24.X1)) || ((chat = anVar.f45173e) != null && ((org.telegram.messenger.t3.r0(chat) && !anVar.fa()) || ((org.telegram.messenger.t3.T(anVar.f45173e) && !org.telegram.messenger.t3.w(5, anVar.f45173e) && !anVar.f45173e.megagroup) || !org.telegram.messenger.t3.n(anVar.f45173e))))) {
+                    uj ujVar = anVar.f45161d1;
+                    if ((ujVar != null && ujVar.getVisibility() == 0 && ((!anVar.X0 || !U62) && !a24.X1)) || ((chat = anVar.f45172e) != null && ((org.telegram.messenger.t3.r0(chat) && !anVar.fa()) || ((org.telegram.messenger.t3.T(anVar.f45172e) && !org.telegram.messenger.t3.w(5, anVar.f45172e) && !anVar.f45172e.megagroup) || !org.telegram.messenger.t3.n(anVar.f45172e))))) {
                         if (a24.c1() != 0 && (U8 = anVar.U8(a24.c1())) != null && (gjVar = U8.h) != null) {
                             a24 = gjVar;
                         }
@@ -565,7 +565,7 @@ public final class aj extends sl {
                     }
                 }
             }
-            View view3 = anVar.f45386u9;
+            View view3 = anVar.f45385u9;
             if (view3 instanceof org.telegram.ui.Cells.q1) {
                 f10 = ((org.telegram.ui.Cells.q1) view3).getSlidingOffsetX();
             } else if (view3 instanceof org.telegram.ui.Cells.t0) {
@@ -575,12 +575,12 @@ public final class aj extends sl {
             }
             this.f45071r3 = f10;
             if (f10 == 0.0f) {
-                anVar.f45386u9 = null;
+                anVar.f45385u9 = null;
             }
             this.f45069p3 = System.currentTimeMillis();
             this.f45070q3 = 0.0f;
             invalidate();
-            anVar.f45399v9 = false;
+            anVar.f45398v9 = false;
             anVar.B9 = false;
             anVar.C0.R = true;
         }
@@ -627,18 +627,18 @@ public final class aj extends sl {
         an anVar = this.G3;
         anVar.J8 = null;
         canvas.save();
-        if (anVar.f45350ra != null && anVar.f45298na) {
-            boolean z10 = anVar.f45310oa;
+        if (anVar.f45349ra != null && anVar.f45297na) {
+            boolean z10 = anVar.f45309oa;
         }
         this.F1.setEmpty();
-        if (anVar.f45249ja != 0.0f) {
+        if (anVar.f45248ja != 0.0f) {
             int save = canvas.save();
-            if (anVar.f45336qa != 0.0f) {
-                f10 = (anVar.A0.getMeasuredHeight() - anVar.f45249ja) * anVar.f45336qa;
+            if (anVar.f45335qa != 0.0f) {
+                f10 = (anVar.A0.getMeasuredHeight() - anVar.f45248ja) * anVar.f45335qa;
             } else {
                 f10 = 0.0f;
             }
-            float f11 = (-anVar.f45249ja) - f10;
+            float f11 = (-anVar.f45248ja) - f10;
             anVar.Va = f11;
             canvas.translate(0.0f, f11);
             z1(canvas, null);
@@ -706,18 +706,18 @@ public final class aj extends sl {
         wh.i iVar;
         org.telegram.ui.ActionBar.k kVar;
         an anVar = this.G3;
-        pl plVar = anVar.f45373t9;
+        pl plVar = anVar.f45372t9;
         plVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             org.telegram.messenger.g0.r(plVar.f31745f0);
             plVar.f31771z = false;
         }
-        if (!this.W1 && ((iVar = anVar.f45374ta) == null || !iVar.a())) {
+        if (!this.W1 && ((iVar = anVar.f45373ta) == null || !iVar.a())) {
             boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
             kVar = ((org.telegram.ui.ActionBar.e2) anVar).actionBar;
             if (!kVar.x() && !anVar.Y9()) {
                 C1(motionEvent);
-                if (onInterceptTouchEvent || anVar.f45426x9) {
+                if (onInterceptTouchEvent || anVar.f45425x9) {
                     return true;
                 }
             } else {
@@ -746,14 +746,14 @@ public final class aj extends sl {
             if (cjVar != null) {
                 cjVar.g();
             }
-            anVar.f45297n9.a();
+            anVar.f45296n9.a();
             this.E3 = false;
             this.F3 = measuredHeight;
         }
-        anVar.f45233i6 = false;
-        pl plVar = anVar.f45373t9;
+        anVar.f45232i6 = false;
+        pl plVar = anVar.f45372t9;
         if (plVar != null && plVar.x()) {
-            anVar.f45373t9.w();
+            anVar.f45372t9.w();
         }
         anVar.N9();
         anVar.da();
@@ -765,7 +765,7 @@ public final class aj extends sl {
         wo woVar;
         an anVar = this.G3;
         te.a aVar = anVar.bd;
-        pl plVar = anVar.f45373t9;
+        pl plVar = anVar.f45372t9;
         plVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             org.telegram.messenger.g0.r(plVar.f31745f0);
@@ -774,51 +774,51 @@ public final class aj extends sl {
         if (motionEvent.getAction() == 0) {
             anVar.Oa = true;
         }
-        if (anVar.f45249ja != 0.0f && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            float min = Math.min(1.0f, anVar.f45249ja / org.telegram.messenger.g0.L(110.0f));
-            if (motionEvent.getAction() == 1 && min == 1.0f && (woVar = anVar.f45275la) != null && !woVar.S) {
+        if (anVar.f45248ja != 0.0f && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
+            float min = Math.min(1.0f, anVar.f45248ja / org.telegram.messenger.g0.L(110.0f));
+            if (motionEvent.getAction() == 1 && min == 1.0f && (woVar = anVar.f45274la) != null && !woVar.S) {
                 if (woVar.L != 1.0f) {
-                    float f10 = anVar.f45249ja;
+                    float f10 = anVar.f45248ja;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, org.telegram.messenger.g0.L(8.0f) + f10);
                     anVar.ma = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final aj f53522b;
+                        public final aj f53526b;
 
                         {
-                            this.f53522b = this;
+                            this.f53526b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    an anVar2 = this.f53522b.G3;
-                                    anVar2.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    an anVar2 = this.f53526b.G3;
+                                    anVar2.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     anVar2.A0.invalidate();
                                     return;
                                 case 1:
-                                    an anVar3 = this.f53522b.G3;
-                                    anVar3.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    an anVar3 = this.f53526b.G3;
+                                    anVar3.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     anVar3.A0.invalidate();
                                     return;
                                 case 2:
-                                    an anVar4 = this.f53522b.G3;
-                                    anVar4.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    an anVar4 = this.f53526b.G3;
+                                    anVar4.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     anVar4.A0.invalidate();
                                     return;
                                 default:
-                                    an anVar5 = this.f53522b.G3;
-                                    anVar5.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    an anVar5 = this.f53526b.G3;
+                                    anVar5.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     anVar5.A0.invalidate();
                                     return;
                             }
                         }
                     });
                     ofFloat.setDuration(200L);
-                    org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.f34420f;
+                    org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.f34419f;
                     ofFloat.setInterpolator(erVar);
                     ofFloat.start();
-                    final wo woVar2 = anVar.f45275la;
+                    final wo woVar2 = anVar.f45274la;
                     bh bhVar = new bh(this, 3);
                     AnimatorSet animatorSet = woVar2.K;
                     if (animatorSet != null) {
@@ -837,7 +837,7 @@ public final class aj extends sl {
                                     woVar3.getClass();
                                     woVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     woVar3.U.invalidate();
-                                    View view = woVar3.f52944b0;
+                                    View view = woVar3.f52943b0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -847,7 +847,7 @@ public final class aj extends sl {
                                     wo woVar4 = woVar2;
                                     woVar4.getClass();
                                     woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = woVar4.f52944b0;
+                                    View view2 = woVar4.f52943b0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -866,7 +866,7 @@ public final class aj extends sl {
                                     woVar3.getClass();
                                     woVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     woVar3.U.invalidate();
-                                    View view = woVar3.f52944b0;
+                                    View view = woVar3.f52943b0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -876,7 +876,7 @@ public final class aj extends sl {
                                     wo woVar4 = woVar2;
                                     woVar4.getClass();
                                     woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = woVar4.f52944b0;
+                                    View view2 = woVar4.f52943b0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -894,81 +894,81 @@ public final class aj extends sl {
                     an.f2(anVar);
                 }
             } else {
-                wo woVar3 = anVar.f45275la;
+                wo woVar3 = anVar.f45274la;
                 if (woVar3 != null && woVar3.S) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    wo woVar4 = anVar.f45275la;
+                    wo woVar4 = anVar.f45274la;
                     if (currentTimeMillis - woVar4.V < 500 && woVar4.N) {
                         AnimatorSet animatorSet2 = new AnimatorSet();
                         anVar.ma = animatorSet2;
-                        if (anVar.f45275la != null) {
+                        if (anVar.f45274la != null) {
                             aVar.a(false, true);
                         }
-                        ValueAnimator ofFloat4 = ValueAnimator.ofFloat(anVar.f45249ja, org.telegram.messenger.g0.L(111.0f));
+                        ValueAnimator ofFloat4 = ValueAnimator.ofFloat(anVar.f45248ja, org.telegram.messenger.g0.L(111.0f));
                         ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final aj f53522b;
+                            public final aj f53526b;
 
                             {
-                                this.f53522b = this;
+                                this.f53526b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        an anVar2 = this.f53522b.G3;
-                                        anVar2.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar2 = this.f53526b.G3;
+                                        anVar2.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar2.A0.invalidate();
                                         return;
                                     case 1:
-                                        an anVar3 = this.f53522b.G3;
-                                        anVar3.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar3 = this.f53526b.G3;
+                                        anVar3.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar3.A0.invalidate();
                                         return;
                                     case 2:
-                                        an anVar4 = this.f53522b.G3;
-                                        anVar4.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar4 = this.f53526b.G3;
+                                        anVar4.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar4.A0.invalidate();
                                         return;
                                     default:
-                                        an anVar5 = this.f53522b.G3;
-                                        anVar5.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar5 = this.f53526b.G3;
+                                        anVar5.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar5.A0.invalidate();
                                         return;
                                 }
                             }
                         });
                         ofFloat4.setDuration(400L);
-                        ofFloat4.setInterpolator(org.telegram.ui.Components.er.f34420f);
+                        ofFloat4.setInterpolator(org.telegram.ui.Components.er.f34419f);
                         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(org.telegram.messenger.g0.L(111.0f), 0.0f);
                         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final aj f53522b;
+                            public final aj f53526b;
 
                             {
-                                this.f53522b = this;
+                                this.f53526b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        an anVar2 = this.f53522b.G3;
-                                        anVar2.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar2 = this.f53526b.G3;
+                                        anVar2.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar2.A0.invalidate();
                                         return;
                                     case 1:
-                                        an anVar3 = this.f53522b.G3;
-                                        anVar3.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar3 = this.f53526b.G3;
+                                        anVar3.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar3.A0.invalidate();
                                         return;
                                     case 2:
-                                        an anVar4 = this.f53522b.G3;
-                                        anVar4.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar4 = this.f53526b.G3;
+                                        anVar4.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar4.A0.invalidate();
                                         return;
                                     default:
-                                        an anVar5 = this.f53522b.G3;
-                                        anVar5.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        an anVar5 = this.f53526b.G3;
+                                        anVar5.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         anVar5.A0.invalidate();
                                         return;
                                 }
@@ -981,39 +981,39 @@ public final class aj extends sl {
                         animatorSet2.start();
                     }
                 }
-                ValueAnimator ofFloat6 = ValueAnimator.ofFloat(anVar.f45249ja, 0.0f);
+                ValueAnimator ofFloat6 = ValueAnimator.ofFloat(anVar.f45248ja, 0.0f);
                 anVar.ma = ofFloat6;
-                if (anVar.f45275la != null) {
+                if (anVar.f45274la != null) {
                     aVar.a(false, true);
                 }
                 ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final aj f53522b;
+                    public final aj f53526b;
 
                     {
-                        this.f53522b = this;
+                        this.f53526b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                an anVar2 = this.f53522b.G3;
-                                anVar2.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                an anVar2 = this.f53526b.G3;
+                                anVar2.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 anVar2.A0.invalidate();
                                 return;
                             case 1:
-                                an anVar3 = this.f53522b.G3;
-                                anVar3.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                an anVar3 = this.f53526b.G3;
+                                anVar3.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 anVar3.A0.invalidate();
                                 return;
                             case 2:
-                                an anVar4 = this.f53522b.G3;
-                                anVar4.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                an anVar4 = this.f53526b.G3;
+                                anVar4.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 anVar4.A0.invalidate();
                                 return;
                             default:
-                                an anVar5 = this.f53522b.G3;
-                                anVar5.f45249ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                an anVar5 = this.f53526b.G3;
+                                anVar5.f45248ja = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                 anVar5.A0.invalidate();
                                 return;
                         }
@@ -1029,7 +1029,7 @@ public final class aj extends sl {
             kVar = ((org.telegram.ui.ActionBar.e2) anVar).actionBar;
             if (!kVar.x() && !anVar.Y9()) {
                 C1(motionEvent);
-                if (anVar.B9 || anVar.f45426x9 || onTouchEvent) {
+                if (anVar.B9 || anVar.f45425x9 || onTouchEvent) {
                     return true;
                 }
             } else {
@@ -1041,7 +1041,7 @@ public final class aj extends sl {
 
     @Override
     public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        if (this.G3.f45197f9 != null) {
+        if (this.G3.f45196f9 != null) {
             return false;
         }
         return super.requestChildRectangleOnScreen(view, rect, z10);
@@ -1052,9 +1052,9 @@ public final class aj extends sl {
         org.telegram.ui.Components.hk0 c42;
         org.telegram.ui.Components.q71 q71Var;
         super.requestDisallowInterceptTouchEvent(z10);
-        View view = this.G3.f45386u9;
+        View view = this.G3.f45385u9;
         if (view != null) {
-            if ((view instanceof org.telegram.ui.Cells.q1) && (c42 = ((org.telegram.ui.Cells.q1) view).c4()) != null && (q71Var = c42.f35279e0) != null && c42.f35280f0 && q71Var.f38556w && !q71Var.E) {
+            if ((view instanceof org.telegram.ui.Cells.q1) && (c42 = ((org.telegram.ui.Cells.q1) view).c4()) != null && (q71Var = c42.f35270e0) != null && c42.f35271f0 && q71Var.f38556w && !q71Var.E) {
                 if (q71Var.f38557x) {
                     if (!q71Var.f38558y && (q71Var.L & 3) != 1) {
                         return;
@@ -1072,7 +1072,7 @@ public final class aj extends sl {
         if (this.E3) {
             return;
         }
-        jh.a aVar = this.G3.f45376tc;
+        jh.a aVar = this.G3.f45375tc;
         if (aVar.f17362b != 0) {
             int childCount = aVar.f17361a.getChildCount();
             for (int i7 = 0; i7 < childCount; i7++) {
@@ -1150,7 +1150,7 @@ public final class aj extends sl {
                             canvas2.translate(childAt.getX(), childAt.getY());
                             ((org.telegram.ui.Cells.y1) childAt).a(canvas2);
                             canvas2.restore();
-                        } else if (anVar.D0.f48374n && (childAt instanceof org.telegram.ui.Cells.f0)) {
+                        } else if (anVar.D0.f48359n && (childAt instanceof org.telegram.ui.Cells.f0)) {
                             float measuredHeight3 = ((((ajVar2.getMeasuredHeight() - anVar.O9) - anVar.Xa) / 2.0f) - (childAt.getMeasuredHeight() / 2)) + anVar.O9;
                             if (!((org.telegram.ui.Cells.f0) childAt).J && !anVar.A0.W1) {
                                 if (childAt.getTop() > measuredHeight3) {
@@ -1177,8 +1177,8 @@ public final class aj extends sl {
                                     z12 = true;
                                 } else {
                                     org.telegram.messenger.yi currentPosition = q1Var.getCurrentPosition();
-                                    org.telegram.ui.Components.k90 backgroundDrawable = q1Var.getBackgroundDrawable();
-                                    if ((!backgroundDrawable.f36344f && !q1Var.z2()) || (currentPosition != null && (2 & currentPosition.f27753l) == 0)) {
+                                    org.telegram.ui.Components.l90 backgroundDrawable = q1Var.getBackgroundDrawable();
+                                    if ((!backgroundDrawable.f36735f && !q1Var.z2()) || (currentPosition != null && (2 & currentPosition.f27755l) == 0)) {
                                         i16 = i19;
                                         z12 = true;
                                     } else {
@@ -1200,8 +1200,8 @@ public final class aj extends sl {
                                                     } else {
                                                         measuredHeight = anVar.A0.getTop();
                                                     }
-                                                    float backgroundTranslationY = measuredHeight - anVar.f45278m1.getBackgroundTranslationY();
-                                                    int backgroundSizeY = anVar.f45278m1.getBackgroundSizeY();
+                                                    float backgroundTranslationY = measuredHeight - anVar.f45277m1.getBackgroundTranslationY();
+                                                    int backgroundSizeY = anVar.f45277m1.getBackgroundSizeY();
                                                     ym ymVar2 = anVar.Aa;
                                                     if (ymVar2 != null) {
                                                         ymVar2.b(q1Var.getX(), backgroundTranslationY, ajVar2.getMeasuredWidth(), backgroundSizeY);
@@ -1235,15 +1235,15 @@ public final class aj extends sl {
                                                     if (childAt2 instanceof org.telegram.ui.Cells.q1) {
                                                         org.telegram.ui.Cells.q1 q1Var2 = (org.telegram.ui.Cells.q1) childAt2;
                                                         if (q1Var2.getCurrentMessagesGroup() == currentMessagesGroup2) {
-                                                            org.telegram.ui.Components.k90 backgroundDrawable2 = q1Var2.getBackgroundDrawable();
+                                                            org.telegram.ui.Components.l90 backgroundDrawable2 = q1Var2.getBackgroundDrawable();
                                                             i18 = i20;
                                                             y10 = Math.min(y10, (int) q1Var2.getY());
                                                             measuredHeight5 = Math.max(measuredHeight5, q1Var2.getMeasuredHeight() + ((int) q1Var2.getY()));
-                                                            long j10 = backgroundDrawable2.f36349l;
+                                                            long j10 = backgroundDrawable2.f36740l;
                                                             if (j10 > j3) {
                                                                 j3 = j10;
                                                                 f10 = q1Var2.getX() + backgroundDrawable2.h;
-                                                                f13 = q1Var2.getY() + backgroundDrawable2.f36346i;
+                                                                f13 = q1Var2.getY() + backgroundDrawable2.f36737i;
                                                             }
                                                             i20 = i18 + 1;
                                                             i19 = i21;
@@ -1254,8 +1254,8 @@ public final class aj extends sl {
                                                     i19 = i21;
                                                 }
                                                 i16 = i19;
-                                                backgroundDrawable.f36347j = f10;
-                                                backgroundDrawable.f36348k = f13 - y10;
+                                                backgroundDrawable.f36738j = f10;
+                                                backgroundDrawable.f36739k = f13 - y10;
                                                 i17 = measuredHeight5 - y10;
                                             }
                                             int i22 = i17 + y10;
@@ -1263,15 +1263,15 @@ public final class aj extends sl {
                                             Paint W02 = ajVar2.W0("paintChatMessageBackgroundSelected");
                                             ym ymVar3 = anVar.Aa;
                                             if (ymVar3 != null && !ymVar3.f53555q && W02 != null) {
-                                                backgroundDrawable.f36341b = W02;
+                                                backgroundDrawable.f36732b = W02;
                                                 if (!anVar.V9()) {
                                                     kVar2 = ((org.telegram.ui.ActionBar.e2) anVar).actionBar;
                                                     measuredHeight2 = kVar2.getMeasuredHeight();
                                                 } else {
                                                     measuredHeight2 = anVar.A0.getTop();
                                                 }
-                                                float backgroundTranslationY2 = measuredHeight2 - anVar.f45278m1.getBackgroundTranslationY();
-                                                int backgroundSizeY2 = anVar.f45278m1.getBackgroundSizeY();
+                                                float backgroundTranslationY2 = measuredHeight2 - anVar.f45277m1.getBackgroundTranslationY();
+                                                int backgroundSizeY2 = anVar.f45277m1.getBackgroundSizeY();
                                                 ym ymVar4 = anVar.Aa;
                                                 if (ymVar4 != null) {
                                                     ymVar4.b(q1Var.getX(), backgroundTranslationY2, ajVar2.getMeasuredWidth(), backgroundSizeY2);
@@ -1279,8 +1279,8 @@ public final class aj extends sl {
                                                     org.telegram.ui.ActionBar.j6.r(q1Var.getX(), backgroundTranslationY2, ajVar2.getMeasuredWidth(), backgroundSizeY2);
                                                 }
                                             } else {
-                                                backgroundDrawable.f36341b = null;
-                                                backgroundDrawable.f36340a.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29247yd, e6Var));
+                                                backgroundDrawable.f36732b = null;
+                                                backgroundDrawable.f36731a.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29247yd, e6Var));
                                             }
                                             backgroundDrawable.setBounds(0, y10, ajVar2.getMeasuredWidth(), i22);
                                             backgroundDrawable.draw(canvas2);
@@ -1376,11 +1376,11 @@ public final class aj extends sl {
                                 int backgroundDrawableRight = q1Var3.getBackgroundDrawableRight() + q1Var3.getLeft();
                                 int backgroundDrawableTop = q1Var3.getBackgroundDrawableTop() + q1Var3.getPaddingTop() + q1Var3.getTop();
                                 int backgroundDrawableBottom = q1Var3.getBackgroundDrawableBottom() + q1Var3.getPaddingTop() + q1Var3.getTop();
-                                if ((q1Var3.getCurrentPosition().f27753l & 4) == 0) {
+                                if ((q1Var3.getCurrentPosition().f27755l & 4) == 0) {
                                     backgroundDrawableTop -= org.telegram.messenger.g0.L(10.0f);
                                 }
                                 int i25 = backgroundDrawableTop;
-                                if ((q1Var3.getCurrentPosition().f27753l & 8) == 0) {
+                                if ((q1Var3.getCurrentPosition().f27755l & 8) == 0) {
                                     backgroundDrawableBottom = org.telegram.messenger.g0.L(10.0f) + backgroundDrawableBottom;
                                 }
                                 int i26 = backgroundDrawableBottom;
@@ -1457,12 +1457,12 @@ public final class aj extends sl {
                         if (i32 < size) {
                             org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) arrayList3.get(i32);
                             ajVar = ajVar4;
-                            if (org.telegram.messenger.gj.B0(gjVar.f23817k) == anVar.f45259k6) {
+                            if (org.telegram.messenger.gj.B0(gjVar.f23819k) == anVar.f45258k6) {
                                 c11 = 0;
                             } else {
                                 c11 = 1;
                             }
-                            if (anVar.f45294n6[c11].indexOfKey(gjVar.e1()) < 0) {
+                            if (anVar.f45293n6[c11].indexOfKey(gjVar.e1()) < 0) {
                                 z11 = false;
                                 break;
                             } else {

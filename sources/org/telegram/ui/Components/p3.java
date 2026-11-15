@@ -8,27 +8,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class p3 extends LinearLayout {
-    public final int f38183a = 1;
-    public boolean f38184b;
-    public final View f38185c;
+    public final int f38181a = 1;
+    public boolean f38182b;
+    public final View f38183c;
     public final View d;
 
     public p3(Context context, m3 m3Var, o3 o3Var) {
         super(context);
-        this.f38185c = m3Var;
+        this.f38183c = m3Var;
         this.d = o3Var;
-        this.f38184b = false;
+        this.f38182b = false;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f38183a) {
+        switch (this.f38181a) {
             case 0:
                 o3 o3Var = (o3) this.d;
-                m3 m3Var = (m3) this.f38185c;
-                this.f38184b = true;
-                Point point = org.telegram.messenger.g0.f23609q;
+                m3 m3Var = (m3) this.f38183c;
+                this.f38182b = true;
+                Point point = org.telegram.messenger.g0.f23611q;
                 if (point.x > point.y) {
                     i11 = 3;
                 } else {
@@ -38,20 +38,20 @@ public final class p3 extends LinearLayout {
                 o3Var.setItemCount(i11);
                 m3Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
                 o3Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
-                this.f38184b = false;
+                this.f38182b = false;
                 super.onMeasure(i7, i10);
                 return;
             default:
-                int rotation = ((WindowManager) org.telegram.messenger.t0.f26600b.getSystemService("window")).getDefaultDisplay().getRotation();
-                this.f38184b = true;
+                int rotation = ((WindowManager) org.telegram.messenger.t0.f26609b.getSystemService("window")).getDefaultDisplay().getRotation();
+                this.f38182b = true;
                 if (org.telegram.messenger.g0.Q1()) {
-                    ((TextView) this.f38185c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
+                    ((TextView) this.f38183c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
                 } else if (rotation != 3 && rotation != 1) {
-                    ((TextView) this.f38185c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
+                    ((TextView) this.f38183c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
                 } else {
-                    ((TextView) this.f38185c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), 0);
+                    ((TextView) this.f38183c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), 0);
                 }
-                this.f38184b = false;
+                this.f38182b = false;
                 super.onMeasure(i7, i10);
                 return;
         }
@@ -59,15 +59,15 @@ public final class p3 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f38183a) {
+        switch (this.f38181a) {
             case 0:
-                if (!this.f38184b) {
+                if (!this.f38182b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f38184b) {
+                if (!this.f38182b) {
                     super.requestLayout();
                     return;
                 }
@@ -78,7 +78,7 @@ public final class p3 extends LinearLayout {
     public p3(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         TextView textView = new TextView(context);
-        this.f38185c = textView;
+        this.f38183c = textView;
         View imageView = new ImageView(context);
         this.d = imageView;
         setOrientation(1);

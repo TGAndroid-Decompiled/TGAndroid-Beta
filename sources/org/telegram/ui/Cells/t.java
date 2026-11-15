@@ -16,7 +16,7 @@ public final class t extends uj0 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25509h5) {
+        if (i7 == ns.f25510h5) {
             z1();
         }
     }
@@ -24,13 +24,13 @@ public final class t extends uj0 implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.e().c(this, ns.f25509h5);
+        ns.e().c(this, ns.f25510h5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.e().n(this, ns.f25509h5);
+        ns.e().n(this, ns.f25510h5);
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class t extends uj0 implements is {
         if (np.s1(this.f31444h3).D3()) {
             int i7 = 0;
             while (i7 < arrayList.size()) {
-                if (((w80) arrayList.get(i7)).f52496e) {
+                if (((w80) arrayList.get(i7)).f52499e) {
                     arrayList.remove(i7);
                     i7--;
                 }

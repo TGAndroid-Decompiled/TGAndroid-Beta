@@ -39,66 +39,66 @@ public final class wo implements org.telegram.messenger.is {
     public boolean X;
     public final boolean Y;
     public bh Z;
-    public int f52941a;
-    public long f52942a0;
-    public int f52943b;
-    public View f52944b0;
-    public int f52945c;
-    public boolean f52946c0;
+    public int f52940a;
+    public long f52941a0;
+    public int f52942b;
+    public View f52943b0;
+    public int f52944c;
+    public boolean f52945c0;
     public float d;
-    public final org.telegram.ui.Components.jq f52947d0;
-    public final Paint f52948e;
-    public final int[] f52949e0;
-    public final TextPaint f52950f;
-    public final int f52951f0;
-    public final int f52952g0;
+    public final org.telegram.ui.Components.jq f52946d0;
+    public final Paint f52947e;
+    public final int[] f52948e0;
+    public final TextPaint f52949f;
+    public final int f52950f0;
+    public final int f52951g0;
     public final TextPaint h;
-    public final int f52953h0;
-    public final long f52954i0;
-    public final long f52955j0;
-    public final org.telegram.ui.ActionBar.e6 f52956k0;
-    public org.telegram.ui.Components.g5 f52957l0;
+    public final int f52952h0;
+    public final long f52953i0;
+    public final long f52954j0;
+    public final org.telegram.ui.ActionBar.e6 f52955k0;
+    public org.telegram.ui.Components.g5 f52956l0;
     public qg.b m0;
-    public final Paint f52958n;
-    public int f52959n0;
-    public int f52960o0;
-    public final Path f52961r;
-    public StaticLayout f52962s;
-    public StaticLayout f52963w;
-    public StaticLayout f52964x;
-    public int f52965y;
+    public final Paint f52957n;
+    public int f52958n0;
+    public int f52959o0;
+    public final Path f52960r;
+    public StaticLayout f52961s;
+    public StaticLayout f52962w;
+    public StaticLayout f52963x;
+    public int f52964y;
 
     public wo(int i7, View view, long j3, int i10, int i11, long j10, org.telegram.ui.ActionBar.e6 e6Var) {
         Paint paint = new Paint(1);
-        this.f52948e = paint;
+        this.f52947e = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f52950f = textPaint;
+        this.f52949f = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.h = textPaint2;
         Paint paint2 = new Paint(1);
-        this.f52958n = paint2;
-        this.f52961r = new Path();
+        this.f52957n = paint2;
+        this.f52960r = new Path();
         this.J = 0L;
-        this.f52946c0 = true;
+        this.f52945c0 = true;
         org.telegram.ui.Components.jq jqVar = new org.telegram.ui.Components.jq(null, true, null);
-        this.f52947d0 = jqVar;
-        this.f52949e0 = new int[3];
+        this.f52946d0 = jqVar;
+        this.f52948e0 = new int[3];
         this.U = view;
-        this.f52951f0 = i7;
-        this.f52955j0 = j3;
-        this.f52952g0 = i10;
-        this.f52953h0 = i11;
-        this.f52954i0 = j10;
+        this.f52950f0 = i7;
+        this.f52954j0 = j3;
+        this.f52951g0 = i10;
+        this.f52952h0 = i11;
+        this.f52953i0 = j10;
         this.Y = org.telegram.messenger.np.s1(i7).t2(j3);
-        this.f52956k0 = e6Var;
+        this.f52955k0 = e6Var;
         this.G = new ImageReceiver(view);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(2.8f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        jqVar.f36161z = 3;
+        jqVar.f36151z = 3;
         jqVar.I = 1;
-        jqVar.f36144g = true;
+        jqVar.f36134g = true;
         jqVar.d = d("paintChatActionBackground");
-        jqVar.f36142e = textPaint;
+        jqVar.f36132e = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -110,8 +110,8 @@ public final class wo implements org.telegram.messenger.is {
         ArrayList W0;
         TLRPC.Dialog c10;
         TLRPC.Dialog c11;
-        org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.c.a(org.telegram.messenger.m10.f24934t0).f22778a);
-        SparseArray sparseArray = s12.f25420w;
+        org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.c.a(org.telegram.messenger.m10.f24940t0).f22782a);
+        SparseArray sparseArray = s12.f25423w;
         if (iArr != null) {
             iArr[0] = 0;
             iArr[1] = i7;
@@ -120,7 +120,7 @@ public final class wo implements org.telegram.messenger.is {
         if (i10 != 0) {
             org.telegram.messenger.so soVar = (org.telegram.messenger.so) s12.T0.get(i10);
             if (soVar != null) {
-                W0 = soVar.f26550k;
+                W0 = soVar.f26560k;
             } else {
                 return null;
             }
@@ -138,7 +138,7 @@ public final class wo implements org.telegram.messenger.is {
             if (z10) {
                 if (i10 != 0) {
                     for (int i12 = 0; i12 < s12.Q0.size(); i12++) {
-                        int i13 = ((org.telegram.messenger.so) s12.Q0.get(i12)).f26542a;
+                        int i13 = ((org.telegram.messenger.so) s12.Q0.get(i12)).f26552a;
                         if (i10 != i13 && (c11 = c(j3, i7, i13, false, iArr)) != null) {
                             if (iArr != null) {
                                 iArr[0] = 1;
@@ -168,32 +168,32 @@ public final class wo implements org.telegram.messenger.is {
     }
 
     public final void b(Canvas canvas, int i7, int i10) {
-        int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Ol, this.f52956k0);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Ol, this.f52955k0);
         TextPaint textPaint = this.h;
         textPaint.setColor(w02);
         Paint d = d("paintChatComposeBackground");
         int alpha = d.getAlpha();
         int alpha2 = textPaint.getAlpha();
         d.setAlpha((int) (alpha * this.T));
-        if (this.f52963w != null) {
+        if (this.f52962w != null) {
             float f10 = this.L;
             if (f10 < 1.0f) {
                 textPaint.setAlpha((int) ((1.0f - f10) * alpha2 * this.T));
-                float height = ((((i10 - i7) - this.f52963w.getHeight()) / 2.0f) + i7) - (org.telegram.messenger.g0.L(10.0f) * this.L);
+                float height = ((((i10 - i7) - this.f52962w.getHeight()) / 2.0f) + i7) - (org.telegram.messenger.g0.L(10.0f) * this.L);
                 canvas.save();
-                canvas.translate((this.f52945c - this.E) / 2.0f, height);
-                this.f52963w.draw(canvas);
+                canvas.translate((this.f52944c - this.E) / 2.0f, height);
+                this.f52962w.draw(canvas);
                 canvas.restore();
             }
         }
-        if (this.f52964x != null) {
+        if (this.f52963x != null) {
             float f11 = this.L;
             if (f11 > 0.0f) {
                 textPaint.setAlpha((int) (alpha2 * f11 * this.T));
-                float L = ((1.0f - this.L) * org.telegram.messenger.g0.L(10.0f)) + (((i10 - i7) - this.f52964x.getHeight()) / 2.0f) + i7;
+                float L = ((1.0f - this.L) * org.telegram.messenger.g0.L(10.0f)) + (((i10 - i7) - this.f52963x.getHeight()) / 2.0f) + i7;
                 canvas.save();
-                canvas.translate((this.f52945c - this.F) / 2.0f, L);
-                this.f52964x.draw(canvas);
+                canvas.translate((this.f52944c - this.F) / 2.0f, L);
+                this.f52963x.draw(canvas);
                 canvas.restore();
             }
         }
@@ -203,7 +203,7 @@ public final class wo implements org.telegram.messenger.is {
 
     public final Paint d(String str) {
         Paint paint;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f52956k0;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f52955k0;
         if (e6Var != null) {
             paint = e6Var.d(str);
         } else {
@@ -218,15 +218,15 @@ public final class wo implements org.telegram.messenger.is {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TLRPC.Dialog dialog;
-        if (this.f52942a0 != 0 && (dialog = (TLRPC.Dialog) org.telegram.messenger.np.s1(this.f52951f0).R.f(this.f52942a0)) != null) {
+        if (this.f52941a0 != 0 && (dialog = (TLRPC.Dialog) org.telegram.messenger.np.s1(this.f52950f0).R.f(this.f52941a0)) != null) {
             int i11 = dialog.unread_count;
             boolean z10 = true;
-            this.f52947d0.c(i11, true);
+            this.f52946d0.c(i11, true);
             if (i11 <= 0) {
                 z10 = false;
             }
-            this.f52946c0 = z10;
-            View view = this.f52944b0;
+            this.f52945c0 = z10;
+            View view = this.f52943b0;
             if (view != null) {
                 view.invalidate();
             }
@@ -242,42 +242,42 @@ public final class wo implements org.telegram.messenger.is {
         if (z10) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.L, 1.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final wo f51987b;
+                public final wo f51985b;
 
                 {
-                    this.f51987b = this;
+                    this.f51985b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            wo woVar = this.f51987b;
+                            wo woVar = this.f51985b;
                             woVar.getClass();
                             woVar.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             woVar.U.invalidate();
                             return;
                         case 1:
-                            wo woVar2 = this.f51987b;
+                            wo woVar2 = this.f51985b;
                             woVar2.getClass();
                             woVar2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            wo woVar3 = this.f51987b;
+                            wo woVar3 = this.f51985b;
                             woVar3.getClass();
                             woVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            wo woVar4 = this.f51987b;
+                            wo woVar4 = this.f51985b;
                             woVar4.getClass();
                             woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            wo woVar5 = this.f51987b;
+                            wo woVar5 = this.f51985b;
                             woVar5.getClass();
                             woVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             woVar5.U.invalidate();
@@ -291,42 +291,42 @@ public final class wo implements org.telegram.messenger.is {
             this.M = 0.0f;
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final wo f51987b;
+                public final wo f51985b;
 
                 {
-                    this.f51987b = this;
+                    this.f51985b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            wo woVar = this.f51987b;
+                            wo woVar = this.f51985b;
                             woVar.getClass();
                             woVar.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             woVar.U.invalidate();
                             return;
                         case 1:
-                            wo woVar2 = this.f51987b;
+                            wo woVar2 = this.f51985b;
                             woVar2.getClass();
                             woVar2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            wo woVar3 = this.f51987b;
+                            wo woVar3 = this.f51985b;
                             woVar3.getClass();
                             woVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            wo woVar4 = this.f51987b;
+                            wo woVar4 = this.f51985b;
                             woVar4.getClass();
                             woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            wo woVar5 = this.f51987b;
+                            wo woVar5 = this.f51985b;
                             woVar5.getClass();
                             woVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             woVar5.U.invalidate();
@@ -335,47 +335,47 @@ public final class wo implements org.telegram.messenger.is {
                     }
                 }
             });
-            org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.f34423j;
+            org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.f34422j;
             ofFloat2.setInterpolator(erVar);
             ofFloat2.setDuration(180L);
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, -0.5f);
             ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final wo f51987b;
+                public final wo f51985b;
 
                 {
-                    this.f51987b = this;
+                    this.f51985b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            wo woVar = this.f51987b;
+                            wo woVar = this.f51985b;
                             woVar.getClass();
                             woVar.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             woVar.U.invalidate();
                             return;
                         case 1:
-                            wo woVar2 = this.f51987b;
+                            wo woVar2 = this.f51985b;
                             woVar2.getClass();
                             woVar2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            wo woVar3 = this.f51987b;
+                            wo woVar3 = this.f51985b;
                             woVar3.getClass();
                             woVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            wo woVar4 = this.f51987b;
+                            wo woVar4 = this.f51985b;
                             woVar4.getClass();
                             woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            wo woVar5 = this.f51987b;
+                            wo woVar5 = this.f51985b;
                             woVar5.getClass();
                             woVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             woVar5.U.invalidate();
@@ -388,42 +388,42 @@ public final class wo implements org.telegram.messenger.is {
             ofFloat3.setDuration(120L);
             ValueAnimator ofFloat4 = ValueAnimator.ofFloat(-0.5f, 0.0f);
             ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final wo f51987b;
+                public final wo f51985b;
 
                 {
-                    this.f51987b = this;
+                    this.f51985b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            wo woVar = this.f51987b;
+                            wo woVar = this.f51985b;
                             woVar.getClass();
                             woVar.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             woVar.U.invalidate();
                             return;
                         case 1:
-                            wo woVar2 = this.f51987b;
+                            wo woVar2 = this.f51985b;
                             woVar2.getClass();
                             woVar2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            wo woVar3 = this.f51987b;
+                            wo woVar3 = this.f51985b;
                             woVar3.getClass();
                             woVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            wo woVar4 = this.f51987b;
+                            wo woVar4 = this.f51985b;
                             woVar4.getClass();
                             woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            wo woVar5 = this.f51987b;
+                            wo woVar5 = this.f51985b;
                             woVar5.getClass();
                             woVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             woVar5.U.invalidate();
@@ -445,42 +445,42 @@ public final class wo implements org.telegram.messenger.is {
         }
         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(this.L, 0.0f);
         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final wo f51987b;
+            public final wo f51985b;
 
             {
-                this.f51987b = this;
+                this.f51985b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r3) {
                     case 0:
-                        wo woVar = this.f51987b;
+                        wo woVar = this.f51985b;
                         woVar.getClass();
                         woVar.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         woVar.U.invalidate();
                         return;
                     case 1:
-                        wo woVar2 = this.f51987b;
+                        wo woVar2 = this.f51985b;
                         woVar2.getClass();
                         woVar2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     case 2:
-                        wo woVar3 = this.f51987b;
+                        wo woVar3 = this.f51985b;
                         woVar3.getClass();
                         woVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     case 3:
-                        wo woVar4 = this.f51987b;
+                        wo woVar4 = this.f51985b;
                         woVar4.getClass();
                         woVar4.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     default:
-                        wo woVar5 = this.f51987b;
+                        wo woVar5 = this.f51985b;
                         woVar5.getClass();
                         woVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         woVar5.U.invalidate();
@@ -489,7 +489,7 @@ public final class wo implements org.telegram.messenger.is {
                 }
             }
         });
-        ofFloat5.setInterpolator(org.telegram.ui.Components.er.f34420f);
+        ofFloat5.setInterpolator(org.telegram.ui.Components.er.f34419f);
         ofFloat5.setDuration(220L);
         AnimatorSet animatorSet4 = new AnimatorSet();
         this.K = animatorSet4;
@@ -502,20 +502,20 @@ public final class wo implements org.telegram.messenger.is {
         boolean z11 = false;
         this.W = false;
         this.I = null;
-        TLRPC.Dialog c10 = c(this.f52955j0, this.f52952g0, this.f52953h0, true, this.f52949e0);
+        TLRPC.Dialog c10 = c(this.f52954j0, this.f52951g0, this.f52952h0, true, this.f52948e0);
         if (c10 != null) {
-            this.f52942a0 = c10.f28055id;
-            int[] iArr = this.f52949e0;
+            this.f52941a0 = c10.f28055id;
+            int[] iArr = this.f52948e0;
             if (iArr[0] == 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.X = z10;
-            this.f52941a = iArr[1];
-            this.f52943b = iArr[2];
+            this.f52940a = iArr[1];
+            this.f52942b = iArr[2];
             this.S = false;
-            int i7 = this.f52951f0;
+            int i7 = this.f52950f0;
             TLRPC.Chat M0 = org.telegram.messenger.np.s1(i7).M0(Long.valueOf(-c10.f28055id));
             this.H = M0;
             if (M0 == null) {
@@ -526,11 +526,11 @@ public final class wo implements org.telegram.messenger.is {
             this.G.q0(org.telegram.messenger.gc.a(1, this.H), "50_50", t8Var, null, org.telegram.messenger.m10.i(0).f(), 0);
             org.telegram.messenger.np.s1(i7).s0(c10.f28055id, 0, null);
             int i10 = c10.unread_count;
-            this.f52947d0.c(i10, false);
+            this.f52946d0.c(i10, false);
             if (i10 > 0) {
                 z11 = true;
             }
-            this.f52946c0 = z11;
+            this.f52945c0 = z11;
             return;
         }
         this.H = null;
@@ -545,8 +545,8 @@ public final class wo implements org.telegram.messenger.is {
             f();
             return;
         }
-        this.f52942a0 = -chat.f28051id;
-        int[] iArr = this.f52949e0;
+        this.f52941a0 = -chat.f28051id;
+        int[] iArr = this.f52948e0;
         boolean z11 = false;
         if (iArr[0] == 1) {
             z10 = true;
@@ -554,14 +554,14 @@ public final class wo implements org.telegram.messenger.is {
             z10 = false;
         }
         this.X = z10;
-        this.f52941a = iArr[1];
-        this.f52943b = iArr[2];
+        this.f52940a = iArr[1];
+        this.f52942b = iArr[2];
         this.S = false;
         this.H = chat;
         org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
         t8Var.q(this.H);
         this.G.q0(org.telegram.messenger.gc.a(1, this.H), "50_50", t8Var, null, org.telegram.messenger.m10.i(0).f(), 0);
-        int i10 = this.f52951f0;
+        int i10 = this.f52950f0;
         org.telegram.messenger.np.s1(i10).s0(-chat.f28051id, 0, null);
         TLRPC.Dialog S0 = org.telegram.messenger.np.s1(i10).S0(-chat.f28051id);
         if (S0 == null) {
@@ -569,11 +569,11 @@ public final class wo implements org.telegram.messenger.is {
         } else {
             i7 = S0.unread_count;
         }
-        this.f52947d0.c(i7, false);
+        this.f52946d0.c(i7, false);
         if (i7 > 0) {
             z11 = true;
         }
-        this.f52946c0 = z11;
+        this.f52945c0 = z11;
         this.W = true;
         this.I = null;
     }
@@ -591,16 +591,16 @@ public final class wo implements org.telegram.messenger.is {
         this.X = false;
         qg.b bVar = null;
         this.H = null;
-        this.f52942a0 = 0L;
+        this.f52941a0 = 0L;
         ImageReceiver imageReceiver = this.G;
         imageReceiver.f();
-        int i7 = this.f52951f0;
-        ArrayList l10 = org.telegram.messenger.np.s1(i7).f25383r7.l(-this.f52955j0);
+        int i7 = this.f52950f0;
+        ArrayList l10 = org.telegram.messenger.np.s1(i7).f25386r7.l(-this.f52954j0);
         if (l10 != null && l10.size() > 1) {
             tL_forumTopic = null;
             for (int i10 = 0; i10 < l10.size(); i10++) {
                 TLRPC.TL_forumTopic tL_forumTopic2 = (TLRPC.TL_forumTopic) l10.get(i10);
-                if (tL_forumTopic2.f28103id != this.f52954i0 && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
+                if (tL_forumTopic2.f28103id != this.f52953i0 && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
                     tL_forumTopic = tL_forumTopic2;
                 }
             }
@@ -611,13 +611,13 @@ public final class wo implements org.telegram.messenger.is {
             this.S = false;
             this.I = tL_forumTopic;
             int i11 = tL_forumTopic.f28103id;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f52956k0;
+            org.telegram.ui.ActionBar.e6 e6Var = this.f52955k0;
             if (i11 == 1) {
-                View view3 = this.f52944b0;
-                if (view3 != null && (g5Var2 = this.f52957l0) != null) {
+                View view3 = this.f52943b0;
+                if (view3 != null && (g5Var2 = this.f52956l0) != null) {
                     g5Var2.n(view3);
                 }
-                this.f52957l0 = null;
+                this.f52956l0 = null;
                 Context context = this.U.getContext();
                 int i12 = org.telegram.ui.ActionBar.j6.f29115rd;
                 qg.b c10 = qg.c.c(context, 1.0f, org.telegram.ui.ActionBar.j6.w0(i12, e6Var), true);
@@ -625,40 +625,40 @@ public final class wo implements org.telegram.messenger.is {
                     bVar = c10;
                 }
                 this.m0 = bVar;
-                this.f52959n0 = org.telegram.ui.ActionBar.j6.w0(i12, e6Var);
+                this.f52958n0 = org.telegram.ui.ActionBar.j6.w0(i12, e6Var);
                 imageReceiver.w0(c10);
             } else if (tL_forumTopic.icon_emoji_id != 0) {
-                org.telegram.ui.Components.g5 g5Var3 = this.f52957l0;
+                org.telegram.ui.Components.g5 g5Var3 = this.f52956l0;
                 if (g5Var3 == null || g5Var3.h() != tL_forumTopic.icon_emoji_id) {
-                    org.telegram.ui.Components.g5 g5Var4 = this.f52957l0;
-                    if (g5Var4 != null && (view = this.f52944b0) != null) {
+                    org.telegram.ui.Components.g5 g5Var4 = this.f52956l0;
+                    if (g5Var4 != null && (view = this.f52943b0) != null) {
                         g5Var4.n(view);
                     }
                     org.telegram.ui.Components.g5 g5Var5 = new org.telegram.ui.Components.g5(22, i7, tL_forumTopic.icon_emoji_id);
-                    this.f52957l0 = g5Var5;
+                    this.f52956l0 = g5Var5;
                     int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Zc, e6Var);
-                    this.f52960o0 = w02;
+                    this.f52959o0 = w02;
                     g5Var5.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
                 }
-                org.telegram.ui.Components.g5 g5Var6 = this.f52957l0;
-                if (g5Var6 != null && (view2 = this.f52944b0) != null) {
+                org.telegram.ui.Components.g5 g5Var6 = this.f52956l0;
+                if (g5Var6 != null && (view2 = this.f52943b0) != null) {
                     g5Var6.a(view2);
                 }
                 imageReceiver.w0(null);
             } else {
-                View view4 = this.f52944b0;
-                if (view4 != null && (g5Var = this.f52957l0) != null) {
+                View view4 = this.f52943b0;
+                if (view4 != null && (g5Var = this.f52956l0) != null) {
                     g5Var.n(view4);
                 }
-                this.f52957l0 = null;
+                this.f52956l0 = null;
                 imageReceiver.w0(qg.c.e(tL_forumTopic));
             }
             int i13 = tL_forumTopic.unread_count;
-            this.f52947d0.c(i13, false);
+            this.f52946d0.c(i13, false);
             if (i13 > 0) {
                 z10 = true;
             }
-            this.f52946c0 = z10;
+            this.f52945c0 = z10;
             return;
         }
         this.I = null;

@@ -82,13 +82,13 @@ public final class gz extends View {
         ofFloat.addUpdateListener(new bz(this, 1));
         animatorSet.playTogether(ofFloat);
         animatorSet.setDuration(50L);
-        animatorSet.addListener(new di.fc(this, i7, f10, 1));
+        animatorSet.addListener(new di.ec(this, i7, f10, 1));
         animatorSet.start();
     }
 
     @Override
     public int getId() {
-        return this.f35105b.f34748a;
+        return this.f35105b.f34752a;
     }
 
     @Override
@@ -99,25 +99,25 @@ public final class gz extends View {
         this.m0 = true;
         super.onAttachedToWindow();
         int i12 = 26;
-        if (this.f35105b.f34753g) {
+        if (this.f35105b.f34757g) {
             i7 = 26;
         } else {
             i7 = 0;
         }
         this.f35122r = p5.update(i7, this, this.f35122r, this.f35123s);
-        if (this.f35105b.f34753g) {
+        if (this.f35105b.f34757g) {
             i10 = 26;
         } else {
             i10 = 0;
         }
         this.P = p5.update(i10, this, this.P, this.Q);
-        if (this.f35105b.f34753g) {
+        if (this.f35105b.f34757g) {
             i11 = 26;
         } else {
             i11 = 0;
         }
         this.R = p5.update(i11, this, this.R, this.S);
-        if (!this.f35105b.f34753g) {
+        if (!this.f35105b.f34757g) {
             i12 = 0;
         }
         this.T = p5.update(i12, this, this.T, this.U);
@@ -158,7 +158,7 @@ public final class gz extends View {
         int i10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         fz fzVar = this.f35105b;
-        if (fzVar != null && (i10 = this.f35121n0.M) != -1 && fzVar.f34748a == i10) {
+        if (fzVar != null && (i10 = this.f35121n0.M) != -1 && fzVar.f34752a == i10) {
             z10 = true;
         } else {
             z10 = false;
@@ -168,7 +168,7 @@ public final class gz extends View {
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, org.telegram.messenger.hd.M0(2131754816, null)));
         if (this.f35105b != null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f35105b.f34749b);
+            sb2.append(this.f35105b.f34753b);
             fz fzVar2 = this.f35105b;
             if (fzVar2 != null) {
                 i7 = fzVar2.d;

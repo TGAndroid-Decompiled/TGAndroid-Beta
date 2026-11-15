@@ -76,7 +76,7 @@ public final class x0 implements Runnable {
             default:
                 e1 e1Var4 = this.f12488b;
                 if (!e1Var4.f11658n) {
-                    ka.b(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new ai.f0(e1Var4, 14));
+                    ka.b(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new ai.g0(e1Var4, 14));
                     return;
                 }
                 return;

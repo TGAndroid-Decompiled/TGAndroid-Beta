@@ -53,13 +53,13 @@ public final class p3 implements Runnable {
                         tL_messages_prolongWebView.send_as = np.s1(y3Var.G).m1(peer);
                         tL_messages_prolongWebView.flags |= 8192;
                     }
-                    ConnectionsManager.getInstance(y3Var.G).sendRequest(tL_messages_prolongWebView, new ai.d1(y3Var, 20));
+                    ConnectionsManager.getInstance(y3Var.G).sendRequest(tL_messages_prolongWebView, new ai.e1(y3Var, 20));
                     return;
                 }
                 return;
             case 3:
                 y3 y3Var2 = this.f18494b;
-                y3Var2.f33607b.M1(y3Var2, 0);
+                y3Var2.f33609b.M1(y3Var2, 0);
                 y3Var2.f18715n.n(false, false);
                 System.currentTimeMillis();
                 return;

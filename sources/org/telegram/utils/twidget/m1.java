@@ -180,7 +180,7 @@ public abstract class m1 {
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             jSONObject.put("lineHeight", Math.round(Math.max(1.0f, Math.min(3.0f, ((fontMetrics.descent - fontMetrics.ascent) + fontMetrics.leading) / textPaint.getTextSize())) * 100.0f) / 100.0d);
         }
-        int round = Math.round(hk0.j0() / org.telegram.messenger.g0.f23608p);
+        int round = Math.round(hk0.j0() / org.telegram.messenger.g0.f23610p);
         jSONObject.put("padding", "8px " + round + "px");
         return jSONObject;
     }

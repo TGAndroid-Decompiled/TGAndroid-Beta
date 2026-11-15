@@ -95,7 +95,7 @@ public final class i9 implements TextWatcher {
                     org.telegram.messenger.g0.i3(runnable2, 300L);
                 } else {
                     arrayList.clear();
-                    z9Var.f38882a.f39895g3.O(true);
+                    z9Var.f38880a.f39892g3.O(true);
                     final String str3 = z9Var.E;
                     if (str3 != null) {
                         Runnable runnable3 = new Runnable() {
@@ -149,25 +149,25 @@ public final class i9 implements TextWatcher {
                 String obj = editable.toString();
                 org.telegram.ui.g4 g4Var = l0Var.C0;
                 String lowerCase2 = obj.toLowerCase();
-                ai.z0 z0Var = g4Var.X0;
-                if (z0Var != null) {
-                    org.telegram.messenger.g0.r(z0Var);
+                ai.a1 a1Var = g4Var.X0;
+                if (a1Var != null) {
+                    org.telegram.messenger.g0.r(a1Var);
                     g4Var.X0 = null;
                 }
                 if (TextUtils.isEmpty(lowerCase2)) {
                     g4Var.F.clear();
                     g4Var.G = lowerCase2;
-                    g4Var.f47336v0[0].f48550c.E.clear();
+                    g4Var.f47326v0[0].f48504c.E.clear();
                     g4Var.b0(false);
-                    if (g4Var.f47336v0[0].f()) {
-                        if (g4Var.f47336v0[0].getWebView() != null) {
-                            org.telegram.ui.web.s0 webView = g4Var.f47336v0[0].getWebView();
+                    if (g4Var.f47326v0[0].f()) {
+                        if (g4Var.f47326v0[0].getWebView() != null) {
+                            org.telegram.ui.web.s0 webView = g4Var.f47326v0[0].getWebView();
                             webView.J = new org.telegram.ui.z(g4Var, 9);
                             webView.findAllAsync("");
                             g4Var.f0();
                         }
                     } else {
-                        g4Var.f47336v0[0].f48549b.g1();
+                        g4Var.f47326v0[0].f48503b.g1();
                         g4Var.U(0);
                     }
                     g4Var.Y0 = -1;
@@ -175,10 +175,10 @@ public final class i9 implements TextWatcher {
                 }
                 int i10 = g4Var.Y0 + 1;
                 g4Var.Y0 = i10;
-                if (g4Var.f47336v0[0].f()) {
+                if (g4Var.f47326v0[0].f()) {
                     g4Var.b0(true);
-                    if (g4Var.f47336v0[0].getWebView() != null) {
-                        org.telegram.ui.web.s0 webView2 = g4Var.f47336v0[0].getWebView();
+                    if (g4Var.f47326v0[0].getWebView() != null) {
+                        org.telegram.ui.web.s0 webView2 = g4Var.f47326v0[0].getWebView();
                         webView2.J = new org.telegram.ui.z(g4Var, 9);
                         webView2.findAllAsync(lowerCase2);
                         g4Var.f0();
@@ -186,9 +186,9 @@ public final class i9 implements TextWatcher {
                     }
                     return;
                 }
-                ai.z0 z0Var2 = new ai.z0(g4Var, lowerCase2, i10, 29);
-                g4Var.X0 = z0Var2;
-                org.telegram.messenger.g0.i3(z0Var2, 400L);
+                ai.a1 a1Var2 = new ai.a1(g4Var, lowerCase2, i10, 29);
+                g4Var.X0 = a1Var2;
+                org.telegram.messenger.g0.i3(a1Var2, 400L);
                 return;
             case 4:
                 sh.b bVar = (sh.b) this.f43995b;

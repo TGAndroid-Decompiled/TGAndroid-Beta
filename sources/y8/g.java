@@ -15,7 +15,7 @@ public final class g extends r6.a {
         this.f60503b = str2;
         if (i7 < 3) {
             CommonWalletObject commonWalletObject2 = new CommonWalletObject();
-            commonWalletObject2.f7119a = str;
+            commonWalletObject2.f7122a = str;
             this.f60504c = commonWalletObject2;
             return;
         }

@@ -99,7 +99,7 @@ public final class c implements d {
             Iterator it = this.f58778k.iterator();
             while (it.hasNext()) {
                 FirebaseMessaging firebaseMessaging = ((n) it.next()).f974a;
-                ob.c cVar = FirebaseMessaging.f7273m;
+                ob.c cVar = FirebaseMessaging.f7276m;
                 if (firebaseMessaging.d() != null) {
                     if (Log.isLoggable("FirebaseMessaging", 3)) {
                         Log.d("FirebaseMessaging", "FID Change detected! Triggering re-sync");

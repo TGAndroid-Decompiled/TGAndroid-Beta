@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.ui.PhotoViewer;
 public final class j7 extends qc {
-    public final int f35898b;
-    public final org.telegram.messenger.is f35899c;
+    public final int f35885b;
+    public final org.telegram.messenger.is f35886c;
 
     public j7(org.telegram.messenger.is isVar, Context context, int i7) {
         super(context);
-        this.f35898b = i7;
-        this.f35899c = isVar;
+        this.f35885b = i7;
+        this.f35886c = isVar;
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
         int i7;
-        switch (this.f35898b) {
+        switch (this.f35885b) {
             case 0:
-                y7 y7Var = (y7) this.f35899c;
+                y7 y7Var = (y7) this.f35886c;
                 y7Var.updateColors();
                 org.telegram.ui.wq wqVar = y7Var.I1;
                 if (wqVar != null) {
@@ -27,7 +27,7 @@ public final class j7 extends qc {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f35899c;
+                PhotoViewer photoViewer = (PhotoViewer) this.f35886c;
                 org.telegram.ui.ActionBar.z0 z0Var = photoViewer.G0;
                 if (z0Var != null) {
                     z0Var.f(z10);

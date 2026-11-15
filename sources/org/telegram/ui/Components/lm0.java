@@ -168,7 +168,7 @@ public class lm0 extends ScrollView implements eh.a {
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        aVar.f8087a = true;
+        aVar.f8090a = true;
     }
 
     @Override

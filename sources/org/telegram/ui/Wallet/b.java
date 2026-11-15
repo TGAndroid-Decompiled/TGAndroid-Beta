@@ -33,7 +33,7 @@ public final class b extends a41 {
         float f10;
         c cVar = (c) view;
         boolean z12 = false;
-        if (b41Var.f33190u == 1) {
+        if (b41Var.f33193u == 1) {
             z11 = true;
         } else {
             z11 = false;
@@ -79,7 +79,7 @@ public final class b extends a41 {
             if (nftitem.image_small != null && nftitem.image != null) {
                 gcVar = c.c(nftitem, true);
             }
-            i9Var.f35508a.r0(c10, "160_160", gcVar, "100_100", fqVar, 0L, null, nftitem, 0);
+            i9Var.f35499a.r0(c10, "160_160", gcVar, "100_100", fqVar, 0L, null, nftitem, 0);
             i9Var.e();
         } else if (c10 != null) {
             i9Var.j(c10, "46_46", fqVar, nftitem);

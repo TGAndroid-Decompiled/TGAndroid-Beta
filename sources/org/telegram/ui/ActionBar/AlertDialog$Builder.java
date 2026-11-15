@@ -133,7 +133,7 @@ public class AlertDialog$Builder {
     public AlertDialog$Builder(int i7, Context context, e6 e6Var) {
         this.f28393b = new boolean[3];
         if (context == null && (context = org.telegram.messenger.g0.W(LaunchActivity.H1)) == null) {
-            context = org.telegram.messenger.t0.f26600b;
+            context = org.telegram.messenger.t0.f26609b;
         }
         this.f28392a = b(i7, context, e6Var);
     }

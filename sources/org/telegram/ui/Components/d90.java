@@ -1,49 +1,33 @@
 package org.telegram.ui.Components;
-public final class d90 {
-    public final org.telegram.ui.ActionBar.e2 f33890a;
-    public final i90 f33891b;
 
-    public d90(i90 i90Var, org.telegram.ui.ActionBar.e2 e2Var) {
-        this.f33891b = i90Var;
-        this.f33890a = e2Var;
+import org.telegram.tgnet.TLRPC;
+public final class d90 extends g.p {
+    public final j90 f33892c;
+
+    public d90(j90 j90Var) {
+        this.f33892c = j90Var;
     }
 
-    public final void a(boolean z10) {
-        i90 i90Var = this.f33891b;
-        boolean z11 = false;
-        if (i90Var.getNeededLayoutManager() != i90Var.getCurrentLayoutManager() && i90Var.a()) {
-            if (i90Var.f35523f.N0 > 0) {
-                i90Var.O = true;
-                i90Var.o(false);
-                return;
+    @Override
+    public final int i(int i7) {
+        j90 j90Var = this.f33892c;
+        jg.h1 h1Var = j90Var.f35923f;
+        if (i7 != 0) {
+            int i10 = i7 - 1;
+            Object J = h1Var.J(i10);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
-            i90Var.f35520b.setLayoutManager(i90Var.getNeededLayoutManager());
-        }
-        if (z10 && !i90Var.a()) {
-            z10 = false;
-        }
-        if (!z10 || i90Var.f35523f.K() > 0) {
-            z11 = z10;
-        }
-        i90Var.o(z11);
-    }
-
-    public final void b(boolean z10) {
-        this.f33891b.l(z10);
-    }
-
-    public final void c() {
-        long j3;
-        i90 i90Var = this.f33891b;
-        fo foVar = i90Var.K;
-        if (i90Var.f35520b.getLayoutManager() != i90Var.d && i90Var.J) {
-            org.telegram.messenger.g0.r(foVar);
-            if (this.f33890a.getFragmentBeginToShow()) {
-                j3 = 0;
-            } else {
-                j3 = 100;
+            if (J instanceof TLRPC.Document) {
+                return 20;
             }
-            org.telegram.messenger.g0.i3(foVar, j3);
+            if (h1Var.I() != null || h1Var.V != null) {
+                i7 = i10;
+            }
+            c90 c90Var = j90Var.d;
+            c90Var.B1();
+            return c90Var.R.get(i7);
         }
+        return 100;
     }
 }

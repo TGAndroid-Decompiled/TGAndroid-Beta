@@ -4,18 +4,18 @@ import android.view.MotionEvent;
 import org.telegram.messenger.video.VideoFramesRewinder;
 import org.telegram.messenger.video.VideoPlayerRewinder;
 public final class fp0 extends VideoPlayerRewinder {
-    public final PhotoViewer f47176a;
+    public final PhotoViewer f47166a;
 
     public fp0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
         super(videoFramesRewinder);
-        this.f47176a = photoViewer;
+        this.f47166a = photoViewer;
     }
 
     @Override
     public final void onRewindCanceled() {
         wi.h hVar;
         MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-        PhotoViewer photoViewer = this.f47176a;
+        PhotoViewer photoViewer = this.f47166a;
         PhotoViewer.c(photoViewer, obtain);
         photoViewer.A1.f(false);
         wi.n nVar = photoViewer.P8;
@@ -27,7 +27,7 @@ public final class fp0 extends VideoPlayerRewinder {
     @Override
     public final void onRewindStart(boolean z10) {
         wi.h hVar;
-        PhotoViewer photoViewer = this.f47176a;
+        PhotoViewer photoViewer = this.f47166a;
         photoViewer.A1.e(false);
         boolean z11 = !z10;
         photoViewer.A1.d(z11);
@@ -53,7 +53,7 @@ public final class fp0 extends VideoPlayerRewinder {
     @Override
     public final void updateRewindProgressUi(long j3, float f10, boolean z10) {
         wi.h hVar;
-        PhotoViewer photoViewer = this.f47176a;
+        PhotoViewer photoViewer = this.f47166a;
         photoViewer.A1.g(Math.abs(j3));
         if (z10) {
             photoViewer.f42859q3.h(false, f10);

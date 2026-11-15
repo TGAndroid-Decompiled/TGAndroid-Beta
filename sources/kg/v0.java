@@ -52,7 +52,7 @@ public final class v0 implements x10, org.telegram.ui.ActionBar.q1 {
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         int i7 = b41Var.d;
-        if (i7 != 1 && b41Var.f33174c != a1Var.f17864f) {
+        if (i7 != 1 && b41Var.f33177c != a1Var.f17864f) {
             if (i7 == 2) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a1Var.getParentActivity());
                 alertDialog$Builder.f28392a.S = hd.M0(2131752694, null);
@@ -61,9 +61,9 @@ public final class v0 implements x10, org.telegram.ui.ActionBar.q1 {
                 alertDialog$Builder.h(hd.M0(2131752589, null), null);
                 a1Var.showDialog(alertDialog$Builder.f28392a);
             }
-        } else if (a1Var.f17869x != null && b41Var.f33174c != a1Var.f17864f) {
+        } else if (a1Var.f17869x != null && b41Var.f33177c != a1Var.f17864f) {
             a1Var.f17869x = null;
-            a1Var.f17860a.f39895g3.O(true);
+            a1Var.f17860a.f39892g3.O(true);
         } else {
             pa0 pa0Var = new pa0(8);
             if (a1Var.f17869x != null) {

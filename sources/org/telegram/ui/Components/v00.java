@@ -63,7 +63,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         iVar.setPadding(org.telegram.messenger.g0.L(48.0f), 0, org.telegram.messenger.g0.L(48.0f), 0);
         iVar.setClipToPadding(true);
         iVar.setImeOptions(268435459);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -79,7 +79,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131232506);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -88,7 +88,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         LinearLayout linearLayout = new LinearLayout(context);
         this.h = linearLayout;
         linearLayout.setOrientation(0);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i11 = 3;
         } else {
             i11 = 5;
@@ -100,7 +100,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         imageView2.setImageResource(2131231983);
         imageView2.setVisibility(8);
         imageView2.setOnClickListener(new e0(this, 17));
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i12 = 3;
         } else {
             i12 = 5;
@@ -110,7 +110,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         this.H = z51Var;
         z51Var.setOrientation(0);
         z51Var.setVisibility(0);
-        addView(z51Var, c8.ja.d(-2, 32.0f, (org.telegram.messenger.hd.f24101a0 ? 5 : 3) | 16, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(z51Var, c8.ja.d(-2, 32.0f, (org.telegram.messenger.hd.f24104a0 ? 5 : 3) | 16, 4.0f, 0.0f, 4.0f, 0.0f));
         setWillNotDraw(false);
         b();
         updateColors();
@@ -143,9 +143,9 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
 
     public final void b() {
         int i7;
-        int max = Math.max(org.telegram.messenger.g0.L(6.0f) + ((int) this.f40198c.f57087f), org.telegram.messenger.g0.L(48.0f));
+        int max = Math.max(org.telegram.messenger.g0.L(6.0f) + ((int) this.f40198c.f57091f), org.telegram.messenger.g0.L(48.0f));
         int measuredWidth = this.h.getMeasuredWidth() + org.telegram.messenger.g0.L(48.0f);
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
         if (z10) {
             i7 = measuredWidth;
         } else {
@@ -221,7 +221,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         changeBounds.setDuration(150L);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i0(1).setDuration(150L)).addTransition(changeBounds);
         transitionSet.setOrdering(0);
-        transitionSet.setInterpolator((TimeInterpolator) er.f34421g);
+        transitionSet.setInterpolator((TimeInterpolator) er.f34420g);
         transitionSet.addListener((Transition.TransitionListener) new org.telegram.ui.ActionBar.j0(1, this));
         org.telegram.ui.z51 z51Var = this.H;
         TransitionManager.beginDelayedTransition(z51Var, transitionSet);
@@ -241,7 +241,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
             p0Var.updateColors();
             p0Var.setData(o0Var);
             p0Var.setOnClickListener(new n2(19, this, p0Var));
-            boolean z11 = org.telegram.messenger.hd.f24101a0;
+            boolean z11 = org.telegram.messenger.hd.f24104a0;
             if (z11) {
                 i7 = 6;
             } else {
@@ -282,7 +282,7 @@ public class v00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
             }
             e();
             u00 u00Var = this.I;
-            if (u00Var != null && (hwVar = ((org.telegram.ui.ev) u00Var).f46925a.D0) != null) {
+            if (u00Var != null && (hwVar = ((org.telegram.ui.ev) u00Var).f46909a.D0) != null) {
                 hwVar.Q(false);
             }
         }

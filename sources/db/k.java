@@ -22,10 +22,10 @@ import f7.x;
 import f7.y;
 import f7.z0;
 public final class k implements Parcelable.Creator {
-    public final int f7973a;
+    public final int f7976a;
 
     public k(int i7) {
-        this.f7973a = i7;
+        this.f7976a = i7;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class k implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f7973a) {
+        switch (this.f7976a) {
             case 0:
                 return new i[i7];
             case 1:

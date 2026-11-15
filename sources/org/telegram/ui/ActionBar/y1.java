@@ -51,7 +51,7 @@ public final class y1 implements wa {
         switch (this.f29884a) {
             case 0:
                 if (this.f29885b.isSupportEdgeToEdge()) {
-                    return org.telegram.messenger.g0.f23604n;
+                    return org.telegram.messenger.g0.f23606n;
                 }
                 return 0;
             default:

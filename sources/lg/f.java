@@ -88,14 +88,14 @@ public final class f {
     public void c(Canvas canvas, float f10, float f11, float f12) {
         Drawable drawable = (Drawable) this.f19404g;
         l0 l0Var = (l0) this.h;
-        RectF rectF = l0Var.f52644a;
+        RectF rectF = l0Var.f52647a;
         rectF.set(0.0f, 0.0f, f10, f11);
         canvas.saveLayerAlpha(rectF, (int) (f12 * 255.0f), 31);
         g6 g6Var = (g6) this.d;
         float i7 = g6Var.i();
         g6 g6Var2 = (g6) this.f19402e;
         float i10 = g6Var2.i();
-        TextPaint textPaint = g6Var2.f34827a;
+        TextPaint textPaint = g6Var2.f34831a;
         float f13 = i10 * i7;
         canvas.save();
         float f14 = 0.82f * f11;
@@ -126,7 +126,7 @@ public final class f {
         g6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f10 - g0.L(12.0f), 0.0f, f10, f11);
-        l0Var.f52669s0.m(canvas, rectF, 2, 1.0f);
+        l0Var.f52672s0.m(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 

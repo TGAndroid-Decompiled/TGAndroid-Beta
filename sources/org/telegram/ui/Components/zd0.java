@@ -32,10 +32,10 @@ public final class zd0 {
     public void onPlayerNotifyDuration(int i7) {
         org.telegram.ui.bq0 bq0Var = this.f42342a;
         bq0Var.I = i7 * 1000;
-        String str = bq0Var.f32975s;
+        String str = bq0Var.f32978s;
         if (str != null) {
             ae0.a(bq0Var, str);
-            bq0Var.f32975s = null;
+            bq0Var.f32978s = null;
         }
     }
 
@@ -72,6 +72,6 @@ public final class zd0 {
         if (i7 == 3 && bq0Var.h.getVisibility() != 4) {
             org.telegram.messenger.g0.i3(new xd0(this, 1), 300L);
         }
-        org.telegram.messenger.g0.h3(new di.u7(this, z12, i7, 4));
+        org.telegram.messenger.g0.h3(new di.t7(this, z12, i7, 4));
     }
 }

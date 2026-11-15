@@ -12,37 +12,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.yw;
 public final class i3 implements RequestDelegate {
-    public final int f8791a = 0;
-    public final long f8792b;
-    public final is f8793c;
+    public final int f8789a = 0;
+    public final long f8790b;
+    public final is f8791c;
     public final Object d;
-    public final Object f8794e;
-    public final TLObject f8795f;
-    public final Object f8796g;
+    public final Object f8792e;
+    public final TLObject f8793f;
+    public final Object f8794g;
 
     public i3(c6 c6Var, vf.b bVar, org.telegram.ui.ActionBar.t1 t1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, CharSequence charSequence) {
-        this.f8793c = c6Var;
+        this.f8791c = c6Var;
         this.d = bVar;
-        this.f8794e = t1Var;
-        this.f8795f = tL_starGiftUnique;
-        this.f8792b = j3;
-        this.f8796g = charSequence;
+        this.f8792e = t1Var;
+        this.f8793f = tL_starGiftUnique;
+        this.f8790b = j3;
+        this.f8794g = charSequence;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f8791a) {
+        switch (this.f8789a) {
             case 0:
-                org.telegram.messenger.g0.h3(new n3((c6) this.f8793c, (vf.b) this.d, (org.telegram.ui.ActionBar.t1) this.f8794e, tLObject, (TL_stars.TL_starGiftUnique) this.f8795f, tL_error, this.f8792b, (CharSequence) this.f8796g));
+                org.telegram.messenger.g0.h3(new n3((c6) this.f8791c, (vf.b) this.d, (org.telegram.ui.ActionBar.t1) this.f8792e, tLObject, (TL_stars.TL_starGiftUnique) this.f8793f, tL_error, this.f8790b, (CharSequence) this.f8794g));
                 return;
             case 1:
-                np npVar = (np) this.f8793c;
+                np npVar = (np) this.f8791c;
                 Runnable runnable = (Runnable) this.d;
-                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f8794e;
-                TLRPC.TL_messages_editChatAdmin tL_messages_editChatAdmin = (TLRPC.TL_messages_editChatAdmin) this.f8795f;
-                yo yoVar = (yo) this.f8796g;
+                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f8792e;
+                TLRPC.TL_messages_editChatAdmin tL_messages_editChatAdmin = (TLRPC.TL_messages_editChatAdmin) this.f8793f;
+                yo yoVar = (yo) this.f8794g;
                 if (tL_error == null) {
-                    org.telegram.messenger.g0.i3(new um(npVar, this.f8792b, runnable, 1), 1000L);
+                    org.telegram.messenger.g0.i3(new um(npVar, this.f8790b, runnable, 1), 1000L);
                     return;
                 }
                 org.telegram.messenger.g0.h3(new bm(npVar, tL_error, e2Var, tL_messages_editChatAdmin, 3));
@@ -52,26 +52,26 @@ public final class i3 implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.h3(new n3((yw) this.f8793c, (org.telegram.ui.ActionBar.t1) this.f8794e, tLObject, (TLRPC.User) this.d, (TLRPC.Chat) this.f8795f, this.f8792b, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f8796g));
+                org.telegram.messenger.g0.h3(new n3((yw) this.f8791c, (org.telegram.ui.ActionBar.t1) this.f8792e, tLObject, (TLRPC.User) this.d, (TLRPC.Chat) this.f8793f, this.f8790b, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f8794g));
                 return;
         }
     }
 
     public i3(np npVar, long j3, Runnable runnable, org.telegram.ui.ActionBar.e2 e2Var, TLRPC.TL_messages_editChatAdmin tL_messages_editChatAdmin, yo yoVar) {
-        this.f8793c = npVar;
-        this.f8792b = j3;
+        this.f8791c = npVar;
+        this.f8790b = j3;
         this.d = runnable;
-        this.f8794e = e2Var;
-        this.f8795f = tL_messages_editChatAdmin;
-        this.f8796g = yoVar;
+        this.f8792e = e2Var;
+        this.f8793f = tL_messages_editChatAdmin;
+        this.f8794g = yoVar;
     }
 
     public i3(yw ywVar, org.telegram.ui.ActionBar.t1 t1Var, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.f8793c = ywVar;
-        this.f8794e = t1Var;
+        this.f8791c = ywVar;
+        this.f8792e = t1Var;
         this.d = user;
-        this.f8795f = chat;
-        this.f8792b = j3;
-        this.f8796g = tL_messages_checkHistoryImportPeer;
+        this.f8793f = chat;
+        this.f8790b = j3;
+        this.f8794g = tL_messages_checkHistoryImportPeer;
     }
 }

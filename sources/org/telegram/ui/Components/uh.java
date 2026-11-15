@@ -17,7 +17,7 @@ public final class uh implements tj {
             tjVar.A();
             return;
         }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
         if (e2Var instanceof tj) {
             ((tj) e2Var).A();
         } else if (e2Var instanceof org.telegram.ui.ek0) {
@@ -46,7 +46,7 @@ public final class uh implements tj {
             tjVar.n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
             return;
         }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
         if (e2Var instanceof tj) {
             ((tj) e2Var).n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
         } else if (e2Var instanceof org.telegram.ui.ek0) {
@@ -55,7 +55,7 @@ public final class uh implements tj {
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 ?? obj = new Object();
-                obj.f23189c = (String) arrayList.get(i10);
+                obj.f23196c = (String) arrayList.get(i10);
                 arrayList4.add(obj);
             }
             ek0Var.K1(arrayList4);
@@ -70,7 +70,7 @@ public final class uh implements tj {
             tjVar.p(arrayList, z10, i7, j3);
             return;
         }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
         if (e2Var instanceof org.telegram.ui.an) {
             ((org.telegram.ui.an) e2Var).p(arrayList, z10, i7, j3);
         } else if (e2Var instanceof org.telegram.ui.ek0) {

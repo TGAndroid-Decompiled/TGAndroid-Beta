@@ -22,31 +22,31 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 public final class o implements View.OnClickListener {
-    public final int f3742a;
+    public final int f3745a;
 
     public o(int i7) {
-        this.f3742a = i7;
+        this.f3745a = i7;
     }
 
     @Override
     public final void onClick(View view) {
         int i7;
         org.telegram.ui.Cells.c2 c2Var;
-        switch (this.f3742a) {
+        switch (this.f3745a) {
             case 0:
-                int i10 = y.f3984w2;
+                int i10 = y.f3987w2;
                 return;
             case 1:
-                ec[] ecVarArr = m0.f3683l2;
+                ec[] ecVarArr = m0.f3686l2;
                 return;
             case 2:
-                int i11 = t0.f3870c2;
+                int i11 = t0.f3873c2;
                 return;
             case 3:
-                int i12 = ch.f.f5060e;
+                int i12 = ch.f.f5063e;
                 return;
             case 4:
-                int i13 = di.i1.f8764w2;
+                int i13 = di.i1.f8762w2;
                 return;
             case 5:
                 int i14 = hi.q3.f14896e;
@@ -84,10 +84,10 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 13:
-                int i18 = dq.f34029g0;
+                int i18 = dq.f34016g0;
                 return;
             case 14:
-                int i19 = ir.f35700x;
+                int i19 = ir.f35687x;
                 return;
             case 15:
                 float[] fArr = FragmentContextView.X0;
@@ -155,7 +155,7 @@ public final class o implements View.OnClickListener {
     }
 
     public o(Object obj, int i7) {
-        this.f3742a = i7;
+        this.f3745a = i7;
     }
 
     private final void a(View view) {

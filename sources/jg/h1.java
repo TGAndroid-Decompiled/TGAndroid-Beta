@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import c8.ja;
 import di.a3;
-import di.ub;
+import di.tb;
 import fi.s5;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +46,7 @@ import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.Cells.f5;
 import org.telegram.ui.Cells.h2;
 import org.telegram.ui.Components.bn;
-import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.e90;
 import org.telegram.ui.Components.eq;
 import org.telegram.ui.Components.fq;
 import org.telegram.ui.Components.i9;
@@ -82,7 +82,7 @@ public final class h1 extends tj0 implements is {
     public long T;
     public TLRPC.TL_inlineBotSwitchPM U;
     public TLRPC.TL_inlineBotWebView V;
-    public final d90 W;
+    public final e90 W;
     public a0.h X;
     public int Y;
     public int Z;
@@ -118,7 +118,7 @@ public final class h1 extends tj0 implements is {
     public boolean f17119c = true;
     public boolean d = true;
     public boolean f17122e = true;
-    public int f17124f = m10.f24934t0;
+    public int f17124f = m10.f24940t0;
     public boolean f17125f0 = true;
     public boolean f17126g0 = true;
     public boolean f17128i0 = true;
@@ -128,19 +128,19 @@ public final class h1 extends tj0 implements is {
     public boolean M0 = false;
     public int N0 = -1;
 
-    public h1(Context context, long j3, long j10, d90 d90Var, e6 e6Var, boolean z10) {
+    public h1(Context context, long j3, long j10, e90 e90Var, e6 e6Var, boolean z10) {
         this.I0 = e6Var;
         this.h = context;
-        this.W = d90Var;
+        this.W = e90Var;
         this.f17132n = j3;
         this.f17139s = z10;
         this.f17137r = j10;
         z1 z1Var = new z1(true);
         this.f17146x = z1Var;
         z1Var.f17344a = new ia.d(this, 3);
-        xi.e eVar = (xi.e) new ms(ns.f(this.f17124f), this).f25092b;
+        xi.e eVar = (xi.e) new ms(ns.f(this.f17124f), this).f25095b;
         eVar.c(ns.X0);
-        eVar.c(ns.f25600x0);
+        eVar.c(ns.f25601x0);
         this.K0 = eVar;
         eVar.c(ns.Y1);
         eVar.c(ns.Z1);
@@ -518,7 +518,7 @@ public final class h1 extends tj0 implements is {
         TLRPC.Chat chat;
         this.f17142u0 = 0;
         this.J0.p();
-        d90 d90Var = this.W;
+        e90 e90Var = this.W;
         if (user != null && user.bot && user.bot_inline_placeholder != null) {
             this.f17147x0 = user;
             long j3 = user.f28200id;
@@ -527,17 +527,17 @@ public final class h1 extends tj0 implements is {
                 this.T = j3;
             }
             an anVar2 = this.H0;
-            if (anVar2 != null && (chat = anVar2.f45173e) != null) {
+            if (anVar2 != null && (chat = anVar2.f45172e) != null) {
                 boolean t6 = t3.t(chat);
                 this.f17128i0 = t6;
                 if (!t6) {
                     f();
-                    d90Var.a(true);
+                    e90Var.a(true);
                     return;
                 }
             }
             if (this.f17147x0.bot_inline_geo) {
-                SharedPreferences sharedPreferences = np.s1(this.f17124f).f25270e7;
+                SharedPreferences sharedPreferences = np.s1(this.f17124f).f25273e7;
                 if (!sharedPreferences.getBoolean("inlinegeo_" + this.f17147x0.f28200id, false) && (anVar = this.H0) != null && anVar.getParentActivity() != null) {
                     TLRPC.User user2 = this.f17147x0;
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.H0.getParentActivity());
@@ -563,8 +563,8 @@ public final class h1 extends tj0 implements is {
             this.U = null;
             return;
         }
-        if (d90Var != null) {
-            d90Var.b(true);
+        if (e90Var != null) {
+            e90Var.b(true);
         }
         T(true, this.f17147x0, this.f17140s0, "");
     }
@@ -641,9 +641,9 @@ public final class h1 extends tj0 implements is {
             this.f17140s0 = null;
             return;
         }
-        d90 d90Var = this.W;
-        if (d90Var != null) {
-            d90Var.b(false);
+        e90 e90Var = this.W;
+        if (e90Var != null) {
+            e90Var.b(false);
         }
     }
 
@@ -658,9 +658,9 @@ public final class h1 extends tj0 implements is {
     public final void W(TLRPC.ChatFull chatFull) {
         an anVar;
         TLRPC.Chat chat;
-        this.f17124f = m10.f24934t0;
+        this.f17124f = m10.f24940t0;
         this.f17144w = chatFull;
-        if (!this.f17128i0 && this.f17147x0 != null && (anVar = this.H0) != null && (chat = anVar.f45173e) != null) {
+        if (!this.f17128i0 && this.f17147x0 != null && (anVar = this.H0) != null && (chat = anVar.f45172e) != null) {
             boolean t6 = t3.t(chat);
             this.f17128i0 = t6;
             if (t6) {
@@ -760,7 +760,7 @@ public final class h1 extends tj0 implements is {
                     return;
                 }
                 return;
-            } else if (i7 == ns.f25600x0 && ((Integer) objArr[0]).intValue() == 0 && (t0Var = this.G0) != null) {
+            } else if (i7 == ns.f25601x0 && ((Integer) objArr[0]).intValue() == 0 && (t0Var = this.G0) != null) {
                 org.telegram.messenger.g0.h3(t0Var);
                 this.G0 = null;
                 return;
@@ -790,7 +790,7 @@ public final class h1 extends tj0 implements is {
         String str;
         String str2;
         int i7 = this.N0;
-        d90 d90Var = this.W;
+        e90 e90Var = this.W;
         int i10 = 0;
         if (i7 != -1 && this.L0 != null) {
             int K = K();
@@ -813,9 +813,9 @@ public final class h1 extends tj0 implements is {
                         Object obj2 = objArr[i10];
                         if (!(obj instanceof kg.u1)) {
                             if (obj != obj2 && ((!(obj instanceof g1) || !(obj2 instanceof g1) || ((g1) obj).f17080a != ((g1) obj2).f17080a) && ((!(obj instanceof TLRPC.User) || !(obj2 instanceof TLRPC.User) || ((TLRPC.User) obj).f28200id != ((TLRPC.User) obj2).f28200id) && ((!(obj instanceof TLRPC.Chat) || !(obj2 instanceof TLRPC.Chat) || ((TLRPC.Chat) obj).f28051id != ((TLRPC.Chat) obj2).f28051id) && (!(obj instanceof String) || !(obj2 instanceof String) || !obj.equals(obj2)))))) {
-                                if ((obj instanceof oi) && (obj2 instanceof oi) && (str = (oiVar = (oi) obj).f25765b) != null) {
+                                if ((obj instanceof oi) && (obj2 instanceof oi) && (str = (oiVar = (oi) obj).f25766b) != null) {
                                     oi oiVar2 = (oi) obj2;
-                                    if (str.equals(oiVar2.f25765b) && (str2 = oiVar.f25764a) != null && str2.equals(oiVar2.f25764a)) {
+                                    if (str.equals(oiVar2.f25766b) && (str2 = oiVar.f25765a) != null && str2.equals(oiVar2.f25765a)) {
                                     }
                                 }
                             }
@@ -829,15 +829,15 @@ public final class h1 extends tj0 implements is {
             }
             p(min, i7 - min);
             o(min, K - min);
-            if (z10 && d90Var != null) {
-                d90Var.c();
+            if (z10 && e90Var != null) {
+                e90Var.c();
             }
             this.L0 = objArr;
             return;
         }
-        if (d90Var != null) {
+        if (e90Var != null) {
             this.N0 = K();
-            d90Var.c();
+            e90Var.c();
         }
         super.f();
         int K2 = K();
@@ -929,7 +929,7 @@ public final class h1 extends tj0 implements is {
                     w7Var.f31895r = false;
                 }
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) a1Var.getLayoutParams();
-                if (!m10.i(m10.f24934t0).q()) {
+                if (!m10.i(m10.f24940t0).q()) {
                     int L = org.telegram.messenger.g0.L(24.0f);
                     layoutParams.width = L;
                     layoutParams.height = L;
@@ -946,14 +946,14 @@ public final class h1 extends tj0 implements is {
                     layoutParams.rightMargin = org.telegram.messenger.g0.L(8.0f);
                     a1Var.setPadding(org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f10));
                 }
-                a1Var.setLocked(!m10.i(m10.f24934t0).q());
+                a1Var.setLocked(!m10.i(m10.f24940t0).q());
                 org.telegram.messenger.g0.Y3(a1Var, w7Var.f31895r, 0.9f, true, false);
                 w7Var.invalidate();
                 w7Var.setClearsInputField(true);
             }
         } else if (i11 == 3) {
             TextView textView = (TextView) view;
-            TLRPC.Chat chat = this.H0.f45173e;
+            TLRPC.Chat chat = this.H0.f45172e;
             if (chat != null) {
                 if (!t3.N(chat) && (tL_chatBannedRights = chat.default_banned_rights) != null && tL_chatBannedRights.send_inline) {
                     textView.setText(hd.M0(2131749544, null));
@@ -1021,7 +1021,7 @@ public final class h1 extends tj0 implements is {
                 }
                 TLRPC.Chat chat2 = this.m0;
                 if (chat2 == null && (anVar = this.H0) != null) {
-                    chat2 = anVar.f45173e;
+                    chat2 = anVar.f45172e;
                 }
                 f1Var.a(i12, str3, chat2);
             } else if (i11 == 7) {
@@ -1066,7 +1066,7 @@ public final class h1 extends tj0 implements is {
                                 }
                                 boolean booleanValue = bool.booleanValue();
                                 String str4 = (String) this.K.get(i10);
-                                ub ubVar = f5Var.f30234b;
+                                tb tbVar = f5Var.f30234b;
                                 TextView textView2 = f5Var.f30235c;
                                 t8 t8Var = f5Var.d;
                                 i9 i9Var2 = f5Var.f30233a;
@@ -1087,13 +1087,13 @@ public final class h1 extends tj0 implements is {
                                 if (booleanValue) {
                                     eq eqVar = new eq(2131231942, 0);
                                     eqVar.a(j6.A6);
-                                    eqVar.f34414n = 1;
+                                    eqVar.f34413n = 1;
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
                                     spannableStringBuilder.append((CharSequence) " *");
                                     spannableStringBuilder.setSpan(eqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-                                    ubVar.setText(spannableStringBuilder);
+                                    tbVar.setText(spannableStringBuilder);
                                 } else {
-                                    ubVar.setText(str4);
+                                    tbVar.setText(str4);
                                 }
                                 textView2.setText(org.telegram.messenger.j6.m(str, textView2.getPaint().getFontMetricsInt(), false, null, 0));
                             }
@@ -1148,7 +1148,7 @@ public final class h1 extends tj0 implements is {
                                         q6.x(bnVar, colorDrawable, j6.f28792a7, e6Var, PorterDuff.Mode.SRC_IN);
                                     }
                                     fq fqVar = new fq(colorDrawable, j6.X0(context, 2131231229, j6.w0(j6.f28813b7, e6Var)), 0, 0);
-                                    fqVar.f34678x = true;
+                                    fqVar.f34682x = true;
                                     bnVar.setBackground(fqVar);
                                     view = bnVar;
                                 }
@@ -1175,13 +1175,13 @@ public final class h1 extends tj0 implements is {
                     textView3.setSingleLine(true);
                     textView3.setEllipsize(TextUtils.TruncateAt.END);
                     textView3.setMaxLines(1);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         i10 = 5;
                     } else {
                         i10 = 3;
                     }
                     textView3.setGravity(i10);
-                    if (!hd.f24101a0) {
+                    if (!hd.f24104a0) {
                         i11 = 3;
                     }
                     frameLayout2.addView(textView3, ja.d(-2, -2.0f, i11 | 16, 14.0f, 0.0f, 14.0f, 0.0f));

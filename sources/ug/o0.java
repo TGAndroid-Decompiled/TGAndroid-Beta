@@ -26,7 +26,7 @@ public final class o0 extends FrameLayout implements m0 {
         this.f58239b = new ArrayList();
         this.f58238a = e6Var;
         for (w80 w80Var : w80.values()) {
-            if (w80Var.f52496e) {
+            if (w80Var.f52499e) {
                 this.f58239b.add(w80Var);
             }
             if (this.f58239b.size() == 3) {
@@ -65,8 +65,8 @@ public final class o0 extends FrameLayout implements m0 {
         r1Var.c();
         paint.setColor(-1);
         qVar.setLayoutParams(ja.d(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
-        qVar.setForeground(w80Var.f52495c);
-        qVar.setBackgroundResource(w80Var.f52494b);
+        qVar.setForeground(w80Var.f52498c);
+        qVar.setBackgroundResource(w80Var.f52497b);
         qVar.setPadding(org.telegram.messenger.g0.L(8.0f));
         qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(32.0f));
         addView(qVar);
@@ -103,7 +103,7 @@ public final class o0 extends FrameLayout implements m0 {
             return;
         }
         float abs = Math.abs(f10 / getMeasuredWidth());
-        float interpolation = er.f34422i.getInterpolation(abs);
+        float interpolation = er.f34421i.getInterpolation(abs);
         int right = getRight();
         n0 n0Var = this.f58241e;
         n0Var.setTranslationX(((n0Var.getWidth() * 1.5f) + (right - n0Var.getRight()) + org.telegram.messenger.g0.L(32.0f)) * interpolation);
@@ -119,7 +119,7 @@ public final class o0 extends FrameLayout implements m0 {
         float i10 = Utilities.i(org.telegram.messenger.g0.T1(1.0f, 1.8f, abs), 1.0f, 0.0f);
         n0Var2.setScaleX(i10);
         n0Var2.setScaleY(i10);
-        float interpolation2 = er.f34421g.getInterpolation(abs);
+        float interpolation2 = er.f34420g.getInterpolation(abs);
         int left = getLeft();
         n0 n0Var3 = this.d;
         n0Var3.setTranslationX((((left - n0Var3.getLeft()) - (n0Var3.getWidth() * 2.5f)) + org.telegram.messenger.g0.L(32.0f)) * interpolation2);

@@ -15,15 +15,15 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.c20, org.telegram.messenger.pi, r4, org.telegram.messenger.kc, org.telegram.messenger.nr, p4.l0, m9.q, w5.b, v5.e, h2.j {
-    public final int f36563a;
-    public final Object f36564b;
-    public final Object f36565c;
+    public final int f36551a;
+    public final Object f36552b;
+    public final Object f36553c;
     public final Object d;
 
     public km(Object obj, Object obj2, Object obj3, int i7) {
-        this.f36563a = i7;
-        this.f36564b = obj;
-        this.f36565c = obj2;
+        this.f36551a = i7;
+        this.f36552b = obj;
+        this.f36553c = obj2;
         this.d = obj3;
     }
 
@@ -31,12 +31,12 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
     public void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i7;
-        b01 b01Var = (b01) this.f36564b;
-        dp dpVar = (dp) this.f36565c;
+        b01 b01Var = (b01) this.f36552b;
+        dp dpVar = (dp) this.f36553c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         org.telegram.messenger.ic p10 = imageReceiver.p();
         if (z10 && p10 != null && (bitmap = p10.f24374c) != null) {
-            Drawable drawable = dpVar.f34023b;
+            Drawable drawable = dpVar.f34010b;
             if (drawable instanceof ra0) {
                 ra0 ra0Var = (ra0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
@@ -59,8 +59,8 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void a(int i7, TLObject tLObject) {
-        rr rrVar = (rr) this.f36564b;
-        ArrayList arrayList = (ArrayList) this.f36565c;
+        rr rrVar = (rr) this.f36552b;
+        ArrayList arrayList = (ArrayList) this.f36553c;
         ArrayList arrayList2 = (ArrayList) this.d;
         long d = org.telegram.messenger.m5.d(tLObject);
         int size = arrayList.size();
@@ -78,7 +78,7 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void accept(Object obj) {
-        ((x2.j0) obj).C(((a8.xa) this.f36564b).f713b, (x2.f0) this.f36565c, (x2.b0) this.d);
+        ((x2.j0) obj).C(((a8.xa) this.f36552b).f713b, (x2.f0) this.f36553c, (x2.b0) this.d);
     }
 
     @Override
@@ -88,11 +88,11 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void c(String str, ArrayList arrayList) {
-        switch (this.f36563a) {
+        switch (this.f36551a) {
             case 2:
                 Runnable runnable = (Runnable) this.d;
-                lx lxVar = ((kx) this.f36564b).f36647a;
-                if (((String) this.f36565c).equals(lxVar.f36924w)) {
+                lx lxVar = ((kx) this.f36552b).f36635a;
+                if (((String) this.f36553c).equals(lxVar.f36924w)) {
                     lxVar.f36925x = str;
                     lxVar.f36921n.addAll(arrayList);
                     runnable.run();
@@ -100,14 +100,14 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 }
                 return;
             default:
-                fy fyVar = (fy) this.f36564b;
-                HashMap hashMap = (HashMap) this.f36565c;
+                fy fyVar = (fy) this.f36552b;
+                HashMap hashMap = (HashMap) this.f36553c;
                 Runnable runnable2 = (Runnable) this.d;
-                HashMap hashMap2 = fyVar.f34739f;
-                if (fyVar.f34744x.N == fyVar.f34736b) {
+                HashMap hashMap2 = fyVar.f34743f;
+                if (fyVar.f34748x.N == fyVar.f34740b) {
                     int size = arrayList.size();
                     for (int i7 = 0; i7 < size; i7++) {
-                        String str2 = ((org.telegram.messenger.oi) arrayList.get(i7)).f25764a;
+                        String str2 = ((org.telegram.messenger.oi) arrayList.get(i7)).f25765a;
                         ArrayList arrayList2 = (ArrayList) hashMap.get(str2);
                         if (arrayList2 != null && !arrayList2.isEmpty() && !hashMap2.containsKey(arrayList2)) {
                             hashMap2.put(arrayList2, str2);
@@ -123,9 +123,9 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void f(p4.v vVar) {
-        Bundle bundle = (Bundle) this.f36565c;
+        Bundle bundle = (Bundle) this.f36553c;
         ResultReceiver resultReceiver = (ResultReceiver) this.d;
-        p4.d0 d0Var = ((p4.m0) this.f36564b).h;
+        p4.d0 d0Var = ((p4.m0) this.f36552b).h;
         if (bundle == null) {
             Bundle bundle2 = Bundle.EMPTY;
         }
@@ -137,10 +137,10 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public Object g() {
-        t5.a aVar = (t5.a) this.f36564b;
-        o5.i iVar = (o5.i) this.f36565c;
+        t5.b bVar = (t5.b) this.f36552b;
+        o5.i iVar = (o5.i) this.f36553c;
         o5.h hVar = (o5.h) this.d;
-        v5.g gVar = (v5.g) aVar.d;
+        v5.g gVar = (v5.g) bVar.d;
         gVar.getClass();
         l5.d dVar = iVar.f21349c;
         String str = hVar.f21339a;
@@ -155,16 +155,16 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
             r.b.t(sb2, str2, c10);
         }
         ((Long) gVar.c(new km(gVar, hVar, iVar, 14))).getClass();
-        aVar.f57040a.H(iVar, 1, false);
+        bVar.f57044a.H(iVar, 1, false);
         return null;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f36563a;
+        int i10 = this.f36551a;
         Object obj = this.d;
-        Object obj2 = this.f36565c;
-        Object obj3 = this.f36564b;
+        Object obj2 = this.f36553c;
+        Object obj3 = this.f36552b;
         switch (i10) {
             case 0:
                 jn jnVar = (jn) obj3;
@@ -177,7 +177,7 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 ys0 ys0Var = (ys0) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 ((fi.c6) obj2).F(arrayList);
-                cc.a0(ys0Var.f42150y1).Q(2131624052, 36, org.telegram.messenger.hd.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
+                cc.a0(ys0Var.f42152y1).Q(2131624052, 36, org.telegram.messenger.hd.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
                 ys0Var.V(false);
                 return;
             case 8:
@@ -206,15 +206,15 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void j(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f36564b;
-        org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f36565c;
+        TLRPC.Chat chat = (TLRPC.Chat) this.f36552b;
+        org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f36553c;
         org.telegram.ui.Components.voip.c2.l(chat, null, true, null, e2Var.getParentActivity(), e2Var, (org.telegram.messenger.c) this.d);
     }
 
     public km(p4.m0 m0Var, p4.i1 i1Var, Bundle bundle, ResultReceiver resultReceiver) {
-        this.f36563a = 9;
-        this.f36564b = m0Var;
-        this.f36565c = bundle;
+        this.f36551a = 9;
+        this.f36552b = m0Var;
+        this.f36553c = bundle;
         this.d = resultReceiver;
     }
 
@@ -228,10 +228,10 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public m9.y apply(Object obj) {
-        int i7 = this.f36563a;
+        int i7 = this.f36551a;
         Object obj2 = this.d;
-        Object obj3 = this.f36565c;
-        Object obj4 = this.f36564b;
+        Object obj3 = this.f36553c;
+        Object obj4 = this.f36552b;
         switch (i7) {
             case 10:
                 p4.d0 d0Var = (p4.d0) obj4;
@@ -247,7 +247,7 @@ public final class km implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 p4.v vVar = (p4.v) obj3;
                 List list = (List) obj;
                 Handler handler2 = d0Var2.f54627l;
-                org.telegram.ui.web.e1 e1Var2 = new org.telegram.ui.web.e1(d0Var2, vVar, new org.telegram.ui.hn0(d0Var2, (p4.z0) obj2, vVar, list, 28));
+                org.telegram.ui.web.e1 e1Var2 = new org.telegram.ui.web.e1(d0Var2, vVar, new org.telegram.ui.ok0(d0Var2, (p4.z0) obj2, vVar, list, 29));
                 p4.m1 m1Var2 = new p4.m1(0);
                 String str2 = h2.l0.f13471a;
                 ?? obj6 = new Object();

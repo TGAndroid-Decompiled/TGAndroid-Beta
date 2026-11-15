@@ -35,7 +35,7 @@ public final class f2 implements Runnable {
                 }
             default:
                 this.f28526b.dismiss();
-                ns.f(m10.f24934t0).k(189, new Object[0]);
+                ns.f(m10.f24940t0).k(189, new Object[0]);
                 org.telegram.messenger.g0.i3(new ah0(25), 220L);
                 return;
         }

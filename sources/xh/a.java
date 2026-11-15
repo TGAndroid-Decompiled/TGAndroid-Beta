@@ -50,7 +50,7 @@ public final class a extends Path {
                     break;
                 }
                 tg0 tg0Var = (tg0) arrayList.get(i7);
-                if (f15 >= tg0Var.f39697b && f15 <= tg0Var.f39698c) {
+                if (f15 >= tg0Var.f39694b && f15 <= tg0Var.f39695c) {
                     fVar.f60002y = true;
                     break;
                 }
@@ -73,7 +73,7 @@ public final class a extends Path {
         }
         fVar.setBounds(max, i10, (int) Math.min(f12, f14), (int) f13);
         fVar.h(this.f59945b.getPaint().getColor());
-        fVar.f59998t = qs.f38758c;
+        fVar.f59998t = qs.f38756c;
         int width = fVar.getBounds().width() / g0.L(6.0f);
         int i12 = f.B;
         int b10 = i9.b(width * i12, i12, f.A);

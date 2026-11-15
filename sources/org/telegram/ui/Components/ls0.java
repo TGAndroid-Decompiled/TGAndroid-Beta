@@ -24,14 +24,14 @@ public final class ls0 extends aj0 {
 
     @Override
     public final String F(int i7) {
-        ArrayList arrayList = this.f36900f.f42144w1[this.d].f37695e;
+        ArrayList arrayList = this.f36900f.f42146w1[this.d].f37684e;
         if (arrayList != null && !arrayList.isEmpty()) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (i7 <= ((yr0) arrayList.get(i10)).f42067b) {
-                    return ((yr0) arrayList.get(i10)).f42066a;
+                if (i7 <= ((yr0) arrayList.get(i10)).f42069b) {
+                    return ((yr0) arrayList.get(i10)).f42068a;
                 }
             }
-            return ((yr0) i5.c.h(1, arrayList)).f42066a;
+            return ((yr0) i5.c.h(1, arrayList)).f42068a;
         }
         return "";
     }
@@ -70,19 +70,19 @@ public final class ls0 extends aj0 {
     public final int b() {
         int i7;
         int i10;
-        ns0[] ns0VarArr = this.f36900f.f42144w1;
+        ns0[] ns0VarArr = this.f36900f.f42146w1;
         int i11 = this.d;
         ns0 ns0Var = ns0VarArr[i11];
-        if (ns0Var.f37704o) {
+        if (ns0Var.f37693o) {
             return ns0Var.e();
         }
-        if (ns0Var.f37692a.size() == 0 && !ns0VarArr[i11].f37697g) {
+        if (ns0Var.f37681a.size() == 0 && !ns0VarArr[i11].f37686g) {
             return 1;
         }
-        if (ns0VarArr[i11].f37692a.size() == 0) {
+        if (ns0VarArr[i11].f37681a.size() == 0) {
             ns0 ns0Var2 = ns0VarArr[i11];
-            boolean[] zArr = ns0Var2.f37698i;
-            if ((!zArr[0] || !zArr[1]) && ns0Var2.f37701l) {
+            boolean[] zArr = ns0Var2.f37687i;
+            if ((!zArr[0] || !zArr[1]) && ns0Var2.f37690l) {
                 return 0;
             }
         }
@@ -90,19 +90,19 @@ public final class ls0 extends aj0 {
             int size = ns0VarArr[i11].c().size() + ns0VarArr[i11].d();
             if (size != 0) {
                 ns0 ns0Var3 = ns0VarArr[i11];
-                boolean[] zArr2 = ns0Var3.f37698i;
+                boolean[] zArr2 = ns0Var3.f37687i;
                 if (!zArr2[0] || !zArr2[1]) {
-                    boolean z10 = ns0Var3.f37707r;
+                    boolean z10 = ns0Var3.f37696r;
                     if (z10) {
-                        i7 = ns0Var3.f37710u;
+                        i7 = ns0Var3.f37699u;
                     } else {
-                        i7 = ns0Var3.f37703n;
+                        i7 = ns0Var3.f37692n;
                     }
                     if (i7 != 0) {
                         if (z10) {
-                            i10 = ns0Var3.f37710u;
+                            i10 = ns0Var3.f37699u;
                         } else {
-                            i10 = ns0Var3.f37703n;
+                            i10 = ns0Var3.f37692n;
                         }
                         return i10 + size;
                     }
@@ -117,14 +117,14 @@ public final class ls0 extends aj0 {
 
     @Override
     public final int d(int i7) {
-        ns0[] ns0VarArr = this.f36900f.f42144w1;
+        ns0[] ns0VarArr = this.f36900f.f42146w1;
         int i10 = this.d;
-        if (ns0VarArr[i10].f37694c.size() == 0 && !ns0VarArr[i10].f37697g) {
+        if (ns0VarArr[i10].f37683c.size() == 0 && !ns0VarArr[i10].f37686g) {
             return 9;
         }
         ns0 ns0Var = ns0VarArr[i10];
-        int i11 = ns0Var.f37702m;
-        if (i7 >= i11 && i7 < ns0Var.f37692a.size() + i11) {
+        int i11 = ns0Var.f37691m;
+        if (i7 >= i11 && i7 < ns0Var.f37681a.size() + i11) {
             if (i10 != 2 && i10 != 4) {
                 return 7;
             }
@@ -135,7 +135,7 @@ public final class ls0 extends aj0 {
 
     @Override
     public final int e() {
-        return this.f36900f.f42144w1[this.d].e();
+        return this.f36900f.f42146w1[this.d].e();
     }
 
     @Override
@@ -145,17 +145,17 @@ public final class ls0 extends aj0 {
         boolean z11;
         char c11;
         ys0 ys0Var = this.f36900f;
-        long j3 = ys0Var.f42114m1;
-        SparseArray[] sparseArrayArr = ys0Var.f42085c1;
-        ns0 ns0Var = ys0Var.f42144w1[this.d];
-        ArrayList arrayList = ns0Var.f37692a;
+        long j3 = ys0Var.f42116m1;
+        SparseArray[] sparseArrayArr = ys0Var.f42087c1;
+        ns0 ns0Var = ys0Var.f42146w1[this.d];
+        ArrayList arrayList = ns0Var.f37681a;
         int i10 = e1Var.f58539f;
         View view = e1Var.f58535a;
         boolean z12 = false;
         if (i10 != 7) {
             if (i10 == 10 && (view instanceof org.telegram.ui.Cells.f7)) {
                 org.telegram.ui.Cells.f7 f7Var = (org.telegram.ui.Cells.f7) view;
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) arrayList.get(i7 - ns0Var.f37702m);
+                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) arrayList.get(i7 - ns0Var.f37691m);
                 if (i7 != arrayList.size() - 1) {
                     z11 = true;
                 } else {
@@ -163,7 +163,7 @@ public final class ls0 extends aj0 {
                 }
                 f7Var.f(gjVar, z11);
                 if (ys0Var.F1) {
-                    if (org.telegram.messenger.gj.B0(gjVar.f23817k) == j3) {
+                    if (org.telegram.messenger.gj.B0(gjVar.f23819k) == j3) {
                         c11 = 0;
                     } else {
                         c11 = 1;
@@ -171,15 +171,15 @@ public final class ls0 extends aj0 {
                     if (sparseArrayArr[c11].indexOfKey(gjVar.e1()) >= 0) {
                         z12 = true;
                     }
-                    f7Var.e(z12, !ys0Var.f42091e1);
+                    f7Var.e(z12, !ys0Var.f42093e1);
                     return;
                 }
-                f7Var.e(false, !ys0Var.f42091e1);
+                f7Var.e(false, !ys0Var.f42093e1);
             }
         } else if (!(view instanceof org.telegram.ui.Cells.g7)) {
         } else {
             org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
-            org.telegram.messenger.gj gjVar2 = (org.telegram.messenger.gj) arrayList.get(i7 - ns0Var.f37702m);
+            org.telegram.messenger.gj gjVar2 = (org.telegram.messenger.gj) arrayList.get(i7 - ns0Var.f37691m);
             if (i7 != arrayList.size() - 1) {
                 z10 = true;
             } else {
@@ -187,7 +187,7 @@ public final class ls0 extends aj0 {
             }
             g7Var.c(gjVar2, z10);
             if (ys0Var.F1) {
-                if (org.telegram.messenger.gj.B0(gjVar2.f23817k) == j3) {
+                if (org.telegram.messenger.gj.B0(gjVar2.f23819k) == j3) {
                     c10 = 0;
                 } else {
                     c10 = 1;
@@ -195,10 +195,10 @@ public final class ls0 extends aj0 {
                 if (sparseArrayArr[c10].indexOfKey(gjVar2.e1()) >= 0) {
                     z12 = true;
                 }
-                g7Var.b(z12, !ys0Var.f42091e1);
+                g7Var.b(z12, !ys0Var.f42093e1);
                 return;
             }
-            g7Var.b(false, !ys0Var.f42091e1);
+            g7Var.b(false, !ys0Var.f42093e1);
         }
     }
 
@@ -235,7 +235,7 @@ public final class ls0 extends aj0 {
                         view = view2;
                     }
                 } else {
-                    p3 X = ys0.X(i10, ys0Var.f42114m1, context, e6Var);
+                    p3 X = ys0.X(i10, ys0Var.f42116m1, context, e6Var);
                     X.setLayoutParams(new v4.p0(-1, -1));
                     return new v4.e1(X);
                 }

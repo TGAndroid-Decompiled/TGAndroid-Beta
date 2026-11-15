@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import android.util.SparseIntArray;
 public final class et0 extends v4.o {
-    public int f46918b;
-    public final SparseIntArray f46919c = new SparseIntArray();
+    public int f46902b;
+    public final SparseIntArray f46903c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
-    public final PrivacyControlActivity f46920e;
+    public final PrivacyControlActivity f46904e;
 
     public et0(PrivacyControlActivity privacyControlActivity) {
-        this.f46920e = privacyControlActivity;
+        this.f46904e = privacyControlActivity;
     }
 
     public static void g(int i7, int i10, SparseIntArray sparseIntArray) {
@@ -24,7 +24,7 @@ public final class et0 extends v4.o {
 
     @Override
     public final boolean b(int i7, int i10) {
-        int i11 = this.f46919c.get(i7, -1);
+        int i11 = this.f46903c.get(i7, -1);
         if (i11 == this.d.get(i10, -1) && i11 >= 0) {
             return true;
         }
@@ -33,12 +33,12 @@ public final class et0 extends v4.o {
 
     @Override
     public final int d() {
-        return this.f46920e.f43037t0;
+        return this.f46904e.f43037t0;
     }
 
     @Override
     public final int e() {
-        return this.f46918b;
+        return this.f46902b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
@@ -51,7 +51,7 @@ public final class et0 extends v4.o {
         int i15;
         int i16;
         sparseIntArray.clear();
-        PrivacyControlActivity privacyControlActivity = this.f46920e;
+        PrivacyControlActivity privacyControlActivity = this.f46904e;
         g(1, privacyControlActivity.O, sparseIntArray);
         g(2, privacyControlActivity.P, sparseIntArray);
         i7 = privacyControlActivity.everybodyRow;

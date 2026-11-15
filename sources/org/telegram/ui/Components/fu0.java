@@ -8,13 +8,13 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 public final class fu0 extends CharacterStyle {
-    public final Paint f34700a;
-    public final Path f34701b;
+    public final Paint f34704a;
+    public final Path f34705b;
 
     public fu0() {
         Paint paint = new Paint(1);
-        this.f34700a = paint;
-        this.f34701b = new Path();
+        this.f34704a = paint;
+        this.f34705b = new Path();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -55,13 +55,13 @@ public final class fu0 extends CharacterStyle {
                         float L = org.telegram.messenger.g0.L(1.33f);
                         float L2 = org.telegram.messenger.g0.L(10.0f);
                         float L3 = org.telegram.messenger.g0.L(2.0f);
-                        Paint paint = fu0Var.f34700a;
+                        Paint paint = fu0Var.f34704a;
                         Spanned spanned2 = spanned;
                         fu0[] fu0VarArr2 = fu0VarArr;
                         int i11 = i7;
                         paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Fi, false));
                         paint.setStrokeWidth(L);
-                        Path path = fu0Var.f34701b;
+                        Path path = fu0Var.f34705b;
                         path.rewind();
                         path.moveTo(primaryHorizontal, lineBottom);
                         float f10 = primaryHorizontal;

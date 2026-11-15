@@ -15,19 +15,19 @@ public abstract class x20 extends p41 {
     public int X;
     public boolean Y;
     public int Z;
-    public String f41539a0;
-    public String f41540b0;
-    public int f41541c0;
-    public org.telegram.ui.f0 f41542d0;
-    public final boolean[] f41543e0;
+    public String f41542a0;
+    public String f41543b0;
+    public int f41544c0;
+    public org.telegram.ui.f0 f41545d0;
+    public final boolean[] f41546e0;
 
     public x20(uj0 uj0Var, Context context, int i7) {
         super(uj0Var, context, i7, 0, false, null, null);
         this.R = new ArrayList();
         this.W = 0;
         this.X = -1;
-        this.f41543e0 = new boolean[1];
-        this.f38203w = new d(this, 16);
+        this.f41546e0 = new boolean[1];
+        this.f38201w = new d(this, 16);
         this.Q = i7;
     }
 
@@ -68,17 +68,17 @@ public abstract class x20 extends p41 {
             ConnectionsManager.getInstance(this.Q).cancelRequest(this.X, true);
             this.X = -1;
         }
-        org.telegram.messenger.g0.r(this.f41542d0);
+        org.telegram.messenger.g0.r(this.f41545d0);
         this.W++;
         this.V = false;
     }
 
     public final void X() {
         uj0 uj0Var;
-        if (!TextUtils.isEmpty(this.f41539a0) && !this.Y && !this.V && (uj0Var = this.d) != null) {
+        if (!TextUtils.isEmpty(this.f41542a0) && !this.Y && !this.V && (uj0Var = this.d) != null) {
             for (int i7 = 0; i7 < uj0Var.getChildCount(); i7++) {
                 if (uj0Var.getChildAt(i7) instanceof pz) {
-                    Z(this.f41539a0);
+                    Z(this.f41542a0);
                     return;
                 }
             }
@@ -86,9 +86,9 @@ public abstract class x20 extends p41 {
     }
 
     public final void Z(String str) {
-        this.f41539a0 = str;
-        String Y = Y(str, this.f41543e0);
-        if (!TextUtils.equals(this.f41540b0, Y)) {
+        this.f41542a0 = str;
+        String Y = Y(str, this.f41546e0);
+        if (!TextUtils.equals(this.f41543b0, Y)) {
             this.R.clear();
             this.Y = false;
             this.Z = 0;
@@ -104,7 +104,7 @@ public abstract class x20 extends p41 {
         this.V = true;
         O(true);
         org.telegram.ui.f0 f0Var = new org.telegram.ui.f0(this, i7, Y, 13);
-        this.f41542d0 = f0Var;
+        this.f41545d0 = f0Var;
         org.telegram.messenger.g0.i3(f0Var, 300L);
     }
 }

@@ -27,9 +27,9 @@ public final class ac0 implements Runnable {
         dc0 dc0Var = this.f44991b;
         switch (i7) {
             case 0:
-                ce0 ce0Var = dc0Var.f46357b0;
+                ce0 ce0Var = dc0Var.f46329b0;
                 dc0Var.N = false;
-                dc0Var.f46364w.invalidate();
+                dc0Var.f46336w.invalidate();
                 if (tLObject != null) {
                     dc0Var.T = bundle;
                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
@@ -67,7 +67,7 @@ public final class ac0 implements Runnable {
                     return;
                 }
             default:
-                ce0 ce0Var2 = dc0Var.f46357b0;
+                ce0 ce0Var2 = dc0Var.f46329b0;
                 dc0Var.S = false;
                 if (tL_error == null) {
                     ce0Var2.y1(bundle, (TLRPC.TL_auth_sentCode) tLObject, true);

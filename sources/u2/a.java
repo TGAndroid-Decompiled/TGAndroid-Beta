@@ -18,7 +18,7 @@ public final class a implements MediaCodec.OnFrameRenderedListener {
         switch (this.f57728a) {
             case 0:
                 d3.k kVar = this.f57729b;
-                Handler handler = kVar.f7419a;
+                Handler handler = kVar.f7422a;
                 if (Build.VERSION.SDK_INT < 30) {
                     handler.sendMessageAtFrontOfQueue(Message.obtain(handler, 0, (int) (j3 >> 32), (int) j3));
                     return;
@@ -28,7 +28,7 @@ public final class a implements MediaCodec.OnFrameRenderedListener {
                 }
             default:
                 d3.k kVar2 = this.f57729b;
-                Handler handler2 = kVar2.f7419a;
+                Handler handler2 = kVar2.f7422a;
                 if (Build.VERSION.SDK_INT < 30) {
                     handler2.sendMessageAtFrontOfQueue(Message.obtain(handler2, 0, (int) (j3 >> 32), (int) j3));
                     return;

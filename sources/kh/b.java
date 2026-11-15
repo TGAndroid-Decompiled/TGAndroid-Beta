@@ -26,7 +26,7 @@ public final class b extends FrameLayout {
             kqVar.setReverse(this.d);
             addView(this.f18169c, ja.e(-1, 28, 48));
         }
-        this.f18169c.f36586a.c(i7, z10);
+        this.f18169c.f36574a.c(i7, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -50,7 +50,7 @@ public final class b extends FrameLayout {
             aVar.addView(aVar.d, ja.e(46, 46, 17));
         }
         te.a aVar2 = aVar.f18160a;
-        if (!aVar2.f57082f && aVar2.f57081e == 0.0f) {
+        if (!aVar2.f57086f && aVar2.f57085e == 0.0f) {
             aVar.f18163e.f36870c = -1L;
         }
         aVar2.a(z10, z11);

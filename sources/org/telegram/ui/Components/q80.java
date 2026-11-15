@@ -28,7 +28,7 @@ public abstract class q80 {
     public static TL_iv.RichText a(kf.p pVar, TL_iv.PageBlock pageBlock) {
         n80 n80Var = new n80(pageBlock);
         pVar.a(n80Var);
-        return k(l(n80.x(n80Var.f37489c)));
+        return k(l(n80.x(n80Var.f37488c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -140,20 +140,20 @@ public abstract class q80 {
 
     public static File i(org.telegram.messenger.gj gjVar) {
         File file;
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         int i7 = gjVar.K1;
         if (!TextUtils.isEmpty(message.attachPath)) {
-            file = new File(gjVar.f23817k.attachPath);
+            file = new File(gjVar.f23819k.attachPath);
         } else {
             file = null;
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(gjVar.f23817k, false, true);
+            file = org.telegram.messenger.w7.M(gjVar.f23819k, false, true);
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(gjVar.f23817k, true, true);
+            file = org.telegram.messenger.w7.M(gjVar.f23819k, true, true);
         }
         if (file == null || !file.exists()) {
             return null;
@@ -191,7 +191,7 @@ public abstract class q80 {
         } else if (richText instanceof p80) {
             p80 p80Var = (p80) richText;
             TL_iv.textStrike k10 = k(p80Var.text);
-            int i10 = p80Var.f38249a;
+            int i10 = p80Var.f38247a;
             if ((i10 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = k10;
@@ -320,7 +320,7 @@ public abstract class q80 {
         if (asList != null) {
             for (bf.a aVar : asList) {
                 if (aVar instanceof cf.b) {
-                    switch (((cf.b) aVar).f4984a) {
+                    switch (((cf.b) aVar).f4987a) {
                         case 0:
                             ((ArrayList) r7Var.f618c).add(new Object());
                             continue;

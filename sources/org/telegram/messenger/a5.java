@@ -20,10 +20,10 @@ public final class a5 implements Runnable {
             case 0:
                 g5 g5Var = this.f22462b;
                 Utilities.f22416e.c(new a5(g5Var, this.f22463c, this.d, 1));
-                if (!g5Var.f23676e) {
-                    g5Var.f23676e = true;
+                if (!g5Var.f23678e) {
+                    g5Var.f23678e = true;
                     vr messagesStorage = g5Var.getMessagesStorage();
-                    messagesStorage.f27220a.c(new ar(messagesStorage, false, 0));
+                    messagesStorage.f27219a.c(new zq(messagesStorage, false, 0));
                     return;
                 }
                 return;
@@ -31,7 +31,7 @@ public final class a5 implements Runnable {
                 g5 g5Var2 = this.f22462b;
                 HashMap hashMap = this.f22463c;
                 HashMap hashMap2 = this.d;
-                g5Var2.f23685l0 = hashMap;
+                g5Var2.f23687l0 = hashMap;
                 g5Var2.m0 = hashMap2;
                 return;
         }

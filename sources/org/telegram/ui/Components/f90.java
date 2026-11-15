@@ -1,15 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public interface f90 {
-    Paint.FontMetricsInt Q();
+public final class f90 extends org.telegram.ui.mq0 {
+    public final j90 f34550a;
 
-    void a0(TLRPC.TL_document tL_document, String str, Object obj);
+    public f90(j90 j90Var) {
+        this.f34550a = j90Var;
+    }
 
-    void p0(int i7, int i10, CharSequence charSequence, boolean z10);
+    @Override
+    public final org.telegram.ui.uq0 E(org.telegram.messenger.gj r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f90.E(org.telegram.messenger.gj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.uq0");
+    }
 
-    void r(TLRPC.BotInlineResult botInlineResult, boolean z10, int i7);
-
-    void v0(String str);
+    @Override
+    public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
+        if (i7 >= 0) {
+            j90 j90Var = this.f34550a;
+            if (i7 < j90Var.Q.size()) {
+                j90Var.f35929y.r((TLRPC.BotInlineResult) j90Var.Q.get(i7), z10, i10);
+            }
+        }
+    }
 }

@@ -31,7 +31,7 @@ public final class i5 extends org.telegram.ui.Components.i9 implements org.teleg
 
     @Override
     public final void C(boolean z10) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50495a.d.Y0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50486a.d.Y0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.J;
         if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f28205id == tL_wallPaper.f28205id)) {
             if (z10) {
@@ -45,7 +45,7 @@ public final class i5 extends org.telegram.ui.Components.i9 implements org.teleg
     @Override
     public final void N(String str) {
         this.I.p(true, 1.0f);
-        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50495a.d.Y0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50486a.d.Y0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.J;
         if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f28205id == tL_wallPaper.f28205id)) {
             v(tL_wallPaper2, false, true);
@@ -61,9 +61,9 @@ public final class i5 extends org.telegram.ui.Components.i9 implements org.teleg
     public final void i(long j3, long j10) {
         RadialProgress2 radialProgress2 = this.I;
         radialProgress2.p(true, Math.min(1.0f, ((float) j3) / ((float) j10)));
-        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50495a.d.Y0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50486a.d.Y0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.J;
-        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f28205id == tL_wallPaper.f28205id)) && radialProgress2.f32661i.f39230q != 10) {
+        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f28205id == tL_wallPaper.f28205id)) && radialProgress2.f32661i.f39227q != 10) {
             v(tL_wallPaper2, false, true);
         }
     }
@@ -148,7 +148,7 @@ public final class i5 extends org.telegram.ui.Components.i9 implements org.teleg
     }
 
     public final void w(boolean z10) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50495a.d.Y0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.U.f50486a.d.Y0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.J;
         if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f28205id == tL_wallPaper.f28205id)) {
             v(tL_wallPaper, false, z10);

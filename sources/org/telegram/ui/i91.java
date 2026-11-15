@@ -49,19 +49,19 @@ public final class i91 extends v4.k {
     @Override
     public final void z(v4.e1 e1Var) {
         u91 u91Var = this.H;
-        View view = u91Var.f51844d1;
+        View view = u91Var.f51845d1;
         if (view == e1Var.f58535a) {
             view.setTranslationX(0.0f);
             z81 z81Var = u91Var.P;
             if (z81Var != null) {
                 z81Var.G.clear();
             }
-            View view2 = u91Var.f51844d1;
+            View view2 = u91Var.f51845d1;
             if (view2 instanceof r91) {
                 r91 r91Var = (r91) view2;
-                r91Var.setTopicIcon(r91Var.f50882d5);
+                r91Var.setTopicIcon(r91Var.f50881d5);
             }
-            u91Var.f51844d1 = null;
+            u91Var.f51845d1 = null;
         }
     }
 }

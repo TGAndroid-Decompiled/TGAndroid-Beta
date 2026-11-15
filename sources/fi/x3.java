@@ -85,7 +85,7 @@ public final class x3 extends FrameLayout {
                     this.f12499r = z12;
                 }
                 if (!this.f12499r) {
-                    this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f23610r) / 300.0f), 1.0f, 0.0f);
+                    this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f23612r) / 300.0f), 1.0f, 0.0f);
                 }
                 z11 = true;
                 f11 = 1.0f;
@@ -109,7 +109,7 @@ public final class x3 extends FrameLayout {
             }
             gh0Var3.e(true, i7);
             if (this.f12499r && z11 && this.d.f34972f >= 0.9f) {
-                this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f23610r) / 300.0f), 1.0f, 0.0f);
+                this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f23612r) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
                 if (f10 != 1.0f) {
@@ -155,7 +155,7 @@ public final class x3 extends FrameLayout {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f12500s = ofFloat;
             ofFloat.addUpdateListener(new ah.h(this, 19));
-            this.f12500s.addListener(new ai.i0(this, 12));
+            this.f12500s.addListener(new ai.j0(this, 12));
             this.f12500s.setInterpolator(er.h);
             this.f12500s.setDuration(340L);
             this.f12500s.start();

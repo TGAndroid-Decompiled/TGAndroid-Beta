@@ -76,7 +76,7 @@ public final class a implements Runnable {
                         int read = dVar2.f54138p.read(byteBuffer, byteBuffer.capacity());
                         if (read > 0) {
                             byteBuffer.limit(read);
-                            m mVar = xr.f27575k;
+                            m mVar = xr.f27577k;
                             if (mVar != null && read > 0) {
                                 mVar.m(byteBuffer, read, 48000, 2);
                             }
@@ -111,9 +111,9 @@ public final class a implements Runnable {
                                                 long j13 = jVar.j();
                                                 double d2 = d;
                                                 if (d2 >= 0.0d) {
-                                                    MediaController mediaController = ((le) jVar.f60756f.f17555b).f24823a;
+                                                    MediaController mediaController = ((le) jVar.f60756f.f17555b).f24829a;
                                                     mediaController.l1 = j13;
-                                                    ns.f(mediaController.f22352i1).k(ns.f25523k2, Integer.valueOf(mediaController.f22350h1), Double.valueOf(d2 / 2.0d));
+                                                    ns.f(mediaController.f22352i1).k(ns.f25524k2, Integer.valueOf(mediaController.f22350h1), Double.valueOf(d2 / 2.0d));
                                                 }
                                             }
                                         }

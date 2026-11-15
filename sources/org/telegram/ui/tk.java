@@ -15,11 +15,11 @@ public final class tk extends org.telegram.ui.Components.vy0 {
         super(activity);
         this.L = anVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f41184b = textPaint;
+        this.f41187b = textPaint;
         Paint paint = new Paint(1);
-        this.f41185c = paint;
+        this.f41188c = paint;
         this.d = org.telegram.messenger.g0.L(24.0f);
-        this.f41186e = new OvershootInterpolator();
+        this.f41189e = new OvershootInterpolator();
         this.I = new org.telegram.ui.Components.ro0(this, 15);
         this.K = new Path();
         int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.yj, e6Var);
@@ -39,7 +39,7 @@ public final class tk extends org.telegram.ui.Components.vy0 {
     public final void d() {
         int i7 = -(org.telegram.messenger.g0.L(16.0f) + getMeasuredHeight());
         an anVar = this.L;
-        int top = anVar.f45118a0.getTop() - anVar.f45278m1.getMeasuredHeight();
+        int top = anVar.f45117a0.getTop() - anVar.f45277m1.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i7)));
     }
 

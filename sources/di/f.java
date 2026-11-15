@@ -10,26 +10,26 @@ import j$.util.Objects;
 import org.telegram.ui.Components.lm0;
 import org.telegram.ui.Components.u20;
 import org.telegram.ui.Components.uj0;
-import org.telegram.ui.Components.x80;
+import org.telegram.ui.Components.y80;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.nt;
 import org.telegram.ui.ou0;
 import org.telegram.ui.uv0;
 import org.telegram.ui.vw0;
 public final class f implements eh.a {
-    public final int f8519a;
-    public final Object f8520b;
-    public final Object f8521c;
+    public final int f8524a;
+    public final Object f8525b;
+    public final Object f8526c;
 
     public f(int i7, Object obj, Object obj2) {
-        this.f8519a = i7;
-        this.f8520b = obj;
-        this.f8521c = obj2;
+        this.f8524a = i7;
+        this.f8525b = obj;
+        this.f8526c = obj2;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f8519a) {
+        switch (this.f8524a) {
             case 0:
             case 1:
             case 2:
@@ -40,7 +40,7 @@ public final class f implements eh.a {
             case 7:
             case 8:
             default:
-                aVar.f8087a = true;
+                aVar.f8090a = true;
                 return;
         }
     }
@@ -50,31 +50,31 @@ public final class f implements eh.a {
         float f10;
         Canvas canvas2;
         float f11;
-        switch (this.f8519a) {
+        switch (this.f8524a) {
             case 0:
-                ((t) this.f8520b).f9420f.d(canvas, rectF, (e) this.f8521c);
+                ((t) this.f8525b).f9420f.d(canvas, rectF, (e) this.f8526c);
                 return;
             case 1:
-                ((mb) this.f8520b).V.d(canvas, rectF, (e) this.f8521c);
+                ((lb) this.f8525b).V.d(canvas, rectF, (e) this.f8526c);
                 return;
             case 2:
-                ((ii.f) this.f8520b).V.d(canvas, rectF, (e) this.f8521c);
+                ((ii.f) this.f8525b).V.d(canvas, rectF, (e) this.f8526c);
                 return;
             case 3:
-                ((org.telegram.ui.y6) this.f8520b).f53439c0.d(canvas, rectF, (org.telegram.ui.a6) this.f8521c);
+                ((org.telegram.ui.y6) this.f8525b).f53443c0.d(canvas, rectF, (org.telegram.ui.a6) this.f8526c);
                 return;
             case 4:
-                ((u20) this.f8520b).f39881n.L(canvas, rectF, (FrameLayout) this.f8521c);
+                ((u20) this.f8525b).f39878n.L(canvas, rectF, (FrameLayout) this.f8526c);
                 return;
             case 5:
-                ((x80) this.f8520b).S.L(canvas, rectF, (bi.g2) this.f8521c);
+                ((y80) this.f8525b).S.L(canvas, rectF, (bi.g2) this.f8526c);
                 return;
             case 6:
-                nt ntVar = (nt) this.f8520b;
-                bi.v1 v1Var = (bi.v1) this.f8521c;
-                int childCount = ntVar.f49688a.getChildCount();
+                nt ntVar = (nt) this.f8525b;
+                bi.v1 v1Var = (bi.v1) this.f8526c;
+                int childCount = ntVar.f49678a.getChildCount();
                 for (int i7 = 0; i7 < childCount; i7++) {
-                    View childAt = ntVar.f49688a.getChildAt(i7);
+                    View childAt = ntVar.f49678a.getChildAt(i7);
                     if (childAt instanceof uj0) {
                         uj0 uj0Var = (uj0) childAt;
                         ih.d.a(uj0Var, canvas, rectF, uj0Var, v1Var);
@@ -82,8 +82,8 @@ public final class f implements eh.a {
                 }
                 return;
             case 7:
-                ProfileActivity profileActivity = (ProfileActivity) this.f8520b;
-                dh.k kVar = (dh.k) this.f8521c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f8525b;
+                dh.k kVar = (dh.k) this.f8526c;
                 Paint paint = profileActivity.R6;
                 ViewGroup viewGroup = (ViewGroup) profileActivity.fragmentView;
                 uv0 uv0Var = profileActivity.O;
@@ -123,12 +123,12 @@ public final class f implements eh.a {
                 ProfileActivity.M3(profileActivity.f43155n0, canvas2, rectF, viewGroup);
                 return;
             case 8:
-                lm0 lm0Var = (lm0) this.f8520b;
-                ih.d.a(lm0Var, canvas, rectF, lm0Var, (FrameLayout) this.f8521c);
+                lm0 lm0Var = (lm0) this.f8525b;
+                ih.d.a(lm0Var, canvas, rectF, lm0Var, (FrameLayout) this.f8526c);
                 return;
             default:
-                uj0 uj0Var2 = (uj0) this.f8520b;
-                ih.d.a(uj0Var2, canvas, rectF, uj0Var2, (FrameLayout) this.f8521c);
+                uj0 uj0Var2 = (uj0) this.f8525b;
+                ih.d.a(uj0Var2, canvas, rectF, uj0Var2, (FrameLayout) this.f8526c);
                 return;
         }
     }

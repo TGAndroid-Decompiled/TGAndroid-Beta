@@ -48,7 +48,7 @@ public final class b {
         Paint paint = (Paint) this.d;
         canvas.save();
         oy0 oy0Var = (oy0) this.f12617f;
-        oy0Var.f38116p = f10 - g0.L(132.0f);
+        oy0Var.f38114p = f10 - g0.L(132.0f);
         Paint paint2 = (Paint) this.f12615c;
         paint2.setColor(i0.a.f(f11, this.f12614b, j6.x0(null, j6.f28988kh, false)));
         float d = ((u5) this.f12620j).d(this.f12613a);
@@ -142,39 +142,39 @@ public final class b {
             } else {
                 str = strArr[i7];
             }
-            o30 o30Var = p30Var.f50128k;
-            boolean z12 = p30Var.f50124f;
+            o30 o30Var = p30Var.f50105k;
+            boolean z12 = p30Var.f50101f;
             if (str != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            p30Var.f50124f = z11;
-            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f50129l, str))) {
+            p30Var.f50101f = z11;
+            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f50106l, str))) {
                 g5 g5Var = p30Var.d;
                 if (g5Var != null) {
                     g5Var.o(o30Var);
                 }
-                p30Var.f50122c = org.telegram.messenger.j6.g(str);
+                p30Var.f50099c = org.telegram.messenger.j6.g(str);
                 int l10 = m10.l();
                 ?? drawable = new Drawable();
-                drawable.f34810l = 1.0f;
-                drawable.f34812n = null;
-                drawable.f34813o = null;
-                drawable.f34806g = 21;
+                drawable.f34814l = 1.0f;
+                drawable.f34816n = null;
+                drawable.f34817o = null;
+                drawable.f34810g = 21;
                 drawable.h = l10;
                 drawable.x();
                 g5.w();
                 p30Var.d = drawable;
-                p30Var.f50129l = str;
+                p30Var.f50106l = str;
                 drawable.q(str);
                 p30Var.c();
-                if (p30Var.f50127j) {
+                if (p30Var.f50104j) {
                     p30Var.d.b(o30Var);
                 }
             }
-            if (p30Var.f50124f && !z12) {
-                p30Var.f50123e = false;
+            if (p30Var.f50101f && !z12) {
+                p30Var.f50100e = false;
             }
         }
         rv rvVar = (rv) this.f12619i;

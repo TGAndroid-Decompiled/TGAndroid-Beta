@@ -4,29 +4,29 @@ import android.content.Context;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class fw0 extends View {
-    public int f47208a;
-    public int f47209b;
-    public final iw0 f47210c;
+    public int f47198a;
+    public int f47199b;
+    public final iw0 f47200c;
 
     public fw0(iw0 iw0Var, Context context) {
         super(context);
-        this.f47210c = iw0Var;
-        this.f47208a = 0;
-        this.f47209b = 0;
+        this.f47200c = iw0Var;
+        this.f47198a = 0;
+        this.f47199b = 0;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int measuredHeight;
-        int i11 = this.f47209b;
-        ProfileActivity profileActivity = this.f47210c.f48138e;
+        int i11 = this.f47199b;
+        ProfileActivity profileActivity = this.f47200c.f48123e;
         int i12 = 0;
         if (i11 != profileActivity.f43062a.getMeasuredHeight()) {
-            this.f47208a = 0;
+            this.f47198a = 0;
         }
-        this.f47209b = profileActivity.f43062a.getMeasuredHeight();
+        this.f47199b = profileActivity.f43062a.getMeasuredHeight();
         int childCount = profileActivity.f43062a.getChildCount();
-        if (childCount == profileActivity.d.f48138e.O2) {
+        if (childCount == profileActivity.d.f48123e.O2) {
             int i13 = 0;
             for (int i14 = 0; i14 < childCount; i14++) {
                 View childAt = profileActivity.f43062a.getChildAt(i14);
@@ -42,7 +42,7 @@ public final class fw0 extends View {
             } else {
                 measuredHeight = view.getMeasuredHeight();
             }
-            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23603m) - i13;
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23605m) - i13;
             if (currentActionBarHeight > profileActivity.i4()) {
                 currentActionBarHeight = 0;
             }
@@ -50,10 +50,10 @@ public final class fw0 extends View {
                 i12 = currentActionBarHeight;
             }
             int measuredWidth = profileActivity.f43062a.getMeasuredWidth();
-            this.f47208a = i12;
+            this.f47198a = i12;
             setMeasuredDimension(measuredWidth, i12);
             return;
         }
-        setMeasuredDimension(profileActivity.f43062a.getMeasuredWidth(), this.f47208a);
+        setMeasuredDimension(profileActivity.f43062a.getMeasuredWidth(), this.f47198a);
     }
 }

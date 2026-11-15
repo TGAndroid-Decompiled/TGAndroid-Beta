@@ -257,7 +257,7 @@ public final class x1 {
                 } else {
                     if (q1Var.Q5.q4()) {
                         gj gjVar = q1Var.Q5;
-                        if (!gjVar.f23846r1 && !gjVar.F4()) {
+                        if (!gjVar.f23848r1 && !gjVar.F4()) {
                             i7 = 1;
                         } else {
                             i7 = 0;
@@ -277,7 +277,7 @@ public final class x1 {
                 z11 = false;
             }
             gj gjVar2 = q1Var.Q5;
-            if (gjVar2.f23865w1 || gj.b4(gjVar2.f23817k)) {
+            if (gjVar2.f23867w1 || gj.b4(gjVar2.f23819k)) {
                 i7 = 0;
                 z12 = false;
                 z10 = false;
@@ -348,14 +348,14 @@ public final class x1 {
         }
         this.J0 = arrayList;
         if (gjVar != null) {
-            i7 = gjVar.f23862v2;
+            i7 = gjVar.f23864v2;
         } else {
             i7 = 0;
         }
         this.K0 = i7;
         this.f31916a1 = q1Var.f31031jb;
         if (gjVar != null) {
-            ivVar = gjVar.f23874y2;
+            ivVar = gjVar.f23876y2;
         } else {
             ivVar = null;
         }
@@ -411,7 +411,7 @@ public final class x1 {
             this.T = q1Var.f31105p7;
         }
         this.F = q1Var.getRepliesCount();
-        this.f31927c2 = q1Var.getMessageObject().f23817k.views;
+        this.f31927c2 = q1Var.getMessageObject().f23819k.views;
         this.H = q1Var.f30991ga;
         this.d2 = q1Var.f30952da;
         this.B = q1Var.f31118q6;
@@ -457,7 +457,7 @@ public final class x1 {
         }
         gj gjVar4 = q1Var.Q5;
         if (gjVar4 != null) {
-            f10 = gjVar4.f23870x2;
+            f10 = gjVar4.f23872x2;
         } else {
             f10 = 0.0f;
         }
@@ -480,7 +480,7 @@ public final class x1 {
             i10 = 0;
         }
         this.T2 = i10;
-        if (q1Var.getPrimaryMessageObject() != null && q1Var.getPrimaryMessageObject().f23785c3) {
+        if (q1Var.getPrimaryMessageObject() != null && q1Var.getPrimaryMessageObject().f23787c3) {
             z15 = true;
         } else {
             z15 = false;
@@ -622,16 +622,16 @@ public final class x1 {
         staticLayoutArr[1] = null;
         this.f31984q = false;
         ch.q0 q0Var = q1Var.O;
-        ArrayList arrayList = q0Var.f5207s;
-        ArrayList arrayList2 = q0Var.f5208t;
+        ArrayList arrayList = q0Var.f5210s;
+        ArrayList arrayList2 = q0Var.f5211t;
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             ((ch.n0) arrayList2.get(i7)).b();
         }
         arrayList2.clear();
-        q0Var.f5197i = false;
-        q0Var.f5198j = false;
+        q0Var.f5200i = false;
+        q0Var.f5201j = false;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((ch.n0) arrayList.get(i10)).f5141b = 0;
+            ((ch.n0) arrayList.get(i10)).f5144b = 0;
         }
         this.f31968l3 = null;
         org.telegram.ui.Components.p5.release(q1Var, this.f31972m3);

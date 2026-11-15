@@ -72,16 +72,16 @@ public final class e {
             u uVar = new u(h3Var, z10);
             this.f56362l.add(uVar);
             this.f56353a.b(513, uVar);
-            m(uVar, (ca.i) h3Var.f6928n);
+            m(uVar, (ca.i) h3Var.f6931n);
             x.b();
-            h3Var.f6927f = this.f56365o;
+            h3Var.f6930f = this.f56365o;
             h3Var.h(this.f56375z);
         }
     }
 
     public final String b(u uVar, String str) {
         String E;
-        String flattenToShortString = ((ComponentName) uVar.d.f25804b).flattenToShortString();
+        String flattenToShortString = ((ComponentName) uVar.d.f25806b).flattenToShortString();
         boolean z10 = uVar.f56466c;
         if (z10) {
             E = str;
@@ -221,27 +221,27 @@ public final class e {
         }
         wi0 wi0Var2 = new wi0(eVar, vVar, qVar, i7, vVar2, collection);
         this.f56358g = wi0Var2;
-        if (wi0Var2.f41354b == 3 && (oVar = this.f56357f) != null) {
+        if (wi0Var2.f41357b == 3 && (oVar = this.f56357f) != null) {
             final v vVar3 = this.d;
-            final v vVar4 = (v) wi0Var2.f41358g;
-            com.google.android.gms.internal.cast.o.f6311c.b("Prepare transfer from Route(%s) to Route(%s)", vVar3, vVar4);
+            final v vVar4 = (v) wi0Var2.f41361g;
+            com.google.android.gms.internal.cast.o.f6314c.b("Prepare transfer from Route(%s) to Route(%s)", vVar3, vVar4);
             c0.l a10 = t7.a(new c0.j() {
                 @Override
                 public final Object d(c0.i iVar) {
                     o oVar2 = o.this;
                     oVar2.getClass();
-                    return Boolean.valueOf(oVar2.f6313b.post(new qa(oVar2, vVar3, vVar4, iVar, 2)));
+                    return Boolean.valueOf(oVar2.f6316b.post(new qa(oVar2, vVar3, vVar4, iVar, 2)));
                 }
             });
             wi0 wi0Var3 = this.f56358g;
-            e eVar2 = (e) ((WeakReference) wi0Var3.f41360j).get();
+            e eVar2 = (e) ((WeakReference) wi0Var3.f41363j).get();
             if (eVar2 != null && eVar2.f56358g == wi0Var3) {
-                if (((c0.l) wi0Var3.f41361k) == null) {
-                    wi0Var3.f41361k = a10;
+                if (((c0.l) wi0Var3.f41364k) == null) {
+                    wi0Var3.f41364k = a10;
                     q2.d dVar = new q2.d(wi0Var3, 7);
                     b bVar = eVar2.f56353a;
                     Objects.requireNonNull(bVar);
-                    a10.f4064b.b(dVar, new l2.d0(bVar, 3));
+                    a10.f4067b.b(dVar, new l2.d0(bVar, 3));
                     return;
                 }
                 throw new IllegalStateException("future is already set");
@@ -285,7 +285,7 @@ public final class e {
                 this.f56374y = null;
             }
         }
-        if (f() && (iVar = vVar.f56468a.f56467e) != null && iVar.f4840b) {
+        if (f() && (iVar = vVar.f56468a.f56467e) != null && iVar.f4843b) {
             p c10 = vVar.c().c(vVar.f56469b);
             if (c10 != null) {
                 Executor e10 = f0.d.e(this.h);
@@ -375,22 +375,22 @@ public final class e {
                             int i12 = sVar.f13506b;
                             int i13 = sVar.f13505a;
                             String str = (String) sVar.f13508e;
-                            android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) ld0Var.f48976b;
+                            android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) ld0Var.f48972b;
                             if (a0Var != null) {
-                                androidx.emoji2.text.q qVar = (androidx.emoji2.text.q) ld0Var.f48977c;
+                                androidx.emoji2.text.q qVar = (androidx.emoji2.text.q) ld0Var.f48973c;
                                 if (qVar != null && i11 == 0 && i12 == 0) {
-                                    qVar.f2274c = i13;
+                                    qVar.f2277c = i13;
                                     b2.g.a(qVar.c(), i13);
                                     return;
                                 }
                                 ?? obj = new Object();
-                                obj.f2276f = ld0Var;
-                                obj.f2272a = i11;
-                                obj.f2273b = i12;
-                                obj.f2274c = i13;
+                                obj.f2279f = ld0Var;
+                                obj.f2275a = i11;
+                                obj.f2276b = i12;
+                                obj.f2277c = i13;
                                 obj.d = str;
-                                ld0Var.f48977c = obj;
-                                ((android.support.v4.media.session.u) a0Var.f1706b).f1736a.setPlaybackToRemote(obj.c());
+                                ld0Var.f48973c = obj;
+                                ((android.support.v4.media.session.u) a0Var.f1713b).f1743a.setPlaybackToRemote(obj.c());
                                 return;
                             }
                             return;

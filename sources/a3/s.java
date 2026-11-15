@@ -339,7 +339,7 @@ public final class s extends x {
         c3.d dVar;
         synchronized (this.d) {
             try {
-                if (this.f129g.A0 && Build.VERSION.SDK_INT >= 32 && (dVar = this.f130i) != null && dVar.f4089b) {
+                if (this.f129g.A0 && Build.VERSION.SDK_INT >= 32 && (dVar = this.f130i) != null && dVar.f4092b) {
                     z10 = true;
                 } else {
                     z10 = false;

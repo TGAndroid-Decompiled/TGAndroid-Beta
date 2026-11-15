@@ -168,7 +168,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
         this.M = j3;
         setOpaque(false);
         setRenderer(new f(context, i7, i10));
-        this.L = (int) g0.f23610r;
+        this.L = (int) g0.f23612r;
         setSurfaceTextureListener(this);
         GestureDetector gestureDetector = new GestureDetector(context, new h(this, i10));
         this.f58896c0 = gestureDetector;
@@ -413,7 +413,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
                 ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.f58893b.d, 360.0f);
                 ofFloat6.addUpdateListener(gVar2);
                 ofFloat6.setDuration(8000L);
-                ofFloat6.setInterpolator(er.f34420f);
+                ofFloat6.setInterpolator(er.f34419f);
                 this.f58899e0.playTogether(ofFloat6);
                 this.f58899e0.addListener(new j(this, 0));
                 this.f58899e0.start();
@@ -422,7 +422,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
                 ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.f58893b.d, 184.0f);
                 ofFloat7.addUpdateListener(gVar2);
                 ofFloat7.setDuration(600L);
-                er erVar = er.f34421g;
+                er erVar = er.f34420g;
                 ofFloat7.setInterpolator(erVar);
                 ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.f58893b.f58861i, 50.0f);
                 ofFloat8.addUpdateListener(gVar);
@@ -451,7 +451,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
                 ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f58893b.d, 180.0f);
                 ofFloat12.addUpdateListener(gVar2);
                 ofFloat12.setDuration(600L);
-                er erVar2 = er.f34420f;
+                er erVar2 = er.f34419f;
                 ofFloat12.setInterpolator(erVar2);
                 ValueAnimator ofFloat13 = ValueAnimator.ofFloat(180.0f, 360.0f);
                 ofFloat13.addUpdateListener(gVar2);

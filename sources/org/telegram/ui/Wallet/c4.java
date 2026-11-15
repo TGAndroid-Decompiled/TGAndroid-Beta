@@ -151,7 +151,7 @@ public final class c4 {
         this.J = new org.telegram.ui.Components.u5(new l(t0Var, 6), 320L, erVar, 0);
         z3 z3Var = new z3(t0Var, t0Var);
         this.I = z3Var;
-        z3Var.f3669y = -1;
+        z3Var.f3672y = -1;
         bi.l2.d(path, 1.0f, false);
         paint3.setStyle(style);
         paint3.setStrokeWidth(org.telegram.messenger.g0.N(4.0f));
@@ -161,7 +161,7 @@ public final class c4 {
         paint.setShader(new LinearGradient(-org.telegram.messenger.g0.L(10.0f), 0.0f, org.telegram.messenger.g0.L(10.0f), 0.0f, new int[]{16777215, -2130706433, 16777215}, new float[]{0.0f, 0.5f, 1.0f}, tileMode));
         dc dcVar = new dc(t0Var);
         this.Y = dcVar;
-        dcVar.f33915f = new y3(this, 0);
+        dcVar.f33902f = new y3(this, 0);
         this.f43612w0 = new org.telegram.ui.Components.u5(1.0f, new l(t0Var, 6), 0L, 400L, erVar);
     }
 
@@ -222,10 +222,10 @@ public final class c4 {
         a4 a4Var = new a4(this, this.f43573b);
         this.f43577d0 = a4Var;
         a4Var.g(4969977, org.telegram.ui.ActionBar.j6.r1(0.125f, -11807239), 4969977, org.telegram.ui.ActionBar.j6.r1(0.75f, -11807239));
-        this.f43577d0.f33884x.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+        this.f43577d0.f33886x.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
         a4 a4Var2 = this.f43577d0;
-        a4Var2.f33881t = 2.0f;
-        a4Var2.f33885y = this.h;
+        a4Var2.f33883t = 2.0f;
+        a4Var2.f33887y = this.h;
         a4Var2.D = true;
     }
 
@@ -236,7 +236,7 @@ public final class c4 {
             valueAnimator.removeAllListeners();
             valueAnimator.cancel();
             org.telegram.ui.Components.u5 u5Var = this.K;
-            if (u5Var.f39907i) {
+            if (u5Var.f39904i) {
                 this.M = false;
                 this.N = 0L;
             }
@@ -460,8 +460,8 @@ public final class c4 {
             a4Var.v = Math.max(0L, 0L);
             if (this.f43577d0.d() || this.f43577d0.c()) {
                 a4 a4Var2 = this.f43577d0;
-                a4Var2.f33865b = -1L;
-                a4Var2.f33866c = -1L;
+                a4Var2.f33867b = -1L;
+                a4Var2.f33868c = -1L;
             }
             t0Var.invalidate();
         } else {
@@ -543,7 +543,7 @@ public final class c4 {
         } else {
             oy0 oy0Var2 = new oy0("", 10.0f, Typeface.create(org.telegram.messenger.g0.o1("fonts/rmono.ttf"), 1));
             this.f43599p0 = oy0Var2;
-            oy0Var2.q(TextUtils.ellipsize(org.telegram.messenger.g0.N2(str.toUpperCase(locale)), this.f43599p0.f38103a, org.telegram.messenger.g0.L(206.0f) - org.telegram.messenger.g0.L(24.0f), TextUtils.TruncateAt.END));
+            oy0Var2.q(TextUtils.ellipsize(org.telegram.messenger.g0.N2(str.toUpperCase(locale)), this.f43599p0.f38101a, org.telegram.messenger.g0.L(206.0f) - org.telegram.messenger.g0.L(24.0f), TextUtils.TruncateAt.END));
         }
         Stack stack = this.d;
         ArrayList arrayList = this.f43575c;
@@ -566,14 +566,14 @@ public final class c4 {
             }
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(sb2.toString());
             ?? obj2 = new Object();
-            obj2.f41484a |= 256;
+            obj2.f41487a |= 256;
             spannableStringBuilder2.setSpan(new xy0(obj2, 0), 0, spannableStringBuilder2.length(), 33);
             this.f43601q0.q(spannableStringBuilder2);
-            xh.f.c(t0Var, this.f43601q0.f38104b, stack, arrayList);
+            xh.f.c(t0Var, this.f43601q0.f38102b, stack, arrayList);
             n(this.f43578e);
             return;
         }
-        oy0Var3.q(org.telegram.messenger.j6.m(tL_messageActionGramTransfer.comment, oy0Var3.f38103a.getFontMetricsInt(), false, null, 0));
+        oy0Var3.q(org.telegram.messenger.j6.m(tL_messageActionGramTransfer.comment, oy0Var3.f38101a.getFontMetricsInt(), false, null, 0));
     }
 
     public final void n(boolean z10) {

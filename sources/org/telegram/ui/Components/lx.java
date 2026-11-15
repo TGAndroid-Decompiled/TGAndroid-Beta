@@ -31,7 +31,7 @@ public final class lx extends tj0 {
         this.f36918c = hxVar;
         hxVar.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(5.0f));
         hxVar.setClipToPadding(false);
-        hxVar.f39895g3.f38201r = false;
+        hxVar.f39892g3.f38199r = false;
         hxVar.setNestedScrollingEnabled(false);
         hxVar.setDrawSelection(false);
         hxVar.setOnTouchListener(new m.c2(this, 1));
@@ -133,7 +133,7 @@ public final class lx extends tj0 {
 
     @Override
     public final void f() {
-        this.f36918c.f39895g3.O(false);
+        this.f36918c.f39892g3.O(false);
         super.f();
     }
 

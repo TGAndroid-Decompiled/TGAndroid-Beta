@@ -117,9 +117,9 @@ import org.telegram.ui.Components.t4;
 import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.wy;
 import org.telegram.ui.an;
-import org.telegram.ui.xm0;
+import org.telegram.ui.ym0;
 import org.xmlpull.v1.XmlPullParserException;
-public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocationServiceProvider, bp, li0, xm0 {
+public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocationServiceProvider, bp, li0, ym0 {
     public final int f13623a;
     public Object f13624b;
     public Object f13625c;
@@ -390,14 +390,14 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         j8.c cVar2 = new j8.c(arrayList, false, false);
         cVar.getClass();
         com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-        b10.f6071c = new cf(cVar2);
-        b10.f6069a = 2426;
+        b10.f6074c = new cf(cVar2);
+        b10.f6072a = 2426;
         cVar.e(0, b10.a()).addOnCompleteListener(new x9(aVar, 1));
     }
 
     @Override
     public boolean checkServices() {
-        return qt.f26129b.hasServices();
+        return qt.f26137b.hasServices();
     }
 
     @Override
@@ -432,7 +432,7 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             case 4:
                 return new jb.p((id.h) ((ib.c) this.f13624b).mo24get(), (h1) ((ib.c) this.f13625c).mo24get(), (m1.g) ((ib.c) this.d).mo24get());
             default:
-                return new o5.t(new qb.a(28), new pb.b(28), (t5.b) ((r7) this.f13624b).mo24get(), (ia.c) ((ga.d) this.f13625c).mo24get(), (c0) ((xi.e) this.d).mo24get());
+                return new o5.t(new qb.a(28), new pb.b(28), (t5.c) ((r7) this.f13624b).mo24get(), (ia.c) ((ga.d) this.f13625c).mo24get(), (c0) ((xi.e) this.d).mo24get());
         }
     }
 
@@ -441,8 +441,8 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         u7.c cVar = (u7.c) this.f13624b;
         cVar.getClass();
         com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-        b10.f6071c = u7.a.f57868c;
-        b10.f6069a = 2414;
+        b10.f6074c = u7.a.f57868c;
+        b10.f6072a = 2414;
         cVar.e(0, b10.a()).addOnCompleteListener(new x9(aVar, 0));
     }
 
@@ -472,9 +472,9 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     @Override
     public void init(Context context) {
         com.google.android.gms.common.api.e eVar = j8.b.f16937a;
-        com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f5924c;
+        com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f5927c;
         com.google.android.gms.common.api.e eVar2 = u7.c.f57870l;
-        com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f5914j;
+        com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f5917j;
         this.f13624b = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
         this.f13625c = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
     }
@@ -585,7 +585,7 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public sa onCreateLocationServicesAPI(Context context, oa oaVar, final pa paVar) {
         List list;
         boolean z10;
-        Context context2 = t0.f26600b;
+        Context context2 = t0.f26609b;
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         ?? lVar = new a0.l(0);
@@ -601,7 +601,7 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         q6.m.h(eVar2, "Api must not be null");
         com.google.android.gms.common.api.e eVar3 = null;
         lVar2.put(eVar2, null);
-        a9.e eVar4 = eVar2.f5915a;
+        a9.e eVar4 = eVar2.f5918a;
         q6.m.h(eVar4, "Base client builder must not be null");
         switch (eVar4.f758a) {
             case 22:
@@ -656,7 +656,7 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 Looper looper = mainLooper;
                 g1 g1Var = new g1(eVar6, z10);
                 arrayList3.add(g1Var);
-                a9.e eVar7 = eVar6.f5915a;
+                a9.e eVar7 = eVar6.f5918a;
                 q6.m.g(eVar7);
                 ArrayList arrayList4 = arrayList3;
                 Map map2 = map;
@@ -664,7 +664,7 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 a0.l lVar7 = lVar5;
                 a0.l lVar8 = lVar3;
                 com.google.android.gms.common.api.c a10 = eVar7.a(context2, looper, o3Var2, obj2, g1Var, g1Var);
-                lVar6.put(eVar6.f5916b, a10);
+                lVar6.put(eVar6.f5919b, a10);
                 q6.d dVar = (q6.d) a10;
                 dVar.getClass();
                 if (dVar instanceof d6.e) {
@@ -673,8 +673,8 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                         o3Var = o3Var2;
                         eVar3 = eVar6;
                     } else {
-                        String str = eVar6.f5917c;
-                        String str2 = eVar3.f5917c;
+                        String str = eVar6.f5920c;
+                        String str2 = eVar3.f5920c;
                         throw new IllegalStateException(y0.m(str, " cannot be used with ", str2, new StringBuilder(String.valueOf(str).length() + 21 + String.valueOf(str2).length())));
                     }
                 } else {
@@ -695,18 +695,18 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 Looper looper2 = mainLooper;
                 if (eVar3 != null) {
                     boolean equals = hashSet.equals(hashSet2);
-                    String str3 = eVar3.f5917c;
+                    String str3 = eVar3.f5920c;
                     if (!equals) {
                         throw new IllegalStateException(p0.p("Must not set scopes in GoogleApiClient.Builder when using ", str3, ". Set account in GoogleSignInOptions.Builder instead."));
                     }
                 }
                 com.google.android.gms.common.api.internal.f0 f0Var = new com.google.android.gms.common.api.internal.f0(context2, new ReentrantLock(), looper2, o3Var3, fVar, arrayList, arrayList2, fVar2, com.google.android.gms.common.api.internal.f0.k(fVar2.values(), true), arrayList5);
-                Set set = com.google.android.gms.common.api.m.f6111a;
+                Set set = com.google.android.gms.common.api.m.f6114a;
                 synchronized (set) {
                     set.add(f0Var);
                 }
                 ?? obj3 = new Object();
-                obj3.f5967a = f0Var;
+                obj3.f5970a = f0Var;
                 return obj3;
             }
         }
@@ -776,8 +776,8 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             int i14 = x5Var.f15347f;
             int i15 = x5Var.h;
             k51Var2.d = i14;
-            k51Var2.f36292e = i15;
-            wy wyVar = k51Var2.f36290b;
+            k51Var2.f36282e = i15;
+            wy wyVar = k51Var2.f36280b;
             if (wyVar != null) {
                 wyVar.postRunnable(new sy(wyVar, i14, i15, 0));
             }
@@ -982,7 +982,7 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             dk dkVar = (dk) this.d;
             HashMap hashMap = (HashMap) this.f13624b;
             ArrayList arrayList = (ArrayList) this.f13625c;
-            ki kiVar = dkVar.f33607b;
+            ki kiVar = dkVar.f33609b;
             if (!hashMap.isEmpty() && dkVar.R != null && !dkVar.L) {
                 dkVar.L = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -994,24 +994,24 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                         ff ffVar = (ff) obj;
                         String str2 = ffVar.h;
                         if (str2 != null) {
-                            obj2.f23189c = str2;
+                            obj2.f23196c = str2;
                         } else {
-                            obj2.f23189c = ffVar.I;
+                            obj2.f23196c = ffVar.I;
                         }
-                        obj2.f23190e = ffVar.f27709c;
-                        obj2.f23191f = ffVar.f27712g;
-                        obj2.f23195k = ffVar.f27723s;
-                        obj2.f23199o = ffVar.f27708b;
-                        CharSequence charSequence = ffVar.f27707a;
+                        obj2.f23197e = ffVar.f27711c;
+                        obj2.f23198f = ffVar.f27714g;
+                        obj2.f23202k = ffVar.f27725s;
+                        obj2.f23206o = ffVar.f27710b;
+                        CharSequence charSequence = ffVar.f27709a;
                         if (charSequence != null) {
                             str = charSequence.toString();
                         } else {
                             str = null;
                         }
                         obj2.d = str;
-                        obj2.f23193i = ffVar.f27718n;
-                        obj2.f23194j = ffVar.f27722r;
-                        obj2.h = ffVar.f27727x;
+                        obj2.f23200i = ffVar.f27720n;
+                        obj2.f23201j = ffVar.f27724r;
+                        obj2.h = ffVar.f27729x;
                     }
                 }
                 t4.X(kiVar.H3, kiVar.X0() + arrayList2.size(), kiVar.b1(), new n2(i7, 2, dkVar, arrayList2, z11));
@@ -1181,11 +1181,11 @@ public final class m implements s51, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         this.d = obj3;
     }
 
-    public m(ai.j0 j0Var, l8.f fVar) {
+    public m(ai.k0 k0Var, l8.f fVar) {
         this.f13623a = 7;
         this.f13625c = fVar;
-        q6.m.g(j0Var);
-        this.f13624b = j0Var;
+        q6.m.g(k0Var);
+        this.f13624b = k0Var;
     }
 
     public m(h hVar) {

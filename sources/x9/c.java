@@ -56,12 +56,12 @@ public final class c {
             ?? obj4 = new Object();
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                obj4.f7709a = str2;
-                obj4.f7710b = runningAppProcessInfo.pid;
-                obj4.f7711c = runningAppProcessInfo.importance;
-                obj4.f7712e = (byte) (((byte) (obj4.f7712e | 1)) | 2);
+                obj4.f7712a = str2;
+                obj4.f7713b = runningAppProcessInfo.pid;
+                obj4.f7714c = runningAppProcessInfo.importance;
+                obj4.f7715e = (byte) (((byte) (obj4.f7715e | 1)) | 2);
                 obj4.d = j.a(str2, str);
-                obj4.f7712e = (byte) (obj4.f7712e | 4);
+                obj4.f7715e = (byte) (obj4.f7715e | 4);
                 arrayList3.add(obj4.a());
             } else {
                 throw new NullPointerException("Null processName");
@@ -82,7 +82,7 @@ public final class c {
             if (i7 < size) {
                 obj = a10.get(i7);
                 i7++;
-                if (((e1) ((j2) obj)).f7725b == myPid) {
+                if (((e1) ((j2) obj)).f7728b == myPid) {
                     break;
                 }
             } else {
@@ -101,11 +101,11 @@ public final class c {
             }
             j.e(processName, "processName");
             ?? obj2 = new Object();
-            obj2.f7709a = processName;
-            obj2.f7710b = myPid;
-            obj2.f7711c = 0;
+            obj2.f7712a = processName;
+            obj2.f7713b = myPid;
+            obj2.f7714c = 0;
             obj2.d = false;
-            obj2.f7712e = (byte) (((byte) (((byte) (obj2.f7712e | 1)) | 2)) | 4);
+            obj2.f7715e = (byte) (((byte) (((byte) (obj2.f7715e | 1)) | 2)) | 4);
             return obj2.a();
         }
         return j2Var;

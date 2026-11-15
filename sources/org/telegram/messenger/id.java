@@ -25,7 +25,7 @@ public final class id implements Runnable {
                 try {
                     ArrayList arrayList4 = new ArrayList();
                     ArrayList arrayList5 = new ArrayList();
-                    SQLiteCursor queryFinalized = rdVar.getMessagesStorage().f27222b.queryFinalized("SELECT uid, mid, date, period, message, proximity FROM sharing_locations WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = rdVar.getMessagesStorage().f27221b.queryFinalized("SELECT uid, mid, date, period, message, proximity FROM sharing_locations WHERE 1", new Object[0]);
                     while (queryFinalized.next()) {
                         ?? obj = new Object();
                         obj.f26078a = queryFinalized.longValue(0);
@@ -38,7 +38,7 @@ public final class id implements Runnable {
                         if (byteBufferValue != null) {
                             gj gjVar = new gj(rdVar.currentAccount, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false), false, false);
                             obj.h = gjVar;
-                            vr.e(gjVar.f23817k, arrayList4, arrayList5, null);
+                            vr.e(gjVar.f23819k, arrayList4, arrayList5, null);
                             byteBufferValue.reuse();
                         }
                         arrayList.add(obj);
@@ -74,9 +74,9 @@ public final class id implements Runnable {
                 rd rdVar3 = this.f24377b;
                 rdVar3.I = 0L;
                 rdVar3.G.clear();
-                rdVar3.f26269a.b();
-                rdVar3.f26270b.clear();
-                rdVar3.f26276s = null;
+                rdVar3.f26277a.b();
+                rdVar3.f26278b.clear();
+                rdVar3.f26284s = null;
                 rdVar3.r(true);
                 return;
             case 3:
@@ -87,7 +87,7 @@ public final class id implements Runnable {
                 rd rdVar4 = this.f24377b;
                 rdVar4.L = bool;
                 try {
-                    ((com.google.android.gms.common.api.internal.d0) rdVar4.N).f5967a.e();
+                    ((com.google.android.gms.common.api.internal.d0) rdVar4.N).f5970a.e();
                     rdVar4.p();
                     return;
                 } catch (Throwable unused) {
@@ -95,14 +95,14 @@ public final class id implements Runnable {
                 }
             case 5:
                 rd rdVar5 = this.f24377b;
-                rd f10 = rd.f(rdVar5.getAccountInstance().f22778a);
+                rd f10 = rd.f(rdVar5.getAccountInstance().f22782a);
                 rdVar5.getNotificationCenter().b(f10, 1);
                 rdVar5.getNotificationCenter().b(f10, 7);
                 rdVar5.getNotificationCenter().b(f10, 49);
                 return;
             default:
                 rd rdVar6 = this.f24377b;
-                ArrayList arrayList6 = rdVar6.f26270b;
+                ArrayList arrayList6 = rdVar6.f26278b;
                 for (int i7 = 0; i7 < arrayList6.size(); i7++) {
                     qd qdVar = (qd) arrayList6.get(i7);
                     TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
@@ -116,7 +116,7 @@ public final class id implements Runnable {
                     rdVar6.getConnectionsManager().sendRequest(tL_messages_editMessage, new jd(rdVar6, 1));
                 }
                 arrayList6.clear();
-                rdVar6.f26269a.b();
+                rdVar6.f26277a.b();
                 rdVar6.l(null, 2);
                 rdVar6.r(true);
                 g0.h3(new id(rdVar6, 1));

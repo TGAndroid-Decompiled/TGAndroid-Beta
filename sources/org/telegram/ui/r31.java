@@ -32,10 +32,10 @@ public final class r31 extends org.telegram.ui.Components.ja {
         int i10;
         int i11;
         this.f29679a = i7;
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         this.Q0 = true;
         this.R0 = true;
-        di.b bVar = new di.b(context, i7, cg.b.f4988b, e6Var);
+        di.b bVar = new di.b(context, i7, cg.b.f4991b, e6Var);
         this.T1 = bVar;
         bVar.setScaleX(0.6f);
         bVar.setScaleY(0.6f);
@@ -43,7 +43,7 @@ public final class r31 extends org.telegram.ui.Components.ja {
         this.f29685c.addView(bVar, 0, c8.ja.d(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
         c8.na.a(bVar);
         bVar.setOnClickListener(new bi.p(2, context, e6Var));
-        TLRPC.EmojiGameInfo emojiGameInfo = org.telegram.messenger.np.s1(i7).f25439x8;
+        TLRPC.EmojiGameInfo emojiGameInfo = org.telegram.messenger.np.s1(i7).f25442x8;
         if (!(emojiGameInfo instanceof TLRPC.TL_emojiGameDiceInfo)) {
             return;
         }
@@ -125,13 +125,13 @@ public final class r31 extends org.telegram.ui.Components.ja {
         editTextBoldCursor.setSelectAllOnFocus(true);
         org.telegram.ui.ActionBar.q6.C(editTextBoldCursor, org.telegram.ui.ActionBar.j6.f29005lg, e6Var);
         org.telegram.ui.ActionBar.q6.l(editTextBoldCursor, 36, org.telegram.ui.ActionBar.j6.f29022mg, e6Var);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         editTextBoldCursor.setGravity(i10);
-        editTextBoldCursor.setOnFocusChangeListener(new di.o9(mb0Var, editTextBoldCursor, 2));
+        editTextBoldCursor.setOnFocusChangeListener(new di.n9(mb0Var, editTextBoldCursor, 2));
         LinearLayout linearLayout4 = new LinearLayout(context);
         linearLayout4.setOrientation(0);
         ImageView imageView2 = new ImageView(context);
@@ -148,11 +148,11 @@ public final class r31 extends org.telegram.ui.Components.ja {
         mb0Var.addView(textView, c8.ja.d(-2, -2.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         long j3 = tL_emojiGameDiceInfo.prev_stake;
         j3 = j3 <= 0 ? 1000000000L : j3;
-        editTextBoldCursor.setText(di.mb.P0(j3));
+        editTextBoldCursor.setText(di.lb.P0(j3));
         textView.setAlpha(1.0f);
         StringBuilder sb2 = new StringBuilder("≈");
         org.telegram.messenger.r1.i().getClass();
-        sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) ((j3 / 1.0E9d) * ((org.telegram.messenger.i0) org.telegram.messenger.np.s1(i7).f25448y7.f25855l.f13134b).f24257a * 100.0d), false));
+        sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) ((j3 / 1.0E9d) * ((org.telegram.messenger.i0) org.telegram.messenger.np.s1(i7).f25451y7.f25857l.f13134b).f24257a * 100.0d), false));
         textView.setText(sb2.toString());
         final int[] iArr = {2};
         mb0Var.c(false, !TextUtils.isEmpty(editTextBoldCursor.getText()));
@@ -172,13 +172,13 @@ public final class r31 extends org.telegram.ui.Components.ja {
                 org.telegram.ui.ActionBar.m6 K = org.telegram.ui.ActionBar.q6.K(0.15f, i13);
                 textView2.setBackground(d02);
                 org.telegram.ui.ActionBar.q6.j(textView2, d02, K, null, e6Var2);
-                textView2.setText(di.mb.R0(di.mb.P0(l10.longValue()) + " 💎", 0.75f));
+                textView2.setText(di.lb.R0(di.lb.P0(l10.longValue()) + " 💎", 0.75f));
                 c8.na.a(textView2);
                 textView2.setOnClickListener(new a90(19, editTextBoldCursor, l10));
                 return textView2;
             }
         };
-        long[] jArr = org.telegram.messenger.np.s1(i7).f25252c7;
+        long[] jArr = org.telegram.messenger.np.s1(i7).f25255c7;
         int i13 = 0;
         while (true) {
             int length2 = jArr.length;
@@ -207,7 +207,7 @@ public final class r31 extends org.telegram.ui.Components.ja {
                 hi.d dVar2 = new hi.d(context, e6Var, true);
                 SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder("🎲");
                 org.telegram.ui.Components.eq eqVar2 = new org.telegram.ui.Components.eq(2131231972, 0);
-                eqVar2.f34416s = org.telegram.messenger.g0.L(1.0f);
+                eqVar2.f34415s = org.telegram.messenger.g0.L(1.0f);
                 spannableStringBuilder3.setSpan(eqVar2, 0, spannableStringBuilder3.length(), 33);
                 spannableStringBuilder3.append((CharSequence) "  ").append((CharSequence) org.telegram.messenger.hd.M0(2131745243, null));
                 dVar2.i(spannableStringBuilder3, false, true);
@@ -224,23 +224,23 @@ public final class r31 extends org.telegram.ui.Components.ja {
                                 parseDouble = Double.parseDouble(text.toString());
                             }
                             int i17 = i7;
-                            int i18 = (parseDouble > (org.telegram.messenger.np.s1(i17).f25242b7 / 1.0E9d) ? 1 : (parseDouble == (org.telegram.messenger.np.s1(i17).f25242b7 / 1.0E9d) ? 0 : -1));
+                            int i18 = (parseDouble > (org.telegram.messenger.np.s1(i17).f25245b7 / 1.0E9d) ? 1 : (parseDouble == (org.telegram.messenger.np.s1(i17).f25245b7 / 1.0E9d) ? 0 : -1));
                             org.telegram.ui.Components.mb0 mb0Var2 = mb0Var;
                             int[] iArr2 = iArr;
                             if (i18 > 0) {
-                                editTextBoldCursor2.setText(Double.toString(org.telegram.messenger.np.s1(i17).f25242b7 / 1.0E9d));
+                                editTextBoldCursor2.setText(Double.toString(org.telegram.messenger.np.s1(i17).f25245b7 / 1.0E9d));
                                 editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
                                 int i19 = -iArr2[0];
                                 iArr2[0] = i19;
                                 org.telegram.messenger.g0.F3(i19, mb0Var2, null);
-                            } else if (!TextUtils.isEmpty(text) && parseDouble < org.telegram.messenger.np.s1(i17).f25232a7 / 1.0E9d) {
-                                editTextBoldCursor2.setText(Double.toString(org.telegram.messenger.np.s1(i17).f25232a7 / 1.0E9d));
+                            } else if (!TextUtils.isEmpty(text) && parseDouble < org.telegram.messenger.np.s1(i17).f25235a7 / 1.0E9d) {
+                                editTextBoldCursor2.setText(Double.toString(org.telegram.messenger.np.s1(i17).f25235a7 / 1.0E9d));
                                 editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
                                 int i20 = -iArr2[0];
                                 iArr2[0] = i20;
                                 org.telegram.messenger.g0.F3(i20, mb0Var2, null);
-                            } else if (di.v8.y(i17, true).f9602f.toDouble() < parseDouble) {
-                                new ii.e(context, e6Var, cg.a.i((long) (parseDouble * 1.0E9d), cg.b.f4988b), true, new ah0(3));
+                            } else if (di.u8.y(i17, true).f9533f.toDouble() < parseDouble) {
+                                new ii.e(context, e6Var, cg.a.i((long) (parseDouble * 1.0E9d), cg.b.f4991b), true, new ah0(3));
                             } else {
                                 vVar.a(Long.valueOf((long) (parseDouble * 1.0E9d)));
                                 r31.this.dismiss();
@@ -254,7 +254,7 @@ public final class r31 extends org.telegram.ui.Components.ja {
                 ViewGroup viewGroup = this.f29682b;
                 int i17 = this.f29717u0;
                 viewGroup.addView(frameLayout, c8.ja.f(-2.0f, -1, 87, i17, 0, i17, 0));
-                org.telegram.ui.Components.uj0 uj0Var = this.f35936o1;
+                org.telegram.ui.Components.uj0 uj0Var = this.f35931o1;
                 int i18 = this.f29717u0;
                 uj0Var.setPadding(i18, 0, i18, org.telegram.messenger.g0.L(68.0f));
                 this.Y1.O(false);

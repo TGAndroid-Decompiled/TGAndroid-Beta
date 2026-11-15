@@ -89,7 +89,7 @@ public final class b implements i {
             case 1:
                 d4.f fVar = new d4.f(new byte[16], 16);
                 this.f20174b = fVar;
-                this.f20175c = new h2.x((byte[]) fVar.f7550b);
+                this.f20175c = new h2.x((byte[]) fVar.f7553b);
                 this.f20179i = 0;
                 this.f20180j = 0;
                 this.f20181k = false;
@@ -101,7 +101,7 @@ public final class b implements i {
             default:
                 d4.f fVar2 = new d4.f(new byte[128], 128);
                 this.f20174b = fVar2;
-                this.f20175c = new h2.x((byte[]) fVar2.f7550b);
+                this.f20175c = new h2.x((byte[]) fVar2.f7553b);
                 this.f20179i = 0;
                 this.f20185o = -9223372036854775807L;
                 this.d = str;

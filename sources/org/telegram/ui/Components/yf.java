@@ -5,30 +5,30 @@ import java.util.HashMap;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yf implements Runnable {
-    public final int f41990a;
-    public final Object f41991b;
-    public final Object f41992c;
+    public final int f41992a;
+    public final Object f41993b;
+    public final Object f41994c;
     public final Object d;
 
     public yf(Object obj, Object obj2, Object obj3, int i7) {
-        this.f41990a = i7;
-        this.f41991b = obj;
+        this.f41992a = i7;
+        this.f41993b = obj;
         this.d = obj2;
-        this.f41992c = obj3;
+        this.f41994c = obj3;
     }
 
     private final void a() {
         dq0 dq0Var;
         boolean z10;
-        mr0 mr0Var = (mr0) this.f41991b;
+        mr0 mr0Var = (mr0) this.f41993b;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-        TLObject tLObject = (TLObject) this.f41992c;
-        ys0 ys0Var = mr0Var.f37368r;
-        mr0Var.f37367n = 0;
+        TLObject tLObject = (TLObject) this.f41994c;
+        ys0 ys0Var = mr0Var.f37367r;
+        mr0Var.f37366n = 0;
         int b10 = mr0Var.b();
         if (tL_error == null) {
             TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject;
-            ys0Var.f42150y1.getMessagesController().S3(messages_chats.chats, false);
+            ys0Var.f42152y1.getMessagesController().S3(messages_chats.chats, false);
             if (!messages_chats.chats.isEmpty() && messages_chats.chats.size() == 100) {
                 z10 = false;
             } else {
@@ -41,16 +41,16 @@ public final class yf implements Runnable {
         }
         int i7 = 0;
         while (true) {
-            tr0[] tr0VarArr = ys0Var.f42117n0;
+            tr0[] tr0VarArr = ys0Var.f42119n0;
             if (i7 < tr0VarArr.length) {
                 tr0 tr0Var = tr0VarArr[i7];
-                if (tr0Var.F == 6 && (dq0Var = tr0Var.h) != null && (mr0Var.f37366f || b10 == 0)) {
+                if (tr0Var.F == 6 && (dq0Var = tr0Var.h) != null && (mr0Var.f37365f || b10 == 0)) {
                     ys0Var.D(dq0Var, 0, null);
                 }
                 i7++;
             } else {
-                mr0Var.f37365e = false;
-                mr0Var.f37366f = true;
+                mr0Var.f37364e = false;
+                mr0Var.f37365f = true;
                 mr0Var.f();
                 return;
             }
@@ -64,9 +64,9 @@ public final class yf implements Runnable {
         boolean z10;
         char c10;
         Object obj;
-        rr0 rr0Var = (rr0) this.f41991b;
-        ArrayList arrayList2 = (ArrayList) this.f41992c;
-        org.telegram.ui.ActionBar.e2 e2Var = rr0Var.f39053s.f42150y1;
+        rr0 rr0Var = (rr0) this.f41993b;
+        ArrayList arrayList2 = (ArrayList) this.f41994c;
+        org.telegram.ui.ActionBar.e2 e2Var = rr0Var.f39050s.f42152y1;
         String lowerCase = ((String) this.d).trim().toLowerCase();
         if (lowerCase.length() == 0) {
             org.telegram.messenger.g0.h3(new yf(rr0Var, new ArrayList(), new ArrayList(), 25));
@@ -158,31 +158,31 @@ public final class yf implements Runnable {
     }
 
     private final void c() {
-        rr0 rr0Var = (rr0) this.f41991b;
+        rr0 rr0Var = (rr0) this.f41993b;
         ArrayList arrayList = (ArrayList) this.d;
-        ArrayList arrayList2 = (ArrayList) this.f41992c;
-        ys0 ys0Var = rr0Var.f39053s;
+        ArrayList arrayList2 = (ArrayList) this.f41994c;
+        ys0 ys0Var = rr0Var.f39050s;
         if (!ys0Var.Y0) {
             return;
         }
         rr0Var.d = arrayList;
-        rr0Var.f39052r--;
-        if (!org.telegram.messenger.t3.T(rr0Var.f39051n)) {
-            ArrayList arrayList3 = rr0Var.f39049e.f17349g;
+        rr0Var.f39049r--;
+        if (!org.telegram.messenger.t3.T(rr0Var.f39048n)) {
+            ArrayList arrayList3 = rr0Var.f39046e.f17349g;
             arrayList3.clear();
             arrayList3.addAll(arrayList2);
         }
-        if (rr0Var.f39052r == 0) {
+        if (rr0Var.f39049r == 0) {
             int i7 = 0;
             while (true) {
-                tr0[] tr0VarArr = ys0Var.f42117n0;
+                tr0[] tr0VarArr = ys0Var.f42119n0;
                 if (i7 >= tr0VarArr.length) {
                     break;
                 }
                 tr0 tr0Var = tr0VarArr[i7];
                 if (tr0Var.F == 7) {
                     if (rr0Var.h == 0) {
-                        tr0Var.f39798w.e(false, true);
+                        tr0Var.f39795w.e(false, true);
                     } else {
                         ys0Var.D(tr0Var.h, 0, null);
                     }
@@ -198,8 +198,8 @@ public final class yf implements Runnable {
         TLRPC.Document document;
         boolean z10;
         String str;
-        vr0 vr0Var = (vr0) this.f41991b;
-        ArrayList arrayList = (ArrayList) this.f41992c;
+        vr0 vr0Var = (vr0) this.f41993b;
+        ArrayList arrayList = (ArrayList) this.f41994c;
         vr0Var.getClass();
         String lowerCase = ((String) this.d).trim().toLowerCase();
         if (lowerCase.length() == 0) {
@@ -231,11 +231,11 @@ public final class yf implements Runnable {
                         if (I0.toLowerCase().contains(str2)) {
                             arrayList2.add(gjVar);
                             break;
-                        } else if (vr0Var.f41138r == 4) {
+                        } else if (vr0Var.f41141r == 4) {
                             if (gjVar.D == 0) {
-                                document = org.telegram.messenger.gj.n1(gjVar.f23817k).webpage.document;
+                                document = org.telegram.messenger.gj.n1(gjVar.f23819k).webpage.document;
                             } else {
-                                document = org.telegram.messenger.gj.n1(gjVar.f23817k).document;
+                                document = org.telegram.messenger.gj.n1(gjVar.f23819k).document;
                             }
                             int i13 = 0;
                             while (true) {
@@ -275,15 +275,15 @@ public final class yf implements Runnable {
     }
 
     private final void f() {
-        bw0 bw0Var = (bw0) this.f41991b;
+        bw0 bw0Var = (bw0) this.f41993b;
         String str = (String) this.d;
-        org.telegram.messenger.xy xyVar = (org.telegram.messenger.xy) this.f41992c;
+        org.telegram.messenger.xy xyVar = (org.telegram.messenger.xy) this.f41994c;
         if (!bw0Var.J) {
             bw0Var.U1.remove(str);
             if (!"application/x-tgsticker".equals(xyVar.d)) {
                 bw0Var.S0(xyVar);
             } else {
-                xyVar.f27624c = true;
+                xyVar.f27626c = true;
                 int indexOf = bw0Var.T1.indexOf(xyVar);
                 if (indexOf >= 0) {
                     v4.e1 K = bw0Var.n1.K(indexOf);
@@ -291,7 +291,7 @@ public final class yf implements Runnable {
                         ((org.telegram.ui.Cells.y7) K.f58535a).setSticker(xyVar);
                     }
                 } else {
-                    bw0Var.f33410o1.f();
+                    bw0Var.f33413o1.f();
                 }
             }
             if (bw0Var.U1.isEmpty()) {
@@ -301,22 +301,22 @@ public final class yf implements Runnable {
     }
 
     private final void g() {
-        bw0 bw0Var = (bw0) this.f41991b;
+        bw0 bw0Var = (bw0) this.f41993b;
         ArrayList arrayList = (ArrayList) this.d;
-        Boolean bool = (Boolean) this.f41992c;
+        Boolean bool = (Boolean) this.f41994c;
         bw0Var.T1 = arrayList;
         if (arrayList.isEmpty()) {
             bw0Var.dismiss();
             return;
         }
-        bw0Var.f33410o1.f();
+        bw0Var.f33413o1.f();
         if (bool.booleanValue()) {
             bw0Var.U1 = new HashMap();
             int size = bw0Var.T1.size();
             for (int i7 = 0; i7 < size; i7++) {
                 org.telegram.messenger.xy xyVar = (org.telegram.messenger.xy) bw0Var.T1.get(i7);
-                bw0Var.U1.put(xyVar.f27622a, xyVar);
-                org.telegram.messenger.w7.G(bw0Var.f29679a).h0(false, 67108864, xyVar.f27622a, true);
+                bw0Var.U1.put(xyVar.f27624a, xyVar);
+                org.telegram.messenger.w7.G(bw0Var.f29679a).h0(false, 67108864, xyVar.f27624a, true);
             }
         }
         bw0Var.Z0();
@@ -328,9 +328,9 @@ public final class yf implements Runnable {
     }
 
     public yf(nc0 nc0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f41990a = 16;
-        this.f41991b = nc0Var;
+        this.f41992a = 16;
+        this.f41993b = nc0Var;
         this.d = tL_error;
-        this.f41992c = tLObject;
+        this.f41994c = tLObject;
     }
 }

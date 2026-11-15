@@ -49,14 +49,14 @@ public final class s implements f0, ij0 {
         if (jwVar != null) {
             Long l10 = (Long) view.getTag();
             long longValue = l10.longValue();
-            yw ywVar = jwVar.f48468a;
+            yw ywVar = jwVar.f48422a;
             if (ywVar.getParentActivity() != null && (a22 = ywVar.getMessagesController().a2(l10)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ywVar.getParentActivity());
                 String M0 = hd.M0(2131752234, null);
                 org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
                 t1Var.S = M0;
                 t1Var.U = org.telegram.messenger.g0.X2(hd.a0("ChatHintsDeleteAlert", null, 2131752235, g5.m(0, a22.first_name, a22.last_name)));
-                alertDialog$Builder.k(hd.M0(2131744855, null), new ai.c0(jwVar, longValue, 9));
+                alertDialog$Builder.k(hd.M0(2131744855, null), new ai.d0(jwVar, longValue, 9));
                 alertDialog$Builder.h(hd.M0(2131752589, null), null);
                 ywVar.showDialog(t1Var);
                 TextView textView = (TextView) t1Var.d(-1);

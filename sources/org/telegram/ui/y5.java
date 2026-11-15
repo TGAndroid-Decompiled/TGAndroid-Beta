@@ -6,23 +6,23 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public class y5 extends org.telegram.ui.ActionBar.e2 {
-    public w5 f53413a;
-    public org.telegram.ui.Components.uj0 f53414b;
-    public final ArrayList f53415c;
+    public w5 f53417a;
+    public org.telegram.ui.Components.uj0 f53418b;
+    public final ArrayList f53419c;
     public ArrayList d;
-    public int f53416e;
+    public int f53420e;
 
     public y5(Bundle bundle) {
         super(bundle);
-        this.f53415c = new ArrayList();
+        this.f53419c = new ArrayList();
         this.d = new ArrayList();
     }
 
     public final void Z() {
         ArrayList arrayList;
         boolean z10 = this.isPaused;
-        ArrayList arrayList2 = this.f53415c;
-        if (!z10 && this.f53413a != null) {
+        ArrayList arrayList2 = this.f53419c;
+        if (!z10 && this.f53417a != null) {
             arrayList = new ArrayList();
             arrayList.addAll(arrayList2);
         } else {
@@ -45,7 +45,7 @@ public class y5 extends org.telegram.ui.ActionBar.e2 {
             arrayList2.add(new x5(4, null));
         }
         arrayList2.add(new x5(3, null));
-        w5 w5Var = this.f53413a;
+        w5 w5Var = this.f53417a;
         if (w5Var != null) {
             if (arrayList != null) {
                 w5Var.E(arrayList, arrayList2);
@@ -64,27 +64,27 @@ public class y5 extends org.telegram.ui.ActionBar.e2 {
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.x4(this, 26));
         this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131747912, null));
         org.telegram.ui.Components.uj0 uj0Var = new org.telegram.ui.Components.uj0(context, null);
-        this.f53414b = uj0Var;
+        this.f53418b = uj0Var;
         uj0Var.r1();
-        this.f53414b.setSectionsDrawBackground(true);
+        this.f53418b.setSectionsDrawBackground(true);
         v4.k kVar = new v4.k();
         kVar.C = false;
         kVar.f58564m = false;
-        this.f53414b.setItemAnimator(kVar);
-        this.f53414b.setLayoutManager(new v4.b0());
-        org.telegram.ui.Components.uj0 uj0Var2 = this.f53414b;
+        this.f53418b.setItemAnimator(kVar);
+        this.f53418b.setLayoutManager(new v4.b0());
+        org.telegram.ui.Components.uj0 uj0Var2 = this.f53418b;
         w5 w5Var = new w5(this);
-        this.f53413a = w5Var;
+        this.f53417a = w5Var;
         uj0Var2.setAdapter(w5Var);
-        this.f53414b.setOnItemClickListener(new w0(this, 7));
-        frameLayout.addView(this.f53414b);
+        this.f53418b.setOnItemClickListener(new w0(this, 7));
+        frameLayout.addView(this.f53418b);
         Z();
         return this.fragmentView;
     }
 
     @Override
     public final org.telegram.ui.Components.uj0 getListViewForSimpleGlass() {
-        return this.f53414b;
+        return this.f53418b;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class y5 extends org.telegram.ui.ActionBar.e2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f53416e = getArguments().getInt("type");
+        this.f53420e = getArguments().getInt("type");
         Z();
         return super.onFragmentCreate();
     }

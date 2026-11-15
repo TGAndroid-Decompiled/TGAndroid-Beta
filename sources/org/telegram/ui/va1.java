@@ -4,17 +4,17 @@ import android.widget.TextView;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class va1 extends org.telegram.ui.ActionBar.j {
-    public final xa1 f52182a;
+    public final xa1 f52180a;
 
     public va1(xa1 xa1Var) {
-        this.f52182a = xa1Var;
+        this.f52180a = xa1Var;
     }
 
     @Override
     public final void b(int i7) {
         String M0;
         org.telegram.ui.ActionBar.o4 o4Var;
-        xa1 xa1Var = this.f52182a;
+        xa1 xa1Var = this.f52180a;
         if (i7 == -1) {
             if (xa1Var.H >= 0) {
                 o4Var = ((org.telegram.ui.ActionBar.e2) xa1Var).parentLayout;

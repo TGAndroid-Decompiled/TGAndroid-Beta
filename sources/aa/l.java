@@ -91,7 +91,7 @@ public final class l implements Function {
             case 6:
                 return np.a((int[]) obj);
             case 7:
-                return ((v00) obj).f26917b;
+                return ((v00) obj).f26918b;
             case 8:
                 return Long.valueOf(m5.o((TLRPC.Peer) obj));
             case 9:
@@ -109,9 +109,9 @@ public final class l implements Function {
             case 13:
                 return Long.valueOf(m5.o(((TLRPC.GroupCallParticipant) obj).peer));
             case 14:
-                return ((ps) obj).f50358a;
+                return ((ps) obj).f50349a;
             case 15:
-                return ((ps) obj).f50358a;
+                return ((ps) obj).f50349a;
             default:
                 return new org.telegram.utils.twidget.h(((Integer) obj).intValue());
         }

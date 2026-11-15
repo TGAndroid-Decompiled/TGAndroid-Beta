@@ -103,7 +103,7 @@ public final class f extends ri.e {
         }
         float max2 = (Math.max(max * f16, 0.001f) * f15) + f17;
         int[] iArr = new int[8];
-        c0.a(c0.f3214i, i7, iArr);
+        c0.a(c0.f3217i, i7, iArr);
         int i13 = fVar.f56932y;
         if (i13 != 1 && i13 != 4) {
             return new LinearGradient(max2, 0.0f, f17, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);

@@ -112,7 +112,7 @@ public abstract class d {
                     } else {
                         e0 e0Var = this.f55301r;
                         if (e0Var != null && (nVar = this.f55291g) != null) {
-                            String str = (String) nVar.f1790c;
+                            String str = (String) nVar.f1797c;
                             String str2 = (String) nVar.d;
                             StringBuilder sb2 = new StringBuilder(String.valueOf(str).length() + 70 + String.valueOf(str2).length());
                             sb2.append("Calling connect() while still connected, missing disconnect() for ");
@@ -121,13 +121,13 @@ public abstract class d {
                             sb2.append(str2);
                             Log.e("GmsClient", sb2.toString());
                             l0 l0Var = this.f55293j;
-                            String str3 = (String) this.f55291g.f1790c;
+                            String str3 = (String) this.f55291g.f1797c;
                             m.g(str3);
                             String str4 = (String) this.f55291g.d;
                             if (this.f55305w == null) {
                                 this.h.getClass();
                             }
-                            l0Var.c(str3, str4, e0Var, this.f55291g.f1789b);
+                            l0Var.c(str3, str4, e0Var, this.f55291g.f1796b);
                             this.C.incrementAndGet();
                         }
                         e0 e0Var2 = new e0(this, this.C.get());
@@ -137,20 +137,20 @@ public abstract class d {
                         boolean r10 = r();
                         this.f55291g = new androidx.activity.n(q10, p10, r10);
                         if (r10 && d() < 17895000) {
-                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.f55291g.f1790c)));
+                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.f55291g.f1797c)));
                         }
                         l0 l0Var2 = this.f55293j;
-                        String str5 = (String) this.f55291g.f1790c;
+                        String str5 = (String) this.f55291g.f1797c;
                         m.g(str5);
                         String str6 = (String) this.f55291g.d;
                         String str7 = this.f55305w;
                         if (str7 == null) {
                             str7 = this.h.getClass().getName();
                         }
-                        n6.a b10 = l0Var2.b(new i0(str5, str6, this.f55291g.f1789b), e0Var2, str7);
+                        n6.a b10 = l0Var2.b(new i0(str5, str6, this.f55291g.f1796b), e0Var2, str7);
                         if (!b10.c()) {
                             androidx.activity.n nVar2 = this.f55291g;
-                            String str8 = (String) nVar2.f1790c;
+                            String str8 = (String) nVar2.f1797c;
                             String str9 = (String) nVar2.d;
                             StringBuilder sb3 = new StringBuilder(String.valueOf(str8).length() + 34 + String.valueOf(str9).length());
                             sb3.append("unable to connect to service: ");
@@ -176,13 +176,13 @@ public abstract class d {
                     e0 e0Var3 = this.f55301r;
                     if (e0Var3 != null) {
                         l0 l0Var3 = this.f55293j;
-                        String str10 = (String) this.f55291g.f1790c;
+                        String str10 = (String) this.f55291g.f1797c;
                         m.g(str10);
                         String str11 = (String) this.f55291g.d;
                         if (this.f55305w == null) {
                             this.h.getClass();
                         }
-                        l0Var3.c(str10, str11, e0Var3, this.f55291g.f1789b);
+                        l0Var3.c(str10, str11, e0Var3, this.f55291g.f1796b);
                         this.f55301r = null;
                     }
                 }

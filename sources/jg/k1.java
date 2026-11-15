@@ -89,9 +89,9 @@ public final class k1 extends FrameLayout {
                 break;
             }
             gj gjVar = (gj) d6Var.f11944i.get(i7);
-            long j3 = gjVar.f23822l.dialogId;
+            long j3 = gjVar.f23824l.dialogId;
             TextUtils.isEmpty(str);
-            v8Var.j(i10, d6Var.f11940c, gjVar.f23822l);
+            v8Var.j(i10, d6Var.f11940c, gjVar.f23824l);
             i10++;
             i7++;
         }

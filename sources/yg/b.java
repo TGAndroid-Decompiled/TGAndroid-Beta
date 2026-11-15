@@ -24,7 +24,7 @@ public final class b extends FrameLayout {
         j5 j5Var = new j5(context);
         this.f60639a = j5Var;
         j5Var.setTextSize(16);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -56,7 +56,7 @@ public final class b extends FrameLayout {
         int i13 = i11 - i7;
         j5 j5Var = this.f60639a;
         int textHeight = ((i12 - i10) - j5Var.getTextHeight()) / 2;
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         float f10 = 23.0f;
         ImageView imageView = this.f60640b;
         if (z11) {
@@ -72,7 +72,7 @@ public final class b extends FrameLayout {
             L = g0.L(f10);
         }
         j5Var.layout(L, textHeight, j5Var.getMeasuredWidth() + L, j5Var.getMeasuredHeight() + textHeight);
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             measuredWidth = g0.L(24.0f);
         } else {
             measuredWidth = (i13 - imageView.getMeasuredWidth()) - g0.L(24.0f);

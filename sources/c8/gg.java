@@ -7,29 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 public final class gg extends r6.a {
     public static final Parcelable.Creator<gg> CREATOR = new ag(2);
-    public final List f4515a;
-    public final float[] f4516b;
-    public final Bitmap f4517c;
+    public final List f4518a;
+    public final float[] f4519b;
+    public final Bitmap f4520c;
     public final List d;
 
     public gg(ArrayList arrayList, float[] fArr, Bitmap bitmap, ArrayList arrayList2) {
-        this.f4515a = arrayList;
-        this.f4516b = fArr;
-        this.f4517c = bitmap;
+        this.f4518a = arrayList;
+        this.f4519b = fArr;
+        this.f4520c = bitmap;
         this.d = arrayList2;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = yb.r(parcel, 20293);
-        yb.p(parcel, 1, this.f4515a);
-        float[] fArr = this.f4516b;
+        yb.p(parcel, 1, this.f4518a);
+        float[] fArr = this.f4519b;
         if (fArr != null) {
             int r11 = yb.r(parcel, 2);
             parcel.writeFloatArray(fArr);
             yb.s(parcel, r11);
         }
-        yb.k(parcel, 3, this.f4517c, i7);
+        yb.k(parcel, 3, this.f4520c, i7);
         List list = this.d;
         if (list != null) {
             int r12 = yb.r(parcel, 4);

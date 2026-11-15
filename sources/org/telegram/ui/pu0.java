@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.graphics.RectF;
 import org.telegram.messenger.voip.VoIPService;
 public final class pu0 implements Runnable {
-    public final int f50377a;
-    public final Object f50378b;
+    public final int f50368a;
+    public final Object f50369b;
 
     public pu0(Object obj, int i7) {
-        this.f50377a = i7;
-        this.f50378b = obj;
+        this.f50368a = i7;
+        this.f50369b = obj;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f50377a;
+        int i7 = this.f50368a;
         int i10 = 0;
-        Object obj = this.f50378b;
+        Object obj = this.f50369b;
         switch (i7) {
             case 0:
                 qu0 qu0Var = (qu0) obj;
                 qu0Var.G.getNotificationCenter().j(qu0Var.F);
                 return;
             case 1:
-                ProfileActivity profileActivity = (ProfileActivity) ((ai.j0) obj).f1266c;
+                ProfileActivity profileActivity = (ProfileActivity) ((ai.k0) obj).f1273c;
                 if (profileActivity.f43187r5 != 1.0f) {
                     yu0 yu0Var = profileActivity.f43161o0;
                     while (yu0Var.E0.k(i10) != yu0Var.getRealCount() - 1) {
@@ -33,7 +33,7 @@ public final class pu0 implements Runnable {
                 }
                 return;
             case 2:
-                ProfileActivity profileActivity2 = ((pv0) obj).f50383b;
+                ProfileActivity profileActivity2 = ((pv0) obj).f50374b;
                 RectF rectF = ProfileActivity.X6;
                 profileActivity2.getMessagesController().e5(profileActivity2.f43094e1, 0, true, new hi.j9(2, profileActivity2, true));
                 return;
@@ -49,7 +49,7 @@ public final class pu0 implements Runnable {
                 return;
             case 6:
                 ww0 ww0Var = (ww0) obj;
-                ww0Var.f53019f.add(ww0Var.f53017c);
+                ww0Var.f53018f.add(ww0Var.f53016c);
                 ww0Var.a();
                 return;
             case 7:
@@ -68,7 +68,7 @@ public final class pu0 implements Runnable {
                     }
                     if (ccVar != null) {
                         org.telegram.ui.Components.xb I = ccVar.I(2131624092, org.telegram.messenger.hd.M0(2131746222, null), org.telegram.messenger.hd.M0(2131746185, null));
-                        I.f41643j = 5000;
+                        I.f41635j = 5000;
                         I.j();
                         return;
                     }
@@ -90,7 +90,7 @@ public final class pu0 implements Runnable {
                 vf.c.t(p20Var.getContext(), org.telegram.messenger.hd.M0(2131746618, null));
                 return;
             case 13:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.y50) obj).f41885c;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.y50) obj).f41877c;
                 Runnable runnable = secretMediaViewer.f43298n0;
                 if (runnable != null) {
                     runnable.run();
@@ -99,7 +99,7 @@ public final class pu0 implements Runnable {
                 }
                 return;
             case 14:
-                pz0 pz0Var = ((oz0) obj).f50092a;
+                pz0 pz0Var = ((oz0) obj).f50069a;
                 pz0Var.R = true;
                 pz0Var.O.invalidate();
                 return;
@@ -107,10 +107,10 @@ public final class pu0 implements Runnable {
                 ((org.telegram.messenger.ns) obj).o();
                 return;
             case 16:
-                org.telegram.messenger.g0.U3(((f01) obj).f46955c, true, true);
+                org.telegram.messenger.g0.U3(((f01) obj).f46939c, true, true);
                 return;
             case 17:
-                org.telegram.ui.Components.p41 p41Var = ((x11) obj).f53071e2;
+                org.telegram.ui.Components.p41 p41Var = ((x11) obj).f53070e2;
                 if (p41Var != null) {
                     p41Var.O(true);
                     return;
@@ -124,39 +124,39 @@ public final class pu0 implements Runnable {
                 return;
             case 20:
                 z41 z41Var = (z41) obj;
-                z41Var.f53860n0.a(z41Var.f53857k0.f35726f0, z41Var.f53858l0.isAttachedToWindow());
+                z41Var.f53825n0.a(z41Var.f53822k0.f35713f0, z41Var.f53823l0.isAttachedToWindow());
                 return;
             case 21:
-                ((x81) obj).J.f51871r.f();
+                ((x81) obj).J.f51872r.f();
                 return;
             case 22:
-                ((f91) obj).f47094b.G0();
+                ((f91) obj).f47078b.G0();
                 return;
             case 23:
                 ((VoIPFeedbackActivity) obj).finish();
                 return;
             case 24:
-                ((vb1) obj).f52188a.y();
+                ((vb1) obj).f52186a.y();
                 return;
             case 25:
-                ((wb1) obj).f52538a.y();
+                ((wb1) obj).f52541a.y();
                 return;
             case 26:
-                ec1 ec1Var = ((ub1) obj).f51903b;
+                ec1 ec1Var = ((ub1) obj).f51904b;
                 ec1Var.L0.e();
                 org.telegram.ui.Components.voip.i2.d().getClass();
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().swapSinks();
                 }
                 ec1Var.Z.setCornerRadius(-1.0f);
-                ec1Var.f46690d0.d.release();
-                ec1Var.f46693e0.d.release();
-                ec1Var.f46688c0.release();
+                ec1Var.f46680d0.d.release();
+                ec1Var.f46683e0.d.release();
+                ec1Var.f46678c0.release();
                 ec1Var.c();
-                ec1Var.f46719u0.d();
+                ec1Var.f46709u0.d();
                 org.telegram.ui.Components.voip.i2.T = false;
                 ec1Var.E0 = false;
-                ec1.f46680m1 = null;
+                ec1.f46670m1 = null;
                 org.telegram.ui.Components.voip.j2.g();
                 return;
             case 27:
@@ -164,7 +164,7 @@ public final class pu0 implements Runnable {
                 cc1Var.getClass();
                 if (VoIPService.getSharedState() != null) {
                     VoIPService.getSharedState().acceptIncomingCall();
-                    if (cc1Var.f46078a.f46710n0 && VoIPService.getSharedInstance() != null) {
+                    if (cc1Var.f46067a.f46700n0 && VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().requestVideoCall(false);
                         return;
                     }

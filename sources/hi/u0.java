@@ -28,7 +28,7 @@ public final class u0 extends ImageView {
     public static void a(u0 u0Var) {
         t8 t8Var = u0Var.h;
         int i7 = Build.VERSION.SDK_INT;
-        if ((i7 <= 28 || org.telegram.messenger.r2.f26199b) && u0Var.getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+        if ((i7 <= 28 || org.telegram.messenger.r2.f26207b) && u0Var.getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
             Activity W = org.telegram.messenger.g0.W(u0Var.getContext());
             if (W != null) {
                 W.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);

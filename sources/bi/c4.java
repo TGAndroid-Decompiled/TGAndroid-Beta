@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import c8.ja;
 import c8.na;
-import di.m8;
+import di.l8;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.is;
@@ -28,30 +28,30 @@ public final class c4 extends FrameLayout implements is {
     public final TextView G;
     public final hi.d H;
     public boolean I;
-    public final wp0 f3409a;
-    public final int f3410b;
-    public final org.telegram.ui.ActionBar.e6 f3411c;
+    public final wp0 f3412a;
+    public final int f3413b;
+    public final org.telegram.ui.ActionBar.e6 f3414c;
     public boolean d;
-    public m8 f3412e;
-    public final v3 f3413f;
+    public l8 f3415e;
+    public final v3 f3416f;
     public boolean h;
-    public int f3414n;
-    public final FrameLayout f3415r;
-    public final LinearLayout f3416s;
-    public final TextView f3417w;
-    public final TextView f3418x;
-    public final FrameLayout f3419y;
+    public int f3417n;
+    public final FrameLayout f3418r;
+    public final LinearLayout f3419s;
+    public final TextView f3420w;
+    public final TextView f3421x;
+    public final FrameLayout f3422y;
 
     public c4(wp0 wp0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
         super(wp0Var.getContext());
-        this.f3414n = org.telegram.messenger.g0.f23609q.y;
+        this.f3417n = org.telegram.messenger.g0.f23611q.y;
         Context context = wp0Var.getContext();
-        this.f3409a = wp0Var;
-        this.f3410b = i7;
-        this.f3411c = e6Var;
+        this.f3412a = wp0Var;
+        this.f3413b = i7;
+        this.f3414c = e6Var;
         v3 v3Var = new v3(context, i7, new b(this, 6), new t3(this), new t3(this), e6Var, wp0Var);
-        this.f3413f = v3Var;
-        v3Var.f39895g3.f38201r = false;
+        this.f3416f = v3Var;
+        v3Var.f39892g3.f38199r = false;
         v3Var.setSelectorType(9);
         v3Var.setSelectorDrawableColor(0);
         v3Var.setClipToPadding(false);
@@ -66,87 +66,87 @@ public final class c4 extends FrameLayout implements is {
         x3Var.n(350L);
         v3Var.setItemAnimator(x3Var);
         new v4.y(new y3(this, wp0Var)).h(v3Var);
-        View view = this.f3415r;
+        View view = this.f3418r;
         if (view != null) {
             removeView(view);
         }
-        View view2 = this.f3419y;
+        View view2 = this.f3422y;
         if (view2 != null) {
             removeView(view2);
         }
-        if (wp0Var.d == this.f3412e) {
-            this.f3419y = null;
+        if (wp0Var.d == this.f3415e) {
+            this.f3422y = null;
             this.F = null;
             this.G = null;
             this.H = null;
             this.E = null;
-            this.f3415r = new FrameLayout(getContext());
+            this.f3418r = new FrameLayout(getContext());
             LinearLayout linearLayout = new LinearLayout(getContext());
-            this.f3416s = linearLayout;
+            this.f3419s = linearLayout;
             linearLayout.setOrientation(1);
-            this.f3415r.addView(this.f3416s, ja.e(-2, -2, 17));
+            this.f3418r.addView(this.f3419s, ja.e(-2, -2, 17));
             i9 i9Var = new i9(getContext());
             i9Var.setImageDrawable(new ch0(2131624320, org.telegram.messenger.g0.L(120.0f), org.telegram.messenger.g0.L(120.0f)));
-            this.f3416s.addView(i9Var, ja.t(120, 120, 1, 0, 0, 0, 0));
+            this.f3419s.addView(i9Var, ja.t(120, 120, 1, 0, 0, 0, 0));
             TextView textView = new TextView(getContext());
-            this.f3417w = textView;
+            this.f3420w = textView;
             textView.setTextSize(1, 17.0f);
-            this.f3417w.setTypeface(org.telegram.messenger.g0.o());
-            org.telegram.ui.ActionBar.q6.U(this.f3417w, org.telegram.ui.ActionBar.j6.G6, e6Var);
-            this.f3417w.setText(hd.M0(2131746669, null));
-            this.f3416s.addView(this.f3417w, ja.t(-2, -2, 1, 0, 12, 0, 0));
+            this.f3420w.setTypeface(org.telegram.messenger.g0.o());
+            org.telegram.ui.ActionBar.q6.U(this.f3420w, org.telegram.ui.ActionBar.j6.G6, e6Var);
+            this.f3420w.setText(hd.M0(2131746669, null));
+            this.f3419s.addView(this.f3420w, ja.t(-2, -2, 1, 0, 12, 0, 0));
             TextView textView2 = new TextView(getContext());
-            this.f3418x = textView2;
+            this.f3421x = textView2;
             textView2.setTextSize(1, 14.0f);
-            TextView textView3 = this.f3418x;
+            TextView textView3 = this.f3421x;
             int i10 = org.telegram.ui.ActionBar.j6.Fi;
             org.telegram.ui.ActionBar.q6.U(textView3, i10, e6Var);
-            this.f3418x.setText(hd.M0(2131746670, null));
-            this.f3418x.setOnClickListener(new View.OnClickListener(this) {
-                public final c4 f3804b;
+            this.f3421x.setText(hd.M0(2131746670, null));
+            this.f3421x.setOnClickListener(new View.OnClickListener(this) {
+                public final c4 f3807b;
 
                 {
-                    this.f3804b = this;
+                    this.f3807b = this;
                 }
 
                 @Override
                 public final void onClick(View view3) {
                     switch (r2) {
                         case 0:
-                            m8 m8Var = this.f3804b.f3412e;
-                            if (m8Var != null) {
-                                if (!m8Var.f9045e || m8Var.f9047g != 783) {
-                                    m8Var.f9047g = 783;
-                                    m8Var.f9045e = true;
-                                    m8Var.j(true);
+                            l8 l8Var = this.f3807b.f3415e;
+                            if (l8Var != null) {
+                                if (!l8Var.f8995e || l8Var.f8997g != 783) {
+                                    l8Var.f8997g = 783;
+                                    l8Var.f8995e = true;
+                                    l8Var.j(true);
                                     return;
                                 }
                                 return;
                             }
                             return;
                         default:
-                            this.f3804b.f3409a.a();
+                            this.f3807b.f3412a.a();
                             return;
                     }
                 }
             });
-            this.f3418x.setPadding(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f));
-            org.telegram.ui.ActionBar.q6.Q(this.f3418x, org.telegram.ui.ActionBar.j6.a0(org.telegram.ui.ActionBar.j6.r1(0.1f, org.telegram.ui.ActionBar.j6.w0(i10, e6Var)), 4, 4), null, org.telegram.ui.ActionBar.q6.K(0.1f, i10), e6Var);
-            na.a(this.f3418x);
-            this.f3416s.addView(this.f3418x, ja.t(-2, -2, 1, 0, 8, 0, 0));
-            addView(this.f3415r, ja.e(-1, -1, 119));
-            v3Var.setEmptyView(this.f3415r);
+            this.f3421x.setPadding(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f));
+            org.telegram.ui.ActionBar.q6.Q(this.f3421x, org.telegram.ui.ActionBar.j6.a0(org.telegram.ui.ActionBar.j6.r1(0.1f, org.telegram.ui.ActionBar.j6.w0(i10, e6Var)), 4, 4), null, org.telegram.ui.ActionBar.q6.K(0.1f, i10), e6Var);
+            na.a(this.f3421x);
+            this.f3419s.addView(this.f3421x, ja.t(-2, -2, 1, 0, 8, 0, 0));
+            addView(this.f3418r, ja.e(-1, -1, 119));
+            v3Var.setEmptyView(this.f3418r);
             return;
         }
-        this.f3415r = null;
-        this.f3417w = null;
-        this.f3418x = null;
-        this.f3416s = null;
-        this.f3419y = new FrameLayout(getContext());
+        this.f3418r = null;
+        this.f3420w = null;
+        this.f3421x = null;
+        this.f3419s = null;
+        this.f3422y = new FrameLayout(getContext());
         LinearLayout linearLayout2 = new LinearLayout(getContext());
         this.E = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.f3419y.addView(this.E, ja.e(-2, -2, 17));
+        this.f3422y.addView(this.E, ja.e(-2, -2, 17));
         TextView textView4 = new TextView(getContext());
         this.F = textView4;
         textView4.setTextSize(1, 20.0f);
@@ -165,38 +165,38 @@ public final class c4 extends FrameLayout implements is {
         dVar.i(hd.M0(2131750247, null), false, true);
         this.E.addView(this.H, ja.t(200, 44, 1, 0, 19, 0, 12));
         this.H.setOnClickListener(new View.OnClickListener(this) {
-            public final c4 f3804b;
+            public final c4 f3807b;
 
             {
-                this.f3804b = this;
+                this.f3807b = this;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        m8 m8Var = this.f3804b.f3412e;
-                        if (m8Var != null) {
-                            if (!m8Var.f9045e || m8Var.f9047g != 783) {
-                                m8Var.f9047g = 783;
-                                m8Var.f9045e = true;
-                                m8Var.j(true);
+                        l8 l8Var = this.f3807b.f3415e;
+                        if (l8Var != null) {
+                            if (!l8Var.f8995e || l8Var.f8997g != 783) {
+                                l8Var.f8997g = 783;
+                                l8Var.f8995e = true;
+                                l8Var.j(true);
                                 return;
                             }
                             return;
                         }
                         return;
                     default:
-                        this.f3804b.f3409a.a();
+                        this.f3807b.f3412a.a();
                         return;
                 }
             }
         });
-        addView(this.f3419y, ja.d(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
-        v3Var.setEmptyView(this.f3419y);
+        addView(this.f3422y, ja.d(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
+        v3Var.setEmptyView(this.f3422y);
         LinearLayout linearLayout3 = this.E;
         if (linearLayout3 != null) {
-            linearLayout3.setVisibility(wp0Var.f3610e.h() ? 0 : 8);
+            linearLayout3.setVisibility(wp0Var.f3613e.h() ? 0 : 8);
         }
     }
 
@@ -208,11 +208,11 @@ public final class c4 extends FrameLayout implements is {
         v3 v3Var;
         if (this.h != z10) {
             this.h = z10;
-            wp0 wp0Var = this.f3409a;
+            wp0 wp0Var = this.f3412a;
             wp0Var.q(wp0Var.g());
             int i7 = 0;
             while (true) {
-                v3Var = this.f3413f;
+                v3Var = this.f3416f;
                 if (i7 >= v3Var.getChildCount()) {
                     break;
                 }
@@ -222,7 +222,7 @@ public final class c4 extends FrameLayout implements is {
                 }
                 i7++;
             }
-            p41 p41Var = v3Var.f39895g3;
+            p41 p41Var = v3Var.f39892g3;
             if (p41Var != null) {
                 p41Var.T();
             }
@@ -239,10 +239,10 @@ public final class c4 extends FrameLayout implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.G3 && objArr[1] == this.f3412e) {
+        if (i7 == ns.G3 && objArr[1] == this.f3415e) {
             f(true);
-            if (this.f3412e != null && isAttachedToWindow()) {
-                v3 v3Var = this.f3413f;
+            if (this.f3415e != null && isAttachedToWindow()) {
+                v3 v3Var = this.f3416f;
                 if (v3Var.canScrollVertically(1)) {
                     for (int i11 = 0; i11 < v3Var.getChildCount(); i11++) {
                         if (!(v3Var.getChildAt(i11) instanceof pz)) {
@@ -250,7 +250,7 @@ public final class c4 extends FrameLayout implements is {
                     }
                     return;
                 }
-                this.f3412e.a();
+                this.f3415e.a();
             }
         }
     }
@@ -259,17 +259,17 @@ public final class c4 extends FrameLayout implements is {
         if (!this.h) {
             return;
         }
-        m8 m8Var = this.f3412e;
-        if (m8Var != null) {
-            m8Var.n();
+        l8 l8Var = this.f3415e;
+        if (l8Var != null) {
+            l8Var.n();
         }
         setReordering(false);
     }
 
     public final void f(boolean z10) {
         p41 p41Var;
-        v3 v3Var = this.f3413f;
-        if (v3Var != null && (p41Var = v3Var.f39895g3) != null) {
+        v3 v3Var = this.f3416f;
+        if (v3Var != null && (p41Var = v3Var.f39892g3) != null) {
             boolean canScrollVertically = v3Var.canScrollVertically(-1);
             p41Var.O(z10);
             if (!canScrollVertically) {
@@ -280,14 +280,14 @@ public final class c4 extends FrameLayout implements is {
 
     public final void g() {
         boolean z10;
-        wp0 wp0Var = this.f3409a;
+        wp0 wp0Var = this.f3412a;
         if (wp0Var.M == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         setClipChildren(z10);
-        v3 v3Var = this.f3413f;
+        v3 v3Var = this.f3416f;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) v3Var.getLayoutParams();
         int i7 = marginLayoutParams.topMargin;
         int i10 = -wp0Var.M;
@@ -300,7 +300,7 @@ public final class c4 extends FrameLayout implements is {
     }
 
     public float getTabsHeight() {
-        v3 v3Var = this.f3413f;
+        v3 v3Var = this.f3416f;
         float y10 = v3Var.getY();
         for (int i7 = 0; i7 < v3Var.getChildCount(); i7++) {
             View childAt = v3Var.getChildAt(i7);
@@ -319,19 +319,19 @@ public final class c4 extends FrameLayout implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f3410b).c(this, ns.G3);
+        ns.f(this.f3413b).c(this, ns.G3);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f3410b).n(this, ns.G3);
+        ns.f(this.f3413b).n(this, ns.G3);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        setVisibleHeight(this.f3414n);
+        setVisibleHeight(this.f3417n);
     }
 
     public void setHasTabs(boolean z10) {
@@ -339,28 +339,28 @@ public final class c4 extends FrameLayout implements is {
             return;
         }
         this.I = z10;
-        v3 v3Var = this.f3413f;
+        v3 v3Var = this.f3416f;
         boolean canScrollVertically = v3Var.canScrollVertically(-1);
-        v3Var.f39895g3.O(true);
+        v3Var.f39892g3.O(true);
         if (!canScrollVertically) {
             v3Var.v0(0);
         }
-        this.f3409a.p();
+        this.f3412a.p();
     }
 
     public void setVisibleHeight(int i7) {
-        this.f3414n = i7;
+        this.f3417n = i7;
         float l10 = Utilities.l(org.telegram.messenger.g0.z1(i7, org.telegram.messenger.g0.L(150.0f), org.telegram.messenger.g0.L(220.0f)));
         float T1 = org.telegram.messenger.g0.T1(0.6f, 1.0f, l10);
-        LinearLayout linearLayout = this.f3416s;
+        LinearLayout linearLayout = this.f3419s;
         if (linearLayout != null) {
             linearLayout.setAlpha(l10);
-            this.f3416s.setScaleX(T1);
-            this.f3416s.setScaleY(T1);
+            this.f3419s.setScaleX(T1);
+            this.f3419s.setScaleY(T1);
         }
-        FrameLayout frameLayout = this.f3415r;
+        FrameLayout frameLayout = this.f3418r;
         if (frameLayout != null) {
-            frameLayout.setTranslationY((-(getMeasuredHeight() - this.f3414n)) / 2.0f);
+            frameLayout.setTranslationY((-(getMeasuredHeight() - this.f3417n)) / 2.0f);
         }
         LinearLayout linearLayout2 = this.E;
         if (linearLayout2 != null) {
@@ -368,9 +368,9 @@ public final class c4 extends FrameLayout implements is {
             this.E.setScaleX(T1);
             this.E.setScaleY(T1);
         }
-        FrameLayout frameLayout2 = this.f3419y;
+        FrameLayout frameLayout2 = this.f3422y;
         if (frameLayout2 != null) {
-            frameLayout2.setTranslationY((-(getMeasuredHeight() - this.f3414n)) / 2.0f);
+            frameLayout2.setTranslationY((-(getMeasuredHeight() - this.f3417n)) / 2.0f);
         }
     }
 }

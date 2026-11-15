@@ -34,7 +34,7 @@ public class p4 extends Drawable {
         new RectF();
         this.f29488o = 255;
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStrokeWidth(org.telegram.messenger.g0.f23608p * 1.66f);
+        paint2.setStrokeWidth(org.telegram.messenger.g0.f23610p * 1.66f);
         paint2.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStyle(Paint.Style.STROKE);
         this.f29486m = 1.0f;

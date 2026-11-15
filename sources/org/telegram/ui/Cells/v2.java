@@ -79,7 +79,7 @@ public final class v2 extends FrameLayout {
         float f12 = 61.0f;
         int i11 = 3;
         if (textView2.getVisibility() == 0) {
-            boolean z10 = hd.f24101a0;
+            boolean z10 = hd.f24104a0;
             if (z10) {
                 i10 = 5;
             } else {
@@ -96,7 +96,7 @@ public final class v2 extends FrameLayout {
             }
             d = c8.ja.d(-1, -1.0f, i12, f11, 0.0f, f12, 0.0f);
         } else {
-            boolean z11 = hd.f24101a0;
+            boolean z11 = hd.f24104a0;
             if (z11) {
                 i7 = 5;
             } else {
@@ -116,12 +116,12 @@ public final class v2 extends FrameLayout {
         textView.setLayoutParams(d);
         RadioButton radioButton = this.d;
         if (textView2.getVisibility() == 0) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i11 = 5;
             }
             d2 = c8.ja.d(22, 22.0f, i11 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
         } else {
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 i11 = 5;
             }
             d2 = c8.ja.d(22, 22.0f, i11 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
@@ -134,7 +134,7 @@ public final class v2 extends FrameLayout {
         float f10;
         if (this.f31793e) {
             float f11 = 0.0f;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f10 = 0.0f;
             } else {
                 f10 = this.f31794f;
@@ -142,7 +142,7 @@ public final class v2 extends FrameLayout {
             float L = org.telegram.messenger.g0.L(f10);
             float height = getHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f11 = this.f31794f;
             }
             canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);

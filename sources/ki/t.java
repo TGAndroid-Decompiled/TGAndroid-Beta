@@ -47,15 +47,15 @@ public final class t {
         this.f18563o = lpVar;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f18564p = nVar;
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
         g6Var.w(org.telegram.messenger.g0.L(14.0f));
         g6Var.x(org.telegram.messenger.g0.o());
-        g6Var.N = org.telegram.messenger.g0.f23609q.x * 4;
+        g6Var.N = org.telegram.messenger.g0.f23611q.x * 4;
         g6Var.q(true);
         g6Var.setCallback(vVar);
         lpVar.setCallback(vVar);
         a02.setCallback(vVar);
-        nVar.f40800l = true;
-        nVar.f40801m = 2.0f;
+        nVar.f40803l = true;
+        nVar.f40804m = 2.0f;
     }
 }

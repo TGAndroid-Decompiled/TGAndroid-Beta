@@ -10,18 +10,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 public final class ba0 implements org.telegram.messenger.ab, org.telegram.ui.ActionBar.q1, org.telegram.messenger.cb, jg.b {
-    public final int f45664a;
-    public final pa0 f45665b;
+    public final int f45658a;
+    public final pa0 f45659b;
 
     public ba0(pa0 pa0Var, int i7) {
-        this.f45664a = i7;
-        this.f45665b = pa0Var;
+        this.f45658a = i7;
+        this.f45659b = pa0Var;
     }
 
     @Override
     public void a() {
-        pa0 pa0Var = this.f45665b;
-        pa0Var.f50222w0 = false;
+        pa0 pa0Var = this.f45659b;
+        pa0Var.f50199w0 = false;
         pa0Var.L0();
     }
 
@@ -30,12 +30,12 @@ public final class ba0 implements org.telegram.messenger.ab, org.telegram.ui.Act
         View childAt;
         v4.e1 T;
         int L;
-        pa0 pa0Var = this.f45665b;
+        pa0 pa0Var = this.f45659b;
         int i10 = pa0Var.I0;
         if (i7 == 1) {
-            pa0Var.f50213q0 = -1L;
-            if (pa0Var.f50215r0) {
-                pa0Var.f50215r0 = false;
+            pa0Var.f50190q0 = -1L;
+            if (pa0Var.f50192r0) {
+                pa0Var.f50192r0 = false;
                 pa0Var.N0();
             }
             if (!pa0Var.N) {
@@ -69,8 +69,8 @@ public final class ba0 implements org.telegram.messenger.ab, org.telegram.ui.Act
     public boolean c(MotionEvent motionEvent, org.telegram.messenger.ha haVar) {
         MotionEvent motionEvent2;
         Location location;
-        int i7 = this.f45664a;
-        pa0 pa0Var = this.f45665b;
+        int i7 = this.f45658a;
+        pa0 pa0Var = this.f45659b;
         switch (i7) {
             case 0:
                 pa0Var.D0();
@@ -89,34 +89,34 @@ public final class ba0 implements org.telegram.messenger.ab, org.telegram.ui.Act
             default:
                 if (pa0Var.E0 == null && pa0Var.C0 == null) {
                     if (motionEvent.getAction() == 0) {
-                        AnimatorSet animatorSet = pa0Var.f50217s0;
+                        AnimatorSet animatorSet = pa0Var.f50194s0;
                         if (animatorSet != null) {
                             animatorSet.cancel();
                         }
                         AnimatorSet animatorSet2 = new AnimatorSet();
-                        pa0Var.f50217s0 = animatorSet2;
+                        pa0Var.f50194s0 = animatorSet2;
                         animatorSet2.setDuration(200L);
-                        pa0Var.f50217s0.playTogether(ObjectAnimator.ofFloat(pa0Var.U, View.TRANSLATION_Y, pa0Var.B0 - org.telegram.messenger.g0.L(10.0f)));
-                        pa0Var.f50217s0.start();
+                        pa0Var.f50194s0.playTogether(ObjectAnimator.ofFloat(pa0Var.U, View.TRANSLATION_Y, pa0Var.B0 - org.telegram.messenger.g0.L(10.0f)));
+                        pa0Var.f50194s0.start();
                     } else if (motionEvent.getAction() == 1) {
-                        AnimatorSet animatorSet3 = pa0Var.f50217s0;
+                        AnimatorSet animatorSet3 = pa0Var.f50194s0;
                         if (animatorSet3 != null) {
                             animatorSet3.cancel();
                         }
                         pa0Var.K = 0.0f;
                         AnimatorSet animatorSet4 = new AnimatorSet();
-                        pa0Var.f50217s0 = animatorSet4;
+                        pa0Var.f50194s0 = animatorSet4;
                         animatorSet4.setDuration(200L);
-                        pa0Var.f50217s0.playTogether(ObjectAnimator.ofFloat(pa0Var.U, View.TRANSLATION_Y, pa0Var.B0));
-                        pa0Var.f50217s0.start();
+                        pa0Var.f50194s0.playTogether(ObjectAnimator.ofFloat(pa0Var.U, View.TRANSLATION_Y, pa0Var.B0));
+                        pa0Var.f50194s0.start();
                         pa0Var.Q.H();
                     }
                     if (motionEvent.getAction() == 2) {
                         if (!pa0Var.F0) {
-                            ImageView imageView = pa0Var.f50192a;
+                            ImageView imageView = pa0Var.f50169a;
                             int i10 = org.telegram.ui.ActionBar.j6.lj;
                             org.telegram.ui.ActionBar.q6.s(imageView, i10, pa0Var.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
-                            pa0Var.f50192a.setTag(Integer.valueOf(i10));
+                            pa0Var.f50169a.setTag(Integer.valueOf(i10));
                             pa0Var.F0 = true;
                         }
                         org.telegram.messenger.ea eaVar = pa0Var.F;
@@ -133,13 +133,13 @@ public final class ba0 implements org.telegram.messenger.ab, org.telegram.ui.Act
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f45664a) {
+        switch (this.f45658a) {
             case 2:
-                pa0 pa0Var = this.f45665b;
+                pa0 pa0Var = this.f45659b;
                 if (pa0Var.getParentActivity() != null) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                         pa0Var.getParentActivity().startActivity(intent);
                         return;
                     } catch (Exception e10) {
@@ -149,7 +149,7 @@ public final class ba0 implements org.telegram.messenger.ab, org.telegram.ui.Act
                 }
                 return;
             default:
-                pa0 pa0Var2 = this.f45665b;
+                pa0 pa0Var2 = this.f45659b;
                 if (pa0Var2.getParentActivity() != null) {
                     try {
                         pa0Var2.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));

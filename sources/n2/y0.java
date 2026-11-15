@@ -32,7 +32,7 @@ public final class y0 extends f2.n {
         ByteBuffer byteBuffer2 = (ByteBuffer) z5Var.f22201e;
         u51 u51Var = (u51) z5Var.f22202f;
         o51 o51Var = u51Var.L;
-        Handler handler = u51Var.f39918b0;
+        Handler handler = u51Var.f39915b0;
         if (o51Var != null) {
             if (order != f2.m.f10735a && u51Var.J) {
                 if (o51Var.v()) {
@@ -59,13 +59,13 @@ public final class y0 extends f2.n {
                                 f11 = 1.0f;
                             } else {
                                 for (int i12 = 0; i12 < 1024; i12++) {
-                                    ((float[]) b1Var.f5301b)[i12] = fArr2[((int[]) b1Var.f5304f)[i12]];
-                                    ((float[]) b1Var.f5302c)[i12] = 0.0f;
+                                    ((float[]) b1Var.f5304b)[i12] = fArr2[((int[]) b1Var.f5307f)[i12]];
+                                    ((float[]) b1Var.f5305c)[i12] = 0.0f;
                                 }
                                 int i13 = 1;
-                                while (i13 < ((float[]) b1Var.f5301b).length) {
+                                while (i13 < ((float[]) b1Var.f5304b).length) {
                                     float f13 = ((float[]) b1Var.h)[i13];
-                                    float f14 = ((float[]) b1Var.f5305g)[i13];
+                                    float f14 = ((float[]) b1Var.f5308g)[i13];
                                     float f15 = f12;
                                     int i14 = i7;
                                     float f16 = 1.0f;
@@ -73,11 +73,11 @@ public final class y0 extends f2.n {
                                         float f17 = f12;
                                         int i15 = i14;
                                         while (true) {
-                                            float[] fArr3 = (float[]) b1Var.f5301b;
+                                            float[] fArr3 = (float[]) b1Var.f5304b;
                                             if (i15 < fArr3.length) {
                                                 int i16 = i15 + i13;
                                                 float f18 = fArr3[i16];
-                                                float[] fArr4 = (float[]) b1Var.f5302c;
+                                                float[] fArr4 = (float[]) b1Var.f5305c;
                                                 float f19 = fArr4[i16];
                                                 float f20 = (f16 * f18) - (f15 * f19);
                                                 float f21 = (f18 * f15) + (f19 * f16);
@@ -104,14 +104,14 @@ public final class y0 extends f2.n {
                                     if (i17 >= fArr.length) {
                                         break;
                                     }
-                                    float f22 = ((float[]) b1Var.f5301b)[i17];
-                                    float f23 = ((float[]) b1Var.f5302c)[i17];
+                                    float f22 = ((float[]) b1Var.f5304b)[i17];
+                                    float f23 = ((float[]) b1Var.f5305c)[i17];
                                     fArr[i17] = (float) Math.sqrt((f23 * f23) + (f22 * f22));
                                     i17++;
                                 }
-                                if (b1Var.f5300a == 1) {
-                                    int length = fArr.length / ((float[]) b1Var.f5303e).length;
-                                    for (int i18 = 0; i18 < ((float[]) b1Var.f5303e).length; i18++) {
+                                if (b1Var.f5303a == 1) {
+                                    int length = fArr.length / ((float[]) b1Var.f5306e).length;
+                                    for (int i18 = 0; i18 < ((float[]) b1Var.f5306e).length; i18++) {
                                         float f24 = f10;
                                         int i19 = 0;
                                         while (i19 < length) {
@@ -122,14 +122,14 @@ public final class y0 extends f2.n {
                                                 i19++;
                                             }
                                         }
-                                        ((float[]) b1Var.f5303e)[i18] = f24 / (i19 + 1);
+                                        ((float[]) b1Var.f5306e)[i18] = f24 / (i19 + 1);
                                     }
                                 }
                             }
                             float f25 = f10;
                             for (int i21 = 0; i21 < 1024; i21++) {
-                                float f26 = ((float[]) b1Var.f5301b)[i21];
-                                float f27 = ((float[]) b1Var.f5302c)[i21];
+                                float f26 = ((float[]) b1Var.f5304b)[i21];
+                                float f27 = ((float[]) b1Var.f5305c)[i21];
                                 float sqrt = ((float) Math.sqrt((f27 * f27) + (f26 * f26))) / 30.0f;
                                 if (sqrt > f11) {
                                     sqrt = f11;
@@ -148,8 +148,8 @@ public final class y0 extends f2.n {
                             } else {
                                 for (int i23 = 0; i23 < 6; i23++) {
                                     int i24 = 170 * i23;
-                                    float f28 = ((float[]) b1Var.f5301b)[i24];
-                                    float f29 = ((float[]) b1Var.f5302c)[i24];
+                                    float f28 = ((float[]) b1Var.f5304b)[i24];
+                                    float f29 = ((float[]) b1Var.f5305c)[i24];
                                     float sqrt3 = (float) (Math.sqrt((f29 * f29) + (f28 * f28)) / 30.0d);
                                     fArr6[i23] = sqrt3;
                                     if (sqrt3 > f11) {

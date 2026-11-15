@@ -18,7 +18,7 @@ public final class gs0 extends org.telegram.ui.Cells.q1 {
                     i7 = getMeasuredWidth();
                     L = org.telegram.messenger.g0.L(24.0f);
                 } else {
-                    i7 = org.telegram.messenger.g0.f23609q.x;
+                    i7 = org.telegram.messenger.g0.f23611q.x;
                     L = org.telegram.messenger.g0.L(24.0f);
                 }
                 return i7 - L;

@@ -15,7 +15,7 @@ public final class f4 extends ReplacementSpan {
     public final TL_iv.textButton f21697a;
     public fu f21698b;
     public View f21699c;
-    public int d = m10.f24934t0;
+    public int d = m10.f24940t0;
     public e6 f21700e;
 
     public f4(TL_iv.textButton textbutton) {

@@ -5,12 +5,12 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class yd implements Runnable {
-    public final int f53491a;
-    public final an f53492b;
+    public final int f53495a;
+    public final an f53496b;
 
     public yd(an anVar, int i7) {
-        this.f53491a = i7;
-        this.f53492b = anVar;
+        this.f53495a = i7;
+        this.f53496b = anVar;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class yd implements Runnable {
         org.telegram.ui.Cells.q1 q1Var;
         org.telegram.messenger.gj messageObject;
         org.telegram.ui.Components.ch0[] ch0VarArr;
-        int i7 = this.f53491a;
+        int i7 = this.f53495a;
         TLRPC.ChatTheme chatTheme = null;
-        an anVar = this.f53492b;
+        an anVar = this.f53496b;
         switch (i7) {
             case 0:
-                anVar.f45153c6 = null;
+                anVar.f45152c6 = null;
                 if (anVar.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getParentActivity(), anVar.Aa);
-                    boolean T = org.telegram.messenger.t3.T(anVar.f45173e);
+                    boolean T = org.telegram.messenger.t3.T(anVar.f45172e);
                     org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                    if (T && !anVar.f45173e.megagroup) {
+                    if (T && !anVar.f45172e.megagroup) {
                         t1Var.U = org.telegram.messenger.hd.M0(2131749085, null);
                         t1Var.S = org.telegram.messenger.hd.M0(2131749084, null);
                     } else {
@@ -47,10 +47,10 @@ public final class yd implements Runnable {
                 return;
             case 2:
                 FrameLayout.LayoutParams e10 = c8.ja.e(-1, -2, 87);
-                e10.bottomMargin = anVar.f45118a0.getMeasuredHeight();
-                anVar.f45278m1.addView(anVar.N1, e10);
-                anVar.N1.setTranslationY(-org.telegram.messenger.g0.f23604n);
-                anVar.N1.p(0.0f, anVar.f45118a0.getEmojiButton().getX() + org.telegram.messenger.g0.L(22.0f));
+                e10.bottomMargin = anVar.f45117a0.getMeasuredHeight();
+                anVar.f45277m1.addView(anVar.N1, e10);
+                anVar.N1.setTranslationY(-org.telegram.messenger.g0.f23606n);
+                anVar.N1.p(0.0f, anVar.f45117a0.getEmojiButton().getX() + org.telegram.messenger.g0.L(22.0f));
                 anVar.N1.w();
                 return;
             case 3:
@@ -60,9 +60,9 @@ public final class yd implements Runnable {
                 org.telegram.messenger.g0.E2(anVar.Z0);
                 return;
             case 5:
-                if (!org.telegram.ui.ActionBar.e2.hasSheets(anVar) && (qjVar = anVar.f45118a0) != null) {
+                if (!org.telegram.ui.ActionBar.e2.hasSheets(anVar) && (qjVar = anVar.f45117a0) != null) {
                     qjVar.setFieldFocused(true);
-                    anVar.f45118a0.W0();
+                    anVar.f45117a0.W0();
                     return;
                 }
                 return;
@@ -71,15 +71,15 @@ public final class yd implements Runnable {
                 anVar.M9();
                 org.telegram.messenger.g0.d0(anVar.A0, new ke(anVar, 5));
                 anVar.J7();
-                ij ijVar = anVar.f45280m3;
+                ij ijVar = anVar.f45279m3;
                 if (ijVar != null) {
                     ijVar.setTranslationX(anVar.n9() / 2.0f);
                 }
-                gj gjVar = anVar.f45291n3;
+                gj gjVar = anVar.f45290n3;
                 if (gjVar != null) {
                     gjVar.setTranslationX(anVar.n9() / 2.0f);
                 }
-                FrameLayout frameLayout = anVar.f45189f1;
+                FrameLayout frameLayout = anVar.f45188f1;
                 if (frameLayout != null) {
                     frameLayout.setTranslationX(anVar.n9() / 2.0f);
                 }
@@ -91,7 +91,7 @@ public final class yd implements Runnable {
                 anVar.H8 = null;
                 return;
             case 8:
-                s81 f02 = s81.f0(-anVar.f45259k6, 0L);
+                s81 f02 = s81.f0(-anVar.f45258k6, 0L);
                 f02.E = anVar;
                 anVar.presentFragment(f02);
                 return;
@@ -99,11 +99,11 @@ public final class yd implements Runnable {
                 anVar.Ic(true);
                 return;
             case 10:
-                anVar.f45431y1.d(true);
+                anVar.f45430y1.d(true);
                 return;
             case 11:
                 anVar.resumeDelayedFragmentAnimation();
-                xj xjVar = anVar.f45362sa;
+                xj xjVar = anVar.f45361sa;
                 org.telegram.messenger.g0.r(xjVar);
                 xjVar.run();
                 anVar.getNotificationCenter().o();
@@ -121,7 +121,7 @@ public final class yd implements Runnable {
                 }
                 return;
             case 13:
-                anVar.f45185ec = true;
+                anVar.f45184ec = true;
                 anVar.fd(true);
                 return;
             case 14:
@@ -132,10 +132,10 @@ public final class yd implements Runnable {
                 }
                 return;
             case 15:
-                anVar.getNotificationCenter().j(anVar.f45143ba);
+                anVar.getNotificationCenter().j(anVar.f45142ba);
                 return;
             case 16:
-                TLRPC.UserFull userFull = anVar.f45348r8;
+                TLRPC.UserFull userFull = anVar.f45347r8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -145,16 +145,16 @@ public final class yd implements Runnable {
                 an.r0(anVar);
                 return;
             case 18:
-                anVar.f45155c8 = Integer.MAX_VALUE;
-                anVar.f45182e8 = false;
-                anVar.f45196f8 = 0L;
-                anVar.f45208g8 = null;
-                anVar.f45221h8 = null;
-                anVar.f45234i8 = null;
-                anVar.f45247j8 = -1;
-                anVar.f45168d8 = false;
+                anVar.f45154c8 = Integer.MAX_VALUE;
+                anVar.f45181e8 = false;
+                anVar.f45195f8 = 0L;
+                anVar.f45207g8 = null;
+                anVar.f45220h8 = null;
+                anVar.f45233i8 = null;
+                anVar.f45246j8 = -1;
+                anVar.f45167d8 = false;
                 anVar.Gd(false);
-                anVar.f45273l8 = null;
+                anVar.f45272l8 = null;
                 return;
             case 19:
                 an.U0(anVar);
@@ -179,10 +179,10 @@ public final class yd implements Runnable {
                 anVar.o7();
                 return;
             case 24:
-                anVar.f45118a0.W0();
+                anVar.f45117a0.W0();
                 return;
             case 25:
-                an anVar2 = this.f53492b;
+                an anVar2 = this.f53496b;
                 int i11 = anVar2.Tb;
                 if (i11 != 0) {
                     anVar2.l(i11, anVar2.Ub, anVar2.Vb, anVar2.Wb, anVar2.Xb, anVar2.Yb);
@@ -195,7 +195,7 @@ public final class yd implements Runnable {
                     org.telegram.ui.Components.ip ipVar = anVar.K2;
                     if (ipVar == null || !ipVar.W) {
                         if (ipVar == null) {
-                            ol olVar = anVar.f45278m1;
+                            ol olVar = anVar.f45277m1;
                             int indexOfChild = olVar.indexOfChild(anVar.U);
                             if (indexOfChild != -1) {
                                 org.telegram.ui.Components.ip ipVar2 = new org.telegram.ui.Components.ip(anVar.getParentActivity());
@@ -242,16 +242,16 @@ public final class yd implements Runnable {
                 an.G0(anVar);
                 return;
             case 28:
-                qj qjVar2 = anVar.f45118a0;
+                qj qjVar2 = anVar.f45117a0;
                 if (qjVar2 != null && anVar.Rb != 5) {
                     qjVar2.W0();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Components.jo joVar = ((org.telegram.ui.Components.jo[]) anVar.f45147c0.f3545b)[0];
+                org.telegram.ui.Components.jo joVar = ((org.telegram.ui.Components.jo[]) anVar.f45146c0.f3548b)[0];
                 org.telegram.ui.ActionBar.j5 j5Var = joVar.d;
-                org.telegram.ui.ActionBar.j5 j5Var2 = joVar.f36125e;
+                org.telegram.ui.ActionBar.j5 j5Var2 = joVar.f36115e;
                 anVar.U1 = !anVar.U1;
                 j5Var.setPivotX(0.0f);
                 j5Var2.setPivotX(0.0f);

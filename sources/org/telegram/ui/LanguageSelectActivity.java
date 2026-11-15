@@ -63,11 +63,11 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.e2 impleme
                     }
                     ddVar = (org.telegram.messenger.dd) languageSelectActivity.f42619f.get(i7);
                 }
-                if (ddVar != null && ddVar.d != null && (!ddVar.i() || ddVar.f23066k == Integer.MAX_VALUE)) {
+                if (ddVar != null && ddVar.d != null && (!ddVar.i() || ddVar.f23074k == Integer.MAX_VALUE)) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(languageSelectActivity.getParentActivity());
                     org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
                     t1Var.S = org.telegram.messenger.hd.M0(2131751531, null);
-                    t1Var.U = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("DeleteLocalizationText", null, 2131751532, ddVar.f23058a));
+                    t1Var.U = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("DeleteLocalizationText", null, 2131751532, ddVar.f23066a));
                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131751598, null), new tr(13, languageSelectActivity, ddVar));
                     alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
                     languageSelectActivity.showDialog(t1Var);
@@ -95,15 +95,15 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.e2 impleme
         org.telegram.messenger.hd E0 = org.telegram.messenger.hd.E0();
         int i7 = languageSelectActivity.currentAccount;
         if (ddVar.d != null) {
-            if (!ddVar.i() || ddVar.f23066k == Integer.MAX_VALUE) {
+            if (!ddVar.i() || ddVar.f23074k == Integer.MAX_VALUE) {
                 if (E0.B == ddVar) {
-                    if (E0.f24130z.getLanguage() != null) {
-                        ddVar2 = E0.G0(E0.f24130z.getLanguage());
+                    if (E0.f24133z.getLanguage() != null) {
+                        ddVar2 = E0.G0(E0.f24133z.getLanguage());
                     } else {
                         ddVar2 = null;
                     }
                     if (ddVar2 == null) {
-                        ddVar2 = E0.G0(org.telegram.messenger.hd.I0(E0.f24130z));
+                        ddVar2 = E0.G0(org.telegram.messenger.hd.I0(E0.f24133z));
                     }
                     if (ddVar2 == null) {
                         ddVar2 = E0.G0("en");
@@ -202,7 +202,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.e2 impleme
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25611y4 && this.f42615a != null) {
+        if (i7 == org.telegram.messenger.ns.f25612y4 && this.f42615a != null) {
             j0();
             org.telegram.messenger.g0.h3(new e60(this, 2));
         }
@@ -234,7 +234,7 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.e2 impleme
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             org.telegram.messenger.dd ddVar = (org.telegram.messenger.dd) arrayList.get(i7);
-            if (ddVar.f23066k != Integer.MAX_VALUE) {
+            if (ddVar.f23074k != Integer.MAX_VALUE) {
                 this.f42619f.add(ddVar);
             } else {
                 this.h.add(ddVar);
@@ -245,11 +245,11 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.e2 impleme
     }
 
     public final boolean k0() {
-        return getMessagesController().f25400t7.u();
+        return getMessagesController().f25403t7.u();
     }
 
     public final boolean l0() {
-        return getMessagesController().f25400t7.s();
+        return getMessagesController().f25403t7.s();
     }
 
     public final void m0(String str) {
@@ -298,14 +298,14 @@ public class LanguageSelectActivity extends org.telegram.ui.ActionBar.e2 impleme
     public final boolean onFragmentCreate() {
         j0();
         org.telegram.messenger.hd.E0().V0(this.currentAccount, false);
-        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25611y4);
+        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25612y4);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25611y4);
+        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25612y4);
     }
 
     @Override

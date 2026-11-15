@@ -1,6 +1,6 @@
 package qi;
 
-import ai.x0;
+import ai.y0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -24,7 +24,7 @@ public final class p implements AutoCloseable {
     public final HashMap f55630n = new HashMap();
     public final int f55628e = 256;
     public final long f55629f = 8388608;
-    public final ExecutorService d = Executors.newSingleThreadExecutor(new x0(8));
+    public final ExecutorService d = Executors.newSingleThreadExecutor(new y0(8));
 
     public p(q0 q0Var, q0 q0Var2) {
         this.f55626b = q0Var;

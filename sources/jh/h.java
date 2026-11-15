@@ -31,7 +31,7 @@ public final class h extends View {
         this.f17405e = z31Var;
         z31Var.setCallback(this);
         z31Var.b(-1);
-        z31Var.f42235i = true;
+        z31Var.f42237i = true;
     }
 
     @Override
@@ -74,7 +74,7 @@ public final class h extends View {
                 Paint paint = this.f17403b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, g0.L(19.0f), paint);
-                float f10 = ((te.a) this.f17404c).f57081e;
+                float f10 = ((te.a) this.f17404c).f57085e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
                     s.b(canvas, (z31) this.f17405e, f11 * 1.35f);
@@ -142,7 +142,7 @@ public final class h extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f17402a) {
             case 0:
-                if (!super.verifyDrawable(drawable) && (drawable != ((z31) this.f17405e) || ((te.a) this.f17404c).f57082f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((z31) this.f17405e) || ((te.a) this.f17404c).f57086f)) {
                     return false;
                 }
                 return true;

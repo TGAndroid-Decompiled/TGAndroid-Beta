@@ -9,25 +9,25 @@ import org.telegram.messenger.ns;
 import org.telegram.messenger.si;
 import org.telegram.tgnet.ConnectionsManager;
 public final class i implements is {
-    public final int f52627b;
-    public final Runnable f52628c;
+    public final int f52630b;
+    public final Runnable f52631c;
     public final String d;
-    public boolean f52630f;
+    public boolean f52633f;
     public boolean h;
-    public boolean f52631n;
-    public final ArrayList f52626a = new ArrayList();
-    public final int f52629e = ConnectionsManager.generateClassGuid();
+    public boolean f52634n;
+    public final ArrayList f52629a = new ArrayList();
+    public final int f52632e = ConnectionsManager.generateClassGuid();
 
     public i(String str, int i7, Runnable runnable) {
-        this.f52627b = i7;
+        this.f52630b = i7;
         this.d = str;
-        this.f52628c = runnable;
+        this.f52631c = runnable;
     }
 
     public final void a() {
         if (!this.h) {
             this.h = true;
-            int i7 = this.f52627b;
+            int i7 = this.f52630b;
             ns.f(i7).c(this, ns.V);
             ns.f(i7).c(this, ns.H1);
             if (TextUtils.isEmpty(this.d)) {
@@ -39,7 +39,7 @@ public final class i implements is {
     public final void b(ArrayList arrayList) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f52626a;
+            ArrayList arrayList2 = this.f52629a;
             if (i7 < arrayList2.size()) {
                 if (arrayList.contains(Integer.valueOf(((gj) arrayList2.get(i7)).e1()))) {
                     arrayList2.remove(i7);
@@ -57,24 +57,24 @@ public final class i implements is {
             return;
         }
         this.h = false;
-        int i7 = this.f52627b;
+        int i7 = this.f52630b;
         ns.f(i7).n(this, ns.V);
         ns.f(i7).n(this, ns.H1);
-        ConnectionsManager.getInstance(i7).cancelRequestsForGuid(this.f52629e);
-        this.f52631n = false;
+        ConnectionsManager.getInstance(i7).cancelRequestsForGuid(this.f52632e);
+        this.f52634n = false;
     }
 
     public final void d() {
         ArrayList arrayList;
         int i7;
-        if (!this.f52631n && !this.f52630f) {
-            this.f52631n = true;
-            int i10 = this.f52627b;
+        if (!this.f52634n && !this.f52633f) {
+            this.f52634n = true;
+            int i10 = this.f52630b;
             long e10 = m10.i(i10).e();
             int i11 = 0;
             int i12 = Integer.MAX_VALUE;
             while (true) {
-                arrayList = this.f52626a;
+                arrayList = this.f52629a;
                 if (i11 >= arrayList.size()) {
                     break;
                 }
@@ -90,20 +90,20 @@ public final class i implements is {
             if (i12 == Integer.MAX_VALUE) {
                 i12 = 0;
             }
-            b02.N0(e10, i7, i12, 0, 3, 0L, 1, this.f52629e, 0, null, this.d);
+            b02.N0(e10, i7, i12, 0, 3, 0L, 1, this.f52632e, 0, null, this.d);
         }
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11 = ns.V;
-        ArrayList arrayList = this.f52626a;
+        ArrayList arrayList = this.f52629a;
         if (i7 == i11) {
-            if (((Integer) objArr[3]).intValue() == this.f52629e) {
-                this.f52631n = false;
-                this.f52630f = ((Boolean) objArr[5]).booleanValue();
+            if (((Integer) objArr[3]).intValue() == this.f52632e) {
+                this.f52634n = false;
+                this.f52633f = ((Boolean) objArr[5]).booleanValue();
                 arrayList.addAll((ArrayList) objArr[2]);
-                this.f52628c.run();
+                this.f52631c.run();
             }
         } else if (i7 == ns.H1) {
             arrayList.add(0, (gj) objArr[0]);

@@ -34,8 +34,8 @@ import org.telegram.ui.Components.vx0;
 import org.telegram.ui.Components.z70;
 import org.telegram.ui.fs0;
 public final class m0 extends ja implements u9 {
-    public static final ec[] f3683l2 = new ec[1];
-    public static final ux0[] f3684m2 = new ux0[1];
+    public static final ec[] f3686l2 = new ec[1];
+    public static final ux0[] f3687m2 = new ux0[1];
     public final TL_stars.StarGift T1;
     public final long U1;
     public final LinearLayout V1;
@@ -43,17 +43,17 @@ public final class m0 extends ja implements u9 {
     public final TextView X1;
     public final ec Y1;
     public final ec Z1;
-    public final ec f3685a2;
-    public final ec f3686b2;
-    public final ux0 f3687c2;
+    public final ec f3688a2;
+    public final ec f3689b2;
+    public final ux0 f3690c2;
     public final h0 d2;
-    public final TableRow f3688e2;
-    public final hi.d f3689f2;
-    public final z70 f3690g2;
-    public final z70 f3691h2;
-    public r9 f3692i2;
-    public final CharSequence f3693j2;
-    public p41 f3694k2;
+    public final TableRow f3691e2;
+    public final hi.d f3692f2;
+    public final z70 f3693g2;
+    public final z70 f3694h2;
+    public r9 f3695i2;
+    public final CharSequence f3696j2;
+    public p41 f3697k2;
 
     public m0(Context context, org.telegram.ui.ActionBar.e6 e6Var, long j3, TL_stars.StarGift starGift, Runnable runnable) {
         super(context, null, false, false, 1, e6Var);
@@ -69,7 +69,7 @@ public final class m0 extends ja implements u9 {
         long j10 = starGift.f28280id;
         this.U1 = j10;
         this.F1 = org.telegram.messenger.g0.L(6.0f);
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         O();
         String str = starGift.title;
         String str2 = str == null ? "Gift" : str;
@@ -88,7 +88,7 @@ public final class m0 extends ja implements u9 {
         frameLayout.addView(kVar, c8.ja.o(-1, -2));
         linearLayout.addView(frameLayout);
         i2 i2Var = new i2(this.f29679a, context, e6Var);
-        i2Var.f3581d0 = true;
+        i2Var.f3584d0 = true;
         i2Var.h(starGift, false, false, false, false, false);
         i2Var.setImageSize(org.telegram.messenger.g0.L(100.0f));
         i2Var.setImageLayer(7);
@@ -103,7 +103,7 @@ public final class m0 extends ja implements u9 {
         org.telegram.ui.ActionBar.q6.U(textView, i11, e6Var);
         linearLayout.addView(textView, c8.ja.t(-1, -2, 17, 20, 0, 20, 6));
         z70 z70Var = new z70(context, null);
-        this.f3690g2 = z70Var;
+        this.f3693g2 = z70Var;
         z70Var.setGravity(17);
         z70Var.setText(TextUtils.concat(org.telegram.messenger.g0.X2(hd.G(starGift.gifts_per_round, "Gift2AuctionInfo2", str2)), " ", org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(hd.M0(2131750357, null), new f0(context, e6Var, starGift, 0)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f))));
         z70Var.setTextSize(1, 14.0f);
@@ -113,7 +113,7 @@ public final class m0 extends ja implements u9 {
         linearLayout.addView(z70Var, c8.ja.t(-1, -2, 17, 20, 0, 20, 4));
         vx0 vx0Var = new vx0(context, e6Var);
         String M0 = hd.M0(2131750323, null);
-        ec[] ecVarArr = f3683l2;
+        ec[] ecVarArr = f3686l2;
         vx0Var.c(M0, "", null, ecVarArr);
         this.Y1 = ecVarArr[0];
         vx0Var.c(hd.M0(2131750324, null), "", null, ecVarArr);
@@ -124,34 +124,34 @@ public final class m0 extends ja implements u9 {
         frameLayout2.addView(vx0Var, c8.ja.e(-1, -2, 119));
         this.d2 = new h0(this, new hi.l3[1], frameLayout2, 0);
         TableRow c10 = vx0Var.c(hd.M0(2131749588, null), "", null, ecVarArr);
-        this.f3688e2 = c10;
+        this.f3691e2 = c10;
         c10.setOnClickListener(new View.OnClickListener(this) {
-            public final m0 f3524b;
+            public final m0 f3527b;
 
             {
-                this.f3524b = this;
+                this.f3527b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        new ug.x0(40, this.f3524b.getContext(), (org.telegram.ui.ActionBar.e6) null).show();
+                        new ug.x0(40, this.f3527b.getContext(), (org.telegram.ui.ActionBar.e6) null).show();
                         return;
                     default:
-                        this.f3524b.f1();
+                        this.f3527b.f1();
                         return;
                 }
             }
         });
-        this.f3685a2 = ecVarArr[0];
-        ux0[] ux0VarArr = f3684m2;
+        this.f3688a2 = ecVarArr[0];
+        ux0[] ux0VarArr = f3687m2;
         vx0Var.c("", "", ux0VarArr, ecVarArr);
-        this.f3686b2 = ecVarArr[0];
-        this.f3687c2 = ux0VarArr[0];
+        this.f3689b2 = ecVarArr[0];
+        this.f3690c2 = ux0VarArr[0];
         linearLayout.addView(frameLayout2, c8.ja.k(16.0f, 16.0f, 14.0f, 18.0f, -1, -2));
         z70 z70Var2 = new z70(context, e6Var);
-        this.f3691h2 = z70Var2;
+        this.f3694h2 = z70Var2;
         z70Var2.setGravity(17);
         z70Var2.setTextSize(1, 16.0f);
         org.telegram.ui.ActionBar.q6.U(z70Var2, i12, e6Var);
@@ -162,13 +162,13 @@ public final class m0 extends ja implements u9 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
             z10 = false;
             spannableStringBuilder.setSpan(new org.telegram.ui.Components.p5(starGift.sticker, z70Var2.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
-            this.f3693j2 = spannableStringBuilder;
+            this.f3696j2 = spannableStringBuilder;
         } else {
             z10 = false;
-            this.f3693j2 = "";
+            this.f3696j2 = "";
         }
         hi.d dVar = new hi.d(context, e6Var, true);
-        this.f3689f2 = dVar;
+        this.f3692f2 = dVar;
         dVar.f();
         final int i13 = z10;
         dVar.setOnClickListener(new a0(this, j3, context, e6Var, runnable, 0));
@@ -178,36 +178,36 @@ public final class m0 extends ja implements u9 {
         d.leftMargin = i14 + i15;
         d.rightMargin += i15;
         this.f29682b.addView(dVar, d);
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i16 = this.f29717u0;
         uj0Var.setPadding(i16, i13, i16, org.telegram.messenger.g0.L(64.0f));
-        this.f3694k2.O(i13);
+        this.f3697k2.O(i13);
         r9 l10 = v9.c(this.f29679a).l(j10, this);
-        this.f3692i2 = l10;
-        if (l10 != null && (tL_starGiftAuctionState2 = l10.f26262f) != null) {
+        this.f3695i2 = l10;
+        if (l10 != null && (tL_starGiftAuctionState2 = l10.f26270f) != null) {
             if (tL_starGiftAuctionState2.start_date > ConnectionsManager.getInstance(this.f29679a).getCurrentTime()) {
-                vx0Var.c(hd.M0(2131750331, null), hd.E(this.f3692i2.f26262f.total_rounds, ','), null, null);
+                vx0Var.c(hd.M0(2131750331, null), hd.E(this.f3695i2.f26270f.total_rounds, ','), null, null);
             } else {
                 String M02 = hd.M0(2131750332, null);
-                String E = hd.E(this.f3692i2.f26262f.current_round, ',');
-                String E2 = hd.E(this.f3692i2.f26262f.total_rounds, ',');
+                String E = hd.E(this.f3695i2.f26270f.current_round, ',');
+                String E2 = hd.E(this.f3695i2.f26270f.total_rounds, ',');
                 Object[] objArr = new Object[2];
                 objArr[i13] = E;
                 objArr[1] = E2;
                 vx0Var.c(M02, hd.a0(null, null, 2131747828, objArr), null, null);
             }
         }
-        r9 r9Var = this.f3692i2;
-        if (r9Var != null && (tL_starGiftAuctionState = r9Var.f26262f) != null && (arrayList = tL_starGiftAuctionState.rounds) != null) {
+        r9 r9Var = this.f3695i2;
+        if (r9Var != null && (tL_starGiftAuctionState = r9Var.f26270f) != null && (arrayList = tL_starGiftAuctionState.rounds) != null) {
             int size = arrayList.size();
             for (int i17 = i13; i17 < size; i17++) {
-                TL_stars.StarGiftAuctionRound starGiftAuctionRound = this.f3692i2.f26262f.rounds.get(i17);
+                TL_stars.StarGiftAuctionRound starGiftAuctionRound = this.f3695i2.f26270f.rounds.get(i17);
                 if (i17 < size - 1) {
                     i7 = 1;
-                    i10 = this.f3692i2.f26262f.rounds.get(i17 + 1).num - 1;
+                    i10 = this.f3695i2.f26270f.rounds.get(i17 + 1).num - 1;
                 } else {
                     i7 = 1;
-                    i10 = this.f3692i2.f26262f.total_rounds;
+                    i10 = this.f3695i2.f26270f.total_rounds;
                 }
                 int i18 = starGiftAuctionRound.num;
                 if (i18 == i10) {
@@ -237,11 +237,11 @@ public final class m0 extends ja implements u9 {
                 vx0Var.c(a02, G, null, null);
             }
         }
-        r9 r9Var2 = this.f3692i2;
+        r9 r9Var2 = this.f3695i2;
         if (r9Var2 != null && r9Var2.h != null) {
             k0 k0Var = new k0(this, context, e6Var, new b0(this, i13), new o(1), new o(1), new o(1), new o(1), new o(1), new o(1));
             k0Var.d(new di.b5(1, 1));
-            k0Var.setPreviewingAttributes(this.f3692i2.h);
+            k0Var.setPreviewingAttributes(this.f3695i2.h);
             k0Var.removeView(k0Var.Q);
             this.W1.addView(k0Var, i13, c8.ja.e(-1, 288, 48));
             TextView textView2 = new TextView(context);
@@ -250,10 +250,10 @@ public final class m0 extends ja implements u9 {
             textView2.setTypeface(org.telegram.messenger.g0.o());
             textView2.setTextColor(-1);
             textView2.setTextSize(1, 12.0f);
-            r9 r9Var3 = this.f3692i2;
-            if (r9Var3.f26263g != null) {
+            r9 r9Var3 = this.f3695i2;
+            if (r9Var3.f26271g != null) {
                 textView2.setText(hd.M0(2131750363, null));
-            } else if (r9Var3.g(ConnectionsManager.getInstance(m10.f24934t0).getCurrentTime())) {
+            } else if (r9Var3.g(ConnectionsManager.getInstance(m10.f24940t0).getCurrentTime())) {
                 textView2.setText(hd.M0(2131750128, null));
             } else {
                 textView2.setText(hd.M0(2131750129, null));
@@ -273,20 +273,20 @@ public final class m0 extends ja implements u9 {
             k11.setGravity(17);
             k11.setTextColor(-1342177281);
             k11.setOnClickListener(new View.OnClickListener(this) {
-                public final m0 f3524b;
+                public final m0 f3527b;
 
                 {
-                    this.f3524b = this;
+                    this.f3527b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (i13) {
                         case 0:
-                            new ug.x0(40, this.f3524b.getContext(), (org.telegram.ui.ActionBar.e6) null).show();
+                            new ug.x0(40, this.f3527b.getContext(), (org.telegram.ui.ActionBar.e6) null).show();
                             return;
                         default:
-                            this.f3524b.f1();
+                            this.f3527b.f1();
                             return;
                     }
                 }
@@ -295,7 +295,7 @@ public final class m0 extends ja implements u9 {
             this.W1.addView(k11, c8.ja.d(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 12.0f));
             i2Var.setVisibility(8);
             textView.setVisibility(8);
-            this.f3690g2.setVisibility(8);
+            this.f3693g2.setVisibility(8);
             z70 z70Var3 = new z70(context, e6Var);
             z70Var3.setGravity(17);
             z70Var3.setTextSize(1, 16.0f);
@@ -305,7 +305,7 @@ public final class m0 extends ja implements u9 {
             z70Var3.setOnClickListener(new ah.g(this, context, e6Var, 3));
             na.b(z70Var3, 0.02f, 1.5f);
             this.V1.addView(z70Var3, c8.ja.k(16.0f, 0.0f, 14.0f, 18.0f, -1, -2));
-            com.google.android.gms.common.api.internal.p pVar = new com.google.android.gms.common.api.internal.p(cg.d.c(TL_stars.starGiftAttributeModel.class, this.f3692i2.h));
+            com.google.android.gms.common.api.internal.p pVar = new com.google.android.gms.common.api.internal.p(cg.d.c(TL_stars.starGiftAttributeModel.class, this.f3695i2.h));
             long j11 = starGift.upgrade_variants;
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             for (int i20 = i13; i20 < 3; i20++) {
@@ -321,7 +321,7 @@ public final class m0 extends ja implements u9 {
             objArr5[1] = E3;
             z70Var3.setText(org.telegram.messenger.g0.I2(hd.V(null, null, 2131750318, objArr5), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
         }
-        this.V1.addView(this.f3691h2, c8.ja.k(16.0f, 0.0f, 14.0f, 18.0f, -1, -2));
+        this.V1.addView(this.f3694h2, c8.ja.k(16.0f, 0.0f, 14.0f, 18.0f, -1, -2));
         h1(i13);
     }
 
@@ -386,28 +386,28 @@ public final class m0 extends ja implements u9 {
             linearLayout.addView(textView2, c8.ja.t(-1, -2, 17, 20, 0, 20, 16));
             fs0 fs0Var = new fs0(context, e6Var);
             int i11 = starGift.gifts_per_round;
-            fs0Var.f47186a.l(hd.G(i11, "GiftAuctionInfo1Header", Integer.valueOf(i11)), false);
+            fs0Var.f47176a.l(hd.G(i11, "GiftAuctionInfo1Header", Integer.valueOf(i11)), false);
             int i12 = starGift.gifts_per_round;
-            fs0Var.f47187b.setText(hd.G(i12, "GiftAuctionInfo1Text", Integer.valueOf(i12)));
+            fs0Var.f47177b.setText(hd.G(i12, "GiftAuctionInfo1Text", Integer.valueOf(i12)));
             fs0Var.d.setVisibility(8);
-            ImageView imageView2 = fs0Var.f47188c;
+            ImageView imageView2 = fs0Var.f47178c;
             imageView2.setImageResource(2131231903);
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
             org.telegram.ui.ActionBar.q6.s(imageView2, i10, e6Var, mode);
             linearLayout.addView(fs0Var, c8.ja.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
             fs0 fs0Var2 = new fs0(context, e6Var);
-            fs0Var2.f47186a.l(hd.M0(2131749824, null), false);
-            fs0Var2.f47187b.setText(hd.G(starGift.gifts_per_round, "GiftAuctionInfo2Text", new Object[0]));
+            fs0Var2.f47176a.l(hd.M0(2131749824, null), false);
+            fs0Var2.f47177b.setText(hd.G(starGift.gifts_per_round, "GiftAuctionInfo2Text", new Object[0]));
             fs0Var2.d.setVisibility(8);
-            ImageView imageView3 = fs0Var2.f47188c;
+            ImageView imageView3 = fs0Var2.f47178c;
             imageView3.setImageResource(2131231773);
             org.telegram.ui.ActionBar.q6.s(imageView3, i10, e6Var, mode);
             linearLayout.addView(fs0Var2, c8.ja.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
             fs0 fs0Var3 = new fs0(context, e6Var);
-            fs0Var3.f47186a.l(hd.M0(2131749820, null), false);
-            fs0Var3.f47187b.setText(hd.M0(2131749819, null));
+            fs0Var3.f47176a.l(hd.M0(2131749820, null), false);
+            fs0Var3.f47177b.setText(hd.M0(2131749819, null));
             fs0Var3.d.setVisibility(8);
-            ImageView imageView4 = fs0Var3.f47188c;
+            ImageView imageView4 = fs0Var3.f47178c;
             imageView4.setImageResource(2131231766);
             org.telegram.ui.ActionBar.q6.s(imageView4, i10, e6Var, mode);
             linearLayout.addView(fs0Var3, c8.ja.k(6.0f, 0.0f, 6.0f, 8.0f, -1, -2));
@@ -422,9 +422,9 @@ public final class m0 extends ja implements u9 {
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new b(this, 3), this.J0);
-        this.f3694k2 = p41Var;
-        p41Var.f38201r = false;
+        p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, true, new b(this, 3), this.J0);
+        this.f3697k2 = p41Var;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -435,7 +435,7 @@ public final class m0 extends ja implements u9 {
 
     @Override
     public final void c(r9 r9Var) {
-        this.f3692i2 = r9Var;
+        this.f3695i2 = r9Var;
         h1(true);
     }
 
@@ -447,9 +447,9 @@ public final class m0 extends ja implements u9 {
 
     public final void f1() {
         TL_stars.TL_starGiftAuctionStateFinished tL_starGiftAuctionStateFinished;
-        r9 r9Var = this.f3692i2;
-        if (r9Var != null && (tL_starGiftAuctionStateFinished = r9Var.f26263g) != null && r9Var.d.title != null) {
-            this.d2.a(this.f3685a2, hd.a0(null, null, 2131750289, Long.valueOf(tL_starGiftAuctionStateFinished.average_price), this.f3692i2.d.title));
+        r9 r9Var = this.f3695i2;
+        if (r9Var != null && (tL_starGiftAuctionStateFinished = r9Var.f26271g) != null && r9Var.d.title != null) {
+            this.d2.a(this.f3688a2, hd.a0(null, null, 2131750289, Long.valueOf(tL_starGiftAuctionStateFinished.average_price), this.f3695i2.d.title));
         }
     }
 

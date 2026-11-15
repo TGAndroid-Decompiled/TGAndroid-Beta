@@ -28,7 +28,7 @@ public final class a extends r6.a {
     }
 
     public static a b(List list, boolean z10) {
-        TreeSet treeSet = new TreeSet(c5.b.f4128c);
+        TreeSet treeSet = new TreeSet(c5.b.f4131c);
         Iterator it = list.iterator();
         while (it.hasNext()) {
             Collections.addAll(treeSet, ((n) it.next()).c());

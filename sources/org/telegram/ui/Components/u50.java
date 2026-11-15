@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u50 implements Runnable {
-    public final int f39910a;
-    public final v50 f39911b;
-    public final String f39912c;
+    public final int f39907a;
+    public final v50 f39908b;
+    public final String f39909c;
 
     public u50(v50 v50Var, String str, int i7) {
-        this.f39910a = i7;
-        this.f39911b = v50Var;
-        this.f39912c = str;
+        this.f39907a = i7;
+        this.f39908b = v50Var;
+        this.f39909c = str;
     }
 
     @Override
@@ -24,16 +24,16 @@ public final class u50 implements Runnable {
         boolean z10;
         char c10;
         Object obj;
-        switch (this.f39910a) {
+        switch (this.f39907a) {
             case 0:
-                v50 v50Var = this.f39911b;
-                String str2 = this.f39912c;
+                v50 v50Var = this.f39908b;
+                String str2 = this.f39909c;
                 v50Var.getClass();
                 org.telegram.messenger.g0.h3(new u50(v50Var, str2, 1));
                 return;
             case 1:
-                v50 v50Var2 = this.f39911b;
-                String str3 = this.f39912c;
+                v50 v50Var2 = this.f39908b;
+                String str3 = this.f39909c;
                 jg.z1 z1Var = v50Var2.f40271e;
                 org.telegram.ui.zr zrVar = v50Var2.f40273n.f32873h2;
                 boolean z11 = false;
@@ -51,8 +51,8 @@ public final class u50 implements Runnable {
                 p5Var.c(u50Var);
                 return;
             default:
-                v50 v50Var3 = this.f39911b;
-                String str4 = this.f39912c;
+                v50 v50Var3 = this.f39908b;
+                String str4 = this.f39909c;
                 ArrayList arrayList2 = v50Var3.f40273n.Z1;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {

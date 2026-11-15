@@ -54,7 +54,7 @@ public final class b extends FrameLayout implements te.b, z5 {
             this.f55053a = j6.d0(g0.L(10.0f), i0.a.o(j6.w0(j6.Nl, this.f55054b), 25));
         }
         te.a aVar = this.f55056e;
-        if (aVar.f57082f == z10 && !z11) {
+        if (aVar.f57086f == z10 && !z11) {
             return;
         }
         aVar.a(z10, z11);
@@ -70,9 +70,9 @@ public final class b extends FrameLayout implements te.b, z5 {
         ShapeDrawable shapeDrawable = this.f55053a;
         if (shapeDrawable != null) {
             te.a aVar = this.f55056e;
-            if (aVar.f57081e > 0.0f) {
+            if (aVar.f57085e > 0.0f) {
                 shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
-                s.b(canvas, this.f55053a, g0.T1(0.9f, 1.0f, aVar.f57081e));
+                s.b(canvas, this.f55053a, g0.T1(0.9f, 1.0f, aVar.f57085e));
             }
         }
         super.dispatchDraw(canvas);
@@ -80,7 +80,7 @@ public final class b extends FrameLayout implements te.b, z5 {
 
     @Override
     public final boolean isSelected() {
-        return this.f55056e.f57082f;
+        return this.f55056e.f57086f;
     }
 
     public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
@@ -100,7 +100,7 @@ public final class b extends FrameLayout implements te.b, z5 {
         e6 e6Var = this.f55054b;
         if (shapeDrawable != null) {
             j6.C1(i0.a.o(j6.w0(j6.Nl, e6Var), 25), shapeDrawable);
-            this.f55053a.setAlpha((int) (this.f55056e.f57081e * 255.0f));
+            this.f55053a.setAlpha((int) (this.f55056e.f57085e * 255.0f));
             invalidate();
         }
         this.d.setTextColor(i0.a.o(j6.w0(j6.Nl, e6Var), 229));

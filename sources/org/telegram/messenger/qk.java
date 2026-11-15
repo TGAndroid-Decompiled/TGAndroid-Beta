@@ -21,11 +21,11 @@ public final class qk implements ToLongFunction {
             case 3:
                 return ((gj) obj).Z0();
             case 4:
-                gj gjVar = ((w41) obj).f52431b;
+                gj gjVar = ((w41) obj).f52434b;
                 if (gjVar == null) {
                     return 0L;
                 }
-                return gjVar.f23817k.date;
+                return gjVar.f23819k.date;
             case 5:
                 return ((org.telegram.ui.Wallet.b8) obj).I;
             default:

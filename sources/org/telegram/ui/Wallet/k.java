@@ -25,11 +25,11 @@ public final class k implements z10 {
         Object obj2 = this.f44041b;
         switch (i10) {
             case 0:
-                di.t7 t7Var = (di.t7) obj2;
+                ai.u2 u2Var = (ai.u2) obj2;
                 if (((String) obj) == null) {
                     z10 = true;
                 }
-                t7Var.a(Boolean.valueOf(z10));
+                u2Var.a(Boolean.valueOf(z10));
                 return;
             case 1:
                 s10 s10Var = (s10) obj2;

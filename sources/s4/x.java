@@ -72,15 +72,15 @@ public final class x {
         if (eVar != null) {
             ld0 ld0Var = eVar.C;
             if (ld0Var != null) {
-                android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) ld0Var.f48976b;
+                android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) ld0Var.f48972b;
                 if (a0Var != null) {
-                    return ((android.support.v4.media.session.u) a0Var.f1706b).f1738c;
+                    return ((android.support.v4.media.session.u) a0Var.f1713b).f1745c;
                 }
                 return null;
             }
             android.support.v4.media.session.a0 a0Var2 = eVar.D;
             if (a0Var2 != null) {
-                return ((android.support.v4.media.session.u) a0Var2.f1706b).f1738c;
+                return ((android.support.v4.media.session.u) a0Var2.f1713b).f1745c;
             }
             return null;
         }
@@ -128,9 +128,9 @@ public final class x {
             if (z10 != zVar.d) {
                 k kVar2 = c10.f56368r;
                 kVar2.h = c10.A;
-                if (!kVar2.f6924b) {
-                    kVar2.f6924b = true;
-                    ((android.support.v4.media.session.q) kVar2.f6926e).sendEmptyMessage(2);
+                if (!kVar2.f6927b) {
+                    kVar2.f6927b = true;
+                    ((android.support.v4.media.session.q) kVar2.f6929e).sendEmptyMessage(2);
                 }
             }
         } else {
@@ -139,7 +139,7 @@ public final class x {
                 u d = c10.d(kVar3);
                 if (d != null) {
                     b();
-                    kVar3.f6927f = null;
+                    kVar3.f6930f = null;
                     kVar3.h(null);
                     c10.m(d, null);
                     bVar.b(514, d);

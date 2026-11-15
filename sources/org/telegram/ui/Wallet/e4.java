@@ -62,8 +62,8 @@ public final class e4 implements Runnable {
                         }
                     }
                 }
-                bi.v3 v3Var = y5Var.f38882a;
-                if (v3Var != null && v3Var.f39895g3 != null) {
+                bi.v3 v3Var = y5Var.f38880a;
+                if (v3Var != null && v3Var.f39892g3 != null) {
                     y5Var.Y0(true);
                     return;
                 }
@@ -79,8 +79,8 @@ public final class e4 implements Runnable {
                 return;
             case 8:
                 if (y5Var.S.isAttachedToWindow()) {
-                    if (!y5Var.f38882a.canScrollVertically(-1)) {
-                        y5Var.f38882a.f39894f3.h1(0, 0);
+                    if (!y5Var.f38880a.canScrollVertically(-1)) {
+                        y5Var.f38880a.f39891f3.h1(0, 0);
                     }
                     y5Var.S.requestLayout();
                     return;

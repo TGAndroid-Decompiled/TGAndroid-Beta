@@ -17,17 +17,17 @@ public final class qx extends tj0 {
     public int I;
     public boolean L;
     public final ly M;
-    public final Context f38782c;
+    public final Context f38780c;
     public final boolean d;
-    public final sx f38783e;
-    public final int f38784f;
+    public final sx f38781e;
+    public final int f38782f;
     public int h;
-    public TLRPC.User f38785n;
-    public String f38786r;
-    public boolean f38787s;
-    public boolean f38788w;
-    public String f38789x;
-    public final ArrayList f38790y = new ArrayList();
+    public TLRPC.User f38783n;
+    public String f38784r;
+    public boolean f38785s;
+    public boolean f38786w;
+    public String f38787x;
+    public final ArrayList f38788y = new ArrayList();
     public final HashMap E = new HashMap();
     public int J = -1;
     public int K = -1;
@@ -35,15 +35,15 @@ public final class qx extends tj0 {
     public qx(ly lyVar, Context context, boolean z10, int i7) {
         sx sxVar;
         this.M = lyVar;
-        this.f38782c = context;
+        this.f38780c = context;
         this.d = z10;
-        this.f38784f = i7;
+        this.f38782f = i7;
         if (z10) {
             sxVar = null;
         } else {
             sxVar = new sx(lyVar, context);
         }
-        this.f38783e = sxVar;
+        this.f38781e = sxVar;
     }
 
     @Override
@@ -56,7 +56,7 @@ public final class qx extends tj0 {
 
     public final void E(String str, String str2, boolean z10, boolean z11, boolean z12, String str3, TLObject tLObject) {
         boolean z13;
-        if (str != null && str.equals(this.f38789x)) {
+        if (str != null && str.equals(this.f38787x)) {
             this.h = 0;
             if (z12 && (!(tLObject instanceof TLRPC.messages_BotResults) || ((TLRPC.messages_BotResults) tLObject).results.isEmpty())) {
                 F(str, str2, z10, z11, false);
@@ -64,7 +64,7 @@ public final class qx extends tj0 {
             }
             HashMap hashMap = this.E;
             boolean z14 = this.d;
-            ArrayList arrayList = this.f38790y;
+            ArrayList arrayList = this.f38788y;
             ly lyVar = this.M;
             if (!z14 && TextUtils.isEmpty(str2)) {
                 arrayList.clear();
@@ -82,7 +82,7 @@ public final class qx extends tj0 {
                 if (!z12 && messages_botresults.cache_time != 0) {
                     org.telegram.messenger.vr.a0(lyVar.f36941d1).v1(str3, messages_botresults);
                 }
-                this.f38786r = messages_botresults.next_offset;
+                this.f38784r = messages_botresults.next_offset;
                 int i7 = 0;
                 for (int i10 = 0; i10 < messages_botresults.results.size(); i10++) {
                     TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i10);
@@ -93,12 +93,12 @@ public final class qx extends tj0 {
                         i7++;
                     }
                 }
-                if (size != arrayList.size() && !TextUtils.isEmpty(this.f38786r)) {
+                if (size != arrayList.size() && !TextUtils.isEmpty(this.f38784r)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
-                this.f38787s = z13;
+                this.f38785s = z13;
                 if (i7 != 0) {
                     if (z11 && size == 0) {
                         f();
@@ -152,9 +152,9 @@ public final class qx extends tj0 {
             }
             this.h = 0;
         }
-        this.f38789x = str;
-        this.f38788w = z11;
-        sx sxVar = this.f38783e;
+        this.f38787x = str;
+        this.f38786w = z11;
+        sx sxVar = this.f38781e;
         if (sxVar != null) {
             sxVar.a(z11);
         }
@@ -185,7 +185,7 @@ public final class qx extends tj0 {
         if (!z14 && TextUtils.isEmpty(str2)) {
             svVar.e(true);
         }
-        this.f38785n = (TLRPC.User) f22;
+        this.f38783n = (TLRPC.User) f22;
         final String l10 = com.google.android.gms.internal.vision.e2.l("gif_search_", str, "_", str2);
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
@@ -206,7 +206,7 @@ public final class qx extends tj0 {
             }
         };
         if (!z12 && !z14 && z11 && TextUtils.isEmpty(str2)) {
-            this.f38790y.clear();
+            this.f38788y.clear();
             this.E.clear();
             if (qvVar.getAdapter() != this) {
                 qvVar.setAdapter(this);
@@ -217,7 +217,7 @@ public final class qx extends tj0 {
         }
         if (z12 && hashMap.containsKey(l10)) {
             E(str, str2, z10, z11, true, l10, (TLObject) hashMap.get(l10));
-        } else if (lyVar.f36965l0.f39830a.contains(l10)) {
+        } else if (lyVar.f36965l0.f39827a.contains(l10)) {
         } else {
             if (z12) {
                 this.h = -1;
@@ -229,7 +229,7 @@ public final class qx extends tj0 {
                 str = "";
             }
             tL_messages_getInlineBotResults.query = str;
-            tL_messages_getInlineBotResults.bot = org.telegram.messenger.np.s1(i11).q1(this.f38785n);
+            tL_messages_getInlineBotResults.bot = org.telegram.messenger.np.s1(i11).q1(this.f38783n);
             tL_messages_getInlineBotResults.offset = str2;
             tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
             this.h = ConnectionsManager.getInstance(i11).sendRequest(tL_messages_getInlineBotResults, requestDelegate);
@@ -247,8 +247,8 @@ public final class qx extends tj0 {
                 }
                 this.h = 0;
             }
-            this.f38788w = false;
-            sx sxVar = this.f38783e;
+            this.f38786w = false;
+            sx sxVar = this.f38781e;
             if (sxVar != null) {
                 sxVar.a(false);
             }
@@ -257,7 +257,7 @@ public final class qx extends tj0 {
                 org.telegram.messenger.g0.r(vsVar);
             }
             if (TextUtils.isEmpty(str)) {
-                this.f38789x = null;
+                this.f38787x = null;
                 if (this.L) {
                     F("", "", true, true, true);
                     return;
@@ -266,7 +266,7 @@ public final class qx extends tj0 {
                 qv qvVar = lyVar.f36956i0;
                 int currentPosition = twVar.getCurrentPosition();
                 if (currentPosition != lyVar.f36986s0 && currentPosition != lyVar.f36989t0) {
-                    H((String) org.telegram.messenger.np.s1(lyVar.f36941d1).f25249c4.get(currentPosition - lyVar.f36992u0));
+                    H((String) org.telegram.messenger.np.s1(lyVar.f36941d1).f25252c4.get(currentPosition - lyVar.f36992u0));
                     return;
                 }
                 v4.h0 adapter = qvVar.getAdapter();
@@ -278,7 +278,7 @@ public final class qx extends tj0 {
                 return;
             }
             String lowerCase = str.toLowerCase();
-            this.f38789x = lowerCase;
+            this.f38787x = lowerCase;
             if (!TextUtils.isEmpty(lowerCase)) {
                 vs vsVar2 = new vs(8, this, str);
                 this.F = vsVar2;
@@ -293,7 +293,7 @@ public final class qx extends tj0 {
     }
 
     public final void H(String str) {
-        if (this.f38788w && TextUtils.equals(this.f38789x, str)) {
+        if (this.f38786w && TextUtils.equals(this.f38787x, str)) {
             this.M.f36959j0.h1(0, 0);
         } else {
             F(str, "", true, true, true);
@@ -308,7 +308,7 @@ public final class qx extends tj0 {
         if (z10) {
             this.H = this.I;
         }
-        ArrayList arrayList = this.f38790y;
+        ArrayList arrayList = this.f38788y;
         if (!arrayList.isEmpty()) {
             if (z10 && this.I > 0) {
                 int i7 = this.H;
@@ -334,7 +334,7 @@ public final class qx extends tj0 {
         if (z10 && i7 == this.J) {
             return 2;
         }
-        if (!z10 && this.f38790y.isEmpty()) {
+        if (!z10 && this.f38788y.isEmpty()) {
             return 3;
         }
         return 0;
@@ -343,7 +343,7 @@ public final class qx extends tj0 {
     @Override
     public final void f() {
         int i7;
-        if (this.d && (i7 = this.f38784f) != 0) {
+        if (this.d && (i7 = this.f38782f) != 0) {
             ly lyVar = this.M;
             if (i7 == Integer.MAX_VALUE) {
                 this.I = lyVar.f36960j1.size();
@@ -362,7 +362,7 @@ public final class qx extends tj0 {
                     for (int i14 = 0; i14 < size; i14++) {
                         TLRPC.Document document = (TLRPC.Document) lyVar.f36960j1.get(i14);
                         nt0 C1 = oy.C1(rxVar.F1(document, document.attributes));
-                        int min = Math.min(i10, (int) Math.floor((((C1.f37713a / C1.f37714b) * L) / measuredWidth) * i10));
+                        int min = Math.min(i10, (int) Math.floor((((C1.f37702a / C1.f37703b) * L) / measuredWidth) * i10));
                         if (i11 < min) {
                             this.I += i12;
                             i13++;
@@ -393,7 +393,7 @@ public final class qx extends tj0 {
         org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) e1Var.f58535a;
         int i10 = this.K;
         if (i10 >= 0 && i7 >= i10) {
-            h2Var.e((TLRPC.BotInlineResult) this.f38790y.get(i7 - i10), this.f38785n, true, false, false, true);
+            h2Var.e((TLRPC.BotInlineResult) this.f38788y.get(i7 - i10), this.f38783n, true, false, false, true);
             return;
         }
         TLRPC.Document document = (TLRPC.Document) this.M.f36960j1.get(i7);
@@ -409,11 +409,11 @@ public final class qx extends tj0 {
             if (i7 != 1) {
                 if (i7 != 2) {
                     ViewGroup.LayoutParams p0Var = new v4.p0(-1, -2);
-                    View view = this.f38783e;
+                    View view = this.f38781e;
                     view.setLayoutParams(p0Var);
                     i8Var = view;
                 } else {
-                    org.telegram.ui.Cells.i8 i8Var2 = new org.telegram.ui.Cells.i8(this.f38782c, false, false, lyVar.f36931a2, lyVar.f36961j2);
+                    org.telegram.ui.Cells.i8 i8Var2 = new org.telegram.ui.Cells.i8(this.f38780c, false, false, lyVar.f36931a2, lyVar.f36961j2);
                     i8Var2.a(0, org.telegram.messenger.hd.M0(2131750834, null));
                     v4.p0 p0Var2 = new v4.p0(-1, -2);
                     ((ViewGroup.MarginLayoutParams) p0Var2).topMargin = org.telegram.messenger.g0.L(2.5f);
@@ -427,7 +427,7 @@ public final class qx extends tj0 {
                 i8Var = view2;
             }
         } else {
-            org.telegram.ui.Cells.h2 h2Var = new org.telegram.ui.Cells.h2(this.f38782c);
+            org.telegram.ui.Cells.h2 h2Var = new org.telegram.ui.Cells.h2(this.f38780c);
             h2Var.setIsKeyboard(true);
             h2Var.setCanPreviewGif(true);
             i8Var = h2Var;

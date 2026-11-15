@@ -172,7 +172,7 @@ public final class g {
                                         aVar.d = new ld0(aVar.f55727c);
                                     }
                                     ld0 ld0Var = aVar.d;
-                                    ((Choreographer) ld0Var.f48977c).postFrameCallback((zy0) ld0Var.d);
+                                    ((Choreographer) ld0Var.f48973c).postFrameCallback((zy0) ld0Var.d);
                                 }
                                 if (!arrayList.contains(this)) {
                                     arrayList.add(this);

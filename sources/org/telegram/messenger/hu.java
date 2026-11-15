@@ -42,7 +42,7 @@ public final class hu extends cu {
                 this.Y.add(vtVar);
             }
         }
-        int i14 = this.f22935c;
+        int i14 = this.f22943c;
         ArrayList arrayList = this.Y;
         this.Z = new int[arrayList.size()];
         if (arrayList.isEmpty()) {
@@ -55,7 +55,7 @@ public final class hu extends cu {
             float f13 = vtVar2.F;
             f13 = f13 <= 0.0f ? 1.0f : f13;
             int i16 = (int) (i14 / f13);
-            Point point = g0.f23609q;
+            Point point = g0.f23611q;
             int max = (int) (Math.max(point.x, point.y) * 0.55f);
             if (i16 > max) {
                 i14 = (int) (max * f13);
@@ -78,31 +78,31 @@ public final class hu extends cu {
         int i19 = i18 + 1;
         float[] fArr2 = new float[i19];
         for (yi yiVar2 : e10) {
-            byte b10 = yiVar2.f27746c;
+            byte b10 = yiVar2.f27748c;
             if (b10 == yiVar2.d) {
-                fArr2[b10] = Math.max(fArr2[b10], yiVar2.f27748f);
+                fArr2[b10] = Math.max(fArr2[b10], yiVar2.f27750f);
             }
         }
         int length = e10.length;
         int i20 = 0;
         while (i20 < length) {
             yi yiVar3 = e10[i20];
-            int i21 = yiVar3.f27746c;
+            int i21 = yiVar3.f27748c;
             byte b11 = yiVar3.d;
             if (i21 != b11) {
                 int i22 = (b11 - i21) + i15;
-                float[] fArr3 = yiVar3.f27754m;
+                float[] fArr3 = yiVar3.f27756m;
                 if (fArr3 != null && fArr3.length == i22) {
                     int i23 = 0;
                     while (i23 < i22) {
-                        int i24 = yiVar3.f27746c + i23;
-                        fArr2[i24] = Math.max(fArr2[i24], yiVar3.f27754m[i23]);
+                        int i24 = yiVar3.f27748c + i23;
+                        fArr2[i24] = Math.max(fArr2[i24], yiVar3.f27756m[i23]);
                         i23++;
                         i15 = i15;
                     }
                 } else {
                     i11 = i15;
-                    float f14 = yiVar3.f27748f / i22;
+                    float f14 = yiVar3.f27750f / i22;
                     while (i21 <= yiVar3.d) {
                         fArr2[i21] = Math.max(fArr2[i21], f14);
                         i21++;
@@ -115,7 +115,7 @@ public final class hu extends cu {
             i20++;
             i15 = i11;
         }
-        Point point2 = g0.f23609q;
+        Point point2 = g0.f23611q;
         float max2 = Math.max(point2.x, point2.y) * 0.5f;
         int[] iArr = new int[i18 + 2];
         float f15 = 0.0f;
@@ -124,7 +124,7 @@ public final class hu extends cu {
             f15 += fArr2[i25];
         }
         iArr[i19] = Math.round(f15 * max2);
-        if (this.f22933a.D()) {
+        if (this.f22941a.D()) {
             f10 = 3.0f;
         } else {
             f10 = 2.0f;
@@ -133,10 +133,10 @@ public final class hu extends cu {
         int i26 = 0;
         while (i26 < e10.length) {
             yi yiVar4 = e10[i26];
-            int i27 = iArr[yiVar4.f27746c];
+            int i27 = iArr[yiVar4.f27748c];
             int i28 = iArr[yiVar4.d + 1] - i27;
             float f16 = 1000.0f;
-            if (yiVar4.f27751j > 0) {
+            if (yiVar4.f27753j > 0) {
                 round = Math.round((i10 * i14) / 1000.0f);
                 f11 = 1000.0f;
             } else {
@@ -148,10 +148,10 @@ public final class hu extends cu {
                     } else {
                         yi yiVar5 = e10[i29];
                         f12 = f16;
-                        byte b12 = yiVar5.f27746c;
-                        byte b13 = yiVar4.f27746c;
-                        if (b12 <= b13 && yiVar5.d >= b13 && yiVar5.f27744a < yiVar4.f27744a) {
-                            i30 += yiVar5.f27747e;
+                        byte b12 = yiVar5.f27748c;
+                        byte b13 = yiVar4.f27748c;
+                        if (b12 <= b13 && yiVar5.d >= b13 && yiVar5.f27746a < yiVar4.f27746a) {
+                            i30 += yiVar5.f27749e;
                         }
                     }
                     i29++;
@@ -160,16 +160,16 @@ public final class hu extends cu {
                 f11 = f16;
                 round = Math.round((i30 * i14) / f11);
             }
-            if ((yiVar4.f27753l & 2) != 0) {
+            if ((yiVar4.f27755l & 2) != 0) {
                 round2 = i14 - round;
             } else {
-                round2 = Math.round((yiVar4.f27747e * i14) / f11) - L;
+                round2 = Math.round((yiVar4.f27749e * i14) / f11) - L;
             }
-            if ((yiVar4.f27753l & 8) == 0) {
+            if ((yiVar4.f27755l & 8) == 0) {
                 i28 -= L;
             }
             ((vt) arrayList.get(i26)).l(round, i27, Math.max(0, round2), Math.max(0, i28));
-            this.Z[i26] = yiVar4.f27753l;
+            this.Z[i26] = yiVar4.f27755l;
             i26++;
             i12 = 0;
         }
@@ -182,7 +182,7 @@ public final class hu extends cu {
             ArrayList arrayList = this.Y;
             if (i7 < arrayList.size()) {
                 vt vtVar = (vt) arrayList.get(i7);
-                Rect rect2 = this.f22934b;
+                Rect rect2 = this.f22942b;
                 int i10 = rect2.left + vtVar.G;
                 int i11 = ((int) this.N) + rect2.top + vtVar.H;
                 rect.set(i10, i11, vtVar.I + i10, vtVar.J + i11);
@@ -219,8 +219,8 @@ public final class hu extends cu {
 
     @Override
     public final int K() {
-        Rect rect = this.f22934b;
-        return rect.left + this.f22935c + rect.right;
+        Rect rect = this.f22942b;
+        return rect.left + this.f22943c + rect.right;
     }
 
     @Override
@@ -234,7 +234,7 @@ public final class hu extends cu {
             vt vtVar = (vt) obj;
             View view = this.W;
             vtVar.T = view;
-            ImageReceiver imageReceiver = vtVar.f27239c;
+            ImageReceiver imageReceiver = vtVar.f27238c;
             imageReceiver.H0(view);
             imageReceiver.P();
             ImageReceiver imageReceiver2 = vtVar.d;
@@ -266,10 +266,10 @@ public final class hu extends cu {
             Object obj = arrayList.get(i7);
             i7++;
             vt vtVar = (vt) obj;
-            vtVar.f27239c.R();
+            vtVar.f27238c.R();
             vtVar.d.R();
-            vtVar.f27240e = null;
-            z5.q(vtVar.f27237a.f24440a).v(vtVar);
+            vtVar.f27239e = null;
+            z5.q(vtVar.f27236a.f24445a).v(vtVar);
         }
     }
 
@@ -301,7 +301,7 @@ public final class hu extends cu {
         }
         boolean R = huVar.R();
         int L2 = g0.L(2.0f);
-        iv ivVar = huVar.f22933a;
+        iv ivVar = huVar.f22941a;
         if (!R && !ivVar.D()) {
             i7 = ivVar.S - L2;
         } else {
@@ -312,7 +312,7 @@ public final class hu extends cu {
         } else {
             i10 = 0;
         }
-        int i19 = huVar.f22935c;
+        int i19 = huVar.f22943c;
         if (i19 > 0 && (i7 > 0 || i10 > 0)) {
             f10 = ((i19 + i7) + i10) / i19;
         } else {
@@ -324,7 +324,7 @@ public final class hu extends cu {
             if (i20 < arrayList.size()) {
                 vt vtVar = (vt) arrayList.get(i20);
                 int i21 = vtVar.G;
-                ImageReceiver imageReceiver = vtVar.f27239c;
+                ImageReceiver imageReceiver = vtVar.f27238c;
                 int round = Math.round(i21 * f10) - i7;
                 int round2 = Math.round(vtVar.I * f10);
                 int[] iArr = huVar.Z;
@@ -433,7 +433,7 @@ public final class hu extends cu {
     public final boolean Y(MotionEvent motionEvent) {
         ArrayList arrayList = this.Y;
         int actionMasked = motionEvent.getActionMasked();
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         motionEvent.offsetLocation(-rect.left, -rect.top);
         try {
             if (actionMasked == 0) {

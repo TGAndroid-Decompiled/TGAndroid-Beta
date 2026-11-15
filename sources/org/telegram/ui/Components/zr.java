@@ -15,19 +15,19 @@ public final class zr implements Runnable {
         switch (this.f42417a) {
             case 0:
                 as asVar = this.f42418b;
-                asVar.f33050c = false;
-                asVar.f33049b.run();
+                asVar.f33053c = false;
+                asVar.f33052b.run();
                 ArrayList arrayList = asVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - asVar.f33052f > 3600000) {
+                if (arrayList.isEmpty() || System.currentTimeMillis() - asVar.f33055f > 3600000) {
                     arrayList.clear();
-                    asVar.f33051e = false;
-                    asVar.f33053g = null;
+                    asVar.f33054e = false;
+                    asVar.f33056g = null;
                     asVar.a();
                     return;
                 }
                 return;
             default:
-                this.f42418b.f33054i = false;
+                this.f42418b.f33057i = false;
                 return;
         }
     }

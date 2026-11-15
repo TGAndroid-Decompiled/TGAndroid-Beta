@@ -7,19 +7,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class be implements RequestDelegate {
-    public final int f45685a;
-    public final an f45686b;
+    public final int f45679a;
+    public final an f45680b;
 
     public be(an anVar, int i7) {
-        this.f45685a = i7;
-        this.f45686b = anVar;
+        this.f45679a = i7;
+        this.f45680b = anVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45685a) {
+        switch (this.f45679a) {
             case 0:
-                final an anVar = this.f45686b;
+                final an anVar = this.f45680b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -41,7 +41,7 @@ public final class be implements RequestDelegate {
                                     alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
                                     anVar2.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar2.f45118a0;
+                                    qj qjVar = anVar2.f45117a0;
                                     if (qjVar != null) {
                                         qjVar.s1(null, null, false);
                                         anVar2.D9(true);
@@ -56,7 +56,7 @@ public final class be implements RequestDelegate {
                                 if (tLObject3 != null) {
                                     TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
                                     try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
                                         if (org.telegram.ui.Components.cc.a(anVar3)) {
                                             org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar3);
                                             if (!anVar3.fa() && tL_exportedMessageLink.link.contains("/c/")) {
@@ -77,7 +77,7 @@ public final class be implements RequestDelegate {
                 });
                 return;
             case 1:
-                final an anVar2 = this.f45686b;
+                final an anVar2 = this.f45680b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -99,7 +99,7 @@ public final class be implements RequestDelegate {
                                     alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
                                     anVar22.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar22.f45118a0;
+                                    qj qjVar = anVar22.f45117a0;
                                     if (qjVar != null) {
                                         qjVar.s1(null, null, false);
                                         anVar22.D9(true);
@@ -114,7 +114,7 @@ public final class be implements RequestDelegate {
                                 if (tLObject3 != null) {
                                     TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
                                     try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
                                         if (org.telegram.ui.Components.cc.a(anVar3)) {
                                             org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar3);
                                             if (!anVar3.fa() && tL_exportedMessageLink.link.contains("/c/")) {
@@ -135,7 +135,7 @@ public final class be implements RequestDelegate {
                 });
                 return;
             case 2:
-                final an anVar3 = this.f45686b;
+                final an anVar3 = this.f45680b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -157,7 +157,7 @@ public final class be implements RequestDelegate {
                                     alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
                                     anVar22.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar22.f45118a0;
+                                    qj qjVar = anVar22.f45117a0;
                                     if (qjVar != null) {
                                         qjVar.s1(null, null, false);
                                         anVar22.D9(true);
@@ -172,7 +172,7 @@ public final class be implements RequestDelegate {
                                 if (tLObject3 != null) {
                                     TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
                                     try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
                                         if (org.telegram.ui.Components.cc.a(anVar32)) {
                                             org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar32);
                                             if (!anVar32.fa() && tL_exportedMessageLink.link.contains("/c/")) {
@@ -193,7 +193,7 @@ public final class be implements RequestDelegate {
                 });
                 return;
             case 3:
-                final an anVar4 = this.f45686b;
+                final an anVar4 = this.f45680b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -215,7 +215,7 @@ public final class be implements RequestDelegate {
                                     alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
                                     anVar22.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar22.f45118a0;
+                                    qj qjVar = anVar22.f45117a0;
                                     if (qjVar != null) {
                                         qjVar.s1(null, null, false);
                                         anVar22.D9(true);
@@ -230,7 +230,7 @@ public final class be implements RequestDelegate {
                                 if (tLObject3 != null) {
                                     TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
                                     try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
                                         if (org.telegram.ui.Components.cc.a(anVar32)) {
                                             org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar32);
                                             if (!anVar32.fa() && tL_exportedMessageLink.link.contains("/c/")) {
@@ -251,7 +251,7 @@ public final class be implements RequestDelegate {
                 });
                 return;
             case 4:
-                an anVar5 = this.f45686b;
+                an anVar5 = this.f45680b;
                 if (tL_error != null) {
                     anVar5.getClass();
                     return;
@@ -260,7 +260,7 @@ public final class be implements RequestDelegate {
                     return;
                 }
             default:
-                an.n1(this.f45686b, tLObject);
+                an.n1(this.f45680b, tLObject);
                 return;
         }
     }

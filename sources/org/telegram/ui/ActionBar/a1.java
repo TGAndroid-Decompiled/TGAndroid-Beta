@@ -15,10 +15,10 @@ public final class a1 implements ViewTreeObserver.OnScrollChangedListener {
                 Method method = g1.f28548k;
                 return;
             case 1:
-                Field field = du.f34065f;
+                Field field = du.f34052f;
                 return;
             default:
-                Field field2 = e11.f46522c;
+                Field field2 = e11.f46512c;
                 return;
         }
     }

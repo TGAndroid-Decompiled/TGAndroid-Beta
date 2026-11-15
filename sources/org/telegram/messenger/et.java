@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.LaunchActivity;
 public final class et implements s10 {
-    public final int f23361a = 0;
-    public final int f23362b;
-    public final Object f23363c;
+    public final int f23364a = 0;
+    public final int f23365b;
+    public final Object f23366c;
     public final Object d;
 
     public et(int i7, Context context, s10 s10Var) {
-        this.f23363c = s10Var;
+        this.f23366c = s10Var;
         this.d = context;
-        this.f23362b = i7;
+        this.f23365b = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         org.telegram.ui.ActionBar.e2 T;
-        int i7 = this.f23361a;
+        int i7 = this.f23364a;
         Object obj3 = this.d;
-        Object obj4 = this.f23363c;
+        Object obj4 = this.f23366c;
         switch (i7) {
             case 0:
                 final s10 s10Var = (s10) obj4;
@@ -50,7 +50,7 @@ public final class et implements s10 {
                         return;
                     } else if (th2 != null) {
                         a8.g(th2, true);
-                        g0.h3(new wq(15, s10Var, th2));
+                        g0.h3(new pq(16, s10Var, th2));
                         return;
                     } else {
                         TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
@@ -77,7 +77,7 @@ public final class et implements s10 {
                             sb2.append(sb3.toString());
                             a8.b(sb2.toString());
                             registerpasskey.credential.response = inputpasskeyresponseregister;
-                            g0.h3(new cg(context, this.f23362b, registerpasskey, s10Var, 16));
+                            g0.h3(new cg(context, this.f23365b, registerpasskey, s10Var, 16));
                             return;
                         } catch (Exception e10) {
                             a8.g(e10, true);
@@ -105,7 +105,7 @@ public final class et implements s10 {
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 HashSet hashSet = ((c10) obj4).G;
-                int i11 = this.f23362b;
+                int i11 = this.f23365b;
                 if (tL_textWithEntities != null) {
                     hashSet.remove(Integer.valueOf(i11));
                     z10Var.a(tL_textWithEntities);
@@ -113,7 +113,7 @@ public final class et implements s10 {
                 } else if (tL_error != null) {
                     if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (T = LaunchActivity.T()) != null) {
                         org.telegram.ui.Components.xb K = org.telegram.ui.Components.cc.a0(T).K(2131624217, hd.M0(2131744331, null), hd.M0(2131744330, null), new on(3, T));
-                        K.f41643j = 5000;
+                        K.f41635j = 5000;
                         K.k(true);
                     }
                     hashSet.remove(Integer.valueOf(i11));
@@ -126,8 +126,8 @@ public final class et implements s10 {
     }
 
     public et(c10 c10Var, int i7, z10 z10Var) {
-        this.f23363c = c10Var;
-        this.f23362b = i7;
+        this.f23366c = c10Var;
+        this.f23365b = i7;
         this.d = z10Var;
     }
 }

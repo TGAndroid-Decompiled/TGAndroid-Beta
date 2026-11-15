@@ -88,7 +88,7 @@ public final class m implements Predicate {
                 }
                 return false;
             case 6:
-                return !gj.c3(((gj) obj).f23817k);
+                return !gj.c3(((gj) obj).f23819k);
             default:
                 return Objects.nonNull((TLObject) obj);
         }

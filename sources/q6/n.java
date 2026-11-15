@@ -26,7 +26,7 @@ public final class n implements l {
     @Override
     public Object q(com.google.android.gms.common.api.r rVar) {
         p8.d dVar = (p8.d) this.f55367a;
-        dVar.f6112a = rVar;
+        dVar.f6115a = rVar;
         return dVar;
     }
 }

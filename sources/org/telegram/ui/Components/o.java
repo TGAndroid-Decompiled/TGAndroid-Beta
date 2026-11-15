@@ -7,14 +7,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class o implements org.telegram.messenger.s10 {
-    public final int f37770a;
-    public final int f37771b;
-    public final Object f37772c;
+    public final int f37759a;
+    public final int f37760b;
+    public final Object f37761c;
 
     public o(Object obj, int i7, int i10) {
-        this.f37770a = i10;
-        this.f37772c = obj;
-        this.f37771b = i7;
+        this.f37759a = i10;
+        this.f37761c = obj;
+        this.f37760b = i7;
     }
 
     @Override
@@ -23,9 +23,9 @@ public final class o implements org.telegram.messenger.s10 {
         String str;
         boolean z10;
         String a10;
-        int i7 = this.f37770a;
-        int i10 = this.f37771b;
-        Object obj3 = this.f37772c;
+        int i7 = this.f37759a;
+        int i10 = this.f37760b;
+        Object obj3 = this.f37761c;
         switch (i7) {
             case 0:
                 q qVar = (q) obj3;
@@ -65,8 +65,8 @@ public final class o implements org.telegram.messenger.s10 {
                     org.telegram.messenger.a8.b(sb2.toString());
                     if (tL_error2 == null && wallettransactions != null) {
                         org.telegram.ui.xi0 xi0Var = n0Var.f44170c;
-                        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) xi0Var.f53250b;
-                        TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) xi0Var.f53251c;
+                        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) xi0Var.f53249b;
+                        TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) xi0Var.f53250c;
                         int i11 = l0Var.f44078a;
                         Iterator<TL_wallet.walletTransaction> it = wallettransactions.transactions.iterator();
                         if (it.hasNext()) {
@@ -88,7 +88,7 @@ public final class o implements org.telegram.messenger.s10 {
             default:
                 ArrayList arrayList = (ArrayList) obj;
                 p41 p41Var = (p41) obj2;
-                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) ((di.f4) obj3).f8532c;
+                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) ((di.f4) obj3).f8537c;
                 if (i10 == 0) {
                     p41Var.V();
                     org.telegram.ui.Wallet.k0 k0Var = y5Var.E0;
@@ -119,7 +119,7 @@ public final class o implements org.telegram.messenger.s10 {
                             } else {
                                 a10 = u3Var.a(walletTransactionPeer.address);
                             }
-                            K.f33181l = a10;
+                            K.f33184l = a10;
                             arrayList.add(K);
                         }
                     }
@@ -131,7 +131,7 @@ public final class o implements org.telegram.messenger.s10 {
                     }
                     p41Var.U();
                     if (z10) {
-                        long j3 = ((org.telegram.messenger.l0) y5Var.getMessagesController().f25448y7.f25856l0.f14544b).f24785c;
+                        long j3 = ((org.telegram.messenger.l0) y5Var.getMessagesController().f25451y7.f25858l0.f14544b).f24791c;
                         if (j3 > 0) {
                             arrayList.add(b41.C(org.telegram.messenger.hd.V(null, null, 2131743098, org.telegram.ui.Wallet.l0.s(j3, false))));
                             return;
@@ -154,7 +154,7 @@ public final class o implements org.telegram.messenger.s10 {
                                 org.telegram.ui.Wallet.c8 c8Var = y5Var.f44739k0;
                                 int i15 = org.telegram.ui.Wallet.o7.f44269b;
                                 b41 K2 = b41.K(org.telegram.ui.Wallet.o7.class);
-                                K2.f33190u = 1;
+                                K2.f33193u = 1;
                                 K2.G = nftitem;
                                 K2.H = c8Var;
                                 arrayList.add(K2);
@@ -162,7 +162,7 @@ public final class o implements org.telegram.messenger.s10 {
                                 int i16 = org.telegram.ui.Wallet.b.f43490b;
                                 b41 K3 = b41.K(org.telegram.ui.Wallet.b.class);
                                 K3.G = nftitem;
-                                K3.f33190u = 1;
+                                K3.f33193u = 1;
                                 arrayList.add(K3);
                             }
                         }
@@ -177,7 +177,7 @@ public final class o implements org.telegram.messenger.s10 {
                     if (d0Var3.f43718i) {
                         for (int i17 = 0; i17 < 3; i17++) {
                             b41 q10 = b41.q((-1) - i17, 35);
-                            q10.f33190u = 1;
+                            q10.f33193u = 1;
                             arrayList.add(q10);
                         }
                         return;

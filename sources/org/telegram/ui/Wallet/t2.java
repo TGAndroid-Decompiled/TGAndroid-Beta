@@ -61,18 +61,18 @@ public final class t2 extends FrameLayout {
                 }
             }
         }
-        if (this.d <= org.telegram.messenger.g0.f23603m) {
+        if (this.d <= org.telegram.messenger.g0.f23605m) {
             f11 = 1.0f;
         }
         float e10 = this.f44508a.e(false, f11);
-        float max = Math.max(org.telegram.messenger.g0.f23603m, this.d) - (org.telegram.messenger.g0.f23603m * e10);
+        float max = Math.max(org.telegram.messenger.g0.f23605m, this.d) - (org.telegram.messenger.g0.f23605m * e10);
         this.d = max;
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(w2Var.f29717u0, max, getWidth() - w2Var.f29717u0, org.telegram.messenger.g0.L(8.0f) + getHeight());
         float W1 = org.telegram.messenger.g0.W1(e10, org.telegram.messenger.g0.L(14.0f), 0);
         canvas.drawRoundRect(rectF, W1, W1, paint);
         if (w2Var.F != null) {
-            w2Var.F.setTranslationY(Math.max((w2Var.f29682b.getY() + this.d) + w2Var.f29716t0, w2Var.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23603m)) - w2Var.F.getBottom());
+            w2Var.F.setTranslationY(Math.max((w2Var.f29682b.getY() + this.d) + w2Var.f29716t0, w2Var.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23605m)) - w2Var.F.getBottom());
         }
         canvas.save();
         Path path = this.f44510c;

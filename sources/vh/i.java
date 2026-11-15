@@ -31,12 +31,12 @@ public final class i extends ja {
         this.G1 = false;
         this.F1 = g0.L(12.0f);
         this.U1 = z41.i0(tL_statsPollStats.votes_graph, hd.M0(2131747119, null), 2, false);
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i7 = this.f29717u0;
-        uj0Var.setPadding(i7, 0, i7, g0.f23604n);
-        this.f35936o1.setClipToPadding(false);
-        this.f35936o1.setSections(true);
-        y s5 = this.f35937p1.s();
+        uj0Var.setPadding(i7, 0, i7, g0.f23606n);
+        this.f35931o1.setClipToPadding(false);
+        this.f35931o1.setSections(true);
+        y s5 = this.f35932p1.s();
         s5.a(-1, 2131231269);
         s5.setTranslationX(-g0.L(5.0f));
         this.T1.O(false);
@@ -53,7 +53,7 @@ public final class i extends ja {
     public final tj0 L0(uj0 uj0Var) {
         p41 p41Var = new p41(uj0Var, getContext(), this.f29679a, 0, true, new org.telegram.ui.web.b(this, 3), this.J0);
         this.T1 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 

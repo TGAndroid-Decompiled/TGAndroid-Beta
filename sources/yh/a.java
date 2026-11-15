@@ -74,10 +74,10 @@ public final class a extends FrameLayout {
         g6Var.setCallback(this);
         g6Var.w(g0.L(14.0f));
         g6Var.x(g0.o1("fonts/rmedium.ttf"));
-        g6Var.N = g0.f23609q.x;
+        g6Var.N = g0.f23611q.x;
         ke0 ke0Var = new ke0(10);
         this.f60724r = ke0Var;
-        ke0Var.f36406f = this;
+        ke0Var.f36394f = this;
         ke0Var.setCallback(this);
         ke0Var.h = 260;
         textPaint.setTextSize(g0.L(15.0f));
@@ -112,7 +112,7 @@ public final class a extends FrameLayout {
     public final float a() {
         be beVar = this.f60719b;
         if (beVar != null) {
-            float O0 = beVar.f33264b.O0(this);
+            float O0 = beVar.f33267b.O0(this);
             if (!Float.isNaN(O0)) {
                 return O0;
             }
@@ -197,15 +197,15 @@ public final class a extends FrameLayout {
         canvas.drawRoundRect(rectF, L3, L3, paint2);
         int L4 = g0.L(10.0f);
         be beVar = this.f60719b;
-        if (beVar != null && (oi0Var = beVar.f33264b.f32214i1) != null && oi0Var.g()) {
+        if (beVar != null && (oi0Var = beVar.f33267b.f32214i1) != null && oi0Var.g()) {
             z10 = true;
         } else {
             z10 = false;
         }
         ke0 ke0Var = this.f60724r;
         ke0Var.a(z10, true);
-        ke0Var.f36402a.setColor(w02);
-        ke0Var.f36407g = (int) (f12 * 255.0f);
+        ke0Var.f36390a.setColor(w02);
+        ke0Var.f36395g = (int) (f12 * 255.0f);
         float f16 = L4 / 2.0f;
         ke0Var.setBounds((int) (rectF.left + g0.L(10.0f)), (int) (T1 - f16), ((int) (rectF.left + g0.L(10.0f))) + L4, (int) (f16 + T1));
         ke0Var.draw(canvas);
@@ -240,7 +240,7 @@ public final class a extends FrameLayout {
                     paint5.setShader(linearGradient2);
                 }
                 float L7 = f19 + g0.L(90.0f);
-                er erVar = er.f34423j;
+                er erVar = er.f34422j;
                 Matrix matrix = this.f60726w;
                 matrix.setTranslate((erVar.getInterpolation(((float) (SystemClock.elapsedRealtime() % 1300)) / 1300.0f) * L7) + (L5 - g0.L(90.0f)), 0.0f);
                 this.f60725s.setLocalMatrix(matrix);
@@ -294,7 +294,7 @@ public final class a extends FrameLayout {
         } else if ((actionMasked == 1 || actionMasked == 3) && this.I) {
             this.I = false;
             if (actionMasked == 1 && (beVar = this.f60719b) != null) {
-                ChatActivityEnterView chatActivityEnterView = beVar.f33264b;
+                ChatActivityEnterView chatActivityEnterView = beVar.f33267b;
                 oi0 oi0Var = chatActivityEnterView.f32214i1;
                 if (oi0Var != null) {
                     oi0Var.setPlaying(!oi0Var.g());

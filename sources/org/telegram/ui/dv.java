@@ -18,7 +18,7 @@ public final class dv extends v4.b0 {
     @Override
     public final int R0() {
         xw xwVar = this.L;
-        if (xwVar.f53338s == 0 && this.M.l4() && xwVar.f53339w == 2) {
+        if (xwVar.f53342s == 0 && this.M.l4() && xwVar.f53343w == 2) {
             return 1;
         }
         return 0;
@@ -26,7 +26,7 @@ public final class dv extends v4.b0 {
 
     @Override
     public final void b0(v4.w0 w0Var, v4.b1 b1Var) {
-        boolean z10 = org.telegram.messenger.r2.f26198a;
+        boolean z10 = org.telegram.messenger.r2.f26206a;
         try {
             super.b0(w0Var, b1Var);
         } catch (IndexOutOfBoundsException e10) {
@@ -50,13 +50,13 @@ public final class dv extends v4.b0 {
             this.K.cancel();
         }
         xw xwVar = this.L;
-        if (xwVar.f53331a.getScrollState() != 1) {
+        if (xwVar.f53335a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.U, 0.0f);
             this.K = ofFloat;
             ofFloat.addUpdateListener(new ch.v(21, this, xwVar));
             this.K.addListener(new org.telegram.ui.Cells.w9(this, 25));
             this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.er.f34420f);
+            this.K.setInterpolator(org.telegram.ui.Components.er.f34419f);
             this.K.start();
         }
     }
@@ -64,7 +64,7 @@ public final class dv extends v4.b0 {
     @Override
     public final void h1(int i7, int i10) {
         if (this.I) {
-            i10 -= this.L.f53331a.getPaddingTop();
+            i10 -= this.L.f53335a.getPaddingTop();
         }
         super.h1(i7, i10);
     }

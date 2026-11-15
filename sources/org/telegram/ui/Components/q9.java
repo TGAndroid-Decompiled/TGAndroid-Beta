@@ -63,7 +63,7 @@ public final class q9 extends FrameLayout implements org.telegram.messenger.is, 
             String str2 = this.f38585r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                org.telegram.messenger.t0.f26599a.v((Activity) getContext(), this.f38584n.document);
+                org.telegram.messenger.t0.f26608a.v((Activity) getContext(), this.f38584n.document);
             }
         } else if (i7 == org.telegram.messenger.ns.Z1) {
             String str3 = (String) objArr[0];

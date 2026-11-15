@@ -164,7 +164,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
 
     static {
         mt0 mt0Var = new mt0(new i0.b(15), new i0.b(16));
-        mt0Var.f37378c = 100.0f;
+        mt0Var.f37377c = 100.0f;
         f18649c1 = mt0Var;
         f18650d1 = 0;
     }
@@ -322,7 +322,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         if (i10 <= 29) {
             int i11 = rect.top;
             Context context = x2Var.getContext();
-            Typeface typeface = org.telegram.messenger.g0.f23581a;
+            Typeface typeface = org.telegram.messenger.g0.f23583a;
             int identifier = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (identifier > 0) {
                 i7 = context.getResources().getDimensionPixelSize(identifier);
@@ -350,7 +350,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
 
     public static void n(int i7, long j3, Runnable runnable) {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
-        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(i7).f26461b.bots;
+        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(i7).f26471b.bots;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -430,7 +430,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         if (z10) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             this.U0 = duration;
-            duration.setInterpolator(er.f34420f);
+            duration.setInterpolator(er.f34419f);
             this.U0.addUpdateListener(new v1(this, color, i7, 0));
             this.U0.addListener(new j2(this, i7, 0));
             this.U0.start();
@@ -488,7 +488,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         org.telegram.messenger.h2 h2Var = this.f18671o0;
         o2 o2Var = this.f18683x;
         if (h2Var != null) {
-            org.telegram.messenger.a aVar = h2Var.f24031b0;
+            org.telegram.messenger.a aVar = h2Var.f24034b0;
             org.telegram.messenger.g0.r(aVar);
             h2Var.N = z10;
             if (!z11) {
@@ -516,7 +516,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
             L();
             H();
             if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
-                int i10 = org.telegram.messenger.g0.f23609q.x;
+                int i10 = org.telegram.messenger.g0.f23611q.x;
                 f11 = (i10 - ((int) (Math.min(i10, point.y) * 0.8f))) / 2.0f;
             } else {
                 f11 = 0.0f;
@@ -538,10 +538,10 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
             if (z10) {
                 currentActionBarHeight = -org.telegram.messenger.g0.L(24.0f);
             } else {
-                currentActionBarHeight = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(24.0f);
+                currentActionBarHeight = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(24.0f);
             }
             float f15 = currentActionBarHeight;
-            float currentActionBarHeight2 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23603m;
+            float currentActionBarHeight2 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23605m;
             r1.g gVar = o2Var.f18699w;
             if (gVar != null) {
                 gVar.d();
@@ -621,7 +621,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         }
         if (z10) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-            duration.setInterpolator(er.f34420f);
+            duration.setInterpolator(er.f34419f);
             duration.addUpdateListener(new v1(this, i10, i7, 1));
             duration.addListener(new m2(this, i10, i7, 0));
             duration.start();
@@ -697,7 +697,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                 this.f18672p0 = null;
             }
             xb xbVar3 = this.f18672p0;
-            if (xbVar3 == null || !xbVar3.f41645l) {
+            if (xbVar3 == null || !xbVar3.f41637l) {
                 this.Q0 = h0Var;
                 g0 g0Var = new g0(getContext(), this.G);
                 this.f18673q0 = g0Var;
@@ -743,7 +743,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                 z0Var.setRightIcon(0);
                 z0Var.f29900b.setPadding(0, 0, 0, 0);
             }
-            z0Var.setOnClickListener(new ai.t2(26, this, h0Var2));
+            z0Var.setOnClickListener(new ai.v2(26, this, h0Var2));
         }
         org.telegram.messenger.g2 g2Var = this.f18657c0;
         int size = arrayList.size();
@@ -761,8 +761,8 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                 break;
             }
         }
-        if (g2Var.f23630e != z10) {
-            g2Var.f23630e = z10;
+        if (g2Var.f23632e != z10) {
+            g2Var.f23632e = z10;
             g2Var.invalidateSelf();
         }
         int size2 = arrayList.size();
@@ -874,7 +874,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
             if (this.f18662f0) {
                 o2Var.setTopActionBarOffsetY(-org.telegram.messenger.g0.L(24.0f));
             } else {
-                o2Var.setTopActionBarOffsetY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(24.0f));
+                o2Var.setTopActionBarOffsetY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(24.0f));
             }
             o2Var.setSwipeOffsetAnimationDisallowed(false);
             o2Var.c();
@@ -994,7 +994,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
             str = null;
         }
         b3Var.f28444x = str;
-        if (p2Var != null && p2Var.f52838u0) {
+        if (p2Var != null && p2Var.f52841u0) {
             z11 = true;
         } else {
             z11 = false;
@@ -1071,13 +1071,13 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25615z1) {
+        if (i7 == ns.f25616z1) {
             if (this.L == ((Long) objArr[0]).longValue()) {
                 o(false);
             }
-        } else if (i7 == ns.f25540n4) {
+        } else if (i7 == ns.f25541n4) {
             this.f18661f.invalidate();
-            this.E.f52828n.b(j6.w0(j6.f28849d6, this.G), 153);
+            this.E.f52831n.b(j6.w0(j6.f28849d6, this.G), 153);
             F();
             J();
         } else if (i7 == ns.J3) {
@@ -1191,9 +1191,9 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         this.f18660e0 = true;
         E(false);
         org.telegram.messenger.g0.r(this.f18680v0);
-        ns.f(this.I).n(this, ns.f25615z1);
+        ns.f(this.I).n(this, ns.f25616z1);
         ns.f(this.I).n(this, ns.J3);
-        ns.e().n(this, ns.f25540n4);
+        ns.e().n(this, ns.f25541n4);
         if (z10 && ((launchActivity = LaunchActivity.H1) == null || launchActivity.f42665x0 == null)) {
             z10 = false;
         }
@@ -1301,7 +1301,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
             }
             org.telegram.messenger.g0.n3(this, z10);
         }
-        ns.e().c(this, ns.f25540n4);
+        ns.e().c(this, ns.f25541n4);
         ns.f(this.I).c(this, ns.J3);
     }
 
@@ -1432,10 +1432,10 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                     }
                     int i10 = 0;
                     while (true) {
-                        if (i10 >= b02.f26486m1.size()) {
+                        if (i10 >= b02.f26496m1.size()) {
                             break;
                         }
-                        TLRPC.TL_topPeer tL_topPeer2 = (TLRPC.TL_topPeer) b02.f26486m1.get(i10);
+                        TLRPC.TL_topPeer tL_topPeer2 = (TLRPC.TL_topPeer) b02.f26496m1.get(i10);
                         if (tL_topPeer2.peer.user_id == j3) {
                             tL_topPeer = tL_topPeer2;
                             break;
@@ -1447,14 +1447,14 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_topPeer.peer = tL_peerUser;
                         tL_peerUser.user_id = j3;
-                        b02.f26486m1.add(tL_topPeer);
+                        b02.f26496m1.add(tL_topPeer);
                     }
-                    tL_topPeer.rating = Math.exp(i7 / b02.getMessagesController().f25228a3) + tL_topPeer.rating;
-                    Collections.sort(b02.f26486m1, new jg.w(20));
-                    if (b02.f26486m1.size() > 20) {
-                        a8.p0.z(1, b02.f26486m1);
+                    tL_topPeer.rating = Math.exp(i7 / b02.getMessagesController().f25231a3) + tL_topPeer.rating;
+                    Collections.sort(b02.f26496m1, new jg.w(20));
+                    if (b02.f26496m1.size() > 20) {
+                        a8.p0.z(1, b02.f26496m1);
                     }
-                    b02.getMessagesStorage().f27220a.c(new zg(b02, j3, 2, tL_topPeer.rating));
+                    b02.getMessagesStorage().f27219a.c(new zg(b02, j3, 2, tL_topPeer.rating));
                     b02.getNotificationCenter().k(ns.V0, new Object[0]);
                 }
                 this.E.t(this.I, str, z10);
@@ -1541,7 +1541,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         int w03;
         boolean q10 = q();
         TLRPC.User a22 = np.s1(this.I).a2(Long.valueOf(this.J));
-        ArrayList<TLRPC.TL_attachMenuBot> arrayList2 = si.b0(this.I).f26461b.bots;
+        ArrayList<TLRPC.TL_attachMenuBot> arrayList2 = si.b0(this.I).f26471b.bots;
         int size = arrayList2.size();
         int i13 = 0;
         while (true) {
@@ -1794,7 +1794,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         }
         org.telegram.ui.ActionBar.y s5 = u2Var.s();
         s5.removeAllViews();
-        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(this.I).f26461b.bots;
+        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(this.I).f26471b.bots;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -1873,7 +1873,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
             return;
         }
         int i11 = k4Var.f18409g;
-        int i12 = ns.f25615z1;
+        int i12 = ns.f25616z1;
         switch (i11) {
             case 0:
                 TLRPC.TL_messages_requestWebView tL_messages_requestWebView = new TLRPC.TL_messages_requestWebView();
@@ -1978,7 +1978,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                     if (anVar.j() != null) {
                         n1 = np.n1(anVar.j());
                     } else {
-                        n1 = np.l1(anVar.f45173e);
+                        n1 = np.l1(anVar.f45172e);
                     }
                 } else {
                     n1 = np.n1(k4Var.f18414m);
@@ -2007,7 +2007,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
                     if (anVar2.j() != null) {
                         j12 = np.n1(anVar2.j());
                     } else {
-                        j12 = np.l1(anVar2.f45173e);
+                        j12 = np.l1(anVar2.f45172e);
                     }
                 } else {
                     j12 = np.s1(this.I).j1(k4Var.f18405b);
@@ -2077,7 +2077,7 @@ public final class x2 extends Dialog implements is, org.telegram.ui.ActionBar.g3
         u1Var.c(u1Var.f18584b, i12, e6Var);
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-            duration.setInterpolator(er.f34420f);
+            duration.setInterpolator(er.f34419f);
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {

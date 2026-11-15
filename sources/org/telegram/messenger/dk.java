@@ -3,16 +3,16 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class dk implements Runnable {
-    public final int f23101a;
-    public final np f23102b;
-    public final ArrayList f23103c;
+    public final int f23109a;
+    public final np f23110b;
+    public final ArrayList f23111c;
     public final long d;
 
     public dk(np npVar, long j3, ArrayList arrayList, int i7) {
-        this.f23101a = i7;
-        this.f23102b = npVar;
+        this.f23109a = i7;
+        this.f23110b = npVar;
         this.d = j3;
-        this.f23103c = arrayList;
+        this.f23111c = arrayList;
     }
 
     @Override
@@ -20,15 +20,15 @@ public final class dk implements Runnable {
         int i7;
         long j3;
         long j10;
-        int i10 = this.f23101a;
+        int i10 = this.f23109a;
         long j11 = this.d;
-        ArrayList arrayList = this.f23103c;
-        np npVar = this.f23102b;
+        ArrayList arrayList = this.f23111c;
+        np npVar = this.f23110b;
         switch (i10) {
             case 0:
                 vr messagesStorage = npVar.getMessagesStorage();
                 long j12 = this.d;
-                ArrayList arrayList2 = this.f23103c;
+                ArrayList arrayList2 = this.f23111c;
                 npVar.getMessagesStorage().R1(j12, -j12, arrayList2, messagesStorage.P0(j12, arrayList2, false, true, 0, 0));
                 return;
             case 1:
@@ -92,14 +92,14 @@ public final class dk implements Runnable {
                         messagesStorage2.d2(j14, j10, tL_forumTopic.top_message, 0);
                     }
                 }
-                npVar.getMessagesStorage().f27220a.c(new tj(npVar, 21));
+                npVar.getMessagesStorage().f27219a.c(new tj(npVar, 21));
                 return;
             case 3:
                 npVar.m5(0, -j11, arrayList);
                 npVar.getNotificationCenter().k(3, new Object[0]);
                 return;
             case 4:
-                g0.h3(new dk(this.f23102b, this.d, this.f23103c, 5));
+                g0.h3(new dk(this.f23110b, this.d, this.f23111c, 5));
                 return;
             default:
                 npVar.m5(0, j11, arrayList);
@@ -109,9 +109,9 @@ public final class dk implements Runnable {
     }
 
     public dk(np npVar, ArrayList arrayList, long j3, int i7) {
-        this.f23101a = i7;
-        this.f23102b = npVar;
-        this.f23103c = arrayList;
+        this.f23109a = i7;
+        this.f23110b = npVar;
+        this.f23111c = arrayList;
         this.d = j3;
     }
 }

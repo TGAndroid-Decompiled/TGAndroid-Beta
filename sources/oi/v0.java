@@ -327,7 +327,7 @@ public final class v0 extends x implements org.telegram.ui.ActionBar.z5, g9, i0,
         if (getMeasuredWidth() > 0) {
             i10 = getMeasuredWidth();
         } else {
-            i10 = org.telegram.messenger.g0.f23609q.x;
+            i10 = org.telegram.messenger.g0.f23611q.x;
         }
         int L3 = (i10 - L) - org.telegram.messenger.g0.L(16.0f);
         if (this.N) {

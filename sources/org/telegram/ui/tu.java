@@ -4,15 +4,15 @@ import android.text.SpannableStringBuilder;
 import java.util.Collections;
 import org.telegram.tgnet.TLRPC;
 public final class tu implements Runnable {
-    public final int f51673a;
-    public final yw f51674b;
-    public final long f51675c;
+    public final int f51674a;
+    public final yw f51675b;
+    public final long f51676c;
     public final boolean d;
 
     public tu(yw ywVar, long j3, boolean z10, int i7) {
-        this.f51673a = i7;
-        this.f51674b = ywVar;
-        this.f51675c = j3;
+        this.f51674a = i7;
+        this.f51675b = ywVar;
+        this.f51676c = j3;
         this.d = z10;
     }
 
@@ -21,15 +21,15 @@ public final class tu implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder X2;
-        int i7 = this.f51673a;
+        int i7 = this.f51674a;
         boolean z10 = this.d;
-        long j3 = this.f51675c;
-        yw ywVar = this.f51674b;
+        long j3 = this.f51676c;
+        yw ywVar = this.f51675b;
         switch (i7) {
             case 0:
-                yw ywVar2 = this.f51674b;
+                yw ywVar2 = this.f51675b;
                 fi.s6 P1 = ywVar2.getMessagesController().P1();
-                long j10 = this.f51675c;
+                long j10 = this.f51676c;
                 boolean z11 = this.d;
                 P1.l0(j10, z11, false);
                 k8.a aVar = new k8.a(15, false);

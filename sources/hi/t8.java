@@ -89,7 +89,7 @@ public final class t8 implements z10 {
                     P1.d(j3, r6Var, P1.f12320b, false);
                 }
                 P1.d(j3, r6Var, P1.f12321c, true);
-                if (j3 != m10.i(i13).f24953n) {
+                if (j3 != m10.i(i13).f24959n) {
                     int i14 = 0;
                     while (true) {
                         if (i14 < arrayList2.size()) {
@@ -168,14 +168,14 @@ public final class t8 implements z10 {
             case 5:
                 fi.b bVar = saVar.f15035a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.sa saVar2 = new org.telegram.ui.Components.ta(saVar.f15039b, new bi.t(2)).f39619a;
+                org.telegram.ui.Components.sa saVar2 = new org.telegram.ui.Components.ta(saVar.f15039b, new bi.t(2)).f39616a;
                 WindowManager.LayoutParams layout = saVar2.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = saVar.f15088r.getWidth();
                     layout.y = (int) (saVar.f15088r.getY() + org.telegram.messenger.g0.L(56.0f));
-                    org.telegram.ui.Components.ta taVar = saVar2.f39263a;
-                    taVar.getWindow().setAttributes(taVar.f39620b);
+                    org.telegram.ui.Components.ta taVar = saVar2.f39261a;
+                    taVar.getWindow().setAttributes(taVar.f39617b);
                 }
                 saVar2.setTouchable(true);
                 new cc(saVar2, bVar).G(2131624021, 3, org.telegram.messenger.g0.S2(hd.G(intValue, "StoryPeriodPremium", new Object[0]), org.telegram.ui.ActionBar.j6.Xc, 0, new s8(saVar, 27), bVar)).k(true);
@@ -199,8 +199,8 @@ public final class t8 implements z10 {
                     f10 = 0.0f;
                 }
                 i20.m(animate, f10, 120L);
-                xb xbVar = xb.f41635w;
-                if (xbVar != null && xbVar.f41636a == 2) {
+                xb xbVar = xb.f41627w;
+                if (xbVar != null && xbVar.f41628a == 2) {
                     xbVar.l();
                     return;
                 }
@@ -400,8 +400,8 @@ public final class t8 implements z10 {
                     }
                     l9Var2.setTranslationY(i17 - contentHeight);
                 }
-                xb xbVar2 = xb.f41635w;
-                if (xbVar2 != null && xbVar2.f41636a == 2) {
+                xb xbVar2 = xb.f41627w;
+                if (xbVar2 != null && xbVar2.f41628a == 2) {
                     xbVar2.l();
                 }
                 if (saVar.f15048d1.f14634p0 && (l9Var = saVar.f15051e1) != null) {

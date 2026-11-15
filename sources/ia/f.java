@@ -54,7 +54,7 @@ public final class f {
         canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, z0Var.f58392f);
         z0Var.f58392f.setXfermode(null);
         int[] iArr = z0Var.f58397l;
-        ?? bitmapDrawable = new BitmapDrawable(t0.f26600b.getResources(), createBitmap);
+        ?? bitmapDrawable = new BitmapDrawable(t0.f26609b.getResources(), createBitmap);
         bitmapDrawable.f58387b = drawable;
         int[] iArr2 = new int[iArr.length];
         bitmapDrawable.f58386a = iArr2;
@@ -91,7 +91,7 @@ public final class f {
     }
 
     public Paint e() {
-        if (np.s1(m10.f24934t0).D3()) {
+        if (np.s1(m10.f24940t0).D3()) {
             if (((Paint) this.d) == null) {
                 this.d = new Paint(1);
             }
@@ -110,11 +110,11 @@ public final class f {
         this.f15884b = z0Var;
         z0 z0Var2 = new z0(j6.Wk, j6.Xk, -1, -1, null);
         this.f15885c = z0Var.f58392f;
-        this.f15887f = t0.f26600b.getDrawable(2131232308).mutate();
-        this.f15888g = c(t0.f26600b.getDrawable(2131232363), z0Var);
-        this.f15889i = c(t0.f26600b.getDrawable(2131232363), z0Var2);
-        this.h = c(t0.f26600b.getDrawable(2131232310), z0Var);
-        this.f15886e = t0.f26600b.getDrawable(2131232308).mutate();
+        this.f15887f = t0.f26609b.getDrawable(2131232308).mutate();
+        this.f15888g = c(t0.f26609b.getDrawable(2131232363), z0Var);
+        this.f15889i = c(t0.f26609b.getDrawable(2131232363), z0Var2);
+        this.h = c(t0.f26609b.getDrawable(2131232310), z0Var);
+        this.f15886e = t0.f26609b.getDrawable(2131232308).mutate();
         z0Var.a();
         b();
     }

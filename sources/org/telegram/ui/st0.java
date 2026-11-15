@@ -7,31 +7,31 @@ import android.graphics.RectF;
 import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
 public final class st0 implements Runnable {
-    public final int f51272a;
-    public final ProfileActivity f51273b;
-    public final TLRPC.User f51274c;
+    public final int f51273a;
+    public final ProfileActivity f51274b;
+    public final TLRPC.User f51275c;
 
     public st0(ProfileActivity profileActivity, TLRPC.User user, int i7) {
-        this.f51272a = i7;
-        this.f51273b = profileActivity;
-        this.f51274c = user;
+        this.f51273a = i7;
+        this.f51274b = profileActivity;
+        this.f51275c = user;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        switch (this.f51272a) {
+        switch (this.f51273a) {
             case 0:
-                ProfileActivity profileActivity = this.f51273b;
-                TLRPC.User user = this.f51274c;
+                ProfileActivity profileActivity = this.f51274b;
+                TLRPC.User user = this.f51275c;
                 RectF rectF = ProfileActivity.X6;
                 profileActivity.getClass();
                 profileActivity.presentFragment(an.ua(user.f28200id));
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f51273b;
-                TLRPC.User user2 = this.f51274c;
+                ProfileActivity profileActivity2 = this.f51274b;
+                TLRPC.User user2 = this.f51275c;
                 RectF rectF2 = ProfileActivity.X6;
                 if (profileActivity2.getParentActivity() != null) {
                     TLRPC.UserFull userFull = profileActivity2.f43219w2;
@@ -45,8 +45,8 @@ public final class st0 implements Runnable {
                 }
                 return;
             case 2:
-                ProfileActivity profileActivity3 = this.f51273b;
-                TLRPC.User user3 = this.f51274c;
+                ProfileActivity profileActivity3 = this.f51274b;
+                TLRPC.User user3 = this.f51275c;
                 RectF rectF3 = ProfileActivity.X6;
                 if (profileActivity3.getParentActivity() != null) {
                     TLRPC.UserFull userFull2 = profileActivity3.f43219w2;
@@ -60,8 +60,8 @@ public final class st0 implements Runnable {
                 }
                 return;
             case 3:
-                ProfileActivity profileActivity4 = this.f51273b;
-                TLRPC.User user4 = this.f51274c;
+                ProfileActivity profileActivity4 = this.f51274b;
+                TLRPC.User user4 = this.f51275c;
                 RectF rectF4 = ProfileActivity.X6;
                 try {
                     Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
@@ -73,11 +73,11 @@ public final class st0 implements Runnable {
                     return;
                 }
             default:
-                ProfileActivity profileActivity5 = this.f51273b;
-                TLRPC.User user5 = this.f51274c;
+                ProfileActivity profileActivity5 = this.f51274b;
+                TLRPC.User user5 = this.f51275c;
                 RectF rectF5 = ProfileActivity.X6;
                 try {
-                    ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
+                    ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
                     if (org.telegram.messenger.g0.H3()) {
                         org.telegram.ui.Components.cc.a0(profileActivity5).i(org.telegram.messenger.hd.M0(2131747295, null)).j();
                         return;

@@ -20,22 +20,22 @@ import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.ActionBar.z5;
 import org.telegram.ui.Components.ft;
 public abstract class e0 extends ft implements z5 {
-    public final e6 f5056e2;
-    public final ou f5057f2;
-    public Runnable f5058g2;
-    public int f5059h2;
+    public final e6 f5059e2;
+    public final ou f5060f2;
+    public Runnable f5061g2;
+    public int f5062h2;
 
     public e0(int i7, Context context, e6 e6Var) {
         super(context, e6Var);
-        this.f5056e2 = e6Var;
-        this.f5057f2 = new ou(getContext(), new GestureDetector.SimpleOnGestureListener());
+        this.f5059e2 = e6Var;
+        this.f5060f2 = new ou(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
         int i10 = Build.VERSION.SDK_INT;
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f5059h2 = i7;
+        this.f5062h2 = i7;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i7)});
         setTextSize(1, 22.0f);
         setGravity(80);
@@ -62,8 +62,8 @@ public abstract class e0 extends ft implements z5 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            b bVar = new b(this.f5056e2);
-            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5007f, 255);
+            b bVar = new b(this.f5059e2);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5010f, 255);
             ofInt.addUpdateListener(new a(bVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -79,9 +79,9 @@ public abstract class e0 extends ft implements z5 {
             c1.c cVar = new c1.c(6, this, bVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5007f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5010f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new ai.i0(cVar, 2));
+                ofInt.addListener(new ai.j0(cVar, 2));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
@@ -92,7 +92,7 @@ public abstract class e0 extends ft implements z5 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.f5057f2.f25804b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.f5060f2.f25806b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -133,19 +133,19 @@ public abstract class e0 extends ft implements z5 {
     }
 
     public void setMaxLength(int i7) {
-        if (this.f5059h2 != i7) {
-            this.f5059h2 = i7;
+        if (this.f5062h2 != i7) {
+            this.f5062h2 = i7;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i7)});
         }
     }
 
     public void setOnFocused(Runnable runnable) {
-        this.f5058g2 = runnable;
+        this.f5061g2 = runnable;
     }
 
     @Override
     public final void updateColors() {
-        e6 e6Var = this.f5056e2;
+        e6 e6Var = this.f5059e2;
         try {
             setHintColor(j6.w0(j6.Me, e6Var));
             setCursorColor(j6.w0(j6.Ne, e6Var));

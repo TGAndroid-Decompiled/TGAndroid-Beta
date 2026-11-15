@@ -32,8 +32,8 @@ public final class d1 implements Runnable {
                 if (gjVar != null) {
                     gjVar.n0(null);
                     gj gjVar2 = q1Var.Q5;
-                    if (gjVar2.f23875z != null) {
-                        gjVar2.f23875z = null;
+                    if (gjVar2.f23877z != null) {
+                        gjVar2.f23877z = null;
                         gjVar2.k0();
                     }
                     l1 l1Var = q1Var.Sa;
@@ -69,23 +69,23 @@ public final class d1 implements Runnable {
                 q1Var5.getMessageObject().N0 = true;
                 ej ejVar = q1Var5.f31115q3;
                 if (ejVar != null) {
-                    ArrayList arrayList = ejVar.f23310e;
+                    ArrayList arrayList = ejVar.f23317e;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        ((dj) obj).f23100y.clear();
+                        ((dj) obj).f23108y.clear();
                     }
                 }
                 ej ejVar2 = q1Var5.f31062m3;
                 if (ejVar2 != null) {
-                    ArrayList arrayList2 = ejVar2.f23310e;
+                    ArrayList arrayList2 = ejVar2.f23317e;
                     int size2 = arrayList2.size();
                     while (i7 < size2) {
                         Object obj2 = arrayList2.get(i7);
                         i7++;
-                        ((dj) obj2).f23100y.clear();
+                        ((dj) obj2).f23108y.clear();
                     }
                 } else {
                     ArrayList arrayList3 = q1Var5.Q5.B2;
@@ -94,7 +94,7 @@ public final class d1 implements Runnable {
                         while (i7 < size3) {
                             Object obj3 = arrayList3.get(i7);
                             i7++;
-                            ((dj) obj3).f23100y.clear();
+                            ((dj) obj3).f23108y.clear();
                         }
                     }
                 }

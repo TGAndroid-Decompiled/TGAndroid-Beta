@@ -50,7 +50,7 @@ public final class w5 implements Runnable {
                         }
                         if (!z10) {
                             f7 f7Var = s6Var.f12327k;
-                            f7Var.f11709b.f27220a.c(new d7(f7Var, peerStories, 0));
+                            f7Var.f11709b.f27219a.c(new d7(f7Var, peerStories, 0));
                         }
                     }
                     ns.f(s6Var.f12319a).k(324, new Object[0]);
@@ -65,7 +65,7 @@ public final class w5 implements Runnable {
                 long j12 = this.d;
                 Float f10 = (Float) this.h;
                 if (z11) {
-                    y8Var = (org.telegram.messenger.y8) w7Var.f27312n.get(str);
+                    y8Var = (org.telegram.messenger.y8) w7Var.f27311n.get(str);
                 } else {
                     y8Var = (org.telegram.messenger.y8) w7Var.h.get(str);
                 }
@@ -74,7 +74,7 @@ public final class w5 implements Runnable {
                     Utilities.d.c(new org.telegram.messenger.t8(y8Var2, f10, j12, j11));
                     return;
                 } else if (j12 != 0) {
-                    w7Var.f27317y.put(str, Long.valueOf(j12));
+                    w7Var.f27316y.put(str, Long.valueOf(j12));
                     return;
                 } else {
                     return;

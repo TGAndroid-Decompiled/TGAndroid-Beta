@@ -70,7 +70,7 @@ public final class e1 implements is, AudioManager.OnAudioFocusChangeListener {
         b1 b1Var = new b1(this);
         this.I = b1Var;
         org.telegram.messenger.a8.b("[LivePlayer] setup to call " + inputGroupCall.f28068id);
-        ns.f(i7).b(this, ns.f25602x2);
+        ns.f(i7).b(this, ns.f25603x2);
         if (z11) {
             this.K = NativeInstance.createVideoCapturer(b1Var, z12 ? 1 : 0);
         }
@@ -141,7 +141,7 @@ public final class e1 implements is, AudioManager.OnAudioFocusChangeListener {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25602x2) {
+        if (i7 == ns.f25603x2) {
             long longValue = ((Long) objArr[0]).longValue();
             TLRPC.GroupCall groupCall = (TLRPC.GroupCall) objArr[1];
             if (this.f11654b == longValue) {
@@ -156,7 +156,7 @@ public final class e1 implements is, AudioManager.OnAudioFocusChangeListener {
         if (!this.f11662x) {
             this.f11662x = true;
             u(false);
-            ns.f(this.f11656e).n(this, ns.f25602x2);
+            ns.f(this.f11656e).n(this, ns.f25603x2);
             org.telegram.messenger.a8.b("[LivePlayer] destroyed");
             if (this.f11663y) {
                 TL_phone.leaveGroupCall leavegroupcall = new TL_phone.leaveGroupCall();

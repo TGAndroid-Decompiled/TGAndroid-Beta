@@ -79,124 +79,124 @@ public abstract class gz {
     public static int Y0 = 0;
     public static Boolean Z = null;
     public static int Z0 = 0;
-    public static int f23929a = -1;
-    public static boolean f23930a0;
-    public static boolean f23931a1;
-    public static boolean f23932b;
-    public static boolean f23933b0;
-    public static int f23934b1;
-    public static Boolean f23935c;
-    public static boolean f23936c0;
-    public static int f23937c1;
+    public static int f23932a = -1;
+    public static boolean f23933a0;
+    public static boolean f23934a1;
+    public static boolean f23935b;
+    public static boolean f23936b0;
+    public static int f23937b1;
+    public static Boolean f23938c;
+    public static boolean f23939c0;
+    public static int f23940c1;
     public static String d;
-    public static boolean f23938d0;
-    public static int f23939d1;
-    public static final HashSet f23940e;
-    public static int f23941e0;
-    public static int f23942e1;
-    public static int f23943f;
-    public static int f23944f0;
-    public static int f23945f1;
-    public static String f23946g;
-    public static boolean f23947g0;
-    public static boolean f23948g1;
+    public static boolean f23941d0;
+    public static int f23942d1;
+    public static final HashSet f23943e;
+    public static int f23944e0;
+    public static int f23945e1;
+    public static int f23946f;
+    public static int f23947f0;
+    public static int f23948f1;
+    public static String f23949g;
+    public static boolean f23950g0;
+    public static boolean f23951g1;
     public static String h;
-    public static String f23949h0;
-    public static boolean f23950h1;
-    public static long f23951i;
-    public static String f23952i0;
-    public static boolean f23953i1;
-    public static long f23954j;
-    public static HashMap f23955j0;
-    public static TLRPC.TL_help_appUpdate f23956j1;
-    public static boolean f23957k;
-    public static int f23958k0;
-    public static int f23959k1;
-    public static byte[] f23960l;
-    public static boolean f23961l0;
+    public static String f23952h0;
+    public static boolean f23953h1;
+    public static long f23954i;
+    public static String f23955i0;
+    public static boolean f23956i1;
+    public static long f23957j;
+    public static HashMap f23958j0;
+    public static TLRPC.TL_help_appUpdate f23959j1;
+    public static boolean f23960k;
+    public static int f23961k0;
+    public static int f23962k1;
+    public static byte[] f23963l;
+    public static boolean f23964l0;
     public static long l1;
-    public static byte[] f23962m;
+    public static byte[] f23965m;
     public static final Object m0;
-    public static boolean f23963m1;
-    public static boolean f23964n;
-    public static final Object f23965n0;
+    public static boolean f23966m1;
+    public static boolean f23967n;
+    public static final Object f23968n0;
     public static int n1;
-    public static boolean f23966o;
-    public static int f23967o0;
-    public static int f23968o1;
-    public static boolean f23969p;
-    public static int f23970p0;
-    public static boolean f23971p1;
-    public static String f23972q;
-    public static final boolean f23973q0;
-    public static boolean f23974q1;
-    public static int f23975r;
-    public static boolean f23976r0;
-    public static int f23977r1;
-    public static String f23978s;
-    public static boolean f23979s0;
-    public static int f23980s1;
-    public static long f23981t;
-    public static boolean f23982t0;
-    public static int f23983t1;
-    public static long f23984u;
-    public static boolean f23985u0;
-    public static int f23986u1;
+    public static boolean f23969o;
+    public static int f23970o0;
+    public static int f23971o1;
+    public static boolean f23972p;
+    public static int f23973p0;
+    public static boolean f23974p1;
+    public static String f23975q;
+    public static final boolean f23976q0;
+    public static boolean f23977q1;
+    public static int f23978r;
+    public static boolean f23979r0;
+    public static int f23980r1;
+    public static String f23981s;
+    public static boolean f23982s0;
+    public static int f23983s1;
+    public static long f23984t;
+    public static boolean f23985t0;
+    public static int f23986t1;
+    public static long f23987u;
+    public static boolean f23988u0;
+    public static int f23989u1;
     public static int v;
-    public static boolean f23987v0;
-    public static int f23988v1;
-    public static byte[] f23989w;
-    public static boolean f23990w0;
-    public static boolean f23991w1;
-    public static boolean f23992x;
-    public static boolean f23993x0;
-    public static boolean f23994x1;
-    public static int f23995y;
-    public static boolean f23996y0;
-    public static final int[] f23997y1;
-    public static boolean f23998z;
-    public static boolean f23999z0;
-    public static final ArrayList f24000z1;
+    public static boolean f23990v0;
+    public static int f23991v1;
+    public static byte[] f23992w;
+    public static boolean f23993w0;
+    public static boolean f23994w1;
+    public static boolean f23995x;
+    public static boolean f23996x0;
+    public static boolean f23997x1;
+    public static int f23998y;
+    public static boolean f23999y0;
+    public static final int[] f24000y1;
+    public static boolean f24001z;
+    public static boolean f24002z0;
+    public static final ArrayList f24003z1;
 
     static {
         boolean z10;
         HashSet hashSet = new HashSet();
-        f23940e = hashSet;
+        f23943e = hashSet;
         hashSet.add("c2.exynos.hevc.encoder");
         hashSet.add("OMX.Exynos.HEVC.Encoder".toLowerCase());
-        f23943f = 2;
-        f23946g = "";
+        f23946f = 2;
+        f23949g = "";
         h = "";
-        f23978s = "";
-        f23989w = new byte[0];
-        f23995y = 3600;
+        f23981s = "";
+        f23992w = new byte[0];
+        f23998y = 3600;
         D = true;
         G = 1;
         X = true;
-        f23936c0 = true;
-        f23941e0 = 2;
-        f23944f0 = -210000;
-        f23947g0 = true;
-        f23952i0 = "";
+        f23939c0 = true;
+        f23944e0 = 2;
+        f23947f0 = -210000;
+        f23950g0 = true;
+        f23955i0 = "";
         m0 = new Object();
-        f23965n0 = new Object();
-        f23967o0 = 2;
-        f23970p0 = 0;
+        f23968n0 = new Object();
+        f23970o0 = 2;
+        f23973p0 = 0;
         if (Build.VERSION.SDK_INT >= 30) {
             z10 = true;
         } else {
             z10 = false;
         }
-        f23973q0 = z10;
-        f23976r0 = false;
-        f23979s0 = true;
-        f23982t0 = true;
-        f23985u0 = false;
-        f23987v0 = true;
-        f23990w0 = false;
-        f23993x0 = true;
-        f23996y0 = true;
-        f23999z0 = true;
+        f23976q0 = z10;
+        f23979r0 = false;
+        f23982s0 = true;
+        f23985t0 = true;
+        f23988u0 = false;
+        f23990v0 = true;
+        f23993w0 = false;
+        f23996x0 = true;
+        f23999y0 = true;
+        f24002z0 = true;
         A0 = false;
         B0 = true;
         C0 = false;
@@ -211,12 +211,12 @@ public abstract class gz {
         W0 = 16;
         Y0 = 17;
         Z0 = 16;
-        f23983t1 = 3;
-        f23986u1 = 3;
-        f23988v1 = 3;
-        f23997y1 = new int[]{-1775228513, 802464304, 802464333, 802464302, 2067362118, 2067362060, 2067362084, 2067362241, 2067362117, 2067361998, -1853602818};
+        f23986t1 = 3;
+        f23989u1 = 3;
+        f23991v1 = 3;
+        f24000y1 = new int[]{-1775228513, 802464304, 802464333, 802464302, 2067362118, 2067362060, 2067362084, 2067362241, 2067362117, 2067361998, -1853602818};
         t();
-        f24000z1 = new ArrayList();
+        f24003z1 = new ArrayList();
         D1 = true;
     }
 
@@ -228,16 +228,16 @@ public abstract class gz {
     }
 
     public static void B(int i7) {
-        if (f23983t1 != i7) {
-            f23983t1 = i7;
-            t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putInt("mediaColumnsCount", f23983t1).apply();
+        if (f23986t1 != i7) {
+            f23986t1 = i7;
+            t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putInt("mediaColumnsCount", f23986t1).apply();
         }
     }
 
     public static void C(boolean z10) {
-        f23991w1 = z10;
+        f23994w1 = z10;
         SharedPreferences.Editor edit = np.e1().edit();
-        edit.putBoolean("multipleReactionsPromoShowed", f23991w1);
+        edit.putBoolean("multipleReactionsPromoShowed", f23994w1);
         edit.apply();
     }
 
@@ -262,9 +262,9 @@ public abstract class gz {
     }
 
     public static void F(int i7) {
-        if (f23986u1 != i7) {
-            f23986u1 = i7;
-            t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putInt("storiesColumnsCount", f23986u1).apply();
+        if (f23989u1 != i7) {
+            f23989u1 = i7;
+            t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putInt("storiesColumnsCount", f23989u1).apply();
         }
     }
 
@@ -290,9 +290,9 @@ public abstract class gz {
     }
 
     public static void J() {
-        f23987v0 = !f23987v0;
+        f23990v0 = !f23990v0;
         SharedPreferences.Editor edit = np.e1().edit();
-        edit.putBoolean("adaptableBrowser", f23987v0);
+        edit.putBoolean("adaptableBrowser", f23990v0);
         edit.apply();
     }
 
@@ -305,23 +305,23 @@ public abstract class gz {
     }
 
     public static void L() {
-        f23938d0 = !f23938d0;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putBoolean("payByInvoice", f23938d0).apply();
+        f23941d0 = !f23941d0;
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putBoolean("payByInvoice", f23941d0).apply();
     }
 
     public static void M() {
-        f23936c0 = !f23936c0;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putBoolean("photoViewerBlur", f23936c0).apply();
+        f23939c0 = !f23939c0;
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putBoolean("photoViewerBlur", f23939c0).apply();
     }
 
     public static void N() {
         Y = !Y;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putBoolean("bigCameraForRound", Y).apply();
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putBoolean("bigCameraForRound", Y).apply();
     }
 
     public static void O() {
-        f23933b0 = !f23933b0;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putBoolean("useSurfaceInStories", f23933b0).apply();
+        f23936b0 = !f23936b0;
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putBoolean("useSurfaceInStories", f23936b0).apply();
     }
 
     public static void P() {
@@ -333,25 +333,25 @@ public abstract class gz {
     }
 
     public static void Q(int i7) {
-        SharedPreferences.Editor edit = t0.f26600b.getSharedPreferences("mainconfig", 0).edit();
+        SharedPreferences.Editor edit = t0.f26609b.getSharedPreferences("mainconfig", 0).edit();
         boolean z10 = !s(i7);
         Z = Boolean.valueOf(z10);
         edit.putBoolean("useCamera2Force_2", z10).apply();
     }
 
     public static void R() {
-        f23930a0 = !f23930a0;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putBoolean("useNewBlur", f23930a0).apply();
+        f23933a0 = !f23933a0;
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putBoolean("useNewBlur", f23933a0).apply();
     }
 
     public static void S(int i7) {
-        f23937c1 = i7;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putInt("messageSeenCount", f23937c1).apply();
+        f23940c1 = i7;
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putInt("messageSeenCount", f23940c1).apply();
     }
 
     public static void T(int i7) {
-        f23941e0 = i7;
-        t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putInt("stealthModeSendMessageConfirm", f23941e0).apply();
+        f23944e0 = i7;
+        t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putInt("stealthModeSendMessageConfirm", f23944e0).apply();
     }
 
     public static boolean U(String str, String str2) {
@@ -372,11 +372,11 @@ public abstract class gz {
 
     public static fz a(fz fzVar) {
         u();
-        ArrayList arrayList = f24000z1;
+        ArrayList arrayList = f24003z1;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             fz fzVar2 = (fz) arrayList.get(i7);
-            if (Objects.equals(fzVar.f23575a, fzVar2.f23575a)) {
+            if (Objects.equals(fzVar.f23577a, fzVar2.f23577a)) {
                 return fzVar2;
             }
         }
@@ -386,7 +386,7 @@ public abstract class gz {
     }
 
     public static boolean b() {
-        if (f23935c == null) {
+        if (f23938c == null) {
             int codecCount = MediaCodecList.getCodecCount();
             boolean z10 = false;
             int i7 = 0;
@@ -411,9 +411,9 @@ public abstract class gz {
             if (i7 >= 8) {
                 z10 = true;
             }
-            f23935c = Boolean.valueOf(z10);
+            f23938c = Boolean.valueOf(z10);
         }
-        return f23935c.booleanValue();
+        return f23938c.booleanValue();
     }
 
     public static boolean c() {
@@ -425,7 +425,7 @@ public abstract class gz {
 
     public static int d() {
         try {
-            return t0.f26600b.getPackageManager().getPackageInfo(t0.f26600b.getPackageName(), 0).versionCode;
+            return t0.f26609b.getPackageManager().getPackageInfo(t0.f26609b.getPackageName(), 0).versionCode;
         } catch (Exception e10) {
             a8.g(e10, true);
             return 0;
@@ -443,7 +443,7 @@ public abstract class gz {
         if (o4 >= i7) {
             return true;
         }
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
         return false;
     }
 
@@ -455,19 +455,19 @@ public abstract class gz {
     }
 
     public static boolean g(String str) {
-        if (f23989w.length == 0) {
-            boolean equals = Utilities.a(str).equals(f23978s);
+        if (f23992w.length == 0) {
+            boolean equals = Utilities.a(str).equals(f23981s);
             if (equals) {
                 try {
-                    f23989w = new byte[16];
-                    Utilities.f22414b.nextBytes(f23989w);
+                    f23992w = new byte[16];
+                    Utilities.f22414b.nextBytes(f23992w);
                     byte[] bytes = str.getBytes("UTF-8");
                     int length = bytes.length + 32;
                     byte[] bArr = new byte[length];
-                    System.arraycopy(f23989w, 0, bArr, 0, 16);
+                    System.arraycopy(f23992w, 0, bArr, 0, 16);
                     System.arraycopy(bytes, 0, bArr, 16, bytes.length);
-                    System.arraycopy(f23989w, 0, bArr, bytes.length + 16, 16);
-                    f23978s = Utilities.f(Utilities.o(length, bArr));
+                    System.arraycopy(f23992w, 0, bArr, bytes.length + 16, 16);
+                    f23981s = Utilities.f(Utilities.o(length, bArr));
                     y();
                     return equals;
                 } catch (Exception e10) {
@@ -480,10 +480,10 @@ public abstract class gz {
             byte[] bytes2 = str.getBytes("UTF-8");
             int length2 = bytes2.length + 32;
             byte[] bArr2 = new byte[length2];
-            System.arraycopy(f23989w, 0, bArr2, 0, 16);
+            System.arraycopy(f23992w, 0, bArr2, 0, 16);
             System.arraycopy(bytes2, 0, bArr2, 16, bytes2.length);
-            System.arraycopy(f23989w, 0, bArr2, bytes2.length + 16, 16);
-            return f23978s.equals(Utilities.f(Utilities.o(length2, bArr2)));
+            System.arraycopy(f23992w, 0, bArr2, bytes2.length + 16, 16);
+            return f23981s.equals(Utilities.f(Utilities.o(length2, bArr2)));
         } catch (Exception e11) {
             a8.g(e11, true);
             return false;
@@ -491,7 +491,7 @@ public abstract class gz {
     }
 
     public static void h(File file) {
-        if (file != null && f23949h0 != null && !f23932b && file.getPath().startsWith(f23949h0)) {
+        if (file != null && f23952h0 != null && !f23935b && file.getPath().startsWith(f23952h0)) {
             g0.h3(new c6(14));
         }
     }
@@ -514,7 +514,7 @@ public abstract class gz {
                 ConnectionsManager.setProxySettings(false, null);
             }
         }
-        f24000z1.remove(fzVar);
+        f24003z1.remove(fzVar);
         z();
     }
 
@@ -526,8 +526,8 @@ public abstract class gz {
     }
 
     public static boolean k(boolean z10) {
-        if (f23979s0) {
-            if (!z10 || f23976r0) {
+        if (f23982s0) {
+            if (!z10 || f23979r0) {
                 return true;
             }
             return false;
@@ -543,8 +543,8 @@ public abstract class gz {
                 if (codecInfoAt.isEncoder()) {
                     for (int i10 = 0; i10 < codecInfoAt.getSupportedTypes().length; i10++) {
                         if (codecInfoAt.getSupportedTypes()[i10].contains("video/hevc") && codecInfoAt.isHardwareAccelerated()) {
-                            boolean z10 = r2.f26198a;
-                            if (f23940e.contains(codecInfoAt.getName().toLowerCase())) {
+                            boolean z10 = r2.f26206a;
+                            if (f23943e.contains(codecInfoAt.getName().toLowerCase())) {
                                 String name = codecInfoAt.getName();
                                 d = name;
                                 return name;
@@ -563,12 +563,12 @@ public abstract class gz {
     }
 
     public static int m(int i7) {
-        int i10 = f23977r1;
+        int i10 = f23980r1;
         if (i10 >= 0) {
             if (i10 == 5 && np.s1(i7).Q0.isEmpty()) {
                 return 2;
             }
-            return f23977r1;
+            return f23980r1;
         } else if (np.s1(i7).Q0.isEmpty()) {
             return 2;
         } else {
@@ -577,24 +577,24 @@ public abstract class gz {
     }
 
     public static HashMap n() {
-        if (f23955j0 == null) {
-            f23955j0 = new HashMap();
+        if (f23958j0 == null) {
+            f23958j0 = new HashMap();
             try {
-                JSONObject jSONObject = new JSONObject(f23952i0);
+                JSONObject jSONObject = new JSONObject(f23955i0);
                 Iterator<String> keys = jSONObject.keys();
                 while (keys.hasNext()) {
                     String next = keys.next();
-                    f23955j0.put(next.toUpperCase(), jSONObject.getString(next).toUpperCase());
+                    f23958j0.put(next.toUpperCase(), jSONObject.getString(next).toUpperCase());
                 }
             } catch (Throwable th2) {
                 a8.g(th2, true);
             }
         }
-        return f23955j0;
+        return f23958j0;
     }
 
     public static int o() {
-        int i7 = f23968o1;
+        int i7 = f23971o1;
         if (i7 != -1) {
             return i7;
         }
@@ -606,15 +606,15 @@ public abstract class gz {
 
     public static int p() {
         int i7;
-        synchronized (f23965n0) {
-            i7 = f23944f0;
-            f23944f0 = i7 - 1;
+        synchronized (f23968n0) {
+            i7 = f23947f0;
+            f23947f0 = i7 - 1;
         }
         return i7;
     }
 
     public static SharedPreferences q() {
-        return t0.f26600b.getSharedPreferences("userconfing", 0);
+        return t0.f26609b.getSharedPreferences("userconfing", 0);
     }
 
     public static void r() {
@@ -626,23 +626,23 @@ public abstract class gz {
                     if (i7 != 5) {
                         if (i7 != 6) {
                             if (i7 != 7) {
-                                f23981t = 30000L;
+                                f23984t = 30000L;
                             } else {
-                                f23981t = 25000L;
+                                f23984t = 25000L;
                             }
                         } else {
-                            f23981t = 20000L;
+                            f23984t = 20000L;
                         }
                     } else {
-                        f23981t = 15000L;
+                        f23984t = 15000L;
                     }
                 } else {
-                    f23981t = 10000L;
+                    f23984t = 10000L;
                 }
             } else {
-                f23981t = 5000L;
+                f23984t = 5000L;
             }
-            f23984u = SystemClock.elapsedRealtime();
+            f23987u = SystemClock.elapsedRealtime();
         }
         y();
     }
@@ -664,10 +664,10 @@ public abstract class gz {
 
     public static void u() {
         if (!A1) {
-            SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("mainconfig", 0);
+            SharedPreferences sharedPreferences = t0.f26609b.getSharedPreferences("mainconfig", 0);
             xi.a c10 = xi.a.c(sharedPreferences);
             A1 = true;
-            f24000z1.clear();
+            f24003z1.clear();
             B1 = null;
             String string = sharedPreferences.getString("proxy_list", null);
             if (!TextUtils.isEmpty(string)) {
@@ -681,8 +681,8 @@ public abstract class gz {
                         int readInt322 = serializedData.readInt32(false);
                         for (int i7 = 0; i7 < readInt322; i7++) {
                             fz a10 = fz.a(readByte, serializedData);
-                            f24000z1.add(0, a10);
-                            if (B1 == null && c10.g() && c10.equals(a10.f23575a)) {
+                            f24003z1.add(0, a10);
+                            if (B1 == null && c10.g() && c10.equals(a10.f23577a)) {
                                 B1 = a10;
                             }
                         }
@@ -690,8 +690,8 @@ public abstract class gz {
                 } else {
                     for (int i10 = 0; i10 < readInt32; i10++) {
                         fz a11 = fz.a(0, serializedData);
-                        f24000z1.add(0, a11);
-                        if (B1 == null && c10.g() && c10.equals(a11.f23575a)) {
+                        f24003z1.add(0, a11);
+                        if (B1 == null && c10.g() && c10.equals(a11.f23577a)) {
                             B1 = a11;
                         }
                     }
@@ -701,7 +701,7 @@ public abstract class gz {
             if (B1 == null && c10.g()) {
                 fz fzVar = new fz(c10);
                 B1 = fzVar;
-                f24000z1.add(0, fzVar);
+                f24003z1.add(0, fzVar);
             }
         }
     }
@@ -712,13 +712,13 @@ public abstract class gz {
         String f10;
         int i7 = Build.VERSION.SDK_INT;
         int i10 = ConnectionsManager.CPU_COUNT;
-        int memoryClass = ((ActivityManager) t0.f26600b.getSystemService("activity")).getMemoryClass();
+        int memoryClass = ((ActivityManager) t0.f26609b.getSystemService("activity")).getMemoryClass();
         int i11 = 0;
         if (i7 >= 31 && (f10 = fd.f()) != null) {
             int hashCode = f10.toUpperCase().hashCode();
             int i12 = 0;
             while (true) {
-                int[] iArr = f23997y1;
+                int[] iArr = f24000y1;
                 if (i12 >= iArr.length) {
                     break;
                 } else if (iArr[i12] == hashCode) {
@@ -750,7 +750,7 @@ public abstract class gz {
         }
         try {
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            ((ActivityManager) t0.f26600b.getSystemService("activity")).getMemoryInfo(memoryInfo);
+            ((ActivityManager) t0.f26609b.getSystemService("activity")).getMemoryInfo(memoryInfo);
             j3 = memoryInfo.totalMem;
         } catch (Exception unused2) {
             j3 = -1;
@@ -758,16 +758,16 @@ public abstract class gz {
         if (i10 > 2 && memoryClass > 100 && ((i10 > 4 || ceil == -1 || ceil > 1250) && ((i10 > 4 || ceil > 1300 || memoryClass > 128 || i7 > 24) && (j3 == -1 || j3 >= 2147483648L)))) {
             i11 = (i10 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i10 == 8 && i7 <= 23)) ? 1 : 2;
         }
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             StringBuilder n10 = i5.c.n("device performance info selected_class = ", i11, " (cpu_count = ", i10, ", freq = ");
             i5.c.y(n10, ceil, ", memoryClass = ", memoryClass, ", android version ");
             n10.append(i7);
             n10.append(", manufacture ");
             n10.append(Build.MANUFACTURER);
             n10.append(", screenRefreshRate=");
-            n10.append(g0.f23610r);
+            n10.append(g0.f23612r);
             n10.append(", screenMaxRefreshRate=");
-            n10.append(g0.f23611s);
+            n10.append(g0.f23613s);
             n10.append(")");
             a8.b(n10.toString());
         }
@@ -776,7 +776,7 @@ public abstract class gz {
 
     public static void w(int i7) {
         SharedPreferences.Editor edit = np.e1().edit();
-        f23968o1 = i7;
+        f23971o1 = i7;
         edit.putInt("overrideDevicePerformanceClass", i7).remove("lite_mode").apply();
     }
 
@@ -800,39 +800,39 @@ public abstract class gz {
         synchronized (m0) {
             try {
                 try {
-                    SharedPreferences.Editor edit = t0.f26600b.getSharedPreferences("userconfing", 0).edit();
-                    edit.putBoolean("saveIncomingPhotos", f23998z);
-                    edit.putString("passcodeHash1", f23978s);
-                    byte[] bArr = f23989w;
+                    SharedPreferences.Editor edit = t0.f26609b.getSharedPreferences("userconfing", 0).edit();
+                    edit.putBoolean("saveIncomingPhotos", f24001z);
+                    edit.putString("passcodeHash1", f23981s);
+                    byte[] bArr = f23992w;
                     if (bArr.length > 0) {
                         str = Base64.encodeToString(bArr, 0);
                     } else {
                         str = "";
                     }
                     edit.putString("passcodeSalt", str);
-                    edit.putBoolean("appLocked", f23992x);
-                    edit.putInt("passcodeType", f23975r);
-                    edit.putLong("passcodeRetryInMs", f23981t);
-                    edit.putLong("lastUptimeMillis", f23984u);
+                    edit.putBoolean("appLocked", f23995x);
+                    edit.putInt("passcodeType", f23978r);
+                    edit.putLong("passcodeRetryInMs", f23984t);
+                    edit.putLong("lastUptimeMillis", f23987u);
                     edit.putInt("badPasscodeTries", v);
-                    edit.putInt("autoLockIn", f23995y);
+                    edit.putInt("autoLockIn", f23998y);
                     edit.putInt("lastPauseTime", B);
                     edit.putBoolean("useFingerprint", D);
-                    edit.putBoolean("walletUseFingerprintLock", f23947g0);
+                    edit.putBoolean("walletUseFingerprintLock", f23950g0);
                     edit.putBoolean("allowScreenCapture", A);
-                    edit.putString("pushString2", f23946g);
-                    edit.putInt("pushType", f23943f);
-                    edit.putBoolean("pushStatSent", f23957k);
-                    byte[] bArr2 = f23960l;
+                    edit.putString("pushString2", f23949g);
+                    edit.putInt("pushType", f23946f);
+                    edit.putBoolean("pushStatSent", f23960k);
+                    byte[] bArr2 = f23963l;
                     if (bArr2 != null) {
                         str2 = Base64.encodeToString(bArr2, 0);
                     } else {
                         str2 = "";
                     }
                     edit.putString("pushAuthKey", str2);
-                    edit.putInt("lastLocalId", f23944f0);
-                    edit.putString("passportConfigJson", f23952i0);
-                    edit.putInt("passportConfigHash", f23958k0);
+                    edit.putInt("lastLocalId", f23947f0);
+                    edit.putString("passportConfigJson", f23955i0);
+                    edit.putInt("passportConfigHash", f23961k0);
                     edit.putBoolean("sortContactsByName", L0);
                     edit.putBoolean("sortFilesByName", M0);
                     edit.putInt("textSelectionHintShows", J);
@@ -843,21 +843,21 @@ public abstract class gz {
                     edit.putBoolean("forwardingOptionsHintShown", P);
                     edit.putBoolean("replyingOptionsHintShown", Q);
                     edit.putInt("lockRecordAudioVideoHint", O);
-                    if (!TextUtils.isEmpty(f23949h0)) {
-                        str3 = f23949h0;
+                    if (!TextUtils.isEmpty(f23952h0)) {
+                        str3 = f23952h0;
                     } else {
                         str3 = "";
                     }
                     edit.putString("storageCacheDir", str3);
-                    edit.putBoolean("proxyRotationEnabled", f23931a1);
-                    edit.putInt("proxyRotationTimeout", f23934b1);
-                    TLRPC.TL_help_appUpdate tL_help_appUpdate = f23956j1;
+                    edit.putBoolean("proxyRotationEnabled", f23934a1);
+                    edit.putInt("proxyRotationTimeout", f23937b1);
+                    TLRPC.TL_help_appUpdate tL_help_appUpdate = f23959j1;
                     if (tL_help_appUpdate != null) {
                         try {
                             SerializedData serializedData = new SerializedData(tL_help_appUpdate.getObjectSize());
-                            f23956j1.serializeToStream(serializedData);
+                            f23959j1.serializeToStream(serializedData);
                             edit.putString("appUpdate", Base64.encodeToString(serializedData.toByteArray(), 0));
-                            edit.putInt("appUpdateBuild", f23959k1);
+                            edit.putInt("appUpdateBuild", f23962k1);
                             serializedData.cleanup();
                         } catch (Exception unused) {
                         }
@@ -866,10 +866,10 @@ public abstract class gz {
                     }
                     edit.putLong("appUpdateCheckTime", l1);
                     edit.apply();
-                    SharedPreferences.Editor edit2 = t0.f26600b.getSharedPreferences("mainconfig", 0).edit();
-                    edit2.putBoolean("hasEmailLogin", f23963m1);
-                    edit2.putBoolean("floatingDebugActive", f23994x1);
-                    edit2.putBoolean("record_via_sco", f23985u0);
+                    SharedPreferences.Editor edit2 = t0.f26609b.getSharedPreferences("mainconfig", 0).edit();
+                    edit2.putBoolean("hasEmailLogin", f23966m1);
+                    edit2.putBoolean("floatingDebugActive", f23997x1);
+                    edit2.putBoolean("record_via_sco", f23988u0);
                     edit2.apply();
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -881,7 +881,7 @@ public abstract class gz {
     }
 
     public static void z() {
-        ArrayList arrayList = new ArrayList(f24000z1);
+        ArrayList arrayList = new ArrayList(f24003z1);
         Collections.sort(arrayList, new gl(19));
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
@@ -893,14 +893,14 @@ public abstract class gz {
             int i10 = 0;
             if (i7 >= 0) {
                 fz fzVar = (fz) arrayList.get(i7);
-                serializedData.writeString(fzVar.f23575a.f60042b);
-                serializedData.writeInt32(fzVar.f23575a.f60043c);
-                serializedData.writeString(fzVar.f23575a.d);
-                serializedData.writeString(fzVar.f23575a.f60044e);
-                serializedData.writeString(fzVar.f23575a.f60045f);
-                serializedData.writeInt64(fzVar.f23576b);
-                serializedData.writeInt64(fzVar.f23578e);
-                int c10 = p1.g.c(fzVar.f23575a.f60041a);
+                serializedData.writeString(fzVar.f23577a.f60042b);
+                serializedData.writeInt32(fzVar.f23577a.f60043c);
+                serializedData.writeString(fzVar.f23577a.d);
+                serializedData.writeString(fzVar.f23577a.f60044e);
+                serializedData.writeString(fzVar.f23577a.f60045f);
+                serializedData.writeInt64(fzVar.f23578b);
+                serializedData.writeInt64(fzVar.f23580e);
+                int c10 = p1.g.c(fzVar.f23577a.f60041a);
                 if (c10 != 1) {
                     if (c10 == 2) {
                         i10 = 2;
@@ -911,7 +911,7 @@ public abstract class gz {
                 serializedData.writeInt32(i10);
                 i7--;
             } else {
-                t0.f26600b.getSharedPreferences("mainconfig", 0).edit().putString("proxy_list", Base64.encodeToString(serializedData.toByteArray(), 2)).apply();
+                t0.f26609b.getSharedPreferences("mainconfig", 0).edit().putString("proxy_list", Base64.encodeToString(serializedData.toByteArray(), 2)).apply();
                 serializedData.cleanup();
                 return;
             }

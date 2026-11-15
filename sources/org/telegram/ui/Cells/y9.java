@@ -22,7 +22,7 @@ public final class y9 extends q1 {
         this.Dd = z9Var;
         this.Cd = i10;
         this.f32087zd = new GestureDetector(context2, new x9(0, this));
-        er erVar = er.f34421g;
+        er erVar = er.f34420g;
         this.Ad = new org.telegram.ui.Components.x4(this, 180L, erVar, 0);
         this.Bd = new org.telegram.ui.Components.x4(this, 180L, erVar, 0);
     }
@@ -36,10 +36,10 @@ public final class y9 extends q1 {
         org.telegram.ui.Components.x4 x4Var = this.Bd;
         org.telegram.ui.Components.x4 x4Var2 = this.Ad;
         org.telegram.ui.Components.t8 t8Var = this.B7;
-        if (messageObject != null && getMessageObject().f23791e1 >= 0) {
-            int i7 = getMessageObject().f23791e1;
+        if (messageObject != null && getMessageObject().f23793e1 >= 0) {
+            int i7 = getMessageObject().f23793e1;
             if (i7 >= 14) {
-                dp dpVar = np.s1(m10.f24934t0).f25380r4;
+                dp dpVar = np.s1(m10.f24940t0).f25383r4;
                 if (dpVar != null) {
                     cpVar = dpVar.d(i7);
                 } else {

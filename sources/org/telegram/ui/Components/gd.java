@@ -19,14 +19,14 @@ public final class gd implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 je jeVar = chatActivityEnterView.f32275r2;
                 if (jeVar != null) {
-                    jeVar.setTranslationX(jeVar.f35968a);
+                    jeVar.setTranslationX(jeVar.f35958a);
                     return;
                 }
                 return;
             case 1:
                 je jeVar2 = chatActivityEnterView.f32275r2;
                 if (jeVar2 != null) {
-                    jeVar2.setTranslationX(jeVar2.f35968a);
+                    jeVar2.setTranslationX(jeVar2.f35958a);
                     return;
                 }
                 return;

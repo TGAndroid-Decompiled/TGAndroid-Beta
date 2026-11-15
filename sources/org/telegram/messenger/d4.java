@@ -18,32 +18,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class d4 extends c1 {
-    public static volatile p5 f23022s = new p5("chatThemeQueue");
-    public static final d4[] f23023w = new d4[4];
-    public final HashMap f23024a;
-    public ArrayList f23025b;
-    public volatile long f23026c;
+    public static volatile p5 f23030s = new p5("chatThemeQueue");
+    public static final d4[] f23031w = new d4[4];
+    public final HashMap f23032a;
+    public ArrayList f23033b;
+    public volatile long f23034c;
     public volatile long d;
-    public final HashMap f23027e;
-    public final l2.q1 f23028f;
+    public final HashMap f23035e;
+    public final l2.q1 f23036f;
     public final LongSparseArray h;
-    public final HashMap f23029n;
-    public final HashMap f23030r;
+    public final HashMap f23037n;
+    public final HashMap f23038r;
 
     public d4(int i7) {
         super(i7);
-        this.f23024a = new HashMap();
-        this.f23027e = new HashMap();
-        this.f23028f = new Object();
+        this.f23032a = new HashMap();
+        this.f23035e = new HashMap();
+        this.f23036f = new Object();
         this.h = new LongSparseArray();
-        this.f23029n = new HashMap();
-        this.f23030r = new HashMap();
+        this.f23037n = new HashMap();
+        this.f23038r = new HashMap();
         k();
     }
 
     public static d4 f(int i7) {
         d4 d4Var;
-        d4[] d4VarArr = f23023w;
+        d4[] d4VarArr = f23031w;
         d4 d4Var2 = d4VarArr[i7];
         if (d4Var2 == null) {
             synchronized (d4.class) {
@@ -74,7 +74,7 @@ public final class d4 extends c1 {
     }
 
     public static void n(String str) {
-        new ImageReceiver(null).q0(gc.b(si.b0(m10.f24934t0).T(str)), "50_50", null, null, null, 0);
+        new ImageReceiver(null).q0(gc.b(si.b0(m10.f24940t0).T(str)), "50_50", null, null, null, 0);
         j6.k(str);
     }
 
@@ -158,7 +158,7 @@ public final class d4 extends c1 {
         LongSparseArray longSparseArray = this.h;
         ig.b bVar2 = (ig.b) longSparseArray.get(j3);
         if (bVar2 == null) {
-            String string = t0.f26600b.getSharedPreferences("chatthemeconfig_emoji", 0).getString("chatTheme_" + this.currentAccount + "_" + j3, null);
+            String string = t0.f26609b.getSharedPreferences("chatthemeconfig_emoji", 0).getString("chatTheme_" + this.currentAccount + "_" + j3, null);
             if (string != null) {
                 if (string.startsWith("gift_")) {
                     bVar = new ig.b(null, string.substring(5));
@@ -188,7 +188,7 @@ public final class d4 extends c1 {
                 return N0.wallpaper;
             }
         }
-        SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("chatthemeconfig_emoji", 0);
+        SharedPreferences sharedPreferences = t0.f26609b.getSharedPreferences("chatthemeconfig_emoji", 0);
         String string = sharedPreferences.getString("chatWallpaper_" + this.currentAccount + "_" + j3, null);
         if (string != null) {
             SerializedData serializedData = new SerializedData(Utilities.v(string));
@@ -208,10 +208,10 @@ public final class d4 extends c1 {
         boolean hasFlag2 = TLObject.hasFlag(i7, 2);
         boolean hasFlag3 = TLObject.hasFlag(i7, 4);
         ArrayList arrayList3 = new ArrayList();
-        if (hasFlag3 && (arrayList2 = (ArrayList) this.f23028f.d) != null) {
+        if (hasFlag3 && (arrayList2 = (ArrayList) this.f23036f.d) != null) {
             arrayList3.addAll(arrayList2);
         }
-        if (hasFlag2 && (arrayList = this.f23025b) != null) {
+        if (hasFlag2 && (arrayList = this.f23033b) != null) {
             arrayList3.addAll(arrayList);
         }
         int i10 = 0;
@@ -241,12 +241,12 @@ public final class d4 extends c1 {
     public final File g(long j3) {
         File h = t0.h();
         Locale locale = Locale.US;
-        long j10 = this.f23026c;
+        long j10 = this.f23034c;
         return new File(h, j3 + "_" + j10 + ".jpg");
     }
 
     public final SharedPreferences h() {
-        Context context = t0.f26600b;
+        Context context = t0.f26609b;
         return context.getSharedPreferences("chatthemeconfig_" + this.currentAccount, 0);
     }
 
@@ -254,9 +254,9 @@ public final class d4 extends c1 {
         if (bVar != null) {
             String str = bVar.f15934b;
             if (!TextUtils.isEmpty(str)) {
-                return (org.telegram.ui.ActionBar.p3) this.f23027e.get(str);
+                return (org.telegram.ui.ActionBar.p3) this.f23035e.get(str);
             }
-            ArrayList arrayList = this.f23025b;
+            ArrayList arrayList = this.f23033b;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
@@ -274,22 +274,22 @@ public final class d4 extends c1 {
 
     public final void k() {
         SharedPreferences h = h();
-        this.f23026c = 0L;
+        this.f23034c = 0L;
         this.d = 0L;
         try {
-            this.f23026c = h.getLong("hash", 0L);
+            this.f23034c = h.getLong("hash", 0L);
             this.d = h.getLong("lastReload", 0L);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
-        this.f23025b = b();
+        this.f23033b = b();
         vr messagesStorage = getMessagesStorage();
         u3 u3Var = new u3(this, 0);
         messagesStorage.getClass();
-        messagesStorage.I(new wq(4, messagesStorage, u3Var));
+        messagesStorage.I(new pq(6, messagesStorage, u3Var));
         n("❌");
-        if (!this.f23025b.isEmpty()) {
-            ArrayList arrayList = this.f23025b;
+        if (!this.f23033b.isEmpty()) {
+            ArrayList arrayList = this.f23033b;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
@@ -301,7 +301,7 @@ public final class d4 extends c1 {
     }
 
     public final void l(boolean z10) {
-        ArrayList arrayList = this.f23025b;
+        ArrayList arrayList = this.f23033b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -316,7 +316,7 @@ public final class d4 extends c1 {
     }
 
     public final void m(boolean z10) {
-        ArrayList arrayList = this.f23025b;
+        ArrayList arrayList = this.f23033b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -324,7 +324,7 @@ public final class d4 extends c1 {
             i7++;
             org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) obj;
             long h = p3Var.h(z10 ? 1 : 0);
-            if (h != 0 && !this.f23024a.containsKey(Long.valueOf(h))) {
+            if (h != 0 && !this.f23032a.containsKey(Long.valueOf(h))) {
                 p3Var.p(z10 ? 1 : 0, new j1(this, 1));
             }
         }
@@ -371,21 +371,21 @@ public final class d4 extends c1 {
         if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
             TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = (TLRPC.TL_chatThemeUniqueGift) chatTheme;
             String str = tL_chatThemeUniqueGift.gift.slug;
-            HashMap hashMap = this.f23027e;
+            HashMap hashMap = this.f23035e;
             if (!hashMap.containsKey(str)) {
                 org.telegram.ui.ActionBar.p3 p3Var = new org.telegram.ui.ActionBar.p3(this.currentAccount, tL_chatThemeUniqueGift);
                 p3Var.k();
                 hashMap.put(tL_chatThemeUniqueGift.gift.slug, p3Var);
                 vr messagesStorage = getMessagesStorage();
                 messagesStorage.getClass();
-                messagesStorage.I(new wq(3, messagesStorage, Collections.singletonList(chatTheme)));
+                messagesStorage.I(new pq(5, messagesStorage, Collections.singletonList(chatTheme)));
             }
         }
     }
 
     public final void q(final ResultCallback resultCallback, final boolean z10) {
         boolean z11;
-        if (this.f23026c == 0 || this.d == 0) {
+        if (this.f23034c == 0 || this.d == 0) {
             k();
         }
         if (System.currentTimeMillis() - this.d > 7200000) {
@@ -393,12 +393,12 @@ public final class d4 extends c1 {
         } else {
             z11 = false;
         }
-        ArrayList arrayList = this.f23025b;
+        ArrayList arrayList = this.f23033b;
         if (arrayList == null || arrayList.isEmpty() || z11) {
             TL_account.getChatThemes getchatthemes = new TL_account.getChatThemes();
-            getchatthemes.hash = this.f23026c;
+            getchatthemes.hash = this.f23034c;
             ConnectionsManager connectionsManager = getConnectionsManager();
-            p5 p5Var = f23022s;
+            p5 p5Var = f23030s;
             Objects.requireNonNull(p5Var);
             connectionsManager.sendRequestTyped(getchatthemes, new v3(p5Var), new s10() {
                 @Override
@@ -407,7 +407,7 @@ public final class d4 extends c1 {
                 }
             });
         }
-        ArrayList arrayList2 = this.f23025b;
+        ArrayList arrayList2 = this.f23033b;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             resultCallback.onComplete(e((z10 ? 1 : 0) | 2));
         }
@@ -421,11 +421,11 @@ public final class d4 extends c1 {
             SerializedData serializedData = new SerializedData(wallPaper.getObjectSize());
             wallPaper.serializeToStream(serializedData);
             String f10 = Utilities.f(serializedData.toByteArray());
-            SharedPreferences.Editor edit = t0.f26600b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+            SharedPreferences.Editor edit = t0.f26609b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
             edit.putString("chatWallpaper_" + this.currentAccount + "_" + j3, f10).apply();
             return;
         }
-        SharedPreferences.Editor edit2 = t0.f26600b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+        SharedPreferences.Editor edit2 = t0.f26609b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
         edit2.remove("chatWallpaper_" + this.currentAccount + "_" + j3).apply();
     }
 
@@ -435,8 +435,8 @@ public final class d4 extends c1 {
 
     public final void t(long j3, String str) {
         boolean isEmpty = TextUtils.isEmpty(str);
-        HashMap hashMap = this.f23030r;
-        HashMap hashMap2 = this.f23029n;
+        HashMap hashMap = this.f23038r;
+        HashMap hashMap2 = this.f23037n;
         if (isEmpty) {
             String str2 = (String) hashMap2.remove(Long.valueOf(j3));
             if (str2 != null) {
@@ -473,7 +473,7 @@ public final class d4 extends c1 {
             tL_messages_setChatWallPaper.peer = np.l1(np.s1(this.currentAccount).M0(Long.valueOf(-j3)));
         }
         tL_messages_setChatWallPaper.for_both = b6Var.f28464o;
-        if (gjVar != null && (gjVar.f23817k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
+        if (gjVar != null && (gjVar.f23819k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
             tL_messages_setChatWallPaper.flags |= 2;
             tL_messages_setChatWallPaper.f28170id = gjVar.e1();
             if (i7 >= 0) {
@@ -483,7 +483,7 @@ public final class d4 extends c1 {
                 N0 = np.s1(this.currentAccount).N0(-j3);
                 userFull = null;
             }
-            TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) gjVar.f23817k.action;
+            TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) gjVar.f23819k.action;
             TLRPC.TL_wallPaper tL_wallPaper = new TLRPC.TL_wallPaper();
             TLRPC.WallPaper wallPaper2 = tL_messageActionSetChatWallPaper.wallpaper;
             tL_wallPaper.f28205id = wallPaper2.f28205id;

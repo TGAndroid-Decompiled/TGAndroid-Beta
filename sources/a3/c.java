@@ -5,7 +5,7 @@ import ch.p0;
 import ch.q0;
 import da.h0;
 import da.v1;
-import di.cc;
+import di.bc;
 import fi.d4;
 import fi.t0;
 import h9.q1;
@@ -86,17 +86,17 @@ public final class c implements Comparator {
             case 8:
                 return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
             case 9:
-                return ((h0) ((v1) obj)).f7755a.compareTo(((h0) ((v1) obj2)).f7755a);
+                return ((h0) ((v1) obj)).f7758a.compareTo(((h0) ((v1) obj2)).f7758a);
             case 10:
-                return ((b3.s) obj).f2924a - ((b3.s) obj2).f2924a;
+                return ((b3.s) obj).f2927a - ((b3.s) obj2).f2927a;
             case 11:
-                return Float.compare(((b3.s) obj).f2926c, ((b3.s) obj2).f2926c);
+                return Float.compare(((b3.s) obj).f2929c, ((b3.s) obj2).f2929c);
             case 12:
                 return Long.compare(((TLRPC.PollAnswer) obj).shuffle_hash ^ Long.MIN_VALUE, ((TLRPC.PollAnswer) obj2).shuffle_hash ^ Long.MIN_VALUE);
             case 13:
                 return (int) (q0.j((TLObject) obj) - q0.j((TLObject) obj2));
             case 14:
-                return Integer.compare(((d4.d) obj2).f7525b, ((d4.d) obj).f7525b);
+                return Integer.compare(((d4.d) obj2).f7528b, ((d4.d) obj).f7528b);
             case 15:
                 i7 = ((TL_stars.SavedStarGift) obj2).date;
                 i10 = ((TL_stars.SavedStarGift) obj).date;
@@ -106,7 +106,7 @@ public final class c implements Comparator {
                 i10 = ((TL_stars.SavedStarGift) obj).date;
                 break;
             case 17:
-                return (int) (((cc) obj2).d - ((cc) obj).d);
+                return (int) (((bc) obj2).d - ((bc) obj).d);
             case 18:
                 int i14 = (((ei.b) obj2).f10648c > ((ei.b) obj).f10648c ? 1 : (((ei.b) obj2).f10648c == ((ei.b) obj).f10648c ? 0 : -1));
                 if (i14 > 0) {
@@ -142,13 +142,13 @@ public final class c implements Comparator {
                 return name.substring(0, i16).compareTo(((File) obj2).getName().substring(0, i16));
             case 28:
                 p0 p0Var = (p0) obj2;
-                String str = ((p0) obj).f5188f;
+                String str = ((p0) obj).f5191f;
                 if (str != null && str.equals("❤")) {
                     i11 = -1;
                 } else {
                     i11 = 0;
                 }
-                String str2 = p0Var.f5188f;
+                String str2 = p0Var.f5191f;
                 if (str2 == null || !str2.equals("❤")) {
                     i12 = 0;
                 }

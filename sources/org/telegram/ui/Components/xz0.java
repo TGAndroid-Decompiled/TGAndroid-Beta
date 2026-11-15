@@ -8,13 +8,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class xz0 extends FrameLayout {
-    public final ImageView f41815a;
-    public final vz0 f41816b;
-    public final ThemeEditorView.EditorAlert f41817c;
+    public final ImageView f41807a;
+    public final vz0 f41808b;
+    public final ThemeEditorView.EditorAlert f41809c;
 
     public xz0(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
-        this.f41817c = editorAlert;
+        this.f41809c = editorAlert;
         View view = new View(context);
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(18.0f), -854795));
         addView(view, c8.ja.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
@@ -25,18 +25,18 @@ public final class xz0 extends FrameLayout {
         imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
         addView(imageView, c8.ja.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f41815a = imageView2;
+        this.f41807a = imageView2;
         imageView2.setScaleType(scaleType);
         wp wpVar = new wp();
         imageView2.setImageDrawable(wpVar);
-        wpVar.f41418f = org.telegram.messenger.g0.L(7.0f);
+        wpVar.f41421f = org.telegram.messenger.g0.L(7.0f);
         imageView2.setScaleX(0.1f);
         imageView2.setScaleY(0.1f);
         imageView2.setAlpha(0.0f);
         addView(imageView2, c8.ja.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
         imageView2.setOnClickListener(new y60(this, 18));
         vz0 vz0Var = new vz0(this, context);
-        this.f41816b = vz0Var;
+        this.f41808b = vz0Var;
         vz0Var.setTextSize(1, 16.0f);
         vz0Var.setHintTextColor(-6774617);
         vz0Var.setTextColor(-14540254);

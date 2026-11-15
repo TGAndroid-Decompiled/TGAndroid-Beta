@@ -152,17 +152,17 @@ public final class ka extends r41 implements is {
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f38882a);
-        this.f38882a.r1();
-        this.f38882a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f38880a);
+        this.f38880a.r1();
+        this.f38880a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         bi.v3 v3Var;
-        if (i7 == ns.f25467a4 && (v3Var = this.f38882a) != null) {
-            v3Var.f39895g3.O(true);
+        if (i7 == ns.f25468a4 && (v3Var = this.f38880a) != null) {
+            v3Var.f39892g3.O(true);
         }
     }
 
@@ -173,19 +173,19 @@ public final class ka extends r41 implements is {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, ns.f25467a4);
+        getNotificationCenter().c(this, ns.f25468a4);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ns.f25467a4);
+        getNotificationCenter().n(this, ns.f25468a4);
         super.onFragmentDestroy();
     }
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f38882a.setPadding(0, 0, 0, i12);
-        this.f38882a.setClipToPadding(false);
+        this.f38880a.setPadding(0, 0, 0, i12);
+        this.f38880a.setClipToPadding(false);
     }
 }

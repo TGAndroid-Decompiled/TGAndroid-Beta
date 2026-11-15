@@ -166,9 +166,9 @@ public class a1 implements f3.i0 {
     public final void G(boolean z10) {
         boolean z11;
         sm0 sm0Var = this.f59473a;
-        a4.c cVar = (a4.c) sm0Var.f39343e;
+        a4.c cVar = (a4.c) sm0Var.f39341e;
         if (((b3.a) cVar.f160c) != null) {
-            h6.m mVar = (h6.m) sm0Var.f39342c;
+            h6.m mVar = (h6.m) sm0Var.f39340c;
             synchronized (mVar) {
                 ((l2.h) mVar.d).f19026c.b(cVar);
                 a4.c cVar2 = cVar;
@@ -185,8 +185,8 @@ public class a1 implements f3.i0 {
             cVar.f160c = null;
             cVar.d = null;
         }
-        a4.c cVar3 = (a4.c) sm0Var.f39343e;
-        int i7 = sm0Var.f39340a;
+        a4.c cVar3 = (a4.c) sm0Var.f39341e;
+        int i7 = sm0Var.f39338a;
         if (((b3.a) cVar3.f160c) == null) {
             z11 = true;
         } else {
@@ -195,11 +195,11 @@ public class a1 implements f3.i0 {
         ja.p(z11);
         cVar3.f158a = 0L;
         cVar3.f159b = i7;
-        a4.c cVar4 = (a4.c) sm0Var.f39343e;
-        sm0Var.f39344f = cVar4;
-        sm0Var.f39345g = cVar4;
-        sm0Var.f39341b = 0L;
-        ((h6.m) sm0Var.f39342c).G();
+        a4.c cVar4 = (a4.c) sm0Var.f39341e;
+        sm0Var.f39342f = cVar4;
+        sm0Var.f39343g = cVar4;
+        sm0Var.f39339b = 0L;
+        ((h6.m) sm0Var.f39340c).G();
         this.f59486p = 0;
         this.f59487q = 0;
         this.f59488r = 0;
@@ -228,7 +228,7 @@ public class a1 implements f3.i0 {
     public final synchronized void H() {
         this.f59489s = 0;
         sm0 sm0Var = this.f59473a;
-        sm0Var.f39344f = (a4.c) sm0Var.f39343e;
+        sm0Var.f39342f = (a4.c) sm0Var.f39341e;
     }
 
     public final synchronized boolean I(int i7) {
@@ -376,15 +376,15 @@ public class a1 implements f3.i0 {
             sm0 sm0Var = this.f59473a;
             if (i7 > 0) {
                 int c10 = sm0Var.c(i7);
-                a4.c cVar = (a4.c) sm0Var.f39345g;
+                a4.c cVar = (a4.c) sm0Var.f39343g;
                 b3.a aVar = (b3.a) cVar.f160c;
-                xVar.k(((int) (sm0Var.f39341b - cVar.f158a)) + aVar.f2868b, c10, aVar.f2867a);
+                xVar.k(((int) (sm0Var.f39339b - cVar.f158a)) + aVar.f2871b, c10, aVar.f2870a);
                 i7 -= c10;
-                long j3 = sm0Var.f39341b + c10;
-                sm0Var.f39341b = j3;
-                a4.c cVar2 = (a4.c) sm0Var.f39345g;
+                long j3 = sm0Var.f39339b + c10;
+                sm0Var.f39339b = j3;
+                a4.c cVar2 = (a4.c) sm0Var.f39343g;
                 if (j3 == cVar2.f159b) {
-                    sm0Var.f39345g = (a4.c) cVar2.d;
+                    sm0Var.f39343g = (a4.c) cVar2.d;
                 }
             } else {
                 sm0Var.getClass();
@@ -412,20 +412,20 @@ public class a1 implements f3.i0 {
     public final int f(e2.n nVar, int i7, boolean z10) {
         sm0 sm0Var = this.f59473a;
         int c10 = sm0Var.c(i7);
-        a4.c cVar = (a4.c) sm0Var.f39345g;
+        a4.c cVar = (a4.c) sm0Var.f39343g;
         b3.a aVar = (b3.a) cVar.f160c;
-        int read = nVar.read(aVar.f2867a, ((int) (sm0Var.f39341b - cVar.f158a)) + aVar.f2868b, c10);
+        int read = nVar.read(aVar.f2870a, ((int) (sm0Var.f39339b - cVar.f158a)) + aVar.f2871b, c10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        long j3 = sm0Var.f39341b + read;
-        sm0Var.f39341b = j3;
-        a4.c cVar2 = (a4.c) sm0Var.f39345g;
+        long j3 = sm0Var.f39339b + read;
+        sm0Var.f39339b = j3;
+        a4.c cVar2 = (a4.c) sm0Var.f39343g;
         if (j3 == cVar2.f159b) {
-            sm0Var.f39345g = (a4.c) cVar2.d;
+            sm0Var.f39343g = (a4.c) cVar2.d;
         }
         return read;
     }
@@ -667,24 +667,24 @@ public class a1 implements f3.i0 {
         boolean z10;
         sm0 sm0Var = this.f59473a;
         long n10 = n(i7);
-        int i10 = sm0Var.f39340a;
-        if (n10 <= sm0Var.f39341b) {
+        int i10 = sm0Var.f39338a;
+        if (n10 <= sm0Var.f39339b) {
             z10 = true;
         } else {
             z10 = false;
         }
         ja.f(z10);
-        sm0Var.f39341b = n10;
+        sm0Var.f39339b = n10;
         if (n10 != 0) {
-            a4.c cVar = (a4.c) sm0Var.f39343e;
+            a4.c cVar = (a4.c) sm0Var.f39341e;
             if (n10 != cVar.f158a) {
-                while (sm0Var.f39341b > cVar.f159b) {
+                while (sm0Var.f39339b > cVar.f159b) {
                     cVar = (a4.c) cVar.d;
                 }
                 a4.c cVar2 = (a4.c) cVar.d;
                 cVar2.getClass();
                 if (((b3.a) cVar2.f160c) != null) {
-                    h6.m mVar = (h6.m) sm0Var.f39342c;
+                    h6.m mVar = (h6.m) sm0Var.f39340c;
                     synchronized (mVar) {
                         ((l2.h) mVar.d).f19026c.b(cVar2);
                         a4.c cVar3 = cVar2;
@@ -703,22 +703,22 @@ public class a1 implements f3.i0 {
                 }
                 a4.c cVar4 = new a4.c(cVar.f159b, i10);
                 cVar.d = cVar4;
-                if (sm0Var.f39341b == cVar.f159b) {
+                if (sm0Var.f39339b == cVar.f159b) {
                     cVar = cVar4;
                 }
-                sm0Var.f39345g = cVar;
-                if (((a4.c) sm0Var.f39344f) == cVar2) {
-                    sm0Var.f39344f = cVar4;
+                sm0Var.f39343g = cVar;
+                if (((a4.c) sm0Var.f39342f) == cVar2) {
+                    sm0Var.f39342f = cVar4;
                     return;
                 }
                 return;
             }
         }
-        sm0Var.a((a4.c) sm0Var.f39343e);
-        a4.c cVar5 = new a4.c(sm0Var.f39341b, i10);
-        sm0Var.f39343e = cVar5;
-        sm0Var.f39344f = cVar5;
-        sm0Var.f39345g = cVar5;
+        sm0Var.a((a4.c) sm0Var.f39341e);
+        a4.c cVar5 = new a4.c(sm0Var.f39339b, i10);
+        sm0Var.f39341e = cVar5;
+        sm0Var.f39342f = cVar5;
+        sm0Var.f39343g = cVar5;
     }
 
     public final int p(int i7, int i10, long j3, boolean z10) {

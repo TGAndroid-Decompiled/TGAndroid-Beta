@@ -42,7 +42,7 @@ public final class i implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         EditText editText = this.f56961a;
-        if (!editText.isInEditMode() && this.f56963c && l.f2257j != null && i10 <= i11 && (charSequence instanceof Spannable)) {
+        if (!editText.isInEditMode() && this.f56963c && l.f2260j != null && i10 <= i11 && (charSequence instanceof Spannable)) {
             int b10 = l.a().b();
             if (b10 != 0) {
                 if (b10 != 1) {

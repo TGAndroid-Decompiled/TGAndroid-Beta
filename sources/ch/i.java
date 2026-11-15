@@ -1,6 +1,6 @@
 package ch;
 
-import ai.z0;
+import ai.a1;
 import android.text.SpannableStringBuilder;
 import android.view.KeyEvent;
 import org.telegram.messenger.z10;
@@ -9,12 +9,12 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Components.p5;
 public final class i implements z10 {
-    public final int f5085a;
-    public final o f5086b;
+    public final int f5088a;
+    public final o f5089b;
 
     public i(o oVar, int i7) {
-        this.f5085a = i7;
-        this.f5086b = oVar;
+        this.f5088a = i7;
+        this.f5089b = oVar;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class i implements z10 {
         p5[] p5VarArr;
         q8 q8Var;
         long j3;
-        switch (this.f5085a) {
+        switch (this.f5088a) {
             case 0:
-                o oVar = this.f5086b;
+                o oVar = this.f5089b;
                 oVar.X = (TL_stories.TL_premium_boostsStatus) obj;
                 if (!oVar.I.keySet().equals(oVar.K.keySet())) {
                     oVar.e0(false);
@@ -33,8 +33,8 @@ public final class i implements z10 {
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
-                o oVar2 = this.f5086b;
-                h hVar = oVar2.f5171b0;
+                o oVar2 = this.f5089b;
+                h hVar = oVar2.f5174b0;
                 if (!oVar2.g0()) {
                     int editTextSelectionEnd = oVar2.h.getEditTextSelectionEnd();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(oVar2.h.getText());
@@ -42,8 +42,8 @@ public final class i implements z10 {
                         if (spannableStringBuilder.getSpanEnd(p5Var) == editTextSelectionEnd) {
                             oVar2.I.remove(Long.valueOf(p5Var.documentId));
                             oVar2.J.remove(Long.valueOf(p5Var.documentId));
-                            oVar2.f5170b.A(Long.valueOf(p5Var.documentId));
-                            if (p5Var.documentId == -1 && (q8Var = oVar2.f5176r) != null) {
+                            oVar2.f5173b.A(Long.valueOf(p5Var.documentId));
+                            if (p5Var.documentId == -1 && (q8Var = oVar2.f5179r) != null) {
                                 q8Var.setChecked(false);
                                 oVar2.h.setMaxLength(oVar2.O);
                             }
@@ -53,7 +53,7 @@ public final class i implements z10 {
                                 org.telegram.messenger.g0.i3(hVar, 350L);
                                 return;
                             }
-                            p5Var.setRemoved(new z0(oVar2, p5Var, editTextSelectionEnd, 3));
+                            p5Var.setRemoved(new a1(oVar2, p5Var, editTextSelectionEnd, 3));
                             oVar2.c0(p5Var);
                             oVar2.e0(false);
                             return;
@@ -64,9 +64,9 @@ public final class i implements z10 {
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                o oVar3 = this.f5086b;
+                o oVar3 = this.f5089b;
                 if (!oVar3.isFinishing()) {
-                    oVar3.f5177s.setLoading(false);
+                    oVar3.f5180s.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
                         oVar3.finishFragment();
                         return;
@@ -82,7 +82,7 @@ public final class i implements z10 {
                 }
                 return;
             default:
-                o oVar4 = this.f5086b;
+                o oVar4 = this.f5089b;
                 oVar4.getClass();
                 oVar4.V = ((Integer) obj).intValue();
                 return;

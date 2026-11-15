@@ -8,51 +8,51 @@ import java.util.regex.Matcher;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class g71 extends AsyncTask {
-    public final int f34866a;
-    public String f34867b;
-    public final String[] f34868c;
+    public final int f34870a;
+    public String f34871b;
+    public final String[] f34872c;
     public final m71 d;
 
     public g71(m71 m71Var, String str, int i7) {
-        this.f34866a = i7;
+        this.f34870a = i7;
         switch (i7) {
             case 1:
                 this.d = m71Var;
-                this.f34868c = new String[4];
-                this.f34867b = str;
+                this.f34872c = new String[4];
+                this.f34871b = str;
                 return;
             case 2:
                 this.d = m71Var;
-                this.f34868c = new String[2];
-                this.f34867b = str;
+                this.f34872c = new String[2];
+                this.f34871b = str;
                 return;
             case 3:
                 this.d = m71Var;
-                this.f34868c = new String[2];
-                this.f34867b = str;
+                this.f34872c = new String[2];
+                this.f34871b = str;
                 return;
             case 4:
                 this.d = m71Var;
-                this.f34868c = new String[2];
-                this.f34867b = str;
+                this.f34872c = new String[2];
+                this.f34871b = str;
                 return;
             default:
                 this.d = m71Var;
-                this.f34868c = new String[2];
-                this.f34867b = str;
+                this.f34872c = new String[2];
+                this.f34871b = str;
                 return;
         }
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
-        switch (this.f34866a) {
+        switch (this.f34870a) {
             case 0:
                 Void[] voidArr = (Void[]) objArr;
-                String[] strArr = this.f34868c;
+                String[] strArr = this.f34872c;
                 Locale locale = Locale.US;
                 this.d.getClass();
-                String c10 = m71.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f34867b, null, true);
+                String c10 = m71.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f34871b, null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -80,10 +80,10 @@ public final class g71 extends AsyncTask {
                 return strArr[0];
             case 1:
                 Void[] voidArr2 = (Void[]) objArr;
-                String[] strArr2 = this.f34868c;
+                String[] strArr2 = this.f34872c;
                 Locale locale2 = Locale.US;
                 this.d.getClass();
-                String c11 = m71.c(this, "https://coub.com/api/v2/coubs/" + this.f34867b + ".json", null, true);
+                String c11 = m71.c(this, "https://coub.com/api/v2/coubs/" + this.f34871b + ".json", null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -106,8 +106,8 @@ public final class g71 extends AsyncTask {
                 return strArr2[0];
             case 2:
                 Void[] voidArr3 = (Void[]) objArr;
-                String[] strArr3 = this.f34868c;
-                String str = this.f34867b;
+                String[] strArr3 = this.f34872c;
+                String str = this.f34871b;
                 this.d.getClass();
                 String c12 = m71.c(this, str, null, false);
                 if (isCancelled()) {
@@ -128,26 +128,26 @@ public final class g71 extends AsyncTask {
                 return strArr3[0];
             case 3:
                 Void[] voidArr4 = (Void[]) objArr;
-                String[] strArr4 = this.f34868c;
+                String[] strArr4 = this.f34872c;
                 HashMap hashMap = new HashMap();
                 hashMap.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
-                int indexOf = this.f34867b.indexOf(38);
+                int indexOf = this.f34871b.indexOf(38);
                 if (indexOf > 0) {
-                    this.f34867b = this.f34867b.substring(0, indexOf);
+                    this.f34871b = this.f34871b.substring(0, indexOf);
                 }
                 Locale locale3 = Locale.US;
                 this.d.getClass();
-                String c13 = m71.c(this, "https://api.twitch.tv/kraken/streams/" + this.f34867b + "?stream_type=all", hashMap, false);
+                String c13 = m71.c(this, "https://api.twitch.tv/kraken/streams/" + this.f34871b + "?stream_type=all", hashMap, false);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
                     new JSONObject(c13).getJSONObject("stream");
-                    JSONObject jSONObject3 = new JSONObject(m71.c(this, "https://api.twitch.tv/api/channels/" + this.f34867b + "/access_token", hashMap, false));
+                    JSONObject jSONObject3 = new JSONObject(m71.c(this, "https://api.twitch.tv/api/channels/" + this.f34871b + "/access_token", hashMap, false));
                     String encode = URLEncoder.encode(jSONObject3.getString("sig"), "UTF-8");
                     String encode2 = URLEncoder.encode(jSONObject3.getString("token"), "UTF-8");
-                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f34867b, "UTF-8");
-                    String str2 = this.f34867b;
+                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f34871b, "UTF-8");
+                    String str2 = this.f34871b;
                     strArr4[0] = "https://usher.ttvnw.net/api/channel/hls/" + str2 + ".m3u8?" + ("allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + encode + "&token=" + encode2);
                     strArr4[1] = "hls";
                 } catch (Exception e13) {
@@ -159,10 +159,10 @@ public final class g71 extends AsyncTask {
                 return strArr4[0];
             default:
                 Void[] voidArr5 = (Void[]) objArr;
-                String[] strArr5 = this.f34868c;
+                String[] strArr5 = this.f34872c;
                 Locale locale4 = Locale.US;
                 this.d.getClass();
-                String c14 = m71.c(this, "https://player.vimeo.com/video/" + this.f34867b + "/config", null, true);
+                String c14 = m71.c(this, "https://player.vimeo.com/video/" + this.f34871b + "/config", null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -192,14 +192,14 @@ public final class g71 extends AsyncTask {
 
     @Override
     public final void onPostExecute(Object obj) {
-        switch (this.f34866a) {
+        switch (this.f34870a) {
             case 0:
                 String str = (String) obj;
                 m71 m71Var = this.d;
                 if (str != null) {
                     m71Var.f37159x = true;
                     m71Var.f37160y = str;
-                    m71Var.E = this.f34868c[1];
+                    m71Var.E = this.f34872c[1];
                     if (m71Var.f37157s) {
                         m71Var.i();
                     }
@@ -218,7 +218,7 @@ public final class g71 extends AsyncTask {
                 if (str2 != null) {
                     m71Var2.f37159x = true;
                     m71Var2.f37160y = str2;
-                    String[] strArr = this.f34868c;
+                    String[] strArr = this.f34872c;
                     m71Var2.E = strArr[1];
                     m71Var2.F = strArr[2];
                     m71Var2.G = strArr[3];
@@ -240,7 +240,7 @@ public final class g71 extends AsyncTask {
                 if (str3 != null) {
                     m71Var3.f37159x = true;
                     m71Var3.f37160y = str3;
-                    m71Var3.E = this.f34868c[1];
+                    m71Var3.E = this.f34872c[1];
                     if (m71Var3.f37157s) {
                         m71Var3.i();
                     }
@@ -259,7 +259,7 @@ public final class g71 extends AsyncTask {
                 if (str4 != null) {
                     m71Var4.f37159x = true;
                     m71Var4.f37160y = str4;
-                    m71Var4.E = this.f34868c[1];
+                    m71Var4.E = this.f34872c[1];
                     if (m71Var4.f37157s) {
                         m71Var4.i();
                     }
@@ -278,7 +278,7 @@ public final class g71 extends AsyncTask {
                 if (str5 != null) {
                     m71Var5.f37159x = true;
                     m71Var5.f37160y = str5;
-                    m71Var5.E = this.f34868c[1];
+                    m71Var5.E = this.f34872c[1];
                     if (m71Var5.f37157s) {
                         m71Var5.i();
                     }

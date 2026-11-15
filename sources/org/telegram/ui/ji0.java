@@ -6,24 +6,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ji0 extends org.telegram.ui.ActionBar.j {
-    public final int f48364a;
-    public final Object f48365b;
-    public final org.telegram.ui.ActionBar.e2 f48366c;
+    public final int f48349a;
+    public final Object f48350b;
+    public final org.telegram.ui.ActionBar.e2 f48351c;
 
     public ji0(org.telegram.ui.ActionBar.e2 e2Var, Object obj, int i7) {
-        this.f48364a = i7;
-        this.f48366c = e2Var;
-        this.f48365b = obj;
+        this.f48349a = i7;
+        this.f48351c = e2Var;
+        this.f48350b = obj;
     }
 
     @Override
     public final void b(int i7) {
         int i10;
         int i11;
-        int i12 = this.f48364a;
-        Object obj = this.f48365b;
+        int i12 = this.f48349a;
+        Object obj = this.f48350b;
         int i13 = 0;
-        org.telegram.ui.ActionBar.e2 e2Var = this.f48366c;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f48351c;
         int i14 = 1;
         switch (i12) {
             case 0:
@@ -38,7 +38,7 @@ public final class ji0 extends org.telegram.ui.ActionBar.j {
                     passcodeActivity.E = i14;
                     org.telegram.messenger.g0.i3(new jd0(13, this, (org.telegram.ui.ActionBar.z0) obj), 150L);
                     passcodeActivity.h.setText("");
-                    dr[] drVarArr = passcodeActivity.f42698n.f45491f;
+                    dr[] drVarArr = passcodeActivity.f42698n.f45485f;
                     int length = drVarArr.length;
                     while (i13 < length) {
                         drVarArr[i13].setText("");
@@ -64,7 +64,7 @@ public final class ji0 extends org.telegram.ui.ActionBar.j {
                                 if (sb2.length() > 0) {
                                     sb2.append("\n\n");
                                 }
-                                sb2.append(fzVar.f23575a.e());
+                                sb2.append(fzVar.f23577a.e());
                             }
                             Intent intent = new Intent("android.intent.action.SEND");
                             intent.setType("text/plain");

@@ -9,29 +9,29 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class ry extends View {
-    public final Paint f39095a;
-    public final Paint f39096b;
-    public final Path f39097c;
+    public final Paint f39092a;
+    public final Paint f39093b;
+    public final Path f39094c;
     public int d;
-    public int f39098e;
-    public oy0[] f39099f;
+    public int f39095e;
+    public oy0[] f39096f;
     public RectF[] h;
-    public float f39100n;
-    public org.telegram.ui.kl0 f39101r;
-    public int f39102s;
+    public float f39097n;
+    public org.telegram.ui.ll0 f39098r;
+    public int f39099s;
 
     public ry(Context context) {
         super(context);
-        this.f39095a = new Paint(1);
-        this.f39096b = new Paint(1);
-        this.f39097c = new Path();
+        this.f39092a = new Paint(1);
+        this.f39093b = new Paint(1);
+        this.f39094c = new Path();
         this.d = -1;
-        this.f39098e = -1;
-        this.f39102s = -1;
+        this.f39095e = -1;
+        this.f39099s = -1;
     }
 
     public final void a(float f10, int i7, int i10, Canvas canvas) {
-        oy0[] oy0VarArr = this.f39099f;
+        oy0[] oy0VarArr = this.f39096f;
         int length = oy0VarArr.length;
         int i11 = 0;
         float f11 = f10;
@@ -48,16 +48,16 @@ public final class ry extends View {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f10;
-        if (this.f39099f == null) {
+        if (this.f39096f == null) {
             return;
         }
         int width = getWidth();
         int height = getHeight();
         float f11 = 4.0f;
-        int L = org.telegram.messenger.g0.L(4.0f) + org.telegram.messenger.k5.D(24.0f, this.f39099f.length, org.telegram.messenger.g0.L(4.0f));
+        int L = org.telegram.messenger.g0.L(4.0f) + org.telegram.messenger.k5.D(24.0f, this.f39096f.length, org.telegram.messenger.g0.L(4.0f));
         int i7 = 0;
         while (true) {
-            oy0[] oy0VarArr = this.f39099f;
+            oy0[] oy0VarArr = this.f39096f;
             if (i7 >= oy0VarArr.length) {
                 break;
             }
@@ -70,43 +70,43 @@ public final class ry extends View {
         float L4 = org.telegram.messenger.g0.L(16.0f) + f12;
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(f12, L2, L + f12, L3);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), this.f39095a);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), this.f39092a);
         float L5 = f12 + org.telegram.messenger.g0.L(16.0f);
         int i10 = 0;
-        while (i10 < this.f39099f.length) {
-            this.h[i10].set(L5 - org.telegram.messenger.g0.L(16.0f), L2, this.f39099f[i10].k() + L5 + org.telegram.messenger.g0.L(16.0f), L3);
-            L5 += this.f39099f[i10].k() + org.telegram.messenger.g0.L(24.0f);
+        while (i10 < this.f39096f.length) {
+            this.h[i10].set(L5 - org.telegram.messenger.g0.L(16.0f), L2, this.f39096f[i10].k() + L5 + org.telegram.messenger.g0.L(16.0f), L3);
+            L5 += this.f39096f[i10].k() + org.telegram.messenger.g0.L(24.0f);
             i10++;
             f11 = f11;
         }
         org.telegram.messenger.g0.L(f11);
-        int j3 = Utilities.j((int) Math.floor(this.f39100n), this.f39099f.length - 1, 0);
-        int j10 = Utilities.j((int) Math.ceil(this.f39100n), this.f39099f.length - 1, 0);
+        int j3 = Utilities.j((int) Math.floor(this.f39097n), this.f39096f.length - 1, 0);
+        int j10 = Utilities.j((int) Math.ceil(this.f39097n), this.f39096f.length - 1, 0);
         float L6 = this.h[j3].left + org.telegram.messenger.g0.L(f10);
         float L7 = this.h[j10].left + org.telegram.messenger.g0.L(f10);
-        float f13 = this.f39100n;
+        float f13 = this.f39097n;
         float T1 = org.telegram.messenger.g0.T1(L6, L7, (float) (f13 - Math.floor(f13)));
         float L8 = this.h[j3].right - org.telegram.messenger.g0.L(f10);
         float L9 = this.h[j10].right - org.telegram.messenger.g0.L(f10);
-        float f14 = this.f39100n;
+        float f14 = this.f39097n;
         float T12 = org.telegram.messenger.g0.T1(L8, L9, (float) (f14 - Math.floor(f14)));
         RectF rectF2 = org.telegram.messenger.g0.P;
         rectF2.set(T1, (height - org.telegram.messenger.g0.L(28.0f)) / 2.0f, T12, (org.telegram.messenger.g0.L(28.0f) + height) / 2.0f);
-        Path path = this.f39097c;
+        Path path = this.f39094c;
         path.rewind();
         path.addRoundRect(rectF2, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f), this.f39096b);
+        canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f), this.f39093b);
         a(L4, height, this.d, canvas);
         canvas.save();
         canvas.clipPath(path);
-        a(L4, height, this.f39098e, canvas);
+        a(L4, height, this.f39095e, canvas);
         canvas.restore();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i7 = 0;
-        if (this.f39099f == null || this.h == null) {
+        if (this.f39096f == null || this.h == null) {
             return false;
         }
         while (true) {
@@ -121,15 +121,15 @@ public final class ry extends View {
                 break;
             }
         }
-        if (i7 >= 0 && i7 != this.f39102s) {
-            this.f39102s = i7;
-            org.telegram.ui.kl0 kl0Var = this.f39101r;
-            if (kl0Var != null) {
-                kl0Var.a(Integer.valueOf(i7));
+        if (i7 >= 0 && i7 != this.f39099s) {
+            this.f39099s = i7;
+            org.telegram.ui.ll0 ll0Var = this.f39098r;
+            if (ll0Var != null) {
+                ll0Var.a(Integer.valueOf(i7));
             }
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.f39102s = -1;
+            this.f39099s = -1;
         }
         if (motionEvent.getAction() == 0 && i7 >= 0) {
             return true;
@@ -139,32 +139,32 @@ public final class ry extends View {
 
     @Override
     public void setBackgroundColor(int i7) {
-        this.f39095a.setColor(i7);
+        this.f39092a.setColor(i7);
         invalidate();
     }
 
     public void setSelected(float f10) {
-        if (Math.abs(f10 - this.f39100n) > 0.001f) {
+        if (Math.abs(f10 - this.f39097n) > 0.001f) {
             invalidate();
         }
-        this.f39100n = f10;
+        this.f39097n = f10;
     }
 
     public void setSelectedColor(int i7) {
-        this.f39096b.setColor(i7);
+        this.f39093b.setColor(i7);
         invalidate();
     }
 
     public void setSelectedTextColor(int i7) {
-        this.f39098e = i7;
+        this.f39095e = i7;
         invalidate();
     }
 
     public void setTabs(CharSequence... charSequenceArr) {
-        this.f39099f = new oy0[charSequenceArr.length];
+        this.f39096f = new oy0[charSequenceArr.length];
         this.h = new RectF[charSequenceArr.length];
         for (int i7 = 0; i7 < charSequenceArr.length; i7++) {
-            this.f39099f[i7] = new oy0(charSequenceArr[i7], 14.0f, org.telegram.messenger.g0.o());
+            this.f39096f[i7] = new oy0(charSequenceArr[i7], 14.0f, org.telegram.messenger.g0.o());
             this.h[i7] = new RectF();
         }
         invalidate();

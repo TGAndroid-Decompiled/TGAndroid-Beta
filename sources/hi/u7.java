@@ -81,7 +81,7 @@ public final class u7 extends org.telegram.ui.ActionBar.u2 implements is {
 
     @Override
     public final boolean H() {
-        if (I0() > ((int) (org.telegram.messenger.g0.f23609q.y * 0.5f))) {
+        if (I0() > ((int) (org.telegram.messenger.g0.f23611q.y * 0.5f))) {
             return true;
         }
         return false;
@@ -107,7 +107,7 @@ public final class u7 extends org.telegram.ui.ActionBar.u2 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25478c3) {
+        if (i7 == ns.f25479c3) {
             this.n1 = np.s1(this.f15192m1).P1().T;
             this.f15195q1.f();
         }
@@ -116,12 +116,12 @@ public final class u7 extends org.telegram.ui.ActionBar.u2 implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f15192m1).c(this, ns.f25478c3);
+        ns.f(this.f15192m1).c(this, ns.f25479c3);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f15192m1).n(this, ns.f25478c3);
+        ns.f(this.f15192m1).n(this, ns.f25479c3);
     }
 }

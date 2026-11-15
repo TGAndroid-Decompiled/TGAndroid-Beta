@@ -7,24 +7,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class w20 extends FrameLayout {
-    public final int f41231a;
-    public final org.telegram.ui.ActionBar.e6 f41232b;
-    public ArrayList f41233c;
+    public final int f41234a;
+    public final org.telegram.ui.ActionBar.e6 f41235b;
+    public ArrayList f41236c;
     public final FrameLayout d;
-    public final u41 f41234e;
-    public final p41 f41235f;
+    public final u41 f41237e;
+    public final p41 f41238f;
     public org.telegram.messenger.z10 h;
 
     public w20(int i7, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
         super(activity);
-        this.f41231a = i7;
-        this.f41232b = e6Var;
+        this.f41234a = i7;
+        this.f41235b = e6Var;
         u41 u41Var = new u41(activity, i7, 0, false, new d(this, 15), new v20(this), new v20(this), e6Var);
-        this.f41234e = u41Var;
+        this.f41237e = u41Var;
         u41Var.setClipToPadding(false);
         p41 p41Var = (p41) u41Var.getAdapter();
-        this.f41235f = p41Var;
-        p41Var.f38201r = false;
+        this.f41238f = p41Var;
+        p41Var.f38199r = false;
         addView(u41Var, -1, -1);
         FrameLayout frameLayout = new FrameLayout(activity);
         this.d = frameLayout;
@@ -48,6 +48,6 @@ public final class w20 extends FrameLayout {
     }
 
     public void setOnScrollListener(v4.t0 t0Var) {
-        this.f41234e.j(t0Var);
+        this.f41237e.j(t0Var);
     }
 }

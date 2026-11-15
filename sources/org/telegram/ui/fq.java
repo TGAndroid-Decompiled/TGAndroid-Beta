@@ -5,20 +5,20 @@ import java.util.Collections;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fq implements jq {
-    public final qq f47177a;
+    public final qq f47167a;
 
     public fq(qq qqVar) {
-        this.f47177a = qqVar;
+        this.f47167a = qqVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        qq.h0(this.f47177a, user);
+        qq.h0(this.f47167a, user);
     }
 
     @Override
     public final void b(long j3) {
-        qq qqVar = this.f47177a;
+        qq qqVar = this.f47167a;
         ArrayList arrayList = qqVar.F;
         a0.h hVar = qqVar.K;
         TLRPC.User a22 = qqVar.getMessagesController().a2(Long.valueOf(j3));
@@ -32,7 +32,7 @@ public final class fq implements jq {
             tL_channelParticipantAdmin.peer = tL_peerUser;
             tL_peerUser.user_id = a22.f28200id;
             tL_channelParticipantAdmin.date = qqVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantAdmin.promoted_by = org.telegram.messenger.m10.i(qqVar.getAccountInstance().f22778a).f24953n;
+            tL_channelParticipantAdmin.promoted_by = org.telegram.messenger.m10.i(qqVar.getAccountInstance().f22782a).f24959n;
             arrayList.add(tL_channelParticipantAdmin);
             hVar.k(tL_channelParticipantAdmin, a22.f28200id);
             Collections.sort(arrayList, new me(3));
@@ -42,7 +42,7 @@ public final class fq implements jq {
 
     @Override
     public final void c(long j3, TLObject tLObject) {
-        qq qqVar = this.f47177a;
+        qq qqVar = this.f47167a;
         ArrayList arrayList = qqVar.F;
         a0.h hVar = qqVar.K;
         if (tLObject != null && hVar.f(j3) == null) {

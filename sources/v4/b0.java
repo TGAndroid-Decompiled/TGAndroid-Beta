@@ -841,7 +841,7 @@ public class b0 extends o0 {
             for (int i10 = 0; i10 < r11; i10++) {
                 View q11 = q(i10);
                 e1 U = RecyclerView.U(q11);
-                if (U != null && U.c() == i7 && !U.r() && (this.f58622b.f2822v0.f58505g || !U.j())) {
+                if (U != null && U.c() == i7 && !U.r() && (this.f58622b.f2825v0.f58505g || !U.j())) {
                     return q11;
                 }
             }

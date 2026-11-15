@@ -32,7 +32,7 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.kc;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.ff;
-import org.telegram.ui.dn0;
+import org.telegram.ui.en0;
 import org.telegram.ui.tp0;
 import org.webrtc.GlGenericDrawer;
 public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, org.telegram.ui.Components.voip.f1, kc, d5.a, c0.j, p4.c0, p4.a1, h2.j, p4.y0, g9.k, ri.m, sg.y, te.b, t0.e, sg.j1, OnSuccessListener {
@@ -48,9 +48,9 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
     public void C() {
         float f10;
         tp0 tp0Var = (tp0) this.f29898b;
-        TextView textView = tp0Var.f57276i1;
-        boolean a10 = tp0Var.f57285p0.a();
-        ImageView imageView = tp0Var.f57274g1;
+        TextView textView = tp0Var.f57286i1;
+        boolean a10 = tp0Var.f57295p0.a();
+        ImageView imageView = tp0Var.f57284g1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f11 = 0.6f;
@@ -109,8 +109,8 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
                 i0.c I0 = org.telegram.messenger.g0.I0(k1Var, false);
                 i0.c I02 = org.telegram.messenger.g0.I0(k1Var, true);
                 if (!l3Var.f29365f.equals(I0) || !l3Var.h.equals(I02)) {
-                    org.telegram.messenger.g0.f23603m = I0.f15575b;
-                    org.telegram.messenger.g0.f23604n = I0.d;
+                    org.telegram.messenger.g0.f23605m = I0.f15575b;
+                    org.telegram.messenger.g0.f23606n = I0.d;
                     l3Var.f29365f = I0;
                     l3Var.h = I02;
                     l3Var.requestLayout();
@@ -202,14 +202,14 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
         org.telegram.ui.web.s0 s0Var = (org.telegram.ui.web.s0) this.f29898b;
         org.telegram.ui.web.v0 v0Var = s0Var.R;
         if (webView == s0Var && v0Var != null) {
-            if (webView == v0Var.f52811a && xaVar.f713b == 0) {
+            if (webView == v0Var.f52814a && xaVar.f713b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = org.telegram.ui.web.v0.k(uri2);
-                if (v0Var.f52838u0 && (TextUtils.isEmpty(v0Var.H0) || !TextUtils.equals(v0Var.H0, k10) || !TextUtils.equals(v0Var.H0, v0Var.getOriginHost()))) {
+                if (v0Var.f52841u0 && (TextUtils.isEmpty(v0Var.H0) || !TextUtils.equals(v0Var.H0, k10) || !TextUtils.equals(v0Var.H0, v0Var.getOriginHost()))) {
                     v0Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }
@@ -253,10 +253,10 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
                 ((org.telegram.ui.web.x) this.f29898b).run();
                 return;
             case 26:
-                ((dn0) this.f29898b).run();
+                ((en0) this.f29898b).run();
                 return;
             default:
-                ((tg.a0) this.f29898b).f57149a.P1.r();
+                ((tg.a0) this.f29898b).f57153a.P1.r();
                 return;
         }
     }
@@ -372,8 +372,8 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 25 && (i7 & 1) != 0) {
             try {
-                ((t0.h) ffVar.f34586b).e();
-                Parcelable parcelable = (Parcelable) ((t0.h) ffVar.f34586b).h();
+                ((t0.h) ffVar.f34590b).e();
+                Parcelable parcelable = (Parcelable) ((t0.h) ffVar.f34590b).h();
                 if (bundle == null) {
                     bundle = new Bundle();
                 } else {
@@ -385,7 +385,7 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
                 return false;
             }
         }
-        t0.h hVar = (t0.h) ffVar.f34586b;
+        t0.h hVar = (t0.h) ffVar.f34590b;
         ClipData clipData = new ClipData(hVar.getDescription(), new ClipData.Item(hVar.c()));
         if (i10 >= 31) {
             dVar = new m2.i(clipData, 2);
@@ -419,11 +419,11 @@ public final class z implements e1, q1, r0.m, GlGenericDrawer.TextureCallback, o
                 for (int i7 = 0; i7 < bVar2.f61236a.size(); i7++) {
                     zb.a aVar = (zb.a) bVar2.f61236a.get(i7);
                     ?? obj2 = new Object();
-                    obj2.f57222a = aVar.f61232a;
-                    obj2.f57223b = aVar.d;
-                    obj2.f57224c = aVar.f61235e;
+                    obj2.f57209a = aVar.f61232a;
+                    obj2.f57210b = aVar.d;
+                    obj2.f57211c = aVar.f61235e;
                     obj2.d = aVar.f61233b;
-                    obj2.f57225e = aVar.f61234c;
+                    obj2.f57212e = aVar.f61234c;
                     arrayList.add(obj2);
                 }
                 w2Var.a(arrayList);

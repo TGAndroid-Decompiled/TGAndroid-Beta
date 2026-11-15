@@ -1,26 +1,26 @@
 package org.telegram.ui;
 public final class rc implements Runnable {
-    public final int f50906a;
-    public final ad f50907b;
+    public final int f50905a;
+    public final ad f50906b;
 
     public rc(ad adVar, int i7) {
-        this.f50906a = i7;
-        this.f50907b = adVar;
+        this.f50905a = i7;
+        this.f50906b = adVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f50906a) {
+        switch (this.f50905a) {
             case 0:
-                this.f50907b.m0(true);
+                this.f50906b.m0(true);
                 return;
             case 1:
-                ad adVar = this.f50907b;
+                ad adVar = this.f50906b;
                 adVar.f45011l0 = true;
                 adVar.n0();
                 return;
             case 2:
-                ad adVar2 = this.f50907b;
+                ad adVar2 = this.f50906b;
                 adVar2.E = null;
                 adVar2.F = null;
                 adVar2.f45013n0 = null;
@@ -34,7 +34,7 @@ public final class rc implements Runnable {
                 adVar2.L.M(0);
                 return;
             default:
-                ad adVar3 = this.f50907b;
+                ad adVar3 = this.f50906b;
                 adVar3.f45011l0 = true;
                 if (adVar3.f45028y.length() > 0) {
                     adVar3.j0(adVar3.f45028y.getText().toString());

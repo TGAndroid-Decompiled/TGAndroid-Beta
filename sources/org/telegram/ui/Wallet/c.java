@@ -140,7 +140,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.z5
             }
         }
         if (this.f43543e) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(71.0f);
@@ -148,7 +148,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.z5
             float f10 = L;
             float height = getHeight() - 1;
             int width = getWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(71.0f);
             } else {
                 i7 = 0;

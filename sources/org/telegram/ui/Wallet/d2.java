@@ -358,7 +358,7 @@ public final class d2 {
         d2 d2Var = x10.f44083g;
         k60 k60Var = new k60(context, i7, x10, e6Var, m90Var);
         if (!d2Var.h && d2Var.f43734g == null) {
-            String string = np.s1(d2Var.f43729a).f25280f7.getString(l(j3, i10), null);
+            String string = np.s1(d2Var.f43729a).f25283f7.getString(l(j3, i10), null);
             if (string != null) {
                 d2Var.h = true;
                 x21 x21Var = new x21(10, d2Var, k60Var);
@@ -371,7 +371,7 @@ public final class d2 {
                 }
             }
             d2Var.h = true;
-            d2Var.f43730b.m0(new di.x7(d2Var, j3, k60Var, i10));
+            d2Var.f43730b.m0(new di.w7(d2Var, j3, k60Var, i10));
             return;
         }
         k60Var.a(null, "A TON Connect request is already open");
@@ -483,7 +483,7 @@ public final class d2 {
                             jSONObject4 = jSONObject;
                         }
                         JSONObject jSONObject7 = jSONObject4;
-                        JSONObject put2 = new JSONObject().put("event", "connect").put("id", tonconnectchallenge.event_id).put("payload", new JSONObject().put("items", jSONArray3).put("device", new JSONObject().put("platform", "android").put("appName", "gramwallet").put("appVersion", org.telegram.messenger.r2.f26200c).put("maxProtocolVersion", 2).put("features", new JSONArray().put(new JSONObject().put("name", "SendTransaction").put("maxMessages", 255)).put(new JSONObject().put("name", "SignMessage").put("maxMessages", 255)).put(new JSONObject().put("name", "SignData").put("types", new JSONArray().put("text").put("binary").put("cell"))))));
+                        JSONObject put2 = new JSONObject().put("event", "connect").put("id", tonconnectchallenge.event_id).put("payload", new JSONObject().put("items", jSONArray3).put("device", new JSONObject().put("platform", "android").put("appName", "gramwallet").put("appVersion", org.telegram.messenger.r2.f26208c).put("maxProtocolVersion", 2).put("features", new JSONArray().put(new JSONObject().put("name", "SendTransaction").put("maxMessages", 255)).put(new JSONObject().put("name", "SignMessage").put("maxMessages", 255)).put(new JSONObject().put("name", "SignData").put("types", new JSONArray().put("text").put("binary").put("cell"))))));
                         if (str3 != null) {
                             put2.put("response", new JSONObject().put("error", new JSONObject().put("code", 400).put("message", "Embedded request is not supported")));
                         }
@@ -585,7 +585,7 @@ public final class d2 {
             int i7 = z1Var.f44777b;
             TL_wallet.tonConnectSession tonconnectsession = z1Var.f44776a;
             if (A && !j(z1Var)) {
-                SharedPreferences sharedPreferences = np.s1(this.f43729a).f25280f7;
+                SharedPreferences sharedPreferences = np.s1(this.f43729a).f25283f7;
                 String string = sharedPreferences.getString(l(tonconnectsession.f28313id, i7) + ".transfer", null);
                 if (string != null) {
                     try {
@@ -638,7 +638,7 @@ public final class d2 {
 
     public final void e(int i7, long j3, z10 z10Var) {
         long j10;
-        np.s1(this.f43729a).f25280f7.edit().remove(l(j3, i7)).remove(l(j3, j10) + ".transfer").apply();
+        np.s1(this.f43729a).f25283f7.edit().remove(l(j3, i7)).remove(l(j3, j10) + ".transfer").apply();
         z1 z1Var = this.f43734g;
         if (z1Var != null && z1Var.f44776a.f28313id == j3 && z1Var.f44777b == i7) {
             z1Var.f44787n = true;
@@ -655,7 +655,7 @@ public final class d2 {
         if (!z1Var.f44787n && !j(z1Var) && A(z1Var) && (z10 || z1Var.f44785l >= 0 || "disconnect".equals(z1Var.f44779e) || z1Var.f44789p)) {
             z1Var.f44786m = true;
             m mVar = new m(this, z1Var, z10Var, 2);
-            String string = np.s1(this.f43729a).f25280f7.getString(l(tonconnectsession.f28313id, z1Var.f44777b), null);
+            String string = np.s1(this.f43729a).f25283f7.getString(l(tonconnectsession.f28313id, z1Var.f44777b), null);
             if (string != null) {
                 try {
                     try {
@@ -722,7 +722,7 @@ public final class d2 {
                 o(z1Var.f44777b, tonconnectsession.f28313id);
             }
         }
-        ns.f(this.f43729a).k(ns.f25467a4, this.f43730b, tonconnectsession);
+        ns.f(this.f43729a).k(ns.f25468a4, this.f43730b, tonconnectsession);
     }
 
     public final void u(z1 z1Var) {

@@ -116,16 +116,16 @@ public final class u implements Runnable {
                     }
                 } else {
                     d6.d dVar2 = aVar.f53e;
-                    if (dVar2.f7586g != aVar) {
+                    if (dVar2.f7589g != aVar) {
                         if (dVar2.h == aVar) {
                             SystemClock.uptimeMillis();
                             dVar2.h = null;
                             dVar2.b();
                         }
-                    } else if (!dVar2.f7583c) {
+                    } else if (!dVar2.f7586c) {
                         SystemClock.uptimeMillis();
-                        dVar2.f7586g = null;
-                        z1.a aVar2 = dVar2.f7581a;
+                        dVar2.f7589g = null;
+                        z1.a aVar2 = dVar2.f7584a;
                         if (aVar2 != null) {
                             if (Looper.myLooper() == Looper.getMainLooper()) {
                                 aVar2.j(obj2);
@@ -139,7 +139,7 @@ public final class u implements Runnable {
                 return;
             case 2:
                 DataHolder dataHolder = (DataHolder) this.f20594b;
-                int i10 = dataHolder.f6120e;
+                int i10 = dataHolder.f6123e;
                 try {
                     ((a9.d) this.f20595c).f757c.getClass();
                     if (dataHolder != null) {
@@ -154,9 +154,9 @@ public final class u implements Runnable {
             case 3:
                 WearAuthListenerService wearAuthListenerService = ((a9.d) this.f20595c).f757c;
                 l0 l0Var = (l0) this.f20594b;
-                String str = l0Var.f3028b;
+                String str = l0Var.f3031b;
                 String str2 = l0Var.d;
-                byte[] bArr = l0Var.f3029c;
+                byte[] bArr = l0Var.f3032c;
                 if ("/tg-wear-auth/offer".equals(str)) {
                     try {
                         Intent intent = new Intent(wearAuthListenerService, LaunchActivity.class);
@@ -182,10 +182,10 @@ public final class u implements Runnable {
                 return;
             case 7:
                 androidx.biometric.z zVar = ((androidx.biometric.q) this.f20595c).m0;
-                if (zVar.f1973e == null) {
-                    zVar.f1973e = new Object();
+                if (zVar.f1980e == null) {
+                    zVar.f1980e = new Object();
                 }
-                zVar.f1973e.c((androidx.biometric.u) this.f20594b);
+                zVar.f1980e.c((androidx.biometric.u) this.f20594b);
                 return;
             case 8:
                 ((com.google.android.gms.internal.cast.p) this.f20594b).o1((s4.r) this.f20595c);
@@ -269,14 +269,14 @@ public final class u implements Runnable {
             case 16:
                 f5.f fVar3 = f5.a0.f10933i;
                 ((f5.b) this.f20594b).y(24, 7, fVar3);
-                com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f6831b;
-                ((q1) ((j1) this.f20595c).f24500b).a(fVar3, com.google.android.gms.internal.play_billing.v.f6858e);
+                com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f6834b;
+                ((q1) ((j1) this.f20595c).f24505b).a(fVar3, com.google.android.gms.internal.play_billing.v.f6861e);
                 return;
             case 17:
                 f5.f fVar4 = f5.a0.f10933i;
                 ((f5.b) this.f20594b).y(24, 9, fVar4);
-                com.google.android.gms.internal.play_billing.p pVar2 = com.google.android.gms.internal.play_billing.r.f6831b;
-                ((f5.n) this.f20595c).f(fVar4, com.google.android.gms.internal.play_billing.v.f6858e);
+                com.google.android.gms.internal.play_billing.p pVar2 = com.google.android.gms.internal.play_billing.r.f6834b;
+                ((f5.n) this.f20595c).f(fVar4, com.google.android.gms.internal.play_billing.v.f6861e);
                 return;
             case 18:
                 f6.e0 e0Var = ((f6.d0) this.f20594b).f11060b;
@@ -449,7 +449,7 @@ public final class u implements Runnable {
                 return;
             case 24:
                 Typeface typeface = (Typeface) this.f20595c;
-                j0 j0Var = (j0) ((d6.i) this.f20594b).f7595b;
+                j0 j0Var = (j0) ((d6.i) this.f20594b).f7598b;
                 if (j0Var != null) {
                     j0Var.h(typeface);
                     return;
@@ -461,17 +461,17 @@ public final class u implements Runnable {
             case 26:
                 ArrayList arrayList = (ArrayList) this.f20594b;
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
-                    if (arrayList.get(i15) != null && ((dp) arrayList.get(i15)).f34022a != null) {
-                        ((dp) arrayList.get(i15)).f34022a.m(0);
+                    if (arrayList.get(i15) != null && ((dp) arrayList.get(i15)).f34009a != null) {
+                        ((dp) arrayList.get(i15)).f34009a.m(0);
                     }
                 }
                 org.telegram.messenger.g0.h3(new fi(2, this, arrayList));
                 return;
             case 27:
-                an anVar = ((ll) this.f20595c).f49002b;
-                if (this == anVar.f45124a6) {
+                an anVar = ((ll) this.f20595c).f48998b;
+                if (this == anVar.f45123a6) {
                     anVar.Cb((CharSequence) this.f20594b, false);
-                    anVar.f45124a6 = null;
+                    anVar.f45123a6 = null;
                     return;
                 }
                 return;
@@ -495,7 +495,7 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z20;
                 tL_chatBannedRights.send_polls = z20;
                 tL_chatBannedRights.send_reactions = z20;
-                org.telegram.messenger.g0.a4(qqVar.f50715c);
+                org.telegram.messenger.g0.a4(qqVar.f50714c);
                 kq B0 = qqVar.B0();
                 qqVar.G0();
                 qqVar.F0(B0);

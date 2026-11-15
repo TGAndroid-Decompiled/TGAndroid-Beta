@@ -44,10 +44,10 @@ public final class l0 {
         if (this.f19067c) {
             int a10 = ((androidx.emoji2.text.g) this.f19069f).a(view);
             androidx.emoji2.text.g gVar = (androidx.emoji2.text.g) this.f19069f;
-            if (Integer.MIN_VALUE == gVar.f2250a) {
+            if (Integer.MIN_VALUE == gVar.f2253a) {
                 k10 = 0;
             } else {
-                k10 = gVar.k() - gVar.f2250a;
+                k10 = gVar.k() - gVar.f2253a;
             }
             this.f19068e = k10 + a10;
         } else {
@@ -59,10 +59,10 @@ public final class l0 {
     public void d(int i7, View view) {
         int k10;
         androidx.emoji2.text.g gVar = (androidx.emoji2.text.g) this.f19069f;
-        if (Integer.MIN_VALUE == gVar.f2250a) {
+        if (Integer.MIN_VALUE == gVar.f2253a) {
             k10 = 0;
         } else {
-            k10 = gVar.k() - gVar.f2250a;
+            k10 = gVar.k() - gVar.f2253a;
         }
         if (k10 >= 0) {
             c(i7, view);

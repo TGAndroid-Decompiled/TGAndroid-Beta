@@ -27,7 +27,7 @@ public final class n1 extends FrameLayout {
         this.f29397b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         q6.s(imageView, j6.J5, e6Var, PorterDuff.Mode.MULTIPLY);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -41,7 +41,7 @@ public final class n1 extends FrameLayout {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         q6.U(textView, j6.f28957j5, e6Var);
         textView.setTextSize(1, 16.0f);
-        addView(textView, ja.e(-2, -2, (hd.f24101a0 ? 5 : 3) | 16));
+        addView(textView, ja.e(-2, -2, (hd.f24104a0 ? 5 : 3) | 16));
     }
 
     public final void a(int i7, CharSequence charSequence) {
@@ -53,12 +53,12 @@ public final class n1 extends FrameLayout {
         if (i7 != 0) {
             imageView.setImageResource(i7);
             imageView.setVisibility(0);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(56.0f);
             }
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i10 = org.telegram.messenger.g0.L(56.0f);
             } else {
                 i10 = 0;

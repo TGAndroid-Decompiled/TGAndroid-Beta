@@ -116,7 +116,7 @@ public final class v extends FrameLayout implements Checkable {
                 m2.d dVar = (m2.d) uVar;
                 org.telegram.ui.o oVar = ((org.telegram.ui.n) dVar.f20122b).d;
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) dVar.f20123c;
-                a0.h hVar = oVar.f49736a;
+                a0.h hVar = oVar.f49726a;
                 int i10 = 1;
                 if (z10) {
                     a(false, false, false);
@@ -210,7 +210,7 @@ public final class v extends FrameLayout implements Checkable {
                     i9Var.l(gc.b(document), "50_50", gcVar, null, 0, stickerSetCovered);
                     return;
                 }
-            } else if (gcVar != null && gcVar.f23724p == 1) {
+            } else if (gcVar != null && gcVar.f23726p == 1) {
                 i9Var.k(gcVar, "50_50", "tgs", d, stickerSetCovered);
                 return;
             } else {

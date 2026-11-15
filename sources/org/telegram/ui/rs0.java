@@ -12,24 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Arrays;
 public final class rs0 extends LinearLayout {
-    public final TextView f51015a;
-    public final TextView f51016b;
-    public final FrameLayout f51017c;
-    public final di.yb d;
-    public final zq0 f51018e;
-    public boolean f51019f;
+    public final TextView f51011a;
+    public final TextView f51012b;
+    public final FrameLayout f51013c;
+    public final di.xb d;
+    public final zq0 f51014e;
+    public boolean f51015f;
     public boolean h;
-    public final PremiumPreviewFragment f51020n;
+    public final PremiumPreviewFragment f51016n;
 
     public rs0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
         super(context);
         int i7;
         int i10;
         int i11;
-        this.f51020n = premiumPreviewFragment;
+        this.f51016n = premiumPreviewFragment;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f51017c = frameLayout;
+        this.f51013c = frameLayout;
         int i12 = premiumPreviewFragment.f42987h0;
         if (i12 == 1) {
             i7 = 175;
@@ -43,13 +43,13 @@ public final class rs0 extends LinearLayout {
         } else {
             i10 = 0;
         }
-        di.yb ybVar = new di.yb(this, context, z10 ? 1 : 0, i10, context);
-        this.d = ybVar;
-        frameLayout.addView(ybVar, c8.ja.c(-1.0f, -1));
+        di.xb xbVar = new di.xb(this, context, z10 ? 1 : 0, i10, context);
+        this.d = xbVar;
+        frameLayout.addView(xbVar, c8.ja.c(-1.0f, -1));
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
-        this.f51015a = textView;
+        this.f51011a = textView;
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(1);
@@ -60,13 +60,13 @@ public final class rs0 extends LinearLayout {
         }
         addView(textView, c8.ja.q(-2, -2, 0.0f, 1, 16, i11, 16, 0));
         TextView textView2 = new TextView(context);
-        this.f51016b = textView2;
+        this.f51012b = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
         textView2.setGravity(1);
         addView(textView2, c8.ja.q(-1, -2, 0.0f, 1, 16, 7, 16, 0));
         zq0 zq0Var = new zq0(this, context);
-        this.f51018e = zq0Var;
+        this.f51014e = zq0Var;
         zq0Var.setOverScrollMode(2);
         zq0Var.setLayoutManager(new v4.b0());
         zq0Var.setAdapter(new qs0(this, context));
@@ -78,7 +78,7 @@ public final class rs0 extends LinearLayout {
             public final void accept(Object obj) {
                 int b10;
                 Canvas canvas = (Canvas) obj;
-                zq0 zq0Var2 = rs0.this.f51018e;
+                zq0 zq0Var2 = rs0.this.f51014e;
                 View pressedChildView = zq0Var2.getPressedChildView();
                 if (pressedChildView == null) {
                     b10 = -1;

@@ -3,15 +3,14 @@ package ai;
 import a8.xa;
 import android.graphics.Bitmap;
 import android.os.Looper;
-import di.mb;
-import di.v8;
+import di.lb;
+import di.u8;
 import fi.o5;
 import fi.s6;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Map;
-import ki.x2;
 import org.telegram.messenger.AppStartReceiver;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.Utilities;
@@ -33,10 +32,10 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.mb1;
 public final class o implements Runnable {
-    public final int f1418a;
+    public final int f1403a;
 
     public o(int i7) {
-        this.f1418a = i7;
+        this.f1403a = i7;
     }
 
     @Override
@@ -44,9 +43,9 @@ public final class o implements Runnable {
         cc X;
         org.telegram.ui.ActionBar.e2 c02;
         int i7 = 0;
-        switch (this.f1418a) {
+        switch (this.f1403a) {
             case 0:
-                s[] sVarArr = DictationAsr.f42579a;
+                t[] tVarArr = DictationAsr.f42579a;
                 ArrayList arrayList = new ArrayList(DictationAsr.f42584g);
                 int size = arrayList.size();
                 while (i7 < size) {
@@ -65,7 +64,7 @@ public final class o implements Runnable {
                 xa xaVar = bg.i.B;
                 if (xaVar != null) {
                     ArrayList arrayList2 = null;
-                    for (int i10 = 0; i10 < bg.i.f3253y; i10++) {
+                    for (int i10 = 0; i10 < bg.i.f3256y; i10++) {
                         if (((Bitmap[]) xaVar.d)[i10] != null) {
                             if (arrayList2 == null) {
                                 arrayList2 = new ArrayList();
@@ -108,7 +107,7 @@ public final class o implements Runnable {
                     X = cc.X();
                 }
                 xb Q2 = X.Q(2131624052, 36, hd.M0(2131750216, null));
-                Q2.f41653t = true;
+                Q2.f41645t = true;
                 Q2.j();
                 return;
             case 8:
@@ -117,12 +116,12 @@ public final class o implements Runnable {
             case 9:
                 org.telegram.ui.ActionBar.e2 T2 = LaunchActivity.T();
                 if (T2 != null) {
-                    T2.presentFragment(new mb());
+                    T2.presentFragment(new lb());
                     return;
                 }
                 return;
             case 10:
-                v8[][] v8VarArr = v8.S;
+                u8[][] u8VarArr = u8.S;
                 return;
             case 11:
                 return;
@@ -153,7 +152,7 @@ public final class o implements Runnable {
                 kg.v1[] v1VarArr = kg.v1.f18122g;
                 return;
             case 20:
-                HashSet hashSet = x2.f18648b1;
+                HashSet hashSet = ki.x2.f18648b1;
                 return;
             case 21:
                 int i13 = mi.h.I;
@@ -161,8 +160,8 @@ public final class o implements Runnable {
             case 22:
                 int i14 = AppStartReceiver.f22244a;
                 gz.t();
-                if (gz.f23978s.length() > 0) {
-                    gz.f23992x = true;
+                if (gz.f23981s.length() > 0) {
+                    gz.f23995x = true;
                     gz.y();
                 }
                 org.telegram.messenger.t0.x();
@@ -193,14 +192,14 @@ public final class o implements Runnable {
                 org.telegram.messenger.t0.x();
                 return;
             case 26:
-                org.telegram.utils.twidget.l1.c(org.telegram.messenger.t0.f26600b);
+                org.telegram.utils.twidget.l1.c(org.telegram.messenger.t0.f26609b);
                 return;
             case 27:
                 if (((qt) org.telegram.messenger.t0.l()).hasServices()) {
                     ((qt) org.telegram.messenger.t0.l()).onRequestPushToken();
                     return;
                 }
-                if (org.telegram.messenger.r2.f26198a) {
+                if (org.telegram.messenger.r2.f26206a) {
                     ((qt) org.telegram.messenger.t0.l()).getClass();
                     a8.b("No valid Google Play Services APK found.");
                 }
@@ -221,7 +220,7 @@ public final class o implements Runnable {
     }
 
     public o(Object obj, int i7) {
-        this.f1418a = i7;
+        this.f1403a = i7;
     }
 
     private final void a() {

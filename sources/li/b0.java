@@ -29,9 +29,9 @@ public abstract class b0 extends FrameLayout {
         lh.f fVar = new lh.f(getContext());
         this.f19527b = fVar;
         fVar.setupColorKey(j6.f28792a7);
-        fVar.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + org.telegram.messenger.g0.f23604n);
+        fVar.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + org.telegram.messenger.g0.f23606n);
         fVar.setFadeHeightBottom(org.telegram.messenger.g0.L(24.0f));
-        fVar.setFadeZoneTop(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.f23603m);
+        fVar.setFadeZoneTop(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.f23605m);
         fVar.f19501a.b(-org.telegram.messenger.g0.L(20.0f), false);
         frameLayout.addView(fVar, ja.g());
     }
@@ -47,12 +47,12 @@ public abstract class b0 extends FrameLayout {
     }
 
     public float b() {
-        float f10 = org.telegram.messenger.g0.f23609q.y;
+        float f10 = org.telegram.messenger.g0.f23611q.y;
         for (int i7 = 0; i7 < this.d.getChildCount(); i7++) {
             View childAt = this.d.getChildAt(i7);
             e1 T = this.d.T(childAt);
             if (T != null) {
-                b41 G = this.d.f39895g3.G(T.b());
+                b41 G = this.d.f39892g3.G(T.b());
                 if (G != null && G.d != 99) {
                     f10 = Math.min(childAt.getY() + this.f19528c.getPaddingTop(), f10);
                 }
@@ -65,7 +65,7 @@ public abstract class b0 extends FrameLayout {
         float b10 = b();
         org.telegram.ui.ActionBar.k kVar = this.f19526a;
         if (kVar != null) {
-            kVar.setTranslationY(Math.max(org.telegram.messenger.g0.f23603m, b10));
+            kVar.setTranslationY(Math.max(org.telegram.messenger.g0.f23605m, b10));
         }
     }
 }

@@ -60,7 +60,7 @@ public final class zq0 extends org.telegram.ui.Components.uj0 {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.f54010f3) {
             case 1:
-                if (((rs0) this.f54013i3).f51020n.f42998r0 >= 1.0f) {
+                if (((rs0) this.f54013i3).f51016n.f42998r0 >= 1.0f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -106,7 +106,7 @@ public final class zq0 extends org.telegram.ui.Components.uj0 {
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         switch (this.f54010f3) {
             case 1:
-                if (((rs0) this.f54013i3).f51020n.f42998r0 >= 1.0f) {
+                if (((rs0) this.f54013i3).f51016n.f42998r0 >= 1.0f) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -120,7 +120,7 @@ public final class zq0 extends org.telegram.ui.Components.uj0 {
         switch (this.f54010f3) {
             case 1:
                 super.onSizeChanged(i7, i10, i11, i12);
-                PremiumPreviewFragment premiumPreviewFragment = ((rs0) this.f54013i3).f51020n;
+                PremiumPreviewFragment premiumPreviewFragment = ((rs0) this.f54013i3).f51016n;
                 int i13 = 0;
                 int i14 = 0;
                 while (true) {

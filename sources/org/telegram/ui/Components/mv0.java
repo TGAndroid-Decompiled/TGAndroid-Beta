@@ -16,7 +16,7 @@ public final class mv0 extends po0 {
         org.telegram.ui.ActionBar.e2 e2Var = this.V2.G1;
         if (e2Var instanceof org.telegram.ui.an) {
             org.telegram.messenger.g0.a3(e2Var.getParentActivity(), e2Var.getClassGuid());
-            if (((org.telegram.ui.an) e2Var).f45118a0.getVisibility() == 0) {
+            if (((org.telegram.ui.an) e2Var).f45117a0.getVisibility() == 0) {
                 e2Var.getFragmentView().requestLayout();
             }
         }

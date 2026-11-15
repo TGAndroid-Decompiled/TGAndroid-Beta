@@ -85,7 +85,7 @@ public final class l8 extends FrameLayout implements View.OnClickListener, is {
         y7Var.h = new b8(this, 5);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f14603e = frameLayout;
-        frameLayout.setPadding(0, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23603m, 0, 0);
+        frameLayout.setPadding(0, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23605m, 0, 0);
         frameLayout.setClipToPadding(true);
         addView(frameLayout, c8.ja.e(-1, -1, 119));
         uj0 uj0Var = new uj0(context, q8Var.J0);
@@ -738,7 +738,7 @@ public final class l8 extends FrameLayout implements View.OnClickListener, is {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, c10);
                 this.Q = ofFloat;
                 ofFloat.addUpdateListener(new j3(this, 6));
-                this.Q.addListener(new ai.i0(this, 26));
+                this.Q.addListener(new ai.j0(this, 26));
                 this.Q.setInterpolator(new LinearInterpolator());
                 this.Q.setDuration(180L);
                 this.Q.start();
@@ -783,7 +783,7 @@ public final class l8 extends FrameLayout implements View.OnClickListener, is {
             }
             x1Var.c(true, f10);
         }
-        y7Var.setTranslationY(Math.max(org.telegram.messenger.g0.f23603m, f11));
+        y7Var.setTranslationY(Math.max(org.telegram.messenger.g0.f23605m, f11));
     }
 
     @Override
@@ -880,7 +880,7 @@ public final class l8 extends FrameLayout implements View.OnClickListener, is {
             this.U = i14;
         }
         super.onMeasure(i7, i10);
-        int i15 = org.telegram.messenger.g0.f23603m;
+        int i15 = org.telegram.messenger.g0.f23605m;
         if (this.f14599a == 0) {
             L = 0;
         } else {
@@ -928,7 +928,7 @@ public final class l8 extends FrameLayout implements View.OnClickListener, is {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f12, 0.0f);
                 j8Var.d = ofFloat;
                 ofFloat.addUpdateListener(new i8(j8Var, 1));
-                j8Var.d.addListener(new ai.i0(j8Var, 27));
+                j8Var.d.addListener(new ai.j0(j8Var, 27));
                 j8Var.d.setDuration(250L);
                 ValueAnimator valueAnimator2 = j8Var.d;
                 er erVar = org.telegram.ui.ActionBar.i1.f28644w;

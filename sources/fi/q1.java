@@ -160,7 +160,7 @@ public final class q1 implements org.telegram.ui.ActionBar.q1, lh.a {
                         tL_stories_deleteStories.f28293id.add(Integer.valueOf(storyItem2.f28290id));
                         ConnectionsManager.getInstance(i12).sendRequest(tL_stories_deleteStories, new p5(s6Var, 4));
                         f7 f7Var = s6Var.f12327k;
-                        f7Var.f11709b.f27220a.c(new c7(f7Var, j10, storyItem2.f28290id, 1));
+                        f7Var.f11709b.f27219a.c(new c7(f7Var, j10, storyItem2.f28290id, 1));
                         ns.f(i12).k(324, new Object[0]);
                         np.s1(i12).D();
                         s6Var.n0(j10, Arrays.asList(storyItem2));

@@ -1,6 +1,6 @@
 package wg;
 
-import ai.d1;
+import ai.e1;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -41,7 +41,7 @@ import org.telegram.ui.Components.tj0;
 import org.telegram.ui.Components.u5;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.a31;
-import tg.a2;
+import tg.z1;
 public final class u0 extends ja {
     public final hi.d T1;
     public final t0 U1;
@@ -87,7 +87,7 @@ public final class u0 extends ja {
         this.f59259r2 = new s4.s0(this, 8);
         this.f29717u0 = 0;
         this.f59254m2 = np.s1(this.f29679a).M0(Long.valueOf(-j3));
-        ((ViewGroup) this.f35937p1.getParent()).removeView(this.f35937p1);
+        ((ViewGroup) this.f35932p1.getParent()).removeView(this.f35932p1);
         ViewGroup viewGroup = this.f29682b;
         er erVar = er.h;
         this.f59250i2 = new u5(viewGroup, 0L, 350L, erVar);
@@ -123,20 +123,20 @@ public final class u0 extends ja {
         int i12 = this.f29717u0;
         viewGroup4.addView(aVar, c8.ja.f(-2.0f, -1, 87, i12, 0, i12, 0));
         xg.i iVar = this.f59252k2;
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         iVar.f59938n = arrayList;
         iVar.f59937f = uj0Var;
         int i13 = this.f29717u0;
         uj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(60.0f));
-        this.f35936o1.j(new vh.d(this, 1));
-        this.f35936o1.setOnItemClickListener(new a2(this, 12));
+        this.f35931o1.j(new vh.d(this, 1));
+        this.f35931o1.setOnItemClickListener(new z1(this, 12));
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(erVar);
         kVar.C = false;
         kVar.f58564m = false;
-        this.f35936o1.setItemAnimator(kVar);
-        this.f35936o1.i(new ai.h0(this, 9));
+        this.f35931o1.setItemAnimator(kVar);
+        this.f35931o1.i(new ai.i0(this, 9));
         n1(false, true);
         f1(1, null, true);
         f1(3, null, true);
@@ -207,15 +207,15 @@ public final class u0 extends ja {
         boolean z10;
         this.f59257p2 = i7;
         ah.e eVar = this.W1;
-        eVar.setTranslationY(Math.max(i7, (((eVar.getMeasuredHeight() - org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(40.0f)) / 2.0f) + org.telegram.messenger.g0.f23603m));
+        eVar.setTranslationY(Math.max(i7, (((eVar.getMeasuredHeight() - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(40.0f)) / 2.0f) + org.telegram.messenger.g0.f23605m));
         float translationY = eVar.getTranslationY() + eVar.getMeasuredHeight();
         this.U1.setTranslationY(translationY);
-        this.f35936o1.setTranslationY((t0Var.getMeasuredHeight() + eVar.getMeasuredHeight()) - org.telegram.messenger.g0.L(16.0f));
+        this.f35931o1.setTranslationY((t0Var.getMeasuredHeight() + eVar.getMeasuredHeight()) - org.telegram.messenger.g0.L(16.0f));
         int w02 = j6.w0(j6.f28922h5, this.J0);
         Paint paint = this.X1;
         paint.setColor(w02);
         int max = Math.max(0, i7);
-        if (max < org.telegram.messenger.g0.f23603m) {
+        if (max < org.telegram.messenger.g0.f23605m) {
             z10 = true;
         } else {
             z10 = false;
@@ -224,7 +224,7 @@ public final class u0 extends ja {
         int W1 = org.telegram.messenger.g0.W1(u5Var.d(z10), max, 0);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(this.f29717u0, W1, this.f29682b.getWidth() - this.f29717u0, org.telegram.messenger.g0.L(14.0f) + this.f29682b.getHeight());
-        float L = (1.0f - u5Var.f39903c) * org.telegram.messenger.g0.L(14.0f);
+        float L = (1.0f - u5Var.f39900c) * org.telegram.messenger.g0.L(14.0f);
         canvas.drawRoundRect(rectF, L, L, paint);
     }
 
@@ -264,7 +264,7 @@ public final class u0 extends ja {
                     return;
                 }
                 s0 s0Var = new s0(this, z10, 1);
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24940t0);
                 TLRPC.TL_help_getCountriesList tL_help_getCountriesList = new TLRPC.TL_help_getCountriesList();
                 if (hd.E0().B != null) {
                     country = hd.E0().B.c();
@@ -272,13 +272,13 @@ public final class u0 extends ja {
                     country = Locale.getDefault().getCountry();
                 }
                 tL_help_getCountriesList.lang_code = country;
-                connectionsManager.sendRequest(tL_help_getCountriesList, new d1(s0Var, 24));
+                connectionsManager.sendRequest(tL_help_getCountriesList, new e1(s0Var, 24));
                 return;
             }
             long j3 = chat.f28051id;
             r0 r0Var = new r0(this, 1);
-            np s12 = np.s1(m10.f24934t0);
-            ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(m10.f24934t0);
+            np s12 = np.s1(m10.f24940t0);
+            ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(m10.f24940t0);
             TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
             tL_contacts_search.f28097q = str;
             tL_contacts_search.limit = 50;
@@ -287,8 +287,8 @@ public final class u0 extends ja {
         }
         long j10 = chat.f28051id;
         s0 s0Var2 = new s0(this, z10, 0);
-        np s13 = np.s1(m10.f24934t0);
-        ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(m10.f24934t0);
+        np s13 = np.s1(m10.f24940t0);
+        ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(m10.f24940t0);
         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
         tL_channels_getParticipants.channel = s13.h1(j10);
         if (str == null) {
@@ -450,7 +450,7 @@ public final class u0 extends ja {
     }
 
     public final void j1(boolean z10) {
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         if (z10) {
             pi.l lVar = new pi.l(getContext(), 2, 0.6f);
             lVar.f58480a = 1;
@@ -469,7 +469,7 @@ public final class u0 extends ja {
                 if (i7 != 3) {
                     M0 = "";
                 } else {
-                    M0 = hd.G((int) np.s1(m10.f24934t0).f25366q0, "BoostingSelectUpToWarningCountriesPlural", new Object[0]);
+                    M0 = hd.G((int) np.s1(m10.f24940t0).f25369q0, "BoostingSelectUpToWarningCountriesPlural", new Object[0]);
                 }
             } else {
                 M0 = hd.G((int) q.f(), "BoostingSelectUpToWarningChannelsGroupsPlural", new Object[0]);
@@ -584,7 +584,7 @@ public final class u0 extends ja {
             arrayList2.add(new xg.h(5, false));
             i7 += org.telegram.messenger.g0.L(150.0f);
         }
-        int max = Math.max(0, ((int) (org.telegram.messenger.g0.f23609q.y * 0.6f)) - i7);
+        int max = Math.max(0, ((int) (org.telegram.messenger.g0.f23611q.y * 0.6f)) - i7);
         xg.h hVar6 = new xg.h(-1, false);
         hVar6.f59929l = max;
         arrayList2.add(hVar6);
@@ -611,7 +611,7 @@ public final class u0 extends ja {
         m1(z10, z11);
         int i7 = 0;
         while (true) {
-            uj0 uj0Var = this.f35936o1;
+            uj0 uj0Var = this.f35931o1;
             if (i7 < uj0Var.getChildCount()) {
                 View childAt = uj0Var.getChildAt(i7);
                 if (childAt instanceof ah.r) {
@@ -658,7 +658,7 @@ public final class u0 extends ja {
                 if (i7 != 3) {
                     H = "";
                 } else {
-                    H = hd.G((int) np.s1(m10.f24934t0).f25366q0, "BoostingSelectUpToCountriesPlural", new Object[0]);
+                    H = hd.G((int) np.s1(m10.f24940t0).f25369q0, "BoostingSelectUpToCountriesPlural", new Object[0]);
                     x3Var.setLayerHeight(1);
                 }
             } else {

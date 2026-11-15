@@ -7,9 +7,9 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
-import di.bc;
+import di.ac;
 public final class o0 extends LinearLayout {
-    public bc f12098a;
+    public ac f12098a;
     public final Path f12099b;
     public final Paint f12100c;
     public long d;
@@ -60,12 +60,12 @@ public final class o0 extends LinearLayout {
             canvas2 = canvas;
         }
         if (this.f12098a == null) {
-            this.f12098a = new bc(1, 250);
+            this.f12098a = new ac(1, 250);
         }
         this.f12098a.f(0, 0, getWidth(), getHeight());
-        bc bcVar = this.f12098a;
-        bcVar.h = 30.0f;
-        bcVar.d();
+        ac acVar = this.f12098a;
+        acVar.h = 30.0f;
+        acVar.d();
         this.f12098a.b(canvas2, -1, 0.85f);
         invalidate();
         canvas2.restore();

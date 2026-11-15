@@ -313,7 +313,7 @@ public class f extends AbstractCollection implements List {
                     fVar2.k();
                     return;
                 }
-                ((jg) this.f395f).f4564c.put(this.f392b, this.f393c);
+                ((jg) this.f395f).f4567c.put(this.f392b, this.f393c);
                 return;
         }
     }
@@ -337,7 +337,7 @@ public class f extends AbstractCollection implements List {
                     fVar2.l();
                     return;
                 } else if (this.f393c.isEmpty()) {
-                    ((jg) this.f395f).f4564c.remove(this.f392b);
+                    ((jg) this.f395f).f4567c.remove(this.f392b);
                     return;
                 } else {
                     return;
@@ -604,7 +604,7 @@ public class f extends AbstractCollection implements List {
                     }
                     return;
                 } else if (this.f393c.isEmpty()) {
-                    Collection collection2 = (Collection) ((jg) this.f395f).f4564c.get(this.f392b);
+                    Collection collection2 = (Collection) ((jg) this.f395f).f4567c.get(this.f392b);
                     if (collection2 != null) {
                         this.f393c = collection2;
                         return;

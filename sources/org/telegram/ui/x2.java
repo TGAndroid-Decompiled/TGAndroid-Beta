@@ -13,7 +13,7 @@ public final class x2 extends org.telegram.ui.ActionBar.b3 {
 
     public final void c(k3 k3Var) {
         if (k3Var != null) {
-            i3 i3Var = k3Var.f48552f;
+            i3 i3Var = k3Var.f48506f;
             i3Var.M();
             this.f28425b = i3Var.getWebView();
             this.d = i3Var.getProxy();
@@ -23,8 +23,8 @@ public final class x2 extends org.telegram.ui.ActionBar.b3 {
                 this.E = this.f28425b.getTitle();
                 this.F = this.f28425b.getFavicon();
                 this.f28444x = this.f28425b.getUrl();
-                this.f28438q = k3Var.f48557x;
-                this.f28439r = k3Var.f48558y;
+                this.f28438q = k3Var.f48511x;
+                this.f28439r = k3Var.f48512y;
             }
         }
     }

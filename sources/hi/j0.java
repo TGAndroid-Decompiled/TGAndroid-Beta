@@ -87,7 +87,7 @@ public abstract class j0 extends FrameLayout {
                             d7Var.m0 = new xe();
                             j0Var2.f14445f.b(j0Var2.f14451y.m0);
                             d7 d7Var2 = j0Var2.f14451y;
-                            d7Var2.m0.f27503z = d7Var2.Q;
+                            d7Var2.m0.f27504z = d7Var2.Q;
                         }
                         ((ca) j0Var2).F.k0(-1, false, true);
                         return;
@@ -131,7 +131,7 @@ public abstract class j0 extends FrameLayout {
                             d7Var.m0 = new xe();
                             j0Var2.f14445f.b(j0Var2.f14451y.m0);
                             d7 d7Var2 = j0Var2.f14451y;
-                            d7Var2.m0.f27503z = d7Var2.Q;
+                            d7Var2.m0.f27504z = d7Var2.Q;
                         }
                         ((ca) j0Var2).F.k0(-1, false, true);
                         return;
@@ -175,7 +175,7 @@ public abstract class j0 extends FrameLayout {
                             d7Var.m0 = new xe();
                             j0Var2.f14445f.b(j0Var2.f14451y.m0);
                             d7 d7Var2 = j0Var2.f14451y;
-                            d7Var2.m0.f27503z = d7Var2.Q;
+                            d7Var2.m0.f27504z = d7Var2.Q;
                         }
                         ((ca) j0Var2).F.k0(-1, false, true);
                         return;
@@ -267,14 +267,14 @@ public abstract class j0 extends FrameLayout {
         org.telegram.ui.Components.u5 u5Var = this.f14442b;
         if (xeVar != null) {
             fVar.b(xeVar.d);
-            if (xeVar.f27495k != 0) {
+            if (xeVar.f27496k != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             fVar.setRotated(z10);
-            fVar.setMirrored(xeVar.f27496l);
-            u5Var.f(xeVar.f27496l, false);
+            fVar.setMirrored(xeVar.f27497l);
+            u5Var.f(xeVar.f27497l, false);
         } else {
             fVar.b(0.0f);
             fVar.setRotated(false);

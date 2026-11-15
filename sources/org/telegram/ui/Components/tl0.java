@@ -8,24 +8,24 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 public final class tl0 extends View {
-    public sl0 f39715a;
-    public final u5 f39716b;
-    public final fh.g f39717c;
+    public sl0 f39712a;
+    public final u5 f39713b;
+    public final fh.g f39714c;
     public ch.p0 d;
-    public boolean f39718e;
-    public final Path f39719f;
+    public boolean f39715e;
+    public final Path f39716f;
     public final RectF h;
-    public final RectF f39720n;
-    public boolean f39721r;
-    public final ul0 f39722s;
+    public final RectF f39717n;
+    public boolean f39718r;
+    public final ul0 f39719s;
 
     public tl0(ul0 ul0Var, Context context) {
         super(context);
-        this.f39722s = ul0Var;
-        this.f39716b = new u5(this, 0L, 260L, er.h);
-        this.f39719f = new Path();
+        this.f39719s = ul0Var;
+        this.f39713b = new u5(this, 0L, 260L, er.h);
+        this.f39716f = new Path();
         this.h = new RectF();
-        this.f39720n = new RectF();
+        this.f39717n = new RectF();
         c8.na.a(this);
         dh.c cVar = ul0Var.f40104w;
         if (cVar != null) {
@@ -38,23 +38,23 @@ public final class tl0 extends View {
                 eVar.g(false);
             }
             org.telegram.messenger.i20.r(c10, org.telegram.messenger.g0.L(6.0f), 4.0f);
-            this.f39717c = c10;
+            this.f39714c = c10;
         }
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (this.f39718e == z10) {
+        if (this.f39715e == z10) {
             return;
         }
-        this.f39718e = z10;
-        sl0 sl0Var = this.f39715a;
+        this.f39715e = z10;
+        sl0 sl0Var = this.f39712a;
         if (sl0Var != null) {
-            sl0Var.f5157o = z10;
-            u5 u5Var = this.f39716b;
+            sl0Var.f5160o = z10;
+            u5 u5Var = this.f39713b;
             if (z11) {
                 sl0Var.h = sl0Var.M;
-                sl0Var.f5148f = sl0Var.N;
-                sl0Var.f5150g = sl0Var.O;
+                sl0Var.f5151f = sl0Var.N;
+                sl0Var.f5153g = sl0Var.O;
                 u5Var.e(true, 0.0f);
             } else {
                 u5Var.e(true, 1.0f);
@@ -66,46 +66,46 @@ public final class tl0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (!this.f39721r) {
-            sl0 sl0Var = this.f39715a;
+        if (!this.f39718r) {
+            sl0 sl0Var = this.f39712a;
             if (sl0Var != null) {
                 sl0Var.a();
             }
-            this.f39721r = true;
+            this.f39718r = true;
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f39721r) {
-            sl0 sl0Var = this.f39715a;
+        if (this.f39718r) {
+            sl0 sl0Var = this.f39712a;
             if (sl0Var != null) {
                 sl0Var.b();
             }
-            this.f39721r = false;
+            this.f39718r = false;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i7;
-        ul0 ul0Var = this.f39722s;
+        ul0 ul0Var = this.f39719s;
         Paint paint = ul0Var.f40106y;
-        int width = (getWidth() - this.f39715a.f5167z) / 2;
+        int width = (getWidth() - this.f39712a.f5170z) / 2;
         int height = getHeight();
-        sl0 sl0Var = this.f39715a;
+        sl0 sl0Var = this.f39712a;
         int i10 = sl0Var.A;
         int i11 = (height - i10) / 2;
-        fh.g gVar = this.f39717c;
+        fh.g gVar = this.f39714c;
         if (gVar != null) {
             Rect rect = org.telegram.messenger.g0.Q;
-            rect.set(width, i11, sl0Var.f5167z + width, i10 + i11);
-            RectF rectF = this.f39720n;
+            rect.set(width, i11, sl0Var.f5170z + width, i10 + i11);
+            RectF rectF = this.f39717n;
             rectF.set(rect);
             RectF rectF2 = this.h;
             boolean equals = rectF.equals(rectF2);
-            Path path = this.f39719f;
+            Path path = this.f39716f;
             if (!equals) {
                 rectF2.set(rectF);
                 ch.q0.h(rectF2, rectF, path);
@@ -126,16 +126,16 @@ public final class tl0 extends View {
             canvas.drawPath(path, paint);
             canvas.restore();
         }
-        this.f39715a.d(canvas, width, i11, this.f39716b.e(false, 1.0f), 1.0f, false, false, 0.0f);
+        this.f39712a.d(canvas, width, i11, this.f39713b.e(false, 1.0f), 1.0f, false, false, 0.0f);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int L;
         int L2 = org.telegram.messenger.g0.L(8.67f);
-        sl0 sl0Var = this.f39715a;
+        sl0 sl0Var = this.f39712a;
         if (sl0Var != null) {
-            L = sl0Var.f5167z;
+            L = sl0Var.f5170z;
         } else {
             L = org.telegram.messenger.g0.L(44.33f);
         }

@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ClippingImageView;
 public final class nn0 implements org.telegram.ui.Components.r4, org.telegram.ui.ActionBar.q1, org.telegram.messenger.kc, r0.m {
-    public final PhotoViewer f49597a;
+    public final PhotoViewer f49587a;
 
     public nn0(PhotoViewer photoViewer) {
-        this.f49597a = photoViewer;
+        this.f49587a = photoViewer;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class nn0 implements org.telegram.ui.Components.r4, org.telegram.ui
         Bitmap n10;
         boolean z13;
         int i10;
-        PhotoViewer photoViewer = this.f49597a;
+        PhotoViewer photoViewer = this.f49587a;
         if (imageReceiver == photoViewer.C4 && z10 && !z11) {
             if (!photoViewer.f42877s1 && ((photoViewer.f42896u4 == 1 || (i10 = photoViewer.d2) == 1 || i10 == 11) && photoViewer.D1 != null && (n10 = imageReceiver.n()) != null)) {
                 org.telegram.ui.Components.gd0 gd0Var = photoViewer.D1;
@@ -51,13 +51,13 @@ public final class nn0 implements org.telegram.ui.Components.r4, org.telegram.ui
     @Override
     public void L(int i7, int i10, boolean z10) {
         Drawable[] drawableArr = PhotoViewer.Z8;
-        this.f49597a.u2(z10, i7, i10, false, false, false);
+        this.f49587a.u2(z10, i7, i10, false, false, false);
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
-        PhotoViewer photoViewer = this.f49597a;
-        dn0 dn0Var = photoViewer.f42905v4;
+        PhotoViewer photoViewer = this.f49587a;
+        en0 en0Var = photoViewer.f42905v4;
         Rect rect = photoViewer.f42886t2;
         Rect rect2 = new Rect(rect);
         i0.c I0 = org.telegram.messenger.g0.I0(k1Var, false);
@@ -89,9 +89,9 @@ public final class nn0 implements org.telegram.ui.Components.r4, org.telegram.ui
         }
         photoViewer.f42763f0.setPadding(i10, 0, i12, 0);
         if (photoViewer.G != null) {
-            org.telegram.messenger.g0.r(dn0Var);
+            org.telegram.messenger.g0.r(en0Var);
             if (photoViewer.f42752e && photoViewer.f42834n4 == 0) {
-                org.telegram.messenger.g0.i3(dn0Var, 200L);
+                org.telegram.messenger.g0.i3(en0Var, 200L);
             }
         }
         return r0.k1.f55681b;
@@ -100,7 +100,7 @@ public final class nn0 implements org.telegram.ui.Components.r4, org.telegram.ui
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         Drawable[] drawableArr = PhotoViewer.Z8;
-        this.f49597a.c3(0);
+        this.f49587a.c3(0);
     }
 
     @Override

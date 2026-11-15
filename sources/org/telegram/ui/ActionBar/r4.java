@@ -99,7 +99,7 @@ public class r4 extends Drawable {
                 }
                 c11 = c10;
             }
-            Bitmap bitmap2 = ra0VarArr[c11].f38926k;
+            Bitmap bitmap2 = ra0VarArr[c11].f38923k;
             float min2 = 1.0f / Math.min(bitmap2.getWidth() / ra0VarArr[c11].getBounds().width(), bitmap2.getHeight() / ra0VarArr[c11].getBounds().height());
             matrix.postScale(min2, min2);
         }
@@ -488,7 +488,7 @@ public class r4 extends Drawable {
                     paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, b(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
                     paint.setColorFilter(new PorterDuffColorFilter(g11, PorterDuff.Mode.MULTIPLY));
                     paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
-                    if (org.telegram.messenger.g0.f23608p > 1.0f) {
+                    if (org.telegram.messenger.g0.f23610p > 1.0f) {
                         setBounds(-1, -1, createBitmap.getWidth() + 1, createBitmap.getHeight() + 1);
                         i14 = 0;
                     } else {
@@ -496,7 +496,7 @@ public class r4 extends Drawable {
                         setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                     }
                     c(canvas, paint);
-                    if (org.telegram.messenger.g0.f23608p > 1.0f) {
+                    if (org.telegram.messenger.g0.f23610p > 1.0f) {
                         paint.setColor(i14);
                         paint.setShadowLayer(0.0f, 0.0f, 0.0f, i14);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -628,13 +628,13 @@ public class r4 extends Drawable {
                 Paint paint = new Paint(1);
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, b(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
                 paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
-                if (org.telegram.messenger.g0.f23608p > 1.0f) {
+                if (org.telegram.messenger.g0.f23610p > 1.0f) {
                     setBounds(-1, -1, createBitmap.getWidth() + 1, createBitmap.getHeight() + 1);
                 } else {
                     setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                 }
                 c(canvas, paint);
-                if (org.telegram.messenger.g0.f23608p > 1.0f) {
+                if (org.telegram.messenger.g0.f23610p > 1.0f) {
                     paint.setColor(0);
                     paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));

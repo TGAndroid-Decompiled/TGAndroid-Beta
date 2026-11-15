@@ -47,7 +47,7 @@ public final class gy extends tj0 {
         this.f35083c = hxVar;
         hxVar.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(5.0f));
         hxVar.setClipToPadding(false);
-        hxVar.f39895g3.f38201r = false;
+        hxVar.f39892g3.f38199r = false;
         hxVar.setNestedScrollingEnabled(false);
         hxVar.setDrawSelection(false);
         hxVar.setOnTouchListener(new m.c2(this, 3));
@@ -120,7 +120,7 @@ public final class gy extends tj0 {
         sparseArray3.clear();
         this.f35091y = 0;
         int size = this.H.size() + this.F.size();
-        this.f35083c.f39895g3.O(false);
+        this.f35083c.f39892g3.O(false);
         int i14 = (this.d > 0L ? 1 : (this.d == 0L ? 0 : -1));
         String str = "";
         SparseArray sparseArray4 = this.f35088s;

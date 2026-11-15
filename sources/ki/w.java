@@ -46,11 +46,11 @@ public abstract class w extends FrameLayout {
             di.c1 c1Var = this.f18609c;
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(c1Var, FrameLayout.TRANSLATION_Y, c1Var.getTranslationY(), (getMeasuredHeight() - this.h) + org.telegram.messenger.g0.L(40.0f));
             this.f18607a = ofFloat;
-            ofFloat.addListener(new ai.i0(this, 28));
+            ofFloat.addListener(new ai.j0(this, 28));
             this.f18607a.setDuration(150L);
-            this.f18607a.setInterpolator(er.f34420f);
+            this.f18607a.setInterpolator(er.f34419f);
             this.f18607a.start();
-            a0 a0Var = ((ve) this).f40386w.m0;
+            a0 a0Var = ((ve) this).f40389w.m0;
             if (a0Var != null) {
                 a0Var.setOpened(false);
             }
@@ -69,7 +69,7 @@ public abstract class w extends FrameLayout {
             this.f18607a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f18607a.setInterpolator(er.f34420f);
+            this.f18607a.setInterpolator(er.f34419f);
         }
         this.f18607a.start();
     }

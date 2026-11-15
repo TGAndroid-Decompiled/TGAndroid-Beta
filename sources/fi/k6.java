@@ -73,7 +73,7 @@ public class k6 {
         if (gjVar == null) {
             return 0L;
         }
-        long j3 = gjVar.f23817k.date;
+        long j3 = gjVar.f23819k.date;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(j3 * 1000);
         return (calendar.get(2) * 100) + (calendar.get(1) * 10000) + calendar.get(5);
@@ -81,8 +81,8 @@ public class k6 {
 
     public static boolean e(gj gjVar, boolean z10, boolean z11) {
         if (gjVar != null && gjVar.x4()) {
-            if (!z10 || !gj.S3(gjVar.f23817k)) {
-                if ((z11 && gj.L4(gjVar.f23817k)) || (gjVar.f23822l.media instanceof TLRPC.TL_messageMediaUnsupported)) {
+            if (!z10 || !gj.S3(gjVar.f23819k)) {
+                if ((z11 && gj.L4(gjVar.f23819k)) || (gjVar.f23824l.media instanceof TLRPC.TL_messageMediaUnsupported)) {
                     return true;
                 }
                 return false;
@@ -276,7 +276,7 @@ public class k6 {
                             this.f11957w = false;
                             p(Utilities.j(size2, 50, 10), true);
                         }
-                    } else if (z11 && z12 && ((gjVar = (gj) hashMap.get(Integer.valueOf(storyItem2.f28290id))) == null || z10 || (storyItem = gjVar.f23822l) == null || (storyItem != storyItem2 && (storyItem.f28290id != storyItem2.f28290id || storyItem.media != storyItem2.media || !TextUtils.equals(storyItem.caption, storyItem2.caption))))) {
+                    } else if (z11 && z12 && ((gjVar = (gj) hashMap.get(Integer.valueOf(storyItem2.f28290id))) == null || z10 || (storyItem = gjVar.f23824l) == null || (storyItem != storyItem2 && (storyItem.f28290id != storyItem2.f28290id || storyItem.media != storyItem2.media || !TextUtils.equals(storyItem.caption, storyItem2.caption))))) {
                         i5.c.r(storyItem2.f28290id, new StringBuilder("StoriesList update story "));
                         hashMap.put(Integer.valueOf(storyItem2.f28290id), y(storyItem2));
                     }
@@ -308,7 +308,7 @@ public class k6 {
             Integer num = (Integer) obj;
             num.getClass();
             gj gjVar = (gj) this.f11945j.get(num);
-            if (gjVar != null && (storyItem = gjVar.f23822l) != null) {
+            if (gjVar != null && (storyItem = gjVar.f23824l) != null) {
                 if (storyItem.albums != null) {
                     hashSet = new HashSet(storyItem.albums);
                 } else {
@@ -386,7 +386,7 @@ public class k6 {
             while (i7 < size) {
                 Object obj = arrayList4.get(i7);
                 i7++;
-                arrayList3.add(Integer.valueOf(((gj) obj).f23822l.f28290id));
+                arrayList3.add(Integer.valueOf(((gj) obj).f23824l.f28290id));
             }
             arrayList2.add(arrayList3);
             return arrayList2;
@@ -433,7 +433,7 @@ public class k6 {
         }
         w();
         vr a02 = vr.a0(this.f11940c);
-        a02.f27220a.c(new i6(this, a02, 1));
+        a02.f27219a.c(new i6(this, a02, 1));
     }
 
     public boolean k() {
@@ -562,7 +562,7 @@ public class k6 {
         if (!this.f11955t && !this.f11956u && !this.f11957w) {
             this.f11955t = true;
             vr a02 = vr.a0(this.f11940c);
-            a02.f27220a.c(new i6(this, a02, 0));
+            a02.f27219a.c(new i6(this, a02, 0));
         }
     }
 
@@ -628,7 +628,7 @@ public class k6 {
         ArrayList arrayList2 = new ArrayList(this.f11943g);
         c(arrayList, true, true);
         vr a02 = vr.a0(this.f11940c);
-        a02.f27220a.c(new androidx.car.app.utils.a(this, arrayList, a02, arrayList2, 15));
+        a02.f27219a.c(new ai.r(this, arrayList, a02, arrayList2, 16));
     }
 
     public final gj y(TL_stories.StoryItem storyItem) {

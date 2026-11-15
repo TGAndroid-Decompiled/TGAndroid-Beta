@@ -1,19 +1,19 @@
 package bi;
 
-import di.m8;
+import di.l8;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.m10;
 import org.telegram.messenger.np;
 import org.telegram.ui.Components.m60;
 public final class d6 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.q0 f3443a;
-    public final long f3444b;
-    public final e6 f3445c;
+    public final org.telegram.ui.ActionBar.q0 f3446a;
+    public final long f3447b;
+    public final e6 f3448c;
 
     public d6(e6 e6Var, org.telegram.ui.ActionBar.q0 q0Var, long j3) {
-        this.f3445c = e6Var;
-        this.f3443a = q0Var;
-        this.f3444b = j3;
+        this.f3448c = e6Var;
+        this.f3446a = q0Var;
+        this.f3447b = j3;
     }
 
     @Override
@@ -21,17 +21,17 @@ public final class d6 extends org.telegram.ui.ActionBar.j {
         boolean w10;
         org.telegram.ui.ActionBar.z0 z0Var;
         org.telegram.ui.ActionBar.z0 z0Var2;
-        e6 e6Var = this.f3445c;
-        m8 m8Var = e6Var.U1;
+        e6 e6Var = this.f3448c;
+        l8 l8Var = e6Var.U1;
         if (i7 == 1) {
             m60 m60Var = e6Var.Z1;
             if (m60Var != null) {
                 m60Var.u();
             }
-            m60 F = m60.F(e6Var.f29685c, e6Var.J0, this.f3443a);
+            m60 F = m60.F(e6Var.f29685c, e6Var.J0, this.f3446a);
             e6Var.Z1 = F;
             long e10 = m10.i(e6Var.f29679a).e();
-            long j3 = this.f3444b;
+            long j3 = this.f3447b;
             if (j3 == e10) {
                 w10 = true;
             } else if (j3 >= 0) {
@@ -64,14 +64,14 @@ public final class d6 extends org.telegram.ui.ActionBar.j {
             }
             c6 c6Var = new c6(this, z0Var3, h, h7, h10, h11, w10, z0Var, z0Var2);
             c6Var.run();
-            z0Var3.setOnClickListener(new ai.t2(6, this, c6Var));
-            i4.j(h, m8Var, c6Var, 1);
-            i4.j(h7, m8Var, c6Var, 2);
-            i4.j(h10, m8Var, c6Var, 4);
-            i4.j(h11, m8Var, c6Var, 8);
+            z0Var3.setOnClickListener(new ai.v2(6, this, c6Var));
+            i4.j(h, l8Var, c6Var, 1);
+            i4.j(h7, l8Var, c6Var, 2);
+            i4.j(h10, l8Var, c6Var, 4);
+            i4.j(h11, l8Var, c6Var, 8);
             if (w10) {
-                i4.j(z0Var, m8Var, c6Var, 256);
-                i4.j(z0Var2, m8Var, c6Var, 512);
+                i4.j(z0Var, l8Var, c6Var, 256);
+                i4.j(z0Var2, l8Var, c6Var, 512);
             }
             F.Y = true;
             F.J = false;

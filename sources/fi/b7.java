@@ -52,7 +52,7 @@ public final class b7 implements e9 {
             f9Var.h = iArr[0];
             f9Var.f11716i = iArr[1] - this.f11575s;
         } else if (view instanceof t9) {
-            f9Var.h = ((t9) view).f39612f3;
+            f9Var.h = ((t9) view).f39610f3;
             f9Var.f11716i = (view.getMeasuredHeight() - f9Var.f11715g.getPaddingBottom()) - this.f11575s;
         } else {
             f9Var.h = view.getPaddingTop();
@@ -122,11 +122,11 @@ public final class b7 implements e9 {
             return;
         }
         if (this.d) {
-            s6 P1 = np.s1(m10.f24934t0).P1();
+            s6 P1 = np.s1(m10.f24940t0).P1();
             ArrayList arrayList2 = P1.h;
             P1.v(arrayList2);
             Collections.sort(arrayList2, P1.J);
-            ns.f(P1.f12319a).k(ns.f25591v5, new Object[0]);
+            ns.f(P1.f12319a).k(ns.f25592v5, new Object[0]);
         }
         g3Var.run();
     }
@@ -216,7 +216,7 @@ public final class b7 implements e9 {
                     org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) childAt;
                     if (t0Var.getMessageObject().e1() == i7) {
                         f9Var.f11710a = childAt;
-                        if (t0Var.getMessageObject().f23817k.media.storyItem.noforwards) {
+                        if (t0Var.getMessageObject().f23819k.media.storyItem.noforwards) {
                             f9Var.f11711b = t0Var.getPhotoImage();
                         } else {
                             f9Var.f11712c = t0Var.getPhotoImage();
@@ -229,7 +229,7 @@ public final class b7 implements e9 {
                 } else if ((childAt instanceof org.telegram.ui.Cells.n7) && uj0Var != null) {
                     org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) childAt;
                     gj messageObject = n7Var.getMessageObject();
-                    if ((n7Var.getStyle() == 1 && i10 == 0) || (messageObject != null && messageObject.x4() && messageObject.e1() == i10 && messageObject.f23822l.dialogId == j3)) {
+                    if ((n7Var.getStyle() == 1 && i10 == 0) || (messageObject != null && messageObject.x4() && messageObject.e1() == i10 && messageObject.f23824l.dialogId == j3)) {
                         zi0 fastScroll = uj0Var.getFastScroll();
                         int[] iArr = new int[2];
                         if (fastScroll != null) {

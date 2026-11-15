@@ -60,7 +60,7 @@ public abstract class va extends cb {
     public void setTimer() {
         qb qbVar = new qb(getContext(), this.resourcesProvider);
         this.timerView = qbVar;
-        qbVar.f38606b = 5000L;
+        qbVar.f38604b = 5000L;
         addView(qbVar, c8.ja.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

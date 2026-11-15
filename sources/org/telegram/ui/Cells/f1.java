@@ -67,7 +67,7 @@ public final class f1 {
                         c0Var.f30078s.setHotspot(f11, N1);
                         c0Var.f30078s.setState(q1Var.N2);
                         c0Var.b(!c0Var.f30072m);
-                        q1Var.postDelayed(new ai.v0(this, q1Var.N5, 20), ViewConfiguration.getLongPressTimeout() - 1);
+                        q1Var.postDelayed(new ai.w0(this, q1Var.N5, 20), ViewConfiguration.getLongPressTimeout() - 1);
                         return true;
                     }
                 }
@@ -80,7 +80,7 @@ public final class f1 {
                         yVar2.setState(StateSet.NOTHING);
                     }
                     c0Var2.b(false);
-                    if (q1Var.Q5.f23846r1) {
+                    if (q1Var.Q5.f23848r1) {
                         Toast.makeText(q1Var.getContext(), hd.M0(2131748530, null), 1).show();
                     } else {
                         l1 l1Var = q1Var.Sa;

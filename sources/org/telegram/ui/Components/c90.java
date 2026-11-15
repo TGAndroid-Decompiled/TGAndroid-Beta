@@ -1,33 +1,102 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-public final class c90 extends g.p {
-    public final i90 f33530c;
+public final class c90 extends oy {
+    public final nt0 X;
+    public final j90 Y;
 
-    public c90(i90 i90Var) {
-        this.f33530c = i90Var;
+    public c90(j90 j90Var) {
+        super(100, false);
+        this.Y = j90Var;
+        this.X = new Object();
     }
 
     @Override
-    public final int i(int i7) {
-        i90 i90Var = this.f33530c;
-        jg.h1 h1Var = i90Var.f35523f;
-        if (i7 != 0) {
-            int i10 = i7 - 1;
-            Object J = h1Var.J(i10);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (h1Var.I() != null || h1Var.V != null) {
-                i7 = i10;
-            }
-            b90 b90Var = i90Var.d;
-            b90Var.B1();
-            return b90Var.R.get(i7);
+    public final int A() {
+        j90 j90Var = this.Y;
+        if (j90Var.f35923f.I() == null && j90Var.f35923f.V == null) {
+            return B();
         }
-        return 100;
+        return B() - 1;
+    }
+
+    @Override
+    public final nt0 D1(int i7) {
+        TLRPC.PhotoSize w10;
+        float f10;
+        nt0 nt0Var = this.X;
+        int i10 = 0;
+        nt0Var.f37704c = false;
+        j90 j90Var = this.Y;
+        if (i7 == 0) {
+            nt0Var.f37702a = this.f58631m;
+            nt0Var.f37703b = j90Var.f35922e.h;
+            nt0Var.f37704c = true;
+            return nt0Var;
+        }
+        int i11 = i7 - 1;
+        if (j90Var.f35923f.I() == null && j90Var.f35923f.V == null) {
+            i7 = i11;
+        }
+        nt0Var.f37702a = 0.0f;
+        nt0Var.f37703b = 0.0f;
+        Object J = j90Var.f35923f.J(i7);
+        if (J instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
+            TLRPC.Document document = botInlineResult.document;
+            if (document != null) {
+                TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
+                float f11 = 100.0f;
+                if (w11 != null) {
+                    f10 = w11.f28076w;
+                } else {
+                    f10 = 100.0f;
+                }
+                nt0Var.f37702a = f10;
+                if (w11 != null) {
+                    f11 = w11.h;
+                }
+                nt0Var.f37703b = f11;
+                while (i10 < botInlineResult.document.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i10);
+                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        nt0Var.f37702a = documentAttribute.f28058w;
+                        nt0Var.f37703b = documentAttribute.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.content != null) {
+                while (i10 < botInlineResult.content.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i10);
+                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        nt0Var.f37702a = documentAttribute2.f28058w;
+                        nt0Var.f37703b = documentAttribute2.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.thumb != null) {
+                while (i10 < botInlineResult.thumb.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i10);
+                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        nt0Var.f37702a = documentAttribute3.f28058w;
+                        nt0Var.f37703b = documentAttribute3.h;
+                        break;
+                    }
+                }
+            } else {
+                TLRPC.Photo photo = botInlineResult.photo;
+                if (photo != null && (w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
+                    nt0Var.f37702a = w10.f28076w;
+                    nt0Var.f37703b = w10.h;
+                }
+            }
+        }
+        return nt0Var;
     }
 }

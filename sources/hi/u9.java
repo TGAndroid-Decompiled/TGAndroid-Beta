@@ -31,7 +31,7 @@ public final class u9 extends m5 {
         saVar.f15107w1.L0(false);
         saVar.f15048d1.clearAnimation();
         ViewPropertyAnimator duration = saVar.f15048d1.animate().alpha(0.0f).setDuration(180L);
-        er erVar = er.f34421g;
+        er erVar = er.f34420g;
         duration.setInterpolator(erVar).start();
         if (saVar.f15060h0 != 2) {
             saVar.Z0.clearAnimation();
@@ -47,12 +47,12 @@ public final class u9 extends m5 {
             saVar.f15086q1.setVisibility(0);
             saVar.f15086q1.setAlpha(0.0f);
             saVar.f15086q1.clearAnimation();
-            saVar.f15086q1.animate().alpha(1.0f).setDuration(180L).setInterpolator(er.f34421g).start();
+            saVar.f15086q1.animate().alpha(1.0f).setDuration(180L).setInterpolator(er.f34420g).start();
             return;
         }
         saVar.f15086q1.a(false, z11);
         saVar.f15086q1.clearAnimation();
-        ViewPropertyAnimator interpolator = saVar.f15086q1.animate().alpha(0.0f).withEndAction(new e1(this, 15)).setDuration(180L).setInterpolator(er.f34421g);
+        ViewPropertyAnimator interpolator = saVar.f15086q1.animate().alpha(0.0f).withEndAction(new e1(this, 15)).setDuration(180L).setInterpolator(er.f34420g);
         if (z11) {
             j3 = 500;
         } else {
@@ -92,7 +92,7 @@ public final class u9 extends m5 {
             f10 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f10).setDuration(180L);
-        er erVar = er.f34421g;
+        er erVar = er.f34420g;
         duration.setInterpolator(erVar).start();
         saVar.Z0.clearAnimation();
         ViewPropertyAnimator animate2 = saVar.Z0.animate();
@@ -135,11 +135,11 @@ public final class u9 extends m5 {
         saVar.f15048d1.f14623f.d();
         saVar.k0(0, false, true);
         tg.j jVar = this.f14690t0;
-        if ((jVar instanceof tg.o2) && !this.f14692u0) {
-            tg.o2 o2Var = (tg.o2) jVar;
+        if ((jVar instanceof tg.n2) && !this.f14692u0) {
+            tg.n2 n2Var = (tg.n2) jVar;
             this.f14692u0 = true;
-            o2Var.q();
-            View focusedView = o2Var.getFocusedView();
+            n2Var.q();
+            View focusedView = n2Var.getFocusedView();
             focusedView.requestFocus();
             org.telegram.messenger.g0.J3(focusedView);
         }

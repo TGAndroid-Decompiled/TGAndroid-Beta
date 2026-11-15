@@ -82,10 +82,10 @@ public final class z7 extends View implements org.telegram.ui.Cells.q9 {
         Layout.Alignment alignment;
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i7).setBreakStrategy(0).setHyphenationFrequency(0);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 alignment = ou0.a();
             } else {
-                Layout.Alignment[] alignmentArr = ou0.f38088a;
+                Layout.Alignment[] alignmentArr = ou0.f38086a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -108,7 +108,7 @@ public final class z7 extends View implements org.telegram.ui.Cells.q9 {
         if (charSequence2 == null || !TextUtils.equals(charSequence2, charSequence)) {
             z12 = false;
         } else {
-            z12 = si.K(si.b0(m10.f24934t0).W(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), si.b0(m10.f24934t0).W(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
+            z12 = si.K(si.b0(m10.f24940t0).W(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), si.b0(m10.f24940t0).W(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
         }
         if (z12) {
             y7 y7Var = y7VarArr[0];
@@ -134,7 +134,7 @@ public final class z7 extends View implements org.telegram.ui.Cells.q9 {
             y7 y7Var4 = y7VarArr[1];
             y7 y7Var5 = y7VarArr[0];
             y7Var4.f12565q = y7Var5.f12565q;
-            y7Var4.f12566r.e(true, y7Var5.f12566r.f39903c);
+            y7Var4.f12566r.e(true, y7Var5.f12566r.f39900c);
             y7VarArr[0].g(charSequence, v7Var, v7Var2);
             y7 y7Var6 = y7VarArr[0];
             y7Var6.f12565q = z10;
@@ -148,9 +148,9 @@ public final class z7 extends View implements org.telegram.ui.Cells.q9 {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.H, 0.0f);
             this.J = ofFloat;
             ofFloat.addUpdateListener(new ah.h(this, 24));
-            this.J.addListener(new ai.i0(this, 17));
+            this.J.addListener(new ai.j0(this, 17));
             this.J.setDuration(180L);
-            this.J.setInterpolator(er.f34421g);
+            this.J.setInterpolator(er.f34420g);
             this.J.start();
             return;
         }

@@ -3,20 +3,20 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ku extends g.p {
-    public final wu f36627c;
+    public final wu f36615c;
 
     public ku(wu wuVar) {
-        this.f36627c = wuVar;
+        this.f36615c = wuVar;
     }
 
     @Override
     public final int i(int i7) {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         TLRPC.StickerSet stickerSet;
-        wu wuVar = this.f36627c;
-        v4.s sVar = wuVar.f41457y1;
-        iu iuVar = wuVar.f41448p1;
-        hi.v vVar = wuVar.f41450r1;
+        wu wuVar = this.f36615c;
+        v4.s sVar = wuVar.f41460y1;
+        iu iuVar = wuVar.f41451p1;
+        hi.v vVar = wuVar.f41453r1;
         if (vVar.getAdapter() != null && vVar.getAdapter().d(i7) == 1) {
             int i10 = 0;
             int i11 = 0;

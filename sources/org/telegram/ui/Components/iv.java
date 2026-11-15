@@ -7,17 +7,17 @@ import android.util.Pair;
 import android.view.View;
 import java.util.ArrayList;
 public final class iv implements ri.m, ij0, uk0, te.b {
-    public final int f35739a;
-    public final ly f35740b;
+    public final int f35726a;
+    public final ly f35727b;
 
     public iv(ly lyVar, int i7) {
-        this.f35739a = i7;
-        this.f35740b = lyVar;
+        this.f35726a = i7;
+        this.f35727b = lyVar;
     }
 
     @Override
     public void G(int i7, float f10, float f11, te.c cVar) {
-        this.f35740b.S();
+        this.f35727b.S();
     }
 
     @Override
@@ -28,18 +28,18 @@ public final class iv implements ri.m, ij0, uk0, te.b {
         int i13;
         int i14;
         xx xxVar;
-        switch (this.f35739a) {
+        switch (this.f35726a) {
             case 2:
-                ly lyVar = this.f35740b;
+                ly lyVar = this.f35727b;
                 rx rxVar = lyVar.f36959j0;
                 int i15 = lyVar.f36941d1;
                 qx qxVar = lyVar.f36972o0;
                 tx txVar = lyVar.f36965l0;
-                if (i7 != lyVar.f36989t0 || !qxVar.f38790y.isEmpty()) {
+                if (i7 != lyVar.f36989t0 || !qxVar.f38788y.isEmpty()) {
                     lyVar.f36956i0.C0();
                     lyVar.f36978q0.k(i7, 0);
                     if (i7 != lyVar.f36986s0 && i7 != lyVar.f36989t0) {
-                        ArrayList arrayList = org.telegram.messenger.np.s1(i15).f25249c4;
+                        ArrayList arrayList = org.telegram.messenger.np.s1(i15).f25252c4;
                         lyVar.f36962k0.H((String) arrayList.get(i7 - lyVar.f36992u0));
                         int i16 = i7 - lyVar.f36992u0;
                         if (i16 > 0) {
@@ -62,7 +62,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                             rxVar.h1(i10, 0);
                         }
                         if (i7 == lyVar.f36989t0) {
-                            ArrayList arrayList2 = org.telegram.messenger.np.s1(i15).f25249c4;
+                            ArrayList arrayList2 = org.telegram.messenger.np.s1(i15).f25252c4;
                             if (!arrayList2.isEmpty()) {
                                 txVar.a((String) arrayList2.get(0), true);
                             }
@@ -73,7 +73,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                 }
                 return;
             default:
-                ly lyVar2 = this.f35740b;
+                ly lyVar2 = this.f35727b;
                 yv yvVar = lyVar2.H0;
                 ArrayList arrayList3 = lyVar2.f36944e1;
                 zv zvVar = lyVar2.C0;
@@ -84,7 +84,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                         lyVar2.f36993u1.o(new x31(lyVar2.getContext(), new gw(lyVar2), lyVar2.f37008y1, lyVar2.f37011z1, lyVar2.A1, null, lyVar2.f36931a2));
                         return;
                     }
-                    if (yvVar != null && (xxVar = yvVar.f42179r) != null && xxVar.getSelectedCategory() != null) {
+                    if (yvVar != null && (xxVar = yvVar.f42181r) != null && xxVar.getSelectedCategory() != null) {
                         yvVar.c(null, false);
                         xxVar.I1(null);
                     }
@@ -166,7 +166,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
         int i14;
         float f11;
         boolean z12;
-        ly lyVar = this.f35740b;
+        ly lyVar = this.f35727b;
         int i15 = lyVar.D1;
         yw ywVar = lyVar.Q;
         int[] iArr = lyVar.E1;
@@ -187,7 +187,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
             } else if (uxVar.getSpan() == null && (str = (String) uxVar.getTag()) != null) {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
                 if (!uxVar.f40181c) {
-                    str2 = (String) org.telegram.messenger.j6.f24527j.get(replace);
+                    str2 = (String) org.telegram.messenger.j6.f24532j.get(replace);
                 } else {
                     str2 = null;
                 }
@@ -196,24 +196,24 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                 } else {
                     z10 = false;
                 }
-                if (z10 || org.telegram.messenger.k6.f24648l.contains(replace)) {
+                if (z10 || org.telegram.messenger.k6.f24651l.contains(replace)) {
                     lyVar.S1 = uxVar;
                     lyVar.V1 = lyVar.T1;
                     lyVar.W1 = lyVar.U1;
                     if (z10) {
                         replace = ly.g(replace, str2);
                     } else {
-                        int indexOf = org.telegram.messenger.h4.f24053a.indexOf(str2) + 1;
-                        cu cuVar = duVar.f34069c;
-                        int[] iArr2 = cuVar.f33678n;
+                        int indexOf = org.telegram.messenger.h4.f24056a.indexOf(str2) + 1;
+                        cu cuVar = duVar.f34056c;
+                        int[] iArr2 = cuVar.f33680n;
                         if (iArr2[0] != indexOf) {
                             iArr2[0] = indexOf;
                             cuVar.invalidate();
                         }
                     }
                     duVar.getClass();
-                    cu cuVar2 = duVar.f34069c;
-                    int i16 = duVar.f34070e;
+                    cu cuVar2 = duVar.f34056c;
+                    int i16 = duVar.f34057e;
                     if (org.telegram.messenger.h4.a(replace, null, null) != null) {
                         z11 = true;
                     } else {
@@ -221,23 +221,23 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                     }
                     duVar.d = z11;
                     int i17 = 3;
-                    Drawable[] drawableArr = cuVar2.f33674b;
-                    int[] iArr3 = cuVar2.f33678n;
-                    cuVar2.f33677f = z11;
-                    cuVar2.f33676e = replace;
+                    Drawable[] drawableArr = cuVar2.f33676b;
+                    int[] iArr3 = cuVar2.f33680n;
+                    cuVar2.f33679f = z11;
+                    cuVar2.f33678e = replace;
                     int i18 = 5;
                     if (z11) {
                         drawableArr[0] = org.telegram.messenger.h4.a(replace, -1, -1);
-                        drawableArr[1] = org.telegram.messenger.h4.a(cuVar2.f33676e, 0, -2);
-                        drawableArr[2] = org.telegram.messenger.h4.a(cuVar2.f33676e, 1, -2);
-                        drawableArr[3] = org.telegram.messenger.h4.a(cuVar2.f33676e, 2, -2);
-                        drawableArr[4] = org.telegram.messenger.h4.a(cuVar2.f33676e, 3, -2);
-                        drawableArr[5] = org.telegram.messenger.h4.a(cuVar2.f33676e, 4, -2);
-                        drawableArr[6] = org.telegram.messenger.h4.a(cuVar2.f33676e, -2, 0);
-                        drawableArr[7] = org.telegram.messenger.h4.a(cuVar2.f33676e, -2, 1);
-                        drawableArr[8] = org.telegram.messenger.h4.a(cuVar2.f33676e, -2, 2);
-                        drawableArr[9] = org.telegram.messenger.h4.a(cuVar2.f33676e, -2, 3);
-                        drawableArr[10] = org.telegram.messenger.h4.a(cuVar2.f33676e, -2, 4);
+                        drawableArr[1] = org.telegram.messenger.h4.a(cuVar2.f33678e, 0, -2);
+                        drawableArr[2] = org.telegram.messenger.h4.a(cuVar2.f33678e, 1, -2);
+                        drawableArr[3] = org.telegram.messenger.h4.a(cuVar2.f33678e, 2, -2);
+                        drawableArr[4] = org.telegram.messenger.h4.a(cuVar2.f33678e, 3, -2);
+                        drawableArr[5] = org.telegram.messenger.h4.a(cuVar2.f33678e, 4, -2);
+                        drawableArr[6] = org.telegram.messenger.h4.a(cuVar2.f33678e, -2, 0);
+                        drawableArr[7] = org.telegram.messenger.h4.a(cuVar2.f33678e, -2, 1);
+                        drawableArr[8] = org.telegram.messenger.h4.a(cuVar2.f33678e, -2, 2);
+                        drawableArr[9] = org.telegram.messenger.h4.a(cuVar2.f33678e, -2, 3);
+                        drawableArr[10] = org.telegram.messenger.h4.a(cuVar2.f33678e, -2, 4);
                         Pair c10 = org.telegram.messenger.h4.c(replace);
                         if (c10 != null) {
                             int intValue = ((Integer) c10.first).intValue();
@@ -261,7 +261,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                     } else {
                         for (int i19 = 0; i19 < 6; i19++) {
                             if (i19 != 0) {
-                                str3 = ly.g(replace, (String) org.telegram.messenger.h4.f24053a.get(i19 - 1));
+                                str3 = ly.g(replace, (String) org.telegram.messenger.h4.f24056a.get(i19 - 1));
                             } else {
                                 str3 = replace;
                             }
@@ -306,7 +306,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                     int i22 = (i12 * i16) + L3;
                     uxVar.getLocationOnScreen(iArr);
                     if (!duVar.d) {
-                        int i23 = cuVar2.f33678n[0];
+                        int i23 = cuVar2.f33680n[0];
                         int i24 = i23 * i15;
                         int i25 = i23 * 4;
                         if (!org.telegram.messenger.g0.Q1()) {
@@ -320,7 +320,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
                         i13 = org.telegram.messenger.i20.D(5.0f, iArr[0] - i13, i13);
                     } else {
                         int i26 = (iArr[0] - i13) + L2;
-                        Point point = org.telegram.messenger.g0.f23609q;
+                        Point point = org.telegram.messenger.g0.f23611q;
                         if (i26 > point.x - org.telegram.messenger.g0.L(5.0f)) {
                             i13 += ((iArr[0] - i13) + L2) - (point.x - org.telegram.messenger.g0.L(5.0f));
                         }
@@ -351,7 +351,7 @@ public final class iv implements ri.m, ij0, uk0, te.b {
 
     @Override
     public void l(int i7) {
-        ly lyVar = this.f35740b;
+        ly lyVar = this.f35727b;
         dh.g gVar = lyVar.f36964k2;
         if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
             if (c8.zc.a(i7, 4)) {

@@ -16,9 +16,9 @@ public final class o1 {
     }
 
     public o1(bg.f fVar) {
-        this.f10289a = fVar.f3230a;
-        this.f10290b = fVar.f3231b;
-        this.f10291c = fVar.f3232c;
+        this.f10289a = fVar.f3233a;
+        this.f10290b = fVar.f3234b;
+        this.f10291c = fVar.f3235c;
     }
 
     public final boolean equals(Object obj) {

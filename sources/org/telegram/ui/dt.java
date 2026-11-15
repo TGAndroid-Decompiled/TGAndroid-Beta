@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class dt extends FrameLayout {
-    public final ImageView f46485a;
-    public final TextView f46486b;
-    public final ImageView f46487c;
+    public final ImageView f46475a;
+    public final TextView f46476b;
+    public final ImageView f46477c;
     public final TextView d;
-    public boolean f46488e;
+    public boolean f46478e;
 
     public dt(nt ntVar, Context context) {
         super(context);
@@ -22,9 +22,9 @@ public final class dt extends FrameLayout {
         int i10;
         org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, this, null);
         ImageView imageView = new ImageView(context);
-        this.f46485a = imageView;
+        this.f46475a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -33,7 +33,7 @@ public final class dt extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setWeightSum(2.0f);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -41,12 +41,12 @@ public final class dt extends FrameLayout {
         addView(linearLayout, c8.ja.i(-1.0f, -2.0f, i10 | 16, 64.0f, 0.0f, 20.0f, 0.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             linearLayout2.setGravity(5);
         }
         linearLayout2.setWeightSum(2.0f);
         TextView textView = new TextView(context);
-        this.f46486b = textView;
+        this.f46476b = textView;
         textView.setTextSize(1, 16.0f);
         int i11 = org.telegram.ui.ActionBar.j6.G6;
         org.telegram.ui.ActionBar.q6.U(textView, i11, null);
@@ -54,13 +54,13 @@ public final class dt extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         ImageView imageView2 = new ImageView(context);
-        this.f46487c = imageView2;
+        this.f46477c = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView2.setImageResource(2131230871);
         org.telegram.ui.ActionBar.q6.s(imageView2, i11, null, PorterDuff.Mode.MULTIPLY);
         imageView2.setTranslationY(org.telegram.messenger.g0.L(1.0f));
         imageView2.setVisibility(8);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             linearLayout2.addView(imageView2, c8.ja.t(16, 16, 21, 3, 0, 0, 0));
             linearLayout2.addView(textView, c8.ja.r(-2, -2, 21));
         } else {
@@ -71,8 +71,8 @@ public final class dt extends FrameLayout {
         this.d = textView2;
         textView2.setTextSize(1, 16.0f);
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29049o6, null);
-        textView2.setGravity(org.telegram.messenger.hd.f24101a0 ? 3 : 5);
-        if (org.telegram.messenger.hd.f24101a0) {
+        textView2.setGravity(org.telegram.messenger.hd.f24104a0 ? 3 : 5);
+        if (org.telegram.messenger.hd.f24104a0) {
             linearLayout.addView(textView2, c8.ja.r(-2, -2, 19));
             linearLayout.addView(linearLayout2, c8.ja.p(0, -2, 2.0f, 21));
             return;
@@ -86,8 +86,8 @@ public final class dt extends FrameLayout {
         float L;
         int i7;
         super.onDraw(canvas);
-        if (this.f46488e) {
-            if (org.telegram.messenger.hd.f24101a0) {
+        if (this.f46478e) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(64.0f);
@@ -95,7 +95,7 @@ public final class dt extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(64.0f);
             } else {
                 i7 = 0;

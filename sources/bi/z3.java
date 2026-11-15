@@ -5,16 +5,16 @@ import android.graphics.Rect;
 import android.view.View;
 import android.widget.ScrollView;
 public final class z3 extends ScrollView {
-    public final int f4026a;
+    public final int f4029a;
 
     public z3(Context context, int i7) {
         super(context);
-        this.f4026a = i7;
+        this.f4029a = i7;
     }
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f4026a) {
+        switch (this.f4029a) {
             case 0:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
@@ -22,7 +22,7 @@ public final class z3 extends ScrollView {
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i10), Math.min(org.telegram.messenger.g0.f23609q.y * 0.35f, org.telegram.messenger.g0.L(400.0f))), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i10), Math.min(org.telegram.messenger.g0.f23611q.y * 0.35f, org.telegram.messenger.g0.L(400.0f))), View.MeasureSpec.getMode(i10)));
                 return;
             case 3:
             default:
@@ -39,7 +39,7 @@ public final class z3 extends ScrollView {
 
     @Override
     public boolean onRequestFocusInDescendants(int i7, Rect rect) {
-        switch (this.f4026a) {
+        switch (this.f4029a) {
             case 3:
                 return false;
             default:
@@ -49,7 +49,7 @@ public final class z3 extends ScrollView {
 
     @Override
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f4026a) {
+        switch (this.f4029a) {
             case 3:
                 rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
                 rect.top = org.telegram.messenger.g0.L(20.0f) + rect.top;

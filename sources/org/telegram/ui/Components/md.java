@@ -4,27 +4,27 @@ import android.animation.ValueAnimator;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class md implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37224a = 0;
-    public final float f37225b;
-    public final Object f37226c;
+    public final int f37223a = 0;
+    public final float f37224b;
+    public final Object f37225c;
     public final Object d;
-    public final Object f37227e;
+    public final Object f37226e;
 
     public md(ChatActivityEnterView chatActivityEnterView, ig igVar, float f10, ChatActivityEnterView.RecordCircle recordCircle) {
-        this.f37226c = chatActivityEnterView;
+        this.f37225c = chatActivityEnterView;
         this.d = igVar;
-        this.f37225b = f10;
-        this.f37227e = recordCircle;
+        this.f37224b = f10;
+        this.f37226e = recordCircle;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         int currentColor;
-        int i7 = this.f37224a;
-        float f10 = this.f37225b;
-        Object obj = this.f37227e;
+        int i7 = this.f37223a;
+        float f10 = this.f37224b;
+        Object obj = this.f37226e;
         Object obj2 = this.d;
-        Object obj3 = this.f37226c;
+        Object obj3 = this.f37225c;
         switch (i7) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
@@ -34,11 +34,11 @@ public final class md implements ValueAnimator.AnimatorUpdateListener {
                 chatActivityEnterView.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 chatActivityEnterView.D5 = floatValue;
-                float interpolation = er.f34421g.getInterpolation(Utilities.i((floatValue - 60.0f) / 170.0f, 1.0f, 0.0f));
+                float interpolation = er.f34420g.getInterpolation(Utilities.i((floatValue - 60.0f) / 170.0f, 1.0f, 0.0f));
                 float f11 = chatActivityEnterView.E5;
                 float i11 = Utilities.i((floatValue - f11) / Math.max(60.0f, chatActivityEnterView.F5 - f11), 1.0f, 0.0f);
-                igVar.f35627w = interpolation;
-                igVar.f35628x = i11;
+                igVar.f35614w = interpolation;
+                igVar.f35615x = i11;
                 igVar.invalidate();
                 double radians = Math.toRadians(igVar.f());
                 chatActivityEnterView.f32321x5.R = ((float) Math.sin(radians)) * f10;
@@ -46,7 +46,7 @@ public final class md implements ValueAnimator.AnimatorUpdateListener {
                 float f12 = chatActivityEnterView.G5;
                 if (floatValue >= f12) {
                     float min = Math.min(1.0f, (floatValue - f12) / 260.0f);
-                    igVar.f35629y = min;
+                    igVar.f35616y = min;
                     igVar.invalidate();
                     chatActivityEnterView.s(min);
                 }
@@ -76,9 +76,9 @@ public final class md implements ValueAnimator.AnimatorUpdateListener {
     }
 
     public md(sg.v vVar, sg.m0 m0Var, sg.h hVar, float f10) {
-        this.f37226c = vVar;
+        this.f37225c = vVar;
         this.d = m0Var;
-        this.f37227e = hVar;
-        this.f37225b = f10;
+        this.f37226e = hVar;
+        this.f37224b = f10;
     }
 }

@@ -105,7 +105,7 @@ public final class a0 extends View implements z5 {
             textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
             this.J = size;
             CharSequence m10 = org.telegram.messenger.j6.m(this.f18177n, textPaint.getFontMetricsInt(), false, null, 0);
-            int i11 = (int) (org.telegram.messenger.g0.f23609q.x * 0.6f);
+            int i11 = (int) (org.telegram.messenger.g0.f23611q.x * 0.6f);
             StaticLayout c10 = ou0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
             this.f18178r = c10;
             if (c10.getLineCount() > 0) {
@@ -140,7 +140,7 @@ public final class a0 extends View implements z5 {
                 ch0Var.stop();
                 ch0Var.h = true;
                 if (z10) {
-                    i7 = ch0Var.f33577e[0];
+                    i7 = ch0Var.f33579e[0];
                 }
                 ch0Var.P(i7);
                 ch0Var.start();

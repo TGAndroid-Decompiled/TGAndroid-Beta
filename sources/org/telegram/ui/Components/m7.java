@@ -15,7 +15,7 @@ public final class m7 extends AnimatorListenerAdapter {
     public void onAnimationCancel(Animator animator) {
         switch (this.f37121a) {
             case 2:
-                this.f37122b.f41925w2 = null;
+                this.f37122b.f41917w2 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -27,13 +27,13 @@ public final class m7 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         switch (this.f37121a) {
             case 0:
-                this.f37122b.f41899g2 = false;
+                this.f37122b.f41891g2 = false;
                 return;
             case 1:
                 y7 y7Var = this.f37122b;
-                y7Var.f41896c2.setVisibility(4);
+                y7Var.f41888c2.setVisibility(4);
                 y7Var.d2.setImageBitmap(null);
-                y7Var.f41899g2 = false;
+                y7Var.f41891g2 = false;
                 return;
             default:
                 return;

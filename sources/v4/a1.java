@@ -63,7 +63,7 @@ public abstract class a1 {
             this.f58481b.getClass();
             if (RecyclerView.S(view) == this.f58480a) {
                 View view2 = this.f58484f;
-                b1 b1Var = recyclerView.f2822v0;
+                b1 b1Var = recyclerView.f2825v0;
                 g(view2, z0Var);
                 z0Var.a(recyclerView);
                 h();
@@ -73,7 +73,7 @@ public abstract class a1 {
             }
         }
         if (this.f58483e) {
-            b1 b1Var2 = recyclerView.f2822v0;
+            b1 b1Var2 = recyclerView.f2825v0;
             d(i7, i10, z0Var);
             if (z0Var.d >= 0) {
                 z10 = true;
@@ -81,7 +81,7 @@ public abstract class a1 {
             z0Var.a(recyclerView);
             if (z10 && this.f58483e) {
                 this.d = true;
-                recyclerView.f2819s0.a();
+                recyclerView.f2822s0.a();
             }
         }
     }
@@ -100,7 +100,7 @@ public abstract class a1 {
         }
         this.f58483e = false;
         f();
-        this.f58481b.f2822v0.f58500a = -1;
+        this.f58481b.f2825v0.f58500a = -1;
         this.f58484f = null;
         this.f58480a = -1;
         this.d = false;

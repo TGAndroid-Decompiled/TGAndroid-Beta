@@ -28,7 +28,7 @@ public final class o implements Runnable {
                 return;
             case 2:
                 if (actionBarLayout.f28325a && actionBarLayout.getLastFragment() != null && actionBarLayout.f28365s.getChildCount() == 0) {
-                    boolean z10 = org.telegram.messenger.r2.f26198a;
+                    boolean z10 = org.telegram.messenger.r2.f26206a;
                     a8.g(new RuntimeException(TextUtils.join(", ", actionBarLayout.f28359p1)), true);
                     actionBarLayout.X(true, true);
                     return;

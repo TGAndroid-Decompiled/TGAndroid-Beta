@@ -15,7 +15,7 @@ public final class fg0 extends org.telegram.ui.Components.sn {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         jg0 jg0Var = this.B0;
-        jg0Var.X.y0(jg0Var.f48337c0.getAvatarImageView().getX(), jg0Var.f48337c0.getAvatarImageView().getY(), jg0Var.f48337c0.getAvatarImageView().getWidth(), jg0Var.f48337c0.getAvatarImageView().getHeight());
+        jg0Var.X.y0(jg0Var.f48322c0.getAvatarImageView().getX(), jg0Var.f48322c0.getAvatarImageView().getY(), jg0Var.f48322c0.getAvatarImageView().getWidth(), jg0Var.f48322c0.getAvatarImageView().getHeight());
         if (jg0Var.Z) {
             canvas.save();
             canvas.scale(0.9f, 0.9f, jg0Var.X.r(), jg0Var.X.s());

@@ -2,15 +2,15 @@ package bi;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class j6 implements RequestDelegate {
-    public final int f3634a;
-    public final Object f3635b;
-    public final Object f3636c;
+    public final int f3637a;
+    public final Object f3638b;
+    public final Object f3639c;
     public final Object d;
 
     public j6(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3634a = i7;
-        this.f3635b = obj;
-        this.f3636c = obj2;
+        this.f3637a = i7;
+        this.f3638b = obj;
+        this.f3639c = obj2;
         this.d = obj3;
     }
 

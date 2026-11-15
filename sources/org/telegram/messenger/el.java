@@ -4,35 +4,35 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class el implements Runnable {
-    public final int f23320a;
-    public final is f23321b;
-    public final long f23322c;
+    public final int f23327a;
+    public final is f23328b;
+    public final long f23329c;
     public final int d;
-    public final int f23323e;
-    public final boolean f23324f;
+    public final int f23330e;
+    public final boolean f23331f;
 
     public el(np npVar, long j3, int i7, int i10, boolean z10, int i11) {
-        this.f23320a = i11;
-        this.f23321b = npVar;
-        this.f23322c = j3;
+        this.f23327a = i11;
+        this.f23328b = npVar;
+        this.f23329c = j3;
         this.d = i7;
-        this.f23323e = i10;
-        this.f23324f = z10;
+        this.f23330e = i10;
+        this.f23331f = z10;
     }
 
     @Override
     public final void run() {
         long j3;
         int i7;
-        int i10 = this.f23320a;
-        is isVar = this.f23321b;
+        int i10 = this.f23327a;
+        is isVar = this.f23328b;
         switch (i10) {
             case 0:
                 np npVar = (np) isVar;
                 a0.h hVar = npVar.R;
-                long j10 = this.f23322c;
+                long j10 = this.f23329c;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j10);
-                int i11 = this.f23323e;
+                int i11 = this.f23330e;
                 if (dialog != null) {
                     int i12 = dialog.unread_count;
                     int i13 = this.d;
@@ -60,7 +60,7 @@ public final class el implements Runnable {
                             so[] soVarArr = npVar.N;
                             if (i14 < soVarArr.length) {
                                 so soVar = soVarArr[i14];
-                                if (soVar != null && (soVar.f26547g & 64) != 0) {
+                                if (soVar != null && (soVar.f26557g & 64) != 0) {
                                     npVar.U4(null);
                                     npVar.getNotificationCenter().k(3, new Object[0]);
                                 } else {
@@ -73,7 +73,7 @@ public final class el implements Runnable {
                 } else {
                     j3 = j10;
                 }
-                if (!this.f23324f) {
+                if (!this.f23331f) {
                     long j11 = j3;
                     npVar.getNotificationsController().L(null, j11, 0, i11, false);
                     LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
@@ -88,21 +88,21 @@ public final class el implements Runnable {
                 npVar.getNotificationsController().J(longSparseIntArray2);
                 return;
             case 1:
-                g0.h3(new el((np) isVar, this.f23322c, this.d, this.f23323e, this.f23324f, 0));
+                g0.h3(new el((np) isVar, this.f23329c, this.d, this.f23330e, this.f23331f, 0));
                 return;
             default:
                 int i15 = ChatActivityEnterView.N6;
-                ((ChatActivityEnterView) isVar).k1(this.f23324f, this.d, this.f23323e, this.f23322c, false);
+                ((ChatActivityEnterView) isVar).k1(this.f23331f, this.d, this.f23330e, this.f23329c, false);
                 return;
         }
     }
 
     public el(ChatActivityEnterView chatActivityEnterView, boolean z10, int i7, int i10, long j3) {
-        this.f23320a = 2;
-        this.f23321b = chatActivityEnterView;
-        this.f23324f = z10;
+        this.f23327a = 2;
+        this.f23328b = chatActivityEnterView;
+        this.f23331f = z10;
         this.d = i7;
-        this.f23323e = i10;
-        this.f23322c = j3;
+        this.f23330e = i10;
+        this.f23329c = j3;
     }
 }

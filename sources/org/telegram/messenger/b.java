@@ -15,8 +15,8 @@ public final class b implements org.telegram.ui.Components.c00 {
     public b(ai.o oVar) {
         boolean z10;
         this.d = oVar;
-        r0 r0Var = r0.f26175f;
-        if (r0Var.f26176a > 0) {
+        r0 r0Var = r0.f26183f;
+        if (r0Var.f26184a > 0) {
             z10 = true;
         } else {
             z10 = false;

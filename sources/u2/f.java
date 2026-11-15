@@ -85,7 +85,7 @@ public final class f extends MediaCodec.Callback {
         synchronized (this.f57747a) {
             this.d.a(i7);
             cf cfVar = this.f57759o;
-            if (cfVar != null && (i0Var = ((r) cfVar.f33543a).Z) != null) {
+            if (cfVar != null && (i0Var = ((r) cfVar.f33545a).Z) != null) {
                 i0Var.a();
             }
         }
@@ -105,7 +105,7 @@ public final class f extends MediaCodec.Callback {
                 this.f57750e.a(i7);
                 this.f57751f.add(bufferInfo);
                 cf cfVar = this.f57759o;
-                if (cfVar != null && (i0Var = ((r) cfVar.f33543a).Z) != null) {
+                if (cfVar != null && (i0Var = ((r) cfVar.f33545a).Z) != null) {
                     i0Var.a();
                 }
             } catch (Throwable th2) {

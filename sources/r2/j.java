@@ -10,7 +10,7 @@ import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.q1;
 import org.telegram.ui.ActionBar.t1;
 import sg.y;
-import tg.f2;
+import tg.e2;
 import x2.p1;
 public final class j implements g9.k, y, t3.g, OnFailureListener, u9.e, ua.a, q1 {
     public final int f55801a;
@@ -65,7 +65,7 @@ public final class j implements g9.k, y, t3.g, OnFailureListener, u9.e, ua.a, q1
 
     @Override
     public void onFailure(Exception exc) {
-        int i7 = f2.f57237s0;
+        int i7 = e2.f57228s0;
     }
 
     @Override

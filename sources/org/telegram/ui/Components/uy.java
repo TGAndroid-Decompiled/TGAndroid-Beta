@@ -30,12 +30,12 @@ public final class uy implements Runnable {
                     zyVar.f42441b = true;
                 }
                 if (z11) {
-                    wyVar.f41483y = true;
+                    wyVar.f41486y = true;
                 }
                 long currentTimeMillis = System.currentTimeMillis();
-                if (z12 || Math.abs(wyVar.f41471b0 - currentTimeMillis) > 30) {
-                    wyVar.f41471b0 = currentTimeMillis;
-                    wyVar.f41476e0.run();
+                if (z12 || Math.abs(wyVar.f41474b0 - currentTimeMillis) > 30) {
+                    wyVar.f41474b0 = currentTimeMillis;
+                    wyVar.f41479e0.run();
                     return;
                 }
                 return;

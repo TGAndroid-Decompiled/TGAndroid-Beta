@@ -28,13 +28,13 @@ public final class p1 extends LinearLayout implements z5 {
         super(context);
         this.d = t1Var;
         ?? obj = new Object();
-        obj.f39905f = 0L;
-        obj.f39906g = 200L;
-        obj.h = er.f34420f;
-        obj.f39901a = this;
+        obj.f39902f = 0L;
+        obj.f39903g = 200L;
+        obj.h = er.f34419f;
+        obj.f39898a = this;
         obj.d = 0.0f;
-        obj.f39903c = 0.0f;
-        obj.f39904e = false;
+        obj.f39900c = 0.0f;
+        obj.f39901e = false;
         this.f29466b = obj;
         this.f29467c = new Paint(1);
     }

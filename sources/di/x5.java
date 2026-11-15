@@ -6,10 +6,10 @@ import android.graphics.Path;
 import android.view.View;
 import org.telegram.messenger.i20;
 public final class x5 extends a5.h {
-    public final View f9730c;
+    public final View f9718c;
     public final Paint d;
-    public final Path f9731e;
-    public final long f9732f;
+    public final Path f9719e;
+    public final long f9720f;
     public float h;
 
     public x5(hi.d dVar, int i7) {
@@ -17,10 +17,10 @@ public final class x5 extends a5.h {
         Paint paint = new Paint(1);
         this.d = paint;
         Path path = new Path();
-        this.f9731e = path;
-        this.f9732f = System.currentTimeMillis();
+        this.f9719e = path;
+        this.f9720f = System.currentTimeMillis();
         this.h = 1.0f;
-        this.f9730c = dVar;
+        this.f9718c = dVar;
         ((Paint) this.f220b).setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -38,7 +38,7 @@ public final class x5 extends a5.h {
         Paint paint = (Paint) this.f220b;
         paint.setAlpha((int) (this.h * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f9732f) % 400)) / 400.0f;
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f9720f) % 400)) / 400.0f;
         Paint paint2 = this.d;
         int alpha = paint2.getAlpha();
         paint2.setAlpha((int) (alpha * this.h));
@@ -57,13 +57,13 @@ public final class x5 extends a5.h {
             canvas.save();
             float T1 = org.telegram.messenger.g0.T1(0.5f, 1.0f, f10);
             canvas.scale(T1, T1);
-            canvas.drawPath(this.f9731e, paint2);
+            canvas.drawPath(this.f9719e, paint2);
             canvas.restore();
             canvas.translate(0.0f, org.telegram.messenger.g0.N(3.3260002f) * f10);
         }
         canvas.restore();
         paint2.setAlpha(alpha);
-        View view = this.f9730c;
+        View view = this.f9718c;
         if (view != null) {
             view.invalidate();
         }

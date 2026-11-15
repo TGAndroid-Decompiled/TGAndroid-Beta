@@ -172,7 +172,7 @@ public class j0 extends ja implements is {
             if (rvVar != null) {
                 ((ViewGroup) rvVar.getParent()).removeView(this.H2);
             }
-            this.f35936o1.setPadding(0, 0, 0, 0);
+            this.f35931o1.setPadding(0, 0, 0, 0);
             TextView textView = new TextView(context);
             this.B2 = textView;
             textView.setGravity(17);
@@ -212,133 +212,133 @@ public class j0 extends ja implements is {
 
     public static androidx.emoji2.text.q o1(int i7, int i10) {
         ?? obj = new Object();
-        obj.f2272a = 0;
+        obj.f2275a = 0;
         obj.d = null;
-        obj.f2275e = null;
-        obj.f2276f = null;
-        obj.f2273b = 0;
-        obj.f2274c = 0;
+        obj.f2278e = null;
+        obj.f2279f = null;
+        obj.f2276b = 0;
+        obj.f2277c = 0;
         if (i7 == 0) {
-            obj.f2273b = np.s1(i10).Q4;
-            obj.f2274c = np.s1(i10).R4;
-            obj.f2272a = 2131232202;
-            obj.d = hd.a0("LimitReachedPinDialogs", null, 2131748954, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedPinDialogsPremium", null, 2131748952, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedPinDialogsLocked", null, 2131748953, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).Q4;
+            obj.f2277c = np.s1(i10).R4;
+            obj.f2275a = 2131232202;
+            obj.d = hd.a0("LimitReachedPinDialogs", null, 2131748954, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedPinDialogsPremium", null, 2131748952, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedPinDialogsLocked", null, 2131748953, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 33) {
-            obj.f2273b = np.s1(i10).f25346n6;
-            obj.f2274c = np.s1(i10).f25354o6;
-            obj.f2272a = 2131232202;
-            obj.d = hd.a0(null, null, 2131748951, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0(null, null, 2131748949, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0(null, null, 2131748950, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).f25349n6;
+            obj.f2277c = np.s1(i10).f25357o6;
+            obj.f2275a = 2131232202;
+            obj.d = hd.a0(null, null, 2131748951, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0(null, null, 2131748949, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0(null, null, 2131748950, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 2) {
-            obj.f2273b = np.s1(i10).S4;
-            obj.f2274c = np.s1(i10).T4;
-            obj.f2272a = 2131232201;
-            obj.d = hd.a0("LimitReachedPublicLinks", null, 2131748947, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedPublicLinksPremium", null, 2131748945, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedPublicLinksLocked", null, 2131748946, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).S4;
+            obj.f2277c = np.s1(i10).T4;
+            obj.f2275a = 2131232201;
+            obj.d = hd.a0("LimitReachedPublicLinks", null, 2131748947, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedPublicLinksPremium", null, 2131748945, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedPublicLinksLocked", null, 2131748946, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 12) {
-            obj.f2273b = np.s1(i10).f25447y6;
-            obj.f2274c = np.s1(i10).f25456z6;
-            obj.f2272a = 2131232201;
-            obj.d = hd.a0("LimitReachedFolderLinks", null, 2131748960, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedFolderLinksPremium", null, 2131748958, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedFolderLinksLocked", null, 2131748959, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).f25450y6;
+            obj.f2277c = np.s1(i10).f25459z6;
+            obj.f2275a = 2131232201;
+            obj.d = hd.a0("LimitReachedFolderLinks", null, 2131748960, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedFolderLinksPremium", null, 2131748958, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedFolderLinksLocked", null, 2131748959, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 13) {
-            obj.f2273b = np.s1(i10).A6;
-            obj.f2274c = np.s1(i10).B6;
-            obj.f2272a = 2131232199;
-            obj.d = hd.a0("LimitReachedSharedFolders", null, 2131748943, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedSharedFoldersPremium", null, 2131748941, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedSharedFoldersLocked", null, 2131748942, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).A6;
+            obj.f2277c = np.s1(i10).B6;
+            obj.f2275a = 2131232199;
+            obj.d = hd.a0("LimitReachedSharedFolders", null, 2131748943, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedSharedFoldersPremium", null, 2131748941, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedSharedFoldersLocked", null, 2131748942, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 3) {
-            obj.f2273b = np.s1(i10).M4;
-            obj.f2274c = np.s1(i10).N4;
-            obj.f2272a = 2131232199;
-            obj.d = hd.a0("LimitReachedFolders", null, 2131748957, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedFoldersPremium", null, 2131748955, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedFoldersLocked", null, 2131748956, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).M4;
+            obj.f2277c = np.s1(i10).N4;
+            obj.f2275a = 2131232199;
+            obj.d = hd.a0("LimitReachedFolders", null, 2131748957, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedFoldersPremium", null, 2131748955, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedFoldersLocked", null, 2131748956, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 4) {
-            obj.f2273b = np.s1(i10).O4;
-            obj.f2274c = np.s1(i10).P4;
-            obj.f2272a = 2131232198;
-            obj.d = hd.a0("LimitReachedChatInFolders", null, 2131748975, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedChatInFoldersPremium", null, 2131748973, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedChatInFoldersLocked", null, 2131748974, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).O4;
+            obj.f2277c = np.s1(i10).P4;
+            obj.f2275a = 2131232198;
+            obj.d = hd.a0("LimitReachedChatInFolders", null, 2131748975, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedChatInFoldersPremium", null, 2131748973, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedChatInFoldersLocked", null, 2131748974, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 5) {
-            obj.f2273b = np.s1(i10).E4;
-            obj.f2274c = np.s1(i10).F4;
-            obj.f2272a = 2131232200;
-            obj.d = hd.a0("LimitReachedCommunities", null, 2131748972, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedCommunitiesPremium", null, 2131748970, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedCommunitiesLocked", null, 2131748971, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).E4;
+            obj.f2277c = np.s1(i10).F4;
+            obj.f2275a = 2131232200;
+            obj.d = hd.a0("LimitReachedCommunities", null, 2131748972, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedCommunitiesPremium", null, 2131748970, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedCommunitiesLocked", null, 2131748971, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 6) {
-            obj.f2273b = 100;
-            obj.f2274c = 200;
-            obj.f2272a = 2131232199;
+            obj.f2276b = 100;
+            obj.f2277c = 200;
+            obj.f2275a = 2131232199;
             obj.d = hd.a0("LimitReachedFileSize", null, 2131748963, "2 GB", "4 GB");
-            obj.f2275e = hd.a0("LimitReachedFileSizePremium", null, 2131748961, "4 GB");
-            obj.f2276f = hd.a0("LimitReachedFileSizeLocked", null, 2131748962, "2 GB");
+            obj.f2278e = hd.a0("LimitReachedFileSizePremium", null, 2131748961, "4 GB");
+            obj.f2279f = hd.a0("LimitReachedFileSizeLocked", null, 2131748962, "2 GB");
             return obj;
         } else if (i7 == 7) {
-            obj.f2273b = 3;
-            obj.f2274c = 4;
-            obj.f2272a = 2131232197;
-            obj.d = hd.a0("LimitReachedAccounts", null, 2131748977, 3, Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedAccountsPremium", null, 2131748976, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedAccountsPremium", null, 2131748976, Integer.valueOf(obj.f2273b));
+            obj.f2276b = 3;
+            obj.f2277c = 4;
+            obj.f2275a = 2131232197;
+            obj.d = hd.a0("LimitReachedAccounts", null, 2131748977, 3, Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedAccountsPremium", null, 2131748976, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedAccountsPremium", null, 2131748976, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 11) {
-            obj.f2273b = 0;
-            obj.f2274c = 0;
-            obj.f2272a = 2131232201;
-            obj.d = hd.a0("LimitReachedAccounts", null, 2131748977, 0, Integer.valueOf(obj.f2274c));
-            obj.f2275e = "";
-            obj.f2276f = "";
+            obj.f2276b = 0;
+            obj.f2277c = 0;
+            obj.f2275a = 2131232201;
+            obj.d = hd.a0("LimitReachedAccounts", null, 2131748977, 0, Integer.valueOf(obj.f2277c));
+            obj.f2278e = "";
+            obj.f2279f = "";
             return obj;
         } else if (i7 == 14) {
-            obj.f2273b = np.s1(i10).f25311j5;
-            obj.f2274c = np.s1(i10).f25320k5;
-            obj.f2272a = 2131232203;
-            obj.d = hd.H(',', "LimitReachedStoriesCount2First", obj.f2273b) + "\n" + hd.H(',', "LimitReachedStoriesCount2Second", obj.f2274c);
-            obj.f2275e = hd.H(',', "LimitReachedStoriesCount2Premium", obj.f2274c);
-            obj.f2276f = hd.H(',', "LimitReachedStoriesCount2Premium", obj.f2273b);
+            obj.f2276b = np.s1(i10).f25314j5;
+            obj.f2277c = np.s1(i10).f25323k5;
+            obj.f2275a = 2131232203;
+            obj.d = hd.H(',', "LimitReachedStoriesCount2First", obj.f2276b) + "\n" + hd.H(',', "LimitReachedStoriesCount2Second", obj.f2277c);
+            obj.f2278e = hd.H(',', "LimitReachedStoriesCount2Premium", obj.f2277c);
+            obj.f2279f = hd.H(',', "LimitReachedStoriesCount2Premium", obj.f2276b);
             return obj;
         } else if (i7 == 15) {
-            obj.f2273b = np.s1(i10).f25328l5;
-            obj.f2274c = np.s1(i10).f25336m5;
-            obj.f2272a = 2131232203;
-            obj.d = hd.a0("LimitReachedStoriesWeekly", null, 2131748929, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedStoriesWeeklyPremium", null, 2131748928, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedStoriesWeeklyPremium", null, 2131748928, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).f25331l5;
+            obj.f2277c = np.s1(i10).f25339m5;
+            obj.f2275a = 2131232203;
+            obj.d = hd.a0("LimitReachedStoriesWeekly", null, 2131748929, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedStoriesWeeklyPremium", null, 2131748928, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedStoriesWeeklyPremium", null, 2131748928, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 == 16) {
-            obj.f2273b = np.s1(i10).f25345n5;
-            obj.f2274c = np.s1(i10).f25353o5;
-            obj.f2272a = 2131232203;
-            obj.d = hd.a0("LimitReachedStoriesMonthly", null, 2131748931, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).f25348n5;
+            obj.f2277c = np.s1(i10).f25356o5;
+            obj.f2275a = 2131232203;
+            obj.d = hd.a0("LimitReachedStoriesMonthly", null, 2131748931, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2276b));
             return obj;
         } else if (i7 != 18 && i7 != 32 && i7 != 20 && i7 != 24 && i7 != 27 && i7 != 28 && i7 != 25 && i7 != 30 && i7 != 35 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 19 && i7 != 21 && i7 != 26) {
             return obj;
         } else {
-            obj.f2273b = np.s1(i10).f25345n5;
-            obj.f2274c = np.s1(i10).f25353o5;
-            obj.f2272a = 2131231127;
-            obj.d = hd.a0("LimitReachedStoriesMonthly", null, 2131748931, Integer.valueOf(obj.f2273b), Integer.valueOf(obj.f2274c));
-            obj.f2275e = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2274c));
-            obj.f2276f = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2273b));
+            obj.f2276b = np.s1(i10).f25348n5;
+            obj.f2277c = np.s1(i10).f25356o5;
+            obj.f2275a = 2131231127;
+            obj.d = hd.a0("LimitReachedStoriesMonthly", null, 2131748931, Integer.valueOf(obj.f2276b), Integer.valueOf(obj.f2277c));
+            obj.f2278e = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2277c));
+            obj.f2279f = hd.a0("LimitReachedStoriesMonthlyPremium", null, 2131748930, Integer.valueOf(obj.f2276b));
             return obj;
         }
     }
@@ -449,7 +449,7 @@ public class j0 extends ja implements is {
                     if (rvVar != null && rvVar.getParent() != null) {
                         ((ViewGroup) this.H2.getParent()).removeView(this.H2);
                     }
-                    uj0 uj0Var = this.f35936o1;
+                    uj0 uj0Var = this.f35931o1;
                     if (uj0Var != null) {
                         uj0Var.setPadding(0, 0, 0, 0);
                     }
@@ -480,14 +480,14 @@ public class j0 extends ja implements is {
             i7 = 1;
         }
         np s12 = np.s1(this.f29679a);
-        dp dpVar = s12.f25380r4;
+        dp dpVar = s12.f25383r4;
         if (dpVar != null) {
             i10 = dpVar.e(r1());
         } else {
             i10 = 0;
         }
         int max2 = Math.max(10, i10);
-        dp dpVar2 = s12.f25390s4;
+        dp dpVar2 = s12.f25393s4;
         if (dpVar2 != null) {
             i11 = dpVar2.e(r1());
         } else {
@@ -495,9 +495,9 @@ public class j0 extends ja implements is {
         }
         int max3 = Math.max(max2, i11);
         if (r1()) {
-            max = Math.max(Math.max(Math.max(Math.max(Math.max(max3, s12.B5), s12.f25455z5), s12.A5), s12.f25436x5), s12.f25426w5);
+            max = Math.max(Math.max(Math.max(Math.max(Math.max(max3, s12.B5), s12.f25458z5), s12.A5), s12.f25439x5), s12.f25429w5);
         } else {
-            max = Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(max3, s12.f25381r5), s12.s5), s12.f25399t5), s12.f25407u5), s12.f25416v5), s12.A4), s12.B4);
+            max = Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(max3, s12.f25384r5), s12.s5), s12.f25402t5), s12.f25410u5), s12.f25419v5), s12.A4), s12.B4);
         }
         ArrayList arrayList = null;
         while (i7 <= max) {
@@ -515,13 +515,13 @@ public class j0 extends ja implements is {
                 b11.f58070f = true;
                 arrayList2.add(b11);
             }
-            dp dpVar3 = s13.f25380r4;
+            dp dpVar3 = s13.f25383r4;
             if (dpVar3 != null) {
                 i12 = dpVar3.a(i7, false);
             } else {
                 i12 = 0;
             }
-            dp dpVar4 = s13.f25390s4;
+            dp dpVar4 = s13.f25393s4;
             if (dpVar4 != null) {
                 i13 = dpVar4.a(i7, r12);
             } else {
@@ -533,7 +533,7 @@ public class j0 extends ja implements is {
             if (!r12 && i12 > 0) {
                 arrayList2.add(e0.b(2131231805, i12, "BoostFeatureReplyColor"));
             }
-            if (!r12 && i7 >= s13.f25381r5) {
+            if (!r12 && i7 >= s13.f25384r5) {
                 arrayList2.add(e0.a(2131231806, 2131753633));
             }
             if (i13 > 0) {
@@ -544,10 +544,10 @@ public class j0 extends ja implements is {
                 }
                 arrayList2.add(e0.b(2131231798, i13, str2));
             }
-            if (r12 && i7 >= s13.f25446y5) {
+            if (r12 && i7 >= s13.f25449y5) {
                 arrayList2.add(e0.a(2131231808, 2131753651));
             }
-            if ((!r12 && i7 >= s13.s5) || (r12 && i7 >= s13.f25426w5)) {
+            if ((!r12 && i7 >= s13.s5) || (r12 && i7 >= s13.f25429w5)) {
                 if (r12) {
                     i15 = 2131753637;
                 } else {
@@ -558,10 +558,10 @@ public class j0 extends ja implements is {
             if (r12 && i7 >= s13.B5) {
                 arrayList2.add(e0.a(2131231822, 2131753628));
             }
-            if ((!r12 && i7 >= s13.f25399t5) || (r12 && i7 >= s13.f25436x5)) {
+            if ((!r12 && i7 >= s13.f25402t5) || (r12 && i7 >= s13.f25439x5)) {
                 arrayList2.add(new e0(2131231815, 2131753647, -1, "1000+", null));
             }
-            if ((!r12 && i7 >= s13.f25407u5) || (r12 && i7 >= s13.f25455z5)) {
+            if ((!r12 && i7 >= s13.f25410u5) || (r12 && i7 >= s13.f25458z5)) {
                 if (r12) {
                     str = "BoostFeatureBackgroundGroup";
                 } else {
@@ -569,7 +569,7 @@ public class j0 extends ja implements is {
                 }
                 arrayList2.add(e0.b(2131231823, 8, str));
             }
-            if ((!r12 && i7 >= s13.f25416v5) || (r12 && i7 >= s13.A5)) {
+            if ((!r12 && i7 >= s13.f25419v5) || (r12 && i7 >= s13.A5)) {
                 if (r12) {
                     i14 = 2131753652;
                 } else {
@@ -632,10 +632,10 @@ public class j0 extends ja implements is {
                 kq kqVar2 = zVar2.J;
                 int i11 = j6.Fi;
                 int i12 = j6.Ji;
-                jq jqVar = kqVar2.f36586a;
+                jq jqVar = kqVar2.f36574a;
                 jqVar.v = i11;
-                jqVar.f36158w = i12;
-                jqVar.f36140b = 0.8f;
+                jqVar.f36148w = i12;
+                jqVar.f36130b = 0.8f;
                 zVar2.setClipChildren(false);
                 zVar2.addView(zVar2.J, c8.ja.e(-1, 24, 16));
             }
@@ -646,14 +646,14 @@ public class j0 extends ja implements is {
             } else {
                 this.A2.c(hd.M0(2131754557, null), true, true);
             }
-            this.A2.J.f36586a.c(hashSet.size(), true);
+            this.A2.J.f36574a.c(hashSet.size(), true);
             this.A2.invalidate();
             return;
         }
         e3 e3Var = this.Y1;
-        boolean z10 = e3Var.f23247a;
-        if ((z10 || e3Var.f23248b) && !e3Var.f23256l && !e3Var.d) {
-            if (e3Var.f23257m) {
+        boolean z10 = e3Var.f23254a;
+        if ((z10 || e3Var.f23255b) && !e3Var.f23263l && !e3Var.d) {
+            if (e3Var.f23264m) {
                 this.A2.c(hd.M0(2131747831, null), true, true);
                 return;
             }
@@ -679,7 +679,7 @@ public class j0 extends ja implements is {
             if (dVar != null) {
                 dVar.i(hd.M0(2131753625, null), true, true);
             }
-        } else if (e3Var.f23257m) {
+        } else if (e3Var.f23264m) {
             this.C2.i(hd.M0(2131747831, null), true, true);
             if (dVar != null) {
                 dVar.i(hd.M0(2131747831, null), true, true);
@@ -713,9 +713,9 @@ public class j0 extends ja implements is {
                     this.A2.f58267f.setText(hd.M0(2131749199, null));
                     androidx.emoji2.text.q qVar = this.I2;
                     if (qVar != null) {
-                        int i10 = qVar.f2273b;
+                        int i10 = qVar.f2276b;
                         int i11 = i10 + 1;
-                        int i12 = qVar.f2274c;
+                        int i12 = qVar.f2277c;
                         if (i11 == i12) {
                             this.A2.setIcon(2131623936);
                             return;
@@ -728,18 +728,18 @@ public class j0 extends ja implements is {
                             }
                         }
                         z zVar = this.A2;
-                        zVar.E.f40804p = null;
+                        zVar.E.f40807p = null;
                         zVar.G.setVisibility(8);
                         return;
                     }
                     z zVar2 = this.A2;
-                    zVar2.E.f40804p = null;
+                    zVar2.E.f40807p = null;
                     zVar2.G.setVisibility(8);
                     return;
                 }
                 this.A2.f58267f.setText(hd.M0(2131747831, null));
                 z zVar3 = this.A2;
-                zVar3.E.f40804p = null;
+                zVar3.E.f40807p = null;
                 zVar3.G.setVisibility(8);
                 return;
             }
@@ -763,7 +763,7 @@ public class j0 extends ja implements is {
             }
             p0Var.setText(M0);
             e3 e3Var2 = this.Y1;
-            if (e3Var2 != null && e3Var2.f23257m) {
+            if (e3Var2 != null && e3Var2.f23264m) {
                 this.A2.f58267f.setText(hd.M0(2131747831, null));
                 return;
             }
@@ -800,7 +800,7 @@ public class j0 extends ja implements is {
                         this.f58135g2 = i10 + 2;
                         this.f58138j2 = i10 + 1;
                     } else {
-                        this.f35943v1 = 0.24f;
+                        this.f35938v1 = 0.24f;
                     }
                     if (this.E2) {
                         int i11 = this.f58135g2;
@@ -829,7 +829,7 @@ public class j0 extends ja implements is {
                     }
                 }
             } else {
-                this.f35943v1 = 0.24f;
+                this.f35938v1 = 0.24f;
                 D1();
                 int i14 = this.f58135g2;
                 this.f58139k2 = i14;
@@ -842,11 +842,11 @@ public class j0 extends ja implements is {
             }
         } else {
             if (i7 != 19 || t3.N(n1())) {
-                this.f35943v1 = 0.24f;
+                this.f35938v1 = 0.24f;
                 int i16 = this.f58135g2;
                 this.f58135g2 = i16 + 1;
                 this.V1 = i16;
-                if (np.s1(this.f29679a).f25370q4) {
+                if (np.s1(this.f29679a).f25373q4) {
                     int i17 = this.f58135g2;
                     this.f58135g2 = i17 + 1;
                     this.f58143o2 = i17;
@@ -859,7 +859,7 @@ public class j0 extends ja implements is {
             this.f58144p2 = i18;
             this.f58135g2 = (this.f58145q2.size() - 1) + i19;
         }
-        this.f35936o1.getAdapter().f();
+        this.f35931o1.getAdapter().f();
     }
 
     @Override
@@ -920,17 +920,17 @@ public class j0 extends ja implements is {
         z zVar = new z(this, context, this.J0);
         this.A2 = zVar;
         na.b(zVar, 0.02f, 1.2f);
-        if (!this.f35941t1 && (i7 = this.d2) != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
+        if (!this.f35936t1 && (i7 = this.d2) != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
             rv rvVar = new rv(14, context, this);
             this.H2 = rvVar;
             q6.h(j6.f28922h5, rvVar, this.J0);
             st0Var.addView(this.H2, c8.ja.d(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         z zVar2 = this.A2;
-        float f10 = (this.f29717u0 / org.telegram.messenger.g0.f23608p) + 16.0f;
+        float f10 = (this.f29717u0 / org.telegram.messenger.g0.f23610p) + 16.0f;
         st0Var.addView(zVar2, c8.ja.d(-1, 48.0f, 80, f10, 0.0f, f10, 12.0f));
         int L = org.telegram.messenger.g0.L(72.0f);
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         uj0Var.setPadding(0, 0, 0, L);
         uj0Var.setClipToPadding(false);
         uj0Var.setClipChildren(false);
@@ -950,7 +950,7 @@ public class j0 extends ja implements is {
         if (i7 == ns.V2) {
             TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
-            e2 e2Var3 = this.f35940s1;
+            e2 e2Var3 = this.f35935s1;
             e2 lastFragment = e2Var3.getParentLayout().getLastFragment();
             e2 e2Var4 = null;
             if (lastFragment instanceof ch.o) {
@@ -1058,12 +1058,12 @@ public class j0 extends ja implements is {
                 } else {
                     z10 = false;
                 }
-                e3Var.f23257m = z10;
-                e3Var.f23256l = true;
+                e3Var.f23264m = z10;
+                e3Var.f23263l = true;
                 e3Var.a(tL_premium_myBoosts);
                 if (v1()) {
                     xb Q = new cc(this.f29685c, this.J0).Q(2131624051, 30, hd.G(intValue, "BoostingReassignedFromPlural", hd.G(intValue2, "BoostingFromOtherChannel", new Object[0])));
-                    Q.f41643j = 4000;
+                    Q.f41635j = 4000;
                     Q.k(true);
                 }
             }
@@ -1078,7 +1078,7 @@ public class j0 extends ja implements is {
         }
         c80Var.setLoading(true);
         np.s1(this.f29679a).G0();
-        wg.q.a(-this.W1, Arrays.asList(Integer.valueOf(this.Y1.f23252g)), new z10(this) {
+        wg.q.a(-this.W1, Arrays.asList(Integer.valueOf(this.Y1.f23259g)), new z10(this) {
             public final j0 f58384b;
 
             {
@@ -1417,24 +1417,24 @@ public class j0 extends ja implements is {
         e3 e3Var = this.Y1;
         e3Var.getClass();
         e3 e3Var2 = new e3();
-        e3Var2.f23247a = e3Var.f23247a;
-        e3Var2.f23248b = e3Var.f23248b;
-        e3Var2.f23249c = e3Var.f23249c;
+        e3Var2.f23254a = e3Var.f23254a;
+        e3Var2.f23255b = e3Var.f23255b;
+        e3Var2.f23256c = e3Var.f23256c;
         e3Var2.d = e3Var.d;
-        e3Var2.f23250e = e3Var.f23250e;
-        e3Var2.f23252g = e3Var.f23252g;
+        e3Var2.f23257e = e3Var.f23257e;
+        e3Var2.f23259g = e3Var.f23259g;
         e3Var2.h = e3Var.h;
-        e3Var2.f23253i = e3Var.f23253i;
-        e3Var2.f23254j = e3Var.f23254j;
-        e3Var2.f23255k = e3Var.f23255k;
-        e3Var2.f23257m = e3Var.f23257m;
-        f10.m(ns.f25550p3, tL_premium_boostsStatus, e3Var2, Long.valueOf(this.W1));
+        e3Var2.f23260i = e3Var.f23260i;
+        e3Var2.f23261j = e3Var.f23261j;
+        e3Var2.f23262k = e3Var.f23262k;
+        e3Var2.f23264m = e3Var.f23264m;
+        f10.m(ns.f25551p3, tL_premium_boostsStatus, e3Var2, Long.valueOf(this.W1));
         hi.d dVar = this.O2;
         if (dVar != null) {
             TLRPC.ChatFull N0 = np.s1(this.f29679a).N0(-this.W1);
             int max = Math.max(N0.boosts_unrestrict - N0.boosts_applied, 0);
             if (max == 0) {
-                ns.f(this.f29679a).m(ns.f25545o3, new Object[0]);
+                ns.f(this.f29679a).m(ns.f25546o3, new Object[0]);
                 dismiss();
                 return false;
             }
@@ -1501,7 +1501,7 @@ public class j0 extends ja implements is {
             }
             str = hd.a0(null, null, i20, Integer.valueOf(j1()));
         } else if (i22 == 29) {
-            str = hd.a0(null, null, 2131749417, Integer.valueOf(s12.f25446y5));
+            str = hd.a0(null, null, 2131749417, Integer.valueOf(s12.f25449y5));
         } else if (i22 == 30) {
             str = hd.a0(null, null, 2131752343, Integer.valueOf(s12.A4));
         } else if (i22 == 35) {
@@ -1513,9 +1513,9 @@ public class j0 extends ja implements is {
                 i18 = 2131752347;
             }
             if (r12) {
-                i19 = s12.f25436x5;
+                i19 = s12.f25439x5;
             } else {
-                i19 = s12.f25399t5;
+                i19 = s12.f25402t5;
             }
             str = hd.a0(null, null, i18, Integer.valueOf(i19));
         } else if (i22 == 26) {
@@ -1525,9 +1525,9 @@ public class j0 extends ja implements is {
                 i16 = 2131752341;
             }
             if (r12) {
-                i17 = s12.f25436x5;
+                i17 = s12.f25439x5;
             } else {
-                i17 = s12.f25399t5;
+                i17 = s12.f25402t5;
             }
             str = hd.a0(null, null, i16, Integer.valueOf(i17));
         } else if (i22 == 27) {
@@ -1536,7 +1536,7 @@ public class j0 extends ja implements is {
             } else {
                 i15 = 2131752344;
             }
-            str = hd.a0(null, null, i15, Integer.valueOf(s12.f25381r5));
+            str = hd.a0(null, null, i15, Integer.valueOf(s12.f25384r5));
         } else if (i22 == 28) {
             if (r12) {
                 i13 = 2131749413;
@@ -1544,7 +1544,7 @@ public class j0 extends ja implements is {
                 i13 = 2131752345;
             }
             if (r12) {
-                i14 = s12.f25426w5;
+                i14 = s12.f25429w5;
             } else {
                 i14 = s12.s5;
             }
@@ -1556,9 +1556,9 @@ public class j0 extends ja implements is {
                 i11 = 2131752342;
             }
             if (r12) {
-                i12 = s12.f25455z5;
+                i12 = s12.f25458z5;
             } else {
-                i12 = s12.f25407u5;
+                i12 = s12.f25410u5;
             }
             str = hd.a0(null, null, i11, Integer.valueOf(i12));
         } else if (i22 == 23) {
@@ -1570,7 +1570,7 @@ public class j0 extends ja implements is {
             if (r12) {
                 i10 = s12.A5;
             } else {
-                i10 = s12.f25416v5;
+                i10 = s12.f25419v5;
             }
             str = hd.a0(null, null, i7, Integer.valueOf(i10));
         }
@@ -1585,8 +1585,8 @@ public class j0 extends ja implements is {
             nzVar.performHapticFeedback(3);
         } catch (Exception unused) {
         }
-        this.Z1.f58121c.a(this.Y1.f23253i, true);
-        this.f35936o1.y0(0);
+        this.Z1.f58121c.a(this.Y1.f23260i, true);
+        this.f35931o1.y0(0);
         if (i22 == 32) {
             this.Z1.f58121c.setVisibility(8);
         }

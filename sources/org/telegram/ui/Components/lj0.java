@@ -18,15 +18,15 @@ public final class lj0 implements Runnable {
 
     @Override
     public final void run() {
-        nj0 nj0Var = this.f36829e.f37310b;
-        uj0 uj0Var = (uj0) nj0Var.f37624b;
+        nj0 nj0Var = this.f36829e.f37309b;
+        uj0 uj0Var = (uj0) nj0Var.f37613b;
         if (this == uj0Var.R1) {
             uj0Var.R1 = null;
         }
         View view = this.f36826a;
         if (view != null) {
             uj0Var.j1(view, 0.0f, 0.0f, false);
-            if (!((uj0) nj0Var.f37624b).Q1) {
+            if (!((uj0) nj0Var.f37613b).Q1) {
                 try {
                     view.playSoundEffect(0);
                 } catch (Exception unused) {
@@ -34,7 +34,7 @@ public final class lj0 implements Runnable {
                 view.sendAccessibilityEvent(1);
                 int i7 = this.f36827b;
                 if (i7 != -1) {
-                    uj0 uj0Var2 = (uj0) nj0Var.f37624b;
+                    uj0 uj0Var2 = (uj0) nj0Var.f37613b;
                     gj0 gj0Var = uj0Var2.U0;
                     if (gj0Var != null) {
                         gj0Var.b(i7, view);

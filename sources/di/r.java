@@ -6,34 +6,34 @@ import org.telegram.messenger.hd;
 import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.wj0;
 public final class r extends n61 {
-    public final s[] f9303a = new s[3];
-    public final Context f9304b;
-    public final wj0 f9305c;
+    public final s[] f9293a = new s[3];
+    public final Context f9294b;
+    public final wj0 f9295c;
     public final t d;
 
     public r(t tVar, Context context, wj0 wj0Var) {
         this.d = tVar;
-        this.f9304b = context;
-        this.f9305c = wj0Var;
+        this.f9294b = context;
+        this.f9295c = wj0Var;
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
-        this.f9305c.J(view);
+        this.f9295c.J(view);
     }
 
     @Override
     public final View d(int i7) {
-        s[] sVarArr = this.f9303a;
+        s[] sVarArr = this.f9293a;
         if (sVarArr[i7] == null) {
-            sVarArr[i7] = new s(this.d, this.f9304b, i7);
+            sVarArr[i7] = new s(this.d, this.f9294b, i7);
         }
         return sVarArr[i7];
     }
 
     @Override
     public final int e() {
-        return this.f9303a.length;
+        return this.f9293a.length;
     }
 
     @Override

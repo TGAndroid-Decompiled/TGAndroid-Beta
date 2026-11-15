@@ -2,23 +2,23 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class nb implements Runnable {
-    public final int f25181a = 0;
-    public final String f25182b;
-    public final int f25183c;
+    public final int f25184a = 0;
+    public final String f25185b;
+    public final int f25186c;
     public final boolean d;
 
     public nb(int i7, String str, boolean z10) {
-        this.f25183c = i7;
-        this.f25182b = str;
+        this.f25186c = i7;
+        this.f25185b = str;
         this.d = z10;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25181a;
+        int i7 = this.f25184a;
         boolean z10 = this.d;
-        int i10 = this.f25183c;
-        String str = this.f25182b;
+        int i10 = this.f25186c;
+        String str = this.f25185b;
         switch (i7) {
             case 0:
                 ns.f(i10).k(139, str, Boolean.valueOf(z10));
@@ -44,8 +44,8 @@ public final class nb implements Runnable {
     }
 
     public nb(String str, int i7, boolean z10) {
-        this.f25182b = str;
-        this.f25183c = i7;
+        this.f25185b = str;
+        this.f25186c = i7;
         this.d = z10;
     }
 }

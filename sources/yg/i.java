@@ -24,14 +24,14 @@ public final class i extends c {
         this.f60671s = j5Var2;
         j5Var2.setTextSize(16);
         q6.X(j5Var2, i10, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 3;
         } else {
             i7 = 5;
         }
         j5Var2.setGravity(i7);
         addView(j5Var2);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         int i11 = (z10 ? 3 : 5) | 16;
         if (z10) {
             f10 = 20.0f;

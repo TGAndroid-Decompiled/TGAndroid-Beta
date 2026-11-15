@@ -102,10 +102,10 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
 
     public f6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.O = m10.f24934t0;
+        this.O = m10.f24940t0;
         this.f30246g0 = org.telegram.messenger.g0.L(19.0f);
         this.f30253n0 = new org.telegram.ui.Components.u5(this, 0L, 350L, er.h);
-        er erVar = er.f34420f;
+        er erVar = er.f34419f;
         this.f30263v0 = new fi.h7(null, false);
         this.f30265w0 = new RectF();
         this.f30270z0 = new dc(this);
@@ -146,9 +146,9 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25514i4) {
+        if (i7 == ns.f25515i4) {
             invalidate();
-        } else if (i7 == ns.f25513i3) {
+        } else if (i7 == ns.f25514i3) {
             TLRPC.User user = this.E;
             TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = null;
             requirementtocontactpaidmessages = null;
@@ -170,8 +170,8 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
                 } else {
                     org.telegram.messenger.d5 d5Var = this.H;
                     if (d5Var != null) {
-                        if (this.m0 && d5Var.f23041m != null) {
-                            requirementtocontactpaidmessages = np.s1(i11).J2(this.H.f23041m.f28200id);
+                        if (this.m0 && d5Var.f23049m != null) {
+                            requirementtocontactpaidmessages = np.s1(i11).J2(this.H.f23049m.f28200id);
                         }
                     } else {
                         return;
@@ -203,9 +203,9 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.f30257r.P();
-        ns.e().c(this, ns.f25514i4);
+        ns.e().c(this, ns.f25515i4);
         if (this.m0) {
-            ns.e().c(this, ns.f25513i3);
+            ns.e().c(this, ns.f25514i3);
         }
         this.f30262u0.a();
         this.f30261t0.a();
@@ -215,9 +215,9 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.f30257r.R();
-        ns.e().n(this, ns.f25514i4);
+        ns.e().n(this, ns.f25515i4);
         if (this.m0) {
-            ns.e().n(this, ns.f25513i3);
+            ns.e().n(this, ns.f25514i3);
         }
         this.f30262u0.b();
         this.f30261t0.b();
@@ -249,9 +249,9 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
         }
         accessibilityNodeInfo.setText(sb2.toString());
         fp fpVar = this.B0;
-        if (fpVar.f34663a.f32441q) {
+        if (fpVar.f34667a.f32441q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(fpVar.f34663a.f32441q);
+            accessibilityNodeInfo.setChecked(fpVar.f34667a.f32441q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -267,7 +267,7 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
         if (this.E != null || this.F != null || this.G != null || this.H != null) {
             fp fpVar = this.B0;
             if (fpVar != null) {
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     L = (i11 - i7) - org.telegram.messenger.g0.L(42.0f);
                 } else {
                     L = org.telegram.messenger.g0.L(42.0f);
@@ -324,11 +324,11 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
             this.M0 = new oy0(hd.M0(2131753020, null), 14.0f, org.telegram.messenger.g0.o());
         }
         if (z10) {
-            i7 = org.telegram.messenger.g0.L(30.0f) + ((int) this.M0.f38105c);
+            i7 = org.telegram.messenger.g0.L(30.0f) + ((int) this.M0.f38103c);
         } else {
             i7 = 0;
         }
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i10 = i7;
         } else {
@@ -428,8 +428,8 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
             this.H = d5Var;
             this.F = null;
             this.E = null;
-            if (this.m0 && d5Var.f23041m != null) {
-                requirementToContact = np.s1(i7).J2(this.H.f23041m.f28200id);
+            if (this.m0 && d5Var.f23049m != null) {
+                requirementToContact = np.s1(i7).J2(this.H.f23049m.f28200id);
             }
             this.f30254o0 = requirementToContact instanceof TL_account.requirementToContactPremium;
             this.f30255p0 = org.telegram.messenger.m5.k(requirementToContact);
@@ -450,9 +450,9 @@ public final class f6 extends z implements is, org.telegram.ui.ActionBar.z5 {
 
     public final void z(boolean z10, TLRPC.User user, TLRPC.Chat chat, boolean z11) {
         long j3;
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         org.telegram.ui.Components.e5 e5Var = this.f30262u0;
-        e5Var.f34190a = z12;
+        e5Var.f34177a = z12;
         boolean z13 = this.I0;
         org.telegram.ui.ActionBar.e6 e6Var = this.f30266x;
         if (z13 && z10) {

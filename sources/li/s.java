@@ -60,7 +60,7 @@ public final class s implements s10 {
                         k5.n(null, 2131751905, new cc((FrameLayout) d0Var.f29682b, d0Var.J0), 2131624068, 36);
                         return;
                     }
-                    d0Var.f19550x1.d.f39895g3.O(false);
+                    d0Var.f19550x1.d.f39892g3.O(false);
                     d0Var.f19541o1.C(2);
                     return;
                 } else {
@@ -75,13 +75,13 @@ public final class s implements s10 {
                 ArrayList arrayList3 = (ArrayList) obj;
                 p41 p41Var3 = (p41) obj2;
                 int i12 = d0.Q1;
-                arrayList3.add(b41.E(99, Math.min(org.telegram.messenger.g0.L(176.0f) + org.telegram.messenger.g0.f23603m, (int) (org.telegram.messenger.g0.f23609q.y * 0.25f))));
+                arrayList3.add(b41.E(99, Math.min(org.telegram.messenger.g0.L(176.0f) + org.telegram.messenger.g0.f23605m, (int) (org.telegram.messenger.g0.f23611q.y * 0.25f))));
                 arrayList3.add(b41.E(0, org.telegram.messenger.g0.L(56.0f)));
                 String M0 = hd.M0(2131751849, null);
                 b41 b41Var = new b41(39);
                 b41Var.d = 101;
-                b41Var.f33181l = M0;
-                b41Var.f33194z = 0;
+                b41Var.f33184l = M0;
+                b41Var.f33197z = 0;
                 b41Var.L(d0Var.f19544r1);
                 arrayList3.add(b41Var);
                 arrayList3.add(b41.B(2, hd.M0(2131751848, null)));
@@ -107,11 +107,11 @@ public final class s implements s10 {
                         int i15 = mi.i.f20672b;
                         b41 K = b41.K(mi.i.class);
                         K.d = 100;
-                        K.f33180k = 2131231167;
-                        K.f33181l = G;
-                        K.f33183n = str;
+                        K.f33183k = 2131231167;
+                        K.f33184l = G;
+                        K.f33186n = str;
                         K.B = ((-15497247) << 32) | ((-14899731) & 4294967295L);
-                        K.f33186q = true;
+                        K.f33189q = true;
                         arrayList3.add(K);
                         arrayList3.add(b41.E(5, org.telegram.messenger.g0.L(14.33f)));
                     }
@@ -181,7 +181,7 @@ public final class s implements s10 {
                 ArrayList arrayList8 = (ArrayList) obj;
                 p41 p41Var4 = (p41) obj2;
                 k0 k0Var2 = d0Var.H1;
-                arrayList8.add(b41.E(99, (int) (org.telegram.messenger.g0.f23609q.y * 0.35f)));
+                arrayList8.add(b41.E(99, (int) (org.telegram.messenger.g0.f23611q.y * 0.35f)));
                 arrayList8.add(b41.E(0, org.telegram.messenger.g0.L(48.0f)));
                 if (t3.w(2, d0Var.f19543q1)) {
                     arrayList8.add(b41.B(1, org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(hd.M0(2131751894, null), new u(d0Var, 2)), true)));

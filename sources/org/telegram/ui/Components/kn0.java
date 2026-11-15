@@ -4,25 +4,25 @@ import android.view.View;
 import android.widget.Toast;
 import org.telegram.ui.PhotoViewer;
 public final class kn0 implements View.OnClickListener {
-    public final int f36571a;
-    public final po0 f36572b;
+    public final int f36559a;
+    public final po0 f36560b;
 
     public kn0(po0 po0Var, int i7) {
-        this.f36571a = i7;
-        this.f36572b = po0Var;
+        this.f36559a = i7;
+        this.f36560b = po0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f36571a;
-        po0 po0Var = this.f36572b;
+        int i7 = this.f36559a;
+        po0 po0Var = this.f36560b;
         switch (i7) {
             case 0:
                 po0Var.V0(true);
                 return;
             case 1:
                 fp fpVar = po0Var.f38340a2;
-                fpVar.a(!fpVar.f34663a.f32441q, true);
+                fpVar.a(!fpVar.f34667a.f32441q, true);
                 po0Var.a1();
                 return;
             case 2:

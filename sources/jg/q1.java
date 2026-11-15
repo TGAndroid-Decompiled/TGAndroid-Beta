@@ -53,8 +53,8 @@ public final class q1 extends TimerTask {
             default:
                 v50 v50Var = (v50) this.f17250c;
                 try {
-                    v50Var.f52135f.cancel();
-                    v50Var.f52135f = null;
+                    v50Var.f52133f.cancel();
+                    v50Var.f52133f = null;
                 } catch (Exception e12) {
                     a8.g(e12, true);
                 }

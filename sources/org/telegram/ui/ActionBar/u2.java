@@ -244,7 +244,7 @@ public class u2 extends Dialog implements a2 {
             f10 = 0.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f11, f10).setDuration(180L);
-        duration.setInterpolator(er.f34420f);
+        duration.setInterpolator(er.f34419f);
         duration.addUpdateListener(new g2(this, 4));
         duration.start();
     }
@@ -291,9 +291,9 @@ public class u2 extends Dialog implements a2 {
             this.f29696g0 = z10;
             if (this.N0 > 0) {
                 if (z10) {
-                    ns.e().k(ns.f25517j1, Integer.valueOf(this.N0));
+                    ns.e().k(ns.f25518j1, Integer.valueOf(this.N0));
                 } else {
-                    ns.e().k(ns.f25522k1, Integer.valueOf(this.N0));
+                    ns.e().k(ns.f25523k1, Integer.valueOf(this.N0));
                 }
             }
         }
@@ -363,7 +363,7 @@ public class u2 extends Dialog implements a2 {
             K();
             this.B0 = 2;
             this.A0 = new AnimatorSet();
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.f29682b, View.TRANSLATION_Y, Math.max(0, Math.min(org.telegram.messenger.g0.f23604n, R())) + org.telegram.messenger.g0.L(10.0f) + S() + this.f29693f);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.f29682b, View.TRANSLATION_Y, Math.max(0, Math.min(org.telegram.messenger.g0.f23606n, R())) + org.telegram.messenger.g0.L(10.0f) + S() + this.f29693f);
             ofFloat.addUpdateListener(new g2(this, 2));
             this.A0.playTogether(ofFloat, ObjectAnimator.ofInt(this.Z, org.telegram.ui.Components.k6.d, 0));
             AnimatorSet animatorSet = this.A0;
@@ -373,9 +373,9 @@ public class u2 extends Dialog implements a2 {
                 j3 = 180;
             }
             animatorSet.setDuration(j3);
-            this.A0.setInterpolator(er.f34421g);
+            this.A0.setInterpolator(er.f34420g);
             this.A0.addListener(new ki.j2(this, i7, 5));
-            ns.e().k(ns.f25517j1, 512);
+            ns.e().k(ns.f25518j1, 512);
             this.A0.start();
             if (this.X == 4 && (num = this.Y) != null) {
                 int intValue = num.intValue();
@@ -385,7 +385,7 @@ public class u2 extends Dialog implements a2 {
                 ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
                 ofArgb.addUpdateListener(new g2(this, 3));
                 ofArgb.setDuration(130L);
-                er erVar = er.f34420f;
+                er erVar = er.f34419f;
                 ofArgb.setInterpolator(erVar);
                 ofArgb.start();
                 ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
@@ -522,7 +522,7 @@ public class u2 extends Dialog implements a2 {
                 int L = org.telegram.messenger.g0.L(10.0f) + S() + this.f29693f;
                 int i10 = 0;
                 if (this.f29719w) {
-                    i10 = Math.max(0, Math.min(org.telegram.messenger.g0.f23604n, R()));
+                    i10 = Math.max(0, Math.min(org.telegram.messenger.g0.f23606n, R()));
                 }
                 f10 = Utilities.l(1.0f - (this.f29682b.getTranslationY() / (L + i10)));
             }
@@ -834,7 +834,7 @@ public class u2 extends Dialog implements a2 {
         this.J = false;
         K();
         ViewGroup viewGroup = this.f29682b;
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         viewGroup.measure(View.MeasureSpec.makeMeasureSpec((this.f29717u0 * 2) + point.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));
         boolean z10 = this.f29694f0;
         t2 t2Var = this.Z;
@@ -850,9 +850,9 @@ public class u2 extends Dialog implements a2 {
         t2Var.setAlpha(0);
         this.I = 2;
         ViewGroup viewGroup2 = this.f29682b;
-        float measuredHeight = ((1.0f - this.T0) * org.telegram.messenger.g0.f23603m) + viewGroup2.getMeasuredHeight();
+        float measuredHeight = ((1.0f - this.T0) * org.telegram.messenger.g0.f23605m) + viewGroup2.getMeasuredHeight();
         if (this.f29719w) {
-            i7 = Math.max(0, Math.min(org.telegram.messenger.g0.f23604n, R()));
+            i7 = Math.max(0, Math.min(org.telegram.messenger.g0.f23606n, R()));
         }
         viewGroup2.setTranslationY(measuredHeight + i7);
         h0();
@@ -943,7 +943,7 @@ public class u2 extends Dialog implements a2 {
 
     public u2(int i7, Context context, e6 e6Var, boolean z10) {
         super(context, 2131755352);
-        this.f29679a = m10.f24934t0;
+        this.f29679a = m10.f24940t0;
         this.K = true;
         t2 t2Var = new t2();
         this.Z = t2Var;
@@ -953,7 +953,7 @@ public class u2 extends Dialog implements a2 {
         this.f29686c0 = true;
         this.f29688d0 = true;
         this.f29691e0 = true;
-        this.f29698h0 = org.telegram.messenger.g0.f23603m;
+        this.f29698h0 = org.telegram.messenger.g0.f23605m;
         this.f29704k0 = 400;
         this.f29706l0 = er.h;
         this.f29709o0 = 16;

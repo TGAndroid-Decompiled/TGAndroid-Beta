@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public final class to implements Runnable {
-    public final int f26707a;
-    public final vo f26708b;
+    public final int f26716a;
+    public final vo f26717b;
 
     public to(vo voVar, int i7) {
-        this.f26707a = i7;
-        this.f26708b = voVar;
+        this.f26716a = i7;
+        this.f26717b = voVar;
     }
 
     @Override

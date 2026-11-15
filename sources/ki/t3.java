@@ -20,7 +20,7 @@ public class t3 extends View implements z5 {
     public t3(Context context, e6 e6Var) {
         super(context);
         mt0 mt0Var = new mt0(new i0.b(17), new i0.b(18));
-        mt0Var.f37378c = 100.0f;
+        mt0Var.f37377c = 100.0f;
         this.f18569a = mt0Var;
         Paint paint = new Paint(1);
         this.f18570b = paint;

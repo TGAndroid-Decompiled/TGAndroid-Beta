@@ -196,7 +196,7 @@ public final class gy0 extends LinearLayout {
             tL_message.date = ConnectionsManager.getInstance(i18).getCurrentTime();
             tL_message.out = false;
             org.telegram.messenger.gj gjVar = new org.telegram.messenger.gj(i18, tL_message, true, false);
-            gjVar.f23824l2 = true;
+            gjVar.f23826l2 = true;
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("_\n_  ");
             spannableStringBuilder2.setSpan(new fy0(org.telegram.messenger.g0.L(200.0f)), 0, 1, 33);
             spannableStringBuilder2.setSpan(new fy0(org.telegram.messenger.g0.L(160.0f)), 2, 3, 33);
@@ -383,9 +383,9 @@ public final class gy0 extends LinearLayout {
         this.f35100w = z11;
         org.telegram.messenger.gj gjVar = new org.telegram.messenger.gj(i10, tL_message, true, false);
         this.f35098r = gjVar;
-        gjVar.f23824l2 = true;
+        gjVar.f23826l2 = true;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("_\n_  ");
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         spannableStringBuilder.setSpan(new fy0((int) Math.min(point.x * 0.5f, org.telegram.messenger.g0.L(200.0f))), 0, 1, 33);
         spannableStringBuilder.setSpan(new fy0((int) Math.min(point.x * 0.44f, org.telegram.messenger.g0.L(160.0f))), 2, 3, 33);
         this.f35098r.v = spannableStringBuilder;

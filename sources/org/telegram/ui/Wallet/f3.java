@@ -22,7 +22,7 @@ import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.f60;
 public abstract class f3 {
     public static void a(final int i7, final a20 a20Var, final s10 s10Var, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, final u10 u10Var, final boolean z10, final boolean z11, final bg.u0 u0Var) {
-        if (!u0Var.f3337b) {
+        if (!u0Var.f3340b) {
             final org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
             if (T != null && T.getContext() != null) {
                 final Activity parentActivity = T.getParentActivity();
@@ -37,7 +37,7 @@ public abstract class f3 {
                         public final void a(Object obj) {
                             TLMethod tLMethod = (TLMethod) obj;
                             final bg.u0 u0Var2 = u0Var;
-                            boolean z12 = u0Var2.f3337b;
+                            boolean z12 = u0Var2.f3340b;
                             final org.telegram.ui.ActionBar.t1 t1Var2 = t1Var;
                             if (!z12 && tLMethod != null) {
                                 final int i10 = i7;
@@ -59,7 +59,7 @@ public abstract class f3 {
                                         final TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                                         t1Var2.dismiss();
                                         final bg.u0 u0Var3 = u0Var2;
-                                        if (u0Var3.f3337b) {
+                                        if (u0Var3.f3340b) {
                                             return;
                                         }
                                         final TwoStepVerificationActivity twoStepVerificationActivity3 = twoStepVerificationActivity2;
@@ -84,7 +84,7 @@ public abstract class f3 {
                                                             TL_account.Password password = (TL_account.Password) obj4;
                                                             TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj5;
                                                             bg.u0 u0Var4 = bg.u0.this;
-                                                            if (u0Var4.f3337b) {
+                                                            if (u0Var4.f3340b) {
                                                                 return;
                                                             }
                                                             if (tL_error2 == null) {
@@ -122,7 +122,7 @@ public abstract class f3 {
                                                     }, 8);
                                                     return;
                                                 }
-                                                u0Var3.f3338c = true;
+                                                u0Var3.f3341c = true;
                                                 if (twoStepVerificationActivity3 != null) {
                                                     try {
                                                         twoStepVerificationActivity3.t0();
@@ -156,7 +156,7 @@ public abstract class f3 {
                                                     TL_account.Password password = (TL_account.Password) obj4;
                                                     TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj5;
                                                     bg.u0 u0Var4 = bg.u0.this;
-                                                    if (u0Var4.f3337b) {
+                                                    if (u0Var4.f3340b) {
                                                         return;
                                                     }
                                                     if (tL_error2 == null) {
@@ -200,7 +200,7 @@ public abstract class f3 {
                                                     int i19 = org.telegram.ui.ActionBar.j6.f28957j5;
                                                     org.telegram.ui.ActionBar.q6.U(textView, i19, null);
                                                     textView.setTextSize(1, 16.0f);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         i12 = 5;
                                                     } else {
                                                         i12 = 3;
@@ -213,13 +213,13 @@ public abstract class f3 {
                                                     linearLayout.addView(linearLayout2, c8.ja.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                     ImageView imageView = new ImageView(activity3);
                                                     imageView.setImageResource(2131231623);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         i13 = org.telegram.messenger.g0.L(11.0f);
                                                     } else {
                                                         i13 = 0;
                                                     }
                                                     int L3 = org.telegram.messenger.g0.L(9.0f);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         L = 0;
                                                     } else {
                                                         L = org.telegram.messenger.g0.L(11.0f);
@@ -230,14 +230,14 @@ public abstract class f3 {
                                                     TextView textView2 = new TextView(activity3);
                                                     org.telegram.ui.ActionBar.q6.U(textView2, i19, null);
                                                     textView2.setTextSize(1, 16.0f);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         i14 = 5;
                                                     } else {
                                                         i14 = 3;
                                                     }
                                                     textView2.setGravity(i14 | 48);
                                                     textView2.setText(org.telegram.messenger.g0.X2(hd.M0(2131751300, null)));
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         linearLayout2.addView(textView2, c8.ja.o(-1, -2));
                                                         linearLayout2.addView(imageView, c8.ja.r(-2, -2, 5));
                                                     } else {
@@ -248,13 +248,13 @@ public abstract class f3 {
                                                     linearLayout.addView(e10, c8.ja.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                     ImageView imageView2 = new ImageView(activity3);
                                                     imageView2.setImageResource(2131231623);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         i15 = org.telegram.messenger.g0.L(11.0f);
                                                     } else {
                                                         i15 = 0;
                                                     }
                                                     int L4 = org.telegram.messenger.g0.L(9.0f);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         L2 = 0;
                                                     } else {
                                                         L2 = org.telegram.messenger.g0.L(11.0f);
@@ -264,14 +264,14 @@ public abstract class f3 {
                                                     TextView textView3 = new TextView(activity3);
                                                     org.telegram.ui.ActionBar.q6.U(textView3, i19, null);
                                                     textView3.setTextSize(1, 16.0f);
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         i16 = 5;
                                                     } else {
                                                         i16 = 3;
                                                     }
                                                     textView3.setGravity(i16 | 48);
                                                     textView3.setText(org.telegram.messenger.g0.X2(hd.M0(2131751299, null)));
-                                                    if (hd.f24101a0) {
+                                                    if (hd.f24104a0) {
                                                         e10.addView(textView3, c8.ja.o(-1, -2));
                                                         i17 = 5;
                                                         e10.addView(imageView2, c8.ja.r(-2, -2, 5));
@@ -289,7 +289,7 @@ public abstract class f3 {
                                                         TextView textView4 = new TextView(activity3);
                                                         org.telegram.ui.ActionBar.q6.U(textView4, i19, null);
                                                         textView4.setTextSize(1, 16.0f);
-                                                        if (!hd.f24101a0) {
+                                                        if (!hd.f24104a0) {
                                                             i17 = 3;
                                                         }
                                                         org.telegram.messenger.k5.l(textView4, i17 | 48, null, 2131751298);
@@ -306,7 +306,7 @@ public abstract class f3 {
                                             }, 8);
                                             return;
                                         }
-                                        u0Var3.f3338c = true;
+                                        u0Var3.f3341c = true;
                                         if (twoStepVerificationActivity3 != null) {
                                             try {
                                                 twoStepVerificationActivity3.t0();

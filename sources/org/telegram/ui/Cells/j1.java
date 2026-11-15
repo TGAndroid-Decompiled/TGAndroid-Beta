@@ -85,7 +85,7 @@ public final class j1 extends OldVideoPlayerRewinder {
                 q1 q1Var = (q1) this.f30478b;
                 q1Var.Ob.g(Math.abs(j3));
                 if (z10) {
-                    q1Var.Q5.f23777b0 = f10;
+                    q1Var.Q5.f23779b0 = f10;
                     q1Var.T3();
                     return;
                 }

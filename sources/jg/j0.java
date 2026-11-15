@@ -68,11 +68,11 @@ public final class j0 extends AnimatorListenerAdapter {
                 ((AnimatorSet) this.d).removeAllListeners();
                 ks ksVar = (ks) this.f17161e;
                 is isVar = (is) this.f17160c;
-                ksVar.d(isVar.f35710a);
-                ksVar.f36604y.remove(isVar.f35710a);
+                ksVar.d(isVar.f35697a);
+                ksVar.f36592y.remove(isVar.f35697a);
                 ksVar.A();
-                ksVar.d(isVar.f35711b);
-                ksVar.f36604y.remove(isVar.f35711b);
+                ksVar.d(isVar.f35698b);
+                ksVar.f36592y.remove(isVar.f35698b);
                 ksVar.A();
                 return;
             case 2:
@@ -86,7 +86,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 return;
             case 3:
                 l2 l2Var = (l2) this.f17161e;
-                TextView[] textViewArr = l2Var.f40760a;
+                TextView[] textViewArr = l2Var.f40763a;
                 View view3 = (View) this.d;
                 view3.setVisibility(8);
                 view3.setAlpha(1.0f);
@@ -103,16 +103,16 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                l2Var.f40764f = false;
-                CharSequence charSequence = l2Var.f40763e;
+                l2Var.f40767f = false;
+                CharSequence charSequence = l2Var.f40766e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         l2Var.e(true);
                     } else {
-                        textViewArr[1].setText(l2Var.f40763e);
+                        textViewArr[1].setText(l2Var.f40766e);
                         l2Var.a(textViewArr[0], textViewArr[1], new org.telegram.ui.ActionBar.r0(this, 19));
                     }
-                    l2Var.f40763e = null;
+                    l2Var.f40766e = null;
                     return;
                 }
                 return;
@@ -174,9 +174,9 @@ public final class j0 extends AnimatorListenerAdapter {
             case 1:
                 ks ksVar = (ks) this.f17161e;
                 is isVar = (is) this.f17160c;
-                v4.e1 e1Var = isVar.f35710a;
+                v4.e1 e1Var = isVar.f35697a;
                 ksVar.getClass();
-                v4.e1 e1Var2 = isVar.f35711b;
+                v4.e1 e1Var2 = isVar.f35698b;
                 ksVar.getClass();
                 return;
             case 5:

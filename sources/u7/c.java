@@ -16,11 +16,11 @@ public final class c extends com.google.android.gms.common.api.j {
         androidx.activity.n nVar = new androidx.activity.n(this, h);
         tg.x xVar = new tg.x(1, nVar, locationRequest);
         ?? obj = new Object();
-        obj.f6059b = true;
-        obj.f6060c = xVar;
+        obj.f6062b = true;
+        obj.f6063c = xVar;
         obj.d = nVar;
-        obj.f6061e = h;
-        obj.f6058a = 2436;
+        obj.f6064e = h;
+        obj.f6061a = 2436;
         return b(obj.a());
     }
 }

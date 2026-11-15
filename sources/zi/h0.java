@@ -61,7 +61,7 @@ public final class h0 implements Runnable {
                     v0Var.m("completed");
                     ff ffVar = v0Var.d;
                     long j10 = r0Var.f61679a;
-                    q40 q40Var = (q40) ffVar.f34586b;
+                    q40 q40Var = (q40) ffVar.f34590b;
                     p40 p40Var = q40Var.V;
                     if (p40Var != null) {
                         q40Var.V = null;
@@ -73,9 +73,9 @@ public final class h0 implements Runnable {
                             synchronized (jy0Var) {
                                 try {
                                     try {
-                                        hy0 hy0Var = (hy0) jy0Var.f36203c.get(Long.valueOf(j10));
-                                        if (hy0Var != null && !hy0Var.f35373e) {
-                                            iy0Var = new iy0(Math.max(hy0Var.f35372c, file.length()), hy0Var.f35374f, hy0Var.f35375g, hy0Var.h, hy0Var.f35376i);
+                                        hy0 hy0Var = (hy0) jy0Var.f36193c.get(Long.valueOf(j10));
+                                        if (hy0Var != null && !hy0Var.f35364e) {
+                                            iy0Var = new iy0(Math.max(hy0Var.f35363c, file.length()), hy0Var.f35365f, hy0Var.f35366g, hy0Var.h, hy0Var.f35367i);
                                         } else {
                                             iy0Var = new iy0(file.length(), null, null, null, null);
                                         }
@@ -91,11 +91,11 @@ public final class h0 implements Runnable {
                             }
                         }
                         g20 t6 = q40Var.t(file, j3, iy0Var2);
-                        t6.f23651t = !z10;
+                        t6.f23653t = !z10;
                         org.telegram.messenger.ff ffVar2 = new org.telegram.messenger.ff(0, file.getAbsolutePath(), 0, true, 0, 0);
-                        ffVar2.f27727x = p40Var.f38196c;
-                        ffVar2.f27728y = p40Var.d;
-                        q40Var.f38490e.u(ffVar2, t6, p40Var.f38194a, p40Var.f38195b, 0, false, p40Var.f38197e);
+                        ffVar2.f27729x = p40Var.f38194c;
+                        ffVar2.f27730y = p40Var.d;
+                        q40Var.f38490e.u(ffVar2, t6, p40Var.f38192a, p40Var.f38193b, 0, false, p40Var.f38195e);
                         jy0 jy0Var2 = q40Var.T;
                         if (jy0Var2 != null) {
                             jy0Var2.d(false);

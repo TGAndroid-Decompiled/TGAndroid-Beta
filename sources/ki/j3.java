@@ -41,7 +41,7 @@ public final class j3 extends a41 {
         if (obj instanceof TL_payments.connectedBotStarRef) {
             k3 k3Var = (k3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z11 = b41Var.f33187r;
+            boolean z11 = b41Var.f33190r;
             e6 e6Var = k3Var.f18397b;
             View view2 = k3Var.f18399e;
             ImageView imageView = k3Var.f18400f;
@@ -56,13 +56,13 @@ public final class j3 extends a41 {
                 spannableStringBuilder.append((CharSequence) " d");
                 fz fzVar = new fz();
                 int i14 = org.telegram.ui.ActionBar.j6.lk;
-                fzVar.f47239f = org.telegram.ui.ActionBar.j6.w0(i14, null);
-                fzVar.f47241r = i14;
-                fzVar.f47242s = null;
-                fzVar.f47240n = true;
-                fzVar.f47243w = k.J0(connectedbotstarref.commission_permille);
-                if (fzVar.f47237c != null) {
-                    fzVar.f47237c = null;
+                fzVar.f47229f = org.telegram.ui.ActionBar.j6.w0(i14, null);
+                fzVar.f47231r = i14;
+                fzVar.f47232s = null;
+                fzVar.f47230n = true;
+                fzVar.f47233w = k.J0(connectedbotstarref.commission_permille);
+                if (fzVar.f47227c != null) {
+                    fzVar.f47227c = null;
                     fzVar.a();
                 }
                 spannableStringBuilder.setSpan(fzVar, 1, 2, 33);
@@ -123,7 +123,7 @@ public final class j3 extends a41 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             k3 k3Var2 = (k3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z12 = b41Var.f33187r;
+            boolean z12 = b41Var.f33190r;
             TLRPC.User a23 = np.s1(k3Var2.f18396a).a2(Long.valueOf(starrefprogram.bot_id));
             t8 t8Var2 = new t8((e6) null);
             t8Var2.r(a23);
@@ -134,13 +134,13 @@ public final class j3 extends a41 {
                 spannableStringBuilder2.append((CharSequence) " d");
                 fz fzVar2 = new fz();
                 int i16 = org.telegram.ui.ActionBar.j6.lk;
-                fzVar2.f47239f = org.telegram.ui.ActionBar.j6.w0(i16, null);
-                fzVar2.f47241r = i16;
-                fzVar2.f47242s = null;
-                fzVar2.f47240n = true;
-                fzVar2.f47243w = k.J0(starrefprogram.commission_permille);
-                if (fzVar2.f47237c != null) {
-                    fzVar2.f47237c = null;
+                fzVar2.f47229f = org.telegram.ui.ActionBar.j6.w0(i16, null);
+                fzVar2.f47231r = i16;
+                fzVar2.f47232s = null;
+                fzVar2.f47230n = true;
+                fzVar2.f47233w = k.J0(starrefprogram.commission_permille);
+                if (fzVar2.f47227c != null) {
+                    fzVar2.f47227c = null;
                     fzVar2.a();
                 }
                 spannableStringBuilder2.setSpan(fzVar2, 1, 2, 33);

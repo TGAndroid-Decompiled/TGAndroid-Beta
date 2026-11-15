@@ -342,7 +342,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
             r1.g gVar2 = new r1.g(new r1.f(1000.0f));
             r1.h hVar = new r1.h(0.0f);
             org.telegram.ui.an anVar = this.f38341b2;
-            if (anVar != null && anVar.f45132b) {
+            if (anVar != null && anVar.f45131b) {
                 f10 = 10.0f;
             } else {
                 f10 = 800.0f;
@@ -361,7 +361,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
         boolean z10 = false;
         if (this.f38345g2 != null || this.f38349k2[0] != null) {
             try {
-                ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", O0()));
+                ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", O0()));
                 fo0 fo0Var = this.f38355o2;
                 if (fo0Var != null) {
                     fo0Var.x0();
@@ -384,7 +384,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
         String[] strArr = this.f38349k2;
         do0 do0Var = this.S1;
         if (do0Var != null) {
-            str2 = strArr[do0Var.f34017e];
+            str2 = strArr[do0Var.f34004e];
         } else {
             TLRPC.TL_exportedMessageLink tL_exportedMessageLink = this.f38345g2;
             if (tL_exportedMessageLink != null) {
@@ -399,7 +399,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
             }
         }
         fp fpVar = this.f38340a2;
-        if (fpVar != null && fpVar.f34663a.f32441q) {
+        if (fpVar != null && fpVar.f34667a.f32441q) {
             try {
                 str2 = Uri.parse(str2).buildUpon().appendQueryParameter("t", org.telegram.messenger.g0.n0(this.X1)).build().toString();
             } catch (Exception e10) {
@@ -450,7 +450,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
         kVar.getSubtitleTextView().setTranslationY(org.telegram.messenger.g0.L(16.0f) * f14);
         kVar.setAlpha(f10);
         uj0Var.getLocationInWindow(iArr);
-        float interpolation = er.f34421g.getInterpolation(f10);
+        float interpolation = er.f34420g.getInterpolation(f10);
         for (int i7 = 0; i7 < P0.getChildCount(); i7++) {
             View childAt = P0.getChildAt(i7);
             if (childAt instanceof org.telegram.ui.Cells.c7) {
@@ -591,7 +591,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                 } else {
                     TLRPC.User a22 = org.telegram.messenger.np.s1(this.f29679a).a2(Long.valueOf(dialog.f28055id));
                     TLRPC.Chat M05 = org.telegram.messenger.np.s1(this.f29679a).M0(Long.valueOf(-dialog.f28055id));
-                    if ((!org.telegram.messenger.q10.u(a22) || (((l10 = org.telegram.messenger.np.s1(this.f29679a).f25383r7.l(-a22.f28200id)) == null || l10.isEmpty()) && org.telegram.messenger.np.s1(this.f29679a).f25383r7.e(-a22.f28200id))) && (!org.telegram.messenger.m5.z(dialog.f28055id) || (!org.telegram.messenger.t3.c0(M05) && (!org.telegram.messenger.t3.p0(M05) || !org.telegram.messenger.t3.A(this.f29679a, M05, 24))))) {
+                    if ((!org.telegram.messenger.q10.u(a22) || (((l10 = org.telegram.messenger.np.s1(this.f29679a).f25386r7.l(-a22.f28200id)) == null || l10.isEmpty()) && org.telegram.messenger.np.s1(this.f29679a).f25386r7.e(-a22.f28200id))) && (!org.telegram.messenger.m5.z(dialog.f28055id) || (!org.telegram.messenger.t3.c0(M05) && (!org.telegram.messenger.t3.p0(M05) || !org.telegram.messenger.t3.A(this.f29679a, M05, 24))))) {
                         po0Var = this;
                         hVar.k(dialog, dialog.f28055id);
                         if (view instanceof org.telegram.ui.Cells.f6) {
@@ -600,14 +600,14 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                             ((org.telegram.ui.Cells.c7) view).b(true, true);
                         }
                         b1(2);
-                        long j10 = org.telegram.messenger.m10.i(po0Var.f29679a).f24953n;
+                        long j10 = org.telegram.messenger.m10.i(po0Var.f29679a).f24959n;
                         if (po0Var.H2) {
                             io0 io0Var = po0Var.G1;
-                            a0.h hVar2 = io0Var.f35688e;
+                            a0.h hVar2 = io0Var.f35675e;
                             ArrayList arrayList = io0Var.d;
                             TLRPC.Dialog dialog2 = (TLRPC.Dialog) hVar2.f(dialog.f28055id);
                             if (dialog2 == null) {
-                                io0Var.f35688e.k(dialog, dialog.f28055id);
+                                io0Var.f35675e.k(dialog, dialog.f28055id);
                                 arrayList.add(!arrayList.isEmpty(), dialog);
                             } else if (dialog2.f28055id != j10) {
                                 arrayList.remove(dialog2);
@@ -625,15 +625,15 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                         this.E1.h1(0, this.f38350l2 - uj0Var.getPaddingTop());
                         AtomicReference atomicReference = new AtomicReference();
                         yn0 yn0Var = new yn0(this, dialog, atomicReference, view);
-                        atomicReference.set(new ma0(this, atomicReference, yn0Var, dialog, 3));
+                        atomicReference.set(new u80(this, atomicReference, yn0Var, dialog, 4));
                         org.telegram.messenger.ns f10 = org.telegram.messenger.ns.f(this.f29679a);
-                        int i10 = org.telegram.messenger.ns.f25558q5;
+                        int i10 = org.telegram.messenger.ns.f25559q5;
                         f10.b(yn0Var, i10);
-                        if (org.telegram.messenger.np.s1(this.f29679a).f25383r7.l(-dialog.f28055id) != null) {
+                        if (org.telegram.messenger.np.s1(this.f29679a).f25386r7.l(-dialog.f28055id) != null) {
                             yn0Var.didReceivedNotification(i10, this.f29679a, Long.valueOf(-dialog.f28055id));
                             return;
                         }
-                        org.telegram.messenger.np.s1(this.f29679a).f25383r7.o(-dialog.f28055id);
+                        org.telegram.messenger.np.s1(this.f29679a).f25386r7.o(-dialog.f28055id);
                         org.telegram.messenger.g0.i3((Runnable) atomicReference.get(), 300L);
                         return;
                     }
@@ -660,17 +660,17 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
             boolean z11 = true;
             if (i13 < m10) {
                 long j3 = hVar.j(i13);
-                if (t4.h(getContext(), this.f29679a, j3, (un0Var.getTag() == null || vn0Var.f39056a.length() <= 0) ? false : false)) {
+                if (t4.h(getContext(), this.f29679a, j3, (un0Var.getTag() == null || vn0Var.f39053a.length() <= 0) ? false : false)) {
                     return;
                 }
                 i13++;
             } else {
                 Editable text = vn0Var.getText();
-                mt mtVar = vn0Var.f39056a;
+                mt mtVar = vn0Var.f39053a;
                 final CharSequence[] charSequenceArr = {text};
                 final ArrayList W = org.telegram.messenger.si.b0(this.f29679a).W(charSequenceArr, true, true);
                 fp fpVar = this.f38340a2;
-                if (fpVar != null && fpVar.f34663a.f32441q) {
+                if (fpVar != null && fpVar.f34667a.f32441q) {
                     i7 = this.X1;
                 } else {
                     i7 = -1;
@@ -699,7 +699,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                 } else {
                     do0 do0Var = this.S1;
                     if (do0Var != null) {
-                        i10 = do0Var.f34017e;
+                        i10 = do0Var.f34004e;
                     } else {
                         i10 = 0;
                     }
@@ -850,9 +850,9 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                                         gjVar3 = null;
                                     }
                                     if (gjVar3 != null) {
-                                        gjVar3.f23836p = true;
+                                        gjVar3.f23838p = true;
                                     }
-                                    if (un0Var3.getTag() != null && vn0Var3.f39056a.length() > 0) {
+                                    if (un0Var3.getTag() != null && vn0Var3.f39053a.length() > 0) {
                                         CharSequence charSequence4 = charSequenceArr2[0];
                                         if (charSequence4 == null) {
                                             charSequence3 = null;
@@ -939,7 +939,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                             boolean z23 = z18;
                             do0 do0Var2 = po0Var.S1;
                             if (do0Var2 != null) {
-                                i23 = do0Var2.f34017e;
+                                i23 = do0Var2.f34004e;
                             } else {
                                 i23 = 0;
                             }
@@ -975,7 +975,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                                         gjVar2 = null;
                                     }
                                     if (po0Var.B2 == null) {
-                                        if (un0Var2.getTag() != null && vn0Var3.f39056a.length() > 0) {
+                                        if (un0Var2.getTag() != null && vn0Var3.f39053a.length() > 0) {
                                             CharSequence charSequence5 = charSequenceArr3[0];
                                             if (charSequence5 == null) {
                                                 charSequence2 = null;
@@ -989,7 +989,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                                             b10 = org.telegram.messenger.cz.b(strArr[i23], j17, gjVar2, gjVar2, null, true, null, null, null, z23, 0, 0, null, false);
                                         }
                                     } else {
-                                        if (un0Var2.getTag() != null && vn0Var3.f39056a.length() > 0 && charSequenceArr3[0] != null) {
+                                        if (un0Var2.getTag() != null && vn0Var3.f39053a.length() > 0 && charSequenceArr3[0] != null) {
                                             org.telegram.messenger.gj gjVar6 = gjVar2;
                                             gjVar2 = gjVar6;
                                             org.telegram.messenger.ez.C(po0Var.f29679a).r0(org.telegram.messenger.cz.b(charSequenceArr3[0].toString(), j17, null, gjVar6, null, true, null, null, null, z23, 0, 0, null, false));
@@ -1043,7 +1043,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
                                         c10 = 0;
                                         gjVar = null;
                                     }
-                                    if (un0Var2.getTag() != null && vn0Var3.f39056a.length() > 0) {
+                                    if (un0Var2.getTag() != null && vn0Var3.f39053a.length() > 0) {
                                         CharSequence charSequence6 = charSequenceArr3[c10];
                                         if (charSequence6 == null) {
                                             charSequence = null;
@@ -1312,7 +1312,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
         }
         Object tag = this.n1.getTag();
         vn0 vn0Var = this.f38354o1;
-        if (tag != null && vn0Var.f39056a.length() > 0) {
+        if (tag != null && vn0Var.f39053a.length() > 0) {
             size++;
         }
         long j3 = 0;
@@ -1344,7 +1344,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = org.telegram.messenger.ns.f25566s;
+        int i11 = org.telegram.messenger.ns.f25567s;
         if (i7 == i11) {
             io0 io0Var = this.G1;
             if (io0Var != null) {
@@ -1362,7 +1362,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
         }
         this.U1 = false;
         super.dismiss();
-        org.telegram.messenger.ns.f(this.f29679a).n(this, org.telegram.messenger.ns.f25566s);
+        org.telegram.messenger.ns.f(this.f29679a).n(this, org.telegram.messenger.ns.f25567s);
     }
 
     @Override
@@ -1372,7 +1372,7 @@ public class po0 extends org.telegram.ui.ActionBar.u2 implements org.telegram.me
             return;
         }
         vn0 vn0Var = this.f38354o1;
-        if (vn0Var != null && vn0Var.f39059e) {
+        if (vn0Var != null && vn0Var.f39056e) {
             vn0Var.k(true);
         } else {
             super.onBackPressed();

@@ -25,8 +25,8 @@ public final class a61 extends org.telegram.ui.Cells.ga {
         CharSequence[] charSequenceArr;
         switch (this.f44945r3) {
             case 0:
-                c61 c61Var = ((c61) this.f44946s3).f46038e.f43384a;
-                ThemeActivity themeActivity = c61Var.f46038e;
+                c61 c61Var = ((c61) this.f44946s3).f46027e.f43384a;
+                ThemeActivity themeActivity = c61Var.f46027e;
                 if (themeActivity.getParentActivity() != null) {
                     if ((i6Var.G == null || i6Var.V) && themeActivity.f43393f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
@@ -102,10 +102,10 @@ public final class a61 extends org.telegram.ui.Cells.ga {
     public final void D1() {
         switch (this.f44945r3) {
             case 0:
-                ((c61) this.f44946s3).f46038e.F0(false);
+                ((c61) this.f44946s3).f46027e.F0(false);
                 return;
             default:
-                ((org.telegram.ui.ActionBar.u2) ((org.telegram.messenger.ou) this.f44946s3).f25804b).f29724y0.run();
+                ((org.telegram.ui.ActionBar.u2) ((org.telegram.messenger.ou) this.f44946s3).f25806b).f29724y0.run();
                 return;
         }
     }

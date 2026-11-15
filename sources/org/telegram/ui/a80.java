@@ -34,7 +34,7 @@ public final class a80 implements org.telegram.messenger.qr {
             String str = LaunchActivity.C1;
             Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
             if (!org.telegram.messenger.g0.Q1()) {
-                org.telegram.messenger.ns.f(this.f44959b).k(org.telegram.messenger.ns.f25572t, new Object[0]);
+                org.telegram.messenger.ns.f(this.f44959b).k(org.telegram.messenger.ns.f25573t, new Object[0]);
             }
             if (org.telegram.messenger.m5.E(j3)) {
                 k10.putLong("user_id", j3);

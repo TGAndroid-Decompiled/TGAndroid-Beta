@@ -197,7 +197,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         if (org.telegram.messenger.g0.Q1()) {
             return org.telegram.messenger.g0.L(58.0f);
         }
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         if (point.x > point.y) {
             return org.telegram.messenger.g0.L(48.0f);
         }
@@ -849,7 +849,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
                     org.telegram.messenger.g0.p3((Activity) getContext(), true);
                 }
             } else {
-                ns.e().k(ns.f25564r4, new Object[0]);
+                ns.e().k(ns.f25565r4, new Object[0]);
             }
             AnimatorSet animatorSet = this.Q;
             if (animatorSet != null) {
@@ -1257,14 +1257,14 @@ public class k extends FrameLayout implements te.b, z5, q4 {
     }
 
     public final void j() {
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             TransitionSet transitionSet = new TransitionSet();
             transitionSet.setOrdering(0);
             transitionSet.addTransition(new Fade());
             transitionSet.addTransition(new i(0));
             this.A0 = false;
             transitionSet.setDuration(220L);
-            transitionSet.setInterpolator((TimeInterpolator) er.f34420f);
+            transitionSet.setInterpolator((TimeInterpolator) er.f34419f);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
     }
@@ -1276,7 +1276,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         if (snVar == null) {
             return;
         }
-        on onVar = snVar.f39353e;
+        on onVar = snVar.f39351e;
         if (onVar != null && onVar.getVisibility() == 0) {
             z11 = true;
         } else {
@@ -1286,9 +1286,9 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         te.c cVar = this.f29301m1;
         if (z10) {
             if (cVar.h) {
-                f10 = cVar.f57088g;
+                f10 = cVar.f57092g;
             } else {
-                f10 = cVar.f57087f;
+                f10 = cVar.f57091f;
             }
             float f11 = min;
             if (f10 != f11) {
@@ -1346,9 +1346,9 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         this.f29307p1.a(z10, this.f29319u1);
         te.c cVar = this.f29305o1;
         if (cVar.h) {
-            f10 = cVar.f57088g;
+            f10 = cVar.f57092g;
         } else {
-            f10 = cVar.f57087f;
+            f10 = cVar.f57091f;
         }
         float f11 = max;
         if (f10 != f11) {
@@ -1388,7 +1388,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
                     org.telegram.messenger.g0.p3((Activity) getContext(), true);
                 }
             } else {
-                ns.e().k(ns.f25564r4, new Object[0]);
+                ns.e().k(ns.f25565r4, new Object[0]);
             }
         }
         Drawable drawable = this.f29285e0;
@@ -1411,7 +1411,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
                     org.telegram.messenger.g0.p3((Activity) getContext(), true);
                 }
             } else {
-                ns.e().k(ns.f25564r4, new Object[0]);
+                ns.e().k(ns.f25565r4, new Object[0]);
             }
         }
         Drawable drawable = this.f29285e0;
@@ -1423,7 +1423,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         Drawable B0;
-        if (this.S && !this.f29296j0 && !hd.f24101a0 && motionEvent.getAction() == 0 && (B0 = j6.B0()) != null && B0.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+        if (this.S && !this.f29296j0 && !hd.f24104a0 && motionEvent.getAction() == 0 && (B0 = j6.B0()) != null && B0.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
             this.W = true;
             du0 du0Var = this.T;
             j5[] j5VarArr = this.f29302n;
@@ -1490,12 +1490,12 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         kVar.I = true;
         View view = kVar.f29322w;
         if (view != null) {
-            ((FrameLayout.LayoutParams) view.getLayoutParams()).height = org.telegram.messenger.g0.f23603m;
+            ((FrameLayout.LayoutParams) view.getLayoutParams()).height = org.telegram.messenger.g0.f23605m;
         }
         d dVar = kVar.G;
         if (dVar != null) {
             if (kVar.J) {
-                i18 = org.telegram.messenger.g0.f23603m;
+                i18 = org.telegram.messenger.g0.f23605m;
             } else {
                 i18 = 0;
             }
@@ -1503,7 +1503,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         }
         kVar.I = false;
         if (kVar.J) {
-            i11 = org.telegram.messenger.g0.f23603m;
+            i11 = org.telegram.messenger.g0.f23605m;
         } else {
             i11 = 0;
         }
@@ -1739,7 +1739,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         addView(this.G, indexOfChild(this.f29284e));
         d dVar4 = this.G;
         if (this.J) {
-            i7 = org.telegram.messenger.g0.f23603m;
+            i7 = org.telegram.messenger.g0.f23605m;
         } else {
             i7 = 0;
         }
@@ -2079,7 +2079,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
         d dVar = this.G;
         if (dVar != null) {
             if (z10) {
-                i7 = org.telegram.messenger.g0.f23603m;
+                i7 = org.telegram.messenger.g0.f23605m;
             } else {
                 i7 = 0;
             }
@@ -2364,7 +2364,7 @@ public class k extends FrameLayout implements te.b, z5, q4 {
                     org.telegram.messenger.g0.p3((Activity) getContext(), true);
                 }
             } else {
-                ns.e().k(ns.f25564r4, new Object[0]);
+                ns.e().k(ns.f25565r4, new Object[0]);
             }
             AnimatorSet animatorSet = this.Q;
             if (animatorSet != null) {

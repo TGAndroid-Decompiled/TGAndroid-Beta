@@ -16,7 +16,7 @@ public final class a implements OnFailureListener, u9.d {
 
     @Override
     public void onFailure(Exception exc) {
-        k8.a aVar = MobileVisionBase.f7298e;
+        k8.a aVar = MobileVisionBase.f7301e;
         if (Log.isLoggable((String) aVar.f17788b, 6)) {
             String str = (String) aVar.f17789c;
             String str2 = "Error preloading model resource";

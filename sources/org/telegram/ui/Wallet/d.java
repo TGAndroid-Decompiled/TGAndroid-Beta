@@ -119,8 +119,8 @@ public final class d implements s10 {
                 if (password != null) {
                     y5Var.S0 = true;
                     y5Var.T0 = password.has_password;
-                    bi.v3 v3Var = y5Var.f38882a;
-                    if (v3Var != null && (p41Var = v3Var.f39895g3) != null) {
+                    bi.v3 v3Var = y5Var.f38880a;
+                    if (v3Var != null && (p41Var = v3Var.f39892g3) != null) {
                         p41Var.O(true);
                         return;
                     }

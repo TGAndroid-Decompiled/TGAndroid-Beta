@@ -211,7 +211,7 @@ public class GroupCallMessagesController extends c1 {
                 callMessageListener2.onNewGroupCallMessage(j3, groupCallMessage);
             }
         }
-        org.telegram.messenger.g0.i3(new x2(this, j3, 16), getAppGlobalConfig().f25868w.z0(TimeUnit.MILLISECONDS));
+        org.telegram.messenger.g0.i3(new x2(this, j3, 16), getAppGlobalConfig().f25870w.z0(TimeUnit.MILLISECONDS));
     }
 
     public List<GroupCallMessage> getCallMessages(long j3) {
@@ -226,7 +226,7 @@ public class GroupCallMessagesController extends c1 {
         long j3 = tL_updateGroupCallMessage.call.f28068id;
         long o4 = m5.o(tL_updateGroupCallMessage.message.from_id);
         long j10 = tL_updateGroupCallMessage.message.f28062id;
-        if (getUserConfig().f24953n == o4) {
+        if (getUserConfig().f24959n == o4) {
             return;
         }
         if (this.sentMessageIds.contains(j3 + "_" + j10)) {
@@ -308,7 +308,7 @@ public class GroupCallMessagesController extends c1 {
         long j3 = tL_updateGroupCallEncryptedMessage.call.f28068id;
         long o4 = m5.o(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
-        if (getUserConfig().f24953n == o4) {
+        if (getUserConfig().f24959n == o4) {
             return;
         }
         Utilities.f22416e.c(new d3.e0(this, j3, o4, bArr, 4));

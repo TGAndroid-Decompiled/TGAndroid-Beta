@@ -5,26 +5,26 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class t61 extends View {
-    public s61 f39558a;
-    public int f39559b;
-    public final RectF f39560c;
+    public s61 f39556a;
+    public int f39557b;
+    public final RectF f39558c;
     public CharSequence d;
-    public oy0 f39561e;
-    public boolean f39562f;
+    public oy0 f39559e;
+    public boolean f39560f;
     public in0 h;
-    public final u5 f39563n;
-    public final v61 f39564r;
+    public final u5 f39561n;
+    public final v61 f39562r;
 
     public t61(v61 v61Var, Context context) {
         super(context);
-        this.f39564r = v61Var;
-        this.f39560c = new RectF();
-        this.f39563n = new u5(this, 360L, er.h);
+        this.f39562r = v61Var;
+        this.f39558c = new RectF();
+        this.f39561n = new u5(this, 360L, er.h);
     }
 
     @Override
     public int getId() {
-        return this.f39558a.f39188a;
+        return this.f39556a.f39185a;
     }
 
     @Override
@@ -37,8 +37,8 @@ public final class t61 extends View {
         boolean z10;
         int i7;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        s61 s61Var = this.f39558a;
-        if (s61Var != null && (i7 = this.f39564r.H) != -1 && s61Var.f39188a == i7) {
+        s61 s61Var = this.f39556a;
+        if (s61Var != null && (i7 = this.f39562r.H) != -1 && s61Var.f39185a == i7) {
             z10 = true;
         } else {
             z10 = false;
@@ -48,16 +48,16 @@ public final class t61 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        s61 s61Var = this.f39558a;
-        v61 v61Var = this.f39564r;
+        s61 s61Var = this.f39556a;
+        v61 v61Var = this.f39562r;
         setMeasuredDimension(org.telegram.messenger.g0.L(v61Var.f40313r * 2) + s61Var.a(v61Var.f40295c) + v61Var.J, View.MeasureSpec.getSize(i10));
     }
 
     public void setReordering(boolean z10) {
-        if (this.f39562f == z10) {
+        if (this.f39560f == z10) {
             return;
         }
-        this.f39562f = z10;
+        this.f39560f = z10;
         invalidate();
     }
 }

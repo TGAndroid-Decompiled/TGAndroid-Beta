@@ -2,8 +2,8 @@ package ce;
 
 import aa.b0;
 public abstract class x {
-    public static final b0 f4980a = new b0("NONE", 1);
-    public static final b0 f4981b = new b0("PENDING", 1);
+    public static final b0 f4983a = new b0("NONE", 1);
+    public static final b0 f4984b = new b0("PENDING", 1);
 
     public static final java.lang.Object a(ce.z r4, m1.n r5, java.lang.Throwable r6, kd.c r7) {
         throw new UnsupportedOperationException("Method not decompiled: ce.x.a(ce.z, m1.n, java.lang.Throwable, kd.c):java.lang.Object");

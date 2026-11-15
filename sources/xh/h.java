@@ -43,7 +43,7 @@ public final class h {
             f10 = 100.0f;
         }
         int L = g0.L(f10);
-        Point point = g0.f23609q;
+        Point point = g0.f23611q;
         int min = (int) Math.min(Math.min(point.x, point.y) * 0.5f, L);
         this.f60016k = min < g0.L(80.0f) ? g0.L(80.0f) : min;
         int i7 = 0;

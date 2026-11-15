@@ -12,7 +12,7 @@ public final class lz0 extends uj0 {
 
     @Override
     public final boolean E0(float f10) {
-        if (f10 >= org.telegram.messenger.g0.L(48.0f) + this.f37018f3.f32773z1 + org.telegram.messenger.g0.f23603m) {
+        if (f10 >= org.telegram.messenger.g0.L(48.0f) + this.f37018f3.f32773z1 + org.telegram.messenger.g0.f23605m) {
             return true;
         }
         return false;

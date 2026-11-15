@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import bi.x4;
 import bi.z4;
 import c8.ja;
-import di.sb;
+import di.rb;
 import hi.q4;
 import java.util.WeakHashMap;
 import kg.t1;
@@ -112,7 +112,7 @@ public final class r extends e2 implements te.b {
         this.d = u41Var;
         u41Var.setClipToPadding(false);
         u41 u41Var2 = this.d;
-        u41Var2.f39895g3.f38201r = false;
+        u41Var2.f39892g3.f38199r = false;
         u41Var2.r1();
         this.d.j(new z4(this, 22));
         this.actionBar.setAdaptiveBackground(this.d);
@@ -185,7 +185,7 @@ public final class r extends e2 implements te.b {
         cv0 cv0Var = new cv0(getParentActivity(), null, 16, this.resourceProvider);
         this.f19630r = cv0Var;
         cv0Var.d.setText(hd.M0(2131748225, null));
-        this.f19630r.f33707e.setText(hd.M0(2131748224, null));
+        this.f19630r.f33709e.setText(hd.M0(2131748224, null));
         this.f19630r.setAnimateLayoutChange(true);
         this.f19630r.setVisibility(8);
         this.f19626c.addView(this.f19630r, ja.e(-2, -2, 17));
@@ -227,9 +227,9 @@ public final class r extends e2 implements te.b {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         k0 k0Var = this.f19632w;
-        sb sbVar = k0Var.f19597i;
-        if (sbVar != null) {
-            sbVar.run();
+        rb rbVar = k0Var.f19597i;
+        if (rbVar != null) {
+            rbVar.run();
         }
         k0Var.f19597i = null;
     }

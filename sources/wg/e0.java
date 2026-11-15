@@ -15,7 +15,7 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.xb;
 import org.telegram.ui.Wallet.k8;
 import org.telegram.ui.yw;
-import tg.i2;
+import tg.h2;
 import ug.g1;
 public final class e0 extends g1 {
     public static e0 O2;
@@ -27,12 +27,12 @@ public final class e0 extends g1 {
         this.N2 = str;
         xb.a((FrameLayout) this.f29682b, new bi.t(16));
         if (!z10) {
-            uj0 uj0Var = this.f35936o1;
+            uj0 uj0Var = this.f35931o1;
             int i10 = this.f29717u0;
             uj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(68.0f));
             yg.a aVar = new yg.a(getContext(), this.J0);
             this.M2 = aVar;
-            aVar.setOnClickListener(new i2(this, 3));
+            aVar.setOnClickListener(new h2(this, 3));
             yg.a aVar2 = this.M2;
             aVar2.f60635e = true;
             hi.d dVar = aVar2.f60632a;
@@ -47,7 +47,7 @@ public final class e0 extends g1 {
     public static void l1(e0 e0Var) {
         yw ywVar = new yw(org.telegram.ui.Cells.y0.j(3, "onlySelect", "dialogsType", true));
         ywVar.E2 = new k8(27, e0Var, "https://t.me/giftcode/" + e0Var.N2);
-        e0Var.f35940s1.presentFragment(ywVar);
+        e0Var.f35935s1.presentFragment(ywVar);
         e0Var.dismiss();
     }
 

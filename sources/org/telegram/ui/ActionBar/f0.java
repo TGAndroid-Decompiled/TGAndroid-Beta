@@ -41,7 +41,7 @@ public final class f0 extends ImageView {
             case 2:
                 super.invalidate();
                 y10 y10Var = (y10) this.f28524b;
-                y10Var.f40733g0.invalidate();
+                y10Var.f40736g0.invalidate();
                 y10Var.invalidate();
                 return;
             default:
@@ -83,7 +83,7 @@ public final class f0 extends ImageView {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 boolean z10 = true;
                 accessibilityNodeInfo.setCheckable(true);
-                if (((xa1) this.f28524b).f53155n.getTransformationMethod() != null) {
+                if (((xa1) this.f28524b).f53154n.getTransformationMethod() != null) {
                     z10 = false;
                 }
                 accessibilityNodeInfo.setChecked(z10);
@@ -111,7 +111,7 @@ public final class f0 extends ImageView {
         switch (this.f28523a) {
             case 1:
                 super.setAlpha(f10);
-                ((dq) this.f28524b).f34046y.invalidate();
+                ((dq) this.f28524b).f34033y.invalidate();
                 return;
             default:
                 super.setAlpha(f10);

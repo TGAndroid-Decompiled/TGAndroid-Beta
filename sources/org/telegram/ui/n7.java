@@ -11,6 +11,6 @@ public final class n7 extends org.telegram.ui.Cells.n7 {
 
     @Override
     public final void h() {
-        this.H0.f49835w.G.N(null, (ei.b) getTag(), true);
+        this.H0.f49825w.G.N(null, (ei.b) getTag(), true);
     }
 }

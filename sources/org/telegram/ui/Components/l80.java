@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class l80 {
-    public final ad.a f36740a;
-    public final int f36741b;
-    public final ArrayList f36742c = new ArrayList();
+    public final ad.a f36728a;
+    public final int f36729b;
+    public final ArrayList f36730c = new ArrayList();
 
     public l80(ad.a aVar, int i7) {
-        this.f36740a = aVar;
-        this.f36741b = i7;
+        this.f36728a = aVar;
+        this.f36729b = i7;
     }
 }

@@ -31,19 +31,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x2.c1, com.google.android.gms.common.api.internal.q, tg.l1, sg.t0, u4.c, com.google.android.gms.common.api.internal.n, v4.d0, v4.j1 {
-    public final int f34585a;
-    public Object f34586b;
+public final class ff implements ce0, g90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x2.c1, com.google.android.gms.common.api.internal.q, tg.l1, sg.t0, u4.c, com.google.android.gms.common.api.internal.n, v4.d0, v4.j1 {
+    public final int f34589a;
+    public Object f34590b;
 
     public ff(Object obj, int i7) {
-        this.f34585a = i7;
-        this.f34586b = obj;
+        this.f34589a = i7;
+        this.f34590b = obj;
     }
 
     public void A0() {
         r2.q[] qVarArr;
         r2.q[] qVarArr2;
-        r2.k kVar = (r2.k) this.f34586b;
+        r2.k kVar = (r2.k) this.f34590b;
         int i7 = kVar.I - 1;
         kVar.I = i7;
         if (i7 > 0) {
@@ -73,7 +73,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int B() {
-        return ((v4.o0) this.f34586b).D();
+        return ((v4.o0) this.f34590b).D();
     }
 
     public boolean B0(android.view.MotionEvent r22) {
@@ -81,7 +81,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public void C0(int i7) {
-        RecyclerView recyclerView = (RecyclerView) this.f34586b;
+        RecyclerView recyclerView = (RecyclerView) this.f34590b;
         View childAt = recyclerView.getChildAt(i7);
         if (childAt != null) {
             recyclerView.r(childAt);
@@ -92,11 +92,11 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public View D() {
-        return ((bu) this.f34586b).O1;
+        return ((bu) this.f34590b).O1;
     }
 
     public void D0(long j3, int i7, long j10) {
-        x3.f fVar = (x3.f) this.f34586b;
+        x3.f fVar = (x3.f) this.f34590b;
         fVar.f59791j0.getClass();
         if (i7 != 160) {
             if (i7 != 174) {
@@ -207,12 +207,12 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void E(int i7, int i10) {
-        ((v4.h0) this.f34586b).j(i7, i10);
+        ((v4.h0) this.f34590b).j(i7, i10);
     }
 
     @Override
     public void E0() {
-        ((x41) this.f34586b).h.c(false);
+        ((x41) this.f34590b).h.c(false);
     }
 
     @Override
@@ -221,7 +221,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public void F0(int i7, String str) {
-        x3.f fVar = (x3.f) this.f34586b;
+        x3.f fVar = (x3.f) this.f34590b;
         if (i7 != 134) {
             if (i7 != 17026) {
                 if (i7 != 21358) {
@@ -247,7 +247,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public void G0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f34586b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f34590b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -258,7 +258,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void H() {
-        ((ys0) this.f34586b).J.a(-1);
+        ((ys0) this.f34590b).J.a(-1);
     }
 
     public void H0(long j3) {
@@ -321,11 +321,11 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f34586b).setResultCode(i7);
+        ((ProfileInstallReceiver) this.f34590b).setResultCode(i7);
     }
 
     public long I0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f34586b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f34590b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -334,7 +334,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public org.telegram.ui.ActionBar.z0 J(String str) {
-        org.telegram.ui.ActionBar.d5 d5Var = ((ys0) this.f34586b).J;
+        org.telegram.ui.ActionBar.d5 d5Var = ((ys0) this.f34590b).J;
         return d5Var.d(0, 0, null, str, true, true, d5Var.f29513n0);
     }
 
@@ -345,20 +345,20 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void K0(int i7, int i10) {
-        ((v4.h0) this.f34586b).p(i7, i10);
+        ((v4.h0) this.f34590b).p(i7, i10);
     }
 
     @Override
     public int L() {
-        return ((bu) this.f34586b).P1;
+        return ((bu) this.f34590b).P1;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
         i0.c I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        ok0 ok0Var = (ok0) this.f34586b;
-        ok0Var.f38015w.setPadding(I0.f15574a, I0.f15575b, I0.f15576c, I0.d);
-        ok0Var.f38014s.requestLayout();
+        ok0 ok0Var = (ok0) this.f34590b;
+        ok0Var.f38013w.setPadding(I0.f15574a, I0.f15575b, I0.f15576c, I0.d);
+        ok0Var.f38012s.requestLayout();
         return r0.k1.f55681b;
     }
 
@@ -369,7 +369,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void O(float f10, float f11) {
-        Runnable runnable = ((x41) this.f34586b).f41572j;
+        Runnable runnable = ((x41) this.f34590b).f41575j;
         if (runnable != null) {
             runnable.run();
         }
@@ -382,13 +382,13 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public Paint.FontMetricsInt Q() {
-        return ((ki) this.f34586b).C2.getEditText().getPaint().getFontMetricsInt();
+        return ((ki) this.f34590b).C2.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public boolean Q0(float f10, float f11) {
         int L = org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = ((x41) this.f34586b).f41570g;
+        RectF rectF = ((x41) this.f34590b).f41573g;
         float f12 = -L;
         rectF.inset(f12, f12);
         boolean contains = rectF.contains(f10, f11);
@@ -404,7 +404,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int S() {
-        v4.o0 o0Var = (v4.o0) this.f34586b;
+        v4.o0 o0Var = (v4.o0) this.f34590b;
         return o0Var.f58631m - o0Var.E();
     }
 
@@ -420,14 +420,14 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void V() {
-        bu buVar = (bu) this.f34586b;
+        bu buVar = (bu) this.f34590b;
         buVar.N1 = null;
         buVar.K0();
     }
 
     @Override
     public void W(boolean z10) {
-        ((ji.p) this.f34586b).setLanguagePillHidden(z10);
+        ((ji.p) this.f34590b).setLanguagePillHidden(z10);
     }
 
     @Override
@@ -437,7 +437,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void Z() {
-        ((bu) this.f34586b).L0();
+        ((bu) this.f34590b).L0();
     }
 
     @Override
@@ -447,12 +447,12 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f34585a) {
+        switch (this.f34589a) {
             case 16:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
                 s6.c cVar = (s6.c) ((s6.e) obj).n();
                 Parcel j12 = cVar.j1();
-                n7.a.b(j12, (q6.p) this.f34586b);
+                n7.a.b(j12, (q6.p) this.f34590b);
                 try {
                     cVar.f306b.transact(1, j12, null, 1);
                     j12.recycle();
@@ -463,7 +463,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
                     throw th2;
                 }
             default:
-                y8.e eVar = (y8.e) this.f34586b;
+                y8.e eVar = (y8.e) this.f34590b;
                 h8.b bVar = (h8.b) obj;
                 bVar.getClass();
                 h8.a aVar = new h8.a(1, (TaskCompletionSource) obj2);
@@ -492,7 +492,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void b() {
-        m71 m71Var = ((bu) this.f34586b).n1;
+        m71 m71Var = ((bu) this.f34590b).n1;
         if (m71Var != null && m71Var.f37159x) {
             m71Var.f37138a.g0();
             m71Var.n();
@@ -502,7 +502,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int b0() {
-        return ((bu) this.f34586b).Q1;
+        return ((bu) this.f34590b).Q1;
     }
 
     @Override
@@ -517,7 +517,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void d0(RectF rectF) {
-        rectF.set(((ji.p) this.f34586b).P);
+        rectF.set(((ji.p) this.f34590b).P);
     }
 
     @Override
@@ -533,7 +533,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     @Override
     public void f0(x2.d1 d1Var) {
         r2.q qVar = (r2.q) d1Var;
-        r2.k kVar = (r2.k) this.f34586b;
+        r2.k kVar = (r2.k) this.f34590b;
         kVar.H.f0(kVar);
     }
 
@@ -541,10 +541,10 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     public void g(Object obj) {
         com.google.android.gms.common.api.internal.m mVar;
         org.telegram.messenger.y9 y9Var = (org.telegram.messenger.y9) obj;
-        androidx.activity.n nVar = ((u7.j) this.f34586b).f57882b;
+        androidx.activity.n nVar = ((u7.j) this.f34590b).f57882b;
         synchronized (nVar) {
-            nVar.f1789b = false;
-            mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1790c).f6052b;
+            nVar.f1796b = false;
+            mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1797c).f6055b;
         }
         if (mVar != null) {
             ((u7.c) nVar.d).c(mVar, 2441);
@@ -553,16 +553,16 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public View g0(int i7) {
-        return ((v4.o0) this.f34586b).q(i7);
+        return ((v4.o0) this.f34590b).q(i7);
     }
 
     @Override
     public Object mo24get() {
-        switch (this.f34585a) {
+        switch (this.f34589a) {
             case 9:
-                return new org.telegram.ui.ld0((Context) ((d9.o) this.f34586b).f7640b, new qb.a(28), new pb.b(28), 5);
+                return new org.telegram.ui.ld0((Context) ((d9.o) this.f34590b).f7643b, new qb.a(28), new pb.b(28), 5);
             default:
-                return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f34586b).mo24get(), "com.google.android.datatransport.events");
+                return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f34590b).mo24get(), "com.google.android.datatransport.events");
         }
     }
 
@@ -583,9 +583,9 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void h0() {
-        tg.o0 o0Var = (tg.o0) this.f34586b;
-        o0Var.f57475b.f56697a.C();
-        o0Var.f57483x.setViewHidden(false);
+        tg.o0 o0Var = (tg.o0) this.f34590b;
+        o0Var.f57486b.f56697a.C();
+        o0Var.f57494x.setViewHidden(false);
         PhotoViewer photoViewer = ((org.telegram.ui.sp0) o0Var).L;
         Drawable[] drawableArr = PhotoViewer.Z8;
         photoViewer.V2(true, true);
@@ -593,12 +593,12 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void h1(int i7, int i10) {
-        ((v4.h0) this.f34586b).n(i7, i10, null);
+        ((v4.h0) this.f34590b).n(i7, i10, null);
     }
 
     @Override
     public void i(int i7) {
-        org.telegram.ui.Wallet.z9 z9Var = (org.telegram.ui.Wallet.z9) this.f34586b;
+        org.telegram.ui.Wallet.z9 z9Var = (org.telegram.ui.Wallet.z9) this.f34590b;
         if (!z9Var.f44861r && i7 == z9Var.K) {
             z9Var.j0(z9Var.O.getText().toString().trim());
         }
@@ -626,31 +626,31 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void m() {
-        tg.o0 o0Var = (tg.o0) this.f34586b;
-        o0Var.f57477e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new hi.j3(o0Var, 26)).setInterpolator(er.h);
+        tg.o0 o0Var = (tg.o0) this.f34590b;
+        o0Var.f57488e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new hi.j3(o0Var, 26)).setInterpolator(er.h);
     }
 
     @Override
     public void m0(int i7, int i10) {
-        ((v4.h0) this.f34586b).o(i7, i10);
+        ((v4.h0) this.f34590b).o(i7, i10);
     }
 
     @Override
     public org.telegram.ui.ActionBar.z0 n0(int i7, Runnable runnable, String str, boolean z10, boolean z11) {
-        ys0 ys0Var = (ys0) this.f34586b;
+        ys0 ys0Var = (ys0) this.f34590b;
         org.telegram.ui.ActionBar.z0 e10 = ys0Var.J.e(0, i7, str);
         if (z10) {
             int i10 = org.telegram.ui.ActionBar.j6.f29070p7;
             e10.d(ys0Var.s0(i10), ys0Var.s0(i10));
         }
-        e10.setOnClickListener(new la0(this, z11, runnable));
+        e10.setOnClickListener(new ma0(this, z11, runnable));
         return e10;
     }
 
     @Override
     public boolean p() {
-        bu buVar = (bu) this.f34586b;
-        if (buVar.O1 == buVar.f33376m1 && buVar.f33387y1 && "inapp".equals(org.telegram.messenger.np.s1(buVar.f29679a).B3)) {
+        bu buVar = (bu) this.f34590b;
+        if (buVar.O1 == buVar.f33379m1 && buVar.f33390y1 && "inapp".equals(org.telegram.messenger.np.s1(buVar.f29679a).B3)) {
             return false;
         }
         return true;
@@ -658,7 +658,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void p0(int i7, int i10, CharSequence charSequence, boolean z10) {
-        ki kiVar = (ki) this.f34586b;
+        ki kiVar = (ki) this.f34590b;
         if (kiVar.a1() == null) {
             return;
         }
@@ -682,21 +682,21 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void q0() {
-        ((tg.o0) this.f34586b).f57483x.setViewHidden(true);
+        ((tg.o0) this.f34590b).f57494x.setViewHidden(true);
     }
 
     @Override
     public void r0(float f10) {
-        org.telegram.ui.tp0 tp0Var = (org.telegram.ui.tp0) this.f34586b;
-        sg.k0.e(tp0Var.f57306z1).k(String.valueOf(sg.h.f56640a.indexOf(tp0Var.G0.getCurrentBrush())), f10);
-        sg.h1 h1Var = tp0Var.f57296u1;
+        org.telegram.ui.tp0 tp0Var = (org.telegram.ui.tp0) this.f34590b;
+        sg.k0.e(tp0Var.f57316z1).k(String.valueOf(sg.h.f56640a.indexOf(tp0Var.G0.getCurrentBrush())), f10);
+        sg.h1 h1Var = tp0Var.f57306u1;
         h1Var.f56646c = f10;
         tp0Var.s0(h1Var, null);
     }
 
     @Override
     public void s0() {
-        ((x41) this.f34586b).h.c(true);
+        ((x41) this.f34590b).h.c(true);
     }
 
     @Override
@@ -705,13 +705,13 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public String toString() {
-        switch (this.f34585a) {
+        switch (this.f34589a) {
             case 29:
                 ze.b bVar = ze.b.f61349e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((ug.l0) this.f34586b).m());
+                stringBuffer.append(((ug.l0) this.f34590b).m());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -742,7 +742,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
         int i19;
         byte[] bArr;
         int i20;
-        x3.f fVar = (x3.f) this.f34586b;
+        x3.f fVar = (x3.f) this.f34590b;
         x3.g gVar = fVar.f59776b;
         SparseArray sparseArray = fVar.f59778c;
         h2.x xVar = fVar.f59792k;
@@ -1002,7 +1002,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
 
     @Override
     public ji.p x0() {
-        return (ji.p) this.f34586b;
+        return (ji.p) this.f34590b;
     }
 
     @Override
@@ -1011,7 +1011,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public ClipDescription y0() {
-        return ((t0.h) this.f34586b).getDescription();
+        return ((t0.h) this.f34590b).getDescription();
     }
 
     @Override
@@ -1020,7 +1020,7 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public void z0(int i7, long j3) {
-        x3.f fVar = (x3.f) this.f34586b;
+        x3.f fVar = (x3.f) this.f34590b;
         if (i7 != 240) {
             if (i7 != 241) {
                 if (i7 != 20529) {
@@ -1290,42 +1290,42 @@ public final class ff implements ce0, f90, wi.l, r0.m, xr0, ue.a, jg.y1, q5.b, x
     }
 
     public ff(boolean z10) {
-        this.f34585a = 10;
-        this.f34586b = new AtomicBoolean(z10);
+        this.f34589a = 10;
+        this.f34590b = new AtomicBoolean(z10);
     }
 
     public ff(int i7) {
-        this.f34585a = i7;
+        this.f34589a = i7;
         switch (i7) {
             case 12:
-                this.f34586b = new ArrayDeque(16);
+                this.f34590b = new ArrayDeque(16);
                 return;
             case 29:
                 return;
             default:
-                this.f34586b = h9.i0.p();
+                this.f34590b = h9.i0.p();
                 return;
         }
     }
 
     public ff(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.f34585a = 17;
+        this.f34589a = 17;
         if (Build.VERSION.SDK_INT >= 25) {
-            this.f34586b = new t0.g(uri, clipDescription, uri2);
+            this.f34590b = new t0.g(uri, clipDescription, uri2);
         } else {
-            this.f34586b = new org.telegram.ui.ld0(uri, clipDescription, uri2, 16);
+            this.f34590b = new org.telegram.ui.ld0(uri, clipDescription, uri2, 16);
         }
     }
 
     public ff(Context context, f10 f10Var) {
-        this.f34585a = 3;
-        this.f34586b = new e10(context, f10Var);
+        this.f34589a = 3;
+        this.f34590b = new e10(context, f10Var);
     }
 
     @Override
     public float get() {
-        org.telegram.ui.tp0 tp0Var = (org.telegram.ui.tp0) this.f34586b;
-        int i7 = tp0Var.f57306z1;
+        org.telegram.ui.tp0 tp0Var = (org.telegram.ui.tp0) this.f34590b;
+        int i7 = tp0Var.f57316z1;
         sg.h currentBrush = tp0Var.G0.getCurrentBrush();
         if (currentBrush == null) {
             return sg.k0.e(i7).f56693i;

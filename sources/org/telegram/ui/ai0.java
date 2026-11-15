@@ -51,7 +51,7 @@ public final class ai0 implements org.telegram.messenger.z10 {
         final org.telegram.ui.ActionBar.e6 e6Var = this.f45060m;
         final Integer num = (Integer) obj;
         if (iArr[0] != num.intValue() && !dVar.R && !dVar2.R) {
-            final org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, org.telegram.messenger.t0.f26600b, null);
+            final org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, org.telegram.messenger.t0.f26609b, null);
             t1Var.r(200L);
             ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new d3.b(1), new org.telegram.messenger.s10() {
                 @Override

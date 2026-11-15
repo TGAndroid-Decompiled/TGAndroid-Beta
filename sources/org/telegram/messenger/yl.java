@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yl implements Runnable {
-    public final int f27785a = 0;
-    public final np f27786b;
-    public final TLObject f27787c;
+    public final int f27787a = 0;
+    public final np f27788b;
+    public final TLObject f27789c;
     public final long d;
 
     public yl(np npVar, long j3, TLObject tLObject) {
-        this.f27786b = npVar;
+        this.f27788b = npVar;
         this.d = j3;
-        this.f27787c = tLObject;
+        this.f27789c = tLObject;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27785a;
+        int i7 = this.f27787a;
         long j3 = this.d;
-        TLObject tLObject = this.f27787c;
-        np npVar = this.f27786b;
+        TLObject tLObject = this.f27789c;
+        np npVar = this.f27788b;
         switch (i7) {
             case 0:
-                npVar.f25402u0.l(j3);
+                npVar.f25405u0.l(j3);
                 if (tLObject != null) {
                     TLRPC.TL_messages_peerSettings tL_messages_peerSettings = (TLRPC.TL_messages_peerSettings) tLObject;
                     TLRPC.PeerSettings peerSettings = tL_messages_peerSettings.settings;
@@ -77,8 +77,8 @@ public final class yl implements Runnable {
     }
 
     public yl(np npVar, TLObject tLObject, long j3) {
-        this.f27786b = npVar;
-        this.f27787c = tLObject;
+        this.f27788b = npVar;
+        this.f27789c = tLObject;
         this.d = j3;
     }
 }

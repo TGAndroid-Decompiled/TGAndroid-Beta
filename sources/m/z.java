@@ -162,7 +162,7 @@ public final class z extends RadioButton implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((ic) getEmojiTextViewHelper().f19842b.f25804b).a(inputFilterArr));
+        super.setFilters(((ic) getEmojiTextViewHelper().f19842b.f25806b).a(inputFilterArr));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {

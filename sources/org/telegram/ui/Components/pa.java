@@ -28,12 +28,12 @@ public final class pa implements r1.c {
             case 2:
                 qk qkVar = (qk) this.f38253b;
                 qkVar.m0 = null;
-                qkVar.f38679n0 = 1.0f;
+                qkVar.f38677n0 = 1.0f;
                 qkVar.m0();
                 return;
             case 3:
                 fn0 fn0Var = (fn0) this.f38253b;
-                fn0Var.f34652q = false;
+                fn0Var.f34656q = false;
                 fn0Var.dismiss();
                 return;
             case 4:
@@ -53,7 +53,7 @@ public final class pa implements r1.c {
                 po0Var.A1.setVisibility(8);
                 po0Var.f38369v2.setVisibility(8);
                 no0 no0Var = po0Var.H1;
-                no0Var.f37668f = null;
+                no0Var.f37657f = null;
                 no0Var.f();
                 po0Var.f38373x2 = null;
                 po0Var.I2 = false;

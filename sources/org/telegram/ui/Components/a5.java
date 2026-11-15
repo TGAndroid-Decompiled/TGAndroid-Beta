@@ -31,7 +31,7 @@ public final class a5 implements Runnable {
                     ArrayList<Long> arrayList = new ArrayList<>(hashSet);
                     TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
                     tL_messages_getCustomEmojiDocuments.document_id = arrayList;
-                    ConnectionsManager.getInstance(c5Var.f33505e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.v7(11, c5Var, arrayList));
+                    ConnectionsManager.getInstance(c5Var.f33508e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.v7(11, c5Var, arrayList));
                     return;
                 }
                 return;

@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class sy extends FrameLayout {
-    public final TextView f51299a;
-    public final ImageView f51300b;
-    public boolean f51301c;
+    public final TextView f51300a;
+    public final ImageView f51301b;
+    public boolean f51302c;
 
     public sy(Context context) {
         super(context);
@@ -23,16 +23,16 @@ public final class sy extends FrameLayout {
         float f12;
         float f13;
         TextView textView = new TextView(context);
-        this.f51299a = textView;
+        this.f51300a = textView;
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f29089q6, null);
         i5.c.w(textView, 1, 16.0f, null, 2131751713);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        boolean z10 = org.telegram.messenger.hd.f24101a0;
+        boolean z10 = org.telegram.messenger.hd.f24104a0;
         if (z10) {
             i10 = 16;
         } else {
@@ -44,7 +44,7 @@ public final class sy extends FrameLayout {
             i11 = 16;
         }
         textView.setPadding(i10, 0, i11, 0);
-        boolean z11 = org.telegram.messenger.hd.f24101a0;
+        boolean z11 = org.telegram.messenger.hd.f24104a0;
         if (z11) {
             f10 = 0.0f;
         } else {
@@ -57,7 +57,7 @@ public final class sy extends FrameLayout {
         }
         addView(textView, c8.ja.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f51300b = imageView;
+        this.f51301b = imageView;
         Drawable drawable = context.getResources().getDrawable(2131232560);
         Drawable drawable2 = context.getResources().getDrawable(2131232561);
         int i12 = org.telegram.ui.ActionBar.j6.Fi;
@@ -66,7 +66,7 @@ public final class sy extends FrameLayout {
         org.telegram.ui.ActionBar.q6.x(this, drawable2, org.telegram.ui.ActionBar.j6.f28979k7, null, mode);
         imageView.setImageDrawable(new org.telegram.ui.Components.fq(drawable, drawable2));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        boolean z12 = org.telegram.messenger.hd.f24101a0;
+        boolean z12 = org.telegram.messenger.hd.f24104a0;
         int i13 = (z12 ? 5 : 3) | 16;
         if (z12) {
             f12 = 0.0f;
@@ -84,8 +84,8 @@ public final class sy extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f51301c) {
-            TextView textView = this.f51299a;
+        if (this.f51302c) {
+            TextView textView = this.f51300a;
             canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f28972k0);
         }
     }
@@ -105,10 +105,10 @@ public final class sy extends FrameLayout {
         } else {
             f10 = 0.5f;
         }
-        this.f51299a.setAlpha(f10);
+        this.f51300a.setAlpha(f10);
         if (z10) {
             f11 = 1.0f;
         }
-        this.f51300b.setAlpha(f11);
+        this.f51301b.setAlpha(f11);
     }
 }

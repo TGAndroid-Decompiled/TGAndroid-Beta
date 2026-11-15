@@ -78,7 +78,7 @@ public final class e implements Runnable {
                 v0Var.R++;
                 v0Var.f61767y = true;
                 v0Var.f61756m.b("camera switch started: target=" + n0Var);
-                q40 q40Var = (q40) v0Var.d.f34586b;
+                q40 q40Var = (q40) v0Var.d.f34590b;
                 FrameLayout frameLayout = q40Var.f38514x;
                 q40Var.f38510u0++;
                 ValueAnimator valueAnimator = q40Var.f38489d0;

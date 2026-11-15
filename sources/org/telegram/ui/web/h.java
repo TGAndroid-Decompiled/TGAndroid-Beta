@@ -20,40 +20,40 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.z5;
 import org.telegram.ui.Components.i9;
 public final class h extends FrameLayout implements z5 {
-    public final e6 f52612a;
-    public final i9 f52613b;
-    public final LinearLayout f52614c;
+    public final e6 f52615a;
+    public final i9 f52616b;
+    public final LinearLayout f52617c;
     public final FrameLayout.LayoutParams d;
-    public final TextView f52615e;
-    public final TextView f52616f;
+    public final TextView f52618e;
+    public final TextView f52619f;
     public final TextView h;
-    public final ImageView f52617n;
-    public final y2 f52618r;
-    public int f52619s;
-    public final Paint f52620w;
-    public boolean f52621x;
+    public final ImageView f52620n;
+    public final y2 f52621r;
+    public int f52622s;
+    public final Paint f52623w;
+    public boolean f52624x;
 
     public h(Context context, e6 e6Var) {
         super(context);
-        this.f52620w = new Paint(1);
-        this.f52612a = e6Var;
+        this.f52623w = new Paint(1);
+        this.f52615a = e6Var;
         na.b(this, 0.03f, 1.25f);
         i9 i9Var = new i9(context);
-        this.f52613b = i9Var;
+        this.f52616b = i9Var;
         i9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
         addView(i9Var, ja.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f52614c = linearLayout;
+        this.f52617c = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f52615e = textView;
+        this.f52618e = textView;
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         linearLayout.addView(textView, ja.r(-1, -2, 51));
         TextView textView2 = new TextView(context);
-        this.f52616f = textView2;
+        this.f52619f = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setMaxLines(1);
         textView2.setEllipsize(truncateAt);
@@ -70,12 +70,12 @@ public final class h extends FrameLayout implements z5 {
         textView3.setTextAlignment(6);
         addView(textView3, ja.d(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f52617n = imageView;
+        this.f52620n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131230875);
         addView(imageView, ja.d(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
         y2 y2Var = new y2(this, getContext(), e6Var, 2);
-        this.f52618r = y2Var;
+        this.f52621r = y2Var;
         y2Var.b(-1, j6.f28849d6, j6.f28979k7);
         y2Var.setDrawUnchecked(false);
         y2Var.setDrawBackgroundAsArc(3);
@@ -91,8 +91,8 @@ public final class h extends FrameLayout implements z5 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f52621x) {
-            canvas.drawRect(org.telegram.messenger.g0.L(59.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.f52620w);
+        if (this.f52624x) {
+            canvas.drawRect(org.telegram.messenger.g0.L(59.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.f52623w);
         }
     }
 
@@ -102,21 +102,21 @@ public final class h extends FrameLayout implements z5 {
     }
 
     public void setChecked(boolean z10) {
-        this.f52618r.a(z10, true);
+        this.f52621r.a(z10, true);
     }
 
     @Override
     public final void updateColors() {
         int i7 = j6.f28849d6;
-        e6 e6Var = this.f52612a;
+        e6 e6Var = this.f52615a;
         int w02 = j6.w0(i7, e6Var);
         int w03 = j6.w0(j6.G6, e6Var);
-        this.f52619s = w03;
-        this.f52615e.setTextColor(w03);
-        this.f52616f.setTextColor(j6.w(w02, j6.r1(0.55f, w03)));
+        this.f52622s = w03;
+        this.f52618e.setTextColor(w03);
+        this.f52619f.setTextColor(j6.w(w02, j6.r1(0.55f, w03)));
         this.h.setTextColor(j6.r1(0.55f, w03));
-        this.f52617n.setColorFilter(new PorterDuffColorFilter(j6.r1(0.6f, w03), PorterDuff.Mode.SRC_IN));
-        this.f52620w.setColor(j6.r1(0.1f, w03));
-        this.f52613b.invalidate();
+        this.f52620n.setColorFilter(new PorterDuffColorFilter(j6.r1(0.6f, w03), PorterDuff.Mode.SRC_IN));
+        this.f52623w.setColor(j6.r1(0.1f, w03));
+        this.f52616b.invalidate();
     }
 }

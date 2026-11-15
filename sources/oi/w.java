@@ -148,12 +148,12 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
         gj gjVar;
         gj gjVar2 = this.Q;
         if (gjVar2 != null && i10 == this.f22082n) {
-            if (i7 != ns.f25506h2 && i7 != ns.f25494f2 && i7 != ns.f25500g2) {
-                if (i7 == ns.f25488e2 && gjVar2.e1() == ((Integer) objArr[0]).intValue() && (gjVar = MediaController.B().f22377v0) != null) {
+            if (i7 != ns.f25507h2 && i7 != ns.f25495f2 && i7 != ns.f25501g2) {
+                if (i7 == ns.f25489e2 && gjVar2.e1() == ((Integer) objArr[0]).intValue() && (gjVar = MediaController.B().f22377v0) != null) {
                     gj gjVar3 = this.Q;
-                    gjVar3.f23777b0 = gjVar.f23777b0;
-                    gjVar3.f23809i0 = gjVar.f23809i0;
-                    gjVar3.f23814j0 = gjVar.f23814j0;
+                    gjVar3.f23779b0 = gjVar.f23779b0;
+                    gjVar3.f23811i0 = gjVar.f23811i0;
+                    gjVar3.f23816j0 = gjVar.f23816j0;
                     p();
                     return;
                 }
@@ -219,7 +219,7 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
         if (aVar != null && aVar.f21548g == null) {
             aVar.f21548g = new r();
         }
-        this.I = hd.f24101a0;
+        this.I = hd.f24104a0;
         c(aVar);
         this.V.b();
         TLRPC.Document displayDocument = getDisplayDocument();
@@ -311,7 +311,7 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
         if (getMeasuredWidth() > 0) {
             i7 = getMeasuredWidth();
         } else {
-            i7 = org.telegram.messenger.g0.f23609q.x;
+            i7 = org.telegram.messenger.g0.f23611q.x;
         }
         if (this.I) {
             i10 = this.f22108c;
@@ -445,13 +445,13 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
         super.onAttachedToWindow();
         this.U = true;
         this.f22086x.n(this);
-        this.f22087y.f37653s = this;
+        this.f22087y.f37642s = this;
         n(false);
         int i7 = this.f22082n;
-        ns.f(i7).c(this, ns.f25506h2);
-        ns.f(i7).c(this, ns.f25494f2);
-        ns.f(i7).c(this, ns.f25500g2);
-        ns.f(i7).c(this, ns.f25488e2);
+        ns.f(i7).c(this, ns.f25507h2);
+        ns.f(i7).c(this, ns.f25495f2);
+        ns.f(i7).c(this, ns.f25501g2);
+        ns.f(i7).c(this, ns.f25489e2);
     }
 
     @Override
@@ -460,10 +460,10 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
         this.U = false;
         int i7 = this.f22082n;
         org.telegram.messenger.z5.q(i7).v(this);
-        ns.f(i7).n(this, ns.f25506h2);
-        ns.f(i7).n(this, ns.f25494f2);
-        ns.f(i7).n(this, ns.f25500g2);
-        ns.f(i7).n(this, ns.f25488e2);
+        ns.f(i7).n(this, ns.f25507h2);
+        ns.f(i7).n(this, ns.f25495f2);
+        ns.f(i7).n(this, ns.f25501g2);
+        ns.f(i7).n(this, ns.f25489e2);
     }
 
     @Override
@@ -610,7 +610,7 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
                                 d2Var.d();
                             }
                             arrayList.remove(indexOf);
-                            q3Var.f39895g3.O(true);
+                            q3Var.f39892g3.O(true);
                             d2 d2Var2 = q3Var.R3;
                             if (d2Var2 != null) {
                                 d2Var2.h();
@@ -674,8 +674,8 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
         gj gjVar;
         if (!l() && (gjVar = this.Q) != null) {
             nm0 nm0Var = this.f22087y;
-            if (!nm0Var.f37640e) {
-                nm0Var.h(gjVar.f23777b0);
+            if (!nm0Var.f37629e) {
+                nm0Var.h(gjVar.f23779b0);
             }
         }
         if (l()) {
@@ -685,7 +685,7 @@ public final class w extends x implements org.telegram.ui.ActionBar.z5, g9, i0, 
             }
             i7 = 0;
         } else if (this.Q != null && MediaController.B().I(this.Q)) {
-            i7 = this.Q.f23809i0;
+            i7 = this.Q.f23811i0;
         } else {
             TLRPC.TL_documentAttributeAudio g10 = g();
             if (g10 != null) {

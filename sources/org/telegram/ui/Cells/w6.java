@@ -31,7 +31,7 @@ public abstract class w6 extends LinearLayout {
         TextView textView3 = this.d;
         this.f31887e = i7;
         if (i7 == 0) {
-            textView2.setText(hd.a0(null, null, 2131752156, org.telegram.messenger.k5.h(new StringBuilder("+"), np.s1(i10).a2(Long.valueOf(m10.i(i10).f24953n)).phone, pf.b.c())));
+            textView2.setText(hd.a0(null, null, 2131752156, org.telegram.messenger.k5.h(new StringBuilder("+"), np.s1(i10).a2(Long.valueOf(m10.i(i10).f24959n)).phone, pf.b.c())));
             String M0 = hd.M0(2131752155, null);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
             int indexOf = M0.indexOf("**");

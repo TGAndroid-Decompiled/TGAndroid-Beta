@@ -603,7 +603,7 @@ public final class p4 extends x implements org.telegram.ui.ActionBar.z5, g9, i0 
         int paddingTop = getPaddingTop();
         j(canvas);
         org.telegram.ui.Components.u5 u5Var = this.V;
-        float f13 = u5Var.f39903c;
+        float f13 = u5Var.f39900c;
         ArrayList arrayList = this.E;
         if (arrayList.size() >= 2 && f13 > 0.001f) {
             if (f21879n0 == null) {
@@ -677,7 +677,7 @@ public final class p4 extends x implements org.telegram.ui.ActionBar.z5, g9, i0 
                 h(canvas, imageView2);
             }
         }
-        if (u5Var.f39907i) {
+        if (u5Var.f39904i) {
             requestLayout();
         }
     }
@@ -771,7 +771,7 @@ public final class p4 extends x implements org.telegram.ui.ActionBar.z5, g9, i0 
             z10 = false;
         }
         int i10 = -1;
-        if (m() && !this.V.f39907i) {
+        if (m() && !this.V.f39904i) {
             ArrayList arrayList = this.E;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {

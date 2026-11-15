@@ -4,25 +4,25 @@ import android.util.SparseArray;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.TLRPC;
 public final class x4 implements Runnable {
-    public final int f27461a;
-    public final Object f27462b;
-    public final Object f27463c;
+    public final int f27462a;
+    public final Object f27463b;
+    public final Object f27464c;
 
     public x4(int i7, Object obj, Object obj2) {
-        this.f27461a = i7;
-        this.f27462b = obj;
-        this.f27463c = obj2;
+        this.f27462a = i7;
+        this.f27463b = obj;
+        this.f27464c = obj2;
     }
 
     private final void a() {
         int i7;
-        si siVar = (si) this.f27462b;
-        TLRPC.TL_contacts_topPeers tL_contacts_topPeers = (TLRPC.TL_contacts_topPeers) this.f27463c;
+        si siVar = (si) this.f27463b;
+        TLRPC.TL_contacts_topPeers tL_contacts_topPeers = (TLRPC.TL_contacts_topPeers) this.f27464c;
         try {
-            siVar.getMessagesStorage().f27222b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
-            siVar.getMessagesStorage().f27222b.beginTransaction();
+            siVar.getMessagesStorage().f27221b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
+            siVar.getMessagesStorage().f27221b.beginTransaction();
             siVar.getMessagesStorage().m1(tL_contacts_topPeers.users, tL_contacts_topPeers.chats, false, false);
-            SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27222b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27221b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
             for (int i10 = 0; i10 < tL_contacts_topPeers.categories.size(); i10++) {
                 TLRPC.TL_topPeerCategoryPeers tL_topPeerCategoryPeers = tL_contacts_topPeers.categories.get(i10);
                 TLRPC.TopPeerCategory topPeerCategory = tL_topPeerCategoryPeers.category;
@@ -46,7 +46,7 @@ public final class x4 implements Runnable {
                 }
             }
             executeFast.dispose();
-            siVar.getMessagesStorage().f27222b.commitTransaction();
+            siVar.getMessagesStorage().f27221b.commitTransaction();
             g0.h3(new eg(siVar, 6));
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -59,8 +59,8 @@ public final class x4 implements Runnable {
     }
 
     public x4(SparseArray sparseArray, Runnable runnable) {
-        this.f27461a = 17;
-        this.f27463c = sparseArray;
-        this.f27462b = runnable;
+        this.f27462a = 17;
+        this.f27464c = sparseArray;
+        this.f27463b = runnable;
     }
 }

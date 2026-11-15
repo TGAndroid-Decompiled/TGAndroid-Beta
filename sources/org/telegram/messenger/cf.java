@@ -4,35 +4,35 @@ import android.os.RemoteException;
 import java.lang.ref.WeakReference;
 import java.util.List;
 public final class cf implements e2.a1 {
-    public final int f22861a = 0;
-    public final Object f22862b;
-    public final Object f22863c;
+    public final int f22865a = 0;
+    public final Object f22866b;
+    public final Object f22867c;
 
     public cf(p4.d0 d0Var, p4.g1 g1Var) {
-        this.f22862b = new WeakReference(d0Var);
-        this.f22863c = new WeakReference(g1Var);
+        this.f22866b = new WeakReference(d0Var);
+        this.f22867c = new WeakReference(g1Var);
     }
 
     @Override
     public final void B(List list) {
-        int i7 = this.f22861a;
+        int i7 = this.f22865a;
     }
 
     @Override
     public final void D(int i7, boolean z10) {
-        int i10 = this.f22861a;
+        int i10 = this.f22865a;
     }
 
     @Override
     public final void E(e2.q1 q1Var) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         k10.f54634s = k10.f54634s.d(q1Var);
                         k10.f54620c.a(true, true);
                         k10.d(new org.telegram.utils.twidget.e(q1Var, 22));
@@ -46,21 +46,21 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void F(e2.z0 z0Var) {
-        int i7 = this.f22861a;
+        int i7 = this.f22865a;
     }
 
     @Override
     public final void H(e2.w0 w0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i7 = e1Var.f54663b;
@@ -131,14 +131,14 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void J(int i7, int i10) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         k10.d(new gh.c(i7, i10, 3));
                         return;
                     }
@@ -150,14 +150,14 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void L(e2.l1 l1Var, int i7) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    p4.g1 g1Var = (p4.g1) ((WeakReference) this.f22863c).get();
+                    p4.g1 g1Var = (p4.g1) ((WeakReference) this.f22867c).get();
                     if (g1Var != null) {
                         k10.f54634s = k10.f54634s.c(l1Var, g1Var.R0(), i7);
                         k10.f54620c.a(false, true);
@@ -177,19 +177,19 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void M(e2.q0 q0Var) {
-        int i7 = this.f22861a;
+        int i7 = this.f22865a;
     }
 
     @Override
     public final void O(e2.y0 y0Var) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         k10.f(y0Var);
                         return;
                     }
@@ -202,20 +202,20 @@ public final class cf implements e2.a1 {
     @Override
     public final void P(boolean z10) {
         boolean z11;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
-                l2.p pVar = (l2.p) this.f22862b;
-                df dfVar = (df) this.f22863c;
-                a aVar = dfVar.f23077e;
+                l2.p pVar = (l2.p) this.f22866b;
+                df dfVar = (df) this.f22867c;
+                a aVar = dfVar.f23085e;
                 if (z10) {
-                    dfVar.f23076c = ((l2.f0) pVar).l();
+                    dfVar.f23084c = ((l2.f0) pVar).l();
                 } else {
                     long l10 = ((l2.f0) pVar).l();
-                    long j3 = dfVar.f23076c;
+                    long j3 = dfVar.f23084c;
                     if (j3 != -9223372036854775807L && l10 > j3) {
                         df.a(dfVar, j3, l10);
                     }
-                    dfVar.f23076c = -9223372036854775807L;
+                    dfVar.f23084c = -9223372036854775807L;
                 }
                 g0.r(aVar);
                 if (!z10) {
@@ -227,7 +227,7 @@ public final class cf implements e2.a1 {
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i7 = e1Var.f54663b;
@@ -288,14 +288,14 @@ public final class cf implements e2.a1 {
     public final void a(int i7) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i10 = e1Var.f54663b;
@@ -366,7 +366,7 @@ public final class cf implements e2.a1 {
     public final void b(e2.x1 x1Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
@@ -438,19 +438,19 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void c(boolean z10) {
-        int i7 = this.f22861a;
+        int i7 = this.f22865a;
     }
 
     @Override
     public final void d(int i7) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         k10.f54634s = e1Var.b(e1Var.f54681w, i7, e1Var.v);
                         k10.f54620c.a(true, true);
@@ -473,14 +473,14 @@ public final class cf implements e2.a1 {
     public final void e(int i7) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i10 = e1Var.f54663b;
@@ -549,12 +549,12 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void f(boolean z10) {
-        int i7 = this.f22861a;
+        int i7 = this.f22865a;
     }
 
     @Override
     public final void g(int i7) {
-        int i10 = this.f22861a;
+        int i10 = this.f22865a;
     }
 
     @Override
@@ -564,14 +564,14 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void i(int i7, boolean z10) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         k10.f54634s = e1Var.b(i7, e1Var.f54684z, z10);
                         k10.f54620c.a(true, true);
@@ -594,7 +594,7 @@ public final class cf implements e2.a1 {
     public final void j(float f10) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
@@ -668,20 +668,20 @@ public final class cf implements e2.a1 {
     }
 
     public p4.d0 k() {
-        return (p4.d0) ((WeakReference) this.f22862b).get();
+        return (p4.d0) ((WeakReference) this.f22866b).get();
     }
 
     @Override
     public final void l(int i7) {
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    p4.g1 g1Var = (p4.g1) ((WeakReference) this.f22863c).get();
+                    p4.g1 g1Var = (p4.g1) ((WeakReference) this.f22867c).get();
                     if (g1Var != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 W = g1Var.W();
@@ -748,7 +748,7 @@ public final class cf implements e2.a1 {
     public final void m(e2.o0 o0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
@@ -822,14 +822,14 @@ public final class cf implements e2.a1 {
     public final void n(e2.e eVar) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i7 = e1Var.f54663b;
@@ -904,14 +904,14 @@ public final class cf implements e2.a1 {
     public final void o(e2.o0 o0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i7 = e1Var.f54663b;
@@ -980,7 +980,7 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
@@ -1002,26 +1002,26 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void q(e2.v0 v0Var) {
-        int i7 = this.f22861a;
+        int i7 = this.f22865a;
     }
 
     @Override
     public final void s(e2.b1 b1Var, e2.b1 b1Var2, int i7) {
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
-                df dfVar = (df) this.f22863c;
+                df dfVar = (df) this.f22867c;
                 if (i7 == 1) {
-                    long j3 = dfVar.f23076c;
+                    long j3 = dfVar.f23084c;
                     long j10 = -9223372036854775807L;
                     if (j3 != -9223372036854775807L) {
                         df.a(dfVar, j3, b1Var.f10023f);
                     }
-                    if (((com.google.android.gms.common.api.q) ((l2.p) this.f22862b)).h()) {
+                    if (((com.google.android.gms.common.api.q) ((l2.p) this.f22866b)).h()) {
                         j10 = b1Var2.f10023f;
                     }
-                    dfVar.f23076c = j10;
-                    g0.r(dfVar.f23077e);
+                    dfVar.f23084c = j10;
+                    g0.r(dfVar.f23085e);
                     return;
                 }
                 return;
@@ -1029,7 +1029,7 @@ public final class cf implements e2.a1 {
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i10 = e1Var.f54663b;
@@ -1088,14 +1088,14 @@ public final class cf implements e2.a1 {
     public final void t(boolean z10) {
         e2.q1 q1Var;
         boolean z11;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i7 = e1Var.f54663b;
@@ -1164,14 +1164,14 @@ public final class cf implements e2.a1 {
 
     @Override
     public final void u(e2.s1 s1Var) {
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         k10.f54634s = k10.f54634s.a(s1Var);
                         k10.f54620c.a(true, false);
                         k10.d(new org.telegram.utils.twidget.e(s1Var, 20));
@@ -1187,14 +1187,14 @@ public final class cf implements e2.a1 {
     public final void v(int i7, e2.l0 l0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         p4.l1 l1Var = e1Var.f54664c;
@@ -1265,14 +1265,14 @@ public final class cf implements e2.a1 {
     public final void x(g2.c cVar) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         e2.v0 v0Var = e1Var.f54662a;
                         int i7 = e1Var.f54663b;
@@ -1334,14 +1334,14 @@ public final class cf implements e2.a1 {
     public final void y(e2.v0 v0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f22861a) {
+        switch (this.f22865a) {
             case 0:
                 return;
             default:
                 p4.d0 k10 = k();
                 if (k10 != null) {
                     k10.u();
-                    if (((p4.g1) ((WeakReference) this.f22863c).get()) != null) {
+                    if (((p4.g1) ((WeakReference) this.f22867c).get()) != null) {
                         p4.e1 e1Var = k10.f54634s;
                         int i7 = e1Var.f54663b;
                         p4.l1 l1Var = e1Var.f54664c;
@@ -1411,8 +1411,8 @@ public final class cf implements e2.a1 {
     }
 
     public cf(df dfVar, l2.p pVar) {
-        this.f22863c = dfVar;
-        this.f22862b = pVar;
+        this.f22867c = dfVar;
+        this.f22866b = pVar;
     }
 
     private final void h0() {

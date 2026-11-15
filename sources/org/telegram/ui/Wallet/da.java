@@ -233,13 +233,13 @@ public final class da {
         animatorSet.addListener(new ca(this, kiVar, w6Var));
         y5Var.P0();
         y5Var.Y0(false);
-        bi.v3 v3Var = y5Var.f38882a;
+        bi.v3 v3Var = y5Var.f38880a;
         if (v3Var != null) {
             v3Var.C0();
-            y5Var.f38882a.f39894f3.h1(0, 0);
+            y5Var.f38880a.f39891f3.h1(0, 0);
             u41 u41Var = y5Var.f44749s0[0];
             if (u41Var != null) {
-                p41 p41Var = u41Var.f39895g3;
+                p41 p41Var = u41Var.f39892g3;
                 u41Var.C0();
                 p41Var.O(false);
                 for (int i7 = 0; i7 < p41Var.E.size(); i7++) {
@@ -250,7 +250,7 @@ public final class da {
                             TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
                             int i10 = t3.f44512b;
                             if ((wallettransaction2 instanceof s3 ? ((s3) wallettransaction2).f44480a : wallettransaction2) == wallettransaction || l0.i0((TL_wallet.walletTransaction) obj, wallettransaction)) {
-                                u41Var.f39894f3.h1(i7, 0);
+                                u41Var.f39891f3.h1(i7, 0);
                                 break;
                             }
                         } else {
@@ -319,7 +319,7 @@ public final class da {
             this.f43774p.f(false);
             RectF rectF = this.f43773o;
             if (!rectF.isEmpty()) {
-                float centerY = (((rectF.centerY() - (Math.min(this.f43772n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f23608p;
+                float centerY = (((rectF.centerY() - (Math.min(this.f43772n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f23610p;
                 v3 v3Var2 = this.f43774p;
                 v3Var2.d();
                 r1.g gVar = new r1.g(new r1.f(0.0f));
@@ -403,7 +403,7 @@ public final class da {
             f(w6Var, this.f43763c, viewGroup, rectF);
         } else if (w6Var.isAttachedToWindow() && w6Var.getRootView() == viewGroup.getRootView()) {
             rectF.set(a(w6Var, viewGroup));
-            rectF.offset(0.0f, kiVar.f36463j4 - kiVar.f36497t2);
+            rectF.offset(0.0f, kiVar.f36451j4 - kiVar.f36485t2);
         }
     }
 }

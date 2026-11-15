@@ -246,7 +246,7 @@ public final class g4 {
         c4Var.setOnClickListener(new x3(this, 2));
         frameLayout.addView(c4Var, ja.e(-2, -2, 19));
         frameLayout.addView(textView, ja.d(-1, -2.0f, 19, 56.0f, 0.0f, 0.0f, 0.0f));
-        frameLayout.addView(view2, ja.a(-1.0f, f10 / org.telegram.messenger.g0.f23608p, 55));
+        frameLayout.addView(view2, ja.a(-1.0f, f10 / org.telegram.messenger.g0.f23610p, 55));
         c4Var.measure(0, 0);
         this.H = new Size(c4Var.getMeasuredWidth(), c4Var.getMeasuredHeight());
         this.f28567g = new z51(10, context, this);

@@ -58,7 +58,7 @@ public final class b3 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation = er.f34420f.getInterpolation(m5Var.K0);
+                float interpolation = er.f34419f.getInterpolation(m5Var.K0);
                 if (view != null && view2 != null) {
                     float f12 = 1.0f - interpolation;
                     float f13 = (f12 * 0.4f) + 0.6f;
@@ -124,7 +124,7 @@ public final class b3 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt2.setAlpha((f11 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = er.f34420f.getInterpolation(g0Var.S0);
+                float interpolation2 = er.f34419f.getInterpolation(g0Var.S0);
                 if (view3 != null && view4 != null) {
                     float f15 = 1.0f - interpolation2;
                     float f16 = (f15 * 0.4f) + 0.6f;

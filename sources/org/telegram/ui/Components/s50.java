@@ -15,11 +15,11 @@ public final class s50 extends cv0 {
         switch (this.L) {
             case 0:
                 super.onAttachedToWindow();
-                this.f33705b.getImageReceiver().P0(false);
+                this.f33707b.getImageReceiver().P0(false);
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f33705b.getImageReceiver().P0(false);
+                this.f33707b.getImageReceiver().P0(false);
                 return;
             default:
                 super.onAttachedToWindow();

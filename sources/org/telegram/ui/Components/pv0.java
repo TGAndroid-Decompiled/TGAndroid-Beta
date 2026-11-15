@@ -26,7 +26,7 @@ public final class pv0 implements org.telegram.ui.ls {
     }
 
     @Override
-    public final m60 E(ai.j0 j0Var) {
+    public final m60 E(ai.k0 k0Var) {
         return null;
     }
 
@@ -38,12 +38,12 @@ public final class pv0 implements org.telegram.ui.ls {
         if (isEmpty) {
             bw0Var.dismiss();
         }
-        bw0Var.f33410o1.f();
+        bw0Var.f33413o1.f();
         org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, bw0Var.getContext(), bw0Var.J0);
         t1Var.r(350L);
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = org.telegram.messenger.si.a0(document, "").document;
-        ConnectionsManager.getInstance(bw0Var.f29679a).sendRequest(tL_stickers_removeStickerFromSet, new di.l8(this, isEmpty, t1Var, 4));
+        ConnectionsManager.getInstance(bw0Var.f29679a).sendRequest(tL_stickers_removeStickerFromSet, new di.k8(this, isEmpty, t1Var, 4));
     }
 
     @Override

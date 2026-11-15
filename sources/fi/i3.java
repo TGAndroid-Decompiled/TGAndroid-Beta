@@ -29,8 +29,8 @@ import org.telegram.ui.Components.i41;
 import org.telegram.ui.Components.m60;
 import org.telegram.ui.Components.u20;
 import org.telegram.ui.Components.wy0;
-import org.telegram.ui.Components.x80;
 import org.telegram.ui.Components.xb;
+import org.telegram.ui.Components.y80;
 import org.telegram.ui.an;
 public final class i3 extends a8 {
     public final b4 A0;
@@ -58,7 +58,7 @@ public final class i3 extends a8 {
                     org.telegram.ui.ActionBar.e6 e6Var = this.f11814z0;
                     xb h = new cc(e3Var, e6Var).h(document, 2, new bi.j(this, this.f11813y0, e6Var, 3));
                     if (h != null) {
-                        h.f41636a = 1;
+                        h.f41628a = 1;
                         h.k(true);
                     }
                 }
@@ -87,7 +87,7 @@ public final class i3 extends a8 {
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", 3);
                 bundle.putString("hashtag", url);
-                i9Var.N(new x80(bundle, null));
+                i9Var.N(new y80(bundle, null));
                 return;
             }
             String c10 = vf.c.c(url);
@@ -106,7 +106,7 @@ public final class i3 extends a8 {
             M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof h41);
         } else if (characterStyle instanceof e41) {
             e41 e41Var = (e41) characterStyle;
-            org.telegram.messenger.g0.g(e41Var.f34186a.subSequence(e41Var.f34187b, e41Var.f34188c).toString());
+            org.telegram.messenger.g0.g(e41Var.f34173a.subSequence(e41Var.f34174b, e41Var.f34175c).toString());
             i20.s(null, 2131744194, new cc(b4Var.M0, this.f11814z0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
@@ -158,7 +158,7 @@ public final class i3 extends a8 {
         };
         k10.M = charSequenceArr;
         k10.L = onClickListener;
-        k10.I0 = new di.r9(c1Var, 3);
+        k10.I0 = new di.q9(c1Var, 3);
         k10.P(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28922h5, e6Var));
         ((z8) b4Var.A1).h(k10);
     }
@@ -213,9 +213,9 @@ public final class i3 extends a8 {
                             tL_inputDocument.f28063id = document2.f28057id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.B().R0 != null && MediaController.B().R0.f24201b == m10.i(b4Var3.f11497m2).e()) {
+                            if (MediaController.B().R0 != null && MediaController.B().R0.f24204b == m10.i(b4Var3.f11497m2).e()) {
                                 hp hpVar = MediaController.B().R0;
-                                hpVar.f24202c.add(0, hpVar.d(document2));
+                                hpVar.f24205c.add(0, hpVar.d(document2));
                                 hpVar.e();
                             }
                             ConnectionsManager.getInstance(b4Var3.f11497m2).sendRequest(tL_account_saveMusic, null);
@@ -261,9 +261,9 @@ public final class i3 extends a8 {
                             tL_inputDocument.f28063id = document2.f28057id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.B().R0 != null && MediaController.B().R0.f24201b == m10.i(b4Var3.f11497m2).e()) {
+                            if (MediaController.B().R0 != null && MediaController.B().R0.f24204b == m10.i(b4Var3.f11497m2).e()) {
                                 hp hpVar = MediaController.B().R0;
-                                hpVar.f24202c.add(0, hpVar.d(document2));
+                                hpVar.f24205c.add(0, hpVar.d(document2));
                                 hpVar.e();
                             }
                             ConnectionsManager.getInstance(b4Var3.f11497m2).sendRequest(tL_account_saveMusic, null);
@@ -286,7 +286,7 @@ public final class i3 extends a8 {
             np.s1(b4Var.f11497m2).P1().g0(v7Var.f12430c.intValue(), v7Var.f12429b.longValue(), new bi.o1(this, v7Var, i9Var, e6Var, 2));
         } else {
             xb Q = new cc(b4Var.M0, e6Var).Q(2131624012, 36, hd.M0(2131744664, null));
-            Q.f41636a = 3;
+            Q.f41628a = 3;
             Q.k(true);
         }
     }
@@ -316,7 +316,7 @@ public final class i3 extends a8 {
             }
             return;
         }
-        if ((characterStyle instanceof h41) && (wy0Var = ((h41) characterStyle).f35164a) != null && (wy0Var.f41484a & 1024) != 0) {
+        if ((characterStyle instanceof h41) && (wy0Var = ((h41) characterStyle).f35164a) != null && (wy0Var.f41487a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;

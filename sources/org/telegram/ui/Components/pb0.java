@@ -16,8 +16,8 @@ public final class pb0 extends TextView {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         qb0 qb0Var = this.f38263a;
-        if (qb0Var.f38618e.getAdapter() instanceof fx) {
-            ((fx) qb0Var.f38618e.getAdapter()).getClass();
+        if (qb0Var.f38616e.getAdapter() instanceof fx) {
+            ((fx) qb0Var.f38616e.getAdapter()).getClass();
         }
     }
 

@@ -6,14 +6,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class dk0 extends FrameLayout {
-    public TextView f46416a;
-    public TextView f46417b;
-    public ImageView f46418c;
+    public TextView f46388a;
+    public TextView f46389b;
+    public ImageView f46390c;
     public boolean d;
 
     public final void a(String str, boolean z10) {
-        this.f46416a.setText(str);
-        this.f46417b.setText("");
+        this.f46388a.setText(str);
+        this.f46389b.setText("");
         this.d = z10;
         setWillNotDraw(!z10);
     }
@@ -23,7 +23,7 @@ public final class dk0 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -31,7 +31,7 @@ public final class dk0 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
@@ -47,7 +47,7 @@ public final class dk0 extends FrameLayout {
 
     public void setChecked(boolean z10) {
         int i7;
-        ImageView imageView = this.f46418c;
+        ImageView imageView = this.f46390c;
         if (z10) {
             i7 = 0;
         } else {
@@ -63,6 +63,6 @@ public final class dk0 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f46417b.setText(charSequence);
+        this.f46389b.setText(charSequence);
     }
 }

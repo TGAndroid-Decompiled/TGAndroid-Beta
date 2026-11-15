@@ -10,12 +10,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class mv {
-    public final ArrayList f25099a;
-    public final int f25100b;
+    public final ArrayList f25102a;
+    public final int f25103b;
 
     public mv(int i7, ArrayList arrayList) {
-        this.f25099a = arrayList;
-        this.f25100b = i7;
+        this.f25102a = arrayList;
+        this.f25103b = i7;
     }
 
     public static void a(TL_iv.RichText richText, ArrayList arrayList) {
@@ -115,7 +115,7 @@ public final class mv {
         TLRPC.Message message;
         TL_iv.RichMessage richMessage;
         iv ivVar;
-        if (gjVar != null && (message = gjVar.f23817k) != null && (richMessage = message.rich_message) != null && (ivVar = gjVar.f23874y2) != null && ivVar.f24442c == richMessage) {
+        if (gjVar != null && (message = gjVar.f23819k) != null && (richMessage = message.rich_message) != null && (ivVar = gjVar.f23876y2) != null && ivVar.f24447c == richMessage) {
             return true;
         }
         return false;
@@ -240,12 +240,12 @@ public final class mv {
     public static int[] f(gj gjVar, String str, int i7) {
         ArrayList arrayList;
         int[] iArr = null;
-        if (gjVar == null || gjVar.f23874y2 == null || TextUtils.isEmpty(str)) {
+        if (gjVar == null || gjVar.f23876y2 == null || TextUtils.isEmpty(str)) {
             return null;
         }
-        iv ivVar = gjVar.f23874y2;
-        TL_iv.RichMessage richMessage = ivVar.f24442c;
-        ArrayList arrayList2 = ivVar.f24451n;
+        iv ivVar = gjVar.f23876y2;
+        TL_iv.RichMessage richMessage = ivVar.f24447c;
+        ArrayList arrayList2 = ivVar.f24456n;
         ArrayList e10 = e(richMessage);
         if (e10.isEmpty()) {
             return null;
@@ -271,7 +271,7 @@ public final class mv {
             CharSequence l10 = l((org.telegram.ui.Cells.s9) arrayList2.get(i12));
             if (l10 instanceof Spanned) {
                 Spanned spanned = (Spanned) l10;
-                int intValue = ((Integer) ivVar.f24452o.get(i12)).intValue();
+                int intValue = ((Integer) ivVar.f24457o.get(i12)).intValue();
                 zt[] ztVarArr = (zt[]) spanned.getSpans(i10, l10.length(), zt.class);
                 int length2 = ztVarArr.length;
                 int i13 = i10;
@@ -413,9 +413,9 @@ public final class mv {
         TL_iv.RichText b10;
         int i12;
         if (c(gjVar)) {
-            iv ivVar = gjVar.f23874y2;
-            int i13 = np.s1(gjVar.K1).f25361p4;
-            ArrayList e10 = e(ivVar.f24442c);
+            iv ivVar = gjVar.f23876y2;
+            int i13 = np.s1(gjVar.K1).f25364p4;
+            ArrayList e10 = e(ivVar.f24447c);
             IdentityHashMap identityHashMap = new IdentityHashMap();
             for (int i14 = 0; i14 < e10.size(); i14++) {
                 identityHashMap.put((TL_iv.RichText) e10.get(i14), Integer.valueOf(i14));
@@ -439,14 +439,14 @@ public final class mv {
                             if (i16 != intValue2) {
                                 kvVar.h = null;
                             }
-                            kvVar.f24757f = i16;
-                            kvVar.f24758g = Integer.MAX_VALUE;
+                            kvVar.f24763f = i16;
+                            kvVar.f24764g = Integer.MAX_VALUE;
                         }
                         int i17 = 0;
-                        loop1: while (i17 < 8 && kvVar.f24757f >= intValue) {
+                        loop1: while (i17 < 8 && kvVar.f24763f >= intValue) {
                             int i18 = intValue;
                             int i19 = 0;
-                            while (i18 <= kvVar.f24757f) {
+                            while (i18 <= kvVar.f24763f) {
                                 TL_iv.RichText a12 = kvVar.a(i18);
                                 StringBuilder sb2 = new StringBuilder();
                                 b(a12, sb2, null);
@@ -462,31 +462,31 @@ public final class mv {
                                         int offsetByCodePoints = sb3.offsetByCodePoints(0, i20);
                                         z10 = z11;
                                         lv b11 = kvVar.b(i18);
-                                        if (i18 == intValue && i21 > 0 && (b10 = kvVar.f24756e.b(0, i21)) != null) {
+                                        if (i18 == intValue && i21 > 0 && (b10 = kvVar.f24762e.b(0, i21)) != null) {
                                             offsetByCodePoints += g(b10);
                                         }
-                                        i11 = i(kvVar.f24753a, (TL_iv.RichText) kvVar.f24754b.get(i18), b11.d, offsetByCodePoints, false);
+                                        i11 = i(kvVar.f24759a, (TL_iv.RichText) kvVar.f24760b.get(i18), b11.d, offsetByCodePoints, false);
                                     }
                                     if (i20 > 0) {
-                                        if (i18 != kvVar.f24755c) {
+                                        if (i18 != kvVar.f24761c) {
                                             i21 = 0;
                                         }
-                                        if (i11 > i21 && (i18 != (i12 = kvVar.f24757f) || i11 < kvVar.f24758g)) {
+                                        if (i11 > i21 && (i18 != (i12 = kvVar.f24763f) || i11 < kvVar.f24764g)) {
                                             if (i18 != i12) {
                                                 kvVar.h = null;
                                             }
-                                            kvVar.f24757f = i18;
-                                            kvVar.f24758g = i11;
+                                            kvVar.f24763f = i18;
+                                            kvVar.f24764g = i11;
                                             i17++;
                                             z11 = z10;
                                         }
                                     }
                                     int i22 = i18 - 1;
-                                    if (i22 != kvVar.f24757f) {
+                                    if (i22 != kvVar.f24763f) {
                                         kvVar.h = null;
                                     }
-                                    kvVar.f24757f = i22;
-                                    kvVar.f24758g = Integer.MAX_VALUE;
+                                    kvVar.f24763f = i22;
+                                    kvVar.f24764g = Integer.MAX_VALUE;
                                     i17++;
                                     z11 = z10;
                                 } else {
@@ -495,9 +495,9 @@ public final class mv {
                                 }
                             }
                         }
-                        if (kvVar.f24757f >= intValue) {
+                        if (kvVar.f24763f >= intValue) {
                             ArrayList arrayList = new ArrayList();
-                            for (int i23 = intValue; i23 <= kvVar.f24757f; i23++) {
+                            for (int i23 = intValue; i23 <= kvVar.f24763f; i23++) {
                                 TL_iv.RichText o4 = o(kvVar.a(i23));
                                 if (o4 != null && g(o4) > 0) {
                                     arrayList.add(o4);

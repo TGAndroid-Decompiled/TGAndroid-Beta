@@ -59,7 +59,7 @@ public final class q5 extends View {
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             mutate.setBounds(0, 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
             spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 upperCase = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
             } else {
                 upperCase = new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
@@ -93,7 +93,7 @@ public final class q5 extends View {
         if (isPressed()) {
             float f12 = this.f14910w;
             if (f12 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f23610r) / 80.0f) + f12;
+                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f23612r) / 80.0f) + f12;
                 this.f14910w = min;
                 this.f14910w = Utilities.i(min, 1.0f, 0.0f);
                 invalidate();
@@ -158,7 +158,7 @@ public final class q5 extends View {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
                     this.f14911x = ofFloat;
                     ofFloat.addUpdateListener(new j3(this, 3));
-                    this.f14911x.addListener(new ai.i0(this, 24));
+                    this.f14911x.addListener(new ai.j0(this, 24));
                     i20.k(1.5f, this.f14911x);
                     this.f14911x.setDuration(350L);
                     this.f14911x.start();

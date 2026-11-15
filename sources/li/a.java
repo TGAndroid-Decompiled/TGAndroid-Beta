@@ -29,7 +29,7 @@ public final class a implements s10 {
                 p41 p41Var = (p41) obj2;
                 arrayList.add(b41.l(0, eVar.h));
                 b41 c10 = b41.c(1, 2131232177, hd.M0(2131751939, null));
-                c10.f33186q = true;
+                c10.f33189q = true;
                 arrayList.add(c10);
                 arrayList.add(b41.E(2, org.telegram.messenger.g0.L(14.0f)));
                 ArrayList arrayList2 = eVar.f19558n;
@@ -57,7 +57,7 @@ public final class a implements s10 {
                         } else {
                             M0 = hd.M0(2131748779, null);
                         }
-                        w10.f33182m = M0;
+                        w10.f33185m = M0;
                         arrayList.add(w10);
                     }
                     return;

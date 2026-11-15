@@ -57,7 +57,7 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String f27094id;
+        public final String f27095id;
         public final String ip;
         public final String network;
         public final String port;
@@ -73,7 +73,7 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.f27094id = str5;
+            this.f27095id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
@@ -85,7 +85,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f27094id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f27095id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -140,7 +140,7 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long f27095id;
+        public final long f27096id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -156,7 +156,7 @@ public final class Instance {
 
         public Endpoint(boolean z10, long j3, String str, String str2, int i7, int i10, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
             this.isRtc = z10;
-            this.f27095id = j3;
+            this.f27096id = j3;
             this.ipv4 = str;
             this.ipv6 = str2;
             this.port = i7;
@@ -178,7 +178,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.f27095id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f27096id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -339,7 +339,7 @@ public final class Instance {
 
     public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i7, EncryptionKey encryptionKey, VideoSink videoSink, long j3, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
-            ContextUtils.initialize(org.telegram.messenger.t0.f26600b);
+            ContextUtils.initialize(org.telegram.messenger.t0.f26609b);
         }
         instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i7, encryptionKey, videoSink, j3, audioLevelsCallback);
         setGlobalServerConfig(globalServerConfig.jsonObject.toString());
@@ -363,7 +363,7 @@ public final class Instance {
                 nativeInstance.setGlobalServerConfig(str);
             }
         } catch (JSONException e10) {
-            if (r2.f26198a) {
+            if (r2.f26206a) {
                 a8.e("failed to parse tgvoip server config", e10);
             }
         }

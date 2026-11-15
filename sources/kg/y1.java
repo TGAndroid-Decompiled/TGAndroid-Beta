@@ -30,7 +30,7 @@ import org.telegram.ui.Components.uj0;
 public final class y1 extends e2 implements is {
     public u41 f18147a;
     public LinearLayout f18148b;
-    public ai.u1 f18149c;
+    public ai.v1 f18149c;
     public boolean d;
     public String f18150e;
     public String f18151f;
@@ -44,13 +44,13 @@ public final class y1 extends e2 implements is {
             if (!z10) {
                 String str = y1Var.f18151f;
                 y1Var.f18152n = str;
-                ai.u1 u1Var = y1Var.f18149c;
-                if (u1Var != null) {
-                    u1Var.a(str);
+                ai.v1 v1Var = y1Var.f18149c;
+                if (v1Var != null) {
+                    v1Var.a(str);
                 }
             }
             ((q8) view).setChecked(y1Var.h);
-            y1Var.f18147a.f39895g3.O(true);
+            y1Var.f18147a.f39892g3.O(true);
         } else if (view.isEnabled()) {
             z1 b10 = z1.b(y1Var.currentAccount);
             ArrayList arrayList = b10.d;
@@ -62,14 +62,14 @@ public final class y1 extends e2 implements is {
                     y1Var.h = false;
                     String str2 = ((TLRPC.TL_timezone) arrayList.get(b41Var.d)).f28191id;
                     y1Var.f18152n = str2;
-                    ai.u1 u1Var2 = y1Var.f18149c;
-                    if (u1Var2 != null) {
-                        u1Var2.a(str2);
+                    ai.v1 v1Var2 = y1Var.f18149c;
+                    if (v1Var2 != null) {
+                        v1Var2.a(str2);
                     }
                     if (y1Var.d) {
                         y1Var.simpleActionBar.m(true);
                     }
-                    y1Var.f18147a.f39895g3.O(true);
+                    y1Var.f18147a.f39892g3.O(true);
                 }
             }
         }
@@ -90,7 +90,7 @@ public final class y1 extends e2 implements is {
             String M0 = hd.M0(2131744120, null);
             b41 b41Var = new b41(9);
             b41Var.d = -1;
-            b41Var.f33181l = M0;
+            b41Var.f33184l = M0;
             b41Var.L(y1Var.h);
             arrayList.add(b41Var);
             p41Var.U();
@@ -122,15 +122,15 @@ public final class y1 extends e2 implements is {
             String f10 = z1.f(tL_timezone);
             b41 b41Var2 = new b41(10);
             b41Var2.d = i7;
-            b41Var2.f33181l = e10;
-            b41Var2.f33183n = f10;
+            b41Var2.f33184l = e10;
+            b41Var2.f33186n = f10;
             b41Var2.L(TextUtils.equals(tL_timezone.f28191id, y1Var.f18152n));
             if (y1Var.h && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            b41Var2.f33177g = z11;
+            b41Var2.f33180g = z11;
             arrayList.add(b41Var2);
             z12 = false;
             i7++;
@@ -181,7 +181,7 @@ public final class y1 extends e2 implements is {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         u41 u41Var;
         p41 p41Var;
-        if (i7 == ns.f25563r3 && (u41Var = this.f18147a) != null && (p41Var = u41Var.f39895g3) != null) {
+        if (i7 == ns.f25564r3 && (u41Var = this.f18147a) != null && (p41Var = u41Var.f39892g3) != null) {
             p41Var.O(true);
         }
     }
@@ -201,13 +201,13 @@ public final class y1 extends e2 implements is {
         String c10 = z1.b(this.currentAccount).c();
         this.f18151f = c10;
         this.h = TextUtils.equals(c10, this.f18152n);
-        getNotificationCenter().c(this, ns.f25563r3);
+        getNotificationCenter().c(this, ns.f25564r3);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ns.f25563r3);
+        getNotificationCenter().n(this, ns.f25564r3);
         super.onFragmentDestroy();
     }
 

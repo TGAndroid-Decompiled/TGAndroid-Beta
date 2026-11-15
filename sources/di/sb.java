@@ -1,116 +1,43 @@
 package di;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.at;
-import org.telegram.messenger.h00;
-import org.telegram.messenger.is;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class sb implements Runnable {
-    public final int f9408a;
-    public final boolean f9409b;
-    public final long f9410c;
-    public final Object d;
+import android.content.Context;
+import org.telegram.messenger.hd;
+public final class sb extends fc {
+    public final boolean f9408n0;
+    public final int f9409o0;
+    public final ic f9410p0;
 
-    public sb(Object obj, long j3, boolean z10, int i7) {
-        this.f9408a = i7;
-        this.d = obj;
-        this.f9410c = j3;
-        this.f9409b = z10;
+    public sb(ic icVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, int i7) {
+        super(context, e6Var);
+        this.f9410p0 = icVar;
+        this.f9408n0 = z10;
+        this.f9409o0 = i7;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f9408a;
-        boolean z10 = this.f9409b;
-        long j3 = this.f9410c;
-        Object obj = this.d;
-        switch (i7) {
-            case 0:
-                jc jcVar = (jc) obj;
-                jcVar.A1 = j3;
-                jcVar.f8886z1 = j3;
-                if (z10) {
-                    fi.s0 s0Var = jcVar.B1;
-                    s0Var.f12299c = j3;
-                    jcVar.C1.set(s0Var);
-                }
-                jcVar.M0();
-                jcVar.E1.a(true, true);
-                ic icVar = jcVar.f8885y1;
-                if (icVar != null) {
-                    icVar.setMyPrivacy(jcVar.f8886z1);
-                    return;
-                }
-                return;
-            case 1:
-                hi.l8 l8Var = (hi.l8) obj;
-                hi.q8 q8Var = l8Var.f14600a0;
-                if (z10) {
-                    int i10 = hi.q8.Y1;
-                    np.s1(q8Var.f29679a).T2(Long.valueOf(j3), new hi.d8(l8Var, j3, 0), 200);
-                    return;
-                }
-                int i11 = hi.q8.Y1;
-                np.s1(q8Var.f29679a).V2(0, j3, true);
-                return;
-            case 2:
-                li.k0 k0Var = (li.k0) obj;
-                k0Var.f19597i = null;
-                k0Var.f19596g.l(j3);
-                ArrayList arrayList = k0Var.f19598j;
-                if (arrayList != null) {
-                    for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (org.telegram.messenger.m5.o(((TL_communities.CommunityPeerRequest) k0Var.f19598j.get(size)).peer) == j3) {
-                            k0Var.f19598j.remove(size);
-                        }
-                    }
-                }
-                k0Var.a();
-                li.j0 j0Var = k0Var.h;
-                if (j0Var != null) {
-                    j0Var.I();
-                }
-                np s12 = np.s1(k0Var.d);
-                long j10 = k0Var.f19594e;
-                li.i0 i0Var = new li.i0(k0Var, 2);
-                TL_communities.TL_communities_togglePeerLinkRequestApproval tL_communities_togglePeerLinkRequestApproval = new TL_communities.TL_communities_togglePeerLinkRequestApproval();
-                tL_communities_togglePeerLinkRequestApproval.community = s12.h1(j10);
-                tL_communities_togglePeerLinkRequestApproval.peer = s12.j1(j3);
-                tL_communities_togglePeerLinkRequestApproval.reject = !z10;
-                s12.getConnectionsManager().sendRequestTyped(tL_communities_togglePeerLinkRequestApproval, new d3.b(1), new org.telegram.messenger.p9(s12, j10, i0Var, 2));
-                return;
-            case 3:
-                HashSet hashSet = ((at) obj).f22585y;
-                if (z10) {
-                    hashSet.add(Long.valueOf(j3));
-                    return;
-                } else {
-                    hashSet.remove(Long.valueOf(j3));
-                    return;
-                }
-            default:
-                h00 h00Var = (h00) obj;
-                h00Var.getUserConfig().k().edit().remove("topics_end_reached_" + j3).apply();
-                h00Var.f24008a.l(j3);
-                h00Var.f24009b.l(j3);
-                h00Var.d.delete(j3);
-                h00Var.h.l(j3);
-                TLRPC.Chat M0 = h00Var.getMessagesController().M0(Long.valueOf(j3));
-                if (M0 != null && (M0.forum || M0.monoforum)) {
-                    h00Var.n(0, j3, z10);
-                }
-                h00Var.y(j3, true);
-                return;
+    public final void e(int i7) {
+        long j3 = i7;
+        ic icVar = this.f9410p0;
+        icVar.N0(j3);
+        hi.d dVar = icVar.f8831x1;
+        if (dVar != null) {
+            dVar.i(lb.Y0(false, hd.a0(null, null, 2131745047, hd.E(j3, ',')), icVar.N1), true, true);
+        }
+        if (this.f9408n0) {
+            fi.s0 s0Var = icVar.B1;
+            s0Var.f12302g = j3;
+            icVar.C1.set(s0Var);
+            int i10 = this.f9409o0;
+            f(fi.t.b(i10, i7, 3), fi.t.b(i10, i7, 4), true);
         }
     }
 
-    public sb(is isVar, boolean z10, long j3, int i7) {
-        this.f9408a = i7;
-        this.d = isVar;
-        this.f9409b = z10;
-        this.f9410c = j3;
+    @Override
+    public final void setValue(int i7) {
+        super.setValue(i7);
+        if (this.f9408n0) {
+            int i10 = this.f9409o0;
+            f(fi.t.b(i10, i7, 3), fi.t.b(i10, i7, 4), true);
+        }
     }
 }

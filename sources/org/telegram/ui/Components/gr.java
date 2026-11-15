@@ -21,14 +21,14 @@ public final class gr extends ImageView {
         switch (this.f35043a) {
             case 0:
                 ir irVar = (ir) this.f35045c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (irVar.f35706n || irVar.f35705f)) {
-                    irVar.f35706n = false;
-                    irVar.f35705f = false;
-                    removeCallbacks(irVar.f35707r);
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (irVar.f35693n || irVar.f35692f)) {
+                    irVar.f35693n = false;
+                    irVar.f35692f = false;
+                    removeCallbacks(irVar.f35694r);
                     removeCallbacks(irVar.h);
                 }
                 super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((org.telegram.messenger.ou) this.f35044b).f25804b).onTouchEvent(motionEvent);
+                return ((GestureDetector) ((org.telegram.messenger.ou) this.f35044b).f25806b).onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
         }

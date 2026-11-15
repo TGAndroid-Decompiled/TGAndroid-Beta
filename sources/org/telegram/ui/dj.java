@@ -24,13 +24,13 @@ public final class dj extends v4.t {
         if (i7 >= i11 && i7 < jlVar.L && (i10 = i7 - i11) >= 0 && i10 < jlVar.L().size() && (u92 = anVar.u9((gjVar = (org.telegram.messenger.gj) anVar.D0.L().get(i10)))) != null) {
             ArrayList arrayList = u92.f22710e;
             org.telegram.messenger.yi d = u92.d(gjVar);
-            if (d.f27744a != d.f27745b && (b10 = d.f27746c) == d.d && b10 != 0) {
+            if (d.f27746a != d.f27747b && (b10 = d.f27748c) == d.d && b10 != 0) {
                 int size = arrayList.size();
                 for (int i12 = 0; i12 < size; i12++) {
                     org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) arrayList.get(i12);
                     if (yiVar != d) {
-                        byte b11 = yiVar.f27746c;
-                        byte b12 = d.f27746c;
+                        byte b11 = yiVar.f27748c;
+                        byte b12 = d.f27748c;
                         if (b11 <= b12 && yiVar.d >= b12) {
                             return true;
                         }
@@ -80,7 +80,7 @@ public final class dj extends v4.t {
 
     @Override
     public final void b0(v4.w0 w0Var, v4.b1 b1Var) {
-        boolean z10 = org.telegram.messenger.r2.f26198a;
+        boolean z10 = org.telegram.messenger.r2.f26206a;
         try {
             super.b0(w0Var, b1Var);
         } catch (Exception e10) {

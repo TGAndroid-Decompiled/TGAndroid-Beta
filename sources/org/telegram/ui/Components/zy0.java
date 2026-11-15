@@ -21,13 +21,13 @@ public final class zy0 implements Choreographer.FrameCallback {
         boolean z11;
         switch (this.f42495a) {
             case 0:
-                dz0 dz0Var = ((fz0) this.f42496b).f34755a;
+                dz0 dz0Var = ((fz0) this.f42496b).f34759a;
                 if (dz0Var != null) {
                     Handler handler = dz0Var.getHandler();
-                    if (handler != null && dz0Var.f34110b.get()) {
+                    if (handler != null && dz0Var.f34097b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((fz0) this.f42496b).f34755a.T) {
+                    if (((fz0) this.f42496b).f34759a.T) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }
@@ -35,7 +35,7 @@ public final class zy0 implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                r1.a aVar = (r1.a) ((ff) ((org.telegram.ui.ld0) this.f42496b).f48976b).f34586b;
+                r1.a aVar = (r1.a) ((ff) ((org.telegram.ui.ld0) this.f42496b).f48972b).f34590b;
                 long uptimeMillis = SystemClock.uptimeMillis();
                 ArrayList arrayList = aVar.f55726b;
                 long uptimeMillis2 = SystemClock.uptimeMillis();
@@ -117,7 +117,7 @@ public final class zy0 implements Choreographer.FrameCallback {
                         aVar.d = new org.telegram.ui.ld0(aVar.f55727c);
                     }
                     org.telegram.ui.ld0 ld0Var = aVar.d;
-                    ((Choreographer) ld0Var.f48977c).postFrameCallback((zy0) ld0Var.d);
+                    ((Choreographer) ld0Var.f48973c).postFrameCallback((zy0) ld0Var.d);
                     return;
                 }
                 return;

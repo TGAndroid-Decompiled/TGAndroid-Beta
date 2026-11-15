@@ -118,7 +118,7 @@ public abstract class l implements d5 {
                 i7 = 2131748195;
             }
             cv0Var.d.setText(hd.M0(i7, null));
-            z70 z70Var = this.f61453n.f33707e;
+            z70 z70Var = this.f61453n.f33709e;
             if (z10) {
                 i10 = 2131748145;
             } else {
@@ -156,7 +156,7 @@ public abstract class l implements d5 {
                 q6.h(j6.f28849d6, cv0Var, e2Var.getResourceProvider());
             }
             this.f61454o.d.setText(hd.M0(2131748167, null));
-            this.f61454o.f33707e.setText(hd.M0(2131745807, null));
+            this.f61454o.f33709e.setText(hd.M0(2131745807, null));
             this.f61454o.setAnimateLayoutChange(true);
             this.f61454o.setVisibility(8);
         }
@@ -179,7 +179,7 @@ public abstract class l implements d5 {
     public final void e() {
         boolean z10 = true;
         if (this.A) {
-            TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) this.f61448i.f26683a.get(this.f61449j);
+            TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) this.f61448i.f26692a.get(this.f61449j);
             if (tL_messages_chatInviteImporters != null) {
                 this.f61464z = true;
                 g(tL_messages_chatInviteImporters, null, true, true);

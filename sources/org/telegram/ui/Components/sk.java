@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.view.MotionEvent;
 import android.view.View;
 public final class sk implements org.telegram.ui.ActionBar.l0, org.telegram.messenger.ab, org.telegram.messenger.cb, org.telegram.ui.ActionBar.q1, jg.b {
-    public final dl f39332a;
+    public final dl f39330a;
 
     public sk(dl dlVar) {
-        this.f39332a = dlVar;
+        this.f39330a = dlVar;
     }
 
     @Override
     public void a() {
-        dl dlVar = this.f39332a;
-        dlVar.f33979f0 = false;
+        dl dlVar = this.f39330a;
+        dlVar.f33966f0 = false;
         dlVar.j0();
     }
 
@@ -21,7 +21,7 @@ public final class sk implements org.telegram.ui.ActionBar.l0, org.telegram.mess
         View childAt;
         v4.e1 T;
         int L;
-        dl dlVar = this.f39332a;
+        dl dlVar = this.f39330a;
         di.c1 c1Var = dlVar.M;
         if (i7 == 1 && !dlVar.I && c1Var.getChildCount() > 0 && (childAt = c1Var.getChildAt(0)) != null) {
             View F = c1Var.F(childAt);
@@ -31,7 +31,7 @@ public final class sk implements org.telegram.ui.ActionBar.l0, org.telegram.mess
                 T = c1Var.T(F);
             }
             if (T != null && T.b() == 0) {
-                if (dlVar.f33989p0 == 0) {
+                if (dlVar.f33976p0 == 0) {
                     L = 0;
                 } else {
                     L = org.telegram.messenger.g0.L(66.0f);
@@ -49,7 +49,7 @@ public final class sk implements org.telegram.ui.ActionBar.l0, org.telegram.mess
     @Override
     public boolean c(MotionEvent motionEvent, org.telegram.messenger.ha haVar) {
         MotionEvent motionEvent2;
-        dl dlVar = this.f39332a;
+        dl dlVar = this.f39330a;
         if (dlVar.H != 0.0f) {
             motionEvent = MotionEvent.obtain(motionEvent);
             motionEvent.offsetLocation(0.0f, (-dlVar.H) / 2.0f);
@@ -66,7 +66,7 @@ public final class sk implements org.telegram.ui.ActionBar.l0, org.telegram.mess
 
     @Override
     public void g(int i7) {
-        org.telegram.messenger.ea eaVar = this.f39332a.E;
+        org.telegram.messenger.ea eaVar = this.f39330a.E;
         if (eaVar != null) {
             if (i7 == 2) {
                 eaVar.j(0);
@@ -80,6 +80,6 @@ public final class sk implements org.telegram.ui.ActionBar.l0, org.telegram.mess
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        dl.R(this.f39332a);
+        dl.R(this.f39330a);
     }
 }

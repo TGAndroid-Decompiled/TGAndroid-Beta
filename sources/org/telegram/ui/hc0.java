@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hc0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f47670a;
-    public final oc0 f47671b;
+    public final int f47660a;
+    public final oc0 f47661b;
 
     public hc0(oc0 oc0Var, int i7) {
-        this.f47670a = i7;
-        this.f47671b = oc0Var;
+        this.f47660a = i7;
+        this.f47661b = oc0Var;
     }
 
     @Override
     public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f47670a;
-        oc0 oc0Var = this.f47671b;
+        int i10 = this.f47660a;
+        oc0 oc0Var = this.f47661b;
         switch (i10) {
             case 0:
                 oc0Var.c(true);
@@ -21,7 +21,7 @@ public final class hc0 implements org.telegram.ui.ActionBar.q1 {
                 oc0Var.n();
                 return;
             case 1:
-                oc0Var.Q.f46110s0.popup = false;
+                oc0Var.Q.f46099s0.popup = false;
                 oc0Var.h(null);
                 return;
             case 2:
@@ -36,7 +36,7 @@ public final class hc0 implements org.telegram.ui.ActionBar.q1 {
                 ce0Var.showDialog(t1Var2);
                 return;
             case 3:
-                oc0Var.Q.f46110s0.popup = false;
+                oc0Var.Q.f46099s0.popup = false;
                 oc0Var.h(null);
                 return;
             default:

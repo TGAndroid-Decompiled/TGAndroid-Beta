@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class fr implements Runnable {
-    public final int f47180a;
-    public final pr f47181b;
+    public final int f47170a;
+    public final pr f47171b;
 
     public fr(pr prVar, int i7) {
-        this.f47180a = i7;
-        this.f47181b = prVar;
+        this.f47170a = i7;
+        this.f47171b = prVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47180a) {
+        switch (this.f47170a) {
             case 0:
-                pr.d0(this.f47181b);
+                pr.d0(this.f47171b);
                 return;
             case 1:
-                pr prVar = this.f47181b;
+                pr prVar = this.f47171b;
                 if (prVar.K) {
                     prVar.d.d.requestFocus();
                     org.telegram.messenger.g0.J3(prVar.d.d);
@@ -23,7 +23,7 @@ public final class fr implements Runnable {
                 }
                 return;
             default:
-                pr prVar2 = this.f47181b;
+                pr prVar2 = this.f47171b;
                 prVar2.presentFragment(an.ua(prVar2.I), true);
                 return;
         }

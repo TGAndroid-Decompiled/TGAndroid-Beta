@@ -35,8 +35,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ja;
 import c8.na;
-import di.mb;
-import di.ub;
+import di.lb;
+import di.tb;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,9 +76,9 @@ import org.telegram.ui.Components.mi0;
 import org.telegram.ui.Components.r40;
 import org.telegram.ui.Components.st0;
 import org.telegram.ui.Components.ud;
-import org.telegram.ui.Components.x80;
 import org.telegram.ui.Components.xb;
 import org.telegram.ui.Components.xe;
+import org.telegram.ui.Components.y80;
 import org.telegram.ui.Components.ys;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
@@ -132,7 +132,7 @@ public abstract class b4 extends st0 implements is {
     public float K3;
     public boolean L0;
     public k2 L1;
-    public ub L2;
+    public tb L2;
     public final Path L3;
     public final e3 M0;
     public lh.h M1;
@@ -342,7 +342,7 @@ public abstract class b4 extends st0 implements is {
         this.f11522t0 = i9Var;
         this.f11479h1 = y3Var;
         this.f11547z1 = y3Var.f12532g;
-        this.C1 = np.s1(m10.f24934t0).P1();
+        this.C1 = np.s1(m10.f24940t0).P1();
         y3Var.f12536l.setColor(-16777216);
         this.X1 = new Paint(1);
         Paint paint = new Paint(1);
@@ -373,7 +373,7 @@ public abstract class b4 extends st0 implements is {
         ui.a aVar = this.f11513q3;
         dh.c cVar2 = new dh.c(aVar, aVar, aVar);
         cVar2.h = kVar;
-        cVar2.f8095i = this;
+        cVar2.f8098i = this;
         this.f11509p3 = cVar2;
         this.V1 = cVar2.c(this, bVar, false);
         fh.g c10 = cVar2.c(this, bVar, false);
@@ -446,12 +446,12 @@ public abstract class b4 extends st0 implements is {
                 b4 b4Var = this.f12258b;
                 switch (i10) {
                     case 0:
-                        long j3 = m10.i(b4Var.f11497m2).f24953n;
+                        long j3 = m10.i(b4Var.f11497m2).f24959n;
                         long j10 = b4Var.l1;
                         if (j3 == j10) {
                             Bundle f10 = r.b.f(1, "type");
                             f10.putLong("dialog_id", b4Var.l1);
-                            i9Var2.N(new x80(f10, null));
+                            i9Var2.N(new y80(f10, null));
                             return;
                         } else if (j10 > 0) {
                             i9Var2.N(ProfileActivity.C4(j10));
@@ -543,12 +543,12 @@ public abstract class b4 extends st0 implements is {
                 b4 b4Var = this.f12258b;
                 switch (i10) {
                     case 0:
-                        long j3 = m10.i(b4Var.f11497m2).f24953n;
+                        long j3 = m10.i(b4Var.f11497m2).f24959n;
                         long j10 = b4Var.l1;
                         if (j3 == j10) {
                             Bundle f10 = r.b.f(1, "type");
                             f10.putLong("dialog_id", b4Var.l1);
-                            i9Var2.N(new x80(f10, null));
+                            i9Var2.N(new y80(f10, null));
                             return;
                         } else if (j10 > 0) {
                             i9Var2.N(ProfileActivity.C4(j10));
@@ -723,7 +723,7 @@ public abstract class b4 extends st0 implements is {
         File h = z3Var.h();
         boolean z10 = z3Var.f12582e;
         if (h != null && h.exists()) {
-            MediaController.d0(h.toString(), b4Var.getContext(), z10 ? 1 : 0, null, null, new di.t7(1, b4Var, z10));
+            MediaController.d0(h.toString(), b4Var.getContext(), z10 ? 1 : 0, null, null, new ai.u2(2, b4Var, z10));
             return;
         }
         b4Var.Y0();
@@ -816,7 +816,7 @@ public abstract class b4 extends st0 implements is {
 
     public float getHideInterfaceAlpha() {
         float f10;
-        float f11 = 1.0f - this.f11544y2.f39903c;
+        float f11 = 1.0f - this.f11544y2.f39900c;
         k5 k5Var = this.f11522t0.f11882x;
         if (k5Var == null) {
             f10 = 0.0f;
@@ -1021,7 +1021,7 @@ public abstract class b4 extends st0 implements is {
             j0();
             this.C1.j0(this.l1, z3Var.f12579a, null);
         } else if (p0Var == null) {
-            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(this.f11497m2).f26495r.get("❤");
+            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(this.f11497m2).f26505r.get("❤");
             if (tL_availableReaction != null) {
                 this.Z2 = false;
                 TLRPC.Document document = tL_availableReaction.around_animation;
@@ -1235,7 +1235,7 @@ public abstract class b4 extends st0 implements is {
         for (int i19 = 0; i19 < arrayList.size(); i19++) {
             iArr4[i19] = ((Integer) arrayList.get(i19)).intValue();
         }
-        sVar.f8635f0 = iArr4;
+        sVar.f8579f0 = iArr4;
         sVar.setValue((int) jArr[0]);
         f10.addView(sVar, ja.k(0.0f, -52.0f, 0.0f, -42.0f, -1, -2));
         z10VarArr[0].a(Integer.valueOf((int) jArr[0]));
@@ -1259,7 +1259,7 @@ public abstract class b4 extends st0 implements is {
             return;
         }
         r0();
-        this.f11520s2.f36447e2.i0();
+        this.f11520s2.f36435e2.i0();
         this.f11520s2.y1(-1, true);
         p2 p2Var = this.f11520s2;
         p2Var.U1 = this.l1;
@@ -1405,11 +1405,11 @@ public abstract class b4 extends st0 implements is {
                 Drawable mutate = getContext().getDrawable(2131232794).mutate();
                 mutate.setAlpha(255);
                 fq fqVar = new fq(mutate, null);
-                fqVar.f34678x = true;
+                fqVar.f34682x = true;
                 int L = org.telegram.messenger.g0.L(16.0f);
                 int L2 = org.telegram.messenger.g0.L(16.0f);
                 fqVar.h = L;
-                fqVar.f34674n = L2;
+                fqVar.f34678n = L2;
                 x3Var.f12494b.i(fqVar);
             } else {
                 x3Var.f12494b.i(null);
@@ -1434,11 +1434,11 @@ public abstract class b4 extends st0 implements is {
             Drawable mutate2 = getContext().getDrawable(2131232794).mutate();
             mutate2.setAlpha(255);
             fq fqVar2 = new fq(mutate2, null);
-            fqVar2.f34678x = true;
+            fqVar2.f34682x = true;
             int L3 = org.telegram.messenger.g0.L(16.0f);
             int L4 = org.telegram.messenger.g0.L(16.0f);
             fqVar2.h = L3;
-            fqVar2.f34674n = L4;
+            fqVar2.f34678n = L4;
             w3Var2.i(fqVar2);
             return;
         }
@@ -1538,7 +1538,7 @@ public abstract class b4 extends st0 implements is {
                     ofFloat.addUpdateListener(new u1(this, 1));
                     ofFloat.addListener(new f2(this, z10, 0));
                     ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(er.f34421g);
+                    ofFloat.setInterpolator(er.f34420g);
                     ofFloat.start();
                     return;
                 }
@@ -1615,21 +1615,21 @@ public abstract class b4 extends st0 implements is {
         float f10;
         e1 e1Var;
         boolean z10;
-        int i11 = ns.f25591v5;
+        int i11 = ns.f25592v5;
         long j3 = 0;
         i9 i9Var = this.f11522t0;
         boolean z11 = false;
-        if (i7 != i11 && (i7 != ns.f25605x5 || i9Var.O0 != objArr[0])) {
-            if (i7 == ns.f25534m3) {
+        if (i7 != i11 && (i7 != ns.f25606x5 || i9Var.O0 != objArr[0])) {
+            if (i7 == ns.f25535m3) {
                 d1(false);
                 return;
-            } else if (i7 == ns.f25514i4) {
+            } else if (i7 == ns.f25515i4) {
                 this.f11526u0.f11420c0.invalidate();
                 return;
             } else if (i7 == ns.D5) {
                 p0(true);
                 return;
-            } else if (i7 == ns.f25472b3) {
+            } else if (i7 == ns.f25473b3) {
                 m6 o4 = np.s1(this.f11497m2).P1().o();
                 if (o4 != null && o4.a(this.f11497m2, 1) && this.A1 != null) {
                     bi.t6 t6Var = new bi.t6(this, 2);
@@ -1641,7 +1641,7 @@ public abstract class b4 extends st0 implements is {
                     return;
                 }
                 return;
-            } else if (i7 == ns.f25513i3) {
+            } else if (i7 == ns.f25514i3) {
                 TL_account.RequirementToContact J2 = np.s1(this.f11497m2).J2(this.l1);
                 if (this.l1 >= 0 && !m10.i(this.f11497m2).q() && (J2 instanceof TL_account.requirementToContactPremium)) {
                     z10 = true;
@@ -1769,7 +1769,7 @@ public abstract class b4 extends st0 implements is {
             float measuredHeight = (v2Var.getMeasuredHeight() / 2.0f) + v2Var.getY() + linearLayout.getY();
             int L = org.telegram.messenger.g0.L(24.0f);
             float f10 = L / 2.0f;
-            float T1 = org.telegram.messenger.g0.T1(this.f11477g3, measuredWidth - f10, er.f34421g.getInterpolation(this.f11473f3));
+            float T1 = org.telegram.messenger.g0.T1(this.f11477g3, measuredWidth - f10, er.f34420g.getInterpolation(this.f11473f3));
             float T12 = org.telegram.messenger.g0.T1(this.f11481h3, measuredHeight - f10, this.f11473f3);
             int W1 = org.telegram.messenger.g0.W1(this.f11473f3, this.f11485i3, L);
             if (this.Z2) {
@@ -2110,13 +2110,13 @@ public abstract class b4 extends st0 implements is {
                     Object obj = arrayList4.get(i7);
                     i7++;
                     gj f10 = i9Var.O0.f(((Integer) obj).intValue());
-                    if (f10 != null && (storyItem = f10.f23822l) != null) {
+                    if (f10 != null && (storyItem = f10.f23824l) != null) {
                         arrayList.add(storyItem);
                     }
                 }
             } else if (i9Var.O0 != null) {
                 while (i7 < i9Var.O0.f11944i.size()) {
-                    arrayList.add(((gj) i9Var.O0.f11944i.get(i7)).f23822l);
+                    arrayList.add(((gj) i9Var.O0.f11944i.get(i7)).f23824l);
                     i7++;
                 }
             } else {
@@ -2150,7 +2150,7 @@ public abstract class b4 extends st0 implements is {
         b4 currentPeerView;
         r40 r40Var = this.f11524t2;
         if (r40Var != null) {
-            r40Var.f38850f0 = null;
+            r40Var.f38848f0 = null;
             r40Var.a(false);
         }
         long j3 = this.l1;
@@ -2167,7 +2167,7 @@ public abstract class b4 extends st0 implements is {
         }
         if (z10) {
             xb J = new cc(this.M0, this.f11493l0).J(2131624029, hd.M0(2131748483, null), hd.M0(2131743552, null), 5000, false, new t1(this, 2));
-            J.f41651r = false;
+            J.f41643r = false;
             J.k(false);
         }
         np.s1(this.f11497m2).s0(this.l1, 0, null);
@@ -2335,16 +2335,16 @@ public abstract class b4 extends st0 implements is {
                     if (storyItem.views.reactions_count > 0) {
                         spannableStringBuilder2.append((CharSequence) "  d ");
                         eq eqVar = new eq(2131231980, 0);
-                        eqVar.f34419y = -53704;
-                        eqVar.f34414n = org.telegram.messenger.g0.L(0.2f);
+                        eqVar.f34418y = -53704;
+                        eqVar.f34413n = org.telegram.messenger.g0.L(0.2f);
                         spannableStringBuilder2.setSpan(eqVar, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 0);
                         spannableStringBuilder2.append((CharSequence) String.valueOf(storyItem.views.reactions_count));
                     }
                     if (storyItem.views.forwards_count > 0) {
                         spannableStringBuilder2.append((CharSequence) "  d ");
                         eq eqVar2 = new eq(2131231971, 0);
-                        eqVar2.f34419y = -14161823;
-                        eqVar2.f34414n = org.telegram.messenger.g0.L(0.2f);
+                        eqVar2.f34418y = -14161823;
+                        eqVar2.f34413n = org.telegram.messenger.g0.L(0.2f);
                         spannableStringBuilder2.setSpan(eqVar2, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 0);
                         spannableStringBuilder2.append((CharSequence) String.valueOf(storyItem.views.forwards_count));
                     }
@@ -2439,11 +2439,11 @@ public abstract class b4 extends st0 implements is {
             f11 = 0.0f;
         }
         org.telegram.ui.Components.u5 u5Var2 = this.H3;
-        float f25 = u5Var2.f39903c;
+        float f25 = u5Var2.f39900c;
         org.telegram.ui.Components.u5 u5Var3 = this.I3;
-        float f26 = u5Var3.f39903c;
+        float f26 = u5Var3.f39900c;
         org.telegram.ui.Components.u5 u5Var4 = this.J3;
-        float f27 = u5Var4.f39903c;
+        float f27 = u5Var4.f39900c;
         if (this.f11512q2) {
             f12 = 1.0f;
         } else {
@@ -2507,7 +2507,7 @@ public abstract class b4 extends st0 implements is {
                         }
                     }
                 });
-                b4Var.O1.addListener(new ai.i0(k2Var4, 11));
+                b4Var.O1.addListener(new ai.j0(k2Var4, 11));
                 b4Var.O1.setDuration(250L);
                 b4Var.O1.setInterpolator(pi.k.V);
                 b4Var.O1.start();
@@ -2570,10 +2570,10 @@ public abstract class b4 extends st0 implements is {
         }
         boolean z13 = this.F2;
         i9 i9Var = this.f11522t0;
-        if (z13 || this.K3 != i9Var.f11842e0 || u5Var.f39903c != this.A2 || this.f11464c2 != this.f11516r2 || f11 != this.f11458a2 || f24 != this.f11461b2 || f25 != u5Var2.f39903c || z10 || f27 != u5Var4.f39903c || f26 != u5Var3.f39903c) {
+        if (z13 || this.K3 != i9Var.f11842e0 || u5Var.f39900c != this.A2 || this.f11464c2 != this.f11516r2 || f11 != this.f11458a2 || f24 != this.f11461b2 || f25 != u5Var2.f39900c || z10 || f27 != u5Var4.f39900c || f26 != u5Var3.f39900c) {
             this.F2 = false;
             this.f11464c2 = this.f11516r2;
-            int i15 = (u5Var.f39903c > this.A2 ? 1 : (u5Var.f39903c == this.A2 ? 0 : -1));
+            int i15 = (u5Var.f39900c > this.A2 ? 1 : (u5Var.f39900c == this.A2 ? 0 : -1));
             e3 e3Var = this.M0;
             if (i15 != 0) {
                 e3Var.invalidate();
@@ -2583,7 +2583,7 @@ public abstract class b4 extends st0 implements is {
             } else {
                 e3Var.setLayerType(0, null);
             }
-            this.A2 = u5Var.f39903c;
+            this.A2 = u5Var.f39900c;
             this.f11461b2 = f24;
             this.f11458a2 = f11;
             this.K3 = i9Var.f11842e0;
@@ -2701,11 +2701,11 @@ public abstract class b4 extends st0 implements is {
                         childAt.setTranslationY(this.L1.getEmojiView().getMeasuredHeight() - this.f11516r2);
                     } else if (childAt instanceof b30) {
                         b30 b30Var = (b30) childAt;
-                        View view2 = b30Var.f33160c;
+                        View view2 = b30Var.f33163c;
                         if (view2 != null) {
                             b30Var.d(view2);
                         }
-                    } else if (childAt != this.f11524t2 && childAt != e3Var && childAt != imageView && childAt != this.f11542y0 && childAt != v2Var && childAt != this.G2 && childAt != this.N1 && childAt != v2Var2 && ((mi0Var = this.f11462b3) == null || mi0Var.getReactionsWindow() == null || childAt != this.f11462b3.getReactionsWindow().f5010c)) {
+                    } else if (childAt != this.f11524t2 && childAt != e3Var && childAt != imageView && childAt != this.f11542y0 && childAt != v2Var && childAt != this.G2 && childAt != this.N1 && childAt != v2Var2 && ((mi0Var = this.f11462b3) == null || mi0Var.getReactionsWindow() == null || childAt != this.f11462b3.getReactionsWindow().f5013c)) {
                         float f29 = this.f11458a2;
                         f29 = (childAt == this.H1 || childAt == this.J1 || childAt == this.K1 || childAt == this.I1) ? 0.0f : 0.0f;
                         float f30 = 1.0f - f29;
@@ -2731,7 +2731,7 @@ public abstract class b4 extends st0 implements is {
                             f21 *= this.f11458a2;
                         }
                         if (childAt == this.P1) {
-                            float f31 = (1.0f - u5Var3.f39903c) * (1.0f - f27) * (1.0f - u5Var2.f39903c) * this.f11458a2;
+                            float f31 = (1.0f - u5Var3.f39900c) * (1.0f - f27) * (1.0f - u5Var2.f39900c) * this.f11458a2;
                             float f32 = f21 * f31 * 1.0f;
                             if (childAt.getAlpha() != 0.0f && f32 == 0.0f) {
                                 this.P1.n();
@@ -2850,10 +2850,10 @@ public abstract class b4 extends st0 implements is {
             org.telegram.ui.b.b(this.f11497m2);
             return;
         }
-        int i7 = gz.f23941e0;
+        int i7 = gz.f23944e0;
         if (i7 > 0 && this.U2) {
             int i10 = i7 - 1;
-            gz.f23941e0 = i10;
+            gz.f23944e0 = i10;
             gz.T(i10);
             org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(0, getContext(), this.f11493l0);
             t1Var.setTitle(hd.M0(2131744885, null));
@@ -2913,7 +2913,7 @@ public abstract class b4 extends st0 implements is {
             this.f11496m1 = false;
             this.n1 = true;
             if (!this.C1.h(j3)) {
-                boolean z16 = org.telegram.messenger.r2.f26198a;
+                boolean z16 = org.telegram.messenger.r2.f26206a;
             } else {
                 this.f11495l3 = true;
             }
@@ -3180,14 +3180,14 @@ public abstract class b4 extends st0 implements is {
             } else {
                 ns.f(this.f11497m2).c(this, ns.T);
                 ns.f(this.f11497m2).c(this, ns.G2);
-                ns.f(this.f11497m2).c(this, ns.f25591v5);
-                ns.f(this.f11497m2).c(this, ns.f25534m3);
-                ns.f(this.f11497m2).c(this, ns.f25605x5);
+                ns.f(this.f11497m2).c(this, ns.f25592v5);
+                ns.f(this.f11497m2).c(this, ns.f25535m3);
+                ns.f(this.f11497m2).c(this, ns.f25606x5);
                 ns.f(this.f11497m2).c(this, ns.D5);
-                ns.f(this.f11497m2).c(this, ns.f25472b3);
-                ns.f(this.f11497m2).c(this, ns.f25513i3);
+                ns.f(this.f11497m2).c(this, ns.f25473b3);
+                ns.f(this.f11497m2).c(this, ns.f25514i3);
                 ns.f(this.f11497m2).c(this, ns.F);
-                ns.e().c(this, ns.f25514i4);
+                ns.e().c(this, ns.f25515i4);
                 return;
             }
         }
@@ -3225,14 +3225,14 @@ public abstract class b4 extends st0 implements is {
             } else {
                 ns.f(this.f11497m2).n(this, ns.T);
                 ns.f(this.f11497m2).n(this, ns.G2);
-                ns.f(this.f11497m2).n(this, ns.f25591v5);
-                ns.f(this.f11497m2).n(this, ns.f25534m3);
-                ns.f(this.f11497m2).n(this, ns.f25605x5);
+                ns.f(this.f11497m2).n(this, ns.f25592v5);
+                ns.f(this.f11497m2).n(this, ns.f25535m3);
+                ns.f(this.f11497m2).n(this, ns.f25606x5);
                 ns.f(this.f11497m2).n(this, ns.D5);
-                ns.f(this.f11497m2).n(this, ns.f25472b3);
-                ns.f(this.f11497m2).n(this, ns.f25513i3);
+                ns.f(this.f11497m2).n(this, ns.f25473b3);
+                ns.f(this.f11497m2).n(this, ns.f25514i3);
                 ns.f(this.f11497m2).n(this, ns.F);
-                ns.e().n(this, ns.f25514i4);
+                ns.e().n(this, ns.f25515i4);
                 return;
             }
         }
@@ -3273,7 +3273,7 @@ public abstract class b4 extends st0 implements is {
             } else if (this.f11515r1 > 0) {
                 this.U2 = false;
                 this.L1.setEnabled(true);
-                this.L1.A1(mb.T0(hd.a0(null, null, 2131743926, hd.E(this.f11515r1, ','))), z10);
+                this.L1.A1(lb.T0(hd.a0(null, null, 2131743926, hd.E(this.f11515r1, ','))), z10);
             } else {
                 if (!z3Var.f12583f && tL_storiesStealthMode != null) {
                     int currentTime = ConnectionsManager.getInstance(this.f11497m2).getCurrentTime();
@@ -3305,7 +3305,7 @@ public abstract class b4 extends st0 implements is {
                 if (z3Var.f12583f) {
                     long starsPrice = this.L1.getStarsPrice();
                     if (starsPrice > 0) {
-                        this.L1.A1(mb.Y0(false, hd.a0(null, null, 2131752004, hd.E((int) starsPrice, ',')), this.L1.f32225j6), z10);
+                        this.L1.A1(lb.Y0(false, hd.a0(null, null, 2131752004, hd.E((int) starsPrice, ',')), this.L1.f32225j6), z10);
                         eq eqVar = this.L1.f32225j6[0];
                         if (eqVar != null) {
                             eqVar.H = 0.9f;
@@ -3331,7 +3331,7 @@ public abstract class b4 extends st0 implements is {
         if (this.f11465c3) {
             if (this.f11462b3.getReactionsWindow() != null) {
                 if (this.f11484i2 > 0) {
-                    org.telegram.messenger.g0.v1(this.f11462b3.getReactionsWindow().f5010c);
+                    org.telegram.messenger.g0.v1(this.f11462b3.getReactionsWindow().f5013c);
                     return true;
                 }
                 this.f11462b3.getReactionsWindow().d();
@@ -3391,7 +3391,7 @@ public abstract class b4 extends st0 implements is {
             return true;
         }
         mi0 mi0Var = this.P1;
-        if (mi0Var != null && mi0Var.getReactionsWindow() != null && !this.P1.getReactionsWindow().f5022q) {
+        if (mi0Var != null && mi0Var.getReactionsWindow() != null && !this.P1.getReactionsWindow().f5025q) {
             this.P1.getReactionsWindow().d();
             return true;
         }
@@ -3429,7 +3429,7 @@ public abstract class b4 extends st0 implements is {
             p2 p2Var = new p2(this, getContext(), this.f11493l0);
             this.f11520s2 = p2Var;
             p2Var.X3 = new q2(this);
-            p2Var.f36447e2.i0();
+            p2Var.f36435e2.i0();
             p2 p2Var2 = this.f11520s2;
             p2Var2.R1 = true;
             p2Var2.e1();
@@ -3450,8 +3450,8 @@ public abstract class b4 extends st0 implements is {
 
     public void setAccount(int i7) {
         this.f11497m2 = i7;
-        this.C1 = np.s1(i7).f25299i0;
-        this.U0.f48481b = i7;
+        this.C1 = np.s1(i7).f25302i0;
+        this.U0.f48435b = i7;
         mi0 mi0Var = this.P1;
         if (mi0Var != null) {
             mi0Var.setCurrentAccount(i7);
@@ -3542,7 +3542,7 @@ public abstract class b4 extends st0 implements is {
         editField.f32543u0.w(editField.getPaint().getTextSize());
         ys ysVar2 = new ys(editField, 1);
         editField.f32545v0 = ysVar2;
-        ysVar2.f34829b = 5;
+        ysVar2.f34833b = 5;
         ysVar2.u(editField.f32551y0);
         editField.f32545v0.w(editField.getPaint().getTextSize());
         this.L1.getEditField().setScaleX(0.0f);
@@ -3683,9 +3683,9 @@ public abstract class b4 extends st0 implements is {
         if (this.L2 != null) {
             return;
         }
-        ub ubVar = new ub(getContext(), 1);
-        this.L2 = ubVar;
-        ubVar.setTextSize(1, 14.0f);
+        tb tbVar = new tb(getContext(), 1);
+        this.L2 = tbVar;
+        tbVar.setTextSize(1, 14.0f);
         this.L2.setTextColor(i0.a.f(0.5f, -16777216, -1));
         this.L2.setGravity(19);
         this.L2.setText(hd.M0(2131744491, null));

@@ -4,18 +4,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ti0 implements View.OnTouchListener {
-    public final int f51601a;
-    public final ek0 f51602b;
+    public final int f51602a;
+    public final ek0 f51603b;
 
     public ti0(ek0 ek0Var, int i7) {
-        this.f51601a = i7;
-        this.f51602b = ek0Var;
+        this.f51602a = i7;
+        this.f51603b = ek0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i7 = this.f51601a;
-        ek0 ek0Var = this.f51602b;
+        int i7 = this.f51602a;
+        ek0 ek0Var = this.f51603b;
         switch (i7) {
             case 0:
                 if (ek0Var.getParentActivity() == null) {
@@ -23,7 +23,7 @@ public final class ti0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     ts tsVar = new ts(null, false);
-                    tsVar.f51663r = new xi0(2, ek0Var, view);
+                    tsVar.f51664r = new xi0(2, ek0Var, view);
                     ek0Var.presentFragment(tsVar);
                 }
                 return true;
@@ -47,7 +47,7 @@ public final class ti0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     ts tsVar2 = new ts(null, false);
-                    tsVar2.f51663r = new ui0(ek0Var, 2);
+                    tsVar2.f51664r = new ui0(ek0Var, 2);
                     ek0Var.presentFragment(tsVar2);
                 }
                 return true;
@@ -57,7 +57,7 @@ public final class ti0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     ts tsVar3 = new ts(null, false);
-                    tsVar3.f51663r = new ui0(ek0Var, 3);
+                    tsVar3.f51664r = new ui0(ek0Var, 3);
                     ek0Var.presentFragment(tsVar3);
                 }
                 return true;

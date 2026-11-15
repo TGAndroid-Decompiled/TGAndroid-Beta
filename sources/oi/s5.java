@@ -84,7 +84,7 @@ public final class s5 implements d1 {
                 i7 = 6;
             }
             if (i7 != 0 && y5Var.E != null) {
-                y5Var.post(new ai.z0(this, y5Var.f22151y, i7, 24));
+                y5Var.post(new ai.a1(this, y5Var.f22151y, i7, 24));
             } else {
                 x5 s5 = y5.s(editable.toString(), y5Var.f22151y);
                 if (s5 != null && y5Var.E != null) {
@@ -222,7 +222,7 @@ public final class s5 implements d1 {
                 a aVar = y5Var.f22151y;
                 q3 q3Var = ((a3) v5Var).f21571a;
                 ArrayList arrayList = q3Var.f21948x4;
-                p41 p41Var = q3Var.f39895g3;
+                p41 p41Var = q3Var.f39892g3;
                 ArrayList arrayList2 = q3Var.f21939t3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {

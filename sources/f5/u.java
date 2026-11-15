@@ -18,7 +18,7 @@ public final class u implements q0.a {
             case 0:
                 ArrayList arrayList = new ArrayList();
                 new ArrayList();
-                ((q1) ((j1) this.f11016b).f24500b).a((f) obj, arrayList);
+                ((q1) ((j1) this.f11016b).f24505b).a((f) obj, arrayList);
                 return;
             case 1:
                 ((h) this.f11016b).a((f) obj);

@@ -21,7 +21,7 @@ public final class l91 extends rg.b {
     public final ArrayList F() {
         u91 u91Var = this.d;
         u91Var.getClass();
-        return u91Var.f51837b;
+        return u91Var.f51838b;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class l91 extends rg.b {
         if (i7 == b() - 1) {
             return 2;
         }
-        return ((m91) this.d.f51837b.get(i7)).f56015a;
+        return ((m91) this.d.f51838b.get(i7)).f56015a;
     }
 
     @Override
     public final void f() {
-        this.d.f51840c = b();
+        this.d.f51841c = b();
         super.f();
     }
 
@@ -70,7 +70,7 @@ public final class l91 extends rg.b {
         r91 r91Var = new r91(u91Var, viewGroup.getContext(), false);
         if (i7 == 3) {
             i10 = ((org.telegram.ui.ActionBar.e2) u91Var).currentAccount;
-            boolean v = org.telegram.messenger.q10.v(org.telegram.messenger.np.s1(i10).a2(Long.valueOf(-u91Var.f51834a)));
+            boolean v = org.telegram.messenger.q10.v(org.telegram.messenger.np.s1(i10).a2(Long.valueOf(-u91Var.f51835a)));
             r91Var.setForumIcon(qg.c.d(qg.a.f55558k[0], ""));
             if (!v) {
                 i11 = 2131753066;
@@ -87,7 +87,7 @@ public final class l91 extends rg.b {
         }
         z10 = ((org.telegram.ui.ActionBar.e2) u91Var).inPreviewMode;
         r91Var.f31596l0 = z10;
-        r91Var.setArchivedPullAnimation(u91Var.f51880x);
+        r91Var.setArchivedPullAnimation(u91Var.f51881x);
         return new v4.e1(r91Var);
     }
 }

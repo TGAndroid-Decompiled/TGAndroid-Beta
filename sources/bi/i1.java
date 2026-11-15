@@ -20,34 +20,34 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.dn0;
+import org.telegram.ui.en0;
 import org.telegram.ui.qn;
 import org.telegram.ui.sw;
 import org.telegram.ui.yw;
 import org.telegram.ui.zv;
 public final class i1 implements z10 {
-    public final int f3570a;
-    public final long f3571b;
-    public final Object f3572c;
+    public final int f3573a;
+    public final long f3574b;
+    public final Object f3575c;
     public final Object d;
-    public final Object f3573e;
+    public final Object f3576e;
 
     public i1(fi.s6 s6Var, z10 z10Var, long j3, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        this.f3570a = 4;
-        this.f3572c = s6Var;
-        this.f3573e = z10Var;
-        this.f3571b = j3;
+        this.f3573a = 4;
+        this.f3575c = s6Var;
+        this.f3576e = z10Var;
+        this.f3574b = j3;
         this.d = tL_premium_boostsStatus;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f3570a;
+        int i7 = this.f3573a;
         di.x2 x2Var = null;
-        long j3 = this.f3571b;
-        Object obj2 = this.f3573e;
+        long j3 = this.f3574b;
+        Object obj2 = this.f3576e;
         Object obj3 = this.d;
-        Object obj4 = this.f3572c;
+        Object obj4 = this.f3575c;
         switch (i7) {
             case 0:
                 b2 b2Var = (b2) obj3;
@@ -57,7 +57,7 @@ public final class i1 implements z10 {
                 return;
             case 1:
                 di.c6 c6Var = (di.c6) obj4;
-                c6Var.f8318g2.setLoading(false);
+                c6Var.f8319g2.setLoading(false);
                 t6 t6Var = new t6(c6Var, 1);
                 ug.j0 j0Var = new ug.j0(26, c6Var.f29679a, c6Var.getContext(), t6Var, c6Var.J0);
                 j0Var.A1((org.telegram.messenger.e3) obj);
@@ -95,7 +95,7 @@ public final class i1 implements z10 {
                     return;
                 }
                 org.telegram.messenger.f3 G0 = npVar.G0();
-                long j10 = this.f3571b;
+                long j10 = this.f3574b;
                 G0.b(j10, tL_premium_boostsStatus, new i1(s6Var, z10Var, j10, tL_premium_boostsStatus));
                 z10Var.a(Boolean.FALSE);
                 return;
@@ -124,7 +124,7 @@ public final class i1 implements z10 {
                 z10Var2.a(Boolean.FALSE);
                 return;
             case 5:
-                qn.d0((qn) obj4, (org.telegram.ui.ActionBar.t1) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f3571b, (org.telegram.messenger.e3) obj);
+                qn.d0((qn) obj4, (org.telegram.ui.ActionBar.t1) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f3574b, (org.telegram.messenger.e3) obj);
                 return;
             case 6:
                 org.telegram.ui.ActionBar.e2[] e2VarArr = (org.telegram.ui.ActionBar.e2[]) obj2;
@@ -154,7 +154,7 @@ public final class i1 implements z10 {
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable[] drawableArr = PhotoViewer.Z8;
                 if (bitmap == null) {
-                    org.telegram.messenger.g0.h3(new dn0(photoViewer, 18));
+                    org.telegram.messenger.g0.h3(new en0(photoViewer, 18));
                     return;
                 }
                 try {
@@ -168,37 +168,37 @@ public final class i1 implements z10 {
                     float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
                     canvas.scale(max, max);
                     canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    org.telegram.messenger.g0.h3(new r1(photoViewer, ffVar, this.f3571b, str, createBitmap, 15));
+                    org.telegram.messenger.g0.h3(new r1(photoViewer, ffVar, this.f3574b, str, createBitmap, 15));
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
-                    org.telegram.messenger.g0.h3(new dn0(photoViewer, 19));
+                    org.telegram.messenger.g0.h3(new en0(photoViewer, 19));
                     return;
                 }
         }
     }
 
     public i1(fi.s6 s6Var, z10 z10Var, np npVar, long j3) {
-        this.f3570a = 3;
-        this.f3572c = s6Var;
-        this.f3573e = z10Var;
+        this.f3573a = 3;
+        this.f3575c = s6Var;
+        this.f3576e = z10Var;
         this.d = npVar;
-        this.f3571b = j3;
+        this.f3574b = j3;
     }
 
     public i1(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f3570a = i7;
-        this.f3572c = obj;
+        this.f3573a = i7;
+        this.f3575c = obj;
         this.d = obj2;
-        this.f3571b = j3;
-        this.f3573e = obj3;
+        this.f3574b = j3;
+        this.f3576e = obj3;
     }
 
     public i1(is isVar, Object obj, Object obj2, long j3, int i7) {
-        this.f3570a = i7;
-        this.f3572c = isVar;
+        this.f3573a = i7;
+        this.f3575c = isVar;
         this.d = obj;
-        this.f3573e = obj2;
-        this.f3571b = j3;
+        this.f3576e = obj2;
+        this.f3574b = j3;
     }
 }

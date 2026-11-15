@@ -34,14 +34,14 @@ import org.telegram.ui.Components.fp;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.an;
 public final class s2 implements Runnable {
-    public final int f9379a;
-    public final Object f9380b;
-    public final Object f9381c;
+    public final int f9365a;
+    public final Object f9366b;
+    public final Object f9367c;
 
     public s2(int i7, Object obj, Object obj2) {
-        this.f9379a = i7;
-        this.f9380b = obj;
-        this.f9381c = obj2;
+        this.f9365a = i7;
+        this.f9366b = obj;
+        this.f9367c = obj2;
     }
 
     @Override
@@ -59,57 +59,57 @@ public final class s2 implements Runnable {
         fi.h9 h9Var;
         String str = null;
         boolean z11 = true;
-        switch (this.f9379a) {
+        switch (this.f9365a) {
             case 0:
-                c6 c6Var = (c6) this.f9380b;
-                if (!((v8) this.f9381c).f9601e) {
+                c6 c6Var = (c6) this.f9366b;
+                if (!((u8) this.f9367c).f9532e) {
                     org.telegram.ui.Components.xb Q = c6Var.k().Q(2131624012, 36, hd.a0(null, null, 2131743878, "NO_BALANCE"));
-                    Q.f41653t = true;
+                    Q.f41645t = true;
                     Q.j();
                     return;
                 }
-                c6Var.f8318g2.setLoading(false);
+                c6Var.f8319g2.setLoading(false);
                 c6Var.t1();
                 return;
             case 1:
-                np.s1(((c6) this.f9380b).f29679a).O3((TLRPC.Updates) ((TLObject) this.f9381c), false);
+                np.s1(((c6) this.f9366b).f29679a).O3((TLRPC.Updates) ((TLObject) this.f9367c), false);
                 return;
             case 2:
-                ((c6) this.f9380b).k().f0((TLRPC.TL_error) this.f9381c, false);
+                ((c6) this.f9366b).k().f0((TLRPC.TL_error) this.f9367c, false);
                 return;
             case 3:
-                c6 c6Var2 = (c6) this.f9380b;
-                org.telegram.ui.Components.cc.a0((an) this.f9381c).L(2131624034, hd.M0(2131745096, null), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131745094, org.telegram.messenger.m5.t(c6Var2.T1))), hd.M0(2131745095, null), new l1(c6Var2, 8)).k(true);
+                c6 c6Var2 = (c6) this.f9366b;
+                org.telegram.ui.Components.cc.a0((an) this.f9367c).L(2131624034, hd.M0(2131745096, null), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131745094, org.telegram.messenger.m5.t(c6Var2.T1))), hd.M0(2131745095, null), new l1(c6Var2, 8)).k(true);
                 return;
             case 4:
-                c6 c6Var3 = (c6) this.f9380b;
+                c6 c6Var3 = (c6) this.f9366b;
                 c6Var3.getClass();
-                ((boolean[]) this.f9381c)[0] = true;
-                c6Var3.f8318g2.setLoading(false);
+                ((boolean[]) this.f9367c)[0] = true;
+                c6Var3.f8319g2.setLoading(false);
                 c6Var3.t1();
                 return;
             case 5:
-                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f9381c;
-                i20.t(hd.a0(null, null, 2131749618, tL_starGiftUnique.title + " #" + tL_starGiftUnique.num), ((c6) this.f9380b).k(), 2131624052, 36);
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f9367c;
+                i20.t(hd.a0(null, null, 2131749618, tL_starGiftUnique.title + " #" + tL_starGiftUnique.num), ((c6) this.f9366b).k(), 2131624052, 36);
                 return;
             case 6:
-                ((c6) this.f9380b).p2((CharSequence) this.f9381c);
+                ((c6) this.f9366b).p2((CharSequence) this.f9367c);
                 return;
             case 7:
-                h6 h6Var = (h6) this.f9380b;
-                an anVar = (an) this.f9381c;
-                org.telegram.ui.Cells.z zVar = h6Var.f8690b;
+                h6 h6Var = (h6) this.f9366b;
+                an anVar = (an) this.f9367c;
+                org.telegram.ui.Cells.z zVar = h6Var.f8716b;
                 if (zVar != null) {
                     try {
                         zVar.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
                     h6Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                    org.telegram.ui.Cells.z zVar2 = h6Var.f8690b;
+                    org.telegram.ui.Cells.z zVar2 = h6Var.f8716b;
                     if (zVar2 instanceof org.telegram.ui.Cells.q1) {
                         messageObject = ((org.telegram.ui.Cells.q1) zVar2).getPrimaryMessageObject();
                         if (messageObject != null) {
-                            TLRPC.Message message = messageObject.f23817k;
+                            TLRPC.Message message = messageObject.f23819k;
                             if (message != null && (tL_messageReactions2 = message.reactions) != null) {
                                 arrayList = tL_messageReactions2.top_reactors;
                             }
@@ -118,7 +118,7 @@ public final class s2 implements Runnable {
                             return;
                         }
                     } else if ((zVar2 instanceof org.telegram.ui.Cells.t0) && (messageObject = ((org.telegram.ui.Cells.t0) zVar2).getMessageObject()) != null) {
-                        TLRPC.Message message2 = messageObject.f23817k;
+                        TLRPC.Message message2 = messageObject.f23819k;
                         if (message2 != null && (tL_messageReactions = message2.reactions) != null) {
                             arrayList = tL_messageReactions.top_reactors;
                         }
@@ -128,11 +128,11 @@ public final class s2 implements Runnable {
                     }
                     gj gjVar = messageObject;
                     ArrayList<TLRPC.MessageReactor> arrayList2 = arrayList;
-                    t8 t8Var = v8.y(gjVar.K1, false).B;
-                    if (t8Var != null) {
-                        t8Var.b();
+                    s8 s8Var = u8.y(gjVar.K1, false).B;
+                    if (s8Var != null) {
+                        s8Var.b();
                     }
-                    TLRPC.ChatFull chatFull = anVar.f45334q8;
+                    TLRPC.ChatFull chatFull = anVar.f45333q8;
                     Context context = h6Var.getContext();
                     int currentAccount = anVar.getCurrentAccount();
                     long a10 = anVar.a();
@@ -141,28 +141,28 @@ public final class s2 implements Runnable {
                     } else {
                         z10 = true;
                     }
-                    jc jcVar = new jc(context, currentAccount, a10, anVar, gjVar, arrayList2, z10, false, 0L, anVar.getResourceProvider());
+                    ic icVar = new ic(context, currentAccount, a10, anVar, gjVar, arrayList2, z10, false, 0L, anVar.getResourceProvider());
                     gjVar.e1();
-                    org.telegram.ui.Cells.z zVar3 = h6Var.f8690b;
-                    jcVar.Q1 = anVar;
-                    jcVar.R1 = zVar3;
-                    jcVar.show();
+                    org.telegram.ui.Cells.z zVar3 = h6Var.f8716b;
+                    icVar.Q1 = anVar;
+                    icVar.R1 = zVar3;
+                    icVar.show();
                     return;
                 }
                 return;
             case 8:
-                TLObject tLObject = (TLObject) this.f9380b;
-                ai.f0 f0Var = (ai.f0) this.f9381c;
+                TLObject tLObject = (TLObject) this.f9366b;
+                ai.g0 g0Var = (ai.g0) this.f9367c;
                 if (tLObject instanceof TL_stars.StarGifts) {
-                    f0Var.a((TL_stars.StarGifts) tLObject);
+                    g0Var.a((TL_stars.StarGifts) tLObject);
                     return;
                 } else {
-                    f0Var.a(null);
+                    g0Var.a(null);
                     return;
                 }
             case 9:
-                boolean[] zArr = (boolean[]) this.f9380b;
-                s10 s10Var = (s10) this.f9381c;
+                boolean[] zArr = (boolean[]) this.f9366b;
+                s10 s10Var = (s10) this.f9367c;
                 if (!zArr[0]) {
                     s10Var.a("cancelled", 0L);
                     zArr[0] = true;
@@ -170,10 +170,10 @@ public final class s2 implements Runnable {
                 }
                 return;
             case 10:
-                m8 m8Var = (m8) this.f9380b;
-                TLObject tLObject2 = (TLObject) this.f9381c;
-                ArrayList arrayList3 = m8Var.f9051l;
-                int i11 = m8Var.f9042a;
+                l8 l8Var = (l8) this.f9366b;
+                TLObject tLObject2 = (TLObject) this.f9367c;
+                ArrayList arrayList3 = l8Var.f9001l;
+                int i11 = l8Var.f8992a;
                 if (tLObject2 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject2;
                     np.s1(i11).Y3(tL_payments_savedStarGifts.users, false);
@@ -185,33 +185,33 @@ public final class s2 implements Runnable {
                             i12++;
                         }
                         arrayList3.add(i12, savedStarGift);
-                        ns.f(i11).k(230, Long.valueOf(m8Var.f9043b), m8Var);
+                        ns.f(i11).k(230, Long.valueOf(l8Var.f8993b), l8Var);
                         return;
                     }
                     return;
                 }
                 return;
             case 11:
-                ((np) this.f9380b).O3((TLRPC.Updates) ((TLObject) this.f9381c), false);
+                ((np) this.f9366b).O3((TLRPC.Updates) ((TLObject) this.f9367c), false);
                 return;
             case 12:
-                new org.telegram.ui.Components.cc(((org.telegram.ui.ActionBar.u2[]) this.f9380b)[0].F, (org.telegram.ui.ActionBar.e6) this.f9381c).Q(2131623994, 36, hd.M0(2131744947, null)).k(false);
+                new org.telegram.ui.Components.cc(((org.telegram.ui.ActionBar.u2[]) this.f9366b)[0].F, (org.telegram.ui.ActionBar.e6) this.f9367c).Q(2131623994, 36, hd.M0(2131744947, null)).k(false);
                 return;
             case 13:
-                jc jcVar2 = (jc) this.f9380b;
-                jcVar2.O1 = true;
-                jcVar2.J0(new r8((t8) this.f9381c, 2));
-                org.telegram.messenger.g0.i3(new nb(jcVar2, 1), 240L);
+                ic icVar2 = (ic) this.f9366b;
+                icVar2.O1 = true;
+                icVar2.J0(new q8((s8) this.f9367c, 2));
+                org.telegram.messenger.g0.i3(new mb(icVar2, 1), 240L);
                 return;
             case 14:
-                ((v0.g) this.f9380b).a((w0.d) this.f9381c);
+                ((v0.g) this.f9366b).a((w0.d) this.f9367c);
                 return;
             case 15:
-                ((v0.g) this.f9380b).onResult((v0.f) this.f9381c);
+                ((v0.g) this.f9366b).onResult((v0.f) this.f9367c);
                 return;
             case 16:
-                v0.c cVar = (v0.c) this.f9381c;
-                v0.g gVar = ((e1.d) this.f9380b).f9975f;
+                v0.c cVar = (v0.c) this.f9367c;
+                v0.g gVar = ((e1.d) this.f9366b).f9975f;
                 if (gVar != null) {
                     gVar.onResult(cVar);
                     return;
@@ -220,23 +220,23 @@ public final class s2 implements Runnable {
                     throw null;
                 }
             case 17:
-                f2.h.f10725a = (AudioManager) ((Context) this.f9380b).getSystemService("audio");
-                ((h2.i) this.f9381c).e();
+                f2.h.f10725a = (AudioManager) ((Context) this.f9366b).getSystemService("audio");
+                ((h2.i) this.f9367c).e();
                 return;
             case 18:
-                ((fi.i9) this.f9380b).N(ProfileActivity.C4(((fi.s0) this.f9381c).f12299c));
+                ((fi.i9) this.f9366b).N(ProfileActivity.C4(((fi.s0) this.f9367c).f12299c));
                 return;
             case 19:
-                fi.c2 c2Var = (fi.c2) this.f9380b;
-                org.telegram.messenger.g0.g(((fi.n0) this.f9381c).f12058w);
+                fi.c2 c2Var = (fi.c2) this.f9366b;
+                org.telegram.messenger.g0.g(((fi.n0) this.f9367c).f12058w);
                 if (org.telegram.messenger.g0.H3()) {
                     Toast.makeText(c2Var.getContext(), hd.M0(2131744194, null), 0).show();
                     return;
                 }
                 return;
             case 20:
-                fi.c2 c2Var2 = (fi.c2) this.f9380b;
-                fi.s0 s0Var = (fi.s0) this.f9381c;
+                fi.c2 c2Var2 = (fi.c2) this.f9366b;
+                fi.s0 s0Var = (fi.s0) this.f9367c;
                 long j10 = s0Var.f12299c;
                 fi.b4 b4Var = c2Var2.f11589j0;
                 if (j10 != m10.i(b4Var.f11497m2).e() && ((e1Var = c2Var2.f11588i0.B0) == null || j10 != org.telegram.messenger.m5.o(e1Var.i()))) {
@@ -295,7 +295,7 @@ public final class s2 implements Runnable {
                     f10.addView(c2Var3, c8.ja.o(-1, -2));
                     final org.telegram.ui.Cells.c2 c2Var4 = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var);
                     c2Var4.getCheckBoxRound().b(i14, i15, i16);
-                    c2Var4.e(hd.a0(null, null, 2131751587, org.telegram.messenger.m5.l(m10.f24934t0, j11)), null, false, true, false);
+                    c2Var4.e(hd.a0(null, null, 2131751587, org.telegram.messenger.m5.l(m10.f24940t0, j11)), null, false, true, false);
                     c2Var4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -322,7 +322,7 @@ public final class s2 implements Runnable {
                     f10.addView(c2Var4, c8.ja.o(-1, -2));
                     final org.telegram.ui.Cells.c2 c2Var5 = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var);
                     c2Var5.getCheckBoxRound().b(i14, i15, i16);
-                    c2Var5.e(hd.a0(null, null, 2131751568, org.telegram.messenger.m5.l(m10.f24934t0, j11)), null, false, false, false);
+                    c2Var5.e(hd.a0(null, null, 2131751568, org.telegram.messenger.m5.l(m10.f24940t0, j11)), null, false, false, false);
                     c2Var5.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -368,8 +368,8 @@ public final class s2 implements Runnable {
                 c2Var2.c(s0Var.f12297a);
                 return;
             case 21:
-                fi.e1 e1Var2 = (fi.e1) this.f9380b;
-                ArrayList arrayList4 = (ArrayList) this.f9381c;
+                fi.e1 e1Var2 = (fi.e1) this.f9366b;
+                ArrayList arrayList4 = (ArrayList) this.f9367c;
                 int size = arrayList4.size();
                 int i18 = 0;
                 while (i18 < size) {
@@ -380,11 +380,11 @@ public final class s2 implements Runnable {
                 }
                 return;
             case 22:
-                ((fi.e1) this.f9380b).G.remove((String) this.f9381c);
+                ((fi.e1) this.f9366b).G.remove((String) this.f9367c);
                 return;
             case 23:
-                fi.b4 b4Var2 = (fi.b4) this.f9380b;
-                hi.l3 l3Var = (hi.l3) this.f9381c;
+                fi.b4 b4Var2 = (fi.b4) this.f9366b;
+                hi.l3 l3Var = (hi.l3) this.f9367c;
                 b4Var2.removeView(l3Var);
                 if (b4Var2.N1 == l3Var) {
                     b4Var2.N1 = null;
@@ -392,8 +392,8 @@ public final class s2 implements Runnable {
                 }
                 return;
             case 24:
-                fi.b4 b4Var3 = (fi.b4) this.f9380b;
-                hi.sa D = hi.sa.D((Activity) this.f9381c, b4Var3.f11497m2);
+                fi.b4 b4Var3 = (fi.b4) this.f9366b;
+                hi.sa D = hi.sa.D((Activity) this.f9367c, b4Var3.f11497m2);
                 fi.a4 a4Var = b4Var3.f11536w2;
                 if (a4Var != null && (h9Var = (fi.h9) a4Var.f11407c) != null) {
                     j3 = h9Var.currentPosition;
@@ -495,7 +495,7 @@ public final class s2 implements Runnable {
                             D.G.e();
                         } else {
                             D.K = 0;
-                            Point point = org.telegram.messenger.g0.f23609q;
+                            Point point = org.telegram.messenger.g0.f23611q;
                             rectF.set(0.0f, org.telegram.messenger.g0.L(100.0f), point.x, org.telegram.messenger.g0.L(100.0f) + point.y);
                             D.H = org.telegram.messenger.g0.L(8.0f);
                         }
@@ -532,21 +532,21 @@ public final class s2 implements Runnable {
                 D.S = new fi.y1(0, b4Var3, D);
                 return;
             case 25:
-                fi.t3 t3Var = (fi.t3) this.f9380b;
+                fi.t3 t3Var = (fi.t3) this.f9366b;
                 t3Var.getClass();
-                ((fi.z8) t3Var.f12360x.A1).h(new ug.x0(((fi.i9) this.f9381c).f11844f, 14, false));
+                ((fi.z8) t3Var.f12360x.A1).h(new ug.x0(((fi.i9) this.f9367c).f11844f, 14, false));
                 return;
             case 26:
-                fi.n4 n4Var2 = (fi.n4) this.f9380b;
+                fi.n4 n4Var2 = (fi.n4) this.f9366b;
                 n4Var2.f12075f = null;
                 fi.c5 c5Var = n4Var2.h;
                 c5Var.R = false;
-                c5Var.P.f12117c = ((String) this.f9381c).toLowerCase();
+                c5Var.P.f12117c = ((String) this.f9367c).toLowerCase();
                 fi.c5.b(c5Var);
                 return;
             case 27:
-                z10 z10Var = (z10) this.f9380b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f9381c;
+                z10 z10Var = (z10) this.f9366b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f9367c;
                 if (z10Var != null) {
                     if (tL_error != null) {
                         z11 = false;
@@ -556,8 +556,8 @@ public final class s2 implements Runnable {
                 }
                 return;
             case 28:
-                fi.d6 d6Var = (fi.d6) this.f9380b;
-                TLObject tLObject3 = (TLObject) this.f9381c;
+                fi.d6 d6Var = (fi.d6) this.f9366b;
+                TLObject tLObject3 = (TLObject) this.f9367c;
                 fi.h6 h6Var2 = d6Var.f11952q;
                 int i24 = d6Var.f11940c;
                 ArrayList arrayList5 = d6Var.f11944i;
@@ -597,10 +597,10 @@ public final class s2 implements Runnable {
                 }
                 return;
             default:
-                fi.g6 g6Var = (fi.g6) this.f9380b;
+                fi.g6 g6Var = (fi.g6) this.f9366b;
                 ArrayList arrayList8 = g6Var.h;
                 arrayList8.clear();
-                arrayList8.addAll((List) this.f9381c);
+                arrayList8.addAll((List) this.f9367c);
                 g6Var.d = true;
                 g6Var.f11745e = false;
                 g6Var.d();
@@ -609,9 +609,9 @@ public final class s2 implements Runnable {
         }
     }
 
-    public s2(v8 v8Var, boolean[] zArr, s10 s10Var) {
-        this.f9379a = 9;
-        this.f9380b = zArr;
-        this.f9381c = s10Var;
+    public s2(u8 u8Var, boolean[] zArr, s10 s10Var) {
+        this.f9365a = 9;
+        this.f9366b = zArr;
+        this.f9367c = s10Var;
     }
 }

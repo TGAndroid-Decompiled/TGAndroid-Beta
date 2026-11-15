@@ -21,26 +21,26 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
     public final gi J;
     public dj K;
     public boolean L;
-    public final te.a f37303n;
-    public final FrameLayout f37304r;
-    public final di.c1 f37305s;
-    public final kg.c0 f37306w;
-    public final HashMap f37307x;
-    public final ArrayList f37308y;
+    public final te.a f37302n;
+    public final FrameLayout f37303r;
+    public final di.c1 f37304s;
+    public final kg.c0 f37305w;
+    public final HashMap f37306x;
+    public final ArrayList f37307y;
 
     public mj(Context context, org.telegram.ui.ActionBar.e6 e6Var, ki kiVar) {
         super(context, e6Var, kiVar);
-        this.f37303n = new te.a(0, this, er.h, 380L, false);
-        this.f37307x = new HashMap();
-        this.f37308y = new ArrayList();
+        this.f37302n = new te.a(0, this, er.h, 380L, false);
+        this.f37306x = new HashMap();
+        this.f37307y = new ArrayList();
         this.E = false;
         this.G = new ij(this, context);
         ji jiVar = new ji(org.telegram.ui.ActionBar.j6.f28849d6, context, e6Var);
         this.I = jiVar;
         jiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f37304r = frameLayout;
-        gi giVar = new gi(context, e6Var, this.f33607b);
+        this.f37303r = frameLayout;
+        gi giVar = new gi(context, e6Var, this.f33609b);
         this.J = giVar;
         giVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         String M0 = org.telegram.messenger.hd.M0(2131745767, null);
@@ -49,7 +49,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
         iVar.addTextChangedListener(new ah.j(this, 18));
         frameLayout.addView(jiVar, c8.ja.g());
         FrameLayout.LayoutParams d = c8.ja.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f23603m;
+        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f23605m;
         frameLayout.addView(giVar, d);
         ny nyVar = new ny(context, e6Var);
         this.H = nyVar;
@@ -57,16 +57,16 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
         nyVar.setText(org.telegram.messenger.hd.M0(2131748223, null));
         addView(nyVar, c8.ja.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
         di.c1 c1Var = new di.c1(this, context, e6Var, 15);
-        this.f37305s = c1Var;
+        this.f37304s = c1Var;
         setBlur3Capture(c1Var);
         this.d = c1Var;
         this.h = true;
-        this.f33610f = true;
+        this.f33612f = true;
         c1Var.r1();
         c1Var.setClipToPadding(false);
         getContext();
         kg.c0 c0Var = new kg.c0(this, org.telegram.messenger.g0.L(9.0f), c1Var, 1);
-        this.f37306w = c0Var;
+        this.f37305w = c0Var;
         c1Var.setLayoutManager(c0Var);
         c0Var.P = false;
         c1Var.setHorizontalScrollBarEnabled(false);
@@ -81,14 +81,14 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
         c1Var.setOnScrollListener(new ri(this, 2));
         c1Var.setOnItemLongClickListener(new zi(this));
         FrameLayout.LayoutParams e10 = c8.ja.e(-1, 60, 51);
-        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f23603m;
+        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f23605m;
         addView(frameLayout, e10);
-        org.telegram.messenger.ns.f(this.f33607b.H3).c(this, org.telegram.messenger.ns.O);
+        org.telegram.messenger.ns.f(this.f33609b.H3).c(this, org.telegram.messenger.ns.O);
         S();
     }
 
     public int getCurrentTop() {
-        di.c1 c1Var = this.f37305s;
+        di.c1 c1Var = this.f37304s;
         if (c1Var.getChildCount() != 0) {
             int i7 = 0;
             View childAt = c1Var.getChildAt(0);
@@ -108,13 +108,13 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
     @Override
     public final void B(int i7, int i10) {
         int i11;
-        ki kiVar = this.f33607b;
-        if (kiVar.f36482p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        ki kiVar = this.f33609b;
+        if (kiVar.f36470p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
             kiVar.f29713r0 = false;
         } else {
             if (!org.telegram.messenger.g0.Q1()) {
-                Point point = org.telegram.messenger.g0.f23609q;
+                Point point = org.telegram.messenger.g0.f23611q;
                 if (point.x > point.y) {
                     i11 = (int) (i10 / 3.5f);
                     kiVar.f29713r0 = true;
@@ -123,7 +123,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
             i11 = (i10 / 5) * 2;
             kiVar.f29713r0 = true;
         }
-        this.f37305s.q1(0, i11 + org.telegram.messenger.g0.f23603m, 0, this.f33609e);
+        this.f37304s.q1(0, i11 + org.telegram.messenger.g0.f23605m, 0, this.f33611e);
     }
 
     @Override
@@ -143,37 +143,37 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
 
     @Override
     public final void I(ci ciVar) {
-        this.f37306w.h1(0, 0);
+        this.f37305w.h1(0, 0);
     }
 
     @Override
     public final void K() {
-        this.f37305s.y0(0);
+        this.f37304s.y0(0);
     }
 
     @Override
     public final boolean M(final boolean z10, final int i7, int i10, final long j3, final boolean z11) {
-        HashMap hashMap = this.f37307x;
+        HashMap hashMap = this.f37306x;
         int i11 = 0;
         if ((hashMap.size() == 0 && this.K == null) || this.E) {
             return false;
         }
         this.E = true;
         final ArrayList arrayList = new ArrayList(hashMap.size());
-        ArrayList arrayList2 = this.f37308y;
+        ArrayList arrayList2 = this.f37307y;
         int size = arrayList2.size();
         while (i11 < size) {
             Object obj = arrayList2.get(i11);
             i11++;
             arrayList.add(R(hashMap.get((cj) obj)));
         }
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         return t4.Y(kiVar.H3, kiVar.b1(), kiVar.X0() + arrayList.size(), new org.telegram.messenger.z10() {
             @Override
             public final void a(Object obj2) {
                 mj mjVar = mj.this;
                 dj djVar = mjVar.K;
-                ki kiVar2 = mjVar.f33607b;
+                ki kiVar2 = mjVar.f33609b;
                 String obj3 = kiVar2.a1().getText().toString();
                 ((Long) obj2).getClass();
                 djVar.c(arrayList, obj3, z10, i7, j3, z11);
@@ -184,10 +184,10 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
 
     public final void Q(lj ljVar, Object obj) {
         boolean z10;
-        HashMap hashMap = this.f37307x;
+        HashMap hashMap = this.f37306x;
         if (hashMap.isEmpty() && !this.L) {
             String a02 = org.telegram.messenger.hd.a0("AttachContactsSlowMode", null, 2131753978, new Object[0]);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f33606a);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f33608a);
             String M0 = org.telegram.messenger.hd.M0(2131689472, null);
             org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
             t1Var.S = M0;
@@ -197,7 +197,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
         }
         cj a10 = cj.a(obj);
         boolean containsKey = hashMap.containsKey(a10);
-        ArrayList arrayList = this.f37308y;
+        ArrayList arrayList = this.f37307y;
         int i7 = 1;
         if (containsKey) {
             hashMap.remove(a10);
@@ -216,7 +216,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
         if (!z10) {
             i7 = 2;
         }
-        this.f33607b.K1(i7);
+        this.f33609b.K1(i7);
     }
 
     public final org.telegram.tgnet.TLRPC.TL_userContact_old2 R(java.lang.Object r15) {
@@ -226,7 +226,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
     public final void S() {
         boolean z10;
         int i7 = 0;
-        if (this.f37305s.getAdapter().b() == 2) {
+        if (this.f37304s.getAdapter().b() == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -241,7 +241,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
     public final void T() {
         View childAt;
         ny nyVar = this.H;
-        if (nyVar.getVisibility() != 0 || (childAt = this.f37305s.getChildAt(0)) == null) {
+        if (nyVar.getVisibility() != 0 || (childAt = this.f37304s.getChildAt(0)) == null) {
             return;
         }
         nyVar.setTranslationY((childAt.getTop() + (nyVar.getMeasuredHeight() - getMeasuredHeight())) / 2);
@@ -273,26 +273,26 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
     @Override
     public int getCurrentItemTop() {
         int i7;
-        di.c1 c1Var = this.f37305s;
+        di.c1 c1Var = this.f37304s;
         if (c1Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
         View childAt = c1Var.getChildAt(0);
         cj0 cj0Var = (cj0) c1Var.G(childAt);
-        int top = (childAt.getTop() - org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(8.0f);
+        int top = (childAt.getTop() - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(8.0f);
         if (top > 0 && cj0Var != null && cj0Var.b() == 0) {
             i7 = top;
         } else {
             i7 = 0;
         }
-        te.a aVar = this.f37303n;
+        te.a aVar = this.f37302n;
         if (top >= 0 && cj0Var != null && cj0Var.b() == 0) {
             aVar.a(false, true);
         } else {
             aVar.a(true, true);
             top = i7;
         }
-        this.f37304r.setTranslationY(top);
+        this.f37303r.setTranslationY(top);
         return org.telegram.messenger.g0.L(12.0f) + top;
     }
 
@@ -303,13 +303,13 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
 
     @Override
     public int getListTopPadding() {
-        return this.f37305s.getPaddingTop();
+        return this.f37304s.getPaddingTop();
     }
 
     public ArrayList<TLRPC.User> getSelected() {
-        HashMap hashMap = this.f37307x;
+        HashMap hashMap = this.f37306x;
         ArrayList<TLRPC.User> arrayList = new ArrayList<>(hashMap.size());
-        ArrayList arrayList2 = this.f37308y;
+        ArrayList arrayList2 = this.f37307y;
         int size = arrayList2.size();
         int i7 = 0;
         while (i7 < size) {
@@ -322,7 +322,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
 
     @Override
     public int getSelectedItemsCount() {
-        return this.f37307x.size();
+        return this.f37306x.size();
     }
 
     @Override
@@ -331,7 +331,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
         arrayList.add(new org.telegram.ui.ActionBar.s6(this.H, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.f28832c7));
         arrayList.add(new org.telegram.ui.ActionBar.s6(this.H, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.f28923h6));
         int i7 = org.telegram.ui.ActionBar.j6.f29088q5;
-        arrayList.add(new org.telegram.ui.ActionBar.s6(this.f37305s, 0, new Class[]{lj.class}, new String[]{"nameTextView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, i7));
+        arrayList.add(new org.telegram.ui.ActionBar.s6(this.f37304s, 0, new Class[]{lj.class}, new String[]{"nameTextView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, i7));
         return arrayList;
     }
 
@@ -343,7 +343,7 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
 
     @Override
     public final void p() {
-        org.telegram.messenger.ns.f(this.f33607b.H3).n(this, org.telegram.messenger.ns.O);
+        org.telegram.messenger.ns.f(this.f33609b.H3).n(this, org.telegram.messenger.ns.O);
     }
 
     public void setDelegate(dj djVar) {
@@ -357,13 +357,13 @@ public final class mj extends ci implements org.telegram.ui.ActionBar.z5, org.te
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
         gi giVar = this.J;
         if (giVar != null) {
-            giVar.setupBlurredBackground(cVar.c(giVar, c8.g0.a(this.f33606a), false));
+            giVar.setupBlurredBackground(cVar.c(giVar, c8.g0.a(this.f33608a), false));
         }
     }
 

@@ -112,8 +112,8 @@ public final class f0 extends Drawable {
             f11 = 255.0f;
         }
         if (d > f10 && (ch0Var = this.f18298l) != null) {
-            int i11 = ch0Var.f33572b / 2;
-            int i12 = ch0Var.f33574c / 2;
+            int i11 = ch0Var.f33574b / 2;
+            int i12 = ch0Var.f33576c / 2;
             ch0Var.setBounds(centerX - i11, centerY - i12, i11 + centerX, i12 + centerY);
             this.f18298l.setAlpha((int) (d * f11));
             this.f18298l.draw(canvas2);

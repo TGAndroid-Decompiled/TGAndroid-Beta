@@ -3,9 +3,9 @@ package org.telegram.messenger;
 import android.util.Log;
 import java.util.Locale;
 public final class d1 {
-    public int f23009a;
-    public String f23010b;
-    public String f23011c;
+    public int f23017a;
+    public String f23018b;
+    public String f23019c;
 
     public d1(String str, String... strArr) {
         String sb2;
@@ -23,23 +23,23 @@ public final class d1 {
             sb3.append("] ");
             sb2 = sb3.toString();
         }
-        this.f23011c = sb2;
-        this.f23010b = str;
+        this.f23019c = sb2;
+        this.f23018b = str;
         int i7 = 2;
         Object[] objArr = {str, 23};
         if (str.length() <= 23) {
-            while (i7 <= 7 && !Log.isLoggable(this.f23010b, i7)) {
+            while (i7 <= 7 && !Log.isLoggable(this.f23018b, i7)) {
                 i7++;
             }
-            this.f23009a = i7;
+            this.f23017a = i7;
             return;
         }
         throw new IllegalArgumentException(String.format("tag \"%s\" is longer than the %d character maximum", objArr));
     }
 
     public void a(String str, Object... objArr) {
-        if (this.f23009a <= 3) {
-            Log.d(this.f23010b, b(str, objArr));
+        if (this.f23017a <= 3) {
+            Log.d(this.f23018b, b(str, objArr));
         }
     }
 
@@ -47,12 +47,12 @@ public final class d1 {
         if (objArr.length > 0) {
             str = String.format(Locale.US, str, objArr);
         }
-        return this.f23011c.concat(str);
+        return this.f23019c.concat(str);
     }
 
     public d1(String str, int i7, String str2) {
-        this.f23010b = str;
-        this.f23009a = i7;
-        this.f23011c = str2;
+        this.f23018b = str;
+        this.f23017a = i7;
+        this.f23019c = str2;
     }
 }

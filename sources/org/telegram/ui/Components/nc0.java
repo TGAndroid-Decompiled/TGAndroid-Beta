@@ -14,23 +14,23 @@ import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class nc0 extends org.telegram.ui.ActionBar.u2 {
-    public final TextView f37551m1;
+    public final TextView f37540m1;
     public final fh0 n1;
-    public final ch0 f37552o1;
-    public final t70 f37553p1;
-    public final long f37554q1;
-    public boolean f37555r1;
-    public TLRPC.TL_chatInviteExported f37556s1;
-    public int f37557t1;
-    public int f37558u1;
-    public int f37559v1;
+    public final ch0 f37541o1;
+    public final t70 f37542p1;
+    public final long f37543q1;
+    public boolean f37544r1;
+    public TLRPC.TL_chatInviteExported f37545s1;
+    public int f37546t1;
+    public int f37547u1;
+    public int f37548v1;
 
     public nc0(Context context, org.telegram.ui.w40 w40Var, TLRPC.ChatFull chatFull, long j3, boolean z10) {
         super(context, false);
         int i7;
         boolean z11;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        this.f37554q1 = j3;
+        this.f37543q1 = j3;
         this.f29713r0 = true;
         this.f29720w0 = false;
         this.f29718v0 = false;
@@ -53,12 +53,12 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
         imageView.setPadding(L, L, L, L);
         frameLayout.addView(imageView, c8.ja.d(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
         t70 t70Var = new t70(context, w40Var, this, true, z10);
-        this.f37553p1 = t70Var;
+        this.f37542p1 = t70Var;
         t70Var.setPermanent(true);
         ?? imageView2 = new ImageView(context);
         this.n1 = imageView2;
         ch0 ch0Var = new ch0(2131624193, org.telegram.messenger.g0.L(90.0f), org.telegram.messenger.g0.L(90.0f), false, null);
-        this.f37552o1 = ch0Var;
+        this.f37541o1 = ch0Var;
         ch0Var.P(42);
         imageView2.setAnimation(ch0Var);
         t70Var.d(0, null, false);
@@ -82,7 +82,7 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f28957j5, null);
         textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
         TextView textView3 = new TextView(context);
-        this.f37551m1 = textView3;
+        this.f37540m1 = textView3;
         textView3.setText(org.telegram.messenger.hd.M0(2131748695, null));
         textView3.setGravity(17);
         textView3.setEllipsize(TextUtils.TruncateAt.END);
@@ -108,7 +108,7 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
         nestedScrollView.setVerticalScrollBarEnabled(false);
         nestedScrollView.addView(frameLayout);
         this.O = nestedScrollView;
-        TLRPC.Chat M0 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).M0(Long.valueOf(j3));
+        TLRPC.Chat M0 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).M0(Long.valueOf(j3));
         if (M0 != null && org.telegram.messenger.t3.t0(M0)) {
             t70Var.setLink("https://t.me/" + org.telegram.messenger.t3.K(M0, false));
             textView3.setVisibility(8);
@@ -127,9 +127,9 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
             ch0Var.Q(x02, "Center");
             t70Var.f();
             int x03 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28922h5, z11);
-            this.f37558u1 = x03;
+            this.f37547u1 = x03;
             v0(x03);
-            this.f37557t1 = x02;
+            this.f37546t1 = x02;
         }
         z11 = false;
         imageView2.setBackground(org.telegram.ui.ActionBar.j6.L(org.telegram.messenger.g0.L(90.0f), org.telegram.ui.ActionBar.j6.x0(null, i11, z11)));
@@ -142,9 +142,9 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
         ch0Var.Q(x022, "Center");
         t70Var.f();
         int x032 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28922h5, z11);
-        this.f37558u1 = x032;
+        this.f37547u1 = x032;
         v0(x032);
-        this.f37557t1 = x022;
+        this.f37546t1 = x022;
     }
 
     public static void I0(nc0 nc0Var) {
@@ -165,13 +165,13 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
     }
 
     public final void K0(boolean z10) {
-        if (this.f37555r1) {
+        if (this.f37544r1) {
             return;
         }
-        this.f37555r1 = true;
+        this.f37544r1 = true;
         TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
         tL_messages_exportChatInvite.legacy_revoke_permanent = true;
-        tL_messages_exportChatInvite.peer = org.telegram.messenger.np.s1(this.f29679a).j1(-this.f37554q1);
+        tL_messages_exportChatInvite.peer = org.telegram.messenger.np.s1(this.f29679a).j1(-this.f37543q1);
         ConnectionsManager.getInstance(this.f29679a).sendRequest(tL_messages_exportChatInvite, new hi.b3(6, this, z10));
     }
 
@@ -189,22 +189,22 @@ public final class nc0 extends org.telegram.ui.ActionBar.u2 {
                 org.telegram.ui.ActionBar.j6.C1(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Fi, false), fh0Var.getBackground());
             }
             int o4 = i0.a.o(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Fi, false), 120);
-            TextView textView = this.f37551m1;
-            if (textView != null && o4 != this.f37559v1) {
-                this.f37559v1 = o4;
+            TextView textView = this.f37540m1;
+            if (textView != null && o4 != this.f37548v1) {
+                this.f37548v1 = o4;
                 org.telegram.ui.ActionBar.j6.H1(textView.getBackground(), o4, true);
             }
             int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ji, false);
-            ch0 ch0Var = this.f37552o1;
-            if (ch0Var != null && x02 != this.f37557t1) {
-                this.f37557t1 = x02;
+            ch0 ch0Var = this.f37541o1;
+            if (ch0Var != null && x02 != this.f37546t1) {
+                this.f37546t1 = x02;
                 ch0Var.Q(x02, "Top");
                 ch0Var.Q(x02, "Bottom");
                 ch0Var.Q(x02, "Center");
             }
             int x03 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28922h5, false);
-            if (x03 != this.f37558u1) {
-                this.f37558u1 = x03;
+            if (x03 != this.f37547u1) {
+                this.f37547u1 = x03;
                 v0(x03);
             }
         } catch (Exception e10) {

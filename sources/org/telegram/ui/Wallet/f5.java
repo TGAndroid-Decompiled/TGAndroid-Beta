@@ -33,8 +33,8 @@ public final class f5 implements View.OnAttachStateChangeListener {
         is isVar = this.f43830c;
         if (isVar != null) {
             int i7 = this.d;
-            ns.f(i7).c(isVar, ns.f25467a4);
-            ns.f(i7).c(isVar, ns.f25473b4);
+            ns.f(i7).c(isVar, ns.f25468a4);
+            ns.f(i7).c(isVar, ns.f25474b4);
         }
         s10 s10Var = this.f43831e;
         if (s10Var != null) {
@@ -47,8 +47,8 @@ public final class f5 implements View.OnAttachStateChangeListener {
         is isVar = this.f43830c;
         if (isVar != null) {
             int i7 = this.d;
-            ns.f(i7).n(isVar, ns.f25467a4);
-            ns.f(i7).n(isVar, ns.f25473b4);
+            ns.f(i7).n(isVar, ns.f25468a4);
+            ns.f(i7).n(isVar, ns.f25474b4);
         }
     }
 }

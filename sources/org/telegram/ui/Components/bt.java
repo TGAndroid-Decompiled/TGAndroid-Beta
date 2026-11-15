@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class bt implements et, h2.j, hj0 {
-    public final int f33366a;
-    public final int f33367b;
-    public final Object f33368c;
+    public final int f33369a;
+    public final int f33370b;
+    public final Object f33371c;
     public final Object d;
 
     public bt(ft ftVar, int i7, int i10, Runnable runnable) {
-        this.f33368c = ftVar;
-        this.f33366a = i7;
-        this.f33367b = i10;
+        this.f33371c = ftVar;
+        this.f33369a = i7;
+        this.f33370b = i10;
         this.d = runnable;
     }
 
     @Override
     public void a(String str) {
-        ft ftVar = (ft) this.f33368c;
+        ft ftVar = (ft) this.f33371c;
         Runnable runnable = (Runnable) this.d;
         Editable text = ftVar.getText();
-        int i7 = this.f33366a;
-        int i10 = this.f33367b;
+        int i7 = this.f33369a;
+        int i10 = this.f33370b;
         CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i7, i10, CharacterStyle.class);
         if (characterStyleArr != null && characterStyleArr.length > 0) {
             for (CharacterStyle characterStyle : characterStyleArr) {
@@ -59,7 +59,7 @@ public final class bt implements et, h2.j, hj0 {
 
     @Override
     public void accept(Object obj) {
-        p4.c1 c1Var = (p4.c1) this.f33368c;
+        p4.c1 c1Var = (p4.c1) this.f33371c;
         Surface surface = (Surface) this.d;
         p4.g1 g1Var = (p4.g1) obj;
         ((p4.d0) c1Var.f54600a.get()).getClass();
@@ -68,7 +68,7 @@ public final class bt implements et, h2.j, hj0 {
             c1Var.f54605i = null;
             return;
         }
-        p4.b1 b1Var = new p4.b1(surface, this.f33366a, this.f33367b);
+        p4.b1 b1Var = new p4.b1(surface, this.f33369a, this.f33370b);
         c1Var.f54605i = b1Var;
         g1Var.S(b1Var);
     }
@@ -85,14 +85,14 @@ public final class bt implements et, h2.j, hj0 {
         boolean z11;
         float f12;
         wg.v0 v0Var;
-        wg.c1 c1Var = (wg.c1) this.f33368c;
+        wg.c1 c1Var = (wg.c1) this.f33371c;
         org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.d;
         ah.a aVar = c1Var.Z1;
         org.telegram.ui.ng0 ng0Var = c1Var.V1;
         ArrayList arrayList = c1Var.f59146c2;
         HashSet hashSet = c1Var.d2;
         boolean z12 = view instanceof org.telegram.ui.Cells.l8;
-        int i10 = this.f33366a;
+        int i10 = this.f33369a;
         xg.h hVar = null;
         if (z12) {
             if (i10 == 4) {
@@ -104,7 +104,7 @@ public final class bt implements et, h2.j, hj0 {
                 }
                 return;
             }
-            ((org.telegram.ui.ActionBar.u2) t4.l(c1Var.getContext(), org.telegram.messenger.hd.M0(2131751238, null), org.telegram.messenger.hd.M0(2131751243, null), null, new wg.w0(c1Var, 2), new wg.v0(c1Var, 9), false, false, c1Var.J0).f25804b).show();
+            ((org.telegram.ui.ActionBar.u2) t4.l(c1Var.getContext(), org.telegram.messenger.hd.M0(2131751238, null), org.telegram.messenger.hd.M0(2131751243, null), null, new wg.w0(c1Var, 2), new wg.v0(c1Var, 9), false, false, c1Var.J0).f25806b).show();
         } else if (view instanceof ah.r) {
             ah.r rVar = (ah.r) view;
             TLRPC.User user = rVar.getUser();
@@ -141,11 +141,11 @@ public final class bt implements et, h2.j, hj0 {
                     if (ng0Var != null) {
                         org.telegram.messenger.g0.v1(ng0Var.getEditText());
                     }
-                    di.xa xaVar = new di.xa(c1Var.getContext(), e6Var, user, new wg.v0(c1Var, 11));
+                    di.wa waVar = new di.wa(c1Var.getContext(), e6Var, user, new wg.v0(c1Var, 11));
                     if (!org.telegram.messenger.g0.Q1()) {
-                        xaVar.a0(c1Var.f29703j1);
+                        waVar.a0(c1Var.f29703j1);
                     }
-                    xaVar.show();
+                    waVar.show();
                 } else if (i10 != 0 && i10 != 2) {
                     int i13 = 4;
                     if (i10 == 4) {
@@ -154,7 +154,7 @@ public final class bt implements et, h2.j, hj0 {
                             org.telegram.messenger.s10 s10Var = c1Var.f59168z2;
                             if (s10Var != null) {
                                 fp fpVar = c1Var.Y1;
-                                if (fpVar == null || !fpVar.f34663a.f32441q) {
+                                if (fpVar == null || !fpVar.f34667a.f32441q) {
                                     z13 = false;
                                 }
                                 s10Var.a(Boolean.valueOf(z13), hashSet);
@@ -217,10 +217,10 @@ public final class bt implements et, h2.j, hj0 {
                     ng0Var.b(true, hashSet, new wg.v0(c1Var, 2), null);
                     c1Var.p1(true, true);
                     c1Var.f1();
-                } else if (org.telegram.messenger.q10.b(org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).b2(j3))) {
+                } else if (org.telegram.messenger.q10.b(org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).b2(j3))) {
                     org.telegram.messenger.i20.t(org.telegram.messenger.hd.a0(null, null, 2131743742, org.telegram.messenger.m5.t(j3)), new cc(c1Var.f29685c, e6Var), 2131624012, 36);
                 } else {
-                    bi.s2 s2Var = new bi.s2(c1Var.getContext(), this.f33367b, j3, wg.q.c(wg.q.b(1, c1Var.f59156n2)), new wg.w0(c1Var, 1));
+                    bi.s2 s2Var = new bi.s2(c1Var.getContext(), this.f33370b, j3, wg.q.c(wg.q.b(1, c1Var.f59156n2)), new wg.w0(c1Var, 1));
                     org.telegram.messenger.t1 t1Var = c1Var.f59160r2;
                     if (t1Var == null || !t1Var.a(j3)) {
                         z13 = false;
@@ -233,17 +233,17 @@ public final class bt implements et, h2.j, hj0 {
     }
 
     public bt(p4.c1 c1Var, Surface surface, int i7, int i10) {
-        this.f33368c = c1Var;
+        this.f33371c = c1Var;
         this.d = surface;
-        this.f33366a = i7;
-        this.f33367b = i10;
+        this.f33369a = i7;
+        this.f33370b = i10;
     }
 
     public bt(wg.c1 c1Var, int i7, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f33368c = c1Var;
-        this.f33366a = i7;
+        this.f33371c = c1Var;
+        this.f33369a = i7;
         this.d = e6Var;
-        this.f33367b = i10;
+        this.f33370b = i10;
     }
 
     @Override

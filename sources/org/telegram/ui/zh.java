@@ -15,8 +15,8 @@ public final class zh extends org.telegram.ui.Components.xn {
         super.onLayout(z10, i7, i10, i11, i12);
         float y10 = getY();
         an anVar = this.N;
-        float y11 = anVar.f45201g1.getY() + y10;
-        this.K = anVar.f45278m1.getBackgroundSizeY();
+        float y11 = anVar.f45200g1.getY() + y10;
+        this.K = anVar.f45277m1.getBackgroundSizeY();
         this.J = y11;
     }
 }

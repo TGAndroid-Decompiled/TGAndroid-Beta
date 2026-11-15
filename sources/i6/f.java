@@ -347,14 +347,14 @@ public final class f {
                 }
             }
             ?? yVar = new y();
-            yVar.f4080e = null;
+            yVar.f4083e = null;
             int[] iArr3 = this.f15819g;
             if (iArr3 != null) {
-                yVar.f4080e = iArr3;
+                yVar.f4083e = iArr3;
             }
             MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f15822k.f13221e;
             if (mediaSessionCompat$Token != null) {
-                yVar.f4081f = mediaSessionCompat$Token;
+                yVar.f4084f = mediaSessionCompat$Token;
             }
             qVar.n(yVar);
             notificationManager.notify("castMediaNotification", 1, qVar.b());

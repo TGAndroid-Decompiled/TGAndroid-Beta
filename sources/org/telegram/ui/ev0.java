@@ -6,21 +6,21 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ev0 extends n11 {
-    public final e11[] f46926f2;
-    public final ProfileActivity f46927g2;
+    public final e11[] f46910f2;
+    public final ProfileActivity f46911g2;
 
     public ev0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.e6 e6Var, int i10, e11[] e11VarArr) {
         super(profileActivity2, activity, true, num, i7, true, e6Var, i10);
-        this.f46927g2 = profileActivity;
-        this.f46926f2 = e11VarArr;
+        this.f46911g2 = profileActivity;
+        this.f46910f2 = e11VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i7;
         if (tL_starGiftUnique != null) {
-            i7 = ((org.telegram.ui.ActionBar.e2) this.f46927g2).currentAccount;
-            if (di.v8.y(i7, false).n(tL_starGiftUnique.f28280id) != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
+            i7 = ((org.telegram.ui.ActionBar.e2) this.f46911g2).currentAccount;
+            if (di.u8.y(i7, false).n(tL_starGiftUnique.f28280id) != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -30,7 +30,7 @@ public final class ev0 extends n11 {
 
     @Override
     public final long getDialogId() {
-        return this.f46927g2.a();
+        return this.f46911g2.a();
     }
 
     @Override
@@ -42,11 +42,11 @@ public final class ev0 extends n11 {
         int i7;
         int i10;
         int i11;
-        e11[] e11VarArr = this.f46926f2;
-        ProfileActivity profileActivity = this.f46927g2;
+        e11[] e11VarArr = this.f46910f2;
+        ProfileActivity profileActivity = this.f46911g2;
         if (tL_starGiftUnique != null) {
             i7 = ((org.telegram.ui.ActionBar.e2) profileActivity).currentAccount;
-            TL_stars.SavedStarGift n10 = di.v8.y(i7, false).n(tL_starGiftUnique.f28280id);
+            TL_stars.SavedStarGift n10 = di.u8.y(i7, false).n(tL_starGiftUnique.f28280id);
             if (n10 != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
                 org.telegram.messenger.np.e1().edit().putInt("statusgiftpage", org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) + 1).apply();
                 Context context = getContext();
@@ -119,7 +119,7 @@ public final class ev0 extends n11 {
             org.telegram.ui.Cells.o oVar = profileActivity.f43093e0;
             ?? obj = new Object();
             long longValue = l10.longValue();
-            obj.f5189g = longValue;
+            obj.f5192g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }

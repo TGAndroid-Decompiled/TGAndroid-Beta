@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kj implements ls {
-    public final an f48710a;
+    public final an f48664a;
 
     public kj(an anVar) {
-        this.f48710a = anVar;
+        this.f48664a = anVar;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class kj implements ls {
     }
 
     @Override
-    public final org.telegram.ui.Components.m60 E(ai.j0 j0Var) {
+    public final org.telegram.ui.Components.m60 E(ai.k0 k0Var) {
         return null;
     }
 
@@ -47,12 +47,12 @@ public final class kj implements ls {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            an anVar = this.f48710a;
+            an anVar = this.f48664a;
             if (anVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
                 tL_inputStickerSetID.f28071id = inputStickerSet.f28071id;
-                org.telegram.ui.Components.bw0 bw0Var = new org.telegram.ui.Components.bw0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.f45118a0, anVar.Aa);
+                org.telegram.ui.Components.bw0 bw0Var = new org.telegram.ui.Components.bw0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.f45117a0, anVar.Aa);
                 boolean V9 = anVar.V9();
                 bw0Var.f29700i0 = V9;
                 bw0Var.f29707n = V9;
@@ -79,17 +79,17 @@ public final class kj implements ls {
 
     @Override
     public final long a() {
-        return this.f48710a.f45259k6;
+        return this.f48664a.f45258k6;
     }
 
     @Override
     public final boolean b() {
-        return this.f48710a.S6();
+        return this.f48664a.S6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f48710a.f45204g4 == 1) {
+        if (this.f48664a.f45203g4 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class kj implements ls {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i7, int i10) {
-        this.f48710a.f45118a0.d(document, str, obj, null, true, z10, i7, i10);
+        this.f48664a.f45117a0.d(document, str, obj, null, true, z10, i7, i10);
     }
 
     @Override

@@ -53,9 +53,9 @@ public final class pt implements mx {
             } else {
                 z10 = false;
             }
-            rtVar.f39066y = z10;
+            rtVar.f39063y = z10;
             rtVar.y();
-            st0 st0Var = rtVar.f39060f;
+            st0 st0Var = rtVar.f39057f;
             if (st0Var != null) {
                 st0Var.R();
             }
@@ -69,7 +69,7 @@ public final class pt implements mx {
 
     @Override
     public final boolean k() {
-        mt mtVar = this.f38408a.f39056a;
+        mt mtVar = this.f38408a.f39053a;
         if (mtVar.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class pt implements mx {
 
     @Override
     public final void l(String str) {
-        mt mtVar = this.f38408a.f39056a;
+        mt mtVar = this.f38408a.f39053a;
         int selectionEnd = mtVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -131,7 +131,7 @@ public final class pt implements mx {
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         p5 p5Var;
         rt rtVar = this.f38408a;
-        mt mtVar = rtVar.f39056a;
+        mt mtVar = rtVar.f39053a;
         int selectionEnd = mtVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -157,7 +157,7 @@ public final class pt implements mx {
 
     @Override
     public final boolean z() {
-        return this.f38408a.f39066y;
+        return this.f38408a.f39063y;
     }
 
     @Override

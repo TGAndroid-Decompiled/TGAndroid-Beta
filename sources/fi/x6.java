@@ -72,13 +72,13 @@ public final class x6 extends View {
         boolean z10;
         String str;
         String str2;
-        if (p0Var != null && ((str2 = p0Var.f5188f) == null || !str2.equals("❤"))) {
+        if (p0Var != null && ((str2 = p0Var.f5191f) == null || !str2.equals("❤"))) {
             z10 = false;
         } else {
             z10 = true;
         }
         this.f12508n = z10;
-        if (p0Var != null && (str = p0Var.f5188f) != null && str.equals("❤")) {
+        if (p0Var != null && (str = p0Var.f5191f) != null && str.equals("❤")) {
             this.f12504b = true;
         } else {
             this.f12504b = false;
@@ -89,14 +89,14 @@ public final class x6 extends View {
         }
         this.f12507f = null;
         if (p0Var != null) {
-            if (p0Var.f5189g != 0) {
-                org.telegram.ui.Components.g5 g5Var2 = new org.telegram.ui.Components.g5(3, m10.f24934t0, p0Var.f5189g);
+            if (p0Var.f5192g != 0) {
+                org.telegram.ui.Components.g5 g5Var2 = new org.telegram.ui.Components.g5(3, m10.f24940t0, p0Var.f5192g);
                 this.f12507f = g5Var2;
                 if (this.f12510s) {
                     g5Var2.a(this);
                 }
             } else {
-                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24934t0).f26495r.get(p0Var.f5188f);
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24940t0).f26505r.get(p0Var.f5191f);
                 if (tL_availableReaction != null) {
                     this.d.q0(gc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", org.telegram.messenger.t5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.j6.f28792a7, 1.0f, null), "webp", tL_availableReaction, 1);
                 }

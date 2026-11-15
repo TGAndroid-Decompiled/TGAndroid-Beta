@@ -276,15 +276,15 @@ public class ConferenceCall {
         VoIPService sharedInstance;
         r3 r3Var;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (r3Var = sharedInstance.groupCall) != null && (groupCall = r3Var.f26208b) != null && groupCall.f28061id == this.groupCall.f28061id) {
-            updateParticipants(r3Var.f26210e, false);
-            sharedInstance.groupCall.f26216l.clear();
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (r3Var = sharedInstance.groupCall) != null && (groupCall = r3Var.f26216b) != null && groupCall.f28061id == this.groupCall.f28061id) {
+            updateParticipants(r3Var.f26218e, false);
+            sharedInstance.groupCall.f26224l.clear();
             r3 r3Var2 = sharedInstance.groupCall;
-            r3Var2.f26216l.addAll(sharedInstance.conference.getShadyLeftParticipants(r3Var2.f26210e));
-            sharedInstance.groupCall.f26217m.clear();
+            r3Var2.f26224l.addAll(sharedInstance.conference.getShadyLeftParticipants(r3Var2.f26218e));
+            sharedInstance.groupCall.f26225m.clear();
             r3 r3Var3 = sharedInstance.groupCall;
-            r3Var3.f26217m.addAll(sharedInstance.conference.getShadyJoiningParticipants(r3Var3.f26210e));
-            ns.f(this.currentAccount).k(ns.f25595w2, 0L, Long.valueOf(this.groupCall.f28061id), Boolean.FALSE);
+            r3Var3.f26225m.addAll(sharedInstance.conference.getShadyJoiningParticipants(r3Var3.f26218e));
+            ns.f(this.currentAccount).k(ns.f25596w2, 0L, Long.valueOf(this.groupCall.f28061id), Boolean.FALSE);
         }
     }
 
@@ -316,7 +316,7 @@ public class ConferenceCall {
     }
 
     public static String lambda$poll$9(CallParticipant callParticipant) {
-        return "[" + callParticipant.user_id + "]: " + m5.l(m10.f24934t0, callParticipant.user_id);
+        return "[" + callParticipant.user_id + "]: " + m5.l(m10.f24940t0, callParticipant.user_id);
     }
 
     public void lambda$processUpdates$4(TLObject tLObject) {

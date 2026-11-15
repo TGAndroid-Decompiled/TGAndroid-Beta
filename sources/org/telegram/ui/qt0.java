@@ -10,25 +10,25 @@ import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.telegram.ui.ActionBar.q1, org.telegram.messenger.nr, r0.m, org.telegram.ui.Components.gf0, org.telegram.ui.Components.ij0, te.b, org.telegram.messenger.i9 {
-    public final int f50791a;
-    public final ProfileActivity f50792b;
+    public final int f50790a;
+    public final ProfileActivity f50791b;
 
     public qt0(ProfileActivity profileActivity, int i7) {
-        this.f50791a = i7;
-        this.f50792b = profileActivity;
+        this.f50790a = i7;
+        this.f50791b = profileActivity;
     }
 
     @Override
     public void G(int i7, float f10, float f11, te.c cVar) {
         RectF rectF = ProfileActivity.X6;
-        this.f50792b.r5();
+        this.f50791b.r5();
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
         RectF rectF = ProfileActivity.X6;
         int i7 = k1Var.f55682a.f(519).d;
-        ProfileActivity profileActivity = this.f50792b;
+        ProfileActivity profileActivity = this.f50791b;
         profileActivity.N6 = i7;
         FrameLayout frameLayout = profileActivity.f43222w5;
         if (frameLayout != null) {
@@ -41,7 +41,7 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
         }
         if (profileActivity.O != null) {
             profileActivity.G3();
-            org.telegram.ui.Components.wp0 wp0Var = profileActivity.O.f42080b0;
+            org.telegram.ui.Components.wp0 wp0Var = profileActivity.O.f42082b0;
             if (wp0Var != null) {
                 wp0Var.setButtonOffset(profileActivity.N6 + profileActivity.M6);
             }
@@ -51,9 +51,9 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
 
     @Override
     public boolean b(int i7, View view) {
-        ProfileActivity profileActivity = this.f50792b;
+        ProfileActivity profileActivity = this.f50791b;
         sw0 sw0Var = profileActivity.f43092e;
-        if (sw0Var.f51293x || sw0Var.f51292w.isEmpty()) {
+        if (sw0Var.f51294x || sw0Var.f51293w.isEmpty()) {
             return false;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, profileActivity.getParentActivity(), profileActivity.A0);
@@ -74,8 +74,8 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f50791a;
-        ProfileActivity profileActivity = this.f50792b;
+        int i10 = this.f50790a;
+        ProfileActivity profileActivity = this.f50791b;
         switch (i10) {
             case 2:
                 RectF rectF = ProfileActivity.X6;
@@ -88,14 +88,14 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
             case 9:
                 RectF rectF2 = ProfileActivity.X6;
                 profileActivity.getClass();
-                org.telegram.messenger.gz.f23960l = null;
-                org.telegram.messenger.gz.f23962m = null;
+                org.telegram.messenger.gz.f23963l = null;
+                org.telegram.messenger.gz.f23965m = null;
                 org.telegram.messenger.gz.y();
                 profileActivity.getConnectionsManager().switchBackend(true);
                 return;
             default:
                 sw0 sw0Var = profileActivity.f43092e;
-                sw0Var.f51292w.clear();
+                sw0Var.f51293w.clear();
                 org.telegram.messenger.np.e1().edit().remove("settingsSearchRecent2").commit();
                 sw0Var.f();
                 return;
@@ -108,7 +108,7 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
         RectF rectF = ProfileActivity.X6;
         HashSet hashSet = new HashSet();
         ArrayList arrayList2 = new ArrayList();
-        ProfileActivity profileActivity = this.f50792b;
+        ProfileActivity profileActivity = this.f50791b;
         TLRPC.ChatFull chatFull = profileActivity.f43211v2;
         if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
             for (int i10 = 0; i10 < profileActivity.f43211v2.participants.participants.size(); i10++) {
@@ -120,10 +120,10 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
 
     @Override
     public void j(boolean z10) {
-        ProfileActivity profileActivity = this.f50792b;
+        ProfileActivity profileActivity = this.f50791b;
         profileActivity.J1 = 0;
         org.telegram.messenger.ns notificationCenter = profileActivity.getNotificationCenter();
-        int i7 = org.telegram.messenger.ns.f25572t;
+        int i7 = org.telegram.messenger.ns.f25573t;
         notificationCenter.n(profileActivity, i7);
         profileActivity.getNotificationCenter().k(i7, new Object[0]);
         profileActivity.finishFragment();
@@ -132,7 +132,7 @@ public final class qt0 implements r40, org.telegram.ui.Components.lu0, org.teleg
 
     @Override
     public boolean run() {
-        ProfileActivity profileActivity = this.f50792b;
+        ProfileActivity profileActivity = this.f50791b;
         if (profileActivity.E2 == null && !profileActivity.v4()) {
             return false;
         }

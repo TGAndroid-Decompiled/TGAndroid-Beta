@@ -51,7 +51,7 @@ public final class h implements s10 {
                         i7 = 2131751851;
                     }
                     b41 c10 = b41.c(141, 2131232497, hd.M0(i7, null));
-                    c10.f33186q = true;
+                    c10.f33189q = true;
                     arrayList2.add(c10);
                     arrayList2.add(b41.E(2, org.telegram.messenger.g0.L(14.0f)));
                     arrayList2.add(b41.t(0, hd.M0(2131751874, null)));
@@ -95,7 +95,7 @@ public final class h implements s10 {
                 }
                 arrayList2.add(b41.E(5, org.telegram.messenger.g0.L(14.0f)));
                 b41 c11 = b41.c(146, 2131232177, hd.M0(2131751918, null));
-                c11.f33186q = true;
+                c11.f33189q = true;
                 arrayList2.add(c11);
                 TLRPC.ChatFull chatFull4 = nVar.K;
                 if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {

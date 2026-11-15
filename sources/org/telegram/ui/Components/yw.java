@@ -14,36 +14,36 @@ import android.view.ViewConfiguration;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class yw extends uj0 {
-    public boolean f42163f3;
-    public final SparseArray f42164g3;
-    public final ArrayList f42165h3;
-    public final ArrayList f42166i3;
+    public boolean f42165f3;
+    public final SparseArray f42166g3;
+    public final ArrayList f42167h3;
+    public final ArrayList f42168i3;
     public final ArrayList j3;
-    public final ArrayList f42167k3;
-    public int f42168l3;
-    public SparseArray f42169m3;
-    public final ly f42170n3;
+    public final ArrayList f42169k3;
+    public int f42170l3;
+    public SparseArray f42171m3;
+    public final ly f42172n3;
 
     public yw(ly lyVar, Context context) {
         super(context, null);
-        this.f42170n3 = lyVar;
-        this.f42164g3 = new SparseArray();
-        this.f42165h3 = new ArrayList();
-        this.f42166i3 = new ArrayList();
+        this.f42172n3 = lyVar;
+        this.f42166g3 = new SparseArray();
+        this.f42167h3 = new ArrayList();
+        this.f42168i3 = new ArrayList();
         this.j3 = new ArrayList();
-        this.f42167k3 = new ArrayList();
-        this.f42168l3 = -1;
+        this.f42169k3 = new ArrayList();
+        this.f42170l3 = -1;
         new SparseIntArray();
-        er erVar = er.f34420f;
+        er erVar = er.f34419f;
     }
 
     public final void A1(View view) {
-        if (this.f42169m3 != null) {
+        if (this.f42171m3 != null) {
             int i7 = 0;
-            while (i7 < this.f42169m3.size()) {
-                xw xwVar = (xw) this.f42169m3.valueAt(i7);
+            while (i7 < this.f42171m3.size()) {
+                xw xwVar = (xw) this.f42171m3.valueAt(i7);
                 if (xwVar.d == view) {
-                    this.f42169m3.removeAt(i7);
+                    this.f42171m3.removeAt(i7);
                     i7--;
                     View view2 = xwVar.d;
                     if (view2 != null && (view2.getBackground() instanceof RippleDrawable)) {
@@ -60,7 +60,7 @@ public final class yw extends uj0 {
     }
 
     public final void B1() {
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         int i7 = lyVar.f36936c;
         yw ywVar = lyVar.Q;
         yw ywVar2 = lyVar.Q;
@@ -83,19 +83,19 @@ public final class yw extends uj0 {
         int i7;
         boolean z11;
         Canvas canvas2 = canvas;
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         yw ywVar = lyVar.Q;
         super.J0(canvas, rectF, j3);
         canvas2.save();
         canvas.clipRect(rectF);
-        if (this.f42168l3 != getChildCount()) {
+        if (this.f42170l3 != getChildCount()) {
             B1();
-            this.f42168l3 = getChildCount();
+            this.f42170l3 = getChildCount();
         }
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f42164g3;
+            sparseArray = this.f42166g3;
             int size = sparseArray.size();
             arrayList = this.j3;
             if (i11 >= size) {
@@ -133,7 +133,7 @@ public final class yw extends uj0 {
                 }
                 if (z10 && childAt != null && RecyclerView.R(childAt) == lyVar.f36994u2 - i12) {
                     z11 = z10;
-                    float interpolation = er.f34421g.getInterpolation(c8.i9.a(((float) (SystemClock.elapsedRealtime() - lyVar.f37001w2)) / 140.0f, f10, 1.0f));
+                    float interpolation = er.f34420g.getInterpolation(c8.i9.a(((float) (SystemClock.elapsedRealtime() - lyVar.f37001w2)) / 140.0f, f10, 1.0f));
                     if (interpolation >= 1.0f || (Build.VERSION.SDK_INT >= 30 && canvas2.quickReject(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom()))) {
                         i7 = i13;
                     } else {
@@ -156,9 +156,9 @@ public final class yw extends uj0 {
                 i12 = 1;
             }
         }
-        ArrayList arrayList5 = this.f42166i3;
+        ArrayList arrayList5 = this.f42168i3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f42165h3;
+        ArrayList arrayList6 = this.f42167h3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         long currentTimeMillis = System.currentTimeMillis();
@@ -166,7 +166,7 @@ public final class yw extends uj0 {
         while (true) {
             int size2 = sparseArray.size();
             ww wwVar = null;
-            arrayList2 = this.f42167k3;
+            arrayList2 = this.f42169k3;
             if (i14 >= size2) {
                 break;
             }
@@ -232,17 +232,17 @@ public final class yw extends uj0 {
         boolean z10;
         ArrayList arrayList2;
         super.dispatchDraw(canvas);
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         yw ywVar = lyVar.Q;
         lyVar.f36974o2.g();
-        if (this.f42168l3 != getChildCount()) {
+        if (this.f42170l3 != getChildCount()) {
             B1();
-            this.f42168l3 = getChildCount();
+            this.f42170l3 = getChildCount();
         }
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            sparseArray = this.f42164g3;
+            sparseArray = this.f42166g3;
             int size = sparseArray.size();
             arrayList = this.j3;
             if (i10 >= size) {
@@ -276,7 +276,7 @@ public final class yw extends uj0 {
                     arrayList4.add((ux) childAt);
                 }
                 if (z10 && childAt != null && RecyclerView.R(childAt) == lyVar.f36994u2 - 1) {
-                    float interpolation = er.f34421g.getInterpolation(c8.i9.a(((float) (SystemClock.elapsedRealtime() - lyVar.f37001w2)) / 140.0f, 0.0f, 1.0f));
+                    float interpolation = er.f34420g.getInterpolation(c8.i9.a(((float) (SystemClock.elapsedRealtime() - lyVar.f37001w2)) / 140.0f, 0.0f, 1.0f));
                     if (interpolation < 1.0f) {
                         float f10 = 1.0f - interpolation;
                         canvas.saveLayerAlpha(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom(), (int) (255.0f * f10), 31);
@@ -290,9 +290,9 @@ public final class yw extends uj0 {
             }
         }
         Canvas canvas2 = canvas;
-        ArrayList arrayList5 = this.f42166i3;
+        ArrayList arrayList5 = this.f42168i3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f42165h3;
+        ArrayList arrayList6 = this.f42167h3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         long currentTimeMillis = System.currentTimeMillis();
@@ -300,7 +300,7 @@ public final class yw extends uj0 {
         while (true) {
             int size2 = sparseArray.size();
             ww wwVar = null;
-            arrayList2 = this.f42167k3;
+            arrayList2 = this.f42169k3;
             if (i12 >= size2) {
                 break;
             }
@@ -379,8 +379,8 @@ public final class yw extends uj0 {
         if (z10 || z11 || z12) {
             int actionIndex = motionEvent.getActionIndex();
             int pointerId = motionEvent.getPointerId(actionIndex);
-            if (this.f42169m3 == null) {
-                this.f42169m3 = new SparseArray();
+            if (this.f42171m3 == null) {
+                this.f42171m3 = new SparseArray();
             }
             float x10 = motionEvent.getX(actionIndex);
             float y10 = motionEvent.getY(actionIndex);
@@ -388,24 +388,24 @@ public final class yw extends uj0 {
             if (z10) {
                 if (E != null) {
                     ?? obj = new Object();
-                    obj.f41776a = x10;
-                    obj.f41777b = y10;
-                    obj.f41778c = SystemClock.elapsedRealtime();
+                    obj.f41768a = x10;
+                    obj.f41769b = y10;
+                    obj.f41770c = SystemClock.elapsedRealtime();
                     obj.d = E;
                     if (E.getBackground() instanceof RippleDrawable) {
                         E.getBackground().setState(new int[]{16842919, 16842910});
                     }
                     obj.d.setPressed(true);
-                    this.f42169m3.put(pointerId, obj);
+                    this.f42171m3.put(pointerId, obj);
                     C0();
                 }
             } else {
-                xw xwVar = (xw) this.f42169m3.get(pointerId);
-                this.f42169m3.remove(pointerId);
+                xw xwVar = (xw) this.f42171m3.get(pointerId);
+                this.f42171m3.remove(pointerId);
                 if (E != null && xwVar != null) {
-                    if (Math.sqrt(Math.pow(y10 - xwVar.f41777b, 2.0d) + Math.pow(x10 - xwVar.f41776a, 2.0d)) < org.telegram.messenger.g0.f23588e * 3.0f && !z12) {
-                        ly lyVar = this.f42170n3;
-                        if (!lyVar.C1.isShowing() || SystemClock.elapsedRealtime() - xwVar.f41778c < ViewConfiguration.getLongPressTimeout()) {
+                    if (Math.sqrt(Math.pow(y10 - xwVar.f41769b, 2.0d) + Math.pow(x10 - xwVar.f41768a, 2.0d)) < org.telegram.messenger.g0.f23590e * 3.0f && !z12) {
+                        ly lyVar = this.f42172n3;
+                        if (!lyVar.C1.isShowing() || SystemClock.elapsedRealtime() - xwVar.f41770c < ViewConfiguration.getLongPressTimeout()) {
                             View view = xwVar.d;
                             int R = RecyclerView.R(view);
                             try {
@@ -431,7 +431,7 @@ public final class yw extends uj0 {
                 }
             }
         }
-        if (!super.dispatchTouchEvent(motionEvent) && (z12 || this.f42169m3.size() <= 0)) {
+        if (!super.dispatchTouchEvent(motionEvent) && (z12 || this.f42171m3.size() <= 0)) {
             return false;
         }
         return true;
@@ -441,7 +441,7 @@ public final class yw extends uj0 {
     public final void k0(int i7) {
         if (i7 == 0) {
             boolean canScrollVertically = canScrollVertically(-1);
-            ly lyVar = this.f42170n3;
+            ly lyVar = this.f42172n3;
             if (!canScrollVertically || !canScrollVertically(1)) {
                 lyVar.N(true);
             }
@@ -461,11 +461,11 @@ public final class yw extends uj0 {
     public final void onDetachedFromWindow() {
         ArrayList arrayList;
         super.onDetachedFromWindow();
-        p5.release(this, this.f42170n3.f36945e2);
+        p5.release(this, this.f42172n3.f36945e2);
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            arrayList = this.f42165h3;
+            arrayList = this.f42167h3;
             if (i10 >= arrayList.size()) {
                 break;
             }
@@ -473,7 +473,7 @@ public final class yw extends uj0 {
             i10++;
         }
         while (true) {
-            ArrayList arrayList2 = this.f42167k3;
+            ArrayList arrayList2 = this.f42169k3;
             if (i7 < arrayList2.size()) {
                 ((ww) arrayList2.get(i7)).f();
                 i7++;
@@ -487,7 +487,7 @@ public final class yw extends uj0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         if (!lyVar.f36946f) {
             boolean q10 = org.telegram.ui.ns.p().q(motionEvent, this, lyVar.f36955h2, this.f40069o2);
             if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
@@ -500,12 +500,12 @@ public final class yw extends uj0 {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         if (lyVar.f36943e0 && lyVar.f36940d0) {
-            this.f42163f3 = true;
+            this.f42165f3 = true;
             lyVar.R.h1(0, 0);
             lyVar.f36940d0 = false;
-            this.f42163f3 = false;
+            this.f42165f3 = false;
         }
         super.onLayout(z10, i7, i10, i11, i12);
         lyVar.l(true);
@@ -515,9 +515,9 @@ public final class yw extends uj0 {
     @Override
     public final void onMeasure(int i7, int i10) {
         float f10;
-        this.f42163f3 = true;
+        this.f42165f3 = true;
         int size = View.MeasureSpec.getSize(i7);
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         mw mwVar = lyVar.R;
         int i11 = mwVar.J;
         if (org.telegram.messenger.g0.Q1()) {
@@ -526,7 +526,7 @@ public final class yw extends uj0 {
             f10 = 45.0f;
         }
         mwVar.y1(Math.max(1, size / org.telegram.messenger.g0.L(f10)));
-        this.f42163f3 = false;
+        this.f42165f3 = false;
         super.onMeasure(i7, i10);
         if (i11 != mwVar.J) {
             lyVar.S.F(false);
@@ -536,7 +536,7 @@ public final class yw extends uj0 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         String str;
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         int[] iArr = lyVar.E1;
         du duVar = lyVar.C1;
         if (lyVar.S1 != null && duVar != null) {
@@ -551,15 +551,15 @@ public final class yw extends uj0 {
                     }
                     getLocationOnScreen(iArr);
                     float x10 = motionEvent.getX() + iArr[0];
-                    duVar.f34069c.getLocationOnScreen(iArr);
+                    duVar.f34056c.getLocationOnScreen(iArr);
                     int L = (int) (x10 - (org.telegram.messenger.g0.L(3.0f) + iArr[0]));
                     boolean z10 = duVar.d;
-                    cu cuVar = duVar.f34069c;
+                    cu cuVar = duVar.f34056c;
                     if (!z10) {
-                        int max = Math.max(0, Math.min(5, L / (org.telegram.messenger.g0.L(4.0f) + duVar.f34070e)));
-                        if (cuVar.f33678n[0] != max) {
+                        int max = Math.max(0, Math.min(5, L / (org.telegram.messenger.g0.L(4.0f) + duVar.f34057e)));
+                        if (cuVar.f33680n[0] != max) {
                             org.telegram.messenger.g0.b4(cuVar);
-                            int[] iArr2 = cuVar.f33678n;
+                            int[] iArr2 = cuVar.f33680n;
                             if (iArr2[0] != max) {
                                 iArr2[0] = max;
                                 cuVar.invalidate();
@@ -570,19 +570,19 @@ public final class yw extends uj0 {
             } else {
                 if (duVar != null && duVar.isShowing() && !duVar.d) {
                     duVar.dismiss();
-                    int i7 = duVar.f34069c.f33678n[0];
+                    int i7 = duVar.f34056c.f33680n[0];
                     if (i7 >= 1 && i7 <= 5) {
-                        str = (String) org.telegram.messenger.h4.f24053a.get(i7 - 1);
+                        str = (String) org.telegram.messenger.h4.f24056a.get(i7 - 1);
                     } else {
                         str = null;
                     }
                     String str2 = (String) lyVar.S1.getTag();
                     if (!lyVar.S1.f40181c) {
                         if (str != null) {
-                            org.telegram.messenger.j6.f24527j.put(str2, str);
+                            org.telegram.messenger.j6.f24532j.put(str2, str);
                             str2 = ly.g(str2, str);
                         } else {
-                            org.telegram.messenger.j6.f24527j.remove(str2);
+                            org.telegram.messenger.j6.f24532j.remove(str2);
                         }
                         lyVar.S1.a(org.telegram.messenger.j6.f(str2), lyVar.S1.f40181c);
                         ly.d(lyVar, lyVar.S1, null);
@@ -617,14 +617,14 @@ public final class yw extends uj0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f42163f3) {
+        if (this.f42165f3) {
             return;
         }
         super.requestLayout();
     }
 
     public final long z1() {
-        ly lyVar = this.f42170n3;
+        ly lyVar = this.f42172n3;
         return Math.max(400L, Math.min(45, lyVar.f36997v2 - lyVar.f36994u2) * 35) + Math.max(600L, Math.min(55, lyVar.f36997v2 - lyVar.f36994u2) * 40) + 150;
     }
 }

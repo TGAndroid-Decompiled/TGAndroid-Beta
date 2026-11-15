@@ -4,22 +4,22 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class cm {
-    public float f33630a;
-    public int f33631b;
-    public int f33632c;
+    public float f33632a;
+    public int f33633b;
+    public int f33634c;
     public int d;
-    public final Object f33633e;
-    public final Object f33634f;
-    public Object f33635g;
+    public final Object f33635e;
+    public final Object f33636f;
+    public Object f33637g;
     public final Object h;
 
     public cm(Context context, org.telegram.messenger.ou ouVar) {
-        this.f33631b = -1;
-        this.f33632c = -1;
+        this.f33633b = -1;
+        this.f33634c = -1;
         this.d = -1;
         this.h = new int[]{Integer.MAX_VALUE, 0};
-        this.f33633e = context;
-        this.f33634f = ouVar;
+        this.f33635e = context;
+        this.f33636f = ouVar;
     }
 
     public static float b(int i7, int i10, float[] fArr) {
@@ -37,9 +37,9 @@ public final class cm {
 
     public cm(im imVar, ArrayList arrayList) {
         this.h = imVar;
-        this.f33633e = new ArrayList();
-        this.f33635g = new HashMap();
-        this.f33634f = arrayList;
+        this.f33635e = new ArrayList();
+        this.f33637g = new HashMap();
+        this.f33636f = arrayList;
         a();
     }
 }

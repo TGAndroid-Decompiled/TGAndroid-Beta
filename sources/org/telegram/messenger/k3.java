@@ -7,19 +7,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class k3 implements RequestDelegate {
-    public final int f24635a;
-    public final r3 f24636b;
+    public final int f24638a;
+    public final r3 f24639b;
 
     public k3(r3 r3Var, int i7) {
-        this.f24635a = i7;
-        this.f24636b = r3Var;
+        this.f24638a = i7;
+        this.f24639b = r3Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24635a) {
+        switch (this.f24638a) {
             case 0:
-                final r3 r3Var = this.f24636b;
+                final r3 r3Var = this.f24639b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -33,17 +33,17 @@ public final class k3 implements RequestDelegate {
                                 r3Var2.O = false;
                                 if (tLObject2 != null) {
                                     TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject2;
-                                    np.s1(r3Var2.C.f22778a).Y3(groupparticipants.users, false);
-                                    np.s1(r3Var2.C.f22778a).S3(groupparticipants.chats, false);
-                                    TLRPC.GroupCall groupCall = r3Var2.f26208b;
+                                    np.s1(r3Var2.C.f22782a).Y3(groupparticipants.users, false);
+                                    np.s1(r3Var2.C.f22782a).S3(groupparticipants.chats, false);
+                                    TLRPC.GroupCall groupCall = r3Var2.f26216b;
                                     int i10 = groupCall.participants_count;
                                     int i11 = groupparticipants.count;
                                     if (i10 != i11) {
                                         groupCall.participants_count = i11;
-                                        if (r2.f26198a) {
-                                            i5.c.r(r3Var2.f26208b.participants_count, new StringBuilder("new participants reload count "));
+                                        if (r2.f26206a) {
+                                            i5.c.r(r3Var2.f26216b.participants_count, new StringBuilder("new participants reload count "));
                                         }
-                                        ns.f(r3Var2.C.f22778a).k(166, Long.valueOf(r3Var2.f26209c), Long.valueOf(r3Var2.f26208b.f28061id), Boolean.FALSE);
+                                        ns.f(r3Var2.C.f22782a).k(166, Long.valueOf(r3Var2.f26217c), Long.valueOf(r3Var2.f26216b.f28061id), Boolean.FALSE);
                                         return;
                                     }
                                     return;
@@ -54,9 +54,9 @@ public final class k3 implements RequestDelegate {
                                 r3Var3.getClass();
                                 if (tLObject2 instanceof TL_phone.groupCall) {
                                     TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
-                                    r3Var3.f26208b = groupcall.call;
-                                    np.s1(r3Var3.C.f22778a).Y3(groupcall.users, false);
-                                    np.s1(r3Var3.C.f22778a).S3(groupcall.chats, false);
+                                    r3Var3.f26216b = groupcall.call;
+                                    np.s1(r3Var3.C.f22782a).Y3(groupcall.users, false);
+                                    np.s1(r3Var3.C.f22782a).S3(groupcall.chats, false);
                                     ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
                                     String str = groupcall.participants_next_offset;
                                     TLRPC.GroupCall groupCall2 = groupcall.call;
@@ -69,23 +69,23 @@ public final class k3 implements RequestDelegate {
                 });
                 return;
             case 1:
-                r3 r3Var2 = this.f24636b;
+                r3 r3Var2 = this.f24639b;
                 r3Var2.getClass();
                 if (tLObject != null) {
-                    np.s1(r3Var2.C.f22778a).O3((TLRPC.Updates) tLObject, false);
+                    np.s1(r3Var2.C.f22782a).O3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
             case 2:
-                r3 r3Var3 = this.f24636b;
+                r3 r3Var3 = this.f24639b;
                 r3Var3.getClass();
                 if (tLObject != null) {
-                    np.s1(r3Var3.C.f22778a).O3((TLRPC.Updates) tLObject, false);
+                    np.s1(r3Var3.C.f22782a).O3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
             default:
-                final r3 r3Var4 = this.f24636b;
+                final r3 r3Var4 = this.f24639b;
                 r3Var4.getClass();
                 g0.h3(new Runnable() {
                     @Override
@@ -100,17 +100,17 @@ public final class k3 implements RequestDelegate {
                                 r3Var22.O = false;
                                 if (tLObject2 != null) {
                                     TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject2;
-                                    np.s1(r3Var22.C.f22778a).Y3(groupparticipants.users, false);
-                                    np.s1(r3Var22.C.f22778a).S3(groupparticipants.chats, false);
-                                    TLRPC.GroupCall groupCall = r3Var22.f26208b;
+                                    np.s1(r3Var22.C.f22782a).Y3(groupparticipants.users, false);
+                                    np.s1(r3Var22.C.f22782a).S3(groupparticipants.chats, false);
+                                    TLRPC.GroupCall groupCall = r3Var22.f26216b;
                                     int i10 = groupCall.participants_count;
                                     int i11 = groupparticipants.count;
                                     if (i10 != i11) {
                                         groupCall.participants_count = i11;
-                                        if (r2.f26198a) {
-                                            i5.c.r(r3Var22.f26208b.participants_count, new StringBuilder("new participants reload count "));
+                                        if (r2.f26206a) {
+                                            i5.c.r(r3Var22.f26216b.participants_count, new StringBuilder("new participants reload count "));
                                         }
-                                        ns.f(r3Var22.C.f22778a).k(166, Long.valueOf(r3Var22.f26209c), Long.valueOf(r3Var22.f26208b.f28061id), Boolean.FALSE);
+                                        ns.f(r3Var22.C.f22782a).k(166, Long.valueOf(r3Var22.f26217c), Long.valueOf(r3Var22.f26216b.f28061id), Boolean.FALSE);
                                         return;
                                     }
                                     return;
@@ -121,9 +121,9 @@ public final class k3 implements RequestDelegate {
                                 r3Var32.getClass();
                                 if (tLObject2 instanceof TL_phone.groupCall) {
                                     TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
-                                    r3Var32.f26208b = groupcall.call;
-                                    np.s1(r3Var32.C.f22778a).Y3(groupcall.users, false);
-                                    np.s1(r3Var32.C.f22778a).S3(groupcall.chats, false);
+                                    r3Var32.f26216b = groupcall.call;
+                                    np.s1(r3Var32.C.f22782a).Y3(groupcall.users, false);
+                                    np.s1(r3Var32.C.f22782a).S3(groupcall.chats, false);
                                     ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
                                     String str = groupcall.participants_next_offset;
                                     TLRPC.GroupCall groupCall2 = groupcall.call;

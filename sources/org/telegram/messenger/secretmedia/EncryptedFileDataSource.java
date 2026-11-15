@@ -60,7 +60,7 @@ public final class EncryptedFileDataSource extends c {
         File file = new File(mVar.f16803a.getPath());
         String name = file.getName();
         Pattern pattern = w7.J;
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(t0.f26600b.getCacheDir(), b.v(name, ".key")));
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(t0.f26609b.getCacheDir(), b.v(name, ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(mVar.f16806e);
         int length = (int) file.length();

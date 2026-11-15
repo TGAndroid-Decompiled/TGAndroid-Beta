@@ -134,7 +134,7 @@ public final class z1 {
             return "";
         }
         if (z10) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f24129y);
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f24132y);
             str2 = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
                 str2 = "GMT".concat(displayName);
@@ -155,7 +155,7 @@ public final class z1 {
         if (!this.f18158b && !this.f18159c) {
             this.f18158b = true;
             int i7 = this.f18157a;
-            SharedPreferences sharedPreferences = np.s1(i7).f25280f7;
+            SharedPreferences sharedPreferences = np.s1(i7).f25283f7;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i10 = 0;
@@ -168,7 +168,7 @@ public final class z1 {
             if (help_timezoneslist != null) {
                 arrayList.addAll(help_timezoneslist.timezones);
             }
-            ns.f(i7).k(ns.f25563r3, new Object[0]);
+            ns.f(i7).k(ns.f25564r3, new Object[0]);
             TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
             if (help_timezoneslist != null) {
                 i10 = help_timezoneslist.hash;

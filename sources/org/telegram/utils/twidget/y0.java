@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.vr;
-import org.telegram.messenger.yq;
+import org.telegram.messenger.wq;
 import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.p71;
 import org.telegram.ui.Components.q71;
@@ -309,7 +309,7 @@ public final class y0 {
                     boolean z12 = this.f54432l;
                     if (f10 > 0 && h.f54270f == 0 && !h.f54274k && n0.l(h.a()).a(f10, max2, z12)) {
                         vr a02 = vr.a0(h.f54267b);
-                        a02.f27220a.c(new yq(a02, h.f54268c, h.d, f10, max2, z12 ? 1 : 0, 1));
+                        a02.f27219a.c(new wq(a02, h.f54268c, h.d, f10, max2, z12 ? 1 : 0, 1));
                     }
                     hk0 hk0Var = h.f54284u;
                     if (hk0Var != null) {
@@ -343,7 +343,7 @@ public final class y0 {
                 if (k0Var.f54283t != null && a10.equals(k0Var.a())) {
                     y0 y0Var = k0Var.f54283t;
                     try {
-                        str2 = hd.E0().f24129y.toLanguageTag();
+                        str2 = hd.E0().f24132y.toLanguageTag();
                     } catch (Exception unused2) {
                         str2 = null;
                     }

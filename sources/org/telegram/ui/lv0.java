@@ -4,21 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 public final class lv0 extends AnimatorListenerAdapter {
-    public final int f49046a;
-    public final boolean f49047b;
-    public final ProfileActivity f49048c;
+    public final int f49042a;
+    public final boolean f49043b;
+    public final ProfileActivity f49044c;
 
     public lv0(ProfileActivity profileActivity, boolean z10, int i7) {
-        this.f49046a = i7;
-        this.f49048c = profileActivity;
-        this.f49047b = z10;
+        this.f49042a = i7;
+        this.f49044c = profileActivity;
+        this.f49043b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f49046a) {
+        switch (this.f49042a) {
             case 1:
-                this.f49048c.f43108g0 = null;
+                this.f49044c.f43108g0 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -30,10 +30,10 @@ public final class lv0 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         int i7;
         org.telegram.ui.Cells.b4 b4Var;
-        switch (this.f49046a) {
+        switch (this.f49042a) {
             case 0:
-                ProfileActivity profileActivity = this.f49048c;
-                boolean z10 = this.f49047b;
+                ProfileActivity profileActivity = this.f49044c;
+                boolean z10 = this.f49043b;
                 ProfileActivity.y1(profileActivity, z10);
                 profileActivity.Y.setClickable(true);
                 if (z10) {
@@ -57,9 +57,9 @@ public final class lv0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f49048c;
+                ProfileActivity profileActivity2 = this.f49044c;
                 if (profileActivity2.f43108g0 != null && (b4Var = profileActivity2.f43115h0) != null) {
-                    if (!this.f49047b) {
+                    if (!this.f49043b) {
                         b4Var.setVisibility(4);
                     }
                     profileActivity2.f43108g0 = null;

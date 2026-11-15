@@ -24,9 +24,9 @@ public final class ae0 implements Runnable {
                 org.telegram.messenger.g0.i3(new ae0(1, fVar, pd0Var), 150L);
                 return;
             default:
-                be0 be0Var = (be0) fVar.f46946b;
+                be0 be0Var = (be0) fVar.f46930b;
                 be0Var.h(null);
-                RadialProgressView radialProgressView = be0Var.f45699h0.O.d;
+                RadialProgressView radialProgressView = be0Var.f45693h0.O.d;
                 RadialProgressView radialProgressView2 = pd0Var.h.d;
                 radialProgressView.getClass();
                 radialProgressView.f32678a = radialProgressView2.f32678a;

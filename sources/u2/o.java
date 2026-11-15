@@ -306,7 +306,7 @@ public final class o {
         }
         int i12 = Build.VERSION.SDK_INT;
         if (i12 >= 29) {
-            if (i12 >= 29 && ((bool = oc.f4614a) == null || !bool.booleanValue())) {
+            if (i12 >= 29 && ((bool = oc.f4617a) == null || !bool.booleanValue())) {
                 i11 = y.b(videoCapabilities, i7, i10, d);
             } else {
                 i11 = 0;

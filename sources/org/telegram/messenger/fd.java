@@ -21,10 +21,10 @@ import org.telegram.ui.Components.gt0;
 import org.telegram.ui.Components.kt0;
 import org.telegram.ui.Components.vt0;
 public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.q1, vt0, t10, gt0, y10, jh.i, fj0, kt0 {
-    public final int f23483a;
+    public final int f23486a;
 
     public fd(int i7) {
-        this.f23483a = i7;
+        this.f23486a = i7;
     }
 
     public static Shader.TileMode c() {
@@ -40,7 +40,7 @@ public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, 
     public Object d(Number number, Object obj) {
         Integer num = (Integer) number;
         Integer num2 = (Integer) obj;
-        switch (this.f23483a) {
+        switch (this.f23486a) {
             case 21:
                 if (num.intValue() == 0) {
                     return hd.G(num2.intValue(), "MaximumReactionsValue", new Object[0]);
@@ -56,7 +56,7 @@ public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
-        switch (this.f23483a) {
+        switch (this.f23486a) {
             case 6:
                 return TLRPC.Peer.TLdeserialize(inputSerializedData, i7, z10);
             case 7:
@@ -82,9 +82,9 @@ public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f23483a) {
+        switch (this.f23486a) {
             case 15:
-                int i10 = gz.f23929a;
+                int i10 = gz.f23932a;
                 return;
             case 18:
                 t1Var.dismiss();
@@ -123,13 +123,13 @@ public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public RecyclerView n(View view) {
-        return ((org.telegram.ui.rd) view).f50928a;
+        return ((org.telegram.ui.rd) view).f50927a;
     }
 
     @Override
     public Object o(Object obj) {
         Void r22 = (Void) obj;
-        switch (this.f23483a) {
+        switch (this.f23486a) {
             case 2:
                 return new TLRPC.TL_messageEntityBold();
             case 3:
@@ -143,9 +143,9 @@ public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void onComplete(Task task) {
-        gz.f23954j = SystemClock.elapsedRealtime();
+        gz.f23957j = SystemClock.elapsedRealtime();
         if (!task.isSuccessful()) {
-            if (r2.f26198a) {
+            if (r2.f26206a) {
                 a8.b("Failed to get regid");
             }
             gz.h = "__FIREBASE_FAILED__";
@@ -164,7 +164,7 @@ public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     public fd(Object obj, int i7) {
-        this.f23483a = i7;
+        this.f23486a = i7;
     }
 
     @Override

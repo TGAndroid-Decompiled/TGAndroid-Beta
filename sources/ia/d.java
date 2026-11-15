@@ -100,7 +100,7 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
 
     public static d H(float f10, int i7) {
         boolean z10;
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         int i10 = (int) (point.x * f10);
         int i11 = (int) (point.y * f10);
         if (i10 == i11) {
@@ -131,8 +131,8 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
             ki kiVar = new ki(z1Var.getParentActivity(), z1Var, false, false, false, z1Var.getResourceProvider());
             kiVar.X3 = new sa.d(16);
             kiVar.K1 = true;
-            kiVar.f36506v3.setVisibility(8);
-            kiVar.f36503u4 = new h(z1Var, aVar, kiVar, 16);
+            kiVar.f36494v3.setVisibility(8);
+            kiVar.f36491u4 = new h(z1Var, aVar, kiVar, 16);
             kiVar.e1();
             kiVar.show();
         }
@@ -574,10 +574,10 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
             case 4:
                 k7.f fVar = new k7.f(0, (TaskCompletionSource) obj2);
                 g gVar = new g(new com.google.android.gms.common.api.h(-1, -1, 0, true), false);
-                gVar.f5920c = false;
+                gVar.f5923c = false;
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i7 = t7.a.f57044a;
+                int i7 = t7.a.f57048a;
                 obtain.writeStrongBinder(fVar);
                 t7.a.b(obtain, (j7.g) this.f15881b);
                 t7.a.b(obtain, gVar);
@@ -613,7 +613,7 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
     @Override
     public void c() {
         ez ezVar = (ez) this.f15881b;
-        HashMap hashMap = ezVar.f23391n;
+        HashMap hashMap = ezVar.f23394n;
         ezVar.getNotificationCenter().k(ns.R0, new HashMap(hashMap));
         hashMap.clear();
     }
@@ -718,10 +718,10 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
         tL_messageMediaGeo.geo = tL_geoPoint;
         tL_geoPoint.lat = org.telegram.messenger.g0.b0(location.getLatitude());
         tL_messageMediaGeo.geo._long = org.telegram.messenger.g0.b0(location.getLongitude());
-        HashMap hashMap = ezVar.f23391n;
+        HashMap hashMap = ezVar.f23394n;
         for (Map.Entry entry : hashMap.entrySet()) {
             gj gjVar = (gj) entry.getValue();
-            ezVar.r0(cz.d(tL_messageMediaGeo, gj.B0(gjVar.f23817k), gjVar, null, null, null, true, 0));
+            ezVar.r0(cz.d(tL_messageMediaGeo, gj.B0(gjVar.f23819k), gjVar, null, null, null, true, 0));
         }
         hashMap.clear();
     }
@@ -743,7 +743,7 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
 
     @Override
     public Object mo24get() {
-        return new jb.a((Context) ((d9.o) this.f15881b).f7640b);
+        return new jb.a((Context) ((d9.o) this.f15881b).f7643b);
     }
 
     @Override
@@ -836,9 +836,9 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
         ysVar.f30043b.setText(hd.a0("AutodownloadSizeLimitUpTo", null, 2131753772, org.telegram.messenger.g0.i0(j3, false, false)));
         ysVar.d = j3;
         q8[] q8VarArr = ysVar.h;
-        AnimatorSet[] animatorSetArr = ysVar.f53620n;
-        if (ysVar.f53618e == DataAutoDownloadActivity.o0(ysVar.f53621r)) {
-            ysVar.f53619f.setText(hd.a0("AutoDownloadPreloadVideoInfo", null, 2131753810, org.telegram.messenger.g0.i0(j3, false, false)));
+        AnimatorSet[] animatorSetArr = ysVar.f53585n;
+        if (ysVar.f53583e == DataAutoDownloadActivity.o0(ysVar.f53586r)) {
+            ysVar.f53584f.setText(hd.a0("AutoDownloadPreloadVideoInfo", null, 2131753810, org.telegram.messenger.g0.i0(j3, false, false)));
             if (i7 <= 2097152) {
                 z11 = false;
             }
@@ -973,7 +973,7 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
         q6.m.i("no included points", !Double.isNaN(dVar.d));
         LatLngBounds latLngBounds = new LatLngBounds(new LatLng(dVar.f20535b, dVar.d), new LatLng(dVar.f20536c, dVar.f20537e));
         ?? obj = new Object();
-        obj.f22811a = latLngBounds;
+        obj.f22815a = latLngBounds;
         return obj;
     }
 
@@ -1009,7 +1009,7 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
     }
 
     public int u() {
-        return ((j0) this.f15881b).f24493c;
+        return ((j0) this.f15881b).f24498c;
     }
 
     @Override
@@ -1064,11 +1064,11 @@ public final class d implements q, ib.b, y1, e2, w, k, ce.c, o0.a, r4, g0, o3, d
         LatLng latLng = new LatLng(bbVar.f22677a, bbVar.f22678b);
         dVar.getClass();
         double d = dVar.f20535b;
-        double d2 = latLng.f7083a;
+        double d2 = latLng.f7086a;
         dVar.f20535b = Math.min(d, d2);
         dVar.f20536c = Math.max(dVar.f20536c, d2);
         boolean isNaN = Double.isNaN(dVar.d);
-        double d10 = latLng.f7084b;
+        double d10 = latLng.f7087b;
         if (isNaN) {
             dVar.d = d10;
             dVar.f20537e = d10;

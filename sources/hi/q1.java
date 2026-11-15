@@ -24,7 +24,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final m60 E(ai.j0 j0Var) {
+    public final m60 E(ai.k0 k0Var) {
         return null;
     }
 

@@ -53,7 +53,7 @@ public final class y7 {
         this.f12559k = new gf.c(z7Var, arrayList, new di.z6(this, 10));
         d80 d80Var = new d80();
         this.f12567s = d80Var;
-        d80Var.f33885y = path;
+        d80Var.f33887y = path;
         d80Var.k(4.0f);
         d80Var.g(org.telegram.ui.ActionBar.j6.r1(0.3f, -1), org.telegram.ui.ActionBar.j6.r1(0.1f, -1), org.telegram.ui.ActionBar.j6.r1(0.2f, -1), org.telegram.ui.ActionBar.j6.r1(0.7f, -1));
         d80Var.setCallback(z7Var);
@@ -201,7 +201,7 @@ public final class y7 {
                             arrayList2 = arrayList;
                             i10 = i12;
                             float T1 = org.telegram.messenger.g0.T1(f12, f13, z7Var.f12603x);
-                            float T12 = org.telegram.messenger.g0.T1(w7Var.d, w7Var.f12474f, er.f34421g.getInterpolation(z7Var.f12603x));
+                            float T12 = org.telegram.messenger.g0.T1(w7Var.d, w7Var.f12474f, er.f34420g.getInterpolation(z7Var.f12603x));
                             canvas.translate(z7Var.F + T1, z7Var.G + i7 + T12);
                             if (z10) {
                                 f(w7Var.f12471b, z7Var.F + T1, z7Var.G + i7 + T12);
@@ -442,8 +442,8 @@ public final class y7 {
             v7Var.f12444s = x7Var;
             new ek0(z7Var);
             v7Var.f12435j.setCallback(z7Var);
-            v7Var.h.f39901a = z7Var;
-            v7Var.f12434i.f33911a = z7Var;
+            v7Var.h.f39898a = z7Var;
+            v7Var.f12434i.f33898a = z7Var;
             v7Var.c();
         }
         v7 v7Var3 = this.f12564p;
@@ -453,8 +453,8 @@ public final class y7 {
             v7Var3.f12444s = x7Var2;
             new ek0(z7Var);
             v7Var3.f12435j.setCallback(z7Var);
-            v7Var3.h.f39901a = z7Var;
-            v7Var3.f12434i.f33911a = z7Var;
+            v7Var3.h.f39898a = z7Var;
+            v7Var3.f12434i.f33898a = z7Var;
             v7Var3.c();
         }
         z7Var.f12601s = 0;

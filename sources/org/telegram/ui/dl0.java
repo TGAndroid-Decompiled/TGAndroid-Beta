@@ -1,164 +1,70 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class dl0 implements TextWatcher {
-    public final String[] f46422a = {"34", "37"};
-    public final String[] f46423b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public final String[] f46424c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
-    public int d = -1;
-    public int f46425e;
-    public final jl0 f46426f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class dl0 extends AnimatorListenerAdapter {
+    public final int f46394a;
+    public final boolean f46395b;
+    public final kl0 f46396c;
 
-    public dl0(jl0 jl0Var) {
-        this.f46426f = jl0Var;
+    public dl0(kl0 kl0Var, boolean z10, int i7) {
+        this.f46394a = i7;
+        this.f46396c = kl0Var;
+        this.f46395b = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        boolean z10;
-        int i10;
-        int i11;
-        String[] strArr;
-        int i12;
-        String str;
-        jl0 jl0Var = this.f46426f;
-        if (jl0Var.f48409p0) {
-            return;
-        }
-        int i13 = 0;
-        EditTextBoldCursor editTextBoldCursor = jl0Var.f48396f[0];
-        int selectionStart = editTextBoldCursor.getSelectionStart();
-        String obj = editTextBoldCursor.getText().toString();
-        int i14 = 3;
-        int i15 = 1;
-        if (this.d == 3) {
-            obj = obj.substring(0, this.f46425e) + obj.substring(this.f46425e + 1);
-            selectionStart--;
-        }
-        StringBuilder sb2 = new StringBuilder(obj.length());
-        int i16 = 0;
-        while (i16 < obj.length()) {
-            int i17 = i16 + 1;
-            String substring = obj.substring(i16, i17);
-            if ("0123456789".contains(substring)) {
-                sb2.append(substring);
-            }
-            i16 = i17;
-        }
-        jl0Var.f48409p0 = true;
-        String str2 = null;
-        int i18 = 100;
-        if (sb2.length() > 0) {
-            String sb3 = sb2.toString();
-            int i19 = 0;
-            while (true) {
-                if (i19 < i14) {
-                    if (i19 != 0) {
-                        if (i19 != i15) {
-                            strArr = this.f46423b;
-                            i12 = 14;
-                            str = "xxxx xxxx xxxx xx";
-                        } else {
-                            strArr = this.f46422a;
-                            i12 = 15;
-                            str = "xxxx xxxx xxxx xxx";
-                        }
-                    } else {
-                        strArr = this.f46424c;
-                        i12 = 16;
-                        str = "xxxx xxxx xxxx xxxx";
-                    }
-                    i7 = i15;
-                    for (int i20 = i13; i20 < strArr.length; i20++) {
-                        String str3 = strArr[i20];
-                        if (sb3.length() <= str3.length()) {
-                            if (str3.startsWith(sb3)) {
-                                i18 = i12;
-                                str2 = str;
-                                break;
-                            }
-                        } else if (sb3.startsWith(str3)) {
-                            i18 = i12;
-                            str2 = str;
-                            break;
-                        }
-                    }
-                    if (str2 != null) {
-                        break;
-                    }
-                    i19++;
-                    i15 = i7;
-                    i13 = 0;
-                    i14 = 3;
-                } else {
-                    i7 = i15;
-                    break;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f46394a) {
+            case 0:
+                kl0 kl0Var = this.f46396c;
+                AnimatorSet animatorSet = kl0Var.f48710w;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    kl0Var.f48710w = null;
+                    return;
                 }
-            }
-            if (sb2.length() > i18) {
-                sb2.setLength(i18);
-            }
-        } else {
-            i7 = 1;
-        }
-        if (str2 != null) {
-            if (sb2.length() == i18) {
-                jl0Var.f48396f[i7].requestFocus();
-            }
-            org.telegram.ui.ActionBar.q6.U(editTextBoldCursor, org.telegram.ui.ActionBar.j6.G6, jl0Var.Z0);
-            int i21 = 0;
-            while (true) {
-                if (i21 >= sb2.length()) {
-                    break;
-                } else if (i21 < str2.length()) {
-                    if (str2.charAt(i21) == ' ') {
-                        sb2.insert(i21, ' ');
-                        i21++;
-                        if (selectionStart == i21 && (i11 = this.d) != 2 && i11 != 3) {
-                            selectionStart++;
-                        }
-                    }
-                    i21++;
-                } else {
-                    sb2.insert(i21, ' ');
-                    if (selectionStart == i21 + 1 && (i10 = this.d) != 2 && i10 != 3) {
-                        selectionStart++;
-                    }
-                }
-            }
-        }
-        if (!sb2.toString().equals(editable.toString())) {
-            z10 = false;
-            editable.replace(0, editable.length(), sb2);
-        } else {
-            z10 = false;
-        }
-        if (selectionStart >= 0) {
-            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
-        }
-        jl0Var.f48409p0 = z10;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        if (i10 == 0 && i11 == 1) {
-            this.d = 1;
-        } else if (i10 == 1 && i11 == 0) {
-            if (charSequence.charAt(i7) == ' ' && i7 > 0) {
-                this.d = 3;
-                this.f46425e = i7 - 1;
                 return;
-            }
-            this.d = 2;
-        } else {
-            this.d = -1;
+            default:
+                kl0 kl0Var2 = this.f46396c;
+                AnimatorSet animatorSet2 = kl0Var2.f48710w;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    kl0Var2.f48710w = null;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f46394a) {
+            case 0:
+                kl0 kl0Var = this.f46396c;
+                AnimatorSet animatorSet = kl0Var.f48710w;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f46395b) {
+                        kl0Var.f48703r.setVisibility(4);
+                        return;
+                    } else {
+                        kl0Var.f48698n.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                kl0 kl0Var2 = this.f46396c;
+                AnimatorSet animatorSet2 = kl0Var2.f48710w;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f46395b) {
+                        kl0Var2.f48705s.setVisibility(4);
+                        return;
+                    } else {
+                        kl0Var2.V.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

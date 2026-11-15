@@ -47,7 +47,7 @@ public final class x8 extends v {
                 currentPeerView.V0(f11, T1, i9Var.f11882x.getCrossfadeToImage());
             }
             currentPeerView.invalidate();
-            currentPeerView.f11483i1.f3321b = (int) org.telegram.messenger.g0.T1(10.0f, 6.0f / f10, i9Var.f11882x.f11931f);
+            currentPeerView.f11483i1.f3324b = (int) org.telegram.messenger.g0.T1(10.0f, 6.0f / f10, i9Var.f11882x.f11931f);
             e3Var.invalidateOutline();
             i9Var.f11861o0.setTranslationY((i9Var.f11882x.f11928b - top) * f11);
         }
@@ -70,7 +70,7 @@ public final class x8 extends v {
             if (rect.bottom != 0 || rect.top != 0) {
                 int height = rootView.getHeight();
                 if (rect.top != 0) {
-                    i11 = org.telegram.messenger.g0.f23603m;
+                    i11 = org.telegram.messenger.g0.f23605m;
                 } else {
                     i11 = 0;
                 }
@@ -91,7 +91,7 @@ public final class x8 extends v {
         }
         i9Var.f11886z0.getLayoutParams().height = size + 1;
         i9Var.f11886z0.getLayoutParams().width = size2;
-        ((FrameLayout.LayoutParams) i9Var.f11886z0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23603m;
+        ((FrameLayout.LayoutParams) i9Var.f11886z0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23605m;
         super.onMeasure(i7, i10);
     }
 }

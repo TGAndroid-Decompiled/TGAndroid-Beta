@@ -67,7 +67,7 @@ public final class n extends r41 implements is {
 
     public n() {
         si mediaDataController = getMediaDataController();
-        TLRPC.Document document = mediaDataController.f26516z0;
+        TLRPC.Document document = mediaDataController.f26526z0;
         mediaDataController.n1();
         this.f18004y = document;
         this.L = l0();
@@ -87,14 +87,14 @@ public final class n extends r41 implements is {
             nVar2.M = p2Var;
             p2Var.X3 = new hi.l0(nVar2, 6);
         }
-        nVar2.M.f36447e2.i0();
+        nVar2.M.f36435e2.i0();
         nVar2.M.y1(1, false);
         p2 p2Var2 = nVar2.M;
         p2Var2.S3 = true;
         p2Var2.W0(new q4(nVar2, 8));
         nVar2.M.e1();
         p2 p2Var3 = nVar2.M;
-        p2Var3.f36496t1 = null;
+        p2Var3.f36484t1 = null;
         if (nVar2.visibleDialog != null) {
             p2Var3.show();
         } else {
@@ -107,7 +107,7 @@ public final class n extends r41 implements is {
         if (iVar != null && iVar.isAttachedToWindow() && nVar.f18003x) {
             i iVar2 = nVar.f17999n;
             si b02 = si.b0(nVar.currentAccount);
-            TLRPC.Document document = b02.f26516z0;
+            TLRPC.Document document = b02.f26526z0;
             b02.n1();
             g gVar = new g(nVar, 2);
             if (document == null) {
@@ -118,14 +118,14 @@ public final class n extends r41 implements is {
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            iVar2.f41736n.getImageReceiver().f22276h1 = new vn(iVar2, gVar);
+            iVar2.f41728n.getImageReceiver().f22276h1 = new vn(iVar2, gVar);
             pz f10 = t5.f(document, j6.f28838cd, 1.0f, null);
             if (f10 != null) {
-                iVar2.f41736n.p(gc.b(document), xn.b(document), f10, document);
+                iVar2.f41728n.p(gc.b(document), xn.b(document), f10, document);
             } else {
-                iVar2.f41736n.l(gc.b(document), xn.b(document), gc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
+                iVar2.f41728n.l(gc.b(document), xn.b(document), gc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
             }
-            iVar2.f41736n.setOnClickListener(new un(iVar2, document, 1));
+            iVar2.f41728n.setOnClickListener(new un(iVar2, document, 1));
         }
     }
 
@@ -163,7 +163,7 @@ public final class n extends r41 implements is {
             String str = this.E;
             b41 b41Var = new b41(3);
             b41Var.d = 1;
-            b41Var.f33181l = M0;
+            b41Var.f33184l = M0;
             b41Var.G = str;
             arrayList.add(b41Var);
         } else {
@@ -171,7 +171,7 @@ public final class n extends r41 implements is {
             TLRPC.Document document = this.f18004y;
             b41 b41Var2 = new b41(3);
             b41Var2.d = 1;
-            b41Var2.f33181l = M02;
+            b41Var2.f33184l = M02;
             b41Var2.G = document;
             arrayList.add(b41Var2);
         }
@@ -181,11 +181,11 @@ public final class n extends r41 implements is {
         if (!l02) {
             arrayList.add(b41.C(null));
             b41 e10 = b41.e(2, hd.M0(2131752721, null));
-            e10.f33187r = true;
+            e10.f33190r = true;
             arrayList.add(e10);
         }
         b41 b41Var3 = new b41(8);
-        b41Var3.f33181l = null;
+        b41Var3.f33184l = null;
         arrayList.add(b41Var3);
     }
 
@@ -220,7 +220,7 @@ public final class n extends r41 implements is {
             this.f17999n.d("", "");
             i iVar = this.f17999n;
             si b02 = si.b0(this.currentAccount);
-            TLRPC.Document document = b02.f26516z0;
+            TLRPC.Document document = b02.f26526z0;
             b02.n1();
             this.f18004y = document;
             iVar.setSticker(document);
@@ -284,17 +284,17 @@ public final class n extends r41 implements is {
         i3Var2.setOnEditorActionListener(new r2(fVar2, 2));
         this.f17999n.d("", "");
         super.createView(context);
-        this.f38883b.setBackground(null);
-        this.f38882a.r1();
-        this.f38882a.setSectionsDrawBackground(true);
-        this.f38882a.f39895g3.f38201r = false;
+        this.f38881b.setBackground(null);
+        this.f38880a.r1();
+        this.f38880a.setSectionsDrawBackground(true);
+        this.f38880a.f39892g3.f38199r = false;
         this.simpleActionBar.setActionBarMenuOnItemClick(new x4(this, 5));
         this.f17998f = this.simpleActionBar.q(hd.M0(2131745946, null));
         j0(false);
-        this.f38882a.addOnLayoutChangeListener(new m(this, 0));
-        this.f38882a.j(new bi.z4(this, 17));
-        v3 v3Var = this.f38882a;
-        v3Var.f39897i3 = true;
+        this.f38880a.addOnLayoutChangeListener(new m(this, 0));
+        this.f38880a.j(new bi.z4(this, 17));
+        v3 v3Var = this.f38880a;
+        v3Var.f39894i3 = true;
         v3Var.setClipChildren(false);
         View view = this.fragmentView;
         if (view instanceof ViewGroup) {
@@ -314,7 +314,7 @@ public final class n extends r41 implements is {
 
     @Override
     public final uj0 getListViewForSimpleGlass() {
-        return this.f38882a;
+        return this.f38880a;
     }
 
     @Override
@@ -325,16 +325,16 @@ public final class n extends r41 implements is {
     public final void j0(boolean z10) {
         if (this.f17998f != null) {
             this.f17998f.a(k0(), z10);
-            v3 v3Var = this.f38882a;
-            if (v3Var != null && v3Var.f39895g3 != null && this.L != (!l0())) {
-                v3 v3Var2 = this.f38882a;
+            v3 v3Var = this.f38880a;
+            if (v3Var != null && v3Var.f39892g3 != null && this.L != (!l0())) {
+                v3 v3Var2 = this.f38880a;
                 if (v3Var2 != null && v3Var2.getChildCount() > 0) {
                     View view = null;
                     int i7 = Integer.MAX_VALUE;
                     int i10 = -1;
-                    for (int i11 = 0; i11 < this.f38882a.getChildCount(); i11++) {
-                        int R = RecyclerView.R(this.f38882a.getChildAt(i11));
-                        View childAt = this.f38882a.getChildAt(i11);
+                    for (int i11 = 0; i11 < this.f38880a.getChildCount(); i11++) {
+                        int R = RecyclerView.R(this.f38880a.getChildAt(i11));
+                        View childAt = this.f38880a.getChildAt(i11);
                         if (R != -1 && childAt.getTop() < i7) {
                             i7 = childAt.getTop();
                             i10 = R;
@@ -342,20 +342,20 @@ public final class n extends r41 implements is {
                         }
                     }
                     if (view != null) {
-                        this.f38884c = i10;
+                        this.f38882c = i10;
                         int top = view.getTop();
                         this.d = top;
-                        if (this.f38884c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
+                        if (this.f38882c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
                             this.d = org.telegram.messenger.g0.L(88.0f);
                         }
-                        this.f38882a.f39894f3.h1(i10, view.getTop() - this.f38882a.getPaddingTop());
+                        this.f38880a.f39891f3.h1(i10, view.getTop() - this.f38880a.getPaddingTop());
                     }
                 }
-                this.f38882a.f39895g3.O(true);
-                int i12 = this.f38884c;
+                this.f38880a.f39892g3.O(true);
+                int i12 = this.f38882c;
                 if (i12 >= 0) {
-                    v3 v3Var3 = this.f38882a;
-                    v3Var3.f39894f3.h1(i12, this.d - v3Var3.getPaddingTop());
+                    v3 v3Var3 = this.f38880a;
+                    v3Var3.f39891f3.h1(i12, this.d - v3Var3.getPaddingTop());
                 }
             }
         }
@@ -410,7 +410,7 @@ public final class n extends r41 implements is {
     public final void m0() {
         TLRPC.Document document;
         z4 z4Var = this.f17998f;
-        if (z4Var.f29950y.f57082f) {
+        if (z4Var.f29950y.f57086f) {
             return;
         }
         z4Var.b(true);
@@ -462,7 +462,7 @@ public final class n extends r41 implements is {
             b22.flags2 &= -17;
             b22.business_intro = null;
         }
-        getConnectionsManager().sendRequest(updatebusinessintro, new ai.d1(this, 16));
+        getConnectionsManager().sendRequest(updatebusinessintro, new ai.e1(this, 16));
         getMessagesStorage().j2(b22, false);
     }
 
@@ -519,7 +519,7 @@ public final class n extends r41 implements is {
             TLRPC.Document document2 = this.f18004y;
             if (document2 == null || this.f18003x) {
                 si b02 = si.b0(this.currentAccount);
-                TLRPC.Document document3 = b02.f26516z0;
+                TLRPC.Document document3 = b02.f26526z0;
                 b02.n1();
                 document2 = document3;
             }
@@ -530,8 +530,8 @@ public final class n extends r41 implements is {
             org.telegram.messenger.g0.r(gVar);
             org.telegram.messenger.g0.i3(gVar, 5000L);
         }
-        v3 v3Var = this.f38882a;
-        if (v3Var != null && (p41Var = v3Var.f39895g3) != null) {
+        v3 v3Var = this.f38880a;
+        if (v3Var != null && (p41Var = v3Var.f39892g3) != null) {
             p41Var.O(true);
         }
         this.K = true;

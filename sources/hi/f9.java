@@ -50,7 +50,7 @@ public final class f9 implements Runnable {
                 saVar.G = null;
                 saVar.K = 0;
                 RectF rectF = saVar.I;
-                Point point = org.telegram.messenger.g0.f23609q;
+                Point point = org.telegram.messenger.g0.f23611q;
                 rectF.set(0.0f, 0.0f, point.x, point.y);
                 saVar.H = org.telegram.messenger.g0.L(8.0f);
                 saVar.p(true);

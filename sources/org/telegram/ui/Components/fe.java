@@ -24,7 +24,7 @@ public final class fe extends pg {
             Rect rect = this.G;
             rect.set(0, 0, measuredWidth, measuredHeight);
             rect.inset(org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(7.5f));
-            if (getCurrentState() == ng.f37581b) {
+            if (getCurrentState() == ng.f37570b) {
                 drawable = chatActivityEnterView.f32312w4;
             } else {
                 drawable = chatActivityEnterView.f32304v4;

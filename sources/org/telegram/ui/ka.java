@@ -7,25 +7,25 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ka extends FrameLayout {
-    public final org.telegram.ui.Components.z70 f48654a;
-    public final org.telegram.ui.Cells.b2 f48655b;
-    public Integer f48656c;
+    public final org.telegram.ui.Components.z70 f48608a;
+    public final org.telegram.ui.Cells.b2 f48609b;
+    public Integer f48610c;
     public ValueAnimator d;
-    public final la f48657e;
+    public final la f48611e;
 
     public ka(la laVar, Activity activity) {
         super(activity);
         int i7;
-        this.f48657e = laVar;
+        this.f48611e = laVar;
         laVar.G = this;
         setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(17.0f));
         setClipChildren(false);
         org.telegram.ui.Components.z70 z70Var = new org.telegram.ui.Components.z70(activity, null);
-        this.f48654a = z70Var;
+        this.f48608a = z70Var;
         z70Var.setTextSize(1, 15.0f);
         int i10 = org.telegram.ui.ActionBar.j6.F6;
         org.telegram.ui.ActionBar.q6.U(z70Var, i10, null);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -38,16 +38,16 @@ public final class ka extends FrameLayout {
         z70Var.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
         org.telegram.ui.Cells.b2 b2Var = new org.telegram.ui.Cells.b2(2, activity, this);
         laVar.H = b2Var;
-        this.f48655b = b2Var;
+        this.f48609b = b2Var;
         b2Var.setTextSize(1, 15.0f);
         org.telegram.ui.ActionBar.q6.U(b2Var, i10, null);
-        b2Var.setGravity(org.telegram.messenger.hd.f24101a0 ? 5 : 3);
+        b2Var.setGravity(org.telegram.messenger.hd.f24104a0 ? 5 : 3);
         org.telegram.ui.ActionBar.q6.G(b2Var, i11, null);
         org.telegram.ui.ActionBar.q6.C(b2Var, i12, null);
         b2Var.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
         addView(z70Var, c8.ja.e(-1, -2, 48));
         addView(b2Var, c8.ja.e(-1, -2, 48));
-        if (laVar.f48920y != 0) {
+        if (laVar.f48916y != 0) {
             String M0 = org.telegram.messenger.hd.M0(2131752938, null);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
             int indexOf = M0.indexOf(42);
@@ -67,8 +67,8 @@ public final class ka extends FrameLayout {
         int intValue;
         int i7;
         float f10;
-        org.telegram.ui.Components.z70 z70Var = kaVar.f48654a;
-        org.telegram.ui.Cells.b2 b2Var = kaVar.f48655b;
+        org.telegram.ui.Components.z70 z70Var = kaVar.f48608a;
+        org.telegram.ui.Cells.b2 b2Var = kaVar.f48609b;
         if (b2Var.getVisibility() == 0) {
             b2Var.measure(View.MeasureSpec.makeMeasureSpec((kaVar.getMeasuredWidth() - kaVar.getPaddingLeft()) - kaVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
@@ -76,7 +76,7 @@ public final class ka extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        Integer num = kaVar.f48656c;
+        Integer num = kaVar.f48610c;
         if (num == null) {
             intValue = kaVar.getMeasuredHeight();
         } else {
@@ -105,8 +105,8 @@ public final class ka extends FrameLayout {
                 ka kaVar2 = ka.this;
                 kaVar2.getClass();
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                kaVar2.f48654a.setTranslationY(org.telegram.messenger.g0.T1(translationY, f11, floatValue));
-                kaVar2.f48656c = Integer.valueOf(org.telegram.messenger.g0.W1(floatValue, i10, i11));
+                kaVar2.f48608a.setTranslationY(org.telegram.messenger.g0.T1(translationY, f11, floatValue));
+                kaVar2.f48610c = Integer.valueOf(org.telegram.messenger.g0.W1(floatValue, i10, i11));
                 kaVar2.requestLayout();
             }
         });
@@ -117,7 +117,7 @@ public final class ka extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        Integer num = this.f48656c;
+        Integer num = this.f48610c;
         if (num != null) {
             i10 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
         }

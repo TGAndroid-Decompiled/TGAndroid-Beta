@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import di.ua;
+import di.ta;
 import fi.w3;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +62,8 @@ public final class b extends rg.b {
     public b(e6 e6Var) {
         this.d = e6Var;
         p1 p1Var = new p1(this, 5);
-        vr a02 = vr.a0(m10.f24934t0);
-        a02.f27220a.c(new t1(7, a02, p1Var));
+        vr a02 = vr.a0(m10.f24940t0);
+        a02.f27219a.c(new t1(7, a02, p1Var));
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class b extends rg.b {
     public final int F(TLRPC.Chat chat) {
         Integer num;
         int i7;
-        TLRPC.ChatFull N0 = np.s1(m10.f24934t0).N0(chat.f28051id);
+        TLRPC.ChatFull N0 = np.s1(m10.f24940t0).N0(chat.f28051id);
         if (N0 != null && (i7 = N0.participants_count) > 0) {
             return i7;
         }
@@ -130,10 +130,10 @@ public final class b extends rg.b {
                                     TLRPC.InputPeer inputPeer = aVar.d;
                                     if (inputPeer != null) {
                                         if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                                            TLRPC.Chat M0 = np.s1(m10.f24934t0).M0(Long.valueOf(inputPeer.chat_id));
+                                            TLRPC.Chat M0 = np.s1(m10.f24940t0).M0(Long.valueOf(inputPeer.chat_id));
                                             gVar.f(M0, aVar.f59898i, aVar.f59897g, F(M0));
                                         } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                                            TLRPC.Chat M02 = np.s1(m10.f24934t0).M0(Long.valueOf(inputPeer.channel_id));
+                                            TLRPC.Chat M02 = np.s1(m10.f24940t0).M0(Long.valueOf(inputPeer.channel_id));
                                             gVar.f(M02, aVar.f59898i, aVar.f59897g, F(M02));
                                         }
                                     } else {
@@ -390,100 +390,100 @@ public final class b extends rg.b {
 
     @Override
     public final e1 x(ViewGroup viewGroup, int i7) {
-        ua uaVar;
+        ta taVar;
         boolean z10;
         Context context = viewGroup.getContext();
         e6 e6Var = this.d;
         switch (i7) {
             case 2:
-                uaVar = new yg.d(context, e6Var);
+                taVar = new yg.d(context, e6Var);
                 break;
             case 3:
-                uaVar = new View(context);
+                taVar = new View(context);
                 break;
             case 4:
                 int i10 = j6.f28792a7;
                 View x6Var = new x6(context, j6.w0(i10, e6Var), 0);
                 q6.h(i10, x6Var, e6Var);
-                uaVar = x6Var;
+                taVar = x6Var;
                 break;
             case 5:
-                uaVar = new v(context, e6Var);
+                taVar = new v(context, e6Var);
                 break;
             case 6:
                 View n4Var = new n4(context, j6.L6, 21, 15, 3, false, false, this.d);
                 q6.h(j6.f28922h5, n4Var, e6Var);
-                uaVar = n4Var;
+                taVar = n4Var;
                 break;
             case 7:
-                uaVar = new d0(context, e6Var);
+                taVar = new d0(context, e6Var);
                 break;
             case 8:
-                uaVar = new yg.b(context, e6Var);
+                taVar = new yg.b(context, e6Var);
                 break;
             case 9:
-                uaVar = new yg.g(context, e6Var);
+                taVar = new yg.g(context, e6Var);
                 break;
             case 10:
-                uaVar = new yg.h(context, e6Var);
+                taVar = new yg.h(context, e6Var);
                 break;
             case 11:
                 yg.c cVar = new yg.c(context, e6Var);
                 cVar.f60645c.setVisibility(8);
-                uaVar = cVar;
+                taVar = cVar;
                 break;
             case 12:
-                uaVar = new yg.i(context, e6Var);
+                taVar = new yg.i(context, e6Var);
                 break;
             case 13:
                 View xVar = new x(context, e6Var);
                 q6.h(j6.f28922h5, xVar, e6Var);
-                uaVar = xVar;
+                taVar = xVar;
                 break;
             case 14:
-                uaVar = new yg.d(context, e6Var);
+                taVar = new yg.d(context, e6Var);
                 break;
             case 15:
                 q8 q8Var = new q8(context, e6Var);
                 q8Var.setHeight(50);
-                uaVar = q8Var;
+                taVar = q8Var;
                 break;
             case 16:
-                uaVar = new l(context, e6Var);
+                taVar = new l(context, e6Var);
                 break;
             case 17:
-                uaVar = new w(context, e6Var);
+                taVar = new w(context, e6Var);
                 break;
             case 18:
-                ua uaVar2 = new ua(context);
+                ta taVar2 = new ta(context);
                 String M0 = hd.M0(2131747836, null);
-                if (uaVar2.f9547c == -1) {
+                if (taVar2.f9480c == -1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                uaVar2.f9547c = -1;
-                h6 h6Var = uaVar2.f9545a;
+                taVar2.f9480c = -1;
+                h6 h6Var = taVar2.f9478a;
                 h6Var.c(M0, z10, true);
                 int i11 = j6.f29049o6;
                 j6.v0(i11);
                 q6.Y(h6Var, i11, null);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                ImageView imageView = uaVar2.f9546b;
+                ImageView imageView = taVar2.f9479b;
                 q6.s(imageView, i11, null, mode);
                 if (z10) {
                     imageView.animate().rotation(0.0f).setDuration(340L).setInterpolator(er.h);
                 } else {
                     imageView.setRotation(0.0f);
                 }
-                uaVar2.d = false;
-                uaVar2.setWillNotDraw(true);
-                uaVar = uaVar2;
+                taVar2.d = false;
+                taVar2.setWillNotDraw(true);
+                taVar = taVar2;
                 break;
             default:
-                uaVar = new r(context, e6Var);
+                taVar = new r(context, e6Var);
                 break;
         }
-        return i5.c.q(uaVar, uaVar, -1, -2);
+        return i5.c.q(taVar, taVar, -1, -2);
     }
 }

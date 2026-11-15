@@ -114,11 +114,11 @@ public class k implements a0 {
                 xVar.O(1);
                 int H = xVar.H();
                 xVar.O(3);
-                xVar.k(0, 2, (byte[]) fVar2.f7550b);
+                xVar.k(0, 2, (byte[]) fVar2.f7553b);
                 fVar2.J(0);
                 fVar2.L(3);
                 d0Var.f20224t = fVar2.j(13);
-                xVar.k(0, 2, (byte[]) fVar2.f7550b);
+                xVar.k(0, 2, (byte[]) fVar2.f7553b);
                 fVar2.J(0);
                 fVar2.L(4);
                 xVar.O(fVar2.j(12));
@@ -133,7 +133,7 @@ public class k implements a0 {
                 sparseIntArray.clear();
                 int a12 = xVar.a();
                 while (a12 > 0) {
-                    xVar.k(0, 5, (byte[]) fVar2.f7550b);
+                    xVar.k(0, 5, (byte[]) fVar2.f7553b);
                     fVar2.J(0);
                     int j3 = fVar2.j(8);
                     fVar2.L(3);
@@ -732,7 +732,7 @@ public class k implements a0 {
         }
         iArr[i7] = 1;
         for (dx0 dx0Var : ((dx0[][]) this.d)[i7]) {
-            w(dx0Var.f34096a.f36199b);
+            w(dx0Var.f34083a.f36189b);
             int i10 = this.f191b;
             this.f191b = i10 - 1;
             ((dx0[]) this.f192c)[i10] = dx0Var;
@@ -815,7 +815,7 @@ public class k implements a0 {
         dx0[][] dx0VarArr2 = new dx0[e10];
         int[] iArr = new int[e10];
         for (dx0 dx0Var : dx0VarArr) {
-            int i7 = dx0Var.f34096a.f36198a;
+            int i7 = dx0Var.f34083a.f36188a;
             iArr[i7] = iArr[i7] + 1;
         }
         for (int i10 = 0; i10 < e10; i10++) {
@@ -823,7 +823,7 @@ public class k implements a0 {
         }
         Arrays.fill(iArr, 0);
         for (dx0 dx0Var2 : dx0VarArr) {
-            int i11 = dx0Var2.f34096a.f36198a;
+            int i11 = dx0Var2.f34083a.f36188a;
             dx0[] dx0VarArr3 = dx0VarArr2[i11];
             int i12 = iArr[i11];
             iArr[i11] = i12 + 1;

@@ -16,11 +16,11 @@ public final class uq0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.f40146a) {
             case 0:
-                this.f40148c.f42126q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f40148c.f42128q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 this.f40147b.h.invalidate();
                 return;
             default:
-                this.f40148c.f42126q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f40148c.f42128q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 this.f40147b.h.invalidate();
                 return;
         }

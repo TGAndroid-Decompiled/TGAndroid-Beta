@@ -3,22 +3,22 @@ package org.telegram.messenger;
 import android.app.Activity;
 import android.content.Context;
 public final class cn implements Runnable {
-    public final int f22908a;
-    public final Context f22909b;
-    public final org.telegram.ui.ActionBar.t1 f22910c;
+    public final int f22912a;
+    public final Context f22913b;
+    public final org.telegram.ui.ActionBar.t1 f22914c;
 
     public cn(int i7, Context context, org.telegram.ui.ActionBar.t1 t1Var) {
-        this.f22908a = i7;
-        this.f22909b = context;
-        this.f22910c = t1Var;
+        this.f22912a = i7;
+        this.f22913b = context;
+        this.f22914c = t1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22908a) {
+        switch (this.f22912a) {
             case 0:
-                org.telegram.ui.ActionBar.t1 t1Var = this.f22910c;
-                if (!((Activity) this.f22909b).isFinishing()) {
+                org.telegram.ui.ActionBar.t1 t1Var = this.f22914c;
+                if (!((Activity) this.f22913b).isFinishing()) {
                     try {
                         t1Var.dismiss();
                         return;
@@ -29,8 +29,8 @@ public final class cn implements Runnable {
                 }
                 return;
             case 1:
-                org.telegram.ui.ActionBar.t1 t1Var2 = this.f22910c;
-                if (!((Activity) this.f22909b).isFinishing()) {
+                org.telegram.ui.ActionBar.t1 t1Var2 = this.f22914c;
+                if (!((Activity) this.f22913b).isFinishing()) {
                     try {
                         t1Var2.dismiss();
                         return;
@@ -41,8 +41,8 @@ public final class cn implements Runnable {
                 }
                 return;
             default:
-                Context context = this.f22909b;
-                org.telegram.ui.ActionBar.t1 t1Var3 = this.f22910c;
+                Context context = this.f22913b;
+                org.telegram.ui.ActionBar.t1 t1Var3 = this.f22914c;
                 try {
                     if (!((Activity) context).isFinishing()) {
                         t1Var3.dismiss();

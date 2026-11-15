@@ -8,17 +8,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class wr0 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f41426a;
-    public final org.telegram.ui.Cells.f6 f41427b;
-    public final View f41428c;
+    public final org.telegram.ui.ActionBar.e6 f41429a;
+    public final org.telegram.ui.Cells.f6 f41430b;
+    public final View f41431c;
 
     public wr0(int i7, Context context, boolean z10, org.telegram.ui.ActionBar.e6 e6Var, ro0 ro0Var) {
         super(context);
         int i10;
         int i11;
-        this.f41426a = e6Var;
+        this.f41429a = e6Var;
         org.telegram.ui.Cells.f6 f6Var = new org.telegram.ui.Cells.f6(context, e6Var);
-        this.f41427b = f6Var;
+        this.f41430b = f6Var;
         int i12 = org.telegram.ui.ActionBar.j6.f28941i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.j6.h0(org.telegram.ui.ActionBar.j6.w0(i12, e6Var), 2, -1);
         org.telegram.ui.ActionBar.m6 M = org.telegram.ui.ActionBar.q6.M(i12);
@@ -26,7 +26,7 @@ public final class wr0 extends FrameLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.ActionBar.q6.j(f6Var, h02, null, M, e6Var);
         addView(f6Var, c8.ja.c(-2.0f, -1));
         View view = new View(context);
-        this.f41428c = view;
+        this.f41431c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i13 = org.telegram.ui.ActionBar.j6.f28849d6;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.j6.r1(0.4f, org.telegram.ui.ActionBar.j6.w0(i13, e6Var)), org.telegram.ui.ActionBar.j6.w0(i13, e6Var)}));
@@ -59,7 +59,7 @@ public final class wr0 extends FrameLayout implements org.telegram.ui.ActionBar.
             i11 = 2131748326;
         }
         SpannableStringBuilder x22 = org.telegram.messenger.g0.x2(org.telegram.messenger.hd.M0(i11, null), new ro0(ro0Var, 4));
-        SpannableString spannableString2 = new SpannableString("" + org.telegram.messenger.np.s1(i7).f25445y4);
+        SpannableString spannableString2 = new SpannableString("" + org.telegram.messenger.np.s1(i7).f25448y4);
         spannableString2.setSpan(new y31(org.telegram.messenger.g0.o()), 0, spannableString2.length(), 33);
         z70Var.setText(org.telegram.messenger.g0.K2(x22, spannableString2, "%s"));
         addView(z70Var, c8.ja.d(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));
@@ -77,8 +77,8 @@ public final class wr0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f41426a;
-        View view = this.f41428c;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f41429a;
+        View view = this.f41431c;
         if (view != null) {
             try {
                 if (view.getBackground() instanceof GradientDrawable) {

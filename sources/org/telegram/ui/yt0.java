@@ -4,31 +4,31 @@ import android.graphics.RectF;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yt0 implements Runnable {
-    public final int f53627a;
-    public final ProfileActivity f53628b;
-    public final TLRPC.TL_error f53629c;
+    public final int f53592a;
+    public final ProfileActivity f53593b;
+    public final TLRPC.TL_error f53594c;
     public final TLObject d;
-    public final TLRPC.TL_channels_getParticipants f53630e;
+    public final TLRPC.TL_channels_getParticipants f53595e;
 
     public yt0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i7) {
-        this.f53627a = i7;
-        this.f53628b = profileActivity;
-        this.f53629c = tL_error;
+        this.f53592a = i7;
+        this.f53593b = profileActivity;
+        this.f53594c = tL_error;
         this.d = tLObject;
-        this.f53630e = tL_channels_getParticipants;
+        this.f53595e = tL_channels_getParticipants;
     }
 
     @Override
     public final void run() {
-        switch (this.f53627a) {
+        switch (this.f53592a) {
             case 0:
                 RectF rectF = ProfileActivity.X6;
-                ProfileActivity profileActivity = this.f53628b;
-                profileActivity.getNotificationCenter().d(new yt0(profileActivity, this.f53629c, this.d, this.f53630e, 1));
+                ProfileActivity profileActivity = this.f53593b;
+                profileActivity.getNotificationCenter().d(new yt0(profileActivity, this.f53594c, this.d, this.f53595e, 1));
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f53628b;
-                if (this.f53629c == null) {
+                ProfileActivity profileActivity2 = this.f53593b;
+                if (this.f53594c == null) {
                     RectF rectF2 = ProfileActivity.X6;
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
                     profileActivity2.getMessagesController().Y3(tL_channels_channelParticipants.users, false);
@@ -36,12 +36,12 @@ public final class yt0 implements Runnable {
                     if (tL_channels_channelParticipants.users.size() < 200) {
                         profileActivity2.D1 = true;
                     }
-                    if (this.f53630e.offset == 0) {
+                    if (this.f53595e.offset == 0) {
                         profileActivity2.C1.b();
                         profileActivity2.f43211v2.participants = new TLRPC.TL_chatParticipants();
                         profileActivity2.getMessagesStorage().m1(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
                         org.telegram.messenger.vr messagesStorage = profileActivity2.getMessagesStorage();
-                        messagesStorage.f27220a.c(new org.telegram.messenger.ir(messagesStorage, profileActivity2.f43102f1, tL_channels_channelParticipants.participants, 2));
+                        messagesStorage.f27219a.c(new org.telegram.messenger.hr(messagesStorage, profileActivity2.f43102f1, tL_channels_channelParticipants.participants, 3));
                     }
                     for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();

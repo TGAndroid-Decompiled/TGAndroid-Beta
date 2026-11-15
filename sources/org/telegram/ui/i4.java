@@ -1,25 +1,25 @@
 package org.telegram.ui;
 public final class i4 implements Runnable {
-    public final int f47896a;
-    public boolean f47897b;
-    public final Object f47898c;
+    public final int f47886a;
+    public boolean f47887b;
+    public final Object f47888c;
 
     public i4(Object obj, int i7) {
-        this.f47896a = i7;
-        this.f47898c = obj;
+        this.f47886a = i7;
+        this.f47888c = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f47896a) {
+        switch (this.f47886a) {
             case 0:
-                this.f47897b = false;
-                ((j4) this.f47898c).getClass();
+                this.f47887b = false;
+                ((j4) this.f47888c).getClass();
                 return;
             default:
-                if (!this.f47897b) {
-                    this.f47897b = true;
-                    ((an) this.f47898c).presentFragment(new NotificationsSettingsActivity());
+                if (!this.f47887b) {
+                    this.f47887b = true;
+                    ((an) this.f47888c).presentFragment(new NotificationsSettingsActivity());
                     return;
                 }
                 return;

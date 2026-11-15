@@ -29,13 +29,13 @@ public class x8 extends FrameLayout {
         i20.p(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -45,7 +45,7 @@ public class x8 extends FrameLayout {
         this.f32044b = textView2;
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
         textView2.setTextSize(1, 13.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -55,7 +55,7 @@ public class x8 extends FrameLayout {
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         textView2.setPadding(0, 0, 0, 0);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i12 = 5;
         } else {
             i12 = 3;
@@ -66,7 +66,7 @@ public class x8 extends FrameLayout {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         org.telegram.ui.ActionBar.q6.s(imageView, org.telegram.ui.ActionBar.j6.f29014m6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setVisibility(8);
-        addView(imageView, c8.ja.d(52, 52.0f, (hd.f24101a0 ? 5 : 3) | 48, 8.0f, 6.0f, 8.0f, 0.0f));
+        addView(imageView, c8.ja.d(52, 52.0f, (hd.f24104a0 ? 5 : 3) | 48, 8.0f, 6.0f, 8.0f, 0.0f));
     }
 
     public final void a(String str, String str2, boolean z10) {
@@ -90,23 +90,23 @@ public class x8 extends FrameLayout {
         ImageView imageView = this.f32045c;
         imageView.setImageResource(i7);
         imageView.setVisibility(0);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(50.0f);
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = org.telegram.messenger.g0.L(50.0f);
         } else {
             i10 = 0;
         }
         textView.setPadding(L, 0, i10, 0);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L2 = 0;
         } else {
             L2 = org.telegram.messenger.g0.L(50.0f);
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = org.telegram.messenger.g0.L(50.0f);
         } else {
             i11 = 0;
@@ -141,7 +141,7 @@ public class x8 extends FrameLayout {
         float L;
         int i7;
         if (this.d && org.telegram.ui.ActionBar.j6.f28972k0 != null) {
-            boolean z10 = hd.f24101a0;
+            boolean z10 = hd.f24104a0;
             float f11 = 20.0f;
             ImageView imageView = this.f32045c;
             if (z10) {
@@ -157,7 +157,7 @@ public class x8 extends FrameLayout {
             float f12 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 if (imageView.getVisibility() == 0) {
                     f11 = 71.0f;
                 }

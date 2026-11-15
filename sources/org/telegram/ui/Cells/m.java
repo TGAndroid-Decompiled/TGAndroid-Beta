@@ -65,10 +65,10 @@ public final class m extends FrameLayout implements org.telegram.messenger.t9, o
         if (size == 1) {
             org.telegram.messenger.r9 r9Var = (org.telegram.messenger.r9) this.f30671e.get(0);
             r9Var.getClass();
-            if (r9Var.g(ConnectionsManager.getInstance(m10.f24934t0).getCurrentTime())) {
+            if (r9Var.g(ConnectionsManager.getInstance(m10.f24940t0).getCurrentTime())) {
                 lVar.a(r9Var.d.auction_start_date);
             } else {
-                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = r9Var.f26262f;
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = r9Var.f26270f;
                 if (tL_starGiftAuctionState != null) {
                     i7 = Math.max(0, tL_starGiftAuctionState.next_round_at);
                 } else {
@@ -98,7 +98,7 @@ public final class m extends FrameLayout implements org.telegram.messenger.t9, o
             org.telegram.messenger.r9 r9Var2 = (org.telegram.messenger.r9) this.f30671e.get(i10);
             boolean g10 = r9Var2.g(currentTime);
             int i11 = size2;
-            long j3 = r9Var2.f26260c;
+            long j3 = r9Var2.f26268c;
             z11 |= g10;
             if (j3 != 0) {
                 spannableStringBuilder.append((CharSequence) "*");
@@ -145,7 +145,7 @@ public final class m extends FrameLayout implements org.telegram.messenger.t9, o
         } else if (i12 > 1) {
             h6Var2.setText(hd.M0(2131750408, str));
         } else {
-            int i13 = ((org.telegram.messenger.r9) this.f30671e.get(0)).f26264i;
+            int i13 = ((org.telegram.messenger.r9) this.f30671e.get(0)).f26272i;
             if (i13 == 1) {
                 a03 = hd.M0(2131750411, str);
             } else if (i13 == 2) {
@@ -189,14 +189,14 @@ public final class m extends FrameLayout implements org.telegram.messenger.t9, o
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         int i7 = this.f30668a;
-        org.telegram.messenger.v9.c(i7).f26952f.add(this);
-        g(org.telegram.messenger.v9.c(i7).f26950c);
+        org.telegram.messenger.v9.c(i7).f26953f.add(this);
+        g(org.telegram.messenger.v9.c(i7).f26951c);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.v9.c(this.f30668a).f26952f.remove(this);
+        org.telegram.messenger.v9.c(this.f30668a).f26953f.remove(this);
     }
 
     @Override

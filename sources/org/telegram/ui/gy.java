@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class gy extends org.telegram.ui.Components.tj0 {
-    public final hy f47550c;
+    public final hy f47540c;
 
     public gy(hy hyVar) {
-        this.f47550c = hyVar;
+        this.f47540c = hyVar;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class gy extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.f47550c.H;
+        return this.f47540c.H;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class gy extends org.telegram.ui.Components.tj0 {
         if (i7 == 0) {
             return 0;
         }
-        hy hyVar = this.f47550c;
+        hy hyVar = this.f47540c;
         if (i7 != hyVar.O && i7 != hyVar.K) {
             if (i7 == hyVar.I) {
                 return 3;
@@ -58,8 +58,8 @@ public final class gy extends org.telegram.ui.Components.tj0 {
         TLRPC.Chat chat;
         String str3;
         float f10;
-        hy hyVar = this.f47550c;
-        ArrayList arrayList = hyVar.f47846f;
+        hy hyVar = this.f47540c;
+        ArrayList arrayList = hyVar.f47836f;
         TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = hyVar.d;
         int i10 = e1Var.f58539f;
         View view = e1Var.f58535a;
@@ -88,11 +88,11 @@ public final class gy extends org.telegram.ui.Components.tj0 {
                 } else {
                     str3 = tL_exportedChatlistInvite.url;
                 }
-                di.ub ubVar = zxVar.h;
+                di.tb tbVar = zxVar.h;
                 org.telegram.ui.ActionBar.j5 j5Var = zxVar.f54045c;
                 TextView textView = zxVar.f54048n;
                 ImageView imageView = zxVar.d;
-                di.ub ubVar2 = zxVar.f54047f;
+                di.tb tbVar2 = zxVar.f54047f;
                 zxVar.f54050s = str3;
                 if (str3 != null) {
                     if (str3.startsWith("http://")) {
@@ -122,7 +122,7 @@ public final class gy extends org.telegram.ui.Components.tj0 {
                     yx yxVar = zxVar.f54046e;
                     yxVar.d = f10;
                     yxVar.invalidate();
-                    ubVar2.setAlpha(zxVar.f54051w);
+                    tbVar2.setAlpha(zxVar.f54051w);
                     zxVar.h.setAlpha(zxVar.f54051w);
                     imageView.setAlpha(zxVar.f54051w);
                     textView.setAlpha(1.0f - zxVar.f54051w);
@@ -131,14 +131,14 @@ public final class gy extends org.telegram.ui.Components.tj0 {
                     if (str3 == null) {
                         textView.setVisibility(0);
                         imageView.setVisibility(8);
-                        ubVar2.setVisibility(8);
-                        ubVar.setVisibility(8);
+                        tbVar2.setVisibility(8);
+                        tbVar.setVisibility(8);
                         return;
                     }
                     textView.setVisibility(8);
                     imageView.setVisibility(0);
-                    ubVar2.setVisibility(0);
-                    ubVar.setVisibility(0);
+                    tbVar2.setVisibility(0);
+                    tbVar.setVisibility(0);
                 }
             } else if (i10 == 4) {
                 org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;
@@ -180,7 +180,7 @@ public final class gy extends org.telegram.ui.Components.tj0 {
                 }
                 if (arrayList.contains(l10)) {
                     h4Var.setForbiddenCheck(false);
-                    h4Var.c(hyVar.f47845e.contains(l10), false);
+                    h4Var.c(hyVar.f47835e.contains(l10), false);
                 } else {
                     h4Var.setForbiddenCheck(true);
                     h4Var.c(false, false);
@@ -225,7 +225,7 @@ public final class gy extends org.telegram.ui.Components.tj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View wzVar;
         View view;
-        hy hyVar = this.f47550c;
+        hy hyVar = this.f47540c;
         View view2 = null;
         if (i7 == 0) {
             Activity parentActivity = hyVar.getParentActivity();
@@ -237,7 +237,7 @@ public final class gy extends org.telegram.ui.Components.tj0 {
             imageView.setImportantForAccessibility(2);
             frameLayout.addView(imageView, c8.ja.d(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
             xh.l lVar = new xh.l(parentActivity);
-            frameLayout.f52321a = lVar;
+            frameLayout.f52324a = lVar;
             org.telegram.ui.ActionBar.q6.U(lVar, org.telegram.ui.ActionBar.j6.B6, null);
             lVar.setTextSize(1, 14.0f);
             lVar.setGravity(17);

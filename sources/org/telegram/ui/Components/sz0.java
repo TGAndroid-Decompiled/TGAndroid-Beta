@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class sz0 extends tj0 {
-    public Context f39459c;
+    public Context f39457c;
     public ArrayList d;
 
     @Override
@@ -55,7 +55,7 @@ public final class sz0 extends tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View t8Var;
-        Context context = this.f39459c;
+        Context context = this.f39457c;
         if (i7 != 0) {
             t8Var = new View(context);
             t8Var.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(56.0f)));

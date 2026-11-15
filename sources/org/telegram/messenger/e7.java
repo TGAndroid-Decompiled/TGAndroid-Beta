@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class e7 implements Runnable {
-    public final int f23269a;
-    public final i7 f23270b;
-    public final j7 f23271c;
+    public final int f23276a;
+    public final i7 f23277b;
+    public final j7 f23278c;
 
     public e7(i7 i7Var, j7 j7Var, int i7) {
-        this.f23269a = i7;
-        this.f23270b = i7Var;
-        this.f23271c = j7Var;
+        this.f23276a = i7;
+        this.f23277b = i7Var;
+        this.f23278c = j7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f23269a) {
+        switch (this.f23276a) {
             case 0:
-                i7 i7Var = this.f23270b;
-                j7 j7Var = this.f23271c;
+                i7 i7Var = this.f23277b;
+                j7 j7Var = this.f23278c;
                 if (i7Var.f24326m != null) {
                     a8.d("FileLoadOperation " + i7Var.f24335r + " removing stream listener " + j7Var);
                     i7Var.f24326m.remove(j7Var);
@@ -25,8 +25,8 @@ public final class e7 implements Runnable {
                 }
                 return;
             default:
-                i7 i7Var2 = this.f23270b;
-                j7 j7Var2 = this.f23271c;
+                i7 i7Var2 = this.f23277b;
+                j7 j7Var2 = this.f23278c;
                 if (i7Var2.f24326m == null) {
                     i7Var2.f24326m = new ArrayList();
                 }

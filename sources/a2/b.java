@@ -87,7 +87,7 @@ public final class b implements Callable {
             case 2:
                 uf ufVar = (uf) this.f55b;
                 ufVar.getClass();
-                return j.f55340c.a(ufVar.f4721g);
+                return j.f55340c.a(ufVar.f4724g);
             case 3:
                 t tVar = (t) this.f55b;
                 f5.b bVar = tVar.d;
@@ -294,30 +294,30 @@ public final class b implements Callable {
                                         if (z10) {
                                             h3 s5 = i3.s();
                                             s5.c();
-                                            i3.r((i3) s5.f6856b, 6);
+                                            i3.r((i3) s5.f6859b, 6);
                                             c4 r10 = d4.r();
                                             r10.d(false);
                                             r10.e();
                                             if (a10 != null) {
                                                 long longValue = a10.longValue();
                                                 r10.c();
-                                                d4.p((d4) r10.f6856b, longValue);
+                                                d4.p((d4) r10.f6859b, longValue);
                                             }
                                             f5.b bVar4 = tVar.d;
                                             s5.c();
-                                            i3.q((i3) s5.f6856b, (d4) r10.a());
+                                            i3.q((i3) s5.f6859b, (d4) r10.a());
                                             bVar4.i((i3) s5.a());
                                         } else {
                                             z3 p10 = a4.p();
                                             j3 s9 = k3.s();
                                             s9.c();
-                                            k3.r((k3) s9.f6856b, 0);
+                                            k3.r((k3) s9.f6859b, 0);
                                             p10.c();
-                                            a4.n((a4) p10.f6856b, (k3) s9.a());
+                                            a4.n((a4) p10.f6859b, (k3) s9.a());
                                             if (a10 != null) {
                                                 long longValue2 = a10.longValue();
                                                 p10.c();
-                                                a4.o((a4) p10.f6856b, longValue2);
+                                                a4.o((a4) p10.f6859b, longValue2);
                                             }
                                             tVar.d.h.b0((a4) p10.a());
                                         }
@@ -340,7 +340,7 @@ public final class b implements Callable {
                 return j.f55340c.a(pVar.f59058a);
             case 6:
                 ArrayList arrayList = new ArrayList();
-                Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2833b.values()).iterator();
+                Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2836b.values()).iterator();
                 while (true) {
                     a0.b bVar5 = (a0.b) it;
                     if (bVar5.hasNext()) {

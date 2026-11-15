@@ -430,7 +430,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         this.U = true;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f12726s;
         actionBarOverlayLayout.e();
-        ActionMenuView actionMenuView = ((k3) actionBarOverlayLayout.f1874e).f19734a.f1917a;
+        ActionMenuView actionMenuView = ((k3) actionBarOverlayLayout.f1881e).f19734a.f1924a;
         if (actionMenuView != null && (hVar = actionMenuView.K) != null) {
             hVar.f();
             m.d dVar = hVar.K;
@@ -452,7 +452,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         if (z10 && rVar.f12689a == 0 && (j1Var = this.f12726s) != null) {
             ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) j1Var;
             actionBarOverlayLayout.e();
-            ActionMenuView actionMenuView = ((k3) actionBarOverlayLayout.f1874e).f19734a.f1917a;
+            ActionMenuView actionMenuView = ((k3) actionBarOverlayLayout.f1881e).f19734a.f1924a;
             if (actionMenuView != null && (hVar = actionMenuView.K) != null && hVar.g()) {
                 g(rVar.h);
                 return;
@@ -738,11 +738,11 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
 
     public final p p(Context context) {
         if (this.f12714g0 == null) {
-            if (android.support.v4.media.session.a0.f1704f == null) {
+            if (android.support.v4.media.session.a0.f1711f == null) {
                 Context applicationContext = context.getApplicationContext();
-                android.support.v4.media.session.a0.f1704f = new android.support.v4.media.session.a0(applicationContext, (LocationManager) applicationContext.getSystemService("location"));
+                android.support.v4.media.session.a0.f1711f = new android.support.v4.media.session.a0(applicationContext, (LocationManager) applicationContext.getSystemService("location"));
             }
-            this.f12714g0 = new o(this, android.support.v4.media.session.a0.f1704f);
+            this.f12714g0 = new o(this, android.support.v4.media.session.a0.f1711f);
         }
         return this.f12714g0;
     }
@@ -812,10 +812,10 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 return true;
             }
             b0 r10 = r();
-            if (r10 == null || (k1Var = r10.f12629e) == null || (f3Var = ((k3) k1Var).f19734a.f1927f0) == null || f3Var.f19689b == null) {
+            if (r10 == null || (k1Var = r10.f12629e) == null || (f3Var = ((k3) k1Var).f19734a.f1934f0) == null || f3Var.f19689b == null) {
                 return false;
             }
-            f3 f3Var2 = ((k3) k1Var).f19734a.f1927f0;
+            f3 f3Var2 = ((k3) k1Var).f19734a.f1934f0;
             if (f3Var2 == null) {
                 mVar = null;
             } else {

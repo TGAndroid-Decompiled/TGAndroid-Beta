@@ -8,7 +8,7 @@ public final class q6 extends m6 {
     public q6(y6 y6Var, Context context) {
         super(context);
         this.d = y6Var;
-        ((ViewGroup.MarginLayoutParams) this.f49136a.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(5.0f);
-        this.f49136a.setOnClickListener(new a(this, 5));
+        ((ViewGroup.MarginLayoutParams) this.f49132a.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(5.0f);
+        this.f49132a.setOnClickListener(new a(this, 5));
     }
 }

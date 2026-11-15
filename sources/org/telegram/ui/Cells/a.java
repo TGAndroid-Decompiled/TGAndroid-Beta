@@ -6,7 +6,7 @@ import org.telegram.messenger.gj;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.fh0;
 import org.telegram.ui.ni0;
-import org.telegram.ui.nm0;
+import org.telegram.ui.om0;
 import org.telegram.ui.xz;
 import org.telegram.ui.zz;
 public final class a implements View.OnClickListener {
@@ -70,7 +70,7 @@ public final class a implements View.OnClickListener {
                 v5 v5Var = (v5) obj;
                 u5 u5Var = v5Var.d;
                 if (u5Var != null) {
-                    nm0.Z((nm0) ((org.telegram.ui.l4) ((ni0) u5Var).f49570b).f48827e, v5Var.f31809b[((Integer) view.getTag()).intValue()]);
+                    om0.Z((om0) ((org.telegram.ui.l4) ((ni0) u5Var).f49569b).f48823e, v5Var.f31809b[((Integer) view.getTag()).intValue()]);
                     return;
                 }
                 return;
@@ -81,7 +81,7 @@ public final class a implements View.OnClickListener {
                     m7 m7Var = o7Var.d;
                     int i10 = o7Var.f30813c[intValue];
                     gj gjVar = o7Var.f30812b[intValue];
-                    zz zzVar = ((xz) ((org.telegram.ui.f) m7Var).f46946b).d;
+                    zz zzVar = ((xz) ((org.telegram.ui.f) m7Var).f46930b).d;
                     SpannableStringBuilder[] spannableStringBuilderArr = zz.f54072t0;
                     zzVar.f(i10, o7Var, gjVar, intValue);
                     return;

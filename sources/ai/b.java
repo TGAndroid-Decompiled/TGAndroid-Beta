@@ -2,15 +2,16 @@ package ai;
 
 import android.view.View;
 import android.widget.ImageView;
-import di.v8;
+import di.u8;
 import org.telegram.messenger.gj;
 import org.telegram.messenger.hd;
+import org.telegram.messenger.m5;
 import org.telegram.messenger.s10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.m5;
+import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.ad;
@@ -23,30 +24,30 @@ import org.telegram.ui.q5;
 import org.telegram.ui.qc;
 import org.telegram.ui.z9;
 public final class b implements Runnable {
-    public final int f1122a;
-    public final Object f1123b;
-    public final Object f1124c;
+    public final int f1119a;
+    public final Object f1120b;
+    public final Object f1121c;
     public final Object d;
-    public final Object f1125e;
-    public final Object f1126f;
+    public final Object f1122e;
+    public final Object f1123f;
 
-    public b(v8 v8Var, boolean[] zArr, String str, TLRPC.ChatInvite chatInvite, s10 s10Var) {
-        this.f1122a = 4;
-        this.f1124c = v8Var;
-        this.f1123b = zArr;
+    public b(u8 u8Var, boolean[] zArr, String str, TLRPC.ChatInvite chatInvite, s10 s10Var) {
+        this.f1119a = 4;
+        this.f1121c = u8Var;
+        this.f1120b = zArr;
         this.d = str;
-        this.f1125e = chatInvite;
-        this.f1126f = s10Var;
+        this.f1122e = chatInvite;
+        this.f1123f = s10Var;
     }
 
     private final void a() {
-        la laVar = (la) this.f1123b;
-        String str = (String) this.f1124c;
+        la laVar = (la) this.f1120b;
+        String str = (String) this.f1121c;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-        TLObject tLObject = (TLObject) this.f1125e;
-        TL_account.checkUsername checkusername = (TL_account.checkUsername) this.f1126f;
-        laVar.f48913e = 0;
-        String str2 = laVar.f48914f;
+        TLObject tLObject = (TLObject) this.f1122e;
+        TL_account.checkUsername checkusername = (TL_account.checkUsername) this.f1123f;
+        laVar.f48909e = 0;
+        String str2 = laVar.f48910f;
         if (str2 != null && str2.equals(str)) {
             if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
                 org.telegram.ui.Cells.b2 b2Var = laVar.H;
@@ -94,11 +95,11 @@ public final class b implements Runnable {
     }
 
     private final void b() {
-        ad adVar = (ad) this.f1123b;
-        String str = (String) this.f1124c;
+        ad adVar = (ad) this.f1120b;
+        String str = (String) this.f1121c;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-        TLObject tLObject = (TLObject) this.f1125e;
-        TLRPC.TL_channels_checkUsername tL_channels_checkUsername = (TLRPC.TL_channels_checkUsername) this.f1126f;
+        TLObject tLObject = (TLObject) this.f1122e;
+        TLRPC.TL_channels_checkUsername tL_channels_checkUsername = (TLRPC.TL_channels_checkUsername) this.f1123f;
         adVar.Y = 0;
         String str2 = adVar.Z;
         if (str2 != null && str2.equals(str)) {
@@ -135,43 +136,43 @@ public final class b implements Runnable {
 
     private final void c() {
         an anVar = (an) this.d;
-        boolean[] zArr = (boolean[]) this.f1123b;
-        boolean[] zArr2 = (boolean[]) this.f1124c;
-        ImageView imageView = (ImageView) this.f1125e;
-        ImageView imageView2 = (ImageView) this.f1126f;
+        boolean[] zArr = (boolean[]) this.f1120b;
+        boolean[] zArr2 = (boolean[]) this.f1121c;
+        ImageView imageView = (ImageView) this.f1122e;
+        ImageView imageView2 = (ImageView) this.f1123f;
         if (zArr[0]) {
             return;
         }
         zArr[0] = true;
         long[] jArr = {-1};
-        m5 m5Var = new m5(jArr, zArr2, imageView, imageView2, 7);
+        l5 l5Var = new l5(jArr, zArr2, imageView, imageView2, 8);
         TLRPC.TL_messages_rateTranscribedAudio tL_messages_rateTranscribedAudio = new TLRPC.TL_messages_rateTranscribedAudio();
-        tL_messages_rateTranscribedAudio.msg_id = anVar.f45382u5.e1();
-        tL_messages_rateTranscribedAudio.peer = anVar.getMessagesController().m1(anVar.f45382u5.f23817k.peer_id);
-        tL_messages_rateTranscribedAudio.transcription_id = anVar.f45382u5.f23817k.voiceTranscriptionId;
+        tL_messages_rateTranscribedAudio.msg_id = anVar.f45381u5.e1();
+        tL_messages_rateTranscribedAudio.peer = anVar.getMessagesController().m1(anVar.f45381u5.f23819k.peer_id);
+        tL_messages_rateTranscribedAudio.transcription_id = anVar.f45381u5.f23819k.voiceTranscriptionId;
         tL_messages_rateTranscribedAudio.good = zArr2[0];
-        anVar.getConnectionsManager().sendRequest(tL_messages_rateTranscribedAudio, new z9(anVar, m5Var, jArr, 4));
-        org.telegram.messenger.g0.i3(m5Var, 150L);
+        anVar.getConnectionsManager().sendRequest(tL_messages_rateTranscribedAudio, new z9(anVar, l5Var, jArr, 4));
+        org.telegram.messenger.g0.i3(l5Var, 150L);
     }
 
     private final void d() {
-        an.w0((an) this.f1124c, (View) this.d, (boolean[]) this.f1123b, (org.telegram.ui.ActionBar.g1) this.f1125e, (View) this.f1126f);
+        an.w0((an) this.f1121c, (View) this.d, (boolean[]) this.f1120b, (org.telegram.ui.ActionBar.g1) this.f1122e, (View) this.f1123f);
     }
 
     private final void f() {
-        lm lmVar = (lm) this.f1123b;
+        lm lmVar = (lm) this.f1120b;
         org.telegram.ui.ActionBar.t1[] t1VarArr = (org.telegram.ui.ActionBar.t1[]) this.d;
-        gj gjVar = (gj) this.f1125e;
-        q5 q5Var = (q5) this.f1126f;
-        an anVar = lmVar.f49005a;
-        if (((TLRPC.Message) this.f1124c).suggested_post.schedule_date == 0) {
+        gj gjVar = (gj) this.f1122e;
+        q5 q5Var = (q5) this.f1123f;
+        an anVar = lmVar.f49001a;
+        if (((TLRPC.Message) this.f1121c).suggested_post.schedule_date == 0) {
             t1VarArr[0].setOnDismissListener(null);
-            org.telegram.ui.ActionBar.u2 u2Var = (org.telegram.ui.ActionBar.u2) t4.Q(anVar.getParentActivity(), 0L, new m2.d(19, lmVar, gjVar), anVar.getResourceProvider(), 1).f25804b;
+            org.telegram.ui.ActionBar.u2 u2Var = (org.telegram.ui.ActionBar.u2) t4.Q(anVar.getParentActivity(), 0L, new m2.d(19, lmVar, gjVar), anVar.getResourceProvider(), 1).f25806b;
             u2Var.show();
             u2Var.setOnDismissListener(q5Var);
             return;
         }
-        anVar.getMessagesController().v(gjVar.f23817k.f28072id, 0, org.telegram.messenger.m5.o(gjVar.f23817k.peer_id), null, false);
+        anVar.getMessagesController().v(gjVar.f23819k.f28072id, 0, m5.o(gjVar.f23819k.peer_id), null, false);
     }
 
     @Override
@@ -180,56 +181,56 @@ public final class b implements Runnable {
     }
 
     public b(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f1122a = i7;
-        this.f1123b = obj;
-        this.f1124c = obj2;
+        this.f1119a = i7;
+        this.f1120b = obj;
+        this.f1121c = obj2;
         this.d = obj3;
-        this.f1125e = obj4;
-        this.f1126f = obj5;
+        this.f1122e = obj4;
+        this.f1123f = obj5;
     }
 
     public b(gb gbVar, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite, boolean[] zArr, org.telegram.ui.ActionBar.t1 t1Var) {
-        this.f1122a = 23;
-        this.f1124c = gbVar;
+        this.f1119a = 23;
+        this.f1121c = gbVar;
         this.d = tL_chatInviteExported;
-        this.f1125e = tL_messages_exportedChatInvite;
-        this.f1123b = zArr;
-        this.f1126f = t1Var;
+        this.f1122e = tL_messages_exportedChatInvite;
+        this.f1120b = zArr;
+        this.f1123f = t1Var;
     }
 
     public b(qc qcVar, boolean[] zArr, int[] iArr, int[] iArr2, TLRPC.TL_error tL_error) {
-        this.f1122a = 24;
-        this.f1124c = qcVar;
-        this.f1123b = zArr;
-        this.f1125e = iArr;
+        this.f1119a = 24;
+        this.f1121c = qcVar;
+        this.f1120b = zArr;
+        this.f1122e = iArr;
         this.d = iArr2;
-        this.f1126f = tL_error;
+        this.f1123f = tL_error;
     }
 
     public b(an anVar, View view, boolean[] zArr, org.telegram.ui.ActionBar.g1 g1Var, View view2) {
-        this.f1122a = 27;
-        this.f1124c = anVar;
+        this.f1119a = 27;
+        this.f1121c = anVar;
         this.d = view;
-        this.f1123b = zArr;
-        this.f1125e = g1Var;
-        this.f1126f = view2;
+        this.f1120b = zArr;
+        this.f1122e = g1Var;
+        this.f1123f = view2;
     }
 
     public b(an anVar, boolean[] zArr, boolean[] zArr2, ImageView imageView, ImageView imageView2) {
-        this.f1122a = 26;
+        this.f1119a = 26;
         this.d = anVar;
-        this.f1123b = zArr;
-        this.f1124c = zArr2;
-        this.f1125e = imageView;
-        this.f1126f = imageView2;
+        this.f1120b = zArr;
+        this.f1121c = zArr2;
+        this.f1122e = imageView;
+        this.f1123f = imageView2;
     }
 
     public b(boolean[] zArr, boolean[] zArr2, int[] iArr, boolean[] zArr3, a1.e eVar) {
-        this.f1122a = 0;
-        this.f1123b = zArr;
-        this.f1124c = zArr2;
-        this.f1125e = iArr;
+        this.f1119a = 0;
+        this.f1120b = zArr;
+        this.f1121c = zArr2;
+        this.f1122e = iArr;
         this.d = zArr3;
-        this.f1126f = eVar;
+        this.f1123f = eVar;
     }
 }

@@ -8,35 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class z50 extends ViewGroup {
-    public boolean f42249a;
-    public final ArrayList f42250b;
-    public f20 f42251c;
+    public boolean f42251a;
+    public final ArrayList f42252b;
+    public f20 f42253c;
     public boolean d;
-    public final a60 f42252e;
+    public final a60 f42254e;
 
     public z50(a60 a60Var, Context context) {
         super(context);
-        this.f42252e = a60Var;
-        this.f42250b = new ArrayList();
+        this.f42254e = a60Var;
+        this.f42252b = new ArrayList();
     }
 
     public final void a(f20 f20Var, boolean z10) {
         this.d = true;
-        a60 a60Var = this.f42252e;
+        a60 a60Var = this.f42254e;
         a60Var.f32867a2.k(f20Var, f20Var.getUid());
         AnimatorSet animatorSet = a60Var.Y1;
         if (animatorSet != null) {
             animatorSet.setupEndValues();
             a60Var.Y1.cancel();
         }
-        this.f42249a = false;
+        this.f42251a = false;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             a60Var.Y1 = animatorSet2;
             animatorSet2.addListener(new x50(this, 1));
             a60Var.Y1.setDuration(150L);
-            a60Var.Y1.setInterpolator(er.f34420f);
-            ArrayList arrayList = this.f42250b;
+            a60Var.Y1.setInterpolator(er.f34419f);
+            ArrayList arrayList = this.f42252b;
             arrayList.clear();
             arrayList.add(ObjectAnimator.ofFloat(f20Var, View.SCALE_X, 0.01f, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(f20Var, View.SCALE_Y, 0.01f, 1.0f));
@@ -47,7 +47,7 @@ public final class z50 extends ViewGroup {
 
     public final void b(f20 f20Var) {
         this.d = false;
-        a60 a60Var = this.f42252e;
+        a60 a60Var = this.f42254e;
         a60Var.f32867a2.l(f20Var.getUid());
         f20Var.setOnClickListener(null);
         AnimatorSet animatorSet = a60Var.Y1;
@@ -55,17 +55,17 @@ public final class z50 extends ViewGroup {
             animatorSet.setupEndValues();
             a60Var.Y1.cancel();
         }
-        this.f42249a = false;
+        this.f42251a = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
         a60Var.Y1 = animatorSet2;
         animatorSet2.addListener(new y50(0, this, f20Var));
         a60Var.Y1.setDuration(150L);
-        this.f42251c = f20Var;
-        ArrayList arrayList = this.f42250b;
+        this.f42253c = f20Var;
+        ArrayList arrayList = this.f42252b;
         arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(this.f42251c, View.SCALE_X, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f42251c, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f42251c, View.ALPHA, 1.0f, 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f42253c, View.SCALE_X, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f42253c, View.SCALE_Y, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f42253c, View.ALPHA, 1.0f, 0.0f));
         requestLayout();
     }
 
@@ -87,9 +87,9 @@ public final class z50 extends ViewGroup {
         AnimatorSet animatorSet;
         org.telegram.ui.ActionBar.l1 l1Var;
         int i12;
-        a60 a60Var = this.f42252e;
+        a60 a60Var = this.f42254e;
         org.telegram.ui.ActionBar.l1 l1Var2 = a60Var.Q1;
-        di.c1 c1Var = a60Var.f34204o1;
+        di.c1 c1Var = a60Var.f34191o1;
         int childCount = getChildCount();
         int size = View.MeasureSpec.getSize(i7);
         int L = size - org.telegram.messenger.g0.L(26.0f);
@@ -99,7 +99,7 @@ public final class z50 extends ViewGroup {
         int i14 = 0;
         int i15 = 0;
         while (true) {
-            arrayList = this.f42250b;
+            arrayList = this.f42252b;
             if (i13 >= childCount) {
                 break;
             }
@@ -109,7 +109,7 @@ public final class z50 extends ViewGroup {
             } else {
                 l1Var = l1Var2;
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
-                if (childAt != this.f42251c && childAt.getMeasuredWidth() + i14 > L) {
+                if (childAt != this.f42253c && childAt.getMeasuredWidth() + i14 > L) {
                     L2 = org.telegram.messenger.k5.C(8.0f, childAt.getMeasuredHeight(), L2);
                     i14 = 0;
                 }
@@ -118,8 +118,8 @@ public final class z50 extends ViewGroup {
                     i15 = 0;
                 }
                 int L4 = org.telegram.messenger.g0.L(13.0f) + i14;
-                if (!this.f42249a) {
-                    f20 f20Var = this.f42251c;
+                if (!this.f42251a) {
+                    f20 f20Var = this.f42253c;
                     if (childAt == f20Var) {
                         childAt.setTranslationX(org.telegram.messenger.g0.L(13.0f) + i15);
                         childAt.setTranslationY(L3);
@@ -142,7 +142,7 @@ public final class z50 extends ViewGroup {
                         childAt.setTranslationY(L2);
                     }
                 }
-                if (childAt != this.f42251c) {
+                if (childAt != this.f42253c) {
                     i14 = org.telegram.messenger.k5.C(9.0f, childAt.getMeasuredWidth(), i14);
                 }
                 i15 = org.telegram.messenger.k5.C(9.0f, childAt.getMeasuredWidth(), i15);
@@ -191,21 +191,21 @@ public final class z50 extends ViewGroup {
         boolean z10 = this.d;
         if (z10 && L6 > a60Var.f32879n2) {
             org.telegram.messenger.g0.h3(new Runnable(this) {
-                public final z50 f41265b;
+                public final z50 f41268b;
 
                 {
-                    this.f41265b = this;
+                    this.f41268b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            a60 a60Var2 = this.f41265b.f42252e;
+                            a60 a60Var2 = this.f41268b.f42254e;
                             a60Var2.Q1.smoothScrollTo(0, L6 - a60Var2.f32879n2);
                             return;
                         default:
-                            a60 a60Var3 = this.f41265b.f42252e;
+                            a60 a60Var3 = this.f41268b.f42254e;
                             a60Var3.Q1.smoothScrollTo(0, L6 - a60Var3.f32879n2);
                             return;
                     }
@@ -213,32 +213,32 @@ public final class z50 extends ViewGroup {
             });
         } else if (!z10 && l1Var3.getMeasuredHeight() + l1Var3.getScrollY() > L6) {
             org.telegram.messenger.g0.h3(new Runnable(this) {
-                public final z50 f41265b;
+                public final z50 f41268b;
 
                 {
-                    this.f41265b = this;
+                    this.f41268b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            a60 a60Var2 = this.f41265b.f42252e;
+                            a60 a60Var2 = this.f41268b.f42254e;
                             a60Var2.Q1.smoothScrollTo(0, L6 - a60Var2.f32879n2);
                             return;
                         default:
-                            a60 a60Var3 = this.f41265b.f42252e;
+                            a60 a60Var3 = this.f41268b.f42254e;
                             a60Var3.Q1.smoothScrollTo(0, L6 - a60Var3.f32879n2);
                             return;
                     }
                 }
             });
         }
-        if (!this.f42249a && (animatorSet = a60Var.Y1) != null) {
+        if (!this.f42251a && (animatorSet = a60Var.Y1) != null) {
             animatorSet.playTogether(arrayList);
             a60Var.Y1.addListener(new x50(this, 0));
             a60Var.Y1.start();
-            this.f42249a = true;
+            this.f42251a = true;
         }
         if (a60Var.Y1 == null) {
             a60Var.f32871f2 = min;

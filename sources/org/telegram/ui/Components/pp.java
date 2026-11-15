@@ -17,9 +17,9 @@ public final class pp extends NestedScrollView {
     @Override
     public final void onDraw(Canvas canvas) {
         tp tpVar = this.f38379b0;
-        int scrollY = (int) ((getScrollY() + (tpVar.f39771r1 - tpVar.f29716t0)) - getTranslationY());
-        Drawable drawable = tpVar.f39767m1;
-        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + tpVar.f39768o1.getMeasuredHeight() + scrollY + tpVar.f29716t0);
+        int scrollY = (int) ((getScrollY() + (tpVar.f39768r1 - tpVar.f29716t0)) - getTranslationY());
+        Drawable drawable = tpVar.f39764m1;
+        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + tpVar.f39765o1.getMeasuredHeight() + scrollY + tpVar.f29716t0);
         drawable.draw(canvas);
     }
 
@@ -27,7 +27,7 @@ public final class pp extends NestedScrollView {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             tp tpVar = this.f38379b0;
-            if (tpVar.f39771r1 != 0 && motionEvent.getY() < tpVar.f39771r1) {
+            if (tpVar.f39768r1 != 0 && motionEvent.getY() < tpVar.f39768r1) {
                 tpVar.dismiss();
                 return true;
             }

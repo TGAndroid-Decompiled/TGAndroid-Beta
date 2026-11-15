@@ -53,13 +53,13 @@ public final class b extends l implements c4.e {
             }
             c4.d x10 = mVar.x(0, limit, array);
             long j3 = iVar.f17733e;
-            long j10 = iVar.f4108r;
+            long j10 = iVar.f4111r;
             jVar2.timeUs = j3;
-            jVar2.f4109a = x10;
+            jVar2.f4112a = x10;
             if (j10 != Long.MAX_VALUE) {
                 j3 = j10;
             }
-            jVar2.f4110b = j3;
+            jVar2.f4113b = j3;
             jVar2.shouldBeSkipped = false;
             return null;
         } catch (c4.f e10) {

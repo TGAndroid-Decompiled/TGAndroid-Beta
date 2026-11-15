@@ -35,10 +35,10 @@ public final class a extends g {
         StringBuilder sb2 = new StringBuilder("onMediaError ");
         sb2.append(this.f59102c.a());
         sb2.append(" ");
-        Integer num = mediaError.f5873c;
+        Integer num = mediaError.f5876c;
         sb2.append(num);
         sb2.append(" ");
-        sb2.append(mediaError.f5872b);
+        sb2.append(mediaError.f5875b);
         Log.d("CAST_CLIENT", sb2.toString());
         if (num != null) {
             i7 = num.intValue();

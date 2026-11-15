@@ -15,12 +15,12 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final boolean f42192a;
-    public final CharSequence f42193b;
-    public final xz f42194c;
+    public final boolean f42194a;
+    public final CharSequence f42195b;
+    public final xz f42196c;
     public final o5 d;
-    public final o5 f42195e;
-    public final zz f42196f;
+    public final o5 f42197e;
+    public final zz f42198f;
 
     public yz(zz zzVar, Context context, boolean z10, CharSequence charSequence, ArrayList arrayList, boolean z11) {
         super(context);
@@ -28,8 +28,8 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         float f10;
         int i7;
         int i10;
-        this.f42196f = zzVar;
-        this.f42192a = z10;
+        this.f42198f = zzVar;
+        this.f42194a = z10;
         String M0 = org.telegram.messenger.hd.M0(2131750651, null);
         String M02 = org.telegram.messenger.hd.M0(2131750650, null);
         if (charSequence == null) {
@@ -39,19 +39,19 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         }
         ?? view = new View(context);
         TextPaint textPaint = new TextPaint(1);
-        view.f41804a = textPaint;
+        view.f41796a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        view.f41805b = textPaint2;
+        view.f41797b = textPaint2;
         Paint paint = new Paint(1);
-        view.f41806c = paint;
+        view.f41798c = paint;
         view.d = new Path();
         float[] fArr = new float[8];
-        view.f41807e = fArr;
+        view.f41799e = fArr;
         Paint paint2 = new Paint(1);
-        view.f41812w = paint2;
+        view.f41804w = paint2;
         Paint paint3 = new Paint(1);
-        view.f41813x = paint3;
-        view.f41814y = new Matrix();
+        view.f41805x = paint3;
+        view.f41806y = new Matrix();
         view.E = new Matrix();
         int i11 = org.telegram.ui.ActionBar.j6.f29195vi;
         textPaint.setColor(org.telegram.ui.ActionBar.j6.r1(0.8f, org.telegram.ui.ActionBar.j6.x0(null, i11, false)));
@@ -69,22 +69,22 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         g6Var.w(org.telegram.messenger.g0.L(11.66f));
         g6Var.u(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28849d6, false));
         g6Var.x(org.telegram.messenger.g0.o());
-        g6Var.f34829b = 1;
+        g6Var.f34833b = 1;
         int r12 = org.telegram.ui.ActionBar.j6.r1(0.8f, org.telegram.ui.ActionBar.j6.x0(null, i11, false));
         int x02 = org.telegram.ui.ActionBar.j6.x0(null, i12, false);
         if (M0 != null) {
             f10 = 15.33f;
             oy0 oy0Var = new oy0(xz.a(M0), 15.33f, org.telegram.messenger.g0.o());
             oy0Var.r(view);
-            oy0Var.f38103a.setColor(r12);
-            view.f41808f = oy0Var;
+            oy0Var.f38101a.setColor(r12);
+            view.f41800f = oy0Var;
         } else {
             f10 = 15.33f;
         }
         CharSequence a10 = xz.a(spannableStringBuilder);
         oy0 oy0Var2 = new oy0(a10, f10, org.telegram.messenger.g0.o());
         oy0Var2.r(view);
-        TextPaint textPaint3 = oy0Var2.f38103a;
+        TextPaint textPaint3 = oy0Var2.f38101a;
         textPaint3.setColor(x02);
         view.h = oy0Var2;
         oy0Var2.q(org.telegram.messenger.gj.B5(org.telegram.messenger.j6.m(a10, textPaint3.getFontMetricsInt(), false, null, 0), arrayList, textPaint3.getFontMetricsInt(), false));
@@ -97,8 +97,8 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         if (M02 != null) {
             oy0 oy0Var3 = new oy0(xz.a(M02), 15.33f, org.telegram.messenger.g0.o());
             oy0Var3.r(view);
-            oy0Var3.f38103a.setColor(r12);
-            view.f41809n = oy0Var3;
+            oy0Var3.f38101a.setColor(r12);
+            view.f41801n = oy0Var3;
         }
         float L = org.telegram.messenger.g0.L(3.0f);
         fArr[3] = L;
@@ -112,15 +112,15 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         fArr[4] = L2;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(80.0f), 0.0f, new int[]{-1, 16777215}, new float[]{0.0f, 1.0f}, tileMode);
-        view.f41810r = linearGradient;
+        view.f41802r = linearGradient;
         paint2.setShader(linearGradient);
         PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
         paint2.setXfermode(new PorterDuffXfermode(mode));
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(80.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, tileMode);
-        view.f41811s = linearGradient2;
+        view.f41803s = linearGradient2;
         paint3.setShader(linearGradient2);
         paint3.setXfermode(new PorterDuffXfermode(mode));
-        this.f42194c = view;
+        this.f42196c = view;
         addView((View) view, c8.ja.d(-1, 44.0f, 55, 0.0f, 17.33f, 0.0f, 0.0f));
         o5 o5Var = new o5(context);
         this.d = o5Var;
@@ -131,8 +131,8 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         o5Var.setGravity(17);
         o5Var.setLineSpacing(org.telegram.messenger.g0.L(-1.0f), 1.0f);
         CharSequence n10 = org.telegram.messenger.j6.n(new SpannableStringBuilder(charSequence), o5Var.getPaint().getFontMetricsInt(), false, null, 0, 0.8f, 0);
-        this.f42193b = n10;
-        this.f42193b = org.telegram.messenger.gj.C5(n10, arrayList, o5Var.getPaint().getFontMetricsInt(), false, 0.8f, 0);
+        this.f42195b = n10;
+        this.f42195b = org.telegram.messenger.gj.C5(n10, arrayList, o5Var.getPaint().getFontMetricsInt(), false, 0.8f, 0);
         o5Var.setText(zzVar.O0());
         if (z11) {
             i10 = 26;
@@ -143,7 +143,7 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         o5Var.setEmojiColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, zzVar.J0));
         addView(o5Var, c8.ja.d(-1, -2.0f, 48, 32.0f, 78.3f, 32.0f, 0.0f));
         o5 o5Var2 = new o5(context);
-        this.f42195e = o5Var2;
+        this.f42197e = o5Var2;
         org.telegram.ui.ActionBar.q6.U(o5Var2, i13, null);
         o5Var2.setTextSize(1, 14.0f);
         o5Var2.setLines(2);
@@ -157,20 +157,20 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
         int i7;
         String str;
         int i10;
-        zz zzVar = this.f42196f;
+        zz zzVar = this.f42198f;
         ArrayList arrayList = zzVar.f42499c2;
         boolean z10 = zzVar.X1;
-        CharSequence charSequence = this.f42193b;
-        o5 o5Var = this.f42195e;
+        CharSequence charSequence = this.f42195b;
+        o5 o5Var = this.f42197e;
         if (z10) {
             o5Var.setText(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.V(null, null, 2131750637, charSequence)));
-        } else if (this.f42192a) {
+        } else if (this.f42194a) {
             if (arrayList != null) {
                 i7 = arrayList.size();
             } else {
                 i7 = 0;
             }
-            xz xzVar = this.f42194c;
+            xz xzVar = this.f42196c;
             g6 g6Var = xzVar.F;
             if (i7 > 0) {
                 str = i5.c.i(i7, "+");
@@ -207,7 +207,7 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.z
             o5 o5Var = this.d;
             if (o5Var != null) {
                 int i7 = org.telegram.ui.ActionBar.j6.Fi;
-                zz zzVar = this.f42196f;
+                zz zzVar = this.f42198f;
                 int i10 = zz.B2;
                 o5Var.setEmojiColor(org.telegram.ui.ActionBar.j6.w0(i7, zzVar.J0));
             }

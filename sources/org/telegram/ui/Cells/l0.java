@@ -72,7 +72,7 @@ public final class l0 {
     public final void b() {
         bl0 bl0Var = this.E;
         if (bl0Var.b()) {
-            float f10 = bl0Var.f33311j;
+            float f10 = bl0Var.f33314j;
             this.f30595o = f10;
             this.f30595o = Utilities.i(f10, this.f30596p - (this.f30602w.width() - org.telegram.messenger.g0.L(14.0f)), 0.0f);
             this.f30583a.q2();
@@ -84,7 +84,7 @@ public final class l0 {
     }
 
     public final boolean d() {
-        if (this.d.f23810i1 && this.f30597q.size() > 0) {
+        if (this.d.f23812i1 && this.f30597q.size() > 0) {
             return true;
         }
         return false;
@@ -104,7 +104,7 @@ public final class l0 {
         ArrayList arrayList3;
         this.f30584b = gjVar.K1;
         this.d = gjVar;
-        this.f30585c = gj.B0(gjVar.f23817k);
+        this.f30585c = gj.B0(gjVar.f23819k);
         np.s1(this.f30584b).M0(Long.valueOf(-this.f30585c));
         this.f30586e = -this.f30585c;
         Typeface o4 = org.telegram.messenger.g0.o();
@@ -148,7 +148,7 @@ public final class l0 {
         }
         arrayList.clear();
         oo L0 = np.s1(this.f30584b).L0(this.f30585c);
-        if (L0 != null && (arrayList3 = L0.f25786b) != null) {
+        if (L0 != null && (arrayList3 = L0.f25787b) != null) {
             arrayList2 = new ArrayList(arrayList3);
         } else {
             arrayList2 = new ArrayList();
@@ -170,8 +170,8 @@ public final class l0 {
         this.f30600t = z10;
         if (!z10) {
             int size = arrayList2.size();
-            if (!m10.i(this.f30584b).q() && L0.f25787c > 0) {
-                size = Math.min(size - 1, np.s1(this.f30584b).f25435x4);
+            if (!m10.i(this.f30584b).q() && L0.f25788c > 0) {
+                size = Math.min(size - 1, np.s1(this.f30584b).f25438x4);
             }
             int min = Math.min(size, 10);
             for (int i17 = 0; i17 < min; i17++) {
@@ -193,7 +193,7 @@ public final class l0 {
                 } else {
                     tLObject3 = null;
                 }
-                arrayList.add(new k0(q1Var, new TLObject[]{tLObject, tLObject2, tLObject3}, (arrayList2.size() + L0.f25787c) - min));
+                arrayList.add(new k0(q1Var, new TLObject[]{tLObject, tLObject2, tLObject3}, (arrayList2.size() + L0.f25788c) - min));
             }
         }
         if (this.v == null) {
@@ -203,7 +203,7 @@ public final class l0 {
                 i7 = 2131745317;
             }
             oy0 oy0Var = new oy0(hd.M0(i7, null), 14.0f, org.telegram.messenger.g0.o());
-            oy0Var.f38115o = true;
+            oy0Var.f38113o = true;
             this.v = oy0Var;
         }
         if (d()) {

@@ -28,7 +28,7 @@ public final class n3 {
         String str2;
         SpannableStringBuilder e10 = fi.l7.e(new Object[0], 2131750874, false);
         gj messageObject = q1Var.getMessageObject();
-        if (messageObject != null && (message = messageObject.f23817k) != null) {
+        if (messageObject != null && (message = messageObject.f23819k) != null) {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaStory) {
                 TLRPC.User a22 = np.s1(q1Var.f30908a6).a2(Long.valueOf(((TLRPC.TL_messageMediaStory) messageMedia).user_id));

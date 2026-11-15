@@ -18,21 +18,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class v3 implements z10 {
-    public final int f9572a = 1;
-    public final int f9573b;
-    public final int f9574c;
+    public final int f9590a = 1;
+    public final int f9591b;
+    public final int f9592c;
     public final int d;
-    public final KeyEvent.Callback f9575e;
-    public final Object f9576f;
-    public final Object f9577g;
+    public final KeyEvent.Callback f9593e;
+    public final Object f9594f;
+    public final Object f9595g;
 
     public v3(int i7, int i10, org.telegram.ui.Components.m3 m3Var, org.telegram.ui.Components.o3 o3Var, int i11, org.telegram.ui.Components.n3 n3Var) {
-        this.f9573b = i7;
-        this.f9574c = i10;
-        this.f9575e = m3Var;
-        this.f9576f = o3Var;
+        this.f9591b = i7;
+        this.f9592c = i10;
+        this.f9593e = m3Var;
+        this.f9594f = o3Var;
         this.d = i11;
-        this.f9577g = n3Var;
+        this.f9595g = n3Var;
     }
 
     @Override
@@ -49,13 +49,13 @@ public final class v3 implements z10 {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         int i12;
         int i13;
-        int i14 = this.f9572a;
-        Object obj2 = this.f9577g;
+        int i14 = this.f9590a;
+        Object obj2 = this.f9595g;
         int i15 = this.d;
-        Object obj3 = this.f9576f;
-        KeyEvent.Callback callback = this.f9575e;
-        int i16 = this.f9574c;
-        int i17 = this.f9573b;
+        Object obj3 = this.f9594f;
+        KeyEvent.Callback callback = this.f9593e;
+        int i16 = this.f9592c;
+        int i17 = this.f9591b;
         int i18 = 0;
         switch (i14) {
             case 0:
@@ -169,7 +169,7 @@ public final class v3 implements z10 {
                         c6Var.l1(linearLayout2, 2131231954, 15, org.telegram.ui.ActionBar.j6.Fi, hd.M0(2131743194, null), true);
                         c6Var.l1(linearLayout2, 2131231827, 14, i22, hd.M0(2131743170, null), false);
                         linearLayout.addView(linearLayout2, c8.ja.t(-2, -2, 1, 0, 7, 0, 3));
-                        c6Var.f8344t3 = true;
+                        c6Var.f8345t3 = true;
                         org.telegram.ui.Cells.c2 c2Var = new org.telegram.ui.Cells.c2(1, c6Var.getContext(), c6Var.J0);
                         int i23 = org.telegram.ui.ActionBar.j6.f28941i6;
                         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.j6.h0(org.telegram.ui.ActionBar.j6.w0(i23, c6Var.J0), 7, org.telegram.messenger.g0.L(12.0f));
@@ -180,7 +180,7 @@ public final class v3 implements z10 {
                         c2Var.setMultiline(true);
                         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) c2Var.getCheckBoxView().getLayoutParams();
                         layoutParams.topMargin = 0;
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i7 = 5;
                         } else {
                             i7 = 3;
@@ -188,19 +188,19 @@ public final class v3 implements z10 {
                         layoutParams.gravity = 16 | i7;
                         c2Var.getCheckBoxView().setLayoutParams(layoutParams);
                         c2Var.e(hd.M0(2131750138, null), "", true, false, false);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i10 = org.telegram.messenger.g0.L(4.0f);
                         } else {
                             i10 = 0;
                         }
                         int L2 = org.telegram.messenger.g0.L(12.0f);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             L = 0;
                         } else {
                             L = org.telegram.messenger.g0.L(4.0f);
                         }
                         c2Var.setPadding(i10, L2, L, org.telegram.messenger.g0.L(12.0f));
-                        c2Var.setOnClickListener(new ai.t2(12, c6Var, c2Var));
+                        c2Var.setOnClickListener(new ai.v2(12, c6Var, c2Var));
                         linearLayout.addView(c2Var, c8.ja.k(8.0f, 4.0f, 8.0f, 0.0f, -1, -2));
                         alertDialog$Builder3.o(linearLayout);
                         t1Var3.H = 20;
@@ -338,11 +338,11 @@ public final class v3 implements z10 {
     }
 
     public v3(c6 c6Var, int i7, int i10, int i11, wg.c1[] c1VarArr, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f9575e = c6Var;
-        this.f9573b = i7;
-        this.f9574c = i10;
+        this.f9593e = c6Var;
+        this.f9591b = i7;
+        this.f9592c = i10;
         this.d = i11;
-        this.f9576f = c1VarArr;
-        this.f9577g = tL_starGiftUnique;
+        this.f9594f = c1VarArr;
+        this.f9595g = tL_starGiftUnique;
     }
 }

@@ -54,13 +54,13 @@ public final class l2 extends TextView {
             case 6:
                 super.draw(canvas);
                 w21 w21Var = (w21) this.f29360b;
-                org.telegram.ui.Components.voip.n nVar = w21Var.f52370c;
-                if (nVar.f40796g <= 1.0f) {
-                    SessionsActivity sessionsActivity = w21Var.f52372f;
+                org.telegram.ui.Components.voip.n nVar = w21Var.f52373c;
+                if (nVar.f40799g <= 1.0f) {
+                    SessionsActivity sessionsActivity = w21Var.f52375f;
                     if (sessionsActivity.W && sessionsActivity.X) {
                         RectF rectF2 = org.telegram.messenger.g0.P;
                         rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                        nVar.f40795f = getMeasuredWidth();
+                        nVar.f40798f = getMeasuredWidth();
                         nVar.a(org.telegram.messenger.g0.L(8.0f), canvas, rectF2, null);
                         invalidate();
                         return;
@@ -108,10 +108,10 @@ public final class l2 extends TextView {
                 if (((org.telegram.ui.Components.voip.n) this.f29360b) == null) {
                     org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
                     this.f29360b = nVar;
-                    nVar.f40799k = false;
-                    nVar.f40801m = 2.0f;
+                    nVar.f40802k = false;
+                    nVar.f40804m = 2.0f;
                 }
-                ((org.telegram.ui.Components.voip.n) this.f29360b).f40795f = getMeasuredWidth();
+                ((org.telegram.ui.Components.voip.n) this.f29360b).f40798f = getMeasuredWidth();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((org.telegram.ui.Components.voip.n) this.f29360b).a(org.telegram.messenger.g0.L(22.0f), canvas, rectF, null);
@@ -186,8 +186,8 @@ public final class l2 extends TextView {
                 return;
             case 3:
                 super.onMeasure(i7, i10);
-                if (hd.f24101a0) {
-                    ((n21) this.f29360b).f37436b.setPivotX(getMeasuredWidth());
+                if (hd.f24104a0) {
+                    ((n21) this.f29360b).f37435b.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
@@ -197,7 +197,7 @@ public final class l2 extends TextView {
                 return;
             case 11:
                 super.onMeasure(i7, i10);
-                ((org.telegram.ui.web.m1) this.f29360b).f52715c.setPivotY(getMeasuredHeight() / 2.0f);
+                ((org.telegram.ui.web.m1) this.f29360b).f52718c.setPivotY(getMeasuredHeight() / 2.0f);
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -210,7 +210,7 @@ public final class l2 extends TextView {
         switch (this.f29359a) {
             case 2:
                 super.onSizeChanged(i7, i10, i11, i12);
-                ((FragmentContextView) this.f29360b).P.f40795f = getWidth();
+                ((FragmentContextView) this.f29360b).P.f40798f = getWidth();
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);

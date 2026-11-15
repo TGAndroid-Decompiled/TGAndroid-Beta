@@ -1066,7 +1066,7 @@ public class j5 extends View implements Drawable.Callback {
                 }
                 canvas.clipRect(i27, 0, maxTextWidth - org.telegram.messenger.g0.L(f12), getMeasuredHeight());
             }
-            org.telegram.messenger.j6.f24531n = false;
+            org.telegram.messenger.j6.f24536n = false;
             if (this.P != null) {
                 int i39 = this.f28758f0;
                 int i40 = (i39 / 2) + ((int) ((this.f28754d0 + i27) - this.S));
@@ -1250,7 +1250,7 @@ public class j5 extends View implements Drawable.Callback {
                 }
                 invalidate();
             }
-            org.telegram.messenger.j6.f24531n = z11;
+            org.telegram.messenger.j6.f24536n = z11;
             if (this.f28764l0 || this.m0 || this.f28767o0 || this.f28773s0 > 0) {
                 canvas.restore();
             }
@@ -1351,7 +1351,7 @@ public class j5 extends View implements Drawable.Callback {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         int i17 = this.f28753c0;
-        int i18 = org.telegram.messenger.g0.f23609q.x;
+        int i18 = org.telegram.messenger.g0.f23611q.x;
         if (i17 != i18) {
             this.f28753c0 = i18;
             this.S = 0.0f;
@@ -1421,15 +1421,15 @@ public class j5 extends View implements Drawable.Callback {
                 getParent().requestDisallowInterceptTouchEvent(true);
                 Drawable drawable = this.f28779x;
                 if (drawable instanceof i5) {
-                    ((tw0) ((i5) drawable)).f51682f.c(true);
+                    ((tw0) ((i5) drawable)).f51683f.c(true);
                 }
             } else if (motionEvent.getAction() == 2 && this.F0) {
-                if (Math.abs(motionEvent.getX() - this.G0) >= org.telegram.messenger.g0.f23588e || Math.abs(motionEvent.getY() - this.H0) >= org.telegram.messenger.g0.f23588e) {
+                if (Math.abs(motionEvent.getX() - this.G0) >= org.telegram.messenger.g0.f23590e || Math.abs(motionEvent.getY() - this.H0) >= org.telegram.messenger.g0.f23590e) {
                     this.F0 = false;
                     getParent().requestDisallowInterceptTouchEvent(false);
                     Drawable drawable2 = this.f28779x;
                     if (drawable2 instanceof i5) {
-                        ((tw0) ((i5) drawable2)).f51682f.c(false);
+                        ((tw0) ((i5) drawable2)).f51683f.c(false);
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -1437,7 +1437,7 @@ public class j5 extends View implements Drawable.Callback {
                     this.E0.onClick(this);
                     Drawable drawable3 = this.f28779x;
                     if (drawable3 instanceof i5) {
-                        ((tw0) ((i5) drawable3)).f51682f.c(false);
+                        ((tw0) ((i5) drawable3)).f51683f.c(false);
                     }
                 }
                 this.F0 = false;

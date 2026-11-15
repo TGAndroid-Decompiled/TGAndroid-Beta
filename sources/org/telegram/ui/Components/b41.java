@@ -19,77 +19,77 @@ public final class b41 extends rg.a {
     public Object G;
     public Object H;
     public boolean I;
-    public View f33174c;
+    public View f33177c;
     public int d;
-    public boolean f33175e;
-    public boolean f33176f;
-    public boolean f33177g;
+    public boolean f33178e;
+    public boolean f33179f;
+    public boolean f33180g;
     public boolean h;
-    public int f33178i;
-    public boolean f33179j;
-    public int f33180k;
-    public CharSequence f33181l;
-    public CharSequence f33182m;
-    public CharSequence f33183n;
-    public CharSequence f33184o;
-    public String[] f33185p;
-    public boolean f33186q;
-    public boolean f33187r;
-    public boolean f33188s;
-    public boolean f33189t;
-    public int f33190u;
+    public int f33181i;
+    public boolean f33182j;
+    public int f33183k;
+    public CharSequence f33184l;
+    public CharSequence f33185m;
+    public CharSequence f33186n;
+    public CharSequence f33187o;
+    public String[] f33188p;
+    public boolean f33189q;
+    public boolean f33190r;
+    public boolean f33191s;
+    public boolean f33192t;
+    public int f33193u;
     public int v;
-    public boolean f33191w;
-    public long f33192x;
-    public int f33193y;
-    public int f33194z;
+    public boolean f33194w;
+    public long f33195x;
+    public int f33196y;
+    public int f33197z;
 
     public b41(int i7) {
         super(i7, false);
-        this.f33177g = true;
-        this.f33190u = -1;
+        this.f33180g = true;
+        this.f33193u = -1;
         this.I = true;
     }
 
     public static b41 A(String str, CharSequence charSequence, int i7) {
         b41 b41Var = new b41(41);
         b41Var.d = i7;
-        b41Var.f33181l = charSequence;
-        b41Var.f33184o = str;
+        b41Var.f33184l = charSequence;
+        b41Var.f33187o = str;
         return b41Var;
     }
 
     public static b41 B(int i7, CharSequence charSequence) {
         b41 b41Var = new b41(7);
         b41Var.d = i7;
-        b41Var.f33181l = charSequence;
+        b41Var.f33184l = charSequence;
         return b41Var;
     }
 
     public static b41 C(CharSequence charSequence) {
         b41 b41Var = new b41(7);
-        b41Var.f33181l = charSequence;
+        b41Var.f33184l = charSequence;
         return b41Var;
     }
 
     public static b41 D(int i7) {
         b41 b41Var = new b41(28);
-        b41Var.f33194z = i7;
+        b41Var.f33197z = i7;
         return b41Var;
     }
 
     public static b41 E(int i7, int i10) {
         b41 b41Var = new b41(28);
         b41Var.d = i7;
-        b41Var.f33194z = i10;
+        b41Var.f33197z = i10;
         return b41Var;
     }
 
     public static b41 F(int i7, String str) {
         b41 b41Var = new b41(39);
         b41Var.d = i7;
-        b41Var.f33181l = str;
-        b41Var.f33194z = 1;
+        b41Var.f33184l = str;
+        b41Var.f33197z = 1;
         return b41Var;
     }
 
@@ -117,52 +117,52 @@ public final class b41 extends rg.a {
 
     public static b41 b(String str) {
         b41 b41Var = new b41(1);
-        b41Var.f33181l = str;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
     public static b41 c(int i7, int i10, String str) {
         b41 b41Var = new b41(3);
         b41Var.d = i7;
-        b41Var.f33180k = i10;
-        b41Var.f33181l = str;
+        b41Var.f33183k = i10;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
     public static b41 d(int i7, int i10, String str, String str2) {
         b41 b41Var = new b41(3);
         b41Var.d = i7;
-        b41Var.f33180k = i10;
-        b41Var.f33181l = str;
-        b41Var.f33183n = str2;
+        b41Var.f33183k = i10;
+        b41Var.f33184l = str;
+        b41Var.f33186n = str2;
         return b41Var;
     }
 
     public static b41 e(int i7, String str) {
         b41 b41Var = new b41(3);
         b41Var.d = i7;
-        b41Var.f33181l = str;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
     public static b41 f(String str, CharSequence charSequence, int i7) {
         b41 b41Var = new b41(3);
         b41Var.d = i7;
-        b41Var.f33181l = str;
-        b41Var.f33183n = charSequence;
+        b41Var.f33184l = str;
+        b41Var.f33186n = charSequence;
         return b41Var;
     }
 
     public static b41 g(CharSequence charSequence) {
         b41 b41Var = new b41(7);
-        b41Var.f33181l = charSequence;
-        b41Var.f33186q = true;
+        b41Var.f33184l = charSequence;
+        b41Var.f33189q = true;
         return b41Var;
     }
 
     public static b41 h(int i7, int i10, org.telegram.ui.l41 l41Var) {
         b41 b41Var = new b41(i7 + 18);
-        b41Var.f33194z = i10;
+        b41Var.f33197z = i10;
         b41Var.G = l41Var;
         return b41Var;
     }
@@ -170,78 +170,78 @@ public final class b41 extends rg.a {
     public static b41 i(int i7, CharSequence charSequence) {
         b41 b41Var = new b41(4);
         b41Var.d = i7;
-        b41Var.f33181l = charSequence;
+        b41Var.f33184l = charSequence;
         return b41Var;
     }
 
     public static b41 j(int i7, View view) {
         b41 b41Var = new b41(-1);
         b41Var.d = i7;
-        b41Var.f33174c = view;
-        b41Var.f33194z = -1;
+        b41Var.f33177c = view;
+        b41Var.f33197z = -1;
         return b41Var;
     }
 
     public static b41 k(View view) {
         b41 b41Var = new b41(-1);
-        b41Var.f33174c = view;
-        b41Var.f33194z = -1;
+        b41Var.f33177c = view;
+        b41Var.f33197z = -1;
         return b41Var;
     }
 
     public static b41 l(int i7, View view) {
         b41 b41Var = new b41(-4);
         b41Var.d = i7;
-        b41Var.f33174c = view;
-        b41Var.f33194z = -1;
+        b41Var.f33177c = view;
+        b41Var.f33197z = -1;
         return b41Var;
     }
 
     public static b41 m(View view) {
         b41 b41Var = new b41(-4);
-        b41Var.f33174c = view;
-        b41Var.f33194z = -1;
+        b41Var.f33177c = view;
+        b41Var.f33197z = -1;
         return b41Var;
     }
 
     public static b41 n(View view, int i7) {
         b41 b41Var = new b41(-4);
-        b41Var.f33174c = view;
-        b41Var.f33194z = i7;
+        b41Var.f33177c = view;
+        b41Var.f33197z = i7;
         return b41Var;
     }
 
     public static b41 o(int i7, String str, String str2) {
         b41 b41Var = new b41(40);
         b41Var.d = i7;
-        b41Var.f33181l = str;
-        b41Var.f33184o = str2;
+        b41Var.f33184l = str;
+        b41Var.f33187o = str2;
         return b41Var;
     }
 
     public static b41 p(int i7) {
         b41 b41Var = new b41(34);
-        b41Var.f33194z = i7;
+        b41Var.f33197z = i7;
         return b41Var;
     }
 
     public static b41 q(int i7, int i10) {
         b41 b41Var = new b41(34);
         b41Var.d = i7;
-        b41Var.f33194z = i10;
+        b41Var.f33197z = i10;
         return b41Var;
     }
 
     public static b41 r(String str) {
         b41 b41Var = new b41(31);
-        b41Var.f33181l = str;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
     public static b41 s(String str, String str2, View.OnClickListener onClickListener) {
         b41 b41Var = new b41(31);
-        b41Var.f33181l = str;
-        b41Var.f33182m = str2;
+        b41Var.f33184l = str;
+        b41Var.f33185m = str2;
         b41Var.D = onClickListener;
         return b41Var;
     }
@@ -249,13 +249,13 @@ public final class b41 extends rg.a {
     public static b41 t(int i7, String str) {
         b41 b41Var = new b41(0);
         b41Var.d = i7;
-        b41Var.f33181l = str;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
     public static b41 u(String str) {
         b41 b41Var = new b41(0);
-        b41Var.f33181l = str;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
@@ -274,22 +274,22 @@ public final class b41 extends rg.a {
     public static b41 x(int i7, String str) {
         b41 b41Var = new b41(10);
         b41Var.d = i7;
-        b41Var.f33181l = str;
+        b41Var.f33184l = str;
         return b41Var;
     }
 
     public static b41 y(int i7, String str, String str2) {
         b41 b41Var = new b41(44);
         b41Var.d = i7;
-        b41Var.f33181l = str;
-        b41Var.f33183n = str2;
+        b41Var.f33184l = str;
+        b41Var.f33186n = str2;
         return b41Var;
     }
 
     public static b41 z(int i7, CharSequence charSequence) {
         b41 b41Var = new b41(35);
         b41Var.d = i7;
-        b41Var.f33181l = charSequence;
+        b41Var.f33184l = charSequence;
         return b41Var;
     }
 
@@ -307,14 +307,14 @@ public final class b41 extends rg.a {
     }
 
     public final boolean J(b41 b41Var) {
-        if (this.d == b41Var.d && this.f33178i == b41Var.f33178i && this.f33192x == b41Var.f33192x && this.f33180k == b41Var.f33180k && this.f33179j == b41Var.f33179j && this.f33188s == b41Var.f33188s && this.f33187r == b41Var.f33187r && this.f33189t == b41Var.f33189t && this.f33186q == b41Var.f33186q && this.f33174c == b41Var.f33174c && TextUtils.equals(this.f33181l, b41Var.f33181l) && TextUtils.equals(this.f33182m, b41Var.f33182m) && TextUtils.equals(this.f33183n, b41Var.f33183n) && this.f33174c == b41Var.f33174c && this.f33194z == b41Var.f33194z && Math.abs(this.A - b41Var.A) < 0.01f && this.B == b41Var.B && Objects.equals(this.G, b41Var.G) && Objects.equals(this.H, b41Var.H)) {
+        if (this.d == b41Var.d && this.f33181i == b41Var.f33181i && this.f33195x == b41Var.f33195x && this.f33183k == b41Var.f33183k && this.f33182j == b41Var.f33182j && this.f33191s == b41Var.f33191s && this.f33190r == b41Var.f33190r && this.f33192t == b41Var.f33192t && this.f33189q == b41Var.f33189q && this.f33177c == b41Var.f33177c && TextUtils.equals(this.f33184l, b41Var.f33184l) && TextUtils.equals(this.f33185m, b41Var.f33185m) && TextUtils.equals(this.f33186n, b41Var.f33186n) && this.f33177c == b41Var.f33177c && this.f33197z == b41Var.f33197z && Math.abs(this.A - b41Var.A) < 0.01f && this.B == b41Var.B && Objects.equals(this.G, b41Var.G) && Objects.equals(this.H, b41Var.H)) {
             return true;
         }
         return false;
     }
 
     public final void L(boolean z10) {
-        this.f33175e = z10;
+        this.f33178e = z10;
         if (this.f56015a == 11) {
             this.f56015a = 12;
         }
@@ -329,12 +329,12 @@ public final class b41 extends rg.a {
                 int i7 = this.f56015a;
                 if (i7 == b41Var.f56015a) {
                     if (i7 == 31) {
-                        if (TextUtils.equals(this.f33181l, b41Var.f33181l) && TextUtils.equals(this.f33182m, b41Var.f33182m)) {
+                        if (TextUtils.equals(this.f33184l, b41Var.f33184l) && TextUtils.equals(this.f33185m, b41Var.f33185m)) {
                             return true;
                         }
                         return false;
                     } else if (i7 == 28) {
-                        if (this.f33194z == b41Var.f33194z) {
+                        if (this.f33197z == b41Var.f33197z) {
                             return true;
                         }
                         return false;
@@ -343,7 +343,7 @@ public final class b41 extends rg.a {
                             return G.c(this, b41Var);
                         }
                         return I(b41Var);
-                    } else if (this.d == b41Var.d && TextUtils.equals(this.f33181l, b41Var.f33181l) && this.f33175e == b41Var.f33175e) {
+                    } else if (this.d == b41Var.d && TextUtils.equals(this.f33184l, b41Var.f33184l) && this.f33178e == b41Var.f33178e) {
                         return true;
                     } else {
                         return false;
@@ -370,7 +370,7 @@ public final class b41 extends rg.a {
                             }
                             return false;
                         } else if (i7 == 31) {
-                            return TextUtils.equals(this.f33181l, b41Var.f33181l);
+                            return TextUtils.equals(this.f33184l, b41Var.f33184l);
                         } else {
                             if (i7 >= 10000 && (G = G(i7)) != null) {
                                 return G.e(this, b41Var);

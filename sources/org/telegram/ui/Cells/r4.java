@@ -37,7 +37,7 @@ public final class r4 extends FrameLayout {
         this.f31337a = radioButton;
         radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
         org.telegram.ui.ActionBar.q6.O(radioButton, org.telegram.ui.ActionBar.j6.D5, org.telegram.ui.ActionBar.j6.E5, null);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i7 = 5;
         } else {
@@ -57,13 +57,13 @@ public final class r4 extends FrameLayout {
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView.setGravity(i11 | 16);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -88,13 +88,13 @@ public final class r4 extends FrameLayout {
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i13 = 5;
         } else {
             i13 = 3;
         }
         textView2.setGravity(i13 | 16);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         int i16 = (z12 ? 5 : 3) | 48;
         if (z12) {
             f12 = 23;
@@ -119,7 +119,7 @@ public final class r4 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            boolean z10 = hd.f24101a0;
+            boolean z10 = hd.f24104a0;
             int i10 = this.f31341f;
             if (z10) {
                 L = 0.0f;
@@ -129,7 +129,7 @@ public final class r4 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(i10 - 3);
             } else {
                 i7 = 0;

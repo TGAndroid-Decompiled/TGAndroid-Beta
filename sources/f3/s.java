@@ -14,7 +14,7 @@ public final class s implements bb {
     public long f10877a;
 
     public s(gj gjVar) {
-        this.f10877a = gj.B0(gjVar.f23817k);
+        this.f10877a = gj.B0(gjVar.f23819k);
         gjVar.e1();
     }
 
@@ -29,7 +29,7 @@ public final class s implements bb {
     public void b(cb cbVar, na naVar, la laVar, oa oaVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cbVar, cb.IN_OUT_OFFSET_Y2, cbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(qs.f38758c);
+        ofFloat.setInterpolator(qs.f38756c);
         ofFloat.addListener(new ah.l(naVar, laVar, 20));
         ofFloat.addUpdateListener(new ch.v(12, oaVar, cbVar));
         ofFloat.start();

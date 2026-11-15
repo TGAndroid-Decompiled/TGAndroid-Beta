@@ -17,9 +17,9 @@ public final class lq0 implements jj0 {
 
     @Override
     public final void i() {
-        org.telegram.ui.ActionBar.e2 e2Var = this.f36889b.f42150y1;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f36889b.f42152y1;
         if (e2Var != null) {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             if (point.x > point.y) {
                 e2Var.finishPreviewFragment();
             }
@@ -28,9 +28,9 @@ public final class lq0 implements jj0 {
 
     @Override
     public final void q(float f10) {
-        org.telegram.ui.ActionBar.e2 e2Var = this.f36889b.f42150y1;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f36889b.f42152y1;
         if (e2Var != null) {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             if (point.x > point.y) {
                 e2Var.movePreviewFragment(f10);
             }

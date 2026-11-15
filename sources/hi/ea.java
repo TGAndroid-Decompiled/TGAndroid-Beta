@@ -84,7 +84,7 @@ public final class ea extends FrameLayout {
         sa saVar = this.d;
         md0 md0Var = saVar.G1;
         if (md0Var != null) {
-            pi0 pi0Var = md0Var.f37231e;
+            pi0 pi0Var = md0Var.f37230e;
             pi0Var.f38312a = 0.0f;
             pi0Var.f38313b = 0.0f;
             pi0Var.f38314c = md0Var.getMeasuredWidth();
@@ -93,8 +93,8 @@ public final class ea extends FrameLayout {
         kd0 kd0Var = saVar.F1;
         if (kd0Var != null) {
             nt0 nt0Var = kd0Var.d;
-            nt0Var.f37713a = kd0Var.getMeasuredWidth();
-            nt0Var.f37714b = saVar.F1.getMeasuredHeight();
+            nt0Var.f37702a = kd0Var.getMeasuredWidth();
+            nt0Var.f37703b = saVar.F1.getMeasuredHeight();
         }
     }
 

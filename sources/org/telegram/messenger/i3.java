@@ -43,20 +43,20 @@ public final class i3 {
             arrayList3.clear();
             while (i12 < i13) {
                 gj gjVar = (gj) L.get(i12);
-                if (anVar.f45281m4 != gjVar && gjVar.e1() > 0 && ((gjVar.f23817k.action == null || gjVar.z()) && j3 - gjVar.E > 15000)) {
+                if (anVar.f45280m4 != gjVar && gjVar.e1() > 0 && ((gjVar.f23819k.action == null || gjVar.z()) && j3 - gjVar.E > 15000)) {
                     gjVar.E = j3;
                     arrayList.add(gjVar);
                 }
-                if (anVar.f45281m4 != gjVar && gjVar.e1() > 0 && ((gjVar.q2() || ((messageMedia = gjVar.f23817k.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (gjVar.f23817k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview))) && j3 - gjVar.F > 30000)) {
+                if (anVar.f45280m4 != gjVar && gjVar.e1() > 0 && ((gjVar.q2() || ((messageMedia = gjVar.f23819k.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (gjVar.f23819k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview))) && j3 - gjVar.F > 30000)) {
                     gjVar.F = j3;
                     arrayList2.add(gjVar);
                 }
                 int i14 = gjVar.D;
-                if (i14 == 23 || i14 == 24 || gjVar.f23817k.replyStory != null) {
+                if (i14 == 23 || i14 == 24 || gjVar.f23819k.replyStory != null) {
                     if (i14 != 23 && i14 != 24) {
-                        storyItem2 = gjVar.f23817k.replyStory;
+                        storyItem2 = gjVar.f23819k.replyStory;
                     } else {
-                        storyItem2 = gjVar.f23817k.media.storyItem;
+                        storyItem2 = gjVar.f23819k.media.storyItem;
                     }
                     if (storyItem2 != null && !(storyItem2 instanceof TL_stories.TL_storyItemDeleted) && j3 - storyItem2.lastUpdateTime > 300000) {
                         storyItem2.lastUpdateTime = j3;
@@ -73,17 +73,17 @@ public final class i3 {
                     tL_messages_getMessagesReactions.f28148id.add(Integer.valueOf(((gj) arrayList.get(i15)).e1()));
                 }
                 Integer valueOf = Integer.valueOf(anVar.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate(i3Var) {
-                    public final i3 f23658b;
+                    public final i3 f23660b;
 
                     {
-                        this.f23658b = i3Var;
+                        this.f23660b = i3Var;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r2) {
                             case 0:
-                                i3 i3Var2 = this.f23658b;
+                                i3 i3Var2 = this.f23660b;
                                 if (tL_error == null) {
                                     i3Var2.f24273a.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                                     return;
@@ -92,7 +92,7 @@ public final class i3 {
                                     return;
                                 }
                             default:
-                                i3 i3Var3 = this.f23658b;
+                                i3 i3Var3 = this.f23660b;
                                 i3Var3.getClass();
                                 if (tL_error == null) {
                                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -124,17 +124,17 @@ public final class i3 {
                     tL_messages_getExtendedMedia.f28142id.add(Integer.valueOf(((gj) arrayList2.get(i16)).e1()));
                 }
                 arrayList5.add(Integer.valueOf(anVar.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new RequestDelegate(i3Var) {
-                    public final i3 f23658b;
+                    public final i3 f23660b;
 
                     {
-                        this.f23658b = i3Var;
+                        this.f23660b = i3Var;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r2) {
                             case 0:
-                                i3 i3Var2 = this.f23658b;
+                                i3 i3Var2 = this.f23660b;
                                 if (tL_error == null) {
                                     i3Var2.f24273a.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                                     return;
@@ -143,7 +143,7 @@ public final class i3 {
                                     return;
                                 }
                             default:
-                                i3 i3Var3 = this.f23658b;
+                                i3 i3Var3 = this.f23660b;
                                 i3Var3.getClass();
                                 if (tL_error == null) {
                                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -171,7 +171,7 @@ public final class i3 {
                     new TL_stories.TL_storyItem();
                     int i18 = gjVar2.D;
                     if (i18 != 23 && i18 != 24) {
-                        TLRPC.Message message = gjVar2.f23817k;
+                        TLRPC.Message message = gjVar2.f23819k;
                         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
                         if (messageReplyHeader != null) {
                             storyItem = message.replyStory;
@@ -181,7 +181,7 @@ public final class i3 {
                             i3Var = this;
                         }
                     } else {
-                        TLRPC.MessageMedia messageMedia2 = gjVar2.f23817k.media;
+                        TLRPC.MessageMedia messageMedia2 = gjVar2.f23819k.media;
                         TL_stories.StoryItem storyItem3 = messageMedia2.storyItem;
                         storyItem3.dialogId = messageMedia2.user_id;
                         storyItem = storyItem3;

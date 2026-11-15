@@ -1,22 +1,22 @@
 package di;
 
 import android.os.Bundle;
-import org.telegram.ui.ProfileActivity;
-public final class wb extends ProfileActivity {
-    public final boolean Z6;
-    public final jc f9710a7;
+import org.telegram.ui.an;
+public final class wb extends an {
+    public final boolean f9697ud;
+    public final ic f9698vd;
 
-    public wb(jc jcVar, Bundle bundle, boolean z10) {
-        super(bundle, null);
-        this.f9710a7 = jcVar;
-        this.Z6 = z10;
+    public wb(ic icVar, Bundle bundle, boolean z10) {
+        super(bundle);
+        this.f9698vd = icVar;
+        this.f9697ud = z10;
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        if (!this.Z6) {
-            this.f9710a7.show();
+        if (!this.f9697ud) {
+            this.f9698vd.show();
         }
     }
 }

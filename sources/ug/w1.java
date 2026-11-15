@@ -66,7 +66,7 @@ public final class w1 extends FrameLayout implements m0, is {
         if ((file != null && file.exists()) || gz.B0) {
             File file2 = this.f58361e;
             if (file2 != null && file2.exists()) {
-                if ((ns.e().f25633p & 512) != 0) {
+                if ((ns.e().f25634p & 512) != 0) {
                     q2.d dVar = this.f58364r;
                     if (dVar != null) {
                         org.telegram.messenger.g0.r(dVar);
@@ -78,7 +78,7 @@ public final class w1 extends FrameLayout implements m0, is {
                 }
                 try {
                     MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f26600b, Uri.fromFile(this.f58361e));
+                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f26609b, Uri.fromFile(this.f58361e));
                     int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
                     int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();

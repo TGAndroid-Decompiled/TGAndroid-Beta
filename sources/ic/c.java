@@ -11,8 +11,8 @@ public abstract class c {
     public static int a(cc.c cVar, boolean z10) {
         int i7;
         byte b10;
-        int i10 = cVar.f4873b;
-        int i11 = cVar.f4874c;
+        int i10 = cVar.f4876b;
+        int i11 = cVar.f4877c;
         if (z10) {
             i7 = i11;
         } else {
@@ -63,8 +63,8 @@ public abstract class c {
         int i19;
         int i20;
         byte[][] bArr2 = (byte[][]) cVar2.d;
-        int i21 = cVar2.f4873b;
-        int i22 = cVar2.f4874c;
+        int i21 = cVar2.f4876b;
+        int i22 = cVar2.f4877c;
         for (byte[] bArr3 : bArr2) {
             Arrays.fill(bArr3, (byte) -1);
         }
@@ -158,20 +158,20 @@ public abstract class c {
                 aVar2.b(c(i43, 1335), 10);
                 cc.a aVar3 = new cc.a();
                 aVar3.b(21522, 15);
-                if (aVar2.f4868b == aVar3.f4868b) {
+                if (aVar2.f4871b == aVar3.f4871b) {
                     int i44 = i10;
                     while (true) {
-                        int[] iArr3 = aVar2.f4867a;
+                        int[] iArr3 = aVar2.f4870a;
                         if (i44 >= iArr3.length) {
                             break;
                         }
-                        iArr3[i44] = iArr3[i44] ^ aVar3.f4867a[i44];
+                        iArr3[i44] = iArr3[i44] ^ aVar3.f4870a[i44];
                         i44++;
                     }
-                    if (aVar2.f4868b == 15) {
+                    if (aVar2.f4871b == 15) {
                         int i45 = i10;
                         while (true) {
-                            int i46 = aVar2.f4868b;
+                            int i46 = aVar2.f4871b;
                             if (i45 >= i46) {
                                 break;
                             }
@@ -195,7 +195,7 @@ public abstract class c {
                             cc.a aVar4 = new cc.a();
                             aVar4.b(i27, 6);
                             aVar4.b(c(i27, 7973), 12);
-                            if (aVar4.f4868b == 18) {
+                            if (aVar4.f4871b == 18) {
                                 int i48 = 17;
                                 for (int i49 = i10; i49 < 6; i49++) {
                                     for (int i50 = i10; i50 < 3; i50++) {
@@ -209,7 +209,7 @@ public abstract class c {
                                     }
                                 }
                             } else {
-                                throw new Exception("should not happen but we got: " + aVar4.f4868b);
+                                throw new Exception("should not happen but we got: " + aVar4.f4871b);
                             }
                         }
                         int i52 = i39 - 1;
@@ -224,7 +224,7 @@ public abstract class c {
                                 for (int i56 = i10; i56 < 2; i56++) {
                                     int i57 = i52 - i56;
                                     if (g(cVar2.e(i57, i53))) {
-                                        if (i54 < aVar.f4868b) {
+                                        if (i54 < aVar.f4871b) {
                                             boolean d11 = aVar.d(i54);
                                             i54++;
                                             i13 = d11;
@@ -287,12 +287,12 @@ public abstract class c {
                             i53 += i55;
                             i52 -= 2;
                         }
-                        if (i54 == aVar.f4868b) {
+                        if (i54 == aVar.f4871b) {
                             return;
                         }
-                        throw new Exception("Not all bits consumed: " + i54 + '/' + aVar.f4868b);
+                        throw new Exception("Not all bits consumed: " + i54 + '/' + aVar.f4871b);
                     }
-                    throw new Exception("should not happen but we got: " + aVar2.f4868b);
+                    throw new Exception("should not happen but we got: " + aVar2.f4871b);
                 }
                 throw new IllegalArgumentException("Sizes don't match");
             }

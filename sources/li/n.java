@@ -286,7 +286,7 @@ public final class n extends e2 implements l30, is, te.b {
         e6 e6Var = this.resourceProvider;
         g2 g2Var = new g2(context, 9);
         di.q qVar = new di.q(context, 2);
-        g2Var.f3545b = qVar;
+        g2Var.f3548b = qVar;
         q6.U(qVar, j6.G6, e6Var);
         q6.G(qVar, j6.Xc, e6Var);
         q6.D(qVar, j6.H6, e6Var);
@@ -297,7 +297,7 @@ public final class n extends e2 implements l30, is, te.b {
         qVar.setInputType(qVar.getInputType() | 16384);
         qVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(11.0f));
         qVar.setMinHeight(org.telegram.messenger.g0.L(50.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -305,8 +305,8 @@ public final class n extends e2 implements l30, is, te.b {
         g2Var.addView(qVar, ja.d(-1, -2.0f, i7 | 16, 13.0f, 0.0f, 13.0f, 0.0f));
         this.f19615r = g2Var;
         qVar.setText(m10);
-        ((di.q) this.f19615r.f3545b).setSelection(m10.length());
-        ((di.q) this.f19615r.f3545b).addTextChangedListener(new ah.j(this, 12));
+        ((di.q) this.f19615r.f3548b).setSelection(m10.length());
+        ((di.q) this.f19615r.f3548b).addTextChangedListener(new ah.j(this, 12));
         gi.j jVar = new gi.j(this, context);
         this.I = jVar;
         q6.U(jVar, j6.Ji, getResourceProvider());
@@ -333,9 +333,9 @@ public final class n extends e2 implements l30, is, te.b {
         this.f19612e = u41Var;
         u41Var.setClipToPadding(false);
         u41 u41Var2 = this.f19612e;
-        p41 p41Var = u41Var2.f39895g3;
-        p41Var.f38201r = false;
-        p41Var.f38202s = true;
+        p41 p41Var = u41Var2.f39892g3;
+        p41Var.f38199r = false;
+        p41Var.f38200s = true;
         u41Var2.r1();
         this.actionBar.setBackground(null);
         this.d.addView(this.f19612e, ja.c(-1.0f, -1));
@@ -351,7 +351,7 @@ public final class n extends e2 implements l30, is, te.b {
 
     public final void d0() {
         boolean z10;
-        if (this.h == this.f19614n && TextUtils.equals(((di.q) this.f19615r.f3545b).getText().toString(), this.f19613f)) {
+        if (this.h == this.f19614n && TextUtils.equals(((di.q) this.f19615r.f3548b).getText().toString(), this.f19613f)) {
             z10 = false;
         } else {
             z10 = true;
@@ -365,7 +365,7 @@ public final class n extends e2 implements l30, is, te.b {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             if (chatFull.f28052id == this.f19611c) {
                 this.K = chatFull;
-                this.f19612e.f39895g3.O(true);
+                this.f19612e.f39892g3.O(true);
             }
         }
     }
@@ -459,7 +459,7 @@ public final class n extends e2 implements l30, is, te.b {
 
     @Override
     public final String getInitialSearchString() {
-        return ((di.q) this.f19615r.f3545b).getText().toString();
+        return ((di.q) this.f19615r.f3548b).getText().toString();
     }
 
     @Override
@@ -556,7 +556,7 @@ public final class n extends e2 implements l30, is, te.b {
         }
         g2 g2Var = this.f19615r;
         if (g2Var != null) {
-            String obj = ((di.q) g2Var.f3545b).getText().toString();
+            String obj = ((di.q) g2Var.f3548b).getText().toString();
             if (!obj.isEmpty()) {
                 bundle.putString("nameTextView", obj);
             }

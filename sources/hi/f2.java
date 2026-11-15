@@ -10,7 +10,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import di.vb;
+import di.ub;
 import org.telegram.messenger.i20;
 public final class f2 extends e2 {
     public Drawable f14262i;
@@ -19,18 +19,18 @@ public final class f2 extends e2 {
     public float f14265l;
     public float f14266m;
     public Paint f14267n;
-    public final vb f14268o;
+    public final ub f14268o;
 
-    public f2(vb vbVar, int i7, int i10, String str) {
-        super(vbVar);
-        this.f14268o = vbVar;
+    public f2(ub ubVar, int i7, int i10, String str) {
+        super(ubVar);
+        this.f14268o = ubVar;
         this.f14228a = i7;
-        Drawable mutate = vbVar.getContext().getResources().getDrawable(i10).mutate();
+        Drawable mutate = ubVar.getContext().getResources().getDrawable(i10).mutate();
         this.f14262i = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         String upperCase = str.toUpperCase();
-        TextPaint textPaint = (TextPaint) vbVar.f9633c;
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint, org.telegram.messenger.g0.f23609q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        TextPaint textPaint = (TextPaint) ubVar.f9564c;
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint, org.telegram.messenger.g0.f23611q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f14264k = staticLayout;
         this.f14265l = staticLayout.getLineCount() > 0 ? this.f14264k.getLineWidth(0) : 0.0f;
         this.f14266m = this.f14264k.getLineCount() > 0 ? this.f14264k.getLineLeft(0) : 0.0f;
@@ -45,7 +45,7 @@ public final class f2 extends e2 {
         float a10 = this.f14233g.a(0.05f);
         canvas.save();
         canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), (Paint) this.f14268o.f9632b);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), (Paint) this.f14268o.f9563b);
         if (this.f14263j != null) {
             canvas.saveLayerAlpha(rectF, 255, 31);
         }
@@ -54,7 +54,7 @@ public final class f2 extends e2 {
             org.telegram.messenger.f6 f12 = org.telegram.messenger.j6.f(null);
             this.f14262i = f12;
             if (com.google.android.gms.internal.vision.e2.s(f12)) {
-                f12.f23446a = false;
+                f12.f23449a = false;
             }
         }
         if (this.f14262i != null) {
@@ -79,12 +79,12 @@ public final class f2 extends e2 {
         canvas.restore();
     }
 
-    public f2(vb vbVar, CharSequence charSequence) {
-        super(vbVar);
-        this.f14268o = vbVar;
+    public f2(ub ubVar, CharSequence charSequence) {
+        super(ubVar);
+        this.f14268o = ubVar;
         this.f14228a = 5;
-        TextPaint textPaint = (TextPaint) vbVar.f9633c;
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint, org.telegram.messenger.g0.f23609q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        TextPaint textPaint = (TextPaint) ubVar.f9564c;
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint, org.telegram.messenger.g0.f23611q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f14264k = staticLayout;
         this.f14265l = staticLayout.getLineCount() > 0 ? this.f14264k.getLineWidth(0) : 0.0f;
         this.f14266m = this.f14264k.getLineCount() > 0 ? this.f14264k.getLineLeft(0) : 0.0f;

@@ -66,9 +66,9 @@ public final class h2 implements ValueAnimator.AnimatorUpdateListener {
                 xp xpVar = (xp) this.f28634c;
                 xpVar.getClass();
                 xi0 xi0Var = (xi0) xpVar.d;
-                xi0Var.f41706b.put(this.f28633b, (Float) valueAnimator.getAnimatedValue());
+                xi0Var.f41698b.put(this.f28633b, (Float) valueAnimator.getAnimatedValue());
                 xi0Var.d = true;
-                xi0Var.f41705a.invalidate();
+                xi0Var.f41697a.invalidate();
                 return;
             default:
                 xh.f fVar = (xh.f) this.f28634c;

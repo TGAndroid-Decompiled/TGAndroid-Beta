@@ -41,7 +41,7 @@ public final class q30 extends v4.k {
             ofFloat.addUpdateListener(new a3(this, 14));
             this.G.addListener(new xx(this, 2));
             this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.er.f34420f);
+            this.G.setInterpolator(org.telegram.ui.Components.er.f34419f);
             this.G.start();
             c40 c40Var = this.L;
             c40Var.L1.invalidate();

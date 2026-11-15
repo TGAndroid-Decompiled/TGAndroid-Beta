@@ -19,10 +19,10 @@ public final class g0 {
         e1 T;
         int i11;
         RecyclerView recyclerView = this.f58563a;
-        recyclerView.f2796b.k(e1Var);
+        recyclerView.f2799b.k(e1Var);
         recyclerView.h(e1Var);
         e1Var.q(false);
-        g1 g1Var = (g1) recyclerView.f2800d0;
+        g1 g1Var = (g1) recyclerView.f2803d0;
         g1Var.getClass();
         int i12 = r0Var.f10369a;
         int i13 = r0Var.f10370b;
@@ -64,14 +64,14 @@ public final class g0 {
 
     public void b(e1 e1Var) {
         RecyclerView recyclerView = this.f58563a;
-        o0 o0Var = recyclerView.f2827y;
+        o0 o0Var = recyclerView.f2830y;
         View view = e1Var.f58535a;
-        w0 w0Var = recyclerView.f2796b;
+        w0 w0Var = recyclerView.f2799b;
         ld0 ld0Var = o0Var.f58621a;
-        ff ffVar = (ff) ld0Var.f48976b;
-        int indexOfChild = ((RecyclerView) ffVar.f34586b).indexOfChild(view);
+        ff ffVar = (ff) ld0Var.f48972b;
+        int indexOfChild = ((RecyclerView) ffVar.f34590b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((va) ld0Var.f48977c).x(indexOfChild)) {
+            if (((va) ld0Var.f48973c).x(indexOfChild)) {
                 ld0Var.K(view);
             }
             ffVar.C0(indexOfChild);

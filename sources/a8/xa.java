@@ -132,8 +132,8 @@ public class xa implements f3.i, m9.t {
                     c8 c8Var = new c8(b8Var);
                     android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(1);
                     cbVar.a(a0Var);
-                    HashMap hashMap = new HashMap((HashMap) a0Var.f1706b);
-                    HashMap hashMap2 = new HashMap((HashMap) a0Var.f1707c);
+                    HashMap hashMap = new HashMap((HashMap) a0Var.f1713b);
+                    HashMap hashMap2 = new HashMap((HashMap) a0Var.f1714c);
                     o0 o0Var = (o0) a0Var.d;
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     try {
@@ -162,8 +162,8 @@ public class xa implements f3.i, m9.t {
                     y7.m6 m6Var = new y7.m6(eVar);
                     ld0 ld0Var = new ld0(26);
                     g9Var.a(ld0Var);
-                    HashMap hashMap3 = new HashMap((HashMap) ld0Var.f48976b);
-                    HashMap hashMap4 = new HashMap((HashMap) ld0Var.f48977c);
+                    HashMap hashMap3 = new HashMap((HashMap) ld0Var.f48972b);
+                    HashMap hashMap4 = new HashMap((HashMap) ld0Var.f48973c);
                     y7.i iVar = (y7.i) ld0Var.d;
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
@@ -180,7 +180,7 @@ public class xa implements f3.i, m9.t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e11);
                 }
             case 2:
-                xf xfVar = xf.f4780c;
+                xf xfVar = xf.f4783c;
                 ga.d dVar4 = (ga.d) this.f714c;
                 ((u9) this.d).h = false;
                 u9 u9Var3 = (u9) this.d;
@@ -191,8 +191,8 @@ public class xa implements f3.i, m9.t {
                     c8.gb gbVar = new c8.gb(dVar4);
                     android.support.v4.media.session.a0 a0Var2 = new android.support.v4.media.session.a0(14);
                     xfVar.a(a0Var2);
-                    HashMap hashMap5 = new HashMap((HashMap) a0Var2.f1706b);
-                    HashMap hashMap6 = new HashMap((HashMap) a0Var2.f1707c);
+                    HashMap hashMap5 = new HashMap((HashMap) a0Var2.f1713b);
+                    HashMap hashMap6 = new HashMap((HashMap) a0Var2.f1714c);
                     c8.x xVar = (c8.x) a0Var2.d;
                     ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
                     try {
@@ -303,7 +303,7 @@ public class xa implements f3.i, m9.t {
             z10 = false;
         }
         this.f713b = i11;
-        for (int i12 = 0; i12 < bg.i.f3253y; i12++) {
+        for (int i12 = 0; i12 < bg.i.f3256y; i12++) {
             if (z10 || ((Bitmap[]) this.d)[i12] == null) {
                 Bitmap bitmap = ((Bitmap[]) this.d)[i12];
                 if (bitmap != null) {
@@ -594,7 +594,7 @@ public class xa implements f3.i, m9.t {
     }
 
     public void w(int i7) {
-        x(i7, 200L, er.f34420f);
+        x(i7, 200L, er.f34419f);
     }
 
     public void x(int i7, long j3, Interpolator interpolator) {
@@ -694,7 +694,7 @@ public class xa implements f3.i, m9.t {
         this.f714c = rectF;
         this.f713b = i7;
         try {
-            this.d = File.createTempFile("paint", ".bin", org.telegram.messenger.t0.f26600b.getCacheDir());
+            this.d = File.createTempFile("paint", ".bin", org.telegram.messenger.t0.f26609b.getCacheDir());
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -770,8 +770,8 @@ public class xa implements f3.i, m9.t {
     public xa(j2.g gVar) {
         this.f712a = 16;
         ?? obj = new Object();
-        obj.f3345c = new nb.a(6);
-        obj.f3344b = 3;
+        obj.f3348c = new nb.a(6);
+        obj.f3347b = 3;
         this.d = obj;
         this.f714c = gVar;
         this.f713b = 1;
@@ -807,7 +807,7 @@ public class xa implements f3.i, m9.t {
                 this.f713b = 0;
                 return;
             default:
-                int i10 = bg.i.f3253y;
+                int i10 = bg.i.f3256y;
                 this.f714c = new bg.d0[i10];
                 this.d = new Bitmap[i10];
                 return;

@@ -29,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f26995w;
+    int f26996w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -116,7 +116,7 @@ public class VideoFramesRewinder {
         char c11 = 4;
         int i11 = iArr[4];
         int i12 = 0;
-        int min = Math.min(this.f26995w / 4, iArr[0]);
+        int min = Math.min(this.f26996w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i13 = this.maxFrameSide;
         if (min > i13 || min2 > i13) {
@@ -204,7 +204,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i7, int i10) {
-        this.f26995w = i7;
+        this.f26996w = i7;
         this.h = i10;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();
@@ -305,6 +305,6 @@ public class VideoFramesRewinder {
             return;
         }
         this.stop.set(false);
-        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, m10.f24934t0, 0L, null, true);
+        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, m10.f24940t0, 0L, null, true);
     }
 }

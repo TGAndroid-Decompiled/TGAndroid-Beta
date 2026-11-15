@@ -625,7 +625,7 @@ public final class y5 extends FrameLayout implements org.telegram.ui.ActionBar.z
             Paint.FontMetricsInt fontMetricsInt = e1Var.getPaint().getFontMetricsInt();
             int max = Math.max(1, Math.round((e1Var.getTextSize() * 0.85f) / 1.2f));
             for (g6 g6Var : (g6[]) editable.getSpans(0, editable.length(), g6.class)) {
-                g6Var.f23694b = 0.85f;
+                g6Var.f23696b = 0.85f;
             }
             for (org.telegram.ui.Components.p5 p5Var : (org.telegram.ui.Components.p5[]) editable.getSpans(0, editable.length(), org.telegram.ui.Components.p5.class)) {
                 p5Var.replaceFontMetrics(fontMetricsInt);
@@ -878,7 +878,7 @@ public final class y5 extends FrameLayout implements org.telegram.ui.ActionBar.z
         if (aVar.f21546e) {
             jVar.setVisibility(8);
             o2Var.setVisibility(0);
-            ((CheckBoxBase) o2Var.f3748b).f(-1, aVar.f21547f, false);
+            ((CheckBoxBase) o2Var.f3751b).f(-1, aVar.f21547f, false);
             return;
         }
         o2Var.setVisibility(8);
@@ -964,13 +964,13 @@ public final class y5 extends FrameLayout implements org.telegram.ui.ActionBar.z
             } else {
                 int L3 = org.telegram.messenger.g0.L(16.0f) + c10;
                 int L4 = org.telegram.messenger.g0.L(16.0f) + d;
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i7 = L4;
                 } else {
                     i7 = L3;
                 }
                 int width2 = getWidth();
-                if (!hd.f24101a0) {
+                if (!hd.f24104a0) {
                     L3 = L4;
                 }
                 width = width2 - L3;

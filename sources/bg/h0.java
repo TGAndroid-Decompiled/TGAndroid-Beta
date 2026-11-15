@@ -28,23 +28,23 @@ import org.telegram.ui.Components.p50;
 import org.telegram.ui.an;
 import org.telegram.ui.my0;
 public final class h0 implements Runnable {
-    public final int f3245a = 1;
-    public final long f3246b;
-    public final Object f3247c;
+    public final int f3248a = 1;
+    public final long f3249b;
+    public final Object f3250c;
     public final Object d;
-    public final Object f3248e;
-    public final Object f3249f;
+    public final Object f3251e;
+    public final Object f3252f;
     public final Object h;
-    public final Object f3250n;
+    public final Object f3253n;
 
     public h0(long j3, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, ConferenceCall conferenceCall, TLObject tLObject, TLRPC.TL_error tL_error, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks) {
-        this.f3248e = conferenceCall;
-        this.f3249f = getgroupcallchainblocks;
-        this.f3246b = j3;
-        this.f3247c = tLObject;
+        this.f3251e = conferenceCall;
+        this.f3252f = getgroupcallchainblocks;
+        this.f3249b = j3;
+        this.f3250c = tLObject;
         this.d = tL_error;
         this.h = atomicBoolean;
-        this.f3250n = atomicInteger;
+        this.f3253n = atomicInteger;
     }
 
     @Override
@@ -56,14 +56,14 @@ public final class h0 implements Runnable {
         final boolean z11;
         int i7;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        int i10 = this.f3245a;
-        long j3 = this.f3246b;
-        Object obj = this.f3250n;
-        Object obj2 = this.f3248e;
+        int i10 = this.f3248a;
+        long j3 = this.f3249b;
+        Object obj = this.f3253n;
+        Object obj2 = this.f3251e;
         Object obj3 = this.h;
-        Object obj4 = this.f3249f;
+        Object obj4 = this.f3252f;
         Object obj5 = this.d;
-        Object obj6 = this.f3247c;
+        Object obj6 = this.f3250c;
         switch (i10) {
             case 0:
                 an anVar2 = (an) obj2;
@@ -134,7 +134,7 @@ public final class h0 implements Runnable {
                 }
                 return;
             case 1:
-                ((ConferenceCall) obj2).lambda$poll$7((TL_phone.getGroupCallChainBlocks) obj4, this.f3246b, (TLObject) obj6, (TLRPC.TL_error) obj5, (AtomicBoolean) obj3, (AtomicInteger) obj);
+                ((ConferenceCall) obj2).lambda$poll$7((TL_phone.getGroupCallChainBlocks) obj4, this.f3249b, (TLObject) obj6, (TLRPC.TL_error) obj5, (AtomicBoolean) obj3, (AtomicInteger) obj);
                 return;
             case 2:
                 p50 p50Var = (p50) obj5;
@@ -160,12 +160,12 @@ public final class h0 implements Runnable {
                     i7 = 2131753726;
                 }
                 z0Var.setText(hd.M0(i7, null));
-                final long j10 = this.f3246b;
+                final long j10 = this.f3249b;
                 z0Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         p11 p11Var2 = p11.this;
-                        int i11 = p11Var2.f38152e;
+                        int i11 = p11Var2.f38150e;
                         m60Var.u();
                         boolean z12 = z11;
                         TLRPC.User user2 = user;
@@ -184,51 +184,51 @@ public final class h0 implements Runnable {
             default:
                 Activity activity = (Activity) obj5;
                 e6 e6Var = (e6) obj4;
-                my0 my0Var = new my0(activity, e6Var, this.f3246b, (byte[]) obj3);
+                my0 my0Var = new my0(activity, e6Var, this.f3249b, (byte[]) obj3);
                 my0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) obj6));
-                my0Var.f49349v1 = new xi.e((an) obj2, activity, e6Var, (gj) obj);
+                my0Var.f49348v1 = new xi.e((an) obj2, activity, e6Var, (gj) obj);
                 my0Var.show();
                 return;
         }
     }
 
     public h0(TLObject tLObject, Activity activity, e6 e6Var, long j3, byte[] bArr, an anVar, gj gjVar) {
-        this.f3247c = tLObject;
+        this.f3250c = tLObject;
         this.d = activity;
-        this.f3249f = e6Var;
-        this.f3246b = j3;
+        this.f3252f = e6Var;
+        this.f3249b = j3;
         this.h = bArr;
-        this.f3248e = anVar;
-        this.f3250n = gjVar;
+        this.f3251e = anVar;
+        this.f3253n = gjVar;
     }
 
     public h0(TLRPC.TL_error tL_error, an anVar, TLObject tLObject, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
         this.d = tL_error;
-        this.f3248e = anVar;
-        this.f3247c = tLObject;
-        this.f3249f = fileLocationArr;
-        this.f3250n = str;
+        this.f3251e = anVar;
+        this.f3250c = tLObject;
+        this.f3252f = fileLocationArr;
+        this.f3253n = str;
         this.h = fileLocationArr2;
-        this.f3246b = j3;
+        this.f3249b = j3;
     }
 
     public h0(p50 p50Var, t1 t1Var, Context context, long j3, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
         this.d = p50Var;
-        this.f3248e = t1Var;
-        this.f3247c = context;
-        this.f3246b = j3;
-        this.f3249f = tL_chatInviteExported;
+        this.f3251e = t1Var;
+        this.f3250c = context;
+        this.f3249b = j3;
+        this.f3252f = tL_chatInviteExported;
         this.h = tL_chatInviteImporter;
-        this.f3250n = channelParticipant;
+        this.f3253n = channelParticipant;
     }
 
     public h0(p11 p11Var, TLRPC.ChannelParticipant channelParticipant, z0 z0Var, m60 m60Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
         this.d = p11Var;
-        this.f3248e = channelParticipant;
-        this.f3247c = z0Var;
-        this.f3249f = m60Var;
-        this.f3246b = j3;
+        this.f3251e = channelParticipant;
+        this.f3250c = z0Var;
+        this.f3252f = m60Var;
+        this.f3249b = j3;
         this.h = user;
-        this.f3250n = chat;
+        this.f3253n = chat;
     }
 }

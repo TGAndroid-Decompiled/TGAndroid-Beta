@@ -25,7 +25,7 @@ public final class gn0 extends View implements org.telegram.ui.ActionBar.z5 {
 
     static {
         mt0 mt0Var = new mt0(new rb0(8), new rb0(9));
-        mt0Var.f37378c = 100.0f;
+        mt0Var.f37377c = 100.0f;
         f35027x = mt0Var;
     }
 
@@ -66,7 +66,7 @@ public final class gn0 extends View implements org.telegram.ui.ActionBar.z5 {
             }
             ValueAnimator duration = ValueAnimator.ofFloat(this.f35033n, f10).setDuration(200L);
             this.h = duration;
-            duration.setInterpolator(er.f34420f);
+            duration.setInterpolator(er.f34419f);
             this.h.addUpdateListener(new f60(this, 15));
             this.h.addListener(new h60(this, 18));
             this.h.start();

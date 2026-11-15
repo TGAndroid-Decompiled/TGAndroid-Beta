@@ -17,7 +17,7 @@ public final class zg implements eh.a {
             case 0:
             case 1:
             default:
-                aVar.f8087a = true;
+                aVar.f8090a = true;
                 return;
         }
     }
@@ -35,19 +35,19 @@ public final class zg implements eh.a {
                 int i7 = 0;
                 while (i7 < 2) {
                     if (i7 == 0) {
-                        ciVar = kiVar.f36509w2;
+                        ciVar = kiVar.f36497w2;
                     } else {
-                        ciVar = kiVar.f36513x2;
+                        ciVar = kiVar.f36501x2;
                     }
-                    if (ciVar != null && ciVar.f33608c != null && ciVar.getVisibility() == 0) {
-                        if (i7 == 0 && (ciVar2 = kiVar.f36513x2) != null && ciVar2.getVisibility() == 0) {
-                            alpha = (1.0f - kiVar.f36513x2.getAlpha()) * ciVar.getAlpha();
+                    if (ciVar != null && ciVar.f33610c != null && ciVar.getVisibility() == 0) {
+                        if (i7 == 0 && (ciVar2 = kiVar.f36501x2) != null && ciVar2.getVisibility() == 0) {
+                            alpha = (1.0f - kiVar.f36501x2.getAlpha()) * ciVar.getAlpha();
                         } else {
                             alpha = ciVar.getAlpha();
                         }
                         canvas2 = canvas;
                         rectF2 = rectF;
-                        ih.d.b(ciVar.f33608c, canvas2, rectF2, ciVar.d, kiVar.f29682b, (int) (alpha * 255.0f));
+                        ih.d.b(ciVar.f33610c, canvas2, rectF2, ciVar.d, kiVar.f29682b, (int) (alpha * 255.0f));
                     } else {
                         canvas2 = canvas;
                         rectF2 = rectF;

@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public abstract class m5 {
     public static boolean A() {
-        TLRPC.User a22 = np.s1(m10.f24934t0).a2(0L);
+        TLRPC.User a22 = np.s1(m10.f24940t0).a2(0L);
         if (a22 == null) {
             return false;
         }
@@ -343,7 +343,7 @@ public abstract class m5 {
     }
 
     public static String t(long j3) {
-        return u(np.s1(m10.f24934t0).e2(j3));
+        return u(np.s1(m10.f24940t0).e2(j3));
     }
 
     public static String u(TLObject tLObject) {
@@ -389,7 +389,7 @@ public abstract class m5 {
     }
 
     public static String w(long j3) {
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         TLObject e22 = np.s1(i7).e2(j3);
         if (e22 instanceof TLRPC.User) {
             return hd.d0(i7, (TLRPC.User) e22, null, null);

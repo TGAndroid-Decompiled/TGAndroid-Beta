@@ -15,10 +15,10 @@ import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.uc;
 import org.telegram.ui.Components.zh;
 import org.telegram.ui.an;
+import org.telegram.ui.an0;
 import org.telegram.ui.bg0;
-import org.telegram.ui.bn0;
+import org.telegram.ui.cn0;
 import org.telegram.ui.i90;
-import org.telegram.ui.ym0;
 import org.telegram.ui.z51;
 import org.telegram.ui.zm0;
 public final class x1 implements View.OnClickListener {
@@ -46,9 +46,9 @@ public final class x1 implements View.OnClickListener {
                 b4 b4Var = (b4) obj;
                 boolean z12 = !z11;
                 np s12 = np.s1(b4Var.f11497m2);
-                if (s12.f25372q6 != z12) {
-                    SharedPreferences.Editor edit = s12.f25280f7.edit();
-                    s12.f25372q6 = z12;
+                if (s12.f25375q6 != z12) {
+                    SharedPreferences.Editor edit = s12.f25283f7.edit();
+                    s12.f25375q6 = z12;
                     edit.putBoolean("storyQualityFull", z12).apply();
                     s12.getNotificationCenter().k(209, new Object[0]);
                 }
@@ -114,7 +114,7 @@ public final class x1 implements View.OnClickListener {
             case 3:
                 z51 z51Var = (z51) obj;
                 for (int i12 = 0; i12 < 2; i12++) {
-                    org.telegram.ui.Cells.v0 v0Var = ((org.telegram.ui.Cells.v0[]) z51Var.f53882b)[i12];
+                    org.telegram.ui.Cells.v0 v0Var = ((org.telegram.ui.Cells.v0[]) z51Var.f53847b)[i12];
                     org.telegram.ui.Cells.u0 u0Var = (org.telegram.ui.Cells.u0) v0Var.d;
                     if (v0Var == view) {
                         z10 = true;
@@ -123,9 +123,9 @@ public final class x1 implements View.OnClickListener {
                     }
                     u0Var.a(z10, true);
                 }
-                gz.f23971p1 = z11;
+                gz.f23974p1 = z11;
                 SharedPreferences.Editor edit2 = np.e1().edit();
-                edit2.putBoolean("useThreeLinesLayout", gz.f23971p1);
+                edit2.putBoolean("useThreeLinesLayout", gz.f23974p1);
                 edit2.apply();
                 ns.e().k(3, Boolean.TRUE);
                 return;
@@ -145,7 +145,7 @@ public final class x1 implements View.OnClickListener {
                 return;
             case 5:
                 ki kiVar = (ki) obj;
-                org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+                org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
                 if (kiVar.O2 != 0) {
                     kiVar.X3.v0();
                     kiVar.dismiss();
@@ -153,29 +153,29 @@ public final class x1 implements View.OnClickListener {
                 }
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList = new ArrayList();
-                bn0 bn0Var = new bn0(hashMap, arrayList, 0, true, (an) e2Var);
+                cn0 cn0Var = new cn0(hashMap, arrayList, 0, true, (an) e2Var);
                 zh zhVar = new zh(kiVar, hashMap, arrayList);
-                ym0 ym0Var = bn0Var.f45790a;
-                ym0Var.f53590t0 = zhVar;
-                ym0 ym0Var2 = bn0Var.f45791b;
-                ym0Var2.f53590t0 = zhVar;
-                ym0Var.f53591u0 = new zm0(bn0Var, 1);
-                ym0Var2.f53591u0 = new zm0(bn0Var, 2);
+                zm0 zm0Var = cn0Var.f46183a;
+                zm0Var.f53981t0 = zhVar;
+                zm0 zm0Var2 = cn0Var.f46184b;
+                zm0Var2.f53981t0 = zhVar;
+                zm0Var.f53982u0 = new an0(cn0Var, 1);
+                zm0Var2.f53982u0 = new an0(cn0Var, 2);
                 int i13 = kiVar.Q3;
                 boolean z14 = kiVar.R3;
-                ym0Var.k0(i13, z14);
-                ym0Var2.k0(i13, z14);
+                zm0Var.k0(i13, z14);
+                zm0Var2.k0(i13, z14);
                 if (z11) {
-                    e2Var.showAsSheet(bn0Var);
+                    e2Var.showAsSheet(cn0Var);
                 } else {
-                    e2Var.presentFragment(bn0Var);
+                    e2Var.presentFragment(cn0Var);
                 }
                 kiVar.dismiss();
                 return;
             default:
                 i90 i90Var = (i90) obj;
                 if (!z11) {
-                    org.telegram.ui.Cells.q8 q8Var = i90Var.f47991n;
+                    org.telegram.ui.Cells.q8 q8Var = i90Var.f47981n;
                     if (q8Var != null && q8Var.f31310e.h) {
                         int i14 = -i90Var.N;
                         i90Var.N = i14;
@@ -186,14 +186,14 @@ public final class x1 implements View.OnClickListener {
                     boolean z15 = q8Var2.f31310e.h;
                     q8Var2.setChecked(!z15);
                     i90Var.e0(z15);
-                    org.telegram.ui.Cells.q8 q8Var3 = i90Var.f47991n;
+                    org.telegram.ui.Cells.q8 q8Var3 = i90Var.f47981n;
                     if (q8Var3 != null) {
                         if (q8Var2.f31310e.h) {
                             q8Var3.setChecked(false);
-                            i90Var.f47991n.setCheckBoxIcon(2131232514);
-                            i90Var.f47992r.setVisibility(8);
+                            i90Var.f47981n.setCheckBoxIcon(2131232514);
+                            i90Var.f47982r.setVisibility(8);
                             return;
-                        } else if (i90Var.f47989e == null) {
+                        } else if (i90Var.f47979e == null) {
                             q8Var3.setCheckBoxIcon(0);
                             return;
                         } else {

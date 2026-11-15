@@ -13,7 +13,7 @@ public final class o5 implements SensorEventListener {
         if (f10 <= 0.0f) {
             f10 = 0.1f;
         }
-        if (!org.telegram.messenger.t0.f26608x && org.telegram.messenger.t0.f26607w) {
+        if (!org.telegram.messenger.t0.f26617x && org.telegram.messenger.t0.f26616w) {
             if (f10 > 500.0f) {
                 j6.h = 1.0f;
             } else {
@@ -25,7 +25,7 @@ public final class o5 implements SensorEventListener {
                 if (B.J) {
                     if (!B.J()) {
                         gj gjVar = B.f22377v0;
-                        if (gjVar != null && (gj.R4(gjVar.f23817k) || B.f22377v0.h4())) {
+                        if (gjVar != null && (gj.R4(gjVar.f23819k) || B.f22377v0.h4())) {
                             return;
                         }
                     } else {

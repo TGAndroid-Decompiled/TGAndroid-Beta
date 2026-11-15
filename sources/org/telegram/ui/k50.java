@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
 public final class k50 extends org.telegram.ui.Components.tj0 {
-    public final Context f48587c;
+    public final Context f48541c;
     public ArrayList d = new ArrayList();
-    public ArrayList f48588e = new ArrayList();
-    public g50 f48589f;
+    public ArrayList f48542e = new ArrayList();
+    public g50 f48543f;
     public String h;
-    public int f48590n;
-    public final l50 f48591r;
+    public int f48544n;
+    public final l50 f48545r;
 
     public k50(l50 l50Var, Context context) {
-        this.f48591r = l50Var;
-        this.f48587c = context;
+        this.f48545r = l50Var;
+        this.f48541c = context;
         C(true);
     }
 
     public static void E(k50 k50Var, String str) {
-        l50 l50Var = k50Var.f48591r;
+        l50 l50Var = k50Var.f48545r;
         if (l50Var.O) {
             if (!TextUtils.isEmpty(str)) {
                 org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, l50Var.d, l50Var.getResourceProvider());
@@ -31,35 +31,35 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
                 l50Var.d.setBackground(null);
             }
         }
-        if (k50Var.f48590n != 0) {
-            l50Var.getConnectionsManager().cancelRequest(k50Var.f48590n, true);
-            k50Var.f48590n = 0;
+        if (k50Var.f48544n != 0) {
+            l50Var.getConnectionsManager().cancelRequest(k50Var.f48544n, true);
+            k50Var.f48544n = 0;
         }
-        g50 g50Var = k50Var.f48589f;
+        g50 g50Var = k50Var.f48543f;
         if (g50Var != null) {
             org.telegram.messenger.g0.r(g50Var);
-            k50Var.f48589f = null;
+            k50Var.f48543f = null;
         }
         k50Var.h = null;
         int b10 = k50Var.b();
         if (b10 > 0) {
             k50Var.d.clear();
-            k50Var.f48588e.clear();
+            k50Var.f48542e.clear();
             k50Var.p(0, b10);
         }
         if (TextUtils.isEmpty(str)) {
-            l50Var.f48846b.setVisibility(8);
-            l50Var.f48846b.e(false, true);
+            l50Var.f48842b.setVisibility(8);
+            l50Var.f48842b.e(false, true);
             return;
         }
-        if (l50Var.f48846b.getVisibility() != 0) {
-            l50Var.f48846b.setVisibility(0);
-            l50Var.f48846b.e(true, false);
+        if (l50Var.f48842b.getVisibility() != 0) {
+            l50Var.f48842b.setVisibility(0);
+            l50Var.f48842b.e(true, false);
         } else {
-            l50Var.f48846b.e(true, true);
+            l50Var.f48842b.e(true, true);
         }
         g50 g50Var2 = new g50(1, k50Var, str);
-        k50Var.f48589f = g50Var2;
+        k50Var.f48543f = g50Var2;
         org.telegram.messenger.g0.i3(g50Var2, 300L);
     }
 
@@ -73,7 +73,7 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.f48588e.size() + this.d.size() + (!this.f48588e.isEmpty());
+        return this.f48542e.size() + this.d.size() + (!this.f48542e.isEmpty());
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
         ArrayList arrayList;
         if (d(i7) == 0) {
             if (i7 > this.d.size()) {
-                arrayList = this.f48588e;
+                arrayList = this.f48542e;
             } else {
                 arrayList = this.d;
             }
@@ -119,7 +119,7 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
             z10 = false;
         }
         if (z10) {
-            arrayList = this.f48588e;
+            arrayList = this.f48542e;
         } else {
             arrayList = this.d;
         }
@@ -140,7 +140,7 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
         } else {
             str = "";
         }
-        l50 l50Var = this.f48591r;
+        l50 l50Var = this.f48545r;
         org.telegram.ui.ActionBar.e6 resourceProvider = l50Var.getResourceProvider();
         TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
         String str4 = stickerSet.title;
@@ -165,11 +165,11 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
             spannableString2.setSpan(new org.telegram.ui.Components.b00(org.telegram.ui.ActionBar.j6.f29089q6, resourceProvider), length, str.length() + length, 0);
             f8Var.f30296c.setText(spannableString2);
         }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = l50Var.f48851r;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = l50Var.f48847r;
         if (tL_messages_stickerSet2 != null) {
             j3 = tL_messages_stickerSet2.set.f28078id;
-        } else if (l50Var.g0(l50Var.f48853w) != null) {
-            j3 = l50Var.g0(l50Var.f48853w).f28078id;
+        } else if (l50Var.g0(l50Var.f48849w) != null) {
+            j3 = l50Var.g0(l50Var.f48849w).f28078id;
         } else {
             j3 = 0;
         }
@@ -185,8 +185,8 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
         int i10;
         if (i7 != 0) {
             int i11 = org.telegram.ui.ActionBar.j6.B6;
-            l50 l50Var = this.f48591r;
-            org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f48587c, i11, 21, 0, 0, false, false, l50Var.getResourceProvider());
+            l50 l50Var = this.f48545r;
+            org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f48541c, i11, 21, 0, 0, false, false, l50Var.getResourceProvider());
             if (l50Var.O) {
                 i10 = 2131752119;
             } else {
@@ -195,7 +195,7 @@ public final class k50 extends org.telegram.ui.Components.tj0 {
             n4Var.setText(org.telegram.messenger.hd.M0(i10, null));
             f8Var = n4Var;
         } else {
-            org.telegram.ui.Cells.f8 f8Var2 = new org.telegram.ui.Cells.f8(this.f48587c, 3);
+            org.telegram.ui.Cells.f8 f8Var2 = new org.telegram.ui.Cells.f8(this.f48541c, 3);
             org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, f8Var2, null);
             f8Var = f8Var2;
         }

@@ -106,12 +106,12 @@ public final class at extends c1 implements is {
     static {
         m0 = null;
         f22559n0 = null;
-        if (Build.VERSION.SDK_INT >= 26 && t0.f26600b != null) {
-            m0 = new e0.i0(t0.f26600b);
-            f22559n0 = (NotificationManager) t0.f26600b.getSystemService("notification");
+        if (Build.VERSION.SDK_INT >= 26 && t0.f26609b != null) {
+            m0 = new e0.i0(t0.f26609b);
+            f22559n0 = (NotificationManager) t0.f26609b.getSystemService("notification");
             i();
         }
-        f22561p0 = (AudioManager) t0.f26600b.getSystemService("audio");
+        f22561p0 = (AudioManager) t0.f26609b.getSystemService("audio");
         f22562q0 = new at[4];
         f22563r0 = new Object[4];
         for (int i7 = 0; i7 < 4; i7++) {
@@ -164,20 +164,20 @@ public final class at extends c1 implements is {
         this.S = d.getBoolean("badgeNumber", true);
         this.T = d.getBoolean("badgeNumberMuted", false);
         this.U = d.getBoolean("badgeNumberMessages", true);
-        m0 = new e0.i0(t0.f26600b);
-        f22559n0 = (NotificationManager) t0.f26600b.getSystemService("notification");
+        m0 = new e0.i0(t0.f26609b);
+        f22559n0 = (NotificationManager) t0.f26609b.getSystemService("notification");
         try {
-            f22561p0 = (AudioManager) t0.f26600b.getSystemService("audio");
+            f22561p0 = (AudioManager) t0.f26609b.getSystemService("audio");
         } catch (Exception e10) {
             a8.g(e10, true);
         }
         try {
-            this.f22571d0 = (AlarmManager) t0.f26600b.getSystemService("alarm");
+            this.f22571d0 = (AlarmManager) t0.f26609b.getSystemService("alarm");
         } catch (Exception e11) {
             a8.g(e11, true);
         }
         try {
-            PowerManager.WakeLock newWakeLock = ((PowerManager) t0.f26600b.getSystemService("power")).newWakeLock(1, "telegram:notification_delay_lock");
+            PowerManager.WakeLock newWakeLock = ((PowerManager) t0.f26609b.getSystemService("power")).newWakeLock(1, "telegram:notification_delay_lock");
             this.W = newWakeLock;
             newWakeLock.setReferenceCounted(false);
         } catch (Exception e12) {
@@ -190,7 +190,7 @@ public final class at extends c1 implements is {
 
     public static boolean E(gj gjVar) {
         TLRPC.MessageAction messageAction;
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         TLRPC.Peer peer = message.peer_id;
         if ((peer != null && peer.chat_id == 0 && peer.channel_id == 0 && ((messageAction = message.action) == null || (messageAction instanceof TLRPC.TL_messageActionEmpty))) || gjVar.J) {
             return true;
@@ -374,7 +374,7 @@ public final class at extends c1 implements is {
         boolean z10;
         String M0;
         if (atVar.getUserConfig().p()) {
-            if (gz.Q0 || atVar.currentAccount == m10.f24934t0) {
+            if (gz.Q0 || atVar.currentAccount == m10.f24940t0) {
                 try {
                     String str2 = "wallet_tonconnect_" + atVar.currentAccount;
                     if (Build.VERSION.SDK_INT >= 26) {
@@ -384,13 +384,13 @@ public final class at extends c1 implements is {
                         z10 = false;
                         if (!TextUtils.isEmpty(str) && !z10) {
                             M0 = hd.a0(null, null, 2131747925, str);
-                            Intent intent = new Intent(t0.f26600b, LaunchActivity.class);
+                            Intent intent = new Intent(t0.f26609b, LaunchActivity.class);
                             intent.setAction("android.intent.action.VIEW");
                             intent.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                             intent.putExtra("currentAccount", atVar.currentAccount);
                             intent.addFlags(67108864);
-                            PendingIntent activity = PendingIntent.getActivity(t0.f26600b, atVar.currentAccount, intent, 201326592);
-                            e0.q qVar = new e0.q(t0.f26600b, str2);
+                            PendingIntent activity = PendingIntent.getActivity(t0.f26609b, atVar.currentAccount, intent, 201326592);
+                            e0.q qVar = new e0.q(t0.f26609b, str2);
                             qVar.F.icon = 2131232453;
                             qVar.f9933e = e0.q.d(hd.M0(2131689472, null));
                             qVar.f9934f = e0.q.d(M0);
@@ -405,13 +405,13 @@ public final class at extends c1 implements is {
                             m0.e("wallet_tonconnect", atVar.currentAccount, qVar.b());
                         }
                         M0 = hd.M0(2131747926, null);
-                        Intent intent2 = new Intent(t0.f26600b, LaunchActivity.class);
+                        Intent intent2 = new Intent(t0.f26609b, LaunchActivity.class);
                         intent2.setAction("android.intent.action.VIEW");
                         intent2.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                         intent2.putExtra("currentAccount", atVar.currentAccount);
                         intent2.addFlags(67108864);
-                        PendingIntent activity2 = PendingIntent.getActivity(t0.f26600b, atVar.currentAccount, intent2, 201326592);
-                        e0.q qVar2 = new e0.q(t0.f26600b, str2);
+                        PendingIntent activity2 = PendingIntent.getActivity(t0.f26609b, atVar.currentAccount, intent2, 201326592);
+                        e0.q qVar2 = new e0.q(t0.f26609b, str2);
                         qVar2.F.icon = 2131232453;
                         qVar2.f9933e = e0.q.d(hd.M0(2131689472, null));
                         qVar2.f9934f = e0.q.d(M0);
@@ -428,13 +428,13 @@ public final class at extends c1 implements is {
                     z10 = true;
                     if (!TextUtils.isEmpty(str)) {
                         M0 = hd.a0(null, null, 2131747925, str);
-                        Intent intent22 = new Intent(t0.f26600b, LaunchActivity.class);
+                        Intent intent22 = new Intent(t0.f26609b, LaunchActivity.class);
                         intent22.setAction("android.intent.action.VIEW");
                         intent22.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                         intent22.putExtra("currentAccount", atVar.currentAccount);
                         intent22.addFlags(67108864);
-                        PendingIntent activity22 = PendingIntent.getActivity(t0.f26600b, atVar.currentAccount, intent22, 201326592);
-                        e0.q qVar22 = new e0.q(t0.f26600b, str2);
+                        PendingIntent activity22 = PendingIntent.getActivity(t0.f26609b, atVar.currentAccount, intent22, 201326592);
+                        e0.q qVar22 = new e0.q(t0.f26609b, str2);
                         qVar22.F.icon = 2131232453;
                         qVar22.f9933e = e0.q.d(hd.M0(2131689472, null));
                         qVar22.f9934f = e0.q.d(M0);
@@ -449,13 +449,13 @@ public final class at extends c1 implements is {
                         m0.e("wallet_tonconnect", atVar.currentAccount, qVar22.b());
                     }
                     M0 = hd.M0(2131747926, null);
-                    Intent intent222 = new Intent(t0.f26600b, LaunchActivity.class);
+                    Intent intent222 = new Intent(t0.f26609b, LaunchActivity.class);
                     intent222.setAction("android.intent.action.VIEW");
                     intent222.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                     intent222.putExtra("currentAccount", atVar.currentAccount);
                     intent222.addFlags(67108864);
-                    PendingIntent activity222 = PendingIntent.getActivity(t0.f26600b, atVar.currentAccount, intent222, 201326592);
-                    e0.q qVar222 = new e0.q(t0.f26600b, str2);
+                    PendingIntent activity222 = PendingIntent.getActivity(t0.f26609b, atVar.currentAccount, intent222, 201326592);
+                    e0.q qVar222 = new e0.q(t0.f26609b, str2);
                     qVar222.F.icon = 2131232453;
                     qVar222.f9933e = e0.q.d(hd.M0(2131689472, null));
                     qVar222.f9934f = e0.q.d(M0);
@@ -486,7 +486,7 @@ public final class at extends c1 implements is {
                     if (!key.endsWith("_s")) {
                         String str = (String) entry.getValue();
                         f22559n0.deleteNotificationChannel(str);
-                        if (r2.f26198a) {
+                        if (r2.f26206a) {
                             a8.b("delete all channel " + str);
                         }
                     }
@@ -546,7 +546,7 @@ public final class at extends c1 implements is {
                         } catch (Exception e11) {
                             a8.g(e11, true);
                         }
-                        if (r2.f26198a) {
+                        if (r2.f26206a) {
                             a8.b("delete channel cleanup " + id2);
                         }
                     }
@@ -612,9 +612,9 @@ public final class at extends c1 implements is {
                         if (E(gjVar2)) {
                             atVar.K++;
                         }
-                        long B0 = gj.B0(gjVar2.f23817k);
-                        long b22 = gj.b2(atVar.currentAccount, gjVar2.f23817k, atVar.getMessagesController().u2(gjVar2), false);
-                        if (gjVar2.f23817k.mentioned) {
+                        long B0 = gj.B0(gjVar2.f23819k);
+                        long b22 = gj.b2(atVar.currentAccount, gjVar2.f23819k, atVar.getMessagesController().u2(gjVar2), false);
+                        if (gjVar2.f23819k.mentioned) {
                             message = message3;
                             j14 = gjVar2.Z0();
                             j13 = j12;
@@ -652,7 +652,7 @@ public final class at extends c1 implements is {
                             }
                             hVar2.k(Boolean.valueOf(z13), j14);
                         }
-                        if (z13 && (j14 != atVar.G || !t0.f26607w)) {
+                        if (z13 && (j14 != atVar.G || !t0.f26616w)) {
                             if (sparseArray == null) {
                                 sparseArray2 = new SparseArray();
                                 atVar.f22569c.k(sparseArray2, j15);
@@ -722,9 +722,9 @@ public final class at extends c1 implements is {
                 if (E(gjVar3)) {
                     atVar.K++;
                 }
-                long B02 = gj.B0(gjVar3.f23817k);
-                long b23 = gj.b2(atVar.currentAccount, gjVar3.f23817k, atVar.getMessagesController().u2(gjVar3), false);
-                TLRPC.Message message4 = gjVar3.f23817k;
+                long B02 = gj.B0(gjVar3.f23819k);
+                long b23 = gj.b2(atVar.currentAccount, gjVar3.f23819k, atVar.getMessagesController().u2(gjVar3), false);
+                TLRPC.Message message4 = gjVar3.f23819k;
                 long j19 = message4.random_id;
                 if (message4.mentioned) {
                     j3 = gjVar3.Z0();
@@ -751,12 +751,12 @@ public final class at extends c1 implements is {
                     }
                     hVar2.k(Boolean.valueOf(z10), j10);
                 }
-                if (z10 && (j10 != atVar.G || !t0.f26607w)) {
+                if (z10 && (j10 != atVar.G || !t0.f26616w)) {
                     if (e12 != 0) {
                         if (gjVar3.J) {
-                            j11 = gj.B0(gjVar3.f23817k);
+                            j11 = gj.B0(gjVar3.f23819k);
                         } else {
-                            long j21 = gjVar3.f23817k.peer_id.channel_id;
+                            long j21 = gjVar3.f23819k.peer_id.channel_id;
                             if (j21 != 0) {
                                 j11 = -j21;
                             } else {
@@ -851,7 +851,7 @@ public final class at extends c1 implements is {
         SharedPreferences sharedPreferences;
         if (Build.VERSION.SDK_INT >= 26) {
             if (f22557k0 == null) {
-                sharedPreferences = t0.f26600b.getSharedPreferences("Notifications", 0);
+                sharedPreferences = t0.f26609b.getSharedPreferences("Notifications", 0);
                 f22557k0 = sharedPreferences.getString("OtherKey", "Other3");
             } else {
                 sharedPreferences = null;
@@ -868,7 +868,7 @@ public final class at extends c1 implements is {
             }
             if (f22557k0 == null) {
                 if (sharedPreferences == null) {
-                    sharedPreferences = t0.f26600b.getSharedPreferences("Notifications", 0);
+                    sharedPreferences = t0.f26609b.getSharedPreferences("Notifications", 0);
                 }
                 f22557k0 = "Other" + Utilities.f22414b.nextLong();
                 sharedPreferences.edit().putString("OtherKey", f22557k0).commit();
@@ -927,7 +927,7 @@ public final class at extends c1 implements is {
     public static String r(gj gjVar, String str) {
         boolean z10;
         int i7;
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) message.action;
         boolean A = q10.A(gj.B0(message));
         if (!tL_messageActionGramTransfer.comment_encrypted && !TextUtils.isEmpty(tL_messageActionGramTransfer.comment)) {
@@ -1024,10 +1024,10 @@ public final class at extends c1 implements is {
                 return false;
             }
             gj gjVar = (gj) arrayList.get(i7);
-            long B0 = gj.B0(gjVar.f23817k);
+            long B0 = gj.B0(gjVar.f23819k);
             if (!gjVar.I) {
-                TLRPC.Message message = gjVar.f23817k;
-                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && ((gjVar.f23817k.peer_id.channel_id == 0 || gjVar.A4()) && B0 != 489000 && B0 != 489001)) {
+                TLRPC.Message message = gjVar.f23819k;
+                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && ((gjVar.f23819k.peer_id.channel_id == 0 || gjVar.A4()) && B0 != 489000 && B0 != 489001)) {
                     return true;
                 }
             }
@@ -1072,7 +1072,7 @@ public final class at extends c1 implements is {
         } else {
             z11 = false;
         }
-        SharedPreferences.Editor edit = np.s1(this.currentAccount).f25270e7.edit();
+        SharedPreferences.Editor edit = np.s1(this.currentAccount).f25273e7.edit();
         if (D && !z11) {
             edit.remove("notify2_" + v(j3, j10, false));
         } else {
@@ -1093,7 +1093,7 @@ public final class at extends c1 implements is {
         boolean z10;
         long j11 = 0;
         if (j3 != 0) {
-            SharedPreferences.Editor edit = np.s1(this.currentAccount).f25270e7.edit();
+            SharedPreferences.Editor edit = np.s1(this.currentAccount).f25273e7.edit();
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             if (i10 != 0) {
                 z10 = true;
@@ -1203,7 +1203,7 @@ public final class at extends c1 implements is {
         boolean z12;
         boolean z13;
         Object valueOf;
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             StringBuilder sb2 = new StringBuilder("NotificationsController: processNewMessages msgs.size()=");
             if (arrayList == null) {
                 valueOf = "null";
@@ -1227,13 +1227,13 @@ public final class at extends c1 implements is {
             int i7 = 0;
             while (i7 < arrayList.size()) {
                 gj gjVar = (gj) arrayList.get(i7);
-                if (gjVar != null && gjVar.f23817k != null && !gjVar.P3()) {
-                    TLRPC.MessageAction messageAction = gjVar.f23817k.action;
+                if (gjVar != null && gjVar.f23819k != null && !gjVar.P3()) {
+                    TLRPC.MessageAction messageAction = gjVar.f23819k.action;
                     if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
-                        if (!tL_messageActionConferenceCall.active && !tL_messageActionConferenceCall.missed && getConnectionsManager().getCurrentTime() - gjVar.f23817k.date < getMessagesController().f25302i3 / 1000) {
+                        if (!tL_messageActionConferenceCall.active && !tL_messageActionConferenceCall.missed && getConnectionsManager().getCurrentTime() - gjVar.f23819k.date < getMessagesController().f25305i3 / 1000) {
                             HashSet hashSet = new HashSet();
-                            hashSet.add(Long.valueOf(gj.B0(gjVar.f23817k)));
+                            hashSet.add(Long.valueOf(gj.B0(gjVar.f23819k)));
                             ArrayList<TLRPC.Peer> arrayList2 = tL_messageActionConferenceCall.other_participants;
                             int size = arrayList2.size();
                             int i10 = 0;
@@ -1251,11 +1251,11 @@ public final class at extends c1 implements is {
                                 }
                                 sb3.append(m5.s(this.currentAccount, longValue));
                             }
-                            VoIPGroupNotification.request(t0.f26600b, this.currentAccount, gj.B0(gjVar.f23817k), sb3.toString(), tL_messageActionConferenceCall.call_id, gjVar.e1(), tL_messageActionConferenceCall.video);
+                            VoIPGroupNotification.request(t0.f26609b, this.currentAccount, gj.B0(gjVar.f23819k), sb3.toString(), tL_messageActionConferenceCall.call_id, gjVar.e1(), tL_messageActionConferenceCall.video);
                             arrayList.remove(i7);
                             i7--;
                         } else {
-                            VoIPGroupNotification.hide(t0.f26600b, this.currentAccount, gjVar.e1());
+                            VoIPGroupNotification.hide(t0.f26609b, this.currentAccount, gjVar.e1());
                         }
                     }
                 }
@@ -1289,15 +1289,15 @@ public final class at extends c1 implements is {
 
     public final String O(gj gjVar) {
         String str;
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         if (message != null && (str = message.message) != null && message.entities != null) {
             StringBuilder sb2 = new StringBuilder(str);
             if (gjVar.K2) {
                 return sb2.toString();
             }
-            for (int i7 = 0; i7 < gjVar.f23817k.entities.size(); i7++) {
-                if (gjVar.f23817k.entities.get(i7) instanceof TLRPC.TL_messageEntitySpoiler) {
-                    TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = (TLRPC.TL_messageEntitySpoiler) gjVar.f23817k.entities.get(i7);
+            for (int i7 = 0; i7 < gjVar.f23819k.entities.size(); i7++) {
+                if (gjVar.f23819k.entities.get(i7) instanceof TLRPC.TL_messageEntitySpoiler) {
+                    TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = (TLRPC.TL_messageEntitySpoiler) gjVar.f23819k.entities.get(i7);
                     for (int i10 = 0; i10 < tL_messageEntitySpoiler.length; i10++) {
                         char[] cArr = this.f22578i0;
                         sb2.setCharAt(tL_messageEntitySpoiler.offset + i10, cArr[i10 % cArr.length]);
@@ -1355,7 +1355,7 @@ public final class at extends c1 implements is {
         int i7;
         os osVar = this.V;
         try {
-            if (r2.f26198a) {
+            if (r2.f26206a) {
                 a8.b("delay notification start, onlineReason = " + z10);
             }
             this.W.acquire(10000L);
@@ -1375,9 +1375,9 @@ public final class at extends c1 implements is {
 
     public final void R() {
         try {
-            Intent intent = new Intent(t0.f26600b, NotificationRepeat.class);
+            Intent intent = new Intent(t0.f26609b, NotificationRepeat.class);
             intent.putExtra("currentAccount", this.currentAccount);
-            PendingIntent service = PendingIntent.getService(t0.f26600b, 0, intent, 33554432);
+            PendingIntent service = PendingIntent.getService(t0.f26609b, 0, intent, 33554432);
             int i7 = getAccountInstance().d().getInt("repeat_messages", 60);
             if (i7 > 0 && this.K > 0) {
                 this.f22571d0.set(2, SystemClock.elapsedRealtime() + (i7 * 60000), service);
@@ -1394,11 +1394,11 @@ public final class at extends c1 implements is {
             a8.b("setBadge " + i7);
             this.O = i7;
             try {
-                if (cs.f22931c == null && !cs.f22930b) {
+                if (cs.f22939c == null && !cs.f22938b) {
                     cs.b();
-                    cs.f22930b = true;
+                    cs.f22938b = true;
                 }
-                zr zrVar = cs.f22931c;
+                zr zrVar = cs.f22939c;
                 if (zrVar != null) {
                     zrVar.a(i7);
                 }
@@ -1409,7 +1409,7 @@ public final class at extends c1 implements is {
 
     public final void T(long j3, int i7, long j10) {
         SharedPreferences.Editor edit = getAccountInstance().d().edit();
-        TLRPC.Dialog dialog = (TLRPC.Dialog) np.s1(m10.f24934t0).R.f(j3);
+        TLRPC.Dialog dialog = (TLRPC.Dialog) np.s1(m10.f24940t0).R.f(j3);
         if (i7 == 4) {
             if (D(j3, null, false, false)) {
                 edit.remove("notify2_" + v(j3, j10, false));
@@ -1421,7 +1421,7 @@ public final class at extends c1 implements is {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
             }
         } else {
-            int currentTime = ConnectionsManager.getInstance(m10.f24934t0).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(m10.f24940t0).getCurrentTime();
             if (i7 == 0) {
                 currentTime += 3600;
             } else if (i7 == 1) {
@@ -1439,8 +1439,8 @@ public final class at extends c1 implements is {
                 edit.putInt("notifyuntil_" + v(j3, j10, false), currentTime);
                 j11 = 1 | (((long) currentTime) << 32);
             }
-            t(m10.f24934t0).N(j3);
-            vr.a0(m10.f24934t0).E1(j3, j11);
+            t(m10.f24940t0).N(j3);
+            vr.a0(m10.f24940t0).E1(j3, j11);
             if (dialog != null) {
                 TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
                 dialog.notify_settings = tL_peerNotifySettings;
@@ -1455,7 +1455,7 @@ public final class at extends c1 implements is {
         getAccountInstance().d().edit().putInt(q(i7), i10).commit();
         b0(i7);
         vr messagesStorage = getMessagesStorage();
-        messagesStorage.f27220a.c(new oq(messagesStorage, 26));
+        messagesStorage.f27219a.c(new nq(messagesStorage, 26));
         m(i7);
     }
 
@@ -1476,7 +1476,7 @@ public final class at extends c1 implements is {
     }
 
     public final void a0(long j3, String str) {
-        f22558l0.c(new fr(this, str, j3, 3));
+        f22558l0.c(new dr(this, str, j3, 3));
     }
 
     public final void b0(int i7) {
@@ -1548,7 +1548,7 @@ public final class at extends c1 implements is {
     public final void c0(long j3, long j10, boolean z10) {
         int i7;
         if (z10) {
-            getNotificationCenter().k(ns.f25492f0, new Object[0]);
+            getNotificationCenter().k(ns.f25493f0, new Object[0]);
         }
         if (m5.C(j3)) {
             return;
@@ -1648,7 +1648,7 @@ public final class at extends c1 implements is {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == ns.Y1) {
-            f22558l0.c(new wq(11, this, (String) objArr[0]));
+            f22558l0.c(new pq(12, this, (String) objArr[0]));
         }
     }
 
@@ -1661,7 +1661,7 @@ public final class at extends c1 implements is {
         while (true) {
             ArrayList arrayList = this.f22565a;
             if (i7 < arrayList.size()) {
-                if (((gj) arrayList.get(i7)).e1() == gjVar.e1() && gj.B0(((gj) arrayList.get(i7)).f23817k) == gj.B0(gjVar.f23817k) && ((gj) arrayList.get(i7)).K == gjVar.K) {
+                if (((gj) arrayList.get(i7)).e1() == gjVar.e1() && gj.B0(((gj) arrayList.get(i7)).f23819k) == gj.B0(gjVar.f23819k) && ((gj) arrayList.get(i7)).K == gjVar.K) {
                     return;
                 }
                 i7++;
@@ -1718,7 +1718,7 @@ public final class at extends c1 implements is {
                     } catch (Exception e10) {
                         a8.g(e10, true);
                     }
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("delete channel global internal ".concat(string));
                     }
                 }
@@ -1742,7 +1742,7 @@ public final class at extends c1 implements is {
                     } catch (Exception e11) {
                         a8.g(e11, true);
                     }
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("delete channel global internal ".concat(string2));
                     }
                 }
@@ -1783,7 +1783,7 @@ public final class at extends c1 implements is {
                     } catch (Exception e10) {
                         a8.g(e10, true);
                     }
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("delete channel internal ".concat(string));
                     }
                 }
@@ -1796,7 +1796,7 @@ public final class at extends c1 implements is {
                     } catch (Exception e11) {
                         a8.g(e11, true);
                     }
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("delete channel internal ".concat(string2));
                     }
                 }
@@ -1856,13 +1856,13 @@ public final class at extends c1 implements is {
     public final int z() {
         int i7 = 0;
         for (int i10 = 0; i10 < 4; i10++) {
-            if (m10.i(i10).p() && (gz.Q0 || m10.f24934t0 == i10)) {
+            if (m10.i(i10).p() && (gz.Q0 || m10.f24940t0 == i10)) {
                 at t6 = t(i10);
                 if (t6.S) {
                     if (t6.U) {
                         if (t6.T) {
                             try {
-                                ArrayList arrayList = new ArrayList(np.s1(i10).f25440y);
+                                ArrayList arrayList = new ArrayList(np.s1(i10).f25443y);
                                 int size = arrayList.size();
                                 for (int i11 = 0; i11 < size; i11++) {
                                     TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i11);
@@ -1885,9 +1885,9 @@ public final class at extends c1 implements is {
                         }
                     } else if (t6.T) {
                         try {
-                            int size2 = np.s1(i10).f25440y.size();
+                            int size2 = np.s1(i10).f25443y.size();
                             for (int i12 = 0; i12 < size2; i12++) {
-                                TLRPC.Dialog dialog2 = (TLRPC.Dialog) np.s1(i10).f25440y.get(i12);
+                                TLRPC.Dialog dialog2 = (TLRPC.Dialog) np.s1(i10).f25443y.get(i12);
                                 if (m5.z(dialog2.f28055id)) {
                                     TLRPC.Chat M02 = getMessagesController().M0(Long.valueOf(-dialog2.f28055id));
                                     if (!t3.r0(M02)) {

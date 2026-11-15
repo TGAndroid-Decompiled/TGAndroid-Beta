@@ -80,7 +80,7 @@ public final class h4 extends Drawable implements p6, is {
         this.f18352x = false;
         this.f18345c.R();
         this.d.R();
-        ns.f(m10.f24934t0).n(this, ns.C1);
+        ns.f(m10.f24940t0).n(this, ns.C1);
         g5[] g5VarArr = this.f18347f;
         g5 g5Var = g5VarArr[0];
         if (g5Var != null) {
@@ -97,7 +97,7 @@ public final class h4 extends Drawable implements p6, is {
         this.f18352x = true;
         this.f18345c.P();
         this.d.P();
-        ns.f(m10.f24934t0).c(this, ns.C1);
+        ns.f(m10.f24940t0).c(this, ns.C1);
         g5[] g5VarArr = this.f18347f;
         g5 g5Var = g5VarArr[0];
         if (g5Var != null) {
@@ -111,7 +111,7 @@ public final class h4 extends Drawable implements p6, is {
 
     public final void d() {
         g5 g5Var;
-        TLRPC.TL_messages_stickerSet m0 = si.b0(m10.f24934t0).m0(new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
+        TLRPC.TL_messages_stickerSet m0 = si.b0(m10.f24940t0).m0(new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
         if (m0 != null && !m0.documents.isEmpty()) {
             TLRPC.Document document = m0.documents.get((int) Math.floor(Math.random() * m0.documents.size()));
             int i7 = 1 - this.f18346e;
@@ -121,7 +121,7 @@ public final class h4 extends Drawable implements p6, is {
             if (g5Var2 != null) {
                 g5Var2.n(this.f18353y);
             }
-            g5VarArr[this.f18346e] = g5.l(m10.f24934t0, 9, document);
+            g5VarArr[this.f18346e] = g5.l(m10.f24940t0, 9, document);
             g5VarArr[this.f18346e].setColorFilter(new PorterDuffColorFilter(j6.x0(null, j6.Fi, false), PorterDuff.Mode.SRC_IN));
             if (this.f18352x && (g5Var = g5VarArr[this.f18346e]) != null) {
                 g5Var.a(this.f18353y);
@@ -166,7 +166,7 @@ public final class h4 extends Drawable implements p6, is {
         } else {
             i7 = 28;
         }
-        float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f38105c) / 2.0f;
+        float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f38103c) / 2.0f;
         float L2 = org.telegram.messenger.g0.L(32.0f) / 2.0f;
         RectF rectF = this.f18348n;
         rectF.set(bounds.centerX() - L, bounds.centerY() - L2, bounds.centerX() + L, bounds.centerY() + L2);

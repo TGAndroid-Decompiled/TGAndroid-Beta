@@ -140,7 +140,7 @@ public abstract class e0 extends FrameLayout implements l60 {
         int measuredWidth = e0Var.getMeasuredWidth();
         int measuredHeight = e0Var.getMeasuredHeight();
         if (measuredWidth <= 0 || measuredHeight <= 0) {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             int i7 = point.x;
             measuredHeight = point.y;
             measuredWidth = i7;
@@ -264,11 +264,11 @@ public abstract class e0 extends FrameLayout implements l60 {
         org.telegram.ui.Components.u5[] u5VarArr = this.K;
         float f19 = 0.0f;
         if (!j3 && !this.f14203g0 && !this.f14202f0) {
-            float f20 = u5Var.f39903c;
+            float f20 = u5Var.f39900c;
             t tVar = this.f14201f;
-            if (f20 == tVar.f15123c && u5VarArr[0].f39903c == tVar.d[0]) {
+            if (f20 == tVar.f15123c && u5VarArr[0].f39900c == tVar.d[0]) {
                 a6 a6Var = this.f14196c;
-                if (!a6Var.f13875b && a6Var.d.f39903c <= 0.0f) {
+                if (!a6Var.f13875b && a6Var.d.f39900c <= 0.0f) {
                     setCameraNeedsBlur(false);
                     i(canvas);
                     return;
@@ -809,7 +809,7 @@ public abstract class e0 extends FrameLayout implements l60 {
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         if (measuredWidth <= 0 || measuredHeight <= 0) {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             int i7 = point.x;
             measuredHeight = point.y;
             measuredWidth = i7;
@@ -1183,7 +1183,7 @@ public abstract class e0 extends FrameLayout implements l60 {
             org.telegram.messenger.g0.r(a0Var);
             if (z10) {
                 this.f14212p0 = System.currentTimeMillis();
-                org.telegram.messenger.g0.i3(a0Var, 1000.0f / org.telegram.messenger.g0.f23610r);
+                org.telegram.messenger.g0.i3(a0Var, 1000.0f / org.telegram.messenger.g0.f23612r);
             }
         }
     }

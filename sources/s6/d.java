@@ -13,8 +13,8 @@ public final class d extends j {
     public Task f(p pVar) {
         t b10 = u.b();
         b10.d = new n6.c[]{n7.b.f21090a};
-        b10.f6070b = false;
-        b10.f6071c = new ff(pVar, 16);
+        b10.f6073b = false;
+        b10.f6074c = new ff(pVar, 16);
         return e(2, b10.a());
     }
 }

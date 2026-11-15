@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 public final class t0 implements eb0 {
-    public final int f39463a;
-    public final int[] f39464b;
+    public final int f39461a;
+    public final int[] f39462b;
 
     public t0(int[] iArr, int i7) {
-        this.f39463a = i7;
-        this.f39464b = iArr;
+        this.f39461a = i7;
+        this.f39462b = iArr;
     }
 
     @Override
     public final String e(int i7) {
-        int i10 = this.f39463a;
-        int[] iArr = this.f39464b;
+        int i10 = this.f39461a;
+        int[] iArr = this.f39462b;
         switch (i10) {
             case 0:
                 int i11 = iArr[i7];

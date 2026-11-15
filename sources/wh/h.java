@@ -30,7 +30,7 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.n8;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Components.fb;
-import tg.a2;
+import tg.z1;
 import ug.p1;
 import ug.t1;
 public final class h extends Drawable implements Animator.AnimatorListener {
@@ -181,7 +181,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         this.f59353b0.start();
         this.P = true;
         if (this.N && !this.U) {
-            b bVar = new b(new a2(this, 13));
+            b bVar = new b(new z1(this, 13));
             this.Q = bVar;
             RectF rectF = this.f59358r;
             int i7 = g.f59343a;
@@ -357,7 +357,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                         paint.setAlpha(alpha);
                                         f25 = 21.0f;
                                     } else {
-                                        Point point = g0.f23609q;
+                                        Point point = g0.f23611q;
                                         f25 = 21.0f;
                                         q1Var2.y(0.0f, 0.0f, point.x, point.y);
                                         Paint a22 = q1Var2.a2("paintChatActionBackground");
@@ -550,7 +550,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                                     paint2.setAlpha(alpha);
                                                     f252 = 21.0f;
                                                 } else {
-                                                    Point point = g0.f23609q;
+                                                    Point point = g0.f23611q;
                                                     f252 = 21.0f;
                                                     q1Var2.y(0.0f, 0.0f, point.x, point.y);
                                                     Paint a22 = q1Var2.a2("paintChatActionBackground");
@@ -648,7 +648,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
             invalidateSelf();
             fb fbVar = this.X;
             if (fbVar != null) {
-                fbVar.f34551a.setVisibility(0);
+                fbVar.f34555a.setVisibility(0);
             }
             if (this.N) {
                 t1Var.run();

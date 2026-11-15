@@ -36,7 +36,7 @@ public final class l implements ii {
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         ki kiVar = this.f21781a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kiVar.f36447e2;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kiVar.f36435e2;
         q3 q3Var = this.f21782b.f21848r;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

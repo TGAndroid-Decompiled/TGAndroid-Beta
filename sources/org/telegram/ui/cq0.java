@@ -5,16 +5,16 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.camera.Size;
 import org.telegram.ui.Components.AnimatedFileNative;
 public final class cq0 implements Runnable {
-    public final String f46232a;
-    public final long f46233b;
-    public final int f46234c;
+    public final String f46204a;
+    public final long f46205b;
+    public final int f46206c;
     public final PhotoViewer d;
 
     public cq0(PhotoViewer photoViewer, String str, long j3, int i7) {
         this.d = photoViewer;
-        this.f46232a = str;
-        this.f46233b = j3;
-        this.f46234c = i7;
+        this.f46204a = str;
+        this.f46205b = j3;
+        this.f46206c = i7;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class cq0 implements Runnable {
         boolean z10;
         boolean z11;
         if (this.d.f42929x8 == this) {
-            int E = MediaController.E(this.f46232a);
+            int E = MediaController.E(this.f46204a);
             int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f46232a, iArr, this.f46233b);
+            AnimatedFileNative.d(this.f46204a, iArr, this.f46205b);
             boolean z12 = false;
             if (iArr[10] != 0) {
                 z10 = true;
@@ -65,7 +65,7 @@ public final class cq0 implements Runnable {
                     photoViewer5.Z7 = 1;
                 }
                 PhotoViewer photoViewer6 = this.d;
-                int i11 = this.f46234c;
+                int i11 = this.f46206c;
                 if (i11 == -1) {
                     i11 = photoViewer6.t2();
                 }
@@ -80,7 +80,7 @@ public final class cq0 implements Runnable {
                     }
                 }
                 PhotoViewer photoViewer8 = this.d;
-                String str = this.f46232a;
+                String str = this.f46204a;
                 MediaExtractor mediaExtractor = new MediaExtractor();
                 try {
                     try {

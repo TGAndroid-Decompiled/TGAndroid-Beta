@@ -6,10 +6,10 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 public abstract class ou0 {
-    public static final Layout.Alignment[] f38088a = Layout.Alignment.values();
+    public static final Layout.Alignment[] f38086a = Layout.Alignment.values();
 
     public static Layout.Alignment a() {
-        Layout.Alignment[] alignmentArr = f38088a;
+        Layout.Alignment[] alignmentArr = f38086a;
         if (alignmentArr.length >= 5) {
             return alignmentArr[4];
         }

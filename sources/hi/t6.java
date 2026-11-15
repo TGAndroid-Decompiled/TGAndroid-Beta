@@ -18,7 +18,7 @@ public final class t6 implements eh.a {
         switch (this.f15153a) {
             case 0:
             default:
-                aVar.f8087a = true;
+                aVar.f8090a = true;
                 return;
         }
     }
@@ -28,7 +28,7 @@ public final class t6 implements eh.a {
         switch (this.f15153a) {
             case 0:
                 v6 v6Var = (v6) this.f15154b;
-                uj0 uj0Var = v6Var.f35936o1;
+                uj0 uj0Var = v6Var.f35931o1;
                 ih.d.b(uj0Var, canvas, rectF, uj0Var, v6Var.f29682b, 255);
                 return;
             default:

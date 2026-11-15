@@ -36,69 +36,69 @@ public final class e20 {
     public int U;
     public int V;
     public tg.h0 W;
-    public byte f23224a;
-    public byte f23225b;
-    public float f23226c;
+    public byte f23231a;
+    public byte f23232b;
+    public float f23233c;
     public float d;
-    public float f23227e;
-    public float f23228f;
-    public float f23229g;
+    public float f23234e;
+    public float f23235f;
+    public float f23236g;
     public float h;
-    public float f23230i;
-    public String f23231j;
-    public ArrayList f23232k;
-    public int f23233l;
-    public int f23234m;
-    public sg.a0 f23235n;
-    public String f23236o;
-    public int f23237p;
-    public int f23238q;
-    public int f23239r;
-    public float f23240s;
-    public String f23241t;
-    public xe f23242u;
+    public float f23237i;
+    public String f23238j;
+    public ArrayList f23239k;
+    public int f23240l;
+    public int f23241m;
+    public sg.a0 f23242n;
+    public String f23243o;
+    public int f23244p;
+    public int f23245q;
+    public int f23246r;
+    public float f23247s;
+    public String f23248t;
+    public xe f23249u;
     public float v;
-    public float f23243w;
-    public float f23244x;
-    public float f23245y;
-    public float f23246z;
+    public float f23250w;
+    public float f23251x;
+    public float f23252y;
+    public float f23253z;
 
     public e20() {
-        this.f23231j = "";
-        this.f23232k = new ArrayList();
-        this.f23241t = "";
+        this.f23238j = "";
+        this.f23239k = new ArrayList();
+        this.f23248t = "";
         this.v = 1.0f;
     }
 
     public final e20 a() {
         e20 e20Var = new e20();
-        e20Var.f23224a = this.f23224a;
-        e20Var.f23225b = this.f23225b;
-        e20Var.f23226c = this.f23226c;
+        e20Var.f23231a = this.f23231a;
+        e20Var.f23232b = this.f23232b;
+        e20Var.f23233c = this.f23233c;
         e20Var.d = this.d;
-        e20Var.f23227e = this.f23227e;
-        e20Var.f23228f = this.f23228f;
-        e20Var.f23229g = this.f23229g;
-        e20Var.f23230i = this.f23230i;
-        e20Var.f23231j = this.f23231j;
-        if (this.f23232k != null) {
+        e20Var.f23234e = this.f23234e;
+        e20Var.f23235f = this.f23235f;
+        e20Var.f23236g = this.f23236g;
+        e20Var.f23237i = this.f23237i;
+        e20Var.f23238j = this.f23238j;
+        if (this.f23239k != null) {
             ArrayList arrayList = new ArrayList();
-            e20Var.f23232k = arrayList;
-            arrayList.addAll(this.f23232k);
+            e20Var.f23239k = arrayList;
+            arrayList.addAll(this.f23239k);
         }
-        e20Var.f23233l = this.f23233l;
-        e20Var.f23234m = this.f23234m;
-        e20Var.f23235n = this.f23235n;
-        e20Var.f23236o = this.f23236o;
-        e20Var.f23237p = this.f23237p;
-        e20Var.f23238q = this.f23238q;
-        e20Var.f23239r = this.f23239r;
-        e20Var.f23240s = this.f23240s;
+        e20Var.f23240l = this.f23240l;
+        e20Var.f23241m = this.f23241m;
+        e20Var.f23242n = this.f23242n;
+        e20Var.f23243o = this.f23243o;
+        e20Var.f23244p = this.f23244p;
+        e20Var.f23245q = this.f23245q;
+        e20Var.f23246r = this.f23246r;
+        e20Var.f23247s = this.f23247s;
         e20Var.v = this.v;
-        e20Var.f23243w = this.f23243w;
-        e20Var.f23244x = this.f23244x;
-        e20Var.f23245y = this.f23245y;
-        e20Var.f23246z = this.f23246z;
+        e20Var.f23250w = this.f23250w;
+        e20Var.f23251x = this.f23251x;
+        e20Var.f23252y = this.f23252y;
+        e20Var.f23253z = this.f23253z;
         e20Var.B = this.B;
         e20Var.C = this.C;
         e20Var.D = this.D;
@@ -124,26 +124,26 @@ public final class e20 {
 
     public final void b(AbstractSerializedData abstractSerializedData, boolean z10) {
         String str;
-        abstractSerializedData.writeByte(this.f23224a);
-        abstractSerializedData.writeByte(this.f23225b);
-        abstractSerializedData.writeFloat(this.f23226c);
+        abstractSerializedData.writeByte(this.f23231a);
+        abstractSerializedData.writeByte(this.f23232b);
+        abstractSerializedData.writeFloat(this.f23233c);
         abstractSerializedData.writeFloat(this.d);
-        abstractSerializedData.writeFloat(this.f23227e);
-        abstractSerializedData.writeFloat(this.f23228f);
-        abstractSerializedData.writeFloat(this.f23229g);
-        abstractSerializedData.writeString(this.f23231j);
-        abstractSerializedData.writeInt32(this.f23232k.size());
-        for (int i7 = 0; i7 < this.f23232k.size(); i7++) {
-            ((d20) this.f23232k.get(i7)).serializeToStream(abstractSerializedData);
+        abstractSerializedData.writeFloat(this.f23234e);
+        abstractSerializedData.writeFloat(this.f23235f);
+        abstractSerializedData.writeFloat(this.f23236g);
+        abstractSerializedData.writeString(this.f23238j);
+        abstractSerializedData.writeInt32(this.f23239k.size());
+        for (int i7 = 0; i7 < this.f23239k.size(); i7++) {
+            ((d20) this.f23239k.get(i7)).serializeToStream(abstractSerializedData);
         }
-        abstractSerializedData.writeInt32(this.f23233l);
-        abstractSerializedData.writeInt32(this.f23234m);
-        abstractSerializedData.writeInt32(this.f23238q);
-        abstractSerializedData.writeInt32(this.f23239r);
-        abstractSerializedData.writeInt32(this.f23237p);
-        sg.a0 a0Var = this.f23235n;
+        abstractSerializedData.writeInt32(this.f23240l);
+        abstractSerializedData.writeInt32(this.f23241m);
+        abstractSerializedData.writeInt32(this.f23245q);
+        abstractSerializedData.writeInt32(this.f23246r);
+        abstractSerializedData.writeInt32(this.f23244p);
+        sg.a0 a0Var = this.f23242n;
         if (a0Var == null) {
-            str = this.f23236o;
+            str = this.f23243o;
             if (str == null) {
                 str = "";
             }
@@ -152,10 +152,10 @@ public final class e20 {
         }
         abstractSerializedData.writeString(str);
         abstractSerializedData.writeFloat(this.v);
-        abstractSerializedData.writeFloat(this.f23243w);
-        abstractSerializedData.writeFloat(this.f23244x);
-        abstractSerializedData.writeFloat(this.f23245y);
-        abstractSerializedData.writeFloat(this.f23246z);
+        abstractSerializedData.writeFloat(this.f23250w);
+        abstractSerializedData.writeFloat(this.f23251x);
+        abstractSerializedData.writeFloat(this.f23252y);
+        abstractSerializedData.writeFloat(this.f23253z);
         if (z10) {
             TLRPC.Document document = this.B;
             if (document == null) {
@@ -164,7 +164,7 @@ public final class e20 {
                 document.serializeToStream(abstractSerializedData);
             }
         }
-        byte b10 = this.f23224a;
+        byte b10 = this.f23231a;
         if (b10 == 3) {
             abstractSerializedData.writeFloat(this.P);
             this.M.serializeToStream(abstractSerializedData);
@@ -198,8 +198,8 @@ public final class e20 {
             abstractSerializedData.writeInt64(this.S);
             abstractSerializedData.writeInt64(this.T);
         } else if (b10 == 2) {
-            abstractSerializedData.writeString(this.f23241t);
-            xe xeVar = this.f23242u;
+            abstractSerializedData.writeString(this.f23248t);
+            xe xeVar = this.f23249u;
             if (xeVar != null) {
                 xeVar.serializeToStream(abstractSerializedData);
             } else {
@@ -217,32 +217,32 @@ public final class e20 {
 
     public e20(AbstractSerializedData abstractSerializedData, boolean z10, boolean z11) {
         sg.a0 a0Var;
-        this.f23231j = "";
-        this.f23232k = new ArrayList();
-        this.f23241t = "";
+        this.f23238j = "";
+        this.f23239k = new ArrayList();
+        this.f23248t = "";
         this.v = 1.0f;
-        this.f23224a = abstractSerializedData.readByte(z11);
-        this.f23225b = abstractSerializedData.readByte(z11);
-        this.f23226c = abstractSerializedData.readFloat(z11);
+        this.f23231a = abstractSerializedData.readByte(z11);
+        this.f23232b = abstractSerializedData.readByte(z11);
+        this.f23233c = abstractSerializedData.readFloat(z11);
         this.d = abstractSerializedData.readFloat(z11);
-        this.f23227e = abstractSerializedData.readFloat(z11);
-        this.f23228f = abstractSerializedData.readFloat(z11);
-        this.f23229g = abstractSerializedData.readFloat(z11);
-        this.f23231j = abstractSerializedData.readString(z11);
+        this.f23234e = abstractSerializedData.readFloat(z11);
+        this.f23235f = abstractSerializedData.readFloat(z11);
+        this.f23236g = abstractSerializedData.readFloat(z11);
+        this.f23238j = abstractSerializedData.readString(z11);
         int readInt32 = abstractSerializedData.readInt32(z11);
         for (int i7 = 0; i7 < readInt32; i7++) {
             TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
             abstractSerializedData.readInt32(z11);
             tL_messageEntityCustomEmoji.readParams(abstractSerializedData, z11);
-            this.f23232k.add(tL_messageEntityCustomEmoji);
+            this.f23239k.add(tL_messageEntityCustomEmoji);
         }
-        this.f23233l = abstractSerializedData.readInt32(z11);
-        this.f23234m = abstractSerializedData.readInt32(z11);
-        this.f23238q = abstractSerializedData.readInt32(z11);
-        this.f23239r = abstractSerializedData.readInt32(z11);
-        this.f23237p = abstractSerializedData.readInt32(z11);
+        this.f23240l = abstractSerializedData.readInt32(z11);
+        this.f23241m = abstractSerializedData.readInt32(z11);
+        this.f23245q = abstractSerializedData.readInt32(z11);
+        this.f23246r = abstractSerializedData.readInt32(z11);
+        this.f23244p = abstractSerializedData.readInt32(z11);
         String readString = abstractSerializedData.readString(z11);
-        this.f23236o = readString;
+        this.f23243o = readString;
         sg.a0 a0Var2 = sg.a0.f56576e;
         tg.h0 h0Var = null;
         if (readString != null && !TextUtils.isEmpty(readString)) {
@@ -255,12 +255,12 @@ public final class e20 {
             }
         }
         a0Var = null;
-        this.f23235n = a0Var;
+        this.f23242n = a0Var;
         this.v = abstractSerializedData.readFloat(z11);
-        this.f23243w = abstractSerializedData.readFloat(z11);
-        this.f23244x = abstractSerializedData.readFloat(z11);
-        this.f23245y = abstractSerializedData.readFloat(z11);
-        this.f23246z = abstractSerializedData.readFloat(z11);
+        this.f23250w = abstractSerializedData.readFloat(z11);
+        this.f23251x = abstractSerializedData.readFloat(z11);
+        this.f23252y = abstractSerializedData.readFloat(z11);
+        this.f23253z = abstractSerializedData.readFloat(z11);
         if (z10) {
             int readInt322 = abstractSerializedData.readInt32(z11);
             if (readInt322 == 1450380236) {
@@ -269,7 +269,7 @@ public final class e20 {
                 this.B = TLRPC.Document.TLdeserialize(abstractSerializedData, readInt322, z11);
             }
         }
-        byte b10 = this.f23224a;
+        byte b10 = this.f23231a;
         if (b10 == 3) {
             this.P = abstractSerializedData.readFloat(z11);
             this.M = TL_stories.MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z11), z11);
@@ -287,7 +287,7 @@ public final class e20 {
             this.M = TL_stories.MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z11), z11);
             int readInt323 = abstractSerializedData.readInt32(z11);
             if (-625858389 != readInt323) {
-                int i11 = tg.h0.f57315j;
+                int i11 = tg.h0.f57319j;
             } else {
                 h0Var = new tg.h0();
             }
@@ -300,10 +300,10 @@ public final class e20 {
             this.S = abstractSerializedData.readInt64(z11);
             this.T = abstractSerializedData.readInt64(z11);
         } else if (b10 == 2) {
-            this.f23241t = abstractSerializedData.readString(z11);
+            this.f23248t = abstractSerializedData.readString(z11);
             if (abstractSerializedData.readInt32(z11) == 1151577037) {
                 xe xeVar = new xe();
-                this.f23242u = xeVar;
+                this.f23249u = xeVar;
                 xeVar.readParams(abstractSerializedData, z11);
             }
         } else if (b10 == 8 && abstractSerializedData.readInt32(z11) == 132805945) {

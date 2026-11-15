@@ -1,6 +1,6 @@
 package kg;
 
-import ai.t2;
+import ai.v2;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -53,7 +53,7 @@ public final class i0 extends ja {
         TLRPC.User a22 = np.s1(this.f29679a).a2(Long.valueOf(tL_connectedBot.bot_id));
         this.U1 = a22;
         this.F1 = org.telegram.messenger.g0.L(36.0f);
-        this.f35943v1 = 0.15f;
+        this.f35938v1 = 0.15f;
         a0 a0Var = new a0(activity, this.f29679a, new hi.e1(this, 26), e6Var);
         this.V1 = a0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
@@ -75,7 +75,7 @@ public final class i0 extends ja {
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setText(q10.p(a22));
         linearLayout.addView(textView, c8.ja.s(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f35937p1.setTitle(q10.p(a22));
+        this.f35932p1.setTitle(q10.p(a22));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
         q6.U(textView2, j6.f29241y6, e6Var);
@@ -94,11 +94,11 @@ public final class i0 extends ja {
         v0(j6.w0(i7, this.J0));
         Q(i7);
         this.d2 = this.H0;
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i10 = this.f29717u0;
         uj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
-        this.f35936o1.r1();
-        this.f35936o1.setOnItemClickListener(new b6(this, 16));
+        this.f35931o1.r1();
+        this.f35931o1.setOnItemClickListener(new b6(this, 16));
         FrameLayout frameLayout = new FrameLayout(activity);
         this.X1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
@@ -116,7 +116,7 @@ public final class i0 extends ja {
         dVar2.setRoundRadius(24);
         this.Z1 = dVar2;
         dVar2.setText(hd.M0(2131752785, null));
-        dVar2.setOnClickListener(new t2(24, this, tL_connectedBot));
+        dVar2.setOnClickListener(new v2(24, this, tL_connectedBot));
         frameLayout.addView(dVar2, c8.ja.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         d1(false);
         FrameLayout.LayoutParams e10 = c8.ja.e(-1, -2, 80);
@@ -130,7 +130,7 @@ public final class i0 extends ja {
         kVar.C = false;
         kVar.o(er.h);
         kVar.n(350L);
-        this.f35936o1.setItemAnimator(kVar);
+        this.f35931o1.setItemAnimator(kVar);
         p41 p41Var = this.f17961a2;
         if (p41Var != null) {
             p41Var.O(false);
@@ -159,7 +159,7 @@ public final class i0 extends ja {
     public final tj0 L0(uj0 uj0Var) {
         p41 p41Var = new p41(uj0Var, getContext(), this.f29679a, 0, true, new q4(this, 9), this.J0);
         this.f17961a2 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -170,7 +170,7 @@ public final class i0 extends ja {
 
     @Override
     public final void Q0(float f10) {
-        j5 titleTextView = this.f35937p1.getTitleTextView();
+        j5 titleTextView = this.f35932p1.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f10);
         }

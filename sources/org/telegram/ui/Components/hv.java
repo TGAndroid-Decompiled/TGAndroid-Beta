@@ -4,18 +4,18 @@ import android.os.Bundle;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
 public final class hv implements Runnable {
-    public final int f35350a;
-    public final ly f35351b;
+    public final int f35341a;
+    public final ly f35342b;
 
     public hv(ly lyVar, int i7) {
-        this.f35350a = i7;
-        this.f35351b = lyVar;
+        this.f35341a = i7;
+        this.f35342b = lyVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f35350a;
-        ly lyVar = this.f35351b;
+        int i7 = this.f35341a;
+        ly lyVar = this.f35342b;
         switch (i7) {
             case 0:
                 lyVar.Y(false);
@@ -52,8 +52,8 @@ public final class hv implements Runnable {
                 ArrayList<zw> emojipacks = lyVar.getEmojipacks();
                 for (int i10 = 0; i10 < emojipacks.size(); i10++) {
                     if (emojipacks.get(i10).f42436i) {
-                        SparseIntArray sparseIntArray = lyVar.S.f41167s;
-                        char[] cArr = org.telegram.messenger.k6.f24639a;
+                        SparseIntArray sparseIntArray = lyVar.S.f41170s;
+                        char[] cArr = org.telegram.messenger.k6.f24642a;
                         int i11 = sparseIntArray.get(i10 + 8);
                         lyVar.Q.C0();
                         lyVar.V(i11);

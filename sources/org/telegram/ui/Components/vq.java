@@ -14,9 +14,9 @@ public final class vq extends ja {
     public final boolean X1;
     public boolean Y1;
     public TLRPC.Peer Z1;
-    public TLRPC.InputPeer f41126a2;
-    public final org.telegram.ui.ActionBar.e2 f41127b2;
-    public final long f41128c2;
+    public TLRPC.InputPeer f41129a2;
+    public final org.telegram.ui.ActionBar.e2 f41130b2;
+    public final long f41131c2;
 
     public vq(org.telegram.ui.ActionBar.e2 e2Var, ArrayList arrayList, long j3, t60 t60Var) {
         super(e2Var, false);
@@ -25,9 +25,9 @@ public final class vq extends ja {
         boolean z11;
         String a03;
         TLRPC.Chat M0 = org.telegram.messenger.np.s1(this.f29679a).M0(Long.valueOf(-j3));
-        this.f41127b2 = e2Var;
-        this.f41128c2 = j3;
-        this.f35943v1 = 0.26f;
+        this.f41130b2 = e2Var;
+        this.f41131c2 = j3;
+        this.f35938v1 = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.U1 = arrayList2;
         this.T1 = t60Var;
@@ -92,23 +92,23 @@ public final class vq extends ja {
         org.telegram.ui.ActionBar.q6.j(textView2, k03, null, g11, null);
         this.f29682b.addView(textView2, c8.ja.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final vq f39782b;
+            public final vq f39779b;
 
             {
-                this.f39782b = this;
+                this.f39779b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        vq vqVar = this.f39782b;
-                        vqVar.f41126a2 = org.telegram.messenger.np.s1(vqVar.f29679a).j1(org.telegram.messenger.gj.B1(vqVar.Z1));
+                        vq vqVar = this.f39779b;
+                        vqVar.f41129a2 = org.telegram.messenger.np.s1(vqVar.f29679a).j1(org.telegram.messenger.gj.B1(vqVar.Z1));
                         vqVar.dismiss();
                         return;
                     default:
-                        vq vqVar2 = this.f39782b;
-                        vqVar2.f41126a2 = org.telegram.messenger.np.s1(vqVar2.f29679a).j1(org.telegram.messenger.gj.B1(vqVar2.Z1));
+                        vq vqVar2 = this.f39779b;
+                        vqVar2.f41129a2 = org.telegram.messenger.np.s1(vqVar2.f29679a).j1(org.telegram.messenger.gj.B1(vqVar2.Z1));
                         vqVar2.Y1 = true;
                         vqVar2.dismiss();
                         return;
@@ -116,33 +116,33 @@ public final class vq extends ja {
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final vq f39782b;
+            public final vq f39779b;
 
             {
-                this.f39782b = this;
+                this.f39779b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        vq vqVar = this.f39782b;
-                        vqVar.f41126a2 = org.telegram.messenger.np.s1(vqVar.f29679a).j1(org.telegram.messenger.gj.B1(vqVar.Z1));
+                        vq vqVar = this.f39779b;
+                        vqVar.f41129a2 = org.telegram.messenger.np.s1(vqVar.f29679a).j1(org.telegram.messenger.gj.B1(vqVar.Z1));
                         vqVar.dismiss();
                         return;
                     default:
-                        vq vqVar2 = this.f39782b;
-                        vqVar2.f41126a2 = org.telegram.messenger.np.s1(vqVar2.f29679a).j1(org.telegram.messenger.gj.B1(vqVar2.Z1));
+                        vq vqVar2 = this.f39779b;
+                        vqVar2.f41129a2 = org.telegram.messenger.np.s1(vqVar2.f29679a).j1(org.telegram.messenger.gj.B1(vqVar2.Z1));
                         vqVar2.Y1 = true;
                         vqVar2.dismiss();
                         return;
                 }
             }
         });
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i11 = this.f29717u0;
         uj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(120.0f));
-        this.f35936o1.setOnItemClickListener(new j(this, 4));
+        this.f35931o1.setOnItemClickListener(new j(this, 4));
         O();
         b1();
     }
@@ -150,7 +150,7 @@ public final class vq extends ja {
     @Override
     public final void L() {
         super.L();
-        TLRPC.InputPeer inputPeer = this.f41126a2;
+        TLRPC.InputPeer inputPeer = this.f41129a2;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.U1.size() <= 1) {

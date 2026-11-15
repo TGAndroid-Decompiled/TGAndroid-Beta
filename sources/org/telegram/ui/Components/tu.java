@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 public final class tu implements Runnable {
-    public final int f39811a;
-    public final uu f39812b;
+    public final int f39808a;
+    public final uu f39809b;
 
     public tu(uu uuVar, int i7) {
-        this.f39811a = i7;
-        this.f39812b = uuVar;
+        this.f39808a = i7;
+        this.f39809b = uuVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f39811a;
-        uu uuVar = this.f39812b;
+        int i7 = this.f39808a;
+        uu uuVar = this.f39809b;
         switch (i7) {
             case 0:
                 uuVar.f40164f.dismiss();

@@ -6,9 +6,9 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class h9 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.Cells.f6 f47648a;
-    public final org.telegram.ui.Components.dg0 f47649b;
-    public TLRPC.Chat f47650c;
+    public final org.telegram.ui.Cells.f6 f47638a;
+    public final org.telegram.ui.Components.dg0 f47639b;
+    public TLRPC.Chat f47640c;
 
     public h9(Context context) {
         super(context);
@@ -16,18 +16,18 @@ public final class h9 extends FrameLayout implements org.telegram.ui.ActionBar.z
         int L;
         String M0 = org.telegram.messenger.hd.M0(2131743442, null);
         org.telegram.ui.Components.dg0 dg0Var = new org.telegram.ui.Components.dg0(context);
-        this.f47649b = dg0Var;
+        this.f47639b = dg0Var;
         int ceil = (int) Math.ceil(dg0Var.getPaint().measureText(M0));
         org.telegram.ui.Cells.f6 f6Var = new org.telegram.ui.Cells.f6(context, null);
-        this.f47648a = f6Var;
+        this.f47638a = f6Var;
         f6Var.N0 = true;
         f6Var.F0 = true;
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = org.telegram.messenger.g0.L(44.0f) + ceil;
         } else {
             i7 = 0;
         }
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(44.0f) + ceil;
@@ -55,7 +55,7 @@ public final class h9 extends FrameLayout implements org.telegram.ui.ActionBar.z
     @Override
     public final void updateColors() {
         try {
-            this.f47649b.setProgressColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ei, false));
+            this.f47639b.setProgressColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ei, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

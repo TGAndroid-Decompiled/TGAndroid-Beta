@@ -236,7 +236,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         l lVar = (l) this.f55252b;
         synchronized (lVar.d) {
             lVar.f55243l = sVar;
-            lVar.f55234a.setCallback((android.support.v4.media.session.r) sVar.f1732e, handler);
+            lVar.f55234a.setCallback((android.support.v4.media.session.r) sVar.f1739e, handler);
             sVar.d0(lVar, handler);
         }
     }
@@ -315,8 +315,8 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     public void onComplete(Task task) {
         d9.c cVar = (d9.c) this.f55252b;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f55253c;
-        synchronized (cVar.f7611f) {
-            cVar.f7610e.remove(taskCompletionSource);
+        synchronized (cVar.f7614f) {
+            cVar.f7613e.remove(taskCompletionSource);
         }
     }
 
@@ -348,14 +348,14 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                 aa.w wVar = pVar.f832b;
                 if (booleanValue) {
                     wVar.h.trySetResult(null);
-                    return ((Task) this.f55252b).onSuccessTask(pVar.f834e.f3090a, new d6.i(this, 1));
+                    return ((Task) this.f55252b).onSuccessTask(pVar.f834e.f3093a, new d6.i(this, 1));
                 }
                 wVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
             default:
                 Void r10 = (Void) obj;
                 ia.c cVar = (ia.c) this.f55253c;
-                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55252b).f3092c.f3087a.submit(new aa.s(this, 3)).get();
+                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55252b).f3095c.f3090a.submit(new aa.s(this, 3)).get();
                 FileWriter fileWriter2 = null;
                 if (jSONObject != null) {
                     ia.b S = ((ia.d) cVar.f15875c).S(jSONObject);

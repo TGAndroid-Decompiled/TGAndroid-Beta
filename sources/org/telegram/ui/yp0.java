@@ -13,26 +13,26 @@ import org.telegram.ui.Components.ClippingImageView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.PhotoViewer;
 public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ClippingImageView[] f53606a;
-    public final ViewGroup.LayoutParams f53607b;
-    public final float f53608c;
+    public final ClippingImageView[] f53571a;
+    public final ViewGroup.LayoutParams f53572b;
+    public final float f53573c;
     public final uq0 d;
-    public final float f53609e;
-    public final sq0 f53610f;
+    public final float f53574e;
+    public final sq0 f53575f;
     public final ArrayList h;
-    public final Integer f53611n;
-    public final PhotoViewer f53612r;
+    public final Integer f53576n;
+    public final PhotoViewer f53577r;
 
     public yp0(PhotoViewer photoViewer, ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f10, uq0 uq0Var, float f11, sq0 sq0Var, ArrayList arrayList, Integer num) {
-        this.f53612r = photoViewer;
-        this.f53606a = clippingImageViewArr;
-        this.f53607b = layoutParams;
-        this.f53608c = f10;
+        this.f53577r = photoViewer;
+        this.f53571a = clippingImageViewArr;
+        this.f53572b = layoutParams;
+        this.f53573c = f10;
         this.d = uq0Var;
-        this.f53609e = f11;
-        this.f53610f = sq0Var;
+        this.f53574e = f11;
+        this.f53575f = sq0Var;
         this.h = arrayList;
-        this.f53611n = num;
+        this.f53576n = num;
     }
 
     @Override
@@ -49,11 +49,11 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
         float f12;
         int i14;
         int i15;
-        PhotoViewer photoViewer = this.f53612r;
+        PhotoViewer photoViewer = this.f53577r;
         Rect rect = photoViewer.f42886t2;
         PhotoViewer.BackgroundDrawable backgroundDrawable = photoViewer.M0;
         float[][] fArr = photoViewer.f42809k4;
-        ClippingImageView[] clippingImageViewArr = this.f53606a;
+        ClippingImageView[] clippingImageViewArr = this.f53571a;
         if (clippingImageViewArr.length > 1) {
             clippingImageViewArr[1].setAlpha(1.0f);
             clippingImageViewArr[1].setAdditionalTranslationX(-rect.left);
@@ -62,10 +62,10 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
         clippingImageView.setTranslationX(clippingImageView.getTranslationX() + rect.left);
         photoViewer.f42781h0.getViewTreeObserver().removeOnPreDrawListener(this);
         int i16 = photoViewer.d2;
-        ViewGroup.LayoutParams layoutParams = this.f53607b;
+        ViewGroup.LayoutParams layoutParams = this.f53572b;
         if (i16 == 1) {
             if (!photoViewer.f42875s) {
-                i14 = org.telegram.messenger.g0.f23603m;
+                i14 = org.telegram.messenger.g0.f23605m;
             } else {
                 i14 = 0;
             }
@@ -85,10 +85,10 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
         } else {
             i7 = 0;
             float measuredWidth3 = photoViewer.f42781h0.getMeasuredWidth() / layoutParams.width;
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             int i17 = point.y;
             if (!photoViewer.f42875s) {
-                i10 = org.telegram.messenger.g0.f23603m;
+                i10 = org.telegram.messenger.g0.f23605m;
             } else {
                 i10 = 0;
             }
@@ -98,7 +98,7 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
             }
             int i18 = point.y;
             if (!photoViewer.f42875s) {
-                i11 = org.telegram.messenger.g0.f23603m;
+                i11 = org.telegram.messenger.g0.f23605m;
             } else {
                 i11 = 0;
             }
@@ -110,22 +110,22 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
             f11 = w11;
         }
         uq0 uq0Var = this.d;
-        int abs = (int) Math.abs(this.f53608c - uq0Var.f51999a.L0);
-        float f18 = uq0Var.f51999a.M0;
-        float f19 = this.f53609e;
+        int abs = (int) Math.abs(this.f53573c - uq0Var.f51997a.L0);
+        float f18 = uq0Var.f51997a.M0;
+        float f19 = this.f53574e;
         int abs2 = (int) Math.abs(f19 - f18);
-        if (uq0Var.f51999a.S0) {
+        if (uq0Var.f51997a.S0) {
             abs = i7;
         }
         int[] iArr = new int[2];
         int i19 = 2;
         uq0Var.d.getLocationInWindow(iArr);
-        float f20 = uq0Var.f52001c + f19;
-        int i20 = (int) ((iArr[1] - f20) + uq0Var.f52006j);
+        float f20 = uq0Var.f51999c + f19;
+        int i20 = (int) ((iArr[1] - f20) + uq0Var.f52004j);
         if (i20 < 0) {
             i20 = i7;
         }
-        int height = (int) (((f20 + layoutParams.height) - (uq0Var.d.getHeight() + i12)) + uq0Var.f52005i);
+        int height = (int) (((f20 + layoutParams.height) - (uq0Var.d.getHeight() + i12)) + uq0Var.f52003i);
         if (height < 0) {
             height = i7;
         }
@@ -137,7 +137,7 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
         fArr[i7][3] = photoViewer.f42789i0.getTranslationY();
         float[] fArr2 = fArr[i7];
         float f21 = abs;
-        float f22 = uq0Var.f52007k;
+        float f22 = uq0Var.f52005k;
         int i21 = 3;
         fArr2[4] = f21 * f22;
         fArr2[5] = max * f22;
@@ -159,7 +159,7 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
             c10 = c11;
         }
         float[] fArr4 = fArr[i7];
-        float f23 = uq0Var.f52007k;
+        float f23 = uq0Var.f52005k;
         fArr4[11] = abs2 * f23;
         fArr4[12] = f21 * f23;
         float[] fArr5 = fArr[1];
@@ -182,7 +182,7 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
         backgroundDrawable.setAlpha(i7);
         photoViewer.f42763f0.setAlpha(0.0f);
         photoViewer.f42805k0.setAlpha(0.0f);
-        hp hpVar = new hp(this, clippingImageViewArr, this.h, this.f53611n, this.f53610f, 26);
+        hp hpVar = new hp(this, clippingImageViewArr, this.h, this.f53576n, this.f53575f, 26);
         photoViewer.f42851p4 = hpVar;
         if (!photoViewer.f42823m2) {
             AnimatorSet animatorSet = new AnimatorSet();
@@ -202,7 +202,7 @@ public final class yp0 implements ViewTreeObserver.OnPreDrawListener {
                 
                 fArr6[0] = 0.0f;
                 fArr6[1] = 1.0f;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(clippingImageViewArr[i25], org.telegram.ui.Components.k6.f36301f, fArr6);
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(clippingImageViewArr[i25], org.telegram.ui.Components.k6.f36291f, fArr6);
                 if (i25 == 0) {
                     ofFloat.addUpdateListener(new a3(this, 21));
                 }

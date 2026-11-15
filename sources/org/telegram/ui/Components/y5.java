@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import java.util.Locale;
 public final class y5 {
     public static final org.telegram.ui.Cells.n8 h = new org.telegram.ui.Cells.n8("progress", 3);
-    public final TextPaint f41879c;
+    public final TextPaint f41871c;
     public ObjectAnimator d;
-    public final org.telegram.ui.Cells.q1 f41882g;
-    public final ArrayList f41877a = new ArrayList();
-    public final ArrayList f41878b = new ArrayList();
-    public float f41880e = 0.0f;
-    public int f41881f = 1;
+    public final org.telegram.ui.Cells.q1 f41874g;
+    public final ArrayList f41869a = new ArrayList();
+    public final ArrayList f41870b = new ArrayList();
+    public float f41872e = 0.0f;
+    public int f41873f = 1;
 
     public y5(org.telegram.ui.Cells.q1 q1Var, TextPaint textPaint) {
-        this.f41879c = textPaint;
-        this.f41882g = q1Var;
+        this.f41871c = textPaint;
+        this.f41874g = q1Var;
     }
 
     public final int a() {
-        ArrayList arrayList = this.f41877a;
+        ArrayList arrayList = this.f41869a;
         int size = arrayList.size();
         float f10 = 0.0f;
         for (int i7 = 0; i7 < size; i7++) {
@@ -38,8 +38,8 @@ public final class y5 {
         TextPaint textPaint;
         float f11;
         ArrayList arrayList;
-        int i10 = this.f41881f;
-        ArrayList arrayList2 = this.f41877a;
+        int i10 = this.f41873f;
+        ArrayList arrayList2 = this.f41869a;
         if (i10 == i7 && !arrayList2.isEmpty()) {
             return;
         }
@@ -48,26 +48,26 @@ public final class y5 {
             objectAnimator.cancel();
             this.d = null;
         }
-        ArrayList arrayList3 = this.f41878b;
+        ArrayList arrayList3 = this.f41870b;
         arrayList3.clear();
         arrayList3.addAll(arrayList2);
         arrayList2.clear();
         Locale locale = Locale.US;
-        int i11 = this.f41881f;
+        int i11 = this.f41873f;
         StringBuilder sb2 = new StringBuilder();
         sb2.append(i11);
         String sb3 = sb2.toString();
         StringBuilder sb4 = new StringBuilder();
         sb4.append(i7);
         String sb5 = sb4.toString();
-        if (i7 > this.f41881f) {
+        if (i7 > this.f41873f) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f41881f = i7;
+        this.f41873f = i7;
         float f12 = 0.0f;
-        this.f41880e = 0.0f;
+        this.f41872e = 0.0f;
         int i12 = 0;
         while (i12 < sb5.length()) {
             int i13 = i12 + 1;
@@ -85,7 +85,7 @@ public final class y5 {
             } else {
                 f11 = f12;
                 arrayList = arrayList3;
-                arrayList2.add(new StaticLayout(substring, this.f41879c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                arrayList2.add(new StaticLayout(substring, this.f41871c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
             f12 = f11;
             i12 = i13;
@@ -105,6 +105,6 @@ public final class y5 {
             this.d.addListener(new x5(this, 0));
             this.d.start();
         }
-        this.f41882g.invalidate();
+        this.f41874g.invalidate();
     }
 }

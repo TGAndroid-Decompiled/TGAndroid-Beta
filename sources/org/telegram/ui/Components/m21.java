@@ -5,6 +5,6 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 public final class m21 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.33f), View.MeasureSpec.getSize(i10)), 1073741824));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.33f), View.MeasureSpec.getSize(i10)), 1073741824));
     }
 }

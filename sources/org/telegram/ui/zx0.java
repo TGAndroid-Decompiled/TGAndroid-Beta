@@ -38,14 +38,14 @@ public final class zx0 extends org.telegram.ui.ActionBar.e2 implements org.teleg
             yx0 yx0Var = (yx0) view;
             if (zx0Var.f54059n == null) {
                 e11[] e11VarArr = new e11[1];
-                org.telegram.ui.Components.e5 e5Var = yx0Var.f53781a;
+                org.telegram.ui.Components.e5 e5Var = yx0Var.f53746a;
                 if (e5Var != null) {
                     e5Var.f();
                     yx0Var.b();
                     Rect rect = org.telegram.messenger.g0.Q;
                     rect.set(e5Var.getBounds());
                     i10 = (-(yx0Var.getHeight() - rect.centerY())) - org.telegram.messenger.g0.L(16.0f);
-                    i7 = rect.centerX() - ((org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(12.0f)) - ((int) Math.min(org.telegram.messenger.g0.L(324.0f), point.x * 0.95f)));
+                    i7 = rect.centerX() - ((org.telegram.messenger.g0.f23611q.x - org.telegram.messenger.g0.L(12.0f)) - ((int) Math.min(org.telegram.messenger.g0.L(324.0f), point.x * 0.95f)));
                 } else {
                     i7 = 0;
                     i10 = 0;
@@ -62,7 +62,7 @@ public final class zx0 extends org.telegram.ui.ActionBar.e2 implements org.teleg
                 ArrayList arrayList2 = new ArrayList(20);
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     ?? obj = new Object();
-                    obj.f5188f = ((TLRPC.TL_availableReaction) arrayList.get(i11)).reaction;
+                    obj.f5191f = ((TLRPC.TL_availableReaction) arrayList.get(i11)).reaction;
                     arrayList2.add(obj);
                 }
                 wx0Var.setRecentReactions(arrayList2);
@@ -115,7 +115,7 @@ public final class zx0 extends org.telegram.ui.ActionBar.e2 implements org.teleg
         if (i10 == this.currentAccount) {
             if (i7 == org.telegram.messenger.ns.V4) {
                 this.f54055b.f();
-            } else if (i7 == org.telegram.messenger.ns.f25497f5) {
+            } else if (i7 == org.telegram.messenger.ns.f25498f5) {
                 h0();
                 this.f54055b.f();
             }
@@ -162,7 +162,7 @@ public final class zx0 extends org.telegram.ui.ActionBar.e2 implements org.teleg
         notificationCenter.getClass();
         xi.e eVar2 = new xi.e(notificationCenter, this);
         eVar2.c(org.telegram.messenger.ns.V4);
-        eVar2.c(org.telegram.messenger.ns.f25497f5);
+        eVar2.c(org.telegram.messenger.ns.f25498f5);
         this.h = eVar2;
         return super.onFragmentCreate();
     }

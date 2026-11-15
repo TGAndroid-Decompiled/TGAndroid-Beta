@@ -1,22 +1,21 @@
 package di;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class ka extends ClickableSpan {
-    public final e9 f8932a;
+import org.telegram.messenger.is;
+import org.telegram.messenger.ns;
+public final class ka implements is {
+    public final boolean[] f8927a;
+    public final org.telegram.ui.ActionBar.u2[] f8928b;
 
-    public ka(e9 e9Var) {
-        this.f8932a = e9Var;
+    public ka(boolean[] zArr, org.telegram.ui.ActionBar.u2[] u2VarArr) {
+        this.f8927a = zArr;
+        this.f8928b = u2VarArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f8932a.run();
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        org.telegram.ui.ActionBar.u2 u2Var;
+        if (i7 == ns.A3 && this.f8927a[0] && (u2Var = this.f8928b[0]) != null) {
+            u2Var.dismiss();
+        }
     }
 }

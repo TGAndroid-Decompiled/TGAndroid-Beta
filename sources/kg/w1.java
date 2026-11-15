@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import c8.ja;
-import di.ub;
+import di.tb;
 import hi.l3;
 import java.util.HashSet;
 import org.telegram.messenger.hd;
@@ -36,60 +36,60 @@ public final class w1 extends LinearLayout implements z5 {
         textView.setTextAlignment(4);
         textView.setLineSpacing(org.telegram.messenger.g0.L(1.66f), 1.0f);
         textView.setGravity(17);
-        ub ubVar = new ub(activity, 2);
-        this.d = ubVar;
-        ubVar.setTextAlignment(4);
-        ubVar.setGravity(17);
-        ubVar.setTextSize(1, 12.0f);
-        ubVar.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-        ubVar.setGravity(1);
+        tb tbVar = new tb(activity, 2);
+        this.d = tbVar;
+        tbVar.setTextAlignment(4);
+        tbVar.setGravity(17);
+        tbVar.setTextSize(1, 12.0f);
+        tbVar.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        tbVar.setGravity(1);
         ImageView imageView = new ImageView(activity);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        ubVar.setMaxWidth(org.telegram.messenger.g0.L(160.0f));
+        tbVar.setMaxWidth(org.telegram.messenger.g0.L(160.0f));
         int i10 = 22;
         if (i7 == 9) {
             imageView.setImageResource(2131231606);
             textView.setText(hd.M0(2131742896, null));
-            ubVar.setText(hd.M0(2131742897, null));
-            ubVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(ubVar.getText(), ubVar.getPaint())));
+            tbVar.setText(hd.M0(2131742897, null));
+            tbVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(tbVar.getText(), tbVar.getPaint())));
         } else if ("hello".equalsIgnoreCase(str)) {
             imageView.setImageResource(2131231606);
             textView.setText(hd.M0(2131752765, null));
-            ubVar.setText(hd.M0(2131752766, null));
-            ubVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(ubVar.getText(), ubVar.getPaint())));
+            tbVar.setText(hd.M0(2131752766, null));
+            tbVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(tbVar.getText(), tbVar.getPaint())));
         } else if ("away".equalsIgnoreCase(str)) {
             imageView.setImageResource(2131231603);
             textView.setText(hd.M0(2131752833, null));
-            ubVar.setText(hd.M0(2131752834, null));
-            ubVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(ubVar.getText(), ubVar.getPaint())));
+            tbVar.setText(hd.M0(2131752834, null));
+            tbVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(tbVar.getText(), tbVar.getPaint())));
         } else {
             if (i7 == 5) {
                 imageView.setImageResource(2131231614);
-                u1 c10 = v1.f(m10.f24934t0).c(j3);
+                u1 c10 = v1.f(m10.f24940t0).c(j3);
                 String str2 = c10 == null ? str : c10.f18114b;
                 textView.setText(hd.M0(2131752667, null));
-                ubVar.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
-                ubVar.setTextAlignment(2);
-                ubVar.setGravity(3);
-                ubVar.setText(org.telegram.messenger.g0.X2(hd.a0(null, null, 2131752669, str2)));
-                ubVar.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
-                ub ubVar2 = new ub(activity, 2);
-                this.f18136e = ubVar2;
-                ubVar2.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
-                ubVar2.setTextAlignment(2);
-                ubVar2.setGravity(3);
-                ubVar2.setTextSize(1, 13.0f);
-                ubVar2.setText(org.telegram.messenger.g0.X2(hd.M0(2131752668, null)));
-                ubVar2.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
+                tbVar.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
+                tbVar.setTextAlignment(2);
+                tbVar.setGravity(3);
+                tbVar.setText(org.telegram.messenger.g0.X2(hd.a0(null, null, 2131752669, str2)));
+                tbVar.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
+                tb tbVar2 = new tb(activity, 2);
+                this.f18136e = tbVar2;
+                tbVar2.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
+                tbVar2.setTextAlignment(2);
+                tbVar2.setGravity(3);
+                tbVar2.setTextSize(1, 13.0f);
+                tbVar2.setText(org.telegram.messenger.g0.X2(hd.M0(2131752668, null)));
+                tbVar2.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
             }
             i10 = 12;
         }
         int i11 = i10;
         addView(imageView, ja.t(78, 78, 49, 20, 17, 20, 9));
         addView(textView, ja.t(-2, -2, 49, 20, 0, 20, 6));
-        addView(ubVar, ja.t(-2, -2, 49, i11, 0, i11, ((ub) this.f18136e) == null ? 19 : 9));
-        View view = (ub) this.f18136e;
+        addView(tbVar, ja.t(-2, -2, 49, i11, 0, i11, ((tb) this.f18136e) == null ? 19 : 9));
+        View view = (tb) this.f18136e;
         if (view != null) {
             addView(view, ja.t(-2, -2, 49, 12, 0, 12, 19));
         }
@@ -123,16 +123,16 @@ public final class w1 extends LinearLayout implements z5 {
     public final void updateColors() {
         switch (this.f18133a) {
             case 0:
-                ub ubVar = (ub) this.d;
+                tb tbVar = (tb) this.d;
                 TextView textView = this.f18135c;
-                if (textView != null && ubVar != null) {
+                if (textView != null && tbVar != null) {
                     int i7 = j6.Zc;
                     e6 e6Var = this.f18134b;
                     textView.setTextColor(j6.w0(i7, e6Var));
-                    ubVar.setTextColor(j6.w0(i7, e6Var));
-                    ub ubVar2 = (ub) this.f18136e;
-                    if (ubVar2 != null) {
-                        ubVar2.setTextColor(j6.w0(i7, e6Var));
+                    tbVar.setTextColor(j6.w0(i7, e6Var));
+                    tb tbVar2 = (tb) this.f18136e;
+                    if (tbVar2 != null) {
+                        tbVar2.setTextColor(j6.w0(i7, e6Var));
                         return;
                     }
                     return;

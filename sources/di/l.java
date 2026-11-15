@@ -107,7 +107,7 @@ public final class l implements Runnable {
                     X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131744759, org.telegram.messenger.g5.m(10, str, null)));
                 }
                 org.telegram.ui.Components.xb V = new org.telegram.ui.Components.cc(b4Var.N0, b4Var.f11493l0).V(Arrays.asList(tLObject2), X2, null, aVar);
-                V.f41636a = 2;
+                V.f41628a = 2;
                 V.k(true);
                 return;
             case 2:
@@ -160,7 +160,7 @@ public final class l implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj2;
                 TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((wf) obj4).f41331a;
+                ChatActivityEnterView chatActivityEnterView = ((wf) obj4).f41334a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -218,7 +218,7 @@ public final class l implements Runnable {
                 TLObject tLObject3 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj3;
-                int i10 = q90Var.f50511b;
+                int i10 = q90Var.f50502b;
                 q90Var.c();
                 if (tLObject3 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
@@ -243,7 +243,7 @@ public final class l implements Runnable {
                 }
             default:
                 pv0 pv0Var = (pv0) obj4;
-                ProfileActivity profileActivity = pv0Var.f50383b;
+                ProfileActivity profileActivity = pv0Var.f50374b;
                 mp mpVar = new mp(profileActivity.f43094e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z10, null);
                 mpVar.Y0 = new ov0(pv0Var, (yw) obj);
                 profileActivity.presentFragment(mpVar);

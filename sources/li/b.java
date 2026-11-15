@@ -1,6 +1,6 @@
 package li;
 
-import ai.u1;
+import ai.v1;
 import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.tr;
@@ -13,7 +13,7 @@ public final class b implements x10, tr {
     public void a(String str) {
         e eVar = this.f19525a;
         eVar.getMessagesController().M0(Long.valueOf(-eVar.f19554b));
-        eVar.showDialog(new ni.a(eVar.getParentActivity(), null, eVar.f19554b, new u1(29, eVar, str)));
+        eVar.showDialog(new ni.a(eVar.getParentActivity(), null, eVar.f19554b, new v1(29, eVar, str)));
     }
 
     @Override

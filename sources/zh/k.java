@@ -285,7 +285,7 @@ public final class k extends Dialog {
         ofFloat.addUpdateListener(new j9(this, width, left, top, width2, i7, 1));
         this.f61438s.addListener(new tk0(this, z10, width, 1));
         this.f61438s.setDuration(220L);
-        this.f61438s.setInterpolator(er.f34420f);
+        this.f61438s.setInterpolator(er.f34419f);
         this.f61438s.start();
     }
 

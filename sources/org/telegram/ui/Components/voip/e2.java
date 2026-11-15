@@ -13,25 +13,25 @@ import java.util.HashMap;
 import org.telegram.messenger.k5;
 import org.telegram.ui.Components.ou0;
 public final class e2 extends LinearLayout {
-    public HashMap f40582a;
-    public ArrayList f40583b;
-    public ArrayList f40584c;
+    public HashMap f40585a;
+    public ArrayList f40586b;
+    public ArrayList f40587c;
     public TransitionSet d;
-    public boolean f40585e;
-    public boolean f40586f;
+    public boolean f40588e;
+    public boolean f40589f;
     public Runnable h;
-    public m1 f40587n;
-    public TextPaint f40588r;
+    public m1 f40590n;
+    public TextPaint f40591r;
 
     public final void a(int i7, String str, String str2) {
-        HashMap hashMap = this.f40582a;
+        HashMap hashMap = this.f40585a;
         if (hashMap.get(str2) != null) {
             return;
         }
-        d2 d2Var = new d2(getContext(), this.f40587n, i7);
-        d2Var.f40549a = str2;
-        int L = org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(120.0f);
-        TextView textView = d2Var.f40551c;
+        d2 d2Var = new d2(getContext(), this.f40590n, i7);
+        d2Var.f40552a = str2;
+        int L = org.telegram.messenger.g0.f23611q.x - org.telegram.messenger.g0.L(120.0f);
+        TextView textView = d2Var.f40554c;
         StaticLayout c10 = ou0.c(str, textView.getPaint(), L, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, L, 10, true);
         if (c10 != null) {
             L = 0;
@@ -41,13 +41,13 @@ public final class e2 extends LinearLayout {
         }
         textView.setMaxWidth(L);
         textView.setText(str);
-        d2Var.f40550b.setImageResource(i7);
+        d2Var.f40553b.setImageResource(i7);
         hashMap.put(str2, d2Var);
-        if (this.f40585e) {
-            this.f40583b.add(d2Var);
+        if (this.f40588e) {
+            this.f40586b.add(d2Var);
             return;
         }
-        this.f40586f = true;
+        this.f40589f = true;
         addView(d2Var, ja.t(-2, -2, 1, 4, 0, 0, 4));
     }
 
@@ -55,21 +55,21 @@ public final class e2 extends LinearLayout {
         if (str == null) {
             return "";
         }
-        return TextUtils.ellipsize(str, this.f40588r, org.telegram.messenger.g0.L(300.0f), TextUtils.TruncateAt.END);
+        return TextUtils.ellipsize(str, this.f40591r, org.telegram.messenger.g0.L(300.0f), TextUtils.TruncateAt.END);
     }
 
     public final void c(String str) {
-        d2 d2Var = (d2) this.f40582a.remove(str);
-        this.f40587n.f40785m.remove(d2Var);
+        d2 d2Var = (d2) this.f40585a.remove(str);
+        this.f40590n.f40788m.remove(d2Var);
         if (d2Var != null) {
-            if (this.f40585e) {
-                if (!this.f40583b.remove(d2Var)) {
-                    this.f40584c.add(d2Var);
+            if (this.f40588e) {
+                if (!this.f40586b.remove(d2Var)) {
+                    this.f40587c.add(d2Var);
                     return;
                 }
                 return;
             }
-            this.f40586f = true;
+            this.f40589f = true;
             removeView(d2Var);
         }
     }

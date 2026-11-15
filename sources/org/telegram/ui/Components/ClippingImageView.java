@@ -157,7 +157,7 @@ public class ClippingImageView extends View {
                 rectF.set(0.0f, 0.0f, f10, i10);
                 int i12 = this.f32464e;
                 int i13 = this.f32465f;
-                Typeface typeface = org.telegram.messenger.g0.f23581a;
+                Typeface typeface = org.telegram.messenger.g0.f23583a;
                 if (i12 != 90 && i12 != 270) {
                     height = rectF2.width() / rectF.width();
                     width = rectF2.height();

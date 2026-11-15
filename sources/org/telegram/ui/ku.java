@@ -1,20 +1,20 @@
 package org.telegram.ui;
 public final class ku implements org.telegram.messenger.pr {
-    public final int f48776a;
-    public final yw f48777b;
+    public final int f48772a;
+    public final yw f48773b;
 
     public ku(yw ywVar, int i7) {
-        this.f48776a = i7;
-        this.f48777b = ywVar;
+        this.f48772a = i7;
+        this.f48773b = ywVar;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
         boolean z11;
-        switch (this.f48776a) {
+        switch (this.f48772a) {
             case 0:
-                yw ywVar = this.f48777b;
+                yw ywVar = this.f48773b;
                 ywVar.getClass();
                 if (i7 != 0) {
                     z10 = true;
@@ -26,7 +26,7 @@ public final class ku implements org.telegram.messenger.pr {
                 ywVar.u3(false);
                 return;
             default:
-                yw ywVar2 = this.f48777b;
+                yw ywVar2 = this.f48773b;
                 ywVar2.getClass();
                 if (i7 != 0) {
                     z11 = true;

@@ -15,7 +15,7 @@ public final class w implements org.telegram.ui.ActionBar.q1, ij0 {
     @Override
     public boolean b(int i7, View view) {
         j0 j0Var = this.f58351b;
-        j0Var.f35936o1.getOnItemClickListener().b(i7, view);
+        j0Var.f35931o1.getOnItemClickListener().b(i7, view);
         if (j0Var.d2 != 19) {
             try {
                 view.performHapticFeedback(0);

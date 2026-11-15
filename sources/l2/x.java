@@ -77,9 +77,9 @@ public final class x implements Runnable {
                 return;
             case 1:
                 String str = (String) obj;
-                fc fcVar = ((pb) obj2).f25919b;
+                fc fcVar = ((pb) obj2).f25921b;
                 if (i16 != 1) {
-                    fcVar.f23476s.c(new hb(fcVar, str, 1));
+                    fcVar.f23479s.c(new hb(fcVar, str, 1));
                 }
                 ns.f(i17).k(143, str, Integer.valueOf(i16));
                 return;
@@ -91,8 +91,8 @@ public final class x implements Runnable {
                 ArrayList arrayList = (ArrayList) obj;
                 try {
                     if (arrayList != null) {
-                        siVar.getMessagesStorage().f27222b.executeFast("DELETE FROM reactions").stepThis().dispose();
-                        SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27222b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
+                        siVar.getMessagesStorage().f27221b.executeFast("DELETE FROM reactions").stepThis().dispose();
+                        SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27221b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
                         executeFast.requery();
                         int i18 = 4;
                         for (int i19 = 0; i19 < arrayList.size(); i19++) {
@@ -112,7 +112,7 @@ public final class x implements Runnable {
                         executeFast.dispose();
                         return;
                     }
-                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27222b.executeFast("UPDATE reactions SET date = ?");
+                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27221b.executeFast("UPDATE reactions SET date = ?");
                     executeFast2.requery();
                     executeFast2.bindLong(1, i17);
                     executeFast2.step();
@@ -124,11 +124,11 @@ public final class x implements Runnable {
                 }
             case 4:
                 np npVar = (np) obj2;
-                npVar.f25387s1.clear();
-                npVar.f25432x1.clear();
+                npVar.f25390s1.clear();
+                npVar.f25435x1.clear();
                 vr messagesStorage = npVar.getMessagesStorage();
                 messagesStorage.H();
-                npVar.q4(true, messagesStorage.f27233w, ((TLRPC.updates_Difference) obj).pts, this.f19227b, this.f19228c);
+                npVar.q4(true, messagesStorage.f27232w, ((TLRPC.updates_Difference) obj).pts, this.f19227b, this.f19228c);
                 npVar.P1().q();
                 return;
             case 5:
@@ -168,7 +168,7 @@ public final class x implements Runnable {
                 byte[] bArr = (byte[]) obj;
                 vrVar.getClass();
                 try {
-                    SQLitePreparedStatement executeFast3 = vrVar.f27222b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
+                    SQLitePreparedStatement executeFast3 = vrVar.f27221b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
                     executeFast3.bindInteger(1, i16);
                     executeFast3.bindInteger(2, i17);
                     if (bArr != null) {
@@ -192,7 +192,7 @@ public final class x implements Runnable {
             case 8:
                 ns nsVar = (ns) obj2;
                 nsVar.l((Object[]) obj, i16, false);
-                nsVar.f25634q.remove(i17);
+                nsVar.f25635q.remove(i17);
                 return;
             case 9:
                 ConnectionsManager.lambda$onIntegrityCheckClassic$27(i16, (String) obj2, (String) obj, i17);
@@ -204,10 +204,10 @@ public final class x implements Runnable {
                 el elVar = (el) obj2;
                 elVar.getClass();
                 gj messageObject = ((org.telegram.ui.Cells.t0) obj).getMessageObject();
-                jl jlVar = elVar.f46862a;
+                jl jlVar = elVar.f46852a;
                 an anVar = jlVar.R;
                 int e12 = messageObject.e1();
-                if (gj.B0(messageObject.f23817k) == jlVar.R.f45154c7) {
+                if (gj.B0(messageObject.f23819k) == jlVar.R.f45153c7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
@@ -216,7 +216,7 @@ public final class x implements Runnable {
                 return;
             case 12:
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) obj;
-                an anVar2 = ((lm) obj2).f49005a;
+                an anVar2 = ((lm) obj2).f49001a;
                 if (anVar2.P1 != null) {
                     q1Var.getLocationInWindow(new int[2]);
                     anVar2.P1.setTranslationY(i20.D(520.0f, iArr[1] - l3Var.getTop(), i16));
@@ -228,21 +228,21 @@ public final class x implements Runnable {
             default:
                 final ww wwVar = (ww) obj2;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) obj;
-                xw xwVar = wwVar.f53014g;
+                xw xwVar = wwVar.f53013g;
                 yw ywVar = wwVar.h;
                 ArrayList arrayList2 = ywVar.T1;
                 if (arrayList2 != null) {
                     arrayList2.remove(dialog);
                     int i21 = dialog.pinnedNum;
                     ywVar.Y0 = null;
-                    xwVar.f53331a.invalidate();
-                    int N0 = xwVar.f53333c.N0();
+                    xwVar.f53335a.invalidate();
+                    int N0 = xwVar.f53337c.N0();
                     if (N0 == i16 - 1) {
-                        xwVar.f53333c.m(N0).requestLayout();
+                        xwVar.f53337c.m(N0).requestLayout();
                     }
                     if (ywVar.getMessagesController().C2(dialog.f28055id, false)) {
                         ywVar.getMessagesController().j2();
-                        xwVar.f53341y.D();
+                        xwVar.f53345y.D();
                         xwVar.q(true);
                         return;
                     }
@@ -255,29 +255,29 @@ public final class x implements Runnable {
                     }
                     int d = messagesController.d(i11, -1, j3);
                     if (d != 2 || i17 != 0) {
-                        xwVar.f53341y.D();
+                        xwVar.f53345y.D();
                         xwVar.q(true);
                     }
                     if (ywVar.Y2 == 0) {
                         if (d == 2) {
-                            boolean z10 = gz.f23974q1;
+                            boolean z10 = gz.f23977q1;
                             if (z10) {
-                                gz.f23974q1 = !z10;
+                                gz.f23977q1 = !z10;
                                 SharedPreferences.Editor edit = np.e1().edit();
-                                edit.putBoolean("archiveHidden", gz.f23974q1);
+                                edit.putBoolean("archiveHidden", gz.f23977q1);
                                 edit.apply();
                             }
-                            xwVar.f53341y.D();
+                            xwVar.f53345y.D();
                             if (i17 == 0) {
                                 ywVar.M4(true, true);
                                 xwVar.q(true);
                                 ywVar.z3();
                             } else {
                                 xwVar.q(true);
-                                if (!gz.f23974q1 && xwVar.f53333c.L0() == 0) {
-                                    ywVar.f53680g2 = true;
-                                    uw uwVar = xwVar.f53331a;
-                                    if (gz.f23971p1) {
+                                if (!gz.f23977q1 && xwVar.f53337c.L0() == 0) {
+                                    ywVar.f53645g2 = true;
+                                    uw uwVar = xwVar.f53335a;
+                                    if (gz.f23974p1) {
                                         f10 = 76.0f;
                                     } else {
                                         f10 = 70.0f;
@@ -286,7 +286,7 @@ public final class x implements Runnable {
                                 }
                             }
                             i13 = ((e2) ywVar).currentAccount;
-                            ywVar.T1.add(0, (TLRPC.Dialog) ywVar.d4(i13, xwVar.f53338s, ywVar.Y2, false).get(0));
+                            ywVar.T1.add(0, (TLRPC.Dialog) ywVar.d4(i13, xwVar.f53342s, ywVar.Y2, false).get(0));
                             xwVar.q(true);
                             org.telegram.messenger.g0.i3(new Runnable() {
                                 @Override
@@ -302,12 +302,12 @@ public final class x implements Runnable {
                                 }
                             }, 300L);
                         } else if (d == 1) {
-                            v4.e1 K = xwVar.f53331a.K(0);
+                            v4.e1 K = xwVar.f53335a.K(0);
                             if (K != null) {
                                 View view = K.f58535a;
                                 if (view instanceof t2) {
                                     t2 t2Var = (t2) view;
-                                    if (t2Var.f31549b2.f39598n == 2) {
+                                    if (t2Var.f31549b2.f39596n == 2) {
                                         t2Var.f31554c2 = true;
                                         t2Var.d2 = 0.0f;
                                         j6.f29160u1.T(true, 0.0f);
@@ -331,7 +331,7 @@ public final class x implements Runnable {
                             }, 300L);
                         }
                         SharedPreferences e13 = np.e1();
-                        i15 = (e13.getBoolean("archivehint_l", false) || gz.f23974q1) ? 1 : 1;
+                        i15 = (e13.getBoolean("archivehint_l", false) || gz.f23977q1) ? 1 : 1;
                         if (i15 == 0) {
                             e13.edit().putBoolean("archivehint_l", true).commit();
                         }
@@ -347,8 +347,8 @@ public final class x implements Runnable {
                         }
                     }
                     if (ywVar.Y2 != 0 && ywVar.T1.isEmpty()) {
-                        xwVar.f53331a.setEmptyView(null);
-                        xwVar.f53340x.setVisibility(4);
+                        xwVar.f53335a.setEmptyView(null);
+                        xwVar.f53344x.setVisibility(4);
                         return;
                     }
                     return;

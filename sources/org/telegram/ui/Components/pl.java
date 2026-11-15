@@ -43,7 +43,7 @@ public final class pl extends AnimatorListenerAdapter {
                     chatAttachAlertPhotoLayout.Q.invalidate();
                 }
                 if (chatAttachAlertPhotoLayout.f32374c0) {
-                    chatAttachAlertPhotoLayout.f33607b.X3.K0();
+                    chatAttachAlertPhotoLayout.f33609b.X3.K0();
                 }
                 xl xlVar3 = chatAttachAlertPhotoLayout.Q;
                 if (xlVar3 != null) {

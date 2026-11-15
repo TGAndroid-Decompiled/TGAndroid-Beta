@@ -17,7 +17,7 @@ public final class ae implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 an anVar = this.f45034b;
                 anVar.Z8 = floatValue;
-                ol olVar = anVar.f45278m1;
+                ol olVar = anVar.f45277m1;
                 if (olVar != null) {
                     olVar.invalidate();
                     anVar.A0.invalidate();
@@ -27,25 +27,25 @@ public final class ae implements ValueAnimator.AnimatorUpdateListener {
             case 1:
                 an anVar2 = this.f45034b;
                 anVar2.getClass();
-                anVar2.f45420x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar2.f45419x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 anVar2.Tc();
                 return;
             case 2:
                 an anVar3 = this.f45034b;
                 anVar3.getClass();
-                anVar3.f45420x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar3.f45419x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 anVar3.Tc();
                 return;
             case 3:
                 an anVar4 = this.f45034b;
                 anVar4.getClass();
-                anVar4.f45129ab = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar4.f45128ab = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 anVar4.M9();
                 return;
             default:
                 an anVar5 = this.f45034b;
                 anVar5.getClass();
-                anVar5.f45129ab = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar5.f45128ab = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 anVar5.M9();
                 return;
         }

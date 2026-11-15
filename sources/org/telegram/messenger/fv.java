@@ -3,39 +3,39 @@ package org.telegram.messenger;
 import android.view.View;
 import java.util.ArrayList;
 public final class fv implements Runnable {
-    public final int f23553a = 0;
-    public final hv f23554b;
-    public final iv f23555c;
+    public final int f23555a = 0;
+    public final hv f23556b;
+    public final iv f23557c;
     public final View d;
 
     public fv(hv hvVar, View view, iv ivVar) {
-        this.f23554b = hvVar;
+        this.f23556b = hvVar;
         this.d = view;
-        this.f23555c = ivVar;
+        this.f23557c = ivVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f23553a) {
+        switch (this.f23555a) {
             case 0:
-                hv hvVar = this.f23554b;
+                hv hvVar = this.f23556b;
                 hvVar.getClass();
                 View view = this.d;
                 if (view != null) {
-                    view.post(new fv(hvVar, this.f23555c, view));
+                    view.post(new fv(hvVar, this.f23557c, view));
                     return;
                 }
                 return;
             default:
-                hv hvVar2 = this.f23554b;
-                iv ivVar = this.f23555c;
+                hv hvVar2 = this.f23556b;
+                iv ivVar = this.f23557c;
                 if (ivVar != null) {
                     hvVar2.getClass();
-                    gj gjVar = ivVar.f24441b;
+                    gj gjVar = ivVar.f24446b;
                     if (gjVar != null) {
                         gjVar.N0 = true;
                     }
-                    ArrayList arrayList = ivVar.f24451n;
+                    ArrayList arrayList = ivVar.f24456n;
                     int size = arrayList.size();
                     int i7 = 0;
                     while (i7 < size) {
@@ -55,8 +55,8 @@ public final class fv implements Runnable {
     }
 
     public fv(hv hvVar, iv ivVar, View view) {
-        this.f23554b = hvVar;
-        this.f23555c = ivVar;
+        this.f23556b = hvVar;
+        this.f23557c = ivVar;
         this.d = view;
     }
 }

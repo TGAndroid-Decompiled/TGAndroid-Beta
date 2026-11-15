@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class l9 implements s10 {
-    public final int f24811a;
-    public final c1 f24812b;
-    public final Object f24813c;
+    public final int f24817a;
+    public final c1 f24818b;
+    public final Object f24819c;
     public final Object d;
-    public final Object f24814e;
+    public final Object f24820e;
 
     public l9(c1 c1Var, Object obj, Object obj2, Object obj3, int i7) {
-        this.f24811a = i7;
-        this.f24812b = c1Var;
-        this.f24813c = obj;
+        this.f24817a = i7;
+        this.f24818b = c1Var;
+        this.f24819c = obj;
         this.d = obj2;
-        this.f24814e = obj3;
+        this.f24820e = obj3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         Integer num;
-        int i7 = this.f24811a;
-        Object obj3 = this.f24814e;
+        int i7 = this.f24817a;
+        Object obj3 = this.f24820e;
         Object obj4 = this.d;
-        Object obj5 = this.f24813c;
-        c1 c1Var = this.f24812b;
+        Object obj5 = this.f24819c;
+        c1 c1Var = this.f24818b;
         switch (i7) {
             case 0:
                 v9 v9Var = (v9) c1Var;
@@ -36,11 +36,11 @@ public final class l9 implements s10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
                     nVar.a(Boolean.FALSE, tL_error.text);
-                    s9Var.f26422f = false;
+                    s9Var.f26432f = false;
                     return;
                 } else if (!(paymentForm instanceof TLRPC.TL_payments_paymentFormStarGift)) {
                     nVar.a(Boolean.FALSE, "NO_PAYMENT_FORM");
-                    s9Var.f26422f = false;
+                    s9Var.f26432f = false;
                     return;
                 } else {
                     TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
@@ -60,7 +60,7 @@ public final class l9 implements s10 {
                 if (riVar == null) {
                     riVar = new ri();
                 }
-                ArrayList arrayList = riVar.f26295a;
+                ArrayList arrayList = riVar.f26303a;
                 if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
                     TLRPC.TL_messages_foundStickers tL_messages_foundStickers = (TLRPC.TL_messages_foundStickers) messages_foundstickers;
                     arrayList.addAll(tL_messages_foundStickers.stickers);
@@ -69,7 +69,7 @@ public final class l9 implements s10 {
                     } else {
                         num = null;
                     }
-                    riVar.f26296b = num;
+                    riVar.f26304b = num;
                 }
                 siVar.R1.put(qiVar, riVar);
                 z10Var.a(arrayList);

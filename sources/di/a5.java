@@ -10,25 +10,25 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a5 extends View implements org.telegram.ui.ActionBar.z5 {
-    public final n5 f8196a;
-    public final ImageReceiver f8197b;
-    public final Path f8198c;
+    public final n5 f8199a;
+    public final ImageReceiver f8200b;
+    public final Path f8201c;
     public final Paint d;
 
     public a5(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
         super(context);
         Path path = new Path();
-        this.f8198c = path;
+        this.f8201c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
         n5 n5Var = new n5(this, starGift, 60, 0.27f);
-        this.f8196a = n5Var;
+        this.f8199a = n5Var;
         n5Var.L = 3;
         org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
         t8Var.l(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f8197b = imageReceiver;
+        this.f8200b = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.i0(tLObject, t8Var, null);
         paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.E6, false));
@@ -45,27 +45,27 @@ public final class a5 extends View implements org.telegram.ui.ActionBar.z5 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f8197b.P();
+        this.f8200b.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f8197b.R();
+        this.f8200b.R();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int width = (getWidth() / 2) - (org.telegram.messenger.g0.L(156.0f) / 2);
         int height = (getHeight() / 2) - org.telegram.messenger.g0.L(30.0f);
-        n5 n5Var = this.f8196a;
+        n5 n5Var = this.f8199a;
         n5Var.setBounds(width, height, org.telegram.messenger.g0.L(60.0f) + width, org.telegram.messenger.g0.L(60.0f) + height);
         n5Var.draw(canvas);
         canvas.save();
         canvas.translate((getWidth() / 2.0f) - (org.telegram.messenger.g0.L(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f8198c, this.d);
+        canvas.drawPath(this.f8201c, this.d);
         canvas.restore();
-        ImageReceiver imageReceiver = this.f8197b;
+        ImageReceiver imageReceiver = this.f8200b;
         imageReceiver.y0(org.telegram.messenger.g0.L(96.0f) + width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
         imageReceiver.h(canvas, null);
     }
@@ -91,15 +91,15 @@ public final class a5 extends View implements org.telegram.ui.ActionBar.z5 {
     public a5(Context context, TL_stars.StarGift starGift) {
         super(context);
         Path path = new Path();
-        this.f8198c = path;
+        this.f8201c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
         n5 n5Var = new n5(this, starGift, 60, 0.27f);
-        this.f8196a = n5Var;
+        this.f8199a = n5Var;
         n5Var.L = 3;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f8197b = imageReceiver;
+        this.f8200b = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.w0(org.telegram.ui.Cells.r6.a(60, "fragment"));
         paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.E6, false));

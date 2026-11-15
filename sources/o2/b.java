@@ -382,11 +382,11 @@ public final class b implements d0, c1, y2.h {
         for (int i7 = 0; i7 < uVarArr.length; i7++) {
             u uVar = uVarArr[i7];
             v0 v0Var = (v0) xaVar.d;
-            if (v0Var.f3343a && ((nb.a) v0Var.f3345c).L(uVar)) {
+            if (v0Var.f3346a && ((nb.a) v0Var.f3348c).L(uVar)) {
                 t a10 = uVar.a();
                 String str2 = uVar.f10443k;
                 a10.f10399r = s0.n("application/x-media3-cues");
-                a10.P = ((nb.a) v0Var.f3345c).O(uVar);
+                a10.P = ((nb.a) v0Var.f3348c).O(uVar);
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(uVar.f10451s);
                 if (str2 != null) {
@@ -871,7 +871,7 @@ public final class b implements d0, c1, y2.h {
                         }
                         oVar.b();
                     } else {
-                        oVar.f2918c = null;
+                        oVar.f2921c = null;
                         z11 = false;
                         a1Var.G(false);
                         for (a1 a1Var4 : iVar.E) {

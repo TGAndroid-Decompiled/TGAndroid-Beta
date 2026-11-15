@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 public final class v51 extends View {
-    public static final int f52137c = 0;
-    public final Paint f52138a;
-    public int[] f52139b;
+    public static final int f52135c = 0;
+    public final Paint f52136a;
+    public int[] f52137b;
 
     public v51(Context context) {
         super(context);
-        this.f52138a = new Paint(1);
-        this.f52139b = new int[7];
+        this.f52136a = new Paint(1);
+        this.f52137b = new int[7];
     }
 
     @Override
@@ -24,15 +24,15 @@ public final class v51 extends View {
         float L = org.telegram.messenger.g0.L(5.0f);
         float L2 = org.telegram.messenger.g0.L(20.0f) - L;
         Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f52138a;
+        Paint paint = this.f52136a;
         paint.setStyle(style);
         int i7 = 0;
-        paint.setColor(this.f52139b[0]);
+        paint.setColor(this.f52137b[0]);
         canvas.drawCircle(measuredWidth, measuredHeight, L, paint);
         double d = 0.0d;
         while (i7 < 6) {
             i7++;
-            paint.setColor(this.f52139b[i7]);
+            paint.setColor(this.f52137b[i7]);
             canvas.drawCircle((((float) Math.sin(d)) * L2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * L2), L, paint);
             d += 1.0471975511965976d;
         }

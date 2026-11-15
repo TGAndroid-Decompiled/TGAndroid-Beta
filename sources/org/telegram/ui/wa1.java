@@ -10,22 +10,22 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 public final class wa1 extends ScrollView {
-    public final int[] f52522a;
-    public final Rect f52523b;
-    public boolean f52524c;
+    public final int[] f52525a;
+    public final Rect f52526b;
+    public boolean f52527c;
     public final xa1 d;
 
     public wa1(xa1 xa1Var, Context context) {
         super(context);
         this.d = xa1Var;
-        this.f52522a = new int[2];
-        this.f52523b = new Rect();
-        this.f52524c = true;
+        this.f52525a = new int[2];
+        this.f52526b = new Rect();
+        this.f52527c = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        this.f52524c = false;
+        this.f52527c = false;
         super.onLayout(z10, i7, i10, i11, i12);
     }
 
@@ -39,24 +39,24 @@ public final class wa1 extends ScrollView {
         org.telegram.ui.ActionBar.k kVar2;
         super.onScrollChanged(i7, i10, i11, i12);
         xa1 xa1Var = this.d;
-        TextView textView = xa1Var.f53143c;
+        TextView textView = xa1Var.f53142c;
         if (textView != null) {
-            int[] iArr = this.f52522a;
+            int[] iArr = this.f52525a;
             textView.getLocationOnScreen(iArr);
-            int measuredHeight = xa1Var.f53143c.getMeasuredHeight() + iArr[1];
+            int measuredHeight = xa1Var.f53142c.getMeasuredHeight() + iArr[1];
             kVar = ((org.telegram.ui.ActionBar.e2) xa1Var).actionBar;
             if (measuredHeight < kVar.getBottom()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (xa1Var.f53143c.getTag() == null) {
+            if (xa1Var.f53142c.getTag() == null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             if (z10 != z11) {
-                TextView textView2 = xa1Var.f53143c;
+                TextView textView2 = xa1Var.f53142c;
                 if (z10) {
                     num = null;
                 } else {
@@ -95,7 +95,7 @@ public final class wa1 extends ScrollView {
 
     @Override
     public final void requestChildFocus(View view, View view2) {
-        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f52524c) {
+        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f52527c) {
             scrollToDescendant(view2);
         }
         super.requestChildFocus(view, view2);
@@ -103,13 +103,13 @@ public final class wa1 extends ScrollView {
 
     @Override
     public final void requestLayout() {
-        this.f52524c = true;
+        this.f52527c = true;
         super.requestLayout();
     }
 
     @Override
     public final void scrollToDescendant(View view) {
-        Rect rect = this.f52523b;
+        Rect rect = this.f52526b;
         view.getDrawingRect(rect);
         offsetDescendantRectToMyCoords(view, rect);
         rect.bottom = org.telegram.messenger.g0.L(120.0f) + rect.bottom;

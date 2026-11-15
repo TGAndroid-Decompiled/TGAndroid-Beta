@@ -40,9 +40,9 @@ public final class k extends l {
         ld0 ld0Var = new ld0(getClass().getSimpleName(), 10);
         String valueOf = String.valueOf(this.f11210a.f11241a);
         ld0 ld0Var2 = new ld0(9, false);
-        ((ld0) ld0Var.f48977c).f48977c = ld0Var2;
-        ld0Var.f48977c = ld0Var2;
-        ld0Var2.f48976b = valueOf;
+        ((ld0) ld0Var.f48973c).f48973c = ld0Var2;
+        ld0Var.f48973c = ld0Var2;
+        ld0Var2.f48972b = valueOf;
         ld0Var2.d = "errorCode";
         String str = this.f11211b;
         if (str != null) {

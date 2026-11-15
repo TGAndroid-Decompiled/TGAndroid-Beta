@@ -163,7 +163,7 @@ public final class ra extends st0 {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
-        ai.j0 j0Var;
+        ai.k0 k0Var;
         ly emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
@@ -219,13 +219,13 @@ public final class ra extends st0 {
                 int i20 = saVar.Z;
                 mi0Var.layout(i20, saVar.f15036a0, mi0Var.getMeasuredWidth() + i20, saVar.f15107w1.J1.getMeasuredHeight() + saVar.f15036a0);
                 if (saVar.f15107w1.J1.getReactionsWindow() != null) {
-                    j0Var = saVar.f15107w1.J1.getReactionsWindow().f5010c;
+                    k0Var = saVar.f15107w1.J1.getReactionsWindow().f5013c;
                 } else {
-                    j0Var = null;
+                    k0Var = null;
                 }
-                if (j0Var != null) {
+                if (k0Var != null) {
                     int i21 = saVar.Z;
-                    j0Var.layout(i21, saVar.f15036a0, j0Var.getMeasuredWidth() + i21, j0Var.getMeasuredHeight() + saVar.f15036a0);
+                    k0Var.layout(i21, saVar.f15036a0, k0Var.getMeasuredWidth() + i21, k0Var.getMeasuredHeight() + saVar.f15036a0);
                 }
             }
         }
@@ -326,7 +326,7 @@ public final class ra extends st0 {
             if (mi0Var != null) {
                 measureChild(mi0Var, i7, i10);
                 if (saVar.f15107w1.J1.getReactionsWindow() != null) {
-                    measureChild(saVar.f15107w1.J1.getReactionsWindow().f5010c, i7, i10);
+                    measureChild(saVar.f15107w1.J1.getReactionsWindow().f5013c, i7, i10);
                 }
             }
         }

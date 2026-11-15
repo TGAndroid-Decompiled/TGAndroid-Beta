@@ -13,7 +13,7 @@ import org.telegram.ui.Components.er;
 public final class u0 extends View implements is {
     public final org.telegram.ui.Components.u5 E;
     public float F;
-    public m8 G;
+    public l8 G;
     public final ArrayList H;
     public final ArrayList I;
     public final HashSet J;
@@ -21,19 +21,19 @@ public final class u0 extends View implements is {
     public final DecelerateInterpolator L;
     public final LinearInterpolator M;
     public t0 N;
-    public final int f9500a;
-    public final long f9501b;
-    public final View f9502c;
+    public final int f9485a;
+    public final long f9486b;
+    public final View f9487c;
     public boolean d;
-    public float f9503e;
-    public float f9504f;
+    public float f9488e;
+    public float f9489f;
     public boolean h;
-    public float f9505n;
-    public float f9506r;
-    public float f9507s;
-    public float f9508w;
-    public float f9509x;
-    public float f9510y;
+    public float f9490n;
+    public float f9491r;
+    public float f9492s;
+    public float f9493w;
+    public float f9494x;
+    public float f9495y;
 
     public u0(Context context, int i7, long j3, org.telegram.ui.k0 k0Var) {
         super(context);
@@ -45,9 +45,9 @@ public final class u0 extends View implements is {
         this.J = new HashSet();
         this.L = new DecelerateInterpolator();
         this.M = new LinearInterpolator();
-        this.f9500a = i7;
-        this.f9501b = j3;
-        this.f9502c = k0Var;
+        this.f9485a = i7;
+        this.f9486b = j3;
+        this.f9487c = k0Var;
     }
 
     public final void a() {
@@ -56,7 +56,7 @@ public final class u0 extends View implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.G3 && ((Long) objArr[0]).longValue() == this.f9501b) {
+        if (i7 == ns.G3 && ((Long) objArr[0]).longValue() == this.f9486b) {
             a();
         }
     }
@@ -69,7 +69,7 @@ public final class u0 extends View implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f9500a).c(this, ns.G3);
+        ns.f(this.f9485a).c(this, ns.G3);
         ArrayList arrayList = this.I;
         int size = arrayList.size();
         int i7 = 0;
@@ -84,7 +84,7 @@ public final class u0 extends View implements is {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f9500a).n(this, ns.G3);
+        ns.f(this.f9485a).n(this, ns.G3);
         ArrayList arrayList = this.I;
         int size = arrayList.size();
         int i7 = 0;
@@ -147,7 +147,7 @@ public final class u0 extends View implements is {
     }
 
     public void setActionBarActionMode(float f10) {
-        this.f9505n = f10;
+        this.f9490n = f10;
         invalidate();
     }
 
@@ -156,13 +156,13 @@ public final class u0 extends View implements is {
     }
 
     public void setExpandCoords(float f10) {
-        this.f9509x = f10;
+        this.f9494x = f10;
         invalidate();
     }
 
     public void setExpandProgress(float f10) {
-        if (this.f9503e != f10) {
-            this.f9503e = f10;
+        if (this.f9488e != f10) {
+            this.f9488e = f10;
             invalidate();
         }
     }

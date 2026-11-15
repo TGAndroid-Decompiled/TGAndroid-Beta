@@ -2,10 +2,10 @@ package ki;
 
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import di.ub;
+import di.tb;
 public final class y extends LinearLayout {
     public TextView f18702a;
-    public ub f18703b;
+    public tb f18703b;
     public String f18704c;
 
     public String getCommand() {

@@ -232,7 +232,7 @@ public final class ud extends FrameLayout {
                         Float f10 = (Float) chatActivityEnterView.C0.get(childAt);
                         if (f10 != null) {
                             childAt.setTranslationX(f10.floatValue() - childAt.getLeft());
-                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(er.f34420f).start();
+                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(er.f34419f).start();
                         }
                     }
                     chatActivityEnterView.C0.clear();
@@ -254,20 +254,20 @@ public final class ud extends FrameLayout {
                 int max = Math.max(org.telegram.messenger.g0.L(44.0f), getMeasuredHeight());
                 ChatActivityEnterView chatActivityEnterView = this.f39998b;
                 te.c cVar = chatActivityEnterView.E6;
-                float f10 = cVar.f57087f;
+                float f10 = cVar.f57091f;
                 if (f10 > 0.0f) {
                     if (cVar.h) {
-                        f10 = cVar.f57088g;
+                        f10 = cVar.f57092g;
                     }
                     float f11 = max;
                     if (f10 != f11) {
                         cVar.d = chatActivityEnterView.s0();
-                        cVar.f57086e = 0L;
+                        cVar.f57090e = 0L;
                         er erVar = pi.k.V;
                         if (chatActivityEnterView.f32325y1 > 0 && SystemClock.uptimeMillis() < chatActivityEnterView.f32325y1 && (r12 = chatActivityEnterView.f32332z1) != 0) {
                             erVar = r12;
                         }
-                        cVar.f57085c = erVar;
+                        cVar.f57089c = erVar;
                     }
                     cVar.a(f11);
                 } else {

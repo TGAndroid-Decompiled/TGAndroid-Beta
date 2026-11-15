@@ -104,11 +104,11 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
         ch.p0 d = ch.p0.d(reaction);
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(org.telegram.messenger.g0.L(20));
-        if (!TextUtils.isEmpty(d.f5188f)) {
-            charSequence = org.telegram.messenger.j6.m(d.f5188f, textPaint.getFontMetricsInt(), false, null, 0);
+        if (!TextUtils.isEmpty(d.f5191f)) {
+            charSequence = org.telegram.messenger.j6.m(d.f5191f, textPaint.getFontMetricsInt(), false, null, 0);
         } else {
             SpannableString spannableString = new SpannableString("😀");
-            spannableString.setSpan(new p5(d.f5189g, textPaint.getFontMetricsInt()), 0, spannableString.length(), 17);
+            spannableString.setSpan(new p5(d.f5192g, textPaint.getFontMetricsInt()), 0, spannableString.length(), 17);
             charSequence = spannableString;
         }
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) "  ");
@@ -148,7 +148,7 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
         f10.addView(ol0Var, c8.ja.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.o(f10);
         t1Var.f29614a = org.telegram.messenger.g0.L(292.0f);
-        alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131745946, null), new ai.q1(ol0Var, i7, reaction, 8));
+        alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131745946, null), new ai.r1(ol0Var, i7, reaction, 8));
         alertDialog$Builder2.h(org.telegram.messenger.hd.M0(2131752589, null), new rb0(4));
         if (z10) {
             I = t1Var;
@@ -227,12 +227,12 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25507h3) {
+        if (i7 == org.telegram.messenger.ns.f25508h3) {
             long longValue = ((Long) objArr[0]).longValue();
             if (longValue == 0 || longValue == this.E) {
                 h(true);
             }
-        } else if (i7 == org.telegram.messenger.ns.f25514i4) {
+        } else if (i7 == org.telegram.messenger.ns.f25515i4) {
             invalidate();
             org.telegram.messenger.g0.d0(this.d, new pg.c(0));
         }
@@ -276,7 +276,7 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
             ArrayList arrayList = this.f40102r;
             if (i7 < arrayList.size()) {
                 long j3 = p0Var.h;
-                ch.p0 p0Var2 = ((rl0) arrayList.get(i7)).f38998a;
+                ch.p0 p0Var2 = ((rl0) arrayList.get(i7)).f38995a;
                 long j10 = p0Var2.h;
                 if (j3 == j10) {
                     this.h = j10;
@@ -358,9 +358,9 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
                         str = tL_savedReactionTag.title;
                     }
                     ?? obj = new Object();
-                    obj.f38998a = d;
-                    obj.f38999b = i13;
-                    obj.f39000c = str;
+                    obj.f38995a = d;
+                    obj.f38996b = i13;
+                    obj.f38997c = str;
                     if (str == null) {
                         hashCode = -233;
                     } else {
@@ -368,7 +368,7 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
                     }
                     obj.d = hashCode;
                     i7 = i12;
-                    if (obj.f38998a.h == this.h) {
+                    if (obj.f38995a.h == this.h) {
                         z11 = true;
                     }
                     arrayList2.add(obj);
@@ -411,8 +411,8 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 mutate.setColorFilter(new PorterDuffColorFilter(i15, mode));
                 eq eqVar = new eq(0, mutate);
-                eqVar.f34416s = 0.0f;
-                eqVar.f34415r = 0.0f;
+                eqVar.f34415s = 0.0f;
+                eqVar.f34414r = 0.0f;
                 eqVar.I = 0.94f;
                 eqVar.J = 0.94f;
                 SpannableString spannableString = new SpannableString("l");
@@ -432,8 +432,8 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
                 eq eqVar2 = new eq(0, mutate2);
                 eqVar2.I = 0.76f;
                 eqVar2.J = 0.76f;
-                eqVar2.f34415r = -org.telegram.messenger.g0.L(1.0f);
-                eqVar2.f34416s = org.telegram.messenger.g0.L(1.0f);
+                eqVar2.f34414r = -org.telegram.messenger.g0.L(1.0f);
+                eqVar2.f34415s = org.telegram.messenger.g0.L(1.0f);
                 spannableString2.setSpan(eqVar2, 0, spannableString2.length(), 17);
                 spannableStringBuilder2.append((CharSequence) spannableString2);
                 textView.setText(spannableStringBuilder2);
@@ -467,16 +467,16 @@ public abstract class ul0 extends FrameLayout implements org.telegram.messenger.
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         int i7 = this.f40096a;
-        org.telegram.messenger.ns.f(i7).c(this, org.telegram.messenger.ns.f25507h3);
-        org.telegram.messenger.ns.f(i7).c(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.f(i7).c(this, org.telegram.messenger.ns.f25508h3);
+        org.telegram.messenger.ns.f(i7).c(this, org.telegram.messenger.ns.f25515i4);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = this.f40096a;
-        org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25507h3);
-        org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25508h3);
+        org.telegram.messenger.ns.f(i7).n(this, org.telegram.messenger.ns.f25515i4);
     }
 
     public void setShown(float f10) {

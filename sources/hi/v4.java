@@ -2,8 +2,8 @@ package hi;
 public final class v4 extends p3 {
     public final u9 f15217m;
 
-    public v4(u9 u9Var, ra raVar, ai.u1 u1Var) {
-        super(raVar, false, u1Var);
+    public v4(u9 u9Var, ra raVar, ai.v1 v1Var) {
+        super(raVar, false, v1Var);
         this.f15217m = u9Var;
     }
 

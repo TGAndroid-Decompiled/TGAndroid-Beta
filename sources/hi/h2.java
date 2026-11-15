@@ -104,7 +104,7 @@ public final class h2 extends View {
         float f12;
         float f13;
         float f14;
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(40.0f) + org.telegram.messenger.g0.f23604n);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(40.0f) + org.telegram.messenger.g0.f23606n);
         if (getMeasuredWidth() != this.I || this.f14359c == null) {
             TextPaint textPaint = this.f14357a;
             textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));

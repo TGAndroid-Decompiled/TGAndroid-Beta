@@ -49,18 +49,18 @@ public class VoIPGroupNotification {
 
         @Override
         public void acceptIncomingCall() {
-            VoIPGroupNotification.answer(org.telegram.messenger.t0.f26600b, this.currentAccount, this.msg_id);
+            VoIPGroupNotification.answer(org.telegram.messenger.t0.f26609b, this.currentAccount, this.msg_id);
         }
 
         @Override
         public void declineIncomingCall() {
-            VoIPGroupNotification.decline(org.telegram.messenger.t0.f26600b, this.currentAccount, this.msg_id);
+            VoIPGroupNotification.decline(org.telegram.messenger.t0.f26609b, this.currentAccount, this.msg_id);
         }
 
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                ec1 ec1Var = ec1.f46680m1;
+                ec1 ec1Var = ec1.f46670m1;
                 if (ec1Var != null) {
                     ec1Var.onStateChanged(getCallState());
                 }
@@ -152,7 +152,7 @@ public class VoIPGroupNotification {
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = i10;
         ConnectionsManager.getInstance(i7).sendRequest(declineconferencecallinvite, new g2(i7, 1));
-        ec1 ec1Var = ec1.f46680m1;
+        ec1 ec1Var = ec1.f46670m1;
         if (ec1Var != null) {
             ec1Var.e();
         }
@@ -177,7 +177,7 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            ec1 ec1Var = ec1.f46680m1;
+            ec1 ec1Var = ec1.f46670m1;
             if (ec1Var != null) {
                 ec1Var.e();
             }
@@ -219,7 +219,7 @@ public class VoIPGroupNotification {
         if (state != null && state.msg_id == i10) {
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
             if (W == null) {
                 W = LaunchActivity.H1;
             }
@@ -268,7 +268,7 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            ec1 ec1Var = ec1.f46680m1;
+            ec1 ec1Var = ec1.f46670m1;
             if (ec1Var != null) {
                 ec1Var.e();
             }

@@ -3,13 +3,13 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 public final class c41 extends f41 {
     public static boolean h = true;
-    public final int f33500e;
-    public final wy0 f33501f;
+    public final int f33503e;
+    public final wy0 f33504f;
 
     public c41(String str, int i7, wy0 wy0Var) {
         super(str, (wy0) null);
-        this.f33500e = i7;
-        this.f33501f = wy0Var;
+        this.f33503e = i7;
+        this.f33504f = wy0Var;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class c41 extends f41 {
         int i7;
         int i10;
         super.updateDrawState(textPaint);
-        int i11 = this.f33500e;
+        int i11 = this.f33503e;
         if (i11 == 2) {
             textPaint.setColor(-1);
         } else if (i11 == 1) {
@@ -35,7 +35,7 @@ public final class c41 extends f41 {
             }
             textPaint.setColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
         }
-        wy0 wy0Var = this.f33501f;
+        wy0 wy0Var = this.f33504f;
         if (wy0Var != null) {
             wy0Var.a(textPaint);
         } else {

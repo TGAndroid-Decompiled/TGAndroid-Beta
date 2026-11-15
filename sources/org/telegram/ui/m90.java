@@ -1,32 +1,32 @@
 package org.telegram.ui;
 public final class m90 implements Runnable {
-    public final int f49188a;
-    public final q90 f49189b;
-    public final String f49190c;
+    public final int f49184a;
+    public final q90 f49185b;
+    public final String f49186c;
 
     public m90(q90 q90Var, String str, int i7) {
-        this.f49188a = i7;
-        this.f49189b = q90Var;
-        this.f49190c = str;
+        this.f49184a = i7;
+        this.f49185b = q90Var;
+        this.f49186c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f49188a) {
+        switch (this.f49184a) {
             case 0:
-                q90 q90Var = this.f49189b;
+                q90 q90Var = this.f49185b;
                 if (q90Var.a()) {
-                    q90Var.w(this.f49190c);
+                    q90Var.w(this.f49186c);
                     return;
                 }
                 return;
             case 1:
-                this.f49189b.w(this.f49190c);
+                this.f49185b.w(this.f49186c);
                 return;
             case 2:
-                q90 q90Var2 = this.f49189b;
+                q90 q90Var2 = this.f49185b;
                 q90Var2.getClass();
-                String str = this.f49190c;
+                String str = this.f49186c;
                 if ("disable".equalsIgnoreCase(str)) {
                     q90Var2.x("turnPasswordOffRow");
                 }
@@ -39,9 +39,9 @@ public final class m90 implements Runnable {
                 }
                 return;
             default:
-                q90 q90Var3 = this.f49189b;
+                q90 q90Var3 = this.f49185b;
                 q90Var3.getClass();
-                String str2 = this.f49190c;
+                String str2 = this.f49186c;
                 if ("disable".equalsIgnoreCase(str2)) {
                     q90Var3.x("disablePasscodeRow");
                 }

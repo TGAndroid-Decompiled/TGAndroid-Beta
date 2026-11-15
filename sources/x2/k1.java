@@ -136,13 +136,13 @@ public final class k1 implements d0, b3.j {
             iOException2 = iOException;
             h2.a.m("SingleSampleMediaPeriod", "Loading failed, treating as end-of-stream.", iOException2);
             this.f59581x = true;
-            iVar = b3.o.f2914e;
+            iVar = b3.o.f2917e;
         } else {
             iOException2 = iOException;
             if (i10 != 0) {
                 iVar = new b3.i(0, min, false);
             } else {
-                iVar = b3.o.f2915f;
+                iVar = b3.o.f2918f;
             }
         }
         this.f59575e.p(tVar, 1, -1, this.f59579s, 0, null, 0L, this.f59577n, iOException2, !iVar.a());

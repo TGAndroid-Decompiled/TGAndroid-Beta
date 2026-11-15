@@ -8,35 +8,35 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.lw0;
 import org.telegram.ui.pu0;
 public final class i extends DataSetObserver {
-    public final int f4141a;
-    public final Object f4142b;
+    public final int f4144a;
+    public final Object f4145b;
 
     public i(Object obj, int i7) {
-        this.f4141a = i7;
-        this.f4142b = obj;
+        this.f4144a = i7;
+        this.f4145b = obj;
     }
 
     @Override
     public final void onChanged() {
-        switch (this.f4141a) {
+        switch (this.f4144a) {
             case 0:
-                ((l) this.f4142b).f();
+                ((l) this.f4145b).f();
                 return;
             case 1:
-                y2 y2Var = (y2) this.f4142b;
+                y2 y2Var = (y2) this.f4145b;
                 y2Var.f15595a = true;
                 y2Var.notifyDataSetChanged();
                 return;
             case 2:
-                d2 d2Var = (d2) this.f4142b;
+                d2 d2Var = (d2) this.f4145b;
                 if (d2Var.P.isShowing()) {
                     d2Var.g();
                     return;
                 }
                 return;
             default:
-                lw0 lw0Var = (lw0) this.f4142b;
-                ProfileActivity profileActivity = lw0Var.f49055n;
+                lw0 lw0Var = (lw0) this.f4145b;
+                ProfileActivity profileActivity = lw0Var.f49051n;
                 int realCount = profileActivity.f43161o0.getRealCount();
                 if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.F) {
                     profileActivity.B0 = 1;
@@ -58,17 +58,17 @@ public final class i extends DataSetObserver {
 
     @Override
     public void onInvalidated() {
-        switch (this.f4141a) {
+        switch (this.f4144a) {
             case 0:
-                ((l) this.f4142b).f();
+                ((l) this.f4145b).f();
                 return;
             case 1:
-                y2 y2Var = (y2) this.f4142b;
+                y2 y2Var = (y2) this.f4145b;
                 y2Var.f15595a = false;
                 y2Var.notifyDataSetInvalidated();
                 return;
             case 2:
-                ((d2) this.f4142b).dismiss();
+                ((d2) this.f4145b).dismiss();
                 return;
             default:
                 super.onInvalidated();

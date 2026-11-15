@@ -34,8 +34,8 @@ public abstract class uu implements org.telegram.messenger.is {
                             long j3 = document.f28057id;
                             for (int i12 = 0; i12 < tL_messages_stickerSet.packs.size() && ((arrayList = tL_messages_stickerSet.packs.get(i12).documents) == null || !arrayList.contains(Long.valueOf(j3))); i12++) {
                             }
-                            obj.f39070a = tL_messages_stickerSet;
-                            obj.f39071b = document.f28057id;
+                            obj.f39067a = tL_messages_stickerSet;
+                            obj.f39068b = document.f28057id;
                             this.f40162c[i7].add(obj);
                             if (this.f40164f.C1) {
                                 TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
@@ -78,7 +78,7 @@ public abstract class uu implements org.telegram.messenger.is {
                         TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) this.f40160a.get(i11);
                         org.telegram.ui.ActionBar.e2 e2Var2 = wuVar.n1;
                         if (e2Var2 instanceof org.telegram.ui.an) {
-                            qjVar = ((org.telegram.ui.an) e2Var2).f45118a0;
+                            qjVar = ((org.telegram.ui.an) e2Var2).f45117a0;
                         } else {
                             qjVar = null;
                         }
@@ -93,7 +93,7 @@ public abstract class uu implements org.telegram.messenger.is {
             }
             wu wuVar2 = ((iu) this).h;
             wuVar2.N0();
-            hi.v vVar = wuVar2.f41450r1;
+            hi.v vVar = wuVar2.f41453r1;
             if (vVar != null && vVar.getAdapter() != null) {
                 vVar.getAdapter().f();
             }

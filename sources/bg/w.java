@@ -13,7 +13,7 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
 public final class w extends c1 {
-    public static volatile w[] f3346a = new w[4];
+    public static volatile w[] f3349a = new w[4];
 
     public static TLRPC.TL_message b(TL_ephemeral.EphemeralMessage ephemeralMessage) {
         int i7;
@@ -121,13 +121,13 @@ public final class w extends c1 {
 
     public static w g(int i7) {
         w wVar;
-        w wVar2 = f3346a[i7];
+        w wVar2 = f3349a[i7];
         if (wVar2 == null) {
             synchronized (w.class) {
                 try {
-                    wVar = f3346a[i7];
+                    wVar = f3349a[i7];
                     if (wVar == null) {
-                        ?? r02 = f3346a;
+                        ?? r02 = f3349a;
                         ?? c1Var = new c1(i7);
                         r02[i7] = c1Var;
                         wVar = c1Var;

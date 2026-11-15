@@ -59,8 +59,8 @@ public final class l implements Runnable {
                 u0 u0Var = (u0) this.f44077b;
                 u0Var.c("AUTH_CANCELED");
                 u0Var.e();
-                if (xa.f4778b == u0Var) {
-                    xa.f4778b = null;
+                if (xa.f4781b == u0Var) {
+                    xa.f4781b = null;
                     return;
                 }
                 return;
@@ -78,8 +78,8 @@ public final class l implements Runnable {
                 bi.v3 v3Var = u5Var.f44556c;
                 if (v3Var != null && v3Var.getScrollState() == 0) {
                     u41 y02 = u5Var.f44561j.y0();
-                    if ((y02 == null || y02.getScrollState() == 0) && (d = u5Var.d(u5Var.f44556c.f39894f3)) != null) {
-                        v4.b0 b0Var = u5Var.f44556c.f39894f3;
+                    if ((y02 == null || y02.getScrollState() == 0) && (d = u5Var.d(u5Var.f44556c.f39891f3)) != null) {
+                        v4.b0 b0Var = u5Var.f44556c.f39891f3;
                         b0Var.getClass();
                         int i7 = new int[]{0, v4.o0.z(d) - b0Var.F()}[1];
                         if (i7 != 0) {

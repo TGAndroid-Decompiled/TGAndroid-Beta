@@ -21,7 +21,7 @@ public final class a1 {
             this.f13865f = true;
             w0 w0Var = new w0(this, 0);
             vr a02 = vr.a0(i7);
-            a02.f27220a.c(new di.m6((Object) a02, true, (Object) w0Var, 3));
+            a02.f27219a.c(new di.m6((Object) a02, true, (Object) w0Var, 3));
         }
     }
 
@@ -59,8 +59,8 @@ public final class a1 {
         sb3.append(System.currentTimeMillis());
         sb3.append(")");
         org.telegram.messenger.a8.b(sb3.toString());
-        a02.f27220a.c(new x0(a02, z0Var, 1));
-        ns.f(i7).k(ns.f25612y5, new Object[0]);
+        a02.f27219a.c(new x0(a02, z0Var, 1));
+        ns.f(i7).k(ns.f25613y5, new Object[0]);
     }
 
     public final void b(d7 d7Var) {
@@ -116,8 +116,8 @@ public final class a1 {
             this.f13862b.removeAll(arrayList);
             int i10 = this.f13861a;
             vr a02 = vr.a0(i10);
-            a02.f27220a.c(new y0(a02, arrayList2, 0));
-            ns.f(i10).k(ns.f25612y5, new Object[0]);
+            a02.f27219a.c(new y0(a02, arrayList2, 0));
+            ns.f(i10).k(ns.f25613y5, new Object[0]);
         }
     }
 
@@ -134,8 +134,8 @@ public final class a1 {
         z0 z0Var = new z0(d7Var);
         int i7 = this.f13861a;
         vr a02 = vr.a0(i7);
-        a02.f27220a.c(new x0(a02, z0Var, 0));
-        ns.f(i7).k(ns.f25612y5, new Object[0]);
+        a02.f27219a.c(new x0(a02, z0Var, 0));
+        ns.f(i7).k(ns.f25613y5, new Object[0]);
     }
 
     public final void e(d7 d7Var) {

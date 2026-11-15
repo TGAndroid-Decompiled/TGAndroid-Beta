@@ -72,7 +72,7 @@ public final class d8 extends View implements org.telegram.ui.ActionBar.z5 {
         d80Var.f(org.telegram.ui.ActionBar.j6.r1(0.2f, -1), org.telegram.ui.ActionBar.j6.r1(0.05f, -1));
         Path path = new Path();
         this.f11644n = path;
-        d80Var.f33885y = path;
+        d80Var.f33887y = path;
         d80Var.k(4.0f);
         boolean[] zArr = {true};
         this.f11649y = obj;
@@ -219,7 +219,7 @@ public final class d8 extends View implements org.telegram.ui.ActionBar.z5 {
             return;
         }
         SpannableString spannableString = new SpannableString("x " + tL_messages_stickerSet.set.title);
-        spannableString.setSpan(new b00(org.telegram.ui.ActionBar.j6.Xc, this.h.f33864a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new b00(org.telegram.ui.ActionBar.j6.Xc, this.h.f33866a), 0, spannableString.length(), 33);
         spannableString.setSpan(new y31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
         ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
         int i7 = 0;
@@ -301,7 +301,7 @@ public final class d8 extends View implements org.telegram.ui.ActionBar.z5 {
             if (this.E > 0.0f) {
                 canvas.save();
                 float paddingLeft2 = getPaddingLeft();
-                if (!hd.f24101a0) {
+                if (!hd.f24104a0) {
                     f11 = this.f11642e;
                 }
                 canvas.translate(paddingLeft2 - f11, getPaddingTop());
@@ -413,7 +413,7 @@ public final class d8 extends View implements org.telegram.ui.ActionBar.z5 {
         CharSequence charSequence;
         String M0;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
-        spannableString.setSpan(new b00(org.telegram.ui.ActionBar.j6.Xc, this.h.f33864a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new b00(org.telegram.ui.ActionBar.j6.Xc, this.h.f33866a), 0, spannableString.length(), 33);
         spannableString.setSpan(new y31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
         TLRPC.Document document = stickerSetCovered.cover;
         if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
@@ -452,11 +452,11 @@ public final class d8 extends View implements org.telegram.ui.ActionBar.z5 {
         boolean z10 = this.f11647w;
         d80 d80Var = this.h;
         if (z10 && this.f11648x) {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickersEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, d80Var.f33864a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickersEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, d80Var.f33866a), null, null));
         } else if (z10) {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, d80Var.f33864a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, d80Var.f33866a), null, null));
         } else {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickers", new Object[0]), 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, d80Var.f33864a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickers", new Object[0]), 0, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, d80Var.f33866a), null, null));
         }
     }
 }

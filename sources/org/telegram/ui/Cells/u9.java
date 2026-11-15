@@ -120,7 +120,7 @@ public abstract class u9 {
         path.f30824c = 0;
         this.f31761o0 = path;
         this.f31755l = ViewConfiguration.getLongPressTimeout();
-        this.f31757m = ViewConfiguration.get(org.telegram.messenger.t0.f26600b).getScaledTouchSlop();
+        this.f31757m = ViewConfiguration.get(org.telegram.messenger.t0.f26609b).getScaledTouchSlop();
         float L = org.telegram.messenger.g0.L(6.0f);
         this.f31758n = L;
         paint.setPathEffect(new CornerPathEffect(L));

@@ -14,7 +14,7 @@ public final class pf0 implements c5.h {
     public final void a(int i7) {
         boolean z10;
         org.telegram.ui.yu0 yu0Var = this.f38295a;
-        int i10 = yu0Var.f40403p1;
+        int i10 = yu0Var.f40406p1;
         int i11 = 0;
         if (i7 >= i10) {
             z10 = true;
@@ -22,7 +22,7 @@ public final class pf0 implements c5.h {
             z10 = false;
         }
         if (i7 != i10) {
-            yu0Var.f40403p1 = i7;
+            yu0Var.f40406p1 = i7;
         }
         org.telegram.messenger.vo voVar = yu0Var.T0;
         if (voVar != null) {
@@ -59,7 +59,7 @@ public final class pf0 implements c5.h {
                             org.telegram.messenger.gc gcVar2 = (org.telegram.messenger.gc) yu0Var.X0.get(k11);
                             if (gcVar2 != null) {
                                 org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(yu0Var.M0);
-                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = gcVar2.f23715f;
+                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = gcVar2.f23717f;
                                 if (tL_fileLocationToBeDeprecated != null) {
                                     org.telegram.messenger.w7.K.c(new org.telegram.messenger.x4(9, G, tL_fileLocationToBeDeprecated));
                                 }
@@ -67,7 +67,7 @@ public final class pf0 implements c5.h {
                         } else if (z10) {
                             t5 m10 = imageReceiver.m();
                             if (m10 != null && (gcVar = (org.telegram.messenger.gc) yu0Var.X0.get(k11)) != null) {
-                                m10.y(gcVar.f23718j, false, true);
+                                m10.y(gcVar.f23720j, false, true);
                             }
                             imageReceiver.f22301u0 = false;
                             imageReceiver.Q0();

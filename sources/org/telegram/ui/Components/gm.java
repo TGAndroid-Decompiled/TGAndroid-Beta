@@ -29,7 +29,7 @@ public final class gm {
     public float f35007f = 0.0f;
     public float f35008g = 0.0f;
     public final ArrayList h = new ArrayList();
-    public final er f35010j = er.f34423j;
+    public final er f35010j = er.f34422j;
     public final int f35012l = org.telegram.messenger.g0.L(4.0f);
     public final int f35013m = org.telegram.messenger.g0.L(2.0f) / 2;
     public final RectF f35020t = new RectF();
@@ -38,7 +38,7 @@ public final class gm {
     public gm(hm hmVar) {
         Drawable drawable;
         this.f35025z = hmVar;
-        org.telegram.ui.ActionBar.e6 e6Var = hmVar.Q.f35662n;
+        org.telegram.ui.ActionBar.e6 e6Var = hmVar.Q.f35649n;
         if (e6Var != null) {
             drawable = e6Var.getDrawable("drawableMsgOutMedia");
         } else {
@@ -55,7 +55,7 @@ public final class gm {
         if (cmVar == null) {
             return;
         }
-        HashMap hashMap = (HashMap) cmVar.f33635g;
+        HashMap hashMap = (HashMap) cmVar.f33637g;
         cmVar.a();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         long j10 = elapsedRealtime - gmVar.f35005c;
@@ -68,8 +68,8 @@ public final class gm {
             gmVar.f35008g = gmVar.f35006e;
             gmVar.f35007f = gmVar.d;
         }
-        gmVar.d = cmVar.f33631b / 1000.0f;
-        gmVar.f35006e = cmVar.f33630a;
+        gmVar.d = cmVar.f33633b / 1000.0f;
+        gmVar.f35006e = cmVar.f33632a;
         if (z10) {
             j3 = elapsedRealtime;
         } else {
@@ -97,7 +97,7 @@ public final class gm {
                     break;
                 }
                 fm fmVar2 = (fm) arrayList.get(i11);
-                if (fmVar2.f34625b == ffVar) {
+                if (fmVar2.f34629b == ffVar) {
                     fmVar = fmVar2;
                     break;
                 }
@@ -119,12 +119,12 @@ public final class gm {
         int i12 = 0;
         while (i12 < size3) {
             fm fmVar4 = (fm) arrayList.get(i12);
-            if (!hashMap.containsKey(fmVar4.f34625b)) {
-                if (fmVar4.f34632k <= 0.0f && fmVar4.h + j13 <= elapsedRealtime) {
-                    xh.e eVar = fmVar4.f34640s;
+            if (!hashMap.containsKey(fmVar4.f34629b)) {
+                if (fmVar4.f34636k <= 0.0f && fmVar4.h + j13 <= elapsedRealtime) {
+                    xh.e eVar = fmVar4.f34644s;
                     if (eVar != null) {
                         eVar.b(fmVar4.O.f35025z);
-                        fmVar4.f34640s = null;
+                        fmVar4.f34644s = null;
                     }
                     arrayList.remove(i12);
                     i12--;
@@ -139,7 +139,7 @@ public final class gm {
     }
 
     public final float b() {
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         return this.f35025z.Q.getPreviewScale() * org.telegram.messenger.g0.T1(this.f35008g, this.f35006e, this.f35010j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f35005c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
     }
 }

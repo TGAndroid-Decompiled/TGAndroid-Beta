@@ -91,8 +91,8 @@ public final class a0 extends ja {
         }
         o1 o1Var = new o1(atomicBoolean, e2Var, str, bVar);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
-        np s12 = np.s1(m10.f24934t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24940t0);
+        np s12 = np.s1(m10.f24940t0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
         connectionsManager.sendRequest(tL_payments_checkGiftCode, new j6(s12, o1Var, eVar, 23));

@@ -45,13 +45,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.zip.Adler32;
 import java.util.zip.InflaterInputStream;
 public class ld0 implements hy0, t0.h, q5.b, oa.a {
-    public final int f48975a;
-    public Object f48976b;
-    public Object f48977c;
+    public final int f48971a;
+    public Object f48972b;
+    public Object f48973c;
     public Object d;
 
     public ld0(int i7, boolean z10) {
-        this.f48975a = i7;
+        this.f48971a = i7;
     }
 
     public static void G(File file, File file2) {
@@ -133,7 +133,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public boolean A() {
         String trim;
-        ArrayDeque arrayDeque = (ArrayDeque) this.f48977c;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f48973c;
         if (((String) this.d) != null) {
             return true;
         }
@@ -144,7 +144,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
             return true;
         }
         do {
-            String readLine = ((BufferedReader) this.f48976b).readLine();
+            String readLine = ((BufferedReader) this.f48972b).readLine();
             this.d = readLine;
             if (readLine != null) {
                 trim = readLine.trim();
@@ -158,11 +158,11 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void B(View view) {
         ((ArrayList) this.d).add(view);
-        org.telegram.ui.Components.ff ffVar = (org.telegram.ui.Components.ff) this.f48976b;
+        org.telegram.ui.Components.ff ffVar = (org.telegram.ui.Components.ff) this.f48972b;
         v4.e1 U = RecyclerView.U(view);
         if (U != null) {
             View view2 = U.f58535a;
-            RecyclerView recyclerView = (RecyclerView) ffVar.f34586b;
+            RecyclerView recyclerView = (RecyclerView) ffVar.f34590b;
             int i7 = U.f58551s;
             if (i7 != -1) {
                 U.f58550r = i7;
@@ -195,8 +195,8 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void E() {
         int i7;
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b;
-        ((a8.va) this.f48977c).z();
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b;
+        ((a8.va) this.f48973c).z();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
         while (true) {
@@ -229,9 +229,9 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public void F(f5.k kVar) {
-        if (((wf.d) this.f48976b) != null) {
+        if (((wf.d) this.f48972b) != null) {
             for (int i7 = 0; i7 < kVar.f10991a.size(); i7++) {
-                wf.d dVar = (wf.d) this.f48976b;
+                wf.d dVar = (wf.d) this.f48972b;
                 dVar.h.remove(kVar.h(i7).d);
                 dVar.h();
             }
@@ -242,7 +242,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
         Long l10;
         char c10;
         u5.a aVar = (u5.a) this.d;
-        Context context = (Context) this.f48976b;
+        Context context = (Context) this.f48972b;
         ComponentName componentName = new ComponentName(context, JobInfoSchedulerService.class);
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService("jobscheduler");
         Adler32 adler32 = new Adler32();
@@ -274,7 +274,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
                 }
             }
         }
-        Cursor rawQuery = ((v5.g) ((v5.d) this.f48977c)).a().rawQuery("SELECT next_request_ms FROM transport_contexts WHERE backend_name = ? and priority = ?", new String[]{str2, String.valueOf(y5.a.a(dVar))});
+        Cursor rawQuery = ((v5.g) ((v5.d) this.f48973c)).a().rawQuery("SELECT next_request_ms FROM transport_contexts WHERE backend_name = ? and priority = ?", new String[]{str2, String.valueOf(y5.a.a(dVar))});
         try {
             if (rawQuery.moveToNext()) {
                 l10 = Long.valueOf(rawQuery.getLong(0));
@@ -330,11 +330,11 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void I(wf.a aVar) {
         f5.k kVar;
-        f5.k kVar2 = (f5.k) this.f48977c;
+        f5.k kVar2 = (f5.k) this.f48973c;
         if (kVar2 != null && ((wf.a) this.d) == null && aVar != null) {
             j(kVar2);
         }
-        if (((wf.a) this.d) != null && (kVar = (f5.k) this.f48977c) != null && aVar == null) {
+        if (((wf.a) this.d) != null && (kVar = (f5.k) this.f48973c) != null && aVar == null) {
             F(kVar);
         }
         wf.a aVar2 = (wf.a) this.d;
@@ -345,7 +345,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
         }
         if (aVar != null) {
             aVar.f59100a.p(aVar);
-            f5.k kVar3 = (f5.k) this.f48977c;
+            f5.k kVar3 = (f5.k) this.f48973c;
             if (kVar3 != null) {
                 aVar.d = kVar3;
                 aVar.f59105g = 0;
@@ -357,10 +357,10 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public FileOutputStream J() {
-        File file = (File) this.f48977c;
+        File file = (File) this.f48973c;
         File file2 = (File) this.d;
         if (file2.exists()) {
-            G(file2, (File) this.f48976b);
+            G(file2, (File) this.f48972b);
         }
         try {
             return new FileOutputStream(file);
@@ -378,10 +378,10 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void K(View view) {
         if (((ArrayList) this.d).remove(view)) {
-            org.telegram.ui.Components.ff ffVar = (org.telegram.ui.Components.ff) this.f48976b;
+            org.telegram.ui.Components.ff ffVar = (org.telegram.ui.Components.ff) this.f48972b;
             v4.e1 U = RecyclerView.U(view);
             if (U != null) {
-                RecyclerView recyclerView = (RecyclerView) ffVar.f34586b;
+                RecyclerView recyclerView = (RecyclerView) ffVar.f34590b;
                 int i7 = U.f58550r;
                 if (recyclerView.c0()) {
                     U.f58551s = i7;
@@ -398,17 +398,17 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void L(Object obj, String str) {
         ld0 ld0Var = new ld0(9, false);
-        ((ld0) this.f48977c).f48977c = ld0Var;
-        this.f48977c = ld0Var;
-        ld0Var.f48976b = obj;
+        ((ld0) this.f48973c).f48973c = ld0Var;
+        this.f48973c = ld0Var;
+        ld0Var.f48972b = obj;
         ld0Var.d = str;
     }
 
     @Override
     public void a() {
         org.telegram.messenger.z10 z10Var;
-        boolean[] zArr = (boolean[]) this.f48976b;
-        if (!zArr[0] && (z10Var = (org.telegram.messenger.z10) this.f48977c) != null) {
+        boolean[] zArr = (boolean[]) this.f48972b;
+        if (!zArr[0] && (z10Var = (org.telegram.messenger.z10) this.f48973c) != null) {
             zArr[0] = true;
             z10Var.a(Boolean.TRUE);
         }
@@ -417,14 +417,14 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     @Override
     public oa.a b(Class cls, na.d dVar) {
-        ((HashMap) this.f48976b).put(cls, dVar);
-        ((HashMap) this.f48977c).remove(cls);
+        ((HashMap) this.f48972b).put(cls, dVar);
+        ((HashMap) this.f48973c).remove(cls);
         return this;
     }
 
     @Override
     public Uri c() {
-        return (Uri) this.f48976b;
+        return (Uri) this.f48972b;
     }
 
     @Override
@@ -434,12 +434,12 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     @Override
     public Object mo24get() {
-        return new ld0((Context) ((fd.a) this.f48976b).mo24get(), (v5.d) ((fd.a) this.f48977c).mo24get(), (u5.a) ((pb.b) this.d).mo24get(), 20);
+        return new ld0((Context) ((fd.a) this.f48972b).mo24get(), (v5.d) ((fd.a) this.f48973c).mo24get(), (u5.a) ((pb.b) this.d).mo24get(), 20);
     }
 
     @Override
     public ClipDescription getDescription() {
-        return (ClipDescription) this.f48977c;
+        return (ClipDescription) this.f48973c;
     }
 
     @Override
@@ -448,11 +448,11 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public void j(f5.k kVar) {
-        if (((wf.d) this.f48976b) == null) {
-            this.f48976b = new wf.d();
+        if (((wf.d) this.f48972b) == null) {
+            this.f48972b = new wf.d();
         }
         for (int i7 = 0; i7 < kVar.f10991a.size(); i7++) {
-            wf.d dVar = (wf.d) this.f48976b;
+            wf.d dVar = (wf.d) this.f48972b;
             wf.e h = kVar.h(i7);
             dVar.h.put(h.d, h);
             dVar.h();
@@ -461,20 +461,20 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void k(int i7, View view, boolean z10) {
         int x10;
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b;
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b;
         if (i7 < 0) {
             x10 = recyclerView.getChildCount();
         } else {
             x10 = x(i7);
         }
-        ((a8.va) this.f48977c).w(x10, z10);
+        ((a8.va) this.f48973c).w(x10, z10);
         if (z10) {
             B(view);
         }
         recyclerView.addView(view, x10);
         v4.e1 U = RecyclerView.U(view);
         recyclerView.g0(view);
-        v4.h0 h0Var = recyclerView.f2825x;
+        v4.h0 h0Var = recyclerView.f2828x;
         if (h0Var != null && U != null) {
             h0Var.y(U);
         }
@@ -488,13 +488,13 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public void l(View view, int i7, ViewGroup.LayoutParams layoutParams, boolean z10) {
         int x10;
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b;
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b;
         if (i7 < 0) {
             x10 = recyclerView.getChildCount();
         } else {
             x10 = x(i7);
         }
-        ((a8.va) this.f48977c).w(x10, z10);
+        ((a8.va) this.f48973c).w(x10, z10);
         if (z10) {
             B(view);
         }
@@ -509,9 +509,9 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public String m(int i7, long j3, long j10, String str) {
-        ArrayList arrayList = (ArrayList) this.f48976b;
+        ArrayList arrayList = (ArrayList) this.f48972b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        ArrayList arrayList3 = (ArrayList) this.f48977c;
+        ArrayList arrayList3 = (ArrayList) this.f48973c;
         StringBuilder sb2 = new StringBuilder();
         for (int i10 = 0; i10 < arrayList3.size(); i10++) {
             sb2.append((String) arrayList.get(i10));
@@ -530,23 +530,23 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public void n() {
-        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f48976b;
+        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f48972b;
         if (a0Var != null) {
             int i7 = ((s4.e) this.d).f56364n.d;
-            android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1706b;
+            android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1713b;
             uVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
             builder.setLegacyStreamType(i7);
-            uVar.f1736a.setPlaybackToLocal(builder.build());
-            this.f48977c = null;
+            uVar.f1743a.setPlaybackToLocal(builder.build());
+            this.f48973c = null;
         }
     }
 
     public void p(int i7) {
         v4.e1 U;
         int x10 = x(i7);
-        ((a8.va) this.f48977c).x(x10);
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b;
+        ((a8.va) this.f48973c).x(x10);
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b;
         View childAt = recyclerView.getChildAt(x10);
         if (childAt != null && (U = RecyclerView.U(childAt)) != null) {
             if (U.l() && !U.r()) {
@@ -558,8 +558,8 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public void q(Object obj, ByteArrayOutputStream byteArrayOutputStream) {
-        HashMap hashMap = (HashMap) this.f48976b;
-        qa.e eVar = new qa.e(byteArrayOutputStream, hashMap, (HashMap) this.f48977c, (na.d) this.d);
+        HashMap hashMap = (HashMap) this.f48972b;
+        qa.e eVar = new qa.e(byteArrayOutputStream, hashMap, (HashMap) this.f48973c, (na.d) this.d);
         if (obj == null) {
             return;
         }
@@ -573,15 +573,15 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
 
     public tf.e r(tf.f fVar) {
         InflaterInputStream inflaterInputStream;
-        int i7 = fVar.f57126c;
-        InputStream inputStream = (uf.a) this.f48976b;
+        int i7 = fVar.f57130c;
+        InputStream inputStream = (uf.a) this.f48972b;
         if (fVar.d) {
             org.telegram.messenger.ou ouVar = (org.telegram.messenger.ou) this.d;
             ouVar.getClass();
             byte[] bArr = new byte[i7];
             int i10 = 0;
             while (i10 < i7) {
-                int read = ((ab.d) ouVar.f25804b).read(bArr, i10, i7 - i10);
+                int read = ((ab.d) ouVar.f25806b).read(bArr, i10, i7 - i10);
                 if (read > 0) {
                     i10 += read;
                 } else {
@@ -605,14 +605,14 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
             inputStream = new ByteArrayInputStream(bArr, 0, i11);
             i7 = i11;
         }
-        if (!fVar.f57128f) {
-            if (fVar.f57127e) {
-                i7 = fVar.f57129g;
+        if (!fVar.f57132f) {
+            if (fVar.f57131e) {
+                i7 = fVar.f57133g;
                 inflaterInputStream = new InflaterInputStream(inputStream);
             } else {
                 inflaterInputStream = inputStream;
             }
-            return new tf.e(inflaterInputStream, fVar.f57125b, i7, (tf.h) this.f48977c, fVar);
+            return new tf.e(inflaterInputStream, fVar.f57129b, i7, (tf.h) this.f48973c, fVar);
         }
         throw new Exception("Frame encryption is not supported");
     }
@@ -624,10 +624,10 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
         if (d0Var == null) {
             return q2.n.A;
         }
-        synchronized (this.f48976b) {
+        synchronized (this.f48972b) {
             try {
-                if (!d0Var.equals((e2.d0) this.f48977c)) {
-                    this.f48977c = d0Var;
+                if (!d0Var.equals((e2.d0) this.f48973c)) {
+                    this.f48973c = d0Var;
                     this.d = o(d0Var);
                 }
                 fVar = (q2.f) this.d;
@@ -640,19 +640,19 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public View t(int i7) {
-        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b).getChildAt(x(i7));
+        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b).getChildAt(x(i7));
     }
 
     public String toString() {
         String str = "";
-        switch (this.f48975a) {
+        switch (this.f48971a) {
             case 10:
                 StringBuilder sb2 = new StringBuilder(32);
                 sb2.append((String) this.d);
                 sb2.append('{');
-                ld0 ld0Var = (ld0) ((ld0) this.f48976b).f48977c;
+                ld0 ld0Var = (ld0) ((ld0) this.f48972b).f48973c;
                 while (ld0Var != null) {
-                    Object obj = ld0Var.f48976b;
+                    Object obj = ld0Var.f48972b;
                     sb2.append(str);
                     String str2 = (String) ld0Var.d;
                     if (str2 != null) {
@@ -665,28 +665,28 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
                     } else {
                         sb2.append(obj);
                     }
-                    ld0Var = (ld0) ld0Var.f48977c;
+                    ld0Var = (ld0) ld0Var.f48973c;
                     str = ", ";
                 }
                 sb2.append('}');
                 return sb2.toString();
             case 19:
                 StringBuilder sb3 = new StringBuilder("id3v2tag[pos=");
-                uf.a aVar = (uf.a) this.f48976b;
+                uf.a aVar = (uf.a) this.f48972b;
                 sb3.append(aVar.f913b);
                 sb3.append(", ");
                 sb3.append(aVar.e());
                 sb3.append(" left]");
                 return sb3.toString();
             case 22:
-                return ((a8.va) this.f48977c).toString() + ", hidden list:" + ((ArrayList) this.d).size();
+                return ((a8.va) this.f48973c).toString() + ", hidden list:" + ((ArrayList) this.d).size();
             case 28:
                 StringBuilder sb4 = new StringBuilder(32);
                 sb4.append((String) this.d);
                 sb4.append('{');
-                ld0 ld0Var2 = (ld0) ((ld0) this.f48976b).f48977c;
+                ld0 ld0Var2 = (ld0) ((ld0) this.f48972b).f48973c;
                 while (ld0Var2 != null) {
-                    Object obj2 = ld0Var2.f48976b;
+                    Object obj2 = ld0Var2.f48972b;
                     sb4.append(str);
                     String str3 = (String) ld0Var2.d;
                     if (str3 != null) {
@@ -699,7 +699,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
                     } else {
                         sb4.append(obj2);
                     }
-                    ld0Var2 = (ld0) ld0Var2.f48977c;
+                    ld0Var2 = (ld0) ld0Var2.f48973c;
                     str = ", ";
                 }
                 sb4.append('}');
@@ -710,7 +710,7 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public int u() {
-        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b).getChildCount() - ((ArrayList) this.d).size();
+        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b).getChildCount() - ((ArrayList) this.d).size();
     }
 
     public long v() {
@@ -738,15 +738,15 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
             }
             return ByteBuffer.wrap(bArr);
         }
-        return (ByteBuffer) this.f48977c;
+        return (ByteBuffer) this.f48973c;
     }
 
     public int x(int i7) {
-        a8.va vaVar = (a8.va) this.f48977c;
+        a8.va vaVar = (a8.va) this.f48973c;
         if (i7 < 0) {
             return -1;
         }
-        int childCount = ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b).getChildCount();
+        int childCount = ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b).getChildCount();
         int i10 = i7;
         while (i10 < childCount) {
             int q10 = i7 - (i10 - vaVar.q(i10));
@@ -762,76 +762,76 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public View y(int i7) {
-        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b).getChildAt(i7);
+        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b).getChildAt(i7);
     }
 
     public int z() {
-        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48976b).f34586b).getChildCount();
+        return ((RecyclerView) ((org.telegram.ui.Components.ff) this.f48972b).f34590b).getChildCount();
     }
 
     public ld0(Object obj, Object obj2, Object obj3, int i7) {
-        this.f48975a = i7;
-        this.f48976b = obj;
-        this.f48977c = obj2;
+        this.f48971a = i7;
+        this.f48972b = obj;
+        this.f48973c = obj2;
         this.d = obj3;
     }
 
     public ld0(String str, int i7) {
-        this.f48975a = i7;
+        this.f48971a = i7;
         switch (i7) {
             case 28:
                 ld0 ld0Var = new ld0(27, false);
-                this.f48976b = ld0Var;
-                this.f48977c = ld0Var;
+                this.f48972b = ld0Var;
+                this.f48973c = ld0Var;
                 this.d = str;
                 return;
             default:
                 ld0 ld0Var2 = new ld0(9, false);
-                this.f48976b = ld0Var2;
-                this.f48977c = ld0Var2;
+                this.f48972b = ld0Var2;
+                this.f48973c = ld0Var2;
                 this.d = str;
                 return;
         }
     }
 
     public ld0(InputStream inputStream, long j3, int i7, tf.h hVar) {
-        this.f48975a = 19;
+        this.f48971a = 19;
         uf.a aVar = new uf.a(inputStream, j3, i7);
-        this.f48976b = aVar;
+        this.f48972b = aVar;
         this.d = new org.telegram.messenger.ou(aVar, 26);
-        this.f48977c = hVar;
+        this.f48973c = hVar;
     }
 
     public ld0(String str, Boolean bool, uc.a aVar, String str2) {
-        this.f48975a = 21;
+        this.f48971a = 21;
         this.d = str;
-        this.f48976b = str2;
-        this.f48977c = aVar;
+        this.f48972b = str2;
+        this.f48973c = aVar;
     }
 
     public ld0(int i7) {
-        this.f48975a = i7;
+        this.f48971a = i7;
         switch (i7) {
             case 18:
-                this.f48976b = new Object();
-                this.f48977c = null;
+                this.f48972b = new Object();
+                this.f48973c = null;
                 this.d = null;
                 return;
             case 26:
-                this.f48976b = new HashMap();
-                this.f48977c = new HashMap();
+                this.f48972b = new HashMap();
+                this.f48973c = new HashMap();
                 this.d = y7.i.f60277c;
                 return;
             default:
-                this.f48976b = new Object();
+                this.f48972b = new Object();
                 return;
         }
     }
 
     public ld0(org.telegram.ui.Components.ff ffVar, char c10) {
-        this.f48975a = 22;
-        this.f48976b = ffVar;
-        this.f48977c = new a8.va(8);
+        this.f48971a = 22;
+        this.f48972b = ffVar;
+        this.f48973c = new a8.va(8);
         this.d = new ArrayList();
     }
 
@@ -852,62 +852,62 @@ public class ld0 implements hy0, t0.h, q5.b, oa.a {
     }
 
     public ld0(File file) {
-        this.f48975a = 6;
-        this.f48976b = file;
-        this.f48977c = new File(file.getPath() + ".new");
+        this.f48971a = 6;
+        this.f48972b = file;
+        this.f48973c = new File(file.getPath() + ".new");
         this.d = new File(file.getPath() + ".bak");
     }
 
     public ld0(f3.r rVar) {
-        this.f48975a = 24;
-        this.f48976b = rVar;
+        this.f48971a = 24;
+        this.f48972b = rVar;
     }
 
     public ld0(Runnable runnable) {
-        this.f48975a = 12;
-        this.f48977c = new CopyOnWriteArrayList();
+        this.f48971a = 12;
+        this.f48973c = new CopyOnWriteArrayList();
         this.d = new HashMap();
-        this.f48976b = runnable;
+        this.f48972b = runnable;
     }
 
     public ld0(byte[] bArr, m9.y yVar) {
-        this.f48975a = 4;
-        this.f48976b = bArr;
-        this.f48977c = null;
+        this.f48971a = 4;
+        this.f48972b = bArr;
+        this.f48973c = null;
         this.d = yVar;
     }
 
     public ld0(e2.o0 o0Var, m9.y yVar) {
-        this.f48975a = 4;
-        this.f48976b = o0Var.f10271k;
-        this.f48977c = o0Var.f10274n;
+        this.f48971a = 4;
+        this.f48972b = o0Var.f10271k;
+        this.f48973c = o0Var.f10274n;
         this.d = yVar;
     }
 
     public ld0(org.telegram.ui.Components.ff ffVar) {
-        this.f48975a = 13;
-        this.f48975a = 13;
-        this.f48976b = ffVar;
-        this.f48977c = Choreographer.getInstance();
+        this.f48971a = 13;
+        this.f48971a = 13;
+        this.f48972b = ffVar;
+        this.f48973c = Choreographer.getInstance();
         this.d = new org.telegram.ui.Components.zy0(this, 1);
     }
 
     public ld0(String str, String str2) {
-        this.f48975a = 25;
+        this.f48971a = 25;
         this.d = str;
-        this.f48976b = str2;
-        this.f48977c = str2.isEmpty() ? str : a8.p0.E(str, "/", str2);
+        this.f48972b = str2;
+        this.f48973c = str2.isEmpty() ? str : a8.p0.E(str, "/", str2);
     }
 
     public ld0(s4.e eVar, android.support.v4.media.session.a0 a0Var) {
-        this.f48975a = 15;
+        this.f48971a = 15;
         this.d = eVar;
-        this.f48976b = a0Var;
+        this.f48972b = a0Var;
     }
 
     public ld0(ArrayDeque arrayDeque, BufferedReader bufferedReader) {
-        this.f48975a = 14;
-        this.f48977c = arrayDeque;
-        this.f48976b = bufferedReader;
+        this.f48971a = 14;
+        this.f48973c = arrayDeque;
+        this.f48972b = bufferedReader;
     }
 }

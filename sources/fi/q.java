@@ -157,8 +157,8 @@ public abstract class q extends FrameLayout implements is, te.b {
         iVar.setClipChildren(false);
         kcVar.h = new ch.w(qvVar, 28);
         ai.o oVar = new ai.o(qvVar, 11);
-        kcVar.f36381l = true;
-        kcVar.f36379j = oVar;
+        kcVar.f36369l = true;
+        kcVar.f36367j = oVar;
         iVar.j(new bi.z4(qvVar, 11));
         v4.k kVar = new v4.k();
         this.S = kVar;
@@ -199,7 +199,7 @@ public abstract class q extends FrameLayout implements is, te.b {
         addView(imageView, ja.c(22.0f, 90));
         org.telegram.ui.Components.e5 e5Var = new org.telegram.ui.Components.e5(org.telegram.messenger.g0.L(26.0f), null);
         this.f12187b0 = e5Var;
-        e5Var.f34190a = true;
+        e5Var.f34177a = true;
         e5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.f12185a0 = imageView2;
@@ -302,9 +302,9 @@ public abstract class q extends FrameLayout implements is, te.b {
                     iVar.setVisibility(0);
                     iVar2.setVisibility(4);
                     this.T.h1(0, 0);
-                    ai.v0 v0Var = np.s1(i11).P1().K;
-                    org.telegram.messenger.g0.r(v0Var);
-                    v0Var.run();
+                    ai.w0 w0Var = np.s1(i11).P1().K;
+                    org.telegram.messenger.g0.r(w0Var);
+                    w0Var.run();
                     i7 i7Var = this.f12209s0;
                     if (i7Var != null) {
                         i7Var.a();
@@ -345,7 +345,7 @@ public abstract class q extends FrameLayout implements is, te.b {
         int i10;
         int i11;
         float a10 = c8.i9.a(Math.min(this.O, this.f12192e0), 0.0f, 1.0f);
-        float f10 = this.f12184a.f57081e;
+        float f10 = this.f12184a.f57085e;
         float f11 = 1.0f - f10;
         float f12 = f10 * a10;
         float f13 = f11 * a10;
@@ -393,7 +393,7 @@ public abstract class q extends FrameLayout implements is, te.b {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         boolean z10;
-        if (i7 == ns.f25591v5 && this.m0) {
+        if (i7 == ns.f25592v5 && this.m0) {
             if (getVisibility() == 0) {
                 z10 = true;
             } else {
@@ -461,7 +461,7 @@ public abstract class q extends FrameLayout implements is, te.b {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        arrayList.add(Long.valueOf(m10.i(this.f12193f).f24953n));
+        arrayList.add(Long.valueOf(m10.i(this.f12193f).f24959n));
         this.f12194f0.getOrCreateStoryViewer().M(getContext(), null, arrayList, 0, null, null, b7.a(this.f12206r), false);
     }
 
@@ -802,7 +802,7 @@ public abstract class q extends FrameLayout implements is, te.b {
     }
 
     public final boolean m() {
-        long j3 = m10.i(this.f12193f).f24953n;
+        long j3 = m10.i(this.f12193f).f24959n;
         s6 s6Var = this.f12208s;
         if (!s6Var.L(j3)) {
             if (!s6Var.J() || s6Var.f12324g.size() > 3) {
@@ -893,7 +893,7 @@ public abstract class q extends FrameLayout implements is, te.b {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         p(false, false);
-        ns.f(this.f12193f).c(this, ns.f25591v5);
+        ns.f(this.f12193f).c(this, ns.f25592v5);
         ab.q qVar = this.M0;
         qVar.f988a = true;
         AnimatorSet animatorSet = (AnimatorSet) qVar.f990c;
@@ -906,7 +906,7 @@ public abstract class q extends FrameLayout implements is, te.b {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f12193f).n(this, ns.f25591v5);
+        ns.f(this.f12193f).n(this, ns.f25592v5);
         ab.q qVar = this.M0;
         qVar.f988a = false;
         ((AnimatorSet) qVar.f990c).cancel();
@@ -944,8 +944,8 @@ public abstract class q extends FrameLayout implements is, te.b {
             kcVar.getClass();
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((int) iVar.getX(), (int) iVar.getY(), x10, y10);
-            kcVar.f36378i = false;
-            kcVar.f36374c = 0;
+            kcVar.f36366i = false;
+            kcVar.f36362c = 0;
             kcVar.a(rectF);
             if (kcVar.b(motionEvent)) {
                 return true;
@@ -1042,7 +1042,7 @@ public abstract class q extends FrameLayout implements is, te.b {
         }
         if (!this.f12196h0) {
             CharSequence charSequence = this.f12195g0;
-            if (z10 && !hd.f24101a0) {
+            if (z10 && !hd.f24104a0) {
                 z15 = true;
             } else {
                 z15 = false;
@@ -1060,7 +1060,7 @@ public abstract class q extends FrameLayout implements is, te.b {
         this.f12184a.a(z14, z10);
         arrayList6.clear();
         for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-            if (((n) arrayList2.get(i12)).f12049c != m10.i(i10).f24953n || m()) {
+            if (((n) arrayList2.get(i12)).f12049c != m10.i(i10).f24959n || m()) {
                 arrayList6.add((n) arrayList2.get(i12));
                 if (arrayList6.size() >= 3) {
                     break;

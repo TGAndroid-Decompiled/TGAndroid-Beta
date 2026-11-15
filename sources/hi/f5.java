@@ -55,7 +55,7 @@ public final class f5 implements mx {
 
     @Override
     public final boolean k() {
-        tg.b editText = ((tg.o2) this.f14274a.f14690t0).getEditText();
+        tg.b editText = ((tg.n2) this.f14274a.f14690t0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -65,11 +65,11 @@ public final class f5 implements mx {
 
     @Override
     public final void l(String str) {
-        tg.o2 o2Var;
+        tg.n2 n2Var;
         tg.b editText;
         org.telegram.messenger.g6[] g6VarArr;
         tg.j jVar = this.f14274a.f14690t0;
-        if (!(jVar instanceof tg.o2) || (editText = (o2Var = (tg.o2) jVar).getEditText()) == null) {
+        if (!(jVar instanceof tg.n2) || (editText = (n2Var = (tg.n2) jVar).getEditText()) == null) {
             return;
         }
         int selectionEnd = editText.getSelectionEnd();
@@ -77,10 +77,10 @@ public final class f5 implements mx {
             selectionEnd = 0;
         }
         try {
-            CharSequence m10 = org.telegram.messenger.j6.m(str, o2Var.getFontMetricsInt(), false, null, 0);
+            CharSequence m10 = org.telegram.messenger.j6.m(str, n2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (org.telegram.messenger.g6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.g6.class)) != null) {
                 for (org.telegram.messenger.g6 g6Var : g6VarArr) {
-                    g6Var.f23694b = 0.85f;
+                    g6Var.f23696b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -114,7 +114,7 @@ public final class f5 implements mx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.p5 p5Var;
-        tg.b editText = ((tg.o2) this.f14274a.f14690t0).getEditText();
+        tg.b editText = ((tg.n2) this.f14274a.f14690t0).getEditText();
         if (editText == null) {
             return;
         }

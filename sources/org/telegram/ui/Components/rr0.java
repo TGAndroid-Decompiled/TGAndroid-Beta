@@ -10,22 +10,22 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rr0 extends tj0 {
-    public final Context f39048c;
-    public final jg.z1 f39049e;
-    public qr0 f39050f;
-    public final TLRPC.Chat f39051n;
-    public final ys0 f39053s;
+    public final Context f39045c;
+    public final jg.z1 f39046e;
+    public qr0 f39047f;
+    public final TLRPC.Chat f39048n;
+    public final ys0 f39050s;
     public ArrayList d = new ArrayList();
     public int h = 0;
-    public int f39052r = 0;
+    public int f39049r = 0;
 
     public rr0(ys0 ys0Var, Context context) {
-        this.f39053s = ys0Var;
-        this.f39048c = context;
+        this.f39050s = ys0Var;
+        this.f39045c = context;
         jg.z1 z1Var = new jg.z1(true);
-        this.f39049e = z1Var;
+        this.f39046e = z1Var;
         z1Var.f17344a = new pr0(this);
-        this.f39051n = ys0Var.G1.g();
+        this.f39048n = ys0Var.G1.g();
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class rr0 extends tj0 {
     }
 
     public final TLObject E(int i7) {
-        jg.z1 z1Var = this.f39049e;
+        jg.z1 z1Var = this.f39046e;
         int size = z1Var.f17349g.size();
         if (i7 >= 0 && i7 < size) {
             return (TLObject) z1Var.f17349g.get(i7);
@@ -52,15 +52,15 @@ public final class rr0 extends tj0 {
 
     public final void F(String str, boolean z10) {
         long j3;
-        if (this.f39050f != null) {
-            Utilities.f22418g.a(this.f39050f);
-            this.f39050f = null;
+        if (this.f39047f != null) {
+            Utilities.f22418g.a(this.f39047f);
+            this.f39047f = null;
         }
         this.d.clear();
-        this.f39049e.f(null, null);
-        jg.z1 z1Var = this.f39049e;
-        if (org.telegram.messenger.t3.T(this.f39051n)) {
-            j3 = this.f39051n.f28051id;
+        this.f39046e.f(null, null);
+        jg.z1 z1Var = this.f39046e;
+        if (org.telegram.messenger.t3.T(this.f39048n)) {
+            j3 = this.f39048n.f28051id;
         } else {
             j3 = 0;
         }
@@ -68,19 +68,19 @@ public final class rr0 extends tj0 {
         f();
         int i7 = 0;
         while (true) {
-            tr0[] tr0VarArr = this.f39053s.f42117n0;
+            tr0[] tr0VarArr = this.f39050s.f42119n0;
             if (i7 >= tr0VarArr.length) {
                 break;
             }
             if (tr0VarArr[i7].F == 7 && !TextUtils.isEmpty(str)) {
-                this.f39053s.f42117n0[i7].f39798w.e(true, z10);
+                this.f39050s.f42119n0[i7].f39795w.e(true, z10);
             }
             i7++;
         }
         if (!TextUtils.isEmpty(str)) {
             org.telegram.messenger.p5 p5Var = Utilities.f22418g;
             qr0 qr0Var = new qr0(this, str, 0);
-            this.f39050f = qr0Var;
+            this.f39047f = qr0Var;
             p5Var.d(qr0Var, 300L);
         }
     }
@@ -97,12 +97,12 @@ public final class rr0 extends tj0 {
 
     @Override
     public final void f() {
-        int size = this.f39049e.f17349g.size();
+        int size = this.f39046e.f17349g.size();
         this.h = size;
         if (size > 0) {
-            ys0 ys0Var = this.f39053s;
+            ys0 ys0Var = this.f39050s;
             if (ys0Var.Y0) {
-                tr0 tr0Var = ys0Var.f42117n0[0];
+                tr0 tr0Var = ys0Var.f42119n0[0];
                 if (tr0Var.F == 7 && tr0Var.h.getAdapter() != this) {
                     ys0Var.B1(false);
                 }
@@ -115,8 +115,8 @@ public final class rr0 extends tj0 {
     public final void t(v4.e1 e1Var, int i7) {
         TLRPC.User a22;
         SpannableStringBuilder spannableStringBuilder;
-        ys0 ys0Var = this.f39053s;
-        org.telegram.ui.ActionBar.e2 e2Var = ys0Var.f42150y1;
+        ys0 ys0Var = this.f39050s;
+        org.telegram.ui.ActionBar.e2 e2Var = ys0Var.f42152y1;
         TLObject E = E(i7);
         if (E instanceof TLRPC.ChannelParticipant) {
             a22 = e2Var.getMessagesController().a2(Long.valueOf(org.telegram.messenger.gj.B1(((TLRPC.ChannelParticipant) E).peer)));
@@ -126,7 +126,7 @@ public final class rr0 extends tj0 {
             return;
         }
         org.telegram.messenger.q10.n(a22);
-        jg.z1 z1Var = this.f39049e;
+        jg.z1 z1Var = this.f39046e;
         z1Var.f17349g.size();
         String str = z1Var.f17355n;
         if (str != null) {
@@ -149,8 +149,8 @@ public final class rr0 extends tj0 {
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        ys0 ys0Var = this.f39053s;
-        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f39048c, 9, 5, true, ys0Var.I1);
+        ys0 ys0Var = this.f39050s;
+        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f39045c, 9, 5, true, ys0Var.I1);
         org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, a5Var, ys0Var.I1);
         a5Var.setDelegate(new pr0(this));
         return new v4.e1(a5Var);

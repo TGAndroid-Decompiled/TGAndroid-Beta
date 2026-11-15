@@ -156,22 +156,22 @@ public final class c extends v {
             case 5:
                 int b10 = e1Var.b();
                 il0 il0Var = (il0) this.f13320e;
-                if (b10 >= il0Var.f35659w && e1Var.b() < il0Var.f35660x) {
+                if (b10 >= il0Var.f35646w && e1Var.b() < il0Var.f35647x) {
                     return v.l(3, 0);
                 }
                 return v.l(0, 0);
             case 6:
                 int l10 = v.l(0, 0);
-                ys0 ys0Var = ((js0) this.f13320e).f36179y;
-                if (ys0Var.F1 && recyclerView.getAdapter() != ys0Var.V && (s5 = s(e1Var)) != null && s5.f26570b) {
+                ys0 ys0Var = ((js0) this.f13320e).f36169y;
+                if (ys0Var.F1 && recyclerView.getAdapter() != ys0Var.V && (s5 = s(e1Var)) != null && s5.f26579b) {
                     return v.l(3, 0);
                 }
                 return l10;
             case 7:
                 u41 u41Var = (u41) this.f13320e;
-                if (u41Var.f39898k3 && u41Var.f39895g3.H(e1Var.b()) >= 0) {
+                if (u41Var.f39895k3 && u41Var.f39892g3.H(e1Var.b()) >= 0) {
                     int i7 = 15;
-                    if (u41Var.f39894f3.f58489o == 0) {
+                    if (u41Var.f39891f3.f58489o == 0) {
                         if (!u41Var.j3) {
                             i7 = 12;
                         }
@@ -203,7 +203,7 @@ public final class c extends v {
                 return ((il0) this.f13320e).J.g0();
             case 7:
                 u41 u41Var = (u41) this.f13320e;
-                if (u41Var.f39898k3 && u41Var.f39900m3) {
+                if (u41Var.f39895k3 && u41Var.f39897m3) {
                     return true;
                 }
                 return false;
@@ -284,13 +284,13 @@ public final class c extends v {
                 if (e1Var.f58539f == e1Var2.f58539f) {
                     View view = e1Var2.f58535a;
                     if (!(view instanceof ia) || ((ia) view).H) {
-                        ea eaVar = ((la) obj).f48912c;
+                        ea eaVar = ((la) obj).f48908c;
                         int b12 = e1Var.b();
                         int b13 = e1Var2.b();
                         int i15 = b12 - 4;
                         int i16 = b13 - 4;
-                        la laVar = eaVar.f46657c;
-                        ArrayList arrayList3 = laVar.f48918w;
+                        la laVar = eaVar.f46647c;
+                        ArrayList arrayList3 = laVar.f48914w;
                         if (i15 >= arrayList3.size() || i16 >= arrayList3.size()) {
                             return true;
                         }
@@ -317,19 +317,19 @@ public final class c extends v {
                 if (e1Var.f58539f == e1Var2.f58539f) {
                     View view2 = e1Var2.f58535a;
                     if (!(view2 instanceof ia) || ((ia) view2).H) {
-                        fo foVar = ((go) obj).f47494f3;
+                        fo foVar = ((go) obj).f47484f3;
                         int b14 = e1Var.b();
                         int b15 = e1Var2.b();
                         int i18 = b14 - 1;
                         int i19 = b15 - 1;
-                        go goVar = foVar.f47173c;
-                        ho hoVar = goVar.f47497i3;
+                        go goVar = foVar.f47163c;
+                        ho hoVar = goVar.f47487i3;
                         ArrayList arrayList4 = hoVar.O;
                         if (i18 >= hoVar.O.size() || i19 >= arrayList4.size()) {
                             return true;
                         }
                         if (b14 != b15) {
-                            goVar.f47495g3 = true;
+                            goVar.f47485g3 = true;
                         }
                         arrayList4.set(i18, (TLRPC.TL_username) arrayList4.get(i19));
                         arrayList4.set(i19, (TLRPC.TL_username) arrayList4.get(i18));
@@ -348,27 +348,27 @@ public final class c extends v {
                 int b16 = e1Var.b();
                 int b17 = e1Var2.b();
                 y7 y7Var = (y7) obj;
-                if (y7Var.f41911p2) {
+                if (y7Var.f41903p2) {
                     if (b16 <= 0 || b17 <= 0) {
                         return false;
                     }
-                    y7Var.f41913q2.c(b16 - 1, b17 - 1);
+                    y7Var.f41905q2.c(b16 - 1, b17 - 1);
                 } else {
-                    y7Var.f41913q2.c(b16, b17);
+                    y7Var.f41905q2.c(b16, b17);
                 }
-                y7Var.f41915r2.clear();
-                y7Var.f41915r2.addAll(y7Var.f41913q2.f24202c);
-                y7Var.f41920u1.j(b16, b17);
+                y7Var.f41907r2.clear();
+                y7Var.f41907r2.addAll(y7Var.f41905q2.f24205c);
+                y7Var.f41912u1.j(b16, b17);
                 return true;
             case 4:
                 if (e1Var.f58539f != e1Var2.f58539f) {
                     return false;
                 }
-                l4 l4Var = ((jn) obj).f36104r;
+                l4 l4Var = ((jn) obj).f36094r;
                 int b18 = e1Var.b();
                 int b19 = e1Var2.b();
-                jn jnVar = (jn) l4Var.f48827e;
-                int i20 = jnVar.f36110u0;
+                jn jnVar = (jn) l4Var.f48823e;
+                int i20 = jnVar.f36100u0;
                 sh.d dVar = jnVar.n1;
                 int i21 = b18 - i20;
                 int i22 = b19 - i20;
@@ -392,15 +392,15 @@ public final class c extends v {
             case 5:
                 int b21 = e1Var2.b();
                 il0 il0Var = (il0) obj;
-                ArrayList arrayList5 = il0Var.f35654e;
-                if (b21 >= il0Var.f35659w && e1Var2.b() < il0Var.f35660x) {
+                ArrayList arrayList5 = il0Var.f35641e;
+                if (b21 >= il0Var.f35646w && e1Var2.b() < il0Var.f35647x) {
                     int b22 = e1Var.b();
                     int b23 = e1Var2.b();
-                    int i23 = il0Var.f35659w;
+                    int i23 = il0Var.f35646w;
                     int i24 = b22 - i23;
                     int i25 = b23 - i23;
                     arrayList5.indexOf(Integer.valueOf(i24));
-                    arrayList5.get(b22 - il0Var.f35659w);
+                    arrayList5.get(b22 - il0Var.f35646w);
                     gj gjVar3 = (gj) arrayList5.get(i24);
                     gj gjVar4 = (gj) arrayList5.get(i25);
                     arrayList5.set(i24, gjVar4);
@@ -414,17 +414,17 @@ public final class c extends v {
                         arrayList6.set(indexOf2, gjVar3);
                     }
                     q10.y();
-                    il0Var.f35653c.j(b22, b23);
+                    il0Var.f35640c.j(b22, b23);
                 }
                 return false;
             case 6:
                 js0 js0Var = (js0) obj;
-                ArrayList arrayList7 = js0Var.f36173f;
-                ys0 ys0Var = js0Var.f36179y;
+                ArrayList arrayList7 = js0Var.f36163f;
+                ys0 ys0Var = js0Var.f36169y;
                 if (ys0Var.F1 && recyclerView.getAdapter() != ys0Var.V) {
                     sv s5 = s(e1Var);
                     sv s9 = s(e1Var2);
-                    if (s5 != null && s9 != null && s5.f26570b && s9.f26570b) {
+                    if (s5 != null && s9 != null && s5.f26579b && s9.f26579b) {
                         int b24 = e1Var.b();
                         int b25 = e1Var2.b();
                         arrayList7.remove(b24);
@@ -437,7 +437,7 @@ public final class c extends v {
                 return false;
             case 7:
                 u41 u41Var = (u41) obj;
-                p41 p41Var = u41Var.f39895g3;
+                p41 p41Var = u41Var.f39892g3;
                 if (p41Var.H(e1Var.b()) < 0 || p41Var.H(e1Var.b()) != p41Var.H(e1Var2.b())) {
                     return false;
                 }
@@ -485,9 +485,9 @@ public final class c extends v {
                 while (i13 < size3) {
                     Object obj3 = arrayList9.get(i13);
                     i13++;
-                    arrayList10.add(Integer.valueOf(((s61) obj3).f39188a));
+                    arrayList10.add(Integer.valueOf(((s61) obj3).f39185a));
                 }
-                n61 n61Var = ((w61) ((cf) v61Var.E).f33543a).M;
+                n61 n61Var = ((w61) ((cf) v61Var.E).f33545a).M;
                 if (n61Var == null) {
                     return true;
                 }
@@ -497,27 +497,27 @@ public final class c extends v {
                 if (e1Var.f58539f != e1Var2.f58539f || !r(e1Var.b()) || !r(e1Var2.b())) {
                     return false;
                 }
-                lr0 lr0Var = ((nr0) obj).f49616b;
+                lr0 lr0Var = ((nr0) obj).f49606b;
                 int b30 = e1Var.b();
                 int b31 = e1Var2.b();
                 nr0 nr0Var = lr0Var.d;
-                int i26 = nr0Var.f49633o0;
+                int i26 = nr0Var.f49623o0;
                 int i27 = b30 - i26;
                 int i28 = b31 - i26;
                 if (i27 < 0 || i28 < 0 || i27 >= (i11 = nr0Var.E) || i28 >= i11) {
                     return true;
                 }
-                CharSequence[] charSequenceArr2 = nr0Var.f49643w;
+                CharSequence[] charSequenceArr2 = nr0Var.f49633w;
                 CharSequence charSequence2 = charSequenceArr2[i27];
                 charSequenceArr2[i27] = charSequenceArr2[i28];
                 charSequenceArr2[i28] = charSequence2;
-                int[] iArr = nr0Var.f49636r;
+                int[] iArr = nr0Var.f49626r;
                 if (iArr != null) {
                     int i29 = iArr[i27];
                     iArr[i27] = iArr[i28];
                     iArr[i28] = i29;
                 }
-                boolean[] zArr2 = nr0Var.f49645x;
+                boolean[] zArr2 = nr0Var.f49635x;
                 boolean z11 = zArr2[i27];
                 zArr2[i27] = zArr2[i28];
                 zArr2[i28] = z11;
@@ -602,7 +602,7 @@ public final class c extends v {
                 if (i7 == 0) {
                     la.d0(laVar);
                 } else {
-                    laVar.f48911b.I0(false);
+                    laVar.f48907b.I0(false);
                     e1Var.f58535a.setPressed(true);
                 }
                 if (e1Var != null) {
@@ -616,15 +616,15 @@ public final class c extends v {
                 return;
             case 2:
                 go goVar = (go) obj;
-                ho hoVar = goVar.f47497i3;
+                ho hoVar = goVar.f47487i3;
                 if (i7 == 0) {
                     hoVar.M = false;
-                    if (goVar.f47495g3) {
+                    if (goVar.f47485g3) {
                         TLRPC.Chat chat = hoVar.Y;
                         ArrayList arrayList3 = hoVar.O;
                         ArrayList arrayList4 = hoVar.N;
                         if (chat != null) {
-                            goVar.f47495g3 = false;
+                            goVar.f47485g3 = false;
                             TLRPC.TL_channels_reorderUsernames tL_channels_reorderUsernames = new TLRPC.TL_channels_reorderUsernames();
                             TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
                             TLRPC.Chat chat2 = hoVar.Y;
@@ -659,7 +659,7 @@ public final class c extends v {
                 e1Var.f58535a.setPressed(true);
                 return;
             case 3:
-                k7 k7Var = ((y7) obj).f41916s1;
+                k7 k7Var = ((y7) obj).f41908s1;
                 if (e1Var != null) {
                     k7Var.d1(false);
                 }
@@ -680,26 +680,26 @@ public final class c extends v {
                 return;
             case 4:
                 jn jnVar = (jn) obj;
-                b61 b61Var = jnVar.f36107s;
+                b61 b61Var = jnVar.f36097s;
                 if (i7 != 0) {
-                    b61Var.setItemAnimator(jnVar.f36112w);
+                    b61Var.setItemAnimator(jnVar.f36102w);
                     b61Var.I0(false);
                     e1Var.f58535a.setPressed(true);
-                    q6.h(j6.f28922h5, e1Var.f58535a, jnVar.f33606a);
+                    q6.h(j6.f28922h5, e1Var.f58535a, jnVar.f33608a);
                     return;
                 }
                 return;
             case 5:
                 if (i7 != 0) {
-                    ((il0) obj).f35652b.I0(false);
+                    ((il0) obj).f35639b.I0(false);
                     e1Var.f58535a.setPressed(true);
                     return;
                 }
                 return;
             case 6:
                 js0 js0Var = (js0) obj;
-                ro0 ro0Var = js0Var.f36174n;
-                if (e1Var != null && (sr0Var = js0Var.f36176s) != null) {
+                ro0 ro0Var = js0Var.f36164n;
+                if (e1Var != null && (sr0Var = js0Var.f36166s) != null) {
                     sr0Var.d1(false);
                 }
                 if (i7 == 0) {
@@ -714,13 +714,13 @@ public final class c extends v {
                     u41Var.d1(false);
                 }
                 if (i7 == 0) {
-                    p41 p41Var = u41Var.f39895g3;
+                    p41 p41Var = u41Var.f39892g3;
                     if (p41Var.M) {
                         p41Var.F(p41Var.L);
                     }
-                    if (u41Var.f39899l3 != null) {
+                    if (u41Var.f39896l3 != null) {
                         u41Var.G1();
-                        u41Var.f39899l3 = null;
+                        u41Var.f39896l3 = null;
                         return;
                     }
                     return;
@@ -737,7 +737,7 @@ public final class c extends v {
                         }
                     }
                     if (i7 == 2) {
-                        u41Var.f39899l3 = e1Var;
+                        u41Var.f39896l3 = e1Var;
                         u41Var.J1(e1Var);
                         return;
                     }
@@ -749,7 +749,7 @@ public final class c extends v {
                 return;
             case 9:
                 if (i7 != 0) {
-                    ((nr0) obj).f49618c.I0(false);
+                    ((nr0) obj).f49608c.I0(false);
                     e1Var.f58535a.setPressed(true);
                     return;
                 }
@@ -764,7 +764,7 @@ public final class c extends v {
 
     public boolean r(int i7) {
         nr0 nr0Var = (nr0) this.f13320e;
-        if (!nr0Var.J || i7 - nr0Var.f49633o0 >= nr0Var.f49647y) {
+        if (!nr0Var.J || i7 - nr0Var.f49623o0 >= nr0Var.f49637y) {
             return true;
         }
         return false;
@@ -773,10 +773,10 @@ public final class c extends v {
     public sv s(e1 e1Var) {
         int b10;
         js0 js0Var = (js0) this.f13320e;
-        if (e1Var == null || (b10 = e1Var.b()) < 0 || b10 >= js0Var.f36173f.size()) {
+        if (e1Var == null || (b10 = e1Var.b()) < 0 || b10 >= js0Var.f36163f.size()) {
             return null;
         }
-        return (sv) js0Var.f36173f.get(b10);
+        return (sv) js0Var.f36163f.get(b10);
     }
 
     private final void A(e1 e1Var) {

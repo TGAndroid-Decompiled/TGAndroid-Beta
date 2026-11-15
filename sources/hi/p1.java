@@ -75,13 +75,13 @@ public final class p1 implements View.OnTouchListener {
                 org.telegram.ui.Components.x7 x7Var = (org.telegram.ui.Components.x7) obj2;
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) obj;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.y7 y7Var = x7Var.f41611n;
-                    y7Var.B1.t(y7Var.f41916s1.T(wVar));
+                    org.telegram.ui.Components.y7 y7Var = x7Var.f41614n;
+                    y7Var.B1.t(y7Var.f41908s1.T(wVar));
                 }
                 return false;
             case 3:
                 wu wuVar = (wu) obj2;
-                return ns.p().r(motionEvent, wuVar.f41450r1, (om) obj, wuVar.I1, wuVar.J0);
+                return ns.p().r(motionEvent, wuVar.f41453r1, (om) obj, wuVar.I1, wuVar.J0);
             case 4:
                 return rw0.a((rw0) obj2, (org.telegram.ui.Components.j) obj, motionEvent);
             case 5:
@@ -89,15 +89,15 @@ public final class p1 implements View.OnTouchListener {
                 org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) obj;
                 dxVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    gx gxVar = dxVar.f46499f;
-                    gxVar.f47538c.t(gxVar.f47537b.T(h4Var));
+                    gx gxVar = dxVar.f46489f;
+                    gxVar.f47528c.t(gxVar.f47527b.T(h4Var));
                 }
                 return false;
             case 6:
                 g00 g00Var = (g00) obj2;
                 c00 c00Var = (c00) obj;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = g00Var.f47264e;
+                    FiltersSetupActivity filtersSetupActivity = g00Var.f47254e;
                     filtersSetupActivity.f42606c.t(filtersSetupActivity.f42604a.T(c00Var));
                 }
                 return false;
@@ -154,7 +154,7 @@ public final class p1 implements View.OnTouchListener {
                     int i17 = i10;
                     int i18 = i13;
                     String str2 = str;
-                    AlertDialog$Builder w10 = org.telegram.ui.Components.t4.w(context, i7, i11, i17, i12, i14, i18, M0, z10, new ai.q1(ek0Var, intValue, editTextBoldCursor, 14));
+                    AlertDialog$Builder w10 = org.telegram.ui.Components.t4.w(context, i7, i11, i17, i12, i14, i18, M0, z10, new ai.r1(ek0Var, intValue, editTextBoldCursor, 14));
                     if (intValue == 8) {
                         w10.h(hd.M0(2131747465, str2), new xi0(1, ek0Var, editTextBoldCursor));
                     }

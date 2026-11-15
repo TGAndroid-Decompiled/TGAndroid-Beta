@@ -9,11 +9,11 @@ import com.google.android.gms.common.api.r;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class c extends u implements e {
     public TaskCompletionSource d;
-    public final b[] f57061e;
+    public final b[] f57065e;
 
     public c(b[] bVarArr) {
         super(null, false, 9004);
-        this.f57061e = bVarArr;
+        this.f57065e = bVarArr;
     }
 
     @Override
@@ -25,9 +25,9 @@ public final class c extends u implements e {
             return;
         }
         TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f5912b;
+        String str = status.f5915b;
         str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
-        switch (status.f5911a) {
+        switch (status.f5914a) {
             case 17510:
                 b0Var = new b0(str);
                 break;
@@ -57,7 +57,7 @@ public final class c extends u implements e {
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
         int i7 = s7.c.f56502a;
         obtain.writeStrongBinder(bVar);
-        obtain.writeTypedArray(this.f57061e, 0);
+        obtain.writeTypedArray(this.f57065e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
             aVar.f56501a.transact(7, obtain, obtain2, 0);

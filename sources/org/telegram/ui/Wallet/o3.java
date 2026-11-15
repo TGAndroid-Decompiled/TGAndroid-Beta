@@ -83,12 +83,12 @@ public final class o3 extends Dialog {
         this.f44224b = if0Var;
         boolean z10 = user != null && user.f28200id == m10.i(e2Var.getCurrentAccount()).e();
         this.f44226e = z10;
-        boolean z11 = (user == null || z10 || !((org.telegram.messenger.h0) np.s1(e2Var.getCurrentAccount()).f25448y7.f25852j0.f14544b).f24006c) ? false : true;
+        boolean z11 = (user == null || z10 || !((org.telegram.messenger.h0) np.s1(e2Var.getCurrentAccount()).f25451y7.f25854j0.f14544b).f24009c) ? false : true;
         this.f44225c = z11;
         this.d = (user == null || z10 || z11) ? false : true;
         int[] iArr = new int[2];
         if0Var.getLocationOnScreen(iArr);
-        rectF.set(if0Var.f33563w);
+        rectF.set(if0Var.f33565w);
         rectF.offset(iArr[0], iArr[1]);
         org.telegram.messenger.g0.S(getWindow());
         m3 m3Var = new m3(this, getContext());
@@ -189,7 +189,7 @@ public final class o3 extends Dialog {
         dh.c cVar = new dh.c(bVar, bVar, bVar);
         this.G = cVar;
         cVar.h = new jh.k(m3Var);
-        cVar.f8095i = m3Var;
+        cVar.f8098i = m3Var;
         eh0 eh0Var = new eh0(getContext());
         this.f44231w = eh0Var;
         fh.g c10 = cVar.c(eh0Var, new gh.b(org.telegram.ui.ActionBar.j6.f28849d6, e2Var.getResourceProvider()), false);
@@ -208,7 +208,7 @@ public final class o3 extends Dialog {
             SpannableStringBuilder append = new SpannableStringBuilder("G  ").append(M0);
             eq eqVar = new eq(2131231956, 0);
             eqVar.c(org.telegram.messenger.g0.L(20.0f));
-            eqVar.f34419y = -1;
+            eqVar.f34418y = -1;
             append.setSpan(eqVar, 0, 1, 33);
             dVar.i(append, false, true);
         }
@@ -403,7 +403,7 @@ public final class o3 extends Dialog {
     public final void e() {
         float f10;
         float f11;
-        float interpolation = er.f34421g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
+        float interpolation = er.f34420g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
         float max = Math.max(0.0f, Math.min(1.0f, (this.J - 0.3f) / 0.7f));
         float interpolation2 = er.h.getInterpolation(max);
         if (this.L) {

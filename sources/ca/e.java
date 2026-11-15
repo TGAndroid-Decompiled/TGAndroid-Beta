@@ -5,12 +5,12 @@ import j$.util.DesugarCollections;
 import java.util.HashMap;
 import java.util.Map;
 public final class e {
-    public final HashMap f4831a = new HashMap();
-    public final int f4832b = 64;
-    public final int f4833c;
+    public final HashMap f4834a = new HashMap();
+    public final int f4835b = 64;
+    public final int f4836c;
 
     public e(int i7) {
-        this.f4833c = i7;
+        this.f4836c = i7;
     }
 
     public static String b(int i7, String str) {
@@ -24,18 +24,18 @@ public final class e {
     }
 
     public final synchronized Map a() {
-        return DesugarCollections.unmodifiableMap(new HashMap(this.f4831a));
+        return DesugarCollections.unmodifiableMap(new HashMap(this.f4834a));
     }
 
     public final synchronized boolean c(String str, String str2) {
         boolean equals;
-        String b10 = b(this.f4833c, str);
-        if (this.f4831a.size() >= this.f4832b && !this.f4831a.containsKey(b10)) {
-            Log.w("FirebaseCrashlytics", "Ignored entry \"" + str + "\" when adding custom keys. Maximum allowable: " + this.f4832b, null);
+        String b10 = b(this.f4836c, str);
+        if (this.f4834a.size() >= this.f4835b && !this.f4834a.containsKey(b10)) {
+            Log.w("FirebaseCrashlytics", "Ignored entry \"" + str + "\" when adding custom keys. Maximum allowable: " + this.f4835b, null);
             return false;
         }
-        String b11 = b(this.f4833c, str2);
-        String str3 = (String) this.f4831a.get(b10);
+        String b11 = b(this.f4836c, str2);
+        String str3 = (String) this.f4834a.get(b10);
         if (str3 == null) {
             if (b11 == null) {
                 equals = true;
@@ -48,7 +48,7 @@ public final class e {
         if (equals) {
             return false;
         }
-        HashMap hashMap = this.f4831a;
+        HashMap hashMap = this.f4834a;
         if (str2 == null) {
             b11 = "";
         }
@@ -63,16 +63,16 @@ public final class e {
             for (Map.Entry entry : map.entrySet()) {
                 String str = (String) entry.getKey();
                 if (str != null) {
-                    String b11 = b(this.f4833c, str);
-                    if (this.f4831a.size() >= this.f4832b && !this.f4831a.containsKey(b11)) {
+                    String b11 = b(this.f4836c, str);
+                    if (this.f4834a.size() >= this.f4835b && !this.f4834a.containsKey(b11)) {
                         i7++;
                     }
                     String str2 = (String) entry.getValue();
-                    HashMap hashMap = this.f4831a;
+                    HashMap hashMap = this.f4834a;
                     if (str2 == null) {
                         b10 = "";
                     } else {
-                        b10 = b(this.f4833c, str2);
+                        b10 = b(this.f4836c, str2);
                     }
                     hashMap.put(b11, b10);
                 } else {
@@ -80,7 +80,7 @@ public final class e {
                 }
             }
             if (i7 > 0) {
-                Log.w("FirebaseCrashlytics", "Ignored " + i7 + " entries when adding custom keys. Maximum allowable: " + this.f4832b, null);
+                Log.w("FirebaseCrashlytics", "Ignored " + i7 + " entries when adding custom keys. Maximum allowable: " + this.f4835b, null);
             }
         } catch (Throwable th2) {
             throw th2;

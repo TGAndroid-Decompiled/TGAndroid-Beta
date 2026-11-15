@@ -92,7 +92,7 @@ public final class j3 implements View.OnClickListener {
                 f7Var2.k(storyItem2.dialogId, storyItem2);
                 long currentTimeMillis = System.currentTimeMillis();
                 n3 n3Var = new n3(t3Var6, 1);
-                c10 c10Var = np.s1(b4Var6.f11497m2).f25400t7;
+                c10 c10Var = np.s1(b4Var6.f11497m2).f25403t7;
                 TL_stories.StoryItem storyItem3 = z3Var2.f12579a;
                 di.x2 x2Var = new di.x2(n3Var, currentTimeMillis, 4);
                 HashSet hashSet = c10Var.K;

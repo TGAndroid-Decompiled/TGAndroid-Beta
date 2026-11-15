@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.view.View;
 import android.view.ViewGroup;
 public final class tv0 implements hi.ja {
-    public final ProfileActivity f51676a;
+    public final ProfileActivity f51677a;
 
     public tv0(ProfileActivity profileActivity) {
-        this.f51676a = profileActivity;
+        this.f51677a = profileActivity;
     }
 
     @Override
     public final hi.na a(long j3) {
         float f10;
-        ProfileActivity profileActivity = this.f51676a;
+        ProfileActivity profileActivity = this.f51677a;
         if (j3 == profileActivity.a()) {
             profileActivity.f43101f0.setRoundRadiusForExpand((int) org.telegram.messenger.g0.T1(profileActivity.r4(), 0.0f, profileActivity.f43143l2));
             xu0 xu0Var = profileActivity.f43101f0;
@@ -44,7 +44,7 @@ public final class tv0 implements hi.ja {
 
     @Override
     public final void e(long j3, di.x2 x2Var) {
-        ProfileActivity profileActivity = this.f51676a;
+        ProfileActivity profileActivity = this.f51677a;
         profileActivity.f43101f0.setHasStories(profileActivity.z4());
         if (j3 == profileActivity.a() && profileActivity.f43169p2 && profileActivity.f43143l2 > 0.0f) {
             profileActivity.f43078c.h1(0, profileActivity.i4() - profileActivity.f43062a.getPaddingTop());

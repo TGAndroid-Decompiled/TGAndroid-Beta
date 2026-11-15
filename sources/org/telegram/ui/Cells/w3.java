@@ -28,7 +28,7 @@ public final class w3 extends org.telegram.ui.Components.h6 {
     public int getBaseline() {
         switch (this.f31875s) {
             case 5:
-                return Math.round((getHeight() - getDrawable().f34833e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
+                return Math.round((getHeight() - getDrawable().f34837e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
             default:
                 return super.getBaseline();
         }
@@ -76,7 +76,7 @@ public final class w3 extends org.telegram.ui.Components.h6 {
                 super.onMeasure(i7, i10);
                 return;
             case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f23609q.x, Integer.MIN_VALUE), i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f23611q.x, Integer.MIN_VALUE), i10);
                 setMeasuredDimension(View.resolveSize((int) Math.ceil(getDrawable().c()), i7), getMeasuredHeight());
                 return;
         }

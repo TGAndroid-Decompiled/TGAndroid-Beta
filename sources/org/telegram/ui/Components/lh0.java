@@ -70,7 +70,7 @@ public final class lh0 extends FrameLayout {
         org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(i7);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
         org.telegram.messenger.gj gjVar = this.f36810s;
-        tL_messages_getMessageReactionsList.peer = s12.j1(org.telegram.messenger.gj.B0(gjVar.f23817k));
+        tL_messages_getMessageReactionsList.peer = s12.j1(org.telegram.messenger.gj.B0(gjVar.f23819k));
         tL_messages_getMessageReactionsList.f28146id = gjVar.e1();
         tL_messages_getMessageReactionsList.limit = 3;
         tL_messages_getMessageReactionsList.reaction = null;
@@ -91,11 +91,11 @@ public final class lh0 extends FrameLayout {
         org.telegram.messenger.gj gjVar = this.f36810s;
         TLRPC.Chat M0 = s12.M0(Long.valueOf(gjVar.x0()));
         TLRPC.ChatFull N0 = s12.N0(gjVar.x0());
-        if (M0 != null && gjVar.P3() && gjVar.q4() && !gjVar.Y2() && !gjVar.o4() && !gjVar.n4() && !gjVar.f23817k.media_unread && !gjVar.F4() && ConnectionsManager.getInstance(i7).getCurrentTime() - gjVar.f23817k.date < 604800 && ((org.telegram.messenger.t3.n0(M0) || !org.telegram.messenger.t3.T(M0)) && N0 != null && N0.participants_count <= org.telegram.messenger.np.s1(i7).f25369q3 && !(gjVar.f23817k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+        if (M0 != null && gjVar.P3() && gjVar.q4() && !gjVar.Y2() && !gjVar.o4() && !gjVar.n4() && !gjVar.f23819k.media_unread && !gjVar.F4() && ConnectionsManager.getInstance(i7).getCurrentTime() - gjVar.f23819k.date < 604800 && ((org.telegram.messenger.t3.n0(M0) || !org.telegram.messenger.t3.T(M0)) && N0 != null && N0.participants_count <= org.telegram.messenger.np.s1(i7).f25372q3 && !(gjVar.f23819k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
             TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
             tL_messages_getMessageReadParticipants.msg_id = gjVar.e1();
-            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.np.s1(i7).j1(org.telegram.messenger.gj.B0(gjVar.f23817k));
-            TLRPC.Peer peer = gjVar.f23817k.from_id;
+            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.np.s1(i7).j1(org.telegram.messenger.gj.B0(gjVar.f23819k));
+            TLRPC.Peer peer = gjVar.f23819k.from_id;
             if (peer != null) {
                 j3 = peer.user_id;
             } else {

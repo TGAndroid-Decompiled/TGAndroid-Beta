@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class op extends c5.l {
-    public np f38036x0;
+    public np f38034x0;
 
     public op(Context context) {
         super(context);
@@ -20,7 +20,7 @@ public abstract class op extends c5.l {
     }
 
     public void setAdapter(np npVar) {
-        this.f38036x0 = npVar;
+        this.f38034x0 = npVar;
         super.setAdapter((c5.a) npVar);
         if (npVar != null) {
             x(npVar.j(), false);

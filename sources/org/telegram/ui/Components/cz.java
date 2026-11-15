@@ -104,8 +104,8 @@ public final class cz extends v4.k {
             }
             gz gzVar = (gz) view;
             iz izVar = gzVar.f35121n0;
-            TextPaint textPaint = izVar.f35783b;
-            TextPaint textPaint2 = izVar.f35785c;
+            TextPaint textPaint = izVar.f35770b;
+            TextPaint textPaint2 = izVar.f35772c;
             int i26 = gzVar.f35105b.d;
             int i27 = gzVar.J;
             if (i26 != i27) {
@@ -180,12 +180,12 @@ public final class cz extends v4.k {
                 i16 = r32;
                 str = null;
             }
-            int i32 = gzVar.f35105b.f34750c;
+            int i32 = gzVar.f35105b.f34754c;
             if (i16 != 0) {
                 if (str != null) {
                     f11 = 1.0f;
                 } else {
-                    f11 = izVar.f35812x;
+                    f11 = izVar.f35799x;
                 }
                 i17 = org.telegram.messenger.g0.L(f11 * 6.0f) + i16;
             } else {
@@ -201,13 +201,13 @@ public final class cz extends v4.k {
                 z11 = z10;
             }
             CharSequence charSequence3 = gzVar.O;
-            if (charSequence3 != null && !gzVar.f35105b.f34749b.equals(charSequence3)) {
-                if (gzVar.O.length() > gzVar.f35105b.f34749b.length()) {
+            if (charSequence3 != null && !gzVar.f35105b.f34753b.equals(charSequence3)) {
+                if (gzVar.O.length() > gzVar.f35105b.f34753b.length()) {
                     charSequence = gzVar.O;
-                    charSequence2 = gzVar.f35105b.f34749b;
+                    charSequence2 = gzVar.f35105b.f34753b;
                     z14 = i15;
                 } else {
-                    charSequence = gzVar.f35105b.f34749b;
+                    charSequence = gzVar.f35105b.f34753b;
                     charSequence2 = gzVar.O;
                     z14 = r32;
                 }
@@ -230,7 +230,7 @@ public final class cz extends v4.k {
                     StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint, L, alignment3, 1.0f, 0.0f, false);
                     gzVar.Q = staticLayout;
                     if (gzVar.m0) {
-                        if (gzVar.f35105b.f34753g) {
+                        if (gzVar.f35105b.f34757g) {
                             i22 = 26;
                         } else {
                             i22 = i34 == 1 ? 1 : 0;
@@ -243,7 +243,7 @@ public final class cz extends v4.k {
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint, org.telegram.messenger.g0.L(400.0f), alignment3, 1.0f, 0.0f, false);
                     gzVar.U = staticLayout2;
                     if (gzVar.m0) {
-                        if (gzVar.f35105b.f34753g) {
+                        if (gzVar.f35105b.f34757g) {
                             i21 = 26;
                         } else {
                             i21 = i34 == 1 ? 1 : 0;
@@ -270,13 +270,13 @@ public final class cz extends v4.k {
                     i20 = i34;
                 } else {
                     int i35 = r32;
-                    CharSequence charSequence4 = gzVar.f35105b.f34749b;
+                    CharSequence charSequence4 = gzVar.f35105b.f34753b;
                     int L2 = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
                     StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, L2, alignment4, 1.0f, 0.0f, false);
                     gzVar.Q = staticLayout3;
                     if (gzVar.m0) {
-                        if (gzVar.f35105b.f34753g) {
+                        if (gzVar.f35105b.f34757g) {
                             i19 = 26;
                         } else {
                             i19 = i35;
@@ -289,7 +289,7 @@ public final class cz extends v4.k {
                     StaticLayout staticLayout4 = new StaticLayout(gzVar.O, textPaint, org.telegram.messenger.g0.L(400.0f), alignment4, 1.0f, 0.0f, false);
                     gzVar.S = staticLayout4;
                     if (gzVar.m0) {
-                        if (gzVar.f35105b.f34753g) {
+                        if (gzVar.f35105b.f34757g) {
                             i18 = 26;
                         } else {
                             i18 = i35;

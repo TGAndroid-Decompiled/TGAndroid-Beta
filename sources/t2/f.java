@@ -74,7 +74,7 @@ public final class f extends l2.b {
         if (bVar != null) {
             bVar.release();
         }
-        this.U = new b(nVar.f2266a);
+        this.U = new b(nVar.f2269a);
         this.f56976d0 = false;
     }
 

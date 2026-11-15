@@ -91,8 +91,8 @@ public final class a extends FrameLayout implements te.b, z5 {
 
     public final void a() {
         int i7;
-        float f10 = 1.0f - this.f18160a.f57081e;
-        float T1 = g0.T1(f10 / 2.0f, f10, this.f18161b.f57081e);
+        float f10 = 1.0f - this.f18160a.f57085e;
+        float T1 = g0.T1(f10 / 2.0f, f10, this.f18161b.f57085e);
         ImageView imageView = this.f18162c;
         if (imageView != null) {
             imageView.setAlpha(T1);
@@ -110,8 +110,8 @@ public final class a extends FrameLayout implements te.b, z5 {
 
     public final void b() {
         int i7;
-        float f10 = this.f18160a.f57081e;
-        float T1 = g0.T1(f10 / 2.0f, f10, this.f18161b.f57081e);
+        float f10 = this.f18160a.f57085e;
+        float T1 = g0.T1(f10 / 2.0f, f10, this.f18161b.f57085e);
         ImageView imageView = this.d;
         if (imageView != null) {
             imageView.setAlpha(T1);

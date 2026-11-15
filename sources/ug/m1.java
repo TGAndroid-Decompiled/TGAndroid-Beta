@@ -3,21 +3,21 @@ package ug;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import di.bc;
+import di.ac;
 import org.telegram.messenger.qc;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.l8;
 import org.telegram.ui.Components.fh0;
 public final class m1 extends l8 {
-    public final bc f58221a0;
+    public final ac f58221a0;
     public final int f58222b0;
     public final q2.d f58223c0;
 
     public m1(int i7, Context context, e6 e6Var) {
         super(context, e6Var);
         int i10;
-        this.f58221a0 = new bc(1, 15);
+        this.f58221a0 = new ac(1, 15);
         this.f58223c0 = new q2.d(this, 25);
         if (i7 == 1) {
             i10 = j6.Wk;
@@ -32,9 +32,9 @@ public final class m1 extends l8 {
         boolean e10 = qc.e(131072);
         q2.d dVar = this.f58223c0;
         if (e10) {
-            bc bcVar = this.f58221a0;
-            bcVar.d();
-            bcVar.a(canvas, j6.x0(null, this.f58222b0, false));
+            ac acVar = this.f58221a0;
+            acVar.d();
+            acVar.a(canvas, j6.x0(null, this.f58222b0, false));
             bg.k.d().a(15, dVar);
         } else {
             bg.k.d().f(dVar);

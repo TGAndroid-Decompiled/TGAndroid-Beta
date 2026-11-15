@@ -28,7 +28,7 @@ public final class m6 extends o6 {
     @Override
     public final void c(org.telegram.ui.ActionBar.e2 e2Var) {
         TLRPC.User user = this.f14704b;
-        if (user.f28200id == m10.i(m10.f24934t0).e()) {
+        if (user.f28200id == m10.i(m10.f24940t0).e()) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", user.f28200id);
             bundle.putBoolean("my_profile", true);

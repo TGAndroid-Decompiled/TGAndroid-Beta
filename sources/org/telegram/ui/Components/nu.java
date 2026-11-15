@@ -69,7 +69,7 @@ public final class nu extends os {
             for (int i7 = 0; i7 < this.O.size(); i7++) {
                 pu puVar = (pu) this.O.get(i7);
                 p5 p5Var = puVar.f38411c;
-                if (p5Var != null && (g5Var = (g5) this.Q.E.f41446m1.get(p5Var.getDocumentId())) != null && g5Var.f34809k != null && puVar.f38410b != null) {
+                if (p5Var != null && (g5Var = (g5) this.Q.E.f41449m1.get(p5Var.getDocumentId())) != null && g5Var.f34813k != null && puVar.f38410b != null) {
                     g5Var.setAlpha((int) (puVar.getAlpha() * 255.0f * f10));
                     float width = ((puVar.getWidth() - puVar.getPaddingLeft()) - puVar.getPaddingRight()) / 2.0f;
                     float height = ((puVar.getHeight() - puVar.getPaddingTop()) - puVar.getPaddingBottom()) / 2.0f;
@@ -114,13 +114,13 @@ public final class nu extends os {
             pu puVar = (pu) this.O.get(i7);
             p5 p5Var = puVar.f38411c;
             org.telegram.messenger.hc[] hcVarArr = puVar.f38409a;
-            if (p5Var != null && (g5Var = (g5) wuVar.f41446m1.get(p5Var.getDocumentId())) != null && g5Var.f34809k != null) {
+            if (p5Var != null && (g5Var = (g5) wuVar.f41449m1.get(p5Var.getDocumentId())) != null && g5Var.f34813k != null) {
                 g5Var.s(j3);
-                fi.u2 u2Var = g5Var.f34809k;
+                fi.u2 u2Var = g5Var.f34813k;
                 int i10 = this.L;
                 org.telegram.messenger.hc e02 = u2Var.e0(hcVarArr[i10], i10);
                 hcVarArr[i10] = e02;
-                e02.f24080c = j3;
+                e02.f24083c = j3;
                 g5Var.setAlpha(255);
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set(puVar.getPaddingLeft() + puVar.getLeft(), puVar.getPaddingTop(), puVar.getRight() - puVar.getPaddingRight(), puVar.getMeasuredHeight() - puVar.getPaddingBottom());
@@ -131,7 +131,7 @@ public final class nu extends os {
                     wuVar.O1 = new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN);
                 }
                 g5Var.setColorFilter(wuVar.O1);
-                puVar.f38410b = g5Var.f34809k;
+                puVar.f38410b = g5Var.f34813k;
                 arrayList.add(puVar);
             }
         }

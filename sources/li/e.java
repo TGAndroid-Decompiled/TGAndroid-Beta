@@ -1,6 +1,6 @@
 package li;
 
-import ai.u1;
+import ai.v1;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -51,7 +51,7 @@ public final class e extends e2 implements is {
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             eVar2.getMessagesController().M0(Long.valueOf(-eVar2.f19554b));
-            eVar2.showDialog(new ni.a(eVar2.getParentActivity(), chat, eVar2.f19554b, new u1(28, eVar2, chat)));
+            eVar2.showDialog(new ni.a(eVar2.getParentActivity(), chat, eVar2.f19554b, new v1(28, eVar2, chat)));
         }
     }
 
@@ -130,9 +130,9 @@ public final class e extends e2 implements is {
         this.f19557f = u41Var;
         u41Var.setClipToPadding(false);
         u41 u41Var2 = this.f19557f;
-        p41 p41Var = u41Var2.f39895g3;
-        p41Var.f38201r = false;
-        p41Var.f38202s = true;
+        p41 p41Var = u41Var2.f39892g3;
+        p41Var.f38199r = false;
+        p41Var.f38200s = true;
         u41Var2.r1();
         this.f19556e.addView(this.f19557f, ja.c(-1.0f, -1));
         this.f19556e.addView(this.actionBar, ja.e(-1, -2, 48));
@@ -159,7 +159,7 @@ public final class e extends e2 implements is {
                 f6Var.setSubLabel(hd.G(i11, "Chats", new Object[0]));
                 return;
             }
-            this.f19557f.f39895g3.O(false);
+            this.f19557f.f39892g3.O(false);
         }
     }
 

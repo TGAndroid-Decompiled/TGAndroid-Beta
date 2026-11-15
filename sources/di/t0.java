@@ -12,7 +12,7 @@ public final class t0 {
     public final long f9444c;
     public final int d;
     public final String f9445e;
-    public bc f9446f;
+    public ac f9446f;
     public int f9447g = -1;
     public RadialGradient h;
     public Paint f9448i;
@@ -35,12 +35,12 @@ public final class t0 {
             j3 = document.f28057id;
         }
         this.f9444c = j3;
-        this.d = ((TL_stars.starGiftAttributeBackdrop) v8.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
+        this.d = ((TL_stars.starGiftAttributeBackdrop) u8.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
         this.f9445e = tL_starGiftUnique.slug;
-        this.f9446f = new bc(1, 6);
+        this.f9446f = new ac(1, 6);
         float L = org.telegram.messenger.g0.L(36.0f);
         float f10 = (-L) / 2.0f;
         float f11 = L / 2.0f;
-        this.f9446f.f8268c.set(f10, f10, f11, f11);
+        this.f9446f.f8219c.set(f10, f10, f11, f11);
     }
 }

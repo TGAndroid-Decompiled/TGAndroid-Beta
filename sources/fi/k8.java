@@ -106,7 +106,7 @@ public class k8 extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                dcVar.f33915f = new ut(1, view);
+                dcVar.f33902f = new ut(1, view);
             }
             dcVar.c(true);
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());

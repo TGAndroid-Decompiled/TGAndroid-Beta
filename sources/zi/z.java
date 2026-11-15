@@ -6,7 +6,7 @@ public class z extends b3.h {
 
     public z() {
         super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", e0.G);
-        this.f61812e = GLES20.glGetUniformLocation(this.f2901a, "texOffset");
+        this.f61812e = GLES20.glGetUniformLocation(this.f2904a, "texOffset");
     }
 
     public z(String str, int i7) {
@@ -14,10 +14,10 @@ public class z extends b3.h {
         switch (i7) {
             case 1:
                 super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", str);
-                this.f61812e = GLES20.glGetUniformLocation(this.f2901a, "texOffset");
+                this.f61812e = GLES20.glGetUniformLocation(this.f2904a, "texOffset");
                 return;
             default:
-                this.f61812e = GLES20.glGetUniformLocation(this.f2901a, "uTextureMatrix");
+                this.f61812e = GLES20.glGetUniformLocation(this.f2904a, "uTextureMatrix");
                 return;
         }
     }

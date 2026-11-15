@@ -16,16 +16,16 @@ public final class m20 extends AnimatorListenerAdapter {
         switch (this.f37038a) {
             case 0:
                 o20 o20Var = this.f37039b;
-                if (o20Var.f37822c0 == animator) {
-                    o20Var.f37822c0 = null;
+                if (o20Var.f37811c0 == animator) {
+                    o20Var.f37811c0 = null;
                     o20Var.b();
                     return;
                 }
                 return;
             default:
                 o20 o20Var2 = this.f37039b;
-                if (o20Var2.f37820b0 == animator) {
-                    o20Var2.f37820b0 = null;
+                if (o20Var2.f37809b0 == animator) {
+                    o20Var2.f37809b0 = null;
                     return;
                 }
                 return;
@@ -36,9 +36,9 @@ public final class m20 extends AnimatorListenerAdapter {
     public void onAnimationStart(Animator animator) {
         switch (this.f37038a) {
             case 1:
-                n20 n20Var = this.f37039b.f37818a0;
+                n20 n20Var = this.f37039b.f37807a0;
                 if (n20Var != null) {
-                    ((org.telegram.ui.ro0) n20Var).f50988a.f42763f0.requestLayout();
+                    ((org.telegram.ui.ro0) n20Var).f50984a.f42763f0.requestLayout();
                     return;
                 }
                 return;

@@ -19,26 +19,26 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 public final class zc1 extends org.telegram.ui.ActionBar.e2 {
-    public WebView f53936a;
-    public org.telegram.ui.ActionBar.q0 f53937b;
-    public org.telegram.ui.Components.hq f53938c;
+    public WebView f53901a;
+    public org.telegram.ui.ActionBar.q0 f53902b;
+    public org.telegram.ui.Components.hq f53903c;
     public final String d;
-    public final String f53939e;
-    public final String f53940f;
+    public final String f53904e;
+    public final String f53905f;
     public final String h;
-    public final org.telegram.messenger.gj f53941n;
-    public final String f53942r;
-    public m4 f53943s;
+    public final org.telegram.messenger.gj f53906n;
+    public final String f53907r;
+    public m4 f53908s;
 
     public zc1(String str, String str2, String str3, String str4, org.telegram.messenger.gj gjVar) {
         super(null);
         String k10;
-        this.f53943s = new m4(this, 17);
+        this.f53908s = new m4(this, 17);
         this.d = str;
-        this.f53939e = str2;
-        this.f53940f = str3;
-        this.f53941n = gjVar;
-        this.f53942r = str4;
+        this.f53904e = str2;
+        this.f53905f = str3;
+        this.f53906n = gjVar;
+        this.f53907r = str4;
         StringBuilder sb2 = new StringBuilder("https://");
         sb2.append(org.telegram.messenger.np.s1(this.currentAccount).V2);
         sb2.append("/");
@@ -57,7 +57,7 @@ public final class zc1 extends org.telegram.ui.ActionBar.e2 {
         String str5;
         String str6 = "";
         try {
-            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26600b.getSharedPreferences("botshare", 0);
+            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26609b.getSharedPreferences("botshare", 0);
             String string = sharedPreferences.getString("" + gjVar.e1(), null);
             if (string == null) {
                 str4 = "";
@@ -89,8 +89,8 @@ public final class zc1 extends org.telegram.ui.ActionBar.e2 {
             }
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putInt(((Object) sb2) + "_date", (int) (System.currentTimeMillis() / 1000));
-            SerializedData serializedData = new SerializedData(gjVar.f23817k.getObjectSize());
-            gjVar.f23817k.serializeToStream(serializedData);
+            SerializedData serializedData = new SerializedData(gjVar.f23819k.getObjectSize());
+            gjVar.f23819k.serializeToStream(serializedData);
             edit.putString(((Object) sb2) + "_m", Utilities.f(serializedData.toByteArray()));
             String str7 = ((Object) sb2) + "_link";
             StringBuilder sb4 = new StringBuilder();
@@ -131,33 +131,33 @@ public final class zc1 extends org.telegram.ui.ActionBar.e2 {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new xc1(this));
         org.telegram.ui.ActionBar.y s5 = this.actionBar.s();
-        this.f53937b = s5.g(1, 2131232727, org.telegram.messenger.g0.L(54.0f));
+        this.f53902b = s5.g(1, 2131232727, org.telegram.messenger.g0.L(54.0f));
         s5.a(0, 2131231244).e(2, 2131232266, org.telegram.messenger.hd.M0(2131747796, null));
-        this.actionBar.setTitle(this.f53940f);
+        this.actionBar.setTitle(this.f53905f);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        kVar.setSubtitle("@" + this.f53939e);
+        kVar.setSubtitle("@" + this.f53904e);
         org.telegram.ui.Components.hq hqVar = new org.telegram.ui.Components.hq(context, 1);
-        this.f53938c = hqVar;
-        this.f53937b.addView(hqVar, c8.ja.c(-1.0f, -1));
-        this.f53938c.setAlpha(0.0f);
-        this.f53938c.setScaleX(0.1f);
-        this.f53938c.setScaleY(0.1f);
-        this.f53938c.setVisibility(4);
+        this.f53903c = hqVar;
+        this.f53902b.addView(hqVar, c8.ja.c(-1.0f, -1));
+        this.f53903c.setAlpha(0.0f);
+        this.f53903c.setScaleX(0.1f);
+        this.f53903c.setScaleY(0.1f);
+        this.f53903c.setVisibility(4);
         org.telegram.messenger.g0.u(context, true);
         WebView webView = new WebView(context);
-        this.f53936a = webView;
+        this.f53901a = webView;
         webView.getSettings().setJavaScriptEnabled(true);
-        this.f53936a.getSettings().setDomStorageEnabled(true);
+        this.f53901a.getSettings().setDomStorageEnabled(true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        this.f53936a.setLayerType(2, null);
-        this.f53936a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        this.f53936a.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        this.f53936a.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f53936a, true);
-        this.f53936a.addJavascriptInterface(new yc1(this), "TelegramWebviewProxy");
-        this.f53936a.setWebViewClient(new n1(this, 3));
-        frameLayout.addView(this.f53936a, c8.ja.c(-1.0f, -1));
+        this.f53901a.setLayerType(2, null);
+        this.f53901a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        this.f53901a.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        this.f53901a.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f53901a, true);
+        this.f53901a.addJavascriptInterface(new yc1(this), "TelegramWebviewProxy");
+        this.f53901a.setWebViewClient(new n1(this, 3));
+        frameLayout.addView(this.f53901a, c8.ja.c(-1.0f, -1));
         return this.fragmentView;
     }
 
@@ -179,18 +179,18 @@ public final class zc1 extends org.telegram.ui.ActionBar.e2 {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         org.telegram.messenger.g0.u(getParentActivity(), false);
-        org.telegram.messenger.g0.r(this.f53943s);
-        this.f53936a.setLayerType(0, null);
-        this.f53943s = null;
+        org.telegram.messenger.g0.r(this.f53908s);
+        this.f53901a.setLayerType(0, null);
+        this.f53908s = null;
         try {
-            ViewParent parent = this.f53936a.getParent();
+            ViewParent parent = this.f53901a.getParent();
             if (parent != null) {
-                ((FrameLayout) parent).removeView(this.f53936a);
+                ((FrameLayout) parent).removeView(this.f53901a);
             }
-            this.f53936a.stopLoading();
-            this.f53936a.loadUrl("about:blank");
-            this.f53936a.destroy();
-            this.f53936a = null;
+            this.f53901a.stopLoading();
+            this.f53901a.loadUrl("about:blank");
+            this.f53901a.destroy();
+            this.f53901a = null;
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -199,8 +199,8 @@ public final class zc1 extends org.telegram.ui.ActionBar.e2 {
     @Override
     public final void onResume() {
         super.onResume();
-        org.telegram.messenger.g0.r(this.f53943s);
-        this.f53943s.run();
+        org.telegram.messenger.g0.r(this.f53908s);
+        this.f53908s.run();
     }
 
     @Override
@@ -218,7 +218,7 @@ public final class zc1 extends org.telegram.ui.ActionBar.e2 {
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         WebView webView;
-        if (z10 && !z11 && (webView = this.f53936a) != null) {
+        if (z10 && !z11 && (webView = this.f53901a) != null) {
             webView.loadUrl(this.d);
         }
     }

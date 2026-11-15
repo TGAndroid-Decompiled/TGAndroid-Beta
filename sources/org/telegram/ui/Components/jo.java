@@ -8,24 +8,24 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.HashSet;
 public final class jo extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f36122a;
-    public final ImageView f36123b;
-    public final org.telegram.ui.ActionBar.j5 f36124c;
+    public final org.telegram.ui.ActionBar.e6 f36112a;
+    public final ImageView f36113b;
+    public final org.telegram.ui.ActionBar.j5 f36114c;
     public final org.telegram.ui.ActionBar.j5 d;
-    public final org.telegram.ui.ActionBar.j5 f36125e;
-    public final org.telegram.ui.pk f36126f;
+    public final org.telegram.ui.ActionBar.j5 f36115e;
+    public final org.telegram.ui.pk f36116f;
     public boolean h;
-    public boolean f36127n;
+    public boolean f36117n;
 
     public jo(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f36122a = e6Var;
+        this.f36112a = e6Var;
         ImageView imageView = new ImageView(context);
-        this.f36123b = imageView;
+        this.f36113b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, c8.ja.e(52, 46, 51));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f36124c = j5Var;
+        this.f36114c = j5Var;
         j5Var.setTextSize(14);
         j5Var.setTypeface(org.telegram.messenger.g0.o());
         addView(j5Var, c8.ja.d(-1, 18.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
@@ -35,13 +35,13 @@ public final class jo extends FrameLayout implements org.telegram.ui.ActionBar.z
         org.telegram.messenger.ns.i(j5Var2);
         addView(j5Var2, c8.ja.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var3 = new org.telegram.ui.ActionBar.j5(context);
-        this.f36125e = j5Var3;
+        this.f36115e = j5Var3;
         j5Var3.setTextSize(14);
         j5Var3.l(org.telegram.messenger.hd.M0(2131744272, null), false);
         j5Var3.setAlpha(0.0f);
         addView(j5Var3, c8.ja.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
         org.telegram.ui.pk pkVar = new org.telegram.ui.pk(this, context, new xh.f());
-        this.f36126f = pkVar;
+        this.f36116f = pkVar;
         pkVar.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
         addView(pkVar, c8.ja.d(34, 34.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
         updateColors();
@@ -57,7 +57,7 @@ public final class jo extends FrameLayout implements org.telegram.ui.ActionBar.z
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.f36127n) {
+        if (!this.f36117n) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -66,14 +66,14 @@ public final class jo extends FrameLayout implements org.telegram.ui.ActionBar.z
     @Override
     public final void updateColors() {
         int i7 = org.telegram.ui.ActionBar.j6.f29004lf;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f36122a;
-        this.f36123b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(i7, e6Var), PorterDuff.Mode.MULTIPLY));
-        this.f36124c.setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29039nf, e6Var));
+        org.telegram.ui.ActionBar.e6 e6Var = this.f36112a;
+        this.f36113b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(i7, e6Var), PorterDuff.Mode.MULTIPLY));
+        this.f36114c.setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29039nf, e6Var));
         int i10 = org.telegram.ui.ActionBar.j6.Ol;
         int w02 = org.telegram.ui.ActionBar.j6.w0(i10, e6Var);
         org.telegram.ui.ActionBar.j5 j5Var = this.d;
         j5Var.setTextColor(w02);
         j5Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, e6Var));
-        this.f36125e.setTextColor(org.telegram.ui.ActionBar.j6.w0(i10, e6Var));
+        this.f36115e.setTextColor(org.telegram.ui.ActionBar.j6.w0(i10, e6Var));
     }
 }

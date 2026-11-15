@@ -86,7 +86,7 @@ public final class h implements y0 {
                             androidx.datastore.preferences.protobuf.h u10 = value.u();
                             int size = u10.size();
                             if (size == 0) {
-                                bArr = c0.f2105b;
+                                bArr = c0.f2108b;
                             } else {
                                 byte[] bArr2 = new byte[size];
                                 u10.k(size, bArr2);
@@ -120,51 +120,51 @@ public final class h implements y0 {
                 p1.f D = p1.h.D();
                 boolean booleanValue = ((Boolean) value).booleanValue();
                 D.c();
-                p1.h.q((p1.h) D.f2235b, booleanValue);
+                p1.h.q((p1.h) D.f2238b, booleanValue);
                 a10 = D.a();
             } else if (value instanceof Float) {
                 p1.f D2 = p1.h.D();
                 float floatValue = ((Number) value).floatValue();
                 D2.c();
-                p1.h.r((p1.h) D2.f2235b, floatValue);
+                p1.h.r((p1.h) D2.f2238b, floatValue);
                 a10 = D2.a();
             } else if (value instanceof Double) {
                 p1.f D3 = p1.h.D();
                 double doubleValue = ((Number) value).doubleValue();
                 D3.c();
-                p1.h.o((p1.h) D3.f2235b, doubleValue);
+                p1.h.o((p1.h) D3.f2238b, doubleValue);
                 a10 = D3.a();
             } else if (value instanceof Integer) {
                 p1.f D4 = p1.h.D();
                 int intValue = ((Number) value).intValue();
                 D4.c();
-                p1.h.s((p1.h) D4.f2235b, intValue);
+                p1.h.s((p1.h) D4.f2238b, intValue);
                 a10 = D4.a();
             } else if (value instanceof Long) {
                 p1.f D5 = p1.h.D();
                 long longValue = ((Number) value).longValue();
                 D5.c();
-                p1.h.l((p1.h) D5.f2235b, longValue);
+                p1.h.l((p1.h) D5.f2238b, longValue);
                 a10 = D5.a();
             } else if (value instanceof String) {
                 p1.f D6 = p1.h.D();
                 D6.c();
-                p1.h.m((p1.h) D6.f2235b, (String) value);
+                p1.h.m((p1.h) D6.f2238b, (String) value);
                 a10 = D6.a();
             } else if (value instanceof Set) {
                 p1.f D7 = p1.h.D();
                 p1.d o4 = p1.e.o();
                 o4.c();
-                p1.e.l((p1.e) o4.f2235b, (Set) value);
+                p1.e.l((p1.e) o4.f2238b, (Set) value);
                 D7.c();
-                p1.h.n((p1.h) D7.f2235b, (p1.e) o4.a());
+                p1.h.n((p1.h) D7.f2238b, (p1.e) o4.a());
                 a10 = D7.a();
             } else if (value instanceof byte[]) {
                 p1.f D8 = p1.h.D();
                 byte[] bArr = (byte[]) value;
                 androidx.datastore.preferences.protobuf.h j3 = androidx.datastore.preferences.protobuf.h.j(0, bArr.length, bArr);
                 D8.c();
-                p1.h.p((p1.h) D8.f2235b, j3);
+                p1.h.p((p1.h) D8.f2238b, j3);
                 a10 = D8.a();
             } else {
                 throw new IllegalStateException("PreferencesSerializer does not support type: ".concat(value.getClass().getName()));
@@ -172,11 +172,11 @@ public final class h implements y0 {
             n10.getClass();
             str.getClass();
             n10.c();
-            p1.c.l((p1.c) n10.f2235b).put(str, (p1.h) a10);
+            p1.c.l((p1.c) n10.f2238b).put(str, (p1.h) a10);
         }
         p1.c cVar = (p1.c) n10.a();
         int a12 = cVar.a(null);
-        Logger logger = m.f2163f;
+        Logger logger = m.f2166f;
         if (a12 > 4096) {
             a12 = 4096;
         }

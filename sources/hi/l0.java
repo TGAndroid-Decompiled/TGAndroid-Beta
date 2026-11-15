@@ -65,14 +65,14 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     }
 
     public boolean A() {
-        return ((org.telegram.messenger.h0) this.f14544b).f24006c;
+        return ((org.telegram.messenger.h0) this.f14544b).f24009c;
     }
 
     public m1.e1 B() {
         ce.w wVar = (ce.w) this.f14544b;
         wVar.getClass();
-        Object obj = ce.w.f4979e.get(wVar);
-        if (obj == de.g.f8066a) {
+        Object obj = ce.w.f4982e.get(wVar);
+        if (obj == de.g.f8069a) {
             obj = null;
         }
         return (m1.e1) obj;
@@ -96,7 +96,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     public void E0() {
         eu euVar = (eu) this.f14544b;
         eu.j0(euVar, null);
-        euVar.f23365b0 = null;
+        euVar.f23368b0 = null;
     }
 
     @Override
@@ -128,7 +128,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
             z10 = false;
         }
         aVar.a(z10, true);
-        rVar.d.f39895g3.O(true);
+        rVar.d.f39892g3.O(true);
     }
 
     @Override
@@ -223,9 +223,9 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         iv ivVar;
         org.telegram.ui.Cells.l1 l1Var;
         eu euVar = (eu) this.f14544b;
-        du duVar = euVar.f23365b0;
-        if (duVar != null && (l1Var = (ivVar = euVar.f22933a).F) != null) {
-            l1Var.k1(ivVar.E, duVar.f23136c);
+        du duVar = euVar.f23368b0;
+        if (duVar != null && (l1Var = (ivVar = euVar.f22941a).F) != null) {
+            l1Var.k1(ivVar.E, duVar.f23143c);
         }
     }
 
@@ -243,8 +243,8 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     public boolean Q0(float f10, float f11) {
         eu euVar = (eu) this.f14544b;
         du i02 = eu.i0(euVar, f10, f11);
-        i02 = (i02 == null || i02.f23135b) ? null : null;
-        euVar.f23365b0 = i02;
+        i02 = (i02 == null || i02.f23142b) ? null : null;
+        euVar.f23368b0 = i02;
         if (i02 != null) {
             return true;
         }
@@ -340,7 +340,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
 
     @Override
     public void W() {
-        ((FfmpegAudioRenderer) this.f14544b).f2596a0 = true;
+        ((FfmpegAudioRenderer) this.f14544b).f2599a0 = true;
     }
 
     public void X(m1.e1 r7) {
@@ -350,14 +350,14 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     @Override
     public boolean Z0(View view, float f10, float f11) {
         eu euVar = (eu) this.f14544b;
-        if (euVar.f23365b0 != null) {
+        if (euVar.f23368b0 != null) {
             du i02 = eu.i0(euVar, f10, f11);
-            du duVar = euVar.f23365b0;
+            du duVar = euVar.f23368b0;
             if (i02 == duVar) {
-                iv ivVar = euVar.f22933a;
+                iv ivVar = euVar.f22941a;
                 org.telegram.ui.Cells.l1 l1Var = ivVar.F;
                 if (l1Var != null) {
-                    l1Var.I1(ivVar.E, duVar.f23136c);
+                    l1Var.I1(ivVar.E, duVar.f23143c);
                     return true;
                 }
                 return true;
@@ -372,7 +372,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         k8.a aVar = ((FfmpegAudioRenderer) this.f14544b).J;
         Handler handler = (Handler) aVar.f17788b;
         if (handler != null) {
-            handler.post(new ai.v0(aVar, i7, 15));
+            handler.post(new ai.w0(aVar, i7, 15));
         }
     }
 
@@ -380,10 +380,10 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     public void accept(Object obj, Object obj2) {
         k7.f fVar = new k7.f(1, (TaskCompletionSource) obj2);
         com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true), false);
-        gVar.f5920c = false;
+        gVar.f5923c = false;
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-        int i7 = t7.a.f57044a;
+        int i7 = t7.a.f57048a;
         obtain.writeStrongBinder(fVar);
         t7.a.b(obtain, (GetCredentialRequest) this.f14544b);
         t7.a.b(obtain, gVar);
@@ -393,7 +393,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     @Override
     public void b(long j3) {
         FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f14544b;
-        ffmpegAudioRenderer.f2603h0 = true;
+        ffmpegAudioRenderer.f2606h0 = true;
         k8.a aVar = ffmpegAudioRenderer.J;
         Handler handler = (Handler) aVar.f17788b;
         if (handler != null) {
@@ -471,7 +471,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         if (gjVar == null) {
             return;
         }
-        gjVar.f23777b0 = f10;
+        gjVar.f23779b0 = f10;
         MediaController.B().i0(wVar.Q, f10);
     }
 
@@ -490,7 +490,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         if (gjVar == null) {
             return;
         }
-        gjVar.f23777b0 = f10;
+        gjVar.f23779b0 = f10;
     }
 
     @Override
@@ -542,11 +542,11 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
             default:
                 StringBuilder sb3 = new StringBuilder();
                 org.telegram.ui.Components.y7 y7Var = (org.telegram.ui.Components.y7) this.f14544b;
-                sb3.append(hd.G(y7Var.f41927x2 / 60, "Minutes", new Object[0]));
+                sb3.append(hd.G(y7Var.f41919x2 / 60, "Minutes", new Object[0]));
                 sb3.append(' ');
-                sb3.append(hd.G(y7Var.f41927x2 % 60, "Seconds", new Object[0]));
+                sb3.append(hd.G(y7Var.f41919x2 % 60, "Seconds", new Object[0]));
                 String sb4 = sb3.toString();
-                return hd.a0("AccDescrPlayerDuration", null, 2131754806, sb4, hd.G(y7Var.f41929y2 / 60, "Minutes", new Object[0]) + ' ' + hd.G(y7Var.f41929y2 % 60, "Seconds", new Object[0]));
+                return hd.a0("AccDescrPlayerDuration", null, 2131754806, sb4, hd.G(y7Var.f41921y2 / 60, "Minutes", new Object[0]) + ' ' + hd.G(y7Var.f41921y2 % 60, "Seconds", new Object[0]));
         }
     }
 
@@ -576,11 +576,11 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
                 return;
             default:
                 Toolbar toolbar = (Toolbar) this.f14544b;
-                m.h hVar = toolbar.f1917a.K;
+                m.h hVar = toolbar.f1924a.K;
                 if (hVar == null || !hVar.g()) {
-                    Iterator it = ((CopyOnWriteArrayList) toolbar.f1918a0.f48977c).iterator();
+                    Iterator it = ((CopyOnWriteArrayList) toolbar.f1925a0.f48973c).iterator();
                     while (it.hasNext()) {
-                        ((androidx.fragment.app.b0) it.next()).f2326a.t();
+                        ((androidx.fragment.app.b0) it.next()).f2329a.t();
                     }
                     return;
                 }
@@ -607,11 +607,11 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         b3.i iVar;
         b3.r rVar = (b3.r) lVar;
         o2.h hVar = (o2.h) this.f14544b;
-        long j11 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j11 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         j2.b0 b0Var = rVar.d;
         x2.t tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
-        int i10 = rVar.f2921c;
+        int i10 = rVar.f2924c;
         hVar.f21265m.getClass();
         for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
             if ((th2 instanceof e2.t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.u) || (th2 instanceof b3.n) || ((th2 instanceof j2.j) && ((j2.j) th2).f16791a == 2008)) {
@@ -621,7 +621,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         }
         min = Math.min((i7 - 1) * 1000, 5000);
         if (min == -9223372036854775807L) {
-            iVar = b3.o.f2915f;
+            iVar = b3.o.f2918f;
         } else {
             iVar = new b3.i(0, min, false);
         }
@@ -645,7 +645,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
                 int i10 = (int) (f10 * 100.0f);
                 org.telegram.ui.ActionBar.j6.f29082q = f10;
                 if (i7 != i10) {
-                    ThemeActivity themeActivity = y51Var.f53429f.f46038e;
+                    ThemeActivity themeActivity = y51Var.f53433f.f46027e;
                     cj0 cj0Var = (cj0) themeActivity.f43386b.K(themeActivity.f43395g0);
                     if (cj0Var != null) {
                         ((org.telegram.ui.Cells.y8) cj0Var.f58535a).setText(hd.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (org.telegram.ui.ActionBar.j6.f29082q * 100.0f))));
@@ -717,9 +717,9 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
             case 10:
                 m.k kVar2 = ((ActionMenuView) this.f14544b).Q;
                 if (kVar2 != null) {
-                    Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((ia.d) kVar2).f15881b).f1918a0.f48977c).iterator();
+                    Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((ia.d) kVar2).f15881b).f1925a0.f48973c).iterator();
                     while (it.hasNext()) {
-                        if (((androidx.fragment.app.b0) it.next()).f2326a.p()) {
+                        if (((androidx.fragment.app.b0) it.next()).f2329a.p()) {
                             return true;
                         }
                     }
@@ -776,8 +776,8 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         tg.r1 r1Var = ((x5) this.f14544b).f15369x;
         if (r1Var != null) {
             float f11 = i7 / i10;
-            if (Math.abs(r1Var.f57545z0 - f11) >= 1.0E-4f) {
-                r1Var.f57545z0 = f11;
+            if (Math.abs(r1Var.f57547z0 - f11) >= 1.0E-4f) {
+                r1Var.f57547z0 = f11;
                 r1Var.requestLayout();
             }
         }
@@ -819,7 +819,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
 
     @Override
     public void q() {
-        ((FfmpegAudioRenderer) this.f14544b).f2602g0 = true;
+        ((FfmpegAudioRenderer) this.f14544b).f2605g0 = true;
     }
 
     @Override
@@ -828,22 +828,22 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         b3.r rVar = (b3.r) lVar;
         o2.h hVar = (o2.h) this.f14544b;
         if (i7 == 0) {
-            long j11 = rVar.f2919a;
-            tVar = new x2.t(rVar.f2920b, j3);
+            long j11 = rVar.f2922a;
+            tVar = new x2.t(rVar.f2923b, j3);
         } else {
-            long j12 = rVar.f2919a;
-            j2.m mVar = rVar.f2920b;
+            long j12 = rVar.f2922a;
+            j2.m mVar = rVar.f2923b;
             j2.b0 b0Var = rVar.d;
             tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         }
-        hVar.f21269q.s(tVar, rVar.f2921c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        hVar.f21269q.s(tVar, rVar.f2924c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     @Override
     public void s(float f10, float f11) {
         eu euVar = (eu) this.f14544b;
         du i02 = eu.i0(euVar, f10, f11);
-        du duVar = euVar.f23365b0;
+        du duVar = euVar.f23368b0;
         if (i02 != duVar) {
             duVar = null;
         }
@@ -853,7 +853,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
     @Override
     public void s0() {
         eu euVar = (eu) this.f14544b;
-        eu.j0(euVar, euVar.f23365b0);
+        eu.j0(euVar, euVar.f23368b0);
     }
 
     @Override
@@ -881,13 +881,13 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         long j11;
         b3.r rVar = (b3.r) lVar;
         o2.h hVar = (o2.h) this.f14544b;
-        long j12 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j12 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         j2.b0 b0Var = rVar.d;
         x2.t tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         hVar.f21265m.getClass();
-        hVar.f21269q.o(tVar, rVar.f2921c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        p2.c cVar = (p2.c) rVar.f2923f;
+        hVar.f21269q.o(tVar, rVar.f2924c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        p2.c cVar = (p2.c) rVar.f2926f;
         p2.c cVar2 = hVar.G;
         if (cVar2 == null) {
             size = 0;
@@ -913,7 +913,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
             }
             int i10 = hVar.L;
             hVar.L = i10 + 1;
-            if (i10 < hVar.f21265m.R4(rVar.f2921c)) {
+            if (i10 < hVar.f21265m.R4(rVar.f2924c)) {
                 hVar.D.postDelayed(hVar.v, Math.min((hVar.L - 1) * 1000, 5000));
                 return;
             }
@@ -928,7 +928,7 @@ public final class l0 implements og.n, tg.c, s51, OnCompleteListener, com.google
         hVar.N += i7;
         synchronized (hVar.f21272t) {
             try {
-                if (rVar.f2920b.f16803a.equals(hVar.E)) {
+                if (rVar.f2923b.f16803a.equals(hVar.E)) {
                     Uri uri = hVar.G.f54523k;
                     if (uri == null) {
                         uri = a8.g7.a(rVar.d.f16771c);

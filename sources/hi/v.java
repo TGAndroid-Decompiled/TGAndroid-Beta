@@ -50,7 +50,7 @@ public final class v extends uj0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.g4.f47292d1;
+                HashSet hashSet = org.telegram.ui.g4.f47282d1;
                 ((org.telegram.ui.g4) obj).l();
                 super.dispatchDraw(canvas);
                 return;
@@ -58,7 +58,7 @@ public final class v extends uj0 {
                 Paint paint = (Paint) obj;
                 wu wuVar = (wu) callback;
                 org.telegram.ui.Components.u5 u5Var = wuVar.H1;
-                if (u5Var != null && wuVar.F1 >= 0 && wuVar.G1 >= 0 && wuVar.f41451s1 != null && this.H) {
+                if (u5Var != null && wuVar.F1 >= 0 && wuVar.G1 >= 0 && wuVar.f41454s1 != null && this.H) {
                     float e10 = u5Var.e(false, 0.0f);
                     if (e10 > 0.0f) {
                         int i10 = Integer.MAX_VALUE;
@@ -112,14 +112,14 @@ public final class v extends uj0 {
         switch (this.f15203f3) {
             case 1:
                 org.telegram.ui.t3 t3Var = ((org.telegram.ui.g4) this.f15204g3).L;
-                if (t3Var != null && (s3Var = t3Var.f51334c) != null) {
+                if (t3Var != null && (s3Var = t3Var.f51335c) != null) {
                     s3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
                 wu wuVar = (wu) this.f15205h3;
-                wuVar.f41449q1.a();
+                wuVar.f41452q1.a();
                 wuVar.f29682b.invalidate();
                 return;
             default:
@@ -133,7 +133,7 @@ public final class v extends uj0 {
             case 2:
                 super.onDetachedFromWindow();
                 wu wuVar = (wu) this.f15205h3;
-                org.telegram.ui.Components.p5.release(wuVar.f29682b, wuVar.f41446m1);
+                org.telegram.ui.Components.p5.release(wuVar.f29682b, wuVar.f41449m1);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -154,13 +154,13 @@ public final class v extends uj0 {
                 return false;
             case 1:
                 org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15204g3;
-                if (g4Var.d != null && g4Var.f49449b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    g4Var.f49449b = null;
+                if (g4Var.d != null && g4Var.f49448b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    g4Var.f49448b = null;
                     g4Var.d = null;
-                    g4Var.f49452f = null;
-                } else if (g4Var.d != null && g4Var.f49449b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.e4)) {
+                    g4Var.f49451f = null;
+                } else if (g4Var.d != null && g4Var.f49448b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.e4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.g4.j(g4Var, (org.telegram.ui.e4) getAdapter(), motionEvent2, g4Var.f49452f, g4Var.d, 0, 0);
+                    org.telegram.ui.g4.j(g4Var, (org.telegram.ui.e4) getAdapter(), motionEvent2, g4Var.f49451f, g4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
@@ -168,7 +168,7 @@ public final class v extends uj0 {
             default:
                 ns p10 = ns.p();
                 wu wuVar = (wu) this.f15205h3;
-                boolean q10 = p10.q(motionEvent, wuVar.f41450r1, wuVar.I1, this.f40069o2);
+                boolean q10 = p10.q(motionEvent, wuVar.f41453r1, wuVar.I1, this.f40069o2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                     return false;
                 }
@@ -185,7 +185,7 @@ public final class v extends uj0 {
                 return;
             case 2:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((wu) this.f15205h3).f41449q1.a();
+                ((wu) this.f15205h3).f41452q1.a();
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -198,7 +198,7 @@ public final class v extends uj0 {
         switch (this.f15203f3) {
             case 2:
                 View.MeasureSpec.getSize(i7);
-                ((wu) this.f15205h3).f41457y1.y1(40);
+                ((wu) this.f15205h3).f41460y1.y1(40);
                 super.onMeasure(i7, i10);
                 return;
             default:
@@ -213,10 +213,10 @@ public final class v extends uj0 {
         switch (this.f15203f3) {
             case 1:
                 org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15204g3;
-                if (g4Var.d != null && g4Var.f49449b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    g4Var.f49449b = null;
+                if (g4Var.d != null && g4Var.f49448b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    g4Var.f49448b = null;
                     g4Var.d = null;
-                    g4Var.f49452f = null;
+                    g4Var.f49451f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:

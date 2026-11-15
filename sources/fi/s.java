@@ -1,9 +1,9 @@
 package fi;
 
 import android.content.Context;
-import di.gc;
+import di.fc;
 import org.telegram.messenger.z10;
-public final class s extends gc {
+public final class s extends fc {
     public final z10[] f12296n0;
 
     public s(Context context, b bVar, z10[] z10VarArr) {

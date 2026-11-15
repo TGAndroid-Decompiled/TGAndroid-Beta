@@ -63,7 +63,7 @@ public final class r extends yg.c implements z5 {
             fpVar.b(j6.B5, j6.f28922h5, j6.f28979k7);
             fpVar.setDrawUnchecked(false);
             fpVar.setDrawBackgroundAsArc(3);
-            boolean z13 = hd.f24101a0;
+            boolean z13 = hd.f24104a0;
             if (z13) {
                 i12 = 5;
             } else {
@@ -89,7 +89,7 @@ public final class r extends yg.c implements z5 {
             fpVar2.setDrawBackgroundAsArc(10);
             addView(fpVar2);
             fpVar2.a(false, false);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = 5;
             } else {
                 i7 = 3;
@@ -107,7 +107,7 @@ public final class r extends yg.c implements z5 {
         int i14 = j6.f29115rd;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         q6.s(imageView, i14, e6Var, mode);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -119,7 +119,7 @@ public final class r extends yg.c implements z5 {
         imageView2.setImageResource(2131231846);
         int i15 = j6.Fi;
         q6.s(imageView2, i15, e6Var, mode);
-        boolean z14 = hd.f24101a0;
+        boolean z14 = hd.f24104a0;
         if (z14) {
             i11 = 3;
         } else {
@@ -143,7 +143,7 @@ public final class r extends yg.c implements z5 {
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(2131231915);
         q6.s(imageView3, i15, e6Var, mode);
-        addView(imageView3, ja.d(32, 32.0f, (hd.f24101a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(imageView3, ja.d(32, 32.0f, (hd.f24104a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         imageView3.setVisibility(8);
     }
 
@@ -382,7 +382,7 @@ public final class r extends yg.c implements z5 {
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
         this.f1110x.setVisibility(8);
         this.K = tL_myBoost;
-        TLRPC.Chat M0 = np.s1(m10.f24934t0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
+        TLRPC.Chat M0 = np.s1(m10.f24940t0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
         this.J = M0;
         t8 t8Var = this.f60644b;
         t8Var.q(M0);
@@ -445,7 +445,7 @@ public final class r extends yg.c implements z5 {
                 setSubtitle(hd.M0(2131753156, null));
             }
         } else {
-            setSubtitle(hd.d0(m10.f24934t0, user, zArr, null));
+            setSubtitle(hd.d0(m10.f24940t0, user, zArr, null));
         }
         if (zArr[0]) {
             i7 = j6.f29030n5;

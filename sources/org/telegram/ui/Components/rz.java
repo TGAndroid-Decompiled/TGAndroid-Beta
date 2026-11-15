@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 public final class rz implements org.telegram.messenger.z10 {
-    public final int f39104a = 1;
-    public final org.telegram.ui.ActionBar.o4 f39105b;
-    public final gh f39106c;
+    public final int f39101a = 1;
+    public final org.telegram.ui.ActionBar.o4 f39102b;
+    public final gh f39103c;
 
     public rz(org.telegram.ui.ActionBar.o4 o4Var, gh ghVar) {
-        this.f39105b = o4Var;
-        this.f39106c = ghVar;
+        this.f39102b = o4Var;
+        this.f39103c = ghVar;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class rz implements org.telegram.messenger.z10 {
     }
 
     public rz(gh ghVar, org.telegram.ui.ActionBar.o4 o4Var) {
-        this.f39106c = ghVar;
-        this.f39105b = o4Var;
+        this.f39103c = ghVar;
+        this.f39102b = o4Var;
     }
 }

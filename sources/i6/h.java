@@ -282,14 +282,14 @@ public final class h {
         }
         a0 a0Var2 = this.f15846p;
         MediaMetadataCompat mediaMetadataCompat = null;
-        if (a0Var2 != null && (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var2.f1707c).f59107b).f1720a.getMetadata()) != null) {
+        if (a0Var2 != null && (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var2.f1714c).f59107b).f1727a.getMetadata()) != null) {
             a0.f fVar = MediaMetadataCompat.d;
             Parcel obtain = Parcel.obtain();
             metadata.writeToParcel(obtain, 0);
             obtain.setDataPosition(0);
             MediaMetadataCompat createFromParcel = MediaMetadataCompat.CREATOR.createFromParcel(obtain);
             obtain.recycle();
-            createFromParcel.f1672b = metadata;
+            createFromParcel.f1679b = metadata;
             mediaMetadataCompat = createFromParcel;
         }
         if (mediaMetadataCompat == null) {
@@ -371,7 +371,7 @@ public final class h {
         int i10;
         a0 a0Var2 = this.f15846p;
         if (a0Var2 != null) {
-            u uVar = (u) a0Var2.f1706b;
+            u uVar = (u) a0Var2.f1713b;
             Bundle bundle = new Bundle();
             d0 d0Var = new d0();
             h6.h hVar = this.f15844n;
@@ -438,7 +438,7 @@ public final class h {
                             arrayList2 = arrayList3;
                         }
                     }
-                    d0Var.f1712e = j11;
+                    d0Var.f1719e = j11;
                     b10 = d0Var.b();
                 }
             } else {
@@ -452,7 +452,7 @@ public final class h {
                 bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
             }
             if (bundle.containsKey("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS") || bundle.containsKey("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT")) {
-                uVar.f1736a.setExtras(bundle);
+                uVar.f1743a.setExtras(bundle);
             }
             if (i7 != 0) {
                 if (this.f15844n != null) {
@@ -465,7 +465,7 @@ public final class h {
                         activity = PendingIntent.getActivity(this.f15833a, 0, intent, 201326592);
                     }
                     if (activity != null) {
-                        uVar.f1736a.setSessionActivity(activity);
+                        uVar.f1743a.setSessionActivity(activity);
                     }
                 }
                 h6.h hVar3 = this.f15844n;
@@ -474,14 +474,14 @@ public final class h {
                     if (hVar3.j()) {
                         j3 = 0;
                     } else {
-                        j3 = mediaInfo.f5879e;
+                        j3 = mediaInfo.f5882e;
                     }
                     l.c(1, "com.google.android.gms.cast.metadata.TITLE");
                     String string = bundle2.getString("com.google.android.gms.cast.metadata.TITLE");
                     l.c(1, "com.google.android.gms.cast.metadata.SUBTITLE");
                     String string2 = bundle2.getString("com.google.android.gms.cast.metadata.SUBTITLE");
                     a0 a0Var3 = this.f15846p;
-                    if (a0Var3 == null || (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var3.f1707c).f59107b).f1720a.getMetadata()) == null) {
+                    if (a0Var3 == null || (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var3.f1714c).f59107b).f1727a.getMetadata()) == null) {
                         createFromParcel = null;
                     } else {
                         a0.f fVar2 = MediaMetadataCompat.d;
@@ -490,7 +490,7 @@ public final class h {
                         obtain.setDataPosition(0);
                         createFromParcel = MediaMetadataCompat.CREATOR.createFromParcel(obtain);
                         obtain.recycle();
-                        createFromParcel.f1672b = metadata;
+                        createFromParcel.f1679b = metadata;
                     }
                     if (createFromParcel == null) {
                         wVar = new w();

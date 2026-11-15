@@ -15,9 +15,9 @@ public final class zq extends a41 {
     @Override
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
-        w8Var.c(b41Var.f33181l, b41Var.f33183n, !b41Var.f33179j);
+        w8Var.c(b41Var.f33184l, b41Var.f33186n, !b41Var.f33182j);
         xh.l lVar = w8Var.f31898a;
-        if (b41Var.f33181l instanceof SpannableStringBuilder) {
+        if (b41Var.f33184l instanceof SpannableStringBuilder) {
             lVar.setTextSize(1, 13.0f);
             lVar.setTranslationY(org.telegram.messenger.g0.L(2.0f));
             lVar.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));

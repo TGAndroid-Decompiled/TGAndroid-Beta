@@ -5,19 +5,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import org.telegram.ui.Components.UndoView;
 public final class eu implements Runnable {
-    public final int f46921a;
-    public final yw f46922b;
+    public final int f46905a;
+    public final yw f46906b;
 
     public eu(yw ywVar, int i7) {
-        this.f46921a = i7;
-        this.f46922b = ywVar;
+        this.f46905a = i7;
+        this.f46906b = ywVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f46921a;
+        int i7 = this.f46905a;
         int i10 = 0;
-        yw ywVar = this.f46922b;
+        yw ywVar = this.f46906b;
         switch (i7) {
             case 0:
                 ywVar.getClass();
@@ -38,7 +38,7 @@ public final class eu implements Runnable {
                 ywVar.fragmentView.dispatchTouchEvent(org.telegram.messenger.g0.R());
                 return;
             case 5:
-                yw ywVar2 = this.f46922b;
+                yw ywVar2 = this.f46906b;
                 ArrayList arrayList = ywVar2.K2;
                 ywVar2.O2 = true;
                 if (ywVar2.E2 != null && !arrayList.isEmpty()) {
@@ -52,7 +52,7 @@ public final class eu implements Runnable {
                 }
                 return;
             case 6:
-                yw ywVar3 = this.f46922b;
+                yw ywVar3 = this.f46906b;
                 ArrayList arrayList3 = ywVar3.K2;
                 ywVar3.L2 = false;
                 ywVar3.O2 = false;
@@ -97,7 +97,7 @@ public final class eu implements Runnable {
                 return;
             case 14:
                 org.telegram.messenger.vr messagesStorage = ywVar.getMessagesStorage();
-                messagesStorage.f27220a.c(new org.telegram.messenger.oq(messagesStorage, 15));
+                messagesStorage.f27219a.c(new org.telegram.messenger.nq(messagesStorage, 15));
                 Toast.makeText(ywVar.getParentActivity(), org.telegram.messenger.hd.M0(2131751651, null), 0).show();
                 return;
             case 15:
@@ -136,7 +136,7 @@ public final class eu implements Runnable {
                 ywVar.F3();
                 oi.u1 u1Var = ywVar.E1;
                 if (u1Var != null) {
-                    u1Var.setTranslationY(-ywVar.f53756w.d());
+                    u1Var.setTranslationY(-ywVar.f53721w.d());
                     return;
                 }
                 return;
@@ -156,14 +156,14 @@ public final class eu implements Runnable {
                 ywVar.getMessagesController().k4(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 24:
-                hi.l3 l3Var = ywVar.f53730r0;
+                hi.l3 l3Var = ywVar.f53695r0;
                 if (l3Var != null) {
                     l3Var.f(true);
                 }
                 ywVar.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 25:
-                ywVar.f53673f0[0].d.f();
+                ywVar.f53638f0[0].d.f();
                 return;
             case 26:
                 UndoView k42 = ywVar.k4();

@@ -14,11 +14,11 @@ public final class l {
         if (s0Var == null) {
             j3 = 1024;
         } else {
-            long length3 = (((int[]) s0Var.f6842c).length * 4) + 64;
-            if (((int[]) s0Var.f6841b) == null) {
+            long length3 = (((int[]) s0Var.f6845c).length * 4) + 64;
+            if (((int[]) s0Var.f6844b) == null) {
                 length = 0;
             } else {
-                length = ((int[]) s0Var.f6841b).length * 4;
+                length = ((int[]) s0Var.f6844b).length * 4;
             }
             j3 = length + length3;
         }

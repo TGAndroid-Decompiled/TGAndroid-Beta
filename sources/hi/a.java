@@ -59,19 +59,19 @@ public final class a extends View implements org.telegram.ui.ActionBar.z5 {
         Drawable mutate = context.getResources().getDrawable(2131232221).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         fq fqVar = new fq(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(6.0f), -13750737), mutate);
-        fqVar.f34678x = false;
+        fqVar.f34682x = false;
         int L = org.telegram.messenger.g0.L(18.0f);
         int L2 = org.telegram.messenger.g0.L(18.0f);
-        fqVar.f34672e = L;
-        fqVar.f34673f = L2;
-        if (ffVar != null && (str2 = ffVar.f27709c) != null) {
+        fqVar.f34676e = L;
+        fqVar.f34677f = L2;
+        if (ffVar != null && (str2 = ffVar.f27711c) != null) {
             imageReceiver.s0(gc.g(str2), "30.0_30.0", null, null, fqVar, null, 0);
         } else {
             if (ffVar != null) {
                 int i11 = ffVar.C;
                 String str5 = ffVar.I;
                 if (str5 != null) {
-                    if (ffVar.f27708b) {
+                    if (ffVar.f27710b) {
                         imageReceiver.s0(gc.g("vthumb://" + i11 + ":" + str5), "30.0_30.0", null, null, fqVar, null, 0);
                     } else {
                         imageReceiver.s0(gc.g("thumb://" + i11 + ":" + str5), "30.0_30.0", null, null, fqVar, null, 0);

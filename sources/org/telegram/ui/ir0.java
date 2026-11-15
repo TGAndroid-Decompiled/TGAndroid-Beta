@@ -30,18 +30,18 @@ public final class ir0 extends org.telegram.ui.Cells.z5 {
         bi.u uVar = this.d;
         uVar.getText().replace(uVar.getSelectionStart(), uVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i7 = 0;
-        while (!arrayList.isEmpty() && i7 < nr0Var.f49631n) {
-            for (int length = nr0Var.f49643w.length - 1; length > i7; length--) {
-                CharSequence[] charSequenceArr = nr0Var.f49643w;
+        while (!arrayList.isEmpty() && i7 < nr0Var.f49621n) {
+            for (int length = nr0Var.f49633w.length - 1; length > i7; length--) {
+                CharSequence[] charSequenceArr = nr0Var.f49633w;
                 charSequenceArr[length] = charSequenceArr[length - 1];
             }
-            nr0Var.f49643w[i7] = (CharSequence) arrayList.remove(0);
+            nr0Var.f49633w[i7] = (CharSequence) arrayList.remove(0);
             nr0Var.E++;
             i7++;
         }
         nr0Var.w0();
-        nr0Var.f49626h0 = (nr0Var.f49633o0 + i7) - 1;
-        nr0Var.f49616b.f();
+        nr0Var.f49616h0 = (nr0Var.f49623o0 + i7) - 1;
+        nr0Var.f49606b.f();
         return true;
     }
 

@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import android.webkit.JavascriptInterface;
 public final class au {
-    public final bu f33061a;
+    public final bu f33064a;
 
     public au(bu buVar) {
-        this.f33061a = buVar;
+        this.f33064a = buVar;
     }
 
     @JavascriptInterface

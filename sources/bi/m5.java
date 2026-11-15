@@ -5,8 +5,8 @@ import android.graphics.PorterDuff;
 import android.view.View;
 public final class m5 extends org.telegram.ui.ActionBar.z0 {
     public final int W;
-    public long f3715a0;
-    public k5 f3716b0;
+    public long f3718a0;
+    public k5 f3719b0;
 
     public m5(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(0, context, e6Var, false, false);

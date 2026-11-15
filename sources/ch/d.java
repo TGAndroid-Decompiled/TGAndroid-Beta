@@ -15,35 +15,35 @@ import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.jx;
 public final class d {
-    public static int f5043m;
-    public g5 f5044a;
-    public Rect f5045b;
-    public ArrayList f5046c;
+    public static int f5046m;
+    public g5 f5047a;
+    public Rect f5048b;
+    public ArrayList f5049c;
     public View d;
-    public long f5047e;
-    public boolean f5048f;
-    public boolean f5049g;
+    public long f5050e;
+    public boolean f5051f;
+    public boolean f5052g;
     public int h;
-    public boolean f5050i;
-    public ImageReceiver f5051j;
-    public int f5052k;
-    public long f5053l;
+    public boolean f5053i;
+    public ImageReceiver f5054j;
+    public int f5055k;
+    public long f5056l;
 
     public static d a(g5 g5Var, boolean z10, boolean z11) {
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         ?? obj = new Object();
-        obj.f5045b = new Rect();
-        obj.f5046c = new ArrayList();
-        obj.f5049g = true;
-        obj.f5052k = -1;
-        obj.f5044a = g5Var;
-        obj.f5048f = z10;
+        obj.f5048b = new Rect();
+        obj.f5049c = new ArrayList();
+        obj.f5052g = true;
+        obj.f5055k = -1;
+        obj.f5047a = g5Var;
+        obj.f5051f = z10;
         obj.h = i7;
-        obj.f5050i = z11;
-        obj.f5047e = System.currentTimeMillis();
+        obj.f5053i = z11;
+        obj.f5050e = System.currentTimeMillis();
         if (z11 && qc.e(4112)) {
             ImageReceiver imageReceiver = new ImageReceiver(null);
-            obj.f5051j = imageReceiver;
+            obj.f5054j = imageReceiver;
             if (z10) {
                 imageReceiver.f22259b = true;
             }
@@ -56,15 +56,15 @@ public final class d {
     }
 
     public final boolean c() {
-        if (System.currentTimeMillis() - this.f5047e > 2500) {
+        if (System.currentTimeMillis() - this.f5050e > 2500) {
             return true;
         }
         return false;
     }
 
     public final void d(View view) {
-        this.f5044a.n(view);
-        ImageReceiver imageReceiver = this.f5051j;
+        this.f5047a.n(view);
+        ImageReceiver imageReceiver = this.f5054j;
         if (imageReceiver != null) {
             imageReceiver.R();
             imageReceiver.f();
@@ -72,9 +72,9 @@ public final class d {
     }
 
     public final void e(int i7, int i10, int i11, int i12) {
-        Rect rect = this.f5045b;
+        Rect rect = this.f5048b;
         rect.set(i7, i10, i11, i12);
-        ImageReceiver imageReceiver = this.f5051j;
+        ImageReceiver imageReceiver = this.f5054j;
         if (imageReceiver != null) {
             imageReceiver.z0(rect);
         }
@@ -85,22 +85,22 @@ public final class d {
         boolean z11;
         TLRPC.TL_availableReaction tL_availableReaction;
         TLRPC.Document document;
-        boolean z12 = this.f5048f;
+        boolean z12 = this.f5051f;
         int i7 = this.h;
-        g5 g5Var = this.f5044a;
+        g5 g5Var = this.f5047a;
         g5Var.a(view);
         this.d = view;
-        ImageReceiver imageReceiver = this.f5051j;
-        if (imageReceiver != null && this.f5050i) {
+        ImageReceiver imageReceiver = this.f5054j;
+        if (imageReceiver != null && this.f5053i) {
             imageReceiver.P();
-            TLRPC.Document document2 = g5Var.f34804e;
+            TLRPC.Document document2 = g5Var.f34808e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String V = gj.V(document2, null, null);
-            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(i7).f26495r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
+            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(i7).f26505r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
                 if (z12) {
                     StringBuilder sb2 = new StringBuilder();
-                    int i10 = f5043m;
-                    f5043m = i10 + 1;
+                    int i10 = f5046m;
+                    f5046m = i10 + 1;
                     imageReceiver.f22307w1 = a8.p0.n(i10, " ", sb2);
                     int f10 = jx.f();
                     TLRPC.Document document3 = tL_availableReaction.around_animation;
@@ -119,23 +119,23 @@ public final class d {
                 z11 = false;
             }
             if (!z11) {
-                String str = m10.i(i7).f24944e0;
+                String str = m10.i(i7).f24950e0;
                 if (str != null && (tL_messages_stickerSet = si.b0(i7).p0(str)) == null) {
                     tL_messages_stickerSet = si.b0(i7).n0(str);
                 }
                 if (tL_messages_stickerSet != null) {
-                    if (this.f5052k < 0) {
-                        this.f5052k = Math.abs(((int) Utilities.f22415c.nextLong()) % tL_messages_stickerSet.documents.size());
+                    if (this.f5055k < 0) {
+                        this.f5055k = Math.abs(((int) Utilities.f22415c.nextLong()) % tL_messages_stickerSet.documents.size());
                     }
                     if (z12) {
                         StringBuilder sb3 = new StringBuilder();
-                        int i11 = f5043m;
-                        f5043m = i11 + 1;
+                        int i11 = f5046m;
+                        f5046m = i11 + 1;
                         imageReceiver.f22307w1 = a8.p0.n(i11, " ", sb3);
                         int f11 = jx.f();
-                        imageReceiver.q0(gc.b(tL_messages_stickerSet.documents.get(this.f5052k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f5052k), 0);
+                        imageReceiver.q0(gc.b(tL_messages_stickerSet.documents.get(this.f5055k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f5055k), 0);
                     } else {
-                        imageReceiver.q0(gc.b(tL_messages_stickerSet.documents.get(this.f5052k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f5052k), 0);
+                        imageReceiver.q0(gc.b(tL_messages_stickerSet.documents.get(this.f5055k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f5055k), 0);
                     }
                     z11 = z10;
                 }

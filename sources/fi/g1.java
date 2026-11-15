@@ -183,7 +183,7 @@ public final class g1 implements wi.l {
         if (e1Var != null) {
             int i7 = e1Var.f11656e;
             if (!e1Var.f11662x) {
-                if (i7 != m10.f24934t0 && (launchActivity = LaunchActivity.H1) != null) {
+                if (i7 != m10.f24940t0 && (launchActivity = LaunchActivity.H1) != null) {
                     launchActivity.O0(i7);
                 }
                 org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
@@ -345,7 +345,7 @@ public final class g1 implements wi.l {
         if (e1Var != null) {
             i7 = e1Var.f11656e;
         } else {
-            i7 = m10.f24934t0;
+            i7 = m10.f24940t0;
         }
         return new hi.r3(launchActivity, i7);
     }

@@ -32,13 +32,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.Components.km;
 import org.telegram.ui.Components.lv0;
-import org.telegram.ui.il0;
+import org.telegram.ui.jl0;
 import org.telegram.ui.sw;
 import org.telegram.ui.u91;
 import org.telegram.ui.vc1;
 import org.telegram.ui.x21;
 import org.telegram.ui.yw;
-public final class k8 implements org.telegram.ui.ActionBar.q1, OnSuccessListener, p4.l0, h2.j, p4.a1, qi.m, OnFailureListener, u2.v, w5.b, ua.a, androidx.car.app.utils.c, v5.e, il0, sw, f3.r {
+public final class k8 implements org.telegram.ui.ActionBar.q1, OnSuccessListener, p4.l0, h2.j, p4.a1, qi.m, OnFailureListener, u2.v, w5.b, ua.a, androidx.car.app.utils.b, v5.e, jl0, sw, f3.r {
     public final int f44073a;
     public final Object f44074b;
     public final Object f44075c;
@@ -66,7 +66,7 @@ public final class k8 implements org.telegram.ui.ActionBar.q1, OnSuccessListener
                 org.telegram.messenger.g0.h3(new lv0((SpannableString) this.f44074b, jVar, (oi.u4) this.f44075c, 21));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new lv0((SpannableString) this.f44074b, jVar, (di.m9) this.f44075c, 22));
+                org.telegram.messenger.g0.h3(new lv0((SpannableString) this.f44074b, jVar, (di.l9) this.f44075c, 22));
                 return;
         }
     }
@@ -203,7 +203,7 @@ public final class k8 implements org.telegram.ui.ActionBar.q1, OnSuccessListener
 
     @Override
     public void call() {
-        int i7 = CarAppNotificationBroadcastReceiver.f2045a;
+        int i7 = CarAppNotificationBroadcastReceiver.f2052a;
         ((IStartCarApp) this.f44074b).startCarApp((Intent) this.f44075c);
     }
 
@@ -395,10 +395,10 @@ public final class k8 implements org.telegram.ui.ActionBar.q1, OnSuccessListener
         org.telegram.messenger.a8.b("wear-auth: /token delivered to " + ((String) ((a8.r7) this.f44074b).d));
         ((hi.d) this.f44075c).setLoading(false);
         vc1.d = null;
-        org.telegram.ui.ActionBar.u2 u2Var = vc1.f52197c;
+        org.telegram.ui.ActionBar.u2 u2Var = vc1.f52195c;
         if (u2Var != null) {
             u2Var.dismiss();
-            vc1.f52197c = null;
+            vc1.f52195c = null;
         }
     }
 
@@ -408,8 +408,8 @@ public final class k8 implements org.telegram.ui.ActionBar.q1, OnSuccessListener
         String str = (String) this.f44075c;
         long j3 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            j3 = ((ur) arrayList.get(i11)).f26860a;
-            e0Var.f35940s1.getSendMessagesHelper().r0(cz.b(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            j3 = ((ur) arrayList.get(i11)).f26861a;
+            e0Var.f35935s1.getSendMessagesHelper().r0(cz.b(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
         }
         ywVar.finishFragment();
         wg.h.h(j3);

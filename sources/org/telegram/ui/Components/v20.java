@@ -16,8 +16,8 @@ public final class v20 implements org.telegram.messenger.x10, org.telegram.messe
         boolean z10 = false;
         if (i7 != 0) {
             w20 w20Var = this.f40238a;
-            String str = (String) w20Var.f41233c.get(i7 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, w20Var.getContext(), w20Var.f41232b);
+            String str = (String) w20Var.f41236c.get(i7 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, w20Var.getContext(), w20Var.f41235b);
             String M0 = org.telegram.messenger.hd.M0(2131752054, null);
             org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
             t1Var.S = M0;
@@ -39,15 +39,15 @@ public final class v20 implements org.telegram.messenger.x10, org.telegram.messe
         int i7 = ((b41) obj).d;
         w20 w20Var = this.f40238a;
         if (i7 == 0) {
-            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(w20Var.f41231a);
-            a10.f25180f.clear();
+            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(w20Var.f41234a);
+            a10.f25183f.clear();
             a10.d();
-            w20Var.f41235f.O(true);
+            w20Var.f41238f.O(true);
             return;
         }
         org.telegram.messenger.z10 z10Var = w20Var.h;
         if (z10Var != null) {
-            z10Var.a((String) w20Var.f41233c.get(i7 - 1));
+            z10Var.a((String) w20Var.f41236c.get(i7 - 1));
         }
     }
 }

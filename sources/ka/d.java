@@ -102,17 +102,17 @@ public final class d {
         s0 s0Var = new s0(name, l0Var, lVar, b10);
         g property = d[0];
         j.e(property, "property");
-        q1.d dVar3 = (q1.d) s0Var.f6841b;
+        q1.d dVar3 = (q1.d) s0Var.f6844b;
         if (dVar3 == null) {
-            synchronized (s0Var.f6842c) {
+            synchronized (s0Var.f6845c) {
                 try {
-                    if (((q1.d) s0Var.f6841b) == null) {
+                    if (((q1.d) s0Var.f6844b) == null) {
                         Context applicationContext = context.getApplicationContext();
                         j.d(applicationContext, "applicationContext");
                         o1.a aVar = new o1.a(1, applicationContext, s0Var);
-                        s0Var.f6841b = new q1.d(new q1.d(new m1.b0(new f0(h.f55135a, e0.f19960b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), l0Var, b10)));
+                        s0Var.f6844b = new q1.d(new q1.d(new m1.b0(new f0(h.f55135a, e0.f19960b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), l0Var, b10)));
                     }
-                    dVar = (q1.d) s0Var.f6841b;
+                    dVar = (q1.d) s0Var.f6844b;
                     j.b(dVar);
                 } catch (Throwable th2) {
                     throw th2;

@@ -6,34 +6,34 @@ import j$.util.stream.IntStream;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 public final class f6 implements CharSequence {
-    public final CharSequence[] f34528a;
-    public final int f34529b;
+    public final CharSequence[] f34527a;
+    public final int f34528b;
 
     public f6(CharSequence charSequence) {
         int i7;
         if (charSequence == null) {
-            this.f34528a = new CharSequence[0];
-            this.f34529b = 0;
+            this.f34527a = new CharSequence[0];
+            this.f34528b = 0;
             return;
         }
-        this.f34529b = charSequence.length();
+        this.f34528b = charSequence.length();
         int i10 = 0;
-        for (int i11 = 0; i11 < this.f34529b; i11++) {
+        for (int i11 = 0; i11 < this.f34528b; i11++) {
             if (charSequence.charAt(i11) == ' ') {
                 i10++;
             }
         }
-        this.f34528a = new CharSequence[i10 + 1];
+        this.f34527a = new CharSequence[i10 + 1];
         int i12 = 0;
         int i13 = 0;
         int i14 = 0;
         while (true) {
-            int i15 = this.f34529b;
+            int i15 = this.f34528b;
             if (i12 <= i15) {
                 if (i12 == i15 || charSequence.charAt(i12) == ' ') {
-                    CharSequence[] charSequenceArr = this.f34528a;
+                    CharSequence[] charSequenceArr = this.f34527a;
                     int i16 = i13 + 1;
-                    if (i12 < this.f34529b) {
+                    if (i12 < this.f34528b) {
                         i7 = 1;
                     } else {
                         i7 = 0;
@@ -53,7 +53,7 @@ public final class f6 implements CharSequence {
     public final char charAt(int i7) {
         int i10 = 0;
         while (true) {
-            CharSequence[] charSequenceArr = this.f34528a;
+            CharSequence[] charSequenceArr = this.f34527a;
             if (i10 >= charSequenceArr.length) {
                 return (char) 0;
             }
@@ -77,12 +77,12 @@ public final class f6 implements CharSequence {
 
     @Override
     public final int length() {
-        return this.f34528a.length;
+        return this.f34527a.length;
     }
 
     @Override
     public final CharSequence subSequence(int i7, int i10) {
-        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f34528a, i7, i10));
+        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f34527a, i7, i10));
     }
 
     @Override
@@ -90,7 +90,7 @@ public final class f6 implements CharSequence {
         StringBuilder sb2 = new StringBuilder();
         int i7 = 0;
         while (true) {
-            CharSequence[] charSequenceArr = this.f34528a;
+            CharSequence[] charSequenceArr = this.f34527a;
             if (i7 < charSequenceArr.length) {
                 sb2.append(charSequenceArr[i7]);
                 i7++;
@@ -104,7 +104,7 @@ public final class f6 implements CharSequence {
     public final j$.util.stream.IntStream chars() {
         j$.util.stream.IntStream convert;
         if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f34528a).chars());
+            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f34527a).chars());
             return convert;
         }
         return null;
@@ -114,7 +114,7 @@ public final class f6 implements CharSequence {
     public final j$.util.stream.IntStream codePoints() {
         j$.util.stream.IntStream convert;
         if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f34528a).codePoints());
+            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f34527a).codePoints());
             return convert;
         }
         return null;

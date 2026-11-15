@@ -32,7 +32,7 @@ public final class pr0 implements jg.y1, org.telegram.ui.Cells.z4 {
             tL_chatChannelParticipant.user_id = org.telegram.messenger.gj.B1(channelParticipant.peer);
             tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
             tL_chatChannelParticipant.date = channelParticipant.date;
-            return rr0Var.f39053s.G1.h(tL_chatChannelParticipant, true, !z10, a5Var);
+            return rr0Var.f39050s.G1.h(tL_chatChannelParticipant, true, !z10, a5Var);
         }
         return false;
     }
@@ -47,18 +47,18 @@ public final class pr0 implements jg.y1, org.telegram.ui.Cells.z4 {
         rr0 rr0Var = this.f38394a;
         rr0Var.f();
         if (i7 == 1) {
-            int i10 = rr0Var.f39052r - 1;
-            rr0Var.f39052r = i10;
+            int i10 = rr0Var.f39049r - 1;
+            rr0Var.f39049r = i10;
             if (i10 == 0) {
                 int i11 = 0;
                 while (true) {
-                    ys0 ys0Var = rr0Var.f39053s;
-                    tr0[] tr0VarArr = ys0Var.f42117n0;
+                    ys0 ys0Var = rr0Var.f39050s;
+                    tr0[] tr0VarArr = ys0Var.f42119n0;
                     if (i11 < tr0VarArr.length) {
                         tr0 tr0Var = tr0VarArr[i11];
                         if (tr0Var.F == 7) {
                             if (rr0Var.h == 0) {
-                                tr0Var.f39798w.e(false, true);
+                                tr0Var.f39795w.e(false, true);
                             } else {
                                 ys0Var.D(tr0Var.h, 0, null);
                             }

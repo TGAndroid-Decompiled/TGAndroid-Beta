@@ -61,7 +61,7 @@ public final class g extends v4.o {
                 }
                 return true;
             case 1:
-                return ((Integer) this.f17076c.get(i7)).equals(((vw) this.d).f41165n.get(i10));
+                return ((Integer) this.f17076c.get(i7)).equals(((vw) this.d).f41168n.get(i10));
             case 2:
                 return Objects.equals(this.f17076c.get(i7), ((pj0) this.d).f38320n.get(i10));
             case 3:
@@ -72,12 +72,12 @@ public final class g extends v4.o {
             case 4:
                 f40 f40Var = (f40) this.d;
                 ArrayList arrayList = this.f17076c;
-                if (i7 < arrayList.size() && i10 < f40Var.f46993e.size()) {
-                    return ((s3) arrayList.get(i7)).equals(f40Var.f46993e.get(i10));
+                if (i7 < arrayList.size() && i10 < f40Var.f46977e.size()) {
+                    return ((s3) arrayList.get(i7)).equals(f40Var.f46977e.get(i10));
                 }
                 return false;
             default:
-                return ((Long) this.f17076c.get(i7)).equals(((n11) this.d).f49415w0.get(i10));
+                return ((Long) this.f17076c.get(i7)).equals(((n11) this.d).f49414w0.get(i10));
         }
     }
 
@@ -87,15 +87,15 @@ public final class g extends v4.o {
             case 0:
                 return this.f17076c.size();
             case 1:
-                return ((vw) this.d).f41165n.size();
+                return ((vw) this.d).f41168n.size();
             case 2:
                 return ((pj0) this.d).f38320n.size();
             case 3:
                 return ((q01) this.d).f38458c.size();
             case 4:
-                return ((f40) this.d).f46993e.size();
+                return ((f40) this.d).f46977e.size();
             default:
-                return ((n11) this.d).f49415w0.size();
+                return ((n11) this.d).f49414w0.size();
         }
     }
 

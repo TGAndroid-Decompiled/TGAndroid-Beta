@@ -15,13 +15,13 @@ public final class ir0 extends vs0 {
         super.f();
         ys0 ys0Var = this.H;
         tr0 g02 = ys0Var.g0(8);
-        if (g02 != null && g02.f39795n.getVisibility() == 0) {
-            ys0Var.f42097g0.f();
+        if (g02 != null && g02.f39792n.getVisibility() == 0) {
+            ys0Var.f42099g0.f();
         }
         if (g02 != null) {
-            pq0 pq0Var = g02.f39798w;
-            fi.k6 k6Var = this.f41146s;
-            if (k6Var != null && (k6Var.k() || (ys0Var.t0() && this.f41146s.g() > 0))) {
+            pq0 pq0Var = g02.f39795w;
+            fi.k6 k6Var = this.f41149s;
+            if (k6Var != null && (k6Var.k() || (ys0Var.t0() && this.f41149s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

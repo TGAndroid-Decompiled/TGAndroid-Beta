@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
 public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Cells.u5, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.f1, r0.m, org.telegram.messenger.t10, org.telegram.ui.Cells.z4, org.telegram.messenger.nc, RequestTimeDelegate, org.telegram.ui.ActionBar.d2, org.telegram.ui.Components.ij0, lg.e, jg.y1 {
-    public final int f49569a;
-    public final Object f49570b;
+    public final int f49568a;
+    public final Object f49569b;
 
     public ni0(Object obj, int i7) {
-        this.f49569a = i7;
-        this.f49570b = obj;
+        this.f49568a = i7;
+        this.f49569b = obj;
     }
 
     @Override
@@ -32,9 +32,9 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
         int i7;
         int i10;
         View fragmentView;
-        switch (this.f49569a) {
+        switch (this.f49568a) {
             case 7:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f49570b;
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f49569b;
                 i0.c I0 = org.telegram.messenger.g0.I0(k1Var, false);
                 premiumPreviewFragment.f42995p0 = I0;
                 premiumPreviewFragment.f42975a.setPadding(0, I0.f15575b, 0, org.telegram.messenger.g0.L(48.0f) + premiumPreviewFragment.f42995p0.d);
@@ -53,7 +53,7 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                 }
                 return r0.k1.f55681b;
             default:
-                je0 je0Var = (je0) ((mb1) this.f49570b);
+                je0 je0Var = (je0) ((mb1) this.f49569b);
                 i0.c I02 = org.telegram.messenger.g0.I0(k1Var, false);
                 int i12 = I02.f15574a;
                 je0Var.N = i12;
@@ -78,12 +78,12 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                 } else {
                     i10 = 0;
                 }
-                ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) je0Var.f49205c.getLayoutParams();
+                ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) je0Var.f49201c.getLayoutParams();
                 if (marginLayoutParams2.bottomMargin != i10 || marginLayoutParams2.leftMargin != i12 || marginLayoutParams2.rightMargin != i13) {
                     marginLayoutParams2.leftMargin = i12;
                     marginLayoutParams2.rightMargin = i13;
                     marginLayoutParams2.bottomMargin = i10;
-                    je0Var.f49205c.setLayoutParams(marginLayoutParams2);
+                    je0Var.f49201c.setLayoutParams(marginLayoutParams2);
                 }
                 je0Var.F.setPadding(i12, 0, i13, je0Var.M);
                 if (a10) {
@@ -91,11 +91,11 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                 }
                 je0Var.o0();
                 je0Var.n0();
-                SparseArray sparseArray = je0Var.f49203a;
+                SparseArray sparseArray = je0Var.f49199a;
                 int size = sparseArray.size();
                 for (int i14 = 0; i14 < size; i14++) {
                     kb1 kb1Var = (kb1) sparseArray.valueAt(i14);
-                    if (kb1Var != null && (fragmentView = kb1Var.f48666a.getFragmentView()) != null) {
+                    if (kb1Var != null && (fragmentView = kb1Var.f48620a.getFragmentView()) != null) {
                         r0.i0.b(fragmentView, k1Var);
                     }
                 }
@@ -110,30 +110,30 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
 
     @Override
     public void a() {
-        switch (this.f49569a) {
+        switch (this.f49568a) {
             case 5:
-                ((xr0) this.f49570b).e();
+                ((xr0) this.f49569b).e();
                 return;
             default:
-                ((e81) this.f49570b).e();
+                ((e81) this.f49569b).e();
                 return;
         }
     }
 
     @Override
     public boolean b(int i7, View view) {
-        switch (this.f49569a) {
+        switch (this.f49568a) {
             case 16:
-                return ((z11) this.f49570b).e1(i7, view);
+                return ((z11) this.f49569b).e1(i7, view);
             default:
-                ((l81) this.f49570b).K.b(i7, view);
+                ((l81) this.f49569b).K.b(i7, view);
                 return true;
         }
     }
 
     @Override
     public boolean c(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
-        ot0 ot0Var = (ot0) this.f49570b;
+        ot0 ot0Var = (ot0) this.f49569b;
         if (z10) {
             ot0Var.d.Z((Long) a5Var.getTag(), a5Var);
             return true;
@@ -144,14 +144,14 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
     @Override
     public Object d(Number number, Object obj) {
         Integer num = (Integer) obj;
-        PrivacyControlActivity privacyControlActivity = ((ht0) this.f49570b).d;
+        PrivacyControlActivity privacyControlActivity = ((ht0) this.f49569b).d;
         if (((Integer) number).intValue() == 0) {
             if (!privacyControlActivity.getUserConfig().q()) {
                 if (privacyControlActivity.B0 == null) {
                     SpannableString spannableString = new SpannableString("l");
                     org.telegram.ui.Components.eq eqVar = new org.telegram.ui.Components.eq(2131232244, 0);
-                    eqVar.f34415r = org.telegram.messenger.g0.L(2.0f);
-                    eqVar.f34416s = org.telegram.messenger.g0.L(1.0f);
+                    eqVar.f34414r = org.telegram.messenger.g0.L(2.0f);
+                    eqVar.f34415s = org.telegram.messenger.g0.L(1.0f);
                     spannableString.setSpan(eqVar, 0, 1, 33);
                     privacyControlActivity.B0 = spannableString;
                 }
@@ -177,9 +177,9 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
         int i11;
         int i12;
         boolean z10 = false;
-        switch (this.f49569a) {
+        switch (this.f49568a) {
             case 2:
-                PhotoViewer photoViewer = (PhotoViewer) ((ca.i) this.f49570b).f4841c;
+                PhotoViewer photoViewer = (PhotoViewer) ((ca.i) this.f49569b).f4844c;
                 try {
                     org.telegram.messenger.g0.u2(photoViewer.T4, photoViewer.E, photoViewer.f42913w2, true);
                     photoViewer.z0(false, false);
@@ -189,17 +189,17 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                     return;
                 }
             case 3:
-                ((nr0) this.f49570b).finishFragment();
+                ((nr0) this.f49569b).finishFragment();
                 return;
             case 4:
-                ((hr0) this.f49570b).f47816a.S.r();
+                ((hr0) this.f49569b).f47806a.S.r();
                 return;
             case 6:
-                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) this.f49570b;
+                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) this.f49569b;
                 int i13 = PopupNotificationActivity.f42961c0;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                     popupNotificationActivity.startActivity(intent);
                     return;
                 } catch (Exception e11) {
@@ -208,10 +208,10 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                 }
             case 10:
                 RectF rectF = ProfileActivity.X6;
-                ((rt0) this.f49570b).a(1);
+                ((rt0) this.f49569b).a(1);
                 return;
             case 13:
-                ProxyListActivity proxyListActivity = (ProxyListActivity) ((ji0) this.f49570b).f48366c;
+                ProxyListActivity proxyListActivity = (ProxyListActivity) ((ji0) this.f49569b).f48351c;
                 ArrayList arrayList = proxyListActivity.F;
                 int size = arrayList.size();
                 int i14 = 0;
@@ -237,7 +237,7 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                 }
                 return;
             case 18:
-                ThemeActivity themeActivity = ((s51) this.f49570b).f51115a;
+                ThemeActivity themeActivity = ((s51) this.f49569b).f51111a;
                 if (org.telegram.messenger.g0.Q1()) {
                     i10 = 18;
                 } else {
@@ -289,48 +289,48 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                 }
                 return;
             case 19:
-                t71 t71Var = ((v61) this.f49570b).f52145a;
-                org.telegram.ui.ActionBar.i6 i6Var = t71Var.f51430g0;
-                org.telegram.ui.ActionBar.j6.l0(i6Var, t71Var.f51468w, true);
+                t71 t71Var = ((v61) this.f49569b).f52143a;
+                org.telegram.ui.ActionBar.i6 i6Var = t71Var.f51431g0;
+                org.telegram.ui.ActionBar.j6.l0(i6Var, t71Var.f51469w, true);
                 org.telegram.ui.ActionBar.j6.p();
                 org.telegram.ui.ActionBar.j6.t1(false, false);
-                org.telegram.messenger.ns.e().k(270, i6Var, Boolean.valueOf(t71Var.f51433h0), null, -1);
+                org.telegram.messenger.ns.e().k(270, i6Var, Boolean.valueOf(t71Var.f51434h0), null, -1);
                 t71Var.finishFragment();
                 return;
             default:
-                ((va1) this.f49570b).f52182a.J0(true);
+                ((va1) this.f49569b).f52180a.J0(true);
                 return;
         }
     }
 
     @Override
     public void i(int i7) {
-        ib1 ib1Var = (ib1) this.f49570b;
-        if (ib1Var.h == null && !ib1Var.f48021f.e()) {
-            ib1Var.f48025w.f43452f.e(false, true);
+        ib1 ib1Var = (ib1) this.f49569b;
+        if (ib1Var.h == null && !ib1Var.f48011f.e()) {
+            ib1Var.f48015w.f43452f.e(false, true);
         }
         ib1Var.f();
     }
 
     @Override
     public void m(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        switch (this.f49569a) {
+        switch (this.f49568a) {
             case 0:
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                PasskeysActivity.b0((PasskeysActivity) this.f49570b, (org.telegram.ui.Components.b41) obj, (View) obj2);
+                PasskeysActivity.b0((PasskeysActivity) this.f49569b, (org.telegram.ui.Components.b41) obj, (View) obj2);
                 return;
             default:
-                ly0 ly0Var = (ly0) this.f49570b;
+                ly0 ly0Var = (ly0) this.f49569b;
                 org.telegram.ui.Components.b41 b41Var = (org.telegram.ui.Components.b41) obj;
                 View view = (View) obj2;
                 Integer num2 = (Integer) number;
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
-                my0 my0Var = ly0Var.f49069w;
+                my0 my0Var = ly0Var.f49065w;
                 if (b41Var.f56015a == 30) {
-                    TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = ly0Var.f49062b;
+                    TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = ly0Var.f49058b;
                     if (tL_channels_sponsoredMessageReportResultChooseOption != null) {
                         TLRPC.TL_sponsoredMessageReportOption tL_sponsoredMessageReportOption = tL_channels_sponsoredMessageReportResultChooseOption.options.get(b41Var.d);
                         if (tL_sponsoredMessageReportOption != null) {
@@ -339,7 +339,7 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                         }
                         return;
                     }
-                    TLRPC.TL_reportResultChooseOption tL_reportResultChooseOption = ly0Var.f49063c;
+                    TLRPC.TL_reportResultChooseOption tL_reportResultChooseOption = ly0Var.f49059c;
                     if (tL_reportResultChooseOption != null) {
                         TLRPC.TL_messageReportOption tL_messageReportOption = tL_reportResultChooseOption.options.get(b41Var.d);
                         if (tL_messageReportOption != null) {
@@ -357,7 +357,7 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
                         }
                         return;
                     }
-                    my0.I0(my0Var, b41Var.f33181l, null, null);
+                    my0.I0(my0Var, b41Var.f33184l, null, null);
                     return;
                 }
                 return;
@@ -368,12 +368,12 @@ public final class ni0 implements org.telegram.messenger.x10, org.telegram.ui.Ce
     public void r(Exception exc) {
         RectF rectF = ProfileActivity.X6;
         org.telegram.messenger.a8.e("mlkit: failed to detect language in selection", exc);
-        ((bi.u2) this.f49570b).run();
+        ((bi.u2) this.f49569b).run();
     }
 
     @Override
     public void run(long j3) {
-        org.telegram.messenger.g0.h3(new di.x2((org.telegram.messenger.fz) this.f49570b, j3, 29));
+        org.telegram.messenger.g0.h3(new di.x2((org.telegram.messenger.fz) this.f49569b, j3, 29));
     }
 
     @Override

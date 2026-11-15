@@ -11,18 +11,18 @@ public final class gu extends cu {
     public final hv X;
     public final hv Y;
     public final boolean Z;
-    public final org.telegram.ui.Cells.s9[] f23913a0;
+    public final org.telegram.ui.Cells.s9[] f23916a0;
 
     public gu(iv ivVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
         super(ivVar, rect, i7);
         hv hvVar;
         if (!TextUtils.isEmpty(spannableStringBuilder)) {
-            hvVar = new hv(ivVar, spannableStringBuilder, this.f22935c);
+            hvVar = new hv(ivVar, spannableStringBuilder, this.f22943c);
         } else {
             hvVar = null;
         }
         this.X = hvVar;
-        hv hvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new hv(ivVar, spannableStringBuilder2, this.f22935c);
+        hv hvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new hv(ivVar, spannableStringBuilder2, this.f22943c);
         this.Y = hvVar2;
         this.Z = ivVar.I();
         ArrayList arrayList = new ArrayList(2);
@@ -32,13 +32,13 @@ public final class gu extends cu {
         if (hvVar2 != null) {
             arrayList.add(hvVar2);
         }
-        this.f23913a0 = (org.telegram.ui.Cells.s9[]) arrayList.toArray(new org.telegram.ui.Cells.s9[0]);
+        this.f23916a0 = (org.telegram.ui.Cells.s9[]) arrayList.toArray(new org.telegram.ui.Cells.s9[0]);
     }
 
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         int i10 = rect.top;
         int i11 = 0;
         hv hvVar = this.X;
@@ -59,7 +59,7 @@ public final class gu extends cu {
     public final int J() {
         int i7;
         int i10;
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         hv hvVar = this.Y;
         if (hvVar != null) {
             i7 = hvVar.q() + rect.left;
@@ -88,13 +88,13 @@ public final class gu extends cu {
         if (hvVar2 != null) {
             i7 = Math.max(i7, hvVar2.r());
         }
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return rect.left + i7 + rect.right;
     }
 
     @Override
     public final org.telegram.ui.Cells.s9[] L() {
-        return this.f23913a0;
+        return this.f23916a0;
     }
 
     @Override
@@ -156,7 +156,7 @@ public final class gu extends cu {
         }
         int j02 = j0();
         float y10 = motionEvent.getY();
-        int i11 = this.f22934b.top;
+        int i11 = this.f22942b.top;
         float f10 = y10 - i11;
         if (hvVar != null && f10 >= 0.0f && f10 < i7) {
             motionEvent.offsetLocation(0.0f, -i11);
@@ -205,8 +205,8 @@ public final class gu extends cu {
         if (hvVar == null || !this.Z) {
             return 0;
         }
-        int i7 = this.f22933a.C;
-        Rect rect = this.f22934b;
+        int i7 = this.f22941a.C;
+        Rect rect = this.f22942b;
         return Math.max(0, ((i7 - rect.left) - rect.right) - hvVar.r());
     }
 

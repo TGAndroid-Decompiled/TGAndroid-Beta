@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 public final class gq implements q0.a {
-    public final int f47504a;
+    public final int f47494a;
 
     public gq(int i7) {
-        this.f47504a = i7;
+        this.f47494a = i7;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class gq implements q0.a {
         boolean z11;
         long j3;
         boolean z12 = true;
-        switch (this.f47504a) {
+        switch (this.f47494a) {
             case 0:
                 TLRPC.User user = (TLRPC.User) obj;
                 return;

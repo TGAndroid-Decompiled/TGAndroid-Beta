@@ -1,7 +1,7 @@
 package ji;
 
-import ai.b2;
-import ai.y;
+import ai.c2;
+import ai.z;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -51,17 +51,17 @@ public final class h implements z10 {
                         g0.r(mVar2.f17584k0);
                         g0.r(mVar2.f17583j0);
                         Drawable drawable = null;
-                        if (xr.f27575k == mVar2) {
-                            xr.f27575k = null;
+                        if (xr.f27577k == mVar2) {
+                            xr.f27577k = null;
                         }
-                        b2 b2Var = mVar2.f17578f;
-                        if (b2Var != null) {
-                            b2Var.c();
+                        c2 c2Var = mVar2.f17578f;
+                        if (c2Var != null) {
+                            c2Var.c();
                             mVar2.f17578f = null;
                         }
-                        y yVar = mVar2.d;
-                        if (yVar != null) {
-                            yVar.d();
+                        z zVar = mVar2.d;
+                        if (zVar != null) {
+                            zVar.d();
                             mVar2.d = null;
                         }
                         mVar2.f17576e = null;
@@ -75,7 +75,7 @@ public final class h implements z10 {
                         p pVar2 = mVar2.h;
                         boolean z10 = obj instanceof ai.h;
                         if (z10) {
-                            str = ((ai.h) obj).f1232a;
+                            str = ((ai.h) obj).f1216a;
                         } else {
                             str = null;
                         }
@@ -84,10 +84,10 @@ public final class h implements z10 {
                         ChatActivityEnterView chatActivityEnterView = gfVar.f34928a;
                         if (z10) {
                             ai.h hVar = (ai.h) obj;
-                            long j3 = hVar.f1234c;
+                            long j3 = hVar.f1218c;
                             if (j3 != 0) {
                                 drawable = g5.m(chatActivityEnterView.R, j3, null, 2);
-                            } else if (hVar.f1235e) {
+                            } else if (hVar.f1219e) {
                                 drawable = new t2(chatActivityEnterView.getContext());
                                 if (j6.I.q()) {
                                     u02 = -1;
@@ -98,7 +98,7 @@ public final class h implements z10 {
                                 }
                                 drawable.setColorFilter(new PorterDuffColorFilter(u02, PorterDuff.Mode.SRC_IN));
                             } else {
-                                String str3 = hVar.f1233b;
+                                String str3 = hVar.f1217b;
                                 if (str3 != null) {
                                     drawable = org.telegram.messenger.j6.f(str3);
                                 }

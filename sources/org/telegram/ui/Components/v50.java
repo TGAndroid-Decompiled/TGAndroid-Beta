@@ -83,13 +83,13 @@ public final class v50 extends tj0 {
                     i5.c.v(textView, 1, 14.0f);
                     org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.Ri, null);
                     int i11 = 3;
-                    if (org.telegram.messenger.hd.f24101a0) {
+                    if (org.telegram.messenger.hd.f24104a0) {
                         i10 = 5;
                     } else {
                         i10 = 3;
                     }
                     textView.setGravity(i10 | 16);
-                    if (org.telegram.messenger.hd.f24101a0) {
+                    if (org.telegram.messenger.hd.f24104a0) {
                         i11 = 5;
                     }
                     frameLayout.addView(textView, c8.ja.d(-1, -1.0f, i11 | 48, 16.0f, 0.0f, 16.0f, 0.0f));

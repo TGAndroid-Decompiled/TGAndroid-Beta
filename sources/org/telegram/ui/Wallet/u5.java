@@ -39,7 +39,7 @@ public final class u5 extends v4.r0 {
         if (recyclerView != v3Var) {
             hi.f8 f8Var = this.f44555b;
             if (recyclerView != null) {
-                ArrayList arrayList = recyclerView.f2826x0;
+                ArrayList arrayList = recyclerView.f2829x0;
                 if (arrayList != null) {
                     arrayList.remove(f8Var);
                 }

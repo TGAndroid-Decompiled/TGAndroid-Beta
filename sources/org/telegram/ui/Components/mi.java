@@ -4,20 +4,20 @@ import android.util.SparseIntArray;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class mi implements org.telegram.messenger.a20 {
-    public final int f37253a;
-    public final Object f37254b;
+    public final int f37252a;
+    public final Object f37253b;
 
     public mi(Object obj, int i7) {
-        this.f37253a = i7;
-        this.f37254b = obj;
+        this.f37252a = i7;
+        this.f37253b = obj;
     }
 
     @Override
     public final Object a(Object obj) {
         int i7;
-        int i10 = this.f37253a;
+        int i10 = this.f37252a;
         boolean z10 = true;
-        Object obj2 = this.f37254b;
+        Object obj2 = this.f37253b;
         switch (i10) {
             case 0:
                 return Boolean.valueOf(vi.P((vi) obj2, (org.telegram.messenger.gj) obj));
@@ -34,7 +34,7 @@ public final class mi implements org.telegram.messenger.a20 {
                 org.telegram.messenger.pz c10 = org.telegram.messenger.t5.c(i7 * 0.12f, i11);
                 c10.f26043t = true;
                 c10.f26036m = org.telegram.ui.ActionBar.j6.f28931hf;
-                imageReceiver.s0(org.telegram.messenger.gc.p(org.telegram.messenger.k20.b(fVar.f57656b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f23608p)))), null, null, null, new vp(c10), null, 0);
+                imageReceiver.s0(org.telegram.messenger.gc.p(org.telegram.messenger.k20.b(fVar.f57656b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f23610p)))), null, null, null, new vp(c10), null, 0);
                 view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.k8(imageReceiver, 1));
                 imageReceiver.J0(org.telegram.messenger.g0.L(14.0f));
                 return new jc(4, imageReceiver, view.getContext().getResources().getDrawable(2131231646).mutate());

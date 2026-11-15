@@ -159,7 +159,7 @@ public final class z implements OnSuccessListener, a7, gb1, q1, bg.p, yo, a1, h2
                 return;
             case 4:
             default:
-                c40 c40Var = ((h30) this.f1009c).f47598b;
+                c40 c40Var = ((h30) this.f1009c).f47588b;
                 c40Var.V2.A(0, null);
                 UndoView n1 = c40Var.n1();
                 if (this.f1008b) {
@@ -171,7 +171,7 @@ public final class z implements OnSuccessListener, a7, gb1, q1, bg.p, yo, a1, h2
                 return;
             case 5:
                 an anVar = (an) this.f1009c;
-                qj qjVar = anVar.f45118a0;
+                qj qjVar = anVar.f45117a0;
                 if (qjVar != null) {
                     if (this.f1008b) {
                         anVar.finishFragment();

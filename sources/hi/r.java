@@ -81,7 +81,7 @@ public abstract class r extends m {
         this.f14935a1 = new q(iaVar, iaVar);
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(false, true, true);
         this.f14936b1 = g6Var;
-        er erVar = er.f34420f;
+        er erVar = er.f34419f;
         g6Var.n(0.16f, 50L, erVar);
         g6Var.w(org.telegram.messenger.g0.L(15.0f));
         g6Var.x(org.telegram.messenger.g0.o());
@@ -97,11 +97,11 @@ public abstract class r extends m {
         this.f14943i1 = o9Var2;
         paint.setColor(-1);
         paint2.setColor(-15033089);
-        o9Var.f37875a = org.telegram.messenger.g0.L(47.0f);
-        o9Var.f37876b = org.telegram.messenger.g0.L(55.0f);
+        o9Var.f37864a = org.telegram.messenger.g0.L(47.0f);
+        o9Var.f37865b = org.telegram.messenger.g0.L(55.0f);
         o9Var.b();
-        o9Var2.f37875a = org.telegram.messenger.g0.L(47.0f);
-        o9Var2.f37876b = org.telegram.messenger.g0.L(55.0f);
+        o9Var2.f37864a = org.telegram.messenger.g0.L(47.0f);
+        o9Var2.f37865b = org.telegram.messenger.g0.L(55.0f);
         o9Var2.b();
         this.f14944j1 = getContext().getResources().getDrawable(2131231515).mutate();
         this.l1 = new org.telegram.ui.Components.u5(new n(iaVar, 0), 200L, erVar, 0);
@@ -322,7 +322,7 @@ public abstract class r extends m {
                     this.f14958z1.setStrokeJoin(Paint.Join.ROUND);
                 }
                 this.f14958z1.setStrokeWidth(org.telegram.messenger.g0.L(1.33f));
-                this.f14956x1.f38116p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - g6Var.c());
+                this.f14956x1.f38114p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - g6Var.c());
                 float t6 = com.google.android.gms.internal.vision.e2.t(1.0f, this.f14937c1, org.telegram.messenger.g0.L(6.0f) * sin, (rectF.centerX() - ((this.f14956x1.k() + org.telegram.messenger.g0.L(11.33f)) / 2.0f)) - (org.telegram.messenger.g0.T1(this.f14937c1, 1.0f, d2) * (rectF.width() / 6.0f)));
                 if (paint != null) {
                     i10 = -1;
@@ -346,7 +346,7 @@ public abstract class r extends m {
                 if (this.A1 == null) {
                     this.A1 = new oy0(hd.M0(2131752570, str2), f13, org.telegram.messenger.g0.o());
                 }
-                this.A1.f38116p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - g6Var.c());
+                this.A1.f38114p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - g6Var.c());
                 float width = ((rectF.width() / 4.0f) * f14) + (rectF.centerX() - (this.A1.k() / 2.0f));
                 if (paint != null) {
                     i7 = -1;
@@ -397,27 +397,27 @@ public abstract class r extends m {
         Paint paint = this.f14941g1;
         if (e11) {
             org.telegram.ui.Components.o9 o9Var = this.f14942h1;
-            o9Var.f37875a = org.telegram.messenger.g0.L(47.0f);
+            o9Var.f37864a = org.telegram.messenger.g0.L(47.0f);
             Paint paint2 = o9Var.d;
             f11 = 0.0f;
-            o9Var.f37876b = (org.telegram.messenger.g0.L(15.0f) * 0.6f) + org.telegram.messenger.g0.L(47.0f);
+            o9Var.f37865b = (org.telegram.messenger.g0.L(15.0f) * 0.6f) + org.telegram.messenger.g0.L(47.0f);
             f12 = d2;
             org.telegram.ui.Components.o9 o9Var2 = this.f14943i1;
-            o9Var2.f37875a = org.telegram.messenger.g0.L(50.0f);
+            o9Var2.f37864a = org.telegram.messenger.g0.L(50.0f);
             Paint paint3 = o9Var2.d;
             f13 = f19;
-            o9Var2.f37876b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(50.0f);
+            o9Var2.f37865b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(50.0f);
             o9Var2.e(e10, 1.01f);
             o9Var.e(e10, 1.02f);
             paint3.setColor(org.telegram.ui.ActionBar.j6.r1(0.15f * f10, paint.getColor()));
             canvas.save();
-            float f21 = f20 / o9Var2.f37875a;
+            float f21 = f20 / o9Var2.f37864a;
             canvas.scale(f21, f21, T1, L);
             o9Var2.a(T1, L, canvas, paint3);
             canvas.restore();
             paint2.setColor(org.telegram.ui.ActionBar.j6.r1(0.3f * f10, paint.getColor()));
             canvas.save();
-            float f22 = f20 / o9Var.f37875a;
+            float f22 = f20 / o9Var.f37864a;
             canvas.scale(f22, f22, T1, L);
             o9Var.a(T1, L, canvas, paint2);
             canvas.restore();
@@ -480,8 +480,8 @@ public abstract class r extends m {
             canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(5.33f), org.telegram.messenger.g0.L(5.33f), this.f14940f1);
         }
         canvas.restore();
-        float f25 = u5Var.f39903c;
-        float f26 = u5Var2.f39903c;
+        float f25 = u5Var.f39900c;
+        float f26 = u5Var2.f39900c;
         if (this.f14937c1 < 0.4f) {
             z10 = true;
         } else {
@@ -556,19 +556,19 @@ public abstract class r extends m {
             int visibility = imageView.getVisibility();
             org.telegram.ui.Components.u5 u5Var3 = this.M0;
             ImageView imageView2 = this.T0;
-            if (visibility == 4 || imageView2.getVisibility() == 4 || u5Var3.f39903c > 0.0f) {
+            if (visibility == 4 || imageView2.getVisibility() == 4 || u5Var3.f39900c > 0.0f) {
                 canvas.saveLayerAlpha(rectF, (int) ((1.0f - this.f14633o0) * 255.0f), 31);
                 Path path3 = this.n1;
                 path3.rewind();
                 path3.addRoundRect(rectF, org.telegram.messenger.g0.L(21.0f), org.telegram.messenger.g0.L(21.0f), direction);
                 canvas.clipPath(path3);
-                if (imageView.getVisibility() == 4 || u5Var3.f39903c > 0.0f) {
+                if (imageView.getVisibility() == 4 || u5Var3.f39900c > 0.0f) {
                     canvas.save();
                     canvas.translate((org.telegram.messenger.g0.L(180.0f) * f13) + imageView.getX(), imageView.getY());
                     imageView.draw(canvas);
                     canvas.restore();
                 }
-                if (imageView2.getVisibility() == 4 || u5Var3.f39903c > 0.0f) {
+                if (imageView2.getVisibility() == 4 || u5Var3.f39900c > 0.0f) {
                     canvas.save();
                     canvas.translate((org.telegram.messenger.g0.L(180.0f) * f13) + imageView2.getX(), imageView2.getY());
                     imageView2.draw(canvas);

@@ -76,8 +76,8 @@ public class RadialProgress2 {
         this.f32661i = s80Var;
         s80 s80Var2 = new s80();
         this.f32662j = s80Var2;
-        s80Var2.f39223j = true;
-        s80Var2.f39217b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        s80Var2.f39220j = true;
+        s80Var2.f39214b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         s80Var2.d(4, false);
         int L = org.telegram.messenger.g0.L(22.0f);
         this.f32675x = L;
@@ -90,13 +90,13 @@ public class RadialProgress2 {
     }
 
     public final int a() {
-        return this.f32661i.f39230q;
+        return this.f32661i.f39227q;
     }
 
     public final float b() {
         s80 s80Var = this.f32661i;
-        int i7 = s80Var.f39230q;
-        int i10 = s80Var.f39229p;
+        int i7 = s80Var.f39227q;
+        int i10 = s80Var.f39226p;
         if ((i7 == 3 || i7 == 6 || i7 == 10 || i7 == 8 || i7 == 0) && i10 == 4) {
             return s80Var.b();
         }
@@ -147,12 +147,12 @@ public class RadialProgress2 {
         int argb;
         int i13;
         s80 s80Var = this.f32661i;
-        int i14 = s80Var.f39230q;
-        Paint paint2 = s80Var.f39218c;
+        int i14 = s80Var.f39227q;
+        Paint paint2 = s80Var.f39215c;
         if (i14 != 4 || s80Var.b() < 1.0f) {
             RectF rectF = this.f32655a;
             if (!rectF.isEmpty()) {
-                int i15 = s80Var.f39230q;
+                int i15 = s80Var.f39227q;
                 float b11 = b();
                 boolean z10 = this.f32677z;
                 s80 s80Var2 = this.f32662j;
@@ -306,7 +306,7 @@ public class RadialProgress2 {
                 s80Var.setBounds(ceil - i25, ceil2 - i25, ceil + i25, ceil2 + i25);
                 s80Var.E = imageReceiver.I();
                 if (!this.f32657c && this.f32669q < 0) {
-                    s80Var.f39228o = this.E;
+                    s80Var.f39225o = this.E;
                     s80Var.draw(canvas);
                 } else {
                     Canvas canvas6 = this.D;
@@ -320,7 +320,7 @@ public class RadialProgress2 {
                     canvas2.restoreToCount(i10);
                 }
                 if (this.f32657c || this.f32669q >= 0) {
-                    if (Math.abs(rectF.width() - org.telegram.messenger.g0.L(44.0f)) < org.telegram.messenger.g0.f23608p) {
+                    if (Math.abs(rectF.width() - org.telegram.messenger.g0.L(44.0f)) < org.telegram.messenger.g0.f23610p) {
                         float f17 = 16;
                         centerX = rectF.centerX() + org.telegram.messenger.g0.L(f17);
                         centerY = rectF.centerY() + org.telegram.messenger.g0.L(f17);
@@ -333,7 +333,7 @@ public class RadialProgress2 {
                     }
                     int i27 = i11 / 2;
                     if (this.f32657c) {
-                        if (s80Var2.f39230q != 4) {
+                        if (s80Var2.f39227q != 4) {
                             b10 = 1.0f;
                         } else {
                             b10 = 1.0f - s80Var2.b();
@@ -435,7 +435,7 @@ public class RadialProgress2 {
         boolean z12;
         if (i7 == 2 || i7 == 3 || i7 == 4) {
             s80 s80Var = this.f32662j;
-            if (z10 && i7 == s80Var.f39230q) {
+            if (z10 && i7 == s80Var.f39227q) {
                 return;
             }
             s80Var.d(i7, z11);
@@ -499,8 +499,8 @@ public class RadialProgress2 {
 
     public void setAsMini() {
         s80 s80Var = this.f32661i;
-        s80Var.f39223j = true;
-        s80Var.f39217b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        s80Var.f39220j = true;
+        s80Var.f39214b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
     }
 
     public void setBackgroundGradientDrawable(LinearGradient linearGradient) {
@@ -530,7 +530,7 @@ public class RadialProgress2 {
 
     public void setIcon(int i7, boolean z10, boolean z11) {
         s80 s80Var = this.f32661i;
-        if (!z10 || i7 != s80Var.f39230q) {
+        if (!z10 || i7 != s80Var.f39227q) {
             s80Var.d(i7, z11);
             View view = this.f32656b;
             if (view != null) {

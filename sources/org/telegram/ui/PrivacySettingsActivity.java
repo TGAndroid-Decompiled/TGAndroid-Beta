@@ -100,8 +100,8 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
         int i14;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
-        ArrayList v = org.telegram.messenger.g5.r(cVar.f22778a).v(i7);
-        int i15 = cVar.f22778a;
+        ArrayList v = org.telegram.messenger.g5.r(cVar.f22782a).v(i7);
+        int i15 = cVar.f22782a;
         TLRPC.GlobalPrivacySettings globalPrivacySettings = org.telegram.messenger.g5.r(i15).Y;
         if (v != null && v.size() != 0) {
             boolean z10 = true;
@@ -283,7 +283,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
         boolean z10;
         if (view.isEnabled()) {
             if (i7 == privacySettingsActivity.autoDeleteMesages) {
-                if (privacySettingsActivity.getUserConfig().f24957q0 >= 0) {
+                if (privacySettingsActivity.getUserConfig().f24963q0 >= 0) {
                     privacySettingsActivity.presentFragment(new p4());
                 }
             } else if (i7 == privacySettingsActivity.blockedRow) {
@@ -377,10 +377,10 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
                         int lastIndexOf = privacySettingsActivity.d.login_email_pattern.lastIndexOf(42);
                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                             ?? obj = new Object();
-                            obj.f41484a |= 256;
-                            obj.f41485b = indexOf;
+                            obj.f41487a |= 256;
+                            obj.f41488b = indexOf;
                             int i14 = lastIndexOf + 1;
-                            obj.f41486c = i14;
+                            obj.f41489c = i14;
                             valueOf.setSpan(new org.telegram.ui.Components.xy0(obj, 0), indexOf, i14, 0);
                         }
                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context);
@@ -411,7 +411,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
                         privacySettingsActivity.presentFragment(new xa1(i11, privacySettingsActivity.d));
                     }
                 } else if (i7 == privacySettingsActivity.passkeysRow) {
-                    if (Build.VERSION.SDK_INT >= 28 && org.telegram.messenger.r2.f26204i) {
+                    if (Build.VERSION.SDK_INT >= 28 && org.telegram.messenger.r2.f26212i) {
                         ArrayList arrayList = privacySettingsActivity.f43054e;
                         if (arrayList != null && arrayList.size() > 0) {
                             privacySettingsActivity.presentFragment(new PasskeysActivity(privacySettingsActivity.f43054e));
@@ -586,13 +586,13 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
         this.autoDeleteMesages = 2;
         this.P = 4;
         this.passcodeRow = 3;
-        if (((org.telegram.messenger.h0) getMessagesController().f25448y7.A.f14544b).f24006c && Build.VERSION.SDK_INT >= 28 && org.telegram.messenger.r2.f26204i) {
+        if (((org.telegram.messenger.h0) getMessagesController().f25451y7.A.f14544b).f24009c && Build.VERSION.SDK_INT >= 28 && org.telegram.messenger.r2.f26212i) {
             int i7 = this.P;
             this.P = i7 + 1;
             this.passkeysRow = i7;
         }
         TL_account.Password password = this.d;
-        if (password == null ? org.telegram.messenger.gz.f23963m1 : password.login_email_pattern != null) {
+        if (password == null ? org.telegram.messenger.gz.f23966m1 : password.login_email_pattern != null) {
             int i10 = this.P;
             this.P = i10 + 1;
             this.emailLoginRow = i10;
@@ -606,8 +606,8 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
             if (password.login_email_pattern == null) {
                 z11 = false;
             }
-            if (org.telegram.messenger.gz.f23963m1 != z11) {
-                org.telegram.messenger.gz.f23963m1 = z11;
+            if (org.telegram.messenger.gz.f23966m1 != z11) {
+                org.telegram.messenger.gz.f23966m1 = z11;
                 org.telegram.messenger.gz.y();
             }
         }
@@ -753,7 +753,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         lt0 lt0Var;
         boolean z10 = false;
-        if (i7 == org.telegram.messenger.ns.f25521k0) {
+        if (i7 == org.telegram.messenger.ns.f25522k0) {
             TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().Y;
             if (globalPrivacySettings != null) {
                 this.X = globalPrivacySettings.archive_and_mute_new_noncontact_peers;
@@ -767,9 +767,9 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
             if (lt0Var2 != null) {
                 lt0Var2.f();
             }
-        } else if (i7 == org.telegram.messenger.ns.f25498g0) {
+        } else if (i7 == org.telegram.messenger.ns.f25499g0) {
             this.f43047a.g(this.blockedRow);
-        } else if (i7 == org.telegram.messenger.ns.f25553q0) {
+        } else if (i7 == org.telegram.messenger.ns.f25554q0) {
             if (objArr.length > 0) {
                 this.d = (TL_account.Password) objArr[0];
                 lt0 lt0Var3 = this.f43047a;
@@ -832,9 +832,9 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e2 implem
         F0(true);
         E0();
         getConnectionsManager().sendRequestTyped(new TL_account.getPasskeys(), new d3.b(1), new a5(this, 18));
-        getNotificationCenter().c(this, org.telegram.messenger.ns.f25521k0);
-        getNotificationCenter().c(this, org.telegram.messenger.ns.f25498g0);
-        getNotificationCenter().c(this, org.telegram.messenger.ns.f25553q0);
+        getNotificationCenter().c(this, org.telegram.messenger.ns.f25522k0);
+        getNotificationCenter().c(this, org.telegram.messenger.ns.f25499g0);
+        getNotificationCenter().c(this, org.telegram.messenger.ns.f25554q0);
         getNotificationCenter().c(this, org.telegram.messenger.ns.s5);
         getUserConfig().t();
         SessionsActivity sessionsActivity = new SessionsActivity(0);

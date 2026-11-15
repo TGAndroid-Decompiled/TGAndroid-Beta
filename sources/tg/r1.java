@@ -25,24 +25,24 @@ public final class r1 extends j {
     public boolean B0;
     public boolean C0;
     public final u5 D0;
-    public final int f57537r0;
-    public boolean f57538s0;
-    public final u5 f57539t0;
-    public final nt0 f57540u0;
-    public final TextureView f57541v0;
-    public final Bitmap f57542w0;
-    public final Rect f57543x0;
-    public final Rect f57544y0;
-    public float f57545z0;
+    public final int f57539r0;
+    public boolean f57540s0;
+    public final u5 f57541t0;
+    public final nt0 f57542u0;
+    public final TextureView f57543v0;
+    public final Bitmap f57544w0;
+    public final Rect f57545x0;
+    public final Rect f57546y0;
+    public float f57547z0;
 
     public r1(Context context, PointF pointF, nt0 nt0Var, String str) {
         super(context, pointF);
-        this.f57537r0 = -1;
-        this.f57538s0 = false;
+        this.f57539r0 = -1;
+        this.f57540s0 = false;
         Rect rect = new Rect();
-        this.f57543x0 = rect;
-        this.f57544y0 = new Rect();
-        this.f57545z0 = 1.0f;
+        this.f57545x0 = rect;
+        this.f57546y0 = new Rect();
+        this.f57547z0 = 1.0f;
         this.A0 = new Path();
         this.B0 = true;
         this.C0 = true;
@@ -51,17 +51,17 @@ public final class r1 extends j {
         new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         setRotation(0.0f);
         setScale(1.0f);
-        this.f57540u0 = nt0Var;
+        this.f57542u0 = nt0Var;
         Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.f57542w0 = decodeFile;
+        this.f57544w0 = decodeFile;
         if (decodeFile != null) {
-            this.f57545z0 = decodeFile.getWidth() / decodeFile.getHeight();
+            this.f57547z0 = decodeFile.getWidth() / decodeFile.getHeight();
             rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
         }
         TextureView textureView = new TextureView(context);
-        this.f57541v0 = textureView;
+        this.f57543v0 = textureView;
         addView(textureView, ja.c(-1.0f, -1));
-        this.f57539t0 = new u5(this, 0L, 500L, erVar);
+        this.f57541t0 = new u5(this, 0L, 500L, erVar);
         k();
         setWillNotDraw(false);
     }
@@ -80,9 +80,9 @@ public final class r1 extends j {
         if (!this.B0) {
             return false;
         }
-        if (view == this.f57541v0) {
+        if (view == this.f57543v0) {
             canvas.save();
-            float d = this.f57539t0.d(this.f57538s0);
+            float d = this.f57541t0.d(this.f57540s0);
             canvas.scale(1.0f - (d * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
             canvas.skew(0.0f, k5.A(1.0f, d, 4.0f * d, 0.25f));
             float d2 = this.D0.d(this.C0);
@@ -90,9 +90,9 @@ public final class r1 extends j {
             float height = (view.getHeight() / 2.0f) + view.getY();
             float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
             int i7 = (d2 > 1.0f ? 1 : (d2 == 1.0f ? 0 : -1));
-            Rect rect2 = this.f57543x0;
-            Rect rect3 = this.f57544y0;
-            Bitmap bitmap2 = this.f57542w0;
+            Rect rect2 = this.f57545x0;
+            Rect rect3 = this.f57546y0;
+            Bitmap bitmap2 = this.f57544w0;
             Path path2 = this.A0;
             if (i7 < 0) {
                 rect = rect3;
@@ -121,7 +121,7 @@ public final class r1 extends j {
                 rect.set(0, 0, view.getWidth(), view.getHeight());
                 canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
             }
-            if ((getParent() instanceof d) && ((d) getParent()).f57179a) {
+            if ((getParent() instanceof d) && ((d) getParent()).f57200a) {
                 drawChild = true;
             } else {
                 drawChild = super.drawChild(canvas, view, j3);
@@ -134,11 +134,11 @@ public final class r1 extends j {
     }
 
     public int getAnchor() {
-        return this.f57537r0;
+        return this.f57539r0;
     }
 
     public nt0 getBaseSize() {
-        return this.f57540u0;
+        return this.f57542u0;
     }
 
     @Override
@@ -158,15 +158,15 @@ public final class r1 extends j {
 
     @Override
     public final void k() {
-        nt0 nt0Var = this.f57540u0;
-        setX(getPositionX() - (nt0Var.f37713a / 2.0f));
-        setY(getPositionY() - (nt0Var.f37714b / 2.0f));
+        nt0 nt0Var = this.f57542u0;
+        setX(getPositionX() - (nt0Var.f37702a / 2.0f));
+        setY(getPositionY() - (nt0Var.f37703b / 2.0f));
         m();
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextureView textureView = this.f57541v0;
+        TextureView textureView = this.f57543v0;
         if (textureView != null) {
             int measuredHeight = ((i12 - i10) - textureView.getMeasuredHeight()) / 2;
             int measuredWidth = ((i11 - i7) - textureView.getMeasuredWidth()) / 2;
@@ -178,19 +178,19 @@ public final class r1 extends j {
     public final void onMeasure(int i7, int i10) {
         int i11;
         int i12;
-        nt0 nt0Var = this.f57540u0;
-        int i13 = (int) nt0Var.f37713a;
-        int i14 = (int) nt0Var.f37714b;
-        TextureView textureView = this.f57541v0;
+        nt0 nt0Var = this.f57542u0;
+        int i13 = (int) nt0Var.f37702a;
+        int i14 = (int) nt0Var.f37703b;
+        TextureView textureView = this.f57543v0;
         if (textureView != null) {
-            float f10 = this.f57545z0;
+            float f10 = this.f57547z0;
             if (f10 >= 1.0f) {
                 i11 = (int) (f10 * i14);
             } else {
                 i11 = i13;
             }
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-            float f11 = this.f57545z0;
+            float f11 = this.f57547z0;
             if (f11 >= 1.0f) {
                 i12 = i14;
             } else {

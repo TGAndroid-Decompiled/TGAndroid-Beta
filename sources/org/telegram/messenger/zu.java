@@ -23,10 +23,10 @@ public abstract class zu extends cu {
             z10 = false;
         }
         this.f28005a0 = z10;
-        hv hvVar2 = new hv(ivVar, spannableStringBuilder, this.f22935c, alignment);
+        hv hvVar2 = new hv(ivVar, spannableStringBuilder, this.f22943c, alignment);
         this.X = hvVar2;
         if (!TextUtils.isEmpty(spannableStringBuilder2)) {
-            hvVar = new hv(ivVar, spannableStringBuilder2, this.f22935c, alignment);
+            hvVar = new hv(ivVar, spannableStringBuilder2, this.f22943c, alignment);
         } else {
             hvVar = null;
         }
@@ -37,7 +37,7 @@ public abstract class zu extends cu {
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         int i02 = i0() + this.X.f24222b.getHeight() + rect.top;
         hv hvVar = this.Y;
         if (hvVar != null) {
@@ -54,14 +54,14 @@ public abstract class zu extends cu {
         if (hvVar == null) {
             hvVar = this.X;
         }
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return hvVar.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
         int i7;
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         int i10 = rect.left;
         int r10 = this.X.r();
         hv hvVar = this.Y;
@@ -166,8 +166,8 @@ public abstract class zu extends cu {
         int L;
         int r10;
         boolean z10 = this.f28005a0;
-        Rect rect = this.f22934b;
-        iv ivVar = this.f22933a;
+        Rect rect = this.f22942b;
+        iv ivVar = this.f22941a;
         if (z10) {
             L = (((ivVar.C + ivVar.T) - ivVar.S) - hvVar.r()) / 2;
             r10 = rect.left;
@@ -189,16 +189,16 @@ public abstract class zu extends cu {
     public final boolean u(CharacterStyle characterStyle, int i7, tt ttVar) {
         hv hvVar = this.X;
         boolean o4 = hvVar.o(characterStyle, ttVar);
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         if (o4) {
-            ttVar.f26731e = (j0(hvVar) + rect.left) - hvVar.f24225f;
-            ttVar.f26732f = i7 + rect.top;
+            ttVar.f26733e = (j0(hvVar) + rect.left) - hvVar.f24225f;
+            ttVar.f26734f = i7 + rect.top;
             return true;
         }
         hv hvVar2 = this.Y;
         if (hvVar2 != null && hvVar2.o(characterStyle, ttVar)) {
-            ttVar.f26731e = (j0(hvVar2) + rect.left) - hvVar2.f24225f;
-            ttVar.f26732f = i0() + hvVar.f24222b.getHeight() + i7 + rect.top;
+            ttVar.f26733e = (j0(hvVar2) + rect.left) - hvVar2.f24225f;
+            ttVar.f26734f = i0() + hvVar.f24222b.getHeight() + i7 + rect.top;
             return true;
         }
         return false;

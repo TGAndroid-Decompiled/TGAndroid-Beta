@@ -52,7 +52,7 @@ public final class au extends cu implements x5, is {
         this.f22593h0 = L3;
         this.f22597l0 = -1;
         this.f22598n0 = new RectF();
-        gj gjVar = (gj) ivVar.f24450m.get(pageblockaudio);
+        gj gjVar = (gj) ivVar.f24455m.get(pageblockaudio);
         this.X = gjVar;
         if (gjVar != null) {
             document = gjVar.F0();
@@ -60,7 +60,7 @@ public final class au extends cu implements x5, is {
             document = null;
         }
         this.Y = document;
-        this.f22602r0 = z5.q(ivVar.f24440a).k();
+        this.f22602r0 = z5.q(ivVar.f24445a).k();
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
         this.Z = radialProgress2;
         radialProgress2.setCircleRadius(g0.L(24.0f));
@@ -79,7 +79,7 @@ public final class au extends cu implements x5, is {
 
     @Override
     public final int I() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return g0.L(62.0f) + rect.top + rect.bottom;
     }
 
@@ -96,7 +96,7 @@ public final class au extends cu implements x5, is {
 
     @Override
     public final boolean Q() {
-        return this.f22586a0.f37640e;
+        return this.f22586a0.f37629e;
     }
 
     @Override
@@ -104,27 +104,27 @@ public final class au extends cu implements x5, is {
         View view = this.W;
         if (view != null) {
             this.Z.n(view);
-            this.f22586a0.f37653s = this.W;
+            this.f22586a0.f37642s = this.W;
         }
         l0(false);
-        iv ivVar = this.f22933a;
-        int i7 = ivVar.f24440a;
-        int i10 = ivVar.f24440a;
-        ns.f(i7).c(this, ns.f25506h2);
-        ns.f(i10).c(this, ns.f25494f2);
-        ns.f(i10).c(this, ns.f25500g2);
-        ns.f(i10).c(this, ns.f25488e2);
+        iv ivVar = this.f22941a;
+        int i7 = ivVar.f24445a;
+        int i10 = ivVar.f24445a;
+        ns.f(i7).c(this, ns.f25507h2);
+        ns.f(i10).c(this, ns.f25495f2);
+        ns.f(i10).c(this, ns.f25501g2);
+        ns.f(i10).c(this, ns.f25489e2);
     }
 
     @Override
     public final void V() {
-        iv ivVar = this.f22933a;
-        z5.q(ivVar.f24440a).v(this);
-        int i7 = ivVar.f24440a;
-        ns.f(i7).n(this, ns.f25506h2);
-        ns.f(i7).n(this, ns.f25494f2);
-        ns.f(i7).n(this, ns.f25500g2);
-        ns.f(i7).n(this, ns.f25488e2);
+        iv ivVar = this.f22941a;
+        z5.q(ivVar.f24445a).v(this);
+        int i7 = ivVar.f24445a;
+        ns.f(i7).n(this, ns.f25507h2);
+        ns.f(i7).n(this, ns.f25495f2);
+        ns.f(i7).n(this, ns.f25501g2);
+        ns.f(i7).n(this, ns.f25489e2);
     }
 
     @Override
@@ -142,8 +142,8 @@ public final class au extends cu implements x5, is {
         Drawable drawable;
         if (this.X != null && this.Y != null) {
             int i19 = this.f22597l0;
-            int i20 = this.f22935c;
-            iv ivVar = this.f22933a;
+            int i20 = this.f22943c;
+            iv ivVar = this.f22941a;
             if (i19 != i20 + ivVar.S + ivVar.T || this.m0 != i0()) {
                 k0();
             }
@@ -244,7 +244,7 @@ public final class au extends cu implements x5, is {
                 } else {
                     drawable = org.telegram.ui.ActionBar.j6.f28829c4;
                 }
-                int L = (this.f22597l0 + this.f22934b.right) - g0.L(32.0f);
+                int L = (this.f22597l0 + this.f22942b.right) - g0.L(32.0f);
                 int L2 = g0.L(7.0f);
                 drawable.setBounds(L, L2, drawable.getIntrinsicWidth() + L, drawable.getIntrinsicHeight() + L2);
                 drawable.draw(canvas);
@@ -263,7 +263,7 @@ public final class au extends cu implements x5, is {
         boolean z10;
         int actionMasked = motionEvent.getActionMasked();
         float x10 = motionEvent.getX();
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         float f10 = x10 + ivVar.S;
         float y10 = motionEvent.getY();
         boolean contains = this.f22598n0.contains(f10, y10);
@@ -329,11 +329,11 @@ public final class au extends cu implements x5, is {
                     if (view4 != null) {
                         view4.playSoundEffect(0);
                     }
-                    int i11 = ivVar.f24440a;
+                    int i11 = ivVar.f24445a;
                     int i12 = this.f22599o0;
                     RadialProgress2 radialProgress2 = this.Z;
                     if (i12 == 0) {
-                        if (MediaController.B().o0(ivVar.f24449l, this.X, 0L, false, null, 0L)) {
+                        if (MediaController.B().o0(ivVar.f24454l, this.X, 0L, false, null, 0L)) {
                             this.f22599o0 = 1;
                             radialProgress2.setIcon(j0(), false, true);
                             View view5 = this.W;
@@ -352,7 +352,7 @@ public final class au extends cu implements x5, is {
                         }
                     } else if (i12 == 2) {
                         radialProgress2.p(false, 0.0f);
-                        w7.G(i11).W(document, ivVar.f24441b, 1, 1);
+                        w7.G(i11).W(document, ivVar.f24446b, 1, 1);
                         this.f22599o0 = 3;
                         radialProgress2.setIcon(j0(), true, true);
                         View view7 = this.W;
@@ -386,13 +386,13 @@ public final class au extends cu implements x5, is {
         gj gjVar;
         gj gjVar2 = this.X;
         if (gjVar2 != null) {
-            if (i7 == ns.f25506h2) {
+            if (i7 == ns.f25507h2) {
                 l0(true);
-            } else if (i7 != ns.f25494f2 && i7 != ns.f25500g2) {
-                if (i7 == ns.f25488e2 && gjVar2.e1() == ((Integer) objArr[0]).intValue() && (gjVar = MediaController.B().f22377v0) != null) {
-                    gjVar2.f23777b0 = gjVar.f23777b0;
-                    gjVar2.f23809i0 = gjVar.f23809i0;
-                    gjVar2.f23814j0 = gjVar.f23814j0;
+            } else if (i7 != ns.f25495f2 && i7 != ns.f25501g2) {
+                if (i7 == ns.f25489e2 && gjVar2.e1() == ((Integer) objArr[0]).intValue() && (gjVar = MediaController.B().f22377v0) != null) {
+                    gjVar2.f23779b0 = gjVar.f23779b0;
+                    gjVar2.f23811i0 = gjVar.f23811i0;
+                    gjVar2.f23816j0 = gjVar.f23816j0;
                     m0();
                 }
             } else {
@@ -424,7 +424,7 @@ public final class au extends cu implements x5, is {
         iv ivVar;
         org.telegram.ui.Cells.q1 q1Var;
         org.telegram.ui.Cells.l1 l1Var;
-        if (this.Y != null && (q1Var = (ivVar = this.f22933a).E) != null && (l1Var = ivVar.F) != null && l1Var.a0(q1Var)) {
+        if (this.Y != null && (q1Var = (ivVar = this.f22941a).E) != null && (l1Var = ivVar.F) != null && l1Var.a0(q1Var)) {
             return true;
         }
         return false;
@@ -449,8 +449,8 @@ public final class au extends cu implements x5, is {
         String str;
         String str2;
         SpannableStringBuilder spannableStringBuilder;
-        iv ivVar = this.f22933a;
-        this.f22597l0 = this.f22935c + ivVar.S + ivVar.T;
+        iv ivVar = this.f22941a;
+        this.f22597l0 = this.f22943c + ivVar.S + ivVar.T;
         this.m0 = i0();
         int L = g0.L(50.0f) + this.f22591f0;
         int i7 = this.f22593h0;
@@ -501,7 +501,7 @@ public final class au extends cu implements x5, is {
     public final void l0(boolean z10) {
         File J;
         boolean z11;
-        int i7 = this.f22933a.f24440a;
+        int i7 = this.f22941a.f24445a;
         TLRPC.Document document = this.Y;
         String r10 = w7.r(null, document);
         int i10 = 1;
@@ -533,7 +533,7 @@ public final class au extends cu implements x5, is {
             radialProgress2.setIcon(j0(), false, z10);
         } else {
             z5.q(i7).a(r10, null, this);
-            if (gz.B0 && gjVar != null && gjVar.I3() && !gj.R5(gjVar.f23817k) && !m5.C(gj.B0(gjVar.f23817k))) {
+            if (gz.B0 && gjVar != null && gjVar.I3() && !gj.R5(gjVar.f23819k) && !m5.C(gj.B0(gjVar.f23819k))) {
                 if (!MediaController.B().I(gjVar) || MediaController.B().H()) {
                     i10 = 0;
                 }
@@ -566,11 +566,11 @@ public final class au extends cu implements x5, is {
         TLRPC.Document document = this.Y;
         if (document != null && (gjVar = this.X) != null) {
             nm0 nm0Var = this.f22586a0;
-            if (!nm0Var.f37640e) {
-                nm0Var.h(gjVar.f23777b0);
+            if (!nm0Var.f37629e) {
+                nm0Var.h(gjVar.f23779b0);
             }
             if (MediaController.B().I(gjVar)) {
-                i7 = gjVar.f23809i0;
+                i7 = gjVar.f23811i0;
             } else {
                 int i11 = 0;
                 while (true) {
@@ -595,7 +595,7 @@ public final class au extends cu implements x5, is {
                 textPaint.setTextSize(g0.L(16.0f));
                 this.f22589d0 = new StaticLayout(g02, textPaint, (int) Math.ceil(textPaint.measureText(g02)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
-            iv ivVar = this.f22933a;
+            iv ivVar = this.f22941a;
             if (ivVar.E()) {
                 i10 = org.telegram.ui.ActionBar.j6.Wc;
             } else {

@@ -4,19 +4,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jd implements RequestDelegate {
-    public final int f24544a;
-    public final rd f24545b;
+    public final int f24549a;
+    public final rd f24550b;
 
     public jd(rd rdVar, int i7) {
-        this.f24544a = i7;
-        this.f24545b = rdVar;
+        this.f24549a = i7;
+        this.f24550b = rdVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24544a) {
+        switch (this.f24549a) {
             case 0:
-                rd rdVar = this.f24545b;
+                rd rdVar = this.f24550b;
                 if (tL_error != null) {
                     rdVar.getClass();
                     return;
@@ -25,7 +25,7 @@ public final class jd implements RequestDelegate {
                     return;
                 }
             case 1:
-                rd rdVar2 = this.f24545b;
+                rd rdVar2 = this.f24550b;
                 if (tL_error != null) {
                     rdVar2.getClass();
                     return;
@@ -35,7 +35,7 @@ public final class jd implements RequestDelegate {
                 }
             default:
                 boolean z10 = tLObject instanceof TLRPC.TL_messages_affectedMessages;
-                rd rdVar3 = this.f24545b;
+                rd rdVar3 = this.f24550b;
                 if (z10) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
                     rdVar3.getMessagesController().M3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);

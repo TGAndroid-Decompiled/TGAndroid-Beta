@@ -71,12 +71,12 @@ public final class f1 extends LinearLayout implements z5 {
             ShapeDrawable d02 = j6.d0(org.telegram.messenger.g0.L(28.0f), j6.w0(j6.Fi, this.f17071b));
             this.f17070a = d02;
             fq fqVar = new fq(d02, getContext().getResources().getDrawable(2131231830).mutate());
-            fqVar.f34676s = org.telegram.messenger.g0.L(-0.66f);
-            fqVar.f34677w = 0;
+            fqVar.f34680s = org.telegram.messenger.g0.L(-0.66f);
+            fqVar.f34681w = 0;
             int L = org.telegram.messenger.g0.L(20.0f);
             int L2 = org.telegram.messenger.g0.L(20.0f);
-            fqVar.f34672e = L;
-            fqVar.f34673f = L2;
+            fqVar.f34676e = L;
+            fqVar.f34677f = L2;
             i9Var.setImageDrawable(fqVar);
             textView2.setText(hd.a0(null, null, 2131749344, str));
             textView.setText(hd.M0(2131749345, null));
@@ -88,8 +88,8 @@ public final class f1 extends LinearLayout implements z5 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.a0(null, null, 2131749342, str + "@" + t3.K(chat, false)));
         spannableStringBuilder.append((CharSequence) "  d");
         fz fzVar = new fz(8);
-        fzVar.f47239f = j6.x0(null, j6.Ck, false);
-        fzVar.f47240n = false;
+        fzVar.f47229f = j6.x0(null, j6.Ck, false);
+        fzVar.f47230n = false;
         spannableStringBuilder.setSpan(fzVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(hd.M0(2131749343, null));

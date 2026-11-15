@@ -2,16 +2,16 @@ package di;
 
 import org.telegram.messenger.z10;
 public final class m4 implements z10 {
-    public final int f9031a;
-    public final long f9032b;
-    public final long f9033c;
+    public final int f9053a;
+    public final long f9054b;
+    public final long f9055c;
     public final Object d;
 
     public m4(Object obj, long j3, long j10, int i7) {
-        this.f9031a = i7;
+        this.f9053a = i7;
         this.d = obj;
-        this.f9032b = j3;
-        this.f9033c = j10;
+        this.f9054b = j3;
+        this.f9055c = j10;
     }
 
     @Override

@@ -3,24 +3,24 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class hv0 implements jp {
-    public final int f47829a;
-    public final TLRPC.ChatParticipant f47830b;
-    public final boolean f47831c;
+    public final int f47819a;
+    public final TLRPC.ChatParticipant f47820b;
+    public final boolean f47821c;
     public final boolean[] d;
-    public final ProfileActivity f47832e;
+    public final ProfileActivity f47822e;
 
     public hv0(ProfileActivity profileActivity, int i7, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
-        this.f47832e = profileActivity;
-        this.f47829a = i7;
-        this.f47830b = chatParticipant;
-        this.f47831c = z10;
+        this.f47822e = profileActivity;
+        this.f47819a = i7;
+        this.f47820b = chatParticipant;
+        this.f47821c = z10;
         this.d = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
         int i7;
-        ProfileActivity profileActivity = this.f47832e;
+        ProfileActivity profileActivity = this.f47822e;
         UndoView undoView = profileActivity.M;
         long j3 = -profileActivity.f43102f1;
         if (profileActivity.F2.megagroup) {
@@ -37,9 +37,9 @@ public final class hv0 implements jp {
         boolean z10;
         TLRPC.ChatParticipant tL_chatParticipant;
         int i10 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f47830b;
-        ProfileActivity profileActivity = this.f47832e;
-        int i11 = this.f47829a;
+        TLRPC.ChatParticipant chatParticipant = this.f47820b;
+        ProfileActivity profileActivity = this.f47822e;
+        int i11 = this.f47819a;
         if (i11 == 0) {
             if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
                 TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
@@ -72,7 +72,7 @@ public final class hv0 implements jp {
                     profileActivity.f43211v2.participants.participants.set(indexOf, tL_chatParticipant);
                 }
             }
-            if (i7 == 1 && !this.f47831c) {
+            if (i7 == 1 && !this.f47821c) {
                 this.d[0] = true;
             }
         } else if (i11 == 1 && i7 == 0 && profileActivity.F2.megagroup && (chatFull = profileActivity.f43211v2) != null && chatFull.participants != null) {

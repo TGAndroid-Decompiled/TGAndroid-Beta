@@ -306,8 +306,8 @@ public final class h extends x2.a {
         boolean z10;
         b3.o oVar = this.A;
         d dVar = new d(this);
-        synchronized (c3.b.f4085b) {
-            z10 = c3.b.f4086c;
+        synchronized (c3.b.f4088b) {
+            z10 = c3.b.f4089c;
         }
         if (z10) {
             dVar.b();
@@ -320,12 +320,12 @@ public final class h extends x2.a {
     }
 
     public final void x(r rVar, long j3, long j10) {
-        long j11 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j11 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         b0 b0Var = rVar.d;
         t tVar = new t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         this.f21265m.getClass();
-        this.f21269q.n(tVar, rVar.f2921c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f21269q.n(tVar, rVar.f2924c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     public final void y(IOException iOException) {

@@ -15,9 +15,9 @@ public final class b0 extends hi.d {
         this.f59134l0 = new RectF();
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f59136o0 = nVar;
-        nVar.f40802n = 1.2f;
-        nVar.f40799k = false;
-        nVar.f40801m = 4.0f;
+        nVar.f40805n = 1.2f;
+        nVar.f40802k = false;
+        nVar.f40804m = 4.0f;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class b0 extends hi.d {
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), ia.f.d().e());
         int measuredWidth = getMeasuredWidth();
         org.telegram.ui.Components.voip.n nVar = this.f59136o0;
-        nVar.f40795f = measuredWidth;
+        nVar.f40798f = measuredWidth;
         nVar.a(org.telegram.messenger.g0.L(8.0f), canvas, rectF, null);
         super.onDraw(canvas);
         invalidate();

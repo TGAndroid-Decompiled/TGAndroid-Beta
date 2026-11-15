@@ -49,7 +49,7 @@ public final class r {
     }
 
     public static void b() {
-        Context context = org.telegram.messenger.t0.f26600b;
+        Context context = org.telegram.messenger.t0.f26609b;
         if (context == null) {
             return;
         }
@@ -99,7 +99,7 @@ public final class r {
         if (arrayList.isEmpty()) {
             z10Var.a(new ArrayList());
         } else {
-            vr.a0(i7).f27220a.c(new ci.p0(i7, arrayList, hashMap, z10Var, 8));
+            vr.a0(i7).f27219a.c(new ci.p0(i7, arrayList, hashMap, z10Var, 8));
         }
     }
 
@@ -203,7 +203,7 @@ public final class r {
             }
             m6.n b10 = nVar.b();
             if (i10 != null) {
-                Cipher cipher = i10.f1968b;
+                Cipher cipher = i10.f1975b;
                 if (!z10 && Build.VERSION.SDK_INT >= 30) {
                     try {
                         if (TextUtils.isEmpty(str2)) {
@@ -305,7 +305,7 @@ public final class r {
                                 vVar = rVar.i(false);
                             }
                             if (vVar != null) {
-                                Cipher cipher = vVar.f1968b;
+                                Cipher cipher = vVar.f1975b;
                                 rVar.f18519g = Utilities.f(cipher.doFinal(str3.getBytes(StandardCharsets.UTF_8)));
                                 rVar.h = Utilities.f(cipher.getIV());
                             } else {

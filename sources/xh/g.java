@@ -36,14 +36,14 @@ public final class g implements Runnable {
                     bitmap.eraseColor(0);
                 }
                 hVar.a(hVar.f60012f, hVar.f60020o);
-                Utilities.copyBitmaps(hVar.f60011e, (Bitmap) xVarArr[i10].f57596b);
+                Utilities.copyBitmaps(hVar.f60011e, (Bitmap) xVarArr[i10].f57597b);
                 g0.h3(new g(hVar, i10, 1));
                 return;
             default:
                 h hVar2 = this.f60005b;
                 int i11 = this.f60006c;
                 hVar2.d = i11;
-                hVar2.f60013g.setShader((BitmapShader) hVar2.f60010c[i11].f57597c);
+                hVar2.f60013g.setShader((BitmapShader) hVar2.f60010c[i11].f57598c);
                 hVar2.f60015j = false;
                 hVar2.f60021p = true;
                 return;

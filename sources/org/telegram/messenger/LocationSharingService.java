@@ -55,7 +55,7 @@ public class LocationSharingService extends Service implements is {
         if (z10) {
             if (z11 || j3 > 0) {
                 try {
-                    Context context = t0.f26600b;
+                    Context context = t0.f26609b;
                     Intent intent = new Intent(context, LaunchActivity.class);
                     intent.setAction("org.tmessages.openlocations");
                     intent.addCategory("android.intent.category.LAUNCHER");
@@ -91,7 +91,7 @@ public class LocationSharingService extends Service implements is {
             ArrayList a10 = a();
             if (a10.size() == 1) {
                 qd qdVar = (qd) a10.get(0);
-                long B0 = gj.B0(qdVar.h.f23817k);
+                long B0 = gj.B0(qdVar.h.f23819k);
                 int i7 = qdVar.h.K1;
                 if (m5.E(B0)) {
                     G = q10.j(np.s1(i7).a2(Long.valueOf(B0)), true);
@@ -113,7 +113,7 @@ public class LocationSharingService extends Service implements is {
             this.f22320a.p(format);
             this.f22320a.f(format);
             if (z10) {
-                new e0.i0(t0.f26600b).e(null, 6, this.f22320a.b());
+                new e0.i0(t0.f26609b).e(null, 6, this.f22320a.b());
             }
         }
     }
@@ -149,7 +149,7 @@ public class LocationSharingService extends Service implements is {
             handler.removeCallbacks(this.f22322c);
         }
         stopForeground(true);
-        new e0.i0(t0.f26600b).b(6, null);
+        new e0.i0(t0.f26609b).b(6, null);
         ns.e().n(this, ns.D4);
     }
 
@@ -161,11 +161,11 @@ public class LocationSharingService extends Service implements is {
         }
         try {
             if (this.f22320a == null) {
-                Intent intent2 = new Intent(t0.f26600b, LaunchActivity.class);
+                Intent intent2 = new Intent(t0.f26609b, LaunchActivity.class);
                 intent2.setAction("org.tmessages.openlocations");
                 intent2.addCategory("android.intent.category.LAUNCHER");
-                PendingIntent activity = PendingIntent.getActivity(t0.f26600b, 0, intent2, 167772160);
-                e0.q qVar = new e0.q(t0.f26600b, null);
+                PendingIntent activity = PendingIntent.getActivity(t0.f26609b, 0, intent2, 167772160);
+                e0.q qVar = new e0.q(t0.f26609b, null);
                 this.f22320a = qVar;
                 qVar.F.when = System.currentTimeMillis();
                 e0.q qVar2 = this.f22320a;
@@ -175,8 +175,8 @@ public class LocationSharingService extends Service implements is {
                 e0.q qVar3 = this.f22320a;
                 qVar3.f9951y = at.f22557k0;
                 qVar3.g(hd.M0(2131689472, null));
-                Intent intent3 = new Intent(t0.f26600b, StopLiveLocationReceiver.class);
-                this.f22320a.a(0, PendingIntent.getBroadcast(t0.f26600b, 2, intent3, 167772160), hd.M0(2131744838, null));
+                Intent intent3 = new Intent(t0.f26609b, StopLiveLocationReceiver.class);
+                this.f22320a.a(0, PendingIntent.getBroadcast(t0.f26609b, 2, intent3, 167772160), hd.M0(2131744838, null));
             }
             c(false);
             Notification b10 = this.f22320a.b();
@@ -185,7 +185,7 @@ public class LocationSharingService extends Service implements is {
             } else {
                 startForeground(6, b10, 8);
             }
-            new e0.i0(t0.f26600b).b(6, "live_location_paused");
+            new e0.i0(t0.f26609b).b(6, "live_location_paused");
             return 2;
         } catch (Throwable th2) {
             a8.g(th2, true);

@@ -39,13 +39,13 @@ public final class e5 extends FrameLayout {
         org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(getContext());
         this.d = j5Var2;
         i9Var.setRoundRadius(org.telegram.messenger.g0.L(23.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         addView(i9Var, c8.ja.d(46, 46.0f, i7, 12.0f, 8.0f, 12.0f, 0.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -55,7 +55,7 @@ public final class e5 extends FrameLayout {
         org.telegram.ui.ActionBar.q6.X(j5Var, org.telegram.ui.ActionBar.j6.G6, null);
         j5Var.setTextSize(17);
         j5Var.setTypeface(org.telegram.messenger.g0.o());
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             f10 = 12.0f;
         } else {
@@ -67,7 +67,7 @@ public final class e5 extends FrameLayout {
             f11 = 12.0f;
         }
         addView(j5Var, c8.ja.d(-1, -2.0f, 48, f10, 12.0f, f11, 0.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -76,7 +76,7 @@ public final class e5 extends FrameLayout {
         j5Var2.setMaxLines(1);
         org.telegram.ui.ActionBar.q6.X(j5Var2, org.telegram.ui.ActionBar.j6.f29241y6, null);
         j5Var2.setTextSize(14);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         if (z12) {
             f12 = 12.0f;
         } else {
@@ -91,7 +91,7 @@ public final class e5 extends FrameLayout {
         int L2 = org.telegram.messenger.g0.L(17.0f);
         TextView textView = new TextView(getContext());
         textView.setBackground(org.telegram.ui.ActionBar.y5.f(org.telegram.ui.ActionBar.j6.Fi, 16.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i12 = 5;
         } else {
             i12 = 3;
@@ -147,7 +147,7 @@ public final class e5 extends FrameLayout {
                 }
             }
         });
-        boolean z13 = hd.f24101a0;
+        boolean z13 = hd.f24104a0;
         if (z13) {
             i14 = 5;
         } else {
@@ -168,7 +168,7 @@ public final class e5 extends FrameLayout {
         TextView textView2 = new TextView(getContext());
         int L3 = org.telegram.messenger.g0.L(16.0f);
         textView2.setBackground(org.telegram.ui.ActionBar.j6.k0(L3, L3, L3, L3, 0, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28941i6, false), -16777216));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i15 = 5;
         } else {
             i15 = 3;
@@ -219,15 +219,15 @@ public final class e5 extends FrameLayout {
                 }
             }
         });
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, org.telegram.messenger.g0.L(32.0f), hd.f24101a0 ? 5 : 3);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, org.telegram.messenger.g0.L(32.0f), hd.f24104a0 ? 5 : 3);
         layoutParams.topMargin = org.telegram.messenger.g0.L(62.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L = 0;
         } else {
             L = (int) (org.telegram.messenger.g0.L(79.0f) + measureText);
         }
         layoutParams.leftMargin = L;
-        layoutParams.rightMargin = hd.f24101a0 ? (int) (measureText + org.telegram.messenger.g0.L(79.0f)) : 0;
+        layoutParams.rightMargin = hd.f24104a0 ? (int) (measureText + org.telegram.messenger.g0.L(79.0f)) : 0;
         addView(textView2, layoutParams);
     }
 
@@ -249,7 +249,7 @@ public final class e5 extends FrameLayout {
         int i7;
         super.onDraw(canvas);
         if (this.f30180f) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(72.0f);
@@ -257,7 +257,7 @@ public final class e5 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(72.0f);
             } else {
                 i7 = 0;

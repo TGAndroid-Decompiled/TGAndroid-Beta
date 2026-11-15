@@ -1,9 +1,9 @@
 package c8;
 public abstract class u9 {
-    public final int f4704a = 1;
+    public final int f4707a = 1;
 
     public int hashCode() {
-        switch (this.f4704a) {
+        switch (this.f4707a) {
             case 1:
                 return toString().hashCode();
             default:
@@ -12,7 +12,7 @@ public abstract class u9 {
     }
 
     public String toString() {
-        switch (this.f4704a) {
+        switch (this.f4707a) {
             case 1:
                 String b10 = kotlin.jvm.internal.s.a(getClass()).b();
                 kotlin.jvm.internal.j.b(b10);

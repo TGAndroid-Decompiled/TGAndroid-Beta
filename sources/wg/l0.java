@@ -30,8 +30,8 @@ public final class l0 extends FrameLayout implements z5 {
         i9Var.setRoundRadius(org.telegram.messenger.g0.L(30.0f));
         i2 i2Var = new i2(context);
         Paint paint2 = new Paint(1);
-        i2Var.f47883b = paint2;
-        i2Var.f47884c = i2Var.getContext().getDrawable(2131231932);
+        i2Var.f47873b = paint2;
+        i2Var.f47874c = i2Var.getContext().getDrawable(2131231932);
         int i7 = j6.f28922h5;
         paint2.setColor(j6.x0(null, i7, false));
         this.f59206b = i2Var;

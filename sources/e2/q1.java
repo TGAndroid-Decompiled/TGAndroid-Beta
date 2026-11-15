@@ -231,16 +231,16 @@ public class q1 {
             bg.f fVar = new bg.f(1);
             String str = o1.f10286e;
             o1 o1Var2 = o1.d;
-            fVar.f3230a = bundle2.getInt(str, o1Var2.f10289a);
-            fVar.f3231b = bundle2.getBoolean(o1.f10287f, o1Var2.f10290b);
-            fVar.f3232c = bundle2.getBoolean(o1.f10288g, o1Var2.f10291c);
+            fVar.f3233a = bundle2.getInt(str, o1Var2.f10289a);
+            fVar.f3234b = bundle2.getBoolean(o1.f10287f, o1Var2.f10290b);
+            fVar.f3235c = bundle2.getBoolean(o1.f10288g, o1Var2.f10291c);
             o1Var = new o1(fVar);
         } else {
             bg.f fVar2 = new bg.f(1);
             o1 o1Var3 = o1.d;
-            fVar2.f3230a = bundle.getInt(f10332k0, o1Var3.f10289a);
-            fVar2.f3231b = bundle.getBoolean(f10333l0, o1Var3.f10290b);
-            fVar2.f3232c = bundle.getBoolean(m0, o1Var3.f10291c);
+            fVar2.f3233a = bundle.getInt(f10332k0, o1Var3.f10289a);
+            fVar2.f3234b = bundle.getBoolean(f10333l0, o1Var3.f10290b);
+            fVar2.f3235c = bundle.getBoolean(m0, o1Var3.f10291c);
             o1Var = new o1(fVar2);
         }
         obj.f10312w = o1Var;

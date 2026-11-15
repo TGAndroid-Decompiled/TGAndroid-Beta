@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.ui.hn0;
+import org.telegram.ui.ok0;
 public final class qe implements lf, m9.t, p4.u {
     public long f26084a;
     public Object f26085b;
@@ -97,7 +97,7 @@ public final class qe implements lf, m9.t, p4.u {
             MediaController mediaController = (MediaController) this.f26087e;
             kf kfVar = (kf) this.d;
             String[] strArr = MediaController.W1;
-            g20 g20Var2 = kfVar.f24685b;
+            g20 g20Var2 = kfVar.f24688b;
             boolean z10 = g20Var2.X;
             if (z10) {
                 g20Var2.X = false;
@@ -327,18 +327,18 @@ public final class qe implements lf, m9.t, p4.u {
                 arrayList.add(l1Var.m(i10, k1Var, 0L).f10162c);
             }
             ArrayList arrayList2 = new ArrayList();
-            hn0 hn0Var = new hn0(this, new AtomicInteger(0), arrayList, arrayList2, 25);
+            ok0 ok0Var = new ok0(this, new AtomicInteger(0), arrayList, arrayList2, 26);
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 byte[] bArr = ((e2.l0) arrayList.get(i11)).d.f10271k;
                 if (bArr == null) {
                     arrayList2.add(null);
-                    hn0Var.run();
+                    ok0Var.run();
                 } else {
                     m9.y d02 = d0Var.f54628m.d0(bArr);
                     arrayList2.add(d02);
                     Handler handler = d0Var.f54627l;
                     Objects.requireNonNull(handler);
-                    d02.b(hn0Var, new l2.d0(handler, 1));
+                    d02.b(ok0Var, new l2.d0(handler, 1));
                 }
             }
             return;

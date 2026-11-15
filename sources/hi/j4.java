@@ -41,12 +41,12 @@ public final class j4 implements Runnable {
                             e10 = gVar.e();
                         }
                         String n10 = gVar.n();
-                        ai.z0 z0Var = new ai.z0(m5Var, gVar, e10, 15);
+                        ai.a1 a1Var = new ai.a1(m5Var, gVar, e10, 15);
                         j5 j5Var = new j5(m5Var, m5Var.getContext());
                         j5Var.setIcon(e10);
                         j5Var.setText(n10);
                         j5Var.setSelected(false);
-                        j5Var.setOnClickListener(new ah.d(z0Var, 29));
+                        j5Var.setOnClickListener(new ah.d(a1Var, 29));
                         j5Var.setOnLongClickListener(new p4(m5Var, 0));
                         m5Var.f14689s1.a(j5Var, c8.ja.o(-1, 48));
                         i7++;

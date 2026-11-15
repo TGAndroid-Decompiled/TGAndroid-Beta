@@ -1,7 +1,7 @@
 package ji;
 
-import ai.f2;
-import ai.v0;
+import ai.g2;
+import ai.w0;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
@@ -923,7 +923,7 @@ public final class p extends View {
                         performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    post(new v0(this, i12, 12));
+                    post(new w0(this, i12, 12));
                 }
             }
             if (this.f17636r1 && this.f17639s1 && (velocityTracker = this.f17641t1) != null) {
@@ -983,7 +983,7 @@ public final class p extends View {
             o oVar = (o) obj;
             int i10 = oVar.f17595b;
             if (i10 > oVar.f17594a && i10 <= spannableString.length()) {
-                spannableString.setSpan(new f2(oVar, 2), oVar.f17594a, oVar.f17595b, 65569);
+                spannableString.setSpan(new g2(oVar, 2), oVar.f17594a, oVar.f17595b, 65569);
             }
         }
         int i11 = this.f17648w1;

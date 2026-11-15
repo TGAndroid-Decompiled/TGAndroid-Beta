@@ -11,7 +11,7 @@ public final class vr0 extends org.telegram.ui.Cells.q1 {
     public final int Cd;
     public final int Dd;
     public final xr0 Ed;
-    public final Path f52275zd;
+    public final Path f52278zd;
 
     public vr0(xr0 xr0Var, Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var, byte[] bArr, int i10, int i11) {
         super(context, i7, false, null, e6Var);
@@ -19,7 +19,7 @@ public final class vr0 extends org.telegram.ui.Cells.q1 {
         this.Bd = bArr;
         this.Cd = i10;
         this.Dd = i11;
-        this.f52275zd = new Path();
+        this.f52278zd = new Path();
         this.Ad = new Paint(1);
     }
 
@@ -56,7 +56,7 @@ public final class vr0 extends org.telegram.ui.Cells.q1 {
             L2 = org.telegram.messenger.g0.T1(L2, 0.0f, xr0Var.E);
         }
         rectF.bottom = f12 + L2;
-        Path path = this.f52275zd;
+        Path path = this.f52278zd;
         path.rewind();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
         Paint paint = this.Ad;

@@ -27,33 +27,33 @@ public abstract class a extends l2.b {
     public q2.h X;
     public q2.h Y;
     public int Z;
-    public boolean f7336a0;
-    public int f7337b0;
-    public long f7338c0;
-    public long f7339d0;
-    public boolean f7340e0;
-    public boolean f7341f0;
-    public boolean f7342g0;
-    public x1 f7343h0;
-    public long f7344i0;
-    public int f7345j0;
-    public int f7346k0;
-    public int f7347l0;
+    public boolean f7339a0;
+    public int f7340b0;
+    public long f7341c0;
+    public long f7342d0;
+    public boolean f7343e0;
+    public boolean f7344f0;
+    public boolean f7345g0;
+    public x1 f7346h0;
+    public long f7347i0;
+    public int f7348j0;
+    public int f7349k0;
+    public int f7350l0;
     public long m0;
-    public l2.d f7348n0;
+    public l2.d f7351n0;
 
     public a(long j3, Handler handler, h0 h0Var, int i7) {
         super(2);
         this.J = j3;
         this.K = i7;
-        this.f7339d0 = -9223372036854775807L;
+        this.f7342d0 = -9223372036854775807L;
         this.M = new h2.j0();
         this.N = new k2.h(0, 0);
         this.L = new wf.b(handler, h0Var);
         this.Z = 0;
         this.T = -1;
-        this.f7337b0 = 0;
-        this.f7348n0 = new Object();
+        this.f7340b0 = 0;
+        this.f7351n0 = new Object();
     }
 
     public abstract k2.e F(e2.u uVar);
@@ -75,11 +75,11 @@ public abstract class a extends l2.b {
             if (videoDecoderOutputBuffer == null) {
                 return false;
             }
-            l2.d dVar = this.f7348n0;
+            l2.d dVar = this.f7351n0;
             int i7 = dVar.f18914f;
             int i10 = videoDecoderOutputBuffer.skippedOutputBufferCount;
             dVar.f18914f = i7 + i10;
-            this.f7347l0 -= i10;
+            this.f7350l0 -= i10;
         }
         if (this.S.isEndOfStream()) {
             if (this.Z == 2) {
@@ -89,11 +89,11 @@ public abstract class a extends l2.b {
             }
             this.S.release();
             this.S = null;
-            this.f7342g0 = true;
+            this.f7345g0 = true;
             return false;
         }
-        if (this.f7338c0 == -9223372036854775807L) {
-            this.f7338c0 = j3;
+        if (this.f7341c0 == -9223372036854775807L) {
+            this.f7341c0 = j3;
         }
         VideoDecoderOutputBuffer videoDecoderOutputBuffer2 = this.S;
         videoDecoderOutputBuffer2.getClass();
@@ -113,7 +113,7 @@ public abstract class a extends l2.b {
             } else {
                 z12 = false;
             }
-            int i11 = this.f7337b0;
+            int i11 = this.f7340b0;
             if (i11 != 0) {
                 if (i11 != 1) {
                     j10 = -30000;
@@ -142,7 +142,7 @@ public abstract class a extends l2.b {
                 } else {
                     z13 = false;
                 }
-                if (!z13 || j3 == this.f7338c0) {
+                if (!z13 || j3 == this.f7341c0) {
                     z10 = false;
                 } else {
                     if (j12 < -500000) {
@@ -155,8 +155,8 @@ public abstract class a extends l2.b {
                         if (B == 0) {
                             z16 = false;
                         } else {
-                            this.f7348n0.f18917j++;
-                            P(B, this.f7347l0);
+                            this.f7351n0.f18917j++;
+                            P(B, this.f7350l0);
                             I();
                             z16 = true;
                         }
@@ -187,7 +187,7 @@ public abstract class a extends l2.b {
         } else {
             z10 = false;
             if (j12 < -30000) {
-                this.f7348n0.f18914f++;
+                this.f7351n0.f18914f++;
                 videoDecoderOutputBuffer2.release();
                 z11 = true;
             }
@@ -195,7 +195,7 @@ public abstract class a extends l2.b {
         }
         if (z11) {
             this.S.getClass();
-            this.f7347l0--;
+            this.f7350l0--;
             this.S = null;
         }
         return z11;
@@ -206,7 +206,7 @@ public abstract class a extends l2.b {
     }
 
     public final void I() {
-        this.f7347l0 = 0;
+        this.f7350l0 = 0;
         if (this.Z != 0) {
             L();
             J();
@@ -223,7 +223,7 @@ public abstract class a extends l2.b {
         k2.l lVar = (k2.l) eVar;
         lVar.flush();
         lVar.a(this.f18897x);
-        this.f7336a0 = false;
+        this.f7339a0 = false;
     }
 
     public final void J() {
@@ -252,7 +252,7 @@ public abstract class a extends l2.b {
                 if (handler != null) {
                     handler.post(new e0(bVar, name, elapsedRealtime2, j3, 0));
                 }
-                this.f7348n0.f18910a++;
+                this.f7351n0.f18910a++;
             } catch (OutOfMemoryError e10) {
                 throw d(e10, this.O, false, 4001);
             } catch (k2.f e11) {
@@ -268,7 +268,7 @@ public abstract class a extends l2.b {
 
     public final void K(k8.a aVar) {
         l2.e eVar;
-        this.f7340e0 = true;
+        this.f7343e0 = true;
         e2.u uVar = (e2.u) aVar.f17789c;
         uVar.getClass();
         q2.h hVar = (q2.h) aVar.f17788b;
@@ -299,7 +299,7 @@ public abstract class a extends l2.b {
             eVar = new l2.e(name2, uVar2, uVar, 0, 8);
         }
         if (eVar.d == 0) {
-            if (this.f7336a0) {
+            if (this.f7339a0) {
                 this.Z = 1;
             } else {
                 L();
@@ -318,11 +318,11 @@ public abstract class a extends l2.b {
         this.R = null;
         this.S = null;
         this.Z = 0;
-        this.f7336a0 = false;
-        this.f7347l0 = 0;
+        this.f7339a0 = false;
+        this.f7350l0 = 0;
         k2.e eVar = this.Q;
         if (eVar != null) {
-            this.f7348n0.f18911b++;
+            this.f7351n0.f18911b++;
             eVar.release();
             String name = this.Q.getName();
             wf.b bVar = this.L;
@@ -346,20 +346,20 @@ public abstract class a extends l2.b {
         if (videoDecoderOutputBuffer.mode == 1 && this.V != null) {
             int i7 = videoDecoderOutputBuffer.width;
             int i10 = videoDecoderOutputBuffer.height;
-            x1 x1Var = this.f7343h0;
+            x1 x1Var = this.f7346h0;
             wf.b bVar = this.L;
             if (x1Var == null || x1Var.f10485a != i7 || x1Var.f10486b != i10) {
                 x1 x1Var2 = new x1(i7, i10);
-                this.f7343h0 = x1Var2;
+                this.f7346h0 = x1Var2;
                 bVar.V(x1Var2);
             }
             Surface surface = this.V;
             surface.getClass();
             N(videoDecoderOutputBuffer, surface);
-            this.f7346k0 = 0;
-            this.f7348n0.f18913e++;
-            if (this.f7337b0 != 3) {
-                this.f7337b0 = 3;
+            this.f7349k0 = 0;
+            this.f7351n0.f18913e++;
+            if (this.f7340b0 != 3) {
+                this.f7340b0 = 3;
                 Surface surface2 = this.U;
                 if (surface2 != null) {
                     bVar.O(surface2);
@@ -379,26 +379,26 @@ public abstract class a extends l2.b {
 
     public final void P(int i7, int i10) {
         int i11;
-        l2.d dVar = this.f7348n0;
+        l2.d dVar = this.f7351n0;
         dVar.h += i7;
         int i12 = i7 + i10;
         dVar.f18915g += i12;
-        this.f7345j0 += i12;
-        int i13 = this.f7346k0 + i12;
-        this.f7346k0 = i13;
+        this.f7348j0 += i12;
+        int i13 = this.f7349k0 + i12;
+        this.f7349k0 = i13;
         dVar.f18916i = Math.max(i13, dVar.f18916i);
         int i14 = this.K;
-        if (i14 > 0 && (i11 = this.f7345j0) >= i14 && i11 > 0) {
+        if (i14 > 0 && (i11 = this.f7348j0) >= i14 && i11 > 0) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = elapsedRealtime - this.f7344i0;
-            int i15 = this.f7345j0;
+            long j3 = elapsedRealtime - this.f7347i0;
+            int i15 = this.f7348j0;
             wf.b bVar = this.L;
             Handler handler = (Handler) bVar.f59107b;
             if (handler != null) {
                 handler.post(new f0(bVar, i15, j3));
             }
-            this.f7345j0 = 0;
-            this.f7344i0 = elapsedRealtime;
+            this.f7348j0 = 0;
+            this.f7347i0 = elapsedRealtime;
         }
     }
 
@@ -423,11 +423,11 @@ public abstract class a extends l2.b {
                     if (this.Q != null) {
                         O(this.T);
                     }
-                    x1 x1Var = this.f7343h0;
+                    x1 x1Var = this.f7346h0;
                     if (x1Var != null) {
                         bVar.V(x1Var);
                     }
-                    this.f7337b0 = Math.min(this.f7337b0, 1);
+                    this.f7340b0 = Math.min(this.f7340b0, 1);
                     if (this.f18893n == 2) {
                         long j10 = this.J;
                         if (j10 > 0) {
@@ -435,19 +435,19 @@ public abstract class a extends l2.b {
                         } else {
                             j3 = -9223372036854775807L;
                         }
-                        this.f7339d0 = j3;
+                        this.f7342d0 = j3;
                         return;
                     }
                     return;
                 }
-                this.f7343h0 = null;
-                this.f7337b0 = Math.min(this.f7337b0, 1);
+                this.f7346h0 = null;
+                this.f7340b0 = Math.min(this.f7340b0, 1);
             } else if (obj != null) {
-                x1 x1Var2 = this.f7343h0;
+                x1 x1Var2 = this.f7346h0;
                 if (x1Var2 != null) {
                     bVar.V(x1Var2);
                 }
-                if (this.f7337b0 == 3 && (surface = this.U) != null) {
+                if (this.f7340b0 == 3 && (surface = this.U) != null) {
                     bVar.O(surface);
                 }
             }
@@ -458,14 +458,14 @@ public abstract class a extends l2.b {
 
     @Override
     public final void f() {
-        if (this.f7337b0 == 0) {
-            this.f7337b0 = 1;
+        if (this.f7340b0 == 0) {
+            this.f7340b0 = 1;
         }
     }
 
     @Override
     public final boolean l() {
-        return this.f7342g0;
+        return this.f7345g0;
     }
 
     @Override
@@ -477,37 +477,37 @@ public abstract class a extends l2.b {
     public final void n() {
         wf.b bVar = this.L;
         this.O = null;
-        this.f7343h0 = null;
-        this.f7337b0 = Math.min(this.f7337b0, 0);
+        this.f7346h0 = null;
+        this.f7340b0 = Math.min(this.f7340b0, 0);
         try {
             y0.C(this.Y, null);
             this.Y = null;
             L();
         } finally {
-            bVar.t(this.f7348n0);
+            bVar.t(this.f7351n0);
         }
     }
 
     @Override
     public final void o(boolean z10, boolean z11) {
         ?? obj = new Object();
-        this.f7348n0 = obj;
+        this.f7351n0 = obj;
         wf.b bVar = this.L;
         Handler handler = (Handler) bVar.f59107b;
         if (handler != null) {
             handler.post(new g0(bVar, obj, 0));
         }
-        this.f7337b0 = z11 ? 1 : 0;
+        this.f7340b0 = z11 ? 1 : 0;
     }
 
     @Override
     public final void p(long j3, boolean z10, boolean z11) {
-        this.f7341f0 = false;
-        this.f7342g0 = false;
-        this.f7337b0 = Math.min(this.f7337b0, 1);
+        this.f7344f0 = false;
+        this.f7345g0 = false;
+        this.f7340b0 = Math.min(this.f7340b0, 1);
         long j10 = -9223372036854775807L;
-        this.f7338c0 = -9223372036854775807L;
-        this.f7346k0 = 0;
+        this.f7341c0 = -9223372036854775807L;
+        this.f7349k0 = 0;
         if (this.Q != null) {
             I();
         }
@@ -516,44 +516,44 @@ public abstract class a extends l2.b {
             if (j11 > 0) {
                 j10 = SystemClock.elapsedRealtime() + j11;
             }
-            this.f7339d0 = j10;
+            this.f7342d0 = j10;
         } else {
-            this.f7339d0 = -9223372036854775807L;
+            this.f7342d0 = -9223372036854775807L;
         }
         h2.j0 j0Var = this.M;
         if (j0Var.p() > 0) {
-            this.f7340e0 = true;
+            this.f7343e0 = true;
         }
         j0Var.c();
     }
 
     @Override
     public final void s() {
-        this.f7345j0 = 0;
-        this.f7344i0 = SystemClock.elapsedRealtime();
+        this.f7348j0 = 0;
+        this.f7347i0 = SystemClock.elapsedRealtime();
         this.m0 = l0.S(SystemClock.elapsedRealtime());
     }
 
     @Override
     public final void t() {
-        this.f7339d0 = -9223372036854775807L;
-        if (this.f7345j0 > 0) {
+        this.f7342d0 = -9223372036854775807L;
+        if (this.f7348j0 > 0) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = elapsedRealtime - this.f7344i0;
-            int i7 = this.f7345j0;
+            long j3 = elapsedRealtime - this.f7347i0;
+            int i7 = this.f7348j0;
             wf.b bVar = this.L;
             Handler handler = (Handler) bVar.f59107b;
             if (handler != null) {
                 handler.post(new f0(bVar, i7, j3));
             }
-            this.f7345j0 = 0;
-            this.f7344i0 = elapsedRealtime;
+            this.f7348j0 = 0;
+            this.f7347i0 = elapsedRealtime;
         }
     }
 
     @Override
     public final void x(long j3, long j10) {
-        if (!this.f7342g0) {
+        if (!this.f7345g0) {
             if (this.O == null) {
                 k8.a aVar = this.f18890c;
                 aVar.x0();
@@ -563,8 +563,8 @@ public abstract class a extends l2.b {
                     K(aVar);
                 } else if (w10 == -4) {
                     ja.p(this.N.isEndOfStream());
-                    this.f7341f0 = true;
-                    this.f7342g0 = true;
+                    this.f7344f0 = true;
+                    this.f7345g0 = true;
                     return;
                 } else {
                     return;
@@ -579,7 +579,7 @@ public abstract class a extends l2.b {
                     while (H()) {
                     }
                     Trace.endSection();
-                    synchronized (this.f7348n0) {
+                    synchronized (this.f7351n0) {
                     }
                 } catch (k2.f e10) {
                     h2.a.d("DecoderVideoRenderer", "Video codec error", e10);

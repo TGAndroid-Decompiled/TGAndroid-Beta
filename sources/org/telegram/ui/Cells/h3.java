@@ -35,7 +35,7 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
         this.f30384y = g6Var;
         g6Var.n(0.2f, 160L, er.h);
         g6Var.w(org.telegram.messenger.g0.L(15.33f));
-        g6Var.f34829b = 5;
+        g6Var.f34833b = 5;
         this.d = i7;
         f3 f3Var = new f3(this, context, st0Var, e6Var, z10);
         this.f30375b = f3Var;
@@ -57,7 +57,7 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
             editText.setSingleLine(true);
         }
         editText.setPadding(editText.getPaddingLeft(), editText.getPaddingTop(), org.telegram.messenger.g0.L(0.0f), editText.getPaddingBottom());
-        editText.setGravity((hd.f24101a0 ? 5 : 3) | 48);
+        editText.setGravity((hd.f24104a0 ? 5 : 3) | 48);
         editText.setInputType((z10 ? 131072 : 0) | 573441);
         editText.setRawInputType(573441);
         editText.setHint(str);
@@ -98,7 +98,7 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
         int i7;
         super.onDraw(canvas);
         if (this.E) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(22.0f);
@@ -106,7 +106,7 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(22.0f);
             } else {
                 i7 = 0;

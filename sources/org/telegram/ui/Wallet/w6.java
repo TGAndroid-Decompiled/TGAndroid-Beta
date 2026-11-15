@@ -471,7 +471,7 @@ public final class w6 extends FrameLayout {
                             h(true);
                             return true;
                         }
-                        float f10 = 0.8f / org.telegram.messenger.g0.f23608p;
+                        float f10 = 0.8f / org.telegram.messenger.g0.f23610p;
                         vg.f fVar = this.f44641f;
                         fVar.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.F, f10, fVar.d);
                         vg.f fVar2 = this.f44641f;

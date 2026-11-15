@@ -33,7 +33,7 @@ public final class j0 extends Drawable {
                 Drawable drawable = (Drawable) this.f11889b;
                 drawable.setBounds(bounds);
                 drawable.draw(canvas);
-                ((oy0) this.d).c(bounds.centerX() - (((oy0) this.d).f38105c / 2.0f), org.telegram.messenger.g0.L(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
+                ((oy0) this.d).c(bounds.centerX() - (((oy0) this.d).f38103c / 2.0f), org.telegram.messenger.g0.L(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
                 canvas.restore();
                 return;
             case 1:
@@ -44,7 +44,7 @@ public final class j0 extends Drawable {
                 return;
             case 2:
                 Paint paint = (Paint) this.d;
-                if (this.f11890c != org.telegram.messenger.g0.f23608p) {
+                if (this.f11890c != org.telegram.messenger.g0.f23610p) {
                     f();
                 }
                 canvas.save();
@@ -55,17 +55,17 @@ public final class j0 extends Drawable {
                 return;
             default:
                 org.telegram.ui.Components.voip.n nVar = (org.telegram.ui.Components.voip.n) this.d;
-                int i7 = nVar.f40794e;
-                Matrix matrix = nVar.f40797i;
-                nVar.f40795f = getBounds().width();
+                int i7 = nVar.f40797e;
+                Matrix matrix = nVar.f40800i;
+                nVar.f40798f = getBounds().width();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(getBounds());
                 nVar.a(this.f11890c, canvas, rectF, null);
                 pz pzVar = (pz) this.f11889b;
                 if (pzVar != null) {
-                    pzVar.f26028c = nVar.f40791a;
-                    int i10 = nVar.f40795f;
-                    float f11 = (((i7 * 2) + i10) * nVar.f40796g) - i7;
+                    pzVar.f26028c = nVar.f40794a;
+                    int i10 = nVar.f40798f;
+                    float f11 = (((i7 * 2) + i10) * nVar.f40799g) - i7;
                     int i11 = (int) (i10 * 0.5f);
                     int width = getBounds().width();
                     int height = getBounds().height();
@@ -79,12 +79,12 @@ public final class j0 extends Drawable {
                     matrix.reset();
                     matrix.setScale(1.0f / min, 0.0f, i7 / 2.0f, 0.0f);
                     matrix.setTranslate((f11 - pzVar.getBounds().left) - (i7 / min), 0.0f);
-                    nVar.f40792b.setLocalMatrix(matrix);
+                    nVar.f40795b.setLocalMatrix(matrix);
                     int i12 = i11 / 2;
                     pzVar.setBounds(getBounds().centerX() - i12, getBounds().centerY() - i12, getBounds().centerX() + i12, getBounds().centerY() + i12);
                     pzVar.draw(canvas);
                 }
-                nVar.f40803o.invalidate();
+                nVar.f40806o.invalidate();
                 return;
         }
     }
@@ -102,7 +102,7 @@ public final class j0 extends Drawable {
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.0f));
-        this.f11890c = org.telegram.messenger.g0.f23608p;
+        this.f11890c = org.telegram.messenger.g0.f23610p;
     }
 
     @Override
@@ -166,8 +166,8 @@ public final class j0 extends Drawable {
                 return;
             default:
                 org.telegram.ui.Components.voip.n nVar = (org.telegram.ui.Components.voip.n) this.d;
-                nVar.f40791a.setAlpha(i7);
-                nVar.f40793c.setAlpha(i7);
+                nVar.f40794a.setAlpha(i7);
+                nVar.f40796c.setAlpha(i7);
                 return;
         }
     }
@@ -206,7 +206,7 @@ public final class j0 extends Drawable {
         this.f11889b = i5.c.g(context, 2131231174);
         oy0 oy0Var = new oy0(i5.c.i(i7, ""), 8.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
         this.d = oy0Var;
-        oy0Var.f38103a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        oy0Var.f38101a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     private final void a(int i7) {

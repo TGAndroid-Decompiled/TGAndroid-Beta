@@ -230,7 +230,7 @@ public final class f8 extends org.telegram.ui.ActionBar.e2 {
                 int i13 = i10 + 1;
                 if (i10 % 2 == 1) {
                     org.telegram.messenger.t tVar = new org.telegram.messenger.t(false);
-                    tVar.f26598b = (int) 191.25f;
+                    tVar.f26607b = (int) 191.25f;
                     spannableStringBuilder.setSpan(tVar, i7, spannableStringBuilder.length(), 33);
                 }
                 i7 = spannableStringBuilder.length();

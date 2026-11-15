@@ -8,21 +8,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class ww0 {
-    public final int f53015a;
-    public boolean f53016b;
-    public yw0 f53017c;
-    public final boolean[] f53020g;
-    public boolean f53021i;
+    public final int f53014a;
+    public boolean f53015b;
+    public yw0 f53016c;
+    public final boolean[] f53019g;
+    public boolean f53020i;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f53018e = new ArrayList();
-    public final ArrayList f53019f = new ArrayList();
+    public final ArrayList f53017e = new ArrayList();
+    public final ArrayList f53018f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f53022j = new ArrayList();
+    public final ArrayList f53021j = new ArrayList();
 
     public ww0(int i7, int i10) {
         boolean[] zArr = new boolean[2];
-        this.f53020g = zArr;
-        this.f53015a = i10;
+        this.f53019g = zArr;
+        this.f53014a = i10;
         if (i10 <= 0) {
             zArr[0] = true;
         } else {
@@ -57,7 +57,7 @@ public final class ww0 {
                 i10 = 0;
             }
             if (ww0Var != null) {
-                if (ww0Var.f53015a == i10) {
+                if (ww0Var.f53014a == i10) {
                     return ww0Var;
                 }
                 ww0Var.b(false);
@@ -72,11 +72,11 @@ public final class ww0 {
     }
 
     public final void a() {
-        if (!this.f53016b && this.f53019f.size() >= this.f53018e.size()) {
-            boolean[] zArr = this.f53020g;
+        if (!this.f53015b && this.f53018f.size() >= this.f53017e.size()) {
+            boolean[] zArr = this.f53019g;
             int i7 = 0;
             if (zArr[0] && zArr[1]) {
-                this.f53016b = true;
+                this.f53015b = true;
                 ArrayList arrayList = this.h;
                 int size = arrayList.size();
                 while (i7 < size) {
@@ -90,14 +90,14 @@ public final class ww0 {
     }
 
     public final void b(boolean z10) {
-        if (!z10 && !this.f53022j.isEmpty()) {
-            this.f53021i = true;
+        if (!z10 && !this.f53021j.isEmpty()) {
+            this.f53020i = true;
             return;
         }
         this.h.clear();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f53018e;
+            ArrayList arrayList = this.f53017e;
             if (i7 < arrayList.size()) {
                 ((yw0) arrayList.get(i7)).R();
                 i7++;

@@ -16,15 +16,15 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.st0;
 import org.telegram.ui.LaunchActivity;
 public final class x6 {
-    public static volatile x6[] f27464g = new x6[4];
+    public static volatile x6[] f27465g = new x6[4];
     public static final Object[] h = new Object[4];
-    public static org.telegram.ui.ActionBar.t1 f27465i;
-    public final int f27466a;
-    public final LongSparseArray f27467b = new LongSparseArray();
-    public final LongSparseArray f27468c = new LongSparseArray();
+    public static org.telegram.ui.ActionBar.t1 f27466i;
+    public final int f27467a;
+    public final LongSparseArray f27468b = new LongSparseArray();
+    public final LongSparseArray f27469c = new LongSparseArray();
     public final ArrayList d = new ArrayList();
-    public final a f27469e = new a(this, 7);
-    public boolean f27470f;
+    public final a f27470e = new a(this, 7);
+    public boolean f27471f;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
@@ -33,18 +33,18 @@ public final class x6 {
     }
 
     public x6(int i7) {
-        this.f27466a = i7;
+        this.f27467a = i7;
     }
 
     public static x6 b(int i7) {
         x6 x6Var;
-        x6 x6Var2 = f27464g[i7];
+        x6 x6Var2 = f27465g[i7];
         if (x6Var2 == null) {
             synchronized (h[i7]) {
                 try {
-                    x6Var = f27464g[i7];
+                    x6Var = f27465g[i7];
                     if (x6Var == null) {
-                        x6[] x6VarArr = f27464g;
+                        x6[] x6VarArr = f27465g;
                         x6 x6Var3 = new x6(i7);
                         x6VarArr[i7] = x6Var3;
                         x6Var = x6Var3;
@@ -65,23 +65,23 @@ public final class x6 {
                 return;
             }
             TLRPC.TL_deleteFactCheck tL_deleteFactCheck = new TLRPC.TL_deleteFactCheck();
-            tL_deleteFactCheck.peer = np.s1(this.f27466a).j1(gj.B0(gjVar.f23817k));
+            tL_deleteFactCheck.peer = np.s1(this.f27467a).j1(gj.B0(gjVar.f23819k));
             tL_deleteFactCheck.msg_id = gjVar.e1();
             tL_editFactCheck = tL_deleteFactCheck;
         } else {
             TLRPC.TL_editFactCheck tL_editFactCheck2 = new TLRPC.TL_editFactCheck();
-            tL_editFactCheck2.peer = np.s1(this.f27466a).j1(gj.B0(gjVar.f23817k));
+            tL_editFactCheck2.peer = np.s1(this.f27467a).j1(gj.B0(gjVar.f23819k));
             tL_editFactCheck2.msg_id = gjVar.e1();
             tL_editFactCheck2.text = tL_textWithEntities;
             tL_editFactCheck = tL_editFactCheck2;
         }
         Context context = LaunchActivity.H1;
         if (context == null) {
-            context = t0.f26600b;
+            context = t0.f26609b;
         }
         org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, context, null);
         t1Var.r(320L);
-        ConnectionsManager.getInstance(this.f27466a).sendRequest(tL_editFactCheck, new di.f3(this, tL_textWithEntities, z10, t1Var, 2));
+        ConnectionsManager.getInstance(this.f27467a).sendRequest(tL_editFactCheck, new di.f3(this, tL_textWithEntities, z10, t1Var, 2));
     }
 
     public final void c(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, gj gjVar) {
@@ -111,7 +111,7 @@ public final class x6 {
         }
         AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
         TextView[] textViewArr = new TextView[1];
-        if (gjVar != null && (message = gjVar.f23817k) != null && message.factcheck != null) {
+        if (gjVar != null && (message = gjVar.f23819k) != null && message.factcheck != null) {
             z11 = false;
         } else {
             z11 = true;
@@ -119,7 +119,7 @@ public final class x6 {
         String M0 = hd.M0(2131750852, null);
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder2.f28392a;
         t1Var.S = M0;
-        int i7 = this.f27466a;
+        int i7 = this.f27467a;
         int i10 = np.s1(i7).R5;
         final t6 t6Var = new t6(activity, e6Var, i10, e6Var);
         t6Var.f32539s0 = true;
@@ -152,14 +152,14 @@ public final class x6 {
         alertDialog$Builder2.k(hd.M0(2131751354, null), new r6(this, t6Var, i10, gjVar, z12));
         alertDialog$Builder2.h(hd.M0(2131752589, "Cancel"), new n2.a0(19));
         if (z10) {
-            f27465i = t1Var;
+            f27466i = t1Var;
             t1VarArr[0] = t1Var;
             t1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (r1) {
                         case 0:
-                            x6.f27465i = null;
+                            x6.f27466i = null;
                             view.requestFocus();
                             return;
                         default:
@@ -168,7 +168,7 @@ public final class x6 {
                     }
                 }
             });
-            f27465i.setOnShowListener(new DialogInterface.OnShowListener() {
+            f27466i.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
                     switch (r2) {
@@ -185,7 +185,7 @@ public final class x6 {
                     }
                 }
             });
-            f27465i.r(250L);
+            f27466i.r(250L);
         } else {
             t1VarArr[0] = t1Var;
             t1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -193,7 +193,7 @@ public final class x6 {
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (r1) {
                         case 0:
-                            x6.f27465i = null;
+                            x6.f27466i = null;
                             t6Var.requestFocus();
                             return;
                         default:

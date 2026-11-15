@@ -8,12 +8,12 @@ import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import java.lang.ref.WeakReference;
 public final class hk implements View.OnTouchListener {
-    public final int f35272a;
-    public final Object f35273b;
+    public final int f35263a;
+    public final Object f35264b;
 
     public hk(Object obj, int i7) {
-        this.f35272a = i7;
-        this.f35273b = obj;
+        this.f35263a = i7;
+        this.f35264b = obj;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class hk implements View.OnTouchListener {
         l2.f0 f0Var;
         float f11;
         i60 i60Var;
-        switch (this.f35272a) {
+        switch (this.f35263a) {
             case 0:
-                qk qkVar = (qk) this.f35273b;
+                qk qkVar = (qk) this.f35264b;
                 qkVar.getClass();
                 if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
                     qkVar.e0();
@@ -32,7 +32,7 @@ public final class hk implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) ((k.a) this.f35273b).f17664b;
+                org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) ((k.a) this.f35264b).f17664b;
                 if (motionEvent.getActionMasked() == 1 && g1Var != null && g1Var.isShowing()) {
                     Rect rect = org.telegram.messenger.g0.Q;
                     view.getHitRect(rect);
@@ -44,7 +44,7 @@ public final class hk implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                q40 q40Var = (q40) this.f35273b;
+                q40 q40Var = (q40) this.f35264b;
                 boolean z10 = false;
                 if (q40Var.P == null || q40Var.R == null) {
                     return false;
@@ -76,7 +76,7 @@ public final class hk implements View.OnTouchListener {
                             }
                             org.telegram.messenger.g20 g20Var = q40Var.U;
                             if (g20Var != null) {
-                                g20Var.f23651t = q40Var.f38498k0;
+                                g20Var.f23653t = q40Var.f38498k0;
                             }
                             imageView.animate().cancel();
                             ViewPropertyAnimator animate = imageView.animate();
@@ -132,7 +132,7 @@ public final class hk implements View.OnTouchListener {
                 }
                 return true;
             case 3:
-                m60 m60Var = (m60) ((WeakReference) this.f35273b).get();
+                m60 m60Var = (m60) ((WeakReference) this.f35264b).get();
                 if (m60Var != null && (i60Var = m60Var.f37101m) != null && i60Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
@@ -164,22 +164,22 @@ public final class hk implements View.OnTouchListener {
                 view.setOnTouchListener(null);
                 return false;
             case 4:
-                i90 i90Var = (i90) this.f35273b;
-                i90Var.getClass();
-                return org.telegram.ui.ns.p().r(motionEvent, i90Var.getListView(), i90Var.f35528x, null, i90Var.f35519a);
+                j90 j90Var = (j90) this.f35264b;
+                j90Var.getClass();
+                return org.telegram.ui.ns.p().r(motionEvent, j90Var.getListView(), j90Var.f35928x, null, j90Var.f35919a);
             case 5:
-                da0 da0Var = (da0) this.f35273b;
-                da0Var.getClass();
+                ea0 ea0Var = (ea0) this.f35264b;
+                ea0Var.getClass();
                 if (motionEvent.getAction() == 1) {
-                    da0Var.f33900d0.a(true);
+                    ea0Var.f34260d0.a(true);
                 }
                 return true;
             default:
-                bw0 bw0Var = (bw0) this.f35273b;
+                bw0 bw0Var = (bw0) this.f35264b;
                 if (bw0Var.M1) {
                     return false;
                 }
-                return org.telegram.ui.ns.p().r(motionEvent, bw0Var.n1, bw0Var.C1, bw0Var.f33402h2, bw0Var.J0);
+                return org.telegram.ui.ns.p().r(motionEvent, bw0Var.n1, bw0Var.C1, bw0Var.f33405h2, bw0Var.J0);
         }
     }
 }

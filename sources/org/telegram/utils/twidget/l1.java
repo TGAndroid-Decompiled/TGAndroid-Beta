@@ -128,7 +128,7 @@ public final class l1 {
 
     public static boolean a() {
         for (int i7 = 0; i7 < 4; i7++) {
-            if (m10.i(i7).p() && ((org.telegram.messenger.h0) np.s1(i7).f25448y7.f25861o0.f14544b).f24006c) {
+            if (m10.i(i7).p() && ((org.telegram.messenger.h0) np.s1(i7).f25451y7.f25863o0.f14544b).f24009c) {
                 return true;
             }
         }
@@ -151,7 +151,7 @@ public final class l1 {
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
-            if (!U && (r0Var = org.telegram.messenger.r0.f26175f) != null) {
+            if (!U && (r0Var = org.telegram.messenger.r0.f26183f) != null) {
                 U = true;
                 r0Var.d.add(new i1(context));
             }

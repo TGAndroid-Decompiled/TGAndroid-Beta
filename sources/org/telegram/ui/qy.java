@@ -6,15 +6,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class qy extends FrameLayout {
-    public ImageView f50804a;
-    public TextView f50805b;
-    public int f50806c;
+    public ImageView f50803a;
+    public TextView f50804b;
+    public int f50805c;
     public boolean d;
-    public Boolean f50807e;
+    public Boolean f50806e;
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextView textView = this.f50805b;
+        TextView textView = this.f50804b;
         super.onDraw(canvas);
         if (this.d) {
             canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f28972k0);

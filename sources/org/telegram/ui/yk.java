@@ -19,12 +19,12 @@ public final class yk extends org.telegram.ui.Components.h10 {
             return;
         }
         undoView.j(75, 0L, null);
-        anVar.getMessagesController().k4(anVar.f45259k6, "CONVERT_GIGAGROUP");
+        anVar.getMessagesController().k4(anVar.f45258k6, "CONVERT_GIGAGROUP");
     }
 
     @Override
     public final void J0() {
         an anVar = this.n1;
-        anVar.getMessagesController().S(anVar.getParentActivity(), anVar.f45173e, anVar, new w0(this, 21));
+        anVar.getMessagesController().S(anVar.getParentActivity(), anVar.f45172e, anVar, new w0(this, 21));
     }
 }

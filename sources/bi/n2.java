@@ -8,18 +8,18 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import di.bc;
+import di.ac;
 import org.telegram.messenger.qc;
 public final class n2 extends Drawable {
-    public final int f3725a;
-    public final RectF f3726b;
-    public final Path f3727c;
+    public final int f3728a;
+    public final RectF f3729b;
+    public final Path f3730c;
     public final Paint d;
-    public final bc f3728e;
-    public boolean f3729f;
-    public a3.f f3730g;
-    public ai.f0 h;
-    public boolean f3731i;
+    public final ac f3731e;
+    public boolean f3732f;
+    public a3.f f3733g;
+    public ai.g0 h;
+    public boolean f3734i;
 
     public n2(int i7) {
         this(i0.a.o(i7, 128), i7);
@@ -27,22 +27,22 @@ public final class n2 extends Drawable {
 
     public final void a() {
         boolean z10;
-        if (this.f3728e != null && this.f3731i && qc.e(131072)) {
+        if (this.f3731e != null && this.f3734i && qc.e(131072)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f3729f == z10) {
+        if (this.f3732f == z10) {
             return;
         }
-        this.f3729f = z10;
+        this.f3732f = z10;
         if (z10) {
             bg.k d = bg.k.d();
             a3.f fVar = new a3.f(this, 23);
-            this.f3730g = fVar;
+            this.f3733g = fVar;
             d.a(15, fVar);
         } else {
-            bg.k.d().f(this.f3730g);
+            bg.k.d().f(this.f3733g);
         }
         invalidateSelf();
     }
@@ -50,19 +50,19 @@ public final class n2 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Paint paint = this.d;
-        Path path = this.f3727c;
+        Path path = this.f3730c;
         canvas.drawPath(path, paint);
-        bc bcVar = this.f3728e;
-        if (bcVar != null) {
-            if (this.f3729f || !this.f3731i) {
+        ac acVar = this.f3731e;
+        if (acVar != null) {
+            if (this.f3732f || !this.f3734i) {
                 canvas.save();
                 canvas.clipPath(path);
-                if (this.f3730g == null) {
-                    bcVar.d();
+                if (this.f3733g == null) {
+                    acVar.d();
                 }
-                bcVar.a(canvas, this.f3725a);
+                acVar.a(canvas, this.f3728a);
                 canvas.restore();
-                if (this.f3730g == null) {
+                if (this.f3733g == null) {
                     invalidateSelf();
                 }
             }
@@ -78,14 +78,14 @@ public final class n2 extends Drawable {
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         float min = Math.min(rect.width(), rect.height()) / 2.0f;
-        RectF rectF = this.f3726b;
+        RectF rectF = this.f3729b;
         rectF.set(rect);
-        Path path = this.f3727c;
+        Path path = this.f3730c;
         path.rewind();
         path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        bc bcVar = this.f3728e;
-        if (bcVar != null) {
-            bcVar.g(rectF);
+        ac acVar = this.f3731e;
+        if (acVar != null) {
+            acVar.g(rectF);
         }
     }
 
@@ -100,16 +100,16 @@ public final class n2 extends Drawable {
     }
 
     public n2(int i7, int i10) {
-        this.f3726b = new RectF();
-        this.f3727c = new Path();
+        this.f3729b = new RectF();
+        this.f3730c = new Path();
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f3725a = i7;
+        this.f3728a = i7;
         paint.setColor(i10);
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f3728e = new bc(1, 25);
+            this.f3731e = new ac(1, 25);
         } else {
-            this.f3728e = null;
+            this.f3731e = null;
         }
     }
 }

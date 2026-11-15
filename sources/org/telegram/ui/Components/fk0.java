@@ -4,8 +4,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class fk0 extends FrameLayout {
-    public View f34619a;
-    public TextView f34620b;
+    public View f34623a;
+    public TextView f34624b;
 
     @Override
     public final void onMeasure(int i7, int i10) {
@@ -13,6 +13,6 @@ public final class fk0 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f34620b.setText(charSequence);
+        this.f34624b.setText(charSequence);
     }
 }

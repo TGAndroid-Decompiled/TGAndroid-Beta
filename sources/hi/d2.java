@@ -101,7 +101,7 @@ public final class d2 extends FrameLayout implements org.telegram.ui.ActionBar.z
                         return;
                     default:
                         d2 d2Var = this.f15478b;
-                        int i13 = d2Var.d.f36555k;
+                        int i13 = d2Var.d.f36543k;
                         if (i13 == 1) {
                             d2Var.b();
                             c2 c2Var = d2Var.h;
@@ -135,7 +135,7 @@ public final class d2 extends FrameLayout implements org.telegram.ui.ActionBar.z
                         return;
                     default:
                         d2 d2Var = this.f15478b;
-                        int i13 = d2Var.d.f36555k;
+                        int i13 = d2Var.d.f36543k;
                         if (i13 == 1) {
                             d2Var.b();
                             c2 c2Var = d2Var.h;
@@ -207,7 +207,7 @@ public final class d2 extends FrameLayout implements org.telegram.ui.ActionBar.z
                                 return;
                             }
                             d2Var2.h.I1(wu0Var);
-                            String str = wu0Var.f41459a;
+                            String str = wu0Var.f41462a;
                             int categoryIndex = d2Var2.h.getCategoryIndex();
                             s10 s10Var2 = d2Var2.f14097x;
                             if (s10Var2 != null) {
@@ -252,7 +252,7 @@ public final class d2 extends FrameLayout implements org.telegram.ui.ActionBar.z
                                 return;
                             }
                             d2Var2.h.I1(wu0Var);
-                            String str = wu0Var.f41459a;
+                            String str = wu0Var.f41462a;
                             int categoryIndex = d2Var2.h.getCategoryIndex();
                             s10 s10Var2 = d2Var2.f14097x;
                             if (s10Var2 != null) {
@@ -298,7 +298,7 @@ public final class d2 extends FrameLayout implements org.telegram.ui.ActionBar.z
         if (z11 && ((iVar.length() != 0 || ((c2Var2 = this.h) != null && c2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (iVar.length() <= 0 && ((c2Var = this.h) == null || c2Var.f33088w3 <= 0.5f || ((c2Var == null || !c2Var.f33083r3) && c2Var.getSelectedCategory() == null))) {
+        if (iVar.length() <= 0 && ((c2Var = this.h) == null || c2Var.f33091w3 <= 0.5f || ((c2Var == null || !c2Var.f33086r3) && c2Var.getSelectedCategory() == null))) {
             i7 = 0;
         } else {
             i7 = 1;

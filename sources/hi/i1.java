@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.ui.Components.w61;
 import org.telegram.ui.an;
-import org.telegram.ui.cm0;
+import org.telegram.ui.dm0;
 import org.telegram.ui.e81;
-import org.telegram.ui.im0;
+import org.telegram.ui.jm0;
 import org.telegram.ui.jy0;
 import org.telegram.ui.ly0;
 import org.telegram.ui.my0;
@@ -93,7 +93,7 @@ public final class i1 extends w61 {
         switch (this.W) {
             case 2:
                 if (getCurrentPosition() == 1) {
-                    ((li.d0) this.f14402a0).f19548v1.d.f39895g3.O(false);
+                    ((li.d0) this.f14402a0).f19548v1.d.f39892g3.O(false);
                     return;
                 }
                 return;
@@ -107,7 +107,7 @@ public final class i1 extends w61 {
         jy0 jy0Var;
         switch (this.W) {
             case 6:
-                if ((getCurrentView() instanceof ly0) && (jy0Var = ((ly0) getCurrentView()).f49066n) != null) {
+                if ((getCurrentView() instanceof ly0) && (jy0Var = ((ly0) getCurrentView()).f49062n) != null) {
                     org.telegram.messenger.g0.v1(jy0Var);
                     return;
                 }
@@ -140,23 +140,23 @@ public final class i1 extends w61 {
                 return;
             case 3:
                 an anVar = (an) this.f14402a0;
-                anVar.f45278m1.getClass();
-                anVar.f45278m1.getClass();
+                anVar.f45277m1.getClass();
+                anVar.f45277m1.getClass();
                 anVar.A7();
                 return;
             case 4:
-                im0 im0Var = (im0) this.f14402a0;
-                float positionAnimated = im0Var.J.getPositionAnimated();
-                im0Var.N.setSelected(positionAnimated);
-                im0Var.f48091e.setProgressToGradient(1.0f - c8.i9.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
-                im0Var.K0();
-                cm0 H0 = im0Var.H0();
-                d dVar = im0Var.R;
-                if (dVar != null && H0 != null && H0 != im0Var.S) {
-                    im0Var.S = H0;
-                    ji.j jVar = H0.f46196e;
+                jm0 jm0Var = (jm0) this.f14402a0;
+                float positionAnimated = jm0Var.J.getPositionAnimated();
+                jm0Var.N.setSelected(positionAnimated);
+                jm0Var.f48375e.setProgressToGradient(1.0f - c8.i9.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                jm0Var.K0();
+                dm0 H0 = jm0Var.H0();
+                d dVar = jm0Var.R;
+                if (dVar != null && H0 != null && H0 != jm0Var.S) {
+                    jm0Var.S = H0;
+                    ji.j jVar = H0.f46405e;
                     dVar.i((CharSequence) jVar.f17555b, true, true);
-                    im0Var.R.g((SpannableStringBuilder) jVar.f17556c, true);
+                    jm0Var.R.g((SpannableStringBuilder) jVar.f17556c, true);
                     return;
                 }
                 return;

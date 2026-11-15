@@ -63,7 +63,7 @@ public abstract class x extends FrameLayout implements g4 {
         int i15 = d2 + d;
         int i16 = this.d;
         int i17 = this.f22110f;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             setPadding(i16 + i15, i10, i17 + i14, i13);
         } else {
             setPadding(i16 + i14, i10, i17 + i15, i13);
@@ -76,7 +76,7 @@ public abstract class x extends FrameLayout implements g4 {
         this.f22110f = i11;
         this.h = i12;
         int i13 = this.f22108c;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             setPadding(i7, i10, i11 + i13, i12);
         } else {
             setPadding(i7 + i13, i10, i11, i12);

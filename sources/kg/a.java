@@ -45,36 +45,36 @@ public final class a implements x10, org.telegram.ui.ActionBar.q1 {
             if (i7 != 2 && b41Var.f56015a != 17) {
                 if (i7 == 1) {
                     cVar.f17883r = !cVar.f17883r;
-                    cVar.f17878b.f39895g3.O(true);
+                    cVar.f17878b.f39892g3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 6) {
                     a0 a0Var = cVar.f17879c;
                     cVar.f17884s = true;
                     a0Var.h = true;
-                    cVar.f17878b.f39895g3.O(true);
+                    cVar.f17878b.f39892g3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 7) {
                     a0 a0Var2 = cVar.f17879c;
                     cVar.f17884s = false;
                     a0Var2.h = false;
-                    cVar.f17878b.f39895g3.O(true);
+                    cVar.f17878b.f39892g3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 3) {
                     cVar.f17886x = 0;
-                    cVar.f17878b.f39895g3.O(true);
+                    cVar.f17878b.f39892g3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 4) {
                     cVar.f17886x = 1;
-                    cVar.f17878b.f39895g3.O(true);
+                    cVar.f17878b.f39892g3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 5) {
                     cVar.f17886x = 2;
-                    cVar.f17878b.f39895g3.O(true);
+                    cVar.f17878b.f39892g3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 8) {

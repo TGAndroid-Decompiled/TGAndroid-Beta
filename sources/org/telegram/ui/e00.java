@@ -3,9 +3,9 @@ package org.telegram.ui;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
 public final class e00 extends rg.a {
-    public CharSequence f46514c;
+    public CharSequence f46504c;
     public org.telegram.messenger.so d;
-    public TLRPC.TL_dialogFilterSuggested f46515e;
+    public TLRPC.TL_dialogFilterSuggested f46505e;
 
     public final boolean equals(Object obj) {
         boolean z10;
@@ -24,7 +24,7 @@ public final class e00 extends rg.a {
         if (i7 != i10) {
             return false;
         }
-        if ((i10 == 0 || i10 == 4 || i10 == 3 || i10 == 6) && !TextUtils.equals(this.f46514c, e00Var.f46514c)) {
+        if ((i10 == 0 || i10 == 4 || i10 == 3 || i10 == 6) && !TextUtils.equals(this.f46504c, e00Var.f46504c)) {
             return false;
         }
         int i11 = this.f56015a;
@@ -44,18 +44,18 @@ public final class e00 extends rg.a {
             if (z12 != z13) {
                 return false;
             }
-            if (soVar != null && soVar.f26542a != soVar2.f26542a) {
+            if (soVar != null && soVar.f26552a != soVar2.f26552a) {
                 return false;
             }
         }
         if (i11 == 5) {
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f46515e;
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f46505e;
             if (tL_dialogFilterSuggested == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = e00Var.f46515e;
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = e00Var.f46505e;
             if (tL_dialogFilterSuggested2 == null) {
                 z11 = true;
             } else {

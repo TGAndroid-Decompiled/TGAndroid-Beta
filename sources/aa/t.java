@@ -75,7 +75,7 @@ public final class t {
     }
 
     public final void b(ia.c cVar) {
-        Future<?> submit = this.f865n.f3090a.f3087a.submit(new q(this, cVar, 1));
+        Future<?> submit = this.f865n.f3093a.f3090a.submit(new q(this, cVar, 1));
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.", null);
         }

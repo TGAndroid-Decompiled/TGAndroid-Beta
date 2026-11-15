@@ -61,7 +61,7 @@ public final class h {
         char c10 = f10.f55555a;
         ca.i iVar = (ca.i) this.f55544b;
         iVar.j(c10);
-        iVar.f4840b = true;
+        iVar.f4843b = true;
         String str = (String) this.f55548g;
         if (str != null) {
             String str2 = (String) this.h;
@@ -92,7 +92,7 @@ public final class h {
         if (ordinal != 1) {
             if (ordinal != 2) {
                 if (ordinal != 3) {
-                    if (!iVar.f4840b) {
+                    if (!iVar.f4843b) {
                         iVar.j(',');
                     }
                     iVar.i();
@@ -112,7 +112,7 @@ public final class h {
                     return;
                 }
                 return;
-            } else if (!iVar.f4840b) {
+            } else if (!iVar.f4843b) {
                 if (i7 % 2 == 0) {
                     iVar.j(',');
                     iVar.i();
@@ -129,7 +129,7 @@ public final class h {
                 return;
             }
         }
-        if (!iVar.f4840b) {
+        if (!iVar.f4843b) {
             iVar.j(',');
         }
         iVar.i();
@@ -139,7 +139,7 @@ public final class h {
         if (this.f55543a) {
             j(String.valueOf(i7));
         } else {
-            ((mc.a) ((ca.i) this.f55544b).f4841c).c(String.valueOf(i7));
+            ((mc.a) ((ca.i) this.f55544b).f4844c).c(String.valueOf(i7));
         }
     }
 
@@ -147,7 +147,7 @@ public final class h {
         if (this.f55543a) {
             j(String.valueOf(j3));
         } else {
-            ((mc.a) ((ca.i) this.f55544b).f4841c).c(String.valueOf(j3));
+            ((mc.a) ((ca.i) this.f55544b).f4844c).c(String.valueOf(j3));
         }
     }
 
@@ -161,7 +161,7 @@ public final class h {
         ca.i iVar = (ca.i) this.f55544b;
         iVar.getClass();
         kotlin.jvm.internal.j.e("null", "v");
-        ((mc.a) iVar.f4841c).c("null");
+        ((mc.a) iVar.f4844c).c("null");
     }
 
     public void g(me.d descriptor, int i7, ke.a serializer, Object obj) {
@@ -199,7 +199,7 @@ public final class h {
         ca.i iVar = (ca.i) this.f55544b;
         iVar.getClass();
         kotlin.jvm.internal.j.e(value, "value");
-        mc.a aVar = (mc.a) iVar.f4841c;
+        mc.a aVar = (mc.a) iVar.f4844c;
         aVar.a(aVar.f20602c, value.length() + 2);
         char[] cArr = aVar.f20601b;
         int i10 = aVar.f20602c;
@@ -268,7 +268,7 @@ public final class h {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         ca.i iVar = (ca.i) this.f55544b;
         iVar.getClass();
-        iVar.f4840b = false;
+        iVar.f4843b = false;
         iVar.j(((j) this.d).f55556b);
     }
 
@@ -384,7 +384,7 @@ public final class h {
                     if (d != null) {
                         r0Var3.getClass();
                         x.b();
-                        r0Var3.f6927f = null;
+                        r0Var3.f6930f = null;
                         r0Var3.h(null);
                         eVar.m(d, null);
                         eVar.f56353a.b(514, d);

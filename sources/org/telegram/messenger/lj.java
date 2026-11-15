@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class lj {
-    public final cg.a f24838a;
-    public final long f24839b;
+    public final cg.a f24844a;
+    public final long f24845b;
 
     public lj(cg.a aVar, long j3) {
-        this.f24838a = aVar;
-        this.f24839b = j3;
+        this.f24844a = aVar;
+        this.f24845b = j3;
     }
 
     public static lj a() {
-        return new lj(cg.a.g(0L, cg.b.f4987a), 0L);
+        return new lj(cg.a.g(0L, cg.b.f4990a), 0L);
     }
 
     public static lj b(TLRPC.SuggestedPost suggestedPost) {
@@ -23,11 +23,11 @@ public final class lj {
 
     public final TLRPC.SuggestedPost c() {
         TLRPC.SuggestedPost suggestedPost = new TLRPC.SuggestedPost();
-        cg.a aVar = this.f24838a;
+        cg.a aVar = this.f24844a;
         if (aVar != null && !aVar.k()) {
             suggestedPost.price = aVar.o();
         }
-        long j3 = this.f24839b;
+        long j3 = this.f24845b;
         if (j3 > 0) {
             suggestedPost.schedule_date = (int) j3;
             suggestedPost.flags |= 1;

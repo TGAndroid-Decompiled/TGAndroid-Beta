@@ -13,33 +13,33 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import java.util.ArrayList;
 public final class kc {
-    public static final int[] f36371p = {16842910, 16842919};
-    public iq f36372a;
-    public final ArrayList f36373b = new ArrayList();
-    public int f36374c;
+    public static final int[] f36359p = {16842910, 16842919};
+    public iq f36360a;
+    public final ArrayList f36361b = new ArrayList();
+    public int f36362c;
     public boolean d;
-    public final org.telegram.ui.Cells.y f36375e;
-    public final View f36376f;
-    public final Paint f36377g;
+    public final org.telegram.ui.Cells.y f36363e;
+    public final View f36364f;
+    public final Paint f36365g;
     public Runnable h;
-    public boolean f36378i;
-    public Runnable f36379j;
-    public final j6.o f36380k;
-    public boolean f36381l;
-    public final CornerPathEffect f36382m;
-    public boolean f36383n;
-    public final Paint f36384o;
+    public boolean f36366i;
+    public Runnable f36367j;
+    public final j6.o f36368k;
+    public boolean f36369l;
+    public final CornerPathEffect f36370m;
+    public boolean f36371n;
+    public final Paint f36372o;
 
     public kc(View view) {
         Paint paint = new Paint(1);
-        this.f36377g = paint;
-        this.f36380k = new j6.o(this, 29);
-        this.f36376f = view;
+        this.f36365g = paint;
+        this.f36368k = new j6.o(this, 29);
+        this.f36364f = view;
         CornerPathEffect cornerPathEffect = new CornerPathEffect(org.telegram.messenger.g0.L(12.0f));
-        this.f36382m = cornerPathEffect;
+        this.f36370m = cornerPathEffect;
         paint.setPathEffect(cornerPathEffect);
         Paint paint2 = new Paint(1);
-        this.f36384o = paint2;
+        this.f36372o = paint2;
         paint2.setFilterBitmap(true);
         paint2.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(12.0f)));
         paint2.setColor(-1);
@@ -47,18 +47,18 @@ public final class kc {
         paint3.setFilterBitmap(true);
         paint3.setColor(-1);
         ?? rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28941i6, false) & 436207615}), null, new jc(this, paint3));
-        this.f36375e = rippleDrawable;
+        this.f36363e = rippleDrawable;
         rippleDrawable.setCallback(view);
     }
 
     public final void a(RectF rectF) {
-        int i7 = this.f36374c + 1;
-        this.f36374c = i7;
-        ArrayList arrayList = this.f36373b;
+        int i7 = this.f36362c + 1;
+        this.f36362c = i7;
+        ArrayList arrayList = this.f36361b;
         if (i7 > arrayList.size()) {
             arrayList.add(new RectF());
         }
-        ((RectF) arrayList.get(this.f36374c - 1)).set(rectF);
+        ((RectF) arrayList.get(this.f36362c - 1)).set(rectF);
     }
 
     public final boolean b(MotionEvent motionEvent) {
@@ -66,21 +66,21 @@ public final class kc {
         int x10 = (int) motionEvent.getX();
         int y10 = (int) motionEvent.getY();
         int action = motionEvent.getAction();
-        View view = this.f36376f;
-        j6.o oVar = this.f36380k;
-        org.telegram.ui.Cells.y yVar = this.f36375e;
+        View view = this.f36364f;
+        j6.o oVar = this.f36368k;
+        org.telegram.ui.Cells.y yVar = this.f36363e;
         if (action == 0) {
-            for (int i7 = 0; i7 < this.f36374c; i7++) {
+            for (int i7 = 0; i7 < this.f36362c; i7++) {
                 float f10 = x10;
                 float f11 = y10;
-                if (((RectF) this.f36373b.get(i7)).contains(f10, f11)) {
+                if (((RectF) this.f36361b.get(i7)).contains(f10, f11)) {
                     this.d = true;
                     if (yVar != null) {
                         yVar.setHotspot(f10, f11);
-                        yVar.setState(f36371p);
+                        yVar.setState(f36359p);
                     }
                     org.telegram.messenger.g0.r(oVar);
-                    if (this.f36381l) {
+                    if (this.f36369l) {
                         org.telegram.messenger.g0.i3(oVar, ViewConfiguration.getLongPressTimeout());
                     }
                     view.invalidate();
@@ -109,16 +109,16 @@ public final class kc {
     }
 
     public final void c(Canvas canvas, Paint paint) {
-        int i7 = this.f36374c;
-        CornerPathEffect cornerPathEffect = this.f36382m;
-        org.telegram.ui.Cells.y yVar = this.f36375e;
+        int i7 = this.f36362c;
+        CornerPathEffect cornerPathEffect = this.f36370m;
+        org.telegram.ui.Cells.y yVar = this.f36363e;
         int i10 = 0;
-        ArrayList arrayList = this.f36373b;
+        ArrayList arrayList = this.f36361b;
         if (i7 > 1) {
-            if (!this.f36378i) {
-                iq iqVar = this.f36372a;
+            if (!this.f36366i) {
+                iq iqVar = this.f36360a;
                 if (iqVar == null) {
-                    this.f36372a = new iq(0);
+                    this.f36360a = new iq(0);
                 } else {
                     iqVar.rewind();
                 }
@@ -127,7 +127,7 @@ public final class kc {
                 int i13 = 0;
                 int i14 = 0;
                 while (true) {
-                    int i15 = this.f36374c;
+                    int i15 = this.f36362c;
                     if (i10 >= i15) {
                         break;
                     }
@@ -153,17 +153,17 @@ public final class kc {
                     if (i10 == 0 || ((RectF) arrayList.get(i10)).top < i14) {
                         i14 = (int) ((RectF) arrayList.get(i10)).top;
                     }
-                    this.f36372a.addRect((RectF) arrayList.get(i10), Path.Direction.CCW);
+                    this.f36360a.addRect((RectF) arrayList.get(i10), Path.Direction.CCW);
                     if (yVar != null) {
                         yVar.setBounds(i13, i14, i12, i11);
                     }
                     i10 = i16;
                 }
-                this.f36372a.a();
-                this.f36378i = true;
+                this.f36360a.a();
+                this.f36366i = true;
             }
             paint.setPathEffect(cornerPathEffect);
-            iq iqVar2 = this.f36372a;
+            iq iqVar2 = this.f36360a;
             if (iqVar2 != null) {
                 canvas.drawPath(iqVar2, paint);
             }
@@ -171,7 +171,7 @@ public final class kc {
             if (yVar != null) {
                 yVar.setBounds((int) ((RectF) arrayList.get(0)).left, (int) ((RectF) arrayList.get(0)).top, (int) ((RectF) arrayList.get(0)).right, (int) ((RectF) arrayList.get(0)).bottom);
             }
-            if (this.f36383n) {
+            if (this.f36371n) {
                 paint.setPathEffect(null);
                 float min = Math.min(((RectF) arrayList.get(0)).width(), ((RectF) arrayList.get(0)).height()) / 2.0f;
                 canvas.drawRoundRect((RectF) arrayList.get(0), min, min, paint);
@@ -183,8 +183,8 @@ public final class kc {
     }
 
     public final void d(int i7) {
-        this.f36377g.setColor(i7);
-        org.telegram.ui.Cells.y yVar = this.f36375e;
+        this.f36365g.setColor(i7);
+        org.telegram.ui.Cells.y yVar = this.f36363e;
         if (yVar != null) {
             org.telegram.ui.ActionBar.j6.H1(yVar, i7, true);
         }

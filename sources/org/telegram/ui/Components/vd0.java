@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class vd0 extends LinearLayout {
-    public final int f40382a = 0;
-    public final LinearLayout f40383b;
-    public final LinearLayout f40384c;
+    public final int f40385a = 0;
+    public final LinearLayout f40386b;
+    public final LinearLayout f40387c;
 
     public vd0(Context context) {
         super(context);
@@ -16,10 +16,10 @@ public final class vd0 extends LinearLayout {
         setGravity(17);
         setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
         LinearLayout a10 = a(2131232332, org.telegram.messenger.hd.M0(2131746271, null));
-        this.f40384c = a10;
+        this.f40387c = a10;
         addView(a10, c8.ja.o(-2, -1));
         LinearLayout a11 = a(2131231728, org.telegram.messenger.hd.M0(2131751335, null));
-        this.f40383b = a11;
+        this.f40386b = a11;
         addView(a11, c8.ja.o(-2, -1));
     }
 
@@ -43,9 +43,9 @@ public final class vd0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        switch (this.f40382a) {
+        switch (this.f40385a) {
             case 0:
-                LinearLayout linearLayout = this.f40383b;
+                LinearLayout linearLayout = this.f40386b;
                 ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
                 ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
                 int size = View.MeasureSpec.getSize(i7);
@@ -56,7 +56,7 @@ public final class vd0 extends LinearLayout {
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
                 int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
                 linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
-                LinearLayout linearLayout2 = this.f40384c;
+                LinearLayout linearLayout2 = this.f40387c;
                 linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
                 int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
                 layoutParams2.width = min;
@@ -66,9 +66,9 @@ public final class vd0 extends LinearLayout {
             default:
                 int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), Integer.MIN_VALUE);
                 int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(0, 0);
-                LinearLayout linearLayout3 = this.f40383b;
+                LinearLayout linearLayout3 = this.f40386b;
                 linearLayout3.measure(makeMeasureSpec3, makeMeasureSpec4);
-                LinearLayout linearLayout4 = this.f40384c;
+                LinearLayout linearLayout4 = this.f40387c;
                 if (linearLayout4 != null) {
                     linearLayout4.measure(View.MeasureSpec.makeMeasureSpec(linearLayout3.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
                     setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout4.getMeasuredHeight() + linearLayout3.getMeasuredHeight());
@@ -81,7 +81,7 @@ public final class vd0 extends LinearLayout {
 
     public vd0(Context context, LinearLayout linearLayout, LinearLayout linearLayout2) {
         super(context);
-        this.f40383b = linearLayout;
-        this.f40384c = linearLayout2;
+        this.f40386b = linearLayout;
+        this.f40387c = linearLayout2;
     }
 }

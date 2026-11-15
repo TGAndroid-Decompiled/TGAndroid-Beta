@@ -28,7 +28,7 @@ public final class a extends k implements rd.a {
             default:
                 Context applicationContext = this.f21218c;
                 j.d(applicationContext, "applicationContext");
-                String name = (String) ((s0) this.d).f6840a;
+                String name = (String) ((s0) this.d).f6843a;
                 j.e(name, "name");
                 return e1.a(applicationContext, name.concat(".preferences_pb"));
         }

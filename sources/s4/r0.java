@@ -40,9 +40,9 @@ public final class r0 extends h3 implements ServiceConnection {
     @Override
     public final p c(String str) {
         if (str != null) {
-            ca.i iVar = (ca.i) this.f6928n;
+            ca.i iVar = (ca.i) this.f6931n;
             if (iVar != null) {
-                List list = (List) iVar.f4841c;
+                List list = (List) iVar.f4844c;
                 int size = list.size();
                 for (int i7 = 0; i7 < size; i7++) {
                     if (((m) list.get(i7)).d().equals(str)) {
@@ -109,16 +109,16 @@ public final class r0 extends h3 implements ServiceConnection {
                 } else {
                     i7 = 1;
                 }
-                this.f56455y = this.f6923a.bindService(intent, this, i7);
+                this.f56455y = this.f6926a.bindService(intent, this, i7);
             } catch (SecurityException unused) {
             }
         }
     }
 
     public final q0 o(String str, String str2) {
-        ca.i iVar = (ca.i) this.f6928n;
+        ca.i iVar = (ca.i) this.f6931n;
         if (iVar != null) {
-            List list = (List) iVar.f4841c;
+            List list = (List) iVar.f4844c;
             int size = list.size();
             for (int i7 = 0; i7 < size; i7++) {
                 if (((m) list.get(i7)).d().equals(str)) {
@@ -200,7 +200,7 @@ public final class r0 extends h3 implements ServiceConnection {
             this.f56455y = false;
             p();
             try {
-                this.f6923a.unbindService(this);
+                this.f6926a.unbindService(this);
             } catch (IllegalArgumentException e10) {
                 Log.e("MediaRouteProviderProxy", this + ": unbindService failed", e10);
             }

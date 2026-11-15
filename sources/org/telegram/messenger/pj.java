@@ -11,19 +11,19 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class pj implements RequestDelegate {
-    public final int f25936a;
-    public final np f25937b;
+    public final int f25938a;
+    public final np f25939b;
 
     public pj(np npVar, int i7) {
-        this.f25936a = i7;
-        this.f25937b = npVar;
+        this.f25938a = i7;
+        this.f25939b = npVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f25936a) {
+        switch (this.f25938a) {
             case 0:
-                np npVar = this.f25937b;
+                np npVar = this.f25939b;
                 ConcurrentHashMap concurrentHashMap = npVar.Q;
                 ConcurrentHashMap concurrentHashMap2 = npVar.P;
                 if (tLObject != null) {
@@ -80,12 +80,12 @@ public final class pj implements RequestDelegate {
             case 1:
                 if (tL_error == null && (tLObject instanceof TLRPC.TL_messages_affectedMessages)) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    this.f25937b.M3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
+                    this.f25939b.M3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
                     return;
                 }
                 return;
             case 2:
-                np npVar2 = this.f25937b;
+                np npVar2 = this.f25939b;
                 npVar2.getClass();
                 if (tLObject != null) {
                     npVar2.O3((TLRPC.Updates) tLObject, false);
@@ -93,7 +93,7 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 3:
-                np npVar3 = this.f25937b;
+                np npVar3 = this.f25939b;
                 npVar3.F2 = false;
                 if (tLObject instanceof TLRPC.TL_help_termsOfServiceUpdateEmpty) {
                     npVar3.G2 = ((TLRPC.TL_help_termsOfServiceUpdateEmpty) tLObject).expires;
@@ -104,11 +104,11 @@ public final class pj implements RequestDelegate {
                 } else {
                     npVar3.G2 = npVar3.getConnectionsManager().getCurrentTime() + 3600;
                 }
-                npVar3.f25270e7.edit().putInt("nextTosCheckTime", npVar3.G2).commit();
+                npVar3.f25273e7.edit().putInt("nextTosCheckTime", npVar3.G2).commit();
                 return;
             case 4:
                 if (tL_error == null) {
-                    final np npVar4 = this.f25937b;
+                    final np npVar4 = this.f25939b;
                     g0.h3(new Runnable() {
                         @Override
                         public final void run() {
@@ -124,7 +124,7 @@ public final class pj implements RequestDelegate {
                                 case 0:
                                     if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                         TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                        SharedPreferences.Editor edit = npVar5.f25270e7.edit();
+                                        SharedPreferences.Editor edit = npVar5.f25273e7.edit();
                                         if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                             z10 = true;
                                         } else {
@@ -160,8 +160,8 @@ public final class pj implements RequestDelegate {
                                     npVar5.getNotificationCenter().k(186, new Object[0]);
                                     return;
                                 case 2:
-                                    npVar5.f25396t2 = false;
-                                    SharedPreferences.Editor edit2 = npVar5.f25270e7.edit();
+                                    npVar5.f25399t2 = false;
+                                    SharedPreferences.Editor edit2 = npVar5.f25273e7.edit();
                                     edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                     edit2.commit();
                                     npVar5.getUserConfig().U = true;
@@ -171,16 +171,16 @@ public final class pj implements RequestDelegate {
                                     TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                     npVar5.Y3(tL_help_recentMeUrls.users, false);
                                     npVar5.S3(tL_help_recentMeUrls.chats, false);
-                                    ArrayList arrayList3 = npVar5.f25385s;
+                                    ArrayList arrayList3 = npVar5.f25388s;
                                     arrayList3.clear();
                                     arrayList3.addAll(tL_help_recentMeUrls.urls);
                                     npVar5.getNotificationCenter().k(3, new Object[0]);
                                     return;
                                 case 4:
-                                    npVar5.f25388s2--;
+                                    npVar5.f25391s2--;
                                     if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                         TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                        SharedPreferences.Editor edit3 = npVar5.f25270e7.edit();
+                                        SharedPreferences.Editor edit3 = npVar5.f25273e7.edit();
                                         if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                             z11 = true;
                                         } else {
@@ -205,7 +205,7 @@ public final class pj implements RequestDelegate {
                                         npVar5.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                         edit3.apply();
                                     }
-                                    if (npVar5.f25388s2 == 0) {
+                                    if (npVar5.f25391s2 == 0) {
                                         npVar5.getUserConfig().T = true;
                                         npVar5.getUserConfig().v(false);
                                         return;
@@ -213,33 +213,33 @@ public final class pj implements RequestDelegate {
                                     return;
                                 case 5:
                                     if (tLObject2 instanceof TL_account.contentSettings) {
-                                        npVar5.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                        npVar5.f25339m8 = System.currentTimeMillis();
+                                        npVar5.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                        npVar5.f25342m8 = System.currentTimeMillis();
                                     }
-                                    npVar5.f25323k8 = false;
-                                    TL_account.contentSettings contentsettings = npVar5.f25348n8;
+                                    npVar5.f25326k8 = false;
+                                    TL_account.contentSettings contentsettings = npVar5.f25351n8;
                                     if (contentsettings != null && (set = npVar5.D4) != null) {
                                         if (contentsettings.sensitive_enabled) {
                                             set.add("sensitive");
                                         } else {
                                             set.remove("sensitive");
                                         }
-                                        SharedPreferences sharedPreferences = npVar5.f25280f7;
+                                        SharedPreferences sharedPreferences = npVar5.f25283f7;
                                         if (sharedPreferences != null) {
                                             sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar5.D4).apply();
                                         }
                                     }
-                                    ArrayList arrayList4 = npVar5.f25331l8;
+                                    ArrayList arrayList4 = npVar5.f25334l8;
                                     if (arrayList4 != null) {
                                         int size = arrayList4.size();
                                         int i11 = 0;
                                         while (i11 < size) {
                                             Object obj = arrayList4.get(i11);
                                             i11++;
-                                            ((z10) obj).a(npVar5.f25348n8);
+                                            ((z10) obj).a(npVar5.f25351n8);
                                         }
-                                        npVar5.f25331l8.clear();
-                                        npVar5.f25331l8 = null;
+                                        npVar5.f25334l8.clear();
+                                        npVar5.f25334l8 = null;
                                     }
                                     npVar5.getNotificationCenter().k(243, new Object[0]);
                                     return;
@@ -275,10 +275,10 @@ public final class pj implements RequestDelegate {
                                                 }
                                                 i12++;
                                             } else {
-                                                npVar6.getUserConfig().f24963x = true;
+                                                npVar6.getUserConfig().f24969x = true;
                                                 npVar6.getUserConfig().v(false);
                                                 npVar6.getNotificationCenter().k(2, 256);
-                                                npVar6.f25265e2 = false;
+                                                npVar6.f25268e2 = false;
                                                 return;
                                             }
                                         }
@@ -295,12 +295,12 @@ public final class pj implements RequestDelegate {
             case 5:
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages2 = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    this.f25937b.M3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
+                    this.f25939b.M3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
                     return;
                 }
                 return;
             case 6:
-                final np npVar5 = this.f25937b;
+                final np npVar5 = this.f25939b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -316,7 +316,7 @@ public final class pj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -352,8 +352,8 @@ public final class pj implements RequestDelegate {
                                 npVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                npVar52.f25396t2 = false;
-                                SharedPreferences.Editor edit2 = npVar52.f25270e7.edit();
+                                npVar52.f25399t2 = false;
+                                SharedPreferences.Editor edit2 = npVar52.f25273e7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 npVar52.getUserConfig().U = true;
@@ -363,16 +363,16 @@ public final class pj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 npVar52.Y3(tL_help_recentMeUrls.users, false);
                                 npVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList3 = npVar52.f25385s;
+                                ArrayList arrayList3 = npVar52.f25388s;
                                 arrayList3.clear();
                                 arrayList3.addAll(tL_help_recentMeUrls.urls);
                                 npVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                npVar52.f25388s2--;
+                                npVar52.f25391s2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit3 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z11 = true;
                                     } else {
@@ -397,7 +397,7 @@ public final class pj implements RequestDelegate {
                                     npVar52.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (npVar52.f25388s2 == 0) {
+                                if (npVar52.f25391s2 == 0) {
                                     npVar52.getUserConfig().T = true;
                                     npVar52.getUserConfig().v(false);
                                     return;
@@ -405,33 +405,33 @@ public final class pj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    npVar52.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                    npVar52.f25339m8 = System.currentTimeMillis();
+                                    npVar52.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                    npVar52.f25342m8 = System.currentTimeMillis();
                                 }
-                                npVar52.f25323k8 = false;
-                                TL_account.contentSettings contentsettings = npVar52.f25348n8;
+                                npVar52.f25326k8 = false;
+                                TL_account.contentSettings contentsettings = npVar52.f25351n8;
                                 if (contentsettings != null && (set = npVar52.D4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = npVar52.f25280f7;
+                                    SharedPreferences sharedPreferences = npVar52.f25283f7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar52.D4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = npVar52.f25331l8;
+                                ArrayList arrayList4 = npVar52.f25334l8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((z10) obj).a(npVar52.f25348n8);
+                                        ((z10) obj).a(npVar52.f25351n8);
                                     }
-                                    npVar52.f25331l8.clear();
-                                    npVar52.f25331l8 = null;
+                                    npVar52.f25334l8.clear();
+                                    npVar52.f25334l8 = null;
                                 }
                                 npVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -467,10 +467,10 @@ public final class pj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            npVar6.getUserConfig().f24963x = true;
+                                            npVar6.getUserConfig().f24969x = true;
                                             npVar6.getUserConfig().v(false);
                                             npVar6.getNotificationCenter().k(2, 256);
-                                            npVar6.f25265e2 = false;
+                                            npVar6.f25268e2 = false;
                                             return;
                                         }
                                     }
@@ -483,7 +483,7 @@ public final class pj implements RequestDelegate {
                 });
                 return;
             case 7:
-                np npVar6 = this.f25937b;
+                np npVar6 = this.f25939b;
                 npVar6.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList2 = ((Vector) tLObject).objects;
@@ -498,7 +498,7 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 8:
-                np npVar7 = this.f25937b;
+                np npVar7 = this.f25939b;
                 npVar7.getClass();
                 if (tLObject != null) {
                     npVar7.O3((TLRPC.Updates) tLObject, false);
@@ -506,7 +506,7 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 9:
-                np npVar8 = this.f25937b;
+                np npVar8 = this.f25939b;
                 if (tL_error == null) {
                     npVar8.getClass();
                     npVar8.K2 = System.currentTimeMillis();
@@ -521,7 +521,7 @@ public final class pj implements RequestDelegate {
                 npVar8.L2 = 0;
                 return;
             case 10:
-                np npVar9 = this.f25937b;
+                np npVar9 = this.f25939b;
                 if (tL_error == null) {
                     npVar9.N2 = true;
                 } else {
@@ -533,7 +533,7 @@ public final class pj implements RequestDelegate {
                 npVar9.L2 = 0;
                 return;
             case 11:
-                final np npVar10 = this.f25937b;
+                final np npVar10 = this.f25939b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -549,7 +549,7 @@ public final class pj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -585,8 +585,8 @@ public final class pj implements RequestDelegate {
                                 npVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                npVar52.f25396t2 = false;
-                                SharedPreferences.Editor edit2 = npVar52.f25270e7.edit();
+                                npVar52.f25399t2 = false;
+                                SharedPreferences.Editor edit2 = npVar52.f25273e7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 npVar52.getUserConfig().U = true;
@@ -596,16 +596,16 @@ public final class pj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 npVar52.Y3(tL_help_recentMeUrls.users, false);
                                 npVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = npVar52.f25385s;
+                                ArrayList arrayList32 = npVar52.f25388s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 npVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                npVar52.f25388s2--;
+                                npVar52.f25391s2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit3 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z11 = true;
                                     } else {
@@ -630,7 +630,7 @@ public final class pj implements RequestDelegate {
                                     npVar52.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (npVar52.f25388s2 == 0) {
+                                if (npVar52.f25391s2 == 0) {
                                     npVar52.getUserConfig().T = true;
                                     npVar52.getUserConfig().v(false);
                                     return;
@@ -638,33 +638,33 @@ public final class pj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    npVar52.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                    npVar52.f25339m8 = System.currentTimeMillis();
+                                    npVar52.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                    npVar52.f25342m8 = System.currentTimeMillis();
                                 }
-                                npVar52.f25323k8 = false;
-                                TL_account.contentSettings contentsettings = npVar52.f25348n8;
+                                npVar52.f25326k8 = false;
+                                TL_account.contentSettings contentsettings = npVar52.f25351n8;
                                 if (contentsettings != null && (set = npVar52.D4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = npVar52.f25280f7;
+                                    SharedPreferences sharedPreferences = npVar52.f25283f7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar52.D4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = npVar52.f25331l8;
+                                ArrayList arrayList4 = npVar52.f25334l8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((z10) obj).a(npVar52.f25348n8);
+                                        ((z10) obj).a(npVar52.f25351n8);
                                     }
-                                    npVar52.f25331l8.clear();
-                                    npVar52.f25331l8 = null;
+                                    npVar52.f25334l8.clear();
+                                    npVar52.f25334l8 = null;
                                 }
                                 npVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -700,10 +700,10 @@ public final class pj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            npVar62.getUserConfig().f24963x = true;
+                                            npVar62.getUserConfig().f24969x = true;
                                             npVar62.getUserConfig().v(false);
                                             npVar62.getNotificationCenter().k(2, 256);
-                                            npVar62.f25265e2 = false;
+                                            npVar62.f25268e2 = false;
                                             return;
                                         }
                                     }
@@ -716,7 +716,7 @@ public final class pj implements RequestDelegate {
                 });
                 return;
             case 12:
-                np npVar11 = this.f25937b;
+                np npVar11 = this.f25939b;
                 npVar11.getClass();
                 if (tLObject != null) {
                     npVar11.O3((TLRPC.Updates) tLObject, false);
@@ -726,14 +726,14 @@ public final class pj implements RequestDelegate {
                 return;
             case 13:
                 if (tLObject != null) {
-                    np npVar12 = this.f25937b;
+                    np npVar12 = this.f25939b;
                     npVar12.O3((TLRPC.Updates) tLObject, false);
                     g0.h3(new tj(npVar12, 29));
                     return;
                 }
                 return;
             case 14:
-                np npVar13 = this.f25937b;
+                np npVar13 = this.f25939b;
                 npVar13.getClass();
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages3 = (TLRPC.TL_messages_affectedMessages) tLObject;
@@ -742,7 +742,7 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 15:
-                final np npVar14 = this.f25937b;
+                final np npVar14 = this.f25939b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -758,7 +758,7 @@ public final class pj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -794,8 +794,8 @@ public final class pj implements RequestDelegate {
                                 npVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                npVar52.f25396t2 = false;
-                                SharedPreferences.Editor edit2 = npVar52.f25270e7.edit();
+                                npVar52.f25399t2 = false;
+                                SharedPreferences.Editor edit2 = npVar52.f25273e7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 npVar52.getUserConfig().U = true;
@@ -805,16 +805,16 @@ public final class pj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 npVar52.Y3(tL_help_recentMeUrls.users, false);
                                 npVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = npVar52.f25385s;
+                                ArrayList arrayList32 = npVar52.f25388s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 npVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                npVar52.f25388s2--;
+                                npVar52.f25391s2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit3 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z11 = true;
                                     } else {
@@ -839,7 +839,7 @@ public final class pj implements RequestDelegate {
                                     npVar52.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (npVar52.f25388s2 == 0) {
+                                if (npVar52.f25391s2 == 0) {
                                     npVar52.getUserConfig().T = true;
                                     npVar52.getUserConfig().v(false);
                                     return;
@@ -847,33 +847,33 @@ public final class pj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    npVar52.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                    npVar52.f25339m8 = System.currentTimeMillis();
+                                    npVar52.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                    npVar52.f25342m8 = System.currentTimeMillis();
                                 }
-                                npVar52.f25323k8 = false;
-                                TL_account.contentSettings contentsettings = npVar52.f25348n8;
+                                npVar52.f25326k8 = false;
+                                TL_account.contentSettings contentsettings = npVar52.f25351n8;
                                 if (contentsettings != null && (set = npVar52.D4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = npVar52.f25280f7;
+                                    SharedPreferences sharedPreferences = npVar52.f25283f7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar52.D4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = npVar52.f25331l8;
+                                ArrayList arrayList4 = npVar52.f25334l8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((z10) obj).a(npVar52.f25348n8);
+                                        ((z10) obj).a(npVar52.f25351n8);
                                     }
-                                    npVar52.f25331l8.clear();
-                                    npVar52.f25331l8 = null;
+                                    npVar52.f25334l8.clear();
+                                    npVar52.f25334l8 = null;
                                 }
                                 npVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -909,10 +909,10 @@ public final class pj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            npVar62.getUserConfig().f24963x = true;
+                                            npVar62.getUserConfig().f24969x = true;
                                             npVar62.getUserConfig().v(false);
                                             npVar62.getNotificationCenter().k(2, 256);
-                                            npVar62.f25265e2 = false;
+                                            npVar62.f25268e2 = false;
                                             return;
                                         }
                                     }
@@ -925,7 +925,7 @@ public final class pj implements RequestDelegate {
                 });
                 return;
             case 16:
-                np npVar15 = this.f25937b;
+                np npVar15 = this.f25939b;
                 npVar15.getClass();
                 if (tLObject != null) {
                     npVar15.O3((TLRPC.Updates) tLObject, false);
@@ -934,7 +934,7 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 17:
-                final np npVar16 = this.f25937b;
+                final np npVar16 = this.f25939b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -950,7 +950,7 @@ public final class pj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -986,8 +986,8 @@ public final class pj implements RequestDelegate {
                                 npVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                npVar52.f25396t2 = false;
-                                SharedPreferences.Editor edit2 = npVar52.f25270e7.edit();
+                                npVar52.f25399t2 = false;
+                                SharedPreferences.Editor edit2 = npVar52.f25273e7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 npVar52.getUserConfig().U = true;
@@ -997,16 +997,16 @@ public final class pj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 npVar52.Y3(tL_help_recentMeUrls.users, false);
                                 npVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = npVar52.f25385s;
+                                ArrayList arrayList32 = npVar52.f25388s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 npVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                npVar52.f25388s2--;
+                                npVar52.f25391s2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit3 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z11 = true;
                                     } else {
@@ -1031,7 +1031,7 @@ public final class pj implements RequestDelegate {
                                     npVar52.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (npVar52.f25388s2 == 0) {
+                                if (npVar52.f25391s2 == 0) {
                                     npVar52.getUserConfig().T = true;
                                     npVar52.getUserConfig().v(false);
                                     return;
@@ -1039,33 +1039,33 @@ public final class pj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    npVar52.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                    npVar52.f25339m8 = System.currentTimeMillis();
+                                    npVar52.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                    npVar52.f25342m8 = System.currentTimeMillis();
                                 }
-                                npVar52.f25323k8 = false;
-                                TL_account.contentSettings contentsettings = npVar52.f25348n8;
+                                npVar52.f25326k8 = false;
+                                TL_account.contentSettings contentsettings = npVar52.f25351n8;
                                 if (contentsettings != null && (set = npVar52.D4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = npVar52.f25280f7;
+                                    SharedPreferences sharedPreferences = npVar52.f25283f7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar52.D4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = npVar52.f25331l8;
+                                ArrayList arrayList4 = npVar52.f25334l8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((z10) obj).a(npVar52.f25348n8);
+                                        ((z10) obj).a(npVar52.f25351n8);
                                     }
-                                    npVar52.f25331l8.clear();
-                                    npVar52.f25331l8 = null;
+                                    npVar52.f25334l8.clear();
+                                    npVar52.f25334l8 = null;
                                 }
                                 npVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -1101,10 +1101,10 @@ public final class pj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            npVar62.getUserConfig().f24963x = true;
+                                            npVar62.getUserConfig().f24969x = true;
                                             npVar62.getUserConfig().v(false);
                                             npVar62.getNotificationCenter().k(2, 256);
-                                            npVar62.f25265e2 = false;
+                                            npVar62.f25268e2 = false;
                                             return;
                                         }
                                     }
@@ -1118,7 +1118,7 @@ public final class pj implements RequestDelegate {
                 return;
             case 18:
                 boolean z10 = tLObject instanceof Vector;
-                np npVar17 = this.f25937b;
+                np npVar17 = this.f25939b;
                 if (z10) {
                     ArrayList arrayList4 = new ArrayList();
                     Vector vector = (Vector) tLObject;
@@ -1126,20 +1126,20 @@ public final class pj implements RequestDelegate {
                         arrayList4.add((TLRPC.DialogFilter) vector.objects.get(i11));
                     }
                     vr messagesStorage = npVar17.getMessagesStorage();
-                    messagesStorage.f27220a.c(new kg(messagesStorage, arrayList4, new pn(npVar17, 10), 22));
+                    messagesStorage.f27219a.c(new kg(messagesStorage, arrayList4, new pn(npVar17, 10), 22));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_messages_dialogFilters) {
                     TLRPC.TL_messages_dialogFilters tL_messages_dialogFilters = (TLRPC.TL_messages_dialogFilters) tLObject;
                     boolean z11 = npVar17.B7;
                     boolean z12 = tL_messages_dialogFilters.tags_enabled;
                     if (z11 != z12) {
-                        SharedPreferences.Editor edit = npVar17.f25280f7.edit();
+                        SharedPreferences.Editor edit = npVar17.f25283f7.edit();
                         npVar17.B7 = z12;
                         edit.putBoolean("folderTags", z12).apply();
                         g0.h3(new pn(npVar17, 11));
                     }
                     vr messagesStorage2 = npVar17.getMessagesStorage();
-                    messagesStorage2.f27220a.c(new kg(messagesStorage2, tL_messages_dialogFilters.filters, new pn(npVar17, 12), 22));
+                    messagesStorage2.f27219a.c(new kg(messagesStorage2, tL_messages_dialogFilters.filters, new pn(npVar17, 12), 22));
                     return;
                 } else {
                     g0.h3(new pn(npVar17, 13));
@@ -1147,7 +1147,7 @@ public final class pj implements RequestDelegate {
                 }
             case 19:
                 if (tL_error == null) {
-                    np npVar18 = this.f25937b;
+                    np npVar18 = this.f25939b;
                     TLRPC.User a22 = npVar18.a2(Long.valueOf(npVar18.getUserConfig().e()));
                     if (a22 == null) {
                         a22 = npVar18.getUserConfig().f();
@@ -1181,11 +1181,11 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 20:
-                this.f25937b.getConnectionsManager().cleanup(false);
+                this.f25939b.getConnectionsManager().cleanup(false);
                 g0.h3(new a(tLObject, 23));
                 return;
             case 21:
-                np npVar19 = this.f25937b;
+                np npVar19 = this.f25939b;
                 npVar19.getClass();
                 if (tL_error == null) {
                     npVar19.O3((TLRPC.Updates) tLObject, false);
@@ -1195,22 +1195,22 @@ public final class pj implements RequestDelegate {
             case 22:
                 if (tLObject instanceof TLRPC.TL_help_peerColors) {
                     final TLRPC.TL_help_peerColors tL_help_peerColors = (TLRPC.TL_help_peerColors) tLObject;
-                    final np npVar20 = this.f25937b;
+                    final np npVar20 = this.f25939b;
                     g0.h3(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
                                     np npVar21 = npVar20;
-                                    npVar21.f25261d8 = false;
-                                    npVar21.f25390s4 = dp.c(1, tL_help_peerColors);
-                                    npVar21.f25280f7.edit().putString("profilePeerColors", npVar21.f25390s4.toString()).apply();
+                                    npVar21.f25264d8 = false;
+                                    npVar21.f25393s4 = dp.c(1, tL_help_peerColors);
+                                    npVar21.f25283f7.edit().putString("profilePeerColors", npVar21.f25393s4.toString()).apply();
                                     return;
                                 default:
                                     np npVar22 = npVar20;
-                                    npVar22.f25253c8 = false;
-                                    npVar22.f25380r4 = dp.c(0, tL_help_peerColors);
-                                    npVar22.f25280f7.edit().putString("peerColors", npVar22.f25380r4.toString()).apply();
+                                    npVar22.f25256c8 = false;
+                                    npVar22.f25383r4 = dp.c(0, tL_help_peerColors);
+                                    npVar22.f25283f7.edit().putString("peerColors", npVar22.f25383r4.toString()).apply();
                                     return;
                             }
                         }
@@ -1221,22 +1221,22 @@ public final class pj implements RequestDelegate {
             case 23:
                 if (tLObject instanceof TLRPC.TL_help_peerColors) {
                     final TLRPC.TL_help_peerColors tL_help_peerColors2 = (TLRPC.TL_help_peerColors) tLObject;
-                    final np npVar21 = this.f25937b;
+                    final np npVar21 = this.f25939b;
                     g0.h3(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
                                     np npVar212 = npVar21;
-                                    npVar212.f25261d8 = false;
-                                    npVar212.f25390s4 = dp.c(1, tL_help_peerColors2);
-                                    npVar212.f25280f7.edit().putString("profilePeerColors", npVar212.f25390s4.toString()).apply();
+                                    npVar212.f25264d8 = false;
+                                    npVar212.f25393s4 = dp.c(1, tL_help_peerColors2);
+                                    npVar212.f25283f7.edit().putString("profilePeerColors", npVar212.f25393s4.toString()).apply();
                                     return;
                                 default:
                                     np npVar22 = npVar21;
-                                    npVar22.f25253c8 = false;
-                                    npVar22.f25380r4 = dp.c(0, tL_help_peerColors2);
-                                    npVar22.f25280f7.edit().putString("peerColors", npVar22.f25380r4.toString()).apply();
+                                    npVar22.f25256c8 = false;
+                                    npVar22.f25383r4 = dp.c(0, tL_help_peerColors2);
+                                    npVar22.f25283f7.edit().putString("peerColors", npVar22.f25383r4.toString()).apply();
                                     return;
                             }
                         }
@@ -1245,8 +1245,8 @@ public final class pj implements RequestDelegate {
                 }
                 return;
             case 24:
-                np npVar22 = this.f25937b;
-                npVar22.f25301i2 = false;
+                np npVar22 = this.f25939b;
+                npVar22.f25304i2 = false;
                 if (tL_error == null) {
                     TLRPC.TL_updates_state tL_updates_state = (TLRPC.TL_updates_state) tLObject;
                     npVar22.getMessagesStorage().H1(tL_updates_state.date);
@@ -1259,26 +1259,26 @@ public final class pj implements RequestDelegate {
                     vr messagesStorage3 = npVar22.getMessagesStorage();
                     vr messagesStorage4 = npVar22.getMessagesStorage();
                     messagesStorage4.H();
-                    int i13 = messagesStorage4.f27233w;
+                    int i13 = messagesStorage4.f27232w;
                     vr messagesStorage5 = npVar22.getMessagesStorage();
                     messagesStorage5.H();
-                    int i14 = messagesStorage5.f27231r;
+                    int i14 = messagesStorage5.f27230r;
                     vr messagesStorage6 = npVar22.getMessagesStorage();
                     messagesStorage6.H();
-                    int i15 = messagesStorage6.f27230n;
+                    int i15 = messagesStorage6.f27229n;
                     vr messagesStorage7 = npVar22.getMessagesStorage();
                     messagesStorage7.H();
-                    messagesStorage3.A1(i13, i14, i15, messagesStorage7.f27232s);
+                    messagesStorage3.A1(i13, i14, i15, messagesStorage7.f27231s);
                     return;
                 } else if (tL_error.code != 401) {
-                    npVar22.f25301i2 = true;
+                    npVar22.f25304i2 = true;
                     npVar22.getConnectionsManager().sendRequest(new TLRPC.TL_updates_getState(), new pj(npVar22, 24));
                     return;
                 } else {
                     return;
                 }
             case 25:
-                final np npVar23 = this.f25937b;
+                final np npVar23 = this.f25939b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -1294,7 +1294,7 @@ public final class pj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit2 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit2 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z102 = true;
                                     } else {
@@ -1330,8 +1330,8 @@ public final class pj implements RequestDelegate {
                                 npVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                npVar52.f25396t2 = false;
-                                SharedPreferences.Editor edit22 = npVar52.f25270e7.edit();
+                                npVar52.f25399t2 = false;
+                                SharedPreferences.Editor edit22 = npVar52.f25273e7.edit();
                                 edit22.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit22.commit();
                                 npVar52.getUserConfig().U = true;
@@ -1341,16 +1341,16 @@ public final class pj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 npVar52.Y3(tL_help_recentMeUrls.users, false);
                                 npVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = npVar52.f25385s;
+                                ArrayList arrayList32 = npVar52.f25388s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 npVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                npVar52.f25388s2--;
+                                npVar52.f25391s2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit3 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z112 = true;
                                     } else {
@@ -1375,7 +1375,7 @@ public final class pj implements RequestDelegate {
                                     npVar52.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (npVar52.f25388s2 == 0) {
+                                if (npVar52.f25391s2 == 0) {
                                     npVar52.getUserConfig().T = true;
                                     npVar52.getUserConfig().v(false);
                                     return;
@@ -1383,33 +1383,33 @@ public final class pj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    npVar52.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                    npVar52.f25339m8 = System.currentTimeMillis();
+                                    npVar52.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                    npVar52.f25342m8 = System.currentTimeMillis();
                                 }
-                                npVar52.f25323k8 = false;
-                                TL_account.contentSettings contentsettings = npVar52.f25348n8;
+                                npVar52.f25326k8 = false;
+                                TL_account.contentSettings contentsettings = npVar52.f25351n8;
                                 if (contentsettings != null && (set = npVar52.D4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = npVar52.f25280f7;
+                                    SharedPreferences sharedPreferences = npVar52.f25283f7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar52.D4).apply();
                                     }
                                 }
-                                ArrayList arrayList42 = npVar52.f25331l8;
+                                ArrayList arrayList42 = npVar52.f25334l8;
                                 if (arrayList42 != null) {
                                     int size = arrayList42.size();
                                     int i112 = 0;
                                     while (i112 < size) {
                                         Object obj = arrayList42.get(i112);
                                         i112++;
-                                        ((z10) obj).a(npVar52.f25348n8);
+                                        ((z10) obj).a(npVar52.f25351n8);
                                     }
-                                    npVar52.f25331l8.clear();
-                                    npVar52.f25331l8 = null;
+                                    npVar52.f25334l8.clear();
+                                    npVar52.f25334l8 = null;
                                 }
                                 npVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -1445,10 +1445,10 @@ public final class pj implements RequestDelegate {
                                             }
                                             i122++;
                                         } else {
-                                            npVar62.getUserConfig().f24963x = true;
+                                            npVar62.getUserConfig().f24969x = true;
                                             npVar62.getUserConfig().v(false);
                                             npVar62.getNotificationCenter().k(2, 256);
-                                            npVar62.f25265e2 = false;
+                                            npVar62.f25268e2 = false;
                                             return;
                                         }
                                     }
@@ -1461,7 +1461,7 @@ public final class pj implements RequestDelegate {
                 });
                 return;
             default:
-                final np npVar24 = this.f25937b;
+                final np npVar24 = this.f25939b;
                 npVar24.getClass();
                 g0.h3(new Runnable() {
                     @Override
@@ -1478,7 +1478,7 @@ public final class pj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit2 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit2 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z102 = true;
                                     } else {
@@ -1514,8 +1514,8 @@ public final class pj implements RequestDelegate {
                                 npVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                npVar52.f25396t2 = false;
-                                SharedPreferences.Editor edit22 = npVar52.f25270e7.edit();
+                                npVar52.f25399t2 = false;
+                                SharedPreferences.Editor edit22 = npVar52.f25273e7.edit();
                                 edit22.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit22.commit();
                                 npVar52.getUserConfig().U = true;
@@ -1525,16 +1525,16 @@ public final class pj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 npVar52.Y3(tL_help_recentMeUrls.users, false);
                                 npVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = npVar52.f25385s;
+                                ArrayList arrayList32 = npVar52.f25388s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 npVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                npVar52.f25388s2--;
+                                npVar52.f25391s2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = npVar52.f25270e7.edit();
+                                    SharedPreferences.Editor edit3 = npVar52.f25273e7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z112 = true;
                                     } else {
@@ -1559,7 +1559,7 @@ public final class pj implements RequestDelegate {
                                     npVar52.getNotificationsController().f22577h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (npVar52.f25388s2 == 0) {
+                                if (npVar52.f25391s2 == 0) {
                                     npVar52.getUserConfig().T = true;
                                     npVar52.getUserConfig().v(false);
                                     return;
@@ -1567,33 +1567,33 @@ public final class pj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    npVar52.f25348n8 = (TL_account.contentSettings) tLObject2;
-                                    npVar52.f25339m8 = System.currentTimeMillis();
+                                    npVar52.f25351n8 = (TL_account.contentSettings) tLObject2;
+                                    npVar52.f25342m8 = System.currentTimeMillis();
                                 }
-                                npVar52.f25323k8 = false;
-                                TL_account.contentSettings contentsettings = npVar52.f25348n8;
+                                npVar52.f25326k8 = false;
+                                TL_account.contentSettings contentsettings = npVar52.f25351n8;
                                 if (contentsettings != null && (set = npVar52.D4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = npVar52.f25280f7;
+                                    SharedPreferences sharedPreferences = npVar52.f25283f7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", npVar52.D4).apply();
                                     }
                                 }
-                                ArrayList arrayList42 = npVar52.f25331l8;
+                                ArrayList arrayList42 = npVar52.f25334l8;
                                 if (arrayList42 != null) {
                                     int size = arrayList42.size();
                                     int i112 = 0;
                                     while (i112 < size) {
                                         Object obj = arrayList42.get(i112);
                                         i112++;
-                                        ((z10) obj).a(npVar52.f25348n8);
+                                        ((z10) obj).a(npVar52.f25351n8);
                                     }
-                                    npVar52.f25331l8.clear();
-                                    npVar52.f25331l8 = null;
+                                    npVar52.f25334l8.clear();
+                                    npVar52.f25334l8 = null;
                                 }
                                 npVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -1629,10 +1629,10 @@ public final class pj implements RequestDelegate {
                                             }
                                             i122++;
                                         } else {
-                                            npVar62.getUserConfig().f24963x = true;
+                                            npVar62.getUserConfig().f24969x = true;
                                             npVar62.getUserConfig().v(false);
                                             npVar62.getNotificationCenter().k(2, 256);
-                                            npVar62.f25265e2 = false;
+                                            npVar62.f25268e2 = false;
                                             return;
                                         }
                                     }

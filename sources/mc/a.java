@@ -29,10 +29,10 @@ public final class a {
         bVar.getClass();
         j.e(array, "array");
         synchronized (bVar) {
-            int i7 = bVar.f2157a;
+            int i7 = bVar.f2160a;
             if (array.length + i7 < qe.a.f55535a) {
-                bVar.f2157a = i7 + array.length;
-                ((d) bVar.f2158b).addLast(array);
+                bVar.f2160a = i7 + array.length;
+                ((d) bVar.f2161b).addLast(array);
             }
         }
     }

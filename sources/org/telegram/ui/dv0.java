@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class dv0 extends org.telegram.ui.Components.j6 {
-    public final int f46493b;
-    public final ProfileActivity f46494c;
+    public final int f46483b;
+    public final ProfileActivity f46484c;
 
     public dv0(ProfileActivity profileActivity, int i7) {
         super("headerShadow", 0);
-        this.f46493b = i7;
+        this.f46483b = i7;
         switch (i7) {
             case 1:
-                this.f46494c = profileActivity;
+                this.f46484c = profileActivity;
                 super("avatarAnimationProgress", 0);
                 return;
             default:
-                this.f46494c = profileActivity;
+                this.f46484c = profileActivity;
                 return;
         }
     }
@@ -36,14 +36,14 @@ public final class dv0 extends org.telegram.ui.Components.j6 {
         int i7;
         float f11;
         int H3;
-        switch (this.f46493b) {
+        switch (this.f46483b) {
             case 0:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                this.f46494c.f43072b1 = f10;
+                this.f46484c.f43072b1 = f10;
                 return;
             default:
                 org.telegram.ui.ActionBar.k kVar3 = (org.telegram.ui.ActionBar.k) obj;
-                ProfileActivity profileActivity2 = this.f46494c;
+                ProfileActivity profileActivity2 = this.f46484c;
                 if (profileActivity2.U5 > 0.0f) {
                     z10 = true;
                 } else {
@@ -158,7 +158,7 @@ public final class dv0 extends org.telegram.ui.Components.j6 {
                     profileActivity2.E.setColorFilter(org.telegram.messenger.g0.S0(f10, 1.0f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29100qi, profileActivity2.A0), org.telegram.ui.ActionBar.j6.w0(i11, profileActivity2.A0)), PorterDuff.Mode.MULTIPLY);
                 }
                 profileActivity2.u5();
-                ProfileActivity profileActivity3 = profileActivity2.f43167p0.f49055n;
+                ProfileActivity profileActivity3 = profileActivity2.f43167p0.f49051n;
                 if (profileActivity3.M0) {
                     d5Var = profileActivity3.Q0;
                 } else if (profileActivity3.O0) {
@@ -182,13 +182,13 @@ public final class dv0 extends org.telegram.ui.Components.j6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f46493b) {
+        switch (this.f46483b) {
             case 0:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                return Float.valueOf(this.f46494c.f43072b1);
+                return Float.valueOf(this.f46484c.f43072b1);
             default:
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-                return Float.valueOf(this.f46494c.U5);
+                return Float.valueOf(this.f46484c.U5);
         }
     }
 }

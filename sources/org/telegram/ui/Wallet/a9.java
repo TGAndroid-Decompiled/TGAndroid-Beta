@@ -45,9 +45,9 @@ public final class a9 implements s10 {
                 if (walletuseraddress != null) {
                     p9Var2.h = walletuseraddress.address;
                 }
-                bi.v3 v3Var = p9Var2.f38882a;
+                bi.v3 v3Var = p9Var2.f38880a;
                 if (v3Var != null) {
-                    v3Var.f39895g3.O(true);
+                    v3Var.f39892g3.O(true);
                 }
                 p9Var2.C0();
                 p9Var2.t0();

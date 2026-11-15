@@ -9,33 +9,33 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ra0;
 public final class r6 implements org.telegram.ui.ActionBar.q1, ResultCallback {
-    public final boolean f26244a;
-    public final int f26245b;
-    public final Object f26246c;
+    public final boolean f26252a;
+    public final int f26253b;
+    public final Object f26254c;
     public final Object d;
-    public final Object f26247e;
+    public final Object f26255e;
 
     public r6(x6 x6Var, t6 t6Var, int i7, gj gjVar, boolean z10) {
-        this.f26246c = x6Var;
+        this.f26254c = x6Var;
         this.d = t6Var;
-        this.f26245b = i7;
-        this.f26247e = gjVar;
-        this.f26244a = z10;
+        this.f26253b = i7;
+        this.f26255e = gjVar;
+        this.f26252a = z10;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         String charSequence;
-        x6 x6Var = (x6) this.f26246c;
+        x6 x6Var = (x6) this.f26254c;
         t6 t6Var = (t6) this.d;
-        gj gjVar = (gj) this.f26247e;
-        if (t6Var.getText().toString().length() > this.f26245b) {
+        gj gjVar = (gj) this.f26255e;
+        if (t6Var.getText().toString().length() > this.f26253b) {
             g0.E3(t6Var);
             return;
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence[] charSequenceArr = {t6Var.getText()};
-        tL_textWithEntities.entities = si.b0(x6Var.f27466a).W(charSequenceArr, true, true);
+        tL_textWithEntities.entities = si.b0(x6Var.f27467a).W(charSequenceArr, true, true);
         CharSequence charSequence2 = charSequenceArr[0];
         if (charSequence2 == null) {
             charSequence = "";
@@ -43,15 +43,15 @@ public final class r6 implements org.telegram.ui.ActionBar.q1, ResultCallback {
             charSequence = charSequence2.toString();
         }
         tL_textWithEntities.text = charSequence;
-        x6Var.a(gjVar, tL_textWithEntities, this.f26244a);
+        x6Var.a(gjVar, tL_textWithEntities, this.f26252a);
         t1Var.dismiss();
     }
 
     @Override
     public void onComplete(Object obj) {
-        org.telegram.ui.ym ymVar = (org.telegram.ui.ym) this.f26246c;
+        org.telegram.ui.ym ymVar = (org.telegram.ui.ym) this.f26254c;
         org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) this.d;
-        ra0 ra0Var = (ra0) this.f26247e;
+        ra0 ra0Var = (ra0) this.f26255e;
         Pair pair = (Pair) obj;
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
@@ -62,15 +62,15 @@ public final class r6 implements org.telegram.ui.ActionBar.q1, ResultCallback {
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                int i7 = p3Var.j(this.f26244a ? 1 : 0).settings.intensity;
+                int i7 = p3Var.j(this.f26252a ? 1 : 0).settings.intensity;
                 List list = ((gg.a) pair.second).f13296b;
                 ra0Var.R = list;
-                long j3 = ymVar.G.f45299nb;
+                long j3 = ymVar.G.f45298nb;
                 if (list != null) {
                     ra0Var.S = new Random(j3).nextInt(ra0Var.R.size());
                 }
                 ra0Var.s(i7, bitmap);
-                ra0Var.t(this.f26245b);
+                ra0Var.t(this.f26253b);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ymVar.f53547i = ofFloat;
                 ofFloat.addUpdateListener(new org.telegram.ui.um(ra0Var, 2));
@@ -86,11 +86,11 @@ public final class r6 implements org.telegram.ui.ActionBar.q1, ResultCallback {
     }
 
     public r6(org.telegram.ui.ym ymVar, org.telegram.ui.ActionBar.p3 p3Var, boolean z10, ra0 ra0Var, int i7) {
-        this.f26246c = ymVar;
+        this.f26254c = ymVar;
         this.d = p3Var;
-        this.f26244a = z10;
-        this.f26247e = ra0Var;
-        this.f26245b = i7;
+        this.f26252a = z10;
+        this.f26255e = ra0Var;
+        this.f26253b = i7;
     }
 
     @Override

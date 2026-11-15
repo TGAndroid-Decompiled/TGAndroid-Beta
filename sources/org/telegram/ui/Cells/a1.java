@@ -27,7 +27,7 @@ public final class a1 extends AccessibilityNodeProvider {
         q1 q1Var = this.f29985a;
         if (z10) {
             int i10 = i7 - 3000;
-            CharSequence charSequence = q1Var.Q5.f23875z;
+            CharSequence charSequence = q1Var.Q5.f23877z;
             if (!(charSequence instanceof Spannable) || i10 < 0) {
                 return null;
             }
@@ -55,15 +55,15 @@ public final class a1 extends AccessibilityNodeProvider {
         iv ivVar;
         int i10;
         gj gjVar = this.f29985a.Q5;
-        if (gjVar != null && (ivVar = gjVar.f23874y2) != null) {
-            ArrayList arrayList = ivVar.f24445g;
+        if (gjVar != null && (ivVar = gjVar.f23876y2) != null) {
+            ArrayList arrayList = ivVar.f24450g;
             int i11 = i7 - 6000;
             if (i11 >= 0) {
                 int i12 = 0;
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     cu cuVar = (cu) arrayList.get(i13);
                     if (cuVar.S()) {
-                        if (cuVar.f22939r == null) {
+                        if (cuVar.f22947r == null) {
                             i10 = 0;
                         } else {
                             i10 = 1;

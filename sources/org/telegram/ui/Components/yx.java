@@ -17,19 +17,19 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
     public fo F;
     public boolean G;
     public final ly H;
-    public final te.a f42173a;
-    public final int f42174b;
-    public final kl0 f42175c;
+    public final te.a f42175a;
+    public final int f42176b;
+    public final kl0 f42177c;
     public final zp d;
-    public final View f42176e;
-    public final View f42177f;
+    public final View f42178e;
+    public final View f42179f;
     public final ImageView h;
-    public final FrameLayout f42178n;
-    public final xx f42179r;
-    public final ai.j0 f42180s;
-    public final View f42181w;
-    public float f42182x;
-    public boolean f42183y;
+    public final FrameLayout f42180n;
+    public final xx f42181r;
+    public final ai.k0 f42182s;
+    public final View f42183w;
+    public float f42184x;
+    public boolean f42185y;
 
     public yx(ly lyVar, Context context, int i7) {
         super(context);
@@ -43,12 +43,12 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         float f10;
         int i11;
         this.H = lyVar;
-        this.f42173a = new te.a(0, this, er.f34421g, 200L, false);
-        this.f42183y = false;
+        this.f42175a = new te.a(0, this, er.f34420g, 200L, false);
+        this.f42185y = false;
         org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
-        this.f42174b = i7;
+        this.f42176b = i7;
         View view = new View(context);
-        this.f42176e = view;
+        this.f42178e = view;
         view.setVisibility(4);
         int i12 = org.telegram.ui.ActionBar.j6.Cf;
         org.telegram.ui.ActionBar.e6 e6Var = lyVar.f36931a2;
@@ -56,13 +56,13 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         org.telegram.ui.ActionBar.q6.h(i12, view, e6Var);
         addView(view, new FrameLayout.LayoutParams(-1, org.telegram.messenger.g0.f1(), 83));
         View view2 = new View(context);
-        this.f42177f = view2;
+        this.f42179f = view2;
         if (lyVar.f36995v0) {
             org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f29269zf, view2, e6Var);
         }
         addView(view2, new FrameLayout.LayoutParams(-1, lyVar.f36938c1));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f42178n = frameLayout;
+        this.f42180n = frameLayout;
         int L = org.telegram.messenger.g0.L(18.0f);
         if (z14) {
             z10 = lyVar.v(0.06f);
@@ -71,19 +71,19 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         }
         frameLayout.setBackground(org.telegram.ui.ActionBar.j6.d0(L, z10));
         frameLayout.setClipToOutline(true);
-        bg.p0 p0Var = bg.t0.f3332a;
+        bg.p0 p0Var = bg.t0.f3335a;
         frameLayout.setOutlineProvider(new bg.r0(0, org.telegram.messenger.g0.L(18.0f)));
         if (i7 == 2) {
             addView(frameLayout, c8.ja.d(-1, 36.0f, 119, 10.0f, 8.0f, 10.0f, 8.0f));
         } else {
             addView(frameLayout, c8.ja.d(-1, 36.0f, 119, 10.0f, 6.0f, 10.0f, 8.0f));
         }
-        ai.j0 j0Var = new ai.j0(16, context, this);
-        this.f42180s = j0Var;
-        frameLayout.addView(j0Var, c8.ja.d(-1, 40.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
+        ai.k0 k0Var = new ai.k0(16, context, this);
+        this.f42182s = k0Var;
+        frameLayout.addView(k0Var, c8.ja.d(-1, 40.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         kl0 kl0Var = new kl0();
-        this.f42175c = kl0Var;
+        this.f42177c = kl0Var;
         kl0Var.c(0, false, false);
         if (z14) {
             z11 = lyVar.v(0.4f);
@@ -95,20 +95,20 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         imageView.setScaleType(scaleType2);
         imageView.setImageDrawable(kl0Var);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final yx f41173b;
+            public final yx f41176b;
 
             {
-                this.f41173b = this;
+                this.f41176b = this;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        yx yxVar = this.f41173b;
-                        xx xxVar = yxVar.f42179r;
+                        yx yxVar = this.f41176b;
+                        xx xxVar = yxVar.f42181r;
                         zp zpVar2 = yxVar.d;
-                        if (yxVar.f42175c.f36555k == 1) {
+                        if (yxVar.f42177c.f36543k == 1) {
                             zpVar2.setText("");
                             yxVar.c(null, false);
                             if (xxVar != null) {
@@ -124,11 +124,11 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                         }
                         return;
                     default:
-                        yx yxVar2 = this.f41173b;
+                        yx yxVar2 = this.f41176b;
                         zp zpVar3 = yxVar2.d;
                         zpVar3.setText("");
                         yxVar2.c(null, false);
-                        xx xxVar2 = yxVar2.f42179r;
+                        xx xxVar2 = yxVar2.f42181r;
                         if (xxVar2 != null) {
                             xxVar2.G1();
                             xxVar2.I1(null);
@@ -169,11 +169,11 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         zpVar2.setCursorSize(org.telegram.messenger.g0.L(20.0f));
         zpVar2.setCursorWidth(1.5f);
         zpVar2.setTranslationY(org.telegram.messenger.g0.L(-2.0f));
-        j0Var.addView(zpVar2, c8.ja.d(-1, 40.0f, 51, 0.0f, 0.0f, 28.0f, 0.0f));
+        k0Var.addView(zpVar2, c8.ja.d(-1, 40.0f, 51, 0.0f, 0.0f, 28.0f, 0.0f));
         zpVar2.addTextChangedListener(new ah.j(this, 21));
         if (lyVar.f36995v0) {
             View view3 = new View(context);
-            this.f42181w = view3;
+            this.f42183w = view3;
             Drawable g10 = i5.c.g(context, 2131231227);
             org.telegram.ui.ActionBar.m6 p10 = org.telegram.ui.ActionBar.q6.p(org.telegram.ui.ActionBar.j6.f29269zf, org.telegram.ui.ActionBar.j6.Af);
             zpVar = zpVar2;
@@ -183,7 +183,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
             org.telegram.ui.ActionBar.q6.k(this, g10, p10.f29392a, p10.f29393b, 4, 0.0f, e6Var, PorterDuff.Mode.MULTIPLY);
             view3.setBackground(g10);
             view3.setAlpha(0.0f);
-            j0Var.addView(view3, c8.ja.e(18, -1, 3));
+            k0Var.addView(view3, c8.ja.e(18, -1, 3));
         } else {
             zpVar = zpVar2;
             scaleType = scaleType2;
@@ -201,20 +201,20 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         org.telegram.ui.ActionBar.q6.j(imageView2, h02, null, M, e6Var);
         imageView2.setAlpha(0.0f);
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final yx f41173b;
+            public final yx f41176b;
 
             {
-                this.f41173b = this;
+                this.f41176b = this;
             }
 
             @Override
             public final void onClick(View view32) {
                 switch (r2) {
                     case 0:
-                        yx yxVar = this.f41173b;
-                        xx xxVar = yxVar.f42179r;
+                        yx yxVar = this.f41176b;
+                        xx xxVar = yxVar.f42181r;
                         zp zpVar22 = yxVar.d;
-                        if (yxVar.f42175c.f36555k == 1) {
+                        if (yxVar.f42177c.f36543k == 1) {
                             zpVar22.setText("");
                             yxVar.c(null, false);
                             if (xxVar != null) {
@@ -230,11 +230,11 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                         }
                         return;
                     default:
-                        yx yxVar2 = this.f41173b;
+                        yx yxVar2 = this.f41176b;
                         zp zpVar3 = yxVar2.d;
                         zpVar3.setText("");
                         yxVar2.c(null, false);
-                        xx xxVar2 = yxVar2.f42179r;
+                        xx xxVar2 = yxVar2.f42181r;
                         if (xxVar2 != null) {
                             xxVar2.G1();
                             xxVar2.I1(null);
@@ -249,7 +249,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
             }
         });
         frameLayout.addView(imageView2, c8.ja.e(36, 36, 53));
-        if (i7 == 1 && (!lyVar.d2 || !org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q())) {
+        if (i7 == 1 && (!lyVar.d2 || !org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q())) {
             return;
         }
         if (i7 == 0) {
@@ -258,7 +258,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
             i11 = 0;
         }
         xx xxVar = new xx(this, context, i11, lyVar.f36931a2, i7);
-        this.f42179r = xxVar;
+        this.f42181r = xxVar;
         xxVar.E3 = z14;
         TextPaint paint = zpVar.getPaint();
         xxVar.setDontOccupyWidth(org.telegram.messenger.g0.L(f10) + ((int) paint.measureText(((Object) zpVar.getHint()) + "")));
@@ -266,10 +266,10 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
             org.telegram.ui.ActionBar.q6.i(xxVar, org.telegram.ui.ActionBar.q6.p(org.telegram.ui.ActionBar.j6.f29269zf, org.telegram.ui.ActionBar.j6.Af), e6Var);
         }
         xxVar.setOnScrollIntoOccupiedWidth(new org.telegram.messenger.z10(this) {
-            public final yx f41464b;
+            public final yx f41467b;
 
             {
-                this.f41464b = this;
+                this.f41467b = this;
             }
 
             @Override
@@ -278,7 +278,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                 switch (r2) {
                     case 0:
                         Integer num = (Integer) obj;
-                        yx yxVar = this.f41464b;
+                        yx yxVar = this.f41467b;
                         yxVar.d.setTranslationX(-Math.max(0, num.intValue()));
                         if (num.intValue() > 0) {
                             z15 = true;
@@ -290,9 +290,9 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                         return;
                     default:
                         wu0 wu0Var = (wu0) obj;
-                        yx yxVar2 = this.f41464b;
+                        yx yxVar2 = this.f41467b;
                         ly lyVar2 = yxVar2.H;
-                        xx xxVar2 = yxVar2.f42179r;
+                        xx xxVar2 = yxVar2.f42181r;
                         if (wu0Var == null) {
                             yxVar2.d(false);
                             xxVar2.I1(null);
@@ -304,7 +304,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                             xxVar2.I1(null);
                             return;
                         } else {
-                            yxVar2.c(wu0Var.f41459a, false);
+                            yxVar2.c(wu0Var.f41462a, false);
                             xxVar2.I1(wu0Var);
                             return;
                         }
@@ -313,10 +313,10 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         });
         xxVar.setOnTouchListener(new m.c2(this, 2));
         xxVar.setOnCategoryClick(new org.telegram.messenger.z10(this) {
-            public final yx f41464b;
+            public final yx f41467b;
 
             {
-                this.f41464b = this;
+                this.f41467b = this;
             }
 
             @Override
@@ -325,7 +325,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                 switch (r2) {
                     case 0:
                         Integer num = (Integer) obj;
-                        yx yxVar = this.f41464b;
+                        yx yxVar = this.f41467b;
                         yxVar.d.setTranslationX(-Math.max(0, num.intValue()));
                         if (num.intValue() > 0) {
                             z15 = true;
@@ -337,9 +337,9 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                         return;
                     default:
                         wu0 wu0Var = (wu0) obj;
-                        yx yxVar2 = this.f41464b;
+                        yx yxVar2 = this.f41467b;
                         ly lyVar2 = yxVar2.H;
-                        xx xxVar2 = yxVar2.f42179r;
+                        xx xxVar2 = yxVar2.f42181r;
                         if (wu0Var == null) {
                             yxVar2.d(false);
                             xxVar2.I1(null);
@@ -351,7 +351,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
                             xxVar2.I1(null);
                             return;
                         } else {
-                            yxVar2.c(wu0Var.f41459a, false);
+                            yxVar2.c(wu0Var.f41462a, false);
                             xxVar2.I1(wu0Var);
                             return;
                         }
@@ -362,14 +362,14 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public static void a(yx yxVar, boolean z10, boolean z11) {
-        yxVar.f42173a.a(z10, z11);
+        yxVar.f42175a.a(z10, z11);
     }
 
     @Override
     public final void G(int i7, float f10, float f11, te.c cVar) {
         int i10;
         if (i7 == 0) {
-            View view = this.f42176e;
+            View view = this.f42178e;
             view.setAlpha(f10);
             if (f10 > 0.0f) {
                 i10 = 0;
@@ -386,7 +386,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
 
     public final void c(String str, boolean z10) {
         ly lyVar = this.H;
-        int i7 = this.f42174b;
+        int i7 = this.f42176b;
         if (i7 == 0) {
             gy gyVar = lyVar.A0;
             fy fyVar = gyVar.P;
@@ -426,15 +426,15 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
 
     public final void d(boolean z10) {
         float f10;
-        if (z10 == this.f42183y) {
+        if (z10 == this.f42185y) {
             return;
         }
-        this.f42183y = z10;
+        this.f42185y = z10;
         ValueAnimator valueAnimator = this.E;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f11 = this.f42182x;
+        float f11 = this.f42184x;
         if (z10) {
             f10 = 1.0f;
         } else {
@@ -451,7 +451,7 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
     public final void e(boolean z10) {
         this.G = z10;
         if (z10) {
-            this.f42175c.b(2);
+            this.f42177c.b(2);
         } else {
             g(true);
         }
@@ -479,16 +479,16 @@ public abstract class yx extends FrameLayout implements org.telegram.ui.ActionBa
         int i7;
         boolean z11 = this.G;
         zp zpVar = this.d;
-        xx xxVar = this.f42179r;
+        xx xxVar = this.f42181r;
         if (z11 && ((zpVar.length() != 0 || (xxVar != null && xxVar.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (zpVar.length() <= 0 && (xxVar == null || xxVar.f33088w3 <= 0.5f || (!xxVar.f33083r3 && xxVar.getSelectedCategory() == null))) {
+        if (zpVar.length() <= 0 && (xxVar == null || xxVar.f33091w3 <= 0.5f || (!xxVar.f33086r3 && xxVar.getSelectedCategory() == null))) {
             i7 = 0;
         } else {
             i7 = 1;
         }
-        this.f42175c.b(i7);
+        this.f42177c.b(i7);
         this.G = false;
     }
 

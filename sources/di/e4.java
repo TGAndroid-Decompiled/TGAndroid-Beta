@@ -43,14 +43,14 @@ public final class e4 extends w61 {
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
                 b2Var = c6Var.Y1;
-                if (b2Var != null && view2 == b2Var.U1 && (h4Var3 = b2Var.f8307a2) != null) {
+                if (b2Var != null && view2 == b2Var.U1 && (h4Var3 = b2Var.f8308a2) != null) {
                     h4Var3.invalidate();
                 }
-                if (view2 == c6Var.U1 && (h4Var2 = c6Var.f8307a2) != null) {
+                if (view2 == c6Var.U1 && (h4Var2 = c6Var.f8308a2) != null) {
                     h4Var2.invalidate();
                 }
                 b2Var2 = c6Var.Z1;
-                if (b2Var2 == null && view2 == b2Var2.U1 && (h4Var = b2Var2.f8307a2) != null) {
+                if (b2Var2 == null && view2 == b2Var2.U1 && (h4Var = b2Var2.f8308a2) != null) {
                     h4Var.invalidate();
                     return;
                 }
@@ -73,11 +73,11 @@ public final class e4 extends w61 {
     @Override
     public final void E() {
         super.E();
-        int i7 = this.f41295b;
+        int i7 = this.f41298b;
         c6 c6Var = this.W;
         boolean z10 = false;
         if (i7 != c6Var.I1(false)) {
-            if (this.f41295b > c6Var.I1(false)) {
+            if (this.f41298b > c6Var.I1(false)) {
                 z10 = true;
             }
             org.telegram.messenger.g0.h3(new ai.q(4, this, z10));

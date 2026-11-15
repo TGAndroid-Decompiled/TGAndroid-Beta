@@ -46,7 +46,7 @@ public class r1 {
     public float f58324w = 0.9f;
     public long f58325x = 2000;
     public int f58326y = 1000;
-    public final float A = 1000.0f / org.telegram.messenger.g0.f23610r;
+    public final float A = 1000.0f / org.telegram.messenger.g0.f23612r;
     public boolean H = false;
     public boolean I = true;
     public boolean J = true;

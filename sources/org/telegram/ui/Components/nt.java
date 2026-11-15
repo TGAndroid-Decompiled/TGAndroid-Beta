@@ -30,7 +30,7 @@ public final class nt extends ly {
         rt rtVar = this.Z2;
         if (rtVar.b()) {
             int i14 = i12 - i10;
-            if (!this.X2 && rtVar.f39066y) {
+            if (!this.X2 && rtVar.f39063y) {
                 this.Y2 = true;
             }
             if (this.Y2 && (i13 = this.W2) > 0 && i14 > 0 && i14 != i13) {
@@ -38,7 +38,7 @@ public final class nt extends ly {
                 org.telegram.messenger.i20.n(animate().translationY(0.0f), org.telegram.ui.ActionBar.i1.f28644w, 250L);
                 this.Y2 = false;
             }
-            this.X2 = rtVar.f39066y;
+            this.X2 = rtVar.f39063y;
             this.W2 = i14;
         }
     }

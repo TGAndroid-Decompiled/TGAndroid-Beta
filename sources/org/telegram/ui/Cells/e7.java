@@ -33,13 +33,13 @@ public final class e7 extends a41 {
         } else if (obj instanceof we) {
             we weVar = (we) obj;
             f7Var.setTag(weVar);
-            f7Var.f(weVar.f27341e, z10);
+            f7Var.f(weVar.f27340e, z10);
         }
         Object obj2 = b41Var.H;
         if (obj2 instanceof a20) {
             f7Var.setNeedPlayMessageListener((a20) obj2);
         }
-        f7Var.e(b41Var.f33175e, false);
+        f7Var.e(b41Var.f33178e, false);
     }
 
     @Override

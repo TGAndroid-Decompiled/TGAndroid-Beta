@@ -310,7 +310,7 @@ public final class f extends FrameLayout {
             }
         } else if (actionMasked != 1 && actionMasked != 3) {
             if (actionMasked == 2) {
-                float z10 = i20.z(this.f21483n, (float) ((((this.f21485s - x10) / g0.f23608p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
+                float z10 = i20.z(this.f21483n, (float) ((((this.f21485s - x10) / g0.f23610p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
                 if (Build.VERSION.SDK_INT >= 27) {
                     try {
                         if ((Math.abs(z10 - 45.0f) < 0.001f && Math.abs(this.f21483n - 45.0f) >= 0.001f) || (Math.abs(z10 - (-45.0f)) < 0.001f && Math.abs(this.f21483n - (-45.0f)) >= 0.001f)) {

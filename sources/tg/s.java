@@ -9,21 +9,21 @@ import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.q6;
 public final class s implements Runnable {
-    public final int f57546a;
-    public final g0 f57547b;
-    public final j f57548c;
+    public final int f57548a;
+    public final g0 f57549b;
+    public final j f57550c;
 
     public s(g0 g0Var, j jVar, int i7) {
-        this.f57546a = i7;
-        this.f57547b = g0Var;
-        this.f57548c = jVar;
+        this.f57548a = i7;
+        this.f57549b = g0Var;
+        this.f57550c = jVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f57546a;
-        final j jVar = this.f57548c;
-        final g0 g0Var = this.f57547b;
+        int i7 = this.f57548a;
+        final j jVar = this.f57550c;
+        final g0 g0Var = this.f57549b;
         switch (i7) {
             case 0:
                 g0Var.q0(jVar);
@@ -60,7 +60,7 @@ public final class s implements Runnable {
                             default:
                                 g0 g0Var3 = g0Var;
                                 g0Var3.getClass();
-                                ((g2) jVar).r(true);
+                                ((f2) jVar).r(true);
                                 org.telegram.ui.ActionBar.g1 g1Var2 = g0Var3.B1;
                                 if (g1Var2 != null && g1Var2.isShowing()) {
                                     g0Var3.B1.d(true);
@@ -71,7 +71,7 @@ public final class s implements Runnable {
                     }
                 });
                 linearLayout.addView(textView, ja.o(-2, 48));
-                if (jVar instanceof o2) {
+                if (jVar instanceof n2) {
                     TextView textView2 = new TextView(g0Var.getContext());
                     q6.U(textView2, i10, uVar);
                     textView2.setBackground(j6.N0(false));
@@ -84,7 +84,7 @@ public final class s implements Runnable {
                     textView2.setOnClickListener(new k(g0Var, 2));
                     linearLayout.addView(textView2, ja.o(-2, 48));
                 }
-                if (jVar instanceof g2) {
+                if (jVar instanceof f2) {
                     TextView textView3 = new TextView(g0Var.getContext());
                     q6.U(textView3, i10, uVar);
                     textView3.setBackgroundDrawable(j6.N0(false));
@@ -111,7 +111,7 @@ public final class s implements Runnable {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.getClass();
-                                    ((g2) jVar).r(true);
+                                    ((f2) jVar).r(true);
                                     org.telegram.ui.ActionBar.g1 g1Var2 = g0Var3.B1;
                                     if (g1Var2 != null && g1Var2.isShowing()) {
                                         g0Var3.B1.d(true);

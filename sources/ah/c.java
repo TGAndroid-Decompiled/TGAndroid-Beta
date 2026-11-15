@@ -33,7 +33,7 @@ public final class c extends yg.c {
         fpVar.setDrawBackgroundAsArc(10);
         addView(fpVar);
         fpVar.a(false, false);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -69,7 +69,7 @@ public final class c extends yg.c {
         float f13;
         float f14;
         float f15;
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         int i11 = 3;
         if (z10) {
             i7 = 5;
@@ -88,7 +88,7 @@ public final class c extends yg.c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ja.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i10 = 5;
         } else {
@@ -106,7 +106,7 @@ public final class c extends yg.c {
             f13 = 20.0f;
         }
         this.f60646e.setLayoutParams(ja.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         if (z12) {
             i11 = 5;
         }

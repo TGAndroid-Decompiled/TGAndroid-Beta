@@ -14,10 +14,10 @@ public final class ph0 extends v4.t0 {
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         int loadCount;
         vh0 vh0Var = this.f38305b;
-        if (vh0Var.f40422x && vh0Var.f40423y && !vh0Var.f40421w) {
+        if (vh0Var.f40425x && vh0Var.f40426y && !vh0Var.f40424w) {
             int N0 = this.f38304a.N0();
             loadCount = vh0Var.getLoadCount();
-            if (N0 >= (vh0Var.f40417f.b() - 1) - loadCount) {
+            if (N0 >= (vh0Var.f40420f.b() - 1) - loadCount) {
                 vh0Var.c();
             }
         }

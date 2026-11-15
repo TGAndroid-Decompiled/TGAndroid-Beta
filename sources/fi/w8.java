@@ -97,9 +97,9 @@ public final class w8 extends st0 {
                 f10 += view.getX();
                 f11 += view.getY();
             }
-            if (currentPeerView.f11462b3.getReactionsWindow() != null && currentPeerView.f11462b3.getReactionsWindow().f5010c != null) {
-                motionEvent.offsetLocation(-f10, (-f11) - currentPeerView.f11462b3.getReactionsWindow().f5010c.getTranslationY());
-                currentPeerView.f11462b3.getReactionsWindow().f5010c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f11462b3.getReactionsWindow() != null && currentPeerView.f11462b3.getReactionsWindow().f5013c != null) {
+                motionEvent.offsetLocation(-f10, (-f11) - currentPeerView.f11462b3.getReactionsWindow().f5013c.getTranslationY());
+                currentPeerView.f11462b3.getReactionsWindow().f5013c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = org.telegram.messenger.g0.Q;
@@ -125,7 +125,7 @@ public final class w8 extends st0 {
                 ofFloat.addUpdateListener(new t8(this, 0));
                 i9Var.H.addListener(new u8(this, 0));
                 i9Var.H.setDuration(250L);
-                i9Var.H.setInterpolator(er.f34420f);
+                i9Var.H.setInterpolator(er.f34419f);
                 i9Var.H.start();
             }
             if (i9Var.W >= 0.3f) {
@@ -236,11 +236,11 @@ public final class w8 extends st0 {
             org.telegram.messenger.g0.a3(e2Var.getParentActivity(), e2Var.getClassGuid());
         }
         setTag(2131296351, new v8(this));
-        ns.f(i9Var.h).c(i9Var, ns.f25605x5);
-        ns.f(i9Var.h).c(i9Var, ns.f25591v5);
-        ns.f(i9Var.h).c(i9Var, ns.f25482d1);
-        ns.f(i9Var.h).c(i9Var, ns.f25476c1);
-        ns.f(i9Var.h).c(i9Var, ns.f25598w5);
+        ns.f(i9Var.h).c(i9Var, ns.f25606x5);
+        ns.f(i9Var.h).c(i9Var, ns.f25592v5);
+        ns.f(i9Var.h).c(i9Var, ns.f25483d1);
+        ns.f(i9Var.h).c(i9Var, ns.f25477c1);
+        ns.f(i9Var.h).c(i9Var, ns.f25599w5);
     }
 
     @Override
@@ -248,11 +248,11 @@ public final class w8 extends st0 {
         super.onDetachedFromWindow();
         setTag(2131296351, null);
         i9 i9Var = this.f12486s0;
-        ns.f(i9Var.h).n(i9Var, ns.f25605x5);
-        ns.f(i9Var.h).n(i9Var, ns.f25591v5);
-        ns.f(i9Var.h).n(i9Var, ns.f25482d1);
-        ns.f(i9Var.h).n(i9Var, ns.f25476c1);
-        ns.f(i9Var.h).n(i9Var, ns.f25598w5);
+        ns.f(i9Var.h).n(i9Var, ns.f25606x5);
+        ns.f(i9Var.h).n(i9Var, ns.f25592v5);
+        ns.f(i9Var.h).n(i9Var, ns.f25483d1);
+        ns.f(i9Var.h).n(i9Var, ns.f25477c1);
+        ns.f(i9Var.h).n(i9Var, ns.f25599w5);
     }
 
     @Override
@@ -263,7 +263,7 @@ public final class w8 extends st0 {
     @Override
     public final void onMeasure(int i7, int i10) {
         i9 i9Var = this.f12486s0;
-        ((FrameLayout.LayoutParams) i9Var.f11840d1.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23603m - org.telegram.messenger.g0.L(2.0f);
+        ((FrameLayout.LayoutParams) i9Var.f11840d1.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23605m - org.telegram.messenger.g0.L(2.0f);
         i9Var.f11840d1.getLayoutParams().height = org.telegram.messenger.g0.L(2.0f);
         super.onMeasure(i7, i10);
     }
@@ -284,7 +284,7 @@ public final class w8 extends st0 {
                 ofFloat.addUpdateListener(new t8(this, 1));
                 i9Var.H.addListener(new u8(this, 1));
                 i9Var.H.setDuration(150L);
-                i9Var.H.setInterpolator(er.f34420f);
+                i9Var.H.setInterpolator(er.f34419f);
                 i9Var.H.start();
             }
             b4 z10 = i9Var.z();

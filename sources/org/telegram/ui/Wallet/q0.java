@@ -14,11 +14,11 @@ public final class q0 implements Runnable {
     public final void run() {
         switch (this.f44379a) {
             case 0:
-                u0 u0Var = xa.f4778b;
+                u0 u0Var = xa.f4781b;
                 if (u0Var != null) {
                     if (this.f44380b.equals(u0Var.d)) {
-                        xa.f4778b.c("STORAGE_CANCELED");
-                        xa.f4778b.e();
+                        xa.f4781b.c("STORAGE_CANCELED");
+                        xa.f4781b.e();
                         return;
                     }
                     return;

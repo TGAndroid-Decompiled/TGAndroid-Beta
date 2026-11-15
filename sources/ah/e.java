@@ -37,7 +37,7 @@ public class e extends FrameLayout implements z5 {
         TextView textView = new TextView(context);
         this.d = textView;
         i20.o(textView, 1, 20.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -45,7 +45,7 @@ public class e extends FrameLayout implements z5 {
         textView.setGravity(i7);
         int i10 = j6.f28957j5;
         q6.U(textView, i10, e6Var);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             f10 = 16.0f;
         } else {
@@ -67,7 +67,7 @@ public class e extends FrameLayout implements z5 {
         x1Var.a(w02);
         x1Var.b(j6.w0(i10, e6Var));
         x1Var.f29864k = 220.0f;
-        addView(imageView, ja.d(24, 24.0f, (hd.f24101a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(imageView, ja.d(24, 24.0f, (hd.f24104a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d(this, 0));
     }
 
@@ -103,7 +103,7 @@ public class e extends FrameLayout implements z5 {
             i7 = 8;
         }
         this.f1067c.setVisibility(i7);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (!z11 && z10) {
             f10 = 53.0f;
         } else {

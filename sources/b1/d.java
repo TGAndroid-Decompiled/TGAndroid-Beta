@@ -15,9 +15,9 @@ import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
 import rd.l;
 public abstract class d {
-    public static final a f2851a = new Object();
-    public static final Set f2852b;
-    public static final int f2853c;
+    public static final a f2854a = new Object();
+    public static final Set f2855b;
+    public static final int f2856c;
     public static final int d = 0;
 
     static {
@@ -37,14 +37,14 @@ public abstract class d {
         } else {
             set = p.f13833a;
         }
-        f2852b = set;
-        f2853c = 1;
+        f2855b = set;
+        f2856c = 1;
     }
 
     public static void a(ResultReceiver resultReceiver, Intent intent, String str) {
         j.e(resultReceiver, "resultReceiver");
         intent.putExtra("TYPE", str);
-        intent.putExtra("ACTIVITY_REQUEST_CODE", f2853c);
+        intent.putExtra("ACTIVITY_REQUEST_CODE", f2856c);
         intent.putExtra("RESULT_RECEIVER", d(resultReceiver));
         intent.setFlags(65536);
     }

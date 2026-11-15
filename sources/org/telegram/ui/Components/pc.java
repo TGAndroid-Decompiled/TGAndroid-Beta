@@ -72,7 +72,7 @@ public abstract class pc extends hi.m {
         this.f38277p1 = new dg(this, 17);
         this.f38268e1 = runnable;
         g6Var.w(org.telegram.messenger.g0.L(14.0f));
-        g6Var.N = org.telegram.messenger.g0.f23609q.x;
+        g6Var.N = org.telegram.messenger.g0.f23611q.x;
         g6Var.u(-1);
         boolean z10 = this instanceof org.telegram.ui.yo0;
         if (z10) {
@@ -341,7 +341,7 @@ public abstract class pc extends hi.m {
         int i7 = org.telegram.ui.ActionBar.j6.f29098qg;
         ShapeDrawable L2 = org.telegram.ui.ActionBar.j6.L(L, org.telegram.ui.ActionBar.j6.w0(i7, e6Var));
         fq fqVar = this.f14631n;
-        fqVar.f34669a = L2;
+        fqVar.f34673a = L2;
         fqVar.invalidateSelf();
         this.W0.e(-1, org.telegram.ui.ActionBar.j6.w0(i7, e6Var), -1);
     }
@@ -474,17 +474,17 @@ public abstract class pc extends hi.m {
         u5 u5Var = this.l1;
         dc dcVar = this.f38272i1;
         if (action == 0) {
-            if (u5Var.f39903c > 0.0f && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            if (u5Var.f39900c > 0.0f && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             dcVar.c(z10);
         } else if (motionEvent.getAction() == 2) {
-            if (dcVar.f33917i && (u5Var.f39903c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
+            if (dcVar.f33904i && (u5Var.f39900c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
                 dcVar.c(false);
             }
-        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && dcVar.f33917i) {
+        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && dcVar.f33904i) {
             if (motionEvent.getAction() == 1) {
                 A();
                 if (this instanceof org.telegram.ui.yo0) {
@@ -497,7 +497,7 @@ public abstract class pc extends hi.m {
             dcVar.c(false);
             return true;
         }
-        if (!dcVar.f33917i && !super.dispatchTouchEvent(motionEvent)) {
+        if (!dcVar.f33904i && !super.dispatchTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -652,15 +652,15 @@ public abstract class pc extends hi.m {
         boolean z10;
         dg dgVar = this.f38277p1;
         org.telegram.messenger.g0.r(dgVar);
-        if (org.telegram.messenger.np.s1(this.V).f25280f7.getInt("movecaptionhint", 0) >= 24) {
-            boolean z11 = org.telegram.messenger.r2.f26198a;
+        if (org.telegram.messenger.np.s1(this.V).f25283f7.getInt("movecaptionhint", 0) >= 24) {
+            boolean z11 = org.telegram.messenger.r2.f26206a;
             z10 = false;
         } else {
             z10 = true;
         }
         this.f38276o1 = z10;
         if (z10) {
-            SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(this.V).f25280f7;
+            SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(this.V).f25283f7;
             sharedPreferences.edit().putInt("movecaptionhint", sharedPreferences.getInt("movecaptionhint", 0) + 1).apply();
             invalidate();
             org.telegram.messenger.g0.i3(dgVar, 5000L);

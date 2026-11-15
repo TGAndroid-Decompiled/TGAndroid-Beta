@@ -13,28 +13,28 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.fh0;
 import org.telegram.ui.pb1;
 public final class g1 extends FrameLayout {
-    public final fh0 f40617a;
-    public final fh0 f40618b;
-    public final org.telegram.ui.Cells.y f40619c;
+    public final fh0 f40620a;
+    public final fh0 f40621b;
+    public final org.telegram.ui.Cells.y f40622c;
     public org.telegram.ui.Components.f1 d;
-    public f1 f40620e;
-    public int f40621f;
+    public f1 f40623e;
+    public int f40624f;
 
     public g1(Context context) {
         super(context);
-        this.f40621f = 0;
+        this.f40624f = 0;
         setWillNotDraw(false);
         ?? imageView = new ImageView(context);
-        this.f40617a = imageView;
+        this.f40620a = imageView;
         ?? imageView2 = new ImageView(context);
-        this.f40618b = imageView2;
+        this.f40621b = imageView2;
         imageView.f(2131624225, 37, 37, null);
         imageView2.f(2131624215, 37, 37, null);
         imageView2.setAlpha(0.0f);
         addView((View) imageView, ja.c(37.0f, 37));
         addView((View) imageView2, ja.c(37.0f, 37));
         org.telegram.ui.Cells.y j02 = j6.j0(org.telegram.messenger.g0.L(37.0f), 0, i0.a.o(-1, 76));
-        this.f40619c = j02;
+        this.f40622c = j02;
         j02.setCallback(this);
         setClickable(true);
     }
@@ -47,26 +47,26 @@ public final class g1 extends FrameLayout {
         int i10 = 0;
         if (action != 0) {
             if (action != 1) {
-                if (action == 3 && (f1Var = this.f40620e) != null) {
+                if (action == 3 && (f1Var = this.f40623e) != null) {
                     g1[] g1VarArr = (g1[]) ((k4) ((org.telegram.ui.ActionBar.z) f1Var).f29898b).d;
                     int length = g1VarArr.length;
                     while (i10 < length) {
                         g1 g1Var = g1VarArr[i10];
-                        fh0 fh0Var = g1Var.f40617a;
-                        fh0 fh0Var2 = g1Var.f40618b;
+                        fh0 fh0Var = g1Var.f40620a;
+                        fh0 fh0Var2 = g1Var.f40621b;
                         fh0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         fh0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         i10++;
                     }
                 }
             } else {
-                f1 f1Var2 = this.f40620e;
+                f1 f1Var2 = this.f40623e;
                 if (f1Var2 != null) {
                     g1[] g1VarArr2 = (g1[]) ((k4) ((org.telegram.ui.ActionBar.z) f1Var2).f29898b).d;
-                    for (int i11 = 0; i11 <= this.f40621f; i11++) {
+                    for (int i11 = 0; i11 <= this.f40624f; i11++) {
                         g1 g1Var2 = g1VarArr2[i11];
-                        fh0 fh0Var3 = g1Var2.f40617a;
-                        fh0 fh0Var4 = g1Var2.f40618b;
+                        fh0 fh0Var3 = g1Var2.f40620a;
+                        fh0 fh0Var4 = g1Var2.f40621b;
                         fh0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         fh0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     }
@@ -79,9 +79,9 @@ public final class g1 extends FrameLayout {
                     org.telegram.ui.Components.f1 f1Var3 = this.d;
                     float width = (getWidth() / 2.0f) + i12;
                     float height = (getHeight() / 2.0f) + i13;
-                    int i14 = this.f40621f + 1;
-                    k4 k4Var = (k4) f1Var3.f34472b;
-                    Context context = (Context) f1Var3.f34473c;
+                    int i14 = this.f40624f + 1;
+                    k4 k4Var = (k4) f1Var3.f34471b;
+                    Context context = (Context) f1Var3.f34472c;
                     if (i14 >= 4) {
                         ?? imageView = new ImageView(context);
                         int L = org.telegram.messenger.g0.L(133.0f);
@@ -97,32 +97,32 @@ public final class g1 extends FrameLayout {
                         imageView.setOnAnimationEndListener(new e1(k4Var, imageView, 0));
                         imageView.d();
                     }
-                    pb1 pb1Var = (pb1) k4Var.f8909e;
+                    pb1 pb1Var = (pb1) k4Var.f8910e;
                     if (pb1Var != null) {
-                        pb1Var.f50239b.M = i14;
+                        pb1Var.f50216b.M = i14;
                     }
                 }
             }
         } else {
-            f1 f1Var4 = this.f40620e;
+            f1 f1Var4 = this.f40623e;
             if (f1Var4 != null) {
                 g1[] g1VarArr3 = (g1[]) ((k4) ((org.telegram.ui.ActionBar.z) f1Var4).f29898b).d;
                 while (true) {
-                    i7 = this.f40621f;
+                    i7 = this.f40624f;
                     if (i10 > i7) {
                         break;
                     }
                     g1 g1Var3 = g1VarArr3[i10];
-                    fh0 fh0Var5 = g1Var3.f40617a;
-                    fh0 fh0Var6 = g1Var3.f40618b;
+                    fh0 fh0Var5 = g1Var3.f40620a;
+                    fh0 fh0Var6 = g1Var3.f40621b;
                     fh0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                     fh0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                     i10++;
                 }
                 for (int i17 = i7 + 1; i17 < g1VarArr3.length; i17++) {
                     g1 g1Var4 = g1VarArr3[i17];
-                    fh0 fh0Var7 = g1Var4.f40617a;
-                    fh0 fh0Var8 = g1Var4.f40618b;
+                    fh0 fh0Var7 = g1Var4.f40620a;
+                    fh0 fh0Var8 = g1Var4.f40621b;
                     fh0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     fh0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                 }
@@ -134,7 +134,7 @@ public final class g1 extends FrameLayout {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        org.telegram.ui.Cells.y yVar = this.f40619c;
+        org.telegram.ui.Cells.y yVar = this.f40622c;
         if (yVar != null) {
             yVar.setState(getDrawableState());
         }
@@ -143,7 +143,7 @@ public final class g1 extends FrameLayout {
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        org.telegram.ui.Cells.y yVar = this.f40619c;
+        org.telegram.ui.Cells.y yVar = this.f40622c;
         if (yVar != null) {
             yVar.jumpToCurrentState();
         }
@@ -154,18 +154,18 @@ public final class g1 extends FrameLayout {
         super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.y yVar = this.f40619c;
+        org.telegram.ui.Cells.y yVar = this.f40622c;
         yVar.setBounds(0, 0, width, height);
         yVar.draw(canvas);
     }
 
     public void setAllStarsProvider(f1 f1Var) {
-        this.f40620e = f1Var;
+        this.f40623e = f1Var;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f40619c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f40622c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

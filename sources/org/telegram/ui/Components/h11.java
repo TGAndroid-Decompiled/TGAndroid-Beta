@@ -14,7 +14,7 @@ public final class h11 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.f35148a) {
             case 0:
-                fi.w2 w2Var = this.f35149b.f36240f;
+                fi.w2 w2Var = this.f35149b.f36230f;
                 w2Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 w2Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 w2Var.invalidate();

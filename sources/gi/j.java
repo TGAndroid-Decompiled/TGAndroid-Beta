@@ -120,7 +120,7 @@ public final class j extends TextView {
     public void draw(Canvas canvas) {
         switch (this.f13326a) {
             case 4:
-                ((org.telegram.ui.g) this.f13328c).f47248b.draw(canvas);
+                ((org.telegram.ui.g) this.f13328c).f47238b.draw(canvas);
                 super.draw(canvas);
                 return;
             case 10:
@@ -138,7 +138,7 @@ public final class j extends TextView {
         switch (this.f13326a) {
             case 7:
                 super.onDetachedFromWindow();
-                ((d80) this.f13328c).f33865b = -1L;
+                ((d80) this.f13328c).f33867b = -1L;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -168,7 +168,7 @@ public final class j extends TextView {
                 return;
             case 4:
                 super.onDraw(canvas);
-                if (((org.telegram.ui.g) this.f13328c).f47256x) {
+                if (((org.telegram.ui.g) this.f13328c).f47246x) {
                     RectF rectF = g0.P;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     ((org.telegram.ui.Components.voip.n) this.f13327b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
@@ -210,14 +210,14 @@ public final class j extends TextView {
                 rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint[] paintArr = (Paint[]) this.f13327b;
                 x0 x0Var = (x0) this.f13328c;
-                paintArr[x0Var.f41042y].setAlpha(255);
-                canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[x0Var.f41042y]);
-                float f10 = x0Var.f41041x;
+                paintArr[x0Var.f41045y].setAlpha(255);
+                canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[x0Var.f41045y]);
+                float f10 = x0Var.f41044x;
                 if (f10 > 0.0f) {
-                    int i7 = x0Var.f41042y;
+                    int i7 = x0Var.f41045y;
                     if (i7 + 1 < paintArr.length) {
                         paintArr[i7 + 1].setAlpha((int) (f10 * 255.0f));
-                        canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[x0Var.f41042y + 1]);
+                        canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[x0Var.f41045y + 1]);
                     }
                 }
                 super.onDraw(canvas);
@@ -331,7 +331,7 @@ public final class j extends TextView {
         super(context);
         this.f13326a = 9;
         this.f13328c = x0Var;
-        this.f13327b = new Paint[x0Var.f41036f.length];
+        this.f13327b = new Paint[x0Var.f41039f.length];
         int i7 = 0;
         while (true) {
             Paint[] paintArr = (Paint[]) this.f13327b;
@@ -360,8 +360,8 @@ public final class j extends TextView {
                 this.f13327b = u70Var;
                 d80 d80Var = new d80();
                 this.f13328c = d80Var;
-                d80Var.f33885y = u70Var;
-                d80Var.f33882u = 0.65f;
+                d80Var.f33887y = u70Var;
+                d80Var.f33884u = 0.65f;
                 d80Var.k(4.0f);
                 setBackground(d80Var);
                 return;
@@ -391,8 +391,8 @@ public final class j extends TextView {
         this.f13328c = t50Var;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f13327b = nVar;
-        nVar.f40799k = false;
-        nVar.f40801m = 2.0f;
+        nVar.f40802k = false;
+        nVar.f40804m = 2.0f;
     }
 
     public j(org.telegram.ui.g gVar, Context context) {
@@ -401,8 +401,8 @@ public final class j extends TextView {
         this.f13328c = gVar;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f13327b = nVar;
-        nVar.f40799k = false;
-        nVar.f40801m = 2.0f;
+        nVar.f40802k = false;
+        nVar.f40804m = 2.0f;
     }
 
     public j(m mVar, Context context) {

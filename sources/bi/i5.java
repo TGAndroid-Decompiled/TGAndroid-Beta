@@ -13,7 +13,7 @@ import org.telegram.ui.Components.u41;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.y31;
 public final class i5 extends a41 {
-    public static final int f3618b = 0;
+    public static final int f3621b = 0;
 
     static {
         a41.h(new a41());
@@ -23,20 +23,20 @@ public final class i5 extends a41 {
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         j5 j5Var = (j5) view;
         TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) b41Var.G;
-        int i7 = b41Var.f33194z;
-        String str = (String) b41Var.f33181l;
-        boolean z11 = b41Var.f33175e;
+        int i7 = b41Var.f33197z;
+        String str = (String) b41Var.f33184l;
+        boolean z11 = b41Var.f33178e;
         fh0 fh0Var = j5Var.f29901c;
-        h5 h5Var = j5Var.f3633b0;
-        if (h5Var == null || j5Var.f3632a0 != stargiftattributemodel.document.f28057id) {
-            j5Var.f3632a0 = stargiftattributemodel.document.f28057id;
+        h5 h5Var = j5Var.f3636b0;
+        if (h5Var == null || j5Var.f3635a0 != stargiftattributemodel.document.f28057id) {
+            j5Var.f3635a0 = stargiftattributemodel.document.f28057id;
             if (h5Var != null) {
                 h5Var.n(fh0Var);
             }
-            j5Var.f3633b0 = new org.telegram.ui.Components.g5(3, j5Var.W, stargiftattributemodel.document);
+            j5Var.f3636b0 = new org.telegram.ui.Components.g5(3, j5Var.W, stargiftattributemodel.document);
         }
         if (fh0Var.isAttachedToWindow()) {
-            j5Var.f3633b0.a(fh0Var);
+            j5Var.f3636b0.a(fh0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
         if (!TextUtils.isEmpty(str)) {
@@ -50,7 +50,7 @@ public final class i5 extends a41 {
             spannableStringBuilder2.setSpan(new y31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        j5Var.j(spannableStringBuilder, 0, j5Var.f3633b0);
+        j5Var.j(spannableStringBuilder, 0, j5Var.f3636b0);
         j5Var.setChecked(z11);
     }
 

@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class mr0 extends tj0 {
-    public final Context f37364c;
+    public final Context f37363c;
     public final ArrayList d = new ArrayList();
-    public boolean f37365e;
-    public boolean f37366f;
+    public boolean f37364e;
+    public boolean f37365f;
     public boolean h;
-    public int f37367n;
-    public final ys0 f37368r;
+    public int f37366n;
+    public final ys0 f37367r;
 
     public mr0(ys0 ys0Var, Context context) {
-        this.f37368r = ys0Var;
-        this.f37364c = context;
+        this.f37367r = ys0Var;
+        this.f37363c = context;
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class mr0 extends tj0 {
     }
 
     public final void E(long j3) {
-        org.telegram.ui.ActionBar.e2 e2Var = this.f37368r.f42150y1;
-        if (!this.f37365e) {
+        org.telegram.ui.ActionBar.e2 e2Var = this.f37367r.f42152y1;
+        if (!this.f37364e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
             TLRPC.InputUser o12 = e2Var.getMessagesController().o1(F());
             tL_messages_getCommonChats.user_id = o12;
@@ -39,24 +39,24 @@ public final class mr0 extends tj0 {
             }
             tL_messages_getCommonChats.limit = 100;
             tL_messages_getCommonChats.max_id = j3;
-            this.f37365e = true;
+            this.f37364e = true;
             f();
-            this.f37367n = e2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new v1(this, 11));
-            e2Var.getConnectionsManager().bindRequestToGuid(this.f37367n, e2Var.getClassGuid());
+            this.f37366n = e2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new v1(this, 11));
+            e2Var.getConnectionsManager().bindRequestToGuid(this.f37366n, e2Var.getClassGuid());
         }
     }
 
     public final long F() {
-        ys0 ys0Var = this.f37368r;
-        if (org.telegram.messenger.m5.C(ys0Var.f42114m1)) {
-            return ys0Var.f42150y1.getMessagesController().a1(Integer.valueOf((int) (ys0Var.f42114m1 & 4294967295L))).user_id;
+        ys0 ys0Var = this.f37367r;
+        if (org.telegram.messenger.m5.C(ys0Var.f42116m1)) {
+            return ys0Var.f42152y1.getMessagesController().a1(Integer.valueOf((int) (ys0Var.f42116m1 & 4294967295L))).user_id;
         }
-        return ys0Var.f42114m1;
+        return ys0Var.f42116m1;
     }
 
     public final boolean G() {
         TLRPC.User a22;
-        if (this.d.isEmpty() || (a22 = this.f37368r.f42150y1.getMessagesController().a2(Long.valueOf(F()))) == null || a22.bot || a22.self || org.telegram.messenger.q10.x(a22)) {
+        if (this.d.isEmpty() || (a22 = this.f37367r.f42152y1.getMessagesController().a2(Long.valueOf(F()))) == null || a22.bot || a22.self || org.telegram.messenger.q10.x(a22)) {
             return false;
         }
         return true;
@@ -65,7 +65,7 @@ public final class mr0 extends tj0 {
     @Override
     public final int b() {
         ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.f37365e) {
+        if (arrayList.isEmpty() && !this.f37364e) {
             return 1;
         }
         int size = arrayList.size();
@@ -84,7 +84,7 @@ public final class mr0 extends tj0 {
     @Override
     public final int d(int i7) {
         ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.f37365e) {
+        if (arrayList.isEmpty() && !this.f37364e) {
             return 15;
         }
         if (G()) {
@@ -118,16 +118,16 @@ public final class mr0 extends tj0 {
                 f6Var.N = z10;
             }
         } else if (i10 == 25 && (view instanceof org.telegram.ui.Cells.x4)) {
-            ((org.telegram.ui.Cells.x4) view).b(2131232177, 5, org.telegram.messenger.hd.a0(null, null, 2131751745, org.telegram.messenger.q10.j(this.f37368r.f42150y1.getMessagesController().a2(Long.valueOf(F())), true)), true);
+            ((org.telegram.ui.Cells.x4) view).b(2131232177, 5, org.telegram.messenger.hd.a0(null, null, 2131751745, org.telegram.messenger.q10.j(this.f37367r.f42152y1.getMessagesController().a2(Long.valueOf(F())), true)), true);
         }
     }
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.f6 f6Var;
-        ys0 ys0Var = this.f37368r;
+        ys0 ys0Var = this.f37367r;
         org.telegram.ui.ActionBar.e6 e6Var = ys0Var.I1;
-        Context context = this.f37364c;
+        Context context = this.f37363c;
         if (i7 != 14) {
             if (i7 != 15) {
                 if (i7 != 25) {
@@ -143,7 +143,7 @@ public final class mr0 extends tj0 {
                     f6Var = x4Var;
                 }
             } else {
-                p3 X = ys0.X(6, ys0Var.f42114m1, context, e6Var);
+                p3 X = ys0.X(6, ys0Var.f42116m1, context, e6Var);
                 X.setLayoutParams(new v4.p0(-1, -1));
                 return new v4.e1(X);
             }

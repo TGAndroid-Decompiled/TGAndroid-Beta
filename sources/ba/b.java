@@ -6,20 +6,20 @@ import com.google.android.gms.tasks.Tasks;
 import org.telegram.ui.ActionBar.q1;
 import org.telegram.ui.ActionBar.t1;
 public final class b implements Continuation, q1 {
-    public final Runnable f3086a;
+    public final Runnable f3089a;
 
     public b(Runnable runnable) {
-        this.f3086a = runnable;
+        this.f3089a = runnable;
     }
 
     @Override
     public void h(t1 t1Var, int i7) {
-        this.f3086a.run();
+        this.f3089a.run();
     }
 
     @Override
     public Object then(Task task) {
-        this.f3086a.run();
+        this.f3089a.run();
         return Tasks.forResult(null);
     }
 }

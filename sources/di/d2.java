@@ -2,14 +2,14 @@ package di;
 
 import android.view.View;
 public final class d2 implements View.OnClickListener {
-    public final int f8395a;
-    public final c6 f8396b;
-    public final int f8397c;
+    public final int f8387a;
+    public final c6 f8388b;
+    public final int f8389c;
 
     public d2(c6 c6Var, int i7, int i10) {
-        this.f8395a = i10;
-        this.f8396b = c6Var;
-        this.f8397c = i7;
+        this.f8387a = i10;
+        this.f8388b = c6Var;
+        this.f8389c = i7;
     }
 
     @Override
@@ -18,10 +18,10 @@ public final class d2 implements View.OnClickListener {
         int i10;
         int i11;
         int i12;
-        switch (this.f8395a) {
+        switch (this.f8387a) {
             case 0:
-                c6 c6Var = this.f8396b;
-                int i13 = this.f8397c;
+                c6 c6Var = this.f8388b;
+                int i13 = this.f8389c;
                 c6Var.Q2 = i13;
                 e4 e4Var = c6Var.V1;
                 int currentPosition = e4Var.getCurrentPosition();
@@ -33,8 +33,8 @@ public final class d2 implements View.OnClickListener {
                 e4Var.C(currentPosition + i7);
                 return;
             case 1:
-                c6 c6Var2 = this.f8396b;
-                int i14 = this.f8397c;
+                c6 c6Var2 = this.f8388b;
+                int i14 = this.f8389c;
                 c6Var2.Q2 = i14;
                 e4 e4Var2 = c6Var2.V1;
                 int currentPosition2 = e4Var2.getCurrentPosition();
@@ -46,8 +46,8 @@ public final class d2 implements View.OnClickListener {
                 e4Var2.C(currentPosition2 + i10);
                 return;
             case 2:
-                c6 c6Var3 = this.f8396b;
-                int i15 = this.f8397c;
+                c6 c6Var3 = this.f8388b;
+                int i15 = this.f8389c;
                 c6Var3.Q2 = i15;
                 e4 e4Var3 = c6Var3.V1;
                 int currentPosition3 = e4Var3.getCurrentPosition();
@@ -59,8 +59,8 @@ public final class d2 implements View.OnClickListener {
                 e4Var3.C(currentPosition3 + i11);
                 return;
             default:
-                c6 c6Var4 = this.f8396b;
-                int i16 = this.f8397c;
+                c6 c6Var4 = this.f8388b;
+                int i16 = this.f8389c;
                 c6Var4.Q2 = i16;
                 e4 e4Var4 = c6Var4.V1;
                 int currentPosition4 = e4Var4.getCurrentPosition();

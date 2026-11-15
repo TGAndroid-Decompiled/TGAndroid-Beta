@@ -9,37 +9,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pb0 implements Runnable {
-    public final int f50233a = 1;
-    public final tb0 f50234b;
-    public final TLRPC.TL_error f50235c;
+    public final int f50210a = 1;
+    public final tb0 f50211b;
+    public final TLRPC.TL_error f50212c;
     public final String d;
-    public final String f50236e;
-    public final TLObject f50237f;
+    public final String f50213e;
+    public final TLObject f50214f;
 
     public pb0(tb0 tb0Var, TLRPC.TL_error tL_error, String str, String str2, TLObject tLObject) {
-        this.f50234b = tb0Var;
-        this.f50235c = tL_error;
+        this.f50211b = tb0Var;
+        this.f50212c = tL_error;
         this.d = str;
-        this.f50236e = str2;
-        this.f50237f = tLObject;
+        this.f50213e = str2;
+        this.f50214f = tLObject;
     }
 
     @Override
     public final void run() {
         String G;
         int i7;
-        int i10 = this.f50233a;
-        TLObject tLObject = this.f50237f;
-        String str = this.f50236e;
+        int i10 = this.f50210a;
+        TLObject tLObject = this.f50214f;
+        String str = this.f50213e;
         String str2 = this.d;
-        TLRPC.TL_error tL_error = this.f50235c;
-        tb0 tb0Var = this.f50234b;
+        TLRPC.TL_error tL_error = this.f50212c;
+        tb0 tb0Var = this.f50211b;
         switch (i10) {
             case 0:
                 tb0Var.getClass();
                 if (tL_error == null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
-                    tb0Var.f51530s = password;
+                    tb0Var.f51531s = password;
                     TwoStepVerificationActivity.r0(password);
                     tb0Var.n(str2, str);
                     return;
@@ -73,7 +73,7 @@ public final class pb0 implements Runnable {
                     }
                     return;
                 } else if (tL_error != null) {
-                    tb0Var.f51532x = false;
+                    tb0Var.f51533x = false;
                     if (tL_error.text.startsWith("FLOOD_WAIT")) {
                         int intValue = Utilities.z(tL_error.text).intValue();
                         if (intValue < 60) {
@@ -93,10 +93,10 @@ public final class pb0 implements Runnable {
     }
 
     public pb0(tb0 tb0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str, String str2) {
-        this.f50234b = tb0Var;
-        this.f50235c = tL_error;
-        this.f50237f = tLObject;
+        this.f50211b = tb0Var;
+        this.f50212c = tL_error;
+        this.f50214f = tLObject;
         this.d = str;
-        this.f50236e = str2;
+        this.f50213e = str2;
     }
 }

@@ -50,7 +50,7 @@ public final class ka extends FrameLayout {
         sa saVar = this.f14526e;
         if (view == saVar.f15063i0) {
             if (saVar.W) {
-                f10 = org.telegram.messenger.g0.f23603m;
+                f10 = org.telegram.messenger.g0.f23605m;
             } else {
                 f10 = 0.0f;
             }

@@ -12,19 +12,19 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class wx implements View.OnClickListener {
-    public final int f53023a;
-    public final fy f53024b;
+    public final int f53022a;
+    public final fy f53023b;
 
     public wx(fy fyVar, int i7) {
-        this.f53023a = i7;
-        this.f53024b = fyVar;
+        this.f53022a = i7;
+        this.f53023b = fyVar;
     }
 
     @Override
     public final void onClick(View view) {
         float f10;
-        int i7 = this.f53023a;
-        fy fyVar = this.f53024b;
+        int i7 = this.f53022a;
+        fy fyVar = this.f53023b;
         switch (i7) {
             case 0:
                 String str = fyVar.f54050s;
@@ -35,7 +35,7 @@ public final class wx implements View.OnClickListener {
                 }
                 return;
             case 1:
-                fy fyVar2 = this.f53024b;
+                fy fyVar2 = this.f53023b;
                 FrameLayout frameLayout = fyVar2.f54043a;
                 if (frameLayout.getBackground() instanceof RippleDrawable) {
                     frameLayout.getBackground().setState(new int[]{16842919, 16842910});
@@ -119,7 +119,7 @@ public final class wx implements View.OnClickListener {
                 if (g1Var2 != null) {
                     g1Var2.d(true);
                 }
-                hy hyVar = fyVar.F.f47550c;
+                hy hyVar = fyVar.F.f47540c;
                 TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = hyVar.d;
                 if (tL_exportedChatlistInvite != null && tL_exportedChatlistInvite.url != null) {
                     EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(fyVar.getContext());
@@ -142,7 +142,7 @@ public final class wx implements View.OnClickListener {
                     editTextBoldCursor.setGravity(51);
                     editTextBoldCursor.setSingleLine(true);
                     editTextBoldCursor.setImeOptions(6);
-                    editTextBoldCursor.setHint(hyVar.f47844c.f26543b);
+                    editTextBoldCursor.setHint(hyVar.f47834c.f26553b);
                     org.telegram.ui.ActionBar.q6.D(editTextBoldCursor, org.telegram.ui.ActionBar.j6.f29145t5, null);
                     org.telegram.ui.ActionBar.q6.l(editTextBoldCursor, 30, i12, null);
                     editTextBoldCursor.setCursorSize(org.telegram.messenger.g0.L(20.0f));
@@ -184,8 +184,8 @@ public final class wx implements View.OnClickListener {
                 TL_chatlists.TL_chatlists_deleteExportedInvite tL_chatlists_deleteExportedInvite = new TL_chatlists.TL_chatlists_deleteExportedInvite();
                 TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
                 tL_chatlists_deleteExportedInvite.chatlist = tL_inputChatlistDialogFilter;
-                hy hyVar2 = fyVar.F.f47550c;
-                tL_inputChatlistDialogFilter.filter_id = hyVar2.f47844c.f26542a;
+                hy hyVar2 = fyVar.F.f47540c;
+                tL_inputChatlistDialogFilter.filter_id = hyVar2.f47834c.f26552a;
                 tL_chatlists_deleteExportedInvite.slug = hyVar2.g0();
                 org.telegram.ui.ActionBar.t1 t1Var2 = new org.telegram.ui.ActionBar.t1(3, fyVar.getContext(), null);
                 t1Var2.r(180L);

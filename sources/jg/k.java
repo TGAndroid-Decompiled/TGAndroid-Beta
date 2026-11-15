@@ -109,7 +109,7 @@ public final class k extends rg.a {
                 this.f17166g = dialog.pinned;
             } else {
                 so soVar = np.s1(i14).N[mVar.h == 8 ? (char) 1 : (char) 0];
-                this.f17166g = (soVar == null || soVar.f26549j.indexOfKey(dialog.f28055id) < 0) ? false : z10;
+                this.f17166g = (soVar == null || soVar.f26559j.indexOfKey(dialog.f28055id) < 0) ? false : z10;
             }
             this.h = dialog.isFolder;
             this.f17165f = np.s1(i14).t2(dialog.f28055id);

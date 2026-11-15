@@ -65,7 +65,7 @@ public final class a9 extends FrameLayout {
         TextView textView2 = this.f30012a;
         int i13 = this.f30018r;
         boolean z10 = this.f30017n;
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z10 == z11) {
             return;
         }
@@ -78,7 +78,7 @@ public final class a9 extends FrameLayout {
         }
         textView2.setGravity(i7 | 16);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView2.getLayoutParams();
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         if (z12) {
             i10 = 5;
         } else {
@@ -92,21 +92,21 @@ public final class a9 extends FrameLayout {
             f10 = 64.0f;
         }
         layoutParams.leftMargin = org.telegram.messenger.g0.L(f10);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f11 = 64.0f;
         } else {
             f11 = i13;
         }
         layoutParams.rightMargin = org.telegram.messenger.g0.L(f11);
         textView2.setLayoutParams(layoutParams);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView.setGravity(i11);
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) textView.getLayoutParams();
-        boolean z13 = hd.f24101a0;
+        boolean z13 = hd.f24104a0;
         if (z13) {
             i12 = 5;
         } else {
@@ -119,13 +119,13 @@ public final class a9 extends FrameLayout {
             f12 = 64.0f;
         }
         layoutParams2.leftMargin = org.telegram.messenger.g0.L(f12);
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             f13 = i13;
         }
         layoutParams2.rightMargin = org.telegram.messenger.g0.L(f13);
         textView.setLayoutParams(layoutParams2);
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i14 = 5;
         }
         layoutParams3.gravity = i14 | 16;
@@ -137,7 +137,7 @@ public final class a9 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(64.0f);
@@ -145,7 +145,7 @@ public final class a9 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(64.0f);
             } else {
                 i7 = 0;

@@ -3,21 +3,21 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class j90 implements org.telegram.messenger.s10 {
-    public final int f48279a;
-    public final q90 f48280b;
-    public final String f48281c;
+    public final int f48264a;
+    public final q90 f48265b;
+    public final String f48266c;
 
     public j90(q90 q90Var, String str, int i7) {
-        this.f48279a = i7;
-        this.f48280b = q90Var;
-        this.f48281c = str;
+        this.f48264a = i7;
+        this.f48265b = q90Var;
+        this.f48266c = str;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f48279a;
-        String str = this.f48281c;
-        q90 q90Var = this.f48280b;
+        int i7 = this.f48264a;
+        String str = this.f48266c;
+        q90 q90Var = this.f48265b;
         switch (i7) {
             case 0:
                 TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
@@ -45,7 +45,7 @@ public final class j90 implements org.telegram.messenger.s10 {
                 }
                 org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
                 if (T != null && T.getContext() != null) {
-                    org.telegram.ui.Wallet.d2.D(T.getContext(), q90Var.f50511b, y1Var, null, T.getResourceProvider(), null, new m90(q90Var, str, 1));
+                    org.telegram.ui.Wallet.d2.D(T.getContext(), q90Var.f50502b, y1Var, null, T.getResourceProvider(), null, new m90(q90Var, str, 1));
                     return;
                 }
                 return;

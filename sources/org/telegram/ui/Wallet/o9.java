@@ -127,7 +127,7 @@ public final class o9 extends FrameLayout implements org.telegram.ui.ActionBar.z
         w3Var.f35175c.m(0.35f, 420L, 3.5f, er.h);
         w3Var.setScaleProperty(0.2f);
         w3Var.setAllowCancel(true);
-        w3Var.getDrawable().f34832c0 = new l(w3Var, 13);
+        w3Var.getDrawable().f34836c0 = new l(w3Var, 13);
         w3Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(this.f44273a, e6Var));
         w3Var.setTextSize(org.telegram.messenger.g0.L(28.0f));
         w3Var.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));

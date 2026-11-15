@@ -39,7 +39,7 @@ public final class gs extends AnimatorListenerAdapter {
                 ks ksVar = this.f35050e;
                 v4.e1 e1Var = this.f35048b;
                 ksVar.d(e1Var);
-                ksVar.f36603x.remove(e1Var);
+                ksVar.f36591x.remove(e1Var);
                 ksVar.A();
                 return;
             default:

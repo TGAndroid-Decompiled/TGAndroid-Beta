@@ -3,16 +3,16 @@ package d3;
 import android.content.Context;
 import android.os.Handler;
 public final class j {
-    public final Context f7412a;
-    public boolean f7413b;
-    public u2.k f7414c;
+    public final Context f7415a;
+    public boolean f7416b;
+    public u2.k f7417c;
     public long d;
-    public Handler f7415e;
-    public l2.z f7416f;
-    public int f7417g;
+    public Handler f7418e;
+    public l2.z f7419f;
+    public int f7420g;
 
     public j(Context context) {
-        this.f7412a = context;
-        this.f7414c = new androidx.emoji2.text.n(context, 2);
+        this.f7415a = context;
+        this.f7417c = new androidx.emoji2.text.n(context, 2);
     }
 }

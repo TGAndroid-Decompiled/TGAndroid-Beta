@@ -32,7 +32,7 @@ public final class g6 extends FrameLayout {
         } else {
             org.telegram.ui.ActionBar.q6.O(radioButton, org.telegram.ui.ActionBar.j6.f28905g7, org.telegram.ui.ActionBar.j6.h7, null);
         }
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i7 = 5;
         } else {
@@ -54,13 +54,13 @@ public final class g6 extends FrameLayout {
         }
         i20.p(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView.setGravity(i11 | 16);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         if (z12) {
             i12 = 5;
         } else {
@@ -81,7 +81,7 @@ public final class g6 extends FrameLayout {
             org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
         }
         textView2.setTextSize(1, 13.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i14 = 5;
         } else {
             i14 = 3;
@@ -91,7 +91,7 @@ public final class g6 extends FrameLayout {
         textView2.setMaxLines(0);
         textView2.setSingleLine(false);
         textView2.setPadding(0, 0, 0, org.telegram.messenger.g0.L(12.0f));
-        boolean z13 = hd.f24101a0;
+        boolean z13 = hd.f24104a0;
         int i18 = (z13 ? 5 : 3) | 48;
         if (z13) {
             i15 = 17;
@@ -117,7 +117,7 @@ public final class g6 extends FrameLayout {
         float f10;
         if (this.d) {
             float f11 = 60.0f;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 60.0f;
@@ -125,7 +125,7 @@ public final class g6 extends FrameLayout {
             float L = org.telegram.messenger.g0.L(f10);
             float height = getHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f11 = 0.0f;
             }
             canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);

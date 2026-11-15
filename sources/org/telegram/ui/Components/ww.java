@@ -24,7 +24,7 @@ public final class ww extends os {
         boolean z11;
         int i11;
         yw ywVar = this.S;
-        ly lyVar = ywVar.f42170n3;
+        ly lyVar = ywVar.f42172n3;
         ArrayList arrayList = this.P;
         if (arrayList == null) {
             return;
@@ -68,10 +68,10 @@ public final class ww extends os {
                 g5 g5Var = uxVar.f40180b;
                 if (g5Var != null) {
                     org.telegram.messenger.hc hcVar = uxVar.f40183f[this.L];
-                    fi.u2 u2Var = g5Var.f34809k;
+                    fi.u2 u2Var = g5Var.f34813k;
                     if (u2Var != null) {
-                        u2Var.setAlpha(g5Var.f34810l);
-                        g5Var.f34809k.h(canvas, hcVar);
+                        u2Var.setAlpha(g5Var.f34814l);
+                        g5Var.f34813k.h(canvas, hcVar);
                     }
                 }
                 i7++;
@@ -98,7 +98,7 @@ public final class ww extends os {
                 }
                 i7++;
             } else {
-                this.S.f42170n3.Q.invalidate();
+                this.S.f42172n3.Q.invalidate();
                 return;
             }
         }
@@ -108,21 +108,21 @@ public final class ww extends os {
     public final void i(long j3) {
         g5 g5Var;
         PorterDuffColorFilter porterDuffColorFilter;
-        ly lyVar = this.S.f42170n3;
+        ly lyVar = this.S.f42172n3;
         ArrayList arrayList = this.Q;
         arrayList.clear();
         for (int i7 = 0; i7 < this.P.size(); i7++) {
             ux uxVar = (ux) this.P.get(i7);
             p5 span = uxVar.getSpan();
             org.telegram.messenger.hc[] hcVarArr = uxVar.f40183f;
-            if (span != null && (g5Var = (g5) lyVar.f36945e2.get(uxVar.d.getDocumentId())) != null && g5Var.f34809k != null) {
+            if (span != null && (g5Var = (g5) lyVar.f36945e2.get(uxVar.d.getDocumentId())) != null && g5Var.f34813k != null) {
                 g5Var.s(j3);
-                fi.u2 u2Var = g5Var.f34809k;
+                fi.u2 u2Var = g5Var.f34813k;
                 int i10 = this.L;
                 org.telegram.messenger.hc e02 = u2Var.e0(hcVarArr[i10], i10);
                 hcVarArr[i10] = e02;
-                e02.f24080c = j3;
-                e02.f24079b = 1.0f;
+                e02.f24083c = j3;
+                e02.f24082b = 1.0f;
                 g5Var.setAlpha(255);
                 int height = (int) (uxVar.getHeight() * 0.03f);
                 Rect rect = org.telegram.messenger.g0.Q;
@@ -135,7 +135,7 @@ public final class ww extends os {
                 } else {
                     porterDuffColorFilter = null;
                 }
-                hcVar.f24100z = porterDuffColorFilter;
+                hcVar.f24103z = porterDuffColorFilter;
                 arrayList.add(uxVar);
             }
         }

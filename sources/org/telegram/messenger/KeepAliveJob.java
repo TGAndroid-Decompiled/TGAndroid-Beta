@@ -13,13 +13,13 @@ public class KeepAliveJob extends JobIntentService {
         synchronized (f22319c) {
             try {
                 if (f22317a != null) {
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("finish keep-alive job");
                     }
                     f22317a.countDown();
                 }
                 if (f22318b) {
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("finish queued keep-alive job");
                     }
                     f22318b = false;
@@ -38,7 +38,7 @@ public class KeepAliveJob extends JobIntentService {
                     return;
                 }
                 f22317a = new CountDownLatch(1);
-                if (r2.f26198a) {
+                if (r2.f26206a) {
                     a8.b("started keep-alive job");
                 }
                 Utilities.f22416e.d(d, 60000L);
@@ -50,7 +50,7 @@ public class KeepAliveJob extends JobIntentService {
                 synchronized (f22319c) {
                     f22317a = null;
                 }
-                if (r2.f26198a) {
+                if (r2.f26206a) {
                     a8.b("ended keep-alive job");
                 }
             } catch (Throwable th2) {

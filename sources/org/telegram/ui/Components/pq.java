@@ -148,14 +148,14 @@ public final class pq implements Runnable {
                                     iArr3[0] = i12;
                                     org.telegram.messenger.g0.F3(i12, y8Var2, null);
                                 } else if ("BOT_CREATE_LIMIT_EXCEEDED".equalsIgnoreCase(tL_error.text)) {
-                                    org.telegram.messenger.p0 p0Var = org.telegram.messenger.np.s1(i11).f25448y7;
+                                    org.telegram.messenger.p0 p0Var = org.telegram.messenger.np.s1(i11).f25451y7;
                                     boolean q10 = org.telegram.messenger.m10.i(i11).q();
                                     cc ccVar = new cc(u2Var2.F, e6Var2);
                                     String M0 = org.telegram.messenger.hd.M0(2131751735, null);
                                     if (q10) {
-                                        a02 = org.telegram.messenger.hd.a0(null, null, 2131751738, Integer.valueOf(((org.telegram.messenger.j0) p0Var.M.f15881b).f24493c));
+                                        a02 = org.telegram.messenger.hd.a0(null, null, 2131751738, Integer.valueOf(((org.telegram.messenger.j0) p0Var.M.f15881b).f24498c));
                                     } else {
-                                        a02 = org.telegram.messenger.hd.a0(null, null, 2131751737, Integer.valueOf(((org.telegram.messenger.j0) p0Var.M.f15881b).f24493c), Integer.valueOf(((org.telegram.messenger.j0) p0Var.L.f15881b).f24493c));
+                                        a02 = org.telegram.messenger.hd.a0(null, null, 2131751737, Integer.valueOf(((org.telegram.messenger.j0) p0Var.M.f15881b).f24498c), Integer.valueOf(((org.telegram.messenger.j0) p0Var.L.f15881b).f24498c));
                                     }
                                     SpannableStringBuilder O2 = org.telegram.messenger.g0.O2(a02, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.xj, e6Var2), new fo(u2Var2, 4));
                                     od odVar = new od(24, u2Var2, context);
@@ -164,7 +164,7 @@ public final class pq implements Runnable {
                                         O2.setSpan(new org.telegram.ui.Cells.h(e6Var2, odVar, 6), t6, t6 + 10, 33);
                                     }
                                     xb I = ccVar.I(2131624012, M0, O2);
-                                    I.f41643j = 8000;
+                                    I.f41635j = 8000;
                                     I.j();
                                 } else {
                                     String str4 = tL_error.text;

@@ -38,7 +38,7 @@ public class k3 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
         this.f30554y = g6Var;
         g6Var.n(0.2f, 160L, er.h);
         g6Var.w(org.telegram.messenger.g0.L(15.33f));
-        g6Var.f34829b = 5;
+        g6Var.f34833b = 5;
         this.f30547e = i7;
         i3 i3Var = new i3(this, context, e6Var, i7, e6Var, z11);
         this.d = i3Var;
@@ -63,7 +63,7 @@ public class k3 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
             i10 = 0;
         }
         i3Var.setPadding(L, L2, org.telegram.messenger.g0.L(i10 + 21), org.telegram.messenger.g0.L(15.0f));
-        i3Var.setGravity((hd.f24101a0 ? 5 : 3) | 48);
+        i3Var.setGravity((hd.f24104a0 ? 5 : 3) | 48);
         if (z10) {
             i11 = 131072;
         } else {
@@ -104,7 +104,7 @@ public class k3 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
     public TLRPC.TL_textWithEntities getTextWithEntities() {
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence[] charSequenceArr = {getText()};
-        tL_textWithEntities.entities = si.b0(m10.f24934t0).W(charSequenceArr, true, true);
+        tL_textWithEntities.entities = si.b0(m10.f24940t0).W(charSequenceArr, true, true);
         tL_textWithEntities.text = charSequenceArr[0].toString();
         return tL_textWithEntities;
     }
@@ -115,7 +115,7 @@ public class k3 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
         int i7;
         super.onDraw(canvas);
         if (this.E) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(22.0f);
@@ -123,7 +123,7 @@ public class k3 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(22.0f);
             } else {
                 i7 = 0;

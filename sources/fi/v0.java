@@ -34,7 +34,7 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
         TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
         joingroupcall.join_as = tL_inputPeerUser;
         int i10 = e1Var.f11656e;
-        tL_inputPeerUser.user_id = m10.i(org.telegram.messenger.c.a(i10).f22778a).e();
+        tL_inputPeerUser.user_id = m10.i(org.telegram.messenger.c.a(i10).f22782a).e();
         ConnectionsManager.getInstance(i10).sendRequest(joingroupcall, new di.u1(e1Var, i7, 2));
     }
 
@@ -135,7 +135,7 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
                     str = i7 + "_" + j3 + "_" + i10;
                 }
                 final String str2 = str;
-                org.telegram.messenger.g0.h3(new ai.z0(e1Var, str2, ConnectionsManager.getInstance(org.telegram.messenger.c.a(e1Var.f11656e).f22778a).sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
+                org.telegram.messenger.g0.h3(new ai.a1(e1Var, str2, ConnectionsManager.getInstance(org.telegram.messenger.c.a(e1Var.f11656e).f22782a).sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j11) {
                         int i12;
@@ -245,7 +245,7 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
             if (e1Var.f11661w == null || e1Var.F == null) {
                 return;
             }
-            ConnectionsManager.getInstance(i7).sendRequest(getgroupcallstreamchannels, new ai.c0(e1Var, j3, 1), 65536, 2, e1Var.h());
+            ConnectionsManager.getInstance(i7).sendRequest(getgroupcallstreamchannels, new ai.d0(e1Var, j3, 1), 65536, 2, e1Var.h());
             return;
         }
         NativeInstance nativeInstance = e1Var.F;

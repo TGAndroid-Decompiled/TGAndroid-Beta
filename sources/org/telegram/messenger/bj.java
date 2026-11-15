@@ -38,7 +38,7 @@ public final class bj {
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             gj gjVar = (gj) arrayList.get(i10);
             yi yiVar = (yi) hashMap.get(gjVar);
-            if (yiVar != null && (yiVar.f27753l & i7) == i7) {
+            if (yiVar != null && (yiVar.f27755l & i7) == i7) {
                 return gjVar;
             }
         }

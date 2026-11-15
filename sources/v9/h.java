@@ -20,8 +20,8 @@ public final class h extends c0.h implements ScheduledFuture {
     public final void d() {
         boolean z10;
         ScheduledFuture scheduledFuture = this.f58755n;
-        Object obj = this.f4056a;
-        if ((obj instanceof c0.a) && ((c0.a) obj).f4040a) {
+        Object obj = this.f4059a;
+        if ((obj instanceof c0.a) && ((c0.a) obj).f4043a) {
             z10 = true;
         } else {
             z10 = false;

@@ -4,10 +4,10 @@ import android.net.Uri;
 import android.os.Looper;
 import j$.util.Objects;
 import org.telegram.ui.ld0;
-import tg.a2;
+import tg.z1;
 public final class x0 extends a {
     public final j2.g h;
-    public final a2 f59712i;
+    public final z1 f59712i;
     public final q2.n f59713j;
     public final qb.a f59714k;
     public final int f59715l;
@@ -20,10 +20,10 @@ public final class x0 extends a {
     public j2.c0 f59722s;
     public e2.l0 f59723t;
 
-    public x0(e2.l0 l0Var, j2.g gVar, a2 a2Var, q2.n nVar, qb.a aVar, int i7, e2.u uVar) {
+    public x0(e2.l0 l0Var, j2.g gVar, z1 z1Var, q2.n nVar, qb.a aVar, int i7, e2.u uVar) {
         this.f59723t = l0Var;
         this.h = gVar;
-        this.f59712i = a2Var;
+        this.f59712i = z1Var;
         this.f59713j = nVar;
         this.f59714k = aVar;
         this.f59715l = i7;
@@ -52,7 +52,7 @@ public final class x0 extends a {
         g0Var.getClass();
         Uri uri = g0Var.f10095a;
         this.f59464g.getClass();
-        return new v0(uri, createDataSource, new ld0((f3.r) this.f59712i.f57153b), this.f59713j, new q2.k(this.d.f55187c, 0, f0Var), this.f59714k, b(f0Var), this, mVar, g0Var.f10099f, this.f59715l, this.f59716m, h2.l0.S(g0Var.h), null);
+        return new v0(uri, createDataSource, new ld0((f3.r) this.f59712i.f57629b), this.f59713j, new q2.k(this.d.f55187c, 0, f0Var), this.f59714k, b(f0Var), this, mVar, g0Var.f10099f, this.f59715l, this.f59716m, h2.l0.S(g0Var.h), null);
     }
 
     @Override

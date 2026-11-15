@@ -1,19 +1,19 @@
 package org.telegram.ui;
 public final class v41 {
-    public String f52116a;
-    public String f52117b;
-    public String f52118c;
+    public String f52114a;
+    public String f52115b;
+    public String f52116c;
     public boolean d;
-    public String f52119e;
-    public String f52120f;
-    public String f52121g;
+    public String f52117e;
+    public String f52118f;
+    public String f52119g;
     public boolean h;
-    public String f52122i;
-    public String f52123j;
-    public String f52124k;
-    public boolean f52125l;
-    public String f52126m;
-    public String f52127n;
-    public String f52128o;
-    public boolean f52129p;
+    public String f52120i;
+    public String f52121j;
+    public String f52122k;
+    public boolean f52123l;
+    public String f52124m;
+    public String f52125n;
+    public String f52126o;
+    public boolean f52127p;
 }

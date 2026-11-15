@@ -21,29 +21,29 @@ import org.telegram.ui.Components.y31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.fx;
 import org.telegram.ui.gx;
-import org.telegram.ui.jl0;
+import org.telegram.ui.kl0;
 import org.telegram.ui.qn;
 import org.telegram.ui.yw;
 public final class v2 implements View.OnClickListener {
-    public final int f9569a;
-    public final long f9570b;
-    public final Object f9571c;
+    public final int f9587a;
+    public final long f9588b;
+    public final Object f9589c;
     public final Object d;
 
     public v2(Object obj, Object obj2, long j3, int i7) {
-        this.f9569a = i7;
-        this.f9571c = obj;
+        this.f9587a = i7;
+        this.f9589c = obj;
         this.d = obj2;
-        this.f9570b = j3;
+        this.f9588b = j3;
     }
 
     @Override
     public final void onClick(View view) {
         Activity W;
-        int i7 = this.f9569a;
-        long j3 = this.f9570b;
+        int i7 = this.f9587a;
+        long j3 = this.f9588b;
         Object obj = this.d;
-        Object obj2 = this.f9571c;
+        Object obj2 = this.f9589c;
         switch (i7) {
             case 0:
                 c6 c6Var = (c6) obj2;
@@ -52,8 +52,8 @@ public final class v2 implements View.OnClickListener {
                 if (Q != 0) {
                     ?? obj3 = new Object();
                     obj3.f28476a = true;
-                    bi.a6 a6Var = new bi.a6(c6Var.T1, str, this.f9570b, c6Var.J0);
-                    a6Var.f3378e = new n1(c6Var, 1);
+                    bi.a6 a6Var = new bi.a6(c6Var.T1, str, this.f9588b, c6Var.J0);
+                    a6Var.f3381e = new n1(c6Var, 1);
                     Q.showAsSheet(a6Var, obj3);
                     return;
                 }
@@ -70,19 +70,19 @@ public final class v2 implements View.OnClickListener {
                         qnVar.N.setChecked(z10);
                     }
                     org.telegram.messenger.f3 G0 = qnVar.getMessagesController().G0();
-                    final long j10 = this.f9570b;
+                    final long j10 = this.f9588b;
                     G0.a(j10, new z10() {
                         @Override
                         public final void a(Object obj4) {
                             int i10;
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj4;
                             qn qnVar2 = qn.this;
-                            TLRPC.Chat chat = qnVar2.f50693x0;
+                            TLRPC.Chat chat = qnVar2.f50692x0;
                             int i11 = chat.level;
                             int i12 = tL_premium_boostsStatus.level;
                             if (i11 != i12) {
                                 chat.level = i12;
-                                qnVar2.getMessagesController().Q3(qnVar2.f50693x0, false);
+                                qnVar2.getMessagesController().Q3(qnVar2.f50692x0, false);
                             }
                             Switch checkBox = qnVar2.N.getCheckBox();
                             if (tL_premium_boostsStatus.level < qnVar2.getMessagesController().B4) {
@@ -104,7 +104,7 @@ public final class v2 implements View.OnClickListener {
                             }
                             TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
                             qnVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = org.telegram.messenger.np.i1(qnVar2.f50693x0);
+                            tL_channels_toggleAutotranslation.channel = org.telegram.messenger.np.i1(qnVar2.f50692x0);
                             tL_channels_toggleAutotranslation.enabled = z11;
                             qnVar2.N.setChecked(z11);
                             zArr2[0] = false;
@@ -134,11 +134,11 @@ public final class v2 implements View.OnClickListener {
                             arrayList.add(Long.valueOf(hVar.j(i10)));
                         }
                         gx gxVar = (gx) a60Var.f32873h2.f54015b;
-                        ArrayList arrayList2 = gxVar.f47539e;
+                        ArrayList arrayList2 = gxVar.f47529e;
                         arrayList2.clear();
                         arrayList2.addAll(arrayList);
                         gxVar.e0();
-                        fx fxVar = gxVar.f47540f;
+                        fx fxVar = gxVar.f47530f;
                         if (fxVar != null) {
                             fxVar.a();
                         }
@@ -182,7 +182,7 @@ public final class v2 implements View.OnClickListener {
             case 5:
                 yw ywVar = (yw) obj2;
                 boolean hasUnread = ((org.telegram.ui.Cells.t2) obj).getHasUnread();
-                long j11 = this.f9570b;
+                long j11 = this.f9588b;
                 if (hasUnread) {
                     ywVar.v4(j11);
                 } else {
@@ -191,20 +191,20 @@ public final class v2 implements View.OnClickListener {
                 ywVar.finishPreviewFragment();
                 return;
             default:
-                jl0 jl0Var = (jl0) obj2;
-                jl0Var.getClass();
+                kl0 kl0Var = (kl0) obj2;
+                kl0Var.getClass();
                 long longValue = ((Long) ((TextView) obj).getTag()).longValue();
-                Long l10 = jl0Var.I0;
+                Long l10 = kl0Var.I0;
                 if (l10 != null && longValue == l10.longValue()) {
-                    jl0Var.f48407n0 = true;
-                    jl0Var.f48396f[0].setText("");
-                    jl0Var.f48407n0 = false;
-                    jl0Var.I0 = 0L;
-                    jl0Var.R0();
+                    kl0Var.f48699n0 = true;
+                    kl0Var.f48688f[0].setText("");
+                    kl0Var.f48699n0 = false;
+                    kl0Var.I0 = 0L;
+                    kl0Var.R0();
                 } else {
-                    jl0Var.f48396f[0].setText(hd.E0().q(this.f9570b, false, true, true, jl0Var.D0.invoice.currency));
+                    kl0Var.f48688f[0].setText(hd.E0().q(this.f9588b, false, true, true, kl0Var.D0.invoice.currency));
                 }
-                EditTextBoldCursor editTextBoldCursor = jl0Var.f48396f[0];
+                EditTextBoldCursor editTextBoldCursor = kl0Var.f48688f[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
         }

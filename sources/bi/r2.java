@@ -12,26 +12,26 @@ import java.util.HashSet;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.z51;
 public final class r2 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final z51 f3819a;
-    public int f3820b;
-    public final org.telegram.ui.Components.u5 f3821c;
+    public final z51 f3822a;
+    public int f3823b;
+    public final org.telegram.ui.Components.u5 f3824c;
     public final ArrayList d;
-    public final RectF f3822e;
-    public final RectF f3823f;
+    public final RectF f3825e;
+    public final RectF f3826f;
     public final RectF h;
-    public final Paint f3824n;
-    public int f3825r;
+    public final Paint f3827n;
+    public int f3828r;
 
     public r2(Context context) {
         super(context);
         this.d = new ArrayList();
-        this.f3822e = new RectF();
-        this.f3823f = new RectF();
+        this.f3825e = new RectF();
+        this.f3826f = new RectF();
         this.h = new RectF();
-        this.f3824n = new Paint(1);
-        this.f3825r = Integer.MIN_VALUE;
+        this.f3827n = new Paint(1);
+        this.f3828r = Integer.MIN_VALUE;
         z51 z51Var = new z51(1, context, this);
-        this.f3819a = z51Var;
+        this.f3822a = z51Var;
         z51Var.setClipToPadding(false);
         z51Var.setClipChildren(false);
         z51Var.setOrientation(0);
@@ -40,7 +40,7 @@ public final class r2 extends FrameLayout implements org.telegram.ui.ActionBar.z
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f3821c = new org.telegram.ui.Components.u5(z51Var, 0L, 320L, er.h);
+        this.f3824c = new org.telegram.ui.Components.u5(z51Var, 0L, 320L, er.h);
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class r2 extends FrameLayout implements org.telegram.ui.ActionBar.z
                 ((TextView) arrayList.get(i7)).setTextColor(org.telegram.ui.ActionBar.j6.w(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28812b6, false), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28831c6, false)));
                 i7++;
             } else {
-                this.f3819a.invalidate();
+                this.f3822a.invalidate();
                 return;
             }
         }

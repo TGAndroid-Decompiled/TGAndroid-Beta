@@ -25,55 +25,55 @@ public final class rd extends c1 implements is, oa, pa {
     public boolean M;
     public final sa N;
     public final ra O;
-    public final a0.h f26269a;
-    public final ArrayList f26270b;
-    public final a0.h f26271c;
+    public final a0.h f26277a;
+    public final ArrayList f26278b;
+    public final a0.h f26279c;
     public final a0.h d;
-    public final LocationManager f26272e;
-    public final pd f26273f;
+    public final LocationManager f26280e;
+    public final pd f26281f;
     public final pd h;
-    public final pd f26274n;
-    public final ia.d f26275r;
-    public Location f26276s;
-    public long f26277w;
-    public boolean f26278x;
-    public long f26279y;
+    public final pd f26282n;
+    public final ia.d f26283r;
+    public Location f26284s;
+    public long f26285w;
+    public boolean f26286x;
+    public long f26287y;
 
     public rd(int i7) {
         super(i7);
-        this.f26269a = new a0.h();
-        this.f26270b = new ArrayList();
-        this.f26271c = new a0.h();
+        this.f26277a = new a0.h();
+        this.f26278b = new ArrayList();
+        this.f26279c = new a0.h();
         this.d = new a0.h();
-        this.f26273f = new pd(this, 0);
+        this.f26281f = new pd(this, 0);
         this.h = new pd(this, 0);
-        this.f26274n = new pd(this, 0);
-        this.f26275r = new ia.d(this, 24);
-        this.f26278x = true;
+        this.f26282n = new pd(this, 0);
+        this.f26283r = new ia.d(this, 24);
+        this.f26286x = true;
         this.G = new SparseIntArray();
         this.H = new a0.h();
         this.J = new ArrayList();
         this.K = new a0.h();
-        this.f26272e = (LocationManager) t0.f26600b.getSystemService("location");
-        this.N = ((h6.m) t0.j()).onCreateLocationServicesAPI(t0.f26600b, this, this);
+        this.f26280e = (LocationManager) t0.f26609b.getSystemService("location");
+        this.N = ((h6.m) t0.j()).onCreateLocationServicesAPI(t0.f26609b, this, this);
         ra onCreateLocationRequest = ((h6.m) t0.j()).onCreateLocationRequest();
         this.O = onCreateLocationRequest;
         aa aaVar = (aa) onCreateLocationRequest;
         aaVar.getClass();
         LocationRequest locationRequest = aaVar.f22484a;
-        locationRequest.f7067a = 100;
-        long j3 = locationRequest.f7069c;
-        long j10 = locationRequest.f7068b;
+        locationRequest.f7070a = 100;
+        long j3 = locationRequest.f7072c;
+        long j10 = locationRequest.f7071b;
         if (j3 == j10 / 6) {
-            locationRequest.f7069c = 166L;
+            locationRequest.f7072c = 166L;
         }
-        if (locationRequest.f7073r == j10) {
-            locationRequest.f7073r = 1000L;
+        if (locationRequest.f7076r == j10) {
+            locationRequest.f7076r = 1000L;
         }
-        locationRequest.f7068b = 1000L;
-        locationRequest.f7069c = 1000L;
+        locationRequest.f7071b = 1000L;
+        locationRequest.f7072c = 1000L;
         g0.h3(new id(this, 5));
-        getMessagesStorage().f27220a.c(new id(this, 0));
+        getMessagesStorage().f27219a.c(new id(this, 0));
     }
 
     public static String b(String str) {
@@ -128,9 +128,9 @@ public final class rd extends c1 implements is, oa, pa {
             return;
         }
         try {
-            locale = hd.E0().f24129y;
+            locale = hd.E0().f24132y;
         } catch (Exception unused) {
-            locale = hd.E0().f24130z;
+            locale = hd.E0().f24133z;
         }
         Locale locale3 = locale;
         if (locale3.getLanguage().contains("en")) {
@@ -191,7 +191,7 @@ public final class rd extends c1 implements is, oa, pa {
                 LocationSharingService.b();
                 return;
             }
-            t0.f26600b.startService(new Intent(t0.f26600b, LocationSharingService.class));
+            t0.f26609b.startService(new Intent(t0.f26609b, LocationSharingService.class));
         } catch (Throwable th2) {
             a8.g(th2, true);
             LocationSharingService.b();
@@ -203,8 +203,8 @@ public final class rd extends c1 implements is, oa, pa {
             return;
         }
         int i7 = LocationSharingService.d;
-        new e0.i0(t0.f26600b).b(6, "live_location_paused");
-        t0.f26600b.stopService(new Intent(t0.f26600b, LocationSharingService.class));
+        new e0.i0(t0.f26609b).b(6, "live_location_paused");
+        t0.f26609b.stopService(new Intent(t0.f26609b, LocationSharingService.class));
     }
 
     public final void a(boolean r21) {
@@ -217,7 +217,7 @@ public final class rd extends c1 implements is, oa, pa {
         long j3;
         ArrayList arrayList2;
         int i11 = ns.F4;
-        a0.h hVar = this.f26271c;
+        a0.h hVar = this.f26279c;
         if (i7 == 1) {
             if (!((Boolean) objArr[2]).booleanValue()) {
                 Long l10 = (Long) objArr[0];
@@ -232,18 +232,18 @@ public final class rd extends c1 implements is, oa, pa {
                             while (true) {
                                 if (i13 < arrayList2.size()) {
                                     if (gj.B1(((TLRPC.Message) arrayList2.get(i13)).from_id) == gjVar.Z0()) {
-                                        arrayList2.set(i13, gjVar.f23817k);
+                                        arrayList2.set(i13, gjVar.f23819k);
                                         break;
                                     }
                                     i13++;
                                 } else {
-                                    arrayList2.add(gjVar.f23817k);
+                                    arrayList2.add(gjVar.f23819k);
                                     break;
                                 }
                             }
                             z10 = true;
                         } else {
-                            TLRPC.Message message = gjVar.f23817k;
+                            TLRPC.Message message = gjVar.f23819k;
                             if (message.action instanceof TLRPC.TL_messageActionGeoProximityReached) {
                                 long B0 = gj.B0(message);
                                 if (m5.E(B0)) {
@@ -257,7 +257,7 @@ public final class rd extends c1 implements is, oa, pa {
                     }
                 }
             }
-        } else if (i7 == ns.f25592w) {
+        } else if (i7 == ns.f25593w) {
             if (!((Boolean) objArr[2]).booleanValue()) {
                 ArrayList arrayList4 = this.J;
                 if (!arrayList4.isEmpty()) {
@@ -268,7 +268,7 @@ public final class rd extends c1 implements is, oa, pa {
                         qd qdVar = (qd) arrayList4.get(i14);
                         gj gjVar2 = qdVar.h;
                         if (gjVar2 != null) {
-                            j3 = gj.v0(gjVar2.f23817k);
+                            j3 = gj.v0(gjVar2.f23819k);
                         } else {
                             j3 = 0;
                         }
@@ -302,7 +302,7 @@ public final class rd extends c1 implements is, oa, pa {
                             if (!gjVar3.C3()) {
                                 arrayList.remove(i17);
                             } else {
-                                arrayList.set(i17, gjVar3.f23817k);
+                                arrayList.set(i17, gjVar3.f23819k);
                             }
                             z11 = true;
                         } else {
@@ -331,7 +331,7 @@ public final class rd extends c1 implements is, oa, pa {
     public final void j(long j3) {
         ArrayList arrayList;
         ?? tL_messages_readMessageContents;
-        if (!m5.C(j3) && (arrayList = (ArrayList) this.f26271c.f(j3)) != null && !arrayList.isEmpty()) {
+        if (!m5.C(j3) && (arrayList = (ArrayList) this.f26279c.f(j3)) != null && !arrayList.isEmpty()) {
             a0.h hVar = this.d;
             Integer num = (Integer) hVar.f(j3);
             int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
@@ -365,12 +365,12 @@ public final class rd extends c1 implements is, oa, pa {
     }
 
     public final void l(qd qdVar, int i7) {
-        getMessagesStorage().f27220a.c(new l7(this, i7, qdVar, 5));
+        getMessagesStorage().f27219a.c(new l7(this, i7, qdVar, 5));
     }
 
     public final void m(Location location) {
         if (location == null || (SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos()) / 1000000000 <= 300) {
-            this.f26276s = location;
+            this.f26284s = location;
             if (location != null) {
                 g0.h3(new c6(6));
             }
@@ -383,14 +383,14 @@ public final class rd extends c1 implements is, oa, pa {
             return;
         }
         this.F = true;
-        if (!z10 && ((location2 = this.f26276s) == null || location2.distanceTo(location) < 20.0f)) {
-            if (this.f26278x) {
-                this.f26277w = SystemClock.elapsedRealtime() - 10000;
-                this.f26278x = false;
+        if (!z10 && ((location2 = this.f26284s) == null || location2.distanceTo(location) < 20.0f)) {
+            if (this.f26286x) {
+                this.f26285w = SystemClock.elapsedRealtime() - 10000;
+                this.f26286x = false;
             }
         } else {
-            this.f26277w = SystemClock.elapsedRealtime() - 30000;
-            this.f26278x = false;
+            this.f26285w = SystemClock.elapsedRealtime() - 30000;
+            this.f26286x = false;
         }
         m(location);
     }
@@ -400,48 +400,48 @@ public final class rd extends c1 implements is, oa, pa {
         if (qdVar != null) {
             qdVar.f26082f = i7;
         }
-        getMessagesStorage().f27220a.c(new di.z8(this, i7, j3, 2));
+        getMessagesStorage().f27219a.c(new di.y8(this, i7, j3, 2));
         if (z10) {
             Utilities.d.c(new id(this, 3));
         }
     }
 
     public final void p() {
-        LocationManager locationManager = this.f26272e;
+        LocationManager locationManager = this.f26280e;
         if (!this.E) {
-            this.f26279y = SystemClock.elapsedRealtime();
+            this.f26287y = SystemClock.elapsedRealtime();
             this.E = true;
             if (this.L == null) {
                 ((h6.m) t0.j()).getClass();
-                this.L = Boolean.valueOf(qt.f26129b.hasServices());
+                this.L = Boolean.valueOf(qt.f26137b.hasServices());
             }
             if (this.L.booleanValue()) {
                 try {
-                    ((com.google.android.gms.common.api.internal.d0) this.N).f5967a.d();
+                    ((com.google.android.gms.common.api.internal.d0) this.N).f5970a.d();
                     return;
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
             }
             try {
-                this.f26272e.requestLocationUpdates("gps", 1L, 0.0f, this.f26273f);
+                this.f26280e.requestLocationUpdates("gps", 1L, 0.0f, this.f26281f);
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
             try {
-                this.f26272e.requestLocationUpdates("network", 1L, 0.0f, this.h);
+                this.f26280e.requestLocationUpdates("network", 1L, 0.0f, this.h);
             } catch (Exception e11) {
                 a8.g(e11, true);
             }
             try {
-                this.f26272e.requestLocationUpdates("passive", 1L, 0.0f, this.f26274n);
+                this.f26280e.requestLocationUpdates("passive", 1L, 0.0f, this.f26282n);
             } catch (Exception e12) {
                 a8.g(e12, true);
             }
-            if (this.f26276s == null) {
+            if (this.f26284s == null) {
                 try {
                     m(locationManager.getLastKnownLocation("gps"));
-                    if (this.f26276s == null) {
+                    if (this.f26284s == null) {
                         m(locationManager.getLastKnownLocation("network"));
                     }
                 } catch (Exception e13) {
@@ -455,29 +455,29 @@ public final class rd extends c1 implements is, oa, pa {
         this.E = false;
         if (this.L == null) {
             ((h6.m) t0.j()).getClass();
-            this.L = Boolean.valueOf(qt.f26129b.hasServices());
+            this.L = Boolean.valueOf(qt.f26137b.hasServices());
         }
         if (this.L.booleanValue()) {
             try {
-                ((h6.m) t0.j()).removeLocationUpdates(this.f26275r);
-                ((com.google.android.gms.common.api.internal.d0) this.N).f5967a.e();
+                ((h6.m) t0.j()).removeLocationUpdates(this.f26283r);
+                ((com.google.android.gms.common.api.internal.d0) this.N).f5970a.e();
             } catch (Throwable th2) {
                 a8.g(th2, false);
             }
         }
-        pd pdVar = this.f26273f;
-        LocationManager locationManager = this.f26272e;
+        pd pdVar = this.f26281f;
+        LocationManager locationManager = this.f26280e;
         locationManager.removeUpdates(pdVar);
         if (z10) {
             locationManager.removeUpdates(this.h);
-            locationManager.removeUpdates(this.f26274n);
+            locationManager.removeUpdates(this.f26282n);
         }
     }
 
     public final void t() {
         Location location;
         getUserConfig();
-        ArrayList arrayList = this.f26270b;
+        ArrayList arrayList = this.f26278b;
         boolean z10 = false;
         if (!arrayList.isEmpty()) {
             int i7 = 0;
@@ -486,7 +486,7 @@ public final class rd extends c1 implements is, oa, pa {
                 qd qdVar = (qd) arrayList.get(i7);
                 if (qdVar.f26080c <= getConnectionsManager().getCurrentTime()) {
                     arrayList.remove(i7);
-                    this.f26269a.l(qdVar.f26078a);
+                    this.f26277a.l(qdVar.f26078a);
                     l(qdVar, 1);
                     g0.h3(new kd(this, qdVar, 2));
                     i7--;
@@ -500,18 +500,18 @@ public final class rd extends c1 implements is, oa, pa {
         }
         if (this.E) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.F || Math.abs(this.f26279y - elapsedRealtime) > 10000 || (SystemClock.elapsedRealtime() > this.I && Math.abs(this.f26277w - SystemClock.elapsedRealtime()) >= 2000 && (location = this.f26276s) != null && location.getElapsedRealtimeNanos() / 1000000 >= this.f26279y)) {
+            if (this.F || Math.abs(this.f26287y - elapsedRealtime) > 10000 || (SystemClock.elapsedRealtime() > this.I && Math.abs(this.f26285w - SystemClock.elapsedRealtime()) >= 2000 && (location = this.f26284s) != null && location.getElapsedRealtimeNanos() / 1000000 >= this.f26287y)) {
                 this.F = false;
-                this.f26278x = true;
-                if (SystemClock.elapsedRealtime() - this.f26277w > 2000) {
+                this.f26286x = true;
+                if (SystemClock.elapsedRealtime() - this.f26285w > 2000) {
                     z10 = true;
                 }
-                this.f26279y = elapsedRealtime;
-                this.f26277w = SystemClock.elapsedRealtime();
+                this.f26287y = elapsedRealtime;
+                this.f26285w = SystemClock.elapsedRealtime();
                 a(z10);
             }
-        } else if (!arrayList.isEmpty() && Math.abs(this.f26277w - SystemClock.elapsedRealtime()) > 30000) {
-            this.f26279y = SystemClock.elapsedRealtime();
+        } else if (!arrayList.isEmpty() && Math.abs(this.f26285w - SystemClock.elapsedRealtime()) > 30000) {
+            this.f26287y = SystemClock.elapsedRealtime();
             p();
         }
     }

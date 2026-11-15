@@ -20,35 +20,35 @@ public final class e3 extends View {
     public float H;
     public float I;
     public float J;
-    public ch0 f40589a;
-    public ch0 f40590b;
-    public ch0 f40591c;
+    public ch0 f40592a;
+    public ch0 f40593b;
+    public ch0 f40594c;
     public final Paint d;
-    public final Paint f40592e;
-    public final Paint f40593f;
+    public final Paint f40595e;
+    public final Paint f40596f;
     public final Path h;
-    public final int f40594n;
-    public int f40595r;
-    public int f40596s;
-    public boolean f40597w;
-    public int f40598x;
-    public d3 f40599y;
+    public final int f40597n;
+    public int f40598r;
+    public int f40599s;
+    public boolean f40600w;
+    public int f40601x;
+    public d3 f40602y;
 
     public e3(Context context, m1 m1Var) {
         super(context);
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f40592e = paint2;
+        this.f40595e = paint2;
         Paint paint3 = new Paint(1);
-        this.f40593f = paint3;
+        this.f40596f = paint3;
         this.h = new Path();
         int L = org.telegram.messenger.g0.L(26.0f);
-        this.f40594n = L;
-        this.f40595r = L;
-        this.f40596s = 0;
-        this.f40597w = false;
-        this.f40598x = 0;
+        this.f40597n = L;
+        this.f40598r = L;
+        this.f40599s = 0;
+        this.f40600w = false;
+        this.f40601x = 0;
         this.H = 1.0f;
         this.F = m1Var;
         m1Var.a(this);
@@ -88,9 +88,9 @@ public final class e3 extends View {
             this.E.cancel();
             z11 = false;
         }
-        int i10 = this.f40594n;
+        int i10 = this.f40597n;
         if (z11) {
-            if (this.f40591c != null) {
+            if (this.f40594c != null) {
                 ValueAnimator valueAnimator2 = this.E;
                 if (valueAnimator2 != null) {
                     valueAnimator2.removeAllUpdateListeners();
@@ -106,8 +106,8 @@ public final class e3 extends View {
                 this.E.setDuration(200L);
                 this.E.start();
                 if (i7 == 2) {
-                    this.f40591c.N(0, false, false);
-                    this.f40591c.start();
+                    this.f40594c.N(0, false, false);
+                    this.f40594c.start();
                 }
             } else {
                 ValueAnimator valueAnimator3 = this.E;
@@ -118,15 +118,15 @@ public final class e3 extends View {
                 ValueAnimator ofInt2 = ValueAnimator.ofInt(0, i10);
                 this.E = ofInt2;
                 if (z10) {
-                    this.f40595r = i10;
+                    this.f40598r = i10;
                     ofInt2.addUpdateListener(new b3(this, 2));
                     this.E.addListener(new c3(this, 0));
                     this.E.setDuration(200L);
                     this.E.start();
-                    this.f40590b.N(0, false, false);
-                    this.f40590b.start();
+                    this.f40593b.N(0, false, false);
+                    this.f40593b.start();
                 } else {
-                    this.f40596s = i10;
+                    this.f40599s = i10;
                     ofInt2.addUpdateListener(new b3(this, 3));
                     this.E.setDuration(200L);
                     this.E.addListener(new c3(this, 1));
@@ -134,19 +134,19 @@ public final class e3 extends View {
                 }
             }
         } else if (z10) {
-            this.f40596s = i10;
-            this.f40595r = 0;
-            this.f40598x = 100;
+            this.f40599s = i10;
+            this.f40598r = 0;
+            this.f40601x = 100;
             if (i7 == 3 || i7 == 1) {
-                ch0 ch0Var = this.f40590b;
-                ch0Var.N(ch0Var.f33577e[0] - 1, false, false);
+                ch0 ch0Var = this.f40593b;
+                ch0Var.N(ch0Var.f33579e[0] - 1, false, false);
             }
         } else {
-            this.f40596s = 0;
-            this.f40595r = i10;
-            this.f40598x = 20;
+            this.f40599s = 0;
+            this.f40598r = i10;
+            this.f40601x = 20;
         }
-        this.f40597w = z10;
+        this.f40600w = z10;
         invalidate();
     }
 
@@ -165,46 +165,46 @@ public final class e3 extends View {
         float x10 = ((View) getParent()).getX() + getX();
         float y10 = ((View) ((View) getParent()).getParent()).getY() + getY();
         m1 m1Var = this.F;
-        int i11 = m1Var.f40780g;
-        Paint paint = m1Var.f40782j;
-        b8 b8Var = m1Var.f40775a;
-        float f11 = m1Var.f40780g;
+        int i11 = m1Var.f40783g;
+        Paint paint = m1Var.f40785j;
+        b8 b8Var = m1Var.f40778a;
+        float f11 = m1Var.f40783g;
         float f12 = 1.12f * f11;
         float f13 = -x10;
         float f14 = -y10;
-        b8Var.m(f13 - ((f12 - m1Var.f40779f) / 2.0f), f14 - ((f12 - f11) / 2.0f), (i11 * 1.12f) / ((Bitmap) b8Var.f343c).getHeight(), m1Var.h);
-        m1Var.f40777c.k(f13, f14, m1Var.f40779f - x10, m1Var.f40780g - y10);
-        ch0 ch0Var = this.f40591c;
-        Paint paint2 = this.f40592e;
+        b8Var.m(f13 - ((f12 - m1Var.f40782f) / 2.0f), f14 - ((f12 - f11) / 2.0f), (i11 * 1.12f) / ((Bitmap) b8Var.f343c).getHeight(), m1Var.h);
+        m1Var.f40780c.k(f13, f14, m1Var.f40782f - x10, m1Var.f40783g - y10);
+        ch0 ch0Var = this.f40594c;
+        Paint paint2 = this.f40595e;
         Paint paint3 = this.d;
-        int i12 = this.f40594n;
+        int i12 = this.f40597n;
         if (ch0Var != null) {
-            if (this.f40598x > 20) {
-                Paint paint4 = this.f40593f;
+            if (this.f40601x > 20) {
+                Paint paint4 = this.f40596f;
                 paint4.setAlpha((int) ((i10 * 35) / 100.0f));
-                paint2.setAlpha((int) ((this.f40598x * 255) / 100.0f));
+                paint2.setAlpha((int) ((this.f40601x * 255) / 100.0f));
                 canvas.drawCircle(width, height, i12, paint2);
-                this.f40591c.q(canvas, paint3, false, 0L, 0);
-                this.f40591c.q(canvas, paint4, false, 0L, 0);
+                this.f40594c.q(canvas, paint3, false, 0L, 0);
+                this.f40594c.q(canvas, paint4, false, 0L, 0);
                 return;
             }
             float f15 = i12;
-            if (!m1Var.f40781i) {
+            if (!m1Var.f40784i) {
                 paint = (Paint) b8Var.f341a;
             }
             canvas.drawCircle(width, height, f15, paint);
-            if (m1Var.f40778e) {
-                canvas.drawCircle(width, height, f15, (Paint) m1Var.f40777c.f341a);
+            if (m1Var.f40781e) {
+                canvas.drawCircle(width, height, f15, (Paint) m1Var.f40780c.f341a);
             }
-            this.f40591c.draw(canvas);
-        } else if (this.f40590b != null && this.f40589a != null) {
-            int i13 = this.f40595r;
-            if (i13 == i12 && this.f40596s == 0) {
+            this.f40594c.draw(canvas);
+        } else if (this.f40593b != null && this.f40592a != null) {
+            int i13 = this.f40598r;
+            if (i13 == i12 && this.f40599s == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i14 = this.f40596s;
+            int i14 = this.f40599s;
             if (i14 == i12 && i13 == 0) {
                 z11 = true;
             } else {
@@ -213,41 +213,41 @@ public final class e3 extends View {
             Path path2 = this.h;
             if (i14 == i12 && i13 > 0 && i13 != i12) {
                 canvas.drawCircle(width, height, i14, paint2);
-                canvas.drawCircle(width, height, this.f40595r, paint3);
-                this.f40590b.setAlpha(255);
+                canvas.drawCircle(width, height, this.f40598r, paint3);
+                this.f40593b.setAlpha(255);
                 i7 = i12;
-                this.f40590b.q(canvas, paint3, false, 0L, 0);
-                this.f40590b.setAlpha(35);
-                this.f40590b.draw(canvas);
+                this.f40593b.q(canvas, paint3, false, 0L, 0);
+                this.f40593b.setAlpha(35);
+                this.f40593b.draw(canvas);
                 path2.reset();
                 path = path2;
-                path.addCircle(width, height, this.f40595r, Path.Direction.CW);
+                path.addCircle(width, height, this.f40598r, Path.Direction.CW);
                 canvas.clipPath(path);
-                canvas.drawCircle(width, height, this.f40595r, paint3);
+                canvas.drawCircle(width, height, this.f40598r, paint3);
             } else {
                 i7 = i12;
                 path = path2;
             }
-            if (z10 || this.f40595r > 0) {
-                float f16 = this.f40595r;
-                if (!m1Var.f40781i) {
+            if (z10 || this.f40598r > 0) {
+                float f16 = this.f40598r;
+                if (!m1Var.f40784i) {
                     paint = (Paint) b8Var.f341a;
                 }
                 canvas.drawCircle(width, height, f16, paint);
-                if (m1Var.f40778e) {
-                    canvas.drawCircle(width, height, this.f40595r, (Paint) m1Var.f40777c.f341a);
+                if (m1Var.f40781e) {
+                    canvas.drawCircle(width, height, this.f40598r, (Paint) m1Var.f40780c.f341a);
                 }
-                this.f40589a.draw(canvas);
+                this.f40592a.draw(canvas);
             }
-            if (z11 || (this.f40596s > 0 && this.f40595r == i7)) {
+            if (z11 || (this.f40599s > 0 && this.f40598r == i7)) {
                 path.reset();
-                path.addCircle(width, height, this.f40596s, Path.Direction.CW);
+                path.addCircle(width, height, this.f40599s, Path.Direction.CW);
                 canvas.clipPath(path);
-                canvas.drawCircle(width, height, this.f40596s, paint2);
-                this.f40590b.setAlpha(255);
-                this.f40590b.q(canvas, paint3, false, 0L, 0);
-                this.f40590b.setAlpha(35);
-                this.f40590b.draw(canvas);
+                canvas.drawCircle(width, height, this.f40599s, paint2);
+                this.f40593b.setAlpha(255);
+                this.f40593b.q(canvas, paint3, false, 0L, 0);
+                this.f40593b.setAlpha(35);
+                this.f40593b.draw(canvas);
             }
             canvas.restore();
         }
@@ -274,17 +274,17 @@ public final class e3 extends View {
                 float abs = Math.abs(f10 - x10);
                 float abs2 = Math.abs(f11 - y10);
                 if (abs <= org.telegram.messenger.g0.L(48.0f) && abs2 <= org.telegram.messenger.g0.L(48.0f)) {
-                    int i7 = this.f40595r;
-                    int i10 = this.f40594n;
-                    if (i7 == i10 && this.f40596s == 0) {
+                    int i7 = this.f40598r;
+                    int i10 = this.f40597n;
+                    if (i7 == i10 && this.f40599s == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (this.f40596s == i10 && i7 == 0) {
+                    if (this.f40599s == i10 && i7 == 0) {
                         z11 = true;
                     }
-                    if ((z10 || z11) && (d3Var = this.f40599y) != null) {
+                    if ((z10 || z11) && (d3Var = this.f40602y) != null) {
                         d3Var.d(this);
                     }
                 }
@@ -298,6 +298,6 @@ public final class e3 extends View {
     }
 
     public void setOnBtnClickedListener(d3 d3Var) {
-        this.f40599y = d3Var;
+        this.f40602y = d3Var;
     }
 }

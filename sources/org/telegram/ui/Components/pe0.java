@@ -38,9 +38,9 @@ public final class pe0 extends pj0 {
         if (i7 == 0) {
             return 1;
         }
-        se0 se0Var = (se0) this.f38294s.f39690x1.get(i7 - 1);
+        se0 se0Var = (se0) this.f38294s.f39687x1.get(i7 - 1);
         int b10 = se0Var.b() + 1;
-        if (TextUtils.isEmpty(se0Var.f39295c) && !se0Var.f39296e) {
+        if (TextUtils.isEmpty(se0Var.f39293c) && !se0Var.f39294e) {
             i10 = 0;
         }
         return b10 + i10;
@@ -58,8 +58,8 @@ public final class pe0 extends pj0 {
         }
         if (i12 >= 0) {
             te0 te0Var = this.f38294s;
-            if (i12 < te0Var.f39690x1.size() && (i11 = i10 - 1) < ((se0) te0Var.f39690x1.get(i12)).b()) {
-                return Integer.valueOf(Objects.hash(Long.valueOf(org.telegram.messenger.m5.o(((TLRPC.MessagePeerVote) ((se0) te0Var.f39690x1.get(i12)).f39294b.get(i11)).peer))));
+            if (i12 < te0Var.f39687x1.size() && (i11 = i10 - 1) < ((se0) te0Var.f39687x1.get(i12)).b()) {
+                return Integer.valueOf(Objects.hash(Long.valueOf(org.telegram.messenger.m5.o(((TLRPC.MessagePeerVote) ((se0) te0Var.f39687x1.get(i12)).f39292b.get(i11)).peer))));
             }
         }
         return -182734;
@@ -73,7 +73,7 @@ public final class pe0 extends pj0 {
         if (i10 == 0) {
             return 2;
         }
-        if (i10 - 1 < ((se0) this.f38294s.f39690x1.get(i7 - 1)).b()) {
+        if (i10 - 1 < ((se0) this.f38294s.f39687x1.get(i7 - 1)).b()) {
             return 0;
         }
         return 3;
@@ -81,7 +81,7 @@ public final class pe0 extends pj0 {
 
     @Override
     public final int R() {
-        return this.f38294s.f39690x1.size() + 1;
+        return this.f38294s.f39687x1.size() + 1;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class pe0 extends pj0 {
         ArrayList<TLRPC.MessageEntity> arrayList;
         TLRPC.Message message;
         te0 te0Var = this.f38294s;
-        TLRPC.Poll poll = te0Var.f39686t1;
-        org.telegram.messenger.gj gjVar = te0Var.f39685s1;
+        TLRPC.Poll poll = te0Var.f39683t1;
+        org.telegram.messenger.gj gjVar = te0Var.f39682s1;
         if (view == null) {
             view = new oe0(this, this.f38293r);
         }
@@ -101,19 +101,19 @@ public final class pe0 extends pj0 {
             return view;
         }
         view.setAlpha(1.0f);
-        se0 se0Var = (se0) te0Var.f39690x1.get(i7 - 1);
+        se0 se0Var = (se0) te0Var.f39687x1.get(i7 - 1);
         int size = poll.answers.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             TLRPC.PollAnswer pollAnswer = poll.answers.get(i11);
-            if (Arrays.equals(pollAnswer.option, se0Var.d) && ((qe0) te0Var.f39689w1.get(se0Var)) != null) {
+            if (Arrays.equals(pollAnswer.option, se0Var.d) && ((qe0) te0Var.f39686w1.get(se0Var)) != null) {
                 TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (gjVar != null && gjVar.L2 && (message = gjVar.f23817k) != null && message.translatedPoll != null) {
+                if (gjVar != null && gjVar.L2 && (message = gjVar.f23819k) != null && message.translatedPoll != null) {
                     while (true) {
-                        if (i10 >= gjVar.f23817k.translatedPoll.f27860b.size()) {
+                        if (i10 >= gjVar.f23819k.translatedPoll.f27870b.size()) {
                             break;
                         }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) gjVar.f23817k.translatedPoll.f27860b.get(i10);
+                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) gjVar.f23819k.translatedPoll.f27870b.get(i10);
                         if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
                             tL_textWithEntities = pollAnswer2.text;
                             break;
@@ -132,7 +132,7 @@ public final class pe0 extends pj0 {
                 } else {
                     arrayList = tL_textWithEntities.entities;
                 }
-                re0Var.a(str2, arrayList, te0Var.K0(se0Var.d), se0Var.f39293a, se0Var.a(), false);
+                re0Var.a(str2, arrayList, te0Var.K0(se0Var.d), se0Var.f39291a, se0Var.a(), false);
                 re0Var.setTag(2131296585, se0Var);
                 return view;
             }
@@ -158,36 +158,36 @@ public final class pe0 extends pj0 {
         ArrayList<TLRPC.MessageEntity> arrayList;
         TLRPC.Message message;
         te0 te0Var = this.f38294s;
-        TLRPC.Poll poll = te0Var.f39686t1;
-        ArrayList arrayList2 = te0Var.f39690x1;
-        org.telegram.messenger.gj gjVar = te0Var.f39685s1;
+        TLRPC.Poll poll = te0Var.f39683t1;
+        ArrayList arrayList2 = te0Var.f39687x1;
+        org.telegram.messenger.gj gjVar = te0Var.f39682s1;
         int i11 = e1Var.f58539f;
         View view = e1Var.f58535a;
         int i12 = 0;
         if (i11 != 2) {
             if (i11 == 3) {
                 se0 se0Var = (se0) arrayList2.get(i7 - 1);
-                ((org.telegram.ui.Cells.l8) view).o(2131230871, org.telegram.messenger.hd.G(se0Var.f39293a - se0Var.b(), "ShowVotes", new Object[0]), false);
+                ((org.telegram.ui.Cells.l8) view).o(2131230871, org.telegram.messenger.hd.G(se0Var.f39291a - se0Var.b(), "ShowVotes", new Object[0]), false);
                 return;
             }
             return;
         }
         re0 re0Var = (re0) view;
         se0 se0Var2 = (se0) arrayList2.get(i7 - 1);
-        ArrayList arrayList3 = se0Var2.f39294b;
+        ArrayList arrayList3 = se0Var2.f39292b;
         byte[] bArr = se0Var2.d;
         TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) arrayList3.get(0);
         int size = poll.answers.size();
         for (int i13 = 0; i13 < size; i13++) {
             TLRPC.PollAnswer pollAnswer = poll.answers.get(i13);
-            if (Arrays.equals(pollAnswer.option, bArr) && ((qe0) te0Var.f39689w1.get(se0Var2)) != null) {
+            if (Arrays.equals(pollAnswer.option, bArr) && ((qe0) te0Var.f39686w1.get(se0Var2)) != null) {
                 TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (gjVar != null && gjVar.L2 && (message = gjVar.f23817k) != null && message.translatedPoll != null) {
+                if (gjVar != null && gjVar.L2 && (message = gjVar.f23819k) != null && message.translatedPoll != null) {
                     while (true) {
-                        if (i12 >= gjVar.f23817k.translatedPoll.f27860b.size()) {
+                        if (i12 >= gjVar.f23819k.translatedPoll.f27870b.size()) {
                             break;
                         }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) gjVar.f23817k.translatedPoll.f27860b.get(i12);
+                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) gjVar.f23819k.translatedPoll.f27870b.get(i12);
                         if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
                             tL_textWithEntities = pollAnswer2.text;
                             break;
@@ -206,7 +206,7 @@ public final class pe0 extends pj0 {
                 } else {
                     arrayList = tL_textWithEntities.entities;
                 }
-                re0Var.a(str2, arrayList, te0Var.K0(bArr), se0Var2.f39293a, se0Var2.a(), false);
+                re0Var.a(str2, arrayList, te0Var.K0(bArr), se0Var2.f39291a, se0Var2.a(), false);
                 re0Var.setTag(2131296585, se0Var2);
                 return;
             }
@@ -217,7 +217,7 @@ public final class pe0 extends pj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.l8 l8Var;
         te0 te0Var = this.f38294s;
-        View view = te0Var.f39691y1;
+        View view = te0Var.f39688y1;
         Context context = this.f38293r;
         if (i7 != 0) {
             if (i7 != 1) {
@@ -257,12 +257,12 @@ public final class pe0 extends pj0 {
             int Q = Q(b10) - 1;
             PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) e1Var.f58535a;
             te0 te0Var = this.f38294s;
-            se0 se0Var = (se0) te0Var.f39690x1.get(S - 1);
-            TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) se0Var.f39294b.get(Q);
+            se0 se0Var = (se0) te0Var.f39687x1.get(S - 1);
+            TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) se0Var.f39292b.get(Q);
             TLObject e22 = org.telegram.messenger.np.s1(te0Var.f29679a).e2(org.telegram.messenger.m5.o(messagePeerVote.peer));
             int i7 = messagePeerVote.date;
             boolean z12 = true;
-            if (Q == se0Var.b() - 1 && TextUtils.isEmpty(se0Var.f39295c) && !se0Var.f39296e) {
+            if (Q == se0Var.b() - 1 && TextUtils.isEmpty(se0Var.f39293c) && !se0Var.f39294e) {
                 z10 = false;
             } else {
                 z10 = true;

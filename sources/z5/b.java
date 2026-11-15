@@ -10,13 +10,13 @@ public final class b implements com.google.android.gms.common.api.b {
 
     static {
         x xVar = new x(9, (byte) 0);
-        xVar.f57596b = Boolean.FALSE;
+        xVar.f57597b = Boolean.FALSE;
         f60915c = new b(xVar);
     }
 
     public b(x xVar) {
-        this.f60916a = ((Boolean) xVar.f57596b).booleanValue();
-        this.f60917b = (String) xVar.f57597c;
+        this.f60916a = ((Boolean) xVar.f57597b).booleanValue();
+        this.f60917b = (String) xVar.f57598c;
     }
 
     public final boolean equals(Object obj) {

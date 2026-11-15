@@ -49,7 +49,7 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         int i10;
         this.f31839e = org.telegram.messenger.g0.L(9.0f);
         this.f31841n = org.telegram.messenger.g0.L(29.0f);
-        int i11 = m10.f24934t0;
+        int i11 = m10.f24940t0;
         this.E = i11;
         setWillNotDraw(false);
         this.L = e6Var;
@@ -64,7 +64,7 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         org.telegram.ui.ActionBar.m6 M2 = org.telegram.ui.ActionBar.q6.M(i12);
         imageView.setBackground(h02);
         org.telegram.ui.ActionBar.q6.j(imageView, h02, null, M2, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -220,13 +220,13 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         float f11 = 16.0f;
         if (staticLayout != null) {
             canvas.save();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f10 = 16.0f;
             } else {
                 f10 = org.telegram.messenger.g0.C;
             }
             int L = org.telegram.messenger.g0.L(f10);
-            if (hd.f24101a0 && imageView.getVisibility() == 0) {
+            if (hd.f24104a0 && imageView.getVisibility() == 0) {
                 i7 = org.telegram.messenger.g0.L(32.0f);
             } else {
                 i7 = 0;
@@ -241,11 +241,11 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         if (staticLayout2 != null) {
             org.telegram.ui.ActionBar.j6.f28901g3.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29260z6, e6Var));
             canvas.save();
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f11 = org.telegram.messenger.g0.C;
             }
             int L2 = org.telegram.messenger.g0.L(f11);
-            if (hd.f24101a0 && imageView.getVisibility() == 0) {
+            if (hd.f24104a0 && imageView.getVisibility() == 0) {
                 i10 = org.telegram.messenger.g0.L(32.0f);
             }
             canvas.translate(L2 + i10, this.f31841n);
@@ -259,7 +259,7 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         radialProgress2.draw(canvas);
         super.onDraw(canvas);
         if (this.f31846y && (W0 = org.telegram.ui.ActionBar.j6.W0("paintDivider", e6Var)) != null) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 canvas.drawRect(0.0f, getHeight() - 1, getWidth() - org.telegram.messenger.g0.L(org.telegram.messenger.g0.C), getHeight(), W0);
             } else {
                 canvas.drawRect(org.telegram.messenger.g0.L(org.telegram.messenger.g0.C), getHeight() - 1, getWidth(), getHeight(), W0);
@@ -289,7 +289,7 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         try {
             String y12 = this.f31845x.y1(true);
             CharSequence ellipsize = TextUtils.ellipsize(y12.replace('\n', ' '), org.telegram.ui.ActionBar.j6.f28884f3, Math.min((int) Math.ceil(org.telegram.ui.ActionBar.j6.f28884f3.measureText(y12)), size), TextUtils.TruncateAt.END);
-            CharSequence x12 = org.telegram.messenger.g0.x1(ellipsize, this.f31845x.f23774a2, e6Var);
+            CharSequence x12 = org.telegram.messenger.g0.x1(ellipsize, this.f31845x.f23776a2, e6Var);
             if (x12 == null) {
                 charSequence2 = ellipsize;
             } else {
@@ -307,7 +307,7 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
                 replace = new SpannableStringBuilder(replace).append(' ').append((CharSequence) this.K).append(' ').append(zz.d(this.f31845x, true, 2, null));
             }
             CharSequence ellipsize2 = TextUtils.ellipsize(replace, org.telegram.ui.ActionBar.j6.f28901g3, size, TextUtils.TruncateAt.END);
-            CharSequence x13 = org.telegram.messenger.g0.x1(ellipsize2, this.f31845x.f23774a2, e6Var);
+            CharSequence x13 = org.telegram.messenger.g0.x1(ellipsize2, this.f31845x.f23776a2, e6Var);
             if (x13 == null) {
                 charSequence = ellipsize2;
             } else {
@@ -321,7 +321,7 @@ public final class w extends FrameLayout implements org.telegram.messenger.x5, o
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(56.0f), 1073741824));
         int L2 = org.telegram.messenger.g0.L(52.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L = org.telegram.messenger.k5.z(8.0f, View.MeasureSpec.getSize(i7), L2);
         } else {
             L = org.telegram.messenger.g0.L(8.0f);

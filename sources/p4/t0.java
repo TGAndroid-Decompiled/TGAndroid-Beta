@@ -1,7 +1,7 @@
 package p4;
 
-import ai.q1;
 import ai.r1;
+import ai.s1;
 public final class t0 implements a1 {
     public final int f54866a;
     public final a1 f54867b;
@@ -16,12 +16,12 @@ public final class t0 implements a1 {
         switch (this.f54866a) {
             case 0:
                 if (d0Var == null) {
-                    c1.k1(null, vVar, i7, this.f54867b, new r1(vVar, i7, 21));
+                    c1.k1(null, vVar, i7, this.f54867b, new s1(vVar, i7, 21));
                     throw null;
                 }
                 throw new ClassCastException();
             default:
-                return c1.k1(d0Var, vVar, i7, this.f54867b, new q1(d0Var, vVar, i7, 18));
+                return c1.k1(d0Var, vVar, i7, this.f54867b, new r1(d0Var, vVar, i7, 18));
         }
     }
 }

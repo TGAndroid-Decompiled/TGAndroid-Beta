@@ -66,7 +66,7 @@ public final class f {
                 return;
             }
             this.f17928e = true;
-            ConnectionsManager.getInstance(this.f17925a).sendRequest(new TL_account.getConnectedBots(), new ai.d1(this, 15));
+            ConnectionsManager.getInstance(this.f17925a).sendRequest(new TL_account.getConnectedBots(), new ai.e1(this, 15));
         }
     }
 

@@ -25,7 +25,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e2;
-import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.ho;
 import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.yn;
@@ -55,7 +55,7 @@ public final class q implements Runnable {
                 int i7 = this.f17235b;
                 f0 f0Var = (f0) this.d;
                 try {
-                    SQLiteCursor queryFinalized = vr.a0(i7).f27222b.queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = vr.a0(i7).f27221b.queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
@@ -206,7 +206,7 @@ public final class q implements Runnable {
                 ho hoVar = (ho) this.d;
                 int i18 = this.f17235b;
                 if (i18 != 0) {
-                    SharedPreferences sharedPreferences = np.s1(this.f17236c).f25270e7;
+                    SharedPreferences sharedPreferences = np.s1(this.f17236c).f25273e7;
                     sharedPreferences.edit().putInt("last_selected_mute_until_time", i18).putInt("last_selected_mute_until_time2", sharedPreferences.getInt("last_selected_mute_until_time", 0)).apply();
                 }
                 hoVar.R(i18);
@@ -215,15 +215,15 @@ public final class q implements Runnable {
                 yn ynVar = (yn) this.d;
                 int i19 = this.f17235b;
                 if (i19 != 0) {
-                    SharedPreferences sharedPreferences2 = np.s1(this.f17236c).f25270e7;
+                    SharedPreferences sharedPreferences2 = np.s1(this.f17236c).f25273e7;
                     sharedPreferences2.edit().putInt("last_selected_mute_until_time", i19).putInt("last_selected_mute_until_time2", sharedPreferences2.getInt("last_selected_mute_until_time", 0)).apply();
                 }
                 ynVar.a(Integer.valueOf(i19));
                 return;
             case 14:
-                da0 da0Var = (da0) ((di.c1) this.d).f8290g3;
-                View d = da0Var.d();
-                di.c1 c1Var = da0Var.f33902f;
+                ea0 ea0Var = (ea0) ((di.c1) this.d).f8291g3;
+                View d = ea0Var.d();
+                di.c1 c1Var = ea0Var.f34262f;
                 if (d != null) {
                     int top = d.getTop() + this.f17235b;
                     int top2 = d.getTop() + this.f17236c;

@@ -49,7 +49,7 @@ public final class b8 implements RequestDelegate {
                     return;
                 }
             case 1:
-                org.telegram.messenger.g0.h3(new ai.f1(tLObject, (boolean[]) obj3, (z10) obj2, this.f11577b, (TL_account.updateEmojiStatus) obj, 7));
+                org.telegram.messenger.g0.h3(new ai.g1(tLObject, (boolean[]) obj3, (z10) obj2, this.f11577b, (TL_account.updateEmojiStatus) obj, 7));
                 return;
             case 2:
                 org.telegram.messenger.g0.h3(new bg.l0((n50) obj3, (org.telegram.ui.e4) obj2, tL_error, tLObject, this.f11577b, (org.telegram.ui.a1) obj));
@@ -59,14 +59,14 @@ public final class b8 implements RequestDelegate {
                 org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj2;
                 org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) obj;
                 if (tL_error == null) {
-                    org.telegram.messenger.g0.h3(new ai.f1(sharedPreferences, (TLRPC.TL_help_support) tLObject, t1Var, this.f11577b, e2Var, 16));
+                    org.telegram.messenger.g0.h3(new ai.g1(sharedPreferences, (TLRPC.TL_help_support) tLObject, t1Var, this.f11577b, e2Var, 16));
                     return;
                 } else {
                     org.telegram.messenger.g0.h3(new org.telegram.ui.Components.y1(t1Var, 0));
                     return;
                 }
             case 4:
-                org.telegram.messenger.g0.h3(new ai.f1((rr) obj3, tLObject, (TLRPC.InputPeer) obj2, this.f11577b, (int[]) obj));
+                org.telegram.messenger.g0.h3(new ai.g1((rr) obj3, tLObject, (TLRPC.InputPeer) obj2, this.f11577b, (int[]) obj));
                 return;
             case 5:
                 ys0 ys0Var = (ys0) obj3;
@@ -82,7 +82,7 @@ public final class b8 implements RequestDelegate {
                 }
             case 6:
                 String str = LaunchActivity.C1;
-                org.telegram.messenger.g0.i3(new ai.f1((LaunchActivity) obj3, tLObject, (Uri) obj2, this.f11577b, (org.telegram.ui.ActionBar.t1) obj, 20), 2L);
+                org.telegram.messenger.g0.i3(new ai.g1((LaunchActivity) obj3, tLObject, (Uri) obj2, this.f11577b, (org.telegram.ui.ActionBar.t1) obj, 20), 2L);
                 return;
             case 7:
                 tf0 tf0Var = (tf0) obj3;

@@ -23,7 +23,7 @@ public final class c3 implements v4 {
         int indexOf = q3Var.f21939t3.indexOf(this.f21607b);
         if (indexOf >= 0) {
             q3Var.f21939t3.remove(indexOf);
-            q3Var.f39895g3.O(true);
+            q3Var.f39892g3.O(true);
         }
         q3Var.f21931p3.onContentChanged();
     }
@@ -40,7 +40,7 @@ public final class c3 implements v4 {
         }
         q3 q3Var = this.f21608c;
         q3Var.f21922h4.remove(rVar);
-        q3Var.f39895g3.O(false);
+        q3Var.f39892g3.O(false);
         q3Var.f21931p3.onContentChanged();
     }
 

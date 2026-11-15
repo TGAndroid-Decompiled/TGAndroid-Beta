@@ -110,7 +110,7 @@ public final class n2 {
         ofFloat.addUpdateListener(new ah.h(this, 28));
         this.f14745i.addListener(new di.g6(this, f10, runnable, 2));
         this.f14745i.setDuration(j3);
-        this.f14745i.setInterpolator(er.f34422i);
+        this.f14745i.setInterpolator(er.f34421i);
         this.f14745i.start();
     }
 

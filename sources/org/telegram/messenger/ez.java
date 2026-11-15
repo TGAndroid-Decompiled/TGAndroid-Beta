@@ -57,19 +57,19 @@ public final class ez extends c1 implements is {
     public final HashMap G;
     public final a8.b8 H;
     public final HashMap I;
-    public final HashMap f23386a;
-    public final SparseArray f23387b;
-    public final SparseArray f23388c;
+    public final HashMap f23389a;
+    public final SparseArray f23390b;
+    public final SparseArray f23391c;
     public final SparseArray d;
-    public final SparseArray f23389e;
-    public final a0.h f23390f;
+    public final SparseArray f23392e;
+    public final a0.h f23393f;
     public final a0.h h;
-    public final HashMap f23391n;
-    public final HashMap f23392r;
-    public final HashMap f23393s;
-    public final HashMap f23394w;
-    public final a0.h f23395x;
-    public final HashMap f23396y;
+    public final HashMap f23394n;
+    public final HashMap f23395r;
+    public final HashMap f23396s;
+    public final HashMap f23397w;
+    public final a0.h f23398x;
+    public final HashMap f23399y;
 
     static {
         int availableProcessors = Runtime.getRuntime().availableProcessors();
@@ -79,19 +79,19 @@ public final class ez extends c1 implements is {
 
     public ez(int i7) {
         super(i7);
-        this.f23386a = new HashMap();
-        this.f23387b = new SparseArray();
-        this.f23388c = new SparseArray();
+        this.f23389a = new HashMap();
+        this.f23390b = new SparseArray();
+        this.f23391c = new SparseArray();
         this.d = new SparseArray();
-        this.f23389e = new SparseArray();
-        this.f23390f = new a0.h();
+        this.f23392e = new SparseArray();
+        this.f23393f = new a0.h();
         this.h = new a0.h();
-        this.f23391n = new HashMap();
-        this.f23392r = new HashMap();
-        this.f23393s = new HashMap();
-        this.f23394w = new HashMap();
-        this.f23395x = new a0.h();
-        this.f23396y = new HashMap();
+        this.f23394n = new HashMap();
+        this.f23395r = new HashMap();
+        this.f23396s = new HashMap();
+        this.f23397w = new HashMap();
+        this.f23398x = new a0.h();
+        this.f23399y = new HashMap();
         this.E = new a0.h();
         this.F = new HashMap();
         this.G = new HashMap();
@@ -157,7 +157,7 @@ public final class ez extends c1 implements is {
             try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
-                w7.G(cVar.f22778a);
+                w7.G(cVar.f22782a);
                 File J2 = w7.J(photoSize, null, z11, true);
                 FileInputStream fileInputStream = new FileInputStream(J2);
                 BitmapFactory.decodeStream(fileInputStream, null, options);
@@ -181,7 +181,7 @@ public final class ez extends c1 implements is {
         } else {
             str = "%d_%d@%d_%d";
         }
-        return String.format(locale, str, Long.valueOf(photoSize.location.volume_id), Integer.valueOf(photoSize.location.local_id), Integer.valueOf((int) (Q1.x / g0.f23608p)), Integer.valueOf((int) (Q1.y / g0.f23608p)));
+        return String.format(locale, str, Long.valueOf(photoSize.location.volume_id), Integer.valueOf(photoSize.location.local_id), Integer.valueOf((int) (Q1.x / g0.f23610p)), Integer.valueOf((int) (Q1.y / g0.f23610p)));
     }
 
     public static long E() {
@@ -289,7 +289,7 @@ public final class ez extends c1 implements is {
         c10.O = j10;
         c10.R = j11;
         c10.Q = j12;
-        C(cVar.f22778a).r0(c10);
+        C(cVar.f22782a).r0(c10);
     }
 
     public static void S(final int i7, final long j3, final long j10, final long j11, final HashMap hashMap, final c cVar, final gj gjVar, final gj gjVar2, final fw fwVar, final TLRPC.BotInlineResult botInlineResult, final TL_stories.StoryItem storyItem, final org.telegram.ui.ActionBar.e2 e2Var, final org.telegram.ui.qm qmVar, final boolean z10) {
@@ -486,7 +486,7 @@ public final class ez extends c1 implements is {
                                     tL_document3.dc_id = 0;
                                     tL_document3.mime_type = botInlineResult3.content.mime_type;
                                     tL_document3.file_reference = new byte[0];
-                                    tL_document3.date = ConnectionsManager.getInstance(cVar2.f22778a).getCurrentTime();
+                                    tL_document3.date = ConnectionsManager.getInstance(cVar2.f22782a).getCurrentTime();
                                     TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                     tL_document3.attributes.add(tL_documentAttributeFilename);
                                     String str7 = botInlineResult3.type;
@@ -700,14 +700,14 @@ public final class ez extends c1 implements is {
                                 case 4:
                                     if (file.exists()) {
                                         i11 = 0;
-                                        tL_photo = ez.C(cVar2.f22778a).A(str5, null, false);
+                                        tL_photo = ez.C(cVar2.f22782a).A(str5, null, false);
                                     } else {
                                         i11 = 0;
                                         tL_photo = null;
                                     }
                                     if (tL_photo == null) {
                                         tL_photo = new TLRPC.TL_photo();
-                                        tL_photo.date = ConnectionsManager.getInstance(cVar2.f22778a).getCurrentTime();
+                                        tL_photo.date = ConnectionsManager.getInstance(cVar2.f22782a).getCurrentTime();
                                         tL_photo.file_reference = new byte[i11];
                                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                                         int[] g15 = gj.g1(botInlineResult3);
@@ -762,10 +762,10 @@ public final class ez extends c1 implements is {
                     }
                     if (gj.s3(tL_document, false)) {
                         TLRPC.PhotoSize w10 = w7.w(tL_document.thumbs, 320, false, null, false);
-                        w7.G(cVar2.f22778a);
+                        w7.G(cVar2.f22782a);
                         File I = w7.I(tL_document);
                         if (!I.exists()) {
-                            w7.G(cVar2.f22778a);
+                            w7.G(cVar2.f22782a);
                             z12 = true;
                             I = w7.J(tL_document, null, true, true);
                         } else {
@@ -786,12 +786,12 @@ public final class ez extends c1 implements is {
                     }
                     if (!m5.C(j12)) {
                         j13 = j12;
-                        inputPeer2 = np.s1(cVar2.f22778a).j1(j13);
+                        inputPeer2 = np.s1(cVar2.f22782a).j1(j13);
                     } else {
                         j13 = j12;
                         inputPeer2 = inputPeer;
                     }
-                    if (inputPeer2 != null && inputPeer2.user_id != 0 && np.s1(cVar2.f22778a).b2(inputPeer2.user_id) != null && np.s1(cVar2.f22778a).b2(inputPeer2.user_id).voice_messages_forbidden && tL_document2 != null) {
+                    if (inputPeer2 != null && inputPeer2.user_id != 0 && np.s1(cVar2.f22782a).b2(inputPeer2.user_id) != null && np.s1(cVar2.f22782a).b2(inputPeer2.user_id).voice_messages_forbidden && tL_document2 != null) {
                         boolean Q4 = gj.Q4(tL_document2);
                         org.telegram.ui.ActionBar.e2 e2Var2 = e2Var;
                         if (Q4) {
@@ -863,7 +863,7 @@ public final class ez extends c1 implements is {
                                 czVar.J = qmVar2;
                                 czVar.Q = j16;
                                 czVar.R = j17;
-                                ez.C(cVar2.f22778a).r0(czVar);
+                                ez.C(cVar2.f22782a).r0(czVar);
                             }
                         }
                     });
@@ -890,7 +890,7 @@ public final class ez extends c1 implements is {
             b10.J = qmVar;
             b10.Q = j10;
             b10.R = j11;
-            C(cVar.f22778a).r0(b10);
+            C(cVar.f22782a).r0(b10);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageRichMessage) {
             TL_iv.RichMessage richMessage = botInlineMessage.rich_message;
             cz c10 = cz.c(null, null, null, null, null, null, null, null, null, null, j3, null, gjVar, gjVar2, null, true, null, null, botInlineMessage.reply_markup, hashMap, z10, i7, 0, 0, null, null, false, false);
@@ -899,7 +899,7 @@ public final class ez extends c1 implements is {
             c10.J = qmVar;
             c10.Q = j10;
             c10.R = j11;
-            C(cVar.f22778a).r0(c10);
+            C(cVar.f22782a).r0(c10);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageWidget) {
             TLRPC.TL_botInlineMessageWidget tL_botInlineMessageWidget = (TLRPC.TL_botInlineMessageWidget) botInlineMessage;
             TLRPC.TL_messageMediaWidget tL_messageMediaWidget = new TLRPC.TL_messageMediaWidget();
@@ -911,14 +911,14 @@ public final class ez extends c1 implements is {
             tL_messageMediaWidget.chat_data = tL_botInlineMessageWidget.chat_data;
             tL_messageMediaWidget.widget_id = tL_botInlineMessageWidget.widget_id;
             cz d2 = cz.d(tL_messageMediaWidget, j3, gjVar, gjVar2, botInlineResult.send_message.reply_markup, hashMap, z10, i7);
-            d2.f22979b = tL_botInlineMessageWidget.message;
-            d2.f22997w = tL_botInlineMessageWidget.entities;
+            d2.f22987b = tL_botInlineMessageWidget.message;
+            d2.f23005w = tL_botInlineMessageWidget.entities;
             d2.L = tL_botInlineMessageWidget.invert_media;
             d2.K = fwVar;
             d2.J = qmVar;
             d2.Q = j10;
             d2.R = j11;
-            C(cVar.f22778a).r0(d2);
+            C(cVar.f22782a).r0(d2);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaVenue) {
             TLRPC.TL_messageMediaVenue tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
             TLRPC.BotInlineMessage botInlineMessage3 = botInlineResult.send_message;
@@ -937,7 +937,7 @@ public final class ez extends c1 implements is {
             d10.J = qmVar;
             d10.Q = j10;
             d10.R = j11;
-            C(cVar.f22778a).r0(d10);
+            C(cVar.f22782a).r0(d10);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaGeo) {
             if (botInlineMessage.period == 0 && botInlineMessage.proximity_notification_radius == 0) {
                 TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
@@ -962,7 +962,7 @@ public final class ez extends c1 implements is {
             d.J = qmVar;
             d.Q = j10;
             d.R = j11;
-            C(cVar.f22778a).r0(d);
+            C(cVar.f22782a).r0(d);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaContact) {
             TLRPC.TL_user tL_user = new TLRPC.TL_user();
             TLRPC.BotInlineMessage botInlineMessage6 = botInlineResult.send_message;
@@ -979,7 +979,7 @@ public final class ez extends c1 implements is {
             g10.J = qmVar;
             g10.Q = j10;
             g10.R = j11;
-            C(cVar.f22778a).r0(g10);
+            C(cVar.f22782a).r0(g10);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaInvoice) {
             if (m5.C(j3)) {
                 return;
@@ -1003,7 +1003,7 @@ public final class ez extends c1 implements is {
             c11.J = qmVar;
             c11.Q = j10;
             c11.R = j11;
-            C(cVar.f22778a).r0(c11);
+            C(cVar.f22782a).r0(c11);
         } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage) {
             TLRPC.TL_webPagePending tL_webPagePending3 = new TLRPC.TL_webPagePending();
             tL_webPagePending3.url = ((TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage).url;
@@ -1014,7 +1014,7 @@ public final class ez extends c1 implements is {
             b11.Q = j10;
             b11.R = j11;
             b11.L = botInlineResult.send_message.invert_media;
-            C(cVar.f22778a).r0(b11);
+            C(cVar.f22782a).r0(b11);
         }
     }
 
@@ -1309,10 +1309,10 @@ public final class ez extends c1 implements is {
                     c cVar6 = cVar5;
                     int i33 = i10;
                     if (ffVar5 != null) {
-                        ((t0.h) ffVar5.f34586b).i();
+                        ((t0.h) ffVar5.f34590b).i();
                     }
                     if (i33 != 0) {
-                        g0.h3(new x0(i33, cVar6, 12));
+                        g0.h3(new x0(i33, cVar6, 13));
                     }
                 }
             });
@@ -1327,7 +1327,7 @@ public final class ez extends c1 implements is {
         if (charSequence != null) {
             CharSequence[] charSequenceArr = {charSequence};
             cVar2 = cVar;
-            ArrayList W = si.b0(cVar2.f22778a).W(charSequenceArr, true, true);
+            ArrayList W = si.b0(cVar2.f22782a).W(charSequenceArr, true, true);
             charSequence2 = charSequenceArr[0];
             arrayList4 = W;
         } else {
@@ -1385,25 +1385,25 @@ public final class ez extends c1 implements is {
 
     public static void Z(c cVar, String str, String str2, Uri uri, long j3, gj gjVar, gj gjVar2, org.telegram.ui.qm qmVar, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.Components.ff ffVar, int i7, gj gjVar3, g20 g20Var, boolean z10, int i10, boolean z11, CharSequence charSequence, fw fwVar, long j10, long j11, long j12, lj ljVar) {
         ?? obj = new Object();
-        obj.f23189c = str;
-        obj.f23190e = str2;
-        obj.f23187a = uri;
+        obj.f23196c = str;
+        obj.f23197e = str2;
+        obj.f23194a = uri;
         if (charSequence != null) {
             obj.d = charSequence.toString();
         }
-        obj.f23193i = arrayList;
+        obj.f23200i = arrayList;
         obj.h = i7;
         if (arrayList2 != null) {
-            obj.f23194j = new ArrayList(arrayList2);
+            obj.f23201j = new ArrayList(arrayList2);
         }
-        obj.f23195k = g20Var;
+        obj.f23202k = g20Var;
         ArrayList arrayList3 = new ArrayList();
         arrayList3.add(obj);
         X(cVar, arrayList3, j3, gjVar, gjVar2, null, qmVar, z11, false, gjVar3, null, z10, i10, 0, false, ffVar, fwVar, j10, false, j11, j12, ljVar, null, false);
     }
 
     public static void a0(c cVar, CharSequence charSequence, long j3, long j10, boolean z10, int i7, int i10) {
-        vr.a0(cVar.f22778a).f27220a.c(new kw(charSequence, cVar, j10, j3, z10, i7, i10, 1));
+        vr.a0(cVar.f22782a).f27219a.c(new kw(charSequence, cVar, j10, j3, z10, i7, i10, 1));
     }
 
     public static void b0(final int i7, final int i10, final int i11, final long j3, final long j10, final long j11, final long j12, final CharSequence charSequence, final String str, final String str2, final ArrayList arrayList, final c cVar, final gj gjVar, final gj gjVar2, final gj gjVar3, final lj ljVar, final fw fwVar, final g20 g20Var, final TLRPC.Photo photo, final TL_stories.StoryItem storyItem, final org.telegram.ui.qm qmVar, final boolean z10, final boolean z11, final boolean z12) {
@@ -1617,7 +1617,7 @@ public final class ez extends c1 implements is {
         int[] iArr = new int[11];
         AnimatedFileNative.d(str, iArr, j3);
         if (iArr[0] == 0) {
-            if (r2.f26198a) {
+            if (r2.f26206a) {
                 a8.b("video hasn't avc1 atom");
                 return null;
             }
@@ -1632,21 +1632,21 @@ public final class ez extends c1 implements is {
         long j10 = iArr[5];
         int i11 = iArr[7];
         g20 g20Var = new g20();
-        g20Var.f23632a = -1L;
-        g20Var.f23634b = -1L;
-        g20Var.f23644m = E;
-        g20Var.f23646o = str;
-        g20Var.f23647p = j3;
-        g20Var.f23645n = i11;
-        g20Var.f23649r = (long) Math.ceil(f11);
+        g20Var.f23634a = -1L;
+        g20Var.f23636b = -1L;
+        g20Var.f23646m = E;
+        g20Var.f23648o = str;
+        g20Var.f23649p = j3;
+        g20Var.f23647n = i11;
+        g20Var.f23651r = (long) Math.ceil(f11);
         boolean z10 = true;
         int i12 = iArr[1];
         g20Var.h = i12;
-        g20Var.f23642k = i12;
+        g20Var.f23644k = i12;
         int i13 = iArr[2];
-        g20Var.f23640i = i13;
-        g20Var.f23643l = i13;
-        g20Var.f23639g = iArr[8];
+        g20Var.f23642i = i13;
+        g20Var.f23645l = i13;
+        g20Var.f23641g = iArr[8];
         g20Var.v = f11 * 1000.0f;
         float max = Math.max(i12, i13);
         float f12 = 1280.0f;
@@ -1659,7 +1659,7 @@ public final class ez extends c1 implements is {
         } else {
             i7 = 1;
         }
-        z5 q10 = z5.q(m10.f24934t0);
+        z5 q10 = z5.q(m10.f24940t0);
         int e10 = t0.e();
         if (e10 == 1) {
             i10 = q10.p().h;
@@ -1673,7 +1673,7 @@ public final class ez extends c1 implements is {
             round = i7;
         }
         if (new File(str).length() < 1048576000) {
-            if (round == i7 && Math.max(g20Var.h, g20Var.f23640i) <= 1280) {
+            if (round == i7 && Math.max(g20Var.h, g20Var.f23642i) <= 1280) {
                 z10 = false;
             } else {
                 if (round != 1) {
@@ -1688,31 +1688,31 @@ public final class ez extends c1 implements is {
                     f12 = 432.0f;
                 }
                 int i14 = g20Var.h;
-                int i15 = g20Var.f23640i;
+                int i15 = g20Var.f23642i;
                 if (i14 > i15) {
                     f10 = i14;
                 } else {
                     f10 = i15;
                 }
                 float f13 = f12 / f10;
-                g20Var.f23642k = Math.round((i14 * f13) / 2.0f) * 2;
-                g20Var.f23643l = Math.round((g20Var.f23640i * f13) / 2.0f) * 2;
+                g20Var.f23644k = Math.round((i14 * f13) / 2.0f) * 2;
+                g20Var.f23645l = Math.round((g20Var.f23642i * f13) / 2.0f) * 2;
             }
-            E = MediaController.Q(g20Var.f23640i, g20Var.h, E, g20Var.f23643l, g20Var.f23642k);
+            E = MediaController.Q(g20Var.f23642i, g20Var.h, E, g20Var.f23645l, g20Var.f23644k);
         } else {
             z10 = false;
         }
         if (!z10) {
-            g20Var.f23642k = g20Var.h;
-            g20Var.f23643l = g20Var.f23640i;
-            g20Var.f23644m = E;
-            g20Var.f23648q = length;
+            g20Var.f23644k = g20Var.h;
+            g20Var.f23645l = g20Var.f23642i;
+            g20Var.f23646m = E;
+            g20Var.f23650q = length;
         } else {
-            g20Var.f23644m = E;
-            g20Var.f23648q = a8.p0.f(f11 / 1000.0f, MediaController.v(g20Var.f23642k, g20Var.f23643l, E, false), 8.0f, (float) j10);
+            g20Var.f23646m = E;
+            g20Var.f23650q = a8.p0.f(f11 / 1000.0f, MediaController.v(g20Var.f23644k, g20Var.f23645l, E, false), 8.0f, (float) j10);
         }
-        if (g20Var.f23648q == 0) {
-            g20Var.f23648q = 1L;
+        if (g20Var.f23650q == 0) {
+            g20Var.f23650q = 1L;
         }
         return g20Var;
     }
@@ -1784,13 +1784,13 @@ public final class ez extends c1 implements is {
             TLRPC.TL_photo tL_photo = (TLRPC.TL_photo) tLObject;
             TLRPC.PhotoSize w10 = w7.w(tL_photo.sizes, 90, false, null, false);
             if (!(w10 instanceof TLRPC.TL_photoStrippedSize) && !(w10 instanceof TLRPC.TL_photoPathSize)) {
-                w7.G(cVar.f22778a);
+                w7.G(cVar.f22782a);
                 z12 = w7.J(w10, null, true, true).exists();
             } else {
                 z12 = true;
             }
             TLRPC.PhotoSize w11 = w7.w(tL_photo.sizes, g0.Z0(z11), false, null, false);
-            w7.G(cVar.f22778a);
+            w7.G(cVar.f22782a);
             boolean exists = w7.J(w11, null, false, true).exists();
             if (!z12 || !exists) {
                 Bitmap K2 = fc.K(str, uri, g0.Z0(false), g0.Z0(false), true);
@@ -1814,7 +1814,7 @@ public final class ez extends c1 implements is {
                 int i10 = 320;
                 TLRPC.PhotoSize w12 = w7.w(tL_document.thumbs, 320, false, null, false);
                 if (!(w12 instanceof TLRPC.TL_photoStrippedSize) && !(w12 instanceof TLRPC.TL_photoPathSize)) {
-                    w7.G(cVar.f22778a);
+                    w7.G(cVar.f22782a);
                     if (!w7.J(w12, null, true, true).exists()) {
                         Bitmap s5 = s(str, j3, null, false);
                         if (s5 == null) {
@@ -1892,7 +1892,7 @@ public final class ez extends c1 implements is {
                 }
             }
             try {
-                MediaPlayer create = MediaPlayer.create(t0.f26600b, Uri.fromFile(new File(str)));
+                MediaPlayer create = MediaPlayer.create(t0.f26609b, Uri.fromFile(new File(str)));
                 if (create != null) {
                     tL_documentAttributeVideo.duration = create.getDuration() / 1000.0d;
                     tL_documentAttributeVideo.f28058w = create.getVideoWidth();
@@ -1927,7 +1927,7 @@ public final class ez extends c1 implements is {
             }
         } else {
             try {
-                InputStream openInputStream = t0.f26600b.getContentResolver().openInputStream(uri);
+                InputStream openInputStream = t0.f26609b.getContentResolver().openInputStream(uri);
                 BitmapFactory.decodeStream(openInputStream, null, options);
                 if (openInputStream != null) {
                     openInputStream.close();
@@ -1971,7 +1971,7 @@ public final class ez extends c1 implements is {
     }
 
     public static void z(c cVar, long j3, int i7) {
-        g0.h3(new di.z8(cVar, j3, i7, 6));
+        g0.h3(new di.y8(cVar, j3, i7, 6));
     }
 
     public final TLRPC.TL_photo A(String str, Uri uri, boolean z10) {
@@ -2013,7 +2013,7 @@ public final class ez extends c1 implements is {
         if (inputMedia != null) {
             TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
             tL_messages_uploadMedia.media = inputMedia;
-            TLObject tLObject = qyVar.f26149c;
+            TLObject tLObject = qyVar.f26157c;
             if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
                 TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia = (TLRPC.TL_messages_sendMultiMedia) tLObject;
                 tL_messages_uploadMedia.peer = tL_messages_sendMultiMedia.peer;
@@ -2022,7 +2022,7 @@ public final class ez extends c1 implements is {
                     if (i10 >= tL_messages_sendMultiMedia.multi_media.size()) {
                         break;
                     } else if (tL_messages_sendMultiMedia.multi_media.get(i10).media == inputMedia) {
-                        f0((TLRPC.Message) qyVar.f26169z.get(i10), qyVar.H);
+                        f0((TLRPC.Message) qyVar.f26177z.get(i10), qyVar.H);
                         getNotificationCenter().k(i7, str, -1L, -1L, Boolean.FALSE);
                         break;
                     } else {
@@ -2042,7 +2042,7 @@ public final class ez extends c1 implements is {
                             if (i11 >= tL_inputMediaPaidMedia.extended_media.size()) {
                                 break;
                             } else if (tL_inputMediaPaidMedia.extended_media.get(i11) == inputMedia) {
-                                f0((TLRPC.Message) qyVar.f26169z.get(i11), qyVar.H);
+                                f0((TLRPC.Message) qyVar.f26177z.get(i11), qyVar.H);
                                 getNotificationCenter().k(i7, str, -1L, -1L, Boolean.FALSE);
                                 break;
                             } else {
@@ -2062,7 +2062,7 @@ public final class ez extends c1 implements is {
                             if (i12 >= qyVar.C.size()) {
                                 break;
                             } else if (((Integer) qyVar.C.get(i12)).intValue() == a10) {
-                                f0((TLRPC.Message) qyVar.f26169z.get(i12), qyVar.H);
+                                f0((TLRPC.Message) qyVar.f26177z.get(i12), qyVar.H);
                                 getNotificationCenter().k(i7, str, -1L, -1L, Boolean.FALSE);
                                 break;
                             } else {
@@ -2083,7 +2083,7 @@ public final class ez extends c1 implements is {
                             if (i13 >= tL_inputMediaPaidMedia2.extended_media.size()) {
                                 break;
                             } else if (tL_inputMediaPaidMedia2.extended_media.get(i13) == inputMedia) {
-                                f0((TLRPC.Message) qyVar.f26169z.get(i13), qyVar.H);
+                                f0((TLRPC.Message) qyVar.f26177z.get(i13), qyVar.H);
                                 getNotificationCenter().k(i7, str, -1L, -1L, Boolean.FALSE);
                                 break;
                             } else {
@@ -2103,7 +2103,7 @@ public final class ez extends c1 implements is {
                             if (i14 >= qyVar.C.size()) {
                                 break;
                             } else if (((Integer) qyVar.C.get(i14)).intValue() == a11) {
-                                f0((TLRPC.Message) qyVar.f26169z.get(i14), qyVar.H);
+                                f0((TLRPC.Message) qyVar.f26177z.get(i14), qyVar.H);
                                 getNotificationCenter().k(i7, str, -1L, -1L, Boolean.FALSE);
                                 break;
                             } else {
@@ -2121,7 +2121,7 @@ public final class ez extends c1 implements is {
                 if (i15 >= tL_messages_sendEncryptedMultiMedia.files.size()) {
                     break;
                 } else if (tL_messages_sendEncryptedMultiMedia.files.get(i15) == inputEncryptedFile) {
-                    f0((TLRPC.Message) qyVar.f26169z.get(i15), qyVar.H);
+                    f0((TLRPC.Message) qyVar.f26177z.get(i15), qyVar.H);
                     getNotificationCenter().k(i7, str, -1L, -1L, Boolean.FALSE);
                     break;
                 } else {
@@ -2137,15 +2137,15 @@ public final class ez extends c1 implements is {
     }
 
     public final Boolean F(gj gjVar, TLRPC.TodoItem todoItem) {
-        return (Boolean) this.I.get(Integer.valueOf(Objects.hash(Long.valueOf(gj.B0(gjVar.f23817k)), Integer.valueOf(gjVar.e1()), Integer.valueOf(todoItem.f28198id))));
+        return (Boolean) this.I.get(Integer.valueOf(Objects.hash(Long.valueOf(gj.B0(gjVar.f23819k)), Integer.valueOf(gjVar.e1()), Integer.valueOf(todoItem.f28198id))));
     }
 
     public final long I(long j3) {
-        return ((Long) this.f23395x.g(0L, j3)).longValue();
+        return ((Long) this.f23398x.g(0L, j3)).longValue();
     }
 
     public final boolean J(int i7) {
-        if (this.f23388c.indexOfKey(i7) < 0 && this.d.indexOfKey(i7) < 0) {
+        if (this.f23391c.indexOfKey(i7) < 0 && this.d.indexOfKey(i7) < 0) {
             return false;
         }
         return true;
@@ -2184,45 +2184,45 @@ public final class ez extends c1 implements is {
         TLRPC.PhotoSize photoSize3;
         final ez ezVar = this;
         final qy qyVar2 = qyVar;
-        int i12 = qyVar2.f26150e;
+        int i12 = qyVar2.f26158e;
         boolean z12 = false;
         boolean z13 = true;
         if (i12 == 0) {
-            String str4 = qyVar2.f26156l;
+            String str4 = qyVar2.f26164l;
             if (str4 != null) {
                 ezVar.e0(str4, qyVar2);
-                fc.D().L(ezVar.currentAccount, qyVar2.f26156l, "file");
-            } else if (qyVar2.f26149c != null) {
+                fc.D().L(ezVar.currentAccount, qyVar2.f26164l, "file");
+            } else if (qyVar2.f26157c != null) {
                 w7.G(ezVar.currentAccount);
-                String file = w7.I(qyVar2.f26152g).toString();
+                String file = w7.I(qyVar2.f26160g).toString();
                 ezVar.e0(file, qyVar2);
                 ezVar.getFileLoader().h0(false, 16777216, file, true);
-                ezVar.h0(qyVar2.f26157m);
+                ezVar.h0(qyVar2.f26165m);
             } else {
                 w7.G(ezVar.currentAccount);
-                String file2 = w7.I(qyVar2.f26152g).toString();
-                if (qyVar2.d != null && (photoSize3 = qyVar2.f26152g) != null && photoSize3.location.dc_id != 0) {
+                String file2 = w7.I(qyVar2.f26160g).toString();
+                if (qyVar2.d != null && (photoSize3 = qyVar2.f26160g) != null && photoSize3.location.dc_id != 0) {
                     File file3 = new File(file2);
                     if (!file3.exists()) {
                         w7.G(ezVar.currentAccount);
-                        file2 = w7.J(qyVar2.f26152g, null, true, true).toString();
+                        file2 = w7.J(qyVar2.f26160g, null, true, true).toString();
                         file3 = new File(file2);
                     }
                     if (!file3.exists()) {
-                        ezVar.e0(w7.r(null, qyVar2.f26152g), qyVar2);
-                        ezVar.getFileLoader().V(gc.f(qyVar2.f26152g, qyVar2.h), qyVar2.K, "jpg", 3, 0);
+                        ezVar.e0(w7.r(null, qyVar2.f26160g), qyVar2);
+                        ezVar.getFileLoader().V(gc.f(qyVar2.f26160g, qyVar2.h), qyVar2.K, "jpg", 3, 0);
                         return;
                     }
                 }
                 ezVar.e0(file2, qyVar2);
                 ezVar.getFileLoader().h0(true, 16777216, file2, true);
-                ezVar.h0(qyVar2.f26157m);
+                ezVar.h0(qyVar2.f26165m);
             }
         } else if (i12 == 1) {
-            g20 g20Var2 = qyVar2.f26159o;
-            if (g20Var2 != null && g20Var2.c() && qyVar2.f26160p) {
-                gj gjVar2 = qyVar2.f26157m;
-                String str5 = gjVar2.f23817k.attachPath;
+            g20 g20Var2 = qyVar2.f26167o;
+            if (g20Var2 != null && g20Var2.c() && qyVar2.f26168p) {
+                gj gjVar2 = qyVar2.f26165m;
+                String str5 = gjVar2.f23819k.attachPath;
                 TLRPC.Document F0 = gjVar2.F0();
                 if (str5 == null) {
                     StringBuilder sb2 = new StringBuilder();
@@ -2230,7 +2230,7 @@ public final class ez extends c1 implements is {
                     sb2.append("/");
                     sb2.append(F0.f28057id);
                     sb2.append(".");
-                    if (qyVar2.f26159o.N) {
+                    if (qyVar2.f26167o.N) {
                         str3 = "webm";
                     } else {
                         str3 = "mp4";
@@ -2239,17 +2239,17 @@ public final class ez extends c1 implements is {
                     str5 = sb2.toString();
                 }
                 ezVar.e0(str5, qyVar2);
-                qyVar2.f26159o.getClass();
-                MediaController.B().h0(qyVar2.f26157m, false, true, false);
-                ezVar.h0(qyVar2.f26157m);
+                qyVar2.f26167o.getClass();
+                MediaController.B().h0(qyVar2.f26165m, false, true, false);
+                ezVar.h0(qyVar2.f26165m);
                 return;
             }
-            g20 g20Var3 = qyVar2.f26159o;
+            g20 g20Var3 = qyVar2.f26167o;
             if (g20Var3 != null) {
-                TLRPC.InputFile inputFile2 = g20Var3.f23653w;
+                TLRPC.InputFile inputFile2 = g20Var3.f23655w;
                 if (inputFile2 != null) {
                     i11 = 4;
-                    TLObject tLObject2 = qyVar2.f26149c;
+                    TLObject tLObject2 = qyVar2.f26157c;
                     if (tLObject2 instanceof TLRPC.TL_messages_sendMedia) {
                         inputMedia5 = ((TLRPC.TL_messages_sendMedia) tLObject2).media;
                     } else if (tLObject2 instanceof TL_ephemeral.TL_sendMessage) {
@@ -2260,26 +2260,26 @@ public final class ez extends c1 implements is {
                         inputMedia5 = ((TLRPC.TL_messages_editMessage) tLObject2).media;
                     }
                     inputMedia5.file = inputFile2;
-                    g20Var3.f23653w = null;
+                    g20Var3.f23655w = null;
                 } else {
                     i11 = 4;
-                    if (g20Var3.f23654x != null) {
+                    if (g20Var3.f23656x != null) {
                         TLRPC.TL_decryptedMessage tL_decryptedMessage = (TLRPC.TL_decryptedMessage) qyVar2.d;
                         TLRPC.DecryptedMessageMedia decryptedMessageMedia = tL_decryptedMessage.media;
-                        decryptedMessageMedia.size = g20Var3.f23648q;
-                        decryptedMessageMedia.key = g20Var3.f23655y;
-                        decryptedMessageMedia.iv = g20Var3.f23656z;
+                        decryptedMessageMedia.size = g20Var3.f23650q;
+                        decryptedMessageMedia.key = g20Var3.f23657y;
+                        decryptedMessageMedia.iv = g20Var3.f23658z;
                         bw secretChatHelper = ezVar.getSecretChatHelper();
-                        gj gjVar3 = qyVar2.f26157m;
-                        secretChatHelper.j(tL_decryptedMessage, gjVar3.f23817k, qyVar2.f26158n, qyVar2.f26159o.f23654x, qyVar2.f26151f, gjVar3);
-                        qyVar2.f26159o.f23654x = null;
+                        gj gjVar3 = qyVar2.f26165m;
+                        secretChatHelper.j(tL_decryptedMessage, gjVar3.f23819k, qyVar2.f26166n, qyVar2.f26167o.f23656x, qyVar2.f26159f, gjVar3);
+                        qyVar2.f26167o.f23656x = null;
                         return;
                     }
                 }
             } else {
                 i11 = 4;
             }
-            TLObject tLObject3 = qyVar2.f26149c;
+            TLObject tLObject3 = qyVar2.f26157c;
             if (tLObject3 != null) {
                 if (tLObject3 instanceof TLRPC.TL_messages_sendMedia) {
                     TLRPC.TL_messages_sendMedia tL_messages_sendMedia = (TLRPC.TL_messages_sendMedia) tLObject3;
@@ -2308,11 +2308,11 @@ public final class ez extends c1 implements is {
                     inputMedia4 = d;
                 }
                 TLRPC.InputFile inputFile3 = inputMedia4.file;
-                if (inputFile3 == null && !(inputMedia4 instanceof TLRPC.TL_inputMediaDocument) && qyVar2.f26160p) {
-                    gj gjVar4 = qyVar2.f26157m;
-                    String str6 = gjVar4.f23817k.attachPath;
+                if (inputFile3 == null && !(inputMedia4 instanceof TLRPC.TL_inputMediaDocument) && qyVar2.f26168p) {
+                    gj gjVar4 = qyVar2.f26165m;
+                    String str6 = gjVar4.f23819k.attachPath;
                     TLRPC.Document F02 = gjVar4.F0();
-                    TLRPC.TL_document tL_document = qyVar2.f26157m.E1;
+                    TLRPC.TL_document tL_document = qyVar2.f26165m.E1;
                     if (tL_document != null) {
                         F02 = tL_document;
                     }
@@ -2324,7 +2324,7 @@ public final class ez extends c1 implements is {
                     }
                     String str7 = str6;
                     ezVar.e0(str7, qyVar2);
-                    g20 g20Var4 = qyVar2.f26157m.f23845r0;
+                    g20 g20Var4 = qyVar2.f26165m.f23847r0;
                     if (g20Var4 == null || !g20Var4.P) {
                         if (g20Var4 != null && g20Var4.c()) {
                             ezVar.getFileLoader().g0(str7, false, false, F02.size, 33554432, false);
@@ -2332,17 +2332,17 @@ public final class ez extends c1 implements is {
                             ezVar.getFileLoader().h0(false, 33554432, str7, false);
                         }
                     }
-                    ezVar.h0(qyVar2.f26157m);
+                    ezVar.h0(qyVar2.f26165m);
                     return;
                 }
                 TLRPC.InputPhoto inputPhoto = inputMedia4.video_cover;
-                if (inputPhoto == null && qyVar2.f26154j == null && qyVar2.f26153i != null && qyVar2.f26161q) {
-                    String str8 = w7.z(i11) + "/" + qyVar2.f26153i.location.volume_id + "_" + qyVar2.f26153i.location.local_id + ".jpg";
+                if (inputPhoto == null && qyVar2.f26162j == null && qyVar2.f26161i != null && qyVar2.f26169q) {
+                    String str8 = w7.z(i11) + "/" + qyVar2.f26161i.location.volume_id + "_" + qyVar2.f26161i.location.local_id + ".jpg";
                     ezVar.e0(str8, qyVar2);
                     ezVar.getFileLoader().h0(false, 16777216, str8, true);
-                    ezVar.h0(qyVar2.f26157m);
+                    ezVar.h0(qyVar2.f26165m);
                     return;
-                } else if (qyVar2.f26155k && (inputMedia4 instanceof TLRPC.TL_inputMediaUploadedDocument) && inputFile3 != null && qyVar2.f26154j != null) {
+                } else if (qyVar2.f26163k && (inputMedia4 instanceof TLRPC.TL_inputMediaUploadedDocument) && inputFile3 != null && qyVar2.f26162j != null) {
                     TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
                     tL_messages_uploadMedia.peer = inputPeer2;
                     inputMedia4.flags &= -65;
@@ -2353,34 +2353,34 @@ public final class ez extends c1 implements is {
                     ezVar.getConnectionsManager().sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject4, TLRPC.TL_error tL_error) {
-                            g0.h3(new di.aa(ez.this, tLObject4, qyVar2, z14, i13));
+                            g0.h3(new di.z9(ez.this, tLObject4, qyVar2, z14, i13));
                         }
                     });
                     return;
-                } else if (inputPhoto == null && qyVar2.f26154j != null && qyVar2.f26161q) {
+                } else if (inputPhoto == null && qyVar2.f26162j != null && qyVar2.f26169q) {
                     TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia2 = new TLRPC.TL_messages_uploadMedia();
                     tL_messages_uploadMedia2.peer = inputPeer2;
                     TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
-                    tL_inputMediaUploadedPhoto.file = qyVar2.f26154j;
+                    tL_inputMediaUploadedPhoto.file = qyVar2.f26162j;
                     tL_messages_uploadMedia2.media = tL_inputMediaUploadedPhoto;
                     ezVar.getConnectionsManager().sendRequest(tL_messages_uploadMedia2, new kx(ezVar, inputMedia4, qyVar2, 0));
                     return;
                 } else {
-                    gj gjVar5 = qyVar2.f26157m;
-                    if (gjVar5 != null && (g20Var = gjVar5.f23845r0) != null && g20Var.N) {
+                    gj gjVar5 = qyVar2.f26165m;
+                    if (gjVar5 != null && (g20Var = gjVar5.f23847r0) != null && g20Var.N) {
                         str2 = "webp";
                     } else {
                         str2 = "jpg";
                     }
-                    String str9 = w7.z(i11) + "/" + qyVar2.f26152g.location.volume_id + "_" + qyVar2.f26152g.location.local_id + "." + str2;
+                    String str9 = w7.z(i11) + "/" + qyVar2.f26160g.location.volume_id + "_" + qyVar2.f26160g.location.local_id + "." + str2;
                     ezVar.e0(str9, qyVar2);
                     ezVar.getFileLoader().h0(false, 16777216, str9, true);
-                    ezVar.h0(qyVar2.f26157m);
+                    ezVar.h0(qyVar2.f26165m);
                     return;
                 }
             }
-            gj gjVar6 = qyVar2.f26157m;
-            String str10 = gjVar6.f23817k.attachPath;
+            gj gjVar6 = qyVar2.f26165m;
+            String str10 = gjVar6.f23819k.attachPath;
             TLRPC.Document F03 = gjVar6.F0();
             if (str10 == null) {
                 StringBuilder sb4 = new StringBuilder();
@@ -2392,40 +2392,40 @@ public final class ez extends c1 implements is {
                 File file4 = new File(str10);
                 if (!file4.exists()) {
                     w7 fileLoader = ezVar.getFileLoader();
-                    TLRPC.Message message = qyVar2.f26157m.f23817k;
+                    TLRPC.Message message = qyVar2.f26165m.f23819k;
                     fileLoader.getClass();
                     file4 = w7.M(message, false, true);
                     if (file4 != null && file4.exists()) {
-                        TLRPC.Message message2 = qyVar2.f26157m.f23817k;
+                        TLRPC.Message message2 = qyVar2.f26165m.f23819k;
                         String absolutePath = file4.getAbsolutePath();
                         message2.attachPath = absolutePath;
-                        qyVar2.f26157m.f23872y0 = true;
+                        qyVar2.f26165m.f23874y0 = true;
                         str10 = absolutePath;
                     }
                 }
-                if (file4 == null || (!file4.exists() && qyVar2.f26157m.F0() != null)) {
+                if (file4 == null || (!file4.exists() && qyVar2.f26165m.F0() != null)) {
                     w7 fileLoader2 = ezVar.getFileLoader();
-                    TLRPC.Document F04 = qyVar2.f26157m.F0();
+                    TLRPC.Document F04 = qyVar2.f26165m.F0();
                     fileLoader2.getClass();
                     file4 = w7.J(F04, null, false, true);
                     if (file4 != null && file4.exists()) {
-                        TLRPC.Message message3 = qyVar2.f26157m.f23817k;
+                        TLRPC.Message message3 = qyVar2.f26165m.f23819k;
                         String absolutePath2 = file4.getAbsolutePath();
                         message3.attachPath = absolutePath2;
-                        qyVar2.f26157m.f23872y0 = true;
+                        qyVar2.f26165m.f23874y0 = true;
                         str10 = absolutePath2;
                     }
                 }
-                if (file4 == null || (!file4.exists() && qyVar2.f26157m.F0() != null)) {
+                if (file4 == null || (!file4.exists() && qyVar2.f26165m.F0() != null)) {
                     w7 fileLoader3 = ezVar.getFileLoader();
-                    TLRPC.Document F05 = qyVar2.f26157m.F0();
+                    TLRPC.Document F05 = qyVar2.f26165m.F0();
                     fileLoader3.getClass();
                     file4 = w7.J(F05, null, true, true);
                     if (file4 != null && file4.exists()) {
-                        TLRPC.Message message4 = qyVar2.f26157m.f23817k;
+                        TLRPC.Message message4 = qyVar2.f26165m.f23819k;
                         String absolutePath3 = file4.getAbsolutePath();
                         message4.attachPath = absolutePath3;
-                        qyVar2.f26157m.f23872y0 = true;
+                        qyVar2.f26165m.f23874y0 = true;
                         str10 = absolutePath3;
                     }
                 }
@@ -2437,7 +2437,7 @@ public final class ez extends c1 implements is {
             }
             String str11 = str10;
             ezVar.e0(str11, qyVar2);
-            g20 g20Var5 = qyVar2.f26157m.f23845r0;
+            g20 g20Var5 = qyVar2.f26165m.f23847r0;
             if (g20Var5 == null || !g20Var5.P) {
                 if (g20Var5 != null && g20Var5.c()) {
                     ezVar.getFileLoader().g0(str11, true, false, F03.size, 33554432, false);
@@ -2445,15 +2445,15 @@ public final class ez extends c1 implements is {
                     ezVar.getFileLoader().h0(true, 33554432, str11, false);
                 }
             }
-            ezVar.h0(qyVar2.f26157m);
+            ezVar.h0(qyVar2.f26165m);
         } else if (i12 == 2) {
-            String str12 = qyVar2.f26156l;
+            String str12 = qyVar2.f26164l;
             if (str12 != null) {
                 ezVar.e0(str12, qyVar2);
-                fc.D().L(ezVar.currentAccount, qyVar2.f26156l, "gif");
+                fc.D().L(ezVar.currentAccount, qyVar2.f26164l, "gif");
                 return;
             }
-            TLObject tLObject4 = qyVar2.f26149c;
+            TLObject tLObject4 = qyVar2.f26157c;
             if (tLObject4 != null) {
                 if (tLObject4 instanceof TLRPC.TL_messages_sendMedia) {
                     inputMedia3 = ((TLRPC.TL_messages_sendMedia) tLObject4).media;
@@ -2465,66 +2465,66 @@ public final class ez extends c1 implements is {
                     inputMedia3 = ((TLRPC.TL_messages_editMessage) tLObject4).media;
                 }
                 if (inputMedia3.file == null) {
-                    String str13 = qyVar2.f26157m.f23817k.attachPath;
+                    String str13 = qyVar2.f26165m.f23819k.attachPath;
                     ezVar.e0(str13, qyVar2);
                     w7 fileLoader4 = ezVar.getFileLoader();
-                    if (qyVar2.f26149c != null) {
+                    if (qyVar2.f26157c != null) {
                         z13 = false;
                     }
                     fileLoader4.h0(z13, 67108864, str13, false);
-                    ezVar.h0(qyVar2.f26157m);
+                    ezVar.h0(qyVar2.f26165m);
                     return;
-                } else if (inputMedia3.thumb == null && (photoSize2 = qyVar2.f26152g) != null && !(photoSize2 instanceof TLRPC.TL_photoStrippedSize)) {
-                    String str14 = w7.z(4) + "/" + qyVar2.f26152g.location.volume_id + "_" + qyVar2.f26152g.location.local_id + ".jpg";
+                } else if (inputMedia3.thumb == null && (photoSize2 = qyVar2.f26160g) != null && !(photoSize2 instanceof TLRPC.TL_photoStrippedSize)) {
+                    String str14 = w7.z(4) + "/" + qyVar2.f26160g.location.volume_id + "_" + qyVar2.f26160g.location.local_id + ".jpg";
                     ezVar.e0(str14, qyVar2);
                     ezVar.getFileLoader().h0(false, 16777216, str14, true);
-                    ezVar.h0(qyVar2.f26157m);
+                    ezVar.h0(qyVar2.f26165m);
                     return;
                 } else {
                     return;
                 }
             }
-            gj gjVar7 = qyVar2.f26157m;
-            String str15 = gjVar7.f23817k.attachPath;
+            gj gjVar7 = qyVar2.f26165m;
+            String str15 = gjVar7.f23819k.attachPath;
             TLRPC.Document F06 = gjVar7.F0();
             if (qyVar2.d != null && F06.dc_id != 0) {
                 File file5 = new File(str15);
                 if (!file5.exists()) {
                     w7 fileLoader5 = ezVar.getFileLoader();
-                    TLRPC.Message message5 = qyVar2.f26157m.f23817k;
+                    TLRPC.Message message5 = qyVar2.f26165m.f23819k;
                     fileLoader5.getClass();
                     file5 = w7.M(message5, false, true);
                     if (file5 != null && file5.exists()) {
-                        TLRPC.Message message6 = qyVar2.f26157m.f23817k;
+                        TLRPC.Message message6 = qyVar2.f26165m.f23819k;
                         String absolutePath4 = file5.getAbsolutePath();
                         message6.attachPath = absolutePath4;
-                        qyVar2.f26157m.f23872y0 = true;
+                        qyVar2.f26165m.f23874y0 = true;
                         str15 = absolutePath4;
                     }
                 }
-                if (file5 == null || (!file5.exists() && qyVar2.f26157m.F0() != null)) {
+                if (file5 == null || (!file5.exists() && qyVar2.f26165m.F0() != null)) {
                     w7 fileLoader6 = ezVar.getFileLoader();
-                    TLRPC.Document F07 = qyVar2.f26157m.F0();
+                    TLRPC.Document F07 = qyVar2.f26165m.F0();
                     fileLoader6.getClass();
                     file5 = w7.J(F07, null, false, true);
                     if (file5 != null && file5.exists()) {
-                        TLRPC.Message message7 = qyVar2.f26157m.f23817k;
+                        TLRPC.Message message7 = qyVar2.f26165m.f23819k;
                         String absolutePath5 = file5.getAbsolutePath();
                         message7.attachPath = absolutePath5;
-                        qyVar2.f26157m.f23872y0 = true;
+                        qyVar2.f26165m.f23874y0 = true;
                         str15 = absolutePath5;
                     }
                 }
-                if (file5 == null || (!file5.exists() && qyVar2.f26157m.F0() != null)) {
+                if (file5 == null || (!file5.exists() && qyVar2.f26165m.F0() != null)) {
                     w7 fileLoader7 = ezVar.getFileLoader();
-                    TLRPC.Document F08 = qyVar2.f26157m.F0();
+                    TLRPC.Document F08 = qyVar2.f26165m.F0();
                     fileLoader7.getClass();
                     file5 = w7.J(F08, null, true, true);
                     if (file5 != null && file5.exists()) {
-                        TLRPC.Message message8 = qyVar2.f26157m.f23817k;
+                        TLRPC.Message message8 = qyVar2.f26165m.f23819k;
                         String absolutePath6 = file5.getAbsolutePath();
                         message8.attachPath = absolutePath6;
-                        qyVar2.f26157m.f23872y0 = true;
+                        qyVar2.f26165m.f23874y0 = true;
                         str15 = absolutePath6;
                     }
                 }
@@ -2536,25 +2536,25 @@ public final class ez extends c1 implements is {
             }
             ezVar.e0(str15, qyVar2);
             ezVar.getFileLoader().h0(true, 67108864, str15, false);
-            ezVar.h0(qyVar2.f26157m);
+            ezVar.h0(qyVar2.f26165m);
         } else if (i12 == 3) {
-            String str16 = qyVar2.f26157m.f23817k.attachPath;
+            String str16 = qyVar2.f26165m.f23819k.attachPath;
             ezVar.e0(str16, qyVar2);
             w7 fileLoader8 = ezVar.getFileLoader();
-            if (qyVar2.f26149c == null) {
+            if (qyVar2.f26157c == null) {
                 z12 = true;
             }
             fileLoader8.h0(z12, 50331648, str16, true);
-            ezVar.h0(qyVar2.f26157m);
+            ezVar.h0(qyVar2.f26165m);
         } else if (i12 == 4) {
             if (i7 < 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (!qyVar2.f26160p && !qyVar2.f26161q) {
-                if (!qyVar2.f26167x.isEmpty()) {
-                    TLRPC.Message message9 = ((gj) i5.c.h(1, qyVar2.f26167x)).f23817k;
+            if (!qyVar2.f26168p && !qyVar2.f26169q) {
+                if (!qyVar2.f26175x.isEmpty()) {
+                    TLRPC.Message message9 = ((gj) i5.c.h(1, qyVar2.f26175x)).f23819k;
                     if (qyVar2.G != 0) {
                         z12 = true;
                     }
@@ -2562,11 +2562,11 @@ public final class ez extends c1 implements is {
                 }
             } else {
                 if (i7 < 0) {
-                    i10 = qyVar2.f26167x.size() - 1;
+                    i10 = qyVar2.f26175x.size() - 1;
                 } else {
                     i10 = i7;
                 }
-                gj gjVar8 = (gj) qyVar2.f26167x.get(i10);
+                gj gjVar8 = (gj) qyVar2.f26175x.get(i10);
                 TLRPC.Document F09 = gjVar8.F0();
                 if (F09 == null && (gj.m1(gjVar8) instanceof TLRPC.TL_messageMediaPaidMedia)) {
                     TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) gj.m1(gjVar8);
@@ -2591,9 +2591,9 @@ public final class ez extends c1 implements is {
                     }
                 }
                 if (F09 != null) {
-                    g20 g20Var6 = qyVar2.f26159o;
-                    if (g20Var6 != null && g20Var6.c() && qyVar2.f26160p) {
-                        String str17 = gjVar8.f23817k.attachPath;
+                    g20 g20Var6 = qyVar2.f26167o;
+                    if (g20Var6 != null && g20Var6.c() && qyVar2.f26168p) {
+                        String str17 = gjVar8.f23819k.attachPath;
                         if (str17 == null) {
                             StringBuilder sb5 = new StringBuilder();
                             sb5.append(w7.z(4));
@@ -2603,20 +2603,20 @@ public final class ez extends c1 implements is {
                         ezVar.e0(str17, qyVar2);
                         qyVar2.E.put(gjVar8, str17);
                         qyVar2.E.put(str17 + "_i", gjVar8);
-                        TLRPC.PhotoSize photoSize4 = qyVar2.f26152g;
+                        TLRPC.PhotoSize photoSize4 = qyVar2.f26160g;
                         if (photoSize4 != null && photoSize4.location != null) {
-                            qyVar2.E.put(r.b.v(str17, "_t"), qyVar2.f26152g);
+                            qyVar2.E.put(r.b.v(str17, "_t"), qyVar2.f26160g);
                         }
-                        TLRPC.PhotoSize photoSize5 = qyVar2.f26153i;
+                        TLRPC.PhotoSize photoSize5 = qyVar2.f26161i;
                         if (photoSize5 != null && photoSize5.location != null) {
-                            qyVar2.E.put(r.b.v(str17, "_ct"), qyVar2.f26153i);
+                            qyVar2.E.put(r.b.v(str17, "_ct"), qyVar2.f26161i);
                         }
-                        qyVar2.f26159o.getClass();
+                        qyVar2.f26167o.getClass();
                         MediaController.B().h0(gjVar8, false, true, false);
-                        qyVar2.f26157m = gjVar8;
+                        qyVar2.f26165m = gjVar8;
                         ezVar.h0(gjVar8);
                     } else {
-                        String str18 = gjVar8.f23817k.attachPath;
+                        String str18 = gjVar8.f23819k.attachPath;
                         if (str18 != null) {
                             str = "_ct";
                         } else {
@@ -2626,7 +2626,7 @@ public final class ez extends c1 implements is {
                             str = "_ct";
                             str18 = a8.p0.r(sb6, F09.f28057id, ".mp4");
                         }
-                        TLObject tLObject5 = qyVar2.f26149c;
+                        TLObject tLObject5 = qyVar2.f26157c;
                         if (tLObject5 != null) {
                             if (tLObject5 instanceof TLRPC.TL_messages_sendMultiMedia) {
                                 TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia = (TLRPC.TL_messages_sendMultiMedia) tLObject5;
@@ -2660,27 +2660,27 @@ public final class ez extends c1 implements is {
                                 inputMedia = null;
                                 inputPeer = null;
                             }
-                            if (inputMedia != null && inputMedia.file == null && !(inputMedia instanceof TLRPC.TL_inputMediaDocument) && qyVar2.f26160p) {
+                            if (inputMedia != null && inputMedia.file == null && !(inputMedia instanceof TLRPC.TL_inputMediaDocument) && qyVar2.f26168p) {
                                 ezVar.e0(str18, qyVar2);
                                 qyVar2.E.put(gjVar8, str18);
                                 qyVar2.E.put(str18, inputMedia);
                                 qyVar2.E.put(str18 + "_i", gjVar8);
-                                TLRPC.PhotoSize photoSize6 = qyVar2.f26152g;
+                                TLRPC.PhotoSize photoSize6 = qyVar2.f26160g;
                                 if (photoSize6 != null && photoSize6.location != null) {
-                                    qyVar2.E.put(r.b.v(str18, "_t"), qyVar2.f26152g);
+                                    qyVar2.E.put(r.b.v(str18, "_t"), qyVar2.f26160g);
                                 }
-                                TLRPC.PhotoSize photoSize7 = qyVar2.f26153i;
+                                TLRPC.PhotoSize photoSize7 = qyVar2.f26161i;
                                 if (photoSize7 != null && photoSize7.location != null) {
                                     StringBuilder sb7 = new StringBuilder();
                                     sb7.append(w7.z(4));
                                     sb7.append("/");
-                                    sb7.append(qyVar2.f26153i.location.volume_id);
+                                    sb7.append(qyVar2.f26161i.location.volume_id);
                                     sb7.append("_");
-                                    String n10 = a8.p0.n(qyVar2.f26153i.location.local_id, ".jpg", sb7);
-                                    qyVar2.E.put(r.b.v(str18, str), qyVar2.f26153i);
+                                    String n10 = a8.p0.n(qyVar2.f26161i.location.local_id, ".jpg", sb7);
+                                    qyVar2.E.put(r.b.v(str18, str), qyVar2.f26161i);
                                     qyVar2.E.put(n10 + "_doc", str18);
                                 }
-                                g20 g20Var7 = gjVar8.f23845r0;
+                                g20 g20Var7 = gjVar8.f23847r0;
                                 if (g20Var7 != null && g20Var7.c()) {
                                     ezVar.getFileLoader().g0(str18, false, false, F09.size, 33554432, false);
                                 } else {
@@ -2690,29 +2690,29 @@ public final class ez extends c1 implements is {
                             } else {
                                 String str19 = str;
                                 String str20 = str18;
-                                TLRPC.PhotoSize photoSize8 = qyVar2.f26153i;
+                                TLRPC.PhotoSize photoSize8 = qyVar2.f26161i;
                                 if (photoSize8 != null) {
                                     photoSize = photoSize8;
-                                    if (qyVar2.f26154j == null && inputMedia != null && inputMedia.video_cover == null) {
+                                    if (qyVar2.f26162j == null && inputMedia != null && inputMedia.video_cover == null) {
                                         StringBuilder sb8 = new StringBuilder();
                                         sb8.append(w7.z(4));
                                         sb8.append("/");
                                         TLRPC.InputMedia inputMedia8 = inputMedia;
-                                        sb8.append(qyVar2.f26153i.location.volume_id);
+                                        sb8.append(qyVar2.f26161i.location.volume_id);
                                         sb8.append("_");
-                                        sb8.append(qyVar2.f26153i.location.local_id);
+                                        sb8.append(qyVar2.f26161i.location.local_id);
                                         sb8.append(".jpg");
                                         String sb9 = sb8.toString();
                                         ezVar.e0(sb9, qyVar2);
-                                        TLRPC.PhotoSize photoSize9 = qyVar2.f26153i;
+                                        TLRPC.PhotoSize photoSize9 = qyVar2.f26161i;
                                         if (photoSize9 != null && photoSize9.location != null) {
                                             StringBuilder sb10 = new StringBuilder();
                                             sb10.append(w7.z(4));
                                             sb10.append("/");
-                                            sb10.append(qyVar2.f26153i.location.volume_id);
+                                            sb10.append(qyVar2.f26161i.location.volume_id);
                                             sb10.append("_");
-                                            String n11 = a8.p0.n(qyVar2.f26153i.location.local_id, ".jpg", sb10);
-                                            qyVar2.E.put(r.b.v(str20, str19), qyVar2.f26153i);
+                                            String n11 = a8.p0.n(qyVar2.f26161i.location.local_id, ".jpg", sb10);
+                                            qyVar2.E.put(r.b.v(str20, str19), qyVar2.f26161i);
                                             qyVar2.E.put(n11 + "_doc", str20);
                                         }
                                         qyVar2.E.put(sb9 + "_o", str20);
@@ -2730,8 +2730,8 @@ public final class ez extends c1 implements is {
                                     gjVar = gjVar8;
                                     photoSize = photoSize8;
                                 }
-                                if (photoSize != null && qyVar2.f26154j != null && inputMedia2 != null && inputMedia2.video_cover == null && (inputMedia2 instanceof TLRPC.TL_inputMediaUploadedDocument) && inputMedia2.file != null && (qyVar2.f26149c instanceof TLRPC.TL_messages_sendMultiMedia) && (arrayList = qyVar2.D) != null && i10 >= 0 && i10 < arrayList.size() && Boolean.TRUE.equals(qyVar2.D.get(i10))) {
-                                    TLRPC.InputFile inputFile4 = qyVar2.f26154j;
+                                if (photoSize != null && qyVar2.f26162j != null && inputMedia2 != null && inputMedia2.video_cover == null && (inputMedia2 instanceof TLRPC.TL_inputMediaUploadedDocument) && inputMedia2.file != null && (qyVar2.f26157c instanceof TLRPC.TL_messages_sendMultiMedia) && (arrayList = qyVar2.D) != null && i10 >= 0 && i10 < arrayList.size() && Boolean.TRUE.equals(qyVar2.D.get(i10))) {
+                                    TLRPC.InputFile inputFile4 = qyVar2.f26162j;
                                     inputMedia2.flags &= -65;
                                     inputMedia2.video_cover = null;
                                     TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia3 = new TLRPC.TL_messages_uploadMedia();
@@ -2743,24 +2743,24 @@ public final class ez extends c1 implements is {
                                     connectionsManager.sendRequest(tL_messages_uploadMedia3, lxVar);
                                     r22 = 0;
                                     ezVar = this;
-                                    qyVar2.f26159o = r22;
-                                    qyVar2.f26152g = r22;
-                                    qyVar2.f26153i = r22;
+                                    qyVar2.f26167o = r22;
+                                    qyVar2.f26160g = r22;
+                                    qyVar2.f26161i = r22;
                                     inputFile = r22;
                                 } else {
                                     TLRPC.InputMedia inputMedia9 = inputMedia2;
-                                    if (qyVar2.f26153i != null && qyVar2.f26154j != null && inputMedia9 != null && inputMedia9.video_cover == null) {
+                                    if (qyVar2.f26161i != null && qyVar2.f26162j != null && inputMedia9 != null && inputMedia9.video_cover == null) {
                                         TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia4 = new TLRPC.TL_messages_uploadMedia();
                                         tL_messages_uploadMedia4.peer = inputPeer;
                                         TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto2 = new TLRPC.TL_inputMediaUploadedPhoto();
-                                        tL_inputMediaUploadedPhoto2.file = qyVar2.f26154j;
+                                        tL_inputMediaUploadedPhoto2.file = qyVar2.f26162j;
                                         tL_messages_uploadMedia4.media = tL_inputMediaUploadedPhoto2;
                                         ezVar = this;
                                         getConnectionsManager().sendRequest(tL_messages_uploadMedia4, new ao(ezVar, inputMedia9, qyVar2, str20, gjVar, 4));
                                     } else {
                                         ezVar = this;
-                                        if (qyVar2.f26152g != null) {
-                                            String str21 = w7.z(4) + "/" + qyVar2.f26152g.location.volume_id + "_" + qyVar2.f26152g.location.local_id + ".jpg";
+                                        if (qyVar2.f26160g != null) {
+                                            String str21 = w7.z(4) + "/" + qyVar2.f26160g.location.volume_id + "_" + qyVar2.f26160g.location.local_id + ".jpg";
                                             ezVar.e0(str21, qyVar2);
                                             qyVar2.E.put(str21 + "_o", str20);
                                             qyVar2.E.put(gjVar, str21);
@@ -2777,11 +2777,11 @@ public final class ez extends c1 implements is {
                             qyVar2.E.put(gjVar8, str22);
                             qyVar2.E.put(str22, ((TLRPC.TL_messages_sendEncryptedMultiMedia) qyVar2.d).files.get(i10));
                             qyVar2.E.put(str22 + "_i", gjVar8);
-                            TLRPC.PhotoSize photoSize10 = qyVar2.f26152g;
+                            TLRPC.PhotoSize photoSize10 = qyVar2.f26160g;
                             if (photoSize10 != null && photoSize10.location != null) {
-                                qyVar2.E.put(r.b.v(str22, "_t"), qyVar2.f26152g);
+                                qyVar2.E.put(r.b.v(str22, "_t"), qyVar2.f26160g);
                             }
-                            g20 g20Var8 = gjVar8.f23845r0;
+                            g20 g20Var8 = gjVar8.f23847r0;
                             if (g20Var8 != null && g20Var8.c()) {
                                 ezVar.getFileLoader().g0(str22, true, false, F09.size, 33554432, false);
                             } else {
@@ -2791,21 +2791,21 @@ public final class ez extends c1 implements is {
                         }
                     }
                     r22 = 0;
-                    qyVar2.f26159o = r22;
-                    qyVar2.f26152g = r22;
-                    qyVar2.f26153i = r22;
+                    qyVar2.f26167o = r22;
+                    qyVar2.f26160g = r22;
+                    qyVar2.f26161i = r22;
                     inputFile = r22;
                 } else {
-                    String str23 = qyVar2.f26156l;
+                    String str23 = qyVar2.f26164l;
                     if (str23 != null) {
                         ezVar.e0(str23, qyVar2);
-                        qyVar2.E.put(gjVar8, qyVar2.f26156l);
-                        qyVar2.E.put(qyVar2.f26156l, gjVar8);
-                        fc.D().L(ezVar.currentAccount, qyVar2.f26156l, "file");
+                        qyVar2.E.put(gjVar8, qyVar2.f26164l);
+                        qyVar2.E.put(qyVar2.f26164l, gjVar8);
+                        fc.D().L(ezVar.currentAccount, qyVar2.f26164l, "file");
                         inputFile = null;
-                        qyVar2.f26156l = null;
+                        qyVar2.f26164l = null;
                     } else {
-                        TLObject tLObject6 = qyVar2.f26149c;
+                        TLObject tLObject6 = qyVar2.f26157c;
                         if (tLObject6 instanceof TLRPC.TL_messages_sendMultiMedia) {
                             tLObject = ((TLRPC.TL_messages_sendMultiMedia) tLObject6).multi_media.get(i10).media;
                         } else {
@@ -2838,7 +2838,7 @@ public final class ez extends c1 implements is {
                             tLObject = ((TLRPC.TL_messages_sendEncryptedMultiMedia) qyVar2.d).files.get(i10);
                         }
                         w7.G(ezVar.currentAccount);
-                        String file6 = w7.I(qyVar2.f26152g).toString();
+                        String file6 = w7.I(qyVar2.f26160g).toString();
                         ezVar.e0(file6, qyVar2);
                         qyVar2.E.put(file6, tLObject);
                         qyVar2.E.put(gjVar8, file6);
@@ -2851,16 +2851,16 @@ public final class ez extends c1 implements is {
                         fileLoader9.h0(z11, 16777216, file6, true);
                         ezVar.h0(gjVar8);
                         inputFile = null;
-                        qyVar2.f26152g = null;
+                        qyVar2.f26160g = null;
                     }
                 }
-                qyVar2.f26154j = inputFile;
-                qyVar2.f26160p = false;
-                qyVar2.f26161q = false;
+                qyVar2.f26162j = inputFile;
+                qyVar2.f26168p = false;
+                qyVar2.f26169q = false;
             }
             ezVar.t0(qyVar2, z10);
         } else if (i12 == 5) {
-            String str24 = "stickerset_" + qyVar2.f26157m.e1();
+            String str24 = "stickerset_" + qyVar2.f26165m.e1();
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
             tL_messages_getStickerSet.stickerset = (TLRPC.InputStickerSet) qyVar2.K;
             ezVar.getConnectionsManager().sendRequest(tL_messages_getStickerSet, new bi(ezVar, qyVar2, str24, 10));
@@ -2891,34 +2891,34 @@ public final class ez extends c1 implements is {
         }
         int i7 = 0;
         boolean z12 = false;
-        if (!(tLObject2 instanceof TLRPC.TL_messages_editMessage) && z10 && (y10 = y(gjVar.e1(), gj.B0(gjVar.f23817k))) != null) {
+        if (!(tLObject2 instanceof TLRPC.TL_messages_editMessage) && z10 && (y10 = y(gjVar.e1(), gj.B0(gjVar.f23819k))) != null) {
             if (qyVar != null) {
                 z12 = qyVar.H;
             }
             ?? obj2 = new Object();
-            obj2.f26374a = tLObject2;
-            obj2.f26375b = gjVar;
+            obj2.f26384a = tLObject2;
+            obj2.f26385b = gjVar;
             obj2.d = str;
-            obj2.f26379g = qyVar2;
+            obj2.f26389g = qyVar2;
             obj2.h = obj;
-            obj2.f26380i = z12;
-            if (y10.f26148b == null) {
-                y10.f26148b = new ArrayList();
+            obj2.f26390i = z12;
+            if (y10.f26156b == null) {
+                y10.f26156b = new ArrayList();
             }
-            y10.f26148b.add(obj2);
-            if (qyVar != null && (arrayList = qyVar.f26148b) != null) {
-                y10.f26148b.addAll(arrayList);
+            y10.f26156b.add(obj2);
+            if (qyVar != null && (arrayList = qyVar.f26156b) != null) {
+                y10.f26156b.addAll(arrayList);
                 return;
             }
             return;
         }
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         f0(message, z11);
-        di.v8 y11 = di.v8.y(this.currentAccount, false);
+        di.u8 y11 = di.u8.y(this.currentAccount, false);
         lw lwVar = new lw(this, tLObject2, gjVar, str, qyVar, z10, qyVar2, obj, hashMap, z11, 1);
-        if (gjVar.f23817k != null) {
+        if (gjVar.f23819k != null) {
             int e12 = gjVar.e1();
-            if (di.v8.o(tLObject) > 0 && y11.Q.remove(Integer.valueOf(e12))) {
+            if (di.u8.o(tLObject) > 0 && y11.Q.remove(Integer.valueOf(e12))) {
                 y11.R.put(Integer.valueOf(e12), lwVar);
                 return;
             }
@@ -2948,41 +2948,41 @@ public final class ez extends c1 implements is {
     public final void P(final TLObject tLObject, final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final qy qyVar, final boolean z10) {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            f0(((gj) arrayList.get(i7)).f23817k, z10);
+            f0(((gj) arrayList.get(i7)).f23819k, z10);
         }
-        if (!di.v8.y(this.currentAccount, false).c(tLObject, arrayList, new Runnable(this) {
-            public final ez f23376b;
+        if (!di.u8.y(this.currentAccount, false).c(tLObject, arrayList, new Runnable(this) {
+            public final ez f23379b;
 
             {
-                this.f23376b = this;
+                this.f23379b = this;
             }
 
             @Override
             public final void run() {
                 switch (r8) {
                     case 0:
-                        this.f23376b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
+                        this.f23379b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
                         return;
                     default:
-                        this.f23376b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
+                        this.f23379b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
                         return;
                 }
             }
         }) || !f2.b(this.currentAccount).a(tLObject, arrayList, new Runnable(this) {
-            public final ez f23376b;
+            public final ez f23379b;
 
             {
-                this.f23376b = this;
+                this.f23379b = this;
             }
 
             @Override
             public final void run() {
                 switch (r8) {
                     case 0:
-                        this.f23376b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
+                        this.f23379b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
                         return;
                     default:
-                        this.f23376b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
+                        this.f23379b.P(tLObject, arrayList, arrayList2, arrayList3, qyVar, z10);
                         return;
                 }
             }
@@ -3029,19 +3029,19 @@ public final class ez extends c1 implements is {
                         ezVar.getFileRefController().u(new Object[]{tLObject3, arrayList5, arrayList4, arrayList8, qyVar2, Boolean.valueOf(z11)}, arrayList8);
                         return;
                     } else if (qyVar2 != null) {
-                        if (c10 >= 0 && (zArr = qyVar2.f26163s) != null && c10 < zArr.length) {
+                        if (c10 >= 0 && (zArr = qyVar2.f26171s) != null && c10 < zArr.length) {
                             z12 = zArr[c10];
                         } else {
-                            z12 = qyVar2.f26162r;
+                            z12 = qyVar2.f26170r;
                         }
                         if (!z12) {
                             if (c10 < 0) {
-                                qyVar2.f26162r = true;
+                                qyVar2.f26170r = true;
                             } else {
-                                if (qyVar2.f26163s == null) {
-                                    qyVar2.f26163s = new boolean[qyVar2.f26167x.size()];
+                                if (qyVar2.f26171s == null) {
+                                    qyVar2.f26171s = new boolean[qyVar2.f26175x.size()];
                                 }
-                                qyVar2.f26163s[c10] = true;
+                                qyVar2.f26171s[c10] = true;
                             }
                             g0.h3(new y4(ezVar, tLObject3, c10, qyVar2, arrayList5, z11));
                             return;
@@ -3131,7 +3131,7 @@ public final class ez extends c1 implements is {
     public final void c0(gj gjVar, long j3, long j10, long j11, lj ljVar) {
         TLRPC.WebPage webPage;
         if (gjVar != null) {
-            TLRPC.Message message = gjVar.f23817k;
+            TLRPC.Message message = gjVar.f23819k;
             TLRPC.MessageMedia messageMedia = message.media;
             ArrayList arrayList = null;
             r4 = null;
@@ -3140,17 +3140,17 @@ public final class ez extends c1 implements is {
             arrayList = null;
             if (messageMedia != null && !(messageMedia instanceof TLRPC.TL_messageMediaEmpty) && !(messageMedia instanceof TLRPC.TL_messageMediaWebPage) && !(messageMedia instanceof TLRPC.TL_messageMediaGame) && !(messageMedia instanceof TLRPC.TL_messageMediaInvoice)) {
                 if (m5.C(j3)) {
-                    TLRPC.Message message2 = gjVar.f23817k;
+                    TLRPC.Message message2 = gjVar.f23819k;
                     if (message2.peer_id != null) {
                         TLRPC.MessageMedia messageMedia2 = message2.media;
                         if ((messageMedia2.photo instanceof TLRPC.TL_photo) || (messageMedia2.document instanceof TLRPC.TL_document)) {
                             hashMap = new HashMap();
-                            hashMap.put("parentObject", "sent_" + gjVar.f23817k.peer_id.channel_id + "_" + gjVar.e1() + "_" + gj.B0(gjVar.f23817k) + "_" + gjVar.D + "_" + gjVar.S1());
+                            hashMap.put("parentObject", "sent_" + gjVar.f23819k.peer_id.channel_id + "_" + gjVar.e1() + "_" + gj.B0(gjVar.f23819k) + "_" + gjVar.D + "_" + gjVar.S1());
                         }
                     }
                 }
                 HashMap hashMap2 = hashMap;
-                TLRPC.Message message3 = gjVar.f23817k;
+                TLRPC.Message message3 = gjVar.f23819k;
                 TLRPC.MessageMedia messageMedia3 = message3.media;
                 TLRPC.Photo photo = messageMedia3.photo;
                 if (photo instanceof TLRPC.TL_photo) {
@@ -3171,7 +3171,7 @@ public final class ez extends c1 implements is {
                 } else if (!(messageMedia3 instanceof TLRPC.TL_messageMediaVenue) && !(messageMedia3 instanceof TLRPC.TL_messageMediaGeo)) {
                     if (messageMedia3.phone_number != null) {
                         TLRPC.TL_userContact_old2 tL_userContact_old2 = new TLRPC.TL_userContact_old2();
-                        TLRPC.MessageMedia messageMedia4 = gjVar.f23817k.media;
+                        TLRPC.MessageMedia messageMedia4 = gjVar.f23819k.media;
                         tL_userContact_old2.phone = messageMedia4.phone_number;
                         tL_userContact_old2.first_name = messageMedia4.first_name;
                         tL_userContact_old2.last_name = messageMedia4.last_name;
@@ -3200,14 +3200,14 @@ public final class ez extends c1 implements is {
                 ArrayList<TLRPC.MessageEntity> arrayList2 = message.entities;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     arrayList = new ArrayList();
-                    for (int i7 = 0; i7 < gjVar.f23817k.entities.size(); i7++) {
-                        TLRPC.MessageEntity messageEntity = gjVar.f23817k.entities.get(i7);
+                    for (int i7 = 0; i7 < gjVar.f23819k.entities.size(); i7++) {
+                        TLRPC.MessageEntity messageEntity = gjVar.f23819k.entities.get(i7);
                         if ((messageEntity instanceof TLRPC.TL_messageEntityBold) || (messageEntity instanceof TLRPC.TL_messageEntityItalic) || (messageEntity instanceof TLRPC.TL_messageEntityPre) || (messageEntity instanceof TLRPC.TL_messageEntityCode) || (messageEntity instanceof TLRPC.TL_messageEntityTextUrl) || (messageEntity instanceof TLRPC.TL_messageEntitySpoiler) || (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji)) {
                             arrayList.add(messageEntity);
                         }
                     }
                 }
-                cz b10 = cz.b(gjVar.f23817k.message, j3, gjVar.C, null, webPage, true, arrayList, null, null, true, 0, 0, null, false);
+                cz b10 = cz.b(gjVar.f23819k.message, j3, gjVar.C, null, webPage, true, arrayList, null, null, true, 0, 0, null, false);
                 b10.Q = j10;
                 b10.R = j11;
                 b10.T = ljVar;
@@ -3238,12 +3238,12 @@ public final class ez extends c1 implements is {
     }
 
     public final void d0(int i7) {
-        SparseArray sparseArray = this.f23387b;
+        SparseArray sparseArray = this.f23390b;
         int size = sparseArray.size();
         sparseArray.remove(i7);
         if (size != 0 && sparseArray.size() == 0) {
             vr messagesStorage = getMessagesStorage();
-            messagesStorage.f27220a.c(new oq(messagesStorage, 23));
+            messagesStorage.f27219a.c(new nq(messagesStorage, 23));
         }
     }
 
@@ -3272,7 +3272,7 @@ public final class ez extends c1 implements is {
     }
 
     public final void e0(String str, qy qyVar) {
-        HashMap hashMap = this.f23386a;
+        HashMap hashMap = this.f23389a;
         ArrayList arrayList = (ArrayList) hashMap.get(str);
         if (arrayList == null) {
             arrayList = new ArrayList();
@@ -3303,37 +3303,37 @@ public final class ez extends c1 implements is {
         boolean z11 = false;
         while (true) {
             int size = arrayList.size();
-            hashMap = this.f23386a;
+            hashMap = this.f23389a;
             if (i16 >= size) {
                 break;
             }
             gj gjVar2 = (gj) arrayList.get(i16);
-            if (gjVar2.f23846r1) {
+            if (gjVar2.f23848r1) {
                 i11 = 1;
             } else {
                 i11 = i14;
             }
-            long B0 = gj.B0(gjVar2.f23817k);
+            long B0 = gj.B0(gjVar2.f23819k);
             arrayList4.add(Integer.valueOf(gjVar2.e1()));
-            if (gj.b4(gjVar2.f23817k)) {
-                i15 = gj.I1(gjVar2.f23817k);
+            if (gj.b4(gjVar2.f23819k)) {
+                i15 = gj.I1(gjVar2.f23819k);
             }
-            TLRPC.Message i02 = i0(gjVar2.e1(), gjVar2.f23846r1);
+            TLRPC.Message i02 = i0(gjVar2.e1(), gjVar2.f23848r1);
             if (i02 != null) {
                 getConnectionsManager().cancelRequest(i02.reqId, true);
             }
-            di.v8 y10 = di.v8.y(this.currentAccount, z10);
-            di.q8 q8Var = y10.N;
+            di.u8 y10 = di.u8.y(this.currentAccount, z10);
+            di.p8 p8Var = y10.N;
             ArrayList arrayList5 = arrayList4;
-            if (q8Var != null && q8Var.f9280b == gj.B0(gjVar2.f23817k)) {
-                di.q8 q8Var2 = y10.N;
+            if (p8Var != null && p8Var.f9229b == gj.B0(gjVar2.f23819k)) {
+                di.p8 p8Var2 = y10.N;
                 int e12 = gjVar2.e1();
-                di.p8 p8Var = q8Var2.f9292p;
-                org.telegram.ui.Components.rb rbVar = q8Var2.d;
+                di.o8 o8Var = p8Var2.f9241p;
+                org.telegram.ui.Components.rb rbVar = p8Var2.d;
                 i12 = i16;
-                HashSet hashSet = q8Var2.f9287k;
+                HashSet hashSet = p8Var2.f9236k;
                 j3 = B0;
-                if (!q8Var2.f9290n && !q8Var2.f9291o) {
+                if (!p8Var2.f9239n && !p8Var2.f9240o) {
                     Iterator it = hashSet.iterator();
                     while (true) {
                         if (it.hasNext()) {
@@ -3350,22 +3350,22 @@ public final class ez extends c1 implements is {
                         }
                     }
                     if (hashSet.isEmpty()) {
-                        q8Var2.f9290n = true;
-                        q8Var2.f9281c.b();
+                        p8Var2.f9239n = true;
+                        p8Var2.f9230c.b();
                         y10.N = null;
                     } else {
-                        q8Var2.f9284g--;
-                        if (gjVar != null && (message = gjVar.f23817k) != null) {
-                            q8Var2.h -= message.paid_message_stars;
+                        p8Var2.f9233g--;
+                        if (gjVar != null && (message = gjVar.f23819k) != null) {
+                            p8Var2.h -= message.paid_message_stars;
                         }
-                        di.u8 u8Var = q8Var2.f9283f;
-                        if (u8Var != null) {
-                            u8Var.f38606b = 3000L;
-                            g0.r(p8Var);
-                            g0.i3(p8Var, 3000L);
+                        di.t8 t8Var = p8Var2.f9232f;
+                        if (t8Var != null) {
+                            t8Var.f38604b = 3000L;
+                            g0.r(o8Var);
+                            g0.i3(o8Var, 3000L);
                         }
-                        org.telegram.ui.Components.h6 h6Var = rbVar.f38942b;
-                        int i17 = q8Var2.f9284g;
+                        org.telegram.ui.Components.h6 h6Var = rbVar.f38939b;
+                        int i17 = p8Var2.f9233g;
                         if (i17 == 1) {
                             G = hd.M0(2131747703, null);
                             i13 = 0;
@@ -3374,8 +3374,8 @@ public final class ez extends c1 implements is {
                             G = hd.G(i17, "PaidMessageSentTitle", new Object[0]);
                         }
                         h6Var.setText(G);
-                        rbVar.f38943c.setText(g0.X2(hd.H(',', "PaidMessageSentSubtitle", Math.max(i13, (int) q8Var2.h))));
-                        rbVar.f38941a.d();
+                        rbVar.f38940c.setText(g0.X2(hd.H(',', "PaidMessageSentSubtitle", Math.max(i13, (int) p8Var2.h))));
+                        rbVar.f38938a.d();
                     }
                 }
             } else {
@@ -3388,14 +3388,14 @@ public final class ez extends c1 implements is {
                 while (true) {
                     if (i18 < arrayList6.size()) {
                         qy qyVar = (qy) arrayList6.get(i18);
-                        if (qyVar.f26150e == 4) {
+                        if (qyVar.f26158e == 4) {
                             gj gjVar3 = null;
                             int i19 = 0;
                             while (true) {
-                                if (i19 < qyVar.f26167x.size()) {
-                                    gjVar3 = (gj) qyVar.f26167x.get(i19);
+                                if (i19 < qyVar.f26175x.size()) {
+                                    gjVar3 = (gj) qyVar.f26175x.get(i19);
                                     if (gjVar3.e1() == gjVar2.e1()) {
-                                        j0(gjVar2.e1(), gjVar2.f23846r1);
+                                        j0(gjVar2.e1(), gjVar2.f23848r1);
                                         break;
                                     }
                                     i19++;
@@ -3405,13 +3405,13 @@ public final class ez extends c1 implements is {
                                 }
                             }
                             if (i19 >= 0) {
-                                qyVar.f26167x.remove(i19);
-                                qyVar.f26169z.remove(i19);
+                                qyVar.f26175x.remove(i19);
+                                qyVar.f26177z.remove(i19);
                                 qyVar.B.remove(i19);
-                                if (!qyVar.f26168y.isEmpty()) {
-                                    qyVar.f26168y.remove(i19);
+                                if (!qyVar.f26176y.isEmpty()) {
+                                    qyVar.f26176y.remove(i19);
                                 }
-                                TLObject tLObject = qyVar.f26149c;
+                                TLObject tLObject = qyVar.f26157c;
                                 if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
                                     ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media.remove(i19);
                                 } else {
@@ -3450,27 +3450,27 @@ public final class ez extends c1 implements is {
                                 if (str != null) {
                                     arrayList2.add(str);
                                 }
-                                if (qyVar.f26167x.isEmpty()) {
+                                if (qyVar.f26175x.isEmpty()) {
                                     qyVar.d();
                                 } else {
                                     if (qyVar.G == gjVar2.e1()) {
-                                        gj gjVar4 = (gj) i5.c.h(1, qyVar.f26167x);
+                                        gj gjVar4 = (gj) i5.c.h(1, qyVar.f26175x);
                                         qyVar.G = gjVar4.e1();
-                                        gjVar4.f23817k.params.put("final", "1");
+                                        gjVar4.f23819k.params.put("final", "1");
                                         TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
-                                        tL_messages_messages.messages.add(gjVar4.f23817k);
-                                        getMessagesStorage().h1(-2, 0, i11, qyVar.f26147a, 0L, tL_messages_messages, false);
+                                        tL_messages_messages.messages.add(gjVar4.f23819k);
+                                        getMessagesStorage().h1(-2, 0, i11, qyVar.f26155a, 0L, tL_messages_messages, false);
                                     }
                                     if (!arrayList3.contains(qyVar)) {
                                         arrayList3.add(qyVar);
                                     }
                                 }
                             }
-                        } else if (qyVar.f26157m.e1() == gjVar2.e1()) {
-                            j0(gjVar2.e1(), gjVar2.f23846r1);
+                        } else if (qyVar.f26165m.e1() == gjVar2.e1()) {
+                            j0(gjVar2.e1(), gjVar2.f23848r1);
                             arrayList6.remove(i18);
                             qyVar.d();
-                            MediaController.B().i(qyVar.f26157m);
+                            MediaController.B().i(qyVar.f26165m);
                             if (arrayList6.size() == 0) {
                                 arrayList2.add((String) entry.getKey());
                                 if (qyVar.d != null) {
@@ -3506,9 +3506,9 @@ public final class ez extends c1 implements is {
         if (arrayList.size() == 1 && ((gj) arrayList.get(0)).Y2() && ((gj) arrayList.get(0)).D1 != null) {
             l0((gj) arrayList.get(0));
         } else if (arrayList.size() != 1 || !((gj) arrayList.get(0)).Y2() || !((gj) arrayList.get(0)).T3()) {
-            if (!arrayList.isEmpty() && gj.d5(((gj) arrayList.get(0)).f23817k)) {
+            if (!arrayList.isEmpty() && gj.d5(((gj) arrayList.get(0)).f23819k)) {
                 i10 = 9;
-            } else if (!arrayList.isEmpty() && gj.b4(((gj) arrayList.get(0)).f23817k)) {
+            } else if (!arrayList.isEmpty() && gj.b4(((gj) arrayList.get(0)).f23819k)) {
                 i10 = 5;
             } else {
                 if (i14 != 0) {
@@ -3535,16 +3535,16 @@ public final class ez extends c1 implements is {
         ArrayList j3 = k5.j(gjVar);
         if (gjVar != null && gjVar.D == 29) {
             qy qyVar = null;
-            for (Map.Entry entry : this.f23386a.entrySet()) {
+            for (Map.Entry entry : this.f23389a.entrySet()) {
                 ArrayList arrayList = (ArrayList) entry.getValue();
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     qy qyVar2 = (qy) arrayList.get(i7);
-                    if (qyVar2.f26150e == 4) {
+                    if (qyVar2.f26158e == 4) {
                         int i10 = 0;
                         while (true) {
-                            if (i10 >= qyVar2.f26167x.size()) {
+                            if (i10 >= qyVar2.f26175x.size()) {
                                 break;
-                            } else if (((gj) qyVar2.f26167x.get(i10)).e1() == gjVar.e1()) {
+                            } else if (((gj) qyVar2.f26175x.get(i10)).e1() == gjVar.e1()) {
                                 qyVar = qyVar2;
                                 break;
                             } else {
@@ -3559,7 +3559,7 @@ public final class ez extends c1 implements is {
             }
             if (qyVar != null) {
                 j3.clear();
-                j3.addAll(qyVar.f26167x);
+                j3.addAll(qyVar.f26175x);
             }
         }
         f(j3);
@@ -3573,7 +3573,7 @@ public final class ez extends c1 implements is {
                 this.d.put(i7, message);
                 return;
             }
-            SparseArray sparseArray = this.f23388c;
+            SparseArray sparseArray = this.f23391c;
             if (sparseArray.indexOfKey(i7) >= 0) {
                 z11 = true;
             } else {
@@ -3583,7 +3583,7 @@ public final class ez extends c1 implements is {
             sparseArray.put(message.f28072id, message);
             if (!z10 && !z11 && !gj.c3(message)) {
                 long B0 = gj.B0(message);
-                a0.h hVar = this.f23390f;
+                a0.h hVar = this.f23393f;
                 hVar.k(Integer.valueOf(((Integer) hVar.g(0, B0)).intValue() + 1), B0);
                 getNotificationCenter().k(ns.n1, new Object[0]);
             }
@@ -3592,10 +3592,10 @@ public final class ez extends c1 implements is {
 
     public final void h0(gj gjVar) {
         boolean z10;
-        if (gjVar != null && gjVar.e1() <= 0 && !gjVar.f23846r1) {
-            TLRPC.Message message = gjVar.f23817k;
+        if (gjVar != null && gjVar.e1() <= 0 && !gjVar.f23848r1) {
+            TLRPC.Message message = gjVar.f23819k;
             int i7 = message.f28072id;
-            SparseArray sparseArray = this.f23389e;
+            SparseArray sparseArray = this.f23392e;
             if (sparseArray.indexOfKey(i7) >= 0) {
                 z10 = true;
             } else {
@@ -3620,13 +3620,13 @@ public final class ez extends c1 implements is {
             }
             return message;
         }
-        SparseArray sparseArray2 = this.f23388c;
+        SparseArray sparseArray2 = this.f23391c;
         TLRPC.Message message2 = (TLRPC.Message) sparseArray2.get(i7);
         if (message2 != null) {
             sparseArray2.remove(i7);
             if (!z10) {
                 long B0 = gj.B0(message2);
-                a0.h hVar = this.f23390f;
+                a0.h hVar = this.f23393f;
                 Integer num = (Integer) hVar.f(B0);
                 if (num != null) {
                     int intValue = num.intValue() - 1;
@@ -3644,7 +3644,7 @@ public final class ez extends c1 implements is {
 
     public final void j0(int i7, boolean z10) {
         if (i7 <= 0 && !z10) {
-            SparseArray sparseArray = this.f23389e;
+            SparseArray sparseArray = this.f23392e;
             TLRPC.Message message = (TLRPC.Message) sparseArray.get(i7);
             if (message != null) {
                 sparseArray.remove(i7);
@@ -3669,8 +3669,8 @@ public final class ez extends c1 implements is {
         if (gjVar == null) {
             return;
         }
-        long B0 = gj.B0(gjVar.f23817k);
-        long j3 = gjVar.f23817k.random_id;
+        long B0 = gj.B0(gjVar.f23819k);
+        long j3 = gjVar.f23819k.random_id;
         boolean z11 = true;
         TLRPC.Message message = null;
         if (updates != null) {
@@ -3719,7 +3719,7 @@ public final class ez extends c1 implements is {
             i7 = 0;
         }
         TLRPC.Message message3 = message;
-        int i12 = gjVar.f23817k.local_id;
+        int i12 = gjVar.f23819k.local_id;
         if (i12 >= 0) {
             i12 = gjVar.e1();
         }
@@ -3735,13 +3735,13 @@ public final class ez extends c1 implements is {
                 tL_messageService.f28072id = i13;
                 tL_messageService.dialog_id = B0;
                 getMessagesStorage().N0(0, tL_messageService);
-                gjVar.f23817k.send_state = 2;
+                gjVar.f23819k.send_state = 2;
                 gjVar.M1 = true;
                 getNotificationCenter().k(ns.M, Integer.valueOf(i13));
             } else {
                 vr messagesStorage = getMessagesStorage();
-                messagesStorage.f27220a.c(new dq(messagesStorage, j3, B0, Integer.valueOf(i13), i13, gjVar.f23817k.date));
-                gjVar.f23817k.send_state = 0;
+                messagesStorage.f27219a.c(new cq(messagesStorage, j3, B0, Integer.valueOf(i13), i13, gjVar.f23819k.date));
+                gjVar.f23819k.send_state = 0;
                 gjVar.M1 = true;
                 getNotificationCenter().k(ns.J, Integer.valueOf(i13));
             }
@@ -3763,7 +3763,7 @@ public final class ez extends c1 implements is {
         message3.unread = z11;
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(message3);
-        getMessagesStorage().f27220a.c(new cm(this, j3, B0, i13, message3, arrayList2, gjVar));
+        getMessagesStorage().f27219a.c(new cm(this, j3, B0, i13, message3, arrayList2, gjVar));
     }
 
     public final boolean k0(long j3, gj gjVar, boolean z10) {
@@ -3775,7 +3775,7 @@ public final class ez extends c1 implements is {
                 return false;
             }
         } else {
-            TLRPC.Message message = gjVar.f23817k;
+            TLRPC.Message message = gjVar.f23819k;
             TLRPC.MessageAction messageAction = message.action;
             if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
                 if (z10) {
@@ -3783,40 +3783,40 @@ public final class ez extends c1 implements is {
                 }
             } else {
                 boolean z11 = messageAction instanceof TLRPC.TL_messageEncryptedAction;
-                int i10 = ns.f25566s;
+                int i10 = ns.f25567s;
                 if (z11) {
                     TLRPC.EncryptedChat a12 = getMessagesController().a1(Integer.valueOf((int) (gj.B0(message) & 4294967295L)));
                     if (a12 == null) {
-                        getMessagesStorage().N0(gjVar.f23846r1 ? 1 : 0, gjVar.f23817k);
-                        gjVar.f23817k.send_state = 2;
+                        getMessagesStorage().N0(gjVar.f23848r1 ? 1 : 0, gjVar.f23819k);
+                        gjVar.f23819k.send_state = 2;
                         getNotificationCenter().k(ns.M, Integer.valueOf(gjVar.e1()));
                         d0(gjVar.e1());
                         return false;
                     }
-                    TLRPC.Message message2 = gjVar.f23817k;
+                    TLRPC.Message message2 = gjVar.f23819k;
                     if (message2.random_id == 0) {
                         message2.random_id = E();
                     }
-                    TLRPC.DecryptedMessageAction decryptedMessageAction = gjVar.f23817k.action.encryptedAction;
+                    TLRPC.DecryptedMessageAction decryptedMessageAction = gjVar.f23819k.action.encryptedAction;
                     if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionSetMessageTTL) {
-                        getSecretChatHelper().z(a12, gjVar.f23817k);
+                        getSecretChatHelper().z(a12, gjVar.f23819k);
                         return true;
                     } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionDeleteMessages) {
-                        getSecretChatHelper().t(a12, null, gjVar.f23817k);
+                        getSecretChatHelper().t(a12, null, gjVar.f23819k);
                         return true;
                     } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionFlushHistory) {
-                        getSecretChatHelper().r(a12, gjVar.f23817k);
+                        getSecretChatHelper().r(a12, gjVar.f23819k);
                         return true;
                     } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionNotifyLayer) {
-                        getSecretChatHelper().w(a12, gjVar.f23817k);
+                        getSecretChatHelper().w(a12, gjVar.f23819k);
                         return true;
                     } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionReadMessages) {
-                        getSecretChatHelper().u(a12, null, gjVar.f23817k);
+                        getSecretChatHelper().u(a12, null, gjVar.f23819k);
                         return true;
                     } else {
                         if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionScreenshotMessages) {
                             bw secretChatHelper = getSecretChatHelper();
-                            TLRPC.Message message3 = gjVar.f23817k;
+                            TLRPC.Message message3 = gjVar.f23819k;
                             secretChatHelper.getClass();
                             if (a12 instanceof TLRPC.TL_encryptedChat) {
                                 TLRPC.DecryptedMessage tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
@@ -3828,7 +3828,7 @@ public final class ez extends c1 implements is {
                                     tL_decryptedMessageActionScreenshotMessages.random_ids = null;
                                     message3 = secretChatHelper.d(a12, tL_decryptedMessageActionScreenshotMessages);
                                     gj gjVar2 = new gj(secretChatHelper.currentAccount, message3, false, false);
-                                    gjVar2.f23817k.send_state = 1;
+                                    gjVar2.f23819k.send_state = 1;
                                     gjVar2.X1 = true;
                                     secretChatHelper.getMessagesController().m5(0, message3.dialog_id, k5.j(gjVar2));
                                     secretChatHelper.getNotificationCenter().k(i10, new Object[0]);
@@ -3840,31 +3840,31 @@ public final class ez extends c1 implements is {
                             }
                         } else if (!(decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionTyping)) {
                             if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionResend) {
-                                getSecretChatHelper().y(a12, 0, 0, gjVar.f23817k);
+                                getSecretChatHelper().y(a12, 0, 0, gjVar.f23819k);
                                 return true;
                             } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionCommitKey) {
-                                getSecretChatHelper().s(a12, gjVar.f23817k);
+                                getSecretChatHelper().s(a12, gjVar.f23819k);
                                 return true;
                             } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionAbortKey) {
-                                getSecretChatHelper().p(a12, gjVar.f23817k, 0L);
+                                getSecretChatHelper().p(a12, gjVar.f23819k, 0L);
                                 return true;
                             } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionRequestKey) {
-                                getSecretChatHelper().x(a12, gjVar.f23817k);
+                                getSecretChatHelper().x(a12, gjVar.f23819k);
                                 return true;
                             } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionAcceptKey) {
-                                getSecretChatHelper().q(a12, gjVar.f23817k);
+                                getSecretChatHelper().q(a12, gjVar.f23819k);
                                 return true;
                             } else if (decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionNoop) {
-                                getSecretChatHelper().v(a12, gjVar.f23817k);
+                                getSecretChatHelper().v(a12, gjVar.f23819k);
                             }
                         }
                         return true;
                     }
                 }
                 if (messageAction instanceof TLRPC.TL_messageActionScreenshotTaken) {
-                    TLRPC.User a22 = getMessagesController().a2(Long.valueOf(gj.B0(gjVar.f23817k)));
+                    TLRPC.User a22 = getMessagesController().a2(Long.valueOf(gj.B0(gjVar.f23819k)));
                     int N1 = gjVar.N1();
-                    TLRPC.Message message5 = gjVar.f23817k;
+                    TLRPC.Message message5 = gjVar.f23819k;
                     if (a22 != null && N1 != 0 && a22.f28200id != getUserConfig().e()) {
                         TLRPC.TL_messages_sendScreenshotNotification tL_messages_sendScreenshotNotification = new TLRPC.TL_messages_sendScreenshotNotification();
                         TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
@@ -3902,7 +3902,7 @@ public final class ez extends c1 implements is {
                         }
                         tL_messages_sendScreenshotNotification.random_id = message5.random_id;
                         gj gjVar3 = new gj(this.currentAccount, message5, false, true);
-                        gjVar3.f23817k.send_state = 1;
+                        gjVar3.f23819k.send_state = 1;
                         gjVar3.X1 = true;
                         getMessagesController().m5(0, message5.dialog_id, k5.j(gjVar3));
                         getNotificationCenter().k(i10, new Object[0]);
@@ -3913,28 +3913,28 @@ public final class ez extends c1 implements is {
                     }
                 }
                 if (z10) {
-                    this.f23387b.put(gjVar.e1(), gjVar);
+                    this.f23390b.put(gjVar.e1(), gjVar);
                 }
-                long B0 = gj.B0(gjVar.f23817k);
-                TLRPC.Message message6 = gjVar.f23817k;
+                long B0 = gj.B0(gjVar.f23819k);
+                TLRPC.Message message6 = gjVar.f23819k;
                 String str = message6.attachPath;
                 TLRPC.ReplyMarkup replyMarkup = message6.reply_markup;
                 HashMap<String, String> hashMap = message6.params;
                 boolean z12 = !message6.silent;
-                if (gjVar.f23846r1) {
+                if (gjVar.f23848r1) {
                     i7 = message6.date;
                 }
                 cz c10 = cz.c(null, null, null, null, null, null, null, null, null, null, B0, str, null, null, null, true, gjVar, null, replyMarkup, hashMap, z12, i7, 0, 0, null, null, false, false);
-                TLRPC.Message message7 = gjVar.f23817k;
+                TLRPC.Message message7 = gjVar.f23819k;
                 if (message7 != null) {
                     TLRPC.InputQuickReplyShortcut inputQuickReplyShortcut = message7.quick_reply_shortcut;
                     if (inputQuickReplyShortcut instanceof TLRPC.TL_inputQuickReplyShortcut) {
                         c10.M = ((TLRPC.TL_inputQuickReplyShortcut) inputQuickReplyShortcut).shortcut;
                     }
                     c10.N = gj.I1(message7);
-                    c10.Q = gjVar.f23817k.paid_message_stars;
+                    c10.Q = gjVar.f23819k.paid_message_stars;
                 }
-                TLRPC.Message message8 = gjVar.f23817k;
+                TLRPC.Message message8 = gjVar.f23819k;
                 if (message8 != null) {
                     j10 = message8.ephemeralReceiverBotId;
                 } else {
@@ -3950,8 +3950,8 @@ public final class ez extends c1 implements is {
     }
 
     public final void l0(gj gjVar) {
-        gjVar.f23842q1 = true;
-        TLRPC.Message message = gjVar.f23817k;
+        gjVar.f23844q1 = true;
+        TLRPC.Message message = gjVar.f23819k;
         message.media = gjVar.D1;
         message.message = gjVar.C1;
         ArrayList<TLRPC.MessageEntity> arrayList = gjVar.F1;
@@ -3967,19 +3967,19 @@ public final class ez extends c1 implements is {
         gjVar.C1 = null;
         gjVar.F1 = null;
         gjVar.G1 = null;
-        gjVar.f23845r0 = null;
+        gjVar.f23847r0 = null;
         gjVar.D = -1;
         gjVar.L5();
-        gjVar.f23875z = null;
+        gjVar.f23877z = null;
         if (gjVar.D != 0) {
             gjVar.k0();
         } else {
             gjVar.S1 = false;
         }
         ArrayList arrayList2 = new ArrayList();
-        arrayList2.add(gjVar.f23817k);
-        getMessagesStorage().j1(arrayList2, false, true, false, 0, false, gjVar.f23846r1 ? 1 : 0, 0L);
-        getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23817k)), k5.j(gjVar));
+        arrayList2.add(gjVar.f23819k);
+        getMessagesStorage().j1(arrayList2, false, true, false, 0, false, gjVar.f23848r1 ? 1 : 0, 0L);
+        getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23819k)), k5.j(gjVar));
     }
 
     public final void n0(boolean z10, gj gjVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, org.telegram.ui.an anVar) {
@@ -4000,13 +4000,13 @@ public final class ez extends c1 implements is {
                 z11 = z10;
                 i7 = 0;
             }
-            String str = gj.B0(gjVar.f23817k) + "_" + gjVar.e1() + "_" + Utilities.f(keyboardButtonProto.getData()) + "_" + i7;
-            this.f23392r.put(str, Boolean.TRUE);
-            HashMap hashMap = this.f23393s;
-            List list = (List) hashMap.get(gj.B0(gjVar.f23817k) + "_" + gjVar.e1());
+            String str = gj.B0(gjVar.f23819k) + "_" + gjVar.e1() + "_" + Utilities.f(keyboardButtonProto.getData()) + "_" + i7;
+            this.f23395r.put(str, Boolean.TRUE);
+            HashMap hashMap = this.f23396s;
+            List list = (List) hashMap.get(gj.B0(gjVar.f23819k) + "_" + gjVar.e1());
             if (list == null) {
                 ArrayList arrayList = new ArrayList();
-                hashMap.put(gj.B0(gjVar.f23817k) + "_" + gjVar.e1(), arrayList);
+                hashMap.put(gj.B0(gjVar.f23819k) + "_" + gjVar.e1(), arrayList);
                 list = arrayList;
             }
             list.add(str);
@@ -4019,18 +4019,18 @@ public final class ez extends c1 implements is {
             TL_keyboard.TL_inlineButtonTypeUrlAuth tL_inlineButtonTypeUrlAuth = (TL_keyboard.TL_inlineButtonTypeUrlAuth) cg.c.a(keyboardButtonProto, TL_keyboard.TL_inlineButtonTypeUrlAuth.class);
             if (tL_inlineButtonTypeUrlAuth != null) {
                 TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
-                tL_messages_requestUrlAuth.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
+                tL_messages_requestUrlAuth.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
                 tL_messages_requestUrlAuth.msg_id = gjVar.e1();
                 tL_messages_requestUrlAuth.button_id = tL_inlineButtonTypeUrlAuth.button_id;
                 tL_messages_requestUrlAuth.flags |= 2;
                 tLObjectArr[0] = tL_messages_requestUrlAuth;
                 getConnectionsManager().sendRequest(tL_messages_requestUrlAuth, mxVar, 2);
             } else if (cg.c.c(keyboardButtonProto, TL_keyboard.TL_inlineButtonTypeBuy.class)) {
-                if ((gjVar.f23817k.media.flags & 4) == 0) {
+                if ((gjVar.f23819k.media.flags & 4) == 0) {
                     TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
                     TLRPC.TL_inputInvoiceMessage tL_inputInvoiceMessage = new TLRPC.TL_inputInvoiceMessage();
                     tL_inputInvoiceMessage.msg_id = gjVar.e1();
-                    tL_inputInvoiceMessage.peer = getMessagesController().m1(gjVar.f23817k.peer_id);
+                    tL_inputInvoiceMessage.peer = getMessagesController().m1(gjVar.f23819k.peer_id);
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceMessage;
                     JSONObject u10 = ki.x2.u(null, false);
                     if (u10 != null) {
@@ -4044,19 +4044,19 @@ public final class ez extends c1 implements is {
                     return;
                 }
                 TLRPC.TL_payments_getPaymentReceipt tL_payments_getPaymentReceipt = new TLRPC.TL_payments_getPaymentReceipt();
-                tL_payments_getPaymentReceipt.msg_id = gjVar.f23817k.media.receipt_msg_id;
-                tL_payments_getPaymentReceipt.peer = getMessagesController().m1(gjVar.f23817k.peer_id);
+                tL_payments_getPaymentReceipt.msg_id = gjVar.f23819k.media.receipt_msg_id;
+                tL_payments_getPaymentReceipt.peer = getMessagesController().m1(gjVar.f23819k.peer_id);
                 tLObjectArr[0] = tL_payments_getPaymentReceipt;
                 getConnectionsManager().sendRequest(tL_payments_getPaymentReceipt, mxVar, 2);
-            } else if (gj.c3(gjVar.f23817k)) {
+            } else if (gj.c3(gjVar.f23819k)) {
                 TL_ephemeral.TL_getCallbackAnswer tL_getCallbackAnswer = new TL_ephemeral.TL_getCallbackAnswer();
-                tL_getCallbackAnswer.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
+                tL_getCallbackAnswer.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
                 tL_getCallbackAnswer.f28269id = gjVar.P0();
                 tL_getCallbackAnswer.data = keyboardButtonProto.getData();
                 getConnectionsManager().sendRequest(tL_getCallbackAnswer, mxVar, 2);
             } else {
                 TLRPC.TL_messages_getBotCallbackAnswer tL_messages_getBotCallbackAnswer = new TLRPC.TL_messages_getBotCallbackAnswer();
-                tL_messages_getBotCallbackAnswer.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
+                tL_messages_getBotCallbackAnswer.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
                 tL_messages_getBotCallbackAnswer.msg_id = gjVar.e1();
                 tL_messages_getBotCallbackAnswer.game = cg.c.c(keyboardButtonProto, TL_keyboard.TL_inlineButtonTypeGame.class);
                 TL_keyboard.TL_inlineButtonTypeCallback tL_inlineButtonTypeCallback = (TL_keyboard.TL_inlineButtonTypeCallback) cg.c.a(keyboardButtonProto, TL_keyboard.TL_inlineButtonTypeCallback.class);
@@ -4122,7 +4122,7 @@ public final class ez extends c1 implements is {
         String str;
         if (gjVar != null && keyboardButtonProto != null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(gj.B0(gjVar.f23817k));
+            sb2.append(gj.B0(gjVar.f23819k));
             sb2.append("_");
             sb2.append(gjVar.e1());
             sb2.append("_");
@@ -4134,7 +4134,7 @@ public final class ez extends c1 implements is {
                 str = "0";
             }
             sb2.append(str);
-            this.f23391n.put(sb2.toString(), gjVar);
+            this.f23394n.put(sb2.toString(), gjVar);
             this.H.o();
         }
     }
@@ -4153,11 +4153,11 @@ public final class ez extends c1 implements is {
             TLRPC.TL_messages_sendMedia tL_messages_sendMedia = new TLRPC.TL_messages_sendMedia();
             tL_messages_sendMedia.peer = inputPeer;
             if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                tL_messages_sendMedia.silent = np.s1(this.currentAccount).f25270e7.getBoolean("silent_" + (-inputPeer.channel_id), false);
+                tL_messages_sendMedia.silent = np.s1(this.currentAccount).f25273e7.getBoolean("silent_" + (-inputPeer.channel_id), false);
             } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                tL_messages_sendMedia.silent = np.s1(this.currentAccount).f25270e7.getBoolean("silent_" + (-inputPeer.chat_id), false);
+                tL_messages_sendMedia.silent = np.s1(this.currentAccount).f25273e7.getBoolean("silent_" + (-inputPeer.chat_id), false);
             } else {
-                tL_messages_sendMedia.silent = np.s1(this.currentAccount).f25270e7.getBoolean("silent_" + inputPeer.user_id, false);
+                tL_messages_sendMedia.silent = np.s1(this.currentAccount).f25273e7.getBoolean("silent_" + inputPeer.user_id, false);
             }
             if (j3 != 0) {
                 E = j3;
@@ -4238,7 +4238,7 @@ public final class ez extends c1 implements is {
         arrayList.add(tL_messageService);
         getMessagesStorage().j1(arrayList, false, true, false, 0, false, 0, 0L);
         getMessagesController().m5(0, user.f28200id, k5.j(gjVar));
-        getNotificationCenter().k(ns.f25566s, new Object[0]);
+        getNotificationCenter().k(ns.f25567s, new Object[0]);
         f0(tL_messageService, false);
         return gjVar;
     }
@@ -4255,24 +4255,24 @@ public final class ez extends c1 implements is {
         TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji;
         if (gjVar != null && e2Var != null) {
             TLRPC.TL_messages_sendReaction tL_messages_sendReaction = new TLRPC.TL_messages_sendReaction();
-            TLRPC.Message message = gjVar.f23817k;
+            TLRPC.Message message = gjVar.f23819k;
             if (message.isThreadMessage && message.fwd_from != null) {
                 tL_messages_sendReaction.peer = getMessagesController().j1(gjVar.Z0());
-                tL_messages_sendReaction.msg_id = gjVar.f23817k.fwd_from.saved_from_msg_id;
+                tL_messages_sendReaction.msg_id = gjVar.f23819k.fwd_from.saved_from_msg_id;
             } else {
-                tL_messages_sendReaction.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
+                tL_messages_sendReaction.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
                 tL_messages_sendReaction.msg_id = gjVar.e1();
             }
             tL_messages_sendReaction.add_to_recent = z11;
             if (z11 && p0Var != null) {
                 ArrayList arrayList2 = si.b0(this.currentAccount).D1;
-                if (p0Var.f5188f != null) {
+                if (p0Var.f5191f != null) {
                     TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
-                    tL_reactionEmoji.emoticon = p0Var.f5188f;
+                    tL_reactionEmoji.emoticon = p0Var.f5191f;
                     tL_reactionCustomEmoji = tL_reactionEmoji;
                 } else {
                     TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji2 = new TLRPC.TL_reactionCustomEmoji();
-                    tL_reactionCustomEmoji2.document_id = p0Var.f5189g;
+                    tL_reactionCustomEmoji2.document_id = p0Var.f5192g;
                     tL_reactionCustomEmoji = tL_reactionCustomEmoji2;
                 }
                 arrayList2.add(0, tL_reactionCustomEmoji);
@@ -4280,14 +4280,14 @@ public final class ez extends c1 implements is {
             if (!arrayList.isEmpty()) {
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     ch.p0 p0Var2 = (ch.p0) arrayList.get(i7);
-                    if (p0Var2.f5189g != 0) {
+                    if (p0Var2.f5192g != 0) {
                         TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji3 = new TLRPC.TL_reactionCustomEmoji();
-                        tL_reactionCustomEmoji3.document_id = p0Var2.f5189g;
+                        tL_reactionCustomEmoji3.document_id = p0Var2.f5192g;
                         tL_messages_sendReaction.reaction.add(tL_reactionCustomEmoji3);
                         tL_messages_sendReaction.flags |= 1;
-                    } else if (p0Var2.f5188f != null) {
+                    } else if (p0Var2.f5191f != null) {
                         TLRPC.TL_reactionEmoji tL_reactionEmoji2 = new TLRPC.TL_reactionEmoji();
-                        tL_reactionEmoji2.emoticon = p0Var2.f5188f;
+                        tL_reactionEmoji2.emoticon = p0Var2.f5191f;
                         tL_messages_sendReaction.reaction.add(tL_reactionEmoji2);
                         tL_messages_sendReaction.flags |= 1;
                     }
@@ -4312,7 +4312,7 @@ public final class ez extends c1 implements is {
     public final void u(gj gjVar, org.telegram.ui.ActionBar.e2 e2Var, int i7, int i10) {
         TL_ephemeral.TL_editMessage tL_editMessage;
         if (e2Var != null && e2Var.getParentActivity() != null) {
-            if (gj.c3(gjVar.f23817k)) {
+            if (gj.c3(gjVar.f23819k)) {
                 TL_ephemeral.TL_editMessage tL_editMessage2 = new TL_ephemeral.TL_editMessage();
                 tL_editMessage2.f28135id = gj.S(gjVar.e1());
                 tL_editMessage2.receiver_id = new TLRPC.TL_inputUserEmpty();
@@ -4323,8 +4323,8 @@ public final class ez extends c1 implements is {
                 tL_messages_editMessage.f28135id = gjVar.e1();
                 tL_editMessage = tL_messages_editMessage;
             }
-            tL_editMessage.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
-            TLRPC.Message message = gjVar.f23817k;
+            tL_editMessage.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
+            TLRPC.Message message = gjVar.f23819k;
             if (message != null && (message.flags & 1073741824) != 0) {
                 tL_editMessage.quick_reply_shortcut_id = message.quick_reply_shortcut_id;
                 tL_editMessage.flags |= 131072;
@@ -4500,7 +4500,7 @@ public final class ez extends c1 implements is {
                             if (charSequence3 != null) {
                                 str3 = charSequence3.toString();
                             }
-                            f10.f22979b = str3;
+                            f10.f22987b = str3;
                             f10.L = z14;
                             ezVar2.r0(f10);
                         }
@@ -4526,12 +4526,12 @@ public final class ez extends c1 implements is {
 
     public final void v(gj gjVar, TL_iv.RichMessage richMessage, ArrayList arrayList, org.telegram.ui.ActionBar.e2 e2Var, boolean z10) {
         TL_ephemeral.TL_editMessage tL_editMessage;
-        if (gjVar != null && richMessage != null && gjVar.f23817k != null) {
-            if (gjVar.Y2() && gjVar.f23817k.reqId != 0) {
-                getConnectionsManager().cancelRequest(gjVar.f23817k.reqId, true);
-                gjVar.f23817k.reqId = 0;
+        if (gjVar != null && richMessage != null && gjVar.f23819k != null) {
+            if (gjVar.Y2() && gjVar.f23819k.reqId != 0) {
+                getConnectionsManager().cancelRequest(gjVar.f23819k.reqId, true);
+                gjVar.f23819k.reqId = 0;
             }
-            if (gj.c3(gjVar.f23817k)) {
+            if (gj.c3(gjVar.f23819k)) {
                 TL_ephemeral.TL_editMessage tL_editMessage2 = new TL_ephemeral.TL_editMessage();
                 tL_editMessage2.f28135id = gj.S(gjVar.e1());
                 tL_editMessage2.receiver_id = new TLRPC.TL_inputUserEmpty();
@@ -4543,15 +4543,15 @@ public final class ez extends c1 implements is {
                 tL_editMessage = tL_messages_editMessage;
             }
             TLRPC.TL_messages_editMessage tL_messages_editMessage2 = tL_editMessage;
-            tL_messages_editMessage2.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
+            tL_messages_editMessage2.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
             tL_messages_editMessage2.rich_message = m0(arrayList, richMessage);
             int i7 = tL_messages_editMessage2.flags;
             tL_messages_editMessage2.flags = 8388608 | i7;
-            if (gjVar.f23846r1) {
-                tL_messages_editMessage2.schedule_date = gjVar.f23817k.date;
+            if (gjVar.f23848r1) {
+                tL_messages_editMessage2.schedule_date = gjVar.f23819k.date;
                 tL_messages_editMessage2.flags = i7 | 8421376;
             }
-            TLRPC.Message message = gjVar.f23817k;
+            TLRPC.Message message = gjVar.f23819k;
             if ((message.flags & 1073741824) != 0) {
                 tL_messages_editMessage2.quick_reply_shortcut_id = message.quick_reply_shortcut_id;
                 tL_messages_editMessage2.flags |= 131072;
@@ -4559,11 +4559,11 @@ public final class ez extends c1 implements is {
             message.rich_message = richMessage;
             message.send_state = 3;
             int sendRequest = getConnectionsManager().sendRequest(tL_messages_editMessage2, new p4(gjVar, this, tL_messages_editMessage2, e2Var, z10));
-            TLRPC.Message message2 = gjVar.f23817k;
+            TLRPC.Message message2 = gjVar.f23819k;
             if (message2 != null) {
                 message2.reqId = sendRequest;
             }
-            getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23817k)), k5.j(gjVar));
+            getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23819k)), k5.j(gjVar));
         }
     }
 
@@ -4575,10 +4575,10 @@ public final class ez extends c1 implements is {
         byte[] bArr;
         if (gjVar != null) {
             String str = "poll_" + gjVar.D1();
-            if (!this.f23392r.containsKey(str)) {
+            if (!this.f23395r.containsKey(str)) {
                 TLRPC.TL_messages_sendVote tL_messages_sendVote = new TLRPC.TL_messages_sendVote();
                 tL_messages_sendVote.msg_id = gjVar.e1();
-                tL_messages_sendVote.peer = getMessagesController().j1(gj.B0(gjVar.f23817k));
+                tL_messages_sendVote.peer = getMessagesController().j1(gj.B0(gjVar.f23819k));
                 if (arrayList != null) {
                     bArr = new byte[arrayList.size()];
                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
@@ -4591,7 +4591,7 @@ public final class ez extends c1 implements is {
                 } else {
                     bArr = new byte[0];
                 }
-                this.f23394w.put(str, bArr);
+                this.f23397w.put(str, bArr);
                 return getConnectionsManager().sendRequest(tL_messages_sendVote, new q6(this, gjVar, str, runnable, 5));
             }
         }
@@ -4602,20 +4602,20 @@ public final class ez extends c1 implements is {
         int i10;
         qy qyVar = null;
         int i11 = Integer.MIN_VALUE;
-        for (Map.Entry entry : this.f23386a.entrySet()) {
+        for (Map.Entry entry : this.f23389a.entrySet()) {
             ArrayList arrayList = (ArrayList) entry.getValue();
             int size = arrayList.size();
             for (int i12 = 0; i12 < size; i12++) {
                 qy qyVar2 = (qy) arrayList.get(i12);
-                int i13 = qyVar2.f26150e;
-                if ((i13 == 4 || i13 == 0) && qyVar2.f26147a == j3) {
-                    gj gjVar = qyVar2.f26157m;
+                int i13 = qyVar2.f26158e;
+                if ((i13 == 4 || i13 == 0) && qyVar2.f26155a == j3) {
+                    gj gjVar = qyVar2.f26165m;
                     if (gjVar != null) {
                         i10 = gjVar.e1();
                     } else {
-                        ArrayList arrayList2 = qyVar2.f26167x;
+                        ArrayList arrayList2 = qyVar2.f26175x;
                         if (arrayList2 != null && !arrayList2.isEmpty()) {
-                            i10 = ((gj) i5.c.h(1, qyVar2.f26167x)).e1();
+                            i10 = ((gj) i5.c.h(1, qyVar2.f26175x)).e1();
                         } else {
                             i10 = 0;
                         }

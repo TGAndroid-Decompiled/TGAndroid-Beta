@@ -143,7 +143,7 @@ public final class p9 extends r41 implements is {
             long p02 = p9Var.p0();
             long v = x10.v();
             if (!p9Var.f44352r && WalletEngine2.isValidRecipientAddress(p9Var.h) && p02 > 0) {
-                long j3 = ((org.telegram.messenger.l0) np.s1(p9Var.currentAccount).f25448y7.f25856l0.f14544b).f24785c;
+                long j3 = ((org.telegram.messenger.l0) np.s1(p9Var.currentAccount).f25451y7.f25858l0.f14544b).f24791c;
                 byte[] bArr = null;
                 if (p02 < j3) {
                     if (p9Var.f44346l0) {
@@ -263,7 +263,7 @@ public final class p9 extends r41 implements is {
                     org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) arrayList.get(size);
                     if ((e2Var instanceof an) && e2Var.getCurrentAccount() == p9Var.currentAccount) {
                         an anVar = (an) e2Var;
-                        if (anVar.a() == j3 && anVar.f45204g4 == 0) {
+                        if (anVar.a() == j3 && anVar.f45203g4 == 0) {
                             p9Var.f44357u0 = anVar;
                             for (int size2 = arrayList.size() - 2; size2 > size; size2--) {
                                 ((ActionBarLayout) parentLayout).d0((org.telegram.ui.ActionBar.e2) arrayList.get(size2), false);
@@ -295,9 +295,9 @@ public final class p9 extends r41 implements is {
         if (walletuseraddress != null && walletuseraddress.user_id != 0) {
             p9Var.f44339f = np.s1(p9Var.currentAccount).a2(Long.valueOf(walletuseraddress.user_id));
         }
-        bi.v3 v3Var = p9Var.f38882a;
+        bi.v3 v3Var = p9Var.f38880a;
         if (v3Var != null) {
-            v3Var.f39895g3.O(true);
+            v3Var.f39892g3.O(true);
         }
         p9Var.C0();
         s8 s8Var = p9Var.f44359w;
@@ -388,8 +388,8 @@ public final class p9 extends r41 implements is {
             spannableStringBuilder.append((CharSequence) " >");
             eq eqVar = new eq(2131232698, 0);
             float N = org.telegram.messenger.g0.N(0.66f);
-            eqVar.f34415r = 0.0f;
-            eqVar.f34416s = N;
+            eqVar.f34414r = 0.0f;
+            eqVar.f34415s = N;
             spannableStringBuilder.setSpan(eqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             spannableStringBuilder.setSpan(new hi.ha(this, 9), length, spannableStringBuilder.length(), 33);
             this.R.setText(spannableStringBuilder);
@@ -424,7 +424,7 @@ public final class p9 extends r41 implements is {
             l0 x10 = l0.x(this.currentAccount);
             long v = x10.v();
             long p02 = p0();
-            long j3 = ((org.telegram.messenger.l0) np.s1(this.currentAccount).f25448y7.f25856l0.f14544b).f24785c;
+            long j3 = ((org.telegram.messenger.l0) np.s1(this.currentAccount).f25451y7.f25858l0.f14544b).f24791c;
             int i7 = (p02 > 0L ? 1 : (p02 == 0L ? 0 : -1));
             if (i7 > 0 && p02 < j3) {
                 if (this.f44346l0) {
@@ -723,7 +723,7 @@ public final class p9 extends r41 implements is {
         View createView = super.createView(context);
         this.fragmentView = createView;
         createView.setFocusableInTouchMode(true);
-        this.f38882a.setVisibility(8);
+        this.f38880a.setVisibility(8);
         View view = this.fragmentView;
         int i7 = org.telegram.ui.ActionBar.j6.f28849d6;
         org.telegram.ui.ActionBar.q6.h(i7, view, getResourceProvider());
@@ -822,7 +822,7 @@ public final class p9 extends r41 implements is {
         }
         this.M = new SpannableString("⇅");
         eq eqVar = new eq(2131232815, 0);
-        eqVar.f34418x = 0.72f;
+        eqVar.f34417x = 0.72f;
         SpannableString spannableString = this.M;
         spannableString.setSpan(eqVar, 0, spannableString.length(), 33);
         this.N = new SpannableString("G");
@@ -914,8 +914,8 @@ public final class p9 extends r41 implements is {
         spannableStringBuilder.append((CharSequence) " >");
         eq eqVar3 = new eq(2131232698, 0);
         float N = org.telegram.messenger.g0.N(0.66f);
-        eqVar3.f34415r = 0.0f;
-        eqVar3.f34416s = N;
+        eqVar3.f34414r = 0.0f;
+        eqVar3.f34415s = N;
         spannableStringBuilder.setSpan(eqVar3, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         this.P.setText(spannableStringBuilder);
         this.f44363y.addView(this.P, c8.ja.d(-2, 28.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
@@ -1063,8 +1063,8 @@ public final class p9 extends r41 implements is {
         this.f44333a0.addView(this.S, c8.ja.t(-1, -2, 55, 16, 0, 16, 0));
         this.T = new SpannableString(">");
         eq eqVar4 = new eq(2131232698, 0);
-        eqVar4.f34415r = 0.0f;
-        eqVar4.f34416s = org.telegram.messenger.g0.L(1.0f);
+        eqVar4.f34414r = 0.0f;
+        eqVar4.f34415s = org.telegram.messenger.g0.L(1.0f);
         SpannableString spannableString3 = this.T;
         spannableString3.setSpan(eqVar4, 0, spannableString3.length(), 33);
         org.telegram.ui.ActionBar.l2 l2Var = new org.telegram.ui.ActionBar.l2(10, context, this);
@@ -1134,7 +1134,7 @@ public final class p9 extends r41 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25467a4) {
+        if (i7 == ns.f25468a4) {
             D0();
             C0();
         }
@@ -1224,7 +1224,7 @@ public final class p9 extends r41 implements is {
         f fVar = l0.x(this.currentAccount).h;
         fVar.f();
         double h = fVar.h();
-        double d = ((org.telegram.messenger.i0) np.s1(this.currentAccount).f25448y7.f25855l.f13134b).f24257a;
+        double d = ((org.telegram.messenger.i0) np.s1(this.currentAccount).f25451y7.f25857l.f13134b).f24257a;
         if (h > 0.0d && d > 0.0d && !Double.isNaN(h) && !Double.isInfinite(h) && !Double.isNaN(d) && !Double.isInfinite(d)) {
             return BigDecimal.valueOf(h).multiply(BigDecimal.valueOf(d));
         }
@@ -1271,7 +1271,7 @@ public final class p9 extends r41 implements is {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, ns.f25467a4);
+        getNotificationCenter().c(this, ns.f25468a4);
         return super.onFragmentCreate();
     }
 
@@ -1312,7 +1312,7 @@ public final class p9 extends r41 implements is {
         if (editTextBoldCursor != null) {
             editTextBoldCursor.removeCallbacks(this.K);
         }
-        getNotificationCenter().n(this, ns.f25467a4);
+        getNotificationCenter().n(this, ns.f25468a4);
         super.onFragmentDestroy();
     }
 
@@ -1535,18 +1535,18 @@ public final class p9 extends r41 implements is {
             c2Var.setMultiline(true);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) c2Var.getCheckBoxView().getLayoutParams();
             layoutParams.topMargin = 0;
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 i10 = 3;
             }
             layoutParams.gravity = i10 | 16;
             c2Var.getCheckBoxView().setLayoutParams(layoutParams);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(4.0f);
             } else {
                 i7 = 0;
             }
             int L2 = org.telegram.messenger.g0.L(12.0f);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(4.0f);
@@ -1642,7 +1642,7 @@ public final class p9 extends r41 implements is {
     }
 
     public p9(String str) {
-        this(m10.f24934t0, str);
+        this(m10.f24940t0, str);
     }
 
     public p9(int i7, String str) {

@@ -12,14 +12,14 @@ public final class b7 implements Runnable {
     public final void run() {
         switch (this.f22668a) {
             case 0:
-                Runnable runnable = this.f22669b.f24069l;
+                Runnable runnable = this.f22669b.f24072l;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                Runnable runnable2 = this.f22669b.f24069l;
+                Runnable runnable2 = this.f22669b.f24072l;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;

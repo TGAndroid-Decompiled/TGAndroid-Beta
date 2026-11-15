@@ -7,14 +7,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ys0;
 import org.telegram.ui.zg;
 public final class h3 implements z10 {
-    public final int f8664a = 0;
-    public final int f8665b;
-    public final long f8666c;
+    public final int f8690a = 0;
+    public final int f8691b;
+    public final long f8692c;
     public final Object d;
 
     public h3(int i7, long j3, TLRPC.Document document) {
-        this.f8665b = i7;
-        this.f8666c = j3;
+        this.f8691b = i7;
+        this.f8692c = j3;
         this.d = document;
     }
 
@@ -22,15 +22,15 @@ public final class h3 implements z10 {
     public final void a(Object obj) {
         Object M0;
         TLRPC.StickerSet stickerSet;
-        int i7 = this.f8664a;
-        int i10 = this.f8665b;
-        long j3 = this.f8666c;
+        int i7 = this.f8690a;
+        int i10 = this.f8691b;
+        long j3 = this.f8692c;
         Object obj2 = this.d;
         switch (i7) {
             case 0:
                 TLRPC.Document document = (TLRPC.Document) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    v8.y(i10, false).P(j3);
+                    u8.y(i10, false).P(j3);
                     org.telegram.messenger.g0.h3(new aa.r((Object) new l3(j3, 0), (Object) document, (Object) hd.M0(2131750102, null), 19));
                     return;
                 }
@@ -58,14 +58,14 @@ public final class h3 implements z10 {
     }
 
     public h3(int i7, org.telegram.ui.Components.xb xbVar, long j3) {
-        this.f8665b = i7;
+        this.f8691b = i7;
         this.d = xbVar;
-        this.f8666c = j3;
+        this.f8692c = j3;
     }
 
     public h3(ys0 ys0Var, long j3, int i7) {
         this.d = ys0Var;
-        this.f8666c = j3;
-        this.f8665b = i7;
+        this.f8692c = j3;
+        this.f8691b = i7;
     }
 }

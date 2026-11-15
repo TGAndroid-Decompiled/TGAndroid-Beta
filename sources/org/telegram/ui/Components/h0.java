@@ -25,13 +25,13 @@ public final class h0 implements org.telegram.ui.ActionBar.q1 {
                     return;
                 }
             case 1:
-                vf.c.t(this.f35135b, org.telegram.messenger.r2.f26203g);
+                vf.c.t(this.f35135b, org.telegram.messenger.r2.f26211g);
                 return;
             default:
                 Context context2 = this.f35135b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
                     context2.startActivity(intent);
                     return;
                 } catch (Exception e11) {

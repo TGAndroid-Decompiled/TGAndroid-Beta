@@ -76,7 +76,7 @@ public final class o7 extends org.telegram.ui.ActionBar.k {
     public boolean Q(View view) {
         switch (this.G1) {
             case 3:
-                if (!super.Q(view) && view != ((org.telegram.ui.yw) this.H1).f53711n0) {
+                if (!super.Q(view) && view != ((org.telegram.ui.yw) this.H1).f53676n0) {
                     return false;
                 }
                 return true;
@@ -104,7 +104,7 @@ public final class o7 extends org.telegram.ui.ActionBar.k {
             case 3:
                 org.telegram.ui.yw ywVar = (org.telegram.ui.yw) this.H1;
                 org.telegram.ui.nw nwVar = ywVar.Y;
-                if (nwVar != null && nwVar.getAlpha() > 0.0f && ywVar.f53650b.f57082f) {
+                if (nwVar != null && nwVar.getAlpha() > 0.0f && ywVar.f53615b.f57086f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -173,8 +173,8 @@ public final class o7 extends org.telegram.ui.ActionBar.k {
             case 1:
                 ki kiVar = (ki) this.H1;
                 kh khVar = kiVar.B2;
-                TextView textView = kiVar.f36457h3;
-                kh khVar2 = kiVar.f36506v3;
+                TextView textView = kiVar.f36445h3;
+                kh khVar2 = kiVar.f36494v3;
                 float alpha = getAlpha();
                 super.setAlpha(f10);
                 if (alpha != f10) {
@@ -193,14 +193,14 @@ public final class o7 extends org.telegram.ui.ActionBar.k {
                     kiVar.f29682b.invalidate();
                     if (khVar != null && khVar2 != null) {
                         if (khVar.getTag() == null) {
-                            ci ciVar = kiVar.f36509w2;
+                            ci ciVar = kiVar.f36497w2;
                             if (ciVar == null || ciVar.N()) {
                                 khVar2.setAlpha(1.0f - f10);
                                 khVar2.setTranslationY(org.telegram.messenger.g0.L(44.0f) * f10);
                             }
                             khVar.setTranslationY(org.telegram.messenger.g0.L(48.0f) * f10);
                             return;
-                        } else if (kiVar.f36509w2 == null) {
+                        } else if (kiVar.f36497w2 == null) {
                             if (f10 == 0.0f) {
                                 f11 = 1.0f;
                             }

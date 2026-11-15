@@ -1,7 +1,7 @@
 package org.telegram.utils.recorder.audio;
 
 import a8.p0;
-import ai.e0;
+import ai.f0;
 import di.f2;
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -121,7 +121,7 @@ public final class b implements Runnable {
                     if (exc3 == null) {
                         j jVar = (j) eVar.f1023c;
                         jVar.a((i) eVar.f1022b, j3);
-                        jVar.f60758i.post(new e0(eVar, eVar.f1021a, j10, 5));
+                        jVar.f60758i.post(new f0(eVar, eVar.f1021a, j10, 5));
                     } else {
                         ((j) eVar.f1023c).f60758i.post(new d80(eVar, eVar.f1021a, exc3, 4));
                     }

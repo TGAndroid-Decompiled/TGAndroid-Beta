@@ -42,7 +42,7 @@ public final class ux extends ImageView {
         if (isPressed()) {
             float f10 = this.h;
             if (f10 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f23610r) / 100.0f) + f10;
+                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f23612r) / 100.0f) + f10;
                 this.h = min;
                 this.h = Utilities.i(min, 1.0f, 0.0f);
                 invalidate();

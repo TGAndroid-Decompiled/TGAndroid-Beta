@@ -4,31 +4,31 @@ import android.os.Bundle;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d80 implements Runnable {
-    public final int f46335a;
-    public final long f46336b;
-    public final Object f46337c;
+    public final int f46307a;
+    public final long f46308b;
+    public final Object f46309c;
     public final Object d;
 
     public d80(Object obj, long j3, Object obj2, int i7) {
-        this.f46335a = i7;
-        this.f46337c = obj;
-        this.f46336b = j3;
+        this.f46307a = i7;
+        this.f46309c = obj;
+        this.f46308b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f46335a) {
+        switch (this.f46307a) {
             case 0:
-                LaunchActivity launchActivity = (LaunchActivity) this.f46337c;
-                long j3 = this.f46336b;
+                LaunchActivity launchActivity = (LaunchActivity) this.f46309c;
+                long j3 = this.f46308b;
                 String str = LaunchActivity.C1;
                 org.telegram.messenger.g0.h3(new tp(launchActivity, org.telegram.messenger.vr.a0(launchActivity.P).j0(j3), (w70) this.d, 19));
                 return;
             case 1:
-                pa0 pa0Var = (pa0) this.f46337c;
+                pa0 pa0Var = (pa0) this.f46309c;
                 TLObject tLObject = (TLObject) this.d;
-                long j10 = this.f46336b;
+                long j10 = this.f46308b;
                 if (pa0Var.F != null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                     int i7 = 0;
@@ -42,7 +42,7 @@ public final class d80 implements Runnable {
                     pa0Var.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                     pa0Var.getMessagesController().Y3(messages_messages.users, false);
                     pa0Var.getMessagesController().S3(messages_messages.chats, false);
-                    pa0Var.getLocationController().f26271c.k(messages_messages.messages, j10);
+                    pa0Var.getLocationController().f26279c.k(messages_messages.messages, j10);
                     pa0Var.getNotificationCenter().k(282, Long.valueOf(j10));
                     pa0Var.p0(messages_messages.messages);
                     pa0Var.getLocationController().j(pa0Var.m0);
@@ -56,8 +56,8 @@ public final class d80 implements Runnable {
                 }
                 return;
             case 2:
-                xr0 xr0Var = (xr0) this.f46337c;
-                long j11 = this.f46336b;
+                xr0 xr0Var = (xr0) this.f46309c;
+                long j11 = this.f46308b;
                 org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.d;
                 xr0Var.getClass();
                 Bundle bundle = new Bundle();
@@ -70,9 +70,9 @@ public final class d80 implements Runnable {
                 xr0Var.c(false);
                 return;
             case 3:
-                xi.e eVar = (xi.e) this.f46337c;
+                xi.e eVar = (xi.e) this.f46309c;
                 xi.d dVar = (xi.d) this.d;
-                long j12 = this.f46336b;
+                long j12 = this.f46308b;
                 if (((xi.d) eVar.f60056b) == dVar) {
                     xi.b bVar = (xi.b) eVar.d;
                     if (bVar != null) {
@@ -97,9 +97,9 @@ public final class d80 implements Runnable {
                 }
                 return;
             default:
-                long j13 = this.f46336b;
+                long j13 = this.f46308b;
                 Exception exc = (Exception) this.d;
-                yi.j jVar = (yi.j) ((ac.e) this.f46337c).f1023c;
+                yi.j jVar = (yi.j) ((ac.e) this.f46309c).f1023c;
                 if (j13 == jVar.f60764o) {
                     jVar.f60763n = null;
                     int i10 = jVar.G;
@@ -117,9 +117,9 @@ public final class d80 implements Runnable {
     }
 
     public d80(Object obj, Object obj2, long j3, int i7) {
-        this.f46335a = i7;
-        this.f46337c = obj;
+        this.f46307a = i7;
+        this.f46309c = obj;
         this.d = obj2;
-        this.f46336b = j3;
+        this.f46308b = j3;
     }
 }

@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.ui.Components.UndoView;
 public final class t10 extends UndoView {
-    public final c40 f51323k0;
+    public final c40 f51324k0;
 
     public t10(c40 c40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f51323k0 = c40Var;
+        this.f51324k0 = c40Var;
     }
 
     @Override
     public final void k(long j3, int i7, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        if (this.f51323k0.f45980u2 != null) {
+        if (this.f51324k0.f45969u2 != null) {
             return;
         }
         super.k(j3, i7, obj, obj2, runnable, runnable2);

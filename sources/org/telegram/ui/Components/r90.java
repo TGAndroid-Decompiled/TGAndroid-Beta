@@ -1,112 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class r90 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f38907a;
-    public final g6 f38908b;
-    public final g6 f38909c;
+public final class r90 extends n61 {
+    public final Context f38905a;
+    public final ka0 f38906b;
 
-    public r90(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f38907a = e6Var;
-        g6 g6Var = new g6(true, true, true);
-        this.f38908b = g6Var;
-        er erVar = er.h;
-        g6Var.n(0.3f, 430L, erVar);
-        g6Var.x(org.telegram.messenger.g0.o());
-        g6Var.u(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.A8, e6Var));
-        g6Var.w(org.telegram.messenger.g0.L(18.0f));
-        g6Var.q(!org.telegram.messenger.hd.f24101a0);
-        g6Var.setCallback(this);
-        Point point = org.telegram.messenger.g0.f23609q;
-        g6Var.N = point.x;
-        g6 g6Var2 = new g6(true, true, true);
-        this.f38909c = g6Var2;
-        g6Var2.n(0.3f, 430L, erVar);
-        g6Var2.u(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.B8, e6Var));
-        g6Var2.w(org.telegram.messenger.g0.L(14.0f));
-        g6Var2.q(!org.telegram.messenger.hd.f24101a0);
-        g6Var2.setCallback(this);
-        g6Var2.N = point.x;
-    }
-
-    public final void a(CharSequence charSequence, boolean z10) {
-        boolean z11;
-        if (z10 && !org.telegram.messenger.hd.f24101a0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f38909c.t(charSequence, z11, true);
+    public r90(ka0 ka0Var, Context context) {
+        this.f38906b = ka0Var;
+        this.f38905a = context;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.A8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.B8));
-    }
-
-    public final void b(CharSequence charSequence, boolean z10) {
-        boolean z11;
-        if (z10 && !org.telegram.messenger.hd.f24101a0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f38908b.t(charSequence, z11, true);
+    public final void b(View view, int i7, int i10) {
+        ea0 ea0Var = (ea0) view;
+        ea0Var.i();
+        ea0Var.l(false);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int L = org.telegram.messenger.g0.L(29.0f);
-        int L2 = org.telegram.messenger.g0.L(18.83f);
-        g6 g6Var = this.f38909c;
-        int paddingLeft = getPaddingLeft();
-        int L3 = r0 - org.telegram.messenger.g0.L(32.0f);
-        int measuredWidth = getMeasuredWidth() - getPaddingRight();
-        int L4 = org.telegram.messenger.g0.L(32.0f) + r0;
-        g6 g6Var2 = this.f38908b;
-        g6Var2.setBounds(paddingLeft, L3, measuredWidth, L4);
-        g6Var2.draw(canvas);
-        g6Var.setBounds(getPaddingLeft(), r0 - org.telegram.messenger.g0.L(32.0f), getMeasuredWidth() - getPaddingRight(), org.telegram.messenger.g0.L(32.0f) + r0);
-        g6Var.draw(canvas);
+    public final View d(int i7) {
+        return new ea0(this.f38906b, this.f38905a, i7);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(56.0f), 1073741824));
-        setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
+    public final int e() {
+        return this.f38906b.f36338e.f35520a.size();
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            g6 g6Var = this.f38908b;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f38907a;
-            if (g6Var != null) {
-                g6Var.u(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.A8, e6Var));
-            }
-            g6 g6Var2 = this.f38909c;
-            if (g6Var2 != null) {
-                g6Var2.u(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.B8, e6Var));
-            }
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f38908b != drawable && this.f38909c != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public final int h(int i7) {
+        return ((ha0) this.f38906b.f36338e.f35520a.get(i7)).f35205a;
     }
 }

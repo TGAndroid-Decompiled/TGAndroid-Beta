@@ -8,12 +8,12 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ht0 extends org.telegram.ui.Components.tj0 {
-    public final Context f47821c;
+    public final Context f47811c;
     public final PrivacyControlActivity d;
 
     public ht0(PrivacyControlActivity privacyControlActivity, Context context) {
         this.d = privacyControlActivity;
-        this.f47821c = context;
+        this.f47811c = context;
     }
 
     @Override
@@ -167,7 +167,7 @@ public final class ht0 extends org.telegram.ui.Components.tj0 {
         org.telegram.ui.ActionBar.e6 e6Var2;
         org.telegram.ui.Cells.v9 v9Var;
         org.telegram.ui.ActionBar.e6 e6Var3;
-        Context context = this.f47821c;
+        Context context = this.f47811c;
         PrivacyControlActivity privacyControlActivity = this.d;
         switch (i7) {
             case 0:

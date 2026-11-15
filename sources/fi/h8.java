@@ -25,7 +25,7 @@ public final class h8 {
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint.setColor(-1);
         textPaint.setShadowLayer(org.telegram.messenger.g0.L(3.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), 805306368);
-        StaticLayout staticLayout = new StaticLayout(hd.M0(2131744480, null), textPaint, org.telegram.messenger.g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(hd.M0(2131744480, null), textPaint, org.telegram.messenger.g0.f23611q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.d = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f10 = staticLayout.getLineLeft(0);

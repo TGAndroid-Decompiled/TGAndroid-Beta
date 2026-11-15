@@ -102,7 +102,7 @@ public final class x extends FrameLayout {
         float strokeWidth = org.telegram.ui.ActionBar.j6.f28972k0.getStrokeWidth();
         int L = org.telegram.messenger.g0.L(81.0f);
         int i7 = 0;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = L;
             L = 0;
         }
@@ -122,7 +122,7 @@ public final class x extends FrameLayout {
             if (r32 != null) {
                 z10 = r32.h;
             } else if (fpVar != null) {
-                z10 = fpVar.f34663a.f32441q;
+                z10 = fpVar.f34667a.f32441q;
             }
             accessibilityNodeInfo.setChecked(z10);
             accessibilityNodeInfo.setClassName("android.widget.Switch");
@@ -130,7 +130,7 @@ public final class x extends FrameLayout {
             if (r32 != null) {
                 z10 = r32.h;
             } else if (fpVar != null) {
-                z10 = fpVar.f34663a.f32441q;
+                z10 = fpVar.f34667a.f32441q;
             }
             if (z10) {
                 accessibilityNodeInfo.setSelected(true);

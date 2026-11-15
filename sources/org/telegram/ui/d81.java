@@ -8,10 +8,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class d81 implements org.telegram.ui.Cells.l1 {
-    public final e81 f46338a;
+    public final e81 f46310a;
 
     public d81(e81 e81Var) {
-        this.f46338a = e81Var;
+        this.f46310a = e81Var;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class d81 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean Q(org.telegram.ui.Cells.q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        e81 e81Var = this.f46338a;
+        e81 e81Var = this.f46310a;
         if (e81Var.L.getDelegate() != null) {
             return e81Var.L.getDelegate().Q(e81Var.L, todoItem, z10);
         }

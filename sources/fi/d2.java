@@ -5,9 +5,9 @@ import org.telegram.messenger.gj;
 import org.telegram.messenger.kj;
 import org.telegram.messenger.np;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.ja0;
-import org.telegram.ui.Components.x90;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.ka0;
+import org.telegram.ui.Components.y90;
 import org.telegram.ui.an;
 import org.telegram.ui.qm;
 import org.telegram.ui.tk;
@@ -36,11 +36,11 @@ public final class d2 extends fa {
                 an anVar = (an) this.f11622b;
                 anVar.J9 = !z10;
                 if (z10) {
-                    if (anVar.f45386u9 != null) {
+                    if (anVar.f45385u9 != null) {
                         an.e2(anVar, 0.0f);
-                        anVar.f45386u9 = null;
+                        anVar.f45385u9 = null;
                     }
-                    anVar.f45399v9 = false;
+                    anVar.f45398v9 = false;
                     anVar.B9 = false;
                     tk tkVar = anVar.D9;
                     if (tkVar != null) {
@@ -51,34 +51,34 @@ public final class d2 extends fa {
                 anVar.dd();
                 return;
             default:
-                da0 da0Var = (da0) this.f11622b;
-                x90 x90Var = da0Var.f33901e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = da0Var.f33905s;
-                ja0 ja0Var = da0Var.f33900d0;
-                if (ja0Var.f35955s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f41980b > 0.0f) {
+                ea0 ea0Var = (ea0) this.f11622b;
+                y90 y90Var = ea0Var.f34261e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ea0Var.f34265s;
+                ka0 ka0Var = ea0Var.f34260d0;
+                if (ka0Var.f36342s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f41982b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (x90Var.v - x90Var.f31767u > np.s1(ja0Var.f35957x).f25361p4) {
-                            da0Var.g();
+                        if (y90Var.v - y90Var.f31767u > np.s1(ka0Var.f36344x).f25364p4) {
+                            ea0Var.g();
                             return;
                         }
-                        org.telegram.ui.Cells.p9 p9Var = x90Var.W;
+                        org.telegram.ui.Cells.p9 p9Var = y90Var.W;
                         if (p9Var != null) {
                             gjVar = ((org.telegram.ui.Cells.q1) p9Var).getMessageObject();
                         } else {
                             gjVar = null;
                         }
-                        gj c10 = da0Var.c(gjVar);
-                        kj kjVar = ja0Var.d;
+                        gj c10 = ea0Var.c(gjVar);
+                        kj kjVar = ka0Var.d;
                         if (kjVar.d == null) {
-                            int i7 = x90Var.f31767u;
-                            kjVar.f24706e = i7;
-                            int i10 = x90Var.v;
-                            kjVar.f24707f = i10;
+                            int i7 = y90Var.f31767u;
+                            kjVar.f24709e = i7;
+                            int i10 = y90Var.v;
+                            kjVar.f24710f = i10;
                             kjVar.d = qm.b(i7, i10, c10);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(da0Var.J);
+                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(ea0Var.J);
                             return;
                         }
                         return;

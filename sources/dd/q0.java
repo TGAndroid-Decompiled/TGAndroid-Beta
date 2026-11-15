@@ -8,35 +8,35 @@ public enum q0 extends b2 {
     public final void d(l lVar, a aVar) {
         String g10 = aVar.g(b2.G0);
         if (g10.length() > 0) {
-            lVar.f8046i.f(g10);
+            lVar.f8049i.f(g10);
         } else {
-            lVar.f8046i.h = true;
+            lVar.f8049i.h = true;
         }
         char d = aVar.d();
         if (d != 0) {
             if (d != '\"') {
                 if (d != '&') {
                     if (d != 65535) {
-                        lVar.f8046i.e(d);
+                        lVar.f8049i.e(d);
                         return;
                     }
                     lVar.l(this);
-                    lVar.f8042c = b2.f7989a;
+                    lVar.f8045c = b2.f7992a;
                     return;
                 }
                 int[] c10 = lVar.c('\"', true);
                 if (c10 != null) {
-                    lVar.f8046i.g(c10);
+                    lVar.f8049i.g(c10);
                     return;
                 } else {
-                    lVar.f8046i.e('&');
+                    lVar.f8049i.e('&');
                     return;
                 }
             }
-            lVar.f8042c = b2.f7997e0;
+            lVar.f8045c = b2.f8000e0;
             return;
         }
         lVar.m(this);
-        lVar.f8046i.e((char) 65533);
+        lVar.f8049i.e((char) 65533);
     }
 }

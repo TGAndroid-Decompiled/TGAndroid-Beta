@@ -7,12 +7,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class s1 implements RequestDelegate {
-    public final int f26389a;
-    public final Object f26390b;
+    public final int f26399a;
+    public final Object f26400b;
 
     public s1(Object obj, int i7) {
-        this.f26389a = i7;
-        this.f26390b = obj;
+        this.f26399a = i7;
+        this.f26400b = obj;
     }
 
     @Override
@@ -20,15 +20,15 @@ public final class s1 implements RequestDelegate {
         TLRPC.ChannelParticipant channelParticipant;
         boolean z10;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        switch (this.f26389a) {
+        switch (this.f26399a) {
             case 0:
-                g0.h3(new b4(16, (v1) this.f26390b, tLObject));
+                g0.h3(new b4(16, (v1) this.f26400b, tLObject));
                 return;
             case 1:
-                g0.h3(new b4(2, (z5) this.f26390b, tLObject));
+                g0.h3(new b4(2, (z5) this.f26400b, tLObject));
                 return;
             case 2:
-                i7 i7Var = (i7) this.f26390b;
+                i7 i7Var = (i7) this.f26400b;
                 if (tL_error != null) {
                     i7Var.j(0, false);
                     return;
@@ -46,16 +46,16 @@ public final class s1 implements RequestDelegate {
                     }
                     for (int i10 = 0; i10 < i7Var.I0.size(); i10++) {
                         h7 h7Var = (h7) i7Var.I0.get(i10);
-                        if (i7Var.M != null || i7Var.f24295a0 == h7Var.f24063e) {
+                        if (i7Var.M != null || i7Var.f24295a0 == h7Var.f24066e) {
                             i7Var.I0.remove(i10);
                             if (!i7Var.m(h7Var, null)) {
-                                TLRPC.TL_upload_file tL_upload_file = h7Var.f24064f;
+                                TLRPC.TL_upload_file tL_upload_file = h7Var.f24067f;
                                 if (tL_upload_file != null) {
                                     tL_upload_file.disableFree = false;
                                     tL_upload_file.freeResources();
                                     return;
                                 }
-                                TLRPC.TL_upload_webFile tL_upload_webFile = h7Var.f24065g;
+                                TLRPC.TL_upload_webFile tL_upload_webFile = h7Var.f24068g;
                                 if (tL_upload_webFile != null) {
                                     tL_upload_webFile.disableFree = false;
                                     tL_upload_webFile.freeResources();
@@ -78,10 +78,10 @@ public final class s1 implements RequestDelegate {
                     return;
                 }
             case 3:
-                g0.h3(new a((Runnable) this.f26390b, 24));
+                g0.h3(new a((Runnable) this.f26400b, 24));
                 return;
             case 4:
-                ap apVar = (ap) this.f26390b;
+                ap apVar = (ap) this.f26400b;
                 if (apVar != null) {
                     String str = null;
                     if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
@@ -107,10 +107,10 @@ public final class s1 implements RequestDelegate {
                 }
                 return;
             case 5:
-                g0.h3(new fi(27, (gp) this.f26390b, tLObject));
+                g0.h3(new fi(27, (gp) this.f26400b, tLObject));
                 return;
             case 6:
-                hp hpVar = (hp) this.f26390b;
+                hp hpVar = (hp) this.f26400b;
                 ArrayList arrayList = new ArrayList();
                 if (tLObject instanceof TLRPC.TL_savedMusic) {
                     ArrayList<TLRPC.Document> arrayList2 = ((TLRPC.TL_savedMusic) tLObject).documents;
@@ -125,7 +125,7 @@ public final class s1 implements RequestDelegate {
                 g0.h3(new kg(hpVar, tLObject, arrayList, 15));
                 return;
             case 7:
-                h00 h00Var = (h00) this.f26390b;
+                h00 h00Var = (h00) this.f26400b;
                 if (tLObject != null) {
                     h00Var.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                     return;
@@ -134,9 +134,9 @@ public final class s1 implements RequestDelegate {
                     return;
                 }
             default:
-                m10 m10Var = (m10) this.f26390b;
+                m10 m10Var = (m10) this.f26400b;
                 m10Var.getClass();
-                g0.h3(new wq(23, m10Var, tLObject));
+                g0.h3(new pq(24, m10Var, tLObject));
                 return;
         }
     }

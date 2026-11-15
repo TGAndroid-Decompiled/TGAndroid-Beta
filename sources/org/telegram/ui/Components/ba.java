@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.view.MotionEvent;
 import android.view.View;
 public final class ba extends View {
-    public int f33232a;
+    public int f33235a;
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
@@ -12,6 +12,6 @@ public final class ba extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f33232a, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f33235a, 1073741824));
     }
 }

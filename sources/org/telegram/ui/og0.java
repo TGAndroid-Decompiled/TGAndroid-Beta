@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class og0 extends hi.d {
-    public final int f49957l0;
+    public final int f49947l0;
     public final org.telegram.ui.Components.ja m0;
 
     public og0(org.telegram.ui.Components.ja jaVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
         super(context, e6Var, true);
-        this.f49957l0 = i7;
+        this.f49947l0 = i7;
         this.m0 = jaVar;
     }
 
@@ -15,17 +15,17 @@ public final class og0 extends hi.d {
     public final float b(float f10, float f11) {
         boolean z10;
         boolean z11;
-        switch (this.f49957l0) {
+        switch (this.f49947l0) {
             case 0:
                 qg0 qg0Var = (qg0) this.m0;
-                if (qg0Var.f50615j2 == 0.0f) {
+                if (qg0Var.f50606j2 == 0.0f) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                qg0Var.f50615j2 = f10;
+                qg0Var.f50606j2 = f10;
                 if (z10) {
-                    qg0Var.f50616k2 = new org.telegram.ui.Components.hp(qg0Var, 2);
+                    qg0Var.f50607k2 = new org.telegram.ui.Components.hp(qg0Var, 2);
                     qg0Var.e1(false);
                 }
                 return f10;

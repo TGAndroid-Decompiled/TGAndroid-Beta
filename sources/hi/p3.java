@@ -41,7 +41,7 @@ public class p3 {
 
     public final void a() {
         if (this.f14845e) {
-            if (this.f14851l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f23604n) {
+            if (this.f14851l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f23606n) {
                 this.f14845e = false;
             } else {
                 return;
@@ -59,7 +59,7 @@ public class p3 {
     }
 
     public final boolean c() {
-        if (this.f14851l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f23604n && !this.f14845e) {
+        if (this.f14851l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f23606n && !this.f14845e) {
             return false;
         }
         return true;
@@ -94,7 +94,7 @@ public class p3 {
                 this.f14851l = view.getHeight() - rect.bottom;
             }
             if (this.f14847g) {
-                this.f14851l = Math.max(0, this.f14851l - org.telegram.messenger.g0.f23604n);
+                this.f14851l = Math.max(0, this.f14851l - org.telegram.messenger.g0.f23606n);
             }
             int i10 = this.f14850k;
             int i11 = this.f14851l;

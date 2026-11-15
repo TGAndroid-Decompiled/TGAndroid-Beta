@@ -48,7 +48,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
                     org.telegram.messenger.gz.B1 = (org.telegram.messenger.fz) arrayList.get(0);
                     if (!proxyListActivity.d) {
                         SharedPreferences.Editor edit = org.telegram.messenger.np.e1().edit();
-                        org.telegram.messenger.gz.B1.f23575a.i(edit);
+                        org.telegram.messenger.gz.B1.f23577a.i(edit);
                         edit.commit();
                     }
                 } else {
@@ -63,7 +63,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
             SharedPreferences.Editor edit2 = org.telegram.messenger.np.e1().edit();
             edit2.putBoolean("proxy_enabled", proxyListActivity.d);
             edit2.commit();
-            ConnectionsManager.setProxySettings(proxyListActivity.d, org.telegram.messenger.gz.B1.f23575a);
+            ConnectionsManager.setProxySettings(proxyListActivity.d, org.telegram.messenger.gz.B1.f23577a);
             org.telegram.messenger.ns e10 = org.telegram.messenger.ns.e();
             int i10 = org.telegram.messenger.ns.A4;
             e10.n(proxyListActivity, i10);
@@ -76,8 +76,8 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
                 }
             }
         } else if (i7 == proxyListActivity.f43255w) {
-            boolean z11 = !org.telegram.messenger.gz.f23931a1;
-            org.telegram.messenger.gz.f23931a1 = z11;
+            boolean z11 = !org.telegram.messenger.gz.f23934a1;
+            org.telegram.messenger.gz.f23934a1 = z11;
             ((org.telegram.ui.Cells.q8) view).setChecked(z11);
             org.telegram.messenger.gz.y();
             proxyListActivity.h0(true);
@@ -89,7 +89,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
             org.telegram.messenger.fz fzVar = (org.telegram.messenger.fz) arrayList.get(i7 - proxyListActivity.f43252n);
             proxyListActivity.d = true;
             SharedPreferences.Editor edit3 = org.telegram.messenger.np.e1().edit();
-            fzVar.f23575a.i(edit3);
+            fzVar.f23577a.i(edit3);
             edit3.putBoolean("proxy_enabled", proxyListActivity.d);
             edit3.commit();
             org.telegram.messenger.gz.B1 = fzVar;
@@ -111,7 +111,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
             if (cj0Var3 != null) {
                 ((org.telegram.ui.Cells.q8) cj0Var3.f58535a).setChecked(true);
             }
-            ConnectionsManager.setProxySettings(proxyListActivity.d, org.telegram.messenger.gz.B1.f23575a);
+            ConnectionsManager.setProxySettings(proxyListActivity.d, org.telegram.messenger.gz.B1.f23577a);
         } else if (i7 == proxyListActivity.proxyAddRow) {
             proxyListActivity.presentFragment(new tx0());
         } else if (i7 == proxyListActivity.E) {
@@ -189,7 +189,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
         this.f43248b = uj0Var;
         uj0Var.r1();
         ((v4.k) this.f43248b.getItemAnimator()).C = false;
-        ((v4.k) this.f43248b.getItemAnimator()).f58586o = org.telegram.ui.Components.er.f34420f;
+        ((v4.k) this.f43248b.getItemAnimator()).f58586o = org.telegram.ui.Components.er.f34419f;
         this.f43248b.setSectionsDrawBackground(true);
         this.f43248b.setVerticalScrollBarEnabled(false);
         this.f43248b.setLayoutManager(new v4.b0(1, false));
@@ -262,7 +262,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.e2 implements o
         org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.B4);
         org.telegram.messenger.ns.f(this.currentAccount).c(this, org.telegram.messenger.ns.T1);
         boolean z10 = false;
-        if (org.telegram.messenger.np.e1().getBoolean("proxy_enabled", false) && !org.telegram.messenger.gz.f24000z1.isEmpty()) {
+        if (org.telegram.messenger.np.e1().getBoolean("proxy_enabled", false) && !org.telegram.messenger.gz.f24003z1.isEmpty()) {
             z10 = true;
         }
         this.d = z10;

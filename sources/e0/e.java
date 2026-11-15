@@ -39,7 +39,7 @@ public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        int i7 = androidx.lifecycle.h0.f2510b;
+        int i7 = androidx.lifecycle.h0.f2513b;
         androidx.lifecycle.f0.b(this);
     }
 

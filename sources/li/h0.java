@@ -23,7 +23,7 @@ public final class h0 extends a41 {
 
     public static b41 i(ro roVar, p2 p2Var) {
         long j3;
-        TLRPC.User user = roVar.f26321c;
+        TLRPC.User user = roVar.f26329c;
         if (user != null) {
             b41 K = b41.K(h0.class);
             long j10 = user.f28200id;
@@ -33,7 +33,7 @@ public final class h0 extends a41 {
             K.H = p2Var;
             return K;
         }
-        TLRPC.Chat chat = roVar.f26320b;
+        TLRPC.Chat chat = roVar.f26328b;
         b41 K2 = b41.K(h0.class);
         if (chat != null) {
             j3 = -chat.f28051id;
@@ -55,8 +55,8 @@ public final class h0 extends a41 {
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            t2Var.R0 = t3.e0(m10.f24934t0, chat);
-            TLRPC.Dialog S0 = np.s1(m10.f24934t0).S0(-chat.f28051id);
+            t2Var.R0 = t3.e0(m10.f24940t0, chat);
+            TLRPC.Dialog S0 = np.s1(m10.f24940t0).S0(-chat.f28051id);
             if (S0 != null) {
                 z11 = false;
             }
@@ -70,8 +70,8 @@ public final class h0 extends a41 {
             t2Var.f0(-chat.f28051id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            t2Var.R0 = t3.f0(m10.f24934t0, user);
-            TLRPC.Dialog S02 = np.s1(m10.f24934t0).S0(user.f28200id);
+            t2Var.R0 = t3.f0(m10.f24940t0, user);
+            TLRPC.Dialog S02 = np.s1(m10.f24940t0).S0(user.f28200id);
             if (S02 != null) {
                 z11 = false;
             }

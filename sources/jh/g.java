@@ -23,26 +23,26 @@ public final class g {
                     if (i7 != 8) {
                         return;
                     }
-                    recyclerView.f2827y.X(recyclerView, aVar.f58475b, aVar.d);
+                    recyclerView.f2830y.X(recyclerView, aVar.f58475b, aVar.d);
                     return;
                 }
-                recyclerView.f2827y.a0(recyclerView, aVar.f58475b, aVar.d, aVar.f58476c);
+                recyclerView.f2830y.a0(recyclerView, aVar.f58475b, aVar.d, aVar.f58476c);
                 return;
             }
-            recyclerView.f2827y.Y(recyclerView, aVar.f58475b, aVar.d);
+            recyclerView.f2830y.Y(recyclerView, aVar.f58475b, aVar.d);
             return;
         }
-        recyclerView.f2827y.V(recyclerView, aVar.f58475b, aVar.d);
+        recyclerView.f2830y.V(recyclerView, aVar.f58475b, aVar.d);
     }
 
     public void b(int i7, int i10, Object obj) {
         int i11;
         int i12;
         RecyclerView recyclerView = this.f17401a;
-        int z10 = recyclerView.f2801e.z();
+        int z10 = recyclerView.f2804e.z();
         int i13 = i10 + i7;
         for (int i14 = 0; i14 < z10; i14++) {
-            View y10 = recyclerView.f2801e.y(i14);
+            View y10 = recyclerView.f2804e.y(i14);
             e1 U = RecyclerView.U(y10);
             if (U != null && !U.r() && (i12 = U.f58537c) >= i7 && i12 < i13) {
                 U.a(2);
@@ -59,7 +59,7 @@ public final class g {
                 ((p0) y10.getLayoutParams()).f58639c = true;
             }
         }
-        w0 w0Var = recyclerView.f2796b;
+        w0 w0Var = recyclerView.f2799b;
         ArrayList arrayList2 = (ArrayList) w0Var.f58671e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             e1 e1Var = (e1) arrayList2.get(size);
@@ -68,20 +68,20 @@ public final class g {
                 w0Var.f(size);
             }
         }
-        recyclerView.f2829z0 = true;
+        recyclerView.f2832z0 = true;
     }
 
     public void c(int i7, int i10) {
         RecyclerView recyclerView = this.f17401a;
-        int z10 = recyclerView.f2801e.z();
+        int z10 = recyclerView.f2804e.z();
         for (int i11 = 0; i11 < z10; i11++) {
-            e1 U = RecyclerView.U(recyclerView.f2801e.y(i11));
+            e1 U = RecyclerView.U(recyclerView.f2804e.y(i11));
             if (U != null && !U.r() && U.f58537c >= i7) {
                 U.n(i10, false);
-                recyclerView.f2822v0.f58504f = true;
+                recyclerView.f2825v0.f58504f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2796b.f58671e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2799b.f58671e;
         int size = arrayList.size();
         for (int i12 = 0; i12 < size; i12++) {
             e1 e1Var = (e1) arrayList.get(i12);
@@ -90,7 +90,7 @@ public final class g {
             }
         }
         recyclerView.requestLayout();
-        recyclerView.f2828y0 = true;
+        recyclerView.f2831y0 = true;
     }
 
     public void d(int i7, int i10) {
@@ -102,7 +102,7 @@ public final class g {
         int i16;
         int i17;
         RecyclerView recyclerView = this.f17401a;
-        int z10 = recyclerView.f2801e.z();
+        int z10 = recyclerView.f2804e.z();
         int i18 = -1;
         if (i7 < i10) {
             i12 = i7;
@@ -114,17 +114,17 @@ public final class g {
             i13 = 1;
         }
         for (int i19 = 0; i19 < z10; i19++) {
-            e1 U = RecyclerView.U(recyclerView.f2801e.y(i19));
+            e1 U = RecyclerView.U(recyclerView.f2804e.y(i19));
             if (U != null && (i17 = U.f58537c) >= i12 && i17 <= i11) {
                 if (i17 == i7) {
                     U.n(i10 - i7, false);
                 } else {
                     U.n(i13, false);
                 }
-                recyclerView.f2822v0.f58504f = true;
+                recyclerView.f2825v0.f58504f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2796b.f58671e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2799b.f58671e;
         if (i7 < i10) {
             i15 = i7;
             i14 = i10;
@@ -145,6 +145,6 @@ public final class g {
             }
         }
         recyclerView.requestLayout();
-        recyclerView.f2828y0 = true;
+        recyclerView.f2831y0 = true;
     }
 }

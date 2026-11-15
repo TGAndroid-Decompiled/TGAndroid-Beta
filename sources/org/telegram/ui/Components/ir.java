@@ -7,27 +7,27 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.EditText;
 public final class ir extends ViewGroup {
-    public static final int f35700x = 0;
-    public final gr f35701a;
-    public EditText f35702b;
-    public final View[] f35703c;
+    public static final int f35687x = 0;
+    public final gr f35688a;
+    public EditText f35689b;
+    public final View[] f35690c;
     public View d;
-    public boolean f35704e;
-    public boolean f35705f;
+    public boolean f35691e;
+    public boolean f35692f;
     public final fr h;
-    public boolean f35706n;
-    public final fr f35707r;
-    public int f35708s;
-    public int f35709w;
+    public boolean f35693n;
+    public final fr f35694r;
+    public int f35695s;
+    public int f35696w;
 
     public ir(Context context) {
         super(context);
         String str;
         int i7;
-        this.f35703c = new View[12];
+        this.f35690c = new View[12];
         int i10 = 0;
         this.h = new fr(this, 0);
-        this.f35707r = new fr(this, 1);
+        this.f35694r = new fr(this, 1);
         for (int i11 = 0; i11 < 11; i11++) {
             if (i11 != 9) {
                 switch (i11) {
@@ -69,22 +69,22 @@ public final class ir extends ViewGroup {
                     i7 = 0;
                 }
                 String valueOf = String.valueOf(i7);
-                this.f35703c[i11] = new hr(context, valueOf, str);
-                this.f35703c[i11].setOnClickListener(new n2(12, this, valueOf));
-                addView(this.f35703c[i11]);
+                this.f35690c[i11] = new hr(context, valueOf, str);
+                this.f35690c[i11].setOnClickListener(new n2(12, this, valueOf));
+                addView(this.f35690c[i11]);
             }
         }
         gr grVar = new gr(this, context, new org.telegram.messenger.ou(context, new ki.v3(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f35701a = grVar;
+        this.f35688a = grVar;
         grVar.setImageResource(2131232094);
         org.telegram.ui.ActionBar.q6.s(grVar, org.telegram.ui.ActionBar.j6.G6, null, PorterDuff.Mode.SRC_ATOP);
         int L = org.telegram.messenger.g0.L(11.0f);
         grVar.setPadding(L, L, L, L);
         grVar.setOnClickListener(new bi.o(14));
-        this.f35703c[11] = grVar;
+        this.f35690c[11] = grVar;
         addView(grVar);
         while (true) {
-            View[] viewArr = this.f35703c;
+            View[] viewArr = this.f35690c;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
@@ -168,7 +168,7 @@ public final class ir extends ViewGroup {
         int y11 = org.telegram.messenger.i20.y(42.0f, getHeight(), 4);
         int i13 = 0;
         while (true) {
-            View[] viewArr = this.f35703c;
+            View[] viewArr = this.f35690c;
             if (i13 < viewArr.length) {
                 int L = org.telegram.messenger.g0.L(6.0f) + y10;
                 int L2 = org.telegram.messenger.g0.L(10.0f) + (L * (i13 % 3));
@@ -191,7 +191,7 @@ public final class ir extends ViewGroup {
         setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
         int y10 = org.telegram.messenger.i20.y(32.0f, getWidth(), 3);
         int y11 = org.telegram.messenger.i20.y(42.0f, getHeight(), 4);
-        for (View view : this.f35703c) {
+        for (View view : this.f35690c) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(y10, 1073741824), View.MeasureSpec.makeMeasureSpec(y11, 1073741824));
             }
@@ -199,12 +199,12 @@ public final class ir extends ViewGroup {
     }
 
     public void setDispatchBackWhenEmpty(boolean z10) {
-        this.f35704e = z10;
+        this.f35691e = z10;
     }
 
     public void setEditText(EditText editText) {
-        this.f35702b = editText;
-        this.f35704e = false;
+        this.f35689b = editText;
+        this.f35691e = false;
     }
 
     public void setViewToFindFocus(View view) {

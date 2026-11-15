@@ -12,7 +12,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.ij0;
 import org.telegram.ui.Components.m60;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 public final class m4 implements ij0 {
     public final i9 f12029a;
     public final c5 f12030b;
@@ -49,7 +49,7 @@ public final class m4 implements ij0 {
                 } else {
                     z10 = false;
                 }
-                if (!a22.contact && org.telegram.messenger.g5.r(i10).f23680g0.get(Long.valueOf(a22.f28200id)) == null) {
+                if (!a22.contact && org.telegram.messenger.g5.r(i10).f23682g0.get(Long.valueOf(a22.f28200id)) == null) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -274,9 +274,9 @@ public final class m4 implements ij0 {
                     F.k();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(c10);
-                    n90 n90Var = new n90(c5Var.f11605w, 3, c5Var.getContext(), arrayList, bVar);
-                    n90Var.setOnClickListener(new ah.g(this, arrayList, F, 12));
-                    F.q(n90Var);
+                    o90 o90Var = new o90(c5Var.f11605w, 3, c5Var.getContext(), arrayList, bVar);
+                    o90Var.setOnClickListener(new ah.g(this, arrayList, F, 12));
+                    F.q(o90Var);
                     z17 = true;
                 } else {
                     z17 = false;

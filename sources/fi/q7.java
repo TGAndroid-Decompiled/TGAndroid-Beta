@@ -45,15 +45,15 @@ public abstract class q7 extends c5.l {
         this.A0 = n7Var;
         setAdapter(n7Var);
         di.z6 z6Var = new di.z6(wVar, 9);
-        if (this.f4168n0 != null) {
+        if (this.f4171n0 != null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f4168n0 = z6Var;
+        this.f4171n0 = z6Var;
         setChildrenDrawingOrderEnabled(true);
-        this.f4170p0 = 1;
-        this.f4169o0 = 2;
+        this.f4173p0 = 1;
+        this.f4172o0 = 2;
         if (z10) {
             s();
         }

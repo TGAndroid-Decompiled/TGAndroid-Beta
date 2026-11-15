@@ -37,7 +37,7 @@ public final class d0 extends y8 {
         this.f60664y = colorDrawable;
         this.E = X0;
         fq fqVar = new fq(colorDrawable, X0, 0, 0);
-        fqVar.f34678x = true;
+        fqVar.f34682x = true;
         setBackground(fqVar);
     }
 

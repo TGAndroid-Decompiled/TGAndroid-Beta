@@ -331,15 +331,15 @@ public class MrzRecognizer {
         int i7;
         try {
             int parseInt = Integer.parseInt(str.substring(0, 2));
-            wrVar.f27385i = parseInt;
+            wrVar.f27386i = parseInt;
             if (parseInt < (Calendar.getInstance().get(1) % 100) - 5) {
-                i7 = wrVar.f27385i + 2000;
+                i7 = wrVar.f27386i + 2000;
             } else {
-                i7 = wrVar.f27385i + 1900;
+                i7 = wrVar.f27386i + 1900;
             }
-            wrVar.f27385i = i7;
-            wrVar.f27386j = Integer.parseInt(str.substring(2, 4));
-            wrVar.f27387k = Integer.parseInt(str.substring(4));
+            wrVar.f27386i = i7;
+            wrVar.f27387j = Integer.parseInt(str.substring(2, 4));
+            wrVar.f27388k = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {
         }
     }
@@ -349,11 +349,11 @@ public class MrzRecognizer {
     public static void g(String str, wr wrVar) {
         try {
             if ("<<<<<<".equals(str)) {
-                wrVar.f27391o = true;
+                wrVar.f27392o = true;
                 return;
             }
-            wrVar.f27383f = Integer.parseInt(str.substring(0, 2)) + 2000;
-            wrVar.f27384g = Integer.parseInt(str.substring(2, 4));
+            wrVar.f27384f = Integer.parseInt(str.substring(0, 2)) + 2000;
+            wrVar.f27385g = Integer.parseInt(str.substring(2, 4));
             wrVar.h = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {
         }
@@ -372,7 +372,7 @@ public class MrzRecognizer {
     public static wr i(Bitmap bitmap) {
         u8.e eVar;
         int i7;
-        u8.n nVar = new u8.n(new com.google.android.gms.internal.vision.u2(t0.f26600b, (com.google.android.gms.internal.vision.x1) new Object()));
+        u8.n nVar = new u8.n(new com.google.android.gms.internal.vision.u2(t0.f26609b, (com.google.android.gms.internal.vision.x1) new Object()));
         if (bitmap.getWidth() > 1500 || bitmap.getHeight() > 1500) {
             float max = 1500.0f / Math.max(bitmap.getWidth(), bitmap.getHeight());
             bitmap = Bitmap.createScaledBitmap(bitmap, Math.round(bitmap.getWidth() * max), Math.round(bitmap.getHeight() * max), true);
@@ -381,9 +381,9 @@ public class MrzRecognizer {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         ld0Var.d = bitmap;
-        b7.d dVar = (b7.d) ld0Var.f48976b;
-        dVar.f2945a = width;
-        dVar.f2946b = height;
+        b7.d dVar = (b7.d) ld0Var.f48972b;
+        dVar.f2948a = width;
+        dVar.f2949b = height;
         SparseArray e12 = nVar.e1(ld0Var);
         int i10 = 0;
         for (int i11 = 0; i11 < e12.size(); i11++) {
@@ -398,34 +398,34 @@ public class MrzRecognizer {
                 } else {
                     i7 = 4;
                 }
-                obj.f27379a = i7;
+                obj.f27380a = i7;
                 String str = mVar.E.E;
                 str.getClass();
                 if (!str.equals("CAN")) {
                     if (str.equals("USA")) {
-                        obj.f27388l = "US";
-                        obj.f27389m = "US";
+                        obj.f27389l = "US";
+                        obj.f27390m = "US";
                     }
                 } else {
-                    obj.f27388l = "CA";
-                    obj.f27389m = "CA";
+                    obj.f27389l = "CA";
+                    obj.f27390m = "CA";
                 }
-                obj.f27380b = a(mVar.E.f57920b);
-                obj.f27381c = a(mVar.E.d);
+                obj.f27381b = a(mVar.E.f57920b);
+                obj.f27382c = a(mVar.E.d);
                 obj.d = a(mVar.E.f57921c);
                 u8.e eVar2 = mVar.E;
-                obj.f27382e = eVar2.f57926s;
+                obj.f27383e = eVar2.f57926s;
                 String str2 = eVar2.f57922e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
                         if (str2.equals("2")) {
-                            obj.f27390n = 2;
+                            obj.f27391n = 2;
                         }
                     } else {
-                        obj.f27390n = 1;
+                        obj.f27391n = 1;
                     }
                 }
-                if ("USA".equals(obj.f27388l)) {
+                if ("USA".equals(obj.f27389l)) {
                     i14 = 0;
                     i10 = 4;
                     i13 = 2;
@@ -433,14 +433,14 @@ public class MrzRecognizer {
                 try {
                     String str3 = mVar.E.f57929y;
                     if (str3 != null && str3.length() == 8) {
-                        obj.f27385i = Integer.parseInt(mVar.E.f57929y.substring(i10, i10 + 4));
-                        obj.f27386j = Integer.parseInt(mVar.E.f57929y.substring(i14, i14 + 2));
-                        obj.f27387k = Integer.parseInt(mVar.E.f57929y.substring(i13, i13 + 2));
+                        obj.f27386i = Integer.parseInt(mVar.E.f57929y.substring(i10, i10 + 4));
+                        obj.f27387j = Integer.parseInt(mVar.E.f57929y.substring(i14, i14 + 2));
+                        obj.f27388k = Integer.parseInt(mVar.E.f57929y.substring(i13, i13 + 2));
                     }
                     String str4 = mVar.E.f57928x;
                     if (str4 != null && str4.length() == 8) {
-                        obj.f27383f = Integer.parseInt(mVar.E.f57928x.substring(i10, i10 + 4));
-                        obj.f27384g = Integer.parseInt(mVar.E.f57928x.substring(i14, i14 + 2));
+                        obj.f27384f = Integer.parseInt(mVar.E.f57928x.substring(i10, i10 + 4));
+                        obj.f27385g = Integer.parseInt(mVar.E.f57928x.substring(i14, i14 + 2));
                         obj.h = Integer.parseInt(mVar.E.f57928x.substring(i13, i13 + 2));
                     }
                 } catch (NumberFormatException unused) {
@@ -452,19 +452,19 @@ public class MrzRecognizer {
                     String[] split = new String(Base64.decode(mVar.f57950b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         ?? obj2 = new Object();
-                        obj2.f27379a = 4;
-                        obj2.f27388l = "RU";
-                        obj2.f27389m = "RU";
-                        obj2.f27382e = split[0];
-                        obj2.f27383f = Integer.parseInt(split[2].substring(0, 4));
-                        obj2.f27384g = Integer.parseInt(split[2].substring(4, 6));
+                        obj2.f27380a = 4;
+                        obj2.f27389l = "RU";
+                        obj2.f27390m = "RU";
+                        obj2.f27383e = split[0];
+                        obj2.f27384f = Integer.parseInt(split[2].substring(0, 4));
+                        obj2.f27385g = Integer.parseInt(split[2].substring(4, 6));
                         obj2.h = Integer.parseInt(split[2].substring(6));
-                        obj2.f27381c = a(c(split[3]));
-                        obj2.f27380b = a(c(split[4]));
+                        obj2.f27382c = a(c(split[3]));
+                        obj2.f27381b = a(c(split[4]));
                         obj2.d = a(c(split[5]));
-                        obj2.f27385i = Integer.parseInt(split[6].substring(0, 4));
-                        obj2.f27386j = Integer.parseInt(split[6].substring(4, 6));
-                        obj2.f27387k = Integer.parseInt(split[6].substring(6));
+                        obj2.f27386i = Integer.parseInt(split[6].substring(0, 4));
+                        obj2.f27387j = Integer.parseInt(split[6].substring(4, 6));
+                        obj2.f27388k = Integer.parseInt(split[6].substring(6));
                         return obj2;
                     }
                     continue;

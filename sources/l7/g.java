@@ -16,12 +16,12 @@ public final class g extends q6.h {
         super(context, looper, 68, o3Var, kVar, lVar, 0);
         bVar = bVar == null ? z5.b.f60915c : bVar;
         x xVar = new x(9, (byte) 0);
-        xVar.f57596b = Boolean.FALSE;
+        xVar.f57597b = Boolean.FALSE;
         z5.b bVar2 = z5.b.f60915c;
         bVar.getClass();
-        xVar.f57596b = Boolean.valueOf(bVar.f60916a);
-        xVar.f57597c = bVar.f60917b;
-        xVar.f57597c = e.a();
+        xVar.f57597b = Boolean.valueOf(bVar.f60916a);
+        xVar.f57598c = bVar.f60917b;
+        xVar.f57598c = e.a();
         this.F = new z5.b(xVar);
     }
 

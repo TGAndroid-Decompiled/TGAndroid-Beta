@@ -14,7 +14,7 @@ import org.telegram.ui.Components.u41;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.y31;
 public final class a5 extends a41 {
-    public static final int f3374b = 0;
+    public static final int f3377b = 0;
 
     static {
         a41.h(new a41());
@@ -24,9 +24,9 @@ public final class a5 extends a41 {
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         b5 b5Var = (b5) view;
         TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) b41Var.G;
-        int i7 = b41Var.f33194z;
-        String str = (String) b41Var.f33181l;
-        boolean z11 = b41Var.f33175e;
+        int i7 = b41Var.f33197z;
+        String str = (String) b41Var.f33184l;
+        boolean z11 = b41Var.f33178e;
         b5Var.getClass();
         ShapeDrawable L = org.telegram.ui.ActionBar.j6.L(org.telegram.messenger.g0.L(20.0f), stargiftattributebackdrop.center_color | (-16777216));
         SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;

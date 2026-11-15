@@ -1,81 +1,67 @@
 package di;
 
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
+import android.content.Context;
+import org.telegram.messenger.np;
+import org.telegram.messenger.vr;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.m60;
 import org.telegram.ui.an;
 public final class f9 implements Runnable {
-    public final int f8555a;
-    public final org.telegram.ui.ActionBar.u2[] f8556b;
-    public final long f8557c;
+    public final int f8561a = 0;
+    public final int f8562b;
+    public final long f8563c;
+    public final long d;
+    public final Object f8564e;
+    public final Object f8565f;
+    public final Object h;
 
-    public f9(org.telegram.ui.ActionBar.u2[] u2VarArr, long j3, int i7) {
-        this.f8555a = i7;
-        this.f8556b = u2VarArr;
-        this.f8557c = j3;
+    public f9(int i7, Context context, long j3, long j10, org.telegram.ui.ActionBar.u2[] u2VarArr, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f8562b = i7;
+        this.f8564e = context;
+        this.f8563c = j3;
+        this.d = j10;
+        this.f8565f = u2VarArr;
+        this.h = e6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8555a) {
-            case 0:
-                this.f8556b[0].dismiss();
-                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                if (T != null) {
-                    T.presentFragment(an.ua(this.f8557c));
-                    return;
-                }
-                return;
-            case 1:
-                this.f8556b[0].dismiss();
-                org.telegram.ui.ActionBar.e2 T2 = LaunchActivity.T();
-                if (T2 != null) {
-                    T2.presentFragment(new ki.k(this.f8557c));
-                    return;
-                }
-                return;
-            case 2:
-                this.f8556b[0].dismiss();
-                org.telegram.ui.ActionBar.e2 T3 = LaunchActivity.T();
-                if (T3 != null) {
-                    T3.presentFragment(ProfileActivity.C4(this.f8557c));
-                    return;
-                }
-                return;
-            case 3:
-                this.f8556b[0].dismiss();
-                org.telegram.ui.ActionBar.e2 T4 = LaunchActivity.T();
-                if (T4 != null) {
-                    T4.presentFragment(ProfileActivity.C4(this.f8557c));
-                    return;
-                }
-                return;
-            case 4:
-                this.f8556b[0].dismiss();
-                org.telegram.ui.ActionBar.e2 T5 = LaunchActivity.T();
-                if (T5 != null) {
-                    T5.presentFragment(ProfileActivity.C4(this.f8557c));
-                    return;
-                }
-                return;
-            case 5:
-                this.f8556b[0].dismiss();
-                org.telegram.ui.ActionBar.e2 T6 = LaunchActivity.T();
-                if (T6 != null) {
-                    T6.presentFragment(an.ua(this.f8557c));
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.u2 u2Var = this.f8556b[0];
-                if (u2Var != null) {
-                    u2Var.dismiss();
-                }
-                org.telegram.ui.ActionBar.e2 T7 = LaunchActivity.T();
-                if (T7 != null) {
-                    T7.presentFragment(an.ua(this.f8557c));
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: di.f9.run():void");
+    }
+
+    public f9(fi.u0 u0Var, int i7, TLRPC.TL_error tL_error, long j3, long j10, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f8564e = u0Var;
+        this.f8562b = i7;
+        this.f8565f = tL_error;
+        this.f8563c = j3;
+        this.d = j10;
+        this.h = tL_textWithEntities;
+    }
+
+    public f9(np npVar, long j3, long j10, TLRPC.InputPeer inputPeer, int i7, int[] iArr) {
+        this.f8564e = npVar;
+        this.f8563c = j3;
+        this.d = j10;
+        this.f8565f = inputPeer;
+        this.f8562b = i7;
+        this.h = iArr;
+    }
+
+    public f9(vr vrVar, int i7, long j3, String str, long j10, String str2) {
+        this.f8564e = vrVar;
+        this.f8562b = i7;
+        this.f8563c = j3;
+        this.f8565f = str;
+        this.d = j10;
+        this.h = str2;
+    }
+
+    public f9(m60 m60Var, int i7, long j3, long j10, an anVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f8564e = m60Var;
+        this.f8562b = i7;
+        this.f8563c = j3;
+        this.d = j10;
+        this.f8565f = anVar;
+        this.h = e6Var;
     }
 }

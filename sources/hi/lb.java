@@ -19,7 +19,7 @@ public final class lb implements DialogInterface.OnCancelListener {
                 ((h4) this.f14613b).run();
                 return;
             case 1:
-                ((ai.z0) this.f14613b).run();
+                ((ai.a1) this.f14613b).run();
                 return;
             case 2:
                 ((HttpGetFileTask) this.f14613b).cancel(true);

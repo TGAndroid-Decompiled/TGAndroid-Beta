@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ez extends rg.b {
     public final Context d;
-    public final hz f46942e;
+    public final hz f46926e;
 
     public ez(hz hzVar, Context context) {
-        this.f46942e = hzVar;
+        this.f46926e = hzVar;
         this.d = context;
     }
 
@@ -31,12 +31,12 @@ public final class ez extends rg.b {
 
     @Override
     public final int b() {
-        return this.f46942e.Q.size();
+        return this.f46926e.Q.size();
     }
 
     @Override
     public final int d(int i7) {
-        zy zyVar = (zy) this.f46942e.Q.get(i7);
+        zy zyVar = (zy) this.f46926e.Q.get(i7);
         if (zyVar == null) {
             return 3;
         }
@@ -51,7 +51,7 @@ public final class ez extends rg.b {
         int i10;
         int i11;
         int i12;
-        hz hzVar = this.f46942e;
+        hz hzVar = this.f46926e;
         ArrayList arrayList = hzVar.Q;
         zy zyVar = (zy) arrayList.get(i7);
         if (zyVar != null) {
@@ -77,8 +77,8 @@ public final class ez extends rg.b {
                                 return;
                             case 8:
                                 sy syVar = (sy) view;
-                                if (syVar.f51301c != z10) {
-                                    syVar.f51301c = z10;
+                                if (syVar.f51302c != z10) {
+                                    syVar.f51302c = z10;
                                     syVar.setWillNotDraw(!z10);
                                     return;
                                 }
@@ -86,7 +86,7 @@ public final class ez extends rg.b {
                             case 9:
                                 xy xyVar = (xy) view;
                                 hzVar.J = xyVar;
-                                xyVar.e(org.telegram.ui.Components.p5.cloneSpans(hzVar.f47862x, -1, xyVar.f53347s.getPaint().getFontMetricsInt(), 0.5f), false);
+                                xyVar.e(org.telegram.ui.Components.p5.cloneSpans(hzVar.f47852x, -1, xyVar.f53351s.getPaint().getFontMetricsInt(), 0.5f), false);
                                 xy xyVar2 = hzVar.J;
                                 if (hzVar.getUserConfig().q()) {
                                     i15 = hzVar.F;
@@ -95,19 +95,19 @@ public final class ez extends rg.b {
                                 hzVar.J.setText(org.telegram.messenger.hd.M0(2131750622, null));
                                 return;
                             case 10:
-                                fm0 fm0Var = (fm0) view;
-                                fm0Var.setCloseAsLock(!hzVar.getUserConfig().q());
+                                gm0 gm0Var = (gm0) view;
+                                gm0Var.setCloseAsLock(!hzVar.getUserConfig().q());
                                 if (hzVar.getUserConfig().q()) {
                                     i15 = hzVar.F;
                                 }
-                                fm0Var.a(i15, false);
-                                fm0Var.setOnColorClick(new org.telegram.ui.Components.gh(16, this, fm0Var));
+                                gm0Var.a(i15, false);
+                                gm0Var.setOnColorClick(new org.telegram.ui.Components.gh(16, this, gm0Var));
                                 return;
                             case 11:
                                 yy yyVar = (yy) view;
                                 hzVar.K = yyVar;
                                 yyVar.setText(zyVar.d);
-                                org.telegram.ui.Cells.w3 w3Var = yyVar.f53783r;
+                                org.telegram.ui.Cells.w3 w3Var = yyVar.f53748r;
                                 w3Var.setText(zyVar.f54061e);
                                 w3Var.setOnClickListener(zyVar.f54060c);
                                 return;
@@ -117,8 +117,8 @@ public final class ez extends rg.b {
                     }
                     qy qyVar = (qy) view;
                     boolean z12 = zyVar.f54067l;
-                    ImageView imageView = qyVar.f50804a;
-                    TextView textView = qyVar.f50805b;
+                    ImageView imageView = qyVar.f50803a;
+                    TextView textView = qyVar.f50804b;
                     if (z12) {
                         i10 = org.telegram.ui.ActionBar.j6.f29090q7;
                     } else {
@@ -133,8 +133,8 @@ public final class ez extends rg.b {
                     org.telegram.ui.ActionBar.q6.U(textView, i11, null);
                     int i16 = zyVar.f54066k;
                     CharSequence charSequence = zyVar.d;
-                    ImageView imageView2 = qyVar.f50804a;
-                    if (!org.telegram.messenger.hd.f24101a0) {
+                    ImageView imageView2 = qyVar.f50803a;
+                    if (!org.telegram.messenger.hd.f24104a0) {
                         i15 = 1;
                     }
                     if (i16 == 0) {
@@ -144,7 +144,7 @@ public final class ez extends rg.b {
                         imageView2.setImageResource(i16);
                     }
                     float f10 = 72.0f;
-                    if (org.telegram.messenger.hd.f24101a0) {
+                    if (org.telegram.messenger.hd.f24104a0) {
                         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) textView.getLayoutParams();
                         if (i16 == 0) {
                             f10 = 24.0f;
@@ -161,11 +161,11 @@ public final class ez extends rg.b {
                     if (!z10 && i16 != 0) {
                         z11 = true;
                     }
-                    Boolean bool = qyVar.f50807e;
+                    Boolean bool = qyVar.f50806e;
                     if (bool == null || bool.booleanValue() != z11) {
-                        qyVar.f50807e = Boolean.valueOf(z11);
+                        qyVar.f50806e = Boolean.valueOf(z11);
                         float f11 = 0.0f;
-                        if (qyVar.f50806c == i16) {
+                        if (qyVar.f50805c == i16) {
                             textView.clearAnimation();
                             ViewPropertyAnimator animate = textView.animate();
                             if (z11) {
@@ -181,7 +181,7 @@ public final class ez extends rg.b {
                     }
                     qyVar.d = z10;
                     qyVar.setWillNotDraw(!z10);
-                    qyVar.f50806c = i16;
+                    qyVar.f50805c = i16;
                     return;
                 }
                 org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
@@ -255,7 +255,7 @@ public final class ez extends rg.b {
         org.telegram.ui.ActionBar.e6 e6Var2;
         org.telegram.ui.ActionBar.e6 e6Var3;
         Context context = this.d;
-        hz hzVar = this.f46942e;
+        hz hzVar = this.f46926e;
         switch (i7) {
             case 0:
                 paVar = new org.telegram.ui.Cells.n4(context, 22);
@@ -275,9 +275,9 @@ public final class ez extends rg.b {
                 org.telegram.ui.Cells.f3 f3Var = h3Var.f30375b;
                 f3Var.getEditText().setEmojiColor(Integer.valueOf(hzVar.getThemedColor(org.telegram.ui.ActionBar.j6.Fi)));
                 f3Var.setEmojiViewCacheType(25);
-                f3Var.setText(hzVar.f47862x);
+                f3Var.setText(hzVar.f47852x);
                 i10 = ((org.telegram.ui.ActionBar.e2) hzVar).currentAccount;
-                org.telegram.ui.Components.g5.r(i10, hzVar.f47863y);
+                org.telegram.ui.Components.g5.r(i10, hzVar.f47853y);
                 org.telegram.ui.Components.ft editText = f3Var.getEditText();
                 editText.addTextChangedListener(new org.telegram.ui.Cells.j3());
                 editText.addTextChangedListener(new m0(this, 7));
@@ -291,23 +291,23 @@ public final class ez extends rg.b {
             case 4:
                 ?? frameLayout = new FrameLayout(context);
                 frameLayout.d = true;
-                frameLayout.f50807e = null;
+                frameLayout.f50806e = null;
                 ImageView imageView = new ImageView(context);
-                frameLayout.f50804a = imageView;
+                frameLayout.f50803a = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 int i15 = 3;
-                if (org.telegram.messenger.hd.f24101a0) {
+                if (org.telegram.messenger.hd.f24104a0) {
                     i11 = 5;
                 } else {
                     i11 = 3;
                 }
                 frameLayout.addView(imageView, c8.ja.d(24, 24.0f, i11 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
                 TextView textView = new TextView(context);
-                frameLayout.f50805b = textView;
+                frameLayout.f50804b = textView;
                 textView.setTextSize(1, 16.0f);
                 textView.setLines(1);
                 textView.setSingleLine();
-                boolean z10 = org.telegram.messenger.hd.f24101a0;
+                boolean z10 = org.telegram.messenger.hd.f24104a0;
                 int i16 = 24;
                 if (z10) {
                     i12 = 24;
@@ -318,11 +318,11 @@ public final class ez extends rg.b {
                     i16 = 0;
                 }
                 textView.setPadding(i12, 0, i16, 0);
-                if (org.telegram.messenger.hd.f24101a0) {
+                if (org.telegram.messenger.hd.f24104a0) {
                     i15 = 5;
                 }
                 textView.setGravity(i15);
-                boolean z11 = org.telegram.messenger.hd.f24101a0;
+                boolean z11 = org.telegram.messenger.hd.f24104a0;
                 if (z11) {
                     f10 = 0.0f;
                 } else {
@@ -339,7 +339,7 @@ public final class ez extends rg.b {
             case 5:
                 k0 k0Var = new k0(context, 8);
                 ?? imageView2 = new ImageView(context);
-                k0Var.f48534b = imageView2;
+                k0Var.f48488b = imageView2;
                 imageView2.f(2131624016, 100, 100, null);
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 imageView2.d();
@@ -353,7 +353,7 @@ public final class ez extends rg.b {
                 break;
             case 7:
                 i13 = ((org.telegram.ui.ActionBar.e2) hzVar).currentAccount;
-                paVar = new dz(this, this.d, hzVar, i13, hzVar.f47859r.f26542a);
+                paVar = new dz(this, this.d, hzVar, i13, hzVar.f47849r.f26552a);
                 break;
             case 8:
                 paVar = new sy(context);
@@ -365,7 +365,7 @@ public final class ez extends rg.b {
                 Activity parentActivity = hzVar.getParentActivity();
                 i14 = ((org.telegram.ui.ActionBar.e2) hzVar).currentAccount;
                 e6Var2 = ((org.telegram.ui.ActionBar.e2) hzVar).resourceProvider;
-                paVar = new fm0(2, i14, parentActivity, e6Var2);
+                paVar = new gm0(2, i14, parentActivity, e6Var2);
                 break;
             case 11:
                 e6Var3 = ((org.telegram.ui.ActionBar.e2) hzVar).resourceProvider;
@@ -379,8 +379,8 @@ public final class ez extends rg.b {
     public final void y(v4.e1 e1Var) {
         int i7 = e1Var.f58539f;
         if (i7 != 2 && i7 == 9) {
-            hz hzVar = this.f46942e;
-            ((xy) e1Var.f58535a).e(org.telegram.ui.Components.p5.cloneSpans(hzVar.f47862x, -1, hzVar.J.f53347s.getPaint().getFontMetricsInt(), 0.5f), true);
+            hz hzVar = this.f46926e;
+            ((xy) e1Var.f58535a).e(org.telegram.ui.Components.p5.cloneSpans(hzVar.f47852x, -1, hzVar.J.f53351s.getPaint().getFontMetricsInt(), 0.5f), true);
         }
     }
 

@@ -25,32 +25,32 @@ public final class nu0 {
     public float Q;
     public float R;
     public float S;
-    public int[] f37716a;
-    public final int f37717b;
-    public final float[] f37718c;
+    public int[] f37705a;
+    public final int f37706b;
+    public final float[] f37707c;
     public final float[] d;
-    public final float[] f37719e;
-    public final float[] f37720f;
-    public final float[] f37721g;
+    public final float[] f37708e;
+    public final float[] f37709f;
+    public final float[] f37710g;
     public final float[] h;
-    public final float[] f37722i;
-    public final float[] f37723j;
-    public final float[] f37724k;
-    public final float[] f37725l;
-    public final float[] f37726m;
-    public final float[] f37727n;
-    public final byte[] f37728o;
-    public final byte[] f37729p;
-    public final byte[] f37730q;
-    public final boolean[] f37731r;
-    public boolean f37732s;
-    public int[] f37733t;
-    public float f37734u;
+    public final float[] f37711i;
+    public final float[] f37712j;
+    public final float[] f37713k;
+    public final float[] f37714l;
+    public final float[] f37715m;
+    public final float[] f37716n;
+    public final byte[] f37717o;
+    public final byte[] f37718p;
+    public final byte[] f37719q;
+    public final boolean[] f37720r;
+    public boolean f37721s;
+    public int[] f37722t;
+    public float f37723u;
     public final float[] v;
-    public final float[] f37735w;
-    public final float[] f37736x;
-    public final float[] f37737y;
-    public final float[] f37738z;
+    public final float[] f37724w;
+    public final float[] f37725x;
+    public final float[] f37726y;
+    public final float[] f37727z;
 
     public nu0(int i7) {
         Paint paint = new Paint(1);
@@ -59,32 +59,32 @@ public final class nu0 {
         this.L = paint2;
         this.P = 49734321;
         this.Q = org.telegram.messenger.g0.L(16.0f);
-        this.f37717b = i7;
-        this.f37718c = new float[i7];
+        this.f37706b = i7;
+        this.f37707c = new float[i7];
         this.d = new float[i7];
-        this.f37719e = new float[i7];
-        this.f37720f = new float[i7];
-        this.f37721g = new float[i7];
+        this.f37708e = new float[i7];
+        this.f37709f = new float[i7];
+        this.f37710g = new float[i7];
         this.h = new float[i7];
-        this.f37722i = new float[i7];
-        this.f37723j = new float[i7];
-        this.f37724k = new float[i7];
-        this.f37725l = new float[i7];
-        this.f37726m = new float[i7];
-        this.f37727n = new float[i7];
-        this.f37728o = new byte[i7];
-        this.f37729p = new byte[i7];
-        this.f37730q = new byte[i7];
-        this.f37731r = new boolean[i7];
+        this.f37711i = new float[i7];
+        this.f37712j = new float[i7];
+        this.f37713k = new float[i7];
+        this.f37714l = new float[i7];
+        this.f37715m = new float[i7];
+        this.f37716n = new float[i7];
+        this.f37717o = new byte[i7];
+        this.f37718p = new byte[i7];
+        this.f37719q = new byte[i7];
+        this.f37720r = new boolean[i7];
         this.I = new short[i7];
         int i10 = i7 * 2;
         this.E = new float[i10];
         this.F = new float[i10];
         this.v = new float[i10];
-        this.f37735w = new float[i7];
-        this.f37736x = new float[i7];
-        this.f37737y = new float[i7];
-        this.f37738z = new float[i7];
+        this.f37724w = new float[i7];
+        this.f37725x = new float[i7];
+        this.f37726y = new float[i7];
+        this.f37727z = new float[i7];
         this.A = new boolean[i7];
         Paint.Cap cap = Paint.Cap.ROUND;
         paint.setStrokeCap(cap);
@@ -92,7 +92,7 @@ public final class nu0 {
     }
 
     public final void a() {
-        for (int i7 = 0; i7 < this.f37717b; i7++) {
+        for (int i7 = 0; i7 < this.f37706b; i7++) {
             this.h[i7] = 0.0f;
         }
         this.D = 0;
@@ -106,11 +106,11 @@ public final class nu0 {
     public final void c(float f10, float f11, int i7) {
         int i10;
         this.h[i7] = Math.max(0.05f, f10);
-        this.f37721g[i7] = -f11;
-        this.f37722i[i7] = d() * 6.2832f;
-        this.f37723j[i7] = d() * 8.0f;
+        this.f37710g[i7] = -f11;
+        this.f37711i[i7] = d() * 6.2832f;
+        this.f37712j[i7] = d() * 8.0f;
         int i11 = 0;
-        this.f37731r[i7] = false;
+        this.f37720r[i7] = false;
         float d = d();
         if (d < 0.5f) {
             i10 = 0;
@@ -119,11 +119,11 @@ public final class nu0 {
         } else {
             i10 = 2;
         }
-        this.f37728o[i7] = (byte) i10;
+        this.f37717o[i7] = (byte) i10;
         if (d() < 0.07f) {
             i11 = 1;
         }
-        this.f37729p[i7] = (byte) i11;
+        this.f37718p[i7] = (byte) i11;
     }
 
     public final float d() {
@@ -150,7 +150,7 @@ public final class nu0 {
 
     public final int f() {
         int i7 = this.C;
-        this.C = (i7 + 1) % this.f37717b;
+        this.C = (i7 + 1) % this.f37706b;
         if (this.h[i7] <= 0.0f) {
             this.D++;
         }
@@ -159,54 +159,54 @@ public final class nu0 {
 
     public final void g(float f10, float f11, float f12, float f13, float f14, float f15) {
         int f16 = f();
-        this.f37718c[f16] = f10;
+        this.f37707c[f16] = f10;
         this.d[f16] = f11;
-        this.f37719e[f16] = f12;
-        this.f37720f[f16] = f13;
-        this.f37730q[f16] = 0;
+        this.f37708e[f16] = f12;
+        this.f37709f[f16] = f13;
+        this.f37719q[f16] = 0;
         c(f14, f15, f16);
     }
 
     public final void h(float f10, float f11, float f12, float f13, float f14) {
         int f15 = f();
-        this.f37718c[f15] = f10;
-        this.f37726m[f15] = f10;
-        this.f37727n[f15] = f11;
+        this.f37707c[f15] = f10;
+        this.f37715m[f15] = f10;
+        this.f37716n[f15] = f11;
         this.d[f15] = f11;
-        this.f37724k[f15] = f12;
-        this.f37725l[f15] = f13;
-        this.f37720f[f15] = 0.0f;
-        this.f37719e[f15] = 0.0f;
-        this.f37730q[f15] = 1;
+        this.f37713k[f15] = f12;
+        this.f37714l[f15] = f13;
+        this.f37709f[f15] = 0.0f;
+        this.f37708e[f15] = 0.0f;
+        this.f37719q[f15] = 1;
         c(f14, 0.0f, f15);
     }
 
     public final void i(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
         int i7;
         int f18 = f();
-        this.f37718c[f18] = f10;
-        this.f37726m[f18] = f10;
+        this.f37707c[f18] = f10;
+        this.f37715m[f18] = f10;
         this.d[f18] = f11;
-        this.f37727n[f18] = f11;
-        this.f37724k[f18] = f14;
-        this.f37725l[f18] = f15;
-        this.f37719e[f18] = f12;
-        this.f37720f[f18] = f13;
-        this.f37730q[f18] = 2;
+        this.f37716n[f18] = f11;
+        this.f37713k[f18] = f14;
+        this.f37714l[f18] = f15;
+        this.f37708e[f18] = f12;
+        this.f37709f[f18] = f13;
+        this.f37719q[f18] = 2;
         c(f16, f17, f18);
-        this.f37736x[f18] = 0.0f;
-        this.f37735w[f18] = 0.0f;
+        this.f37725x[f18] = 0.0f;
+        this.f37724w[f18] = 0.0f;
         this.A[f18] = false;
-        if (this.f37732s) {
-            if (d() < this.f37734u) {
+        if (this.f37721s) {
+            if (d() < this.f37723u) {
                 i7 = 1;
             } else {
                 i7 = 0;
             }
             byte b10 = (byte) i7;
-            this.f37729p[f18] = b10;
+            this.f37718p[f18] = b10;
             if (b10 != 0) {
-                this.f37728o[f18] = 0;
+                this.f37717o[f18] = 0;
             }
         }
     }
@@ -214,9 +214,9 @@ public final class nu0 {
     public final void j(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, int i7) {
         i(f10, f11, f12, f13, f14, f15, f16, f17);
         int i10 = this.C;
-        int i11 = this.f37717b;
+        int i11 = this.f37706b;
         int i12 = ((i10 + i11) - 1) % i11;
-        this.f37723j[i12] = Math.max(0, Math.min(7, i7));
-        this.f37731r[i12] = true;
+        this.f37712j[i12] = Math.max(0, Math.min(7, i7));
+        this.f37720r[i12] = true;
     }
 }

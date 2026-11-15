@@ -113,30 +113,30 @@ public abstract class w0 extends FrameLayout implements z5 {
         s0Var.n(0.3f, 165L, erVar);
         s0Var.w(org.telegram.messenger.g0.N(14.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = s0Var.f34827a;
+        TextPaint textPaint = s0Var.f34831a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        s0Var.f34829b = i7;
+        s0Var.f34833b = i7;
         s0 s0Var2 = new s0(this, 1);
         this.d = s0Var2;
         s0Var2.setCallback(this);
         s0Var2.x(org.telegram.messenger.g0.o());
         s0Var2.n(0.3f, 165L, erVar);
         s0Var2.w(org.telegram.messenger.g0.N(14.0f));
-        TextPaint textPaint2 = s0Var2.f34827a;
+        TextPaint textPaint2 = s0Var2.f34831a;
         textPaint2.setStyle(style);
         textPaint2.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 3;
         } else {
             i10 = 5;
         }
-        s0Var2.f34829b = i10;
+        s0Var2.f34833b = i10;
         paint.setColor(0);
         paint.setShadowLayer(org.telegram.messenger.g0.N(1.33f), 0.0f, org.telegram.messenger.g0.N(0.33f), 1056964608);
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -237,7 +237,7 @@ public abstract class w0 extends FrameLayout implements z5 {
         }
         if (str2 != null) {
             s0 s0Var = this.f29779c;
-            if (!TextUtils.equals(s0Var.f34836i, str2)) {
+            if (!TextUtils.equals(s0Var.f34840i, str2)) {
                 s0Var.a();
                 s0Var.t(str2, true, true);
             }
@@ -247,7 +247,7 @@ public abstract class w0 extends FrameLayout implements z5 {
         }
         if (str != null) {
             s0 s0Var2 = this.d;
-            if (!TextUtils.equals(s0Var2.f34836i, str)) {
+            if (!TextUtils.equals(s0Var2.f34840i, str)) {
                 s0Var2.a();
                 s0Var2.t(str, true, true);
             }
@@ -360,7 +360,7 @@ public abstract class w0 extends FrameLayout implements z5 {
             } else {
                 Pair pair = null;
                 if (s02 instanceof ra0) {
-                    bitmap = ((ra0) s02).f38926k;
+                    bitmap = ((ra0) s02).f38923k;
                 } else if (s02 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) s02).getBitmap();
                 } else {
@@ -368,10 +368,10 @@ public abstract class w0 extends FrameLayout implements z5 {
                 }
                 if (bitmap != null) {
                     int i14 = iArr[0];
-                    Point point = org.telegram.messenger.g0.f23609q;
+                    Point point = org.telegram.messenger.g0.f23611q;
                     int width = (int) ((i14 / point.x) * bitmap.getWidth());
                     int measuredWidth = (int) (((getMeasuredWidth() + i14) / point.x) * bitmap.getWidth());
-                    int currentActionBarHeight = (int) ((((iArr[1] - org.telegram.messenger.g0.f23603m) - k.getCurrentActionBarHeight()) / point.y) * bitmap.getHeight());
+                    int currentActionBarHeight = (int) ((((iArr[1] - org.telegram.messenger.g0.f23605m) - k.getCurrentActionBarHeight()) / point.y) * bitmap.getHeight());
                     if (width >= 0 && width < bitmap.getWidth() && measuredWidth >= 0 && measuredWidth < bitmap.getWidth() && currentActionBarHeight >= 0 && currentActionBarHeight < bitmap.getHeight()) {
                         pair = new Pair(Integer.valueOf(bitmap.getPixel(width, currentActionBarHeight)), Integer.valueOf(bitmap.getPixel(measuredWidth, currentActionBarHeight)));
                     }

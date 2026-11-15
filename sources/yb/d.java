@@ -119,7 +119,7 @@ public final class d extends pb.e {
             Boolean bool = Boolean.TRUE;
             r7Var.f619e = bool;
             r7Var.f620f = bool;
-            a0Var.f1706b = new s7(r7Var);
+            a0Var.f1713b = new s7(r7Var);
             int i10 = aVar.f58000e;
             if (i10 == -1) {
                 Bitmap bitmap = aVar.f57997a;
@@ -161,14 +161,14 @@ public final class d extends pb.e {
             bVar.f59107b = o7Var;
             bVar.f59108c = Integer.valueOf(i7 & Integer.MAX_VALUE);
             a0Var.d = new p7(bVar);
-            a0Var.f1707c = this.f60560e;
+            a0Var.f1714c = this.f60560e;
             obj.f344e = new r8(a0Var);
             n.f54964a.execute(new qa(uaVar, new xa((b8) obj, 0), a8Var, uaVar.b(), 0));
         }
         android.support.v4.media.session.a0 a0Var2 = new android.support.v4.media.session.a0(3, false);
         a0Var2.d = this.f60560e;
-        a0Var2.f1706b = z7Var;
-        a0Var2.f1707c = Boolean.valueOf(this.d);
+        a0Var2.f1713b = z7Var;
+        a0Var2.f1714c = Boolean.valueOf(this.d);
         n.f54964a.execute(new ra(this.f60562g, new e1(a0Var2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         wa waVar = this.h;

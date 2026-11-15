@@ -152,7 +152,7 @@ public final class o0 implements Runnable {
                         if (z10) {
                             jb jbVar = new jb(e2Var2.getParentActivity(), e2Var2.getResourceProvider());
                             int L = org.telegram.messenger.g0.L(15.0f);
-                            i9 i9Var = jbVar.f35959a;
+                            i9 i9Var = jbVar.f35949a;
                             i9Var.setRoundRadius(L);
                             i9Var.f(user, new t8(0, user));
                             String j3 = q10.j(user, true);
@@ -164,7 +164,7 @@ public final class o0 implements Runnable {
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a02);
                             int indexOf = a02.indexOf(j3);
                             spannableStringBuilder.setSpan(new y31(org.telegram.messenger.g0.o()), indexOf, j3.length() + indexOf, 18);
-                            jbVar.f35960b.setText(spannableStringBuilder);
+                            jbVar.f35950b.setText(spannableStringBuilder);
                             if (arrayList3.isEmpty()) {
                                 xb.g(e2Var2, jbVar, 2750).j();
                             } else {

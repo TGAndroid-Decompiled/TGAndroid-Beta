@@ -20,7 +20,7 @@ public final class c4 implements Runnable {
         switch (i7) {
             case 0:
                 int i10 = ProfileStoriesView.f43351t0;
-                ProfileActivity profileActivity = av0Var.f45520v0;
+                ProfileActivity profileActivity = av0Var.f45514v0;
                 RectF rectF = ProfileActivity.X6;
                 profileActivity.M4(false);
                 return;

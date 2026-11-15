@@ -5,13 +5,13 @@ import java.util.Calendar;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class t1 {
-    public final String f26614a;
-    public final ArrayList f26615b = new ArrayList();
-    public final ArrayList f26616c = new ArrayList();
+    public final String f26623a;
+    public final ArrayList f26624b = new ArrayList();
+    public final ArrayList f26625c = new ArrayList();
     public final ArrayList d = new ArrayList();
 
     public t1(String str) {
-        this.f26614a = str;
+        this.f26623a = str;
     }
 
     public static t1 b(TL_account.contactBirthdays contactbirthdays) {
@@ -43,9 +43,9 @@ public final class t1 {
             int i18 = tL_birthday.day;
             TLRPC.User user = null;
             if (i18 == i10 && tL_birthday.month == i11) {
-                arrayList = t1Var2.f26616c;
+                arrayList = t1Var2.f26625c;
             } else if (i18 == i13 && tL_birthday.month == i14) {
-                arrayList = t1Var2.f26615b;
+                arrayList = t1Var2.f26624b;
             } else if (i18 == i15 && tL_birthday.month == i16) {
                 arrayList = t1Var2.d;
             } else {
@@ -84,7 +84,7 @@ public final class t1 {
     }
 
     public final boolean a(long j3) {
-        ArrayList arrayList = this.f26615b;
+        ArrayList arrayList = this.f26624b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -94,7 +94,7 @@ public final class t1 {
                 return true;
             }
         }
-        ArrayList arrayList2 = this.f26616c;
+        ArrayList arrayList2 = this.f26625c;
         int size2 = arrayList2.size();
         int i10 = 0;
         while (i10 < size2) {

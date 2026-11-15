@@ -3,11 +3,11 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.RelativeLayout;
 public final class as0 extends RelativeLayout {
-    public final PopupNotificationActivity f45502a;
+    public final PopupNotificationActivity f45496a;
 
     public as0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
         super(popupNotificationActivity2);
-        this.f45502a = popupNotificationActivity;
+        this.f45496a = popupNotificationActivity;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class as0 extends RelativeLayout {
             View childAt = getChildAt(i13);
             if (childAt.getTag() instanceof String) {
                 int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f45502a;
+                PopupNotificationActivity popupNotificationActivity = this.f45496a;
                 childAt.layout(left, org.telegram.messenger.g0.L(3.0f) + popupNotificationActivity.f42964b.getTop(), childAt.getRight(), popupNotificationActivity.f42964b.getBottom());
             }
         }
@@ -26,7 +26,7 @@ public final class as0 extends RelativeLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        PopupNotificationActivity popupNotificationActivity = this.f45502a;
+        PopupNotificationActivity popupNotificationActivity = this.f45496a;
         int measuredWidth = popupNotificationActivity.f42964b.getMeasuredWidth();
         int measuredHeight = popupNotificationActivity.f42964b.getMeasuredHeight();
         for (int i11 = 0; i11 < getChildCount(); i11++) {

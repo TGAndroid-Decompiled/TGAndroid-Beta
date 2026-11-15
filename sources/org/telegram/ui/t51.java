@@ -9,22 +9,22 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class t51 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.Components.qm0 f51384a;
-    public final int f51385b;
-    public final TextPaint f51386c;
+    public final org.telegram.ui.Components.qm0 f51385a;
+    public final int f51386b;
+    public final TextPaint f51387c;
     public int d;
-    public final ThemeActivity f51387e;
+    public final ThemeActivity f51388e;
 
     public t51(ThemeActivity themeActivity, Context context) {
         super(context);
-        this.f51387e = themeActivity;
-        this.f51385b = 17;
+        this.f51388e = themeActivity;
+        this.f51386b = 17;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
-        this.f51386c = textPaint;
+        this.f51387c = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
         org.telegram.ui.Components.qm0 qm0Var = new org.telegram.ui.Components.qm0(context);
-        this.f51384a = qm0Var;
+        this.f51385a = qm0Var;
         qm0Var.setReportChanges(true);
         qm0Var.setSeparatorsCount(18);
         qm0Var.setDelegate(new ur0(this, 3));
@@ -40,13 +40,13 @@ public final class t51 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f51384a.invalidate();
+        this.f51385a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.I6, false);
-        TextPaint textPaint = this.f51386c;
+        TextPaint textPaint = this.f51387c;
         textPaint.setColor(x02);
         canvas.drawText("" + org.telegram.messenger.gz.Y0, getMeasuredWidth() - org.telegram.messenger.g0.L(39.0f), org.telegram.messenger.g0.L(28.0f), textPaint);
     }
@@ -54,18 +54,18 @@ public final class t51 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f51384a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        this.f51385a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-        this.f51384a.setProgress(org.telegram.messenger.gz.Y0 / this.f51385b);
+        this.f51385a.setProgress(org.telegram.messenger.gz.Y0 / this.f51386b);
     }
 
     @Override
     public final boolean performAccessibilityAction(int i7, Bundle bundle) {
-        if (!super.performAccessibilityAction(i7, bundle) && !this.f51384a.getSeekBarAccessibilityDelegate().g(this, i7, bundle)) {
+        if (!super.performAccessibilityAction(i7, bundle) && !this.f51385a.getSeekBarAccessibilityDelegate().g(this, i7, bundle)) {
             return false;
         }
         return true;
@@ -73,7 +73,7 @@ public final class t51 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.qm0 qm0Var = this.f51384a;
+        org.telegram.ui.Components.qm0 qm0Var = this.f51385a;
         if (qm0Var == null) {
             return;
         }

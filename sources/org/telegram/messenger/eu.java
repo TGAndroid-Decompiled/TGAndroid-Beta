@@ -10,14 +10,14 @@ public final class eu extends cu {
     public final du[] X;
     public final int Y;
     public int Z;
-    public du f23364a0;
-    public du f23365b0;
-    public final org.telegram.ui.Cells.k9 f23366c0;
+    public du f23367a0;
+    public du f23368b0;
+    public final org.telegram.ui.Cells.k9 f23369c0;
 
     public eu(iv ivVar, Rect rect, int i7, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
         super(ivVar, rect, i7);
         this.Z = -1;
-        this.f23366c0 = new org.telegram.ui.Cells.k9(new hi.l0(this, 25));
+        this.f23369c0 = new org.telegram.ui.Cells.k9(new hi.l0(this, 25));
         this.X = new du[pageblockbuttonrow.buttons.size()];
         int size = pageblockbuttonrow.buttons.size();
         for (int i10 = 0; i10 < size; i10++) {
@@ -43,14 +43,14 @@ public final class eu extends cu {
         euVar.m0();
         du[] duVarArr = euVar.X;
         if (duVarArr.length == 0) {
-            c10 = g0.L(euVar.f22933a.M + 18);
+            c10 = g0.L(euVar.f22941a.M + 18);
         } else {
             c10 = duVarArr[0].c();
         }
         float I = (euVar.I() - c10) / 2.0f;
         if (f11 >= I && f11 <= I + c10) {
             for (du duVar : duVarArr) {
-                if (f10 >= duVar.d && f10 <= i7 + duVar.f23137e) {
+                if (f10 >= duVar.d && f10 <= i7 + duVar.f23144e) {
                     return duVar;
                 }
             }
@@ -60,12 +60,12 @@ public final class eu extends cu {
     }
 
     public static void j0(eu euVar, du duVar) {
-        du duVar2 = euVar.f23364a0;
+        du duVar2 = euVar.f23367a0;
         if (duVar2 != duVar) {
             if (duVar2 != null) {
                 duVar2.m(false);
             }
-            euVar.f23364a0 = duVar;
+            euVar.f23367a0 = duVar;
             if (duVar != null) {
                 duVar.m(true);
             }
@@ -77,23 +77,23 @@ public final class eu extends cu {
         int c10;
         du[] duVarArr = this.X;
         if (duVarArr.length == 0) {
-            c10 = g0.L(this.f22933a.M + 18);
+            c10 = g0.L(this.f22941a.M + 18);
         } else {
             c10 = duVarArr[0].c();
         }
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return g0.L(4.333f) + rect.top + c10 + rect.bottom;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return k0() + rect.left + rect.right;
     }
 
     @Override
     public final boolean Q() {
-        if (this.f23365b0 != null) {
+        if (this.f23368b0 != null) {
             return true;
         }
         return false;
@@ -103,7 +103,7 @@ public final class eu extends cu {
     public final void T() {
         du[] duVarArr;
         for (du duVar : this.X) {
-            duVar.f23134a.i(this.W);
+            duVar.f23141a.i(this.W);
         }
     }
 
@@ -111,7 +111,7 @@ public final class eu extends cu {
     public final void V() {
         du[] duVarArr;
         for (du duVar : this.X) {
-            duVar.f23134a.f(this.W);
+            duVar.f23141a.f(this.W);
         }
     }
 
@@ -121,7 +121,7 @@ public final class eu extends cu {
         if (view == null) {
             return false;
         }
-        return this.f23366c0.a(view, motionEvent);
+        return this.f23369c0.a(view, motionEvent);
     }
 
     public final int k0() {
@@ -134,7 +134,7 @@ public final class eu extends cu {
         for (du duVar : duVarArr) {
             L += duVar.h();
         }
-        return Math.min(this.f22935c, L);
+        return Math.min(this.f22943c, L);
     }
 
     public final void l0(int i7) {
@@ -157,18 +157,18 @@ public final class eu extends cu {
             int i19 = 0;
             for (du duVar : duVarArr) {
                 int h = duVar.h();
-                duVar.f23137e = h;
+                duVar.f23144e = h;
                 i19 += h;
             }
             int i20 = this.Y;
             if (i19 > max) {
                 int i21 = 0;
                 for (du duVar2 : duVarArr) {
-                    i21 += duVar2.f23137e - duVar2.e();
+                    i21 += duVar2.f23144e - duVar2.e();
                 }
                 if (i21 <= 0) {
                     for (du duVar3 : duVarArr) {
-                        duVar3.f23137e = duVar3.e();
+                        duVar3.f23144e = duVar3.e();
                     }
                 } else {
                     int min = Math.min(i19 - max, i21);
@@ -176,7 +176,7 @@ public final class eu extends cu {
                     int i23 = 0;
                     while (i22 < duVarArr.length) {
                         du duVar4 = duVarArr[i22];
-                        int e10 = duVar4.f23137e - duVar4.e();
+                        int e10 = duVar4.f23144e - duVar4.e();
                         if (i22 == duVarArr.length - i17) {
                             i16 = min - i23;
                             i14 = i17;
@@ -187,7 +187,7 @@ public final class eu extends cu {
                             i16 = (int) ((min * e10) / i21);
                         }
                         int min2 = Math.min(i16, e10);
-                        duVar4.f23137e -= min2;
+                        duVar4.f23144e -= min2;
                         i23 += min2;
                         i22++;
                         i17 = i14;
@@ -204,7 +204,7 @@ public final class eu extends cu {
                         int i24 = max / length2;
                         z10 = false;
                         for (int i25 = 0; i25 < duVarArr.length; i25++) {
-                            if (!zArr[i25] && (i12 = duVarArr[i25].f23137e) > i24) {
+                            if (!zArr[i25] && (i12 = duVarArr[i25].f23144e) > i24) {
                                 zArr[i25] = true;
                                 max -= i12;
                                 length2--;
@@ -224,7 +224,7 @@ public final class eu extends cu {
                                 } else {
                                     i11 = 0;
                                 }
-                                duVar5.f23137e = i11 + i26;
+                                duVar5.f23144e = i11 + i26;
                                 i27 = i29;
                             }
                         }
@@ -232,7 +232,7 @@ public final class eu extends cu {
                 }
             }
             for (du duVar6 : duVarArr) {
-                i18 += duVar6.f23137e;
+                i18 += duVar6.f23144e;
             }
             int c10 = p1.g.c(i20);
             if (c10 != i10) {
@@ -246,16 +246,16 @@ public final class eu extends cu {
             }
             for (du duVar7 : duVarArr) {
                 duVar7.d = i13;
-                i13 += duVar7.f23137e + L;
+                i13 += duVar7.f23144e + L;
             }
         }
     }
 
     public final void m0() {
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         int i7 = ivVar.C;
         int i10 = ivVar.S;
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         int max = Math.max(0, ((((i7 + i10) + ivVar.T) - (i10 * 2)) - rect.left) - rect.right);
         if (this.Z != max) {
             l0(max);

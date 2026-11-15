@@ -45,12 +45,12 @@ public class h6 extends View {
         }
         this.f35179r = false;
         g6 g6Var = this.f35175c;
-        if (z12 && !TextUtils.equals(charSequence, g6Var.f34836i)) {
+        if (z12 && !TextUtils.equals(charSequence, g6Var.f34840i)) {
             if (g6Var.K) {
-                ValueAnimator valueAnimator = g6Var.f34847t;
+                ValueAnimator valueAnimator = g6Var.f34851t;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    g6Var.f34847t = null;
+                    g6Var.f34851t = null;
                 }
             } else if (g6Var.h()) {
                 this.f35177f = charSequence;
@@ -76,7 +76,7 @@ public class h6 extends View {
     }
 
     public TextPaint getPaint() {
-        return this.f35175c.f34827a;
+        return this.f35175c.f34831a;
     }
 
     public float getRightPadding() {
@@ -88,11 +88,11 @@ public class h6 extends View {
     }
 
     public CharSequence getText() {
-        return this.f35175c.f34836i;
+        return this.f35175c.f34840i;
     }
 
     public int getTextColor() {
-        return this.f35175c.f34827a.getColor();
+        return this.f35175c.f34831a.getColor();
     }
 
     public int getTextHeight() {
@@ -112,7 +112,7 @@ public class h6 extends View {
         g6 g6Var = this.f35175c;
         if (drawable != null && (!this.f35173a || g6Var.i() > 0.0f)) {
             int c10 = (int) (g6Var.c() + getPaddingLeft() + getPaddingRight());
-            int i10 = g6Var.f34829b & 7;
+            int i10 = g6Var.f34833b & 7;
             if (i10 == 5) {
                 i7 = getWidth() - c10;
             } else if (i10 == 1) {
@@ -146,7 +146,7 @@ public class h6 extends View {
         g6 g6Var = this.f35175c;
         if (i12 != size && getLayoutParams().width != 0) {
             g6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
-            g6Var.t(g6Var.f34836i, false, true);
+            g6Var.t(g6Var.f34840i, false, true);
         }
         this.d = size;
         if (this.f35178n && View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
@@ -164,25 +164,25 @@ public class h6 extends View {
     }
 
     public void setEmojiCacheType(int i7) {
-        this.f35175c.f34843p = i7;
+        this.f35175c.f34847p = i7;
     }
 
     public void setEmojiColor(int i7) {
         g6 g6Var = this.f35175c;
-        if (g6Var.f34828a0 != i7) {
-            g6Var.f34828a0 = i7;
-            g6Var.f34830b0 = new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN);
+        if (g6Var.f34832a0 != i7) {
+            g6Var.f34832a0 = i7;
+            g6Var.f34834b0 = new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN);
         }
         invalidate();
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f35175c.f34830b0 = colorFilter;
+        this.f35175c.f34834b0 = colorFilter;
         invalidate();
     }
 
     public void setGravity(int i7) {
-        this.f35175c.f34829b = i7;
+        this.f35175c.f34833b = i7;
     }
 
     public void setHideBackgroundIfEmpty(boolean z10) {
@@ -202,7 +202,7 @@ public class h6 extends View {
     }
 
     public void setOnWidthUpdatedListener(Runnable runnable) {
-        this.f35175c.f34832c0 = runnable;
+        this.f35175c.f34836c0 = runnable;
     }
 
     public void setRightPadding(float f10) {

@@ -75,19 +75,19 @@ public class z0 extends FrameLayout implements z5 {
             org.telegram.ui.Components.o5 o5Var = this.f29899a;
             int i12 = 3;
             if (i7 == 1) {
-                boolean z10 = hd.f24101a0;
+                boolean z10 = hd.f24104a0;
                 this.d = !z10;
                 fp fpVar2 = this.f29902e;
                 if (z10) {
                     i12 = 5;
                 }
                 addView(fpVar2, ja.e(26, -1, i12 | 16));
-                if (!hd.f24101a0) {
+                if (!hd.f24104a0) {
                     i11 = org.telegram.messenger.g0.L(34.0f);
                 } else {
                     i11 = 0;
                 }
-                if (!hd.f24101a0) {
+                if (!hd.f24104a0) {
                     L2 = 0;
                 } else {
                     L2 = org.telegram.messenger.g0.L(34.0f);
@@ -96,16 +96,16 @@ public class z0 extends FrameLayout implements z5 {
                 return;
             }
             fp fpVar3 = this.f29902e;
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 i12 = 5;
             }
             addView(fpVar3, ja.e(26, -1, i12 | 16));
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i10 = org.telegram.messenger.g0.L(34.0f);
             } else {
                 i10 = 0;
             }
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(34.0f);
@@ -328,7 +328,7 @@ public class z0 extends FrameLayout implements z5 {
             this.h = i9Var;
             i9Var.setRoundRadius(org.telegram.messenger.g0.L(5.0f));
             i9 i9Var2 = this.h;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i10 = 5;
             } else {
                 i10 = 3;
@@ -380,9 +380,9 @@ public class z0 extends FrameLayout implements z5 {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
         fp fpVar = this.f29902e;
-        if (fpVar != null && fpVar.f34663a.f32441q) {
+        if (fpVar != null && fpVar.f34667a.f32441q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.f29902e.f34663a.f32441q);
+            accessibilityNodeInfo.setChecked(this.f29902e.f34667a.f32441q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -458,11 +458,11 @@ public class z0 extends FrameLayout implements z5 {
             this.f29903f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.f29903f.setColorFilter(this.f29905r, PorterDuff.Mode.MULTIPLY);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 this.f29903f.setScaleX(-1.0f);
             }
             ImageView imageView2 = this.f29903f;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i12 = 3;
             } else {
                 i12 = 5;
@@ -471,7 +471,7 @@ public class z0 extends FrameLayout implements z5 {
         }
         org.telegram.ui.Components.o5 o5Var = this.f29899a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) o5Var.getLayoutParams();
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             if (this.f29903f != null) {
                 i11 = org.telegram.messenger.g0.L(32.0f);
             } else {
@@ -488,13 +488,13 @@ public class z0 extends FrameLayout implements z5 {
         }
         o5Var.setLayoutParams(layoutParams);
         float f11 = 18.0f;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f10 = 8.0f;
         } else {
             f10 = 18.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             f11 = 8.0f;
         }
         setPadding(L, 0, org.telegram.messenger.g0.L(f11), 0);
@@ -539,19 +539,19 @@ public class z0 extends FrameLayout implements z5 {
             this.f29900b.setVisibility(8);
             this.f29900b.setTextSize(1, 13.0f);
             TextView textView2 = this.f29900b;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(43.0f);
             }
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(43.0f);
             } else {
                 i7 = 0;
             }
             textView2.setPadding(L, 0, i7, 0);
             TextView textView3 = this.f29900b;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i12 = 5;
             }
             addView(textView3, ja.d(-2, -2.0f, i12 | 16, 0.0f, 10.0f, 0.0f, 0.0f));
@@ -683,7 +683,7 @@ public class z0 extends FrameLayout implements z5 {
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(this.f29905r, PorterDuff.Mode.SRC_IN);
         this.J = porterDuffColorFilter;
         imageView.setColorFilter(porterDuffColorFilter);
-        addView((View) imageView, ja.e(-2, 40, (hd.f24101a0 ? 5 : 3) | 16));
+        addView((View) imageView, ja.e(-2, 40, (hd.f24104a0 ? 5 : 3) | 16));
         org.telegram.ui.Components.o5 o5Var = new org.telegram.ui.Components.o5(context);
         this.f29899a = o5Var;
         o5Var.setLines(1);
@@ -692,8 +692,8 @@ public class z0 extends FrameLayout implements z5 {
         o5Var.setEllipsize(TextUtils.TruncateAt.END);
         o5Var.setTextColor(this.f29904n);
         o5Var.setTextSize(1, 16.0f);
-        addView(o5Var, ja.e(-2, -2, (hd.f24101a0 ? 5 : 3) | 16));
-        this.d = hd.f24101a0;
+        addView(o5Var, ja.e(-2, -2, (hd.f24104a0 ? 5 : 3) | 16));
+        this.d = hd.f24104a0;
         a(i7);
     }
 }

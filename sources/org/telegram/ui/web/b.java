@@ -20,12 +20,12 @@ import org.telegram.ui.Components.p41;
 import org.telegram.ui.l41;
 import org.telegram.ui.qv0;
 public final class b implements s10 {
-    public final int f52576a;
-    public final Object f52577b;
+    public final int f52579a;
+    public final Object f52580b;
 
     public b(Object obj, int i7) {
-        this.f52576a = i7;
-        this.f52577b = obj;
+        this.f52579a = i7;
+        this.f52580b = obj;
     }
 
     @Override
@@ -34,16 +34,16 @@ public final class b implements s10 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int i7 = this.f52576a;
-        Object obj3 = this.f52577b;
+        int i7 = this.f52579a;
+        Object obj3 = this.f52580b;
         switch (i7) {
             case 0:
                 final k kVar = (k) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 p41 p41Var = (p41) obj2;
                 i iVar = kVar.E;
-                ArrayList arrayList2 = kVar.f52690y;
-                if (!kVar.f52681b && arrayList2.isEmpty()) {
+                ArrayList arrayList2 = kVar.f52693y;
+                if (!kVar.f52684b && arrayList2.isEmpty()) {
                     arrayList.add(b41.k(kVar.d));
                 }
                 SharedPreferences sharedPreferences = kVar.getContext().getSharedPreferences("webhistory", 0);
@@ -56,7 +56,7 @@ public final class b implements s10 {
                         for (JSONArray jSONArray = new JSONArray(string); i10 < jSONArray.length(); jSONArray = jSONArray) {
                             JSONObject jSONObject = jSONArray.getJSONObject(i10);
                             j jVar = new j(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                            jVar.f52640c = jSONObject.optDouble("rank", 0.0d);
+                            jVar.f52643c = jSONObject.optDouble("rank", 0.0d);
                             arrayList4.add(jVar);
                             i10++;
                         }
@@ -68,7 +68,7 @@ public final class b implements s10 {
                             i11++;
                             j jVar2 = (j) obj4;
                             if (arrayList3.size() < 20) {
-                                arrayList3.add(jVar2.f52638a);
+                                arrayList3.add(jVar2.f52641a);
                             }
                         }
                     } catch (Exception unused) {
@@ -77,7 +77,7 @@ public final class b implements s10 {
                 arrayList2.size();
                 arrayList3.size();
                 if (!arrayList2.isEmpty()) {
-                    arrayList.add(b41.k(kVar.f52688w));
+                    arrayList.add(b41.k(kVar.f52691w));
                 }
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     final String str = (String) arrayList2.get(i12);
@@ -112,13 +112,13 @@ public final class b implements s10 {
                             }
                         }
                     };
-                    int i13 = d.f52584b;
+                    int i13 = d.f52587b;
                     b41 K = b41.K(d.class);
-                    K.f33194z = 1;
-                    K.f33181l = str;
+                    K.f33197z = 1;
+                    K.f33184l = str;
                     K.D = onClickListener;
-                    K.f33186q = z12;
-                    K.f33187r = z13;
+                    K.f33189q = z12;
+                    K.f33190r = z13;
                     K.G = Boolean.TRUE;
                     K.H = kVar;
                     arrayList.add(K);
@@ -158,34 +158,34 @@ public final class b implements s10 {
                                 }
                             }
                         };
-                        int i15 = d.f52584b;
+                        int i15 = d.f52587b;
                         b41 K2 = b41.K(d.class);
-                        K2.f33194z = 0;
-                        K2.f33181l = str2;
+                        K2.f33197z = 0;
+                        K2.f33184l = str2;
                         K2.D = onClickListener2;
-                        K2.f33186q = z10;
-                        K2.f33187r = z11;
+                        K2.f33189q = z10;
+                        K2.f33190r = z11;
                         K2.G = Boolean.TRUE;
                         K2.H = kVar;
                         arrayList.add(K2);
                     }
                 }
                 if (iVar != null) {
-                    ArrayList arrayList5 = iVar.f52626a;
+                    ArrayList arrayList5 = iVar.f52629a;
                     if (!arrayList5.isEmpty()) {
                         arrayList.add(b41.r(hd.M0(2131742913, null)));
                         for (int i16 = 0; i16 < arrayList5.size(); i16++) {
                             gj gjVar = (gj) arrayList5.get(i16);
                             if (!TextUtils.isEmpty(k.a(gjVar))) {
-                                int i17 = g.f52608b;
+                                int i17 = g.f52611b;
                                 b41 K3 = b41.K(g.class);
-                                K3.f33194z = 3;
-                                K3.f33186q = true;
+                                K3.f33197z = 3;
+                                K3.f33189q = true;
                                 K3.H = gjVar;
                                 arrayList.add(K3);
                             }
                         }
-                        if (!iVar.f52630f) {
+                        if (!iVar.f52633f) {
                             arrayList.add(b41.q(arrayList.size(), 32));
                             arrayList.add(b41.q(arrayList.size(), 32));
                             arrayList.add(b41.q(arrayList.size(), 32));
@@ -198,7 +198,7 @@ public final class b implements s10 {
                 return;
             case 1:
                 c5 c5Var = (c5) obj3;
-                c5Var.f57578z0 = ((Integer) obj).intValue();
+                c5Var.f57580z0 = ((Integer) obj).intValue();
                 c5Var.A0 = ((Integer) obj2).intValue();
                 org.telegram.messenger.g0.i3(new q2.d(c5Var, 16), 60L);
                 return;
@@ -208,7 +208,7 @@ public final class b implements s10 {
                 p41 p41Var2 = (p41) obj2;
                 ArrayList arrayList7 = hVar.W1;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
-                    int L = org.telegram.messenger.g0.L(13.0f) + ((org.telegram.messenger.g0.f23609q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.L(68.0f));
+                    int L = org.telegram.messenger.g0.L(13.0f) + ((org.telegram.messenger.g0.f23611q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.L(68.0f));
                     int L2 = org.telegram.messenger.g0.L(88.0f) + hVar.f59005h2;
                     arrayList6.add(b41.E(0, L2));
                     int i18 = L - L2;
@@ -223,9 +223,9 @@ public final class b implements s10 {
                                 boolean containsKey = hVar.f59003f2.containsKey(tL_help_country.iso2);
                                 int i20 = vh.g.f58997b;
                                 b41 K4 = b41.K(vh.g.class);
-                                K4.f33181l = tL_help_country.iso2;
+                                K4.f33184l = tL_help_country.iso2;
                                 K4.G = tL_help_country;
-                                K4.f33175e = containsKey;
+                                K4.f33178e = containsKey;
                                 arrayList6.add(K4);
                             }
                         }

@@ -27,11 +27,11 @@ public final class up extends h6 {
             Rect rect = this.f40142s;
             rect.set(bounds);
             int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f34829b == 3) {
+            if (getDrawable().f34833b == 3) {
                 rect.right = rect.left + ceil;
-            } else if (getDrawable().f34829b == 5) {
+            } else if (getDrawable().f34833b == 5) {
                 rect.left = rect.right - ceil;
-            } else if (getDrawable().f34829b == 17) {
+            } else if (getDrawable().f34833b == 17) {
                 int i7 = (rect.left + rect.right) / 2;
                 int i10 = ceil / 2;
                 rect.left = i7 - i10;

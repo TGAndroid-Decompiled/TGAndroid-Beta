@@ -137,9 +137,9 @@ public abstract class o {
             }
         } else if (Objects.equals(uVar.f10451s, "video/hevc")) {
             b7.d h = h(new s(bArr, 4, i7 + 4));
-            int i11 = h.f2945a;
+            int i11 = h.f2948a;
             if (i11 != 35) {
-                if (i11 <= 14 && i11 % 2 == 0 && h.f2947c == uVar.J - 1) {
+                if (i11 <= 14 && i11 % 2 == 0 && h.f2950c == uVar.J - 1) {
                     return false;
                 }
             } else {

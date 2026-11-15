@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class fd implements Runnable {
-    public final int f34580a;
-    public final ChatActivityEnterView f34581b;
-    public final boolean f34582c;
+    public final int f34584a;
+    public final ChatActivityEnterView f34585b;
+    public final boolean f34586c;
 
     public fd(ChatActivityEnterView chatActivityEnterView, boolean z10, int i7) {
-        this.f34580a = i7;
-        this.f34581b = chatActivityEnterView;
-        this.f34582c = z10;
+        this.f34584a = i7;
+        this.f34585b = chatActivityEnterView;
+        this.f34586c = z10;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.bg0 bg0Var;
-        int i7 = this.f34580a;
-        ChatActivityEnterView chatActivityEnterView = this.f34581b;
-        boolean z10 = this.f34582c;
+        int i7 = this.f34584a;
+        ChatActivityEnterView chatActivityEnterView = this.f34585b;
+        boolean z10 = this.f34586c;
         switch (i7) {
             case 0:
                 if (!z10) {
@@ -34,7 +34,7 @@ public final class fd implements Runnable {
                 chatActivityEnterView.getClass();
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34581b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f34585b;
                 uc ucVar = chatActivityEnterView2.X5;
                 chatActivityEnterView2.N0 = System.currentTimeMillis();
                 boolean k12 = chatActivityEnterView2.k1(false, 0, 0, 0L, true);

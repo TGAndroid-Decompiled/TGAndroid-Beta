@@ -5,31 +5,31 @@ import android.view.TextureView;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 public final class e71 implements Runnable {
-    public final int f34249a;
-    public final m71 f34250b;
+    public final int f34236a;
+    public final m71 f34237b;
 
     public e71(m71 m71Var, int i7) {
-        this.f34249a = i7;
-        this.f34250b = m71Var;
+        this.f34236a = i7;
+        this.f34237b = m71Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34249a) {
+        switch (this.f34236a) {
             case 0:
-                m71 m71Var = this.f34250b;
+                m71 m71Var = this.f34237b;
                 i71 i71Var = m71Var.f37149g0;
                 u51 u51Var = m71Var.f37138a;
                 if (u51Var != null && u51Var.d0()) {
                     i71Var.c((int) (u51Var.S() / 1000));
-                    i71Var.f35498x = (int) (u51Var.K() / 1000);
+                    i71Var.f35489x = (int) (u51Var.K() / 1000);
                     i71Var.invalidate();
                     org.telegram.messenger.g0.i3(m71Var.f37152j0, 1000L);
                     return;
                 }
                 return;
             default:
-                m71 m71Var2 = this.f34250b;
+                m71 m71Var2 = this.f34237b;
                 i71 i71Var2 = m71Var2.f37149g0;
                 ImageView imageView = m71Var2.f37145e;
                 TextureView textureView = m71Var2.d;

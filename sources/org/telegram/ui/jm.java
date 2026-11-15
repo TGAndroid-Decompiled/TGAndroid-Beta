@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jm implements ls {
-    public final TLRPC.TL_messageMediaPoll f48425a;
-    public final TLRPC.PollAnswer f48426b;
-    public final org.telegram.ui.Cells.q1 f48427c;
+    public final TLRPC.TL_messageMediaPoll f48365a;
+    public final TLRPC.PollAnswer f48366b;
+    public final org.telegram.ui.Cells.q1 f48367c;
     public final lm d;
 
     public jm(lm lmVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.q1 q1Var) {
         this.d = lmVar;
-        this.f48425a = tL_messageMediaPoll;
-        this.f48426b = pollAnswer;
-        this.f48427c = q1Var;
+        this.f48365a = tL_messageMediaPoll;
+        this.f48366b = pollAnswer;
+        this.f48367c = q1Var;
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class jm implements ls {
     }
 
     @Override
-    public final org.telegram.ui.Components.m60 E(ai.j0 j0Var) {
+    public final org.telegram.ui.Components.m60 E(ai.k0 k0Var) {
         return null;
     }
 
@@ -54,21 +54,21 @@ public final class jm implements ls {
     @Override
     public final void K() {
         ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.f48426b);
-        org.telegram.messenger.ez sendMessagesHelper = this.d.f49005a.getSendMessagesHelper();
-        org.telegram.ui.Cells.q1 q1Var = this.f48427c;
+        arrayList.add(this.f48366b);
+        org.telegram.messenger.ez sendMessagesHelper = this.d.f49001a.getSendMessagesHelper();
+        org.telegram.ui.Cells.q1 q1Var = this.f48367c;
         sendMessagesHelper.w0(q1Var.getMessageObject(), arrayList, null);
         q1Var.c0(true);
     }
 
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        an anVar = this.d.f49005a;
+        an anVar = this.d.f49001a;
         if (inputStickerSet != null && anVar.getParentActivity() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
             tL_inputStickerSetID.f28071id = inputStickerSet.f28071id;
-            org.telegram.ui.Components.bw0 bw0Var = new org.telegram.ui.Components.bw0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.f45118a0, anVar.Aa);
+            org.telegram.ui.Components.bw0 bw0Var = new org.telegram.ui.Components.bw0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.f45117a0, anVar.Aa);
             boolean V9 = anVar.V9();
             bw0Var.f29700i0 = V9;
             bw0Var.f29707n = V9;
@@ -94,7 +94,7 @@ public final class jm implements ls {
 
     @Override
     public final long a() {
-        return this.d.f49005a.f45259k6;
+        return this.d.f49001a.f45258k6;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class jm implements ls {
 
     @Override
     public final boolean c() {
-        if (this.d.f49005a.f45204g4 == 1) {
+        if (this.d.f49001a.f45203g4 == 1) {
             return true;
         }
         return false;
@@ -112,7 +112,7 @@ public final class jm implements ls {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f48425a;
+        return this.f48365a;
     }
 
     @Override
@@ -127,7 +127,7 @@ public final class jm implements ls {
 
     @Override
     public final TLRPC.PollAnswer g() {
-        return this.f48426b;
+        return this.f48366b;
     }
 
     @Override
@@ -152,8 +152,8 @@ public final class jm implements ls {
 
     @Override
     public final void q() {
-        org.telegram.messenger.ez sendMessagesHelper = this.d.f49005a.getSendMessagesHelper();
-        org.telegram.ui.Cells.q1 q1Var = this.f48427c;
+        org.telegram.messenger.ez sendMessagesHelper = this.d.f49001a.getSendMessagesHelper();
+        org.telegram.ui.Cells.q1 q1Var = this.f48367c;
         sendMessagesHelper.w0(q1Var.getMessageObject(), null, null);
         q1Var.c0(true);
     }
@@ -165,7 +165,7 @@ public final class jm implements ls {
 
     @Override
     public final org.telegram.messenger.gj z() {
-        return this.f48427c.getMessageObject();
+        return this.f48367c.getMessageObject();
     }
 
     @Override

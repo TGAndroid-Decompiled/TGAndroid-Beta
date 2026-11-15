@@ -29,9 +29,9 @@ public final class qg implements Runnable {
             case 0:
                 si siVar = (si) c1Var;
                 if (((ArrayList) obj) != null && j3 != 0) {
-                    siVar.f26493q0[z10 ? 1 : 0] = j3;
+                    siVar.f26503q0[z10 ? 1 : 0] = j3;
                 }
-                siVar.f26511x0[z10 ? 1 : 0] = false;
+                siVar.f26521x0[z10 ? 1 : 0] = false;
                 siVar.K0(z10, false);
                 return;
             case 1:
@@ -56,9 +56,9 @@ public final class qg implements Runnable {
                 return;
             case 2:
                 np npVar = (np) c1Var;
-                npVar.f25442y1.k((a0.h) obj, j3);
+                npVar.f25445y1.k((a0.h) obj, j3);
                 if (z10) {
-                    npVar.f25451z1.delete(j3);
+                    npVar.f25454z1.delete(j3);
                     npVar.S2(j3, false);
                     npVar.getNotificationCenter().k(109, Long.valueOf(j3));
                     return;
@@ -71,12 +71,12 @@ public final class qg implements Runnable {
                     ArrayList<TLRPC.Chat> arrayList = ((TLRPC.messages_Chats) tLObject2).chats;
                     npVar2.S3(arrayList, false);
                     oo ooVar = new oo();
-                    ooVar.f25785a = z10;
-                    ooVar.f25786b.addAll(arrayList);
+                    ooVar.f25786a = z10;
+                    ooVar.f25787b.addAll(arrayList);
                     if (tLObject2 instanceof TLRPC.TL_messages_chatsSlice) {
-                        ooVar.f25787c = Math.max(0, ((TLRPC.TL_messages_chatsSlice) tLObject2).count - arrayList.size());
+                        ooVar.f25788c = Math.max(0, ((TLRPC.TL_messages_chatsSlice) tLObject2).count - arrayList.size());
                     } else if (!npVar2.getUserConfig().q()) {
-                        boolean z14 = r2.f26198a;
+                        boolean z14 = r2.f26206a;
                     }
                     npVar2.Z7.put(Long.valueOf(j3), ooVar);
                     npVar2.getNotificationCenter().k(201, Long.valueOf(j3));
@@ -85,12 +85,12 @@ public final class qg implements Runnable {
                     ArrayList<TLRPC.User> arrayList2 = ((TLRPC.Users) tLObject2).users;
                     npVar2.Y3(arrayList2, false);
                     oo ooVar2 = new oo();
-                    ooVar2.f25785a = z10;
-                    ooVar2.f25786b.addAll(arrayList2);
+                    ooVar2.f25786a = z10;
+                    ooVar2.f25787b.addAll(arrayList2);
                     if (tLObject2 instanceof TLRPC.TL_usersSlice) {
-                        ooVar2.f25787c = Math.max(0, ((TLRPC.TL_usersSlice) tLObject2).count - arrayList2.size());
+                        ooVar2.f25788c = Math.max(0, ((TLRPC.TL_usersSlice) tLObject2).count - arrayList2.size());
                     } else if (!npVar2.getUserConfig().q()) {
-                        boolean z15 = r2.f26198a;
+                        boolean z15 = r2.f26206a;
                     }
                     npVar2.Z7.put(Long.valueOf(j3), ooVar2);
                     npVar2.getNotificationCenter().k(201, Long.valueOf(j3));

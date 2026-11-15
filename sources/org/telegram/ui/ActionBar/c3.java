@@ -64,7 +64,7 @@ public final class c3 extends FrameLayout {
         this.h = new org.telegram.ui.Components.x4(this, 200L, erVar, 0);
         this.f28486r = new org.telegram.ui.Components.x4(this, 200L, erVar, 0);
         this.f28488w = new org.telegram.ui.Components.u5(this, 0L, 200L, erVar);
-        this.f28489x = m10.f24934t0;
+        this.f28489x = m10.f24940t0;
         this.F = new RectF();
         this.J = new HashSet();
         this.K = new HashSet();
@@ -205,9 +205,9 @@ public final class c3 extends FrameLayout {
         e2 Q = LaunchActivity.Q();
         if (Q != null && Q.getParentActivity() != null) {
             boolean z10 = Q instanceof an;
-            if (z10 && (qjVar = (anVar = (an) Q).f45118a0) != null) {
+            if (z10 && (qjVar = (anVar = (an) Q).f45117a0) != null) {
                 qjVar.S();
-                anVar.f45118a0.z0(true, false, true);
+                anVar.f45117a0.z0(true, false, true);
             }
             if (b3Var.J != null) {
                 kx sheetFragment = this.d.getSheetFragment();
@@ -215,9 +215,9 @@ public final class c3 extends FrameLayout {
                 org.telegram.ui.t3 t3Var = g4Var.L;
                 y2.b(t3Var);
                 sheetFragment.addSheet(t3Var);
-                org.telegram.ui.s3 s3Var = t3Var.f51334c;
+                org.telegram.ui.s3 s3Var = t3Var.f51335c;
                 t3Var.h = false;
-                t3Var.f51337n = false;
+                t3Var.f51338n = false;
                 ValueAnimator valueAnimator = t3Var.E;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
@@ -226,8 +226,8 @@ public final class c3 extends FrameLayout {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                t3Var.f51342y = 0.0f;
-                t3Var.f51341x = 0.0f;
+                t3Var.f51343y = 0.0f;
+                t3Var.f51342x = 0.0f;
                 t3Var.r();
                 t3Var.A();
                 s3Var.invalidate();
@@ -498,7 +498,7 @@ public final class c3 extends FrameLayout {
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
         TLRPC.WebPage webPage;
-        if (gjVar == null || (message = gjVar.f23817k) == null || (messageMedia = message.media) == null || (webPage = messageMedia.webpage) == null) {
+        if (gjVar == null || (message = gjVar.f23819k) == null || (messageMedia = message.media) == null || (webPage = messageMedia.webpage) == null) {
             return null;
         }
         return m(webPage);
@@ -512,8 +512,8 @@ public final class c3 extends FrameLayout {
         for (int i7 = 0; i7 < tabs.size(); i7++) {
             b3 b3Var = tabs.get(i7);
             org.telegram.ui.g4 g4Var = b3Var.J;
-            if (g4Var != null && !g4Var.f47320e0.isEmpty()) {
-                Object h = i5.c.h(1, b3Var.J.f47320e0);
+            if (g4Var != null && !g4Var.f47310e0.isEmpty()) {
+                Object h = i5.c.h(1, b3Var.J.f47310e0);
                 if ((h instanceof TLRPC.WebPage) && ((TLRPC.WebPage) h).f28206id == webPage.f28206id) {
                     e(b3Var);
                     return b3Var;

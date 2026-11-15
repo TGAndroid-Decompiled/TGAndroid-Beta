@@ -24,7 +24,7 @@ public final class o extends LinearLayout {
         this.f13349a = textView;
         textView.setTextSize(1, 16.0f);
         q6.U(textView, j6.f28957j5, null);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -35,7 +35,7 @@ public final class o extends LinearLayout {
         this.f13350b = textView2;
         textView2.setTextSize(1, 13.0f);
         q6.U(textView2, j6.f29088q5, null);
-        textView2.setGravity(hd.f24101a0 ? 5 : 3);
+        textView2.setGravity(hd.f24104a0 ? 5 : 3);
         addView(textView2, ja.t(-1, -2, 51, 0, 4, 0, 0));
     }
 

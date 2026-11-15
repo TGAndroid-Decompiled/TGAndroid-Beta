@@ -175,7 +175,7 @@ public final class e extends Drawable implements x5, mm0 {
                     this.f56872n = new oy0(str, 15.0f, g0.o());
                 }
                 oy0 oy0Var = this.f56872n;
-                oy0Var.q(TextUtils.ellipsize(this.f56866e, oy0Var.f38103a, L, TextUtils.TruncateAt.MIDDLE));
+                oy0Var.q(TextUtils.ellipsize(this.f56866e, oy0Var.f38101a, L, TextUtils.TruncateAt.MIDDLE));
             }
             String str2 = this.f56868f;
             if (str2 != null) {
@@ -183,7 +183,7 @@ public final class e extends Drawable implements x5, mm0 {
                     this.f56873r = new oy0(str2, 14.0f, null);
                 }
                 oy0 oy0Var2 = this.f56873r;
-                oy0Var2.q(TextUtils.ellipsize(this.f56868f, oy0Var2.f38103a, L, TextUtils.TruncateAt.END));
+                oy0Var2.q(TextUtils.ellipsize(this.f56868f, oy0Var2.f38101a, L, TextUtils.TruncateAt.END));
             }
             String str3 = this.h;
             if (str3 != null) {
@@ -191,7 +191,7 @@ public final class e extends Drawable implements x5, mm0 {
                     this.f56874s = new oy0(str3, 12.0f, null);
                 }
                 oy0 oy0Var3 = this.f56874s;
-                oy0Var3.q(TextUtils.ellipsize(this.h, oy0Var3.f38103a, L, TextUtils.TruncateAt.END));
+                oy0Var3.q(TextUtils.ellipsize(this.h, oy0Var3.f38101a, L, TextUtils.TruncateAt.END));
             }
             if (this.H && this.f56875w == null) {
                 this.f56875w = new oy0(g0.g0(this.K, true, false), 12.0f, null);
@@ -221,14 +221,14 @@ public final class e extends Drawable implements x5, mm0 {
                     int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                     int intrinsicHeight = (int) (this.Q.getIntrinsicHeight() * 0.8f);
                     int A = (int) e2.A(imageReceiver.N0, intrinsicWidth, 2.0f, imageReceiver.L0);
-                    int interpolation = (int) ((((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0) - ((1.0f - er.f34424k.getInterpolation(imageReceiver.f22278i1)) * g0.L(16.0f)));
+                    int interpolation = (int) ((((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0) - ((1.0f - er.f34423k.getInterpolation(imageReceiver.f22278i1)) * g0.L(16.0f)));
                     this.Q.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f22278i1 * 5.0f) * 255.0f));
                     this.Q.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
                     this.Q.draw(canvas);
                 }
                 radialProgress2.r(bounds.centerX() - g0.L(22.0f), bounds.centerY() - g0.L(22.0f), g0.L(22.0f) + bounds.centerX(), g0.L(22.0f) + bounds.centerY());
                 if (this.H && this.f56875w != null) {
-                    canvas.drawRoundRect(g0.L(6.0f) + bounds.left, g0.L(6.0f) + bounds.top, bounds.left + this.f56875w.f38105c + g0.L(18.0f), g0.L(23.0f) + bounds.top, g0.L(8.5f), g0.L(8.5f), this.f56876x);
+                    canvas.drawRoundRect(g0.L(6.0f) + bounds.left, g0.L(6.0f) + bounds.top, bounds.left + this.f56875w.f38103c + g0.L(18.0f), g0.L(23.0f) + bounds.top, g0.L(8.5f), g0.L(8.5f), this.f56876x);
                     this.f56875w.e(canvas, g0.L(12.0f) + bounds.left, g0.L(15.0f) + bounds.top);
                 }
             } else {
@@ -255,19 +255,19 @@ public final class e extends Drawable implements x5, mm0 {
                     oy0Var.e(canvas, g0.L(56.0f) + i13, g0.L(15.0f) + i15 + i10);
                 }
                 if (this.Y) {
-                    float f10 = this.f56859a.f57081e;
+                    float f10 = this.f56859a.f57085e;
                     if (this.f56873r != null && f10 < 1.0f) {
                         canvas.save();
                         float f11 = 1.0f - f10;
                         int i16 = i15 + i10;
                         canvas.scale(f11, f11, g0.L(56.0f) + i13, g0.L(35.0f) + i16);
-                        this.f56873r.f38103a.setAlpha((int) (f11 * 255.0f));
+                        this.f56873r.f38101a.setAlpha((int) (f11 * 255.0f));
                         this.f56873r.e(canvas, g0.L(56.0f) + i13, g0.L(35.0f) + i16);
                         canvas.restore();
                     }
                     if (f10 > 0.0f) {
                         nm0 nm0Var = this.L;
-                        nm0Var.f37654t = f10;
+                        nm0Var.f37643t = f10;
                         nm0Var.i(i20.w(56.0f, i13, bounds.right), g0.L(30.0f));
                         canvas.save();
                         float L3 = g0.L(45.0f) + i13;
@@ -342,7 +342,7 @@ public final class e extends Drawable implements x5, mm0 {
 
     public final int f() {
         boolean z10 = this.Y;
-        if (z10 && this.f56859a.f57082f) {
+        if (z10 && this.f56859a.f57086f) {
             return !MediaController.B().H();
         }
         if (!this.H && !z10) {
@@ -362,8 +362,8 @@ public final class e extends Drawable implements x5, mm0 {
     public final void g(float f10) {
         if (j()) {
             gj gjVar = MediaController.B().f22377v0;
-            gjVar.f23777b0 = f10;
-            gjVar.f23809i0 = (int) (gjVar.L0() * f10);
+            gjVar.f23779b0 = f10;
+            gjVar.f23811i0 = (int) (gjVar.L0() * f10);
             p(true);
         }
     }
@@ -534,11 +534,11 @@ public final class e extends Drawable implements x5, mm0 {
             boolean j3 = j();
             this.f56859a.a(j3, z10);
             if (gjVar != null && j3) {
-                i7 = gjVar.f23809i0;
+                i7 = gjVar.f23811i0;
                 nm0 nm0Var = this.L;
-                if (!nm0Var.f37640e) {
-                    nm0Var.h(gjVar.f23777b0);
-                    nm0Var.f37651q = gjVar.f23800g0;
+                if (!nm0Var.f37629e) {
+                    nm0Var.h(gjVar.f23779b0);
+                    nm0Var.f37640q = gjVar.f23802g0;
                 }
                 nm0Var.j(gjVar);
             } else {

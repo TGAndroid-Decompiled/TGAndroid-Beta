@@ -2,8 +2,8 @@ package fi;
 
 import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f90;
-public final class o2 implements f90 {
+import org.telegram.ui.Components.g90;
+public final class o2 implements g90 {
     public final b4 f12111a;
 
     public o2(b4 b4Var) {

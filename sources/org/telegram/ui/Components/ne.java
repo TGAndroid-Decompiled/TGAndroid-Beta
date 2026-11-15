@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class ne implements Runnable {
-    public final int f37563a;
-    public int f37564b;
-    public final KeyEvent.Callback f37565c;
+    public final int f37552a;
+    public int f37553b;
+    public final KeyEvent.Callback f37554c;
 
     public ne(KeyEvent.Callback callback, int i7, int i10) {
-        this.f37563a = i10;
-        this.f37565c = callback;
-        this.f37564b = i7;
+        this.f37552a = i10;
+        this.f37554c = callback;
+        this.f37553b = i7;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class ne implements Runnable {
         boolean z10;
         boolean z11;
         int max;
-        int i7 = this.f37563a;
-        KeyEvent.Callback callback = this.f37565c;
+        int i7 = this.f37552a;
+        KeyEvent.Callback callback = this.f37554c;
         switch (i7) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 sf sfVar = chatActivityEnterView.V0;
-                if (sfVar != null && (currentPage = sfVar.getCurrentPage()) != this.f37564b) {
-                    this.f37564b = currentPage;
+                if (sfVar != null && (currentPage = sfVar.getCurrentPage()) != this.f37553b) {
+                    this.f37553b = currentPage;
                     boolean z12 = chatActivityEnterView.f32196f4;
                     int i10 = 2;
                     if (currentPage != 1 && currentPage != 2) {
@@ -66,12 +66,12 @@ public final class ne implements Runnable {
                 }
                 return;
             case 1:
-                int i11 = this.f37564b;
+                int i11 = this.f37553b;
                 ep epVar = (ep) callback;
-                v4.o0 layoutManager = epVar.f34402w1.getLayoutManager();
+                v4.o0 layoutManager = epVar.f34401w1.getLayoutManager();
                 if (layoutManager != null) {
                     if (i11 > epVar.K1) {
-                        max = Math.min(i11 + 1, epVar.f34397r1.d.size() - 1);
+                        max = Math.min(i11 + 1, epVar.f34396r1.d.size() - 1);
                     } else {
                         max = Math.max(i11 - 1, 0);
                     }
@@ -82,7 +82,7 @@ public final class ne implements Runnable {
                 epVar.K1 = i11;
                 return;
             default:
-                int i12 = this.f37564b;
+                int i12 = this.f37553b;
                 hi.y7 y7Var = (hi.y7) callback;
                 if (((ne) y7Var.f15431f) == this) {
                     ArrayList arrayList = new ArrayList();
@@ -110,8 +110,8 @@ public final class ne implements Runnable {
     }
 
     public ne(ChatActivityEnterView chatActivityEnterView) {
-        this.f37563a = 0;
-        this.f37565c = chatActivityEnterView;
-        this.f37564b = -1;
+        this.f37552a = 0;
+        this.f37554c = chatActivityEnterView;
+        this.f37553b = -1;
     }
 }

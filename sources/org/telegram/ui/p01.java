@@ -42,14 +42,14 @@ public final class p01 extends org.telegram.ui.Components.os {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
                 x01 x01Var = (x01) arrayList.get(i7);
-                if (!x01Var.f53055b) {
-                    if (x01Var.f53054a) {
+                if (!x01Var.f53054b) {
+                    if (x01Var.f53053a) {
                         x01Var.F.setBounds(x01Var.G);
                         x01Var.F.draw(canvas);
                     } else {
-                        ImageReceiver imageReceiver = x01Var.f53060r;
+                        ImageReceiver imageReceiver = x01Var.f53059r;
                         if (imageReceiver != null) {
-                            imageReceiver.h(canvas, x01Var.f53058f[this.L]);
+                            imageReceiver.h(canvas, x01Var.f53057f[this.L]);
                         }
                     }
                 }
@@ -66,7 +66,7 @@ public final class p01 extends org.telegram.ui.Components.os {
         int i7;
         Drawable drawable;
         int i10;
-        n11 n11Var = this.U.f50427m3;
+        n11 n11Var = this.U.f50418m3;
         if (this.P != null) {
             canvas.save();
             canvas.translate(-this.O, 0.0f);
@@ -75,9 +75,9 @@ public final class p01 extends org.telegram.ui.Components.os {
             int i12 = 0;
             while (i12 < this.P.size()) {
                 x01 x01Var = (x01) this.P.get(i12);
-                if (!x01Var.f53055b) {
+                if (!x01Var.f53054b) {
                     float scaleX = x01Var.getScaleX();
-                    int i13 = n11Var.f49365a0;
+                    int i13 = n11Var.f49364a0;
                     if (i13 == 13) {
                         scaleX *= 0.87f;
                     }
@@ -114,19 +114,19 @@ public final class p01 extends org.telegram.ui.Components.os {
                     }
                     Rect rect = org.telegram.messenger.g0.Q;
                     rect.set(x01Var.getPaddingLeft() + ((int) x01Var.getX()), x01Var.getPaddingTop(), (x01Var.getWidth() + ((int) x01Var.getX())) - x01Var.getPaddingRight(), x01Var.getHeight() - x01Var.getPaddingBottom());
-                    if (!n11Var.f49422y1 && i7 == 0) {
+                    if (!n11Var.f49421y1 && i7 == 0) {
                         rect.offset(i11, (int) x01Var.getTranslationY());
                     }
-                    if (x01Var.f53054a) {
+                    if (x01Var.f53053a) {
                         drawable = n11Var.getPremiumStar();
-                        int i17 = n11Var.f49365a0;
+                        int i17 = n11Var.f49364a0;
                         if (i17 == 5 || i17 == 10 || i17 == 9 || i17 == 7) {
                             rect.inset((int) ((-rect.width()) * 0.15f), (int) ((-rect.height()) * 0.15f));
                         }
                         drawable.setBounds(rect);
                         drawable.setAlpha(255);
-                    } else if (!x01Var.f53061s && !x01Var.R) {
-                        if ((x01Var.f53057e != null || n11Var.f49365a0 == 13) && !x01Var.f53055b && (drawable = x01Var.F) != null) {
+                    } else if (!x01Var.f53060s && !x01Var.R) {
+                        if ((x01Var.f53056e != null || n11Var.f49364a0 == 13) && !x01Var.f53054b && (drawable = x01Var.F) != null) {
                             drawable.setAlpha(255);
                             drawable.setBounds(rect);
                         }
@@ -152,11 +152,11 @@ public final class p01 extends org.telegram.ui.Components.os {
                     } else {
                         canvas.save();
                         float f18 = x01Var.T;
-                        if (f18 > 1.0f && (i10 = n11Var.f49365a0) != 3 && i10 != 4 && i10 != 6) {
+                        if (f18 > 1.0f && (i10 = n11Var.f49364a0) != 3 && i10 != 4 && i10 != 6) {
                             float T1 = org.telegram.messenger.g0.T1(1.0f, 0.85f, f18);
                             canvas.scale(T1, T1, rect.centerX(), rect.centerY());
                         }
-                        int i18 = n11Var.f49365a0;
+                        int i18 = n11Var.f49364a0;
                         if (i18 != 6 && i18 != 13 && i18 != 14) {
                             x01Var.getHeight();
                             float f19 = this.R;
@@ -184,13 +184,13 @@ public final class p01 extends org.telegram.ui.Components.os {
         while (true) {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
-                org.telegram.messenger.hc hcVar = ((x01) arrayList.get(i7)).f53058f[this.L];
+                org.telegram.messenger.hc hcVar = ((x01) arrayList.get(i7)).f53057f[this.L];
                 if (hcVar != null) {
                     hcVar.a();
                 }
                 i7++;
             } else {
-                this.U.f50427m3.f49386i0.invalidate();
+                this.U.f50418m3.f49385i0.invalidate();
                 return;
             }
         }
@@ -205,8 +205,8 @@ public final class p01 extends org.telegram.ui.Components.os {
         if (drawable != null) {
             drawable.setAlpha((int) (f10 * 255.0f));
             drawable.draw(canvas);
-            drawable.setColorFilter(this.U.f50427m3.l1);
-        } else if ((x01Var.f53061s || x01Var.R) && x01Var.h != null) {
+            drawable.setColorFilter(this.U.f50418m3.l1);
+        } else if ((x01Var.f53060s || x01Var.R) && x01Var.h != null) {
             canvas.save();
             ImageReceiver imageReceiver = x01Var.h;
             canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), x01Var.h.A());

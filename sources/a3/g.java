@@ -189,7 +189,7 @@ public final class g implements p, l5.g, qr, q1, yo {
                 if (z12) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + t0.f26600b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + t0.f26609b.getPackageName()));
                         context.startActivity(intent);
                         return;
                     } catch (Exception e10) {

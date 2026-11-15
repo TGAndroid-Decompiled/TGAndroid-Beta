@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.view.ViewGroup;
 public final class tz extends org.telegram.ui.Components.tj0 {
-    public final zz f51700c;
+    public final zz f51701c;
 
     public tz(zz zzVar) {
-        this.f51700c = zzVar;
+        this.f51701c = zzVar;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class tz extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        zz zzVar = this.f51700c;
+        zz zzVar = this.f51701c;
         if (zzVar.f54082f.isEmpty()) {
             return 0;
         }
@@ -24,7 +24,7 @@ public final class tz extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int d(int i7) {
-        if (i7 >= this.f51700c.f54082f.size()) {
+        if (i7 >= this.f51701c.f54082f.size()) {
             return 3;
         }
         return 0;
@@ -36,10 +36,10 @@ public final class tz extends org.telegram.ui.Components.tj0 {
         boolean z11;
         if (e1Var.f58539f == 0) {
             org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) e1Var.f58535a;
-            zz zzVar = this.f51700c;
+            zz zzVar = this.f51701c;
             org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) zzVar.f54082f.get(i7);
             t2Var.P = zzVar.f54094q0;
-            t2Var.f0(org.telegram.messenger.gj.B0(gjVar.f23817k), gjVar, gjVar.f23817k.date, false, false);
+            t2Var.f0(org.telegram.messenger.gj.B0(gjVar.f23819k), gjVar, gjVar.f23819k.date, false, false);
             if (i7 != b() - 1) {
                 z10 = true;
             } else {

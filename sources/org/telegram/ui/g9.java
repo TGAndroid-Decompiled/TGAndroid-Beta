@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class g9 extends org.telegram.ui.Components.a41 {
-    public static final int f47388b = 0;
+    public static final int f47378b = 0;
 
     static {
         org.telegram.ui.Components.a41.h(new org.telegram.ui.Components.a41());
@@ -16,8 +16,8 @@ public final class g9 extends org.telegram.ui.Components.a41 {
         h9 h9Var = (h9) view;
         TLRPC.Chat chat = (TLRPC.Chat) b41Var.G;
         View.OnClickListener onClickListener = b41Var.D;
-        h9Var.f47650c = chat;
-        org.telegram.ui.Components.dg0 dg0Var = h9Var.f47649b;
+        h9Var.f47640c = chat;
+        org.telegram.ui.Components.dg0 dg0Var = h9Var.f47639b;
         dg0Var.setTag(Long.valueOf(chat.f28051id));
         if (org.telegram.messenger.t3.T(chat) && !chat.megagroup) {
             if (!org.telegram.messenger.t3.t0(chat)) {
@@ -32,7 +32,7 @@ public final class g9 extends org.telegram.ui.Components.a41 {
         } else {
             lowerCase = org.telegram.messenger.hd.M0(2131748638, null).toLowerCase();
         }
-        h9Var.f47648a.x(chat, null, null, lowerCase, false, false);
+        h9Var.f47638a.x(chat, null, null, lowerCase, false, false);
         dg0Var.setOnClickListener(onClickListener);
     }
 

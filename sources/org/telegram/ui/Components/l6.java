@@ -15,10 +15,10 @@ public final class l6 extends va {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
         addView(textView, c8.ja.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(w80Var.f52494b));
+        qVar.setImageDrawable(launchActivity.getDrawable(w80Var.f52497b));
         qVar.setOuterPadding(org.telegram.messenger.g0.L(8.0f));
         qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(24.0f));
-        qVar.setForeground(w80Var.f52495c);
+        qVar.setForeground(w80Var.f52498c);
         org.telegram.messenger.k5.q(null, null, 2131754238, new Object[]{org.telegram.messenger.hd.M0(w80Var.d, null)}, textView);
     }
 }

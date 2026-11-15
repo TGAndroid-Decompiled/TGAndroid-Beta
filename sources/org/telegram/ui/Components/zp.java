@@ -180,7 +180,7 @@ public final class zp extends EditTextBoldCursor {
                                     animatorSet2.playTogether(animatorArr2);
                                 }
                                 lyVar.N0.setDuration(220L);
-                                lyVar.N0.setInterpolator(er.f34420f);
+                                lyVar.N0.setInterpolator(er.f34419f);
                                 lyVar.N0.addListener(new ah.l(27, lyVar, qvVar));
                                 lyVar.N0.start();
                                 z10 = r16;
@@ -204,7 +204,7 @@ public final class zp extends EditTextBoldCursor {
                                     }
                                 }
                                 if (qvVar == qvVar2) {
-                                    if (lyVar.f36972o0.f38790y.size() > 0) {
+                                    if (lyVar.f36972o0.f38788y.size() > 0) {
                                         z11 = true;
                                     } else {
                                         z11 = false;

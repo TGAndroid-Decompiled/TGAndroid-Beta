@@ -12,13 +12,13 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.view.View;
 public final class tg0 {
-    public final View f39696a;
-    public final int f39697b;
-    public final int f39698c;
+    public final View f39693a;
+    public final int f39694b;
+    public final int f39695c;
     public final int d;
-    public final xg0 f39699e;
-    public final TextPaint f39700f;
-    public RectF f39701g;
+    public final xg0 f39696e;
+    public final TextPaint f39697f;
+    public RectF f39698g;
 
     public tg0(kt ktVar, Layout layout, Spanned spanned, xg0 xg0Var) {
         boolean z10;
@@ -30,24 +30,24 @@ public final class tg0 {
         int i12;
         int i13;
         int i14;
-        this.f39696a = ktVar;
-        this.f39699e = xg0Var;
-        this.f39700f = layout.getPaint();
-        xg0Var.f41686c = spanned.getSpanStart(xg0Var);
-        boolean z13 = xg0Var.f41684a;
+        this.f39693a = ktVar;
+        this.f39696e = xg0Var;
+        this.f39697f = layout.getPaint();
+        xg0Var.f41678c = spanned.getSpanStart(xg0Var);
+        boolean z13 = xg0Var.f41676a;
         int spanEnd = spanned.getSpanEnd(xg0Var);
         xg0Var.d = spanEnd;
         if (spanEnd - 1 >= 0 && spanEnd < spanned.length() && spanned.charAt(xg0Var.d) != '\n' && spanned.charAt(xg0Var.d - 1) == '\n') {
             xg0Var.d--;
         }
-        int lineForOffset = layout.getLineForOffset(xg0Var.f41686c);
+        int lineForOffset = layout.getLineForOffset(xg0Var.f41678c);
         int lineForOffset2 = layout.getLineForOffset(xg0Var.d);
         if (lineForOffset2 - lineForOffset < 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        xg0Var.f41688f = z10;
+        xg0Var.f41680f = z10;
         if (lineForOffset <= 0) {
             z11 = true;
         } else {
@@ -59,10 +59,10 @@ public final class tg0 {
         } else {
             z12 = false;
         }
-        xg0Var.f41689n = z12;
+        xg0Var.f41681n = z12;
         if (z13) {
             int lineTop = layout.getLineTop(lineForOffset);
-            if (xg0Var.f41688f) {
+            if (xg0Var.f41680f) {
                 i12 = 0;
             } else {
                 if (xg0Var.h) {
@@ -72,41 +72,41 @@ public final class tg0 {
                 }
                 i12 = i11 + 3;
             }
-            this.f39697b = org.telegram.messenger.g0.L(3 - i12) + lineTop;
+            this.f39694b = org.telegram.messenger.g0.L(3 - i12) + lineTop;
             int lineBottom = layout.getLineBottom(lineForOffset2);
-            if (xg0Var.f41688f) {
+            if (xg0Var.f41680f) {
                 i14 = 0;
             } else {
-                if (xg0Var.f41689n) {
+                if (xg0Var.f41681n) {
                     i13 = 2;
                 } else {
                     i13 = 0;
                 }
                 i14 = i13 + 3;
             }
-            this.f39698c = lineBottom - org.telegram.messenger.g0.L(2 - i14);
+            this.f39695c = lineBottom - org.telegram.messenger.g0.L(2 - i14);
         } else {
             int lineTop2 = layout.getLineTop(lineForOffset);
-            if (xg0Var.f41688f) {
+            if (xg0Var.f41680f) {
                 i7 = 1;
             } else {
                 i7 = 2;
             }
-            this.f39697b = org.telegram.messenger.g0.L(3 - i7) + lineTop2;
+            this.f39694b = org.telegram.messenger.g0.L(3 - i7) + lineTop2;
             int lineBottom2 = layout.getLineBottom(lineForOffset2);
-            if (xg0Var.f41688f) {
+            if (xg0Var.f41680f) {
                 i10 = 1;
             } else {
                 i10 = 2;
             }
-            this.f39698c = lineBottom2 - org.telegram.messenger.g0.L(2 - i10);
+            this.f39695c = lineBottom2 - org.telegram.messenger.g0.L(2 - i10);
         }
-        xg0Var.f41690r = false;
+        xg0Var.f41682r = false;
         float f10 = 0.0f;
         while (lineForOffset <= lineForOffset2) {
             f10 = Math.max(f10, layout.getLineRight(lineForOffset));
             if (layout.getLineLeft(lineForOffset) > 0.0f) {
-                xg0Var.f41690r = true;
+                xg0Var.f41682r = true;
             }
             lineForOffset++;
         }
@@ -123,16 +123,16 @@ public final class tg0 {
         int i12;
         int i13;
         Path.Direction direction;
-        xg0 xg0Var = this.f39699e;
+        xg0 xg0Var = this.f39696e;
         int i14 = xg0Var.J;
         float[] fArr = xg0Var.E;
-        boolean z10 = xg0Var.f41684a;
-        Paint paint = xg0Var.f41694y;
+        boolean z10 = xg0Var.f41676a;
+        Paint paint = xg0Var.f41686y;
         Paint paint2 = xg0Var.G;
         Path path = xg0Var.I;
         float[] fArr2 = xg0Var.H;
         Path path2 = xg0Var.F;
-        Drawable drawable = xg0Var.f41693x;
+        Drawable drawable = xg0Var.f41685x;
         if (i14 != i10) {
             xg0Var.J = i10;
             drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
@@ -152,11 +152,11 @@ public final class tg0 {
         canvas.save();
         canvas.translate(0.0f, 0.0f);
         RectF rectF2 = org.telegram.messenger.g0.P;
-        int i15 = this.f39697b;
+        int i15 = this.f39694b;
         float f10 = i15;
         float f11 = i11;
         int i16 = i11;
-        int i17 = this.f39698c;
+        int i17 = this.f39695c;
         float f12 = i17;
         rectF2.set(0.0f, f10, f11, f12);
         fArr[7] = 0.0f;
@@ -172,16 +172,16 @@ public final class tg0 {
         Path.Direction direction2 = Path.Direction.CW;
         path2.addRoundRect(rectF2, fArr, direction2);
         canvas.drawPath(path2, paint);
-        if (z10 && this.f39696a != null && xg0Var.K != null) {
-            if (this.f39701g == null) {
-                this.f39701g = new RectF();
+        if (z10 && this.f39693a != null && xg0Var.K != null) {
+            if (this.f39698g == null) {
+                this.f39698g = new RectF();
             }
             int L3 = org.telegram.messenger.g0.L(3.333f);
             i12 = i15;
             i13 = i17;
             direction = direction2;
             rectF = rectF2;
-            xg0Var.K.d(canvas, this.f39701g, i16 - L3, i17 - L3, i10, xg0Var.f41687e, b());
+            xg0Var.K.d(canvas, this.f39698g, i16 - L3, i17 - L3, i10, xg0Var.f41679e, b());
         } else {
             rectF = rectF2;
             i12 = i15;
@@ -201,7 +201,7 @@ public final class tg0 {
         path.rewind();
         path.addRoundRect(rectF, fArr2, direction);
         canvas.drawPath(path, paint2);
-        if (!xg0Var.f41690r) {
+        if (!xg0Var.f41682r) {
             int intrinsicHeight = (int) (((i12 + i13) - drawable.getIntrinsicHeight()) / 2.0f);
             if (intrinsicHeight > org.telegram.messenger.g0.L(8.0f) + i12) {
                 intrinsicHeight = org.telegram.messenger.g0.L(4.0f) + i12;
@@ -214,7 +214,7 @@ public final class tg0 {
     }
 
     public final boolean b() {
-        if (this.f39699e.f41684a && this.f39698c - this.f39697b > this.f39700f.getTextSize() * 1.3f * 3) {
+        if (this.f39696e.f41676a && this.f39695c - this.f39694b > this.f39697f.getTextSize() * 1.3f * 3) {
             return true;
         }
         return false;

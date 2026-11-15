@@ -64,11 +64,11 @@ public class zf0 extends FrameLayout {
         if (yrVar == null) {
             return 0.8f;
         }
-        if (yrVar.f27808c) {
-            min = yrVar.f27809e.width() - org.telegram.messenger.g0.L(2.0f);
+        if (yrVar.f27818c) {
+            min = yrVar.f27819e.width() - org.telegram.messenger.g0.L(2.0f);
             L = org.telegram.messenger.g0.L(100.0f);
         } else {
-            min = Math.min(yrVar.f27809e.width(), this.f42357n.f27809e.height());
+            min = Math.min(yrVar.f27819e.width(), this.f42357n.f27819e.height());
             L = org.telegram.messenger.g0.L(100.0f);
         }
         return Math.min(0.8f, min / L);
@@ -76,8 +76,8 @@ public class zf0 extends FrameLayout {
 
     public float getHiddenAvatarSizeDp() {
         org.telegram.messenger.yr yrVar = this.f42357n;
-        if (yrVar != null && yrVar.f27808c) {
-            return (yrVar.f27809e.width() * 0.5f) / org.telegram.messenger.g0.f23608p;
+        if (yrVar != null && yrVar.f27818c) {
+            return (yrVar.f27819e.width() * 0.5f) / org.telegram.messenger.g0.f23610p;
         }
         return 24.0f;
     }
@@ -135,7 +135,7 @@ public class zf0 extends FrameLayout {
                         obj.d = path;
                         RectF rectF = new RectF();
                         path.computeBounds(rectF, true);
-                        obj.f27809e = rectF;
+                        obj.f27819e = rectF;
                         DisplayMetrics displayMetrics2 = context.getResources().getDisplayMetrics();
                         if (i13 != 17 && Math.abs(rectF.centerX() - (displayMetrics2.widthPixels / 2.0f)) <= org.telegram.messenger.g0.L(2.0f)) {
                             i13 = 17;
@@ -146,23 +146,23 @@ public class zf0 extends FrameLayout {
                         if (i15 != 17 || rectF.right <= (displayMetrics2.widthPixels / 4.0f) * 3.0f) {
                             i16 = i15;
                         }
-                        obj.f27806a = i16;
+                        obj.f27816a = i16;
                         if (!trim.contains("C") && !trim.contains("S") && !trim.contains("Q")) {
                             z10 = false;
                         } else {
                             z10 = true;
                         }
-                        obj.f27807b = z10;
+                        obj.f27817b = z10;
                         if (rectF.width() <= org.telegram.messenger.g0.L(32.0f) || rectF.width() <= rectF.height()) {
                             z11 = true;
                         }
-                        obj.f27808c = z11;
+                        obj.f27818c = z11;
                         yrVar = obj;
                     } catch (Throwable th2) {
                         org.telegram.messenger.a8.e("Failed to parse notch info", th2);
                     }
                     this.f42357n = yrVar;
-                    if ((yrVar != null && yrVar.f27806a != 17) || getWidth() > getHeight()) {
+                    if ((yrVar != null && yrVar.f27816a != 17) || getWidth() > getHeight()) {
                         this.f42357n = null;
                     }
                     this.f42354c.d(i7, i10);

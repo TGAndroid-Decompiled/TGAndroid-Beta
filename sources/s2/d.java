@@ -200,11 +200,11 @@ public final class d implements b3.j {
         boolean z10;
         long min;
         b3.r rVar = (b3.r) lVar;
-        long j11 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j11 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         b0 b0Var = rVar.d;
         x2.t tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
-        int i10 = rVar.f2921c;
+        int i10 = rVar.f2924c;
         this.f56185c.getClass();
         Throwable th2 = iOException;
         while (true) {
@@ -225,7 +225,7 @@ public final class d implements b3.j {
         }
         this.f56187f.q(tVar, i10, iOException, z10);
         if (z10) {
-            return b3.o.f2915f;
+            return b3.o.f2918f;
         }
         return new b3.i(0, min, false);
     }
@@ -233,8 +233,8 @@ public final class d implements b3.j {
     @Override
     public final void m(b3.l lVar, long j3, long j10, boolean z10) {
         b3.r rVar = (b3.r) lVar;
-        long j11 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j11 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         b0 b0Var = rVar.d;
         x2.t tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         this.f56185c.getClass();
@@ -246,22 +246,22 @@ public final class d implements b3.j {
         x2.t tVar;
         b3.r rVar = (b3.r) lVar;
         if (i7 == 0) {
-            long j11 = rVar.f2919a;
-            tVar = new x2.t(rVar.f2920b, j3);
+            long j11 = rVar.f2922a;
+            tVar = new x2.t(rVar.f2923b, j3);
         } else {
-            long j12 = rVar.f2919a;
-            j2.m mVar = rVar.f2920b;
+            long j12 = rVar.f2922a;
+            j2.m mVar = rVar.f2923b;
             b0 b0Var = rVar.d;
             tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         }
-        this.f56187f.s(tVar, rVar.f2921c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        this.f56187f.s(tVar, rVar.f2924c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     @Override
     public final void w(b3.l lVar, long j3, long j10) {
         p pVar;
         b3.r rVar = (b3.r) lVar;
-        q qVar = (q) rVar.f2923f;
+        q qVar = (q) rVar.f2926f;
         boolean z10 = qVar instanceof m;
         if (z10) {
             String str = qVar.f56289a;
@@ -288,7 +288,7 @@ public final class d implements b3.j {
             a(this.f56193y);
             a(this.E);
             a(this.F);
-            j2.m mVar = rVar.f2920b;
+            j2.m mVar = rVar.f2923b;
             b0 b0Var = rVar.d;
             x2.t tVar2 = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
             c cVar = (c) this.d.get(this.G);

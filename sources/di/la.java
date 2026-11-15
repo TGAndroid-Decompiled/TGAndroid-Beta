@@ -1,21 +1,30 @@
 package di;
 
-import org.telegram.messenger.is;
-import org.telegram.messenger.ns;
-public final class la implements is {
-    public final boolean[] f8998a;
-    public final org.telegram.ui.ActionBar.u2[] f8999b;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.an;
+public final class la extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.u2[] f9011a;
+    public final long f9012b;
 
-    public la(boolean[] zArr, org.telegram.ui.ActionBar.u2[] u2VarArr) {
-        this.f8998a = zArr;
-        this.f8999b = u2VarArr;
+    public la(org.telegram.ui.ActionBar.u2[] u2VarArr, long j3) {
+        this.f9011a = u2VarArr;
+        this.f9012b = j3;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        org.telegram.ui.ActionBar.u2 u2Var;
-        if (i7 == ns.A3 && this.f8998a[0] && (u2Var = this.f8999b[0]) != null) {
-            u2Var.dismiss();
+    public final void onClick(View view) {
+        this.f9011a[0].dismiss();
+        org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
+        if (T != null) {
+            T.presentFragment(an.ua(this.f9012b));
         }
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

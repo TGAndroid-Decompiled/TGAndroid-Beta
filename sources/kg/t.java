@@ -51,7 +51,7 @@ public final class t extends FrameLayout {
         this.f18098a = j5Var;
         j5Var.setTextSize(15);
         q6.X(j5Var, j6.G6, null);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -63,7 +63,7 @@ public final class t extends FrameLayout {
         j5Var2.setTextSize(14);
         int i12 = j6.f29260z6;
         q6.X(j5Var2, i12, null);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -76,7 +76,7 @@ public final class t extends FrameLayout {
         lVar.setMaxLines(1);
         lVar.setEllipsize(TextUtils.TruncateAt.END);
         q6.U(lVar, i12, e6Var);
-        lVar.setGravity(hd.f24101a0 ? 5 : 3);
+        lVar.setGravity(hd.f24104a0 ? 5 : 3);
         lVar.f60034r = false;
         lVar.setUseAlphaForEmoji(false);
         ns.i(lVar);
@@ -94,7 +94,7 @@ public final class t extends FrameLayout {
             }
             Paint paint = W0;
             float f11 = 64.0f;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 64.0f;
@@ -102,7 +102,7 @@ public final class t extends FrameLayout {
             float L = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f11 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width - org.telegram.messenger.g0.L(f11), getMeasuredHeight(), paint);
@@ -112,7 +112,7 @@ public final class t extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         j5 j5Var = this.f18100c;
         j5 j5Var2 = this.f18098a;
         if (z11) {

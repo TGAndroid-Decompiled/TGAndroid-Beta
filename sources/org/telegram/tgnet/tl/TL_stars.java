@@ -308,7 +308,7 @@ public class TL_stars {
 
         @Deprecated
         public long getResellStars() {
-            cg.a resellAmount = getResellAmount(cg.b.f4987a);
+            cg.a resellAmount = getResellAmount(cg.b.f4990a);
             if (resellAmount != null) {
                 return resellAmount.a();
             }
@@ -4383,7 +4383,7 @@ public class TL_stars {
 
         @Override
         public cg.b getCurrency() {
-            return cg.b.f4987a;
+            return cg.b.f4990a;
         }
 
         @Override
@@ -4711,7 +4711,7 @@ public class TL_stars {
 
         @Override
         public cg.b getCurrency() {
-            return cg.b.f4988b;
+            return cg.b.f4991b;
         }
 
         @Override

@@ -7,31 +7,31 @@ import java.util.Collections;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
 public final class f3 implements q0.a {
-    public final int f46980a;
-    public final Object f46981b;
+    public final int f46964a;
+    public final Object f46965b;
 
     public f3(Object obj, int i7) {
-        this.f46980a = i7;
-        this.f46981b = obj;
+        this.f46964a = i7;
+        this.f46965b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         ArrayList arrayList;
         String j3;
-        int i7 = this.f46980a;
+        int i7 = this.f46964a;
         boolean z10 = true;
-        Object obj2 = this.f46981b;
+        Object obj2 = this.f46965b;
         switch (i7) {
             case 0:
                 k3 k3Var = (k3) obj2;
                 Float f10 = (Float) obj;
                 g4 g4Var = k3Var.M;
-                if (k3Var == g4Var.f47336v0[0]) {
-                    if (g4Var.f47324i0.f52652e0.getCurrentProgress() > f10.floatValue()) {
-                        g4Var.f47324i0.f52652e0.a(false, 0.0f);
+                if (k3Var == g4Var.f47326v0[0]) {
+                    if (g4Var.f47314i0.f52655e0.getCurrentProgress() > f10.floatValue()) {
+                        g4Var.f47314i0.f52655e0.a(false, 0.0f);
                     }
-                    g4Var.f47324i0.f52652e0.a(true, f10.floatValue());
+                    g4Var.f47314i0.f52655e0.a(true, f10.floatValue());
                     return;
                 }
                 return;
@@ -40,7 +40,7 @@ public final class f3 implements q0.a {
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                qq qqVar = ((hq) obj2).f47797b;
+                qq qqVar = ((hq) obj2).f47787b;
                 kq B0 = qqVar.B0();
                 ArrayList arrayList2 = qqVar.F;
                 a0.h hVar = qqVar.M;
@@ -53,7 +53,7 @@ public final class f3 implements q0.a {
                     hVar = qqVar.K;
                 }
                 if (hVar.f(user.f28200id) == null) {
-                    if (org.telegram.messenger.t3.T(qqVar.f50738n)) {
+                    if (org.telegram.messenger.t3.T(qqVar.f50737n)) {
                         TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
                         tL_channelParticipant.inviter_id = qqVar.getUserConfig().e();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();

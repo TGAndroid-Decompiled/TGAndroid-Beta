@@ -20,8 +20,8 @@ public final class n extends a41 {
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         o oVar = (o) view;
         v00 v00Var = (v00) b41Var.G;
-        oVar.f13349a.setText(v00Var.f26917b);
-        oVar.f13350b.setText(v00Var.f26918c);
+        oVar.f13349a.setText(v00Var.f26918b);
+        oVar.f13350b.setText(v00Var.f26919c);
         if (oVar.f13351c != z10) {
             oVar.invalidate();
         }

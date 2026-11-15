@@ -13,22 +13,22 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class y8 extends Drawable {
-    public final View f41932a;
-    public final int f41933b;
+    public final View f41924a;
+    public final int f41925b;
     public boolean d;
-    public final int f41935e;
-    public final int f41936f;
-    public final float f41937g;
-    public final te.h f41934c = new te.h(new org.telegram.messenger.ou(this, 4), er.h, 380);
+    public final int f41927e;
+    public final int f41928f;
+    public final float f41929g;
+    public final te.h f41926c = new te.h(new org.telegram.messenger.ou(this, 4), er.h, 380);
     public final ArrayList h = new ArrayList();
-    public int f41938i = 255;
+    public int f41930i = 255;
 
     public y8(int i7, View view, int i10, int i11, float f10) {
-        this.f41933b = i7;
-        this.f41932a = view;
-        this.f41935e = i10;
-        this.f41936f = i11;
-        this.f41937g = f10;
+        this.f41925b = i7;
+        this.f41924a = view;
+        this.f41927e = i10;
+        this.f41928f = i11;
+        this.f41929g = f10;
     }
 
     public final void a() {
@@ -41,9 +41,9 @@ public final class y8 extends Drawable {
                 Object obj = arrayList.get(i7);
                 i7++;
                 x8 x8Var = (x8) obj;
-                if (x8Var.f41614c != 0 && !x8Var.d) {
+                if (x8Var.f41617c != 0 && !x8Var.d) {
                     x8Var.d = true;
-                    x8Var.f41612a.P();
+                    x8Var.f41615a.P();
                 }
             }
         }
@@ -61,7 +61,7 @@ public final class y8 extends Drawable {
                 x8 x8Var = (x8) obj;
                 if (x8Var.d) {
                     x8Var.d = false;
-                    x8Var.f41612a.R();
+                    x8Var.f41615a.R();
                 }
             }
         }
@@ -69,16 +69,16 @@ public final class y8 extends Drawable {
 
     public final void c(Canvas canvas) {
         Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f41938i != 0) {
+        if (!bounds.isEmpty() && this.f41930i != 0) {
             float f10 = bounds.left;
             float f11 = bounds.top;
-            te.h hVar = this.f41934c;
-            canvas.saveLayer(f10, f11, f10 + hVar.d.f57099f.f57107a, f11 + this.f41935e, null);
-            for (int size = hVar.f57102b.size() - 1; size >= 0; size--) {
+            te.h hVar = this.f41926c;
+            canvas.saveLayer(f10, f11, f10 + hVar.d.f57103f.f57111a, f11 + this.f41927e, null);
+            for (int size = hVar.f57106b.size() - 1; size >= 0; size--) {
                 te.e i7 = hVar.i(size);
                 RectF b10 = i7.b();
-                Object obj = i7.f57090a;
-                float f12 = i7.f57094f.f57107a;
+                Object obj = i7.f57094a;
+                float f12 = i7.f57098f.f57111a;
                 float c10 = i7.c();
                 float width = b10.width() - f12;
                 float f13 = f10 + b10.left + f12;
@@ -87,11 +87,11 @@ public final class y8 extends Drawable {
                 float f16 = f11 + f14;
                 canvas.save();
                 canvas.scale(c10, c10, f15, f16);
-                canvas.drawCircle(f15, f16, f14 + this.f41937g, org.telegram.ui.ActionBar.j6.Fm);
+                canvas.drawCircle(f15, f16, f14 + this.f41929g, org.telegram.ui.ActionBar.j6.Fm);
                 x8 x8Var = (x8) obj;
-                x8Var.f41612a.y0(f13, f11, width, width);
-                x8Var.f41612a.setAlpha((this.f41938i / 255.0f) * i7.c());
-                x8Var.f41612a.h(canvas, null);
+                x8Var.f41615a.y0(f13, f11, width, width);
+                x8Var.f41615a.setAlpha((this.f41930i / 255.0f) * i7.c());
+                x8Var.f41615a.h(canvas, null);
                 canvas.restore();
             }
             canvas.restore();
@@ -100,7 +100,7 @@ public final class y8 extends Drawable {
 
     public final void d(List list, boolean z10) {
         x8 x8Var;
-        te.h hVar = this.f41934c;
+        te.h hVar = this.f41926c;
         if (list != null && !list.isEmpty()) {
             if (!z10) {
                 hVar.m(null, false);
@@ -117,7 +117,7 @@ public final class y8 extends Drawable {
                         Object obj = arrayList2.get(i7);
                         i7++;
                         x8Var = (x8) obj;
-                        if (x8Var.f41614c == o4) {
+                        if (x8Var.f41617c == o4) {
                             break;
                         }
                     } else {
@@ -133,7 +133,7 @@ public final class y8 extends Drawable {
                             Object obj2 = arrayList2.get(i10);
                             i10++;
                             x8Var = (x8) obj2;
-                            if (x8Var.f41614c == 0) {
+                            if (x8Var.f41617c == 0) {
                                 break;
                             }
                         } else {
@@ -143,15 +143,15 @@ public final class y8 extends Drawable {
                     }
                 }
                 if (x8Var == null) {
-                    x8Var = new x8(this, this.f41932a);
+                    x8Var = new x8(this, this.f41924a);
                     arrayList2.add(x8Var);
                 }
                 x8 x8Var2 = x8Var;
-                ImageReceiver imageReceiver = x8Var2.f41612a;
-                t8 t8Var = x8Var2.f41613b;
-                if (x8Var2.f41614c != o4) {
-                    x8Var2.f41614c = o4;
-                    TLObject e22 = org.telegram.messenger.np.s1(this.f41933b).e2(o4);
+                ImageReceiver imageReceiver = x8Var2.f41615a;
+                t8 t8Var = x8Var2.f41616b;
+                if (x8Var2.f41617c != o4) {
+                    x8Var2.f41617c = o4;
+                    TLObject e22 = org.telegram.messenger.np.s1(this.f41925b).e2(o4);
                     if (e22 != null) {
                         t8Var.p(e22);
                         imageReceiver.i0(e22, t8Var, null);
@@ -179,7 +179,7 @@ public final class y8 extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f41938i;
+        return this.f41930i;
     }
 
     @Override
@@ -189,7 +189,7 @@ public final class y8 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f41938i = i7;
+        this.f41930i = i7;
     }
 
     @Override

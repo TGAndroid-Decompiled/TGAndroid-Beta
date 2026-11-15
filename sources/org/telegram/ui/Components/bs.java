@@ -15,27 +15,27 @@ public class bs extends p41 {
     public boolean X;
     public boolean Y;
     public final SpannableStringBuilder Z;
-    public int f33355a0;
-    public int f33356b0;
-    public boolean f33357c0;
-    public boolean f33358d0;
-    public boolean f33359e0;
-    public int f33360f0;
-    public int f33361g0;
-    public String f33362h0;
-    public final xr f33363i0;
-    public boolean f33364j0;
-    public final q2 f33365k0;
+    public int f33358a0;
+    public int f33359b0;
+    public boolean f33360c0;
+    public boolean f33361d0;
+    public boolean f33362e0;
+    public int f33363f0;
+    public int f33364g0;
+    public String f33365h0;
+    public final xr f33366i0;
+    public boolean f33367j0;
+    public final q2 f33368k0;
 
     public bs(uj0 uj0Var, Context context, int i7, int i10, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(uj0Var, context, i7, 0, true, null, e6Var);
         this.U = new ArrayList();
         this.V = new ArrayList();
         this.W = new ArrayList();
-        this.f33363i0 = new xr(this, 0);
-        this.f33364j0 = true;
-        this.f33365k0 = new q2(this, 5);
-        this.f38203w = new d(this, 8);
+        this.f33366i0 = new xr(this, 0);
+        this.f33367j0 = true;
+        this.f33368k0 = new q2(this, 5);
+        this.f38201w = new d(this, 8);
         this.Q = i7;
         this.R = i10;
         this.S = z10;
@@ -46,16 +46,16 @@ public class bs extends p41 {
     }
 
     public final void W() {
-        boolean isEmpty = TextUtils.isEmpty(this.f33362h0);
+        boolean isEmpty = TextUtils.isEmpty(this.f33365h0);
         uj0 uj0Var = this.d;
         if (!isEmpty) {
-            if (this.f33359e0 && !this.f33357c0 && uj0Var != null) {
+            if (this.f33362e0 && !this.f33360c0 && uj0Var != null) {
                 int i7 = 0;
                 while (true) {
                     if (i7 >= uj0Var.getChildCount()) {
                         break;
                     } else if (uj0Var.getChildAt(i7) instanceof pz) {
-                        if (this.f33359e0 && !this.f33357c0 && !TextUtils.isEmpty(this.f33362h0)) {
+                        if (this.f33362e0 && !this.f33360c0 && !TextUtils.isEmpty(this.f33365h0)) {
                             X(true);
                         }
                     } else {
@@ -64,7 +64,7 @@ public class bs extends p41 {
                 }
             }
         } else {
-            if (!this.f33364j0) {
+            if (!this.f33367j0) {
                 if (uj0Var != null) {
                     for (int i10 = 0; i10 < uj0Var.getChildCount(); i10++) {
                         if (!(uj0Var.getChildAt(i10) instanceof pz)) {
@@ -75,7 +75,7 @@ public class bs extends p41 {
             this.T.a();
             break;
         }
-        this.f33364j0 = false;
+        this.f33367j0 = false;
     }
 
     public final void X(boolean r10) {

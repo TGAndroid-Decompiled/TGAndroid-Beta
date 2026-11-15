@@ -32,7 +32,7 @@ public final class z2 extends LinearLayout {
     public z2(final Context context) {
         super(context);
         this.f32105r = -1;
-        this.f32107w = m10.f24934t0;
+        this.f32107w = m10.f24940t0;
         setGravity(17);
         setOrientation(1);
         setOnTouchListener(new gi.a(5));
@@ -127,18 +127,18 @@ public final class z2 extends LinearLayout {
                 View view = (View) getParent();
                 size2 = view.getMeasuredHeight();
                 if (view.getPaddingTop() != 0) {
-                    size2 -= org.telegram.messenger.g0.f23603m;
+                    size2 -= org.telegram.messenger.g0.f23605m;
                 }
             } else {
                 size2 = View.MeasureSpec.getSize(i10);
             }
             if (size2 == 0) {
-                size2 = (org.telegram.messenger.g0.f23609q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23603m;
+                size2 = (org.telegram.messenger.g0.f23611q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23605m;
             }
             if (getParent() instanceof org.telegram.ui.Components.t9) {
-                size2 -= ((org.telegram.ui.Components.t9) getParent()).f39612f3;
+                size2 -= ((org.telegram.ui.Components.t9) getParent()).f39610f3;
             }
-            ArrayList arrayList = np.s1(this.f32107w).f25385s;
+            ArrayList arrayList = np.s1(this.f32107w).f25388s;
             if (!arrayList.isEmpty()) {
                 int L = org.telegram.messenger.g0.L(72.0f);
                 size2 = i20.w(50.0f, (arrayList.size() + (arrayList.size() * L)) - 1, size2);
@@ -154,7 +154,7 @@ public final class z2 extends LinearLayout {
             size = View.MeasureSpec.getSize(i10);
         }
         if (size == 0) {
-            size = (org.telegram.messenger.g0.f23609q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23603m;
+            size = (org.telegram.messenger.g0.f23611q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23605m;
         }
         super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec((int) (((org.telegram.messenger.g0.L(320.0f) - size) * this.f32099a) + size), 1073741824));
     }

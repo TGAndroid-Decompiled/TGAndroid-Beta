@@ -13,10 +13,10 @@ public final class g31 extends org.telegram.ui.Components.a41 {
     public static org.telegram.ui.Components.b41 i(int i7, int i10, int i11, int i12, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
         org.telegram.ui.Components.b41 K = org.telegram.ui.Components.b41.K(g31.class);
         K.d = i7;
-        K.f33180k = i12;
-        K.f33181l = charSequence;
-        K.f33182m = charSequence2;
-        K.f33183n = charSequence3;
+        K.f33183k = i12;
+        K.f33184l = charSequence;
+        K.f33185m = charSequence2;
+        K.f33186n = charSequence3;
         K.B = (i10 & 4294967295L) | (i11 << 32);
         return K;
     }
@@ -30,20 +30,20 @@ public final class g31 extends org.telegram.ui.Components.a41 {
         int i10 = (int) j3;
         int i11 = (int) (j3 >>> 32);
         h31 h31Var = (h31) view;
-        int i12 = b41Var.f33180k;
-        CharSequence charSequence = b41Var.f33181l;
-        CharSequence charSequence2 = b41Var.f33182m;
-        CharSequence charSequence3 = b41Var.f33183n;
-        TextView textView = h31Var.f47602e;
-        TextView textView2 = h31Var.f47603f;
+        int i12 = b41Var.f33183k;
+        CharSequence charSequence = b41Var.f33184l;
+        CharSequence charSequence2 = b41Var.f33185m;
+        CharSequence charSequence3 = b41Var.f33186n;
+        TextView textView = h31Var.f47592e;
+        TextView textView2 = h31Var.f47593f;
         int i13 = 0;
         if (i10 == 0 && i11 == 0) {
             z11 = false;
         } else {
             z11 = true;
         }
-        h31Var.f47604n = z11;
-        FrameLayout frameLayout = h31Var.f47601c;
+        h31Var.f47594n = z11;
+        FrameLayout frameLayout = h31Var.f47591c;
         if (i12 != 0) {
             i7 = 0;
         } else {
@@ -61,11 +61,11 @@ public final class g31 extends org.telegram.ui.Components.a41 {
             f11 = org.telegram.messenger.g0.L(2.0f);
         }
         textView2.setTranslationX(f11);
-        h31Var.f47600b.b(i10, i11);
+        h31Var.f47590b.b(i10, i11);
         h31Var.d.setImageResource(i12);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        h31Var.f47605r = !isEmpty;
+        h31Var.f47595r = !isEmpty;
         if (isEmpty) {
             i13 = 8;
         }

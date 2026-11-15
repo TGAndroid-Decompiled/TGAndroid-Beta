@@ -76,12 +76,12 @@ public abstract class b extends ViewGroup {
                         measuredWidth = ((measuredWidth2 - r2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
                         i10 = (min * i12) + i7;
                     }
-                    if (!z11 && ((z10 || cVar3.h) && aVar3.f57082f)) {
+                    if (!z11 && ((z10 || cVar3.h) && aVar3.f57086f)) {
                         cVar3.a(measuredWidth);
                     } else {
                         cVar3.c(measuredWidth);
                     }
-                    if (!z11 && ((z10 || cVar2.h) && aVar3.f57082f)) {
+                    if (!z11 && ((z10 || cVar2.h) && aVar3.f57086f)) {
                         cVar2.a(i10);
                     } else {
                         cVar2.c(i10);

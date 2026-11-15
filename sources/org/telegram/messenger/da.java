@@ -5,15 +5,15 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import com.google.android.gms.maps.model.LatLng;
 public final class da {
-    public final m8.f f23053a;
+    public final m8.f f23061a;
 
     public da(m8.f fVar) {
-        this.f23053a = fVar;
+        this.f23061a = fVar;
     }
 
     public final bb a() {
         LatLng createFromParcel;
-        m8.f fVar = this.f23053a;
+        m8.f fVar = this.f23061a;
         fVar.getClass();
         try {
             v7.i iVar = (v7.i) fVar.f20539a;
@@ -27,7 +27,7 @@ public final class da {
             }
             LatLng latLng = createFromParcel;
             o12.recycle();
-            return new bb(latLng.f7083a, latLng.f7084b);
+            return new bb(latLng.f7086a, latLng.f7087b);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -35,7 +35,7 @@ public final class da {
 
     public final void b(bb bbVar) {
         LatLng latLng = new LatLng(bbVar.f22677a, bbVar.f22678b);
-        m8.f fVar = this.f23053a;
+        m8.f fVar = this.f23061a;
         fVar.getClass();
         try {
             v7.i iVar = (v7.i) fVar.f20539a;
@@ -49,7 +49,7 @@ public final class da {
 
     public final void c(int i7) {
         float f10 = i7;
-        m8.f fVar = this.f23053a;
+        m8.f fVar = this.f23061a;
         fVar.getClass();
         try {
             v7.i iVar = (v7.i) fVar.f20539a;

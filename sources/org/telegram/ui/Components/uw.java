@@ -33,9 +33,9 @@ public final class uw implements Runnable {
                 float f11 = this.f40173b;
                 int i10 = this.f40174c;
                 try {
-                    pi.l lVar2 = new pi.l(n11Var.f49386i0.getContext(), 0, f11);
+                    pi.l lVar2 = new pi.l(n11Var.f49385i0.getContext(), 0, f11);
                     lVar2.f58480a = i10;
-                    n11Var.f49406s0.w0(lVar2);
+                    n11Var.f49405s0.w0(lVar2);
                     return;
                 } catch (Exception e11) {
                     org.telegram.messenger.a8.g(e11, true);

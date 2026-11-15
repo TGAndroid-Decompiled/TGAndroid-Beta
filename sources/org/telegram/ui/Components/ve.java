@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Paint;
 public final class ve extends ki.w {
-    public boolean f40385s;
-    public final ChatActivityEnterView f40386w;
+    public boolean f40388s;
+    public final ChatActivityEnterView f40389w;
 
     public ve(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f40386w = chatActivityEnterView;
+        this.f40389w = chatActivityEnterView;
         this.f18607a = null;
         Paint paint = new Paint(1);
         this.d = paint;
@@ -28,15 +28,15 @@ public final class ve extends ki.w {
         }
         invalidate();
         setClipChildren(false);
-        this.f40385s = false;
+        this.f40388s = false;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        if (!this.f40385s) {
-            this.f40385s = true;
-            this.f40386w.W1();
+        if (!this.f40388s) {
+            this.f40388s = true;
+            this.f40389w.W1();
         }
     }
 }

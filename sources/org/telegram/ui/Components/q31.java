@@ -21,21 +21,21 @@ public final class q31 extends v4.t0 {
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         x31 x31Var = this.f38479a;
-        w31 w31Var = x31Var.f41551s;
-        n31 n31Var = x31Var.f41549n;
+        w31 w31Var = x31Var.f41554s;
+        n31 n31Var = x31Var.f41552n;
         v4.t0 t0Var = x31Var.E;
         if (t0Var != null) {
             t0Var.b(n31Var, i7, i10);
         }
-        if (i10 > 0 && n31Var.getAdapter() == w31Var && x31Var.K && !w31Var.f41247r && !w31Var.f41248s) {
-            if (x31Var.f41550r.N0() >= ((w31Var.f41250x + 1) - ((w31Var.f41249w + 1) * 10)) - 1) {
-                x31 x31Var2 = w31Var.f41251y;
-                if (x31Var2.K && !w31Var.f41247r && !w31Var.f41248s) {
-                    w31Var.f41247r = true;
+        if (i10 > 0 && n31Var.getAdapter() == w31Var && x31Var.K && !w31Var.f41250r && !w31Var.f41251s) {
+            if (x31Var.f41553r.N0() >= ((w31Var.f41253x + 1) - ((w31Var.f41252w + 1) * 10)) - 1) {
+                x31 x31Var2 = w31Var.f41254y;
+                if (x31Var2.K && !w31Var.f41250r && !w31Var.f41251s) {
+                    w31Var.f41250r = true;
                     TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = w31Var.f41246n.size();
+                    tL_messages_getOldFeaturedStickers.offset = w31Var.f41249n.size();
                     tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(x31Var2.f41544a).sendRequest(tL_messages_getOldFeaturedStickers, new v1(w31Var, 16));
+                    ConnectionsManager.getInstance(x31Var2.f41547a).sendRequest(tL_messages_getOldFeaturedStickers, new v1(w31Var, 16));
                 }
             }
         }

@@ -115,12 +115,12 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.mediaEntities = g20Var.G;
             convertVideoParams.isPhoto = g20Var.I;
             convertVideoParams.cropState = g20Var.H;
-            convertVideoParams.isRound = g20Var.f23650s;
+            convertVideoParams.isRound = g20Var.f23652s;
             convertVideoParams.callback = lfVar;
             convertVideoParams.gradientTopColor = g20Var.Q;
             convertVideoParams.gradientBottomColor = g20Var.R;
-            convertVideoParams.muted = g20Var.f23651t;
-            convertVideoParams.volume = g20Var.f23652u;
+            convertVideoParams.muted = g20Var.f23653t;
+            convertVideoParams.volume = g20Var.f23654u;
             convertVideoParams.isStory = g20Var.J;
             convertVideoParams.hdrInfo = g20Var.K;
             convertVideoParams.isDark = g20Var.T;
@@ -272,8 +272,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i7);
                 try {
                     dg.c cVar = new dg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f8080b;
-                    cVar.f8077a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f8083b;
+                    cVar.f8080a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j3 = mixedSoundInfo.startTime;
                     int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     if (i10 > 0) {

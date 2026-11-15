@@ -32,10 +32,10 @@ public final class lr implements Runnable {
                 Context context2 = rrVar.getContext();
                 org.telegram.ui.ActionBar.e6 e6Var = rrVar.J0;
                 int i10 = rrVar.f29679a;
-                long j3 = rrVar.f39034m2;
-                ArrayList<Long> arrayList = rrVar.f39035n2.joined_chat_ids;
+                long j3 = rrVar.f39031m2;
+                ArrayList<Long> arrayList = rrVar.f39032n2.joined_chat_ids;
                 mr mrVar = new mr(rrVar, 5);
-                Pattern pattern = t4.f39507a;
+                Pattern pattern = t4.f39505a;
                 LinearLayout f10 = org.telegram.messenger.k5.f(context2, 1);
                 org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context2, e6Var);
@@ -61,7 +61,7 @@ public final class lr implements Runnable {
                     } else {
                         org.telegram.ui.ActionBar.t1 t1Var2 = t1Var;
                         di.e1 e1Var = new di.e1(context2, e6Var, z11);
-                        ((TextView) e1Var.f8445b).setText(org.telegram.messenger.m5.m(M02));
+                        ((TextView) e1Var.f8441b).setText(org.telegram.messenger.m5.m(M02));
                         TextView textView = (TextView) e1Var.d;
                         if (N0 != null) {
                             context = context2;
@@ -73,7 +73,7 @@ public final class lr implements Runnable {
                             charSequence = null;
                         }
                         textView.setText(charSequence);
-                        ((i9) e1Var.f8446c).f(M02, new t8(M02));
+                        ((i9) e1Var.f8442c).f(M02, new t8(M02));
                         e1Var.setBackground(org.telegram.ui.ActionBar.j6.N0(z10));
                         e1Var.setOnClickListener(new di.v2(t1VarArr, mrVar, longValue, 3));
                         f10.addView(e1Var, c8.ja.o(-1, -2));

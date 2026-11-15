@@ -29,7 +29,7 @@ import org.telegram.ui.Components.m01;
 import org.telegram.ui.Components.u5;
 import org.telegram.ui.g71;
 import org.telegram.ui.z20;
-import tg.y1;
+import tg.x1;
 public class q0 extends FrameLayout implements c80 {
     public final org.telegram.ui.Components.voip.n E;
     public boolean F;
@@ -118,7 +118,7 @@ public class q0 extends FrameLayout implements c80 {
         ofFloat.addUpdateListener(new f4(this, 12));
         this.f58272x.addListener(new g71(this, 19));
         this.f58272x.setDuration(250L);
-        this.f58272x.setInterpolator(er.f34420f);
+        this.f58272x.setInterpolator(er.f34419f);
         this.f58272x.start();
     }
 
@@ -128,19 +128,19 @@ public class q0 extends FrameLayout implements c80 {
         kq kqVar = this.J;
         p0 p0Var = this.h;
         if (kqVar != null) {
-            jq jqVar = kqVar.f36586a;
+            jq jqVar = kqVar.f36574a;
             if (jqVar.h == 0) {
                 L = 0;
             } else {
-                L = org.telegram.messenger.g0.L(jqVar.C - 0.5f) + jqVar.f36155s;
+                L = org.telegram.messenger.g0.L(jqVar.C - 0.5f) + jqVar.f36145s;
             }
             u5 u5Var = this.M;
             u5Var.e(false, ((L * 0.85f) + org.telegram.messenger.g0.L(3.0f)) / 2.0f);
             float e10 = (p0Var.getDrawable().e() / 2.0f) + (getMeasuredWidth() / 2.0f) + org.telegram.messenger.g0.L(3.0f);
             u5 u5Var2 = this.N;
             u5Var2.e(false, e10);
-            p0Var.setTranslationX(-u5Var.f39903c);
-            this.J.setTranslationX(u5Var2.f39903c - u5Var.f39903c);
+            p0Var.setTranslationX(-u5Var.f39900c);
+            this.J.setTranslationX(u5Var2.f39900c - u5Var.f39900c);
         } else if (p0Var != null) {
             p0Var.setTranslationX(0.0f);
         }
@@ -179,11 +179,11 @@ public class q0 extends FrameLayout implements c80 {
             }
             invalidate();
         }
-        boolean z11 = r2.f26198a;
+        boolean z11 = r2.f26206a;
         if (!this.I) {
             int measuredWidth = getMeasuredWidth();
             org.telegram.ui.Components.voip.n nVar = this.E;
-            nVar.f40795f = measuredWidth;
+            nVar.f40798f = measuredWidth;
             nVar.a(i10, canvas, rectF, null);
         }
         if (this.f58270s != 0.0f && this.F) {
@@ -264,8 +264,8 @@ public class q0 extends FrameLayout implements c80 {
         fh0 fh0Var = this.G;
         fh0Var.f(i7, 24, 24, null);
         org.telegram.ui.Components.voip.n nVar = this.E;
-        nVar.f40796g = 2.0f;
-        nVar.f40804p = new q2.d(this, 22);
+        nVar.f40799g = 2.0f;
+        nVar.f40807p = new q2.d(this, 22);
         invalidate();
         fh0Var.setVisibility(0);
     }
@@ -288,7 +288,7 @@ public class q0 extends FrameLayout implements c80 {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
             this.R = ofFloat;
-            ofFloat.addUpdateListener(new y1(this, 3));
+            ofFloat.addUpdateListener(new x1(this, 3));
             this.R.addListener(new z20(17, this, z10));
             this.R.setDuration(320L);
             this.R.setInterpolator(er.h);
@@ -308,9 +308,9 @@ public class q0 extends FrameLayout implements c80 {
         this.f58268n = i7;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.E = nVar;
-        nVar.f40802n = 1.2f;
-        nVar.f40799k = false;
-        nVar.f40801m = 4.0f;
+        nVar.f40805n = 1.2f;
+        nVar.f40802k = false;
+        nVar.f40804m = 4.0f;
         LinearLayout f10 = k5.f(context, 0);
         p0 p0Var = new p0(this, context, 0);
         this.f58267f = p0Var;
@@ -331,7 +331,7 @@ public class q0 extends FrameLayout implements c80 {
         f10.addView(p0Var, ja.r(-2, -2, 16));
         f10.addView((View) imageView, ja.q(24, 24, 0.0f, 16, 4, 0, 0, 0));
         addView(m01Var);
-        setOutlineProvider(bg.t0.f3333b);
+        setOutlineProvider(bg.t0.f3336b);
         setClipToOutline(true);
         na.b(this, 0.02f, 1.2f);
         if (z10) {

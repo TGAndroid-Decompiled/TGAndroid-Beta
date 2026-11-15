@@ -56,7 +56,7 @@ public final class i3 extends ft {
         menu.add(2131296496, 2131296497, 7, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744437, null));
         ?? obj = new Object();
-        obj.f41484a |= 8;
+        obj.f41487a |= 8;
         spannableStringBuilder3.setSpan(new xy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 8, spannableStringBuilder3);
         menu.add(2131296496, 2131296503, 9, hd.M0(2131746337, null));

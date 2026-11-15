@@ -25,7 +25,7 @@ public abstract class l0 {
         int i12;
         int i13;
         int i14;
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
         if (m5.o(message.peer_id) == m5.o(message.from_id)) {
             z12 = true;

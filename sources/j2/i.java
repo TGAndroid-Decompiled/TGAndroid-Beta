@@ -13,12 +13,12 @@ public final class i implements h2.d {
     public final boolean d;
 
     public i(v0 v0Var) {
-        this.f16789b = new wf.b((Context) v0Var.f3345c);
+        this.f16789b = new wf.b((Context) v0Var.f3348c);
         m9.z zVar = (m9.z) f16787e.get();
         zVar.getClass();
         this.f16788a = zVar;
-        this.f16790c = v0Var.f3344b;
-        this.d = v0Var.f3343a;
+        this.f16790c = v0Var.f3347b;
+        this.d = v0Var.f3346a;
     }
 
     @Override

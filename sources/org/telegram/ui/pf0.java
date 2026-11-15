@@ -10,30 +10,30 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class pf0 extends FrameLayout {
-    public final int f50278a;
-    public final bg0 f50279b;
+    public final int f50255a;
+    public final bg0 f50256b;
 
     public pf0(bg0 bg0Var, Context context, int i7) {
         super(context);
-        this.f50278a = i7;
-        this.f50279b = bg0Var;
+        this.f50255a = i7;
+        this.f50256b = bg0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        switch (this.f50278a) {
+        switch (this.f50255a) {
             case 0:
                 super.dispatchDraw(canvas);
-                bg0 bg0Var = this.f50279b;
-                qf0 qf0Var = bg0Var.f45713a0;
+                bg0 bg0Var = this.f50256b;
+                qf0 qf0Var = bg0Var.f45707a0;
                 qf0Var.e(canvas);
                 ArrayList arrayList = qf0Var.G;
                 boolean z10 = true;
                 float f10 = -1.0f;
                 if (!arrayList.isEmpty()) {
                     ix ixVar = (ix) i5.c.h(1, arrayList);
-                    ImageReceiver imageReceiver = ixVar.f48154r;
+                    ImageReceiver imageReceiver = ixVar.f48139r;
                     org.telegram.messenger.gc gcVar = imageReceiver.f22273g0;
                     if (gcVar == null) {
                         gcVar = imageReceiver.P;
@@ -42,16 +42,16 @@ public final class pf0 extends FrameLayout {
                         gcVar = imageReceiver.X;
                     }
                     if (gcVar != null) {
-                        if (ixVar.f48155s == null) {
-                            TLRPC.Document document = gcVar.f23717i;
+                        if (ixVar.f48140s == null) {
+                            TLRPC.Document document = gcVar.f23719i;
                             if (document != null) {
-                                ixVar.f48155s = org.telegram.messenger.w7.r("tgs", document);
+                                ixVar.f48140s = org.telegram.messenger.w7.r("tgs", document);
                             } else {
-                                ixVar.f48155s = org.telegram.messenger.w7.r("tgs", gcVar.f23715f);
+                                ixVar.f48140s = org.telegram.messenger.w7.r("tgs", gcVar.f23717f);
                             }
                         }
-                        if (ixVar.f48155s != null) {
-                            Float w10 = org.telegram.messenger.fc.D().w(ixVar.f48155s);
+                        if (ixVar.f48140s != null) {
+                            Float w10 = org.telegram.messenger.fc.D().w(ixVar.f48140s);
                             if (w10 == null) {
                                 w10 = Float.valueOf(1.0f);
                             }
@@ -68,12 +68,12 @@ public final class pf0 extends FrameLayout {
                 }
                 return;
             default:
-                bg0 bg0Var2 = this.f50279b;
+                bg0 bg0Var2 = this.f50256b;
                 if (bg0Var2.E > 0.0f && bg0Var2.h != null) {
-                    bg0Var2.f45729n.reset();
-                    float width = getWidth() / bg0Var2.f45719e.getWidth();
-                    bg0Var2.f45729n.postScale(width, width);
-                    bg0Var2.f45721f.setLocalMatrix(bg0Var2.f45729n);
+                    bg0Var2.f45723n.reset();
+                    float width = getWidth() / bg0Var2.f45713e.getWidth();
+                    bg0Var2.f45723n.postScale(width, width);
+                    bg0Var2.f45715f.setLocalMatrix(bg0Var2.f45723n);
                     bg0Var2.h.setAlpha((int) (bg0Var2.E * 255.0f));
                     canvas2 = canvas;
                     canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), bg0Var2.h);
@@ -87,10 +87,10 @@ public final class pf0 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f50278a) {
+        switch (this.f50255a) {
             case 1:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f50279b.onBackPressed();
+                    this.f50256b.onBackPressed();
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -106,11 +106,11 @@ public final class pf0 extends FrameLayout {
         int measuredHeight;
         rf0 rf0Var;
         int height;
-        switch (this.f50278a) {
+        switch (this.f50255a) {
             case 1:
                 super.onLayout(z10, i7, i10, i11, i12);
-                bg0 bg0Var = this.f50279b;
-                if (!bg0Var.f45723g0 || bg0Var.f45724h0) {
+                bg0 bg0Var = this.f50256b;
+                if (!bg0Var.f45717g0 || bg0Var.f45718h0) {
                     ArrayList arrayList = bg0Var.N;
                     xf0 xf0Var = bg0Var.K;
                     if (bg0Var.F.getWidth() > 0) {
@@ -118,11 +118,11 @@ public final class pf0 extends FrameLayout {
                         bg0Var.d(iArr);
                         bg0Var.X.setScaleX(bg0Var.W.getScaleX());
                         bg0Var.X.setScaleY(bg0Var.W.getScaleY());
-                        int[] iArr2 = bg0Var.f45735r0;
+                        int[] iArr2 = bg0Var.f45729r0;
                         iArr2[0] = iArr[0];
                         iArr2[1] = iArr[1];
                         int measuredHeight2 = xf0Var.getMeasuredHeight() - bg0Var.X.getHeight();
-                        if (bg0Var.f45720e0 != null) {
+                        if (bg0Var.f45714e0 != null) {
                             i13 = org.telegram.messenger.g0.L(320.0f);
                         } else {
                             i13 = 0;
@@ -154,11 +154,11 @@ public final class pf0 extends FrameLayout {
                         }
                         bg0Var.X.setX(org.telegram.messenger.g0.L(6.0f) + (iArr[0] - (rf0Var.getWidth() - bg0Var.X.l())));
                         bg0Var.X.setY(iArr[1]);
-                        if (bg0Var.f45732p0) {
+                        if (bg0Var.f45726p0) {
                             iArr[0] = iArr[0] - (bg0Var.Y - bg0Var.W.l());
                         }
                         xf0Var.setX((org.telegram.messenger.g0.L(7.0f) + iArr[0]) - xf0Var.getMeasuredWidth());
-                        if (bg0Var.f45723g0) {
+                        if (bg0Var.f45717g0) {
                             org.telegram.messenger.i20.n(xf0Var.animate().translationY(((bg0Var.X.getHeight() + iArr[1]) - xf0Var.getMeasuredHeight()) - xf0Var.getTop()), pi.k.V, 250L);
                         } else {
                             xf0Var.setY((bg0Var.X.getHeight() + iArr[1]) - xf0Var.getMeasuredHeight());
@@ -175,33 +175,33 @@ public final class pf0 extends FrameLayout {
                             }
                             viewGroup3.setY(i16 + height);
                         }
-                        FrameLayout frameLayout = bg0Var.f45718d0;
+                        FrameLayout frameLayout = bg0Var.f45712d0;
                         if (frameLayout != null) {
-                            frameLayout.setX(i5.c.d(6.0f, (bg0Var.X.l() + iArr[0]) - bg0Var.f45718d0.getMeasuredWidth(), 0));
-                            RectF rectF = bg0Var.f45728l0;
+                            frameLayout.setX(i5.c.d(6.0f, (bg0Var.X.l() + iArr[0]) - bg0Var.f45712d0.getMeasuredWidth(), 0));
+                            RectF rectF = bg0Var.f45722l0;
                             if (rectF != null) {
-                                FrameLayout frameLayout2 = bg0Var.f45718d0;
+                                FrameLayout frameLayout2 = bg0Var.f45712d0;
                                 float max = Math.max(bg0Var.d.f15575b, rectF.top - frameLayout2.getMeasuredWidth());
-                                bg0Var.f45717c0 = max;
+                                bg0Var.f45711c0 = max;
                                 frameLayout2.setY(max);
-                                sf0 sf0Var = bg0Var.f45720e0;
+                                sf0 sf0Var = bg0Var.f45714e0;
                                 if (sf0Var != null) {
-                                    sf0Var.setY(Math.max(bg0Var.d.f15575b, (bg0Var.f45728l0.top - org.telegram.messenger.g0.L(24.0f)) - bg0Var.f45720e0.getMeasuredHeight()));
+                                    sf0Var.setY(Math.max(bg0Var.d.f15575b, (bg0Var.f45722l0.top - org.telegram.messenger.g0.L(24.0f)) - bg0Var.f45714e0.getMeasuredHeight()));
                                 }
                             } else {
                                 float height2 = (bg0Var.X.getHeight() + iArr[1]) - xf0Var.getMeasuredHeight();
-                                FrameLayout frameLayout3 = bg0Var.f45718d0;
+                                FrameLayout frameLayout3 = bg0Var.f45712d0;
                                 float max2 = Math.max(bg0Var.d.f15575b, height2 - frameLayout3.getMeasuredHeight()) + org.telegram.messenger.g0.L(24.0f);
-                                bg0Var.f45717c0 = max2;
+                                bg0Var.f45711c0 = max2;
                                 frameLayout3.setY(max2);
-                                sf0 sf0Var2 = bg0Var.f45720e0;
+                                sf0 sf0Var2 = bg0Var.f45714e0;
                                 if (sf0Var2 != null) {
-                                    sf0Var2.setY(Math.max(0.0f, (height2 - sf0Var2.getMeasuredHeight()) - bg0Var.f45717c0));
+                                    sf0Var2.setY(Math.max(0.0f, (height2 - sf0Var2.getMeasuredHeight()) - bg0Var.f45711c0));
                                 }
                             }
                         }
                     }
-                    bg0Var.f45723g0 = true;
+                    bg0Var.f45717g0 = true;
                     return;
                 }
                 return;
@@ -213,11 +213,11 @@ public final class pf0 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f50278a) {
+        switch (this.f50255a) {
             case 1:
                 super.onSizeChanged(i7, i10, i11, i12);
-                bg0 bg0Var = this.f50279b;
-                ih.d.c(bg0Var.f45726j0, bg0Var.F);
+                bg0 bg0Var = this.f50256b;
+                ih.d.c(bg0Var.f45720j0, bg0Var.F);
                 ViewGroup viewGroup = bg0Var.Z;
                 if (viewGroup != null) {
                     viewGroup.invalidate();

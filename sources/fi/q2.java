@@ -76,7 +76,7 @@ public final class q2 implements ii {
         String str2;
         b4 b4Var = this.f12223a;
         if (b4Var.f11522t0.f11860n0 && (storyItem = b4Var.f11543y1.f12579a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || b4Var.f11520s2.f36447e2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || b4Var.f11520s2.f36435e2.getSelectedPhotos().isEmpty())) {
                 p2 p2Var = b4Var.f11520s2;
                 if (p2Var != null) {
                     p2Var.M(i7);
@@ -88,8 +88,8 @@ public final class q2 implements ii {
             if (i7 != 8) {
                 b4Var.f11520s2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = b4Var.f11520s2.f36447e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = b4Var.f11520s2.f36447e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = b4Var.f11520s2.f36435e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = b4Var.f11520s2.f36435e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -102,38 +102,38 @@ public final class q2 implements ii {
                         if (i16 < selectedPhotosOrder.size()) {
                             ff ffVar = (ff) selectedPhotos.get(selectedPhotosOrder.get(i16));
                             ?? obj = new Object();
-                            boolean z19 = ffVar.f27708b;
+                            boolean z19 = ffVar.f27710b;
                             if (!z19 && (str2 = ffVar.h) != null) {
-                                obj.f23189c = str2;
+                                obj.f23196c = str2;
                             } else {
                                 String str3 = ffVar.I;
                                 if (str3 != null) {
-                                    obj.f23189c = str3;
+                                    obj.f23196c = str3;
                                 }
                             }
-                            obj.f23190e = ffVar.f27709c;
-                            obj.f23191f = ffVar.f27712g;
-                            obj.f23199o = z19;
-                            CharSequence charSequence = ffVar.f27707a;
+                            obj.f23197e = ffVar.f27711c;
+                            obj.f23198f = ffVar.f27714g;
+                            obj.f23206o = z19;
+                            CharSequence charSequence = ffVar.f27709a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f23193i = ffVar.f27718n;
-                            obj.f23194j = ffVar.f27722r;
-                            obj.h = ffVar.f27727x;
-                            obj.f23195k = ffVar.f27723s;
-                            obj.f23202r = ffVar.L;
-                            obj.f23204t = ez.h(ffVar.f27707a);
-                            obj.f23205u = ffVar.M;
+                            obj.f23200i = ffVar.f27720n;
+                            obj.f23201j = ffVar.f27724r;
+                            obj.h = ffVar.f27729x;
+                            obj.f23202k = ffVar.f27725s;
+                            obj.f23209r = ffVar.L;
+                            obj.f23211t = ez.h(ffVar.f27709a);
+                            obj.f23212u = ffVar.M;
                             arrayList.add(obj);
                             ffVar.e();
                         }
                     }
                     if (i13 == 0) {
-                        z15 = ((dz) arrayList.get(i12)).f23204t;
+                        z15 = ((dz) arrayList.get(i12)).f23211t;
                     } else {
                         z15 = i12;
                     }

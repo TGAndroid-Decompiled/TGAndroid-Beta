@@ -61,7 +61,7 @@ public final class i5 implements RemoteViewsService.RemoteViewsFactory {
         arrayList.clear();
         c cVar = this.d;
         if (cVar != null) {
-            int i7 = cVar.f22778a;
+            int i7 = cVar.f22782a;
             if (m10.i(i7).p()) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
@@ -70,7 +70,7 @@ public final class i5 implements RemoteViewsService.RemoteViewsFactory {
                 int i10 = this.f24285c;
                 a0.h hVar2 = this.f24288g;
                 CountDownLatch countDownLatch = new CountDownLatch(1);
-                a02.f27220a.c(new bg.c(a02, i10, arrayList, 1, hVar2, hVar, arrayList3, arrayList2, countDownLatch));
+                a02.f27219a.c(new bg.c(a02, i10, arrayList, 1, hVar2, hVar, arrayList3, arrayList2, countDownLatch));
                 try {
                     countDownLatch.await();
                 } catch (Exception e10) {

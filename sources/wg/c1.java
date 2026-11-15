@@ -1,6 +1,6 @@
 package wg;
 
-import ai.r1;
+import ai.s1;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import bi.s2;
 import c8.na;
-import di.v8;
+import di.u8;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -208,7 +208,7 @@ public class c1 extends ja implements is {
                     switch (r2) {
                         case 0:
                             fp fpVar2 = this.f59298b.Y1;
-                            fpVar2.a(!fpVar2.f34663a.f32441q, true);
+                            fpVar2.a(!fpVar2.f34667a.f32441q, true);
                             return;
                         default:
                             this.f59298b.k1();
@@ -236,7 +236,7 @@ public class c1 extends ja implements is {
                 switch (r2) {
                     case 0:
                         fp fpVar2 = this.f59298b.Y1;
-                        fpVar2.a(!fpVar2.f34663a.f32441q, true);
+                        fpVar2.a(!fpVar2.f34667a.f32441q, true);
                         return;
                     default:
                         this.f59298b.k1();
@@ -256,7 +256,7 @@ public class c1 extends ja implements is {
         int i18 = this.f29717u0;
         viewGroup5.addView(frameLayout, c8.ja.f(300.0f, -1, 87, i18, 0, i18, org.telegram.messenger.g0.L(68.0f)));
         xg.i iVar2 = this.f59154l2;
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         iVar2.f59938n = arrayList;
         iVar2.f59937f = uj0Var;
         int i19 = this.f29717u0;
@@ -266,30 +266,30 @@ public class c1 extends ja implements is {
             f10 = 0.0f;
         }
         uj0Var.setPadding(i19, 0, i19, org.telegram.messenger.g0.L(f10));
-        this.f35936o1.j(new vh.d(this, 2));
-        this.f35936o1.setOnItemClickListener(new bt(this, i10, e6Var, i7));
+        this.f35931o1.j(new vh.d(this, 2));
+        this.f35931o1.setOnItemClickListener(new bt(this, i10, e6Var, i7));
         if (i10 == 4) {
-            this.f35936o1.setOnItemLongClickListener((jj0) new r1(this, i10, 22));
+            this.f35931o1.setOnItemLongClickListener((jj0) new s1(this, i10, 22));
         }
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(er.h);
         kVar.C = false;
         kVar.f58564m = false;
-        this.f35936o1.setItemAnimator(kVar);
-        this.f35936o1.i(new ai.h0(this, 10));
+        this.f35931o1.setItemAnimator(kVar);
+        this.f35931o1.i(new ai.i0(this, 10));
         ng0Var.setText("");
         ng0Var.d.b(false);
         ng0Var.b(false, hashSet, new v0(this, 12), null);
         mg0Var.setText(O0());
-        fa faVar = this.f35937p1;
+        fa faVar = this.f35932p1;
         if (faVar != null) {
             faVar.setTitle(O0());
         }
         n1(false);
         j1(false);
         if (arrayList2.isEmpty()) {
-            arrayList2.addAll(si.b0(this.f29679a).f26482j1);
+            arrayList2.addAll(si.b0(this.f29679a).f26492j1);
         }
         p1(false, true);
         if (i10 == 0 || i10 == 2) {
@@ -298,7 +298,7 @@ public class c1 extends ja implements is {
         if (i10 != 0 && i10 != 2) {
             return;
         }
-        v8.y(i7, false).U();
+        u8.y(i7, false).U();
     }
 
     public static boolean i1(Intent intent) {
@@ -382,7 +382,7 @@ public class c1 extends ja implements is {
 
     @Override
     public final void R0(Canvas canvas, int i7) {
-        float max = Math.max(i7, org.telegram.messenger.g0.f23603m - org.telegram.messenger.g0.L(8.0f)) + org.telegram.messenger.g0.L(8.0f);
+        float max = Math.max(i7, org.telegram.messenger.g0.f23605m - org.telegram.messenger.g0.L(8.0f)) + org.telegram.messenger.g0.L(8.0f);
         mg0 mg0Var = this.X1;
         mg0Var.setTranslationY(max);
         float translationY = mg0Var.getTranslationY() + mg0Var.getMeasuredHeight();
@@ -392,7 +392,7 @@ public class c1 extends ja implements is {
         rv rvVar = this.W1;
         rvVar.setTranslationY(translationY2);
         int measuredHeight = ng0Var.getMeasuredHeight() + mg0Var.getMeasuredHeight();
-        this.f35936o1.setTranslationY((rvVar.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
+        this.f35931o1.setTranslationY((rvVar.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
     }
 
     @Override
@@ -578,9 +578,9 @@ public class c1 extends ja implements is {
     public final void j1(boolean z10) {
         ArrayList arrayList = this.f59147e2;
         if (arrayList.isEmpty()) {
-            arrayList.addAll(g5.r(this.f29679a).f23679f0);
-            this.f59150h2.putAll(g5.r(this.f29679a).f23681h0);
-            this.f59151i2.addAll(g5.r(this.f29679a).f23682i0);
+            arrayList.addAll(g5.r(this.f29679a).f23681f0);
+            this.f59150h2.putAll(g5.r(this.f29679a).f23683h0);
+            this.f59151i2.addAll(g5.r(this.f29679a).f23684i0);
             if (z10) {
                 o1(true, true);
             }
@@ -607,7 +607,7 @@ public class c1 extends ja implements is {
                         s10 s10Var = this.f59168z2;
                         if (s10Var != null) {
                             fp fpVar = this.Y1;
-                            s10Var.a(Boolean.valueOf((fpVar == null || !fpVar.f34663a.f32441q) ? false : false), hashSet);
+                            s10Var.a(Boolean.valueOf((fpVar == null || !fpVar.f34667a.f32441q) ? false : false), hashSet);
                             this.f59168z2 = null;
                         }
                         dismiss();
@@ -616,7 +616,7 @@ public class c1 extends ja implements is {
                     List c10 = q.c(q.b(arrayList2.size(), arrayList));
                     if (arrayList2.size() == 1) {
                         long j3 = ((TLRPC.User) arrayList2.get(0)).f28200id;
-                        if (q10.b(np.s1(m10.f24934t0).b2(j3))) {
+                        if (q10.b(np.s1(m10.f24940t0).b2(j3))) {
                             i20.t(hd.a0(null, null, 2131743742, m5.t(j3)), new cc(this.f29685c, this.J0), 2131624012, 36);
                             return;
                         }
@@ -656,7 +656,7 @@ public class c1 extends ja implements is {
         if (i7 == 4) {
             spannableStringBuilder.append((CharSequence) hd.M0(2131752623, null));
         } else if (hashSet.size() == 0) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 spannableStringBuilder.append((CharSequence) hd.M0(2131749674, "GiftPremiumChooseRecipientsBtn"));
                 spannableStringBuilder.append((CharSequence) "d").setSpan(this.f59159q2, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             } else {
@@ -704,7 +704,7 @@ public class c1 extends ja implements is {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            uj0 uj0Var = this.f35936o1;
+            uj0 uj0Var = this.f35931o1;
             if (i10 >= uj0Var.getChildCount()) {
                 break;
             }
@@ -755,7 +755,7 @@ public class c1 extends ja implements is {
                 z10 = false;
             }
             if (z10) {
-                j6.C1(w02, fqVar.f34669a);
+                j6.C1(w02, fqVar.f34673a);
             }
             fq fqVar2 = this.A2;
             if (fqVar2 != null) {
@@ -764,9 +764,9 @@ public class c1 extends ja implements is {
                 z11 = false;
             }
             if (z11) {
-                j6.C1(w02, fqVar2.f34669a);
+                j6.C1(w02, fqVar2.f34673a);
             }
-            uj0 uj0Var = this.f35936o1;
+            uj0 uj0Var = this.f35931o1;
             if (uj0Var != null) {
                 for (int i7 = 0; i7 < uj0Var.getChildCount(); i7++) {
                     uj0Var.getChildAt(i7).invalidate();

@@ -42,20 +42,20 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
     public boolean P1;
     public final u5 Q1;
     public Boolean R1;
-    public Integer f38170m1;
+    public Integer f38168m1;
     public final CharSequence n1;
-    public final TLRPC.InputPeer f38171o1;
-    public final int f38172p1;
-    public final boolean f38173q1;
-    public final TL_iv.RichMessage f38174r1;
-    public final org.telegram.messenger.xt f38175s1;
-    public final org.telegram.messenger.xt f38176t1;
-    public final String f38177u1;
-    public String f38178v1;
-    public String f38179w1;
-    public final n21 f38180x1;
-    public final gi.j f38181y1;
-    public final a21 f38182z1;
+    public final TLRPC.InputPeer f38169o1;
+    public final int f38170p1;
+    public final boolean f38171q1;
+    public final TL_iv.RichMessage f38172r1;
+    public final org.telegram.messenger.xt f38173s1;
+    public final org.telegram.messenger.xt f38174t1;
+    public final String f38175u1;
+    public String f38176v1;
+    public String f38177w1;
+    public final n21 f38178x1;
+    public final gi.j f38179y1;
+    public final a21 f38180z1;
 
     public p21(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i7, boolean z10, TL_iv.RichMessage richMessage) {
         super(1, context, (org.telegram.ui.ActionBar.e6) null, false);
@@ -66,17 +66,17 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
         this.f29717u0 = 0;
         O();
         this.n1 = charSequence;
-        this.f38171o1 = inputPeer;
-        this.f38172p1 = i7;
-        this.f38173q1 = z10;
-        this.f38174r1 = richMessage;
-        this.f38177u1 = str;
-        this.f38178v1 = str2;
+        this.f38169o1 = inputPeer;
+        this.f38170p1 = i7;
+        this.f38171q1 = z10;
+        this.f38172r1 = richMessage;
+        this.f38175u1 = str;
+        this.f38176v1 = str2;
         j21 j21Var = new j21(this, context);
         this.f29682b = j21Var;
         this.Q1 = new u5(j21Var, 320L, er.h);
         gi.j jVar = new gi.j(context, 7);
-        this.f38181y1 = jVar;
+        this.f38179y1 = jVar;
         jVar.setPadding(org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(6.0f));
         jVar.setTextSize(1, org.telegram.messenger.gz.W0);
         int i10 = org.telegram.ui.ActionBar.j6.f28957j5;
@@ -89,7 +89,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
             charSequence2 = charSequence.toString();
         }
         jVar.setText(org.telegram.messenger.j6.m(charSequence2, jVar.getPaint().getFontMetricsInt(), true, null, 0));
-        this.f38182z1 = new FrameLayout(context);
+        this.f38180z1 = new FrameLayout(context);
         z70 z70Var = new z70(context, null);
         this.A1 = z70Var;
         z70Var.setDisablePaddingsOffsetY(true);
@@ -115,32 +115,32 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
             }
         } catch (Exception unused) {
         }
-        this.f38182z1.addView(this.A1, c8.ja.c(-1.0f, -1));
-        if (this.f38174r1 != null) {
+        this.f38180z1.addView(this.A1, c8.ja.c(-1.0f, -1));
+        if (this.f38172r1 != null) {
             org.telegram.messenger.xt xtVar = new org.telegram.messenger.xt(this.f29679a, context, null);
-            this.f38175s1 = xtVar;
+            this.f38173s1 = xtVar;
             xtVar.setPadding(org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(6.0f));
-            xtVar.set(this.f38174r1);
+            xtVar.set(this.f38172r1);
             xtVar.setTranslationLoading(true);
             org.telegram.messenger.xt xtVar2 = new org.telegram.messenger.xt(this.f29679a, context, null);
-            this.f38176t1 = xtVar2;
+            this.f38174t1 = xtVar2;
             xtVar2.setPadding(org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(6.0f));
         }
         b21 b21Var = new b21(this, context);
         this.H1 = b21Var;
         b21Var.setOverScrollMode(1);
-        b21Var.setPadding(0, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23603m, 0, org.telegram.messenger.g0.L(80.0f));
+        b21Var.setPadding(0, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23605m, 0, org.telegram.messenger.g0.L(80.0f));
         b21Var.setClipToPadding(true);
         v4.b0 b0Var = new v4.b0();
         b21Var.setLayoutManager(b0Var);
-        if (this.f38174r1 != null) {
-            view = this.f38175s1;
+        if (this.f38172r1 != null) {
+            view = this.f38173s1;
         } else {
-            view = this.f38181y1;
+            view = this.f38179y1;
         }
         ?? h0Var = new v4.h0();
-        h0Var.f37833e = 1;
-        h0Var.f37832c = context;
+        h0Var.f37822e = 1;
+        h0Var.f37821c = context;
         h0Var.d = view;
         this.I1 = h0Var;
         b21Var.setAdapter(h0Var);
@@ -158,12 +158,12 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
         this.K1 = n10;
         org.telegram.messenger.g0.E2(n10);
         this.f29682b.addView(n10, c8.ja.e(-1, -1, 119));
-        org.telegram.messenger.xt xtVar3 = this.f38176t1;
+        org.telegram.messenger.xt xtVar3 = this.f38174t1;
         if (xtVar3 != null) {
             xtVar3.setTextSelectionHelper(h9Var);
         }
         n21 n21Var = new n21(this, context);
-        this.f38180x1 = n21Var;
+        this.f38178x1 = n21Var;
         this.f29682b.addView(n21Var, c8.ja.e(-1, 78, 55));
         FrameLayout frameLayout = new FrameLayout(context);
         org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28922h5, frameLayout, null);
@@ -262,7 +262,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
     }
 
     public static String M0() {
-        return org.telegram.messenger.np.e1().getString("translate_to_language", org.telegram.messenger.hd.E0().f24129y.getLanguage());
+        return org.telegram.messenger.np.e1().getString("translate_to_language", org.telegram.messenger.hd.E0().f24132y.getLanguage());
     }
 
     public static HashMap N0(CharSequence charSequence) {
@@ -272,8 +272,8 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
             String charSequence2 = charSequence.toString();
             for (int i7 = 0; i7 < j3.size(); i7++) {
                 org.telegram.messenger.h6 h6Var = (org.telegram.messenger.h6) j3.get(i7);
-                if (h6Var != null && h6Var.f24059c != null) {
-                    String substring = charSequence2.substring(h6Var.f24057a, h6Var.f24058b);
+                if (h6Var != null && h6Var.f24062c != null) {
+                    String substring = charSequence2.substring(h6Var.f24060a, h6Var.f24061b);
                     ArrayList arrayList = (ArrayList) hashMap.get(substring);
                     if (arrayList == null) {
                         arrayList = new ArrayList();
@@ -336,8 +336,8 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
             if (it.hasNext()) {
                 ddVar = (org.telegram.messenger.dd) it.next();
                 String str4 = ddVar.d;
-                if (str4 != null && str4.equals("remote") && ((str2 = ddVar.f23060c) == null || !str2.endsWith("_raw"))) {
-                    String str5 = ddVar.f23062f;
+                if (str4 != null && str4.equals("remote") && ((str2 = ddVar.f23068c) == null || !str2.endsWith("_raw"))) {
+                    String str5 = ddVar.f23070f;
                     if (str5 != null && str5.equals(str)) {
                         break;
                     }
@@ -350,10 +350,10 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
         if (ddVar == null) {
             return null;
         }
-        if (ddVar2 != null && "en".equals(ddVar2.f23062f)) {
-            return ddVar.f23059b;
+        if (ddVar2 != null && "en".equals(ddVar2.f23070f)) {
+            return ddVar.f23067b;
         }
-        return ddVar.f23058a;
+        return ddVar.f23066a;
     }
 
     public static String P0(String str) {
@@ -408,9 +408,9 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
                                 while (true) {
                                     if (i13 < arrayList2.size()) {
                                         org.telegram.messenger.h6 h6Var2 = (org.telegram.messenger.h6) arrayList2.get(i13);
-                                        int i14 = h6Var2.f24057a;
+                                        int i14 = h6Var2.f24060a;
                                         int i15 = messageEntity2.offset;
-                                        if (i14 == i15 && h6Var2.f24058b == i15 + messageEntity2.length) {
+                                        if (i14 == i15 && h6Var2.f24061b == i15 + messageEntity2.length) {
                                             break;
                                         }
                                         i13++;
@@ -420,8 +420,8 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
                                     }
                                 }
                                 if (i13 >= 0 && i13 < arrayList3.size() && (h6Var = (org.telegram.messenger.h6) arrayList3.get(i13)) != null) {
-                                    int i16 = h6Var.f24058b;
-                                    int i17 = h6Var.f24057a;
+                                    int i16 = h6Var.f24061b;
+                                    int i17 = h6Var.f24060a;
                                     int i18 = 0;
                                     while (true) {
                                         if (i18 < tL_textWithEntities2.entities.size()) {
@@ -546,9 +546,9 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
 
     @Override
     public final void L() {
-        if (this.f38170m1 != null) {
-            ConnectionsManager.getInstance(this.f29679a).cancelRequest(this.f38170m1.intValue(), true);
-            this.f38170m1 = null;
+        if (this.f38168m1 != null) {
+            ConnectionsManager.getInstance(this.f29679a).cancelRequest(this.f38168m1.intValue(), true);
+            this.f38168m1 = null;
         }
         super.L();
     }
@@ -602,31 +602,31 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
 
     public final void X0() {
         String charSequence;
-        if (this.f38170m1 != null) {
-            ConnectionsManager.getInstance(this.f29679a).cancelRequest(this.f38170m1.intValue(), true);
-            this.f38170m1 = null;
+        if (this.f38168m1 != null) {
+            ConnectionsManager.getInstance(this.f29679a).cancelRequest(this.f38168m1.intValue(), true);
+            this.f38168m1 = null;
         }
         if ("alternative".equalsIgnoreCase(org.telegram.messenger.np.s1(this.f29679a).V6)) {
             Y0();
             return;
         }
-        String str = this.f38178v1;
+        String str = this.f38176v1;
         if (str != null) {
             str = str.split("_")[0];
         }
         if ("nb".equals(str)) {
             str = "no";
         }
-        TL_iv.RichMessage richMessage = this.f38174r1;
-        int i7 = this.f38172p1;
-        TLRPC.InputPeer inputPeer = this.f38171o1;
+        TL_iv.RichMessage richMessage = this.f38172r1;
+        int i7 = this.f38170p1;
+        TLRPC.InputPeer inputPeer = this.f38169o1;
         if (richMessage != null && inputPeer != null) {
             TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
             tL_messages_translateRichMessage.flags = 1 | tL_messages_translateRichMessage.flags;
             tL_messages_translateRichMessage.peer = inputPeer;
             tL_messages_translateRichMessage.f28174id.add(Integer.valueOf(i7));
             tL_messages_translateRichMessage.to_lang = org.telegram.messenger.c10.D(str);
-            this.f38170m1 = Integer.valueOf(ConnectionsManager.getInstance(this.f29679a).sendRequest(tL_messages_translateRichMessage, new v1(this, 15)));
+            this.f38168m1 = Integer.valueOf(ConnectionsManager.getInstance(this.f29679a).sendRequest(tL_messages_translateRichMessage, new v1(this, 15)));
             return;
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
@@ -637,13 +637,13 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
             charSequence = charSequence2.toString();
         }
         tL_textWithEntities.text = charSequence;
-        if (this.f38173q1 && inputPeer != null) {
+        if (this.f38171q1 && inputPeer != null) {
             TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
             tL_messages_summarizeText.flags = 1 | tL_messages_summarizeText.flags;
             tL_messages_summarizeText.peer = inputPeer;
             tL_messages_summarizeText.f28173id = i7;
             tL_messages_summarizeText.to_lang = org.telegram.messenger.c10.D(str);
-            this.f38170m1 = Integer.valueOf(ConnectionsManager.getInstance(this.f29679a).sendRequestTyped(tL_messages_summarizeText, new d3.b(1), new bi.e4(17, this, tL_textWithEntities)));
+            this.f38168m1 = Integer.valueOf(ConnectionsManager.getInstance(this.f29679a).sendRequestTyped(tL_messages_summarizeText, new d3.b(1), new bi.e4(17, this, tL_textWithEntities)));
             return;
         }
         TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
@@ -656,7 +656,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
             tL_messages_translateText.text.add(tL_textWithEntities);
         }
         tL_messages_translateText.to_lang = org.telegram.messenger.c10.D(str);
-        this.f38170m1 = Integer.valueOf(ConnectionsManager.getInstance(this.f29679a).sendRequest(tL_messages_translateText, new org.telegram.ui.v7(25, this, tL_textWithEntities)));
+        this.f38168m1 = Integer.valueOf(ConnectionsManager.getInstance(this.f29679a).sendRequest(tL_messages_translateText, new org.telegram.ui.v7(25, this, tL_textWithEntities)));
     }
 
     public final void Y0() {
@@ -667,7 +667,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
         } else {
             charSequence = charSequence2.toString();
         }
-        String str = this.f38177u1;
+        String str = this.f38175u1;
         if (str != null) {
             str = str.split("_")[0];
         }
@@ -675,7 +675,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
         if ("nb".equals(str)) {
             str = "no";
         }
-        String str3 = this.f38178v1;
+        String str3 = this.f38176v1;
         if (str3 != null) {
             str3 = str3.split("_")[0];
         }
@@ -687,8 +687,8 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25514i4) {
-            this.f38181y1.invalidate();
+        if (i7 == org.telegram.messenger.ns.f25515i4) {
+            this.f38179y1.invalidate();
             this.A1.invalidate();
         }
     }
@@ -696,7 +696,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
     @Override
     public void dismiss() {
         super.dismiss();
-        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25515i4);
         org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.I5);
         org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.H5);
     }
@@ -740,7 +740,7 @@ public abstract class p21 extends org.telegram.ui.ActionBar.u2 implements org.te
     @Override
     public final void show() {
         super.show();
-        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25515i4);
         org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.I5);
         org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.H5);
     }

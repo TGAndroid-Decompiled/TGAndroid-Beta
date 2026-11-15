@@ -1,19 +1,19 @@
 package org.telegram.ui;
 public final class qr implements org.telegram.messenger.pr {
-    public final int f50779a;
-    public final ContactsActivity f50780b;
+    public final int f50778a;
+    public final ContactsActivity f50779b;
 
     public qr(ContactsActivity contactsActivity, int i7) {
-        this.f50779a = i7;
-        this.f50780b = contactsActivity;
+        this.f50778a = i7;
+        this.f50779b = contactsActivity;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
-        switch (this.f50779a) {
+        switch (this.f50778a) {
             case 0:
-                ContactsActivity contactsActivity = this.f50780b;
+                ContactsActivity contactsActivity = this.f50779b;
                 contactsActivity.getClass();
                 if (i7 != 0) {
                     z10 = true;
@@ -27,7 +27,7 @@ public final class qr implements org.telegram.messenger.pr {
                 }
                 return;
             default:
-                ContactsActivity.a0(this.f50780b, i7);
+                ContactsActivity.a0(this.f50779b, i7);
                 return;
         }
     }

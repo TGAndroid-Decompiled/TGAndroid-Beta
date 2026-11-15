@@ -363,7 +363,7 @@ public final class j3 extends View {
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, width, height, 255, 31);
         float f23 = width;
-        float L = org.telegram.messenger.g0.L(55.0f) + org.telegram.messenger.g0.L(40.0f) + org.telegram.messenger.g0.f23603m;
+        float L = org.telegram.messenger.g0.L(55.0f) + org.telegram.messenger.g0.L(40.0f) + org.telegram.messenger.g0.f23605m;
         float L2 = org.telegram.messenger.g0.L(68.0f);
         int min = (int) Math.min(org.telegram.messenger.g0.L(340.0f), 0.95f * f23);
         if (org.telegram.messenger.g0.Q1()) {
@@ -516,7 +516,7 @@ public final class j3 extends View {
                     } else {
                         float f34 = f33 * 1.0f;
                         float T14 = org.telegram.messenger.g0.T1(1.0f, 1.3f, f34);
-                        float currentActionBarHeight = ((k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(50.0f)) * 0.0f;
+                        float currentActionBarHeight = ((k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(50.0f)) * 0.0f;
                         canvas.save();
                         canvas.rotate(i3Var.f28672i * 20.0f, (i3Var.f28672i * org.telegram.messenger.g0.L(50.0f)) + rectF6.centerX(), rectF6.bottom + org.telegram.messenger.g0.L(350.0f));
                         float a10 = i3Var.f28674k.a(0.01f);
@@ -617,7 +617,7 @@ public final class j3 extends View {
             }
             this.f28739j0.setCallback(this);
         }
-        float L3 = this.f28737h0.f38105c + org.telegram.messenger.g0.L(24.0f);
+        float L3 = this.f28737h0.f38103c + org.telegram.messenger.g0.L(24.0f);
         float f38 = (f37 - L3) / 2.0f;
         this.f28739j0.setBounds((int) f38, (int) ((f36 - (org.telegram.messenger.g0.L(95.0f) / 2.0f)) - org.telegram.messenger.g0.L(14.0f)), (int) ((f37 + L3) / 2.0f), (int) ((f36 - (org.telegram.messenger.g0.L(95.0f) / 2.0f)) + org.telegram.messenger.g0.L(14.0f)));
         this.f28739j0.setAlpha((int) (this.W * f11));

@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import android.location.Location;
 public final class ld implements q0.a {
-    public final int f24821a;
-    public final rd f24822b;
+    public final int f24827a;
+    public final rd f24828b;
 
     public ld(rd rdVar, int i7) {
-        this.f24821a = i7;
-        this.f24822b = rdVar;
+        this.f24827a = i7;
+        this.f24828b = rdVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f24821a) {
+        switch (this.f24827a) {
             case 0:
-                this.f24822b.m((Location) obj);
+                this.f24828b.m((Location) obj);
                 return;
             default:
-                rd rdVar = this.f24822b;
+                rd rdVar = this.f24828b;
                 Integer num = (Integer) obj;
                 rdVar.getClass();
                 int intValue = num.intValue();

@@ -37,7 +37,7 @@ public final class p8 extends r41 implements is {
         ArrayList f10 = i0Var.f();
         Activity parentActivity = p8Var.getParentActivity();
         org.telegram.ui.ActionBar.e6 e6Var = p8Var.resourceProvider;
-        boolean z10 = org.telegram.messenger.r2.f26198a;
+        boolean z10 = org.telegram.messenger.r2.f26206a;
         k0(parentActivity, f10, e6Var, new r(17, p8Var, p0Var));
     }
 
@@ -53,7 +53,7 @@ public final class p8 extends r41 implements is {
     public static void f0(p8 p8Var, Boolean bool) {
         l0 x10 = l0.x(p8Var.currentAccount);
         if (bool.booleanValue()) {
-            boolean z10 = org.telegram.messenger.r2.f26198a;
+            boolean z10 = org.telegram.messenger.r2.f26206a;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, p8Var.getParentActivity(), p8Var.getResourceProvider());
         alertDialog$Builder.f28392a.S = hd.M0(2131743030, null);
@@ -202,12 +202,12 @@ public final class p8 extends r41 implements is {
         g01 g01Var = new g01(activity, e6Var);
         g01Var.setPadding(org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(4.0f));
         g01Var.setEmojiSize(100);
-        org.telegram.ui.Components.i9 i9Var = g01Var.f34767b;
+        org.telegram.ui.Components.i9 i9Var = g01Var.f34771b;
         i9Var.getImageReceiver().d = org.telegram.messenger.g0.t0();
         si.b0(org.telegram.messenger.g0.t0()).c2(i9Var, "RestrictedEmoji", "📝", "100_100");
         e11.addView(g01Var, c8.ja.r(-1, -2, 7));
         String M0 = hd.M0(2131743034, null);
-        z70 z70Var = g01Var.f34768c;
+        z70 z70Var = g01Var.f34772c;
         CharSequence m10 = org.telegram.messenger.j6.m(M0, z70Var.getPaint().getFontMetricsInt(), false, null, 0);
         String M02 = hd.M0(2131743035, null);
         z70 z70Var2 = g01Var.d;
@@ -273,14 +273,14 @@ public final class p8 extends r41 implements is {
             Activity parentActivity = getParentActivity();
             String M0 = hd.M0(2131743138, null);
             String M02 = hd.M0(2131743139, null);
-            boolean z10 = org.telegram.messenger.r2.f26198a;
+            boolean z10 = org.telegram.messenger.r2.f26206a;
             org.telegram.ui.ActionBar.t1 f02 = org.telegram.ui.Components.t4.f0(parentActivity, M0, M02, null, hd.M0(2131743141, null), new g8(this, 2), getResourceProvider(), false);
             TextView textView = (TextView) f02.d(-1);
             if (textView != null) {
                 org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f29090q7, f02.f29638j1);
             }
         } else if (b41Var.H(n8.class)) {
-            String charSequence = b41Var.f33181l.toString();
+            String charSequence = b41Var.f33184l.toString();
             l0(getParentActivity(), getResourceProvider(), new p(this, l0.x(this.currentAccount), charSequence, new p0(this.currentAccount, getParentActivity(), charSequence)));
         }
     }
@@ -293,17 +293,17 @@ public final class p8 extends r41 implements is {
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f38882a);
-        this.f38882a.r1();
-        this.f38882a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f38880a);
+        this.f38880a.r1();
+        this.f38880a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         bi.v3 v3Var;
-        if (i7 == ns.f25467a4 && (v3Var = this.f38882a) != null) {
-            v3Var.f39895g3.O(true);
+        if (i7 == ns.f25468a4 && (v3Var = this.f38880a) != null) {
+            v3Var.f39892g3.O(true);
         }
     }
 
@@ -314,13 +314,13 @@ public final class p8 extends r41 implements is {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, ns.f25467a4);
+        getNotificationCenter().c(this, ns.f25468a4);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ns.f25467a4);
+        getNotificationCenter().n(this, ns.f25468a4);
         this.f44332f = true;
         ArrayList arrayList = this.f44331e;
         int size = arrayList.size();
@@ -336,7 +336,7 @@ public final class p8 extends r41 implements is {
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f38882a.setPadding(0, 0, 0, i12);
-        this.f38882a.setClipToPadding(false);
+        this.f38880a.setPadding(0, 0, 0, i12);
+        this.f38880a.setClipToPadding(false);
     }
 }

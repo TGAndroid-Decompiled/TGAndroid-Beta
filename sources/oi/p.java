@@ -25,7 +25,7 @@ public final class p {
                 if (!f21861e) {
                     synchronized (p.class) {
                         if (!f21861e) {
-                            JLatexMathAndroid.init(org.telegram.messenger.t0.f26600b);
+                            JLatexMathAndroid.init(org.telegram.messenger.t0.f26609b);
                             f21861e = true;
                         }
                     }

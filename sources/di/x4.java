@@ -12,45 +12,45 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.er;
 public final class x4 extends Drawable {
-    public Drawable f9728g;
+    public Drawable f9716g;
     public int h;
-    public int f9729i;
-    public final Paint f9724b = new Paint(1);
-    public final Shader[] f9725c = new Shader[2];
+    public int f9717i;
+    public final Paint f9712b = new Paint(1);
+    public final Shader[] f9713c = new Shader[2];
     public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.u5 f9726e = new org.telegram.ui.Components.u5(1.0f, new ch.w(this, 18), 0, 420, er.h);
-    public final RectF f9727f = new RectF();
-    public final int f9723a = 1;
+    public final org.telegram.ui.Components.u5 f9714e = new org.telegram.ui.Components.u5(1.0f, new ch.w(this, 18), 0, 420, er.h);
+    public final RectF f9715f = new RectF();
+    public final int f9711a = 1;
 
     public final void a(int i7, int i10) {
-        if (this.h == i7 && this.f9729i == i10) {
+        if (this.h == i7 && this.f9717i == i10) {
             return;
         }
-        Shader[] shaderArr = this.f9725c;
+        Shader[] shaderArr = this.f9713c;
         shaderArr[0] = shaderArr[1];
-        if (this.f9723a == 0) {
+        if (this.f9711a == 0) {
             this.h = i7;
-            this.f9729i = i10;
+            this.f9717i = i10;
             shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         } else {
             this.h = i7;
-            this.f9729i = i10;
+            this.f9717i = i10;
             shaderArr[1] = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(340.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
-        this.f9726e.e(true, 0.0f);
+        this.f9714e.e(true, 0.0f);
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f9727f;
+        RectF rectF = this.f9715f;
         rectF.set(bounds);
         rectF.right = rectF.width() + rectF.left;
         int i7 = 0;
-        float e10 = this.f9726e.e(false, 1.0f);
+        float e10 = this.f9714e.e(false, 1.0f);
         while (true) {
-            Shader[] shaderArr = this.f9725c;
+            Shader[] shaderArr = this.f9713c;
             if (i7 >= shaderArr.length) {
                 break;
             }
@@ -59,14 +59,14 @@ public final class x4 extends Drawable {
                 if (pow > 0.0f) {
                     Matrix matrix = this.d;
                     matrix.reset();
-                    if (this.f9723a == 1) {
+                    if (this.f9711a == 1) {
                         matrix.postTranslate(rectF.centerX(), org.telegram.messenger.g0.L(145.0f));
                     } else {
                         matrix.postScale(getBounds().width() / 100.0f, 1.0f);
                     }
                     shaderArr[i7].setLocalMatrix(matrix);
                     Shader shader = shaderArr[i7];
-                    Paint paint = this.f9724b;
+                    Paint paint = this.f9712b;
                     paint.setShader(shader);
                     paint.setAlpha((int) (pow * 255.0f));
                     canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
@@ -74,10 +74,10 @@ public final class x4 extends Drawable {
             }
             i7++;
         }
-        if (this.f9728g != null) {
+        if (this.f9716g != null) {
             canvas.save();
             canvas.translate(rectF.centerX(), org.telegram.messenger.g0.L(145.0f));
-            w0.a(canvas, 0, this.f9728g, rectF.width(), org.telegram.messenger.g0.L(290.0f), 2.0f, 1.0f);
+            w0.a(canvas, 0, this.f9716g, rectF.width(), org.telegram.messenger.g0.L(290.0f), 2.0f, 1.0f);
             canvas.restore();
         }
     }

@@ -19,14 +19,14 @@ public final class v7 implements Runnable {
             case 0:
                 x7 x7Var = this.f40321b;
                 String str = this.f40322c;
-                x7Var.f41610f = null;
+                x7Var.f41613f = null;
                 org.telegram.messenger.g0.h3(new v7(x7Var, str, 1));
                 return;
             default:
                 x7 x7Var2 = this.f40321b;
                 String str2 = this.f40322c;
                 x7Var2.getClass();
-                Utilities.f22418g.c(new w7(x7Var2, str2, new ArrayList(x7Var2.f41611n.f41915r2)));
+                Utilities.f22418g.c(new w7(x7Var2, str2, new ArrayList(x7Var2.f41614n.f41907r2)));
                 return;
         }
     }

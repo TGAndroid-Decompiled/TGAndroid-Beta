@@ -147,7 +147,7 @@ public final class w4 implements is {
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
             }
         }
-        this.E = ConnectionsManager.getInstance(this.f22094a).sendRequest(tL_messages_uploadMedia, new ai.d1(this, 22));
+        this.E = ConnectionsManager.getInstance(this.f22094a).sendRequest(tL_messages_uploadMedia, new ai.e1(this, 22));
     }
 
     public final void d() {

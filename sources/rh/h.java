@@ -38,10 +38,10 @@ public class h implements f, e, c {
         obj.f37017c = b.f56019a;
         obj.d = new q2.d(obj, 4);
         obj.f37016b = g7Var;
-        Typeface typeface = g0.f23581a;
+        Typeface typeface = g0.f23583a;
         float f10 = 1.0f;
         try {
-            f10 = Settings.Global.getFloat(t0.f26600b.getContentResolver(), "animator_duration_scale", 1.0f);
+            f10 = Settings.Global.getFloat(t0.f26609b.getContentResolver(), "animator_duration_scale", 1.0f);
         } catch (Exception unused) {
         }
         obj.f37015a = f10 * 250.0f * 1.1f;
@@ -83,18 +83,18 @@ public class h implements f, e, c {
         d dVar = this.E;
         l lVar = this.d;
         if (dVar != null && this.H > 0) {
-            return Math.max(this.G, lVar.d.f57107a);
+            return Math.max(this.G, lVar.d.f57111a);
         }
-        return lVar.d.f57107a;
+        return lVar.d.f57111a;
     }
 
     public final float d() {
         d dVar = this.E;
         l lVar = this.f56031c;
         if (dVar != null && this.H > 0) {
-            return Math.max(this.G, lVar.d.f57107a);
+            return Math.max(this.G, lVar.d.f57111a);
         }
-        return lVar.d.f57107a;
+        return lVar.d.f57111a;
     }
 
     public final int e() {
@@ -125,7 +125,7 @@ public class h implements f, e, c {
 
     public final void h(int i7) {
         if (i7 > 0) {
-            g(i7 + g0.f23604n);
+            g(i7 + g0.f23606n);
         } else {
             i(true);
         }
@@ -249,7 +249,7 @@ public class h implements f, e, c {
             } else {
                 f11 = 0.0f;
             }
-            kVar.f57109c = f11;
+            kVar.f57113c = f11;
             lVar2.e(i18, i17, i7, i15);
             lVar.e(i13, i12, i11, i14);
             te.c cVar5 = cVar2;

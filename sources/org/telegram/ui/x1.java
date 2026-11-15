@@ -10,19 +10,19 @@ import android.widget.ImageView;
 import java.util.HashSet;
 import org.telegram.tgnet.tl.TL_iv;
 public final class x1 extends HorizontalScrollView implements org.telegram.ui.ActionBar.z5, c3 {
-    public final n50 f53065a;
-    public final FrameLayout f53066b;
-    public final ImageView f53067c;
+    public final n50 f53064a;
+    public final FrameLayout f53065b;
+    public final ImageView f53066c;
     public int d;
 
     public x1(Context context, n50 n50Var) {
         super(context);
-        this.f53065a = n50Var;
+        this.f53064a = n50Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f53066b = frameLayout;
+        this.f53065b = frameLayout;
         addView(frameLayout, c8.ja.c(-2.0f, -2));
         ImageView imageView = new ImageView(context);
-        this.f53067c = imageView;
+        this.f53066c = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, c8.ja.c(-2.0f, -2));
         updateColors();
@@ -61,7 +61,7 @@ public final class x1 extends HorizontalScrollView implements org.telegram.ui.Ac
             super.onLayout(z10, i7, i10, i11, i12);
             return;
         }
-        FrameLayout frameLayout = this.f53066b;
+        FrameLayout frameLayout = this.f53065b;
         frameLayout.layout((i13 - i14) / 2, 0, (i13 + i14) / 2, frameLayout.getMeasuredHeight());
     }
 
@@ -72,9 +72,9 @@ public final class x1 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     public void setBlock(TL_iv.pageBlockMath pageblockmath) {
         oi.p a10;
-        ImageView imageView = this.f53067c;
+        ImageView imageView = this.f53066c;
         imageView.setImageBitmap(null);
-        n50 n50Var = this.f53065a;
+        n50 n50Var = this.f53064a;
         n50Var.getClass();
         float f10 = 18;
         int L = org.telegram.messenger.g0.L(f10);
@@ -96,8 +96,8 @@ public final class x1 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     @Override
     public final void updateColors() {
-        ((g4) this.f53065a).getClass();
-        this.f53067c.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6), PorterDuff.Mode.SRC_IN));
+        ((g4) this.f53064a).getClass();
+        this.f53066c.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6), PorterDuff.Mode.SRC_IN));
     }
 
     @Override

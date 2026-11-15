@@ -50,7 +50,7 @@ public final class u2 extends ImageReceiver {
         Object obj = this.L1;
         switch (i7) {
             case 3:
-                View view = ((dn) obj).f46436b;
+                View view = ((dn) obj).f46426b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -89,7 +89,7 @@ public final class u2 extends ImageReceiver {
                 return x02;
             case 1:
                 if (drawable != null && i7 != 1) {
-                    i20.n(((kg.a1) ((v3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), er.f34424k, 250L);
+                    i20.n(((kg.a1) ((v3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), er.f34423k, 250L);
                 }
                 return super.x0(drawable, str, i7, z10, i10);
             case 2:
@@ -101,8 +101,8 @@ public final class u2 extends ImageReceiver {
                 org.telegram.ui.Components.g5 g5Var = (org.telegram.ui.Components.g5) obj;
                 g5Var.j();
                 boolean x03 = super.x0(drawable, str, i7, z10, i10);
-                if (g5Var.f34811m && J()) {
-                    g5Var.f34811m = false;
+                if (g5Var.f34815m && J()) {
+                    g5Var.f34815m = false;
                     org.telegram.messenger.g0.h3(new dg(g5Var, 4));
                 }
                 return x03;

@@ -14,17 +14,17 @@ public final class mo0 extends tj0 {
     public lo0 I;
     public int K;
     public final po0 L;
-    public final Context f37333c;
-    public final ko0 f37334e;
-    public jo0 f37335f;
+    public final Context f37332c;
+    public final ko0 f37333e;
+    public jo0 f37334f;
     public jo0 h;
-    public String f37336n;
-    public int f37337r;
-    public int f37338s;
-    public int f37339w;
+    public String f37335n;
+    public int f37336r;
+    public int f37337s;
+    public int f37338w;
     public ArrayList d = new ArrayList();
-    public int f37340x = -1;
-    public int f37341y = -1;
+    public int f37339x = -1;
+    public int f37340y = -1;
     public int E = -1;
     public int F = -1;
     public int G = -1;
@@ -32,9 +32,9 @@ public final class mo0 extends tj0 {
 
     public mo0(po0 po0Var, Context context) {
         this.L = po0Var;
-        this.f37333c = context;
+        this.f37332c = context;
         ?? z1Var = new jg.z1(false);
-        this.f37334e = z1Var;
+        this.f37333e = z1Var;
         z1Var.f17344a = new cf(this);
     }
 
@@ -48,13 +48,13 @@ public final class mo0 extends tj0 {
     }
 
     public final void E(String str) {
-        if (str != null && str.equals(this.f37336n)) {
+        if (str != null && str.equals(this.f37335n)) {
             return;
         }
-        this.f37336n = str;
-        if (this.f37335f != null) {
-            Utilities.f22418g.a(this.f37335f);
-            this.f37335f = null;
+        this.f37335n = str;
+        if (this.f37334f != null) {
+            Utilities.f22418g.a(this.f37334f);
+            this.f37334f = null;
         }
         jo0 jo0Var = this.h;
         if (jo0Var != null) {
@@ -62,22 +62,22 @@ public final class mo0 extends tj0 {
             this.h = null;
         }
         this.d.clear();
-        this.f37334e.f(null, null);
-        this.f37334e.g(null, true, true, true, true, 0L, false, 0, 0);
+        this.f37333e.f(null, null);
+        this.f37333e.g(null, true, true, true, true, 0L, false, 0, 0);
         f();
         this.L.K0(true);
         if (TextUtils.isEmpty(str)) {
             po0.J0(this.L);
-            this.f37337r = -1;
+            this.f37336r = -1;
             this.J = false;
         } else {
             this.J = true;
-            int i7 = this.f37337r + 1;
-            this.f37337r = i7;
+            int i7 = this.f37336r + 1;
+            this.f37336r = i7;
             this.L.M1.e(true, true);
             org.telegram.messenger.p5 p5Var = Utilities.f22418g;
             jo0 jo0Var2 = new jo0(this, str, i7, 0);
-            this.f37335f = jo0Var2;
+            this.f37334f = jo0Var2;
             p5Var.d(jo0Var2, 300L);
         }
         this.L.K0(false);
@@ -86,21 +86,21 @@ public final class mo0 extends tj0 {
     @Override
     public final int b() {
         this.H = 0;
-        this.f37340x = -1;
-        this.f37341y = -1;
+        this.f37339x = -1;
+        this.f37340y = -1;
         this.F = -1;
         this.G = -1;
-        if (TextUtils.isEmpty(this.f37336n)) {
+        if (TextUtils.isEmpty(this.f37335n)) {
             int i7 = this.H;
             this.E = i7;
             this.H = i7 + 2;
-            this.f37340x = i7 + 1;
+            this.f37339x = i7 + 1;
             po0 po0Var = this.L;
             if (po0Var.A2.size() > 0) {
                 int i10 = this.H;
                 int i11 = i10 + 1;
                 this.H = i11;
-                this.f37341y = i10;
+                this.f37340y = i10;
                 this.F = i11;
                 this.H = po0Var.A2.size() + i11;
             }
@@ -115,7 +115,7 @@ public final class mo0 extends tj0 {
         int i15 = i14 + 1;
         this.H = i15;
         this.E = i14;
-        int size = this.f37334e.d.size() + this.d.size() + i15;
+        int size = this.f37333e.d.size() + this.d.size() + i15;
         this.H = size;
         if (size == 1) {
             this.E = -1;
@@ -138,13 +138,13 @@ public final class mo0 extends tj0 {
         if (i7 == this.E) {
             return 1;
         }
-        if (i7 == this.f37340x) {
+        if (i7 == this.f37339x) {
             return 2;
         }
-        if (i7 == this.f37341y) {
+        if (i7 == this.f37340y) {
             return 3;
         }
-        if (TextUtils.isEmpty(this.f37336n)) {
+        if (TextUtils.isEmpty(this.f37335n)) {
             return 0;
         }
         return 5;
@@ -177,10 +177,10 @@ public final class mo0 extends tj0 {
             }
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f37336n);
+        boolean isEmpty = TextUtils.isEmpty(this.f37335n);
         TLObject tLObject2 = null;
         String m10 = null;
-        ko0 ko0Var = this.f37334e;
+        ko0 ko0Var = this.f37333e;
         TLRPC.TL_encryptedChat tL_encryptedChat2 = null;
         if (isEmpty) {
             int i11 = this.F;
@@ -249,7 +249,7 @@ public final class mo0 extends tj0 {
         int i12 = i7 - 1;
         if (i12 < this.d.size()) {
             eo0 eo0Var = (eo0) this.d.get(i12);
-            j10 = eo0Var.f34384a.f28055id;
+            j10 = eo0Var.f34383a.f28055id;
             str2 = eo0Var.d;
         } else {
             i12 -= this.d.size();
@@ -302,7 +302,7 @@ public final class mo0 extends tj0 {
         org.telegram.ui.Cells.x3 x3Var;
         float f10;
         po0 po0Var = this.L;
-        Context context = this.f37333c;
+        Context context = this.f37332c;
         if (i7 != 0) {
             if (i7 != 2) {
                 if (i7 != 3) {

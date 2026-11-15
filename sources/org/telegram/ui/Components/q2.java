@@ -44,9 +44,9 @@ public final class q2 implements org.telegram.messenger.z10 {
                 ((ji.p) this.f38474b).setEditMenuProgress(((Float) obj).floatValue());
                 return;
             case 4:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((am) this.f38474b).f33020w;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((am) this.f38474b).f33023w;
                 chatAttachAlertPhotoLayout.u0(null, null, ((Long) obj).longValue());
-                chatAttachAlertPhotoLayout.f33607b.dismiss();
+                chatAttachAlertPhotoLayout.f33609b.dismiss();
                 return;
             case 5:
                 org.telegram.messenger.np.s1(((bs) this.f38474b).Q).x3(null, (TLRPC.User) obj, null, 0, null, false, false);
@@ -63,32 +63,32 @@ public final class q2 implements org.telegram.messenger.z10 {
                 ((ft) this.f38474b).H(((Integer) obj).intValue());
                 return;
             case 8:
-                ja0 ja0Var = (ja0) this.f38474b;
+                ka0 ka0Var = (ka0) this.f38474b;
                 Integer num = (Integer) obj;
-                ArrayList arrayList2 = ja0Var.f35951e.f35208a;
-                p90 p90Var = ja0Var.f35952f;
-                if (((ga0) arrayList2.get(p90Var.getCurrentPosition())).f34876a != num.intValue()) {
+                ArrayList arrayList2 = ka0Var.f36338e.f35520a;
+                q90 q90Var = ka0Var.f36339f;
+                if (((ha0) arrayList2.get(q90Var.getCurrentPosition())).f35205a != num.intValue()) {
                     int i7 = 0;
                     int i10 = 0;
                     while (true) {
                         if (i10 < arrayList2.size()) {
-                            if (((ga0) arrayList2.get(i10)).f34876a == num.intValue()) {
+                            if (((ha0) arrayList2.get(i10)).f35205a == num.intValue()) {
                                 i7 = i10;
                             } else {
                                 i10++;
                             }
                         }
                     }
-                    if (p90Var.getCurrentPosition() != i7) {
-                        p90Var.C(i7);
+                    if (q90Var.getCurrentPosition() != i7) {
+                        q90Var.C(i7);
                         return;
                     }
                     return;
                 }
                 return;
             case 9:
-                da0 da0Var = (da0) this.f38474b;
-                da0Var.f33903n.y(da0Var.f33902f.T((View) obj));
+                ea0 ea0Var = (ea0) this.f38474b;
+                ea0Var.f34263n.y(ea0Var.f34262f.T((View) obj));
                 return;
             case 10:
                 fc0 fc0Var = (fc0) this.f38474b;
@@ -100,8 +100,8 @@ public final class q2 implements org.telegram.messenger.z10 {
                     } else {
                         z10 = false;
                     }
-                    int intValue = num2.intValue() - org.telegram.messenger.g0.f23604n;
-                    if (org.telegram.messenger.gz.f23975r == 1) {
+                    int intValue = num2.intValue() - org.telegram.messenger.g0.f23606n;
+                    if (org.telegram.messenger.gz.f23978r == 1) {
                         ViewPropertyAnimator animate = frameLayout.animate();
                         float f13 = 1.0f;
                         if (intValue <= org.telegram.messenger.g0.L(20.0f)) {
@@ -176,7 +176,7 @@ public final class q2 implements org.telegram.messenger.z10 {
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                int i11 = mw0Var.f37390a;
+                int i11 = mw0Var.f37389a;
                 TLRPC.UserFull b22 = org.telegram.messenger.np.s1(i11).b2(org.telegram.messenger.m10.i(i11).e());
                 if (b22 != null) {
                     tL_birthday = b22.birthday;
@@ -195,7 +195,7 @@ public final class q2 implements org.telegram.messenger.z10 {
                 return;
             default:
                 u41 u41Var = (u41) this.f38474b;
-                u41Var.f39895g3.R(u41Var.T((View) obj), u41Var.f39898k3);
+                u41Var.f39892g3.R(u41Var.T((View) obj), u41Var.f39895k3);
                 return;
         }
     }

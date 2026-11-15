@@ -9,7 +9,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.view.MotionEvent;
-import di.mb;
+import di.lb;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
@@ -210,7 +210,7 @@ public final class l4 {
             this.f30621o = d;
             if (d != null) {
                 RadialProgress2 radialProgress2 = d.H;
-                if (radialProgress2.f32661i.f39230q != 4 && radialProgress2.f32655a.contains(x10, y10)) {
+                if (radialProgress2.f32661i.f39227q != 4 && radialProgress2.f32655a.contains(x10, y10)) {
                     z12 = true;
                     this.f30622p = z12;
                 }
@@ -221,14 +221,14 @@ public final class l4 {
             k4 d2 = d(x10, y10);
             if (d2 != null) {
                 RadialProgress2 radialProgress22 = d2.H;
-                if (radialProgress22.f32661i.f39230q != 4 && radialProgress22.f32655a.contains(x10, y10)) {
+                if (radialProgress22.f32661i.f39227q != 4 && radialProgress22.f32655a.contains(x10, y10)) {
                     z10 = true;
                     k4Var = this.f30621o;
                     if (k4Var != null && k4Var == d2) {
                         q1Var = this.f30609a;
                         if (q1Var.getDelegate() != null && motionEvent.getAction() == 1) {
                             gj messageObject = q1Var.getMessageObject();
-                            if (!this.f30622p && z10 && d2.H.f32661i.f39230q == 3 && messageObject != null) {
+                            if (!this.f30622p && z10 && d2.H.f32661i.f39227q == 3 && messageObject != null) {
                                 if (messageObject.o4()) {
                                     ez.C(messageObject.K1).g(messageObject);
                                 }
@@ -301,12 +301,12 @@ public final class l4 {
         boolean z14;
         q1 q1Var = this.f30609a;
         boolean z15 = false;
-        if (q1Var.Ua <= 0 && (!q1Var.f31197w1 || TextUtils.isEmpty(gjVar.f23875z))) {
+        if (q1Var.Ua <= 0 && (!q1Var.f31197w1 || TextUtils.isEmpty(gjVar.f23877z))) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if ((q1Var.f31197w1 || TextUtils.isEmpty(gjVar.f23875z)) && q1Var.O.f5204p && !q1Var.f31216x7) {
+        if ((q1Var.f31197w1 || TextUtils.isEmpty(gjVar.f23877z)) && q1Var.O.f5207p && !q1Var.f31216x7) {
             z11 = false;
         } else {
             z11 = true;
@@ -320,7 +320,7 @@ public final class l4 {
             if (org.telegram.messenger.g0.Q1()) {
                 this.f30613f = org.telegram.messenger.g0.Q0() - org.telegram.messenger.g0.L(122.0f);
             } else {
-                int min = Math.min(q1Var.getParentWidth(), org.telegram.messenger.g0.f23609q.y);
+                int min = Math.min(q1Var.getParentWidth(), org.telegram.messenger.g0.f23611q.y);
                 if (q1Var.X(gjVar)) {
                     i7 = 10;
                 } else {
@@ -372,14 +372,14 @@ public final class l4 {
                 i12 = L;
             } else {
                 float f13 = this.f30613f;
-                int i19 = (int) ((yiVar.f27758q / f12) * f10 * f13);
+                int i19 = (int) ((yiVar.f27760q / f12) * f10 * f13);
                 z12 = z10;
-                float f14 = yiVar.f27757p;
+                float f14 = yiVar.f27759p;
                 float f15 = this.f30610b.f30490i;
                 int i20 = (int) (f14 * f15);
-                int i21 = (int) (yiVar.f27748f * f15);
-                int i22 = (int) ((yiVar.f27747e / f12) * f10 * f13);
-                int i23 = yiVar.f27753l;
+                int i21 = (int) (yiVar.f27750f * f15);
+                int i22 = (int) ((yiVar.f27749e / f12) * f10 * f13);
+                int i23 = yiVar.f27755l;
                 if ((i23 & 1) == 0) {
                     i19 += L;
                     i22 -= L;
@@ -405,7 +405,7 @@ public final class l4 {
                 k4Var.f30557c = i19 + i26;
                 k4Var.d = i24 + i27;
                 imageReceiver.y0(i19, i24, i26, i27);
-                int i28 = yiVar.f27753l;
+                int i28 = yiVar.f27755l;
                 int i29 = i28 & 4;
                 if (i29 != 0 && (i28 & 1) != 0 && !z12) {
                     i13 = L3;
@@ -479,13 +479,13 @@ public final class l4 {
             if (gjVar == null) {
                 tL_messageMediaPaidMedia = null;
             } else {
-                tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) gjVar.f23817k.media;
+                tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) gjVar.f23819k.media;
             }
             if (tL_messageMediaPaidMedia != null) {
-                oy0 oy0Var = new oy0(mb.a1(z17, hd.H(',', "UnlockPaidContent", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
+                oy0 oy0Var = new oy0(lb.a1(z17, hd.H(',', "UnlockPaidContent", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 this.f30623q = oy0Var;
-                if (oy0Var.f38105c > this.f30614g - org.telegram.messenger.g0.L(30.0f)) {
-                    this.f30623q = new oy0(mb.a1(false, hd.H(',', "UnlockPaidContentShort", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
+                if (oy0Var.f38103c > this.f30614g - org.telegram.messenger.g0.L(30.0f)) {
+                    this.f30623q = new oy0(lb.a1(false, hd.H(',', "UnlockPaidContentShort", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 }
             }
         }

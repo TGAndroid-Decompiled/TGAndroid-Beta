@@ -14,7 +14,7 @@ public final class g extends ic {
     @Override
     public final InputFilter[] a(InputFilter[] inputFilterArr) {
         boolean z10;
-        if (l.f2257j != null) {
+        if (l.f2260j != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -28,7 +28,7 @@ public final class g extends ic {
     @Override
     public final void b(boolean z10) {
         boolean z11;
-        if (l.f2257j != null) {
+        if (l.f2260j != null) {
             z11 = true;
         } else {
             z11 = false;
@@ -43,7 +43,7 @@ public final class g extends ic {
     public final void c(boolean z10) {
         boolean z11;
         f fVar = this.f56959a;
-        if (l.f2257j != null) {
+        if (l.f2260j != null) {
             z11 = true;
         } else {
             z11 = false;

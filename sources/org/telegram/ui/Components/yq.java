@@ -16,18 +16,18 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class yq implements View.OnClickListener {
-    public final int f42058a;
-    public final long f42059b;
-    public final Object f42060c;
+    public final int f42060a;
+    public final long f42061b;
+    public final Object f42062c;
     public final Object d;
-    public final Object f42061e;
+    public final Object f42063e;
 
     public yq(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f42058a = i7;
-        this.f42060c = obj;
+        this.f42060a = i7;
+        this.f42062c = obj;
         this.d = obj2;
-        this.f42061e = obj3;
-        this.f42059b = j3;
+        this.f42063e = obj3;
+        this.f42061b = j3;
     }
 
     @Override
@@ -41,10 +41,10 @@ public final class yq implements View.OnClickListener {
         String str;
         TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway;
         long j3;
-        int i13 = this.f42058a;
-        Object obj = this.f42061e;
+        int i13 = this.f42060a;
+        Object obj = this.f42063e;
         Object obj2 = this.d;
-        Object obj3 = this.f42060c;
+        Object obj3 = this.f42062c;
         switch (i13) {
             case 0:
                 ar arVar = (ar) obj3;
@@ -53,7 +53,7 @@ public final class yq implements View.OnClickListener {
                 org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
                 t1Var.S = M0;
                 t1Var.U = org.telegram.messenger.hd.M0(2131748799, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131746024, null), new di.h(arVar, (hi.d) obj, this.f42059b, 5));
+                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131746024, null), new di.h(arVar, (hi.d) obj, this.f42061b, 5));
                 alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
@@ -61,7 +61,7 @@ public final class yq implements View.OnClickListener {
             case 1:
                 org.telegram.ui.yw ywVar = (org.telegram.ui.yw) obj3;
                 ywVar.finishPreviewFragment();
-                org.telegram.messenger.g0.i3(new di.f2(ywVar, (org.telegram.messenger.so) obj2, (TLRPC.Dialog) obj, this.f42059b, 19), 100L);
+                org.telegram.messenger.g0.i3(new di.f2(ywVar, (org.telegram.messenger.so) obj2, (TLRPC.Dialog) obj, this.f42061b, 19), 100L);
                 return;
             default:
                 wg.y yVar = (wg.y) obj3;
@@ -85,7 +85,7 @@ public final class yq implements View.OnClickListener {
                         } else {
                             j3 = 0;
                         }
-                        ao aoVar = new ao(this.f42059b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, yVar);
+                        ao aoVar = new ao(this.f42061b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, yVar);
                         org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
                         if (Q != null) {
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
@@ -93,7 +93,7 @@ public final class yq implements View.OnClickListener {
                             org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder2.f28392a;
                             t1Var2.S = M02;
                             t1Var2.U = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131753192, null));
-                            alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131744915, null), new tg.a2(aoVar, 10));
+                            alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131744915, null), new tg.z1(aoVar, 10));
                             alertDialog$Builder2.h(org.telegram.messenger.hd.M0(2131752589, null), new ug.x(19));
                             alertDialog$Builder2.p();
                             return;
@@ -120,20 +120,20 @@ public final class yq implements View.OnClickListener {
                                 } else {
                                     z11 = false;
                                 }
-                                di.v8 y10 = di.v8.y(yVar.f29679a, false);
+                                di.u8 y10 = di.u8.y(yVar.f29679a, false);
                                 int l10 = wg.q.l(yVar.f59280i2);
                                 boolean z12 = yVar.f59291t2;
                                 boolean z13 = yVar.f59290s2;
                                 String str2 = yVar.f59289r2;
                                 org.telegram.ui.Wallet.t1 t1Var3 = new org.telegram.ui.Wallet.t1(6, yVar, g12);
-                                int i18 = y10.f9598a;
-                                if (org.telegram.messenger.np.s1(i18).f25322k7) {
+                                int i18 = y10.f9529a;
+                                if (org.telegram.messenger.np.s1(i18).f25325k7) {
                                     org.telegram.ui.ActionBar.e2 Q2 = LaunchActivity.Q();
                                     if (Q2 != null && Q2.getContext() != null) {
-                                        di.v8.c0(Q2.getContext(), Q2.getResourceProvider());
+                                        di.u8.c0(Q2.getContext(), Q2.getResourceProvider());
                                         return;
                                     } else {
-                                        di.v8.c0(W, null);
+                                        di.u8.c0(W, null);
                                         return;
                                     }
                                 }
@@ -186,7 +186,7 @@ public final class yq implements View.OnClickListener {
                                 TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars = new TLRPC.TL_inputInvoiceStars();
                                 tL_inputInvoiceStars.purpose = tL_inputStorePaymentStarsGiveaway;
                                 TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
-                                JSONObject u10 = ki.x2.u(di.v8.I(), false);
+                                JSONObject u10 = ki.x2.u(di.u8.I(), false);
                                 if (u10 != null) {
                                     TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                                     tL_payments_getPaymentForm.theme_params = tL_dataJSON;
@@ -309,8 +309,8 @@ public final class yq implements View.OnClickListener {
                             wg.t tVar2 = new wg.t(yVar, 3);
                             wg.t tVar3 = new wg.t(yVar, 4);
                             if (!wg.q.h()) {
-                                org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0);
-                                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.m10.f24934t0);
+                                org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0);
+                                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.m10.f24940t0);
                                 TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm2 = new TLRPC.TL_payments_getPaymentForm();
                                 TLRPC.TL_inputInvoicePremiumGiftCode tL_inputInvoicePremiumGiftCode = new TLRPC.TL_inputInvoicePremiumGiftCode();
                                 TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
@@ -366,8 +366,8 @@ public final class yq implements View.OnClickListener {
                                 connectionsManager.sendRequest(tL_payments_getPaymentForm2, new di.k7(tVar3, s12, tL_inputInvoicePremiumGiftCode, e2Var, tVar2, 13));
                                 return;
                             }
-                            org.telegram.messenger.np s13 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0);
-                            ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(org.telegram.messenger.m10.f24934t0);
+                            org.telegram.messenger.np s13 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0);
+                            ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(org.telegram.messenger.m10.f24940t0);
                             TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway2 = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
                             tL_inputStorePaymentPremiumGiveaway2.only_new_subscribers = z10;
                             tL_inputStorePaymentPremiumGiveaway2.winners_are_visible = z14;
@@ -421,10 +421,10 @@ public final class yq implements View.OnClickListener {
     }
 
     public yq(wg.y yVar, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.e2 e2Var) {
-        this.f42058a = 2;
-        this.f42060c = yVar;
+        this.f42060a = 2;
+        this.f42062c = yVar;
         this.d = prepaidGiveaway;
-        this.f42059b = j3;
-        this.f42061e = e2Var;
+        this.f42061b = j3;
+        this.f42063e = e2Var;
     }
 }

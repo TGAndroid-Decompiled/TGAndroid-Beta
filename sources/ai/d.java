@@ -28,13 +28,13 @@ import org.telegram.ui.qb1;
 import org.telegram.ui.tn0;
 import org.telegram.ui.xb1;
 public abstract class d {
-    public static boolean f1173a;
-    public static long f1174b;
-    public static int f1175c;
+    public static boolean f1171a;
+    public static long f1172b;
+    public static int f1173c;
     public static boolean d;
 
     public static void a(Context context) {
-        if (f1175c == 0 && !d) {
+        if (f1173c == 0 && !d) {
             ArrayList arrayList = new ArrayList();
             try {
                 if (SpeechRecognizer.isRecognitionAvailable(context)) {
@@ -43,7 +43,7 @@ public abstract class d {
             } catch (Throwable unused) {
             }
             if (arrayList.isEmpty()) {
-                f1175c = -1;
+                f1173c = -1;
                 Log.d("Dictation", "support probe: no recognition service");
                 return;
             }
@@ -132,17 +132,17 @@ public abstract class d {
     public static boolean h() {
         boolean z10;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = f1174b;
+        long j3 = f1172b;
         if (j3 == 0 || elapsedRealtime - j3 > 60000) {
-            f1174b = elapsedRealtime;
+            f1172b = elapsedRealtime;
             try {
-                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26600b);
+                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26609b);
             } catch (Throwable unused) {
                 z10 = false;
             }
-            f1173a = z10;
+            f1171a = z10;
         }
-        if (!f1173a || f1175c < 0) {
+        if (!f1171a || f1173c < 0) {
             return false;
         }
         return true;

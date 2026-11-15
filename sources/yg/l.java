@@ -45,7 +45,7 @@ public final class l extends LinearLayout {
         this.f60675b = textView;
         textView.setTextSize(1, 16.0f);
         q6.U(textView, j6.f28957j5, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             LinearLayout.LayoutParams t6 = ja.t(-1, -2, 16, 20, 0, 36, 0);
             t6.weight = 1.0f;
             addView(ftVar, t6);

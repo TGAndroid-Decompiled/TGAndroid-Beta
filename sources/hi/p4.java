@@ -100,12 +100,12 @@ public final class p4 implements View.OnLongClickListener {
             case 5:
                 oi.o oVar = ((oi.k) obj).f21766a;
                 oi.v3 v3Var = oVar.f21849s;
-                org.telegram.ui.ActionBar.e6 e6Var2 = oVar.f33606a;
-                ki kiVar = oVar.f33607b;
+                org.telegram.ui.ActionBar.e6 e6Var2 = oVar.f33608a;
+                ki kiVar = oVar.f33609b;
                 oi.q3 q3Var = oVar.f21848r;
                 int i13 = oVar.f21847n;
                 if (!m10.i(i13).q()) {
-                    new ug.x0(kiVar.f36436a2, oVar.getContext(), oVar.f21847n, 43, true).show();
+                    new ug.x0(kiVar.f36424a2, oVar.getContext(), oVar.f21847n, 43, true).show();
                 } else if (!q3Var.n3() || q3Var.p3()) {
                     return false;
                 } else {
@@ -120,7 +120,7 @@ public final class p4 implements View.OnLongClickListener {
                     if (c32.isEmpty()) {
                         return false;
                     }
-                    org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+                    org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
                     if (e2Var instanceof an) {
                         anVar = (an) e2Var;
                     } else {
@@ -133,7 +133,7 @@ public final class p4 implements View.OnLongClickListener {
                     }
                     bg0 bg0Var2 = new bg0(oVar.getContext(), e6Var2);
                     oVar.P = bg0Var2;
-                    bg0Var2.setOnDismissListener(new di.r9(oVar, 7));
+                    bg0Var2.setOnDismissListener(new di.q9(oVar, 7));
                     long b12 = kiVar.b1();
                     if (anVar != null) {
                         gjVar = anVar.E5;
@@ -151,20 +151,20 @@ public final class p4 implements View.OnLongClickListener {
                     richMessage.blocks = c32;
                     richMessage.photos = q3Var.E2();
                     tL_message.rich_message.documents = q3Var.B2();
-                    if (gjVar != null && !gjVar.f23836p) {
+                    if (gjVar != null && !gjVar.f23838p) {
                         TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                         tL_messageReplyHeader.flags |= 16;
                         tL_messageReplyHeader.reply_to_msg_id = gjVar.e1();
                         tL_message.reply_to = tL_messageReplyHeader;
                     }
                     gj gjVar2 = new gj(i13, tL_message, false, false);
-                    if (gjVar != null && !gjVar.f23836p) {
+                    if (gjVar != null && !gjVar.f23838p) {
                         gjVar2.C = gjVar;
                     }
                     gjVar2.B0 = true;
                     gjVar2.W2 = Boolean.TRUE;
                     gjVar2.n0(null);
-                    gjVar2.f23865w1 = true;
+                    gjVar2.f23867w1 = true;
                     oVar.P.r(org.telegram.messenger.k5.j(gjVar2));
                     jg sendButton = v3Var.getSendButton();
                     sendButton.setScaleX(1.0f);
@@ -175,7 +175,7 @@ public final class p4 implements View.OnLongClickListener {
                         s5.setBackground(new oi.y1(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(22.0f), org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, e6Var))));
                         bg0 bg0Var3 = oVar.P;
                         int L = org.telegram.messenger.g0.L(44.0f);
-                        bg0Var3.f45732p0 = true;
+                        bg0Var3.f45726p0 = true;
                         bg0Var3.Y = L;
                     } else {
                         e6Var = e6Var2;
@@ -211,7 +211,7 @@ public final class p4 implements View.OnLongClickListener {
                 return true;
             default:
                 tg.g0 g0Var = (tg.g0) obj;
-                int i14 = g0Var.f57306z1;
+                int i14 = g0Var.f57316z1;
                 if (g0Var.C1 != null) {
                     sg.k0 e13 = sg.k0.e(i14);
                     e13.f56695k = !e13.f56695k;

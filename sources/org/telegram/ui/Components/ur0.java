@@ -23,14 +23,14 @@ public final class ur0 extends org.telegram.ui.Cells.f7 {
         switch (this.m0) {
             case 0:
                 vr0 vr0Var = (vr0) this.f40154n0;
-                if (!org.telegram.messenger.gj.R4(gjVar.f23817k) && !gjVar.h4()) {
+                if (!org.telegram.messenger.gj.R4(gjVar.f23819k) && !gjVar.h4()) {
                     if (!gjVar.I3()) {
                         return false;
                     }
                     MediaController B = MediaController.B();
                     ArrayList arrayList4 = vr0Var.d;
-                    ys0 ys0Var = vr0Var.f41140w;
-                    long j3 = ys0Var.f42095f1;
+                    ys0 ys0Var = vr0Var.f41143w;
+                    long j3 = ys0Var.f42097f1;
                     playlistTopicId = ys0Var.getPlaylistTopicId();
                     return B.o0(arrayList4, gjVar, j3, true, null, playlistTopicId);
                 }
@@ -50,28 +50,28 @@ public final class ur0 extends org.telegram.ui.Cells.f7 {
                 ls0 ls0Var = (ls0) this.f40154n0;
                 int i7 = ls0Var.d;
                 ys0 ys0Var2 = ls0Var.f36900f;
-                if (!org.telegram.messenger.gj.R4(gjVar.f23817k) && !gjVar.h4()) {
+                if (!org.telegram.messenger.gj.R4(gjVar.f23819k) && !gjVar.h4()) {
                     if (!gjVar.I3()) {
                         return false;
                     }
                     MediaController B3 = MediaController.B();
-                    ArrayList arrayList5 = ys0Var2.f42144w1[i7].f37692a;
-                    long j10 = ys0Var2.f42095f1;
+                    ArrayList arrayList5 = ys0Var2.f42146w1[i7].f37681a;
+                    long j10 = ys0Var2.f42097f1;
                     playlistTopicId2 = ys0Var2.getPlaylistTopicId();
                     return B3.o0(arrayList5, gjVar, j10, true, null, playlistTopicId2);
                 }
                 boolean S2 = MediaController.B().S(gjVar);
                 MediaController B4 = MediaController.B();
                 if (S2) {
-                    arrayList2 = ys0Var2.f42144w1[i7].f37692a;
+                    arrayList2 = ys0Var2.f42146w1[i7].f37681a;
                 } else {
                     arrayList2 = null;
                 }
                 B4.r0(arrayList2, false);
                 return S2;
             default:
-                org.telegram.ui.zz zzVar = ((org.telegram.ui.uz) this.f40154n0).f52070w;
-                if (!org.telegram.messenger.gj.R4(gjVar.f23817k) && !gjVar.h4()) {
+                org.telegram.ui.zz zzVar = ((org.telegram.ui.uz) this.f40154n0).f52068w;
+                if (!org.telegram.messenger.gj.R4(gjVar.f23819k) && !gjVar.h4()) {
                     if (!gjVar.I3()) {
                         return false;
                     }

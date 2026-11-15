@@ -5,31 +5,31 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 public final class qo0 extends Drawable {
-    public long f38734a = 0;
-    public final float[] f38735b = {0.0f, -0.5f};
-    public final Drawable f38736c;
+    public long f38732a = 0;
+    public final float[] f38733b = {0.0f, -0.5f};
+    public final Drawable f38734c;
     public final Drawable d;
-    public final Drawable f38737e;
-    public final int f38738f;
+    public final Drawable f38735e;
+    public final int f38736f;
 
     public qo0(Context context, int i7) {
-        this.f38738f = i7;
+        this.f38736f = i7;
         if (i7 == 4) {
-            this.f38736c = i5.c.g(context, 2131231106);
+            this.f38734c = i5.c.g(context, 2131231106);
             this.d = i5.c.g(context, 2131232735);
-            this.f38737e = i5.c.g(context, 2131232736);
+            this.f38735e = i5.c.g(context, 2131232736);
         } else if (i7 == 5) {
-            this.f38736c = i5.c.g(context, 2131231173);
+            this.f38734c = i5.c.g(context, 2131231173);
             this.d = i5.c.g(context, 2131232735);
-            this.f38737e = i5.c.g(context, 2131232736);
+            this.f38735e = i5.c.g(context, 2131232736);
         } else if (i7 == 1) {
-            this.f38736c = i5.c.g(context, 2131232734);
+            this.f38734c = i5.c.g(context, 2131232734);
             this.d = i5.c.g(context, 2131232735);
-            this.f38737e = i5.c.g(context, 2131232736);
+            this.f38735e = i5.c.g(context, 2131232736);
         } else {
-            this.f38736c = i5.c.g(context, 2131230868);
+            this.f38734c = i5.c.g(context, 2131230868);
             this.d = i5.c.g(context, 2131230869);
-            this.f38737e = i5.c.g(context, 2131230870);
+            this.f38735e = i5.c.g(context, 2131230870);
         }
     }
 
@@ -43,13 +43,13 @@ public final class qo0 extends Drawable {
         int D;
         int i7;
         float y10;
-        Drawable drawable = this.f38736c;
+        Drawable drawable = this.f38734c;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         int i10 = 3;
         int i11 = 5;
         int i12 = 1;
-        int i13 = this.f38738f;
+        int i13 = this.f38736f;
         int i14 = 4;
         if (i13 != 4 && i13 != 5) {
             if (i13 == 3) {
@@ -71,7 +71,7 @@ public final class qo0 extends Drawable {
         drawable.draw(canvas);
         int i16 = 0;
         while (true) {
-            fArr = this.f38735b;
+            fArr = this.f38733b;
             if (i16 >= 2) {
                 break;
             }
@@ -131,7 +131,7 @@ public final class qo0 extends Drawable {
                 int i19 = L4 + L2;
                 drawable2.setBounds(L3 - i7, i18, L3 + i7, i19);
                 drawable2.draw(canvas);
-                Drawable drawable3 = this.f38737e;
+                Drawable drawable3 = this.f38735e;
                 drawable3.setAlpha(i17);
                 drawable3.setBounds(D - i7, i18, D + i7, i19);
                 drawable3.draw(canvas);
@@ -143,8 +143,8 @@ public final class qo0 extends Drawable {
             i14 = 4;
         }
         long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f38734a;
-        this.f38734a = currentTimeMillis;
+        long j3 = currentTimeMillis - this.f38732a;
+        this.f38732a = currentTimeMillis;
         if (j3 > 16) {
             j3 = 16;
         }
@@ -163,7 +163,7 @@ public final class qo0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        int i7 = this.f38738f;
+        int i7 = this.f38736f;
         if (i7 != 4 && i7 != 5) {
             if (i7 == 3) {
                 return org.telegram.messenger.g0.L(100.0f);
@@ -181,7 +181,7 @@ public final class qo0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        int i7 = this.f38738f;
+        int i7 = this.f38736f;
         if (i7 != 4 && i7 != 5) {
             if (i7 == 3) {
                 return org.telegram.messenger.g0.L(100.0f);
@@ -204,9 +204,9 @@ public final class qo0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f38736c.setColorFilter(colorFilter);
+        this.f38734c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
-        this.f38737e.setColorFilter(colorFilter);
+        this.f38735e.setColorFilter(colorFilter);
     }
 
     @Override

@@ -188,11 +188,11 @@ public abstract class c {
             f58807a = null;
         } else if (f58807a == null) {
             pb.b bVar = new pb.b(27);
-            e eVar = (e) xVar.f57596b;
+            e eVar = (e) xVar.f57597b;
             zf.b bVar2 = new zf.b(bVar);
             try {
                 if (((zf.c) eVar).h1(bVar2)) {
-                    h0Var = new h0(14, bVar2, (ComponentName) xVar.f57597c);
+                    h0Var = new h0(14, bVar2, (ComponentName) xVar.f57598c);
                 }
             } catch (RemoteException unused) {
             }
@@ -211,7 +211,7 @@ public abstract class c {
         String str;
         String str2;
         String str3;
-        Typeface typeface = g0.f23581a;
+        Typeface typeface = g0.f23583a;
         if (uri == null) {
             K0 = null;
         } else {
@@ -223,7 +223,7 @@ public abstract class c {
         } else {
             str = K0.toLowerCase();
         }
-        if (np.s1(m10.f24934t0).f25277f4.contains(str)) {
+        if (np.s1(m10.f24940t0).f25280f4.contains(str)) {
             if (zArr != null) {
                 zArr[0] = true;
                 return false;
@@ -254,7 +254,7 @@ public abstract class c {
             }
             if ("ton".equals(uri.getScheme())) {
                 try {
-                    List<ResolveInfo> queryIntentActivities = t0.f26600b.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
+                    List<ResolveInfo> queryIntentActivities = t0.f26609b.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
                     if (queryIntentActivities != null) {
                         if (queryIntentActivities.size() >= 1) {
                         }
@@ -301,7 +301,7 @@ public abstract class c {
 
     public static boolean h(String str) {
         try {
-            return TextUtils.equals(g0.K0(str, false), np.s1(m10.f24934t0).V2);
+            return TextUtils.equals(g0.K0(str, false), np.s1(m10.f24940t0).V2);
         } catch (Exception e10) {
             a8.g(e10, true);
             return false;
@@ -502,11 +502,11 @@ public abstract class c {
                 for (int i7 = 0; i7 < tabs.size(); i7++) {
                     b3Var = tabs.get(i7);
                     g4 g4Var = b3Var.J;
-                    if (g4Var != null && !g4Var.f47320e0.isEmpty()) {
-                        Object h = i5.c.h(1, b3Var.J.f47320e0);
+                    if (g4Var != null && !g4Var.f47310e0.isEmpty()) {
+                        Object h = i5.c.h(1, b3Var.J.f47310e0);
                         if (h instanceof x2) {
                             s0 s0Var = ((x2) h).f28425b;
-                            if (s0Var == null && (k3VarArr = b3Var.J.f47336v0) != null && (k3Var = k3VarArr[0]) != null) {
+                            if (s0Var == null && (k3VarArr = b3Var.J.f47326v0) != null && (k3Var = k3VarArr[0]) != null) {
                                 s0Var = k3Var.getWebView();
                             }
                             if (s0Var != null) {

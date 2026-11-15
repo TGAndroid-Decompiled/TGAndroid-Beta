@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class rh extends mq0 {
-    public final an f50954a;
+    public final an f50953a;
 
     public rh(an anVar) {
-        this.f50954a = anVar;
+        this.f50953a = anVar;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class rh extends mq0 {
     @Override
     public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
         if (i7 >= 0) {
-            an anVar = this.f50954a;
+            an anVar = this.f50953a;
             if (i7 < anVar.eb.size()) {
                 anVar.Hb((TLRPC.BotInlineResult) anVar.eb.get(i7), z10, i10, 0L);
             }

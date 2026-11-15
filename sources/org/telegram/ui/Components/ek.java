@@ -5,20 +5,20 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 public final class ek extends ci {
-    public final ly f34331n;
-    public final uj0 f34332r;
-    public final v4.b0 f34333s;
-    public final HorizontalScrollView f34334w;
-    public final boolean f34335x;
+    public final ly f34330n;
+    public final uj0 f34331r;
+    public final v4.b0 f34332s;
+    public final HorizontalScrollView f34333w;
+    public final boolean f34334x;
 
     public ek(ki kiVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         super(context, e6Var, kiVar);
-        this.f34335x = z10;
-        this.f33610f = true;
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+        this.f34334x = z10;
+        this.f33612f = true;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
         boolean z11 = !z10 ? 1 : 0;
         ly lyVar = new ly(e2Var, z11, z10, false, getContext(), true, null, null, false, e6Var, false, true);
-        this.f34331n = lyVar;
+        this.f34330n = lyVar;
         lyVar.f37003x0 = false;
         lyVar.J(z11, z10, false, false);
         lyVar.f36977p2 = true;
@@ -34,11 +34,11 @@ public final class ek extends ci {
         lyVar.T2 = true;
         addView(lyVar, c8.ja.c(-1.0f, -1));
         HorizontalScrollView y10 = lyVar.y(z11 ? 1 : 0);
-        this.f34334w = y10;
+        this.f34333w = y10;
         uj0 x10 = lyVar.x(z11 ? 1 : 0);
-        this.f34332r = x10;
+        this.f34331r = x10;
         x10.j(new ri(this, 4));
-        this.f34333s = (v4.b0) x10.getLayoutManager();
+        this.f34332s = (v4.b0) x10.getLayoutManager();
         y10.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
@@ -50,29 +50,29 @@ public final class ek extends ci {
     @Override
     public final void I(ci ciVar) {
         int i7;
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         try {
             kiVar.V2.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
         o7 o7Var = kiVar.V2;
-        if (this.f34335x) {
+        if (this.f34334x) {
             i7 = 2131745652;
         } else {
             i7 = 2131745658;
         }
         o7Var.setTitle(org.telegram.messenger.hd.M0(i7, null));
-        this.f34333s.h1(0, 0);
+        this.f34332s.h1(0, 0);
     }
 
     @Override
     public final void K() {
-        this.f34332r.y0(0);
+        this.f34331r.y0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        uj0 uj0Var = this.f34332r;
+        uj0 uj0Var = this.f34331r;
         if (uj0Var.getChildCount() <= 0) {
             uj0Var.setTopGlowOffset(uj0Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -95,7 +95,7 @@ public final class ek extends ci {
 
     @Override
     public int getListTopPadding() {
-        return this.f34332r.getPaddingTop();
+        return this.f34331r.getPaddingTop();
     }
 
     @Override
@@ -106,17 +106,17 @@ public final class ek extends ci {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f34334w.setTranslationY(Math.max(0, getCurrentItemTop()));
+        this.f34333w.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     public void setDelegate(mx mxVar) {
-        this.f34331n.setDelegate(mxVar);
+        this.f34330n.setDelegate(mxVar);
     }
 
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
         invalidate();
     }
 }

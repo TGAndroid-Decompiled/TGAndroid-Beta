@@ -16,12 +16,12 @@ public final class i5 extends vr {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f57100g.f57107a);
+        int ceil = (int) Math.ceil(getMetadata().f57104g.f57111a);
         if (ceil > 0) {
             ShapeDrawable shapeDrawable = this.H;
             shapeDrawable.getPaint().setColor(this.I.getThemedColor(org.telegram.ui.ActionBar.j6.f28849d6));
             shapeDrawable.setBounds(0, 0, getWidth(), ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().f57097c.f57107a * 255.0f));
+            shapeDrawable.setAlpha((int) (getMetadata().f57101c.f57111a * 255.0f));
             shapeDrawable.draw(canvas);
         }
         super.dispatchDraw(canvas);

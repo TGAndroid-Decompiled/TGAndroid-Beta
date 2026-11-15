@@ -21,7 +21,7 @@ public final class h60 extends AnimatorListenerAdapter {
     public void onAnimationCancel(Animator animator) {
         switch (this.f35180a) {
             case 9:
-                ((te0) this.f35181b).f39684r1 = null;
+                ((te0) this.f35181b).f39681r1 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -51,24 +51,24 @@ public final class h60 extends AnimatorListenerAdapter {
                 return;
             case 2:
                 i70 i70Var = (i70) this.f35181b;
-                if (!i70Var.f35484f) {
-                    i70Var.f35482c.setVisibility(8);
+                if (!i70Var.f35475f) {
+                    i70Var.f35473c.setVisibility(8);
                     return;
                 }
                 return;
             case 3:
                 p70 p70Var = (p70) this.f35181b;
-                FrameLayout frameLayout = p70Var.f38235b;
-                hi.n5 n5Var = (hi.n5) p70Var.f38236c;
+                FrameLayout frameLayout = p70Var.f38233b;
+                hi.n5 n5Var = (hi.n5) p70Var.f38234c;
                 if (n5Var.getParent() != null) {
                     frameLayout.removeView(n5Var);
                 }
                 frameLayout.getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.ActionBar.h1) p70Var.d);
                 return;
             case 4:
-                da0 da0Var = (da0) this.f35181b;
-                da0Var.f33900d0.h = null;
-                da0Var.f(da0Var.T, da0Var.S);
+                ea0 ea0Var = (ea0) this.f35181b;
+                ea0Var.f34260d0.h = null;
+                ea0Var.f(ea0Var.T, ea0Var.S);
                 return;
             case 5:
                 NumberTextView numberTextView = (NumberTextView) this.f35181b;
@@ -78,10 +78,10 @@ public final class h60 extends AnimatorListenerAdapter {
             case 6:
                 fc0 fc0Var = (fc0) this.f35181b;
                 fc0Var.T = null;
-                fc0Var.f34575r.setText("");
-                hi.y7.a(fc0Var.f34576s, false);
+                fc0Var.f34579r.setText("");
+                hi.y7.a(fc0Var.f34580s, false);
                 fc0Var.setVisibility(8);
-                fc0Var.f34563b0 = 0.0f;
+                fc0Var.f34567b0 = 0.0f;
                 fc0Var.h(0.0f);
                 fc0Var.setAlpha(0.0f);
                 fc0Var.j();
@@ -95,9 +95,9 @@ public final class h60 extends AnimatorListenerAdapter {
                 return;
             case 8:
                 ne neVar = (ne) this.f35181b;
-                AnimatorSet animatorSet2 = (AnimatorSet) ((hi.y7) neVar.f37565c).f15430e;
+                AnimatorSet animatorSet2 = (AnimatorSet) ((hi.y7) neVar.f37554c).f15430e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ((hi.y7) neVar.f37565c).f15430e = null;
+                    ((hi.y7) neVar.f37554c).f15430e = null;
                     return;
                 }
                 return;
@@ -105,7 +105,7 @@ public final class h60 extends AnimatorListenerAdapter {
                 return;
             case 10:
                 ye0 ye0Var = (ye0) this.f35181b;
-                ye0Var.f41983f = false;
+                ye0Var.f41985f = false;
                 ye0Var.G = null;
                 return;
             case 11:
@@ -130,12 +130,12 @@ public final class h60 extends AnimatorListenerAdapter {
                 return;
             case 15:
                 wk0 wk0Var = (wk0) this.f35181b;
-                if (wk0Var.f41397s != null) {
+                if (wk0Var.f41400s != null) {
                     wk0Var.j();
-                    wk0Var.f41397s.invalidate();
-                    wk0Var.f41380e.invalidate();
+                    wk0Var.f41400s.invalidate();
+                    wk0Var.f41383e.invalidate();
                     wk0Var.invalidate();
-                    wk0Var.f41397s = null;
+                    wk0Var.f41400s = null;
                     return;
                 }
                 return;
@@ -153,7 +153,7 @@ public final class h60 extends AnimatorListenerAdapter {
                 }
                 return;
             case 19:
-                ((do0) this.f35181b).f34018f = null;
+                ((do0) this.f35181b).f34005f = null;
                 return;
             case 20:
                 bi.v1 v1Var = (bi.v1) this.f35181b;
@@ -164,26 +164,26 @@ public final class h60 extends AnimatorListenerAdapter {
                 return;
             case 21:
                 ar0 ar0Var = (ar0) this.f35181b;
-                View view2 = ar0Var.f33046c;
+                View view2 = ar0Var.f33049c;
                 view2.setAlpha(1.0f);
                 v4.o0.x0(view2);
-                ar0Var.f33044a.removeView(view2);
+                ar0Var.f33047a.removeView(view2);
                 return;
             case 22:
                 jt0 jt0Var = (jt0) this.f35181b;
-                if (jt0Var.f36185f == animator) {
-                    jt0Var.f36185f = null;
+                if (jt0Var.f36175f == animator) {
+                    jt0Var.f36175f = null;
                     return;
                 }
                 return;
             case 23:
                 av0 av0Var = (av0) this.f35181b;
-                av0.B1(av0Var, ((Float) av0Var.f33089x3.getAnimatedValue()).floatValue());
-                av0Var.f33089x3 = null;
+                av0.B1(av0Var, ((Float) av0Var.f33092x3.getAnimatedValue()).floatValue());
+                av0Var.f33092x3 = null;
                 return;
             case 24:
                 bw0 bw0Var = (bw0) this.f35181b;
-                bw0Var.f33422x1.setVisibility(8);
+                bw0Var.f33425x1.setVisibility(8);
                 bw0Var.A1.setImageDrawable(null);
                 return;
             case 25:

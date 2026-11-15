@@ -29,7 +29,7 @@ public final class a0 extends MediaRouter.Callback {
         if (j0.s(routeInfo) == null && (o4 = j0Var.o(routeInfo)) >= 0) {
             h0 h0Var = (h0) j0Var.H.get(o4);
             String str2 = h0Var.f56393b;
-            CharSequence name = h0Var.f56392a.getName(j0Var.f6923a);
+            CharSequence name = h0Var.f56392a.getName(j0Var.f6926a);
             if (name != null) {
                 str = name.toString();
             } else {

@@ -44,15 +44,15 @@ import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.wa0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.dr0;
-import org.telegram.ui.mm0;
+import org.telegram.ui.nm0;
 import org.telegram.ui.po0;
-public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s51, og.n, mm0, o2.i, pm0, com.google.android.gms.common.api.internal.q, tg.l1, u2.m {
-    public final int f25803a;
-    public Object f25804b;
+public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s51, og.n, nm0, o2.i, pm0, com.google.android.gms.common.api.internal.q, tg.l1, u2.m {
+    public final int f25805a;
+    public Object f25806b;
 
     public ou(Object obj, int i7) {
-        this.f25803a = i7;
-        this.f25804b = obj;
+        this.f25805a = i7;
+        this.f25806b = obj;
     }
 
     public static float[] G0(ArrayList arrayList) {
@@ -257,7 +257,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void A(ImageReceiver imageReceiver) {
-        ((pu) this.f25804b).t0(true);
+        ((pu) this.f25806b).t0(true);
     }
 
     @Override
@@ -267,9 +267,9 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void D0() {
-        fd0 fd0Var = ((gd0) this.f25804b).f34906a;
+        fd0 fd0Var = ((gd0) this.f25806b).f34906a;
         if (fd0Var != null) {
-            PhotoViewer photoViewer = ((po0) fd0Var).f50330a;
+            PhotoViewer photoViewer = ((po0) fd0Var).f50321a;
             if (photoViewer.d2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.o3();
@@ -279,11 +279,11 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public p2.j E(long j3) {
-        return (p2.j) this.f25804b;
+        return (p2.j) this.f25806b;
     }
 
     public void E0() {
-        sg.s0 s0Var = ((sg.u0) this.f25804b).d;
+        sg.s0 s0Var = ((sg.u0) this.f25806b).d;
         if (s0Var != null) {
             sg.r0 r0Var = s0Var.f56770s;
             if (r0Var != null) {
@@ -298,9 +298,9 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void F() {
-        fd0 fd0Var = ((gd0) this.f25804b).f34906a;
+        fd0 fd0Var = ((gd0) this.f25806b).f34906a;
         if (fd0Var != null) {
-            ((po0) fd0Var).f50330a.f42763f0.invalidate();
+            ((po0) fd0Var).f50321a.f42763f0.invalidate();
         }
     }
 
@@ -326,7 +326,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void M(boolean z10) {
-        ((gd0) this.f25804b).f34908c.setAspectLock(z10);
+        ((gd0) this.f25806b).f34908c.setAspectLock(z10);
     }
 
     @Override
@@ -345,7 +345,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
     }
 
     public void R0(s4.p pVar, s4.m mVar, Collection collection) {
-        s4.e eVar = (s4.e) this.f25804b;
+        s4.e eVar = (s4.e) this.f25806b;
         if (pVar == eVar.f56374y && mVar != null) {
             s4.u uVar = eVar.f56373x.f56468a;
             String d = mVar.d();
@@ -376,7 +376,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void S1(gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
-        org.telegram.ui.Cells.z9 z9Var = (org.telegram.ui.Cells.z9) this.f25804b;
+        org.telegram.ui.Cells.z9 z9Var = (org.telegram.ui.Cells.z9) this.f25806b;
         org.telegram.ui.Cells.f fVar = z9Var.E;
         if (z9Var.a()) {
             z9Var.f32141y = 2;
@@ -402,7 +402,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void W(boolean z10) {
-        ((ji.p) this.f25804b).setEditPillHidden(z10);
+        ((ji.p) this.f25806b).setEditPillHidden(z10);
     }
 
     @Override
@@ -430,7 +430,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
         s6.b bVar = (s6.b) ((s6.a) obj).n();
         Parcel j12 = bVar.j1();
-        n7.a.b(j12, (q6.r) this.f25804b);
+        n7.a.b(j12, (q6.r) this.f25806b);
         try {
             bVar.f306b.transact(1, j12, null, 1);
             j12.recycle();
@@ -448,12 +448,12 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void b0() {
-        ((org.telegram.ui.Components.y8) this.f25804b).f41932a.invalidate();
+        ((org.telegram.ui.Components.y8) this.f25806b).f41924a.invalidate();
     }
 
     @Override
     public boolean c() {
-        return ((org.telegram.ui.Cells.z9) this.f25804b).a();
+        return ((org.telegram.ui.Cells.z9) this.f25806b).a();
     }
 
     @Override
@@ -468,30 +468,30 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void d(int i7, int i10, int i11, long j3) {
-        ((MediaCodec) this.f25804b).queueInputBuffer(i7, 0, i10, j3, i11);
+        ((MediaCodec) this.f25806b).queueInputBuffer(i7, 0, i10, j3, i11);
     }
 
     @Override
     public void d0(RectF rectF) {
-        ((ji.p) this.f25804b).l(rectF);
+        ((ji.p) this.f25806b).l(rectF);
     }
 
     @Override
     public void e(int i7, k2.d dVar, long j3, int i10) {
-        ((MediaCodec) this.f25804b).queueSecureInputBuffer(i7, 0, dVar.f17728i, j3, i10);
+        ((MediaCodec) this.f25806b).queueSecureInputBuffer(i7, 0, dVar.f17728i, j3, i10);
     }
 
     @Override
     public void f(ArrayList arrayList) {
-        a8.r7 r7Var = (a8.r7) this.f25804b;
+        a8.r7 r7Var = (a8.r7) this.f25806b;
         try {
             if (!arrayList.isEmpty()) {
                 dz dzVar = (dz) arrayList.get(0);
-                if (dzVar.f23189c != null) {
+                if (dzVar.f23196c != null) {
                     File z10 = w7.z(4);
                     r7Var.f620f = new File(z10, Utilities.f22414b.nextInt() + ".jpg");
                     Point c12 = g0.c1();
-                    Bitmap K = fc.K(dzVar.f23189c, null, (float) c12.x, (float) c12.y, true);
+                    Bitmap K = fc.K(dzVar.f23196c, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream((File) r7Var.f620f));
                     ((b71) r7Var.f619e).b((File) r7Var.f620f, K, true);
                 }
@@ -527,7 +527,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
     }
 
     public byte g1() {
-        int read = ((ab.d) this.f25804b).read();
+        int read = ((ab.d) this.f25806b).read();
         if (read >= 0) {
             return (byte) read;
         }
@@ -536,7 +536,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void g2(org.telegram.ui.Cells.q1 q1Var, int i7, float f10, float f11, boolean z10) {
-        org.telegram.ui.Cells.z9 z9Var = (org.telegram.ui.Cells.z9) this.f25804b;
+        org.telegram.ui.Cells.z9 z9Var = (org.telegram.ui.Cells.z9) this.f25806b;
         org.telegram.ui.Cells.f fVar = z9Var.E;
         if (z9Var.a()) {
             z9Var.f32141y = 0;
@@ -548,9 +548,9 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public float get() {
-        tg.o0 o0Var = (tg.o0) this.f25804b;
-        int i7 = o0Var.f57474a;
-        sg.h currentBrush = o0Var.f57477e.getCurrentBrush();
+        tg.o0 o0Var = (tg.o0) this.f25806b;
+        int i7 = o0Var.f57485a;
+        sg.h currentBrush = o0Var.f57488e.getCurrentBrush();
         if (currentBrush == null) {
             return sg.k0.e(i7).f56693i;
         }
@@ -559,7 +559,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public CharSequence getContentDescription() {
-        pg.h hVar = (pg.h) this.f25804b;
+        pg.h hVar = (pg.h) this.f25806b;
         float f10 = hVar.f55035b;
         return String.valueOf(Math.round((hVar.f55034a.getProgress() * (hVar.f55036c - f10)) + f10));
     }
@@ -585,7 +585,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void invalidate() {
-        ((org.telegram.ui.Cells.q1) ((org.telegram.ui.Cells.j1) this.f25804b).f30478b).invalidate();
+        ((org.telegram.ui.Cells.q1) ((org.telegram.ui.Cells.j1) this.f25806b).f30478b).invalidate();
     }
 
     public int j1() {
@@ -599,7 +599,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void l(boolean z10, float f10) {
-        pg.h hVar = (pg.h) this.f25804b;
+        pg.h hVar = (pg.h) this.f25806b;
         float f11 = hVar.f55035b;
         float z11 = com.google.android.gms.internal.vision.e2.z(hVar.f55036c, f11, f10, f11);
         hVar.d = z11;
@@ -617,12 +617,12 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
     }
 
     public void l1() {
-        ((org.telegram.ui.ActionBar.u2) this.f25804b).f29710p0 = false;
+        ((org.telegram.ui.ActionBar.u2) this.f25806b).f29710p0 = false;
     }
 
     @Override
     public void m0(boolean z10) {
-        gd0 gd0Var = (gd0) this.f25804b;
+        gd0 gd0Var = (gd0) this.f25806b;
         gd0Var.getClass();
         fd0 fd0Var = gd0Var.f34906a;
         if (fd0Var != null) {
@@ -631,13 +631,13 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
     }
 
     public void m1(org.telegram.ui.ge geVar) {
-        ((org.telegram.ui.ActionBar.u2) this.f25804b).I0 = geVar;
+        ((org.telegram.ui.ActionBar.u2) this.f25806b).I0 = geVar;
     }
 
     public void n1(long j3) {
         long j10 = 0;
         while (j10 < j3) {
-            long skip = ((ab.d) this.f25804b).skip(j3 - j10);
+            long skip = ((ab.d) this.f25806b).skip(j3 - j10);
             if (skip > 0) {
                 j10 += skip;
             } else {
@@ -655,7 +655,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
         String str;
         List list = (List) treeMap.get("Sec-WebSocket-Protocol");
         if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
-            synchronized (((rc.u) this.f25804b).f55970c) {
+            synchronized (((rc.u) this.f25806b).f55970c) {
             }
             throw new rc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), y0Var);
         }
@@ -663,7 +663,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void onError(u51 u51Var, Exception exc) {
-        switch (this.f25803a) {
+        switch (this.f25805a) {
             case 8:
                 a8.g(exc, true);
                 return;
@@ -674,30 +674,30 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void onRenderedFirstFrame() {
-        int i7 = this.f25803a;
+        int i7 = this.f25805a;
     }
 
     @Override
     public void onSeekFinished(m2.a aVar) {
-        int i7 = this.f25803a;
+        int i7 = this.f25805a;
     }
 
     @Override
     public void onSeekStarted(m2.a aVar) {
-        int i7 = this.f25803a;
+        int i7 = this.f25805a;
     }
 
     @Override
     public void onStateChanged(boolean z10, int i7) {
         r40 r40Var;
         g20 g20Var;
-        switch (this.f25803a) {
+        switch (this.f25805a) {
             case 8:
-                j40 j40Var = (j40) this.f25804b;
+                j40 j40Var = (j40) this.f25806b;
                 u51 u51Var = j40Var.I0.T;
                 if (u51Var != null && u51Var.d0() && i7 == 4 && (g20Var = (r40Var = j40Var.I0).S) != null) {
                     u51 u51Var2 = r40Var.T;
-                    long j3 = g20Var.f23632a;
+                    long j3 = g20Var.f23634a;
                     if (j3 <= 0) {
                         j3 = 0;
                     }
@@ -706,12 +706,12 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
                 }
                 return;
             default:
-                oi0 oi0Var = (oi0) this.f25804b;
-                if (z10 && oi0Var.f37984n.S() >= 0) {
-                    oi0Var.f37998x = true;
+                oi0 oi0Var = (oi0) this.f25806b;
+                if (z10 && oi0Var.f37982n.S() >= 0) {
+                    oi0Var.f37996x = true;
                 }
-                ke0 ke0Var = oi0Var.f37974f;
-                wa0 wa0Var = oi0Var.f38000y;
+                ke0 ke0Var = oi0Var.f37972f;
+                wa0 wa0Var = oi0Var.f37998y;
                 ke0Var.a(z10, true);
                 g0.r(wa0Var);
                 if (z10) {
@@ -724,7 +724,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f25803a) {
+        switch (this.f25805a) {
             case 8:
                 return false;
             default:
@@ -734,12 +734,12 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i7 = this.f25803a;
+        int i7 = this.f25805a;
     }
 
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
-        int i12 = this.f25803a;
+        int i12 = this.f25805a;
     }
 
     @Override
@@ -749,7 +749,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void p1(org.telegram.ui.Cells.q1 q1Var, int i7) {
-        org.telegram.ui.Cells.z9 z9Var = (org.telegram.ui.Cells.z9) this.f25804b;
+        org.telegram.ui.Cells.z9 z9Var = (org.telegram.ui.Cells.z9) this.f25806b;
         org.telegram.ui.Cells.f fVar = z9Var.E;
         if (z9Var.a()) {
             z9Var.f32141y = 2;
@@ -780,9 +780,9 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void r0(float f10) {
-        tg.o0 o0Var = (tg.o0) this.f25804b;
-        sg.k0.e(o0Var.f57474a).k("-1", f10);
-        o0Var.f57477e.setBrushSize(f10);
+        tg.o0 o0Var = (tg.o0) this.f25806b;
+        sg.k0.e(o0Var.f57485a).k("-1", f10);
+        o0Var.f57488e.setBrushSize(f10);
     }
 
     @Override
@@ -795,7 +795,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
         try {
             Intent intent = new Intent("android.intent.action.PICK");
             intent.setType("image/*");
-            ((Activity) ((a8.r7) this.f25804b).f618c).startActivityForResult(intent, 11);
+            ((Activity) ((a8.r7) this.f25806b).f618c).startActivityForResult(intent, 11);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -803,7 +803,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void setParameters(Bundle bundle) {
-        ((MediaCodec) this.f25804b).setParameters(bundle);
+        ((MediaCodec) this.f25806b).setParameters(bundle);
     }
 
     @Override
@@ -812,9 +812,9 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
     }
 
     public String toString() {
-        switch (this.f25803a) {
+        switch (this.f25805a) {
             case 22:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f25804b).flattenToShortString() + " }";
+                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f25806b).flattenToShortString() + " }";
             default:
                 return super.toString();
         }
@@ -837,7 +837,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public ji.p x0() {
-        return (ji.p) this.f25804b;
+        return (ji.p) this.f25806b;
     }
 
     @Override
@@ -857,7 +857,7 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public boolean z1(org.telegram.ui.Cells.q1 q1Var, int i7) {
-        if (i7 == ((org.telegram.ui.Cells.z9) this.f25804b).f32141y) {
+        if (i7 == ((org.telegram.ui.Cells.z9) this.f25806b).f32141y) {
             return true;
         }
         return false;
@@ -869,10 +869,10 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
     }
 
     public ou(int i7) {
-        this.f25803a = i7;
+        this.f25805a = i7;
         switch (i7) {
             case 19:
-                this.f25804b = new org.telegram.utils.twidget.v(1.0f, 5, 1, false);
+                this.f25806b = new org.telegram.utils.twidget.v(1.0f, 5, 1, false);
                 return;
             default:
                 return;
@@ -881,23 +881,23 @@ public final class ou implements kc, l51, org.telegram.ui.Cells.l1, te.d, ce0, s
 
     @Override
     public void onRenderedFirstFrame(m2.a aVar) {
-        int i7 = this.f25803a;
+        int i7 = this.f25805a;
     }
 
     public ou(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f25803a = 18;
-        this.f25804b = new GestureDetector(context, onGestureListener, null);
+        this.f25805a = 18;
+        this.f25806b = new GestureDetector(context, onGestureListener, null);
     }
 
     public ou(TextView textView) {
-        this.f25803a = 25;
-        this.f25804b = new t1.g(textView);
+        this.f25805a = 25;
+        this.f25806b = new t1.g(textView);
     }
 
     public ou(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f25803a = 1;
+        this.f25805a = 1;
         org.telegram.ui.ActionBar.u2 u2Var = new org.telegram.ui.ActionBar.u2(1, context, e6Var, false);
-        this.f25804b = u2Var;
+        this.f25806b = u2Var;
         u2Var.O();
     }
 

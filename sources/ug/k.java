@@ -43,7 +43,7 @@ public final class k {
         } else if (str.length() > 5) {
             this.f58172k *= 0.75f;
         }
-        StaticLayout staticLayout = new StaticLayout(str, r0Var.f31323a, org.telegram.messenger.g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(str, r0Var.f31323a, org.telegram.messenger.g0.f23611q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f58167e = staticLayout;
         if (staticLayout.getLineCount() <= 0) {
             this.f58170i = 0;

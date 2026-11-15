@@ -27,7 +27,7 @@ public class z1 {
     public final a0.h h = new a0.h();
     public final a0.h f17350i = new a0.h();
     public final ArrayList f17351j = new ArrayList();
-    public final int f17354m = m10.f24934t0;
+    public final int f17354m = m10.f24940t0;
     public boolean f17357p = true;
     public boolean f17360s = false;
 
@@ -63,7 +63,7 @@ public class z1 {
                 z10 = true;
             }
             if (z10) {
-                vr.a0(this.f17354m).f27220a.c(new h4(22, this, this.f17358q));
+                vr.a0(this.f17354m).f27219a.c(new h4(22, this, this.f17358q));
             }
         }
     }
@@ -77,7 +77,7 @@ public class z1 {
     public final void c() {
         this.f17358q = new ArrayList();
         this.f17359r = new HashMap();
-        vr.a0(this.f17354m).f27220a.c(new w1(this, 0));
+        vr.a0(this.f17354m).f27219a.c(new w1(this, 0));
     }
 
     public boolean d(TLObject tLObject) {
@@ -122,7 +122,7 @@ public class z1 {
                         obj = ((g0) obj).f17077a;
                     }
                     if (obj instanceof eo0) {
-                        obj = ((eo0) obj).f34385b;
+                        obj = ((eo0) obj).f34384b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;

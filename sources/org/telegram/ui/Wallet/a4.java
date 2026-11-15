@@ -28,7 +28,7 @@ public final class a4 extends d80 {
         if (c4Var.f43597o0 != null) {
             canvas.saveLayer(rectF, null);
             c4Var.f43597o0.c((org.telegram.messenger.g0.L(206.0f) - c4Var.f43597o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.g0.L(7.0f)) - c4Var.f43597o0.i(), 1.0f, -1, canvas);
-            Shader shader = this.f33884x.getShader();
+            Shader shader = this.f33886x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
             canvas.drawRect(rectF, paint);

@@ -2,8 +2,8 @@ package ii;
 
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import di.v8;
-import di.wa;
+import di.u8;
+import di.va;
 import hi.q4;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.hd;
@@ -22,7 +22,7 @@ import org.telegram.ui.an;
 import org.telegram.ui.qj;
 public final class e extends ja implements is {
     public final cg.a T1;
-    public final wa U1;
+    public final va U1;
     public final FrameLayout V1;
     public Runnable W1;
     public int X1;
@@ -35,42 +35,42 @@ public final class e extends ja implements is {
     @Override
     public final void L() {
         super.L();
-        ns.f(this.f29679a).n(this, ns.f25589v3);
-        ns.f(this.f29679a).n(this, ns.f25610y3);
+        ns.f(this.f29679a).n(this, ns.f25590v3);
+        ns.f(this.f29679a).n(this, ns.f25611y3);
     }
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new q4(this, 5), this.J0);
+        p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, true, new q4(this, 5), this.J0);
         this.Y1 = p41Var;
         return p41Var;
     }
 
     @Override
     public final CharSequence O0() {
-        wa waVar = this.U1;
-        if (waVar == null) {
+        va vaVar = this.U1;
+        if (vaVar == null) {
             return null;
         }
-        return ((TextView) waVar.f9709c).getText();
+        return ((TextView) vaVar.f9623c).getText();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == ns.f25589v3 || i7 == ns.f25610y3) {
+        if (i7 == ns.f25590v3 || i7 == ns.f25611y3) {
             p41 p41Var = this.Y1;
             if (p41Var != null) {
                 p41Var.O(true);
             }
-            cg.a s5 = v8.y(this.f29679a, true).s();
+            cg.a s5 = u8.y(this.f29679a, true).s();
             cg.a aVar = this.T1;
-            ((TextView) this.U1.f9709c).setText(hd.a0(null, null, 2131744045, cg.a.i(aVar.f4986b - s5.f4986b, cg.b.f4988b).d()));
-            fa faVar = this.f35937p1;
+            ((TextView) this.U1.f9623c).setText(hd.a0(null, null, 2131744045, cg.a.i(aVar.f4989b - s5.f4989b, cg.b.f4991b).d()));
+            fa faVar = this.f35932p1;
             if (faVar != null) {
                 faVar.setTitle(O0());
             }
-            if (s5.f4986b >= aVar.f4986b && (runnable = this.W1) != null) {
+            if (s5.f4989b >= aVar.f4989b && (runnable = this.W1) != null) {
                 runnable.run();
                 this.W1 = null;
                 dismiss();
@@ -81,9 +81,9 @@ public final class e extends ja implements is {
     @Override
     public final void dismiss() {
         super.dismiss();
-        wa waVar = this.U1;
-        if (waVar != null) {
-            ((w6) waVar.f9708b).setPaused(true);
+        va vaVar = this.U1;
+        if (vaVar != null) {
+            ((w6) vaVar.f9622b).setPaused(true);
         }
     }
 
@@ -104,7 +104,7 @@ public final class e extends ja implements is {
     @Override
     public final void show() {
         qj qjVar;
-        if (v8.y(this.f29679a, true).s().f4986b >= this.T1.f4986b) {
+        if (u8.y(this.f29679a, true).s().f4989b >= this.T1.f4989b) {
             Runnable runnable = this.W1;
             if (runnable != null) {
                 runnable.run();
@@ -116,12 +116,12 @@ public final class e extends ja implements is {
         e2 Q = LaunchActivity.Q();
         if (Q instanceof an) {
             an anVar = (an) Q;
-            if (anVar.V9() && (qjVar = anVar.f45118a0) != null) {
+            if (anVar.V9() && (qjVar = anVar.f45117a0) != null) {
                 qjVar.S();
             }
         }
         super.show();
-        ns.f(this.f29679a).c(this, ns.f25589v3);
-        ns.f(this.f29679a).c(this, ns.f25610y3);
+        ns.f(this.f29679a).c(this, ns.f25590v3);
+        ns.f(this.f29679a).c(this, ns.f25611y3);
     }
 }

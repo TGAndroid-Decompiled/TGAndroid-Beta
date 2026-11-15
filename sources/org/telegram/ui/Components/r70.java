@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class r70 extends w8 {
-    public final di.e1 f38894e;
+    public final di.e1 f38892e;
 
     public r70(di.e1 e1Var, Context context) {
         super(context, false);
-        this.f38894e = e1Var;
+        this.f38892e = e1Var;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int v;
-        int min = Math.min(3, ((t70) this.f38894e.d).f39585x);
+        int min = Math.min(3, ((t70) this.f38892e.d).f39583x);
         if (min == 0) {
             v = 0;
         } else {

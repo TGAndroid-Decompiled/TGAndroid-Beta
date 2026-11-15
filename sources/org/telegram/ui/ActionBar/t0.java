@@ -58,18 +58,18 @@ public final class t0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 k9 k9Var = (k9) obj;
-                k9Var.f36338g = f10;
+                k9Var.f36328g = f10;
                 k9Var.invalidateSelf();
                 return;
             case 5:
                 ye0 ye0Var = (ye0) obj;
                 ye0Var.I.e();
-                ye0Var.f41980b = f10;
+                ye0Var.f41982b = f10;
                 if (f10 <= 0.0f) {
                     ye0Var.H = -1;
                 }
                 ye0Var.c(true);
-                ye0Var.f41983f = false;
+                ye0Var.f41985f = false;
                 if (ye0Var.Q != null && Math.abs(f10 - 1.0f) < 0.01f) {
                     ye0Var.Q.run();
                     return;
@@ -91,7 +91,7 @@ public final class t0 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(o3Var.R, 1.0f);
                     o3Var.Q = ofFloat;
                     ofFloat.setDuration(320L);
-                    o3Var.Q.setInterpolator(er.f34421g);
+                    o3Var.Q.setInterpolator(er.f34420g);
                     o3Var.Q.addUpdateListener(new org.telegram.ui.Wallet.h3(o3Var, 0));
                     o3Var.Q.start();
                     return;
@@ -115,8 +115,8 @@ public final class t0 extends AnimatorListenerAdapter {
         switch (this.f29610a) {
             case 5:
                 ye0 ye0Var = (ye0) this.f29612c;
-                ye0Var.f41983f = true;
-                ye0Var.f41981c = this.f29611b;
+                ye0Var.f41985f = true;
+                ye0Var.f41983c = this.f29611b;
                 return;
             default:
                 super.onAnimationStart(animator);

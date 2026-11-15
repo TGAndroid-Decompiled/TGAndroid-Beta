@@ -17,10 +17,10 @@ public final class d4 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         switch (this.f28505a) {
             case 0:
-                ns.f(m10.f24934t0).d(new r0(this, 9));
+                ns.f(m10.f24940t0).d(new r0(this, 9));
                 return;
             default:
-                ns.f(m10.f24934t0).d(new r0(this, 10));
+                ns.f(m10.f24940t0).d(new r0(this, 10));
                 return;
         }
     }

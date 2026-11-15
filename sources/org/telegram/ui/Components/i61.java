@@ -32,28 +32,28 @@ public final class i61 extends View {
     public Path R;
     public final Paint S;
     public boolean T;
-    public long f35464a;
-    public float f35465b;
-    public float f35466c;
+    public long f35455a;
+    public float f35456b;
+    public float f35457c;
     public final Paint d;
-    public final Paint f35467e;
-    public boolean f35468f;
+    public final Paint f35458e;
+    public boolean f35459f;
     public boolean h;
-    public float f35469n;
-    public MediaMetadataRetriever f35470r;
-    public h61 f35471s;
-    public final ArrayList f35472w;
-    public f61 f35473x;
-    public long f35474y;
+    public float f35460n;
+    public MediaMetadataRetriever f35461r;
+    public h61 f35462s;
+    public final ArrayList f35463w;
+    public f61 f35464x;
+    public long f35465y;
 
     public i61(Context context) {
         super(context);
-        this.f35466c = 1.0f;
+        this.f35457c = 1.0f;
         Paint paint = new Paint();
         this.d = paint;
         Paint paint2 = new Paint();
-        this.f35467e = paint2;
-        this.f35472w = new ArrayList();
+        this.f35458e = paint2;
+        this.f35463w = new ArrayList();
         this.H = 1.0f;
         this.I = 0.0f;
         this.O = new ArrayList();
@@ -75,10 +75,10 @@ public final class i61 extends View {
     public final void a(boolean z10) {
         synchronized (U) {
             try {
-                MediaMetadataRetriever mediaMetadataRetriever = this.f35470r;
+                MediaMetadataRetriever mediaMetadataRetriever = this.f35461r;
                 if (mediaMetadataRetriever != null) {
                     mediaMetadataRetriever.release();
-                    this.f35470r = null;
+                    this.f35461r = null;
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
@@ -95,8 +95,8 @@ public final class i61 extends View {
                     i7++;
                 }
             } else {
-                while (i7 < this.f35472w.size()) {
-                    Bitmap bitmap2 = (Bitmap) this.f35472w.get(i7);
+                while (i7 < this.f35463w.size()) {
+                    Bitmap bitmap2 = (Bitmap) this.f35463w.get(i7);
                     if (bitmap2 != null) {
                         bitmap2.recycle();
                     }
@@ -105,16 +105,16 @@ public final class i61 extends View {
             }
         }
         this.O.clear();
-        this.f35472w.clear();
-        f61 f61Var = this.f35473x;
+        this.f35463w.clear();
+        f61 f61Var = this.f35464x;
         if (f61Var != null) {
             f61Var.cancel(true);
-            this.f35473x = null;
+            this.f35464x = null;
         }
     }
 
     public final void b(int i7) {
-        if (this.f35470r != null) {
+        if (this.f35461r != null) {
             if (i7 == 0) {
                 if (this.J) {
                     int L = org.telegram.messenger.g0.L(56.0f);
@@ -126,13 +126,13 @@ public final class i61 extends View {
                     this.G = Math.max(1, (getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) / this.F);
                     this.E = (int) Math.ceil((getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) / this.G);
                 }
-                this.f35474y = this.f35464a / this.G;
+                this.f35465y = this.f35455a / this.G;
                 ArrayList arrayList = this.O;
                 if (!arrayList.isEmpty()) {
                     float size = arrayList.size() / this.G;
                     float f10 = 0.0f;
                     for (int i10 = 0; i10 < this.G; i10++) {
-                        this.f35472w.add((Bitmap) arrayList.get((int) f10));
+                        this.f35463w.add((Bitmap) arrayList.get((int) f10));
                         f10 += size;
                     }
                     return;
@@ -140,17 +140,17 @@ public final class i61 extends View {
             }
             this.P = false;
             f61 f61Var = new f61(this);
-            this.f35473x = f61Var;
+            this.f35464x = f61Var;
             f61Var.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Integer.valueOf(i7), null, null);
         }
     }
 
     public float getLeftProgress() {
-        return this.f35465b;
+        return this.f35456b;
     }
 
     public float getRightProgress() {
-        return this.f35466c;
+        return this.f35457c;
     }
 
     @Override
@@ -164,17 +164,17 @@ public final class i61 extends View {
             }
         }
         float measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(24.0f);
-        int L = org.telegram.messenger.g0.L(12.0f) + ((int) (this.f35465b * measuredWidth));
-        int L2 = org.telegram.messenger.g0.L(12.0f) + ((int) (measuredWidth * this.f35466c));
+        int L = org.telegram.messenger.g0.L(12.0f) + ((int) (this.f35456b * measuredWidth));
+        int L2 = org.telegram.messenger.g0.L(12.0f) + ((int) (measuredWidth * this.f35457c));
         float f10 = 32.0f;
         int measuredHeight = (getMeasuredHeight() - org.telegram.messenger.g0.L(32.0f)) >> 1;
-        ArrayList arrayList = this.f35472w;
-        if (arrayList.isEmpty() && this.f35473x == null) {
+        ArrayList arrayList = this.f35463w;
+        if (arrayList.isEmpty() && this.f35464x == null) {
             b(0);
         }
         if (!arrayList.isEmpty()) {
             if (!this.P) {
-                canvas.drawRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.f35467e);
+                canvas.drawRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.f35458e);
             }
             int i10 = 0;
             int i11 = 0;
@@ -268,32 +268,32 @@ public final class i61 extends View {
             float y10 = motionEvent.getY();
             int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(24.0f);
             float f10 = measuredWidth;
-            int L = org.telegram.messenger.g0.L(12.0f) + ((int) (this.f35465b * f10));
-            int L2 = org.telegram.messenger.g0.L(12.0f) + ((int) (this.f35466c * f10));
+            int L = org.telegram.messenger.g0.L(12.0f) + ((int) (this.f35456b * f10));
+            int L2 = org.telegram.messenger.g0.L(12.0f) + ((int) (this.f35457c * f10));
             if (motionEvent.getAction() == 0) {
                 getParent().requestDisallowInterceptTouchEvent(true);
-                if (this.f35470r != null) {
+                if (this.f35461r != null) {
                     int L3 = org.telegram.messenger.g0.L(24.0f);
                     if (L - L3 <= x10 && x10 <= L + L3 && y10 >= 0.0f && y10 <= getMeasuredHeight()) {
-                        h61 h61Var = this.f35471s;
+                        h61 h61Var = this.f35462s;
                         if (h61Var != null) {
-                            ((me) h61Var).f37238a.H3.W(0.0f, 1);
+                            ((me) h61Var).f37237a.H3.W(0.0f, 1);
                         }
-                        this.f35468f = true;
-                        this.f35469n = (int) (x10 - L);
-                        this.Q.setTime((int) ((((float) this.f35464a) / 1000.0f) * this.f35465b));
+                        this.f35459f = true;
+                        this.f35460n = (int) (x10 - L);
+                        this.Q.setTime((int) ((((float) this.f35455a) / 1000.0f) * this.f35456b));
                         this.Q.setCx(org.telegram.messenger.g0.L(4.0f) + getLeft() + L);
                         this.Q.a(true);
                         invalidate();
                         return true;
                     } else if (L2 - L3 <= x10 && x10 <= L3 + L2 && y10 >= 0.0f && y10 <= getMeasuredHeight()) {
-                        h61 h61Var2 = this.f35471s;
+                        h61 h61Var2 = this.f35462s;
                         if (h61Var2 != null) {
-                            ((me) h61Var2).f37238a.H3.W(0.0f, 1);
+                            ((me) h61Var2).f37237a.H3.W(0.0f, 1);
                         }
                         this.h = true;
-                        this.f35469n = (int) (x10 - L2);
-                        this.Q.setTime((int) ((((float) this.f35464a) / 1000.0f) * this.f35466c));
+                        this.f35460n = (int) (x10 - L2);
+                        this.Q.setTime((int) ((((float) this.f35455a) / 1000.0f) * this.f35457c));
                         this.Q.setCx((getLeft() + L2) - org.telegram.messenger.g0.L(4.0f));
                         this.Q.a(true);
                         invalidate();
@@ -305,47 +305,47 @@ public final class i61 extends View {
                 }
             } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 if (motionEvent.getAction() == 2) {
-                    if (this.f35468f) {
-                        int i7 = (int) (x10 - this.f35469n);
+                    if (this.f35459f) {
+                        int i7 = (int) (x10 - this.f35460n);
                         if (i7 < org.telegram.messenger.g0.L(16.0f)) {
                             L2 = org.telegram.messenger.g0.L(16.0f);
                         } else if (i7 <= L2) {
                             L2 = i7;
                         }
                         float L4 = (L2 - org.telegram.messenger.g0.L(16.0f)) / f10;
-                        this.f35465b = L4;
-                        float f11 = this.f35466c;
+                        this.f35456b = L4;
+                        float f11 = this.f35457c;
                         float f12 = f11 - L4;
                         float f13 = this.H;
                         if (f12 > f13) {
-                            this.f35466c = L4 + f13;
+                            this.f35457c = L4 + f13;
                         } else {
                             float f14 = this.I;
                             if (f14 != 0.0f && f12 < f14) {
                                 float f15 = f11 - f14;
-                                this.f35465b = f15;
+                                this.f35456b = f15;
                                 if (f15 < 0.0f) {
-                                    this.f35465b = 0.0f;
+                                    this.f35456b = 0.0f;
                                 }
                             }
                         }
-                        this.Q.setCx(((org.telegram.messenger.g0.N(12.0f) + (f10 * this.f35465b)) + getLeft()) - org.telegram.messenger.g0.L(4.0f));
-                        this.Q.setTime((int) ((((float) this.f35464a) / 1000.0f) * this.f35465b));
+                        this.Q.setCx(((org.telegram.messenger.g0.N(12.0f) + (f10 * this.f35456b)) + getLeft()) - org.telegram.messenger.g0.L(4.0f));
+                        this.Q.setTime((int) ((((float) this.f35455a) / 1000.0f) * this.f35456b));
                         this.Q.a(true);
-                        h61 h61Var3 = this.f35471s;
+                        h61 h61Var3 = this.f35462s;
                         if (h61Var3 != null) {
-                            float f16 = this.f35465b;
-                            ChatActivityEnterView chatActivityEnterView = ((me) h61Var3).f37238a;
+                            float f16 = this.f35456b;
+                            ChatActivityEnterView chatActivityEnterView = ((me) h61Var3).f37237a;
                             org.telegram.messenger.g20 g20Var = chatActivityEnterView.M3;
                             if (g20Var != null) {
-                                g20Var.f23632a = ((float) g20Var.f23649r) * f16;
+                                g20Var.f23634a = ((float) g20Var.f23651r) * f16;
                                 chatActivityEnterView.H3.W(f16, 2);
                             }
                         }
                         invalidate();
                         return true;
                     } else if (this.h) {
-                        int i10 = (int) (x10 - this.f35469n);
+                        int i10 = (int) (x10 - this.f35460n);
                         if (i10 >= L) {
                             if (i10 > org.telegram.messenger.g0.L(16.0f) + measuredWidth) {
                                 L = org.telegram.messenger.g0.L(16.0f) + measuredWidth;
@@ -354,32 +354,32 @@ public final class i61 extends View {
                             }
                         }
                         float L5 = (L - org.telegram.messenger.g0.L(16.0f)) / f10;
-                        this.f35466c = L5;
-                        float f17 = this.f35465b;
+                        this.f35457c = L5;
+                        float f17 = this.f35456b;
                         float f18 = L5 - f17;
                         float f19 = this.H;
                         if (f18 > f19) {
-                            this.f35465b = L5 - f19;
+                            this.f35456b = L5 - f19;
                         } else {
                             float f20 = this.I;
                             if (f20 != 0.0f && f18 < f20) {
                                 float f21 = f17 + f20;
-                                this.f35466c = f21;
+                                this.f35457c = f21;
                                 if (f21 > 1.0f) {
-                                    this.f35466c = 1.0f;
+                                    this.f35457c = 1.0f;
                                 }
                             }
                         }
-                        this.Q.setCx(org.telegram.messenger.g0.N(12.0f) + (f10 * this.f35466c) + getLeft() + org.telegram.messenger.g0.L(4.0f));
+                        this.Q.setCx(org.telegram.messenger.g0.N(12.0f) + (f10 * this.f35457c) + getLeft() + org.telegram.messenger.g0.L(4.0f));
                         this.Q.a(true);
-                        this.Q.setTime((int) ((((float) this.f35464a) / 1000.0f) * this.f35466c));
-                        h61 h61Var4 = this.f35471s;
+                        this.Q.setTime((int) ((((float) this.f35455a) / 1000.0f) * this.f35457c));
+                        h61 h61Var4 = this.f35462s;
                         if (h61Var4 != null) {
-                            float f22 = this.f35466c;
-                            ChatActivityEnterView chatActivityEnterView2 = ((me) h61Var4).f37238a;
+                            float f22 = this.f35457c;
+                            ChatActivityEnterView chatActivityEnterView2 = ((me) h61Var4).f37237a;
                             org.telegram.messenger.g20 g20Var2 = chatActivityEnterView2.M3;
                             if (g20Var2 != null) {
-                                g20Var2.f23634b = ((float) g20Var2.f23649r) * f22;
+                                g20Var2.f23636b = ((float) g20Var2.f23651r) * f22;
                                 chatActivityEnterView2.H3.W(f22, 2);
                             }
                         }
@@ -387,19 +387,19 @@ public final class i61 extends View {
                         return true;
                     }
                 }
-            } else if (this.f35468f) {
-                h61 h61Var5 = this.f35471s;
+            } else if (this.f35459f) {
+                h61 h61Var5 = this.f35462s;
                 if (h61Var5 != null) {
-                    ((me) h61Var5).f37238a.H3.W(0.0f, 0);
+                    ((me) h61Var5).f37237a.H3.W(0.0f, 0);
                 }
-                this.f35468f = false;
+                this.f35459f = false;
                 invalidate();
                 this.Q.a(false);
                 return true;
             } else if (this.h) {
-                h61 h61Var6 = this.f35471s;
+                h61 h61Var6 = this.f35462s;
                 if (h61Var6 != null) {
-                    ((me) h61Var6).f37238a.H3.W(0.0f, 0);
+                    ((me) h61Var6).f37237a.H3.W(0.0f, 0);
                 }
                 this.h = false;
                 invalidate();
@@ -411,7 +411,7 @@ public final class i61 extends View {
     }
 
     public void setDelegate(h61 h61Var) {
-        this.f35471s = h61Var;
+        this.f35462s = h61Var;
     }
 
     public void setKeyframes(ArrayList<Bitmap> arrayList) {
@@ -422,10 +422,10 @@ public final class i61 extends View {
 
     public void setMaxProgressDiff(float f10) {
         this.H = f10;
-        float f11 = this.f35466c;
-        float f12 = this.f35465b;
+        float f11 = this.f35457c;
+        float f12 = this.f35456b;
         if (f11 - f12 > f10) {
-            this.f35466c = f12 + f10;
+            this.f35457c = f12 + f10;
             invalidate();
         }
     }
@@ -449,12 +449,12 @@ public final class i61 extends View {
     public void setVideoPath(String str) {
         a(false);
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        this.f35470r = mediaMetadataRetriever;
-        this.f35465b = 0.0f;
-        this.f35466c = 1.0f;
+        this.f35461r = mediaMetadataRetriever;
+        this.f35456b = 0.0f;
+        this.f35457c = 1.0f;
         try {
             mediaMetadataRetriever.setDataSource(str);
-            this.f35464a = Long.parseLong(this.f35470r.extractMetadata(9));
+            this.f35455a = Long.parseLong(this.f35461r.extractMetadata(9));
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }

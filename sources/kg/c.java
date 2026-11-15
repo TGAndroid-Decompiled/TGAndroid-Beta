@@ -44,10 +44,10 @@ public final class c extends e2 implements is {
         String M0 = hd.M0(2131752838, null);
         String M02 = hd.M0(2131752835, null);
         b41 b41Var = new b41(2);
-        b41Var.f33181l = M0;
-        b41Var.f33184o = M02;
-        b41Var.f33182m = "RestrictedEmoji";
-        b41Var.f33183n = "💤";
+        b41Var.f33184l = M0;
+        b41Var.f33187o = M02;
+        b41Var.f33185m = "RestrictedEmoji";
+        b41Var.f33186n = "💤";
         arrayList.add(b41Var);
         b41 i7 = b41.i(1, hd.M0(2131752821, null));
         i7.L(cVar.f17883r);
@@ -61,7 +61,7 @@ public final class c extends e2 implements is {
                 arrayList.add(b41Var2);
             } else {
                 b41 c10 = b41.c(2, 2131232022, hd.M0(2131752837, null));
-                c10.f33186q = true;
+                c10.f33189q = true;
                 arrayList.add(c10);
             }
             arrayList.add(b41.C(null));
@@ -149,7 +149,7 @@ public final class c extends e2 implements is {
     }
 
     public final void c0() {
-        if (!this.f17877a.f29950y.f57082f) {
+        if (!this.f17877a.f29950y.f57086f) {
             if (!b0()) {
                 finishFragment();
                 return;
@@ -200,7 +200,7 @@ public final class c extends e2 implements is {
                     b22.flags2 &= -9;
                     b22.business_away_message = null;
                 }
-                getConnectionsManager().sendRequest(updatebusinessawaymessage, new ai.d1(this, 14));
+                getConnectionsManager().sendRequest(updatebusinessawaymessage, new ai.e1(this, 14));
                 getMessagesStorage().j2(b22, false);
             }
         }
@@ -231,7 +231,7 @@ public final class c extends e2 implements is {
         u41Var.r1();
         this.f17878b.setSectionsDrawBackground(true);
         u41 u41Var2 = this.f17878b;
-        u41Var2.f39895g3.f38201r = false;
+        u41Var2.f39892g3.f38199r = false;
         frameLayout.addView(u41Var2, ja.c(-1.0f, -1));
         d0();
         this.fragmentView = frameLayout;
@@ -303,7 +303,7 @@ public final class c extends e2 implements is {
                 this.E = i10;
                 this.G = i10;
                 u41Var = this.f17878b;
-                if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+                if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
                     p41Var.O(true);
                 }
                 a0(true);
@@ -336,7 +336,7 @@ public final class c extends e2 implements is {
         p41 p41Var;
         if (i7 == ns.F1) {
             u41 u41Var = this.f17878b;
-            if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+            if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
                 p41Var.O(true);
             }
             a0(true);

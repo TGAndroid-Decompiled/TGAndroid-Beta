@@ -28,14 +28,14 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
     public final int Kd;
     public final int Ld;
     public final pz0 Md;
-    public boolean f49735zd;
+    public boolean f49725zd;
 
     public nz0(pz0 pz0Var, Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11) {
         super(context, i7, false, null, e6Var);
         this.Md = pz0Var;
         this.Kd = i10;
         this.Ld = i11;
-        this.f49735zd = false;
+        this.f49725zd = false;
         this.Ad = new RectF();
         this.Bd = new RectF();
         this.Fd = new Path();
@@ -48,7 +48,7 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
         Paint paint = this.Dd;
         pz0 pz0Var = this.Md;
         if (paint != null) {
-            float f10 = pz0Var.f50412s;
+            float f10 = pz0Var.f50403s;
             RectF rectF = pz0Var.S;
             if (f10 > 0.0f) {
                 if (pz0Var.R) {
@@ -77,14 +77,14 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
                         }
                         canvas.drawCircle(centerX, centerY, width, this.Gd);
                     }
-                    getPhotoImage().setAlpha(Math.max(1.0f - this.Jd.d(pz0Var.R), 1.0f - pz0Var.f50412s));
+                    getPhotoImage().setAlpha(Math.max(1.0f - this.Jd.d(pz0Var.R), 1.0f - pz0Var.f50403s));
                     getPhotoImage().h(canvas, null);
                 } else {
                     getPhotoImage().h(canvas, null);
                 }
             }
             this.Ed.reset();
-            float width2 = (rectF.width() / 76.8f) * pz0Var.f50413w;
+            float width2 = (rectF.width() / 76.8f) * pz0Var.f50404w;
             this.Ed.postScale(width2, width2);
             this.Ed.postTranslate(rectF.centerX(), rectF.centerY());
             this.Cd.setLocalMatrix(this.Ed);
@@ -97,7 +97,7 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
         } else {
             super.N0(canvas);
         }
-        canvas.saveLayerAlpha(pz0Var.S, (int) (pz0Var.f50413w * 178.0f), 31);
+        canvas.saveLayerAlpha(pz0Var.S, (int) (pz0Var.f50404w * 178.0f), 31);
         Paint.Style style = Paint.Style.STROKE;
         Paint paint3 = this.Hd;
         paint3.setStyle(style);
@@ -107,21 +107,21 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
         RectF rectF2 = org.telegram.messenger.g0.P;
         rectF2.set(pz0Var.S);
         rectF2.inset(org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f));
-        canvas.drawArc(rectF2, -90.0f, (1.0f - pz0Var.f50402b0) * (-360.0f), false, paint3);
+        canvas.drawArc(rectF2, -90.0f, (1.0f - pz0Var.f50393b0) * (-360.0f), false, paint3);
         if (this.Id == null) {
             org.telegram.ui.Components.e01 e01Var = new org.telegram.ui.Components.e01(120);
             this.Id = e01Var;
-            e01Var.f34127b = true;
+            e01Var.f34114b = true;
         }
         paint3.setStrokeWidth(org.telegram.messenger.g0.L(2.8f));
-        this.Id.a((1.0f - pz0Var.f50402b0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
+        this.Id.a((1.0f - pz0Var.f50393b0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
         canvas.restore();
     }
 
     @Override
     public final void O0(Canvas canvas) {
-        float f10 = this.Md.f50413w;
-        Typeface typeface = org.telegram.messenger.g0.f23581a;
+        float f10 = this.Md.f50404w;
+        Typeface typeface = org.telegram.messenger.g0.f23583a;
         super.O0(canvas);
     }
 
@@ -140,8 +140,8 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
         canvas.save();
         ch.q0 q0Var = this.O;
         pz0 pz0Var = this.Md;
-        canvas.translate(org.telegram.messenger.g0.W1(pz0Var.f50412s, 0, -q0Var.f5192b), org.telegram.messenger.g0.W1(pz0Var.f50412s, pz0Var.P.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), q0Var.f5202n));
-        super.o1(canvas, (1.0f - pz0Var.f50412s) * f10, num);
+        canvas.translate(org.telegram.messenger.g0.W1(pz0Var.f50403s, 0, -q0Var.f5195b), org.telegram.messenger.g0.W1(pz0Var.f50403s, pz0Var.P.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), q0Var.f5205n));
+        super.o1(canvas, (1.0f - pz0Var.f50403s) * f10, num);
         canvas.restore();
     }
 
@@ -152,14 +152,14 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
         boolean z10 = pz0Var.T;
         RectF rectF = pz0Var.S;
         if (z10) {
-            boolean z11 = this.f49735zd;
+            boolean z11 = this.f49725zd;
             RectF rectF2 = this.Bd;
             RectF rectF3 = this.Ad;
             if (!z11) {
                 rectF3.set(getPhotoImage().L0, getPhotoImage().M0, getPhotoImage().y(), getPhotoImage().A());
                 float min = Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.92f;
                 rectF2.set((getMeasuredWidth() - min) / 2.0f, (getMeasuredHeight() - min) / 2.0f, (getMeasuredWidth() + min) / 2.0f, (getMeasuredHeight() + min) / 2.0f);
-                this.f49735zd = true;
+                this.f49725zd = true;
                 this.Cd = new RadialGradient(0.0f, 0.0f, 48.0f, new int[]{-1, -1, 0}, new float[]{0.0f, 0.8f, 1.0f}, Shader.TileMode.CLAMP);
                 Paint paint = new Paint(1);
                 this.Dd = paint;
@@ -167,21 +167,21 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
                 this.Dd.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
                 this.Ed = new Matrix();
             }
-            org.telegram.messenger.g0.Z1(rectF3, rectF2, pz0Var.f50412s, rectF);
+            org.telegram.messenger.g0.Z1(rectF3, rectF2, pz0Var.f50403s, rectF);
             v3(rectF.left, rectF.top, rectF.width(), rectF.height());
             getPhotoImage().J0((int) rectF.width());
-            if (pz0Var.f50412s > 0.0f && pz0Var.R) {
+            if (pz0Var.f50403s > 0.0f && pz0Var.R) {
                 canvas2 = canvas;
                 canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             } else {
                 canvas2 = canvas;
             }
-            this.f30994gd = 1.0f - pz0Var.f50412s;
+            this.f30994gd = 1.0f - pz0Var.f50403s;
         } else {
             canvas2 = canvas;
         }
         d1(canvas2);
-        if (pz0Var.T && pz0Var.f50412s > 0.0f && pz0Var.R) {
+        if (pz0Var.T && pz0Var.f50403s > 0.0f && pz0Var.R) {
             canvas2.restore();
         }
     }
@@ -215,7 +215,7 @@ public final class nz0 extends org.telegram.ui.Cells.q1 {
                 }
                 i10 += 20;
             }
-            canvas.translate(((this.Bd.right - (org.telegram.messenger.g0.L(8 + i10) + i7)) - this.C9) * pz0Var.f50412s, 0.0f);
+            canvas.translate(((this.Bd.right - (org.telegram.messenger.g0.L(8 + i10) + i7)) - this.C9) * pz0Var.f50403s, 0.0f);
         }
         super.y1(f10, canvas, z10);
         canvas.restore();

@@ -113,7 +113,7 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
         org.telegram.ui.ActionBar.y s5 = this.I.s();
         s5.setClipChildren(false);
         k30 k30Var = this.U;
-        if (k30Var != null && k30Var.f36270c == 2) {
+        if (k30Var != null && k30Var.f36260c == 2) {
             M0 = org.telegram.messenger.hd.M0(2131744408, null);
         } else {
             M0 = org.telegram.messenger.hd.M0(2131745519, null);
@@ -128,7 +128,7 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
         org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28792a7, i8Var, null);
         this.f38571r.setClipChildren(false);
         this.f38571r.setClipToPadding(false);
-        this.f38571r.setPadding(0, org.telegram.messenger.g0.f23603m, 0, 0);
+        this.f38571r.setPadding(0, org.telegram.messenger.g0.f23605m, 0, 0);
         this.f38571r.setOrientation(1);
         org.telegram.ui.z51 z51Var = this.f38571r;
         j8 j8Var = new j8(this, getParentActivity(), i8Var);
@@ -177,7 +177,7 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
             this.f38572s = org.telegram.messenger.hd.M0(2131745536, null);
         } else if (i11 == 2) {
             this.f38572s = org.telegram.messenger.hd.M0(2131745525, null);
-        } else if (k30Var != null && k30Var.f36270c == 2) {
+        } else if (k30Var != null && k30Var.f36260c == 2) {
             this.f38572s = org.telegram.messenger.hd.M0(2131744408, null);
         } else {
             this.f38572s = org.telegram.messenger.hd.M0(2131745523, null);
@@ -228,7 +228,7 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
         }
         j8 j8Var = this.f38562a;
         m8 m8Var = j8Var.h;
-        if ((m8Var == null || !m8Var.f37162b) && !j8Var.f38243n) {
+        if ((m8Var == null || !m8Var.f37162b) && !j8Var.f38241n) {
             return false;
         }
         return true;
@@ -252,8 +252,8 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
         }
         this.H = ValueAnimator.ofFloat(f11, f10);
         if (z11) {
-            this.f38562a.f38247x = this.F;
-            org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25564r4, new Object[0]);
+            this.f38562a.f38245x = this.F;
+            org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25565r4, new Object[0]);
         }
         this.H.addUpdateListener(new ch.u(6, this, z11));
         this.H.addListener(new org.telegram.ui.ActionBar.g(this, z10, z11, 2));
@@ -262,7 +262,7 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
             this.H.setDuration(350L);
             this.H.setStartDelay(150L);
         } else {
-            this.H.setInterpolator(er.f34420f);
+            this.H.setInterpolator(er.f34419f);
             this.H.setDuration(250L);
         }
         this.H.start();
@@ -270,15 +270,15 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
 
     public final void m0(boolean z10, long j3, TLRPC.Document document) {
         j8 j8Var = this.f38562a;
-        j8Var.f38238a = j3;
-        fi.v3 v3Var = j8Var.f38240c;
-        j8Var.f38239b = document;
+        j8Var.f38236a = j3;
+        fi.v3 v3Var = j8Var.f38238c;
+        j8Var.f38237b = document;
         if (j3 == 0) {
             v3Var.setAnimatedEmojiDrawable(null);
-            this.f38562a.f38240c.getImageReceiver().r0(org.telegram.messenger.gc.b(document), "100_100", null, null, org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.j6.f29014m6, 0.2f, null), 0L, "tgs", document, 0);
+            this.f38562a.f38238c.getImageReceiver().r0(org.telegram.messenger.gc.b(document), "100_100", null, null, org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.j6.f29014m6, 0.2f, null), 0L, "tgs", document, 0);
         } else {
             v3Var.setAnimatedEmojiDrawable(new g5(14, this.currentAccount, j3));
-            this.f38562a.f38240c.getImageReceiver().f();
+            this.f38562a.f38238c.getImageReceiver().f();
         }
         if (this.f38562a.getImageReceiver() != null && this.f38562a.getImageReceiver().m() != null) {
             this.f38562a.getImageReceiver().m().y(0L, true, false);
@@ -293,7 +293,7 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
     public final void n0(boolean z10, float f10) {
         boolean z11;
         this.F = f10;
-        float f11 = ((this.d - this.f38566c) - org.telegram.messenger.g0.f23603m) * f10;
+        float f11 = ((this.d - this.f38566c) - org.telegram.messenger.g0.f23605m) * f10;
         if (this.O == 0.0f) {
             this.f38571r.setTranslationY(f11);
             this.f38575y.setTranslationY(f11);
@@ -360,8 +360,8 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
         j8Var.b(obj, false);
         s0();
         j8 j8Var2 = this.f38562a;
-        j8Var2.f38238a = j3;
-        j8Var2.f38240c.setAnimatedEmojiDrawable(new g5(14, this.currentAccount, j3));
+        j8Var2.f38236a = j3;
+        j8Var2.f38238c.setAnimatedEmojiDrawable(new g5(14, this.currentAccount, j3));
         this.K.z1(obj);
         this.f38564b.setForUser(false);
     }
@@ -422,8 +422,8 @@ public final class q8 extends org.telegram.ui.ActionBar.e2 {
         if (s8Var.getAnimatedEmoji() != null) {
             long h = s8Var.getAnimatedEmoji().h();
             j8 j8Var2 = this.f38562a;
-            j8Var2.f38238a = h;
-            j8Var2.f38240c.setAnimatedEmojiDrawable(new g5(14, this.currentAccount, h));
+            j8Var2.f38236a = h;
+            j8Var2.f38238c.setAnimatedEmojiDrawable(new g5(14, this.currentAccount, h));
         }
         this.K.z1(backgroundGradient);
         this.f38564b.setForUser(false);

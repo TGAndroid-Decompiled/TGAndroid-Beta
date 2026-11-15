@@ -99,7 +99,7 @@ public final class sa extends FrameLayout implements org.telegram.ui.ActionBar.z
                     TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
                     ra0 ra0Var = new ra0(true, wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color);
                     if (tL_wallPaper.settings.intensity < 0 && org.telegram.ui.ActionBar.j6.I.q()) {
-                        i9Var2.getImageReceiver().m0(ra0Var.f38926k);
+                        i9Var2.getImageReceiver().m0(ra0Var.f38923k);
                     } else {
                         i9Var2.setBackground(ra0Var);
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -133,14 +133,14 @@ public final class sa extends FrameLayout implements org.telegram.ui.ActionBar.z
             }
         } else if (obj instanceof oc1) {
             oc1 oc1Var = (oc1) obj;
-            File file = oc1Var.f49933i;
+            File file = oc1Var.f49923i;
             int i10 = oc1Var.d;
-            int i11 = oc1Var.f49929c;
-            int i12 = oc1Var.f49928b;
-            if (file == null && oc1Var.f49932g == null && !"d".equals(oc1Var.f49927a)) {
+            int i11 = oc1Var.f49919c;
+            int i12 = oc1Var.f49918b;
+            if (file == null && oc1Var.f49922g == null && !"d".equals(oc1Var.f49917a)) {
                 i9Var2.setImageBitmap(null);
-                if (oc1Var.f49935k) {
-                    i9Var2.setBackground(new ra0(true, oc1Var.f49928b, oc1Var.f49929c, oc1Var.d, oc1Var.f49930e));
+                if (oc1Var.f49925k) {
+                    i9Var2.setBackground(new ra0(true, oc1Var.f49918b, oc1Var.f49919c, oc1Var.d, oc1Var.f49920e));
                     return;
                 } else if (i11 != 0) {
                     i9Var2.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{i12 | (-16777216), i11 | (-16777216)}));
@@ -151,36 +151,36 @@ public final class sa extends FrameLayout implements org.telegram.ui.ActionBar.z
                 }
             }
             if (i10 != 0) {
-                ra0 ra0Var2 = new ra0(true, oc1Var.f49928b, oc1Var.f49929c, oc1Var.d, oc1Var.f49930e);
+                ra0 ra0Var2 = new ra0(true, oc1Var.f49918b, oc1Var.f49919c, oc1Var.d, oc1Var.f49920e);
                 if (oc1Var.h >= 0.0f) {
-                    i9Var2.setBackground(new ra0(true, oc1Var.f49928b, oc1Var.f49929c, oc1Var.d, oc1Var.f49930e));
+                    i9Var2.setBackground(new ra0(true, oc1Var.f49918b, oc1Var.f49919c, oc1Var.d, oc1Var.f49920e));
                     if (Build.VERSION.SDK_INT >= 29) {
                         i9Var2.getImageReceiver().Z(BlendMode.SOFT_LIGHT);
                     }
                 } else {
-                    i9Var2.getImageReceiver().m0(ra0Var2.f38926k);
+                    i9Var2.getImageReceiver().m0(ra0Var2.f38923k);
                 }
-                V0 = ra0.g(i12, i11, i10, oc1Var.f49930e);
+                V0 = ra0.g(i12, i11, i10, oc1Var.f49920e);
             } else {
                 V0 = org.telegram.messenger.g0.V0(i12, false);
             }
             int i13 = V0;
-            if ("d".equals(oc1Var.f49927a)) {
-                if (oc1Var.f49937m == null) {
-                    oc1Var.f49937m = qz.d(2131623998, 100, 180, -16777216);
+            if ("d".equals(oc1Var.f49917a)) {
+                if (oc1Var.f49927m == null) {
+                    oc1Var.f49927m = qz.d(2131623998, 100, 180, -16777216);
                 }
-                i9Var2.setImageBitmap(oc1Var.f49937m);
+                i9Var2.setImageBitmap(oc1Var.f49927m);
                 i9Var2.getImageReceiver().setAlpha(Math.abs(oc1Var.h));
             } else if (file != null) {
                 i9Var2.h(file.getAbsolutePath(), "180_180", null);
             } else {
-                TLRPC.PhotoSize w12 = org.telegram.messenger.w7.w(oc1Var.f49932g.document.thumbs, 100, false, null, false);
+                TLRPC.PhotoSize w12 = org.telegram.messenger.w7.w(oc1Var.f49922g.document.thumbs, 100, false, null, false);
                 if (w12 != null) {
                     j3 = w12.size;
                 } else {
-                    j3 = oc1Var.f49932g.document.size;
+                    j3 = oc1Var.f49922g.document.size;
                 }
-                i9Var2.g(1, j3, oc1Var.f49932g, "180_180", null, "jpg", gc.c(w12, oc1Var.f49932g.document), null);
+                i9Var2.g(1, j3, oc1Var.f49922g, "180_180", null, "jpg", gc.c(w12, oc1Var.f49922g.document), null);
                 i9Var2.getImageReceiver().setAlpha(Math.abs(oc1Var.h));
                 if (Build.VERSION.SDK_INT >= 29 && i10 != 0) {
                     return;
@@ -189,7 +189,7 @@ public final class sa extends FrameLayout implements org.telegram.ui.ActionBar.z
             }
         } else if (obj instanceof pc1) {
             pc1 pc1Var = (pc1) obj;
-            File file2 = pc1Var.f50255e;
+            File file2 = pc1Var.f50232e;
             if (file2 != null) {
                 i9Var2.h(file2.getAbsolutePath(), "180_180", null);
                 return;
@@ -197,10 +197,10 @@ public final class sa extends FrameLayout implements org.telegram.ui.ActionBar.z
             File file3 = pc1Var.d;
             if (file3 != null) {
                 i9Var2.h(file3.getAbsolutePath(), "180_180", null);
-            } else if ("t".equals(pc1Var.f50252a)) {
+            } else if ("t".equals(pc1Var.f50229a)) {
                 i9Var2.setImageDrawable(org.telegram.ui.ActionBar.j6.Z0(i9Var2, true));
             } else {
-                i9Var2.setImageResource(pc1Var.f50254c);
+                i9Var2.setImageResource(pc1Var.f50231c);
             }
         } else if (obj instanceof jf) {
             jf jfVar = (jf) obj;

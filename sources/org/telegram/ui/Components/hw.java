@@ -13,10 +13,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hw implements org.telegram.ui.ls {
-    public final ly f35363a;
+    public final ly f35354a;
 
     public hw(ly lyVar) {
-        this.f35363a = lyVar;
+        this.f35354a = lyVar;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final void B(TLRPC.Document document) {
-        org.telegram.ui.ActionBar.e2 e2Var = this.f35363a.Z1;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f35354a.Z1;
         if (e2Var instanceof org.telegram.ui.an) {
             ((org.telegram.ui.an) e2Var).Gb(document);
         }
@@ -43,7 +43,7 @@ public final class hw implements org.telegram.ui.ls {
     }
 
     @Override
-    public final m60 E(ai.j0 j0Var) {
+    public final m60 E(ai.k0 k0Var) {
         return null;
     }
 
@@ -51,17 +51,17 @@ public final class hw implements org.telegram.ui.ls {
     public final void F(TLRPC.Document document) {
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = org.telegram.messenger.si.a0(document, "").document;
-        ConnectionsManager.getInstance(this.f35363a.f36941d1).sendRequest(tL_stickers_removeStickerFromSet, new v1(this, 3));
+        ConnectionsManager.getInstance(this.f35354a.f36941d1).sendRequest(tL_stickers_removeStickerFromSet, new v1(this, 3));
     }
 
     @Override
     public final String G(boolean z10) {
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         if (z10) {
             v4.h0 adapter = lyVar.f36956i0.getAdapter();
             qx qxVar = lyVar.f36962k0;
             if (adapter == qxVar) {
-                return qxVar.f38789x;
+                return qxVar.f38787x;
             }
             return null;
         }
@@ -79,7 +79,7 @@ public final class hw implements org.telegram.ui.ls {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.gj.U(document));
         valueOf.setSpan(new p5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (org.telegram.messenger.g0.g(valueOf)) {
-            ly lyVar = this.f35363a;
+            ly lyVar = this.f35354a;
             org.telegram.ui.ActionBar.e2 e2Var = lyVar.Z1;
             if (e2Var != null) {
                 ccVar = cc.a0(e2Var);
@@ -102,7 +102,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final void L() {
-        this.f35363a.X();
+        this.f35354a.X();
     }
 
     @Override
@@ -110,13 +110,13 @@ public final class hw implements org.telegram.ui.ls {
         if (inputStickerSet == null) {
             return;
         }
-        this.f35363a.f36993u1.d(null, inputStickerSet, false);
+        this.f35354a.f36993u1.d(null, inputStickerSet, false);
     }
 
     @Override
     public final boolean N(TLRPC.Document document) {
         if (document != null) {
-            ArrayList arrayList = org.telegram.messenger.j6.f24526i;
+            ArrayList arrayList = org.telegram.messenger.j6.f24531i;
             if (arrayList.contains("animated_" + document.f28057id)) {
                 return true;
             }
@@ -129,7 +129,7 @@ public final class hw implements org.telegram.ui.ls {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z10;
-        if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q() || (f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).f()) == null) {
+        if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q() || (f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).f()) == null) {
             return null;
         }
         Long h = org.telegram.messenger.q10.h(f10);
@@ -148,17 +148,17 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final long a() {
-        return this.f35363a.f36993u1.a();
+        return this.f35354a.f36993u1.a();
     }
 
     @Override
     public final boolean b() {
-        return this.f35363a.f36993u1.b();
+        return this.f35354a.f36993u1.b();
     }
 
     @Override
     public final boolean c() {
-        return this.f35363a.f36993u1.c();
+        return this.f35354a.f36993u1.c();
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final boolean e(TLRPC.Document document) {
-        return this.f35363a.f36993u1.j();
+        return this.f35354a.f36993u1.j();
     }
 
     @Override
@@ -183,7 +183,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final boolean h() {
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         if (lyVar.Z1 == null && lyVar.f36995v0) {
             return false;
         }
@@ -200,10 +200,10 @@ public final class hw implements org.telegram.ui.ls {
         if (i7 != 2) {
             return true;
         }
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         org.telegram.ui.ActionBar.e2 e2Var = lyVar.Z1;
         if ((e2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) e2Var).T6()) {
-            if (org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).q() || (((org.telegram.ui.an) lyVar.Z1).j() != null && org.telegram.messenger.q10.B(((org.telegram.ui.an) lyVar.Z1).j()))) {
+            if (org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q() || (((org.telegram.ui.an) lyVar.Z1).j() != null && org.telegram.messenger.q10.B(((org.telegram.ui.an) lyVar.Z1).j()))) {
                 return true;
             }
             return false;
@@ -213,7 +213,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i7, int i10) {
-        this.f35363a.f36993u1.m(null, document, str, obj, null, z10, i7);
+        this.f35354a.f36993u1.m(null, document, str, obj, null, z10, i7);
     }
 
     @Override
@@ -232,7 +232,7 @@ public final class hw implements org.telegram.ui.ls {
                 break;
             }
         }
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         bw0.M0(lyVar.Z1, org.telegram.messenger.si.b0(lyVar.f36941d1).m0(inputStickerSet, true), document);
     }
 
@@ -247,12 +247,12 @@ public final class hw implements org.telegram.ui.ls {
             String str = "animated_" + document.f28057id;
             HashMap hashMap = org.telegram.messenger.j6.h;
             hashMap.remove(str);
-            ArrayList arrayList = org.telegram.messenger.j6.f24526i;
+            ArrayList arrayList = org.telegram.messenger.j6.f24531i;
             arrayList.remove(str);
             if (hashMap.isEmpty() || arrayList.isEmpty()) {
-                org.telegram.messenger.j6.a(org.telegram.messenger.j6.f24532o[0]);
+                org.telegram.messenger.j6.a(org.telegram.messenger.j6.f24537o[0]);
             }
-            vw vwVar = this.f35363a.S;
+            vw vwVar = this.f35354a.S;
             if (vwVar != null) {
                 vwVar.F(false);
             }
@@ -261,7 +261,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final void r(int i7, int i10, Object obj, TLObject tLObject, boolean z10) {
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         qv qvVar = lyVar.f36956i0;
         if (qvVar.getAdapter() == lyVar.f36972o0) {
             lyVar.f36993u1.v(null, tLObject, null, obj, z10, i7, i10);
@@ -272,11 +272,11 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final void s() {
-        yw ywVar = this.f35363a.Q;
-        if (ywVar != null && ywVar.f42169m3 != null) {
-            while (ywVar.f42169m3.size() > 0) {
-                xw xwVar = (xw) ywVar.f42169m3.valueAt(0);
-                ywVar.f42169m3.removeAt(0);
+        yw ywVar = this.f35354a.Q;
+        if (ywVar != null && ywVar.f42171m3 != null) {
+            while (ywVar.f42171m3.size() > 0) {
+                xw xwVar = (xw) ywVar.f42171m3.valueAt(0);
+                ywVar.f42171m3.removeAt(0);
                 if (xwVar != null) {
                     View view = xwVar.d;
                     if (view != null && (view.getBackground() instanceof RippleDrawable)) {
@@ -296,7 +296,7 @@ public final class hw implements org.telegram.ui.ls {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         cc ccVar;
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         FrameLayout frameLayout = lyVar.f36981r;
         org.telegram.ui.ActionBar.e2 e2Var = lyVar.Z1;
         org.telegram.ui.ActionBar.e6 e6Var = lyVar.f36931a2;
@@ -307,7 +307,7 @@ public final class hw implements org.telegram.ui.ls {
             tL_emojiStatus.document_id = document.f28057id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24934t0).f();
+        TLRPC.User f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {
@@ -324,7 +324,7 @@ public final class hw implements org.telegram.ui.ls {
             imageView.setScaleY(0.8f);
             org.telegram.ui.ActionBar.q6.s(imageView, org.telegram.ui.ActionBar.j6.f29263z9, e6Var, PorterDuff.Mode.MULTIPLY);
             vb vbVar = new vb(lyVar.getContext(), e6Var, true);
-            vbVar.f40369b = vsVar;
+            vbVar.f40372b = vsVar;
             pbVar.setButton(vbVar);
             if (e2Var != null) {
                 xb.g(e2Var, pbVar, 1500).j();
@@ -344,7 +344,7 @@ public final class hw implements org.telegram.ui.ls {
 
     @Override
     public final void v(TLObject tLObject, Object obj) {
-        ly lyVar = this.f35363a;
+        ly lyVar = this.f35354a;
         qv qvVar = lyVar.f36956i0;
         if (qvVar.getAdapter() != lyVar.f36972o0 && qvVar.getAdapter() != lyVar.f36962k0) {
             return;

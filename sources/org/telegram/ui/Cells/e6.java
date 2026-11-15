@@ -55,7 +55,7 @@ public abstract class e6 extends FrameLayout implements org.telegram.ui.ActionBa
         upVar.setPadding(org.telegram.messenger.g0.L(4.33f), 0, org.telegram.messenger.g0.L(4.33f), 0);
         upVar.setGravity(3);
         f10.addView(upVar, c8.ja.t(-1, 17, 51, 4, 1, 4, 0));
-        t2 t2Var = new t2(null, context, true, m10.f24934t0, resourceProvider);
+        t2 t2Var = new t2(null, context, true, m10.f24940t0, resourceProvider);
         this.d = t2Var;
         t2Var.setBackgroundColor(0);
         t2Var.setDialogCellDelegate(new a6((zv0) this, e2Var, context));
@@ -145,7 +145,7 @@ public abstract class e6 extends FrameLayout implements org.telegram.ui.ActionBa
             } else {
                 gj gjVar = (gj) i5.c.h(1, arrayList);
                 long j3 = -chat.f28051id;
-                int i10 = gjVar.f23817k.date;
+                int i10 = gjVar.f23819k.date;
                 if (t2Var.I0 != j3) {
                     t2Var.f31667y4 = -1;
                 }
@@ -155,7 +155,7 @@ public abstract class e6 extends FrameLayout implements org.telegram.ui.ActionBa
                 t2Var.f31647v2 = false;
                 t2Var.O0 = false;
                 t2Var.S0 = i10;
-                int i11 = gjVar.f23817k.edit_date;
+                int i11 = gjVar.f23819k.edit_date;
                 t2Var.T0 = 0;
                 t2Var.U0 = false;
                 t2Var.f31600m1 = gjVar.e1();
@@ -166,7 +166,7 @@ public abstract class e6 extends FrameLayout implements org.telegram.ui.ActionBa
                 t2Var.f31578h1 = arrayList;
                 gj gjVar2 = t2Var.f31573g1;
                 if (gjVar2 != null) {
-                    t2Var.Z0 = gjVar2.f23817k.send_state;
+                    t2Var.Z0 = gjVar2.f23819k.send_state;
                 }
                 t2Var.k0(0, z12);
             }

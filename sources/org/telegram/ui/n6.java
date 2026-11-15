@@ -6,32 +6,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class n6 implements org.telegram.messenger.s10 {
-    public final int f49466a;
-    public final Object f49467b;
-    public final Object f49468c;
+    public final int f49465a;
+    public final Object f49466b;
+    public final Object f49467c;
     public final Object d;
 
     public n6(Object obj, Object obj2, Object obj3, int i7) {
-        this.f49466a = i7;
-        this.f49467b = obj;
-        this.f49468c = obj2;
+        this.f49465a = i7;
+        this.f49466b = obj;
+        this.f49467c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f49466a;
+        int i7 = this.f49465a;
         Object obj3 = this.d;
-        Object obj4 = this.f49468c;
-        Object obj5 = this.f49467b;
+        Object obj4 = this.f49467c;
+        Object obj5 = this.f49466b;
         int i10 = 0;
         switch (i7) {
             case 0:
-                org.telegram.ui.ActionBar.m5 m5Var = (org.telegram.ui.ActionBar.m5) obj3;
+                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) obj3;
                 ((float[]) obj5)[0] = ((Float) obj).floatValue();
                 ((boolean[]) obj4)[0] = ((Boolean) obj2).booleanValue();
-                org.telegram.messenger.g0.r(m5Var);
-                org.telegram.messenger.g0.h3(m5Var);
+                org.telegram.messenger.g0.r(l5Var);
+                org.telegram.messenger.g0.h3(l5Var);
                 return;
             case 1:
                 an anVar = (an) obj5;
@@ -86,7 +86,7 @@ public final class n6 implements org.telegram.messenger.s10 {
                                 if (ywVar3.H.user_admin_rights != null) {
                                     org.telegram.messenger.np messagesController2 = ywVar3.getMessagesController();
                                     Long l11 = l10;
-                                    ywVar3.getMessagesController().Q4(l11.longValue(), org.telegram.messenger.m10.i(ywVar3.getAccountInstance().f22778a).f(), mp.x0(messagesController2.M0(l11).admin_rights, ywVar3.H.user_admin_rights), null, true, ywVar3, false, true, null, runnable2, new te(4, runnable2));
+                                    ywVar3.getMessagesController().Q4(l11.longValue(), org.telegram.messenger.m10.i(ywVar3.getAccountInstance().f22782a).f(), mp.x0(messagesController2.M0(l11).admin_rights, ywVar3.H.user_admin_rights), null, true, ywVar3, false, true, null, runnable2, new te(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -124,7 +124,7 @@ public final class n6 implements org.telegram.messenger.s10 {
                                 if (ywVar3.H.user_admin_rights != null) {
                                     org.telegram.messenger.np messagesController2 = ywVar3.getMessagesController();
                                     Long l11 = l10;
-                                    ywVar3.getMessagesController().Q4(l11.longValue(), org.telegram.messenger.m10.i(ywVar3.getAccountInstance().f22778a).f(), mp.x0(messagesController2.M0(l11).admin_rights, ywVar3.H.user_admin_rights), null, true, ywVar3, false, true, null, runnable2, new te(4, runnable2));
+                                    ywVar3.getMessagesController().Q4(l11.longValue(), org.telegram.messenger.m10.i(ywVar3.getAccountInstance().f22782a).f(), mp.x0(messagesController2.M0(l11).admin_rights, ywVar3.H.user_admin_rights), null, true, ywVar3, false, true, null, runnable2, new te(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();

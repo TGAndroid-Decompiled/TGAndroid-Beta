@@ -13,6 +13,6 @@ public final class zl extends s8 {
     @Override
     public final void onMeasure(int i7, int i10) {
         am amVar = this.F;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(amVar.f33020w.L0, 1073741824), View.MeasureSpec.makeMeasureSpec(amVar.f33020w.L0, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(amVar.f33023w.L0, 1073741824), View.MeasureSpec.makeMeasureSpec(amVar.f33023w.L0, 1073741824));
     }
 }

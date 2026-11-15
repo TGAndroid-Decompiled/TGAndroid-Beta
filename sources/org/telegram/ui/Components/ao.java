@@ -7,35 +7,35 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ao implements Runnable {
-    public final int f33025a = 1;
-    public final long f33026b;
-    public final long f33027c;
+    public final int f33028a = 1;
+    public final long f33029b;
+    public final long f33030c;
     public final Object d;
-    public final Object f33028e;
-    public final Object f33029f;
+    public final Object f33031e;
+    public final Object f33032f;
 
     public ao(long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, wg.y yVar) {
         this.d = yVar;
-        this.f33028e = prepaidGiveaway;
-        this.f33029f = tL_prepaidStarsGiveaway;
-        this.f33026b = j3;
-        this.f33027c = j10;
+        this.f33031e = prepaidGiveaway;
+        this.f33032f = tL_prepaidStarsGiveaway;
+        this.f33029b = j3;
+        this.f33030c = j10;
     }
 
     @Override
     public final void run() {
         boolean z10;
         ?? tL_inputStorePaymentStarsGiveaway;
-        int i7 = this.f33025a;
-        Object obj = this.f33029f;
-        Object obj2 = this.f33028e;
+        int i7 = this.f33028a;
+        Object obj = this.f33032f;
+        Object obj2 = this.f33031e;
         Object obj3 = this.d;
         switch (i7) {
             case 0:
                 ((m60) obj3).u();
                 Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", this.f33026b);
-                bundle.putLong("topic_id", this.f33027c);
+                bundle.putLong("dialog_id", this.f33029b);
+                bundle.putLong("topic_id", this.f33030c);
                 ((org.telegram.ui.ActionBar.e2) obj2).presentFragment(new org.telegram.ui.fx0(bundle, (org.telegram.ui.ActionBar.e6) obj));
                 return;
             default:
@@ -58,10 +58,10 @@ public final class ao implements Runnable {
                 boolean z12 = yVar.f59290s2;
                 int i12 = prepaidGiveaway.quantity;
                 String str = yVar.f59289r2;
-                wg.w wVar = new wg.w(this.f33026b, this.f33027c, prepaidGiveaway, tL_prepaidStarsGiveaway, yVar);
+                wg.w wVar = new wg.w(this.f33029b, this.f33030c, prepaidGiveaway, tL_prepaidStarsGiveaway, yVar);
                 wg.t tVar = new wg.t(yVar, 6);
-                org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0);
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.m10.f24934t0);
+                org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.m10.f24940t0);
                 if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                     tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
                     tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z10;
@@ -142,9 +142,9 @@ public final class ao implements Runnable {
 
     public ao(m60 m60Var, long j3, long j10, org.telegram.ui.an anVar, org.telegram.ui.ActionBar.e6 e6Var) {
         this.d = m60Var;
-        this.f33026b = j3;
-        this.f33027c = j10;
-        this.f33028e = anVar;
-        this.f33029f = e6Var;
+        this.f33029b = j3;
+        this.f33030c = j10;
+        this.f33031e = anVar;
+        this.f33032f = e6Var;
     }
 }

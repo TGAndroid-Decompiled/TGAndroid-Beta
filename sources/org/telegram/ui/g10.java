@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class g10 extends v4.n0 {
-    public final c40 f47270a;
+    public final c40 f47260a;
 
     public g10(c40 c40Var) {
-        this.f47270a = c40Var;
+        this.f47260a = c40Var;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class g10 extends v4.n0 {
         int R = RecyclerView.R(view);
         if (R >= 0) {
             rect.setEmpty();
-            w30 w30Var = this.f47270a.K1;
+            w30 w30Var = this.f47260a.K1;
             int i10 = w30Var.H;
             if (R >= i10 && R < w30Var.I) {
                 int i11 = R - i10;

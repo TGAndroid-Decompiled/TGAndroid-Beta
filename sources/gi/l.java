@@ -47,7 +47,7 @@ public class l extends aj0 {
         gj gjVar;
         TL_stories.StoryItem storyItem;
         k6 k6Var = this.f13330e;
-        if (k6Var == null || i7 < 0 || i7 >= k6Var.f11944i.size() || (gjVar = (gj) this.f13330e.f11944i.get(i7)) == null || (storyItem = gjVar.f23822l) == null) {
+        if (k6Var == null || i7 < 0 || i7 >= k6Var.f11944i.size() || (gjVar = (gj) this.f13330e.f11944i.get(i7)) == null || (storyItem = gjVar.f23824l) == null) {
             return null;
         }
         return hd.e0(storyItem.date, true);
@@ -109,7 +109,7 @@ public class l extends aj0 {
                     mVar.I = z10;
                 } else if (mVar.I || mVar.d == 1) {
                     mVar.I = false;
-                    mVar.d = Math.max(2, gz.f23986u1);
+                    mVar.d = Math.max(2, gz.f23989u1);
                 }
                 mVar.h.y1(mVar.d);
                 mVar.J = true;
@@ -193,7 +193,7 @@ public class l extends aj0 {
                     tL_storyItem.attachPath = r6Var.f12276f;
                     gj gjVar = new gj(this.f13330e.f11940c, tL_storyItem);
                     r6Var.L = gjVar;
-                    gjVar.f23826m = r6Var;
+                    gjVar.f23828m = r6Var;
                 }
                 gj gjVar2 = r6Var.L;
                 if (this == this.f13331f) {

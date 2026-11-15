@@ -5,27 +5,27 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Components.hj0, org.telegram.ui.Components.y61, org.telegram.ui.ActionBar.q1 {
-    public final int f47622a;
-    public final t71 f47623b;
+    public final int f47612a;
+    public final t71 f47613b;
 
     public h61(t71 t71Var, int i7) {
-        this.f47622a = i7;
-        this.f47623b = t71Var;
+        this.f47612a = i7;
+        this.f47613b = t71Var;
     }
 
     @Override
     public void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        t71 t71Var = this.f47623b;
+        t71 t71Var = this.f47613b;
         if (!(t71Var.D1 instanceof oc1)) {
             Drawable t6 = imageReceiver.t();
             if (z10 && t6 != null) {
-                s61 s61Var = t71Var.f51408a;
+                s61 s61Var = t71Var.f51409a;
                 org.telegram.messenger.g0.q(t6);
                 s61Var.k(t71Var.T0(t6), t6, Float.valueOf(t71Var.n1));
-                if (!z11 && t71Var.H1 && t71Var.f51476y1 == null) {
-                    t71Var.f51477z0.getImageReceiver().B0 = false;
+                if (!z11 && t71Var.H1 && t71Var.f51477y1 == null) {
+                    t71Var.f51478z0.getImageReceiver().B0 = false;
                     t71Var.n1();
-                    t71Var.f51477z0.getImageReceiver().B0 = true;
+                    t71Var.f51478z0.getImageReceiver().B0 = true;
                 }
                 t71Var.a1();
             }
@@ -42,7 +42,7 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
         if (view instanceof org.telegram.ui.Cells.q1) {
             org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
             boolean C2 = q1Var.C2(f10);
-            t71 t71Var = this.f47623b;
+            t71 t71Var = this.f47613b;
             if (C2) {
                 if (q1Var.getMessageObject().P3()) {
                     t71Var.d1(3, true);
@@ -58,32 +58,32 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
 
     @Override
     public void g(int i7, int i10) {
-        t71 t71Var = this.f47623b;
+        t71 t71Var = this.f47613b;
         if (!t71Var.G1) {
             return;
         }
-        t71Var.f51477z0.getBackground();
+        t71Var.f51478z0.getBackground();
         float f10 = 1.0f;
         if (t71Var.D0 != null) {
-            f10 = (t71Var.f51477z0.getScaleX() - 1.0f) / (t71Var.A1 - 1.0f);
+            f10 = (t71Var.f51478z0.getScaleX() - 1.0f) / (t71Var.A1 - 1.0f);
         }
-        t71Var.f51477z0.setTranslationX(i7 * f10);
-        t71Var.f51477z0.setTranslationY(i10 * f10);
+        t71Var.f51478z0.setTranslationX(i7 * f10);
+        t71Var.f51478z0.setTranslationY(i10 * f10);
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         boolean z10;
-        switch (this.f47622a) {
+        switch (this.f47612a) {
             case 3:
-                this.f47623b.f51464u0.getActionBarMenuOnItemClick().b(4);
+                this.f47613b.f51465u0.getActionBarMenuOnItemClick().b(4);
                 return;
             case 4:
-                this.f47623b.S0(false);
+                this.f47613b.S0(false);
                 return;
             case 5:
-                t71 t71Var = this.f47623b;
-                org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51468w;
+                t71 t71Var = this.f47613b;
+                org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51469w;
                 if (g6Var.f28609j == 4294967296L) {
                     g6Var.f28609j = 0L;
                     g6Var.f28610k = 0L;
@@ -92,13 +92,13 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                     t71Var.r1(false);
                     org.telegram.ui.ActionBar.j6.t1(false, false);
                 }
-                t71Var.f51471x = true;
+                t71Var.f51472x = true;
                 org.telegram.ui.ActionBar.j6.v1(true);
                 t71Var.d1(2, false);
                 return;
             case 6:
-                t71 t71Var2 = this.f47623b;
-                org.telegram.ui.ActionBar.g6 g6Var2 = t71Var2.f51468w;
+                t71 t71Var2 = this.f47613b;
+                org.telegram.ui.ActionBar.g6 g6Var2 = t71Var2.f51469w;
                 if (org.telegram.ui.ActionBar.j6.c1() && org.telegram.ui.ActionBar.j6.I.f28712j0.d != 0) {
                     org.telegram.ui.ActionBar.b6 b6Var = g6Var2.f28623y;
                     g6Var2.f28609j = b6Var.d;
@@ -127,7 +127,7 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                     } else {
                         t71Var2.Y0 = null;
                     }
-                    t71Var2.f51471x = true;
+                    t71Var2.f51472x = true;
                     org.telegram.ui.Components.x61 x61Var = t71Var2.L0[1];
                     if (t71Var2.Y0 != null) {
                         z10 = true;
@@ -138,13 +138,13 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                     t71Var2.r1(false);
                     org.telegram.ui.ActionBar.j6.t1(false, false);
                 }
-                Drawable background = t71Var2.f51477z0.getBackground();
+                Drawable background = t71Var2.f51478z0.getBackground();
                 if (background instanceof org.telegram.ui.Components.ra0) {
                     org.telegram.ui.Components.ra0 ra0Var = (org.telegram.ui.Components.ra0) background;
                     ra0Var.s(100, null);
                     if (org.telegram.ui.ActionBar.j6.I.q()) {
                         if (t71Var2.n1 < 0.0f) {
-                            t71Var2.f51477z0.getImageReceiver().m0(ra0Var.f38926k);
+                            t71Var2.f51478z0.getImageReceiver().m0(ra0Var.f38923k);
                         }
                         org.telegram.ui.Cells.h0 h0Var = t71Var2.V0;
                         if (h0Var != null) {
@@ -165,8 +165,8 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                 t71Var2.d1(2, false);
                 return;
             default:
-                t71 t71Var3 = this.f47623b;
-                org.telegram.ui.ActionBar.g6 g6Var3 = t71Var3.f51468w;
+                t71 t71Var3 = this.f47613b;
+                org.telegram.ui.ActionBar.g6 g6Var3 = t71Var3.f51469w;
                 if (g6Var3.f28609j == 4294967296L) {
                     g6Var3.f28609j = 0L;
                     g6Var3.f28610k = 0L;
@@ -175,7 +175,7 @@ public final class h61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                     t71Var3.r1(false);
                     org.telegram.ui.ActionBar.j6.t1(false, false);
                 }
-                t71Var3.f51471x = true;
+                t71Var3.f51472x = true;
                 org.telegram.ui.ActionBar.j6.v1(true);
                 t71Var3.d1(2, false);
                 return;

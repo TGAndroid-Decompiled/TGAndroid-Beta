@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import di.mb;
+import di.lb;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -46,7 +46,7 @@ public final class d {
             if (i7 == 0) {
                 staticLayoutArr2 = staticLayoutArr3;
             }
-            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, g0.f23611q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             staticLayoutArr2[i10] = staticLayout2;
             staticLayout = staticLayout2;
         }
@@ -81,7 +81,7 @@ public final class d {
             if (i7 == 1) {
                 return "≈" + r1.i().f(j3, "USD");
             }
-            return mb.a1(false, i5.c.l(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return lb.a1(false, i5.c.l(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return g0.o0((int) j3, 0);
         }

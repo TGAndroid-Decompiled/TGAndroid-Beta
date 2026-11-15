@@ -22,7 +22,7 @@ public final class ja extends FrameLayout implements org.telegram.ui.ActionBar.z
         TextView textView = new TextView(context);
         this.f30520b = textView;
         org.telegram.messenger.k5.m(textView, org.telegram.ui.ActionBar.j6.G6, null, 1, 16.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             addView(i9Var, c8.ja.d(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
             addView(textView, c8.ja.d(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));
             return;
@@ -36,7 +36,7 @@ public final class ja extends FrameLayout implements org.telegram.ui.ActionBar.z
         super.dispatchDraw(canvas);
         if (this.d) {
             int L = org.telegram.messenger.g0.L(56.0f);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - L, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
             } else {
                 canvas.drawLine(L, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);

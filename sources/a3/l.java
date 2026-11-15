@@ -60,14 +60,14 @@ public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeseria
     @Override
     public Object i(r7 r7Var) {
         Set I = r7Var.I(cb.a.class);
-        cb.c cVar = cb.c.f4863c;
+        cb.c cVar = cb.c.f4866c;
         if (cVar == null) {
             synchronized (cb.c.class) {
                 try {
-                    cVar = cb.c.f4863c;
+                    cVar = cb.c.f4866c;
                     if (cVar == null) {
                         cVar = new cb.c(0);
-                        cb.c.f4863c = cVar;
+                        cb.c.f4866c = cVar;
                     }
                 } finally {
                 }
@@ -79,7 +79,7 @@ public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeseria
     @Override
     public Object o(Object obj) {
         Integer num = (Integer) obj;
-        int i7 = z5.f4029g2;
+        int i7 = z5.f4032g2;
         return 0;
     }
 

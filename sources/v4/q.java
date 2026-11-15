@@ -15,14 +15,14 @@ public final class q implements Runnable {
     public ArrayList d;
 
     public static e1 c(RecyclerView recyclerView, int i7, long j3) {
-        int z10 = recyclerView.f2801e.z();
+        int z10 = recyclerView.f2804e.z();
         for (int i10 = 0; i10 < z10; i10++) {
-            e1 U = RecyclerView.U(recyclerView.f2801e.y(i10));
+            e1 U = RecyclerView.U(recyclerView.f2804e.y(i10));
             if (U.f58537c == i7 && !U.h()) {
                 return null;
             }
         }
-        w0 w0Var = recyclerView.f2796b;
+        w0 w0Var = recyclerView.f2799b;
         try {
             try {
                 recyclerView.h0();
@@ -53,7 +53,7 @@ public final class q implements Runnable {
             this.f58643b = recyclerView.getNanoTime();
             recyclerView.post(this);
         }
-        h2.f fVar = recyclerView.f2821u0;
+        h2.f fVar = recyclerView.f2824u0;
         fVar.f13440a = i7;
         fVar.f13441b = i10;
     }
@@ -72,7 +72,7 @@ public final class q implements Runnable {
         for (int i10 = 0; i10 < size; i10++) {
             RecyclerView recyclerView3 = (RecyclerView) arrayList2.get(i10);
             int windowVisibility = recyclerView3.getWindowVisibility();
-            h2.f fVar = recyclerView3.f2821u0;
+            h2.f fVar = recyclerView3.f2824u0;
             if (windowVisibility == 0) {
                 fVar.c(recyclerView3, false);
                 i7 += fVar.f13442c;
@@ -83,7 +83,7 @@ public final class q implements Runnable {
         for (int i12 = 0; i12 < size; i12++) {
             RecyclerView recyclerView4 = (RecyclerView) arrayList2.get(i12);
             if (recyclerView4.getWindowVisibility() == 0) {
-                h2.f fVar2 = recyclerView4.f2821u0;
+                h2.f fVar2 = recyclerView4.f2824u0;
                 int abs = Math.abs(fVar2.f13441b) + Math.abs(fVar2.f13440a);
                 for (int i13 = 0; i13 < fVar2.f13442c * 2; i13 += 2) {
                     if (i11 >= arrayList.size()) {
@@ -118,17 +118,17 @@ public final class q implements Runnable {
             }
             e1 c10 = c(recyclerView, pVar.f58636e, j10);
             if (c10 != null && c10.f58536b != null && c10.g() && !c10.h() && (recyclerView2 = (RecyclerView) c10.f58536b.get()) != null) {
-                if (recyclerView2.R && recyclerView2.f2801e.z() != 0) {
+                if (recyclerView2.R && recyclerView2.f2804e.z() != 0) {
                     recyclerView2.p0();
                 }
-                h2.f fVar3 = recyclerView2.f2821u0;
+                h2.f fVar3 = recyclerView2.f2824u0;
                 fVar3.c(recyclerView2, true);
                 if (fVar3.f13442c != 0) {
                     try {
                         int i16 = n0.g.f20692a;
                         Trace.beginSection("RV Nested Prefetch");
-                        b1 b1Var = recyclerView2.f2822v0;
-                        h0 h0Var = recyclerView2.f2825x;
+                        b1 b1Var = recyclerView2.f2825v0;
+                        h0 h0Var = recyclerView2.f2828x;
                         b1Var.d = 1;
                         b1Var.f58503e = h0Var.b();
                         b1Var.f58505g = false;

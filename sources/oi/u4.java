@@ -285,7 +285,7 @@ public final class u4 implements Runnable {
                 d6 d6Var2 = (d6) obj2;
                 org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj;
                 TLRPC.TL_wallPaper tL_wallPaper = c6Var.f28497a;
-                w7.G(m10.f24934t0);
+                w7.G(m10.f24940t0);
                 File J = w7.J(tL_wallPaper.document, null, true, true);
                 ArrayList arrayList3 = c6Var.f28498b;
                 int size3 = arrayList3.size();
@@ -335,7 +335,7 @@ public final class u4 implements Runnable {
                 return;
             case 28:
                 ArrayList arrayList5 = (ArrayList) obj;
-                org.telegram.ui.p4 p4Var = (org.telegram.ui.p4) ((org.telegram.ui.m4) obj2).f49104b;
+                org.telegram.ui.p4 p4Var = (org.telegram.ui.p4) ((org.telegram.ui.m4) obj2).f49100b;
                 if (!arrayList5.isEmpty()) {
                     for (int i14 = 0; i14 < arrayList5.size(); i14++) {
                         p4Var.getMessagesController().J4(p4Var.Z() * 60, ((Long) arrayList5.get(i14)).longValue());
@@ -356,8 +356,8 @@ public final class u4 implements Runnable {
                 if (tL_premium_boostsStatus != null) {
                     t5Var.getMessagesController().G0().b(t5Var.S, t5Var.U, new org.telegram.ui.l5(t5Var, 0));
                 }
-                t5Var.f51366i0.animate().cancel();
-                t5Var.f51366i0.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new ki.s3(t5Var, 18));
+                t5Var.f51367i0.animate().cancel();
+                t5Var.f51367i0.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new ki.s3(t5Var, 18));
                 t5Var.I0(true);
                 t5Var.J0(true);
                 t5Var.H0(null);

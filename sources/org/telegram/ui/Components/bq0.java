@@ -31,27 +31,27 @@ public final class bq0 extends oy {
         int i11;
         v4.h0 adapter = this.Y.h.getAdapter();
         ys0 ys0Var = this.Z;
-        ns0[] ns0VarArr = ys0Var.f42144w1;
-        if (adapter == ys0Var.R && !ns0VarArr[5].f37692a.isEmpty()) {
-            document = ((org.telegram.messenger.gj) ns0VarArr[5].f37692a.get(i7)).F0();
+        ns0[] ns0VarArr = ys0Var.f42146w1;
+        if (adapter == ys0Var.R && !ns0VarArr[5].f37681a.isEmpty()) {
+            document = ((org.telegram.messenger.gj) ns0VarArr[5].f37681a.get(i7)).F0();
         } else {
             document = null;
         }
         nt0 nt0Var = this.X;
-        nt0Var.f37714b = 100.0f;
-        nt0Var.f37713a = 100.0f;
+        nt0Var.f37703b = 100.0f;
+        nt0Var.f37702a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
             if (w10 != null && (i10 = w10.f28076w) != 0 && (i11 = w10.h) != 0) {
-                nt0Var.f37713a = i10;
-                nt0Var.f37714b = i11;
+                nt0Var.f37702a = i10;
+                nt0Var.f37703b = i11;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    nt0Var.f37713a = documentAttribute.f28058w;
-                    nt0Var.f37714b = documentAttribute.h;
+                    nt0Var.f37702a = documentAttribute.f28058w;
+                    nt0Var.f37703b = documentAttribute.h;
                     break;
                 }
             }

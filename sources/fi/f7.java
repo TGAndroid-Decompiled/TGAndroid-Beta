@@ -28,7 +28,7 @@ public final class f7 {
 
     public static void b(int i7, long j3, gj gjVar, TL_stories.StoryItem storyItem) {
         TLRPC.WebPage webPage;
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
         if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f28290id) {
             message.replyStory = c(i7, j3, storyItem);
@@ -36,19 +36,19 @@ public final class f7 {
         int i10 = gjVar.D;
         if (i10 == 23 || i10 == 24) {
             TLRPC.TL_messageMediaStory tL_messageMediaStory = new TLRPC.TL_messageMediaStory();
-            tL_messageMediaStory.user_id = org.telegram.messenger.m5.o(gjVar.f23817k.media.peer);
-            TLRPC.MessageMedia messageMedia = gjVar.f23817k.media;
+            tL_messageMediaStory.user_id = org.telegram.messenger.m5.o(gjVar.f23819k.media.peer);
+            TLRPC.MessageMedia messageMedia = gjVar.f23819k.media;
             tL_messageMediaStory.peer = messageMedia.peer;
             tL_messageMediaStory.f28073id = messageMedia.f28073id;
             tL_messageMediaStory.storyItem = c(i7, j3, storyItem);
-            TLRPC.Message message2 = gjVar.f23817k;
+            TLRPC.Message message2 = gjVar.f23819k;
             tL_messageMediaStory.via_mention = message2.media.via_mention;
             message2.media = tL_messageMediaStory;
         }
-        TLRPC.MessageMedia messageMedia2 = gjVar.f23817k.media;
+        TLRPC.MessageMedia messageMedia2 = gjVar.f23819k.media;
         if (messageMedia2 != null && (webPage = messageMedia2.webpage) != null && webPage.attributes != null) {
-            for (int i11 = 0; i11 < gjVar.f23817k.media.webpage.attributes.size(); i11++) {
-                TLRPC.WebPageAttribute webPageAttribute = gjVar.f23817k.media.webpage.attributes.get(i11);
+            for (int i11 = 0; i11 < gjVar.f23819k.media.webpage.attributes.size(); i11++) {
+                TLRPC.WebPageAttribute webPageAttribute = gjVar.f23819k.media.webpage.attributes.get(i11);
                 if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
                     TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) webPageAttribute;
                     if (tL_webPageAttributeStory.f28196id == storyItem.f28290id) {
@@ -70,7 +70,7 @@ public final class f7 {
         if (i10 <= 0 ? currentTime - storyItem.date > 86400 : currentTime > i10) {
             z10 = true;
         }
-        if (!storyItem.pinned && z10 && j3 != 0 && j3 != m10.i(i7).f24953n) {
+        if (!storyItem.pinned && z10 && j3 != 0 && j3 != m10.i(i7).f24959n) {
             TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
             tL_storyItemDeleted.f28290id = storyItem.f28290id;
             return tL_storyItemDeleted;
@@ -82,18 +82,18 @@ public final class f7 {
         TLRPC.WebPage webPage;
         int i7 = gjVar.D;
         if (i7 != 23 && i7 != 24) {
-            TLRPC.MessageMedia messageMedia = gjVar.f23817k.media;
+            TLRPC.MessageMedia messageMedia = gjVar.f23819k.media;
             if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.attributes != null) {
-                for (int i10 = 0; i10 < gjVar.f23817k.media.webpage.attributes.size(); i10++) {
-                    TLRPC.WebPageAttribute webPageAttribute = gjVar.f23817k.media.webpage.attributes.get(i10);
+                for (int i10 = 0; i10 < gjVar.f23819k.media.webpage.attributes.size(); i10++) {
+                    TLRPC.WebPageAttribute webPageAttribute = gjVar.f23819k.media.webpage.attributes.get(i10);
                     if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
                         return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f28196id;
                     }
                 }
             }
-            return gjVar.f23817k.reply_to.story_id;
+            return gjVar.f23819k.reply_to.story_id;
         }
-        return gjVar.f23817k.media.f28073id;
+        return gjVar.f23819k.media.f28073id;
     }
 
     public final void d(a0.h hVar, Runnable runnable, int i7, boolean z10, xz xzVar) {
@@ -165,7 +165,7 @@ public final class f7 {
     }
 
     public final TL_stories.StoryItem f(int i7, long j3) {
-        SQLiteDatabase sQLiteDatabase = this.f11709b.f27222b;
+        SQLiteDatabase sQLiteDatabase = this.f11709b.f27221b;
         TL_stories.StoryItem storyItem = null;
         try {
             Locale locale = Locale.US;
@@ -194,7 +194,7 @@ public final class f7 {
     }
 
     public final void g(long j3, TL_stories.PeerStories peerStories) {
-        SQLiteDatabase sQLiteDatabase = this.f11709b.f27222b;
+        SQLiteDatabase sQLiteDatabase = this.f11709b.f27221b;
         if (peerStories != null) {
             try {
                 ArrayList<TL_stories.StoryItem> arrayList = peerStories.stories;
@@ -234,7 +234,7 @@ public final class f7 {
 
     public final void h(long j3, TL_stories.StoryItem storyItem) {
         try {
-            SQLitePreparedStatement executeFast = this.f11709b.f27222b.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = this.f11709b.f27221b.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
             if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                 org.telegram.messenger.a8.d("putStoryInternal: try write deleted story");
                 return;
@@ -279,7 +279,7 @@ public final class f7 {
                 vrVar.N1(N0, false);
             }
         }
-        vrVar.f27220a.c(new c7(this, j3, i7, 0));
+        vrVar.f27219a.c(new c7(this, j3, i7, 0));
     }
 
     public final void j(List list) {
@@ -289,7 +289,7 @@ public final class f7 {
         vr vrVar = this.f11709b;
         int i7 = 1;
         try {
-            SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+            SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
             if (!list.isEmpty()) {
                 SQLitePreparedStatement executeFast = sQLiteDatabase.executeFast("UPDATE messages_v2 SET replydata = ? WHERE mid = ? AND uid = ?");
                 SQLitePreparedStatement executeFast2 = sQLiteDatabase.executeFast("UPDATE messages_topics SET replydata = ? WHERE mid = ? AND uid = ?");
@@ -300,7 +300,7 @@ public final class f7 {
                     gj gjVar = (gj) list.get(i10);
                     int i11 = 0;
                     while (i11 < 2) {
-                        if (gjVar.f23817k.replyStory != null) {
+                        if (gjVar.f23819k.replyStory != null) {
                             if (i11 == 0) {
                                 sQLitePreparedStatement3 = executeFast;
                             } else {
@@ -309,13 +309,13 @@ public final class f7 {
                             if (sQLitePreparedStatement3 == null) {
                                 sQLitePreparedStatement = executeFast;
                             } else {
-                                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(gjVar.f23817k.replyStory.getObjectSize());
-                                gjVar.f23817k.replyStory.serializeToStream(nativeByteBuffer);
+                                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(gjVar.f23819k.replyStory.getObjectSize());
+                                gjVar.f23819k.replyStory.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement3.requery();
                                 sQLitePreparedStatement3.bindByteBuffer(i7, nativeByteBuffer);
                                 sQLitePreparedStatement3.bindInteger(2, gjVar.e1());
                                 sQLitePreparedStatement = executeFast;
-                                sQLitePreparedStatement3.bindLong(3, gj.B0(gjVar.f23817k));
+                                sQLitePreparedStatement3.bindLong(3, gj.B0(gjVar.f23819k));
                                 sQLitePreparedStatement3.step();
                             }
                         } else {
@@ -326,12 +326,12 @@ public final class f7 {
                                 sQLitePreparedStatement2 = executeFast4;
                             }
                             if (sQLitePreparedStatement2 != null) {
-                                NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(gjVar.f23817k.getObjectSize());
-                                gjVar.f23817k.serializeToStream(nativeByteBuffer2);
+                                NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(gjVar.f23819k.getObjectSize());
+                                gjVar.f23819k.serializeToStream(nativeByteBuffer2);
                                 sQLitePreparedStatement2.requery();
                                 sQLitePreparedStatement2.bindByteBuffer(1, nativeByteBuffer2);
                                 sQLitePreparedStatement2.bindInteger(2, gjVar.e1());
-                                sQLitePreparedStatement2.bindLong(3, gj.B0(gjVar.f23817k));
+                                sQLitePreparedStatement2.bindLong(3, gj.B0(gjVar.f23819k));
                                 sQLitePreparedStatement2.step();
                             }
                         }
@@ -356,7 +356,7 @@ public final class f7 {
         if (j3 == 0) {
             return;
         }
-        this.f11709b.f27220a.c(new bi.m1(this, j3, storyItem, 8));
+        this.f11709b.f27219a.c(new bi.m1(this, j3, storyItem, 8));
     }
 
     public final void l(long j3, TL_stories.StoryItem storyItem) {
@@ -368,7 +368,7 @@ public final class f7 {
                 org.telegram.messenger.a8.d("StoriesStorage: try write expired story");
             }
             try {
-                SQLitePreparedStatement executeFast = this.f11709b.f27222b.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+                SQLitePreparedStatement executeFast = this.f11709b.f27221b.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 executeFast.requery();
                 executeFast.bindLong(1, j3);
                 executeFast.bindLong(2, storyItem.f28290id);

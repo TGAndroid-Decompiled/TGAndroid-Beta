@@ -9,20 +9,20 @@ import android.view.animation.Interpolator;
 import hi.i9;
 import org.telegram.ui.Components.voip.o1;
 public final class c {
-    public final int f57083a;
-    public final b f57084b;
-    public Interpolator f57085c;
+    public final int f57087a;
+    public final b f57088b;
+    public Interpolator f57089c;
     public long d;
-    public long f57086e;
-    public float f57087f;
-    public float f57088g;
+    public long f57090e;
+    public float f57091f;
+    public float f57092g;
     public boolean h;
-    public ValueAnimator f57089i;
+    public ValueAnimator f57093i;
 
     public c(int i7, b bVar, Interpolator interpolator, long j3) {
-        this.f57083a = i7;
-        this.f57084b = bVar;
-        this.f57085c = interpolator;
+        this.f57087a = i7;
+        this.f57088b = bVar;
+        this.f57089c = interpolator;
         this.d = j3;
     }
 
@@ -31,10 +31,10 @@ public final class c {
             if (this.h) {
                 b();
             }
-            float f11 = this.f57087f;
+            float f11 = this.f57091f;
             int i7 = (f11 > f10 ? 1 : (f11 == f10 ? 0 : -1));
-            int i10 = this.f57083a;
-            b bVar = this.f57084b;
+            int i10 = this.f57087a;
+            b bVar = this.f57088b;
             if (i7 == 0) {
                 bVar.E(f11, i10);
                 return;
@@ -55,20 +55,20 @@ public final class c {
                 bVar.E(f10, i10);
                 return;
             }
-            this.f57088g = f10;
+            this.f57092g = f10;
             DecelerateInterpolator decelerateInterpolator = se.a.f56572a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f57089i = ofFloat;
+            this.f57093i = ofFloat;
             ofFloat.setDuration(j3);
-            this.f57089i.setInterpolator(this.f57085c);
-            this.f57089i.addUpdateListener(new i9(this, f11, f12, 6));
-            this.f57089i.addListener(new o1(this, f11, f12, 1));
-            long j10 = this.f57086e;
+            this.f57093i.setInterpolator(this.f57089c);
+            this.f57093i.addUpdateListener(new i9(this, f11, f12, 6));
+            this.f57093i.addListener(new o1(this, f11, f12, 1));
+            long j10 = this.f57090e;
             if (j10 != 0) {
-                this.f57089i.setStartDelay(j10);
+                this.f57093i.setStartDelay(j10);
             }
             try {
-                this.f57089i.start();
+                this.f57093i.start();
                 return;
             } catch (Throwable th2) {
                 Log.e("tgx", "Cannot start animation", th2);
@@ -87,10 +87,10 @@ public final class c {
             if (this.h) {
                 this.h = false;
             }
-            ValueAnimator valueAnimator = this.f57089i;
+            ValueAnimator valueAnimator = this.f57093i;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f57089i = null;
+                this.f57093i = null;
                 return true;
             }
             return true;
@@ -103,23 +103,23 @@ public final class c {
         if (!d(f10, 1.0f) && !b10) {
             return;
         }
-        this.f57084b.E(f10, this.f57083a);
+        this.f57088b.E(f10, this.f57087a);
     }
 
     public final boolean d(float f10, float f11) {
-        if (this.f57087f != f10) {
-            this.f57087f = f10;
-            this.f57084b.G(this.f57083a, f10, f11, this);
+        if (this.f57091f != f10) {
+            this.f57091f = f10;
+            this.f57088b.G(this.f57087a, f10, f11, this);
             return true;
         }
         return false;
     }
 
     public c(int i7, b bVar, Interpolator interpolator, long j3, float f10) {
-        this.f57083a = i7;
-        this.f57084b = bVar;
-        this.f57085c = interpolator;
+        this.f57087a = i7;
+        this.f57088b = bVar;
+        this.f57089c = interpolator;
         this.d = j3;
-        this.f57087f = f10;
+        this.f57091f = f10;
     }
 }

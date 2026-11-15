@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class nu implements DialogInterface.OnDismissListener {
-    public final int f49696a;
-    public final yw f49697b;
+    public final int f49686a;
+    public final yw f49687b;
 
     public nu(yw ywVar, int i7) {
-        this.f49696a = i7;
-        this.f49697b = ywVar;
+        this.f49686a = i7;
+        this.f49687b = ywVar;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f49696a) {
+        switch (this.f49686a) {
             case 0:
-                yw ywVar = this.f49697b;
+                yw ywVar = this.f49687b;
                 if (ywVar.T3 != null) {
                     ywVar.getMessagesController().k4(0L, ywVar.T3);
                     ywVar.T3 = null;
@@ -23,13 +23,13 @@ public final class nu implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 1:
-                this.f49697b.n4(true);
+                this.f49687b.n4(true);
                 return;
             case 2:
-                this.f49697b.n4(true);
+                this.f49687b.n4(true);
                 return;
             default:
-                yw.l0(this.f49697b);
+                yw.l0(this.f49687b);
                 return;
         }
     }

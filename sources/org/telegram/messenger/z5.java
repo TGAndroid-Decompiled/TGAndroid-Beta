@@ -31,48 +31,48 @@ public final class z5 extends c1 implements is {
     public int R;
     public int S;
     public final j6.o T;
-    public int f27882a;
-    public final ArrayList f27883b;
-    public final ArrayList f27884c;
+    public int f27892a;
+    public final ArrayList f27893b;
+    public final ArrayList f27894c;
     public final ArrayList d;
-    public final ArrayList f27885e;
-    public final HashMap f27886f;
+    public final ArrayList f27895e;
+    public final HashMap f27896f;
     public final HashMap h;
-    public final HashMap f27887n;
-    public final HashMap f27888r;
-    public final SparseArray f27889s;
-    public boolean f27890w;
-    public final HashMap f27891x;
-    public final ArrayList f27892y;
+    public final HashMap f27897n;
+    public final HashMap f27898r;
+    public final SparseArray f27899s;
+    public boolean f27900w;
+    public final HashMap f27901x;
+    public final ArrayList f27902y;
 
     public z5(int i7) {
         super(i7);
         Integer num;
         Integer valueOf;
         Integer valueOf2;
-        this.f27882a = 0;
-        this.f27883b = new ArrayList();
-        this.f27884c = new ArrayList();
+        this.f27892a = 0;
+        this.f27893b = new ArrayList();
+        this.f27894c = new ArrayList();
         this.d = new ArrayList();
-        this.f27885e = new ArrayList();
-        this.f27886f = new HashMap();
+        this.f27895e = new ArrayList();
+        this.f27896f = new HashMap();
         this.h = new HashMap();
-        this.f27887n = new HashMap();
-        this.f27888r = new HashMap();
-        this.f27889s = new SparseArray();
-        this.f27890w = false;
-        this.f27891x = new HashMap();
-        this.f27892y = new ArrayList();
+        this.f27897n = new HashMap();
+        this.f27898r = new HashMap();
+        this.f27899s = new SparseArray();
+        this.f27900w = false;
+        this.f27901x = new HashMap();
+        this.f27902y = new ArrayList();
         this.E = 0;
         this.G = new a0.h();
         this.H = new ArrayList();
         this.I = new ArrayList();
         this.J = new SparseArray();
         this.T = new j6.o(this, 8);
-        SharedPreferences sharedPreferences = np.s1(this.currentAccount).f25280f7;
+        SharedPreferences sharedPreferences = np.s1(this.currentAccount).f25283f7;
         y5 y5Var = new y5(sharedPreferences.getString("preset0", "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0"), "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0");
         this.K = y5Var;
-        y5Var.f27661e = false;
+        y5Var.f27663e = false;
         this.L = new y5(sharedPreferences.getString("preset1", "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1");
         this.M = new y5(sharedPreferences.getString("preset2", "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1");
         boolean contains = sharedPreferences.contains("newConfig");
@@ -121,18 +121,18 @@ public final class z5 extends c1 implements is {
                 }
                 i10 = i12 + 1;
             }
-            jArr[2] = sharedPreferences.getLong("mobileMaxDownloadSize2", this.L.f27659b[1]);
-            jArr[3] = sharedPreferences.getLong("mobileMaxDownloadSize3", this.L.f27659b[2]);
-            jArr2[2] = sharedPreferences.getLong("wifiMaxDownloadSize2", this.M.f27659b[1]);
-            jArr2[3] = sharedPreferences.getLong("wifiMaxDownloadSize3", this.M.f27659b[2]);
-            jArr3[2] = sharedPreferences.getLong("roamingMaxDownloadSize2", this.K.f27659b[1]);
-            jArr3[3] = sharedPreferences.getLong("roamingMaxDownloadSize3", this.K.f27659b[2]);
+            jArr[2] = sharedPreferences.getLong("mobileMaxDownloadSize2", this.L.f27661b[1]);
+            jArr[3] = sharedPreferences.getLong("mobileMaxDownloadSize3", this.L.f27661b[2]);
+            jArr2[2] = sharedPreferences.getLong("wifiMaxDownloadSize2", this.M.f27661b[1]);
+            jArr2[3] = sharedPreferences.getLong("wifiMaxDownloadSize3", this.M.f27661b[2]);
+            jArr3[2] = sharedPreferences.getLong("roamingMaxDownloadSize2", this.K.f27661b[1]);
+            jArr3[3] = sharedPreferences.getLong("roamingMaxDownloadSize3", this.K.f27661b[2]);
             boolean z10 = sharedPreferences.getBoolean("globalAutodownloadEnabled", true);
-            y5 y5Var2 = new y5(iArr, this.L.f27659b[0], jArr[2], jArr[3], true, true, z10, false, 100, false);
+            y5 y5Var2 = new y5(iArr, this.L.f27661b[0], jArr[2], jArr[3], true, true, z10, false, 100, false);
             this.N = y5Var2;
-            y5 y5Var3 = new y5(iArr2, this.M.f27659b[0], jArr2[2], jArr2[3], true, true, z10, false, 100, true);
+            y5 y5Var3 = new y5(iArr2, this.M.f27661b[0], jArr2[2], jArr2[3], true, true, z10, false, 100, true);
             this.O = y5Var3;
-            y5 y5Var4 = new y5(iArr3, this.K.f27659b[0], jArr3[2], jArr3[3], false, false, z10, true, 50, true);
+            y5 y5Var4 = new y5(iArr3, this.K.f27661b[0], jArr3[2], jArr3[3], false, false, z10, true, 50, true);
             this.P = y5Var4;
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putBoolean("newConfig", true);
@@ -161,9 +161,9 @@ public final class z5 extends c1 implements is {
         androidx.mediarouter.app.f fVar = new androidx.mediarouter.app.f(this, 5);
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         if (Build.VERSION.SDK_INT >= 33) {
-            t0.f26600b.registerReceiver(fVar, intentFilter, 4);
+            t0.f26609b.registerReceiver(fVar, intentFilter, 4);
         } else {
-            t0.f26600b.registerReceiver(fVar, intentFilter);
+            t0.f26609b.registerReceiver(fVar, intentFilter);
         }
         if (getUserConfig().p()) {
             g();
@@ -220,12 +220,12 @@ public final class z5 extends c1 implements is {
     }
 
     public final void a(String str, gj gjVar, x5 x5Var) {
-        if (this.f27890w) {
-            this.f27891x.put(str, x5Var);
+        if (this.f27900w) {
+            this.f27901x.put(str, x5Var);
             return;
         }
         v(x5Var);
-        HashMap hashMap = this.f27887n;
+        HashMap hashMap = this.f27897n;
         ArrayList arrayList = (ArrayList) hashMap.get(str);
         if (arrayList == null) {
             arrayList = new ArrayList();
@@ -233,7 +233,7 @@ public final class z5 extends c1 implements is {
         }
         arrayList.add(new WeakReference(x5Var));
         if (gjVar != null) {
-            HashMap hashMap2 = this.f27888r;
+            HashMap hashMap2 = this.f27898r;
             ArrayList arrayList2 = (ArrayList) hashMap2.get(str);
             if (arrayList2 == null) {
                 arrayList2 = new ArrayList();
@@ -241,7 +241,7 @@ public final class z5 extends c1 implements is {
             }
             arrayList2.add(gjVar);
         }
-        this.f27889s.put(x5Var.getObserverTag(), str);
+        this.f27899s.put(x5Var.getObserverTag(), str);
     }
 
     public final int b(org.telegram.tgnet.TLRPC.Message r18) {
@@ -252,24 +252,24 @@ public final class z5 extends c1 implements is {
         y5 n10;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (this.O.f27663g) {
+            if (this.O.f27665g) {
                 n10 = p();
             } else {
                 return false;
             }
         } else if (e10 == 2) {
-            if (this.P.f27663g) {
+            if (this.P.f27665g) {
                 n10 = o();
             } else {
                 return false;
             }
-        } else if (this.N.f27663g) {
+        } else if (this.N.f27665g) {
             n10 = n();
         } else {
             return false;
         }
-        int i10 = n10.f27658a[1];
-        long j10 = n10.f27659b[x(i7)];
+        int i10 = n10.f27660a[1];
+        long j10 = n10.f27661b[x(i7)];
         if (i7 == 1 || (j3 != 0 && j3 <= j10)) {
             if (i7 == 2 || (i7 & i10) != 0) {
                 return true;
@@ -283,12 +283,12 @@ public final class z5 extends c1 implements is {
         TL_stories.StoryItem storyItem;
         TLRPC.MessageMedia messageMedia;
         if (gjVar.D == 23) {
-            int i7 = gz.f23929a;
+            int i7 = gz.f23932a;
             if (qc.e(1024) && (storyItem = ((TLRPC.TL_messageMediaStory) gj.m1(gjVar)).storyItem) != null && (messageMedia = storyItem.media) != null && messageMedia.document != null && storyItem.isPublic) {
                 return true;
             }
             return false;
-        } else if (gjVar.f23773a1 != null) {
+        } else if (gjVar.f23775a1 != null) {
             return true;
         } else {
             if (!gjVar.x3() && e(gjVar) == 1) {
@@ -303,12 +303,12 @@ public final class z5 extends c1 implements is {
         boolean z10;
         a0.h hVar = this.G;
         int i11 = ns.Z1;
-        SparseArray sparseArray = this.f27889s;
-        HashMap hashMap = this.f27887n;
+        SparseArray sparseArray = this.f27899s;
+        HashMap hashMap = this.f27897n;
         if (i7 != i11 && i7 != ns.S1) {
             if (i7 != ns.Y1 && i7 != ns.R1) {
                 if (i7 == ns.X1) {
-                    this.f27890w = true;
+                    this.f27900w = true;
                     ArrayList arrayList = (ArrayList) hashMap.get((String) objArr[0]);
                     if (arrayList != null) {
                         Long l10 = (Long) objArr[1];
@@ -321,11 +321,11 @@ public final class z5 extends c1 implements is {
                             }
                         }
                     }
-                    this.f27890w = false;
+                    this.f27900w = false;
                     u();
                     return;
                 } else if (i7 == ns.W1) {
-                    this.f27890w = true;
+                    this.f27900w = true;
                     String str = (String) objArr[0];
                     ArrayList arrayList2 = (ArrayList) hashMap.get(str);
                     if (arrayList2 != null) {
@@ -343,21 +343,21 @@ public final class z5 extends c1 implements is {
                             }
                         }
                     }
-                    this.f27890w = false;
+                    this.f27900w = false;
                     u();
                     try {
-                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().f23386a.get(str);
+                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().f23389a.get(str);
                         if (arrayList3 != null) {
                             for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                                 qy qyVar = (qy) arrayList3.get(i14);
-                                if (qyVar.f26158n == null) {
-                                    long j3 = qyVar.f26147a;
+                                if (qyVar.f26166n == null) {
+                                    long j3 = qyVar.f26155a;
                                     Long l14 = (Long) hVar.f(j3);
-                                    if (qyVar.f26150e == 4) {
+                                    if (qyVar.f26158e == 4) {
                                         if (l14 != null && l14.longValue() + 4000 >= System.currentTimeMillis()) {
                                         }
                                         gj gjVar = (gj) qyVar.E.get(str + "_i");
-                                        if (gjVar != null && gj.L4(gjVar.f23817k)) {
+                                        if (gjVar != null && gj.L4(gjVar.f23819k)) {
                                             getMessagesController().D4(5, 0, j3, 0, null);
                                         } else if (gjVar != null && gjVar.F0() != null) {
                                             getMessagesController().D4(3, 0, j3, 0, null);
@@ -366,17 +366,17 @@ public final class z5 extends c1 implements is {
                                         }
                                         hVar.k(Long.valueOf(System.currentTimeMillis()), j3);
                                     } else {
-                                        qyVar.f26157m.F0();
+                                        qyVar.f26165m.F0();
                                         if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
-                                            if (qyVar.f26157m.h4()) {
+                                            if (qyVar.f26165m.h4()) {
                                                 getMessagesController().D4(8, 0, j3, 0, null);
-                                            } else if (gj.L4(qyVar.f26157m.f23817k)) {
+                                            } else if (gj.L4(qyVar.f26165m.f23819k)) {
                                                 getMessagesController().D4(5, 0, j3, 0, null);
-                                            } else if (gj.R4(qyVar.f26157m.f23817k)) {
+                                            } else if (gj.R4(qyVar.f26165m.f23819k)) {
                                                 getMessagesController().D4(9, 0, j3, 0, null);
-                                            } else if (qyVar.f26157m.F0() != null) {
+                                            } else if (qyVar.f26165m.F0() != null) {
                                                 getMessagesController().D4(3, 0, j3, 0, null);
-                                            } else if (qyVar.f26152g != null) {
+                                            } else if (qyVar.f26160g != null) {
                                                 getMessagesController().D4(4, 0, j3, 0, null);
                                             }
                                             hVar.k(Long.valueOf(System.currentTimeMillis()), j3);
@@ -395,14 +395,14 @@ public final class z5 extends c1 implements is {
                     return;
                 }
             }
-            this.f27890w = true;
+            this.f27900w = true;
             String str2 = (String) objArr[0];
-            HashMap hashMap2 = this.f27888r;
+            HashMap hashMap2 = this.f27898r;
             ArrayList arrayList4 = (ArrayList) hashMap2.get(str2);
             if (arrayList4 != null) {
                 int size3 = arrayList4.size();
                 for (int i15 = 0; i15 < size3; i15++) {
-                    ((gj) arrayList4.get(i15)).f23876z0 = true;
+                    ((gj) arrayList4.get(i15)).f23878z0 = true;
                 }
                 hashMap2.remove(str2);
             }
@@ -418,14 +418,14 @@ public final class z5 extends c1 implements is {
                 }
                 hashMap.remove(str2);
             }
-            this.f27890w = false;
+            this.f27900w = false;
             u();
             h(0, str2);
             return;
         }
         String str3 = (String) objArr[0];
         Integer num = (Integer) objArr[1];
-        this.f27890w = true;
+        this.f27900w = true;
         ArrayList arrayList6 = (ArrayList) hashMap.get(str3);
         if (arrayList6 != null) {
             int size5 = arrayList6.size();
@@ -448,7 +448,7 @@ public final class z5 extends c1 implements is {
                 hashMap.remove(str3);
             }
         }
-        this.f27890w = false;
+        this.f27900w = false;
         u();
         h(num.intValue(), str3);
     }
@@ -461,30 +461,30 @@ public final class z5 extends c1 implements is {
         y5 n10;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (!this.O.f27663g) {
+            if (!this.O.f27665g) {
                 return false;
             }
             n10 = p();
         } else if (e10 == 2) {
-            if (!this.P.f27663g) {
+            if (!this.P.f27665g) {
                 return false;
             }
             n10 = o();
-        } else if (!this.N.f27663g) {
+        } else if (!this.N.f27665g) {
             return false;
         } else {
             n10 = n();
         }
-        return n10.f27661e;
+        return n10.f27663e;
     }
 
     public final void g() {
         boolean z10;
         int m10 = m();
-        if (m10 != this.f27882a) {
-            this.f27882a = m10;
+        if (m10 != this.f27892a) {
+            this.f27892a = m10;
             int i7 = m10 & 1;
-            ArrayList arrayList = this.f27883b;
+            ArrayList arrayList = this.f27893b;
             if (i7 != 0) {
                 if (arrayList.isEmpty()) {
                     t(1);
@@ -505,7 +505,7 @@ public final class z5 extends c1 implements is {
                 arrayList.clear();
             }
             int i11 = m10 & 2;
-            ArrayList arrayList2 = this.f27884c;
+            ArrayList arrayList2 = this.f27894c;
             if (i11 != 0) {
                 if (arrayList2.isEmpty()) {
                     t(2);
@@ -529,7 +529,7 @@ public final class z5 extends c1 implements is {
                 arrayList3.clear();
             }
             int i15 = m10 & 4;
-            ArrayList arrayList4 = this.f27885e;
+            ArrayList arrayList4 = this.f27895e;
             if (i15 != 0) {
                 if (arrayList4.isEmpty()) {
                     t(4);
@@ -540,21 +540,21 @@ public final class z5 extends c1 implements is {
                 }
                 arrayList4.clear();
             }
-            if (!this.N.f27663g && !this.P.f27663g && !this.O.f27663g) {
+            if (!this.N.f27665g && !this.P.f27665g && !this.O.f27665g) {
                 z10 = false;
             } else {
                 z10 = false;
                 for (int i17 = 0; i17 < 4; i17++) {
-                    if ((n().f27658a[i17] & 1) != 0 || (p().f27658a[i17] & 1) != 0 || (o().f27658a[i17] & 1) != 0) {
+                    if ((n().f27660a[i17] & 1) != 0 || (p().f27660a[i17] & 1) != 0 || (o().f27660a[i17] & 1) != 0) {
                         z10 |= true;
                     }
-                    if ((n().f27658a[i17] & 2) != 0 || (p().f27658a[i17] & 2) != 0 || (o().f27658a[i17] & 2) != 0) {
+                    if ((n().f27660a[i17] & 2) != 0 || (p().f27660a[i17] & 2) != 0 || (o().f27660a[i17] & 2) != 0) {
                         z10 |= true;
                     }
-                    if ((n().f27658a[i17] & 4) != 0 || (p().f27658a[i17] & 4) != 0 || (o().f27658a[i17] & 4) != 0) {
+                    if ((n().f27660a[i17] & 4) != 0 || (p().f27660a[i17] & 4) != 0 || (o().f27660a[i17] & 4) != 0) {
                         z10 |= true;
                     }
-                    if ((n().f27658a[i17] & 8) != 0 || (p().f27658a[i17] & 8) != 0 || (o().f27658a[i17] & 8) != 0) {
+                    if ((n().f27660a[i17] & 8) != 0 || (p().f27660a[i17] & 8) != 0 || (o().f27660a[i17] & 8) != 0) {
                         z10 |= true;
                     }
                 }
@@ -579,7 +579,7 @@ public final class z5 extends c1 implements is {
     }
 
     public final void h(int i7, String str) {
-        HashMap hashMap = this.f27886f;
+        HashMap hashMap = this.f27896f;
         a6 a6Var = (a6) hashMap.get(str);
         if (a6Var != null) {
             hashMap.remove(str);
@@ -587,23 +587,23 @@ public final class z5 extends c1 implements is {
             if (i7 == 0 || i7 == 2) {
                 vr messagesStorage = getMessagesStorage();
                 long j3 = a6Var.f22466c;
-                messagesStorage.f27220a.c(new xp(messagesStorage, a6Var.f22465b, j3, 6));
+                messagesStorage.f27219a.c(new wp(messagesStorage, a6Var.f22465b, j3, 6));
             }
             int i10 = a6Var.f22465b;
             if (i10 == 1) {
-                ArrayList arrayList = this.f27883b;
+                ArrayList arrayList = this.f27893b;
                 arrayList.remove(a6Var);
                 if (arrayList.isEmpty()) {
                     t(1);
                 }
             } else if (i10 == 2) {
-                ArrayList arrayList2 = this.f27884c;
+                ArrayList arrayList2 = this.f27894c;
                 arrayList2.remove(a6Var);
                 if (arrayList2.isEmpty()) {
                     t(2);
                 }
             } else if (i10 == 4) {
-                ArrayList arrayList3 = this.f27885e;
+                ArrayList arrayList3 = this.f27895e;
                 arrayList3.remove(a6Var);
                 if (arrayList3.isEmpty()) {
                     t(4);
@@ -621,10 +621,10 @@ public final class z5 extends c1 implements is {
     public final void i(int i7, long j3) {
         SparseArray sparseArray = this.J;
         gj gjVar = (gj) sparseArray.get(i7);
-        if (gjVar != null && gj.B0(gjVar.f23817k) == j3) {
+        if (gjVar != null && gj.B0(gjVar.f23819k) == j3) {
             sparseArray.remove(i7);
             if (sparseArray.size() == 0) {
-                getNotificationCenter().k(ns.f25474b5, new Object[0]);
+                getNotificationCenter().k(ns.f25475b5, new Object[0]);
             }
         }
     }
@@ -635,7 +635,7 @@ public final class z5 extends c1 implements is {
             while (true) {
                 ArrayList arrayList2 = this.I;
                 if (i10 < arrayList2.size()) {
-                    if (((gj) arrayList.get(i7)).e1() == ((gj) arrayList2.get(i10)).e1() && gj.B0(((gj) arrayList2.get(i10)).f23817k) == gj.B0(((gj) arrayList.get(i7)).f23817k)) {
+                    if (((gj) arrayList.get(i7)).e1() == ((gj) arrayList2.get(i10)).e1() && gj.B0(((gj) arrayList2.get(i10)).f23819k) == gj.B0(((gj) arrayList.get(i7)).f23819k)) {
                         arrayList2.remove(i10);
                         break;
                     }
@@ -647,7 +647,7 @@ public final class z5 extends c1 implements is {
                         if (i11 >= arrayList3.size()) {
                             break;
                         }
-                        if (((gj) arrayList.get(i7)).e1() == ((gj) arrayList3.get(i11)).e1() && gj.B0(((gj) arrayList3.get(i11)).f23817k) == gj.B0(((gj) arrayList.get(i7)).f23817k)) {
+                        if (((gj) arrayList.get(i7)).e1() == ((gj) arrayList3.get(i11)).e1() && gj.B0(((gj) arrayList3.get(i11)).f23819k) == gj.B0(((gj) arrayList.get(i7)).f23819k)) {
                             arrayList3.remove(i11);
                             break;
                         }
@@ -659,8 +659,8 @@ public final class z5 extends c1 implements is {
             w7.G(this.currentAccount).W(((gj) arrayList.get(i7)).F0(), arrayList.get(i7), 0, 0);
             w7.G(this.currentAccount).f(((gj) arrayList.get(i7)).F0());
         }
-        getNotificationCenter().k(ns.f25474b5, new Object[0]);
-        getMessagesStorage().f27220a.c(new b4(3, this, arrayList));
+        getNotificationCenter().k(ns.f25475b5, new Object[0]);
+        getMessagesStorage().f27219a.c(new b4(3, this, arrayList));
     }
 
     public final int k() {
@@ -674,19 +674,19 @@ public final class z5 extends c1 implements is {
         int i7;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (!this.O.f27663g) {
+            if (!this.O.f27665g) {
                 return 0;
             }
-            iArr = p().f27658a;
+            iArr = p().f27660a;
         } else if (e10 == 2) {
-            if (!this.P.f27663g) {
+            if (!this.P.f27665g) {
                 return 0;
             }
-            iArr = o().f27658a;
-        } else if (!this.N.f27663g) {
+            iArr = o().f27660a;
+        } else if (!this.N.f27665g) {
             return 0;
         } else {
-            iArr = n().f27658a;
+            iArr = n().f27660a;
         }
         int i10 = 0;
         for (int i11 = 0; i11 < iArr.length; i11++) {
@@ -714,31 +714,31 @@ public final class z5 extends c1 implements is {
         int e10 = t0.e();
         int i7 = 0;
         if (e10 == 1) {
-            if (!this.O.f27663g) {
+            if (!this.O.f27665g) {
                 return 0;
             }
             int i10 = 0;
             while (i7 < 4) {
-                i10 |= p().f27658a[i7];
+                i10 |= p().f27660a[i7];
                 i7++;
             }
             return i10;
         } else if (e10 == 2) {
-            if (!this.P.f27663g) {
+            if (!this.P.f27665g) {
                 return 0;
             }
             int i11 = 0;
             while (i7 < 4) {
-                i11 |= o().f27658a[i7];
+                i11 |= o().f27660a[i7];
                 i7++;
             }
             return i11;
-        } else if (!this.N.f27663g) {
+        } else if (!this.N.f27665g) {
             return 0;
         } else {
             int i12 = 0;
             while (i7 < 4) {
-                i12 |= n().f27658a[i7];
+                i12 |= n().f27660a[i7];
                 i7++;
             }
             return i12;
@@ -789,7 +789,7 @@ public final class z5 extends c1 implements is {
 
     public final void s(boolean z10) {
         if (!this.F) {
-            if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().f24939b0) >= 86400000) {
+            if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().f24945b0) >= 86400000) {
                 this.F = true;
                 getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new s1(this, 1));
             }
@@ -798,31 +798,31 @@ public final class z5 extends c1 implements is {
 
     public final void t(int i7) {
         int m10 = m();
-        if ((m10 & 1) != 0 && (i7 & 1) != 0 && this.f27883b.isEmpty()) {
+        if ((m10 & 1) != 0 && (i7 & 1) != 0 && this.f27893b.isEmpty()) {
             vr messagesStorage = getMessagesStorage();
-            messagesStorage.f27220a.c(new qp(messagesStorage, 1, 6));
+            messagesStorage.f27219a.c(new tp(messagesStorage, 1, 5));
         }
-        if ((m10 & 2) != 0 && (i7 & 2) != 0 && this.f27884c.isEmpty()) {
+        if ((m10 & 2) != 0 && (i7 & 2) != 0 && this.f27894c.isEmpty()) {
             vr messagesStorage2 = getMessagesStorage();
-            messagesStorage2.f27220a.c(new qp(messagesStorage2, 2, 6));
+            messagesStorage2.f27219a.c(new tp(messagesStorage2, 2, 5));
         }
-        if ((m10 & 4) != 0 && (i7 & 4) != 0 && this.f27885e.isEmpty()) {
+        if ((m10 & 4) != 0 && (i7 & 4) != 0 && this.f27895e.isEmpty()) {
             vr messagesStorage3 = getMessagesStorage();
-            messagesStorage3.f27220a.c(new qp(messagesStorage3, 4, 6));
+            messagesStorage3.f27219a.c(new tp(messagesStorage3, 4, 5));
         }
         if ((m10 & 8) != 0 && (i7 & 8) != 0 && this.d.isEmpty()) {
             vr messagesStorage4 = getMessagesStorage();
-            messagesStorage4.f27220a.c(new qp(messagesStorage4, 8, 6));
+            messagesStorage4.f27219a.c(new tp(messagesStorage4, 8, 5));
         }
     }
 
     public final void u() {
-        HashMap hashMap = this.f27891x;
+        HashMap hashMap = this.f27901x;
         for (Map.Entry entry : hashMap.entrySet()) {
             a((String) entry.getKey(), null, (x5) entry.getValue());
         }
         hashMap.clear();
-        ArrayList arrayList = this.f27892y;
+        ArrayList arrayList = this.f27902y;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -834,15 +834,15 @@ public final class z5 extends c1 implements is {
     }
 
     public final void v(x5 x5Var) {
-        if (this.f27890w) {
-            this.f27892y.add(x5Var);
+        if (this.f27900w) {
+            this.f27902y.add(x5Var);
             return;
         }
         int observerTag = x5Var.getObserverTag();
-        SparseArray sparseArray = this.f27889s;
+        SparseArray sparseArray = this.f27899s;
         String str = (String) sparseArray.get(observerTag);
         if (str != null) {
-            HashMap hashMap = this.f27887n;
+            HashMap hashMap = this.f27897n;
             ArrayList arrayList = (ArrayList) hashMap.get(str);
             if (arrayList != null) {
                 int i7 = 0;
@@ -869,21 +869,21 @@ public final class z5 extends c1 implements is {
         TL_account.saveAutoDownloadSettings saveautodownloadsettings = new TL_account.saveAutoDownloadSettings();
         if (i7 == 0) {
             o4 = n();
-            z10 = this.N.f27663g;
+            z10 = this.N.f27665g;
         } else if (i7 == 1) {
             o4 = p();
-            z10 = this.O.f27663g;
+            z10 = this.O.f27665g;
         } else {
             o4 = o();
-            z10 = this.P.f27663g;
+            z10 = this.P.f27665g;
         }
         TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings = new TLRPC.TL_autoDownloadSettings();
         saveautodownloadsettings.settings = tL_autoDownloadSettings;
         boolean z11 = o4.d;
-        long[] jArr = o4.f27659b;
+        long[] jArr = o4.f27661b;
         tL_autoDownloadSettings.audio_preload_next = z11;
-        tL_autoDownloadSettings.video_preload_large = o4.f27660c;
-        tL_autoDownloadSettings.phonecalls_less_data = o4.f27662f;
+        tL_autoDownloadSettings.video_preload_large = o4.f27662c;
+        tL_autoDownloadSettings.phonecalls_less_data = o4.f27664f;
         tL_autoDownloadSettings.video_upload_maxbitrate = o4.h;
         tL_autoDownloadSettings.disabled = !z10;
         int i10 = 0;
@@ -892,7 +892,7 @@ public final class z5 extends c1 implements is {
         boolean z13 = false;
         boolean z14 = false;
         while (true) {
-            int[] iArr = o4.f27658a;
+            int[] iArr = o4.f27660a;
             if (i11 >= iArr.length) {
                 break;
             }

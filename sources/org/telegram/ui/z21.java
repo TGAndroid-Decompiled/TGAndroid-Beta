@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.Toast;
 public final class z21 implements View.OnClickListener {
-    public final int f53819a;
-    public final k31 f53820b;
+    public final int f53784a;
+    public final k31 f53785b;
 
     public z21(k31 k31Var, int i7) {
-        this.f53819a = i7;
-        this.f53820b = k31Var;
+        this.f53784a = i7;
+        this.f53785b = k31Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f53819a;
-        k31 k31Var = this.f53820b;
+        int i7 = this.f53784a;
+        k31 k31Var = this.f53785b;
         switch (i7) {
             case 0:
                 vf.c.t(k31Var.getParentActivity(), k31Var.getMessagesController().M5);
@@ -41,7 +41,7 @@ public final class z21 implements View.OnClickListener {
                 int i10 = k31Var.R + 1;
                 k31Var.R = i10;
                 if (i10 < 2) {
-                    boolean z10 = org.telegram.messenger.r2.f26198a;
+                    boolean z10 = org.telegram.messenger.r2.f26206a;
                     try {
                         Toast.makeText(k31Var.getParentActivity(), org.telegram.messenger.hd.M0(2131751625, null), 0).show();
                         return;

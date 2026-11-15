@@ -28,7 +28,7 @@ public final class t1 implements z10 {
     public final void a(Object obj) {
         TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
         final c6 c6Var = this.f9453a;
-        c6Var.f8318g2.setLoading(false);
+        c6Var.f8319g2.setLoading(false);
         final bi.f1 f1Var = this.f9454b;
         if (f1Var != null && f1Var.G1) {
             f1Var.G1 = false;
@@ -53,8 +53,8 @@ public final class t1 implements z10 {
                 vf.b bVar = (vf.b) obj3;
                 bVar.d();
                 c6 c6Var2 = c6.this;
-                v8 x10 = v8.x(c6Var2.f29679a, c5Var2.f8303a);
-                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift2 = c5Var2.f8304b;
+                u8 x10 = u8.x(c6Var2.f29679a, c5Var2.f8304a);
+                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift2 = c5Var2.f8305b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                 long j10 = j3;
                 x10.h(tL_payments_paymentFormStarGift2, tL_starGiftUnique2, j10, tL_textWithEntities, z10, new b3(c6Var2, bVar, tL_starGiftUnique2, j10, f1Var, 0));

@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class f0 implements Runnable {
-    public final int f46947a;
-    public final int f46948b;
-    public final Object f46949c;
+    public final int f46931a;
+    public final int f46932b;
+    public final Object f46933c;
     public final Object d;
 
     public f0(int i7, Object obj, Object obj2, int i10) {
-        this.f46947a = i10;
-        this.f46948b = i7;
-        this.f46949c = obj;
+        this.f46931a = i10;
+        this.f46932b = i7;
+        this.f46933c = obj;
         this.d = obj2;
     }
 
     private final void a() {
         int i7;
-        org.telegram.ui.Components.tz0 tz0Var = (org.telegram.ui.Components.tz0) this.f46949c;
+        org.telegram.ui.Components.tz0 tz0Var = (org.telegram.ui.Components.tz0) this.f46933c;
         String str = (String) this.d;
-        int i10 = this.f46948b;
-        org.telegram.ui.Components.sz0 sz0Var = tz0Var.f39843r.f32766s1;
+        int i10 = this.f46932b;
+        org.telegram.ui.Components.sz0 sz0Var = tz0Var.f39840r.f32766s1;
         try {
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
@@ -76,23 +76,23 @@ public final class f0 implements Runnable {
     }
 
     public f0(Object obj, int i7, Object obj2, int i10) {
-        this.f46947a = i10;
-        this.f46949c = obj;
-        this.f46948b = i7;
+        this.f46931a = i10;
+        this.f46933c = obj;
+        this.f46932b = i7;
         this.d = obj2;
     }
 
     public f0(Object obj, Object obj2, int i7, int i10) {
-        this.f46947a = i10;
-        this.f46949c = obj;
+        this.f46931a = i10;
+        this.f46933c = obj;
         this.d = obj2;
-        this.f46948b = i7;
+        this.f46932b = i7;
     }
 
     public f0(e4 e4Var, int i7, int[] iArr, int[] iArr2) {
-        this.f46947a = 2;
-        this.f46949c = e4Var;
-        this.f46948b = i7;
+        this.f46931a = 2;
+        this.f46933c = e4Var;
+        this.f46932b = i7;
         this.d = iArr2;
     }
 }

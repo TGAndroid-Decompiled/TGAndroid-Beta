@@ -39,7 +39,7 @@ public final class ha extends ClickableSpan {
             case 2:
                 org.telegram.ui.Cells.b2 b2Var = (org.telegram.ui.Cells.b2) this.f14388b;
                 Context context = b2Var.getContext();
-                vf.c.t(context, "https://fragment.com/username/" + ((org.telegram.ui.ka) b2Var.N).f48657e.f48916r);
+                vf.c.t(context, "https://fragment.com/username/" + ((org.telegram.ui.ka) b2Var.N).f48611e.f48912r);
                 return;
             case 3:
                 ((org.telegram.ui.lb) this.f14388b).finishFragment();
@@ -48,11 +48,11 @@ public final class ha extends ClickableSpan {
                 ((org.telegram.ui.o1) this.f14388b).run();
                 return;
             case 5:
-                ((cc) this.f14388b).f33532a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((cc) this.f14388b).f33534a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 qk qkVar = (qk) this.f14388b;
-                org.telegram.ui.Wallet.y5.J0(qkVar.f38678n, qkVar.getContext(), qkVar.f33606a);
+                org.telegram.ui.Wallet.y5.J0(qkVar.f38676n, qkVar.getContext(), qkVar.f33608a);
                 return;
             case 7:
                 ((ActionBarLayout) ((LaunchActivity) this.f14388b).M()).S(new PremiumPreviewFragment(0, "gift"));
@@ -66,7 +66,7 @@ public final class ha extends ClickableSpan {
                 return;
             case 10:
                 ug.j0 j0Var = ((ug.c0) this.f14388b).f58054c;
-                wg.l.I0(j0Var.f35940s1, j0Var.J0, j0Var.W1, null);
+                wg.l.I0(j0Var.f35935s1, j0Var.J0, j0Var.W1, null);
                 return;
             default:
                 return;
@@ -100,7 +100,7 @@ public final class ha extends ClickableSpan {
                 textPaint.setUnderlineText(false);
                 return;
             case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, ((qk) obj).f33606a));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, ((qk) obj).f33608a));
                 textPaint.setUnderlineText(false);
                 return;
             case 7:

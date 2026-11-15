@@ -14,18 +14,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class kg extends FrameLayout {
-    public final int f36415a = 0;
-    public boolean f36416b;
-    public final View f36417c;
+    public final int f36403a = 0;
+    public boolean f36404b;
+    public final View f36405c;
     public final Object d;
-    public final Object f36418e;
-    public final Object f36419f;
+    public final Object f36406e;
+    public final Object f36407f;
 
     public kg(Activity activity, boolean z10) {
         super(activity);
-        this.f36416b = false;
+        this.f36404b = false;
         ImageView imageView = new ImageView(activity);
-        this.f36417c = imageView;
+        this.f36405c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, c8.ja.d(32, 32.0f, 0, 12.0f, 4.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(activity);
@@ -38,7 +38,7 @@ public final class kg extends FrameLayout {
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
         linearLayout.addView(textView, c8.ja.t(-1, -2, 0, 0, 0, z10 ? 64 : 0, 0));
         TextView textView2 = new TextView(activity);
-        this.f36418e = textView2;
+        this.f36406e = textView2;
         textView2.setTextSize(2, 13.0f);
         textView2.setGravity(3);
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29241y6, null);
@@ -46,7 +46,7 @@ public final class kg extends FrameLayout {
         setPadding(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
         if (z10) {
             Switch r22 = new Switch(activity, null);
-            this.f36419f = r22;
+            this.f36407f = r22;
             r22.setDrawIconType(1);
             addView(r22, c8.ja.d(37, 40.0f, 21, 21.0f, 0.0f, 21.0f, 0.0f));
         }
@@ -54,10 +54,10 @@ public final class kg extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f36415a) {
+        switch (this.f36403a) {
             case 1:
                 super.dispatchDraw(canvas);
-                if (this.f36416b) {
+                if (this.f36404b) {
                     canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f28972k0);
                     return;
                 }
@@ -70,9 +70,9 @@ public final class kg extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f36415a) {
+        switch (this.f36403a) {
             case 0:
-                if ((view instanceof org.telegram.ui.ActionBar.j5) && this.f36416b) {
+                if ((view instanceof org.telegram.ui.ActionBar.j5) && this.f36404b) {
                     org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) view;
                     canvas.save();
                     canvas.scale(0.8f, 0.8f);
@@ -92,18 +92,18 @@ public final class kg extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f36415a) {
+        switch (this.f36403a) {
             case 0:
-                Drawable drawable = (Drawable) this.f36419f;
+                Drawable drawable = (Drawable) this.f36407f;
                 RectF rectF = (RectF) this.d;
-                if (this.f36416b) {
+                if (this.f36404b) {
                     canvas.save();
                     int L = org.telegram.messenger.g0.L(26.0f);
                     canvas.translate(org.telegram.messenger.g0.L(5.0f), (getMeasuredHeight() - L) / 2.0f);
                     float f10 = L;
                     rectF.set(-org.telegram.messenger.g0.L(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f10);
                     float f11 = f10 / 2.0f;
-                    canvas.drawRoundRect(rectF, f11, f11, (Paint) this.f36418e);
+                    canvas.drawRoundRect(rectF, f11, f11, (Paint) this.f36406e);
                     canvas.translate(((getMeasuredWidth() - getPaddingEnd()) - org.telegram.messenger.g0.L(6.0f)) - drawable.getIntrinsicWidth(), org.telegram.messenger.g0.L(5.0f));
                     drawable.draw(canvas);
                     canvas.restore();
@@ -119,10 +119,10 @@ public final class kg extends FrameLayout {
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i7;
-        switch (this.f36415a) {
+        switch (this.f36403a) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                Switch r02 = (Switch) this.f36419f;
+                Switch r02 = (Switch) this.f36407f;
                 if (r02 != null) {
                     accessibilityNodeInfo.setClassName("android.widget.Switch");
                     accessibilityNodeInfo.setCheckable(true);
@@ -130,7 +130,7 @@ public final class kg extends FrameLayout {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append((Object) ((TextView) this.d).getText());
                     sb2.append("\n");
-                    sb2.append((Object) ((TextView) this.f36418e).getText());
+                    sb2.append((Object) ((TextView) this.f36406e).getText());
                     sb2.append("\n");
                     if (r02.h) {
                         i7 = 2131747892;
@@ -150,10 +150,10 @@ public final class kg extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f36415a) {
+        switch (this.f36403a) {
             case 0:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((Paint) this.f36418e).setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                ((Paint) this.f36406e).setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -164,14 +164,14 @@ public final class kg extends FrameLayout {
     public kg(Activity activity) {
         super(activity);
         this.d = new RectF();
-        this.f36418e = new Paint(1);
-        this.f36416b = false;
+        this.f36406e = new Paint(1);
+        this.f36404b = false;
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(activity);
-        this.f36417c = j5Var;
+        this.f36405c = j5Var;
         addView(j5Var, c8.ja.c(-1.0f, -1));
         setWillNotDraw(false);
         Drawable drawable = activity.getDrawable(2131232236);
-        this.f36419f = drawable;
+        this.f36407f = drawable;
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         setClipToPadding(false);
         setClipChildren(false);

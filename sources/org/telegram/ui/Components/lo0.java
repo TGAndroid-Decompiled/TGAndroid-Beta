@@ -25,7 +25,7 @@ public final class lo0 extends jg.c0 {
             o4Var.I = i11;
             o4Var.f30806w.b(org.telegram.ui.ActionBar.j6.B5, i11, org.telegram.ui.ActionBar.j6.C5);
         }
-        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) org.telegram.messenger.si.b0(po0Var.f29679a).f26482j1.get(i7);
+        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) org.telegram.messenger.si.b0(po0Var.f29679a).f26492j1.get(i7);
         TLRPC.Peer peer = tL_topPeer.peer;
         long j3 = peer.user_id;
         if (j3 != 0) {

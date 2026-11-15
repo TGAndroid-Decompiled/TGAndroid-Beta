@@ -16,7 +16,7 @@ public final class a0 extends View {
     public final int f21562b;
     public boolean f21563c;
     public boolean d;
-    public final ai.v0 f21564e;
+    public final ai.w0 f21564e;
     public final d0 f21565f;
 
     public a0(d0 d0Var, Context context, TL_keyboard.PageButton pageButton, int i7) {
@@ -24,7 +24,7 @@ public final class a0 extends View {
         this.f21565f = d0Var;
         this.f21562b = i7;
         int i10 = d0Var.f21626n;
-        int d = i5.c.d(32.0f, org.telegram.messenger.g0.f23609q.x, org.telegram.messenger.g0.L(240.0f));
+        int d = i5.c.d(32.0f, org.telegram.messenger.g0.f23611q.x, org.telegram.messenger.g0.L(240.0f));
         e6 e6Var = d0Var.f21627r;
         kg.j1 j1Var = new kg.j1(this, 23);
         iv ivVar = new iv(i10, d, e6Var);
@@ -32,8 +32,8 @@ public final class a0 extends View {
         TL_keyboard.InlineButtonType inlineButtonType = pageButton.type;
         du duVar = new du(ivVar, d, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, j1Var);
         this.f21561a = duVar;
-        this.f21564e = new ai.v0(this, i7, 16);
-        duVar.f23137e = duVar.h();
+        this.f21564e = new ai.w0(this, i7, 16);
+        duVar.f23144e = duVar.h();
         setContentDescription(a6.l(pageButton.text));
         setClickable(true);
         setLongClickable(true);
@@ -42,13 +42,13 @@ public final class a0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f21561a.f23134a.i(this);
+        this.f21561a.f23141a.i(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         org.telegram.messenger.g0.r(this.f21564e);
-        this.f21561a.f23134a.f(this);
+        this.f21561a.f23141a.f(this);
         super.onDetachedFromWindow();
     }
 
@@ -66,7 +66,7 @@ public final class a0 extends View {
     @Override
     public final void onMeasure(int i7, int i10) {
         du duVar = this.f21561a;
-        setMeasuredDimension(duVar.f23137e, org.telegram.messenger.g0.L(8.0f) + duVar.c());
+        setMeasuredDimension(duVar.f23144e, org.telegram.messenger.g0.L(8.0f) + duVar.c());
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class a0 extends View {
         boolean z13;
         boolean z14;
         int actionMasked = motionEvent.getActionMasked();
-        ai.v0 v0Var = this.f21564e;
+        ai.w0 w0Var = this.f21564e;
         du duVar = this.f21561a;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
@@ -90,12 +90,12 @@ public final class a0 extends View {
                     }
                     this.f21563c = false;
                     duVar.m(false);
-                    org.telegram.messenger.g0.r(v0Var);
+                    org.telegram.messenger.g0.r(w0Var);
                     return true;
                 } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
                     this.f21563c = false;
                     duVar.m(false);
-                    org.telegram.messenger.g0.r(v0Var);
+                    org.telegram.messenger.g0.r(w0Var);
                     return true;
                 }
             } else {
@@ -106,7 +106,7 @@ public final class a0 extends View {
                 }
                 this.f21563c = false;
                 duVar.m(false);
-                org.telegram.messenger.g0.r(v0Var);
+                org.telegram.messenger.g0.r(w0Var);
                 if (z10 && (b0Var = (d0Var = this.f21565f).F) != null && (aVar = d0Var.f22106a) != null) {
                     q3 q3Var = ((i3) b0Var).f21739a;
                     TL_iv.PageBlock pageBlock = aVar.f21544b;
@@ -155,7 +155,7 @@ public final class a0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            q3Var.f39895g3.O(false);
+                            q3Var.f39892g3.O(false);
                             d2 d2Var2 = q3Var.R3;
                             if (d2Var2 != null) {
                                 d2Var2.h();
@@ -170,7 +170,7 @@ public final class a0 extends View {
         this.f21563c = true;
         this.d = false;
         duVar.m(true);
-        org.telegram.messenger.g0.i3(v0Var, ViewConfiguration.getLongPressTimeout());
+        org.telegram.messenger.g0.i3(w0Var, ViewConfiguration.getLongPressTimeout());
         return true;
     }
 }

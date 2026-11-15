@@ -13,11 +13,11 @@ public final class u21 extends a41 {
     public static b41 i(int i7, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, n nVar) {
         b41 K = b41.K(u21.class);
         K.d = i7;
-        K.f33181l = charSequence;
-        K.f33182m = charSequence2;
-        K.f33183n = charSequence3;
+        K.f33184l = charSequence;
+        K.f33185m = charSequence2;
+        K.f33186n = charSequence3;
         K.D = onClickListener;
-        K.f33175e = z10;
+        K.f33178e = z10;
         K.E = onClickListener2;
         K.G = nVar;
         return K;
@@ -34,11 +34,11 @@ public final class u21 extends a41 {
         boolean z11;
         int i10;
         v21 v21Var = (v21) view;
-        CharSequence charSequence = b41Var.f33181l;
-        CharSequence charSequence2 = b41Var.f33182m;
-        CharSequence charSequence3 = b41Var.f33183n;
+        CharSequence charSequence = b41Var.f33184l;
+        CharSequence charSequence2 = b41Var.f33185m;
+        CharSequence charSequence3 = b41Var.f33186n;
         View.OnClickListener onClickListener2 = b41Var.D;
-        boolean z12 = b41Var.f33175e;
+        boolean z12 = b41Var.f33178e;
         View.OnClickListener onClickListener3 = b41Var.E;
         Object obj = b41Var.G;
         if (obj instanceof View.OnClickListener) {
@@ -85,7 +85,7 @@ public final class u21 extends a41 {
 
     @Override
     public final boolean c(b41 b41Var, b41 b41Var2) {
-        if (TextUtils.equals(b41Var.f33181l, b41Var2.f33181l) && TextUtils.equals(b41Var.f33182m, b41Var2.f33182m) && TextUtils.equals(b41Var.f33183n, b41Var2.f33183n) && b41Var.E == b41Var2.E) {
+        if (TextUtils.equals(b41Var.f33184l, b41Var2.f33184l) && TextUtils.equals(b41Var.f33185m, b41Var2.f33185m) && TextUtils.equals(b41Var.f33186n, b41Var2.f33186n) && b41Var.E == b41Var2.E) {
             return true;
         }
         return false;

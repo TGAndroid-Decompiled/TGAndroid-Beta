@@ -7,8 +7,8 @@ public final class yn0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         org.telegram.ui.Components.cb cbVar;
         Drawable[] drawableArr = PhotoViewer.Z8;
-        org.telegram.ui.Components.xb xbVar = org.telegram.ui.Components.xb.f41635w;
-        if (xbVar != null && (cbVar = xbVar.f41639e) != null) {
+        org.telegram.ui.Components.xb xbVar = org.telegram.ui.Components.xb.f41627w;
+        if (xbVar != null && (cbVar = xbVar.f41631e) != null) {
             cbVar.updatePosition();
         }
     }

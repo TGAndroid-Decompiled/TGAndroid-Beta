@@ -12,12 +12,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.ui.PhotoViewer;
 public final class ie0 extends org.telegram.ui.j4 {
     public final int h;
-    public final Object f35616n;
+    public final Object f35603n;
 
     public ie0(int i7, Context context, Object obj) {
         super(context);
         this.h = i7;
-        this.f35616n = obj;
+        this.f35603n = obj;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class ie0 extends org.telegram.ui.j4 {
         switch (this.h) {
             case 2:
                 Drawable[] drawableArr = PhotoViewer.Z8;
-                ((PhotoViewer) this.f35616n).getClass();
+                ((PhotoViewer) this.f35603n).getClass();
                 super.draw(canvas);
                 return;
             default:
@@ -40,17 +40,17 @@ public final class ie0 extends org.telegram.ui.j4 {
         switch (this.h) {
             case 0:
                 boolean drawChild = super.drawChild(canvas, view, j3);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f35616n;
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f35603n;
                 if (view == pipRoundVideoView.f32606c && (gjVar = MediaController.B().f22377v0) != null) {
                     pipRoundVideoView.F.set(org.telegram.messenger.g0.N(1.5f), org.telegram.messenger.g0.N(1.5f), getMeasuredWidth() - org.telegram.messenger.g0.N(1.5f), getMeasuredHeight() - org.telegram.messenger.g0.N(1.5f));
-                    canvas.drawArc(pipRoundVideoView.F, -90.0f, gjVar.f23777b0 * 360.0f, false, org.telegram.ui.ActionBar.j6.f28974k2);
+                    canvas.drawArc(pipRoundVideoView.F, -90.0f, gjVar.f23779b0 * 360.0f, false, org.telegram.ui.ActionBar.j6.f28974k2);
                 }
                 return drawChild;
             case 1:
             default:
                 return super.drawChild(canvas, view, j3);
             case 2:
-                PhotoViewer photoViewer = (PhotoViewer) this.f35616n;
+                PhotoViewer photoViewer = (PhotoViewer) this.f35603n;
                 if (view == photoViewer.E3 && photoViewer.f42776g4) {
                     return true;
                 }
@@ -63,7 +63,7 @@ public final class ie0 extends org.telegram.ui.j4 {
         switch (this.h) {
             case 1:
                 super.onMeasure(i7, i10);
-                m71 m71Var = (m71) this.f35616n;
+                m71 m71Var = (m71) this.f35603n;
                 if (m71Var.f37147f != null) {
                     ViewGroup.LayoutParams layoutParams = m71Var.d.getLayoutParams();
                     layoutParams.width = getMeasuredWidth();
@@ -80,7 +80,7 @@ public final class ie0 extends org.telegram.ui.j4 {
                 return;
             case 2:
                 super.onMeasure(i7, i10);
-                PhotoViewer photoViewer = (PhotoViewer) this.f35616n;
+                PhotoViewer photoViewer = (PhotoViewer) this.f35603n;
                 ImageView imageView2 = photoViewer.f42924x3;
                 if (imageView2 != null) {
                     ViewGroup.LayoutParams layoutParams3 = imageView2.getLayoutParams();

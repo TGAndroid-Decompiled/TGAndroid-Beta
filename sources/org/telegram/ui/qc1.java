@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class qc1 extends org.telegram.ui.Components.tj0 {
-    public final Context f50590c;
+    public final Context f50581c;
     public final WallpapersListActivity d;
 
     public qc1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f50590c = context;
+        this.f50581c = context;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class qc1 extends org.telegram.ui.Components.tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View l8Var;
-        Context context = this.f50590c;
+        Context context = this.f50581c;
         if (i7 != 0) {
             if (i7 != 3) {
                 l8Var = new org.telegram.ui.Components.xi(this, context, 1);

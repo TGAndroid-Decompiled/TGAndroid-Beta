@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public class ss0 extends aj0 {
-    public final Context f39403c;
+    public final Context f39401c;
     public boolean d;
-    public m.o3 f39404e;
-    public final ys0 f39405f;
+    public m.o3 f39402e;
+    public final ys0 f39403f;
 
     public ss0(ys0 ys0Var, Context context) {
-        this.f39405f = ys0Var;
-        this.f39403c = context;
+        this.f39403f = ys0Var;
+        this.f39401c = context;
     }
 
     @Override
@@ -25,12 +25,12 @@ public class ss0 extends aj0 {
     @Override
     public final boolean E(uj0 uj0Var) {
         int i7;
-        ys0 ys0Var = this.f39405f;
+        ys0 ys0Var = this.f39403f;
         if (!ys0Var.G0()) {
             if (this != ys0Var.K && ys0.x(ys0Var, this) == -1) {
-                i7 = ys0Var.f42137t1;
+                i7 = ys0Var.f42139t1;
             } else {
-                i7 = ys0Var.f42123p1[0];
+                i7 = ys0Var.f42125p1[0];
             }
             int ceil = (int) Math.ceil(e() / i7);
             if (uj0Var.getChildCount() != 0 && uj0Var.getChildAt(0).getMeasuredHeight() * ceil > uj0Var.getMeasuredHeight()) {
@@ -42,24 +42,24 @@ public class ss0 extends aj0 {
 
     @Override
     public String F(int i7) {
-        ArrayList arrayList = this.f39405f.f42144w1[0].f37695e;
+        ArrayList arrayList = this.f39403f.f42146w1[0].f37684e;
         if (arrayList == null || arrayList.isEmpty()) {
             return "";
         }
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (i7 <= ((yr0) arrayList.get(i10)).f42067b) {
-                return ((yr0) arrayList.get(i10)).f42066a;
+            if (i7 <= ((yr0) arrayList.get(i10)).f42069b) {
+                return ((yr0) arrayList.get(i10)).f42068a;
             }
         }
-        return ((yr0) i5.c.h(1, arrayList)).f42066a;
+        return ((yr0) i5.c.h(1, arrayList)).f42068a;
     }
 
     @Override
     public final void G(uj0 uj0Var, float f10, int[] iArr) {
         int i7;
         int measuredHeight = uj0Var.getChildAt(0).getMeasuredHeight();
-        ys0 ys0Var = this.f39405f;
-        int[] iArr2 = ys0Var.f42123p1;
+        ys0 ys0Var = this.f39403f;
+        int[] iArr2 = ys0Var.f42125p1;
         if (ys0.y(ys0Var, this) == -1 && this != ys0Var.L) {
             if (ys0.x(ys0Var, this) != -1) {
                 i7 = iArr2[1];
@@ -67,7 +67,7 @@ public class ss0 extends aj0 {
                 i7 = iArr2[0];
             }
         } else {
-            i7 = ys0Var.f42137t1;
+            i7 = ys0Var.f42139t1;
         }
         int ceil = (int) (Math.ceil(e() / i7) * measuredHeight);
         int measuredHeight2 = uj0Var.getMeasuredHeight() - uj0Var.getPaddingTop();
@@ -84,8 +84,8 @@ public class ss0 extends aj0 {
     @Override
     public final float H(uj0 uj0Var) {
         int i7;
-        ys0 ys0Var = this.f39405f;
-        int[] iArr = ys0Var.f42123p1;
+        ys0 ys0Var = this.f39403f;
+        int[] iArr = ys0Var.f42125p1;
         if (this != ys0Var.L && ys0.y(ys0Var, this) == -1) {
             if (ys0.x(ys0Var, this) != -1) {
                 i7 = iArr[1];
@@ -93,7 +93,7 @@ public class ss0 extends aj0 {
                 i7 = iArr[0];
             }
         } else {
-            i7 = ys0Var.f42137t1;
+            i7 = ys0Var.f42139t1;
         }
         int ceil = (int) Math.ceil(e() / i7);
         if (uj0Var.getChildCount() != 0) {
@@ -110,7 +110,7 @@ public class ss0 extends aj0 {
 
     @Override
     public void I() {
-        this.f39405f.r1(0, true);
+        this.f39403f.r1(0, true);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class ss0 extends aj0 {
                 }
             }
             if (i7 == 0) {
-                this.f39405f.c0(0, uj0Var, true);
+                this.f39403f.c0(0, uj0Var, true);
             }
         }
     }
@@ -136,14 +136,14 @@ public class ss0 extends aj0 {
     @Override
     public final void K() {
         this.d = true;
-        tr0 g02 = this.f39405f.g0(0);
+        tr0 g02 = this.f39403f.g0(0);
         if (g02 != null) {
             ys0.s(g02, null, false);
         }
     }
 
     public int L(int i7) {
-        return this.f39405f.f42144w1[0].f37702m + i7;
+        return this.f39403f.f42146w1[0].f37691m + i7;
     }
 
     @Override
@@ -153,10 +153,10 @@ public class ss0 extends aj0 {
 
     @Override
     public int d(int i7) {
-        ns0[] ns0VarArr = this.f39405f.f42144w1;
+        ns0[] ns0VarArr = this.f39403f.f42146w1;
         if (!this.d && ns0VarArr[0].c().size() == 0) {
             ns0 ns0Var = ns0VarArr[0];
-            if (!ns0Var.f37697g && ns0Var.f37701l) {
+            if (!ns0Var.f37686g && ns0Var.f37690l) {
                 return 2;
             }
         }
@@ -168,7 +168,7 @@ public class ss0 extends aj0 {
 
     @Override
     public int e() {
-        return this.f39405f.f42144w1[0].e();
+        return this.f39403f.f42146w1[0].e();
     }
 
     @Override
@@ -176,9 +176,9 @@ public class ss0 extends aj0 {
         int i10;
         boolean z10;
         char c10;
-        ys0 ys0Var = this.f39405f;
-        int[] iArr = ys0Var.f42123p1;
-        ns0[] ns0VarArr = ys0Var.f42144w1;
+        ys0 ys0Var = this.f39403f;
+        int[] iArr = ys0Var.f42125p1;
+        ns0[] ns0VarArr = ys0Var.f42146w1;
         if (e1Var.f58539f == 0) {
             ArrayList c11 = ns0VarArr[0].c();
             int d = i7 - ns0VarArr[0].d();
@@ -192,7 +192,7 @@ public class ss0 extends aj0 {
                 } else if (ys0.x(ys0Var, this) != -1) {
                     i10 = iArr[1];
                 } else {
-                    i10 = ys0Var.f42137t1;
+                    i10 = ys0Var.f42139t1;
                 }
                 if (d >= 0 && d < c11.size()) {
                     org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) c11.get(d);
@@ -202,8 +202,8 @@ public class ss0 extends aj0 {
                         z10 = false;
                     }
                     if (ys0Var.F1) {
-                        SparseArray[] sparseArrayArr = ys0Var.f42085c1;
-                        if (org.telegram.messenger.gj.B0(gjVar.f23817k) == ys0Var.f42114m1) {
+                        SparseArray[] sparseArrayArr = ys0Var.f42087c1;
+                        if (org.telegram.messenger.gj.B0(gjVar.f23819k) == ys0Var.f42116m1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -226,18 +226,18 @@ public class ss0 extends aj0 {
 
     @Override
     public v4.e1 x(ViewGroup viewGroup, int i7) {
-        ys0 ys0Var = this.f39405f;
+        ys0 ys0Var = this.f39403f;
         org.telegram.ui.ActionBar.e6 e6Var = ys0Var.I1;
-        Context context = this.f39403c;
+        Context context = this.f39401c;
         if (i7 != 0 && i7 != 19) {
-            p3 X = ys0.X(0, ys0Var.f42114m1, context, e6Var);
+            p3 X = ys0.X(0, ys0Var.f42116m1, context, e6Var);
             X.setLayoutParams(new v4.p0(-1, -1));
             return new v4.e1(X);
         }
-        if (this.f39404e == null) {
-            this.f39404e = new m.o3(viewGroup.getContext(), e6Var);
+        if (this.f39402e == null) {
+            this.f39402e = new m.o3(viewGroup.getContext(), e6Var);
         }
-        org.telegram.ui.Cells.n7 n7Var = new org.telegram.ui.Cells.n7(context, this.f39404e, ys0Var.f42150y1.getCurrentAccount());
+        org.telegram.ui.Cells.n7 n7Var = new org.telegram.ui.Cells.n7(context, this.f39402e, ys0Var.f42152y1.getCurrentAccount());
         if (i7 == 19) {
             n7Var.f30772x0 = true;
         }

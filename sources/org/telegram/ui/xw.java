@@ -12,19 +12,19 @@ public final class xw extends FrameLayout {
     public final cv J;
     public final cv K;
     public final yw L;
-    public uw f53331a;
-    public a8.xa f53332b;
-    public dv f53333c;
+    public uw f53335a;
+    public a8.xa f53336b;
+    public dv f53337c;
     public hv d;
-    public v4.y f53334e;
-    public ww f53335f;
+    public v4.y f53338e;
+    public ww f53339f;
     public int h;
-    public gv f53336n;
-    public org.telegram.ui.Components.wi0 f53337r;
-    public int f53338s;
-    public int f53339w;
-    public org.telegram.ui.Components.pz f53340x;
-    public bv f53341y;
+    public gv f53340n;
+    public org.telegram.ui.Components.wi0 f53341r;
+    public int f53342s;
+    public int f53343w;
+    public org.telegram.ui.Components.pz f53344x;
+    public bv f53345y;
 
     public xw(Context context, yw ywVar) {
         super(context);
@@ -34,39 +34,39 @@ public final class xw extends FrameLayout {
     }
 
     public static void a(xw xwVar, dv dvVar) {
-        xwVar.f53333c = dvVar;
+        xwVar.f53337c = dvVar;
     }
 
     public static v4.y b(xw xwVar) {
-        return xwVar.f53334e;
+        return xwVar.f53338e;
     }
 
     public static void c(xw xwVar, v4.y yVar) {
-        xwVar.f53334e = yVar;
+        xwVar.f53338e = yVar;
     }
 
     public static int d(xw xwVar) {
-        return xwVar.f53339w;
+        return xwVar.f53343w;
     }
 
     public static void e(xw xwVar, int i7) {
-        xwVar.f53339w = i7;
+        xwVar.f53343w = i7;
     }
 
     public static void f(xw xwVar, org.telegram.ui.Components.pz pzVar) {
-        xwVar.f53340x = pzVar;
+        xwVar.f53344x = pzVar;
     }
 
     public static ww g(xw xwVar) {
-        return xwVar.f53335f;
+        return xwVar.f53339f;
     }
 
     public static void h(xw xwVar, ww wwVar) {
-        xwVar.f53335f = wwVar;
+        xwVar.f53339f = wwVar;
     }
 
     public static void i(xw xwVar, bv bvVar) {
-        xwVar.f53341y = bvVar;
+        xwVar.f53345y = bvVar;
     }
 
     public static void j(xw xwVar, org.telegram.ui.Components.xi0 xi0Var) {
@@ -74,11 +74,11 @@ public final class xw extends FrameLayout {
     }
 
     public static void k(xw xwVar, org.telegram.ui.Components.wi0 wi0Var) {
-        xwVar.f53337r = wi0Var;
+        xwVar.f53341r = wi0Var;
     }
 
     public static void l(xw xwVar, int i7) {
-        xwVar.f53338s = i7;
+        xwVar.f53342s = i7;
     }
 
     public static jg.m m(xw xwVar) {
@@ -90,17 +90,17 @@ public final class xw extends FrameLayout {
     }
 
     public static void o(xw xwVar, gv gvVar) {
-        xwVar.f53336n = gvVar;
+        xwVar.f53340n = gvVar;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        ((FrameLayout.LayoutParams) this.f53331a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f53335a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i7, i10);
     }
 
     public final boolean p() {
-        int i7 = this.f53338s;
+        int i7 = this.f53342s;
         if (i7 != 0 && i7 != 7 && i7 != 8) {
             return false;
         }
@@ -114,13 +114,13 @@ public final class xw extends FrameLayout {
             cv cvVar = this.K;
             if (z10) {
                 org.telegram.messenger.g0.r(cvVar);
-                this.f53331a.setItemAnimator(this.f53341y);
+                this.f53335a.setItemAnimator(this.f53345y);
                 cvVar.run();
             } else if (this.I) {
             } else {
                 this.I = true;
-                if (!this.f53341y.k()) {
-                    this.f53331a.setItemAnimator(null);
+                if (!this.f53345y.k()) {
+                    this.f53335a.setItemAnimator(null);
                 }
                 org.telegram.messenger.g0.i3(cvVar, 36L);
             }
@@ -134,8 +134,8 @@ public final class xw extends FrameLayout {
         if (getTranslationX() != f10) {
             super.setTranslationX(f10);
             yw ywVar = this.L;
-            if (ywVar.j3 && (xwVar = ywVar.f53673f0[0]) == this) {
-                ywVar.A0.g(Math.abs(xwVar.getTranslationX()) / ywVar.f53673f0[0].getMeasuredWidth(), ywVar.f53673f0[1].h);
+            if (ywVar.j3 && (xwVar = ywVar.f53638f0[0]) == this) {
+                ywVar.A0.g(Math.abs(xwVar.getTranslationX()) / ywVar.f53638f0[0].getMeasuredWidth(), ywVar.f53638f0[1].h);
             }
             qVar = ((org.telegram.ui.ActionBar.e2) ywVar).glassEngine;
             qVar.g();

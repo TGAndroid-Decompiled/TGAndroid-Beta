@@ -6,12 +6,12 @@ import org.telegram.ui.Cells.y0;
 import org.telegram.ui.Components.mi0;
 public final class q extends mi0 {
     public float n1;
-    public long f5190o1;
+    public long f5193o1;
 
     @Override
     public final void draw(Canvas canvas) {
-        long min = Math.min(16L, System.currentTimeMillis() - this.f5190o1);
-        this.f5190o1 = System.currentTimeMillis();
+        long min = Math.min(16L, System.currentTimeMillis() - this.f5193o1);
+        this.f5193o1 = System.currentTimeMillis();
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         canvas.saveLayerAlpha(rectF, (int) (this.n1 * 255.0f), 31);

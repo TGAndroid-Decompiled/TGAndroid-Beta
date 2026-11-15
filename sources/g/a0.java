@@ -38,7 +38,7 @@ public final class a0 extends k.a implements l.i {
         this.f12611e = null;
         b0Var.a(false);
         ActionBarContextView actionBarContextView = b0Var.f12630f;
-        if (actionBarContextView.f1868w == null) {
+        if (actionBarContextView.f1875w == null) {
             actionBarContextView.e();
         }
         b0Var.f12628c.setHideOnContentScrollEnabled(b0Var.f12643t);

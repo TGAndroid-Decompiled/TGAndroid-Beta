@@ -32,11 +32,11 @@ public class FilesMigrationService extends Service {
     public int f22254b;
 
     public static void a(org.telegram.ui.yw ywVar) {
-        SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("systemConfig", 0);
+        SharedPreferences sharedPreferences = t0.f26609b.getSharedPreferences("systemConfig", 0);
         if (Environment.isExternalStorageLegacy() && !sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) && sharedPreferences.getInt("migration_to_scoped_storage_count", 0) < 5 && !f22252f && f22251e == null && !d) {
             if (Build.VERSION.SDK_INT >= 30) {
                 File externalStorageDirectory = Environment.getExternalStorageDirectory();
-                if (!TextUtils.isEmpty(gz.f23949h0)) {
+                if (!TextUtils.isEmpty(gz.f23952h0)) {
                     ArrayList d12 = g0.d1();
                     int size = d12.size();
                     int i7 = 0;
@@ -45,7 +45,7 @@ public class FilesMigrationService extends Service {
                             break;
                         }
                         File file = (File) d12.get(i7);
-                        if (file.getAbsolutePath().startsWith(gz.f23949h0)) {
+                        if (file.getAbsolutePath().startsWith(gz.f23952h0)) {
                             externalStorageDirectory = file;
                             break;
                         }

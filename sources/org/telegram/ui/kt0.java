@@ -5,19 +5,19 @@ import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class kt0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f48774a;
-    public final PrivacySettingsActivity f48775b;
+    public final int f48770a;
+    public final PrivacySettingsActivity f48771b;
 
     public kt0(PrivacySettingsActivity privacySettingsActivity, int i7) {
-        this.f48774a = i7;
-        this.f48775b = privacySettingsActivity;
+        this.f48770a = i7;
+        this.f48771b = privacySettingsActivity;
     }
 
     public void a() {
         int i7;
-        switch (this.f48774a) {
+        switch (this.f48770a) {
             case 2:
-                PrivacySettingsActivity privacySettingsActivity = this.f48775b;
+                PrivacySettingsActivity privacySettingsActivity = this.f48771b;
                 lt0 lt0Var = privacySettingsActivity.f43047a;
                 if (lt0Var != null && (i7 = privacySettingsActivity.f43058s) >= 0) {
                     lt0Var.g(i7);
@@ -25,7 +25,7 @@ public final class kt0 implements org.telegram.ui.ActionBar.q1 {
                 }
                 return;
             default:
-                PrivacySettingsActivity.Z(this.f48775b);
+                PrivacySettingsActivity.Z(this.f48771b);
                 return;
         }
     }
@@ -33,8 +33,8 @@ public final class kt0 implements org.telegram.ui.ActionBar.q1 {
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         String M0;
-        int i10 = this.f48774a;
-        PrivacySettingsActivity privacySettingsActivity = this.f48775b;
+        int i10 = this.f48770a;
+        PrivacySettingsActivity privacySettingsActivity = this.f48771b;
         switch (i10) {
             case 0:
                 try {
@@ -65,7 +65,7 @@ public final class kt0 implements org.telegram.ui.ActionBar.q1 {
                 boolean[] zArr = privacySettingsActivity.f43048a0;
                 tL_payments_clearSavedInfo.credentials = zArr[1];
                 tL_payments_clearSavedInfo.info = zArr[0];
-                privacySettingsActivity.getUserConfig().f24964y = null;
+                privacySettingsActivity.getUserConfig().f24970y = null;
                 privacySettingsActivity.getUserConfig().v(false);
                 privacySettingsActivity.getConnectionsManager().sendRequest(tL_payments_clearSavedInfo, new fi.m5(9));
                 boolean z10 = zArr[0];
@@ -97,9 +97,9 @@ public final class kt0 implements org.telegram.ui.ActionBar.q1 {
                 jt0 jt0Var = new jt0(privacySettingsActivity, 1);
                 contactsController.K();
                 TLRPC.TL_contacts_deleteContacts tL_contacts_deleteContacts = new TLRPC.TL_contacts_deleteContacts();
-                int size = contactsController.f23679f0.size();
+                int size = contactsController.f23681f0.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    tL_contacts_deleteContacts.f28095id.add(contactsController.getMessagesController().o1(((TLRPC.TL_contact) contactsController.f23679f0.get(i11)).user_id));
+                    tL_contacts_deleteContacts.f28095id.add(contactsController.getMessagesController().o1(((TLRPC.TL_contact) contactsController.f23681f0.get(i11)).user_id));
                 }
                 contactsController.getConnectionsManager().sendRequest(tL_contacts_deleteContacts, new org.telegram.messenger.r4(0, contactsController, jt0Var));
                 return;
@@ -107,8 +107,8 @@ public final class kt0 implements org.telegram.ui.ActionBar.q1 {
                 ce0 ce0Var = new ce0();
                 jt0 jt0Var2 = new jt0(privacySettingsActivity, 2);
                 ce0Var.G = 3;
-                ce0Var.f46085a = 12;
-                ce0Var.f46093e0 = jt0Var2;
+                ce0Var.f46074a = 12;
+                ce0Var.f46082e0 = jt0Var2;
                 privacySettingsActivity.presentFragment(ce0Var);
                 return;
         }

@@ -71,9 +71,9 @@ public final class e0 {
         this.f61495i = z10 ? new b0() : null;
         if (z10) {
             ?? zVar = new z("#extension GL_OES_EGL_image_external : require\nprecision mediump float;\nvarying vec2 vTextureCoord;\nvarying vec2 vScreenTextureCoord;\nuniform samplerExternalOES sTexture;\nuniform sampler2D bTexture;\nuniform sampler2D mTexture;\nvoid main() {\n    vec3 sharp = texture2D(sTexture, vTextureCoord).rgb;\n    vec3 blurred = texture2D(bTexture, vScreenTextureCoord).rgb * 0.25;\n    float mask = texture2D(mTexture, vScreenTextureCoord).a;\n    gl_FragColor = vec4(mix(blurred, sharp, mask), 1.0);\n}\n", 0);
-            int glGetUniformLocation = GLES20.glGetUniformLocation(zVar.f2901a, "bTexture");
-            int glGetUniformLocation2 = GLES20.glGetUniformLocation(zVar.f2901a, "mTexture");
-            GLES20.glUseProgram(zVar.f2901a);
+            int glGetUniformLocation = GLES20.glGetUniformLocation(zVar.f2904a, "bTexture");
+            int glGetUniformLocation2 = GLES20.glGetUniformLocation(zVar.f2904a, "mTexture");
+            GLES20.glUseProgram(zVar.f2904a);
             GLES20.glUniform1i(glGetUniformLocation, 1);
             GLES20.glUniform1i(glGetUniformLocation2, 2);
             a0Var = zVar;
@@ -435,7 +435,7 @@ public final class e0 {
 
     public final void c(z zVar, float[] fArr) {
         FloatBuffer floatBuffer;
-        GLES20.glUseProgram(zVar.f2901a);
+        GLES20.glUseProgram(zVar.f2904a);
         this.f61501o.position(0);
         GLES20.glVertexAttribPointer(0, 3, 5126, false, 12, (Buffer) this.f61501o);
         if (Math.abs(fArr[1]) > Math.abs(fArr[0])) {
@@ -450,7 +450,7 @@ public final class e0 {
     }
 
     public final void e(b3.h hVar, int i7, int i10) {
-        GLES20.glUseProgram(hVar.f2901a);
+        GLES20.glUseProgram(hVar.f2904a);
         this.f61501o.position(i10);
         GLES20.glVertexAttribPointer(0, 3, 5126, false, 12, (Buffer) this.f61501o);
         this.f61502p.position(i7);

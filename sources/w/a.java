@@ -329,12 +329,12 @@ public final class a implements Parcelable.Creator {
             case 10:
                 return new Parcelable(inParcel) {
                     public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(10);
-                    public final int f1660a;
-                    public final MediaDescriptionCompat f1661b;
+                    public final int f1667a;
+                    public final MediaDescriptionCompat f1668b;
 
                     {
-                        this.f1660a = inParcel.readInt();
-                        this.f1661b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
+                        this.f1667a = inParcel.readInt();
+                        this.f1668b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
                     }
 
                     @Override
@@ -343,13 +343,13 @@ public final class a implements Parcelable.Creator {
                     }
 
                     public final String toString() {
-                        return "MediaItem{mFlags=" + this.f1660a + ", mDescription=" + this.f1661b + '}';
+                        return "MediaItem{mFlags=" + this.f1667a + ", mDescription=" + this.f1668b + '}';
                     }
 
                     @Override
                     public final void writeToParcel(Parcel parcel, int i14) {
-                        parcel.writeInt(this.f1660a);
-                        this.f1661b.writeToParcel(parcel, i14);
+                        parcel.writeInt(this.f1667a);
+                        this.f1668b.writeToParcel(parcel, i14);
                     }
                 };
             case 11:
@@ -371,22 +371,22 @@ public final class a implements Parcelable.Creator {
                 return new androidx.fragment.app.c(inParcel);
             case 18:
                 ?? obj = new Object();
-                obj.f2339a = inParcel.readString();
-                obj.f2340b = inParcel.readInt();
+                obj.f2342a = inParcel.readString();
+                obj.f2343b = inParcel.readInt();
                 return obj;
             case 19:
                 ?? obj2 = new Object();
-                obj2.f2382e = null;
-                obj2.f2383f = new ArrayList();
+                obj2.f2385e = null;
+                obj2.f2386f = new ArrayList();
                 obj2.h = new ArrayList();
-                obj2.f2379a = inParcel.createStringArrayList();
-                obj2.f2380b = inParcel.createStringArrayList();
-                obj2.f2381c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
+                obj2.f2382a = inParcel.createStringArrayList();
+                obj2.f2383b = inParcel.createStringArrayList();
+                obj2.f2384c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
                 obj2.d = inParcel.readInt();
-                obj2.f2382e = inParcel.readString();
-                obj2.f2383f = inParcel.createStringArrayList();
+                obj2.f2385e = inParcel.readString();
+                obj2.f2386f = inParcel.createStringArrayList();
                 obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
-                obj2.f2384n = inParcel.createTypedArrayList(f0.CREATOR);
+                obj2.f2387n = inParcel.createTypedArrayList(f0.CREATOR);
                 return obj2;
             case 20:
                 return new o0(inParcel);
@@ -395,18 +395,18 @@ public final class a implements Parcelable.Creator {
             case 22:
                 ?? obj3 = new Object();
                 IBinder readStrongBinder = inParcel.readStrongBinder();
-                int i14 = c.c.f4036b;
+                int i14 = c.c.f4039b;
                 if (readStrongBinder != null) {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
                     if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
                         bVar = (c.b) queryLocalInterface;
                     } else {
                         ?? obj4 = new Object();
-                        obj4.f4035a = readStrongBinder;
+                        obj4.f4038a = readStrongBinder;
                         bVar = obj4;
                     }
                 }
-                obj3.f4038a = bVar;
+                obj3.f4041a = bVar;
                 return obj3;
             case 23:
                 int z30 = xb.z(inParcel);

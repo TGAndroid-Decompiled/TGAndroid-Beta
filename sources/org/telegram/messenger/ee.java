@@ -9,26 +9,26 @@ import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.bp0;
 import org.telegram.ui.Components.ys0;
 public final class ee implements RequestDelegate {
-    public final int f23288a;
-    public final int f23289b;
-    public final int f23290c;
+    public final int f23295a;
+    public final int f23296b;
+    public final int f23297c;
     public final is d;
 
     public ee(is isVar, int i7, int i10, int i11) {
-        this.f23288a = i11;
+        this.f23295a = i11;
         this.d = isVar;
-        this.f23289b = i7;
-        this.f23290c = i10;
+        this.f23296b = i7;
+        this.f23297c = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f23288a;
+        int i7 = this.f23295a;
         is isVar = this.d;
         switch (i7) {
             case 0:
                 String[] strArr = MediaController.W1;
-                g0.h3(new jg.o1(this.f23289b, this.f23290c, 7, (MediaController) isVar, tLObject, tL_error));
+                g0.h3(new jg.o1(this.f23296b, this.f23297c, 7, (MediaController) isVar, tLObject, tL_error));
                 return;
             case 1:
                 np npVar = (np) isVar;
@@ -37,7 +37,7 @@ public final class ee implements RequestDelegate {
                 if (tL_error == null) {
                     TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
                     if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
-                        g0.h3(new l2.x(npVar, updates_difference, this.f23289b, this.f23290c, 4));
+                        g0.h3(new l2.x(npVar, updates_difference, this.f23296b, this.f23297c, 4));
                         return;
                     }
                     if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
@@ -79,15 +79,15 @@ public final class ee implements RequestDelegate {
                         }
                     }
                     g0.h3(new fi(26, npVar, updates_difference));
-                    npVar.getMessagesStorage().f27220a.c(new jn(npVar, updates_difference, arrayList, hVar, hVar2, 10));
+                    npVar.getMessagesStorage().f27219a.c(new jn(npVar, updates_difference, arrayList, hVar, hVar2, 10));
                     return;
                 }
-                npVar.f25284g2 = false;
+                npVar.f25287g2 = false;
                 npVar.getConnectionsManager().setIsUpdating(false);
                 a8.b("received: isUpdating = false");
                 return;
             default:
-                g0.h3(new bp0((ys0) isVar, tL_error, this.f23289b, this.f23290c, tLObject, 0));
+                g0.h3(new bp0((ys0) isVar, tL_error, this.f23296b, this.f23297c, tLObject, 0));
                 return;
         }
     }

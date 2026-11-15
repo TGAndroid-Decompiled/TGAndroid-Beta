@@ -1,36 +1,36 @@
 package bi;
 
 import android.view.View;
-import di.m8;
+import di.l8;
 import org.telegram.ui.Cells.sa;
 import org.telegram.ui.Cells.ta;
 public final class y2 implements View.OnLongClickListener {
-    public final int f4009a = 0;
-    public final int f4010b;
-    public final Object f4011c;
+    public final int f4012a = 0;
+    public final int f4013b;
+    public final Object f4014c;
     public final Object d;
 
-    public y2(m8 m8Var, int i7, Runnable runnable) {
-        this.f4011c = m8Var;
-        this.f4010b = i7;
+    public y2(l8 l8Var, int i7, Runnable runnable) {
+        this.f4014c = l8Var;
+        this.f4013b = i7;
         this.d = runnable;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f4009a) {
+        switch (this.f4012a) {
             case 0:
-                ((m8) this.f4011c).g(this.f4010b, true);
+                ((l8) this.f4014c).g(this.f4013b, true);
                 ((Runnable) this.d).run();
                 return true;
             default:
-                return ((ta) this.f4011c).b(((sa) this.d).h, this.f4010b);
+                return ((ta) this.f4014c).b(((sa) this.d).h, this.f4013b);
         }
     }
 
     public y2(ta taVar, sa saVar, int i7) {
-        this.f4011c = taVar;
+        this.f4014c = taVar;
         this.d = saVar;
-        this.f4010b = i7;
+        this.f4013b = i7;
     }
 }

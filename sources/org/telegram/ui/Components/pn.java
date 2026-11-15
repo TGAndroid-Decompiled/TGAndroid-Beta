@@ -16,8 +16,8 @@ public final class pn implements c8 {
         org.telegram.ui.an anVar = this.f38333b.H;
         if (anVar != null) {
             anVar.getMessagesController().J4(i7, anVar.a());
-            TLRPC.ChatFull chatFull = anVar.f45334q8;
-            TLRPC.UserFull userFull = anVar.f45348r8;
+            TLRPC.ChatFull chatFull = anVar.f45333q8;
+            TLRPC.UserFull userFull = anVar.f45347r8;
             if (userFull != null || chatFull != null) {
                 anVar.h8();
                 UndoView undoView = anVar.N3;

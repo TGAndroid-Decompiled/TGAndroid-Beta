@@ -13,6 +13,6 @@ public final class l extends TextView implements we.a {
     @Override
     public final void a() {
         org.telegram.messenger.g0.E2(this);
-        this.f29356a.f29375b.x(this);
+        this.f29356a.f29376b.x(this);
     }
 }

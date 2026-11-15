@@ -8,22 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class y00 extends ViewGroup {
-    public AnimatorSet f41831a;
-    public boolean f41832b;
-    public final ArrayList f41833c;
+    public AnimatorSet f41823a;
+    public boolean f41824b;
+    public final ArrayList f41825c;
     public f20 d;
-    public final ArrayList f41834e;
-    public int f41835f;
+    public final ArrayList f41826e;
+    public int f41827f;
     public int h;
-    public int f41836n;
-    public final z00 f41837r;
+    public int f41828n;
+    public final z00 f41829r;
 
     public y00(z00 z00Var, Context context) {
         super(context);
-        this.f41837r = z00Var;
-        this.f41833c = new ArrayList();
-        this.f41834e = new ArrayList();
-        this.f41835f = -1;
+        this.f41829r = z00Var;
+        this.f41825c = new ArrayList();
+        this.f41826e = new ArrayList();
+        this.f41827f = -1;
     }
 
     @Override
@@ -48,14 +48,14 @@ public final class y00 extends ViewGroup {
         int L2 = org.telegram.messenger.g0.L(10.0f);
         int L3 = org.telegram.messenger.g0.L(10.0f);
         int i14 = 0;
-        if (!this.f41832b) {
-            this.f41836n = 0;
+        if (!this.f41824b) {
+            this.f41828n = 0;
         }
         int i15 = 0;
         int i16 = 0;
         int i17 = 0;
         while (true) {
-            arrayList = this.f41833c;
+            arrayList = this.f41825c;
             if (i15 >= childCount) {
                 break;
             }
@@ -64,7 +64,7 @@ public final class y00 extends ViewGroup {
                 i13 = i14;
             } else {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
-                ArrayList arrayList2 = this.f41834e;
+                ArrayList arrayList2 = this.f41826e;
                 boolean contains = arrayList2.contains(childAt);
                 if (!contains) {
                     i13 = i14;
@@ -80,7 +80,7 @@ public final class y00 extends ViewGroup {
                     i17 = i13;
                 }
                 int L4 = org.telegram.messenger.g0.L(13.0f) + i16;
-                if (!this.f41832b) {
+                if (!this.f41824b) {
                     if (contains) {
                         childAt.setTranslationX(org.telegram.messenger.g0.L(13.0f) + i17);
                         childAt.setTranslationY(L3);
@@ -97,11 +97,11 @@ public final class y00 extends ViewGroup {
                             fArr2[i13] = f11;
                             arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr2));
                         }
-                        this.f41836n = Math.max(this.f41836n, L2);
+                        this.f41828n = Math.max(this.f41828n, L2);
                     } else {
                         childAt.setTranslationX(L4);
                         childAt.setTranslationY(L2);
-                        this.f41836n = Math.max(this.f41836n, L2);
+                        this.f41828n = Math.max(this.f41828n, L2);
                     }
                 }
                 if (!contains) {
@@ -116,7 +116,7 @@ public final class y00 extends ViewGroup {
         if (org.telegram.messenger.g0.Q1()) {
             y10 = org.telegram.messenger.g0.L(372.0f) / 3;
         } else {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             y10 = org.telegram.messenger.i20.y(158.0f, Math.min(point.x, point.y), 3);
         }
         if (L - i16 < y10) {
@@ -125,19 +125,19 @@ public final class y00 extends ViewGroup {
         if (L - i17 < y10) {
             L3 += org.telegram.messenger.g0.L(40.0f);
         }
-        boolean z10 = this.f41832b;
-        z00 z00Var = this.f41837r;
+        boolean z10 = this.f41824b;
+        z00 z00Var = this.f41829r;
         if (!z10) {
             int L5 = org.telegram.messenger.g0.L(42.0f) + L3;
-            z00Var.f42205n = L2;
-            if (this.f41831a != null) {
+            z00Var.f42207n = L2;
+            if (this.f41823a != null) {
                 this.h = org.telegram.messenger.g0.L(42.0f) + L2;
-                this.f41831a.playTogether(arrayList);
+                this.f41823a.playTogether(arrayList);
                 i11 = i18;
-                this.f41831a.addListener(new x00(this, i11));
-                this.f41835f = org.telegram.messenger.ns.f(z00Var.f42200a).q(null, this.f41835f, true);
-                this.f41831a.start();
-                this.f41832b = true;
+                this.f41823a.addListener(new x00(this, i11));
+                this.f41827f = org.telegram.messenger.ns.f(z00Var.f42202a).q(null, this.f41827f, true);
+                this.f41823a.start();
+                this.f41824b = true;
             } else {
                 i11 = i18;
                 this.h = L5;
@@ -145,17 +145,17 @@ public final class y00 extends ViewGroup {
         } else {
             i11 = i18;
         }
-        int i19 = this.f41836n;
+        int i19 = this.f41828n;
         if (i19 > 0) {
             i12 = org.telegram.messenger.g0.L(40.0f) + i19;
         } else {
             i12 = i11;
         }
-        z00Var.f42203e = i12;
+        z00Var.f42205e = i12;
         setMeasuredDimension(size, this.h);
-        w00 w00Var = z00Var.f42204f;
+        w00 w00Var = z00Var.f42206f;
         if (w00Var != null) {
-            w00Var.a(z00Var.f42203e);
+            w00Var.a(z00Var.f42205e);
         }
     }
 }

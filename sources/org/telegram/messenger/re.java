@@ -1,14 +1,14 @@
 package org.telegram.messenger;
 public final class re implements Runnable {
-    public final MediaController f26280a;
+    public final MediaController f26288a;
 
     public re(MediaController mediaController) {
-        this.f26280a = mediaController;
+        this.f26288a = mediaController;
     }
 
     @Override
     public final void run() {
-        MediaController mediaController = this.f26280a;
+        MediaController mediaController = this.f26288a;
         gj gjVar = mediaController.f22377v0;
         if (gjVar == null) {
             return;

@@ -23,8 +23,8 @@ public final class o6 extends org.telegram.ui.Cells.h3 {
     public final void b(Editable editable) {
         TLRPC.TL_textWithEntities tL_textWithEntities;
         u6 u6Var = this.H;
-        gj gjVar = u6Var.f3911i2;
-        TLRPC.MessageAction messageAction = u6Var.f3910h2;
+        gj gjVar = u6Var.f3914i2;
+        TLRPC.MessageAction messageAction = u6Var.f3913h2;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             tL_textWithEntities = new TLRPC.TL_textWithEntities();
             ((TLRPC.TL_messageActionStarGift) messageAction).message = tL_textWithEntities;
@@ -41,12 +41,12 @@ public final class o6 extends org.telegram.ui.Cells.h3 {
         } else {
             return;
         }
-        CharSequence[] charSequenceArr = {u6Var.f3918p2.getText()};
+        CharSequence[] charSequenceArr = {u6Var.f3921p2.getText()};
         tL_textWithEntities.entities = si.b0(this.G).W(charSequenceArr, true, true);
         tL_textWithEntities.text = charSequenceArr[0].toString();
         gjVar.L5();
-        u6Var.f3909g2.h0(gjVar, true);
-        u6Var.f3919q2.O(true);
+        u6Var.f3912g2.h0(gjVar, true);
+        u6Var.f3922q2.O(true);
         u6Var.g1(true);
     }
 

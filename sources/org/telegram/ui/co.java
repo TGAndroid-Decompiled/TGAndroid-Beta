@@ -4,13 +4,13 @@ import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class co extends org.telegram.ui.Components.i70 {
-    public final Context f46222x;
-    public final ho f46223y;
+    public final Context f46194x;
+    public final ho f46195y;
 
     public co(ho hoVar, Context context, TLRPC.Chat chat, Context context2) {
         super(context, chat);
-        this.f46223y = hoVar;
-        this.f46222x = context2;
+        this.f46195y = hoVar;
+        this.f46194x = context2;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class co extends org.telegram.ui.Components.i70 {
         int i7;
         String str;
         org.telegram.ui.ActionBar.e6 e6Var;
-        ho hoVar = this.f46223y;
+        ho hoVar = this.f46195y;
         if (!hoVar.W || (chatFull = hoVar.Z) == null || (i7 = chatFull.invitesCount) == 0) {
             return true;
         }
-        if (hoVar.f47761b0) {
+        if (hoVar.f47751b0) {
             if (z10) {
                 str = "ApproveNewMembersEnableForLinksChannel";
             } else {
@@ -34,7 +34,7 @@ public final class co extends org.telegram.ui.Components.i70 {
         } else {
             str = "ApproveNewMembersDisableForLinks";
         }
-        Context context = this.f46222x;
+        Context context = this.f46194x;
         e6Var = ((org.telegram.ui.ActionBar.e2) hoVar).resourceProvider;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, e6Var);
         String M0 = org.telegram.messenger.hd.M0(2131754204, null);
@@ -42,10 +42,10 @@ public final class co extends org.telegram.ui.Components.i70 {
         t1Var.S = M0;
         t1Var.U = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(i7, str, new Object[0]));
         alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131754206, null), new org.telegram.ui.ActionBar.q1(this) {
-            public final co f45802b;
+            public final co f45791b;
 
             {
-                this.f45802b = this;
+                this.f45791b = this;
             }
 
             @Override
@@ -53,24 +53,24 @@ public final class co extends org.telegram.ui.Components.i70 {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        co coVar = this.f45802b;
+                        co coVar = this.f45791b;
                         coVar.setJoinRequest(z11);
-                        coVar.f46223y.X = true;
+                        coVar.f46195y.X = true;
                         return;
                     default:
                         boolean z12 = z10;
-                        co coVar2 = this.f45802b;
+                        co coVar2 = this.f45791b;
                         coVar2.setJoinRequest(z12);
-                        coVar2.f46223y.X = false;
+                        coVar2.f46195y.X = false;
                         return;
                 }
             }
         });
         alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131754205, null), new org.telegram.ui.ActionBar.q1(this) {
-            public final co f45802b;
+            public final co f45791b;
 
             {
-                this.f45802b = this;
+                this.f45791b = this;
             }
 
             @Override
@@ -78,15 +78,15 @@ public final class co extends org.telegram.ui.Components.i70 {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        co coVar = this.f45802b;
+                        co coVar = this.f45791b;
                         coVar.setJoinRequest(z11);
-                        coVar.f46223y.X = true;
+                        coVar.f46195y.X = true;
                         return;
                     default:
                         boolean z12 = z10;
-                        co coVar2 = this.f45802b;
+                        co coVar2 = this.f45791b;
                         coVar2.setJoinRequest(z12);
-                        coVar2.f46223y.X = false;
+                        coVar2.f46195y.X = false;
                         return;
                 }
             }

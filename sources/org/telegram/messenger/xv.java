@@ -8,26 +8,26 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xv implements RequestDelegate {
-    public final int f27606a;
-    public final bw f27607b;
-    public final TLRPC.EncryptedChat f27608c;
+    public final int f27608a;
+    public final bw f27609b;
+    public final TLRPC.EncryptedChat f27610c;
 
     public xv(bw bwVar, TLRPC.EncryptedChat encryptedChat, int i7) {
-        this.f27606a = i7;
-        this.f27607b = bwVar;
-        this.f27608c = encryptedChat;
+        this.f27608a = i7;
+        this.f27609b = bwVar;
+        this.f27610c = encryptedChat;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         vr messagesStorage;
         byte[] bArr;
-        int i7 = this.f27606a;
-        TLRPC.EncryptedChat encryptedChat = this.f27608c;
-        bw bwVar = this.f27607b;
+        int i7 = this.f27608a;
+        TLRPC.EncryptedChat encryptedChat = this.f27610c;
+        bw bwVar = this.f27609b;
         switch (i7) {
             case 0:
-                SparseArray sparseArray = bwVar.f22760e;
+                SparseArray sparseArray = bwVar.f22764e;
                 if (tL_error == null) {
                     TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
                     if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
@@ -42,7 +42,7 @@ public final class xv implements RequestDelegate {
                         vr messagesStorage2 = bwVar.getMessagesStorage();
                         byte[] bArr3 = messages_dhconfig.f28208p;
                         messagesStorage2.H();
-                        messagesStorage2.f27235y = bArr3;
+                        messagesStorage2.f27234y = bArr3;
                         vr messagesStorage3 = bwVar.getMessagesStorage();
                         int i11 = messages_dhconfig.f28207g;
                         messagesStorage3.H();
@@ -50,17 +50,17 @@ public final class xv implements RequestDelegate {
                         vr messagesStorage4 = bwVar.getMessagesStorage();
                         int i12 = messages_dhconfig.version;
                         messagesStorage4.H();
-                        messagesStorage4.f27234x = i12;
+                        messagesStorage4.f27233x = i12;
                         vr messagesStorage5 = bwVar.getMessagesStorage();
                         vr messagesStorage6 = bwVar.getMessagesStorage();
                         messagesStorage6.H();
-                        int i13 = messagesStorage6.f27234x;
+                        int i13 = messagesStorage6.f27233x;
                         vr messagesStorage7 = bwVar.getMessagesStorage();
                         messagesStorage7.H();
                         int i14 = messagesStorage7.E;
                         vr messagesStorage8 = bwVar.getMessagesStorage();
                         messagesStorage8.H();
-                        messagesStorage5.f27220a.c(new l2.x(messagesStorage5, i13, i14, messagesStorage8.f27235y, 7));
+                        messagesStorage5.f27219a.c(new l2.x(messagesStorage5, i13, i14, messagesStorage8.f27234y, 7));
                     }
                     byte[] bArr4 = new byte[256];
                     for (int i15 = 0; i15 < 256; i15++) {
@@ -71,7 +71,7 @@ public final class xv implements RequestDelegate {
                     encryptedChat.seq_out = 0;
                     vr messagesStorage9 = bwVar.getMessagesStorage();
                     messagesStorage9.H();
-                    BigInteger bigInteger = new BigInteger(1, messagesStorage9.f27235y);
+                    BigInteger bigInteger = new BigInteger(1, messagesStorage9.f27234y);
                     bwVar.getMessagesStorage().H();
                     BigInteger modPow = BigInteger.valueOf(messagesStorage.E).modPow(new BigInteger(1, bArr4), bigInteger);
                     BigInteger bigInteger2 = new BigInteger(1, encryptedChat.g_a);
@@ -132,7 +132,7 @@ public final class xv implements RequestDelegate {
                 sparseArray.remove(encryptedChat.f28059id);
                 return;
             default:
-                bwVar.f22760e.remove(encryptedChat.f28059id);
+                bwVar.f22764e.remove(encryptedChat.f28059id);
                 if (tL_error == null) {
                     TLRPC.EncryptedChat encryptedChat2 = (TLRPC.EncryptedChat) tLObject;
                     encryptedChat2.auth_key = encryptedChat.auth_key;

@@ -98,7 +98,7 @@ public abstract class m0 extends LinearLayout implements rh.a, te.i {
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f57090a;
+            Object obj = eVar.f57094a;
             float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, c10);
             ((l0) obj).setAlpha(c10);
             ((l0) obj).setScaleX(T1);
@@ -133,16 +133,16 @@ public abstract class m0 extends LinearLayout implements rh.a, te.i {
             if (!this.f18440f) {
                 max = 44;
             } else {
-                max = (int) Math.max(44.0f, (i20.A(4.0f, this.f18438c.rows.size() - 1, this.f18439e - org.telegram.messenger.g0.L(16.0f)) / this.f18438c.rows.size()) / org.telegram.messenger.g0.f23608p);
+                max = (int) Math.max(44.0f, (i20.A(4.0f, this.f18438c.rows.size() - 1, this.f18439e - org.telegram.messenger.g0.L(16.0f)) / this.f18438c.rows.size()) / org.telegram.messenger.g0.f23610p);
             }
             this.h = max;
             int L = org.telegram.messenger.g0.L(max);
             Iterator it = this.f18446y.iterator();
             while (it.hasNext()) {
                 te.e eVar = (te.e) it.next();
-                int childCount = ((l0) eVar.f57090a).getChildCount();
+                int childCount = ((l0) eVar.f57094a).getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = ((l0) eVar.f57090a).getChildAt(i10);
+                    View childAt = ((l0) eVar.f57094a).getChildAt(i10);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != L) {
                         layoutParams.height = L;

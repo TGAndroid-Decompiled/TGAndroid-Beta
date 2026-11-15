@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.graphics.RectF;
 public final class na implements org.telegram.messenger.pr {
-    public final int f49528a;
-    public final Object f49529b;
+    public final int f49527a;
+    public final Object f49528b;
 
     public na(Object obj, int i7) {
-        this.f49528a = i7;
-        this.f49529b = obj;
+        this.f49527a = i7;
+        this.f49528b = obj;
     }
 
     @Override
     public final void a(int i7) {
         oq0 oq0Var;
-        int i10 = this.f49528a;
-        Object obj = this.f49529b;
+        int i10 = this.f49527a;
+        Object obj = this.f49528b;
         switch (i10) {
             case 0:
                 ((lb) obj).Z0(true);

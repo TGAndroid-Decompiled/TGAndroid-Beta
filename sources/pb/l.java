@@ -159,9 +159,9 @@ public final class l implements Runnable {
                 ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f54961c;
                 ArrayList arrayList3 = (ArrayList) this.f54960b;
                 shortcutInfoCompatSaverImpl.e(arrayList3);
-                File file = shortcutInfoCompatSaverImpl.f2836f;
+                File file = shortcutInfoCompatSaverImpl.f2839f;
                 ld0 ld0Var = new ld0(file);
-                File file2 = (File) ld0Var.f48977c;
+                File file2 = (File) ld0Var.f48973c;
                 FileOutputStream fileOutputStream = null;
                 try {
                     J = ld0Var.J();
@@ -234,11 +234,11 @@ public final class l implements Runnable {
                 }
             case 9:
                 ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f54961c;
-                a0.f fVar = shortcutInfoCompatSaverImpl2.f2833b;
+                a0.f fVar = shortcutInfoCompatSaverImpl2.f2836b;
                 try {
                     ShortcutInfoCompatSaverImpl.f((File) this.f54960b);
-                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f2837g);
-                    fVar.putAll(x4.d.c(shortcutInfoCompatSaverImpl2.f2836f, shortcutInfoCompatSaverImpl2.f2832a));
+                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f2840g);
+                    fVar.putAll(x4.d.c(shortcutInfoCompatSaverImpl2.f2839f, shortcutInfoCompatSaverImpl2.f2835a));
                     shortcutInfoCompatSaverImpl2.e(new ArrayList(fVar.values()));
                     return;
                 } catch (Exception e18) {
@@ -247,8 +247,8 @@ public final class l implements Runnable {
                 }
             case 10:
                 ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f54961c;
-                shortcutInfoCompatSaverImpl3.f2833b.clear();
-                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f2834c;
+                shortcutInfoCompatSaverImpl3.f2836b.clear();
+                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f2837c;
                 Iterator it = ((a0.e) fVar2.values()).iterator();
                 while (it.hasNext()) {
                     ((m9.y) it.next()).cancel(false);
@@ -257,7 +257,7 @@ public final class l implements Runnable {
                 shortcutInfoCompatSaverImpl3.h((c0.m) this.f54960b);
                 return;
             case 11:
-                if (!(((c0.m) this.f54960b).f4056a instanceof c0.a)) {
+                if (!(((c0.m) this.f54960b).f4059a instanceof c0.a)) {
                     try {
                         ((Runnable) this.f54961c).run();
                         ((c0.m) this.f54960b).k(null);

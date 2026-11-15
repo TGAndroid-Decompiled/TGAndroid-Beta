@@ -13,16 +13,16 @@ public final class zp0 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         super.onAnimationEnd(animator);
         aq0 aq0Var = this.f54006a;
-        PhotoViewer photoViewer = aq0Var.f45486c;
+        PhotoViewer photoViewer = aq0Var.f45480c;
         photoViewer.f42834n4 = 0;
         photoViewer.D1();
         photoViewer.M0.setAlpha(255);
         photoViewer.f42763f0.invalidate();
         photoViewer.Q0.setTranslationY(0.0f);
         if (photoViewer.f42888t4) {
-            PhotoViewer.T(photoViewer, aq0Var.f45485b.intValue());
+            PhotoViewer.T(photoViewer, aq0Var.f45479b.intValue());
         }
-        sq0 sq0Var = aq0Var.f45484a;
+        sq0 sq0Var = aq0Var.f45478a;
         if (sq0Var != null) {
             sq0Var.d();
         }

@@ -122,7 +122,7 @@ public abstract class n0 {
     }
 
     public static boolean F(k0 k0Var) {
-        if (k0Var.f54272i && !k0Var.f54274k && ((org.telegram.messenger.h0) np.s1(k0Var.f54267b).f25448y7.f25852j0.f14544b).f24006c) {
+        if (k0Var.f54272i && !k0Var.f54274k && ((org.telegram.messenger.h0) np.s1(k0Var.f54267b).f25451y7.f25854j0.f14544b).f24009c) {
             return true;
         }
         return false;
@@ -264,7 +264,7 @@ public abstract class n0 {
     }
 
     public static int f(int i7) {
-        return Math.round(i7 / org.telegram.messenger.g0.f23608p);
+        return Math.round(i7 / org.telegram.messenger.g0.f23610p);
     }
 
     public static String g(String str, String str2) {
@@ -313,9 +313,9 @@ public abstract class n0 {
                     if (k0Var.f54282s == null) {
                         return null;
                     }
-                    y0 y0Var = new y0(org.telegram.messenger.t0.f26600b, k0Var.f54266a, k0Var.f54282s);
+                    y0 y0Var = new y0(org.telegram.messenger.t0.f26609b, k0Var.f54266a, k0Var.f54282s);
                     try {
-                        str2 = hd.E0().f24129y.toLanguageTag();
+                        str2 = hd.E0().f24132y.toLanguageTag();
                     } catch (Exception unused) {
                         str2 = null;
                     }
@@ -359,7 +359,7 @@ public abstract class n0 {
             String str2 = str;
             vr a02 = vr.a0(k0Var.f54267b);
             long j3 = k0Var.f54268c;
-            a02.f27220a.c(new fk(k0Var.d, 8, j3, a02, str2));
+            a02.f27219a.c(new fk(k0Var.d, 8, j3, a02, str2));
         }
         hashMap.clear();
     }
@@ -449,7 +449,7 @@ public abstract class n0 {
                     }
                     byteArrayOutputStream.write(bArr2, 0, read);
                 }
-                if (r2.f26198a) {
+                if (r2.f26206a) {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append("widget payload: ");
                     if (z10) {
@@ -559,7 +559,7 @@ public abstract class n0 {
             Object obj = arrayList.get(i7);
             i7++;
             hk0 hk0Var2 = (hk0) obj;
-            if (hk0Var == null || hk0Var2.f35278d0 > hk0Var.f35278d0) {
+            if (hk0Var == null || hk0Var2.f35269d0 > hk0Var.f35269d0) {
                 hk0Var = hk0Var2;
             }
         }

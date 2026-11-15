@@ -18,9 +18,9 @@ public final class d implements b3.p {
     public void b() {
         long j3;
         h hVar = this.f21249a;
-        synchronized (c3.b.f4085b) {
+        synchronized (c3.b.f4088b) {
             try {
-                if (c3.b.f4086c) {
+                if (c3.b.f4089c) {
                     j3 = c3.b.d;
                 } else {
                     j3 = -9223372036854775807L;

@@ -3,7 +3,7 @@ package org.telegram.ui.Cells;
 import j$.util.Comparator$CC;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.telegram.messenger.dq;
+import org.telegram.messenger.cq;
 import org.telegram.messenger.gj;
 import org.telegram.messenger.m10;
 import org.telegram.messenger.np;
@@ -106,7 +106,7 @@ public final class d6 {
         ConnectionsManager.getInstance(i11).sendRequest(tL_channels_getMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                org.telegram.messenger.g0.h3(new di.v7(d6.this, tLObject, vrVar, j3, i7, arrayList));
+                org.telegram.messenger.g0.h3(new di.u7(d6.this, tLObject, vrVar, j3, i7, arrayList));
             }
         });
     }
@@ -145,7 +145,7 @@ public final class d6 {
             int i11 = this.f30140a;
             long e10 = m10.i(i11).e();
             vr a02 = vr.a0(i11);
-            a02.f27220a.c(new dq(this, i7, a02, j3, e10, i10));
+            a02.f27219a.c(new cq(this, i7, a02, j3, e10, i10));
             return;
         }
         this.f30143e++;

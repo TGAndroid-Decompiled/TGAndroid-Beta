@@ -144,21 +144,21 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
             case 12:
                 an anVar = (an) this.f20122b;
                 anVar.E8();
-                ez.Y(anVar.getAccountInstance(), (Uri) this.f20123c, anVar.f45259k6, anVar.E5, anVar.f45281m4, null, anVar.G5, z10, i7, anVar.Y8());
+                ez.Y(anVar.getAccountInstance(), (Uri) this.f20123c, anVar.f45258k6, anVar.E5, anVar.f45280m4, null, anVar.G5, z10, i7, anVar.Y8());
                 return;
             case 13:
             default:
                 lm lmVar = (lm) this.f20122b;
                 gj gjVar = (gj) this.f20123c;
                 if (z10) {
-                    lmVar.f49005a.getMessagesController().v(gjVar.f23817k.f28072id, i7, m5.o(gjVar.f23817k.peer_id), null, false);
+                    lmVar.f49001a.getMessagesController().v(gjVar.f23819k.f28072id, i7, m5.o(gjVar.f23819k.peer_id), null, false);
                     return;
                 }
                 return;
             case 14:
                 an anVar2 = (an) this.f20122b;
-                anVar2.getSendMessagesHelper().r0(cz.b((String) this.f20123c, anVar2.f45259k6, anVar2.E5, anVar2.f45281m4, null, false, null, null, null, z10, i7, 0, null, false));
-                anVar2.f45118a0.setFieldText("");
+                anVar2.getSendMessagesHelper().r0(cz.b((String) this.f20123c, anVar2.f45258k6, anVar2.E5, anVar2.f45280m4, null, false, null, null, null, z10, i7, 0, null, false));
+                anVar2.f45117a0.setFieldText("");
                 anVar2.D9(false);
                 return;
         }
@@ -172,7 +172,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
     @Override
     public void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
         gj gjVar = (gj) this.f20123c;
-        an anVar = ((oh) this.f20122b).f49969p;
+        an anVar = ((oh) this.f20122b).f49959p;
         Bundle bundle = new Bundle();
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
@@ -180,7 +180,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
             bundle.putLong("chat_id", -j3);
         }
         bundle.putInt("report_reaction_message_id", gjVar.e1());
-        bundle.putLong("report_reaction_from_dialog_id", anVar.f45259k6);
+        bundle.putLong("report_reaction_from_dialog_id", anVar.f45258k6);
         anVar.presentFragment(new ProfileActivity(bundle, null));
         anVar.P7(true);
     }
@@ -200,11 +200,11 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
         int ordinal = c5Var.ordinal();
         if (ordinal != 0) {
             if (ordinal == 3) {
-                ib ibVar = dbVar.f46348a;
+                ib ibVar = dbVar.f46320a;
                 if (user != null) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", user.f28200id);
-                    e2 e2Var = ibVar.f48013n;
+                    e2 e2Var = ibVar.f48003n;
                     if (e2Var.getMessagesController().E(bundle, e2Var, null, null)) {
                         e2Var.presentFragment(new an(bundle));
                         return;
@@ -247,13 +247,13 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
             if ((view instanceof n3) && adapter.F != null) {
                 n3 n3Var = (n3) view;
                 if (g4Var.I0 == 0) {
-                    if ((!n3Var.f49431c || f10 >= view.getMeasuredWidth() / 2) && !n3Var.d) {
+                    if ((!n3Var.f49430c || f10 >= view.getMeasuredWidth() / 2) && !n3Var.d) {
                         TLObject f22 = np.s1(g4Var.Y).f2("previews");
                         if (f22 instanceof TLRPC.TL_user) {
                             g4Var.N(adapter.F.f28206id, (TLRPC.User) f22);
                             return;
                         }
-                        int i10 = m10.f24934t0;
+                        int i10 = m10.f24940t0;
                         long j3 = adapter.F.f28206id;
                         g4Var.Z(true);
                         TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
@@ -265,7 +265,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) adapter.d.get(i7);
                 TL_iv.PageBlock x10 = g4.x(pageBlock);
                 if (x10 instanceof u3) {
-                    x10 = ((u3) x10).f51729b;
+                    x10 = ((u3) x10).f51730b;
                 }
                 if (x10 instanceof TL_iv.pageBlockChannel) {
                     np.s1(g4Var.Y).y3(t3.K(((TL_iv.pageBlockChannel) x10).channel, false), g4Var.N, 2, null);
@@ -277,15 +277,15 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                     View w10 = g4.w(view);
                     if (w10 instanceof j1) {
                         g4Var.d = null;
-                        g4Var.f49452f = null;
-                        if (adapter.f46541e.indexOf(pageBlock) >= 0) {
+                        g4Var.f49451f = null;
+                        if (adapter.f46531e.indexOf(pageBlock) >= 0) {
                             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) x10;
                             pageblockdetails.open = !pageblockdetails.open;
                             int b10 = adapter.b();
                             adapter.M();
                             int abs = Math.abs(adapter.b() - b10);
                             j1 j1Var = (j1) w10;
-                            AnimatedArrowDrawable animatedArrowDrawable = j1Var.f48185f;
+                            AnimatedArrowDrawable animatedArrowDrawable = j1Var.f48170f;
                             if (pageblockdetails.open) {
                                 f12 = 0.0f;
                             } else {
@@ -354,12 +354,12 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                 dd ddVar = G0;
                 if (G0 == null) {
                     ?? obj = new Object();
-                    obj.f23058a = tL_langPackLanguage.native_name;
-                    obj.f23059b = tL_langPackLanguage.name;
-                    obj.f23060c = tL_langPackLanguage.lang_code;
-                    obj.f23061e = tL_langPackLanguage.base_lang_code;
-                    obj.f23062f = tL_langPackLanguage.plural_code;
-                    obj.f23063g = tL_langPackLanguage.rtl;
+                    obj.f23066a = tL_langPackLanguage.native_name;
+                    obj.f23067b = tL_langPackLanguage.name;
+                    obj.f23068c = tL_langPackLanguage.lang_code;
+                    obj.f23069e = tL_langPackLanguage.base_lang_code;
+                    obj.f23070f = tL_langPackLanguage.plural_code;
+                    obj.f23071g = tL_langPackLanguage.rtl;
                     if (tL_langPackLanguage.official) {
                         obj.d = "remote";
                         ddVar = obj;
@@ -368,7 +368,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                         ddVar = obj;
                     }
                 }
-                hd.E0().c(ddVar, true, false, false, true, m10.f24934t0, null);
+                hd.E0().c(ddVar, true, false, false, true, m10.f24940t0, null);
                 launchActivity.y0(true);
                 return;
             default:
@@ -376,8 +376,8 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                 boolean[] zArr = (boolean[]) this.f20123c;
                 boolean z10 = zArr[0];
                 boolean z11 = zArr[1];
-                yw ywVar = (yw) trVar.f51653b;
-                ArrayList arrayList = (ArrayList) trVar.f51654c;
+                yw ywVar = (yw) trVar.f51654b;
+                ArrayList arrayList = (ArrayList) trVar.f51655c;
                 ywVar.getClass();
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
@@ -412,8 +412,8 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
     @Override
     public void j(boolean z10) {
         long j3 = ((TLRPC.User) this.f20123c).f28200id;
-        an anVar = ((si) this.f20122b).f51228b;
-        long j10 = anVar.f45358s4;
+        an anVar = ((si) this.f20122b).f51224b;
+        long j10 = anVar.f45357s4;
         if (j3 != j10) {
             return;
         }
@@ -436,7 +436,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
             Bitmap bitmap = (Bitmap) pair.second;
             p3 p3Var = ymVar.f53545f;
             if (p3Var != null && longValue == p3Var.h(ymVar.f53555q ? 1 : 0) && bitmap != null) {
-                ra0Var.f38938x = bitmap;
+                ra0Var.f38935x = bitmap;
                 ra0Var.i();
             }
         }
@@ -474,10 +474,10 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                 boolean z11 = false;
                 qnVar.O0 = false;
                 if (j3 != 0) {
-                    qnVar.f50691w0 = j3;
+                    qnVar.f50690w0 = j3;
                     TLRPC.Chat M0 = qnVar.getMessagesController().M0(Long.valueOf(j3));
-                    qnVar.f50693x0 = M0;
-                    TLRPC.ChatFull chatFull = qnVar.f50695y0;
+                    qnVar.f50692x0 = M0;
+                    TLRPC.ChatFull chatFull = qnVar.f50694y0;
                     if (chatFull != null) {
                         chatFull.hidden_prehistory = true;
                     }
@@ -489,8 +489,8 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                     if (M0.forum_sidebar != qnVar.I0) {
                         z11 = true;
                     }
-                    qnVar.getMessagesController().b5(qnVar.f50691w0, qnVar.F0, qnVar.H0, qnVar.I0);
-                    TLRPC.Chat chat = qnVar.f50693x0;
+                    qnVar.getMessagesController().b5(qnVar.f50690w0, qnVar.F0, qnVar.H0, qnVar.I0);
+                    TLRPC.Chat chat = qnVar.f50692x0;
                     chat.forum = qnVar.F0;
                     chat.forum_tabs = qnVar.H0;
                     chat.forum_sidebar = qnVar.I0;
@@ -515,12 +515,12 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                 po poVar = (po) this.f20122b;
                 Runnable runnable = (Runnable) this.f20123c;
                 if (j3 != 0) {
-                    to toVar2 = poVar.f50329y.d;
-                    if (toVar2.f51624s) {
-                        toVar2.f51625w.set(0, toVar2.getMessagesController().M0(Long.valueOf(j3)));
+                    to toVar2 = poVar.f50320y.d;
+                    if (toVar2.f51625s) {
+                        toVar2.f51626w.set(0, toVar2.getMessagesController().M0(Long.valueOf(j3)));
                     } else {
                         toVar2.F = j3;
-                        toVar2.f51621f = toVar2.getMessagesController().M0(Long.valueOf(j3));
+                        toVar2.f51622f = toVar2.getMessagesController().M0(Long.valueOf(j3));
                     }
                     runnable.run();
                     return;
@@ -533,7 +533,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
     @Override
     public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, u91 u91Var) {
         y5 y5Var = (y5) this.f20122b;
-        ArrayList arrayList2 = y5Var.f53415c;
+        ArrayList arrayList2 = y5Var.f53419c;
         ((yw) this.f20123c).finishFragment();
         s2 s2Var = null;
         int i11 = 0;
@@ -546,7 +546,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
             int i13 = 0;
             while (true) {
                 if (i13 < y5Var.d.size()) {
-                    if (((s2) y5Var.d.get(i13)).f26391a == ((ur) arrayList.get(i12)).f26860a) {
+                    if (((s2) y5Var.d.get(i13)).f26401a == ((ur) arrayList.get(i12)).f26861a) {
                         s2Var = (s2) y5Var.d.get(i13);
                         break;
                     }
@@ -558,23 +558,23 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
             }
             if (!z12) {
                 int i14 = 2;
-                if (y5Var.getMessagesController().f25392s7.c(y5Var.f53416e) == 2) {
+                if (y5Var.getMessagesController().f25395s7.c(y5Var.f53420e) == 2) {
                     i14 = 3;
                 }
                 ArrayList arrayList3 = y5Var.d;
-                s2 s2Var2 = new s2(((ur) arrayList.get(i12)).f26860a, i14);
+                s2 s2Var2 = new s2(((ur) arrayList.get(i12)).f26861a, i14);
                 arrayList3.add(s2Var2);
                 s2Var = s2Var2;
             }
             i12++;
         }
-        y5Var.getMessagesController().f25392s7.h(y5Var.f53416e, y5Var.d);
+        y5Var.getMessagesController().f25395s7.h(y5Var.f53420e, y5Var.d);
         y5Var.Z();
         if (s2Var != null) {
             int i15 = 0;
             while (true) {
                 if (i15 < arrayList2.size()) {
-                    if (((x5) arrayList2.get(i15)).f53097c != null && ((x5) arrayList2.get(i15)).f53097c.f26391a == s2Var.f26391a) {
+                    if (((x5) arrayList2.get(i15)).f53096c != null && ((x5) arrayList2.get(i15)).f53096c.f26401a == s2Var.f26401a) {
                         i11 = i15;
                         break;
                     }
@@ -583,7 +583,7 @@ public final class d implements o, k0, dt, d4, u, hj0, q1, sw, u4, r4, yo, nc, v
                     break;
                 }
             }
-            y5Var.f53414b.v0(i11);
+            y5Var.f53418b.v0(i11);
             org.telegram.messenger.g0.i3(new u5(0, y5Var, s2Var), 150L);
         }
         return true;

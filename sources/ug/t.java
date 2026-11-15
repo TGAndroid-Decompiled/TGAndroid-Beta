@@ -67,12 +67,12 @@ public final class t implements View.OnClickListener {
                     }
                 } else if (i10 == 19 || i10 == 32 || j0Var.s1()) {
                     e3 e3Var = j0Var.Y1;
-                    if (e3Var.f23247a) {
+                    if (e3Var.f23254a) {
                         j0Var.A2.f58271w.callOnClick();
                         e3 e3Var2 = j0Var.Y1;
-                        if (e3Var2.d && e3Var2.f23256l) {
+                        if (e3Var2.d && e3Var2.f23263l) {
                             v vVar = new v(j0Var, 1);
-                            if (e3Var2.f23250e) {
+                            if (e3Var2.f23257e) {
                                 j3 = 300;
                             } else {
                                 j3 = 0;
@@ -81,7 +81,7 @@ public final class t implements View.OnClickListener {
                             return;
                         }
                         return;
-                    } else if (e3Var.d && wg.q.i() && !j0Var.Y1.f23257m) {
+                    } else if (e3Var.d && wg.q.i() && !j0Var.Y1.f23264m) {
                         wg.h.i(j0Var.W1, j0Var);
                         return;
                     } else {

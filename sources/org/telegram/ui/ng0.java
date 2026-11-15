@@ -18,14 +18,14 @@ public final class ng0 extends ah.o {
             case 0:
                 super.onLayout(z10, i7, i10, i11, i12);
                 qg0 qg0Var = (qg0) this.N;
-                qg0Var.f50613h2 = org.telegram.messenger.g0.L(64.0f) + getMeasuredHeight();
-                qg0Var.f50612g2.G();
+                qg0Var.f50604h2 = org.telegram.messenger.g0.L(64.0f) + getMeasuredHeight();
+                qg0Var.f50603g2.G();
                 boolean z11 = this.M;
                 boolean z12 = qg0Var.d;
                 if (z11 != z12) {
                     this.M = z12;
                     if (z12) {
-                        org.telegram.ui.Components.uj0 uj0Var = qg0Var.f35936o1;
+                        org.telegram.ui.Components.uj0 uj0Var = qg0Var.f35931o1;
                         pi.l lVar = new pi.l(qg0Var.getContext(), 2, 0.6f);
                         lVar.f58480a = 1;
                         lVar.f55123p = org.telegram.messenger.g0.L(36.0f);
@@ -45,7 +45,7 @@ public final class ng0 extends ah.o {
                 if (z13 != z14) {
                     this.M = z14;
                     if (z14) {
-                        org.telegram.ui.Components.uj0 uj0Var2 = c1Var.f35936o1;
+                        org.telegram.ui.Components.uj0 uj0Var2 = c1Var.f35931o1;
                         pi.l lVar2 = new pi.l(c1Var.getContext(), 2, 0.6f);
                         lVar2.f58480a = 1;
                         lVar2.f55123p = org.telegram.messenger.g0.L(36.0f);

@@ -7,39 +7,39 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class p50 extends ReplacementSpan {
-    public final Paint f50154a;
-    public final ImageReceiver f50155b;
-    public final float f50156c;
+    public final Paint f50131a;
+    public final ImageReceiver f50132b;
+    public final float f50133c;
     public float d;
-    public final View f50157e;
-    public boolean f50158f;
+    public final View f50134e;
+    public boolean f50135f;
     public float h;
-    public int f50159n;
+    public int f50136n;
 
     public p50(float f10, int i7, View view) {
         e5 e5Var = new e5(this, 3);
-        this.f50158f = true;
-        this.f50159n = 255;
+        this.f50135f = true;
+        this.f50136n = 255;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f50155b = imageReceiver;
+        this.f50132b = imageReceiver;
         imageReceiver.d = i7;
-        this.f50156c = f10;
+        this.f50133c = f10;
         Paint paint = new Paint(1);
-        this.f50154a = paint;
+        this.f50131a = paint;
         paint.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), 855638016);
-        View view2 = this.f50157e;
+        View view2 = this.f50134e;
         if (view2 != view) {
             if (view2 != null) {
                 view2.removeOnAttachStateChangeListener(e5Var);
-                if (this.f50157e.isAttachedToWindow() && !view.isAttachedToWindow()) {
+                if (this.f50134e.isAttachedToWindow() && !view.isAttachedToWindow()) {
                     imageReceiver.R();
                 }
             }
-            View view3 = this.f50157e;
+            View view3 = this.f50134e;
             if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
                 imageReceiver.P();
             }
-            this.f50157e = view;
+            this.f50134e = view;
             imageReceiver.H0(view);
             if (view != null) {
                 view.addOnAttachStateChangeListener(e5Var);
@@ -50,35 +50,35 @@ public final class p50 extends ReplacementSpan {
     public final void a(float f10) {
         float L = org.telegram.messenger.g0.L(f10);
         this.d = L;
-        this.f50155b.J0((int) L);
+        this.f50132b.J0((int) L);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        boolean z10 = this.f50158f;
-        Paint paint2 = this.f50154a;
-        if (z10 && this.f50159n != paint.getAlpha()) {
+        boolean z10 = this.f50135f;
+        Paint paint2 = this.f50131a;
+        if (z10 && this.f50136n != paint.getAlpha()) {
             int alpha = paint.getAlpha();
-            this.f50159n = alpha;
+            this.f50136n = alpha;
             paint2.setAlpha(alpha);
-            paint2.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.j6.r1(this.f50159n / 255.0f, 855638016));
+            paint2.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.j6.r1(this.f50136n / 255.0f, 855638016));
         }
         float f11 = this.h + f10;
-        float L = (((i11 + i13) / 2.0f) + 0.0f) - (org.telegram.messenger.g0.L(this.f50156c) / 2.0f);
-        if (this.f50158f) {
+        float L = (((i11 + i13) / 2.0f) + 0.0f) - (org.telegram.messenger.g0.L(this.f50133c) / 2.0f);
+        if (this.f50135f) {
             RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(f11, L, org.telegram.messenger.g0.L(this.f50156c) + f11, org.telegram.messenger.g0.L(this.f50156c) + L);
+            rectF.set(f11, L, org.telegram.messenger.g0.L(this.f50133c) + f11, org.telegram.messenger.g0.L(this.f50133c) + L);
             float f12 = this.d;
             canvas.drawRoundRect(rectF, f12, f12, paint2);
         }
-        ImageReceiver imageReceiver = this.f50155b;
-        imageReceiver.y0(f11, L, org.telegram.messenger.g0.L(this.f50156c), org.telegram.messenger.g0.L(this.f50156c));
+        ImageReceiver imageReceiver = this.f50132b;
+        imageReceiver.y0(f11, L, org.telegram.messenger.g0.L(this.f50133c), org.telegram.messenger.g0.L(this.f50133c));
         imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
         imageReceiver.h(canvas, null);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        return org.telegram.messenger.g0.L(this.f50156c);
+        return org.telegram.messenger.g0.L(this.f50133c);
     }
 }

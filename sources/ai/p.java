@@ -7,34 +7,34 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.np;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class p implements Runnable {
-    public final int f1427a;
-    public final s f1428b;
+    public final int f1424a;
+    public final t f1425b;
 
-    public p(s sVar, int i7) {
-        this.f1427a = i7;
-        this.f1428b = sVar;
+    public p(t tVar, int i7) {
+        this.f1424a = i7;
+        this.f1425b = tVar;
     }
 
     @Override
     public final void run() {
         int i7;
         CountDownLatch e10;
-        switch (this.f1427a) {
+        switch (this.f1424a) {
             case 0:
-                DictationAsr.D(this.f1428b);
+                DictationAsr.D(this.f1425b);
                 return;
             case 1:
-                s sVar = this.f1428b;
+                t tVar = this.f1425b;
                 DictationAsr.r().mkdirs();
-                if (i1.d() && (e10 = i1.e()) != null) {
+                if (j1.d() && (e10 = j1.e()) != null) {
                     try {
                         e10.await(20000L, TimeUnit.MILLISECONDS);
                     } catch (InterruptedException unused) {
                     }
                 }
-                ArrayList a10 = i1.a();
+                ArrayList a10 = j1.a();
                 Future submit = DictationAsr.f42583f.submit(new aa.s(a10, 1));
-                int u10 = DictationAsr.u(sVar.a(), i1.f(a10, sVar.f1531b), sVar);
+                int u10 = DictationAsr.u(tVar.a(), j1.f(a10, tVar.f1540b), tVar);
                 try {
                     i7 = ((Integer) submit.get()).intValue();
                 } catch (Exception unused2) {
@@ -52,20 +52,20 @@ public final class p implements Runnable {
                         z11 = true;
                     }
                 }
-                sVar.h = false;
+                tVar.h = false;
                 if (z10) {
-                    np.e1().edit().putLong("tinyasr_checked_" + sVar.f1530a, System.currentTimeMillis()).apply();
+                    np.e1().edit().putLong("tinyasr_checked_" + tVar.f1539a, System.currentTimeMillis()).apply();
                 }
-                if (DictationAsr.w(sVar) && (z11 || sVar.d == 0)) {
-                    sVar.f1535g = true;
-                    DictationAsr.d.execute(new p(sVar, 2));
-                } else if (!DictationAsr.w(sVar)) {
-                    org.telegram.messenger.g0.h3(new q(false, sVar));
+                if (DictationAsr.w(tVar) && (z11 || tVar.d == 0)) {
+                    tVar.f1544g = true;
+                    DictationAsr.d.execute(new p(tVar, 2));
+                } else if (!DictationAsr.w(tVar)) {
+                    org.telegram.messenger.g0.h3(new q(false, tVar));
                 }
                 DictationAsr.o();
                 return;
             default:
-                DictationAsr.D(this.f1428b);
+                DictationAsr.D(this.f1425b);
                 return;
         }
     }

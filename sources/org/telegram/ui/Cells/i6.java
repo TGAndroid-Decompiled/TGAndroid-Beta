@@ -29,7 +29,7 @@ public final class i6 extends FrameLayout {
         this.f30439c = radioButton;
         radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
         org.telegram.ui.ActionBar.q6.O(radioButton, org.telegram.ui.ActionBar.j6.D5, org.telegram.ui.ActionBar.j6.E5, e6Var);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i7 = 5;
         } else {
@@ -47,13 +47,13 @@ public final class i6 extends FrameLayout {
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f28957j5, e6Var);
         i20.p(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView.setGravity(i11 | 16);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -76,14 +76,14 @@ public final class i6 extends FrameLayout {
         this.f30438b = textView2;
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29241y6, e6Var);
         textView2.setTextSize(1, 14.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i15 = 5;
         } else {
             i15 = 3;
         }
         textView2.setGravity(i15 | 16);
         textView2.setVisibility(8);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         int i19 = (z12 ? 5 : 3) | 48;
         if (z12) {
             i16 = 21;

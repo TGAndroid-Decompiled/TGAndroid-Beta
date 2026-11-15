@@ -15,12 +15,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class v21 extends org.telegram.ui.Components.tj0 {
-    public final Context f52110c;
+    public final Context f52108c;
     public final SessionsActivity d;
 
     public v21(SessionsActivity sessionsActivity, Context context) {
         this.d = sessionsActivity;
-        this.f52110c = context;
+        this.f52108c = context;
         C(true);
     }
 
@@ -193,9 +193,9 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                                     tL_authorization.app_name = "Telegram Android";
                                     tL_authorization.app_version = "";
                                     try {
-                                        PackageInfo packageInfo = org.telegram.messenger.t0.f26600b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26600b.getPackageName(), 0);
+                                        PackageInfo packageInfo = org.telegram.messenger.t0.f26609b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26609b.getPackageName(), 0);
                                         tL_authorization.app_version = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
-                                        boolean z11 = org.telegram.messenger.r2.f26198a;
+                                        boolean z11 = org.telegram.messenger.r2.f26206a;
                                         StringBuilder sb3 = new StringBuilder();
                                         sb3.append(tL_authorization.app_version);
                                         sb3.append(" beta");
@@ -362,7 +362,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
         int i23;
         int i24;
         int i25;
-        Context context = this.f52110c;
+        Context context = this.f52108c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -372,7 +372,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                             int i26 = sessionsActivity.f43335w;
                             ?? frameLayout2 = new FrameLayout(context);
                             frameLayout2.f31353s = new org.telegram.ui.Components.u5((View) frameLayout2);
-                            frameLayout2.f31355x = org.telegram.messenger.m10.f24934t0;
+                            frameLayout2.f31355x = org.telegram.messenger.m10.f24940t0;
                             LinearLayout linearLayout = new LinearLayout(context);
                             frameLayout2.f31354w = linearLayout;
                             int i27 = 0;
@@ -384,7 +384,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                             int i30 = 21;
                             int i31 = 3;
                             if (i26 == 1) {
-                                boolean z10 = org.telegram.messenger.hd.f24101a0;
+                                boolean z10 = org.telegram.messenger.hd.f24104a0;
                                 if (z10) {
                                     i22 = 5;
                                 } else {
@@ -407,7 +407,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                                 org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
                                 frameLayout2.h = i9Var;
                                 i9Var.setRoundRadius(org.telegram.messenger.g0.L(10.0f));
-                                boolean z11 = org.telegram.messenger.hd.f24101a0;
+                                boolean z11 = org.telegram.messenger.hd.f24104a0;
                                 if (z11) {
                                     i24 = 5;
                                 } else {
@@ -428,7 +428,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                                 org.telegram.ui.Components.i9 i9Var2 = new org.telegram.ui.Components.i9(context);
                                 frameLayout2.f31350f = i9Var2;
                                 i9Var2.setRoundRadius(org.telegram.messenger.g0.L(10.0f));
-                                boolean z12 = org.telegram.messenger.hd.f24101a0;
+                                boolean z12 = org.telegram.messenger.hd.f24104a0;
                                 if (z12) {
                                     i10 = 5;
                                 } else {
@@ -449,7 +449,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                                 org.telegram.ui.Components.i9 i9Var3 = new org.telegram.ui.Components.i9(context);
                                 frameLayout2.h = i9Var3;
                                 i9Var3.setRoundRadius(org.telegram.messenger.g0.L(10.0f));
-                                boolean z13 = org.telegram.messenger.hd.f24101a0;
+                                boolean z13 = org.telegram.messenger.hd.f24104a0;
                                 if (z13) {
                                     i12 = 5;
                                 } else {
@@ -468,7 +468,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                                     i14 = 0;
                                 }
                                 frameLayout2.addView(i9Var3, c8.ja.d(42, 42.0f, i35, f18, 9.0f, i14, 0.0f));
-                                boolean z14 = org.telegram.messenger.hd.f24101a0;
+                                boolean z14 = org.telegram.messenger.hd.f24104a0;
                                 if (z14) {
                                     i15 = 5;
                                 } else {
@@ -502,7 +502,7 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                             textView.setSingleLine(true);
                             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                             textView.setEllipsize(truncateAt);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 i17 = 5;
                             } else {
                                 i17 = 3;
@@ -517,20 +517,20 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                                 f11 = 13.0f;
                             }
                             textView2.setTextSize(1, f11);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 i18 = 3;
                             } else {
                                 i18 = 5;
                             }
                             textView2.setGravity(i18 | 48);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 linearLayout.addView(textView2, c8.ja.t(-2, -1, 51, 0, 2, 0, 0));
                                 linearLayout.addView(textView, c8.ja.q(0, -1, 1.0f, 53, 10, 0, 0, 0));
                             } else {
                                 linearLayout.addView(textView, c8.ja.q(0, -1, 1.0f, 51, 0, 0, 10, 0));
                                 linearLayout.addView(textView2, c8.ja.t(-2, -1, 53, 0, 2, 0, 0));
                             }
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 if (i26 != 0) {
                                     i28 = 21;
                                 }
@@ -552,13 +552,13 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                             org.telegram.messenger.i20.p(textView3, 1, f12, 1, 1);
                             textView3.setSingleLine(true);
                             textView3.setEllipsize(truncateAt);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 i19 = 5;
                             } else {
                                 i19 = 3;
                             }
                             textView3.setGravity(i19 | 48);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 i20 = 5;
                             } else {
                                 i20 = 3;
@@ -581,13 +581,13 @@ public final class v21 extends org.telegram.ui.Components.tj0 {
                             org.telegram.messenger.i20.p(textView4, 1, f20, 1, 1);
                             textView4.setSingleLine(true);
                             textView4.setEllipsize(truncateAt);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 i21 = 5;
                             } else {
                                 i21 = 3;
                             }
                             textView4.setGravity(i21 | 48);
-                            if (org.telegram.messenger.hd.f24101a0) {
+                            if (org.telegram.messenger.hd.f24104a0) {
                                 i31 = 5;
                             }
                             int i39 = i31 | 48;

@@ -28,7 +28,7 @@ public final class w2 extends org.telegram.ui.ActionBar.u2 {
         hi.i1 i1Var = new hi.i1(8, context, this);
         this.f44619m1 = i1Var;
         int i7 = this.f29717u0;
-        i1Var.setPadding(i7, 0, i7, org.telegram.messenger.g0.f23604n);
+        i1Var.setPadding(i7, 0, i7, org.telegram.messenger.g0.f23606n);
         t2Var.addView(i1Var, c8.ja.e(-1, -1, 119));
     }
 

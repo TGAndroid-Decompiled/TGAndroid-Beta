@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class lr extends org.telegram.ui.ActionBar.j {
-    public final pr f49031a;
+    public final pr f49027a;
 
     public lr(pr prVar) {
-        this.f49031a = prVar;
+        this.f49027a = prVar;
     }
 
     @Override
@@ -13,14 +13,14 @@ public final class lr extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i10;
         int i11;
-        pr prVar = this.f49031a;
+        pr prVar = this.f49027a;
         if (i7 == -1) {
             prVar.finishFragment();
-        } else if (i7 == 1 && prVar.f50346b.getText().length() != 0) {
+        } else if (i7 == 1 && prVar.f50337b.getText().length() != 0) {
             TLRPC.User a22 = prVar.getMessagesController().a2(Long.valueOf(prVar.I));
             TLRPC.UserFull b22 = prVar.getMessagesController().b2(prVar.I);
-            a22.first_name = prVar.f50346b.getText().toString();
-            a22.last_name = prVar.f50347c.getText().toString();
+            a22.first_name = prVar.f50337b.getText().toString();
+            a22.last_name = prVar.f50338c.getText().toString();
             a22.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = prVar.d.getTextWithEntities();
             prVar.getMessagesController().X3(a22, false, false);
@@ -49,8 +49,8 @@ public final class lr extends org.telegram.ui.ActionBar.j {
             }
             contactsController.getConnectionsManager().sendRequest(tL_contacts_addContact, new org.telegram.messenger.r4(1, contactsController, a22), 6);
             i10 = ((org.telegram.ui.ActionBar.e2) prVar).currentAccount;
-            org.telegram.messenger.np.s1(i10).f25270e7.edit().putInt("dialog_bar_vis3" + prVar.I, 3).commit();
-            prVar.getNotificationCenter().k(org.telegram.messenger.ns.f25559r, 1);
+            org.telegram.messenger.np.s1(i10).f25273e7.edit().putInt("dialog_bar_vis3" + prVar.I, 3).commit();
+            prVar.getNotificationCenter().k(org.telegram.messenger.ns.f25560r, 1);
             prVar.getNotificationCenter().k(org.telegram.messenger.ns.Q0, Long.valueOf(prVar.I));
             if (b22 != null) {
                 if (textWithEntities != null && textWithEntities.text.length() > 0) {

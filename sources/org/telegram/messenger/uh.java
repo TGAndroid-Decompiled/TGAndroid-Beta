@@ -5,31 +5,31 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class uh implements Runnable {
-    public final int f26819a;
-    public final long f26820b;
-    public final int f26821c;
+    public final int f26821a;
+    public final long f26822b;
+    public final int f26823c;
     public final long d;
-    public final c1 f26822e;
-    public final Object f26823f;
+    public final c1 f26824e;
+    public final Object f26825f;
 
     public uh(c1 c1Var, long j3, long j10, Object obj, int i7, int i10) {
-        this.f26819a = i10;
-        this.f26822e = c1Var;
-        this.f26820b = j3;
+        this.f26821a = i10;
+        this.f26824e = c1Var;
+        this.f26822b = j3;
         this.d = j10;
-        this.f26823f = obj;
-        this.f26821c = i7;
+        this.f26825f = obj;
+        this.f26823c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f26819a) {
+        switch (this.f26821a) {
             case 0:
-                si siVar = (si) this.f26822e;
-                long j3 = this.f26820b;
+                si siVar = (si) this.f26824e;
+                long j3 = this.f26822b;
                 long j10 = this.d;
-                z10 z10Var = (z10) this.f26823f;
-                int i7 = this.f26821c;
+                z10 z10Var = (z10) this.f26825f;
+                int i7 = this.f26823c;
                 try {
                     TL_bots.BotInfo H0 = siVar.H0(j3, j10);
                     if (H0 != null) {
@@ -43,20 +43,20 @@ public final class uh implements Runnable {
                     return;
                 }
             case 1:
-                np npVar = (np) this.f26822e;
-                long j11 = this.f26820b;
-                TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) this.f26823f;
-                int i10 = this.f26821c;
+                np npVar = (np) this.f26824e;
+                long j11 = this.f26822b;
+                TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) this.f26825f;
+                int i10 = this.f26823c;
                 long j12 = this.d;
                 LongSparseIntArray longSparseIntArray = npVar.H0;
-                a0.h hVar = npVar.f25332m1;
+                a0.h hVar = npVar.f25335m1;
                 TLRPC.ChatFull chatFull = (TLRPC.ChatFull) hVar.f(j11);
                 if (chatFull != null) {
                     tL_messages_chatFull.full_chat.inviterId = chatFull.inviterId;
                 }
                 hVar.k(tL_messages_chatFull.full_chat, j11);
                 long j13 = -j11;
-                npVar.f25400t7.M(j13);
+                npVar.f25403t7.M(j13);
                 TLRPC.PeerNotifySettings peerNotifySettings = tL_messages_chatFull.full_chat.notify_settings;
                 bt btVar = npVar.getNotificationsController().f22577h0;
                 btVar.getClass();
@@ -76,9 +76,9 @@ public final class uh implements Runnable {
                     longSparseIntArray.removeAt(indexOfKey);
                     npVar.getNotificationCenter().k(43, new Object[0]);
                 }
-                npVar.f25375r.k(tL_messages_chatFull.full_chat.exported_invite, j11);
-                npVar.f25395t1.remove(Long.valueOf(j11));
-                npVar.f25432x1.put(j11, System.currentTimeMillis());
+                npVar.f25378r.k(tL_messages_chatFull.full_chat.exported_invite, j11);
+                npVar.f25398t1.remove(Long.valueOf(j11));
+                npVar.f25435x1.put(j11, System.currentTimeMillis());
                 npVar.Y3(tL_messages_chatFull.users, false);
                 npVar.S3(tL_messages_chatFull.chats, false);
                 if (tL_messages_chatFull.full_chat.stickerset != null) {
@@ -111,24 +111,24 @@ public final class uh implements Runnable {
                     if (z10 != z11) {
                         dialog.view_forum_as_messages = z11;
                         vr messagesStorage = npVar.getMessagesStorage();
-                        messagesStorage.f27220a.c(new wp(1, j12, messagesStorage, tL_messages_chatFull.full_chat.view_forum_as_messages));
+                        messagesStorage.f27219a.c(new vp(1, j12, messagesStorage, tL_messages_chatFull.full_chat.view_forum_as_messages));
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                ((vr) this.f26822e).getMessagesController().a0(null, null, null, this.f26820b, true, 0, false, this.d, (TLMethod) this.f26823f, this.f26821c);
+                ((vr) this.f26824e).getMessagesController().a0(null, null, null, this.f26822b, true, 0, false, this.d, (TLMethod) this.f26825f, this.f26823c);
                 return;
         }
     }
 
     public uh(np npVar, long j3, TLRPC.TL_messages_chatFull tL_messages_chatFull, int i7, long j10) {
-        this.f26819a = 1;
-        this.f26822e = npVar;
-        this.f26820b = j3;
-        this.f26823f = tL_messages_chatFull;
-        this.f26821c = i7;
+        this.f26821a = 1;
+        this.f26824e = npVar;
+        this.f26822b = j3;
+        this.f26825f = tL_messages_chatFull;
+        this.f26823c = i7;
         this.d = j10;
     }
 }

@@ -8,7 +8,7 @@ public class NotificationBadge$ZukHomeBadger implements zr {
 
     @Override
     public final void a(int i7) {
-        g0.h3(new wq(10, this, r.b.f(i7, "app_badge_count")));
+        g0.h3(new pq(11, this, r.b.f(i7, "app_badge_count")));
     }
 
     @Override

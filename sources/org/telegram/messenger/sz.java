@@ -21,46 +21,46 @@ import org.telegram.ui.qv0;
 import org.telegram.ui.sc1;
 import org.telegram.ui.vc1;
 public final class sz implements Runnable {
-    public final int f26594a;
-    public final Object f26595b;
-    public final Object f26596c;
+    public final int f26603a;
+    public final Object f26604b;
+    public final Object f26605c;
     public final Object d;
 
     public sz(Object obj, Object obj2, Object obj3, int i7) {
-        this.f26594a = i7;
-        this.f26595b = obj;
-        this.f26596c = obj2;
+        this.f26603a = i7;
+        this.f26604b = obj;
+        this.f26605c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.e6 e6Var;
-        switch (this.f26594a) {
+        switch (this.f26603a) {
             case 0:
-                ((tz) this.f26595b).q((String) this.f26596c, (Bundle) this.d);
+                ((tz) this.f26604b).q((String) this.f26605c, (Bundle) this.d);
                 return;
             case 1:
-                c10 c10Var = (c10) this.f26595b;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26596c;
+                c10 c10Var = (c10) this.f26604b;
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26605c;
                 storyItem.detectedLng = "und";
                 c10Var.getMessagesController().P1().f12327k.h(storyItem.dialogId, storyItem);
                 c10Var.J.remove((a10) this.d);
                 return;
             case 2:
-                int[] iArr = (int[]) this.f26595b;
+                int[] iArr = (int[]) this.f26604b;
                 Runnable runnable = (Runnable) this.d;
                 Pattern pattern = Utilities.f22413a;
                 int i7 = iArr[0] + 1;
                 iArr[0] = i7;
-                if (i7 == ((z10[]) this.f26596c).length && runnable != null) {
+                if (i7 == ((z10[]) this.f26605c).length && runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                String str = (String) this.f26596c;
-                String str2 = (String) this.f26595b;
+                String str = (String) this.f26605c;
+                String str2 = (String) this.f26604b;
                 byte[] bArr = (byte[]) this.d;
                 int i10 = WearAuthListenerService.f22427r;
                 str.getClass();
@@ -70,13 +70,13 @@ public final class sz implements Runnable {
                         return;
                     }
                     a8.b("wear-auth: cancel from " + str2);
-                    BigInteger bigInteger = vc1.f52195a;
+                    BigInteger bigInteger = vc1.f52193a;
                     a8.b("wear-auth: cancel received; dropping session and dismissing sheet");
                     vc1.d = null;
-                    org.telegram.ui.ActionBar.u2 u2Var = vc1.f52197c;
+                    org.telegram.ui.ActionBar.u2 u2Var = vc1.f52195c;
                     if (u2Var != null) {
                         u2Var.dismiss();
-                        vc1.f52197c = null;
+                        vc1.f52195c = null;
                         return;
                     }
                     return;
@@ -85,7 +85,7 @@ public final class sz implements Runnable {
                 u10.append(bArr.length);
                 u10.append(" bytes)");
                 a8.b(u10.toString());
-                BigInteger bigInteger2 = vc1.f52195a;
+                BigInteger bigInteger2 = vc1.f52193a;
                 if (bArr.length != 272) {
                     a8.b("wear-auth: malformed offer (" + bArr.length + ")");
                     return;
@@ -101,7 +101,7 @@ public final class sz implements Runnable {
                 vc1.d = new a8.r7(copyOfRange, copyOfRange2, str2);
                 Context context = LaunchActivity.H1;
                 if (context == null) {
-                    context = t0.f26600b;
+                    context = t0.f26609b;
                 }
                 if (context != null) {
                     org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
@@ -110,15 +110,15 @@ public final class sz implements Runnable {
                     } else {
                         e6Var = null;
                     }
-                    org.telegram.ui.ActionBar.u2 u2Var2 = vc1.f52197c;
+                    org.telegram.ui.ActionBar.u2 u2Var2 = vc1.f52195c;
                     if (u2Var2 != null) {
                         u2Var2.dismiss();
-                        vc1.f52197c = null;
+                        vc1.f52195c = null;
                     }
                     org.telegram.ui.ActionBar.u2 k10 = k5.k(1, context, e6Var, false);
                     FrameLayout frameLayout = new FrameLayout(context);
                     k10.O = frameLayout;
-                    int i11 = m10.f24934t0;
+                    int i11 = m10.f24940t0;
                     ArrayList arrayList = new ArrayList();
                     arrayList.clear();
                     for (int i12 = 0; i12 < 4; i12++) {
@@ -143,7 +143,7 @@ public final class sz implements Runnable {
                         i9Var.setRoundRadius(g0.L(14.0f));
                         i9Var.getImageReceiver().B0 = true;
                         org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
-                        int[] iArr2 = {m10.f24934t0};
+                        int[] iArr2 = {m10.f24940t0};
                         TLRPC.User f10 = m10.i(iArr2[0]).f();
                         t8Var.r(f10);
                         i9Var.f(f10, t8Var);
@@ -180,7 +180,7 @@ public final class sz implements Runnable {
                         k10.Q(i15);
                         frameLayout2.setOnClickListener(new org.telegram.ui.Components.l1(k10, frameLayout3, arrayList, iArr2, t8Var, i9Var, 4));
                         g10.setOnClickListener(new sc1(0, g10, iArr2));
-                        vc1.f52197c = k10;
+                        vc1.f52195c = k10;
                         k10.show();
                         return;
                     }
@@ -191,9 +191,9 @@ public final class sz implements Runnable {
     }
 
     public sz(byte[] bArr, String str, String str2) {
-        this.f26594a = 3;
-        this.f26596c = str;
-        this.f26595b = str2;
+        this.f26603a = 3;
+        this.f26605c = str;
+        this.f26604b = str2;
         this.d = bArr;
     }
 }

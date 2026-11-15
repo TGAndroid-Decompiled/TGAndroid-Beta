@@ -31,7 +31,7 @@ public final class d implements sw {
         String str = (String) this.f59913b;
         long j3 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            j3 = ((ur) arrayList.get(i11)).f26860a;
+            j3 = ((ur) arrayList.get(i11)).f26861a;
             fVar.f59918e.getSendMessagesHelper().r0(cz.b(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
         }
         ywVar.finishFragment();

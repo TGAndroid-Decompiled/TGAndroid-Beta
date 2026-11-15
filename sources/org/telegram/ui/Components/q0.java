@@ -16,16 +16,16 @@ public final class q0 implements TextView.OnEditorActionListener {
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
         switch (this.f38456a) {
             case 0:
-                org.telegram.ui.ActionBar.m5 m5Var = (org.telegram.ui.ActionBar.m5) this.f38457b;
+                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) this.f38457b;
                 if (i7 == 6) {
-                    m5Var.run();
+                    l5Var.run();
                     return true;
                 }
                 return false;
             case 1:
                 qk qkVar = (qk) this.f38457b;
                 if (i7 == 6) {
-                    hi.d dVar = qkVar.f38681p0;
+                    hi.d dVar = qkVar.f38679p0;
                     if (dVar.f14056d0) {
                         dVar.performClick();
                         return true;
@@ -60,7 +60,7 @@ public final class q0 implements TextView.OnEditorActionListener {
             case 5:
                 i4 i4Var = (i4) this.f38457b;
                 if (i7 == 6) {
-                    i4Var.f35000m1.f34619a.callOnClick();
+                    i4Var.f35000m1.f34623a.callOnClick();
                     return true;
                 }
                 return false;
@@ -103,7 +103,7 @@ public final class q0 implements TextView.OnEditorActionListener {
                 xz0 xz0Var = (xz0) this.f38457b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.g0.v1(xz0Var.f41816b);
+                        org.telegram.messenger.g0.v1(xz0Var.f41808b);
                         return false;
                     }
                     return false;

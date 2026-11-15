@@ -1,6 +1,6 @@
 package p4;
 
-import ai.q1;
+import ai.r1;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import android.os.ResultReceiver;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import c8.cb;
-import di.aa;
+import di.z9;
 import h9.s1;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -160,8 +160,8 @@ public final class m0 extends android.support.v4.media.session.s {
         }
         String str3 = str;
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(21, false);
-        a0Var.f1706b = uri;
-        a0Var.f1707c = str2;
+        a0Var.f1713b = uri;
+        a0Var.f1714c = str2;
         a0Var.d = bundle;
         return new e2.l0(str3, new e2.a0(zVar), null, new e2.f0(e0Var), e2.o0.L, new e2.h0(a0Var));
     }
@@ -282,7 +282,7 @@ public final class m0 extends android.support.v4.media.session.s {
     @Override
     public final void c(q4.h hVar) {
         if (hVar != null) {
-            i0(20, new q1(this, hVar, -1, 17), ((q4.l) this.f54787n.f55252b).c(), false);
+            i0(20, new r1(this, hVar, -1, 17), ((q4.l) this.f54787n.f55252b).c(), false);
         }
     }
 
@@ -290,7 +290,7 @@ public final class m0 extends android.support.v4.media.session.s {
     public final void d(q4.h hVar, int i7) {
         if (hVar != null) {
             if (i7 == -1 || i7 >= 0) {
-                i0(20, new q1(this, hVar, i7, 17), ((q4.l) this.f54787n.f55252b).c(), false);
+                i0(20, new r1(this, hVar, i7, 17), ((q4.l) this.f54787n.f55252b).c(), false);
             }
         }
     }
@@ -615,7 +615,7 @@ public final class m0 extends android.support.v4.media.session.s {
             h2.a.b("MediaSessionLegacyStub", "RemoteUserInfo is null, ignoring command=" + i7);
             return;
         }
-        h2.l0.W(d0Var.f54627l, new aa(this, i7, rVar, l0Var, z10));
+        h2.l0.W(d0Var.f54627l, new z9(this, i7, rVar, l0Var, z10));
     }
 
     public final void j0(i1 i1Var, int i7, l0 l0Var, q4.r rVar) {
@@ -629,7 +629,7 @@ public final class m0 extends android.support.v4.media.session.s {
             h2.a.b("MediaSessionLegacyStub", sb2.toString());
             return;
         }
-        h2.l0.W(this.h.f54627l, new ai.f1(this, i1Var, i7, rVar, l0Var, 26));
+        h2.l0.W(this.h.f54627l, new ai.g1(this, i1Var, i7, rVar, l0Var, 26));
     }
 
     @Override

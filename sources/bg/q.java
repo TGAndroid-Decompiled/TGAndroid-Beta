@@ -1,31 +1,31 @@
 package bg;
 public final class q {
-    public final p f3317a;
-    public long f3318b;
-    public boolean f3319c;
+    public final p f3320a;
+    public long f3321b;
+    public boolean f3322c;
     public final a3.f d = new a3.f(this, 16);
 
     public q(p pVar) {
-        this.f3317a = pVar;
+        this.f3320a = pVar;
     }
 
     public final void a(long j3) {
-        if (this.f3319c && this.f3318b == j3) {
+        if (this.f3322c && this.f3321b == j3) {
             return;
         }
-        this.f3318b = j3;
+        this.f3321b = j3;
         if (j3 <= 0) {
             b();
             return;
         }
-        this.f3319c = true;
+        this.f3322c = true;
         a3.f fVar = this.d;
         org.telegram.messenger.g0.r(fVar);
         org.telegram.messenger.g0.i3(fVar, 1000L);
     }
 
     public final void b() {
-        this.f3319c = false;
+        this.f3322c = false;
         org.telegram.messenger.g0.r(this.d);
     }
 }

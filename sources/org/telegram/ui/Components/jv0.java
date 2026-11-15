@@ -4,22 +4,22 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class jv0 implements org.telegram.ui.ActionBar.l0, org.telegram.messenger.tr {
-    public final bw0 f36191a;
+    public final bw0 f36181a;
 
     public jv0(bw0 bw0Var) {
-        this.f36191a = bw0Var;
+        this.f36181a = bw0Var;
     }
 
     @Override
     public void a(String str) {
-        bw0 bw0Var = this.f36191a;
-        new o30(bw0Var.getContext(), bw0Var.f33404j2, null, bw0Var.J0).show();
+        bw0 bw0Var = this.f36181a;
+        new o30(bw0Var.getContext(), bw0Var.f33407j2, null, bw0Var.J0).show();
     }
 
     @Override
     public void g(int i7) {
         String str;
-        bw0 bw0Var = this.f36191a;
+        bw0 bw0Var = this.f36181a;
         org.telegram.ui.ActionBar.e2 e2Var = bw0Var.G1;
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = bw0Var.N1;
         if (tL_messages_stickerSet != null) {

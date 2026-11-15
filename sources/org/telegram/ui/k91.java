@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.view.View;
 import java.util.HashMap;
 public final class k91 extends View {
-    public final HashMap f48652a;
-    public final l91 f48653b;
+    public final HashMap f48606a;
+    public final l91 f48607b;
 
     public k91(l91 l91Var, Activity activity) {
         super(activity);
-        this.f48653b = l91Var;
-        this.f48652a = new HashMap();
+        this.f48607b = l91Var;
+        this.f48606a = new HashMap();
     }
 
     @Override
@@ -22,20 +22,20 @@ public final class k91 extends View {
         int L;
         boolean z10;
         int i14;
-        l91 l91Var = this.f48653b;
+        l91 l91Var = this.f48607b;
         u91 u91Var = l91Var.d;
         int size = View.MeasureSpec.getSize(i7);
         int L2 = org.telegram.messenger.g0.L(64.0f);
         int i15 = 0;
         int i16 = 0;
         for (int i17 = 0; i17 < l91Var.F().size(); i17++) {
-            if (l91Var.F().get(i17) != null && ((m91) l91Var.F().get(i17)).f49191c != null) {
-                String str = ((m91) l91Var.F().get(i17)).f49191c.title;
-                HashMap hashMap = this.f48652a;
+            if (l91Var.F().get(i17) != null && ((m91) l91Var.F().get(i17)).f49187c != null) {
+                String str = ((m91) l91Var.F().get(i17)).f49187c.title;
+                HashMap hashMap = this.f48606a;
                 Boolean bool = (Boolean) hashMap.get(str);
                 if (bool == null) {
                     int i18 = 50;
-                    if (!org.telegram.messenger.hd.f24101a0) {
+                    if (!org.telegram.messenger.hd.f24104a0) {
                         if (u91Var.isInPreviewMode()) {
                             i14 = 11;
                         } else {
@@ -46,7 +46,7 @@ public final class k91 extends View {
                         f10 = 18.0f;
                     }
                     int L3 = org.telegram.messenger.g0.L(f10);
-                    if (!org.telegram.messenger.hd.f24101a0) {
+                    if (!org.telegram.messenger.hd.f24104a0) {
                         i13 = size - L3;
                         L = org.telegram.messenger.g0.L(22.0f);
                     } else {
@@ -70,10 +70,10 @@ public final class k91 extends View {
                     i12 = 0;
                 }
                 int L4 = org.telegram.messenger.g0.L(i12 + 64);
-                if (((m91) l91Var.F().get(i17)).f49191c.f28103id == 1) {
+                if (((m91) l91Var.F().get(i17)).f49187c.f28103id == 1) {
                     L2 = L4;
                 }
-                if (((m91) l91Var.F().get(i17)).f49191c.hidden) {
+                if (((m91) l91Var.F().get(i17)).f49187c.hidden) {
                     i15++;
                 }
                 i16 += L4;

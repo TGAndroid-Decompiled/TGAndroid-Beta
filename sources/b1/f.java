@@ -9,14 +9,14 @@ import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
 import v0.n;
 public final class f implements rd.a {
-    public final int f2855a;
-    public final Object f2856b;
-    public final Object f2857c;
+    public final int f2858a;
+    public final Object f2859b;
+    public final Object f2860c;
 
     public f(int i7, Object obj, Object obj2) {
-        this.f2855a = i7;
-        this.f2856b = obj;
-        this.f2857c = obj2;
+        this.f2858a = i7;
+        this.f2859b = obj;
+        this.f2860c = obj2;
     }
 
     @Override
@@ -24,17 +24,17 @@ public final class f implements rd.a {
         Object obj;
         String[] names;
         String str;
-        switch (this.f2855a) {
+        switch (this.f2858a) {
             case 0:
-                ((Executor) this.f2856b).execute(new a1.b((v0.g) this.f2857c, 7));
+                ((Executor) this.f2859b).execute(new a1.b((v0.g) this.f2860c, 7));
                 break;
             case 1:
-                c1.f fVar = (c1.f) this.f2856b;
-                fVar.g().execute(new c1.c(1, fVar, (n) this.f2857c));
+                c1.f fVar = (c1.f) this.f2859b;
+                fVar.g().execute(new c1.c(1, fVar, (n) this.f2860c));
                 break;
             default:
-                me.d dVar = (me.d) this.f2856b;
-                pe.b bVar = (pe.b) this.f2857c;
+                me.d dVar = (me.d) this.f2859b;
+                pe.b bVar = (pe.b) this.f2860c;
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
                 bVar.f54996a.getClass();
                 qe.f.e(dVar, bVar);

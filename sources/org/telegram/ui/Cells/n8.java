@@ -40,9 +40,9 @@ public final class n8 extends org.telegram.ui.Components.j6 {
                 return;
             case 3:
                 org.telegram.ui.Components.y5 y5Var = (org.telegram.ui.Components.y5) obj;
-                if (y5Var.f41880e != f10) {
-                    y5Var.f41880e = f10;
-                    y5Var.f41882g.invalidate();
+                if (y5Var.f41872e != f10) {
+                    y5Var.f41872e = f10;
+                    y5Var.f41874g.invalidate();
                     return;
                 }
                 return;
@@ -193,7 +193,7 @@ public final class n8 extends org.telegram.ui.Components.j6 {
             case 2:
                 return Float.valueOf(((a9) obj).f30016f);
             case 3:
-                return Float.valueOf(((org.telegram.ui.Components.y5) obj).f41880e);
+                return Float.valueOf(((org.telegram.ui.Components.y5) obj).f41872e);
             case 4:
                 return Float.valueOf(((ImageReceiver) obj).f22278i1);
             case 5:
@@ -207,7 +207,7 @@ public final class n8 extends org.telegram.ui.Components.j6 {
             case 9:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             case 10:
-                return Float.valueOf(((e51) obj).f34215z1);
+                return Float.valueOf(((e51) obj).f34202z1);
             case 11:
                 return Float.valueOf(((wh.h) obj).H);
             default:

@@ -105,7 +105,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
     public static void a0(NotificationsSettingsActivity notificationsSettingsActivity) {
         notificationsSettingsActivity.getMessagesController().getClass();
         notificationsSettingsActivity.f42683b = false;
-        SharedPreferences.Editor edit = org.telegram.messenger.np.s1(notificationsSettingsActivity.currentAccount).f25270e7.edit();
+        SharedPreferences.Editor edit = org.telegram.messenger.np.s1(notificationsSettingsActivity.currentAccount).f25273e7.edit();
         edit.clear();
         edit.commit();
         notificationsSettingsActivity.f42685e.clear();
@@ -115,7 +115,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
             Toast.makeText(notificationsSettingsActivity.getParentActivity(), org.telegram.messenger.hd.M0(2131746094, "ResetNotificationsText"), 0).show();
         }
         org.telegram.messenger.vr messagesStorage = notificationsSettingsActivity.getMessagesStorage();
-        messagesStorage.f27220a.c(new org.telegram.messenger.oq(messagesStorage, 26));
+        messagesStorage.f27219a.c(new org.telegram.messenger.nq(messagesStorage, 26));
     }
 
     public static void b0(org.telegram.ui.NotificationsSettingsActivity r28, java.util.ArrayList r29, java.lang.Runnable r30) {
@@ -139,7 +139,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
                 i11 = 0;
             }
         }
-        org.telegram.messenger.np.s1(notificationsSettingsActivity.currentAccount).f25270e7.edit().putInt("repeat_messages", i11).commit();
+        org.telegram.messenger.np.s1(notificationsSettingsActivity.currentAccount).f25273e7.edit().putInt("repeat_messages", i11).commit();
         notificationsSettingsActivity.Y = true;
         notificationsSettingsActivity.f42684c.g(i7);
     }
@@ -158,7 +158,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
 
     public final void F0(org.telegram.ui.Components.sp0 sp0Var) {
         org.telegram.messenger.si.b0(this.currentAccount).M0(true);
-        org.telegram.messenger.vr.a0(this.currentAccount).f27220a.c(new lc0(this, new ArrayList(org.telegram.messenger.si.b0(this.currentAccount).f26482j1), sp0Var, 11));
+        org.telegram.messenger.vr.a0(this.currentAccount).f27219a.c(new lc0(this, new ArrayList(org.telegram.messenger.si.b0(this.currentAccount).f26492j1), sp0Var, 11));
     }
 
     @Override
@@ -209,7 +209,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25492f0) {
+        if (i7 == org.telegram.messenger.ns.f25493f0) {
             this.f42684c.f();
         }
     }
@@ -259,7 +259,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
             } else {
                 str = null;
             }
-            SharedPreferences.Editor edit = org.telegram.messenger.np.s1(this.currentAccount).f25270e7.edit();
+            SharedPreferences.Editor edit = org.telegram.messenger.np.s1(this.currentAccount).f25273e7.edit();
             if (i7 == this.J) {
                 if (str != null && uri != null) {
                     edit.putString("CallsRingtone", str);
@@ -278,8 +278,8 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
     @Override
     public final boolean onFragmentCreate() {
         org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(this.currentAccount);
-        if (!s12.f25396t2) {
-            s12.f25396t2 = true;
+        if (!s12.f25399t2) {
+            s12.f25399t2 = true;
             s12.getConnectionsManager().sendRequest(new TL_account.getContactSignUpNotification(), new org.telegram.messenger.pj(s12, 11));
         }
         F0(null);
@@ -332,7 +332,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
         this.resetNotificationsRow = i10 + 33;
         this.V = i10 + 35;
         this.U = i10 + 34;
-        org.telegram.messenger.ns.f(this.currentAccount).c(this, org.telegram.messenger.ns.f25492f0);
+        org.telegram.messenger.ns.f(this.currentAccount).c(this, org.telegram.messenger.ns.f25493f0);
         org.telegram.messenger.np messagesController = getMessagesController();
         messagesController.getConnectionsManager().sendRequest(new TL_account.getReactionsNotifySettings(), new org.telegram.messenger.pj(messagesController, 17));
         return super.onFragmentCreate();
@@ -341,7 +341,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e2 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        org.telegram.messenger.ns.f(this.currentAccount).n(this, org.telegram.messenger.ns.f25492f0);
+        org.telegram.messenger.ns.f(this.currentAccount).n(this, org.telegram.messenger.ns.f25493f0);
     }
 
     @Override

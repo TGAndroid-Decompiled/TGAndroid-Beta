@@ -7,28 +7,28 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class vf implements org.telegram.messenger.s10 {
-    public final int f52210a;
-    public final int f52211b;
-    public final Object f52212c;
+    public final int f52208a;
+    public final int f52209b;
+    public final Object f52210c;
     public final Object d;
 
     public vf(Object obj, int i7, TLObject tLObject, int i10) {
-        this.f52210a = i10;
-        this.f52212c = obj;
-        this.f52211b = i7;
+        this.f52208a = i10;
+        this.f52210c = obj;
+        this.f52209b = i7;
         this.d = tLObject;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         TLRPC.Updates updates;
-        int i7 = this.f52210a;
-        int i10 = this.f52211b;
+        int i7 = this.f52208a;
+        int i10 = this.f52209b;
         Object obj3 = this.d;
-        Object obj4 = this.f52212c;
+        Object obj4 = this.f52210c;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.h3(new ai.f1((an) obj4, this.f52211b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
+                org.telegram.messenger.g0.h3(new ai.g1((an) obj4, this.f52209b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
                 return;
             case 1:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
@@ -46,7 +46,7 @@ public final class vf implements org.telegram.messenger.s10 {
                     }
                     updates = null;
                 }
-                org.telegram.messenger.g0.h3(new ai.f1(launchActivity, g50Var, tL_error, updates, this.f52211b, 21));
+                org.telegram.messenger.g0.h3(new ai.g1(launchActivity, g50Var, tL_error, updates, this.f52209b, 21));
                 return;
             case 2:
                 PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
@@ -56,12 +56,12 @@ public final class vf implements org.telegram.messenger.s10 {
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
                     org.telegram.ui.Components.cc.a0(passkeysActivity).e0("FALSE", false);
                     arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
-                    passkeysActivity.f42704a.f39895g3.O(true);
+                    passkeysActivity.f42704a.f39892g3.O(true);
                     return;
                 } else if (tL_error2 != null) {
                     org.telegram.ui.Components.cc.a0(passkeysActivity).f0(tL_error2, false);
                     arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
-                    passkeysActivity.f42704a.f39895g3.O(true);
+                    passkeysActivity.f42704a.f39892g3.O(true);
                     return;
                 } else {
                     return;
@@ -106,9 +106,9 @@ public final class vf implements org.telegram.messenger.s10 {
     }
 
     public vf(LaunchActivity launchActivity, g50 g50Var, int i7) {
-        this.f52210a = 1;
-        this.f52212c = launchActivity;
+        this.f52208a = 1;
+        this.f52210c = launchActivity;
         this.d = g50Var;
-        this.f52211b = i7;
+        this.f52209b = i7;
     }
 }

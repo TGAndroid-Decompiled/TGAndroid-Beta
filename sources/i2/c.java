@@ -19,7 +19,7 @@ public final class c extends dd.k {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             c cVar = (c) arrayList.get(i10);
-            if (cVar.f8037b == i7) {
+            if (cVar.f8040b == i7) {
                 return cVar;
             }
         }
@@ -31,7 +31,7 @@ public final class c extends dd.k {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             d dVar = (d) arrayList.get(i10);
-            if (dVar.f8037b == i7) {
+            if (dVar.f8040b == i7) {
                 return dVar;
             }
         }
@@ -40,6 +40,6 @@ public final class c extends dd.k {
 
     @Override
     public final String toString() {
-        return dd.k.a(this.f8037b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f15606e.toArray());
+        return dd.k.a(this.f8040b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f15606e.toArray());
     }
 }

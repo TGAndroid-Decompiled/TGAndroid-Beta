@@ -7,11 +7,11 @@ public final class nl0 extends v4.k {
         tl0 tl0Var;
         sl0 sl0Var;
         View view = e1Var.f58535a;
-        if ((view instanceof tl0) && (sl0Var = (tl0Var = (tl0) view).f39715a) != null) {
+        if ((view instanceof tl0) && (sl0Var = (tl0Var = (tl0) view).f39712a) != null) {
             sl0Var.h = sl0Var.M;
-            sl0Var.f5148f = sl0Var.N;
-            sl0Var.f5150g = sl0Var.O;
-            tl0Var.f39716b.e(true, 0.0f);
+            sl0Var.f5151f = sl0Var.N;
+            sl0Var.f5153g = sl0Var.O;
+            tl0Var.f39713b.e(true, 0.0f);
             tl0Var.invalidate();
         }
         int translationX = i7 + ((int) view.getTranslationX());

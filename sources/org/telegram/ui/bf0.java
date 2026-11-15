@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class bf0 extends org.telegram.ui.Components.tj0 {
-    public final Context f45708c;
+    public final Context f45702c;
     public final cf0 d;
 
     public bf0(cf0 cf0Var, Context context) {
         this.d = cf0Var;
-        this.f45708c = context;
+        this.f45702c = context;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class bf0 extends org.telegram.ui.Components.tj0 {
     public final boolean D(v4.e1 e1Var) {
         int b10 = e1Var.b();
         cf0 cf0Var = this.d;
-        if (cf0Var.R != b10 && cf0Var.f46154y != b10) {
+        if (cf0Var.R != b10 && cf0Var.f46143y != b10) {
             if (b10 < cf0Var.E || b10 >= cf0Var.F) {
                 if ((b10 < cf0Var.I || b10 >= cf0Var.J) && b10 != cf0Var.O) {
                     if (b10 >= cf0Var.V && b10 < cf0Var.W) {
@@ -49,19 +49,19 @@ public final class bf0 extends org.telegram.ui.Components.tj0 {
     @Override
     public final int d(int i7) {
         cf0 cf0Var = this.d;
-        if (i7 == cf0Var.f46146r) {
+        if (i7 == cf0Var.f46135r) {
             return 0;
         }
-        if (i7 == cf0Var.f46148s || i7 == cf0Var.M || i7 == cf0Var.T || i7 == cf0Var.Q) {
+        if (i7 == cf0Var.f46137s || i7 == cf0Var.M || i7 == cf0Var.T || i7 == cf0Var.Q) {
             return 1;
         }
-        if (i7 == cf0Var.f46152w) {
+        if (i7 == cf0Var.f46141w) {
             return 2;
         }
-        if (i7 == cf0Var.f46154y) {
+        if (i7 == cf0Var.f46143y) {
             return 3;
         }
-        if (i7 != cf0Var.f46153x && i7 != cf0Var.K && i7 != cf0Var.N && i7 != cf0Var.S && i7 != cf0Var.U) {
+        if (i7 != cf0Var.f46142x && i7 != cf0Var.K && i7 != cf0Var.N && i7 != cf0Var.S && i7 != cf0Var.U) {
             if (i7 < cf0Var.E || i7 >= cf0Var.F) {
                 if (i7 >= cf0Var.I && i7 < cf0Var.J) {
                     return 5;
@@ -107,13 +107,13 @@ public final class bf0 extends org.telegram.ui.Components.tj0 {
         org.telegram.ui.ActionBar.e6 e6Var2;
         int i10;
         cf0 cf0Var = this.d;
-        Context context = this.f45708c;
+        Context context = this.f45702c;
         switch (i7) {
             case 1:
                 t70Var = new org.telegram.ui.Cells.n4(context, 23);
                 break;
             case 2:
-                org.telegram.ui.Components.t70 t70Var2 = new org.telegram.ui.Components.t70(this.f45708c, cf0Var, null, true, cf0Var.h);
+                org.telegram.ui.Components.t70 t70Var2 = new org.telegram.ui.Components.t70(this.f45702c, cf0Var, null, true, cf0Var.h);
                 t70Var2.setPermanent(true);
                 t70Var2.setDelegate(new af0(this, t70Var2));
                 t70Var = t70Var2;
@@ -150,7 +150,7 @@ public final class bf0 extends org.telegram.ui.Components.tj0 {
                 t70Var = new org.telegram.ui.Cells.y8(context);
                 break;
             case 10:
-                t70Var = new org.telegram.ui.Cells.a5(this.f45708c, 8, 6, false, null);
+                t70Var = new org.telegram.ui.Cells.a5(this.f45702c, 8, 6, false, null);
                 break;
             case 11:
                 e6Var2 = ((org.telegram.ui.ActionBar.e2) cf0Var).resourceProvider;

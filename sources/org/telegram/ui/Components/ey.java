@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class ey implements org.telegram.messenger.z10 {
-    public final int f34450a;
-    public final fy f34451b;
+    public final int f34449a;
+    public final fy f34450b;
 
     public ey(fy fyVar, int i7) {
-        this.f34450a = i7;
-        this.f34451b = fyVar;
+        this.f34449a = i7;
+        this.f34450b = fyVar;
     }
 
     @Override

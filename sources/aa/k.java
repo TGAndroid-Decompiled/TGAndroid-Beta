@@ -62,10 +62,10 @@ public final class k implements Consumer {
                 i0 i0Var = (i0) this.f820c;
                 ci.m mVar2 = (ci.m) this.f819b;
                 Canvas canvas = (Canvas) obj;
-                ci.c cVar2 = i0Var.f5412y;
+                ci.c cVar2 = i0Var.f5415y;
                 RectF rectF = cVar2.N;
                 WeakHashMap weakHashMap = cVar2.O;
-                Paint paint = cVar2.f5312c;
+                Paint paint = cVar2.f5315c;
                 long b10 = ci.c.b();
                 int i7 = 0;
                 while (i7 < mVar2.getChildCount()) {
@@ -88,7 +88,7 @@ public final class k implements Consumer {
                             f11 = 2.5f;
                         }
                         String key = ((ci.l) childAt).getKey();
-                        if (key != null && (fArr = (float[]) cVar2.f5319n.get(key)) != null) {
+                        if (key != null && (fArr = (float[]) cVar2.f5322n.get(key)) != null) {
                             float c10 = ci.c.c(fArr, b10);
                             if (c10 > 0.004f) {
                                 float translationX = childAt.getTranslationX() + childAt.getLeft();
@@ -113,7 +113,7 @@ public final class k implements Consumer {
                     cVar2 = cVar;
                 }
                 if (!i0Var.d.J.isEmpty()) {
-                    i0Var.f5412y.invalidate();
+                    i0Var.f5415y.invalidate();
                     return;
                 }
                 return;

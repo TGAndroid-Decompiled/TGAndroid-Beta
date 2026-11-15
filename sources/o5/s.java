@@ -1,7 +1,6 @@
 package o5;
 
 import java.util.HashMap;
-import org.telegram.ui.hn0;
 public final class s {
     public final i f21367a;
     public final String f21368b;
@@ -21,7 +20,7 @@ public final class s {
         l5.e eVar = this.d;
         if (eVar != null) {
             t tVar = this.f21370e;
-            t5.b bVar = tVar.f21374c;
+            t5.c cVar = tVar.f21374c;
             i b10 = this.f21367a.b(aVar.f19305c);
             ?? obj = new Object();
             obj.f13436f = new HashMap();
@@ -30,12 +29,12 @@ public final class s {
             obj.f13432a = this.f21368b;
             obj.f13434c = new m(this.f21369c, (byte[]) eVar.apply(aVar.f19304b));
             obj.f13433b = aVar.f19303a;
-            l5.b bVar2 = aVar.d;
-            if (bVar2 != null) {
-                obj.f13437g = bVar2.f19306a;
+            l5.b bVar = aVar.d;
+            if (bVar != null) {
+                obj.f13437g = bVar.f19306a;
             }
-            t5.a aVar2 = (t5.a) bVar;
-            aVar2.f57041b.execute(new hn0(aVar2, b10, gVar, obj.b(), 29));
+            t5.b bVar2 = (t5.b) cVar;
+            bVar2.f57045b.execute(new t5.a(bVar2, b10, gVar, obj.b(), 0));
             return;
         }
         throw new NullPointerException("Null transformer");

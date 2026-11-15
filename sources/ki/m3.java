@@ -20,7 +20,7 @@ public final class m3 extends n4 {
         q6.U(z70Var, j6.f29260z6, e6Var);
         q6.G(z70Var, j6.L6, e6Var);
         z70Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 3;
         } else {
             i7 = 5;

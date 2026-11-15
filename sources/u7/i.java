@@ -23,11 +23,11 @@ public final class i implements com.google.android.gms.common.api.internal.n, v0
 
     public static i b() {
         if (f57879b == null) {
-            Point point = g0.f23609q;
+            Point point = g0.f23611q;
             int i7 = point.x;
             int i10 = point.y;
             ?? obj = new Object();
-            obj.f57880a = t0.f26600b.getSharedPreferences(p0.m(i7, i10, "pip_floating_", "_"), 0);
+            obj.f57880a = t0.f26609b.getSharedPreferences(p0.m(i7, i10, "pip_floating_", "_"), 0);
             f57879b = obj;
         }
         return f57879b;
@@ -65,8 +65,8 @@ public final class i implements com.google.android.gms.common.api.internal.n, v0
     @Override
     public void g(Object obj) {
         Location location;
-        qa qaVar = ((y9) obj).f27691a;
-        List list = ((LocationResult) this.f57880a).f7079a;
+        qa qaVar = ((y9) obj).f27693a;
+        List list = ((LocationResult) this.f57880a).f7082a;
         int size = list.size();
         if (size == 0) {
             location = null;

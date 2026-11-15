@@ -97,12 +97,12 @@ public abstract class a61 extends View implements org.telegram.messenger.is {
         }
         t5 t5Var = this.f32889b;
         if (t5Var != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = t5Var.f39536v0;
+            AnimatedFileDrawableStream animatedFileDrawableStream = t5Var.f39534v0;
             if (animatedFileDrawableStream != null) {
                 animatedFileDrawableStream.b(true);
             }
-            if (t5Var.f39516e0 != null) {
-                t5Var.f39516e0.h();
+            if (t5Var.f39514e0 != null) {
+                t5Var.f39514e0.h();
             }
         }
         Utilities.f22416e.c(new x51(this, 0));

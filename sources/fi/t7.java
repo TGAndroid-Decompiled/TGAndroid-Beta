@@ -44,11 +44,11 @@ public final class t7 implements r1.d {
                 tg.g0 g0Var = (tg.g0) this.f12371b;
                 float f14 = f10 / 1000.0f;
                 g0Var.n1 = f14;
-                tg.j1 j1Var2 = g0Var.f57273f1;
+                tg.j1 j1Var2 = g0Var.f57283f1;
                 j1Var2.setAlpha(f14);
                 j1Var2.invalidate();
                 g0Var.N0.invalidate();
-                g0Var.f57272e1.getTypefaceCell().setAlpha(1.0f - g0Var.n1);
+                g0Var.f57282e1.getTypefaceCell().setAlpha(1.0f - g0Var.n1);
                 return;
         }
     }

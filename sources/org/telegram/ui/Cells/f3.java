@@ -56,7 +56,7 @@ public final class f3 extends rt {
         menu.add(2131296496, 2131296497, 8, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744437, null));
         ?? obj = new Object();
-        obj.f41484a = 8 | obj.f41484a;
+        obj.f41487a = 8 | obj.f41487a;
         spannableStringBuilder3.setSpan(new xy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 9, spannableStringBuilder3);
         menu.add(2131296496, 2131296503, 10, hd.M0(2131746337, null));

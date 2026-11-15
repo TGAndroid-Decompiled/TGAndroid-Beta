@@ -38,7 +38,7 @@ public final class a3 extends View {
                     i11 = 0;
                 }
             }
-            setMeasuredDimension(size, Math.max(0, (org.telegram.messenger.g0.f23609q.y - org.telegram.messenger.g0.L(62.0f)) - (((int) (((int) (size / gVar.J)) * d3Var.P)) * ((int) Math.ceil(i11 / gVar.J)))));
+            setMeasuredDimension(size, Math.max(0, (org.telegram.messenger.g0.f23611q.y - org.telegram.messenger.g0.L(62.0f)) - (((int) (((int) (size / gVar.J)) * d3Var.P)) * ((int) Math.ceil(i11 / gVar.J)))));
             return;
         }
         setMeasuredDimension(size, i13);

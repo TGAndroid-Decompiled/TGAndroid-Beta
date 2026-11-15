@@ -29,13 +29,13 @@ public class d extends c {
         float f12;
         float f13;
         int i12 = 3;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         this.f60645c.setLayoutParams(ja.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -53,7 +53,7 @@ public class d extends c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ja.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i11 = 5;
         } else {
@@ -71,7 +71,7 @@ public class d extends c {
             f13 = 20.0f;
         }
         this.f60646e.setLayoutParams(ja.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i12 = 5;
         }
         this.f60647f.setLayoutParams(ja.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));

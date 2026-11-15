@@ -1033,7 +1033,7 @@ public abstract class y3 {
             }
             if (i7 != 0) {
                 ?? obj = new Object();
-                obj.f41484a = i7 & 114975;
+                obj.f41487a = i7 & 114975;
                 spannableStringBuilder.setSpan(new xy0(obj, org.telegram.messenger.g0.L(gz.W0)), length, length2, 33);
             }
             if (str2 != null) {

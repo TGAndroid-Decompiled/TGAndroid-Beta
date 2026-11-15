@@ -19,12 +19,12 @@ public final class f1 implements DialogInterface.OnDismissListener {
                 int i7 = i2.C1;
                 return;
             case 1:
-                org.telegram.ui.b.f45549a = false;
+                org.telegram.ui.b.f45543a = false;
                 return;
             case 2:
                 return;
             case 3:
-                xr.f27574j.edit().putInt("dismissed_count", xr.f27574j.getInt("dismissed_count", 0) + 1).apply();
+                xr.f27576j.edit().putInt("dismissed_count", xr.f27576j.getInt("dismissed_count", 0) + 1).apply();
                 return;
             case 4:
                 int i10 = gz0.f35127e;

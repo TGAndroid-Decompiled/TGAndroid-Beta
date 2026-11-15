@@ -43,33 +43,33 @@ public final class y4 extends FrameLayout {
     public hi.l3 U;
     public final int[] V;
     public final int[] W;
-    public final org.telegram.ui.ActionBar.e6 f9769a;
-    public int f9770a0;
-    public final x4 f9771b;
-    public long f9772b0;
-    public final ImageView f9773c;
-    public TLRPC.Document f9774c0;
-    public final ai.j0[] d;
-    public String f9775d0;
-    public final ai.j0 f9776e;
-    public ArrayList f9777e0;
-    public final u4 f9778f;
-    public u10 f9779f0;
-    public s10 f9780g0;
+    public final org.telegram.ui.ActionBar.e6 f9758a;
+    public int f9759a0;
+    public final x4 f9760b;
+    public long f9761b0;
+    public final ImageView f9762c;
+    public TLRPC.Document f9763c0;
+    public final ai.k0[] d;
+    public String f9764d0;
+    public final ai.k0 f9765e;
+    public ArrayList f9766e0;
+    public final u4 f9767f;
+    public u10 f9768f0;
+    public s10 f9769g0;
     public final s4 h;
-    public Runnable f9781h0;
-    public boolean f9782i0;
-    public boolean f9783j0;
-    public boolean f9784k0;
-    public Runnable f9785l0;
+    public Runnable f9770h0;
+    public boolean f9771i0;
+    public boolean f9772j0;
+    public boolean f9773k0;
+    public Runnable f9774l0;
     public fh0 m0;
-    public final w4[] f9786n;
-    public SpannableStringBuilder f9787n0;
-    public final xh.l f9788r;
-    public boolean f9789s;
-    public final LinearLayout f9790w;
-    public final LinearLayout f9791x;
-    public final n4[] f9792y;
+    public final w4[] f9775n;
+    public SpannableStringBuilder f9776n0;
+    public final xh.l f9777r;
+    public boolean f9778s;
+    public final LinearLayout f9779w;
+    public final LinearLayout f9780x;
+    public final n4[] f9781y;
 
     public y4(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
@@ -80,18 +80,18 @@ public final class y4 extends FrameLayout {
         int i10 = 6;
         this.V = new int[]{-14861233, -15787732, -11327734, -14742773, -14527649, -15920861};
         this.W = new int[]{org.telegram.ui.ActionBar.j6.r1(0.08f, -1), org.telegram.ui.ActionBar.j6.r1(0.08f, -1), -294362, -3914963, -13519030, -12613223};
-        this.f9769a = e6Var;
+        this.f9758a = e6Var;
         x4 x4Var = new x4();
-        this.f9771b = x4Var;
+        this.f9760b = x4Var;
         Drawable g10 = i5.c.g(context, 2131231111);
         g10.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_IN));
-        x4Var.f9728g = g10;
+        x4Var.f9716g = g10;
         setBackground(x4Var);
         FrameLayout frameLayout = new FrameLayout(context);
         this.Q = frameLayout;
         addView(frameLayout, c8.ja.e(-1, 60, 55));
         ImageView imageView = new ImageView(context);
-        this.f9773c = imageView;
+        this.f9762c = imageView;
         imageView.setImageResource(2131232503);
         imageView.setBackground(new m5(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.j6.r1(0.08f, -1)));
         frameLayout.addView(imageView, c8.ja.d(32, 32.0f, 51, 14.0f, 14.0f, 14.0f, 14.0f));
@@ -122,13 +122,13 @@ public final class y4 extends FrameLayout {
         frameLayout4.setAlpha(0.0f);
         addView(frameLayout4, c8.ja.e(-1, -1, 119));
         xh.l lVar = new xh.l(context);
-        this.f9788r = lVar;
+        this.f9777r = lVar;
         lVar.setGravity(17);
         lVar.setTextSize(1, 13.0f);
         lVar.setTextColor(-1);
         frameLayout2.addView(lVar, c8.ja.d(-1, -2.0f, 49, 32.0f, 244.0f, 32.0f, 84.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f9790w = linearLayout;
+        this.f9779w = linearLayout;
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setDuration(2, 320L);
         layoutTransition.setDuration(3, 320L);
@@ -146,7 +146,7 @@ public final class y4 extends FrameLayout {
         linearLayout.setOrientation(0);
         linearLayout.setGravity(17);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f9791x = linearLayout2;
+        this.f9780x = linearLayout2;
         LayoutTransition layoutTransition2 = new LayoutTransition();
         layoutTransition2.setDuration(2, 320L);
         layoutTransition2.setDuration(3, 320L);
@@ -162,38 +162,38 @@ public final class y4 extends FrameLayout {
         linearLayout2.setOrientation(0);
         linearLayout2.setAlpha(0.0f);
         linearLayout2.setGravity(17);
-        this.f9792y = new n4[4];
+        this.f9781y = new n4[4];
         this.E = new n4[4];
         for (int i12 = 0; i12 < 4; i12++) {
-            LinearLayout linearLayout3 = this.f9790w;
-            n4[] n4VarArr = this.f9792y;
+            LinearLayout linearLayout3 = this.f9779w;
+            n4[] n4VarArr = this.f9781y;
             n4 n4Var = new n4(context);
             n4VarArr[i12] = n4Var;
             linearLayout3.addView(n4Var, c8.ja.k(0.0f, 0.0f, 0.0f, 0.0f, 48, 54));
-            this.f9792y[i12].setOnClickListener(new l4(this, 2));
+            this.f9781y[i12].setOnClickListener(new l4(this, 2));
         }
         for (int i13 = 0; i13 < 4; i13++) {
-            LinearLayout linearLayout4 = this.f9790w;
+            LinearLayout linearLayout4 = this.f9779w;
             n4[] n4VarArr2 = this.E;
             n4 n4Var2 = new n4(context);
             n4VarArr2[i13] = n4Var2;
             linearLayout4.addView(n4Var2, c8.ja.k(0.0f, 0.0f, 0.0f, 0.0f, 48, 54));
             this.E[i13].setOnClickListener(new l4(this, 3));
         }
-        this.f9786n = new w4[4];
-        this.d = new ai.j0[6];
+        this.f9775n = new w4[4];
+        this.d = new ai.k0[6];
         int i14 = 0;
         while (i14 < i10) {
-            ai.j0[] j0VarArr = this.d;
+            ai.k0[] k0VarArr = this.d;
             if (i14 == 5) {
                 z10 = z11;
             } else {
                 z10 = false;
             }
-            ai.j0 j0Var = new ai.j0(i11, context, false);
+            ai.k0 k0Var = new ai.k0(i11, context, false);
             FrameLayout frameLayout5 = new FrameLayout(context);
             frameLayout5.setBackground(new m5(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.j6.r1(0.08f, -1)));
-            j0Var.addView(frameLayout5, c8.ja.d(-1, -1.0f, 119, 2.0f, 2.0f, 2.0f, 2.0f));
+            k0Var.addView(frameLayout5, c8.ja.d(-1, -1.0f, 119, 2.0f, 2.0f, 2.0f, 2.0f));
             org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
             i9Var.setImageResource(2131231605);
             if (z10) {
@@ -211,12 +211,12 @@ public final class y4 extends FrameLayout {
             if (z10) {
                 i9Var.setTranslationX(org.telegram.messenger.g0.L(-4.0f));
                 t4 t4Var = new t4(context);
-                j0Var.f1266c = t4Var;
+                k0Var.f1273c = t4Var;
                 t4Var.f9469e = org.telegram.messenger.g0.L(37.0f);
                 t4Var.f9466a.setStrokeWidth(org.telegram.messenger.g0.N(4.66f));
                 frameLayout5.addView(t4Var, c8.ja.e(90, 90, 17));
                 org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(context, false, false, false);
-                j0Var.f1265b = h6Var;
+                k0Var.f1272b = h6Var;
                 h6Var.getDrawable().r(false, true);
                 h6Var.setTypeface(org.telegram.messenger.g0.o());
                 h6Var.setTextColor(-1);
@@ -225,15 +225,15 @@ public final class y4 extends FrameLayout {
                 h6Var.setText("0%");
                 frameLayout5.addView(h6Var, c8.ja.d(-1, 16.0f, 55, 12.0f, 80.0f, 12.0f, 0.0f));
             }
-            j0VarArr[i14] = j0Var;
+            k0VarArr[i14] = k0Var;
             i14++;
             i10 = 6;
             i11 = 4;
             z11 = true;
         }
-        this.f9776e = this.d[5];
+        this.f9765e = this.d[5];
         u4 u4Var = new u4(context);
-        this.f9778f = u4Var;
+        this.f9767f = u4Var;
         u4Var.setVisibility(8);
         u4Var.setAlpha(0.0f);
         addView(u4Var, c8.ja.d(300, 300.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -248,7 +248,7 @@ public final class y4 extends FrameLayout {
         o5Var.setPadding(org.telegram.messenger.g0.L(9.0f), 0, org.telegram.messenger.g0.L(9.0f), 0);
         o5Var.setGravity(17);
         o5Var.setTextColor(-1);
-        if (this.f9777e0 != null) {
+        if (this.f9766e0 != null) {
             f10 = 1.0f;
         } else {
             f10 = 0.25f;
@@ -257,9 +257,9 @@ public final class y4 extends FrameLayout {
         o5Var.setBackground(new m5(org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.j6.r1(0.08f, -1)));
         c8.na.b(o5Var, 0.02f, 1.2f);
         this.R.addView(o5Var, c8.ja.d(-2, 27.0f, 49, 32.0f, 412.0f, 32.0f, 84.0f));
-        o5Var.setOnClickListener(new ai.t2(15, this, e6Var));
-        this.R.addView(this.f9790w, c8.ja.d(-2, 54.0f, 49, 32.0f, 340.0f, 32.0f, 84.0f));
-        this.R.addView(this.f9791x, c8.ja.d(-2, 54.0f, 49, 32.0f, 394.0f, 32.0f, 84.0f));
+        o5Var.setOnClickListener(new ai.v2(15, this, e6Var));
+        this.R.addView(this.f9779w, c8.ja.d(-2, 54.0f, 49, 32.0f, 340.0f, 32.0f, 84.0f));
+        this.R.addView(this.f9780x, c8.ja.d(-2, 54.0f, 49, 32.0f, 394.0f, 32.0f, 84.0f));
         LinearLayout linearLayout5 = new LinearLayout(context);
         this.H = linearLayout5;
         linearLayout5.setOrientation(1);
@@ -343,15 +343,15 @@ public final class y4 extends FrameLayout {
     public final void a(int i7, long j3, TLRPC.Document document, String str) {
         w4[] w4VarArr;
         float f10;
-        this.f9770a0 = i7;
-        this.f9772b0 = j3;
-        this.f9774c0 = document;
-        this.f9775d0 = str;
-        this.f9782i0 = false;
-        this.f9784k0 = false;
+        this.f9759a0 = i7;
+        this.f9761b0 = j3;
+        this.f9763c0 = document;
+        this.f9764d0 = str;
+        this.f9771i0 = false;
+        this.f9773k0 = false;
         int i10 = 0;
         while (true) {
-            w4VarArr = this.f9786n;
+            w4VarArr = this.f9775n;
             if (i10 >= w4VarArr.length) {
                 break;
             }
@@ -362,12 +362,12 @@ public final class y4 extends FrameLayout {
             i10++;
         }
         s4 s4Var = this.h;
-        View[] viewArr = s4Var.f9384a;
+        View[] viewArr = s4Var.f9370a;
         r4 r4Var = s4Var.I;
         if (r4Var != null) {
-            r4Var.f9328e = true;
-            r4Var.f9334l = false;
-            r4Var.f9325a.I = null;
+            r4Var.f9318e = true;
+            r4Var.f9324l = false;
+            r4Var.f9315a.I = null;
             s4Var.I = null;
         }
         ValueAnimator valueAnimator = s4Var.H;
@@ -377,9 +377,9 @@ public final class y4 extends FrameLayout {
         }
         s4Var.G = -1;
         s4Var.F = 0.0f;
-        s4Var.f9392w.clear();
-        s4Var.f9393x.clear();
-        s4Var.f9394y.clear();
+        s4Var.f9378w.clear();
+        s4Var.f9379x.clear();
+        s4Var.f9380y.clear();
         for (int i11 = 0; i11 < 6; i11++) {
             s4Var.E[i11] = 0.0f;
         }
@@ -389,10 +389,10 @@ public final class y4 extends FrameLayout {
             viewArr[i12].setVisibility(0);
             s4Var.addView(viewArr[i12], c8.ja.e(108, 108, 17));
         }
-        Matrix.setIdentityM(s4Var.f9386c, 0);
-        s4Var.f9387e = 0.0f;
+        Matrix.setIdentityM(s4Var.f9372c, 0);
+        s4Var.f9373e = 0.0f;
         s4Var.d = 0.0f;
-        s4Var.f9388f = true;
+        s4Var.f9374f = true;
         w4 w4Var2 = new w4(getContext());
         w4VarArr[0] = w4Var2;
         addView(w4Var2, c8.ja.d(76, 76.0f, 49, -117.0f, 74.0f, 0.0f, 0.0f));
@@ -411,7 +411,7 @@ public final class y4 extends FrameLayout {
             w4VarArr[i13].setOnClickListener(new l4(this, 5));
         }
         d(false);
-        this.f9782i0 = false;
+        this.f9771i0 = false;
         FrameLayout frameLayout = this.R;
         frameLayout.animate().cancel();
         frameLayout.setAlpha(1.0f);
@@ -427,15 +427,15 @@ public final class y4 extends FrameLayout {
         FrameLayout frameLayout4 = this.Q;
         frameLayout4.animate().cancel();
         frameLayout4.setAlpha(1.0f);
-        if (this.f9789s) {
+        if (this.f9778s) {
             f10 = 0.0f;
-        } else if (this.f9777e0 != null) {
+        } else if (this.f9766e0 != null) {
             f10 = 1.0f;
         } else {
             f10 = 0.25f;
         }
         this.F.setAlpha(f10);
-        u4 u4Var = this.f9778f;
+        u4 u4Var = this.f9767f;
         u4Var.setVisibility(8);
         u4Var.setAlpha(0.0f);
         String M0 = hd.M0(2131749797, null);
@@ -448,9 +448,9 @@ public final class y4 extends FrameLayout {
 
     public final void b(n4 n4Var) {
         if (n4Var.d != null) {
-            c(n4Var, org.telegram.messenger.g0.X2(hd.G(Math.round(n4Var.f9106f * 100.0f), "GiftCraftBackdropChance", n4Var.d.name)));
-        } else if (n4Var.f9105e != null) {
-            c(n4Var, org.telegram.messenger.g0.X2(hd.G(Math.round(n4Var.f9106f * 100.0f), "GiftCraftSymbolChance", n4Var.f9105e.name)));
+            c(n4Var, org.telegram.messenger.g0.X2(hd.G(Math.round(n4Var.f9089f * 100.0f), "GiftCraftBackdropChance", n4Var.d.name)));
+        } else if (n4Var.f9088e != null) {
+            c(n4Var, org.telegram.messenger.g0.X2(hd.G(Math.round(n4Var.f9089f * 100.0f), "GiftCraftSymbolChance", n4Var.f9088e.name)));
         }
     }
 
@@ -463,7 +463,7 @@ public final class y4 extends FrameLayout {
             l3Var.f(true);
             this.U = null;
         }
-        if (!this.f9782i0 && !this.f9784k0) {
+        if (!this.f9771i0 && !this.f9773k0) {
             if (n4Var.getParent() instanceof View) {
                 view = (View) n4Var.getParent();
             }
@@ -503,7 +503,7 @@ public final class y4 extends FrameLayout {
         TL_stars.StarGift starGift;
         int i7 = 0;
         while (true) {
-            w4[] w4VarArr = this.f9786n;
+            w4[] w4VarArr = this.f9775n;
             if (i7 >= w4VarArr.length) {
                 return null;
             }
@@ -530,7 +530,7 @@ public final class y4 extends FrameLayout {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            w4[] w4VarArr = this.f9786n;
+            w4[] w4VarArr = this.f9775n;
             if (i7 < w4VarArr.length) {
                 w4 w4Var = w4VarArr[i7];
                 if (w4Var != null) {
@@ -554,7 +554,7 @@ public final class y4 extends FrameLayout {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            w4[] w4VarArr = this.f9786n;
+            w4[] w4VarArr = this.f9775n;
             if (i7 < w4VarArr.length) {
                 w4 w4Var = w4VarArr[i7];
                 if (w4Var != null) {
@@ -584,14 +584,14 @@ public final class y4 extends FrameLayout {
     }
 
     public void setOnAddGift(s10 s10Var) {
-        this.f9780g0 = s10Var;
+        this.f9769g0 = s10Var;
     }
 
     public void setOnClose(Runnable runnable) {
-        this.f9781h0 = runnable;
+        this.f9770h0 = runnable;
     }
 
     public void setOnCraft(u10 u10Var) {
-        this.f9779f0 = u10Var;
+        this.f9768f0 = u10Var;
     }
 }

@@ -28,9 +28,9 @@ public final class a extends ja {
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, false, new q4(this, 24), this.J0);
+        p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, false, new q4(this, 24), this.J0);
         this.T1 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -67,7 +67,7 @@ public final class a extends ja {
         boolean z11;
         if (this.U1 != z10) {
             this.U1 = z10;
-            uj0 uj0Var = this.f35936o1;
+            uj0 uj0Var = this.f35931o1;
             View T0 = uj0Var.T0(this.Y1 + 1);
             if (T0 instanceof g6) {
                 ((g6) T0).a(!z10);

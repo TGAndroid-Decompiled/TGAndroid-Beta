@@ -19,10 +19,10 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.fa0;
 public final class j extends LinearLayout implements z5 {
     public final e6 f20673a;
-    public final ea0 f20674b;
+    public final fa0 f20674b;
     public final FrameLayout f20675c;
     public final ImageView d;
     public final TextView f20676e;
@@ -41,9 +41,9 @@ public final class j extends LinearLayout implements z5 {
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f20675c = frameLayout;
-        ea0 ea0Var = new ea0(1);
-        this.f20674b = ea0Var;
-        frameLayout.setBackground(ea0Var);
+        fa0 fa0Var = new fa0(1);
+        this.f20674b = fa0Var;
+        frameLayout.setBackground(fa0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -58,7 +58,7 @@ public final class j extends LinearLayout implements z5 {
         f11.setMinWidth(g0.L(20.66f));
         f11.setPadding(g0.L(6.33f), 0, g0.L(6.33f), 0);
         f11.setTextSize(1, 16.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             addView(f11, ja.j(13.33f, 0.0f));
             if (z10) {
                 i11 = 12;
@@ -208,6 +208,6 @@ public final class j extends LinearLayout implements z5 {
         } else {
             q10 = j6.I.q();
         }
-        this.f20674b.f34267b = q10;
+        this.f20674b.f34552b = q10;
     }
 }

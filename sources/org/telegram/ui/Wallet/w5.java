@@ -50,7 +50,7 @@ public final class w5 extends FrameLayout {
         if (c11 == null) {
             f10 = 0.0f;
         } else {
-            f10 = c11.f5346l / c11.f5338b;
+            f10 = c11.f5349l / c11.f5341b;
         }
         if (f10 > 0.0f) {
             if (gz.o() != 0 && !qc.f() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && activityManager.getDeviceConfigurationInfo().reqGlEsVersion >= 196608) {

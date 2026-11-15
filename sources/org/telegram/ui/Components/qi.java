@@ -15,7 +15,7 @@ public final class qi extends FragmentContextView {
     @Override
     public final void setVisibility(int i7) {
         boolean z10;
-        vr vrVar = this.Z0.f40442y;
+        vr vrVar = this.Z0.f40445y;
         if (i7 == 0) {
             z10 = true;
         } else {

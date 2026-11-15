@@ -41,9 +41,9 @@ public final class k implements ViewTreeObserver.OnPreDrawListener {
                             nVar.M(true);
                         }
                     }
-                    oVar.setFreeform(xeVar.f27502u);
+                    oVar.setFreeform(xeVar.f27503u);
                     float aspectRatio = cropAreaView.getAspectRatio();
-                    int i7 = xeVar.f27495k;
+                    int i7 = xeVar.f27496k;
                     int i10 = this.f21514c;
                     int i11 = this.d;
                     if (i7 != 90 && i7 != 270) {
@@ -72,17 +72,17 @@ public final class k implements ViewTreeObserver.OnPreDrawListener {
                         cropAreaView.e(currentWidth, currentHeight, z10, oVar.f21540y);
                     }
                     m.d(oVar.M, i7);
-                    cropAreaView.setActualRect((aspectRatio * xeVar.f27491e) / xeVar.f27492f);
+                    cropAreaView.setActualRect((aspectRatio * xeVar.f27492e) / xeVar.f27493f);
                     m mVar3 = oVar.M;
-                    mVar3.f21527j = xeVar.f27496l;
+                    mVar3.f21527j = xeVar.f27497l;
                     m.e(mVar3, xeVar.d);
                     m mVar4 = oVar.M;
-                    float f15 = xeVar.f27488a * i10;
+                    float f15 = xeVar.f27489a * i10;
                     float f16 = mVar4.f21524f;
-                    m.f(mVar4, f15 * f16, xeVar.f27489b * i11 * f16);
+                    m.f(mVar4, f15 * f16, xeVar.f27490b * i11 * f16);
                     float max = Math.max(cropAreaView.getCropWidth() / f10, cropAreaView.getCropHeight() / f11);
                     m mVar5 = oVar.M;
-                    m.g(mVar5, xeVar.f27490c * (max / mVar5.f21524f), 0.0f, 0.0f);
+                    m.g(mVar5, xeVar.f27491c * (max / mVar5.f21524f), 0.0f, 0.0f);
                     oVar.r(false);
                     n nVar2 = oVar.N;
                     if (nVar2 != null) {
@@ -105,9 +105,9 @@ public final class k implements ViewTreeObserver.OnPreDrawListener {
                             nVar3.M(true);
                         }
                     }
-                    oVar2.setFreeform(xeVar2.f27502u);
+                    oVar2.setFreeform(xeVar2.f27503u);
                     float aspectRatio2 = cropAreaView2.getAspectRatio();
-                    int i12 = xeVar2.f27495k;
+                    int i12 = xeVar2.f27496k;
                     int i13 = this.f21514c;
                     int i14 = this.d;
                     if (i12 != 90 && i12 != 270) {
@@ -136,17 +136,17 @@ public final class k implements ViewTreeObserver.OnPreDrawListener {
                         cropAreaView2.e(currentWidth2, currentHeight2, z11, oVar2.f21540y);
                     }
                     m.d(oVar2.M, i12);
-                    cropAreaView2.setActualRect((aspectRatio2 * xeVar2.f27491e) / xeVar2.f27492f);
+                    cropAreaView2.setActualRect((aspectRatio2 * xeVar2.f27492e) / xeVar2.f27493f);
                     m mVar8 = oVar2.M;
-                    mVar8.f21527j = xeVar2.f27496l;
+                    mVar8.f21527j = xeVar2.f27497l;
                     m.e(mVar8, xeVar2.d);
                     m mVar9 = oVar2.M;
-                    float f18 = xeVar2.f27488a * i13;
+                    float f18 = xeVar2.f27489a * i13;
                     float f19 = mVar9.f21524f;
-                    m.f(mVar9, f18 * f19, xeVar2.f27489b * i14 * f19);
+                    m.f(mVar9, f18 * f19, xeVar2.f27490b * i14 * f19);
                     float max2 = Math.max(cropAreaView2.getCropWidth() / f12, cropAreaView2.getCropHeight() / f13);
                     m mVar10 = oVar2.M;
-                    m.g(mVar10, xeVar2.f27490c * (max2 / mVar10.f21524f), 0.0f, 0.0f);
+                    m.g(mVar10, xeVar2.f27491c * (max2 / mVar10.f21524f), 0.0f, 0.0f);
                     oVar2.r(false);
                     n nVar4 = oVar2.N;
                     if (nVar4 != null) {

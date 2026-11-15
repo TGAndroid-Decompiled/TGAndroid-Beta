@@ -11,8 +11,8 @@ public final class e implements com.google.android.gms.common.api.b {
     public final String d = UUID.randomUUID().toString();
 
     public e(android.support.v4.media.session.a0 a0Var) {
-        this.f11061a = (CastDevice) a0Var.f1706b;
-        this.f11062b = (g6.d0) a0Var.f1707c;
+        this.f11061a = (CastDevice) a0Var.f1713b;
+        this.f11062b = (g6.d0) a0Var.f1714c;
         this.f11063c = (Bundle) a0Var.d;
     }
 

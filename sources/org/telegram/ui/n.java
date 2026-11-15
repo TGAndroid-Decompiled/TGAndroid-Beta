@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class n extends org.telegram.ui.Components.tj0 {
-    public final Context f49353c;
+    public final Context f49352c;
     public final o d;
 
     public n(o oVar, Context context) {
         this.d = oVar;
-        this.f49353c = context;
+        this.f49352c = context;
     }
 
     @Override
@@ -30,13 +30,13 @@ public final class n extends org.telegram.ui.Components.tj0 {
     @Override
     public final int d(int i7) {
         o oVar = this.d;
-        if (i7 >= oVar.f49746y && i7 < oVar.E) {
+        if (i7 >= oVar.f49736y && i7 < oVar.E) {
             return 0;
         }
         if (i7 == oVar.F) {
             return 1;
         }
-        if (i7 != oVar.G && i7 != oVar.f49745x) {
+        if (i7 != oVar.G && i7 != oVar.f49735x) {
             return 0;
         }
         return 2;
@@ -48,10 +48,10 @@ public final class n extends org.telegram.ui.Components.tj0 {
         boolean z10;
         View view = e1Var.f58535a;
         o oVar = this.d;
-        a0.h hVar = oVar.f49736a;
+        a0.h hVar = oVar.f49726a;
         ArrayList arrayList = oVar.h;
         if (d(i7) == 0) {
-            int i11 = i7 - oVar.f49746y;
+            int i11 = i7 - oVar.f49736y;
             org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) view;
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i11);
             boolean z11 = true;
@@ -80,7 +80,7 @@ public final class n extends org.telegram.ui.Components.tj0 {
             vVar.setOnCheckedChangeListener(new m2.d(5, this, stickerSetCovered));
         } else if (d(i7) == 2) {
             org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
-            if (i7 == oVar.f49745x) {
+            if (i7 == oVar.f49735x) {
                 y8Var.setTopPadding(17);
                 y8Var.setBottomPadding(10);
                 if (oVar.I == 5) {
@@ -99,7 +99,7 @@ public final class n extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        Context context = this.f49353c;
+        Context context = this.f49352c;
         View view = null;
         if (i7 != 0) {
             if (i7 != 1) {

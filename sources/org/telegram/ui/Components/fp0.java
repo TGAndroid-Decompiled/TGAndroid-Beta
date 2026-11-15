@@ -15,14 +15,14 @@ import org.telegram.ui.c81;
 import org.telegram.ui.e81;
 import org.telegram.ui.x71;
 public final class fp0 implements Runnable {
-    public final int f34666a;
-    public final boolean f34667b;
-    public final Object f34668c;
+    public final int f34670a;
+    public final boolean f34671b;
+    public final Object f34672c;
 
     public fp0(int i7, Object obj, boolean z10) {
-        this.f34666a = i7;
-        this.f34668c = obj;
-        this.f34667b = z10;
+        this.f34670a = i7;
+        this.f34672c = obj;
+        this.f34671b = z10;
     }
 
     @Override
@@ -34,17 +34,17 @@ public final class fp0 implements Runnable {
         CheckBoxBase checkBoxBase2;
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
         boolean z10;
-        int i10 = this.f34666a;
+        int i10 = this.f34670a;
         zh.e eVar = null;
         int i11 = 8;
         int i12 = 0;
-        boolean z11 = this.f34667b;
-        Object obj = this.f34668c;
+        boolean z11 = this.f34671b;
+        Object obj = this.f34672c;
         switch (i10) {
             case 0:
                 ys0 ys0Var = (ys0) obj;
                 if (!z11) {
-                    ys0Var.f42122p0.setVisibility(8);
+                    ys0Var.f42124p0.setVisibility(8);
                     return;
                 } else {
                     ys0Var.getClass();
@@ -53,7 +53,7 @@ public final class fp0 implements Runnable {
             case 1:
                 wp0 wp0Var = (wp0) obj;
                 if (!z11) {
-                    wp0Var.W.f42136t0.setVisibility(8);
+                    wp0Var.W.f42138t0.setVisibility(8);
                     return;
                 } else {
                     wp0Var.getClass();
@@ -62,7 +62,7 @@ public final class fp0 implements Runnable {
             case 2:
                 zp0 zp0Var = (zp0) obj;
                 if (!z11) {
-                    zp0Var.f42413x.f42136t0.setVisibility(8);
+                    zp0Var.f42413x.f42138t0.setVisibility(8);
                     return;
                 } else {
                     zp0Var.getClass();
@@ -70,25 +70,25 @@ public final class fp0 implements Runnable {
                 }
             case 3:
                 st0 st0Var = (st0) obj;
-                ArrayList arrayList = st0Var.f39421r;
-                rt0 rt0Var = st0Var.f39420n;
+                ArrayList arrayList = st0Var.f39419r;
+                rt0 rt0Var = st0Var.f39418n;
                 if (rt0Var != null) {
-                    rt0Var.L(st0Var.f39419f, z11);
+                    rt0Var.L(st0Var.f39417f, z11);
                 }
                 while (i12 < arrayList.size()) {
-                    ((rt0) arrayList.get(i12)).L(st0Var.f39419f, z11);
+                    ((rt0) arrayList.get(i12)).L(st0Var.f39417f, z11);
                     i12++;
                 }
                 return;
             case 4:
                 tt0 tt0Var = (tt0) obj;
-                ArrayList arrayList2 = tt0Var.f39421r;
-                rt0 rt0Var2 = tt0Var.f39420n;
+                ArrayList arrayList2 = tt0Var.f39419r;
+                rt0 rt0Var2 = tt0Var.f39418n;
                 if (rt0Var2 != null) {
-                    rt0Var2.L(tt0Var.f39809i0, z11);
+                    rt0Var2.L(tt0Var.f39806i0, z11);
                 }
                 while (i12 < arrayList2.size()) {
-                    ((rt0) arrayList2.get(i12)).L(tt0Var.f39809i0, z11);
+                    ((rt0) arrayList2.get(i12)).L(tt0Var.f39806i0, z11);
                     i12++;
                 }
                 return;
@@ -115,7 +115,7 @@ public final class fp0 implements Runnable {
             case 9:
                 org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) obj;
                 if (!z11) {
-                    pa0Var.f50194b.setVisibility(8);
+                    pa0Var.f50171b.setVisibility(8);
                     return;
                 } else {
                     pa0Var.getClass();
@@ -149,7 +149,7 @@ public final class fp0 implements Runnable {
                 frameLayout.setVisibility(i12);
                 return;
             case 14:
-                Activity parentActivity2 = ((org.telegram.ui.iw0) obj).f48138e.getParentActivity();
+                Activity parentActivity2 = ((org.telegram.ui.iw0) obj).f48123e.getParentActivity();
                 if (z11) {
                     i7 = 2131746704;
                 } else {
@@ -182,10 +182,10 @@ public final class fp0 implements Runnable {
                     q1Var3.f30935c6 = -1;
                     q1Var3.invalidate();
                 }
-                org.telegram.ui.tl tlVar = e81Var.f46636d0;
+                org.telegram.ui.tl tlVar = e81Var.f46626d0;
                 if (tlVar != null) {
                     org.telegram.messenger.g0.h3(tlVar);
-                    e81Var.f46636d0 = null;
+                    e81Var.f46626d0 = null;
                     return;
                 }
                 return;

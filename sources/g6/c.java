@@ -39,13 +39,13 @@ public final class c extends f {
         this.h = hVar;
         a7.a f10 = f();
         j jVar = new j(this);
-        j6.b bVar2 = com.google.android.gms.internal.cast.d.f6226a;
+        j6.b bVar2 = com.google.android.gms.internal.cast.d.f6229a;
         q qVar = null;
         if (f10 != null) {
             try {
                 qVar = com.google.android.gms.internal.cast.d.b(context).x1(bVar, f10, jVar);
             } catch (RemoteException | d e10) {
-                com.google.android.gms.internal.cast.d.f6226a.a(e10, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+                com.google.android.gms.internal.cast.d.f6229a.a(e10, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
             }
         }
         this.f12896e = qVar;
@@ -83,9 +83,9 @@ public final class c extends f {
             android.support.v4.media.session.a0 a0Var2 = hVar.f15846p;
             if (a0Var2 != null) {
                 a0Var2.q(false);
-                android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) hVar.f15846p.f1706b;
-                MediaSession mediaSession = uVar.f1736a;
-                uVar.f1739e.kill();
+                android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) hVar.f15846p.f1713b;
+                MediaSession mediaSession = uVar.f1743a;
+                uVar.f1746e.kill();
                 if (Build.VERSION.SDK_INT == 27) {
                     try {
                         Field declaredField = mediaSession.getClass().getDeclaredField("mCallback");
@@ -99,7 +99,7 @@ public final class c extends f {
                     }
                 }
                 mediaSession.setCallback(null);
-                uVar.f1737b.f1735a.set(null);
+                uVar.f1744b.f1742a.set(null);
                 mediaSession.release();
                 hVar.f15846p = null;
             }
@@ -113,11 +113,11 @@ public final class c extends f {
         e0 e0Var = cVar.f12899i;
         if (e0Var != null) {
             com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-            b10.f6071c = f6.z.f11163b;
-            b10.f6069a = 8403;
+            b10.f6074c = f6.z.f11163b;
+            b10.f6072a = 8403;
             e0Var.e(1, b10.a());
             e0Var.h();
-            com.google.android.gms.common.api.internal.m mVar = cb.c.h(e0Var.f6107g, e0Var.f11064l, "castDeviceControllerListenerKey").f6052b;
+            com.google.android.gms.common.api.internal.m mVar = cb.c.h(e0Var.f6110g, e0Var.f11064l, "castDeviceControllerListenerKey").f6055b;
             q6.m.h(mVar, "Key must not be null");
             e0Var.c(mVar, 8415);
             cVar.f12899i = null;
@@ -167,7 +167,7 @@ public final class c extends f {
                     return;
                 }
                 bVar.b("%s() -> failure result", str);
-                int i7 = status.f5911a;
+                int i7 = status.f5914a;
                 o oVar2 = (o) qVar;
                 Parcel p13 = oVar2.p1();
                 p13.writeInt(i7);

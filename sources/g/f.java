@@ -235,13 +235,13 @@ public class f extends u implements DialogInterface {
                 if (i7 != 0) {
                     i10 = alertController$RecycleListView.getPaddingTop();
                 } else {
-                    i10 = alertController$RecycleListView.f1832a;
+                    i10 = alertController$RecycleListView.f1839a;
                 }
                 int paddingRight = alertController$RecycleListView.getPaddingRight();
                 if (z13) {
                     i11 = alertController$RecycleListView.getPaddingBottom();
                 } else {
-                    i11 = alertController$RecycleListView.f1833b;
+                    i11 = alertController$RecycleListView.f1840b;
                 }
                 alertController$RecycleListView.setPadding(paddingLeft, i10, paddingRight, i11);
             }

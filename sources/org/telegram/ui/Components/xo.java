@@ -10,18 +10,18 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.pc1;
 public final class xo implements ii {
-    public final ep f41743a;
+    public final ep f41735a;
 
     public xo(ep epVar) {
-        this.f41743a = epVar;
+        this.f41735a = epVar;
     }
 
     @Override
     public final void R0(Object obj) {
         uo uoVar = new uo(obj, null, true, 3);
-        ep epVar = this.f41743a;
+        ep epVar = this.f41735a;
         uoVar.X1 = epVar.Z1;
-        uoVar.h1(epVar.f34401v1.a());
+        uoVar.h1(epVar.f34400v1.a());
         uoVar.K1 = new wo(this, 1);
         ep.I0(epVar, uoVar);
     }
@@ -44,9 +44,9 @@ public final class xo implements ii {
 
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ep epVar = this.f41743a;
+        ep epVar = this.f41735a;
         try {
-            HashMap<Object, Object> selectedPhotos = epVar.S1.f36447e2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = epVar.S1.f36435e2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) selectedPhotos.values().iterator().next();
                 String str = ffVar.h;
@@ -63,8 +63,8 @@ public final class xo implements ii {
                     uoVar.X1 = epVar.Z1;
                     uoVar.H1 = false;
                     uoVar.G1 = false;
-                    uoVar.f51453p1 = 0.2f;
-                    uoVar.h1(epVar.f34401v1.a());
+                    uoVar.f51454p1 = 0.2f;
+                    uoVar.h1(epVar.f34400v1.a());
                     uoVar.K1 = new wo(this, 0);
                     ep.I0(epVar, uoVar);
                 }

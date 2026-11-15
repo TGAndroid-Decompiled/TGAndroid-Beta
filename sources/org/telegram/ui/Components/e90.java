@@ -1,25 +1,49 @@
 package org.telegram.ui.Components;
+public final class e90 {
+    public final org.telegram.ui.ActionBar.e2 f34249a;
+    public final j90 f34250b;
 
-import org.telegram.tgnet.TLRPC;
-public final class e90 extends org.telegram.ui.mq0 {
-    public final i90 f34262a;
-
-    public e90(i90 i90Var) {
-        this.f34262a = i90Var;
+    public e90(j90 j90Var, org.telegram.ui.ActionBar.e2 e2Var) {
+        this.f34250b = j90Var;
+        this.f34249a = e2Var;
     }
 
-    @Override
-    public final org.telegram.ui.uq0 E(org.telegram.messenger.gj r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e90.E(org.telegram.messenger.gj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.uq0");
-    }
-
-    @Override
-    public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
-        if (i7 >= 0) {
-            i90 i90Var = this.f34262a;
-            if (i7 < i90Var.Q.size()) {
-                i90Var.f35529y.r((TLRPC.BotInlineResult) i90Var.Q.get(i7), z10, i10);
+    public final void a(boolean z10) {
+        j90 j90Var = this.f34250b;
+        boolean z11 = false;
+        if (j90Var.getNeededLayoutManager() != j90Var.getCurrentLayoutManager() && j90Var.a()) {
+            if (j90Var.f35923f.N0 > 0) {
+                j90Var.O = true;
+                j90Var.o(false);
+                return;
             }
+            j90Var.f35920b.setLayoutManager(j90Var.getNeededLayoutManager());
+        }
+        if (z10 && !j90Var.a()) {
+            z10 = false;
+        }
+        if (!z10 || j90Var.f35923f.K() > 0) {
+            z11 = z10;
+        }
+        j90Var.o(z11);
+    }
+
+    public final void b(boolean z10) {
+        this.f34250b.l(z10);
+    }
+
+    public final void c() {
+        long j3;
+        j90 j90Var = this.f34250b;
+        fo foVar = j90Var.K;
+        if (j90Var.f35920b.getLayoutManager() != j90Var.d && j90Var.J) {
+            org.telegram.messenger.g0.r(foVar);
+            if (this.f34249a.getFragmentBeginToShow()) {
+                j3 = 0;
+            } else {
+                j3 = 100;
+            }
+            org.telegram.messenger.g0.i3(foVar, j3);
         }
     }
 }

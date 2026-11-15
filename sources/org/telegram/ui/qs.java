@@ -4,21 +4,21 @@ import java.util.Comparator;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class qs implements Comparator {
-    public final int f50786a;
-    public final Object f50787b;
+    public final int f50785a;
+    public final Object f50786b;
 
     public qs(Object obj, int i7) {
-        this.f50786a = i7;
-        this.f50787b = obj;
+        this.f50785a = i7;
+        this.f50786b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f50786a) {
+        switch (this.f50785a) {
             case 0:
-                return ((Comparator) this.f50787b).compare(((ps) obj).f50358a, ((ps) obj2).f50358a);
+                return ((Comparator) this.f50786b).compare(((ps) obj).f50349a, ((ps) obj2).f50349a);
             case 1:
-                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f50787b;
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f50786b;
                 int i7 = longSparseIntArray.get(((Long) obj).longValue());
                 int i10 = longSparseIntArray.get(((Long) obj2).longValue());
                 if (i7 > i10) {
@@ -29,15 +29,15 @@ public final class qs implements Comparator {
                 }
                 return 0;
             case 2:
-                org.telegram.messenger.dd ddVar = (org.telegram.messenger.dd) this.f50787b;
+                org.telegram.messenger.dd ddVar = (org.telegram.messenger.dd) this.f50786b;
                 org.telegram.messenger.dd ddVar2 = (org.telegram.messenger.dd) obj;
                 org.telegram.messenger.dd ddVar3 = (org.telegram.messenger.dd) obj2;
                 if (ddVar2 != ddVar) {
                     if (ddVar3 != ddVar) {
-                        int i11 = ddVar2.f23066k;
-                        int i12 = ddVar3.f23066k;
+                        int i11 = ddVar2.f23074k;
+                        int i12 = ddVar3.f23074k;
                         if (i11 == i12) {
-                            return ddVar2.f23058a.compareTo(ddVar3.f23058a);
+                            return ddVar2.f23066a.compareTo(ddVar3.f23066a);
                         }
                         if (i11 <= i12) {
                             if (i11 >= i12) {
@@ -49,7 +49,7 @@ public final class qs implements Comparator {
                 }
                 return -1;
             default:
-                StickersActivity stickersActivity = (StickersActivity) this.f50787b;
+                StickersActivity stickersActivity = (StickersActivity) this.f50786b;
                 int indexOf = stickersActivity.d.indexOf((TLRPC.TL_messages_stickerSet) obj);
                 int indexOf2 = stickersActivity.d.indexOf((TLRPC.TL_messages_stickerSet) obj2);
                 if (indexOf >= 0 && indexOf2 >= 0) {

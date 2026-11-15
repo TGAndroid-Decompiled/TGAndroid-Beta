@@ -7,14 +7,14 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public class u41 extends uj0 {
-    public v4.b0 f39894f3;
-    public final p41 f39895g3;
-    public v4.y f39896h3;
-    public boolean f39897i3;
+    public v4.b0 f39891f3;
+    public final p41 f39892g3;
+    public v4.y f39893h3;
+    public boolean f39894i3;
     public boolean j3;
-    public boolean f39898k3;
-    public v4.e1 f39899l3;
-    public boolean f39900m3;
+    public boolean f39895k3;
+    public v4.e1 f39896l3;
+    public boolean f39897m3;
 
     public u41(org.telegram.ui.ActionBar.e2 e2Var, org.telegram.messenger.s10 s10Var, org.telegram.messenger.x10 x10Var, org.telegram.messenger.y10 y10Var) {
         this(e2Var.getContext(), e2Var.getCurrentAccount(), e2Var.getClassGuid(), false, s10Var, x10Var, y10Var, e2Var.getResourceProvider());
@@ -23,7 +23,7 @@ public class u41 extends uj0 {
     public final int A1(int i7) {
         int i10 = 0;
         while (true) {
-            p41 p41Var = this.f39895g3;
+            p41 p41Var = this.f39892g3;
             if (i10 < p41Var.E.size()) {
                 b41 G = p41Var.G(i10);
                 if (G != null && G.d == i7) {
@@ -39,7 +39,7 @@ public class u41 extends uj0 {
     public final View B1(int i7) {
         int i10 = 0;
         while (true) {
-            p41 p41Var = this.f39895g3;
+            p41 p41Var = this.f39892g3;
             if (i10 < p41Var.E.size()) {
                 b41 G = p41Var.G(i10);
                 if (G != null && G.d == i7) {
@@ -57,7 +57,7 @@ public class u41 extends uj0 {
     public final View C1(Object obj) {
         int i7 = 0;
         while (true) {
-            p41 p41Var = this.f39895g3;
+            p41 p41Var = this.f39892g3;
             if (i7 < p41Var.E.size()) {
                 b41 G = p41Var.G(i7);
                 if (G != null && G.G == obj) {
@@ -79,28 +79,28 @@ public class u41 extends uj0 {
     public final void E1(org.telegram.messenger.s10 s10Var, boolean z10) {
         this.j3 = z10;
         v4.y yVar = new v4.y(new gi.c(this, 7));
-        this.f39896h3 = yVar;
+        this.f39893h3 = yVar;
         yVar.h(this);
-        this.f39895g3.N = s10Var;
+        this.f39892g3.N = s10Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         int i7;
         if (!b1()) {
-            p41 p41Var = this.f39895g3;
+            p41 p41Var = this.f39892g3;
             ArrayList arrayList = p41Var.H;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 m41 m41Var = (m41) arrayList.get(i10);
                 int i11 = m41Var.f37055b;
                 if (i11 >= 0) {
                     int i12 = m41Var.f37054a;
-                    if (p41Var.f38200n) {
+                    if (p41Var.f38198n) {
                         i7 = org.telegram.ui.ActionBar.j6.f28922h5;
                     } else {
                         i7 = org.telegram.ui.ActionBar.j6.f28849d6;
                     }
-                    int w02 = org.telegram.ui.ActionBar.j6.w0(i7, p41Var.f38204x);
+                    int w02 = org.telegram.ui.ActionBar.j6.w0(i7, p41Var.f38202x);
                     if (i11 >= i12 && i12 >= 0 && i11 >= 0) {
                         int i13 = Integer.MAX_VALUE;
                         int i14 = Integer.MIN_VALUE;
@@ -130,7 +130,7 @@ public class u41 extends uj0 {
     }
 
     public int getSpanCount() {
-        v4.b0 b0Var = this.f39894f3;
+        v4.b0 b0Var = this.f39891f3;
         if (b0Var instanceof oy) {
             return ((oy) b0Var).J;
         }
@@ -143,28 +143,28 @@ public class u41 extends uj0 {
     }
 
     public void setReorderLongPressEnabled(boolean z10) {
-        this.f39900m3 = z10;
+        this.f39897m3 = z10;
     }
 
     public void setSpanCount(int i7) {
-        v4.b0 b0Var = this.f39894f3;
+        v4.b0 b0Var = this.f39891f3;
         if (b0Var instanceof oy) {
             ((oy) b0Var).y1(i7);
         } else if (b0Var != null && i7 != -1) {
             getContext();
             s41 s41Var = new s41(this, i7, 1);
             s41Var.O = new tq0(this, s41Var, 2);
-            this.f39894f3 = s41Var;
+            this.f39891f3 = s41Var;
             setLayoutManager(s41Var);
         }
     }
 
     public final void z1(boolean z10) {
-        if (this.f39898k3 == z10) {
+        if (this.f39895k3 == z10) {
             return;
         }
-        this.f39898k3 = z10;
-        this.f39895g3.O = z10;
+        this.f39895k3 = z10;
+        this.f39892g3.O = z10;
         org.telegram.messenger.g0.d0(this, new q2(this, 14));
     }
 
@@ -174,19 +174,19 @@ public class u41 extends uj0 {
 
     public u41(Context context, int i7, int i10, boolean z10, org.telegram.messenger.s10 s10Var, org.telegram.messenger.x10 x10Var, org.telegram.messenger.y10 y10Var, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12) {
         super(context, e6Var);
-        this.f39900m3 = true;
+        this.f39897m3 = true;
         if (i11 == -1) {
             jg.i0 i0Var = new jg.i0(this, i12);
-            this.f39894f3 = i0Var;
+            this.f39891f3 = i0Var;
             setLayoutManager(i0Var);
         } else {
             s41 s41Var = new s41(this, i11, 0);
             s41Var.O = new tq0(this, s41Var, 1);
-            this.f39894f3 = s41Var;
+            this.f39891f3 = s41Var;
             setLayoutManager(s41Var);
         }
         p41 p41Var = new p41(this, context, i7, i10, z10, s10Var, e6Var);
-        this.f39895g3 = p41Var;
+        this.f39892g3 = p41Var;
         setAdapter(p41Var);
         if (x10Var != null) {
             setOnItemClickListener(new f1(24, this, x10Var));

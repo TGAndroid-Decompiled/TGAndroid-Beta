@@ -58,8 +58,8 @@ public final class d extends ca {
             return;
         }
         dh.a aVar = this.f11304a;
-        aVar.f8088b = 0L;
-        aVar.f8087a = false;
+        aVar.f8091b = 0L;
+        aVar.f8090a = false;
         aVar.a(i7);
         aVar.a(gVar.f11355x);
         for (float f11 : fVar.f11320b) {
@@ -68,10 +68,10 @@ public final class d extends ca {
         aVar.c(gVar.U);
         aVar.c(0.0f);
         aVar.c(gVar.V);
-        if (aVar.f8087a) {
+        if (aVar.f8090a) {
             j3 = -1;
         } else {
-            j3 = aVar.f8088b;
+            j3 = aVar.f8091b;
         }
         NinePatchDrawable ninePatchDrawable = this.d;
         Rect rect = this.f11306c;

@@ -12,14 +12,14 @@ public final class c implements ke.a {
         if (hVar.f55543a) {
             hVar.j(String.valueOf(doubleValue));
         } else {
-            ((mc.a) iVar.f4841c).c(String.valueOf(doubleValue));
+            ((mc.a) iVar.f4844c).c(String.valueOf(doubleValue));
         }
         ((o0) hVar.f55547f).getClass();
         if (!Double.isInfinite(doubleValue) && !Double.isNaN(doubleValue)) {
             return;
         }
         Double valueOf = Double.valueOf(doubleValue);
-        String aVar = ((mc.a) iVar.f4841c).toString();
+        String aVar = ((mc.a) iVar.f4844c).toString();
         throw new qe.d("Unexpected special floating-point value " + valueOf + ". By default, non-finite floating point values are prohibited because they do not conform JSON specification. It is possible to deserialize them using 'JsonBuilder.allowSpecialFloatingPointValues = true'\nCurrent output: " + ((Object) qe.f.d(-1, aVar)));
     }
 

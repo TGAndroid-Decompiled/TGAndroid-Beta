@@ -183,8 +183,8 @@ public abstract class v61 extends FrameLayout implements org.telegram.ui.ActionB
             this.G = size;
         }
         ?? obj = new Object();
-        obj.f39188a = i7;
-        obj.f39189b = charSequence;
+        obj.f39185a = i7;
+        obj.f39186b = charSequence;
         int i11 = this.I;
         this.I = org.telegram.messenger.k5.C(this.f40313r * 2, obj.a(this.f40295c), i11);
         arrayList.add(obj);
@@ -221,7 +221,7 @@ public abstract class v61 extends FrameLayout implements org.telegram.ui.ActionB
                 } else {
                     f15 = 1.0f;
                 }
-                scaleX.scaleY(f15).setInterpolator(er.f34420f).setDuration(220L).start();
+                scaleX.scaleY(f15).setInterpolator(er.f34419f).setDuration(220L).start();
                 i7++;
             }
         } else {
@@ -295,9 +295,9 @@ public abstract class v61 extends FrameLayout implements org.telegram.ui.ActionB
         setEnabled(false);
         u61 u61Var = this.E;
         if (u61Var != null) {
-            w61 w61Var = (w61) ((cf) u61Var).f33543a;
+            w61 w61Var = (w61) ((cf) u61Var).f33545a;
             w61Var.E = z10;
-            View[] viewArr = w61Var.f41297e;
+            View[] viewArr = w61Var.f41300e;
             w61Var.d = i10;
             w61Var.I(1);
             w61Var.w(i10, z10);
@@ -321,7 +321,7 @@ public abstract class v61 extends FrameLayout implements org.telegram.ui.ActionB
         this.f40307l0 = ofFloat;
         ofFloat.addUpdateListener(new o61(this, 0));
         this.f40307l0.setDuration(250L);
-        this.f40307l0.setInterpolator(er.f34420f);
+        this.f40307l0.setInterpolator(er.f34419f);
         this.f40307l0.addListener(new i11(this, 6));
         this.f40307l0.start();
     }
@@ -530,7 +530,7 @@ public abstract class v61 extends FrameLayout implements org.telegram.ui.ActionB
             r61Var2 = this.f40311p0;
         }
         c1Var2.setItemAnimator(r61Var2);
-        org.telegram.messenger.g0.d0(c1Var2, new di.t7(6, this, z10));
+        org.telegram.messenger.g0.d0(c1Var2, new ai.u2(7, this, z10));
     }
 
     @Override

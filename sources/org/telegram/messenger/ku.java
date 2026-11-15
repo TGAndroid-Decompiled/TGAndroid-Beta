@@ -14,7 +14,7 @@ public final class ku extends cu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         return g0.L(12.0f) + rect.top + rect.bottom;
     }
 
@@ -26,11 +26,11 @@ public final class ku extends cu {
     @Override
     public final void W(Canvas canvas) {
         int i7;
-        iv ivVar = this.f22933a;
+        iv ivVar = this.f22941a;
         int i10 = ivVar.C;
         int i11 = ivVar.S;
         int i12 = i10 + i11 + ivVar.T;
-        Rect rect = this.f22934b;
+        Rect rect = this.f22942b;
         int i13 = rect.left;
         int i14 = (i12 - i13) - rect.right;
         int i15 = i14 / 2;

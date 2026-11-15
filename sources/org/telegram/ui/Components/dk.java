@@ -24,7 +24,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class dk extends ci {
-    public static final int f33956h0 = 0;
+    public static final int f33943h0 = 0;
     public final ck E;
     public final kg.c0 F;
     public final org.telegram.ui.ActionBar.q0 G;
@@ -44,19 +44,19 @@ public final class dk extends ci {
     public final HashMap U;
     public boolean V;
     public int W;
-    public boolean f33957a0;
-    public final boolean f33958b0;
-    public boolean f33959c0;
-    public boolean f33960d0;
-    public boolean f33961e0;
-    public final androidx.mediarouter.app.f f33962f0;
-    public ValueAnimator f33963g0;
-    public int f33964n;
-    public final rj f33965r;
-    public final rj f33966s;
-    public final vj f33967w;
-    public final vj f33968x;
-    public final qy f33969y;
+    public boolean f33944a0;
+    public final boolean f33945b0;
+    public boolean f33946c0;
+    public boolean f33947d0;
+    public boolean f33948e0;
+    public final androidx.mediarouter.app.f f33949f0;
+    public ValueAnimator f33950g0;
+    public int f33951n;
+    public final rj f33952r;
+    public final rj f33953s;
+    public final vj f33954w;
+    public final vj f33955x;
+    public final qy f33956y;
 
     public dk(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var, ki kiVar) {
         super(context, e6Var, kiVar);
@@ -70,28 +70,28 @@ public final class dk extends ci {
         this.T = new ArrayList();
         this.U = new HashMap();
         this.W = -1;
-        this.f33962f0 = new androidx.mediarouter.app.f(this, 8);
+        this.f33949f0 = new androidx.mediarouter.app.f(this, 8);
         vj vjVar = new vj(this, context);
-        this.f33967w = vjVar;
+        this.f33954w = vjVar;
         if (i7 == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f33958b0 = z10;
+        this.f33945b0 = z10;
         int i11 = 2;
         if (i7 == 2) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f33961e0 = z11;
-        this.f33960d0 = org.telegram.messenger.gz.M0;
+        this.f33948e0 = z11;
+        this.f33947d0 = org.telegram.messenger.gz.M0;
         int i12 = 3;
         try {
             if (z11) {
                 try {
-                    Cursor query = org.telegram.messenger.t0.f26600b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_id", "_data", "duration", "_size", "mime_type"}, "is_music != 0", null, "date_added DESC");
+                    Cursor query = org.telegram.messenger.t0.f26609b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_id", "_data", "duration", "_size", "mime_type"}, "is_music != 0", null, "date_added DESC");
                     while (query.moveToNext()) {
                         try {
                             File file = new File(query.getString(1));
@@ -99,12 +99,12 @@ public final class dk extends ci {
                             long j10 = query.getLong(i12);
                             String string = query.getString(4);
                             cursor = query;
-                            if (j3 <= org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).f25327l4 * 1000) {
+                            if (j3 <= org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).f25330l4 * 1000) {
                                 try {
-                                    if (j10 <= org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).f25335m4 && (TextUtils.isEmpty(string) || "audio/mpeg".equals(string) || !"audio/mpeg4".equals(string))) {
+                                    if (j10 <= org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).f25338m4 && (TextUtils.isEmpty(string) || "audio/mpeg".equals(string) || !"audio/mpeg4".equals(string))) {
                                         wj wjVar = new wj();
-                                        wjVar.f41363b = file.getName();
-                                        wjVar.f41366f = file;
+                                        wjVar.f41366b = file.getName();
+                                        wjVar.f41369f = file;
                                         String name = file.getName();
                                         String[] split = name.split("\\.");
                                         if (split.length > 1) {
@@ -113,12 +113,12 @@ public final class dk extends ci {
                                             str = "?";
                                         }
                                         wjVar.d = str;
-                                        wjVar.f41364c = org.telegram.messenger.g0.i0(file.length(), false, false);
+                                        wjVar.f41367c = org.telegram.messenger.g0.i0(file.length(), false, false);
                                         String lowerCase = name.toLowerCase();
                                         if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                                            wjVar.f41365e = file.getAbsolutePath();
+                                            wjVar.f41368e = file.getAbsolutePath();
                                         }
-                                        ((ArrayList) this.f33967w.h).add(wjVar);
+                                        ((ArrayList) this.f33954w.h).add(wjVar);
                                     }
                                 } catch (Throwable th2) {
                                     th = th2;
@@ -148,7 +148,7 @@ public final class dk extends ci {
         } catch (Exception e11) {
             org.telegram.messenger.a8.g(e11, true);
         }
-        this.f33959c0 = false;
+        this.f33946c0 = false;
         if (!this.Q) {
             this.Q = true;
             IntentFilter intentFilter = new IntentFilter();
@@ -163,12 +163,12 @@ public final class dk extends ci {
             intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTED");
             intentFilter.addDataScheme("file");
             if (Build.VERSION.SDK_INT >= 33) {
-                org.telegram.messenger.t0.f26600b.registerReceiver(this.f33962f0, intentFilter, 4);
+                org.telegram.messenger.t0.f26609b.registerReceiver(this.f33949f0, intentFilter, 4);
             } else {
-                org.telegram.messenger.t0.f26600b.registerReceiver(this.f33962f0, intentFilter);
+                org.telegram.messenger.t0.f26609b.registerReceiver(this.f33949f0, intentFilter);
             }
         }
-        org.telegram.ui.ActionBar.y s5 = this.f33607b.V2.s();
+        org.telegram.ui.ActionBar.y s5 = this.f33609b.V2.s();
         org.telegram.ui.ActionBar.q0 a10 = s5.a(0, 2131232487);
         a10.O();
         a10.I = new kg.x1(this, 6);
@@ -180,7 +180,7 @@ public final class dk extends ci {
         org.telegram.ui.ActionBar.q6.U(searchField, i13, e6Var);
         org.telegram.ui.ActionBar.q6.v(searchField, i13, e6Var);
         org.telegram.ui.ActionBar.q6.D(searchField, org.telegram.ui.ActionBar.j6.Me, e6Var);
-        if (this.f33960d0) {
+        if (this.f33947d0) {
             i10 = 2131232103;
         } else {
             i10 = 2131232102;
@@ -197,40 +197,40 @@ public final class dk extends ci {
         x4Var.setVisibility(8);
         x4Var.setOnTouchListener(new gi.a(15));
         rj rjVar = new rj(this, context, e6Var, 0);
-        this.f33966s = rjVar;
+        this.f33953s = rjVar;
         rjVar.setSectionsType(2);
         rjVar.setVerticalScrollBarEnabled(false);
         qy qyVar = new qy(org.telegram.messenger.g0.L(56.0f), 0, rjVar);
-        this.f33969y = qyVar;
+        this.f33956y = qyVar;
         rjVar.setLayoutManager(qyVar);
         rjVar.setClipToPadding(false);
         vj vjVar2 = new vj(this, context);
-        this.f33968x = vjVar2;
+        this.f33955x = vjVar2;
         rjVar.setAdapter(vjVar2);
         addView(rjVar, c8.ja.c(-1.0f, -1));
         rjVar.setVisibility(8);
         rj rjVar2 = new rj(this, context, e6Var, 1);
-        this.f33965r = rjVar2;
+        this.f33952r = rjVar2;
         rjVar2.r1();
         setBlur3Capture(rjVar2);
         this.d = rjVar2;
         this.h = true;
-        this.f33610f = true;
+        this.f33612f = true;
         rjVar2.setSectionsType(2);
         rjVar2.setVerticalScrollBarEnabled(false);
-        kg.c0 c0Var = new kg.c0(this, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23603m, rjVar2, 2);
+        kg.c0 c0Var = new kg.c0(this, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f23605m, rjVar2, 2);
         this.F = c0Var;
         rjVar2.setLayoutManager(c0Var);
         rjVar2.setClipToPadding(false);
-        rjVar2.setAdapter(this.f33967w);
+        rjVar2.setAdapter(this.f33954w);
         addView(rjVar2, c8.ja.c(-1.0f, -1));
         this.E = new ck(this, context);
         rjVar2.setOnScrollListener(new ri(this, 3));
         rjVar2.setOnItemClickListener(new gj0(this) {
-            public final dk f37622b;
+            public final dk f37611b;
 
             {
-                this.f37622b = this;
+                this.f37611b = this;
             }
 
             @Override
@@ -238,10 +238,10 @@ public final class dk extends ci {
                 jg.o0 o0Var;
                 switch (r2) {
                     case 0:
-                        dk.P(this.f37622b, view, i14);
+                        dk.P(this.f37611b, view, i14);
                         return;
                     default:
-                        dk dkVar = this.f37622b;
+                        dk dkVar = this.f37611b;
                         jg.q0 q0Var = dkVar.I;
                         q0Var.I0(true);
                         ck ckVar = dkVar.E;
@@ -251,7 +251,7 @@ public final class dk extends ci {
                         } else {
                             o0Var = (jg.o0) arrayList.get(i14);
                         }
-                        ki kiVar2 = ckVar.Y.f33607b;
+                        ki kiVar2 = ckVar.Y.f33609b;
                         ArrayList arrayList2 = ckVar.S;
                         if (!arrayList2.isEmpty()) {
                             for (int i15 = 0; i15 < arrayList2.size(); i15++) {
@@ -272,10 +272,10 @@ public final class dk extends ci {
         jg.q0 q0Var = new jg.q0(context, e6Var);
         this.I = q0Var;
         q0Var.setOnItemClickListener(new gj0(this) {
-            public final dk f37622b;
+            public final dk f37611b;
 
             {
-                this.f37622b = this;
+                this.f37611b = this;
             }
 
             @Override
@@ -283,10 +283,10 @@ public final class dk extends ci {
                 jg.o0 o0Var;
                 switch (r2) {
                     case 0:
-                        dk.P(this.f37622b, view, i14);
+                        dk.P(this.f37611b, view, i14);
                         return;
                     default:
-                        dk dkVar = this.f37622b;
+                        dk dkVar = this.f37611b;
                         jg.q0 q0Var2 = dkVar.I;
                         q0Var2.I0(true);
                         ck ckVar = dkVar.E;
@@ -296,7 +296,7 @@ public final class dk extends ci {
                         } else {
                             o0Var = (jg.o0) arrayList.get(i14);
                         }
-                        ki kiVar2 = ckVar.Y.f33607b;
+                        ki kiVar2 = ckVar.Y.f33609b;
                         ArrayList arrayList2 = ckVar.S;
                         if (!arrayList2.isEmpty()) {
                             for (int i15 = 0; i15 < arrayList2.size(); i15++) {
@@ -327,10 +327,10 @@ public final class dk extends ci {
         boolean z10;
         boolean z11;
         int i10;
-        ki kiVar = dkVar.f33607b;
-        rj rjVar = dkVar.f33965r;
+        ki kiVar = dkVar.f33609b;
+        rj rjVar = dkVar.f33952r;
         v4.h0 adapter = rjVar.getAdapter();
-        vj vjVar = dkVar.f33967w;
+        vj vjVar = dkVar.f33954w;
         if (adapter == vjVar) {
             O = vjVar.E(i7);
         } else {
@@ -339,15 +339,15 @@ public final class dk extends ci {
         }
         if (O instanceof wj) {
             wj wjVar = (wj) O;
-            File file = wjVar.f41366f;
+            File file = wjVar.f41369f;
             if (Build.VERSION.SDK_INT >= 30) {
                 z10 = Environment.isExternalStorageManager();
             } else {
                 z10 = false;
             }
             org.telegram.ui.an anVar = null;
-            if (!org.telegram.messenger.r2.f26199b && (((i10 = wjVar.f41362a) == 2131231074 || i10 == 2131231072) && !z10)) {
-                xh xhVar = kiVar.f36482p3;
+            if (!org.telegram.messenger.r2.f26207b && (((i10 = wjVar.f41365a) == 2131231074 || i10 == 2131231072) && !z10)) {
+                xh xhVar = kiVar.f36470p3;
                 int i11 = kiVar.H3;
                 if (kiVar.F3 != null && kiVar.F1 - kiVar.G1 < 0) {
                     if (!org.telegram.messenger.np.s1(i11).D3() && org.telegram.messenger.np.s1(i11).V4 > kiVar.G1) {
@@ -361,11 +361,11 @@ public final class dk extends ci {
                 dkVar.R.A();
                 return;
             } else if (file == null) {
-                int i12 = wjVar.f41362a;
+                int i12 = wjVar.f41365a;
                 if (i12 == 2131231071) {
                     HashMap hashMap = new HashMap();
                     ArrayList arrayList = new ArrayList();
-                    org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+                    org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
                     if (e2Var instanceof org.telegram.ui.an) {
                         anVar = (org.telegram.ui.an) e2Var;
                     }
@@ -376,17 +376,17 @@ public final class dk extends ci {
                     } else {
                         z11 = false;
                     }
-                    org.telegram.ui.ym0 ym0Var = new org.telegram.ui.ym0(0, veVar, hashMap, arrayList, 0, z11, anVar2, false);
-                    ym0Var.m0 = true;
-                    ym0Var.f53590t0 = new h6.m(dkVar, hashMap, arrayList, 26);
-                    ym0Var.k0(dkVar.W, false);
-                    org.telegram.ui.ActionBar.e2 e2Var2 = kiVar.f36436a2;
+                    org.telegram.ui.zm0 zm0Var = new org.telegram.ui.zm0(0, veVar, hashMap, arrayList, 0, z11, anVar2, false);
+                    zm0Var.m0 = true;
+                    zm0Var.f53981t0 = new h6.m(dkVar, hashMap, arrayList, 26);
+                    zm0Var.k0(dkVar.W, false);
+                    org.telegram.ui.ActionBar.e2 e2Var2 = kiVar.f36424a2;
                     if (e2Var2 != null) {
-                        e2Var2.presentFragment(ym0Var);
+                        e2Var2.presentFragment(zm0Var);
                     } else {
                         org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
                         if (Q != null) {
-                            Q.presentFragment(ym0Var);
+                            Q.presentFragment(zm0Var);
                         }
                     }
                     kiVar.a(true);
@@ -401,7 +401,7 @@ public final class dk extends ci {
                 } else {
                     int topForScroll = dkVar.getTopForScroll();
                     dkVar.V();
-                    uj ujVar = (uj) r.b.g(1, vjVar.f40445f);
+                    uj ujVar = (uj) r.b.g(1, vjVar.f40448f);
                     kiVar.V2.setTitle(ujVar.f40037b);
                     File file2 = ujVar.f40036a;
                     if (file2 != null) {
@@ -424,13 +424,13 @@ public final class dk extends ci {
                     obj.f40036a = dkVar.P;
                     obj.f40037b = kiVar.V2.getTitle();
                     dkVar.V();
-                    vjVar.f40445f.add(obj);
+                    vjVar.f40448f.add(obj);
                     if (!dkVar.S(file)) {
-                        vjVar.f40445f.remove((Object) obj);
+                        vjVar.f40448f.remove((Object) obj);
                         return;
                     }
                     dkVar.W(1);
-                    kiVar.V2.setTitle(wjVar.f41363b);
+                    kiVar.V2.setTitle(wjVar.f41366b);
                     return;
                 }
                 return;
@@ -443,7 +443,7 @@ public final class dk extends ci {
     }
 
     private int getTopForScroll() {
-        rj rjVar = this.f33965r;
+        rj rjVar = this.f33952r;
         View childAt = rjVar.getChildAt(0);
         v4.e1 G = rjVar.G(childAt);
         int i7 = -rjVar.getPaddingTop();
@@ -460,7 +460,7 @@ public final class dk extends ci {
 
     @Override
     public final void C() {
-        vj vjVar = this.f33967w;
+        vj vjVar = this.f33954w;
         if (vjVar != null) {
             vjVar.f();
         }
@@ -476,18 +476,18 @@ public final class dk extends ci {
         this.U.clear();
         this.E.S.clear();
         this.T.clear();
-        this.f33967w.f40445f.clear();
+        this.f33954w.f40448f.clear();
         T();
         a0();
         Y();
-        this.f33607b.V2.setTitle(org.telegram.messenger.hd.M0(2131745657, null));
+        this.f33609b.V2.setTitle(org.telegram.messenger.hd.M0(2131745657, null));
         this.H.setVisibility(0);
         this.F.h1(0, 0);
     }
 
     @Override
     public final void K() {
-        this.f33965r.y0(0);
+        this.f33952r.y0(0);
     }
 
     @Override
@@ -502,7 +502,7 @@ public final class dk extends ci {
             arrayList.add((org.telegram.messenger.gj) hashMap.get(szVar));
         }
         final ArrayList arrayList2 = new ArrayList(this.T);
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         CharSequence[] charSequenceArr = {kiVar.a1().getText()};
         final ArrayList W = org.telegram.messenger.si.b0(kiVar.H3).W(charSequenceArr, true, true);
         final String charSequence = charSequenceArr[0].toString();
@@ -512,7 +512,7 @@ public final class dk extends ci {
                 dk dkVar = dk.this;
                 dkVar.L = true;
                 dkVar.R.n(arrayList2, charSequence, W, arrayList, z10, i7, j3, z11, ((Long) obj).longValue());
-                dkVar.f33607b.a(true);
+                dkVar.f33609b.a(true);
             }
         }, 0L);
     }
@@ -527,8 +527,8 @@ public final class dk extends ci {
                     Q(file2);
                 } else if (!file2.equals(j3)) {
                     wj wjVar = new wj();
-                    wjVar.f41363b = file2.getName();
-                    wjVar.f41366f = file2;
+                    wjVar.f41366b = file2.getName();
+                    wjVar.f41369f = file2;
                     String name = file2.getName();
                     String[] split = name.split("\\.");
                     if (split.length > 1) {
@@ -537,12 +537,12 @@ public final class dk extends ci {
                         str = "?";
                     }
                     wjVar.d = str;
-                    wjVar.f41364c = org.telegram.messenger.g0.i0(file2.length(), false, false);
+                    wjVar.f41367c = org.telegram.messenger.g0.i0(file2.length(), false, false);
                     String lowerCase = name.toLowerCase();
                     if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                        wjVar.f41365e = file2.getAbsolutePath();
+                        wjVar.f41368e = file2.getAbsolutePath();
                     }
-                    ((ArrayList) this.f33967w.h).add(wjVar);
+                    ((ArrayList) this.f33954w.h).add(wjVar);
                 }
             }
         }
@@ -558,24 +558,24 @@ public final class dk extends ci {
             str = null;
         }
         if (file.length() != 0 && str != null && yf.c.f60623i.contains(str)) {
-            if (file.length() > org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).f25335m4) {
-                new cc(this.f33607b.f29685c, null).u(org.telegram.messenger.hd.a0("TooLargeError", null, 2131744042, new Object[0]), org.telegram.messenger.hd.a0("ErrorRingtoneSizeTooBig", null, 2131751102, Integer.valueOf(org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).f25335m4 / 1024)), null).j();
+            if (file.length() > org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).f25338m4) {
+                new cc(this.f33609b.f29685c, null).u(org.telegram.messenger.hd.a0("TooLargeError", null, 2131744042, new Object[0]), org.telegram.messenger.hd.a0("ErrorRingtoneSizeTooBig", null, 2131751102, Integer.valueOf(org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).f25338m4 / 1024)), null).j();
                 return false;
             }
             try {
                 MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f26600b, Uri.fromFile(file));
+                mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f26609b, Uri.fromFile(file));
                 i7 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(9));
             } catch (Exception unused) {
                 i7 = Integer.MAX_VALUE;
             }
-            if (i7 <= org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).f25327l4 * 1000) {
+            if (i7 <= org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).f25330l4 * 1000) {
                 return true;
             }
-            new cc(this.f33607b.f29685c, null).u(org.telegram.messenger.hd.a0("TooLongError", null, 2131744041, new Object[0]), org.telegram.messenger.hd.a0("ErrorRingtoneDurationTooLong", null, 2131751104, Integer.valueOf(org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24934t0).f25327l4)), null).j();
+            new cc(this.f33609b.f29685c, null).u(org.telegram.messenger.hd.a0("TooLongError", null, 2131744041, new Object[0]), org.telegram.messenger.hd.a0("ErrorRingtoneDurationTooLong", null, 2131751104, Integer.valueOf(org.telegram.messenger.np.s1(org.telegram.messenger.m10.f24940t0).f25330l4)), null).j();
             return false;
         }
-        new cc(this.f33607b.f29685c, null).u(org.telegram.messenger.hd.a0("InvalidFormatError", null, 2131749181, new Object[0]), org.telegram.messenger.hd.M0(2131751103, null), null).j();
+        new cc(this.f33609b.f29685c, null).u(org.telegram.messenger.hd.a0("InvalidFormatError", null, 2131749181, new Object[0]), org.telegram.messenger.hd.M0(2131751103, null), null).j();
         return false;
     }
 
@@ -585,13 +585,13 @@ public final class dk extends ci {
         vj vjVar;
         this.O = false;
         boolean canRead = file.canRead();
-        rj rjVar = this.f33965r;
+        rj rjVar = this.f33952r;
         String str2 = null;
-        vj vjVar2 = this.f33967w;
+        vj vjVar2 = this.f33954w;
         if (!canRead) {
             if ((file.getAbsolutePath().startsWith(Environment.getExternalStorageDirectory().toString()) || file.getAbsolutePath().startsWith("/sdcard") || file.getAbsolutePath().startsWith("/mnt/sdcard")) && !Environment.getExternalStorageState().equals("mounted") && !Environment.getExternalStorageState().equals("mounted_ro")) {
                 this.P = file;
-                vjVar2.f40444e.clear();
+                vjVar2.f40447e.clear();
                 Environment.getExternalStorageState();
                 org.telegram.messenger.g0.y(rjVar);
                 this.V = true;
@@ -608,9 +608,9 @@ public final class dk extends ci {
                 return false;
             }
             this.P = file;
-            ArrayList arrayList = vjVar2.f40444e;
-            ArrayList arrayList2 = vjVar2.f40445f;
-            ArrayList arrayList3 = vjVar2.f40444e;
+            ArrayList arrayList = vjVar2.f40447e;
+            ArrayList arrayList2 = vjVar2.f40448f;
+            ArrayList arrayList3 = vjVar2.f40447e;
             arrayList.clear();
             File j3 = org.telegram.messenger.w7.j(6);
             int i7 = 0;
@@ -620,11 +620,11 @@ public final class dk extends ci {
                     vjVar = vjVar2;
                 } else {
                     wj wjVar = new wj();
-                    wjVar.f41363b = file3.getName();
-                    wjVar.f41366f = file3;
+                    wjVar.f41366b = file3.getName();
+                    wjVar.f41369f = file3;
                     if (file3.isDirectory()) {
-                        wjVar.f41362a = 2131231070;
-                        wjVar.f41364c = org.telegram.messenger.hd.M0(2131750685, str2);
+                        wjVar.f41365a = 2131231070;
+                        wjVar.f41367c = org.telegram.messenger.hd.M0(2131750685, str2);
                         vjVar = vjVar2;
                     } else {
                         this.O = true;
@@ -637,10 +637,10 @@ public final class dk extends ci {
                         }
                         wjVar.d = str;
                         vjVar = vjVar2;
-                        wjVar.f41364c = org.telegram.messenger.g0.i0(file3.length(), false, false);
+                        wjVar.f41367c = org.telegram.messenger.g0.i0(file3.length(), false, false);
                         String lowerCase = name.toLowerCase();
                         if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                            wjVar.f41365e = file3.getAbsolutePath();
+                            wjVar.f41368e = file3.getAbsolutePath();
                         }
                     }
                     arrayList3.add(wjVar);
@@ -651,25 +651,25 @@ public final class dk extends ci {
             }
             vj vjVar3 = vjVar2;
             wj wjVar2 = new wj();
-            wjVar2.f41363b = "..";
+            wjVar2.f41366b = "..";
             if (arrayList2.size() > 0) {
                 File file4 = ((uj) i5.c.h(1, arrayList2)).f40036a;
                 if (file4 == null) {
                     file2 = null;
-                    wjVar2.f41364c = org.telegram.messenger.hd.M0(2131750685, null);
+                    wjVar2.f41367c = org.telegram.messenger.hd.M0(2131750685, null);
                 } else {
                     file2 = null;
-                    wjVar2.f41364c = file4.toString();
+                    wjVar2.f41367c = file4.toString();
                 }
             } else {
                 file2 = null;
-                wjVar2.f41364c = org.telegram.messenger.hd.M0(2131750685, null);
+                wjVar2.f41367c = org.telegram.messenger.hd.M0(2131750685, null);
             }
-            wjVar2.f41362a = 2131231070;
-            wjVar2.f41366f = file2;
+            wjVar2.f41365a = 2131231070;
+            wjVar2.f41369f = file2;
             arrayList3.add(0, wjVar2);
             if (this.P != null) {
-                Collections.sort(vjVar3.f40444e, new pj(this, 0));
+                Collections.sort(vjVar3.f40447e, new pj(this, 0));
             }
             a0();
             org.telegram.messenger.g0.y(rjVar);
@@ -694,41 +694,41 @@ public final class dk extends ci {
 
     public final void V() {
         View m10;
-        vj vjVar = this.f33968x;
-        vjVar.f40445f.clear();
-        ArrayList arrayList = vjVar.f40445f;
-        vj vjVar2 = this.f33967w;
-        arrayList.addAll(vjVar2.f40445f);
-        ArrayList arrayList2 = vjVar.f40444e;
+        vj vjVar = this.f33955x;
+        vjVar.f40448f.clear();
+        ArrayList arrayList = vjVar.f40448f;
+        vj vjVar2 = this.f33954w;
+        arrayList.addAll(vjVar2.f40448f);
+        ArrayList arrayList2 = vjVar.f40447e;
         arrayList2.clear();
-        arrayList2.addAll(vjVar2.f40444e);
+        arrayList2.addAll(vjVar2.f40447e);
         ArrayList arrayList3 = (ArrayList) vjVar.h;
         arrayList3.clear();
         arrayList3.addAll((ArrayList) vjVar2.h);
         vjVar.f();
-        rj rjVar = this.f33966s;
+        rj rjVar = this.f33953s;
         rjVar.setVisibility(0);
-        rj rjVar2 = this.f33965r;
+        rj rjVar2 = this.f33952r;
         rjVar.setPadding(rjVar2.getPaddingLeft(), rjVar2.getPaddingTop(), rjVar2.getPaddingRight(), rjVar2.getPaddingBottom());
         kg.c0 c0Var = this.F;
         int L0 = c0Var.L0();
         if (L0 >= 0 && (m10 = c0Var.m(L0)) != null) {
-            this.f33969y.h1(L0, m10.getTop() - rjVar.getPaddingTop());
+            this.f33956y.h1(L0, m10.getTop() - rjVar.getPaddingTop());
         }
     }
 
     public final void W(int i7) {
         rj rjVar;
         float L;
-        ValueAnimator valueAnimator = this.f33963g0;
+        ValueAnimator valueAnimator = this.f33950g0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f33964n = i7;
+        this.f33951n = i7;
         int i10 = 0;
         while (true) {
             int childCount = getChildCount();
-            rjVar = this.f33965r;
+            rjVar = this.f33952r;
             if (i10 < childCount) {
                 if (getChildAt(i10) == rjVar) {
                     break;
@@ -739,7 +739,7 @@ public final class dk extends ci {
                 break;
             }
         }
-        rj rjVar2 = this.f33966s;
+        rj rjVar2 = this.f33953s;
         if (i7 == 1) {
             L = org.telegram.messenger.g0.L(150.0f);
             rjVar2.setAlpha(1.0f);
@@ -751,7 +751,7 @@ public final class dk extends ci {
             rjVar2.setVisibility(0);
             rjVar.setTranslationX(L);
             rjVar.setAlpha(0.0f);
-            this.f33963g0 = ValueAnimator.ofFloat(1.0f, 0.0f);
+            this.f33950g0 = ValueAnimator.ofFloat(1.0f, 0.0f);
         } else {
             L = org.telegram.messenger.g0.L(150.0f);
             rjVar.setAlpha(0.0f);
@@ -764,21 +764,21 @@ public final class dk extends ci {
             removeView(rjVar2);
             addView(rjVar2, i10 + 1);
             rjVar2.setVisibility(0);
-            this.f33963g0 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f33950g0 = ValueAnimator.ofFloat(0.0f, 1.0f);
         }
-        this.f33963g0.addUpdateListener(new oj(this, i7, L, 0));
-        this.f33963g0.addListener(new x5(this, 11));
+        this.f33950g0.addUpdateListener(new oj(this, i7, L, 0));
+        this.f33950g0.addListener(new x5(this, 11));
         if (i7 == 1) {
-            this.f33963g0.setDuration(220L);
+            this.f33950g0.setDuration(220L);
         } else {
-            this.f33963g0.setDuration(200L);
+            this.f33950g0.setDuration(200L);
         }
-        this.f33963g0.setInterpolator(er.f34420f);
-        this.f33963g0.start();
+        this.f33950g0.setInterpolator(er.f34419f);
+        this.f33950g0.start();
     }
 
     public final void X(String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f33606a);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f33608a);
         String M0 = org.telegram.messenger.hd.M0(2131689472, null);
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
         t1Var.S = M0;
@@ -787,11 +787,11 @@ public final class dk extends ci {
     }
 
     public final void Y() {
-        v4.h0 adapter = this.f33965r.getAdapter();
+        v4.h0 adapter = this.f33952r.getAdapter();
         int i7 = 0;
         boolean z10 = true;
         ck ckVar = this.E;
-        if (adapter != ckVar ? this.f33967w.b() != 1 : !ckVar.f33615s.isEmpty() || !ckVar.Q.isEmpty()) {
+        if (adapter != ckVar ? this.f33954w.b() != 1 : !ckVar.f33617s.isEmpty() || !ckVar.Q.isEmpty()) {
             z10 = false;
         }
         if (!z10) {
@@ -804,7 +804,7 @@ public final class dk extends ci {
     public final void Z() {
         View childAt;
         fi.x4 x4Var = this.M;
-        if (x4Var.getVisibility() != 0 || (childAt = this.f33965r.getChildAt(0)) == null) {
+        if (x4Var.getVisibility() != 0 || (childAt = this.f33952r.getChildAt(0)) == null) {
             return;
         }
         float translationY = x4Var.getTranslationY();
@@ -816,7 +816,7 @@ public final class dk extends ci {
         int i7;
         org.telegram.ui.ActionBar.q0 q0Var = this.G;
         if (q0Var != null && !q0Var.w()) {
-            if (!this.O && !this.f33967w.f40445f.isEmpty()) {
+            if (!this.O && !this.f33954w.f40448f.isEmpty()) {
                 i7 = 8;
             } else {
                 i7 = 0;
@@ -831,7 +831,7 @@ public final class dk extends ci {
         if (q0Var != null) {
             try {
                 if (q0Var.getSearchField() != null) {
-                    q0Var.getSearchField().setCursorColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28957j5, this.f33606a));
+                    q0Var.getSearchField().setCursorColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28957j5, this.f33608a));
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
@@ -846,14 +846,14 @@ public final class dk extends ci {
 
     @Override
     public int getCurrentItemTop() {
-        rj rjVar = this.f33965r;
+        rj rjVar = this.f33952r;
         if (rjVar.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
         int i7 = 0;
         View childAt = rjVar.getChildAt(0);
         cj0 cj0Var = (cj0) rjVar.G(childAt);
-        int y10 = ((((int) childAt.getY()) - org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(4.0f)) - org.telegram.messenger.g0.L(8.0f);
+        int y10 = ((((int) childAt.getY()) - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(4.0f)) - org.telegram.messenger.g0.L(8.0f);
         if (y10 > 0 && cj0Var != null && cj0Var.b() == 0) {
             i7 = y10;
         }
@@ -870,7 +870,7 @@ public final class dk extends ci {
 
     @Override
     public int getListTopPadding() {
-        return this.f33965r.getPaddingTop();
+        return this.f33952r.getPaddingTop();
     }
 
     @Override
@@ -883,7 +883,7 @@ public final class dk extends ci {
         ArrayList<org.telegram.ui.ActionBar.s6> arrayList = new ArrayList<>();
         arrayList.add(new org.telegram.ui.ActionBar.s6(this.G.getSearchField(), 16777216, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.f28957j5));
         int i7 = org.telegram.ui.ActionBar.j6.A5;
-        rj rjVar = this.f33965r;
+        rj rjVar = this.f33952r;
         arrayList.add(new org.telegram.ui.ActionBar.s6(rjVar, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, i7));
         arrayList.add(new org.telegram.ui.ActionBar.s6(rjVar, 32, new Class[]{org.telegram.ui.Cells.x6.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.f28813b7));
         arrayList.add(new org.telegram.ui.ActionBar.s6(rjVar, 48, new Class[]{org.telegram.ui.Cells.x6.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.f28792a7));
@@ -906,13 +906,13 @@ public final class dk extends ci {
 
     @Override
     public final boolean k() {
-        vj vjVar = this.f33967w;
-        if (vjVar.f40445f.size() <= 0) {
+        vj vjVar = this.f33954w;
+        if (vjVar.f40448f.size() <= 0) {
             return false;
         }
         V();
-        uj ujVar = (uj) r.b.g(1, vjVar.f40445f);
-        this.f33607b.V2.setTitle(ujVar.f40037b);
+        uj ujVar = (uj) r.b.g(1, vjVar.f40448f);
+        this.f33609b.V2.setTitle(ujVar.f40037b);
         int topForScroll = getTopForScroll();
         File file = ujVar.f40036a;
         if (file != null) {
@@ -936,20 +936,20 @@ public final class dk extends ci {
     public final void p() {
         try {
             if (this.Q) {
-                org.telegram.messenger.t0.f26600b.unregisterReceiver(this.f33962f0);
+                org.telegram.messenger.t0.f26609b.unregisterReceiver(this.f33949f0);
                 this.Q = false;
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
-        this.f33607b.V2.n(true);
-        org.telegram.ui.ActionBar.y s5 = this.f33607b.V2.s();
+        this.f33609b.V2.n(true);
+        org.telegram.ui.ActionBar.y s5 = this.f33609b.V2.s();
         s5.removeView(this.H);
         s5.removeView(this.G);
     }
 
     public void setCanSelectOnlyImageFiles(boolean z10) {
-        this.f33957a0 = z10;
+        this.f33944a0 = z10;
     }
 
     public void setDelegate(tj tjVar) {
@@ -963,7 +963,7 @@ public final class dk extends ci {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
     }
 
     @Override
@@ -980,14 +980,14 @@ public final class dk extends ci {
             SharedPreferences.Editor edit = org.telegram.messenger.np.e1().edit();
             edit.putBoolean("sortFilesByName", org.telegram.messenger.gz.M0);
             edit.apply();
-            this.f33960d0 = org.telegram.messenger.gz.M0;
-            vj vjVar = this.f33967w;
+            this.f33947d0 = org.telegram.messenger.gz.M0;
+            vj vjVar = this.f33954w;
             Collections.sort((ArrayList) vjVar.h, new pj(this, 1));
             if (this.P != null) {
-                Collections.sort(vjVar.f40444e, new pj(this, 0));
+                Collections.sort(vjVar.f40447e, new pj(this, 0));
             }
             vjVar.f();
-            if (this.f33960d0) {
+            if (this.f33947d0) {
                 i10 = 2131232103;
             } else {
                 i10 = 2131232102;

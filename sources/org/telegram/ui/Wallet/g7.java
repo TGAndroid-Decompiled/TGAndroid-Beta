@@ -20,12 +20,12 @@ public final class g7 implements Runnable {
     public final Object d;
     public final Object f43880e;
 
-    public g7(int i7, Object obj, Object obj2, Object obj3, String str) {
+    public g7(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
         this.f43877a = i7;
         this.f43878b = obj;
         this.d = obj2;
-        this.f43879c = str;
         this.f43880e = obj3;
+        this.f43879c = obj4;
     }
 
     @Override
@@ -206,12 +206,12 @@ public final class g7 implements Runnable {
         }
     }
 
-    public g7(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+    public g7(Object obj, Object obj2, String str, Object obj3, int i7) {
         this.f43877a = i7;
         this.f43878b = obj;
         this.d = obj2;
+        this.f43879c = str;
         this.f43880e = obj3;
-        this.f43879c = obj4;
     }
 
     public g7(WalletEngine2 walletEngine2, String str, byte[] bArr, s10 s10Var) {

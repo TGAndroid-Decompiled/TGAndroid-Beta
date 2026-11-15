@@ -13,13 +13,13 @@ public final class f implements b3.j {
         r rVar = (r) lVar;
         h hVar = this.f21259a;
         xa xaVar = hVar.f21269q;
-        long j11 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j11 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         b0 b0Var = rVar.d;
-        xaVar.q(new t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b), rVar.f2921c, iOException, true);
+        xaVar.q(new t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b), rVar.f2924c, iOException, true);
         hVar.f21265m.getClass();
         hVar.y(iOException);
-        return b3.o.f2914e;
+        return b3.o.f2917e;
     }
 
     @Override
@@ -31,13 +31,13 @@ public final class f implements b3.j {
     public void w(b3.l lVar, long j3, long j10) {
         r rVar = (r) lVar;
         h hVar = this.f21259a;
-        long j11 = rVar.f2919a;
-        j2.m mVar = rVar.f2920b;
+        long j11 = rVar.f2922a;
+        j2.m mVar = rVar.f2923b;
         b0 b0Var = rVar.d;
         t tVar = new t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         hVar.f21265m.getClass();
-        hVar.f21269q.o(tVar, rVar.f2921c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        hVar.K = ((Long) rVar.f2923f).longValue() - j3;
+        hVar.f21269q.o(tVar, rVar.f2924c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        hVar.K = ((Long) rVar.f2926f).longValue() - j3;
         hVar.z(true);
     }
 

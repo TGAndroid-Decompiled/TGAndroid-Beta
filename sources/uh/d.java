@@ -29,7 +29,7 @@ public final class d extends c {
         this.d = g6Var;
         g6Var.x(g0.o());
         g6Var.w(g0.L(13.0f));
-        g6Var.f34829b = 17;
+        g6Var.f34833b = 17;
         int w02 = j6.w0(j6.f28941i6, e6Var);
         if (this.f58420b != w02) {
             j6.H1(this.f58419a, w02, false);
@@ -44,7 +44,7 @@ public final class d extends c {
     }
 
     public final float b() {
-        return this.f58423f.f57081e;
+        return this.f58423f.f57085e;
     }
 
     public final void c(int i7) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f10 = this.f58423f.f57081e;
+        float f10 = this.f58423f.f57085e;
         if (f10 < 1.0f) {
             s.b(canvas, this.d, 1.0f - f10);
         }

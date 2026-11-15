@@ -4,38 +4,38 @@ import android.content.Context;
 import android.text.SpannableString;
 import android.widget.LinearLayout;
 import c8.ja;
-import di.mb;
-import di.v8;
+import di.lb;
+import di.u8;
 import org.telegram.messenger.is;
 import org.telegram.messenger.ns;
 import org.telegram.messenger.z10;
 import org.telegram.ui.Components.e80;
 import org.telegram.ui.Components.eq;
 public final class c5 extends LinearLayout implements is {
-    public final int f3420a;
-    public final org.telegram.ui.Components.h6 f3421b;
-    public final org.telegram.ui.Components.h6 f3422c;
+    public final int f3423a;
+    public final org.telegram.ui.Components.h6 f3424b;
+    public final org.telegram.ui.Components.h6 f3425c;
     public final eq[] d;
-    public final eq[] f3423e;
-    public SpannableString f3424f;
+    public final eq[] f3426e;
+    public SpannableString f3427f;
     public z10 h;
-    public long f3425n;
+    public long f3428n;
 
     public c5(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.d = new eq[1];
-        this.f3423e = new eq[1];
-        this.f3425n = -1L;
-        this.f3420a = i7;
+        this.f3426e = new eq[1];
+        this.f3428n = -1L;
+        this.f3423a = i7;
         setOrientation(1);
         setGravity(21);
         int L = org.telegram.messenger.g0.L(6.0f);
         setPadding(org.telegram.messenger.g0.L(13.0f) + L, L, org.telegram.messenger.g0.L(14.0f) + L, L);
         org.telegram.ui.Components.h6 a10 = a(context, e6Var);
-        this.f3421b = a10;
+        this.f3424b = a10;
         addView(a10, ja.r(-2, 18, 5));
         org.telegram.ui.Components.h6 a11 = a(context, e6Var);
-        this.f3422c = a11;
+        this.f3425c = a11;
         addView(a11, ja.r(-2, 18, 5));
         b(false);
     }
@@ -51,43 +51,43 @@ public final class c5 extends LinearLayout implements is {
     }
 
     public final void b(boolean z10) {
-        int i7 = this.f3420a;
-        v8 y10 = v8.y(i7, false);
-        v8 y11 = v8.y(i7, true);
+        int i7 = this.f3423a;
+        u8 y10 = u8.y(i7, false);
+        u8 y11 = u8.y(i7, true);
         long j3 = y10.p().amount;
         cg.a s5 = y11.s();
-        boolean z11 = y10.f9601e;
-        org.telegram.ui.Components.h6 h6Var = this.f3421b;
-        org.telegram.ui.Components.h6 h6Var2 = this.f3422c;
-        if (z11 && y11.f9601e) {
-            h6Var.c(mb.a1(false, i5.c.l(j3, ' ', new StringBuilder("⭐️")), 0.7f, this.d), z10, true);
+        boolean z11 = y10.f9532e;
+        org.telegram.ui.Components.h6 h6Var = this.f3424b;
+        org.telegram.ui.Components.h6 h6Var2 = this.f3425c;
+        if (z11 && y11.f9532e) {
+            h6Var.c(lb.a1(false, i5.c.l(j3, ' ', new StringBuilder("⭐️")), 0.7f, this.d), z10, true);
             if (s5.k()) {
                 h6Var2.setVisibility(8);
             } else {
                 h6Var2.setVisibility(0);
-                eq[] eqVarArr = this.f3423e;
-                h6Var2.c(mb.a1(true, "⭐️" + s5.d(), 0.7f, eqVarArr), z10, true);
+                eq[] eqVarArr = this.f3426e;
+                h6Var2.c(lb.a1(true, "⭐️" + s5.d(), 0.7f, eqVarArr), z10, true);
                 eq eqVar = eqVarArr[0];
                 if (eqVar != null) {
                     eqVar.a(org.telegram.ui.ActionBar.j6.Zl);
                 }
             }
-            this.f3425n = j3;
+            this.f3428n = j3;
             return;
         }
-        if (this.f3424f == null) {
+        if (this.f3427f == null) {
             SpannableString spannableString = new SpannableString("x");
-            this.f3424f = spannableString;
+            this.f3427f = spannableString;
             spannableString.setSpan(new e80(org.telegram.messenger.g0.L(48.0f), h6Var), 0, 1, 33);
         }
-        h6Var.c(this.f3424f, false, true);
+        h6Var.c(this.f3427f, false, true);
         h6Var2.setVisibility(8);
-        this.f3425n = -1L;
+        this.f3428n = -1L;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25610y3) {
+        if (i7 == ns.f25611y3) {
             b(true);
         }
     }
@@ -96,13 +96,13 @@ public final class c5 extends LinearLayout implements is {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         b(false);
-        ns.f(this.f3420a).b(this, ns.f25610y3);
+        ns.f(this.f3423a).b(this, ns.f25611y3);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f3420a).n(this, ns.f25610y3);
+        ns.f(this.f3423a).n(this, ns.f25611y3);
     }
 
     @Override

@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MediaController;
 public final class mg implements Runnable {
-    public final int f49228a = 0;
-    public final an f49229b;
-    public final boolean f49230c;
+    public final int f49224a = 0;
+    public final an f49225b;
+    public final boolean f49226c;
     public final long d;
 
     public mg(an anVar, long j3, boolean z10) {
-        this.f49229b = anVar;
+        this.f49225b = anVar;
         this.d = j3;
-        this.f49230c = z10;
+        this.f49226c = z10;
     }
 
     @Override
     public final void run() {
         long j3;
         long j10;
-        switch (this.f49228a) {
+        switch (this.f49224a) {
             case 0:
-                an.c1(this.f49229b, this.d, this.f49230c);
+                an.c1(this.f49225b, this.d, this.f49226c);
                 return;
             default:
-                qj qjVar = this.f49229b.f45118a0;
+                qj qjVar = this.f49225b.f45117a0;
                 if (qjVar != null) {
                     MediaController B = MediaController.B();
                     if (!qjVar.G2 && !qjVar.f32248n3 && B.J() && !B.K() && B.f22350h1 == qjVar.f32255o3) {
                         qjVar.f32178d1 = false;
                         org.telegram.ui.Components.fe feVar = qjVar.f32171c1;
                         if (feVar != null) {
-                            feVar.j(org.telegram.ui.Components.ng.f37580a, false);
+                            feVar.j(org.telegram.ui.Components.ng.f37569a, false);
                         }
                         qjVar.f32277r4 = true;
                         qjVar.f32248n3 = true;
@@ -38,7 +38,7 @@ public final class mg implements Runnable {
                             cgVar.a1(1);
                         }
                         qjVar.f2(0, true);
-                        if (this.f49230c) {
+                        if (this.f49226c) {
                             qjVar.P = true;
                             org.telegram.ui.Components.gg ggVar = qjVar.f32310w2;
                             if (ggVar != null) {
@@ -47,7 +47,7 @@ public final class mg implements Runnable {
                             org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(qjVar.R);
                             long j11 = qjVar.f32327y3;
                             an anVar = qjVar.f32319x3;
-                            if (anVar != null && anVar.f45408w4) {
+                            if (anVar != null && anVar.f45407w4) {
                                 j10 = anVar.b();
                             } else {
                                 j10 = 0;
@@ -76,8 +76,8 @@ public final class mg implements Runnable {
     }
 
     public mg(an anVar, boolean z10, long j3) {
-        this.f49229b = anVar;
-        this.f49230c = z10;
+        this.f49225b = anVar;
+        this.f49226c = z10;
         this.d = j3;
     }
 }

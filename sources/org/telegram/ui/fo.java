@@ -4,10 +4,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
 public final class fo extends org.telegram.ui.Components.tj0 {
-    public final go f47173c;
+    public final go f47163c;
 
     public fo(go goVar) {
-        this.f47173c = goVar;
+        this.f47163c = goVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class fo extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.f47173c.f47497i3.O.size() + 2;
+        return this.f47163c.f47487i3.O.size() + 2;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class fo extends org.telegram.ui.Components.tj0 {
         if (i7 == 0) {
             return 0;
         }
-        if (i7 <= this.f47173c.f47497i3.O.size()) {
+        if (i7 <= this.f47163c.f47487i3.O.size()) {
             return 1;
         }
         return 2;
@@ -36,8 +36,8 @@ public final class fo extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final void t(v4.e1 e1Var, int i7) {
-        go goVar = this.f47173c;
-        ho hoVar = goVar.f47497i3;
+        go goVar = this.f47163c;
+        ho hoVar = goVar.f47487i3;
         int i10 = e1Var.f58539f;
         View view = e1Var.f58535a;
         if (i10 != 0) {
@@ -71,7 +71,7 @@ public final class fo extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        go goVar = this.f47173c;
+        go goVar = this.f47163c;
         org.telegram.ui.ActionBar.e6 e6Var = goVar.f40069o2;
         if (i7 != 0) {
             if (i7 != 1) {

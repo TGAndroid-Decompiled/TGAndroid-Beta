@@ -113,7 +113,7 @@ public class ProfileStoriesView extends View implements is {
         er erVar = er.h;
         this.U = new u5(this, 0L, 480L, erVar);
         this.V = new u5(this, 0L, 240L, erVar);
-        this.W = new u5(this, 0L, 150L, er.f34420f);
+        this.W = new u5(this, 0L, 150L, er.f34419f);
         this.f43353a0 = 1.0f;
         this.f43357c0 = new Path();
         this.f43358d0 = new Matrix();
@@ -215,7 +215,7 @@ public class ProfileStoriesView extends View implements is {
     }
 
     public final void b(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
-        if (t3.b0(m10.f24934t0, this.d)) {
+        if (t3.b0(m10.f24940t0, this.d)) {
             float height = rectF.height() * 0.32f;
             if (Math.abs(f11) == 360.0f) {
                 canvas.drawRoundRect(rectF, height, height, paint);
@@ -327,7 +327,7 @@ public class ProfileStoriesView extends View implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25591v5) {
+        if (i7 == ns.f25592v5) {
             f(true, true);
         }
     }
@@ -356,7 +356,7 @@ public class ProfileStoriesView extends View implements is {
                 ((d4) arrayList.get(i7)).f11625b.P();
                 i7++;
             } else {
-                ns.f(this.f43356c).c(this, ns.f25591v5);
+                ns.f(this.f43356c).c(this, ns.f25592v5);
                 return;
             }
         }
@@ -373,7 +373,7 @@ public class ProfileStoriesView extends View implements is {
                 ((d4) arrayList.get(i7)).f11625b.R();
                 i7++;
             } else {
-                ns.f(this.f43356c).n(this, ns.f25591v5);
+                ns.f(this.f43356c).n(this, ns.f25592v5);
                 return;
             }
         }

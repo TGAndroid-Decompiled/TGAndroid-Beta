@@ -69,10 +69,10 @@ public final class m3 extends FrameLayout {
         }
         int i16 = height - i13;
         eh0Var.layout(e10 - (eh0Var.getMeasuredWidth() / 2), i16, ((eh0Var.getMeasuredWidth() + 1) / 2) + e10, eh0Var.getMeasuredHeight() + i16);
-        int L = org.telegram.messenger.g0.L(36.0f) + Math.max(o3Var.I.f15575b, org.telegram.messenger.g0.f23603m);
+        int L = org.telegram.messenger.g0.L(36.0f) + Math.max(o3Var.I.f15575b, org.telegram.messenger.g0.f23605m);
         textView.layout(e10 - (textView.getMeasuredWidth() / 2), L, ((textView.getMeasuredWidth() + 1) / 2) + e10, textView.getMeasuredHeight() + L);
         o3Var.d();
-        int L2 = org.telegram.messenger.g0.L(24.0f) + Math.max(o3Var.I.f15575b, org.telegram.messenger.g0.f23603m);
+        int L2 = org.telegram.messenger.g0.L(24.0f) + Math.max(o3Var.I.f15575b, org.telegram.messenger.g0.f23605m);
         if (textView.getVisibility() == 0) {
             i14 = textView.getMeasuredHeight() + org.telegram.messenger.g0.L(12.0f);
         } else {
@@ -103,7 +103,7 @@ public final class m3 extends FrameLayout {
         float f10 = 48.0f;
         textView.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, max - org.telegram.messenger.g0.L(48.0f)), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
         int min = Math.min(org.telegram.messenger.g0.L(420.0f), Math.max(1, max - org.telegram.messenger.g0.L(24.0f)));
-        int max2 = (size2 - Math.max(o3Var.I.f15575b, org.telegram.messenger.g0.f23603m)) - o3Var.I.d;
+        int max2 = (size2 - Math.max(o3Var.I.f15575b, org.telegram.messenger.g0.f23605m)) - o3Var.I.d;
         if (o3Var.c()) {
             f10 = 120.0f;
         }

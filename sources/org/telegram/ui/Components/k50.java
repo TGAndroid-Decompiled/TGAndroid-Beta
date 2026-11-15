@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class k50 extends tj0 {
-    public final p50 f36288c;
+    public final p50 f36278c;
 
     public k50(p50 p50Var) {
-        this.f36288c = p50Var;
+        this.f36278c = p50Var;
     }
 
     @Override
     public final boolean D(v4.e1 e1Var) {
         int b10 = e1Var.b();
-        p50 p50Var = this.f36288c;
-        if (b10 == p50Var.f38219s1) {
-            if (p50Var.f38214m1.admin_id != org.telegram.messenger.m10.i(p50Var.f29679a).f24953n) {
+        p50 p50Var = this.f36278c;
+        if (b10 == p50Var.f38217s1) {
+            if (p50Var.f38212m1.admin_id != org.telegram.messenger.m10.i(p50Var.f29679a).f24959n) {
                 return true;
             }
             return false;
-        } else if (b10 < p50Var.f38224x1 || b10 >= p50Var.f38225y1) {
+        } else if (b10 < p50Var.f38222x1 || b10 >= p50Var.f38223y1) {
             if (b10 >= p50Var.J1 && b10 < p50Var.K1) {
                 return true;
             }
@@ -33,19 +33,19 @@ public final class k50 extends tj0 {
 
     @Override
     public final int b() {
-        return this.f36288c.N1;
+        return this.f36278c.N1;
     }
 
     @Override
     public final int d(int i7) {
-        p50 p50Var = this.f36288c;
-        if (i7 == p50Var.f38218r1 || i7 == p50Var.I1 || i7 == p50Var.f38223w1 || i7 == p50Var.f38216p1) {
+        p50 p50Var = this.f36278c;
+        if (i7 == p50Var.f38216r1 || i7 == p50Var.I1 || i7 == p50Var.f38221w1 || i7 == p50Var.f38214p1) {
             return 0;
         }
-        if (i7 != p50Var.f38219s1) {
+        if (i7 != p50Var.f38217s1) {
             if (i7 < p50Var.J1 || i7 >= p50Var.K1) {
-                if (i7 < p50Var.f38224x1 || i7 >= p50Var.f38225y1) {
-                    if (i7 != p50Var.f38220t1 && i7 != p50Var.f38221u1) {
+                if (i7 < p50Var.f38222x1 || i7 >= p50Var.f38223y1) {
+                    if (i7 != p50Var.f38218t1 && i7 != p50Var.f38219u1) {
                         if (i7 == p50Var.C1) {
                             return 3;
                         }
@@ -57,13 +57,13 @@ public final class k50 extends tj0 {
                         }
                         p50Var.getClass();
                         if (i7 != 0 && i7 != p50Var.F1 && i7 != p50Var.G1) {
-                            if (i7 == p50Var.f38222v1) {
+                            if (i7 == p50Var.f38220v1) {
                                 return 7;
                             }
                             if (i7 == p50Var.H1) {
                                 return 8;
                             }
-                            if (i7 != p50Var.f38217q1) {
+                            if (i7 != p50Var.f38215q1) {
                                 return 0;
                             }
                             return 9;
@@ -89,7 +89,7 @@ public final class k50 extends tj0 {
         pz pzVar;
         g50 g50Var;
         Context context = viewGroup.getContext();
-        p50 p50Var = this.f36288c;
+        p50 p50Var = this.f36278c;
         switch (i7) {
             case 1:
                 g50Var = new n50(context);
@@ -102,7 +102,7 @@ public final class k50 extends tj0 {
                 g50Var = pzVar;
                 break;
             case 3:
-                g50 g50Var2 = new g50(this, context, p50Var.P1, p50Var, p50Var.f38209c2);
+                g50 g50Var2 = new g50(this, context, p50Var.P1, p50Var, p50Var.f38207c2);
                 g50Var2.setDelegate(new j50(this));
                 g50Var2.setLayoutParams(new v4.p0(-1, -2));
                 g50Var = g50Var2;
@@ -128,7 +128,7 @@ public final class k50 extends tj0 {
             case 8:
                 ?? frameLayout = new FrameLayout(context);
                 TextView textView = new TextView(context);
-                frameLayout.f36729a = textView;
+                frameLayout.f36717a = textView;
                 textView.setTextSize(1, 14.0f);
                 org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f29241y6, null);
                 textView.setGravity(1);

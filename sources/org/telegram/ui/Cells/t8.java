@@ -28,14 +28,14 @@ public final class t8 extends FrameLayout {
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         textView.setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         int i11 = (z10 ? 5 : 3) | 48;
         if (z10) {
             i10 = 21;
@@ -57,7 +57,7 @@ public final class t8 extends FrameLayout {
         if (i7 != 0) {
             d.setColor(i7);
             d.setAlpha((int) (this.f31683c * 255.0f));
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 measuredWidth = org.telegram.messenger.g0.L(28.0f);
             } else {
                 measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(28.0f);

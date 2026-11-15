@@ -6,22 +6,22 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class x21 implements org.telegram.messenger.z10 {
-    public final int f53075a;
-    public final Object f53076b;
-    public final Object f53077c;
+    public final int f53074a;
+    public final Object f53075b;
+    public final Object f53076c;
 
     public x21(int i7, Object obj, Object obj2) {
-        this.f53075a = i7;
-        this.f53076b = obj;
-        this.f53077c = obj2;
+        this.f53074a = i7;
+        this.f53075b = obj;
+        this.f53076c = obj2;
     }
 
     @Override
     public final void a(Object obj) {
         v4.e1 K;
-        int i7 = this.f53075a;
-        Object obj2 = this.f53077c;
-        Object obj3 = this.f53076b;
+        int i7 = this.f53074a;
+        Object obj2 = this.f53076c;
+        Object obj3 = this.f53075b;
         switch (i7) {
             case 0:
                 Boolean bool = (Boolean) obj;
@@ -31,7 +31,7 @@ public final class x21 implements org.telegram.messenger.z10 {
                 ThemeActivity themeActivity = (ThemeActivity) obj3;
                 AtomicReference atomicReference = (AtomicReference) obj2;
                 if (!((Boolean) obj).booleanValue()) {
-                    org.telegram.messenger.gz.f23985u0 = false;
+                    org.telegram.messenger.gz.f23988u0 = false;
                     org.telegram.messenger.gz.y();
                     themeActivity.P0 = true;
                     ((Dialog) atomicReference.get()).dismiss();
@@ -184,13 +184,13 @@ public final class x21 implements org.telegram.messenger.z10 {
                 org.telegram.ui.web.w0 w0Var = (org.telegram.ui.web.w0) obj;
                 n1Var.getClass();
                 ((org.telegram.ui.web.x0[]) obj2)[0].finishFragment();
-                org.telegram.messenger.z10 z10Var = n1Var.f52726f;
+                org.telegram.messenger.z10 z10Var = n1Var.f52729f;
                 if (z10Var != null) {
                     n1Var.finishFragment();
                     z10Var.a(w0Var);
                     return;
                 }
-                vf.c.t(n1Var.getParentActivity(), w0Var.f52857c);
+                vf.c.t(n1Var.getParentActivity(), w0Var.f52860c);
                 return;
             default:
                 org.telegram.ui.web.v1 v1Var = (org.telegram.ui.web.v1) obj3;
@@ -201,8 +201,8 @@ public final class x21 implements org.telegram.messenger.z10 {
     }
 
     public x21(org.telegram.ui.Wallet.l0 l0Var, org.telegram.ui.Wallet.g0 g0Var, org.telegram.ui.Wallet.h8 h8Var) {
-        this.f53075a = 7;
-        this.f53076b = g0Var;
-        this.f53077c = h8Var;
+        this.f53074a = 7;
+        this.f53075b = g0Var;
+        this.f53076c = h8Var;
     }
 }

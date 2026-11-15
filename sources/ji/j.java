@@ -1,8 +1,8 @@
 package ji;
 
 import a8.p0;
-import ai.b2;
-import ai.z1;
+import ai.a2;
+import ai.c2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -63,7 +63,6 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.ActionBar.z;
-import org.telegram.ui.Cells.c2;
 import org.telegram.ui.Cells.h4;
 import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.y0;
@@ -97,7 +96,7 @@ import org.telegram.ui.xt;
 import org.telegram.ui.yt;
 import org.xml.sax.Attributes;
 import q4.t;
-public final class j implements z1, c4.m, a0, Continuation, com.google.android.gms.common.api.internal.q, d1, pm0, nr, ho, wa, i7, jj0, s51, h2.d, q5.b, te.b {
+public final class j implements a2, c4.m, a0, Continuation, com.google.android.gms.common.api.internal.q, d1, pm0, nr, ho, wa, i7, jj0, s51, h2.d, q5.b, te.b {
     public final int f17554a;
     public Object f17555b;
     public Object f17556c;
@@ -226,9 +225,9 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
     public void F() {
         ((m60) this.f17555b).u();
         an anVar = (an) this.f17556c;
-        if (anVar.f45259k6 != 0 && anVar.f45204g4 != 3) {
+        if (anVar.f45258k6 != 0 && anVar.f45203g4 != 3) {
             Bundle bundle = new Bundle();
-            bundle.putLong("dialog_id", anVar.f45259k6);
+            bundle.putLong("dialog_id", anVar.f45258k6);
             if (anVar.b() != 0) {
                 bundle.putLong("topic_id", anVar.b());
             }
@@ -252,15 +251,13 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void J() {
-        int i7;
         ((m60) this.f17555b).u();
         an anVar = (an) this.f17556c;
-        i7 = ((e2) anVar).currentAccount;
-        SharedPreferences sharedPreferences = np.s1(i7).f25270e7;
-        boolean z10 = sharedPreferences.getBoolean("sound_enabled_" + at.v(anVar.f45259k6, anVar.b(), false), true);
+        SharedPreferences sharedPreferences = np.s1(((e2) anVar).currentAccount).f25273e7;
+        boolean z10 = sharedPreferences.getBoolean("sound_enabled_" + at.v(anVar.f45258k6, anVar.b(), false), true);
         boolean z11 = !z10 ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + at.v(anVar.f45259k6, anVar.b(), false), z11).apply();
+        edit.putBoolean("sound_enabled_" + at.v(anVar.f45258k6, anVar.b(), false), z11).apply();
         if (cc.a(anVar)) {
             cc.S(z10 ? 1 : 0, anVar, anVar.getResourceProvider()).j();
         }
@@ -283,7 +280,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void M(int i7, String str) {
-        m.b((m) this.f17556c, (b2) this.f17555b, str, i7);
+        m.b((m) this.f17556c, (c2) this.f17555b, str, i7);
     }
 
     @Override
@@ -292,43 +289,43 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         xt xtVar = ytVar.T1;
         if (bVar != null) {
             ((ei.c) this.f17555b).i(bVar);
-            ytVar.f53624a2.e();
-            ei.c cVar = ytVar.f53626c2;
+            ytVar.f53589a2.e();
+            ei.c cVar = ytVar.f53591c2;
             hw0[] hw0VarArr = ytVar.X1;
-            c2[] c2VarArr = ytVar.Y1;
-            c2 c2Var = c2VarArr[0];
+            org.telegram.ui.Cells.c2[] c2VarArr = ytVar.Y1;
+            org.telegram.ui.Cells.c2 c2Var = c2VarArr[0];
             if (c2Var != null) {
                 hw0 hw0Var = hw0VarArr[0];
                 boolean z11 = cVar.f10662m;
-                hw0Var.f35366c = z11;
+                hw0Var.f35357c = z11;
                 c2Var.c(z11, true);
             }
-            c2 c2Var2 = c2VarArr[1];
+            org.telegram.ui.Cells.c2 c2Var2 = c2VarArr[1];
             if (c2Var2 != null) {
                 hw0 hw0Var2 = hw0VarArr[1];
                 boolean z12 = cVar.f10663n;
-                hw0Var2.f35366c = z12;
+                hw0Var2.f35357c = z12;
                 c2Var2.c(z12, true);
             }
-            c2 c2Var3 = c2VarArr[2];
+            org.telegram.ui.Cells.c2 c2Var3 = c2VarArr[2];
             if (c2Var3 != null) {
                 hw0 hw0Var3 = hw0VarArr[2];
                 boolean z13 = cVar.f10664o;
-                hw0Var3.f35366c = z13;
+                hw0Var3.f35357c = z13;
                 c2Var3.c(z13, true);
             }
-            c2 c2Var4 = c2VarArr[3];
+            org.telegram.ui.Cells.c2 c2Var4 = c2VarArr[3];
             if (c2Var4 != null) {
                 hw0 hw0Var4 = hw0VarArr[3];
                 boolean z14 = cVar.f10665p;
-                hw0Var4.f35366c = z14;
+                hw0Var4.f35357c = z14;
                 c2Var4.c(z14, true);
             }
-            c2 c2Var5 = c2VarArr[4];
+            org.telegram.ui.Cells.c2 c2Var5 = c2VarArr[4];
             if (c2Var5 != null) {
                 hw0 hw0Var5 = hw0VarArr[4];
                 boolean z15 = cVar.f10666q;
-                hw0Var5.f35366c = z15;
+                hw0Var5.f35357c = z15;
                 c2Var5.c(z15, true);
             }
             ytVar.W1.a(xtVar.d(), true);
@@ -338,9 +335,9 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void P(String str) {
-        b2 b2Var = (b2) this.f17555b;
+        c2 c2Var = (c2) this.f17555b;
         m mVar = (m) this.f17556c;
-        if (b2Var == mVar.f17578f) {
+        if (c2Var == mVar.f17578f) {
             mVar.P(str);
         }
     }
@@ -355,7 +352,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         an anVar = (an) this.f17556c;
         ((m60) this.f17555b).u();
         if (i7 == 0) {
-            if (anVar.getMessagesController().r2(anVar.f45259k6, anVar.b(), null)) {
+            if (anVar.getMessagesController().r2(anVar.f45258k6, anVar.b(), null)) {
                 anVar.Ic(true);
             }
             if (cc.a(anVar)) {
@@ -364,7 +361,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
             }
             return;
         }
-        anVar.getNotificationsController().H(anVar.f45259k6, i7, anVar.b());
+        anVar.getNotificationsController().H(anVar.f45258k6, i7, anVar.b());
         if (cc.a(anVar)) {
             cc.z(anVar, 5, i7, anVar.getResourceProvider()).j();
         }
@@ -394,28 +391,28 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
     @Override
     public void a(String str, String str2) {
         m mVar = (m) this.f17556c;
-        b2 b2Var = (b2) this.f17555b;
+        c2 c2Var = (c2) this.f17555b;
         if (!mVar.J) {
-            if (b2Var == mVar.f17578f) {
+            if (c2Var == mVar.f17578f) {
                 mVar.a(str, str2);
             }
-        } else if (b2Var == mVar.U) {
+        } else if (c2Var == mVar.U) {
             mVar.U = null;
             if (!str.isEmpty()) {
-                mVar.u(b2Var, str);
+                mVar.u(c2Var, str);
             }
             mVar.e();
             Log.d("VoiceLive", "field: final words in (" + mVar.L.size() + " words)");
             mVar.n();
-        } else if (b2Var != mVar.f17578f) {
+        } else if (c2Var != mVar.f17578f) {
         } else {
             Log.d("VoiceLive", "field: recogniser ended by itself error=" + str2);
             if (!str.isEmpty()) {
-                mVar.u(b2Var, str);
+                mVar.u(c2Var, str);
             }
             mVar.f17578f = null;
-            if (xr.f27575k == mVar) {
-                xr.f27575k = null;
+            if (xr.f27577k == mVar) {
+                xr.f27577k = null;
             }
             mVar.d = null;
             mVar.f17576e = null;
@@ -430,7 +427,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         o7.d dVar = (o7.d) this.f17555b;
         o7.b bVar = (o7.b) obj;
         e7.b bVar2 = new e7.b(dVar, (TaskCompletionSource) obj2);
-        Context context = dVar.f6102a;
+        Context context = dVar.f6105a;
         try {
             i7 = z6.b.a(context).c(0, context.getPackageName()).versionCode;
         } catch (PackageManager.NameNotFoundException unused) {
@@ -440,7 +437,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         bVar3.f20484f = i7;
         o7.c cVar = (o7.c) bVar.n();
         com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true), true);
-        gVar.f5920c = false;
+        gVar.f5923c = false;
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.cloudmessaging.internal.ICloudMessagingService");
         int i10 = o7.a.f21375a;
@@ -474,7 +471,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
             xVar.O(6);
             int a10 = xVar.a() / 4;
             for (int i7 = 0; i7 < a10; i7++) {
-                xVar.k(0, 4, (byte[]) fVar.f7550b);
+                xVar.k(0, 4, (byte[]) fVar.f7553b);
                 fVar.J(0);
                 int j3 = fVar.j(16);
                 fVar.L(3);
@@ -500,7 +497,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = arrayList.size();
             for (int i7 = 0; i7 < size; i7++) {
-                str2 = (String) ((oz) arrayList.get(i7)).f25832a.get(str);
+                str2 = (String) ((oz) arrayList.get(i7)).f25834a.get(str);
                 if (str2 != null) {
                     break;
                 }
@@ -576,7 +573,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public Object mo24get() {
-        return new p5.d((Context) ((d9.o) this.f17555b).f7640b, (ld0) ((ff) this.f17556c).mo24get());
+        return new p5.d((Context) ((d9.o) this.f17555b).f7643b, (ld0) ((ff) this.f17556c).mo24get());
     }
 
     @Override
@@ -586,9 +583,9 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void h(float f10) {
-        b2 b2Var = (b2) this.f17555b;
+        c2 c2Var = (c2) this.f17555b;
         m mVar = (m) this.f17556c;
-        if (b2Var == mVar.f17578f) {
+        if (c2Var == mVar.f17578f) {
             mVar.h(f10);
         }
     }
@@ -600,17 +597,17 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void j(boolean z10) {
-        f8 f8Var = ((d8) this.f17556c).f46334b;
-        f8Var.f47058y.finishFragment();
-        i8 i8Var = f8Var.f47058y;
+        f8 f8Var = ((d8) this.f17556c).f46306b;
+        f8Var.f47042y.finishFragment();
+        i8 i8Var = f8Var.f47042y;
         ((an) this.f17555b).j8(i8Var.Q, i8Var.R + 86400, z10);
     }
 
     @Override
     public void l(boolean z10, float f10) {
-        ((TextView) this.f17555b).setText("Alpha " + h5.f47611p1);
-        h5.f47611p1 = f10;
-        ((h5) this.f17556c).f47612m1.K();
+        ((TextView) this.f17555b).setText("Alpha " + h5.f47601p1);
+        h5.f47601p1 = f10;
+        ((h5) this.f17556c).f47602m1.K();
     }
 
     public void l0(long j3, byte[] bArr) {
@@ -632,20 +629,20 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         }
         if (file == null) {
             IllegalStateException illegalStateException = new IllegalStateException("Preview file is unavailable");
-            MediaController mediaController = ((le) this.f17555b).f24823a;
+            MediaController mediaController = ((le) this.f17555b).f24829a;
             String[] strArr = MediaController.W1;
             a8.e("AudioRecorderV2 failed", illegalStateException);
-            ns.f(mediaController.f22352i1).k(ns.f25533m2, Integer.valueOf(mediaController.f22350h1));
+            ns.f(mediaController.f22352i1).k(ns.f25534m2, Integer.valueOf(mediaController.f22350h1));
             mediaController.x(false);
             return;
         }
-        MediaController mediaController2 = ((le) this.f17555b).f24823a;
+        MediaController mediaController2 = ((le) this.f17555b).f24829a;
         mediaController2.f22356k1 = file;
         mediaController2.l1 = j3;
         mediaController2.G0(file, j3, bArr);
         si.b0(mediaController2.f22352i1).B1(mediaController2.n1, mediaController2.f22362o1, ni.a(mediaController2, file.getAbsolutePath(), mediaController2.K1));
-        ns.f(mediaController2.f22352i1).k(ns.f25544o2, new Object[0]);
-        ns.f(mediaController2.f22352i1).k(ns.f25569s2, Integer.valueOf(mediaController2.f22350h1), mediaController2.f22348g1, file.getAbsolutePath());
+        ns.f(mediaController2.f22352i1).k(ns.f25545o2, new Object[0]);
+        ns.f(mediaController2.f22352i1).k(ns.f25570s2, Integer.valueOf(mediaController2.f22350h1), mediaController2.f22348g1, file.getAbsolutePath());
         mediaController2.Y(false);
         MediaController.j0(false);
     }
@@ -797,7 +794,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void r(String str) {
-        m.b((m) this.f17556c, (b2) this.f17555b, str, -1);
+        m.b((m) this.f17556c, (c2) this.f17555b, str, -1);
     }
 
     @Override
@@ -841,7 +838,7 @@ public final class j implements z1, c4.m, a0, Continuation, com.google.android.g
         ((m60) this.f17555b).u();
         an anVar = (an) this.f17556c;
         anVar.Ic(true);
-        cc.A(anVar, anVar.getMessagesController().r2(anVar.f45259k6, anVar.b(), null), anVar.Aa).j();
+        cc.A(anVar, anVar.getMessagesController().r2(anVar.f45258k6, anVar.b(), null), anVar.Aa).j();
     }
 
     @Override

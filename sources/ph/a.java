@@ -21,7 +21,7 @@ public final class a extends d implements te.b {
         this.f55051l0 = new te.a(0, this, er.h, 320L, true);
         this.m0 = e6Var;
         f();
-        setOutlineProvider(t0.f3333b);
+        setOutlineProvider(t0.f3336b);
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class a extends d implements te.b {
         } else {
             q10 = j6.I.q();
         }
-        float f12 = this.f55051l0.f57081e;
+        float f12 = this.f55051l0.f57085e;
         setElevation((1.0f - f12) * g0.L(1.0f));
         setColor(i0.a.f(f12, m(j6.f28849d6), m(j6.Fi)));
         setTextColor(i0.a.f(f12, m(j6.f29090q7), m(j6.Ji)));
@@ -63,7 +63,7 @@ public final class a extends d implements te.b {
         te.a aVar = this.f55051l0;
         if (aVar != null && this.f55052n0) {
             try {
-                float f10 = aVar.f57081e;
+                float f10 = aVar.f57085e;
                 int f11 = i0.a.f(f10, m(j6.f28849d6), m(j6.Fi));
                 Drawable background = getBackground();
                 if ((background instanceof ShapeDrawable) && ((ShapeDrawable) background).getPaint().getColor() != f11) {

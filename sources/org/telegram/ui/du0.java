@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class du0 implements org.telegram.messenger.z10 {
-    public final int f46491a;
-    public final ProfileActivity f46492b;
+    public final int f46481a;
+    public final ProfileActivity f46482b;
 
     public du0(ProfileActivity profileActivity, int i7) {
-        this.f46491a = i7;
-        this.f46492b = profileActivity;
+        this.f46481a = i7;
+        this.f46482b = profileActivity;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f46491a;
-        ProfileActivity profileActivity = this.f46492b;
+        int i7 = this.f46481a;
+        ProfileActivity profileActivity = this.f46482b;
         switch (i7) {
             case 0:
                 View view = (View) obj;

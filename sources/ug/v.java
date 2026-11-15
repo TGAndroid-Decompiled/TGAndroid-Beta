@@ -66,7 +66,7 @@ public final class v implements Runnable {
                     if (rvVar != null && rvVar.getParent() != null) {
                         ((ViewGroup) j0Var.H2.getParent()).removeView(j0Var.H2);
                     }
-                    j0Var.f35936o1.setPadding(0, 0, 0, 0);
+                    j0Var.f35931o1.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

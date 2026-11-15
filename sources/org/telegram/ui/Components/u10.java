@@ -5,18 +5,18 @@ import android.content.Context;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class u10 implements Runnable {
-    public final int f39868a;
-    public final Context f39869b;
+    public final int f39865a;
+    public final Context f39866b;
 
     public u10(Context context, int i7) {
-        this.f39868a = i7;
-        this.f39869b = context;
+        this.f39865a = i7;
+        this.f39866b = context;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f39868a;
-        Context context = this.f39869b;
+        int i7 = this.f39865a;
+        Context context = this.f39866b;
         switch (i7) {
             case 0:
                 s10.k(context);

@@ -362,10 +362,10 @@ public final class j1 extends ja {
         ViewGroup viewGroup = this.f29682b;
         int i13 = this.f29717u0;
         viewGroup.addView(frameLayout, c8.ja.f(-2.0f, -1, 87, i13, 0, i13, 0));
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i14 = this.f29717u0;
         uj0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
-        this.f35936o1.r1();
+        this.f35931o1.r1();
         int i15 = j6.f28792a7;
         v0(j6.w0(i15, this.J0));
         Q(i15);
@@ -413,7 +413,7 @@ public final class j1 extends ja {
     public final void onCreate(Bundle bundle) {
         int b10;
         super.onCreate(bundle);
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         if (uj0Var.getAdapter() == null) {
             b10 = 0;
         } else {

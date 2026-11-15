@@ -7,22 +7,22 @@ import android.animation.ObjectAnimator;
 import android.graphics.RectF;
 import org.telegram.messenger.ImageReceiver;
 public final class bv0 extends AnimatorListenerAdapter {
-    public final int f45841a;
-    public final ProfileActivity f45842b;
+    public final int f45830a;
+    public final ProfileActivity f45831b;
 
     public bv0(ProfileActivity profileActivity, int i7) {
-        this.f45841a = i7;
-        this.f45842b = profileActivity;
+        this.f45830a = i7;
+        this.f45831b = profileActivity;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f45841a) {
+        switch (this.f45830a) {
             case 1:
-                this.f45842b.S5 = null;
+                this.f45831b.S5 = null;
                 return;
             case 4:
-                ProfileActivity profileActivity = this.f45842b;
+                ProfileActivity profileActivity = this.f45831b;
                 profileActivity.O1 = false;
                 profileActivity.f43062a.P0 = true;
                 return;
@@ -37,8 +37,8 @@ public final class bv0 extends AnimatorListenerAdapter {
         ri.q qVar;
         org.telegram.ui.ActionBar.k kVar;
         int w02;
-        int i7 = this.f45841a;
-        ProfileActivity profileActivity = this.f45842b;
+        int i7 = this.f45830a;
+        ProfileActivity profileActivity = this.f45831b;
         switch (i7) {
             case 0:
                 qVar = ((org.telegram.ui.ActionBar.e2) profileActivity).glassEngine;
@@ -59,10 +59,10 @@ public final class bv0 extends AnimatorListenerAdapter {
                     m10.w(xu0Var);
                 }
                 imageReceiver.f();
-                org.telegram.messenger.ic icVar = xu0Var.f52301a0;
+                org.telegram.messenger.ic icVar = xu0Var.f52304a0;
                 if (icVar != null) {
                     icVar.a();
-                    xu0Var.f52301a0 = null;
+                    xu0Var.f52304a0 = null;
                 }
                 xu0Var.W = 0.0f;
                 xu0Var.invalidate();
@@ -116,11 +116,11 @@ public final class bv0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f45841a) {
+        switch (this.f45830a) {
             case 0:
                 return;
             case 4:
-                ProfileActivity profileActivity = this.f45842b;
+                ProfileActivity profileActivity = this.f45831b;
                 ProfileActivity.F3(profileActivity, false);
                 profileActivity.f43161o0.setAnimatedFileMaybe(profileActivity.f43101f0.getImageReceiver().m());
                 profileActivity.f43161o0.L();

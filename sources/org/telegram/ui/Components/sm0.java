@@ -8,26 +8,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class sm0 {
-    public final int f39340a;
-    public long f39341b;
-    public final Object f39342c;
+    public final int f39338a;
+    public long f39339b;
+    public final Object f39340c;
     public final Object d;
-    public Object f39343e;
-    public Object f39344f;
-    public Object f39345g;
+    public Object f39341e;
+    public Object f39342f;
+    public Object f39343g;
 
     public sm0(h6.m mVar) {
         int i7;
-        this.f39342c = mVar;
+        this.f39340c = mVar;
         synchronized (mVar) {
-            i7 = ((l2.h) mVar.d).f19026c.f2877b;
+            i7 = ((l2.h) mVar.d).f19026c.f2880b;
         }
-        this.f39340a = i7;
+        this.f39338a = i7;
         this.d = new h2.x(32);
         a4.c cVar = new a4.c(0L, i7);
-        this.f39343e = cVar;
-        this.f39344f = cVar;
-        this.f39345g = cVar;
+        this.f39341e = cVar;
+        this.f39342f = cVar;
+        this.f39343g = cVar;
     }
 
     public static a4.c d(a4.c cVar, long j3, ByteBuffer byteBuffer, int i7) {
@@ -37,7 +37,7 @@ public final class sm0 {
         while (i7 > 0) {
             int min = Math.min(i7, (int) (cVar.f159b - j3));
             b3.a aVar = (b3.a) cVar.f160c;
-            byteBuffer.put(aVar.f2867a, ((int) (j3 - cVar.f158a)) + aVar.f2868b, min);
+            byteBuffer.put(aVar.f2870a, ((int) (j3 - cVar.f158a)) + aVar.f2871b, min);
             i7 -= min;
             j3 += min;
             if (j3 == cVar.f159b) {
@@ -55,7 +55,7 @@ public final class sm0 {
         while (i10 > 0) {
             int min = Math.min(i10, (int) (cVar.f159b - j3));
             b3.a aVar = (b3.a) cVar.f160c;
-            System.arraycopy(aVar.f2867a, ((int) (j3 - cVar.f158a)) + aVar.f2868b, bArr, i7 - i10, min);
+            System.arraycopy(aVar.f2870a, ((int) (j3 - cVar.f158a)) + aVar.f2871b, bArr, i7 - i10, min);
             i10 -= min;
             j3 += min;
             if (j3 == cVar.f159b) {
@@ -176,7 +176,7 @@ public final class sm0 {
         if (((b3.a) cVar.f160c) == null) {
             return;
         }
-        h6.m mVar = (h6.m) this.f39342c;
+        h6.m mVar = (h6.m) this.f39340c;
         synchronized (mVar) {
             ((l2.h) mVar.d).f19026c.b(cVar);
             a4.c cVar2 = cVar;
@@ -198,32 +198,32 @@ public final class sm0 {
         a4.c cVar;
         if (j3 != -1) {
             while (true) {
-                cVar = (a4.c) this.f39343e;
+                cVar = (a4.c) this.f39341e;
                 if (j3 < cVar.f159b) {
                     break;
                 }
-                h6.m mVar = (h6.m) this.f39342c;
+                h6.m mVar = (h6.m) this.f39340c;
                 b3.a aVar = (b3.a) cVar.f160c;
                 synchronized (mVar) {
                     ((l2.h) mVar.d).f19026c.c(aVar);
                     mVar.E(aVar);
                 }
-                a4.c cVar2 = (a4.c) this.f39343e;
+                a4.c cVar2 = (a4.c) this.f39341e;
                 cVar2.f160c = null;
                 cVar2.d = null;
-                this.f39343e = (a4.c) cVar2.d;
+                this.f39341e = (a4.c) cVar2.d;
             }
-            if (((a4.c) this.f39344f).f158a < cVar.f158a) {
-                this.f39344f = cVar;
+            if (((a4.c) this.f39342f).f158a < cVar.f158a) {
+                this.f39342f = cVar;
             }
         }
     }
 
     public int c(int i7) {
         b3.a a10;
-        a4.c cVar = (a4.c) this.f39345g;
+        a4.c cVar = (a4.c) this.f39343g;
         if (((b3.a) cVar.f160c) == null) {
-            h6.m mVar = (h6.m) this.f39342c;
+            h6.m mVar = (h6.m) this.f39340c;
             synchronized (mVar) {
                 a10 = ((l2.h) mVar.d).f19026c.a();
                 ((HashMap) mVar.f13624b).put(a10, (m2.j) mVar.f13625c);
@@ -232,20 +232,20 @@ public final class sm0 {
                     gVar.a();
                 }
             }
-            a4.c cVar2 = new a4.c(((a4.c) this.f39345g).f159b, this.f39340a);
+            a4.c cVar2 = new a4.c(((a4.c) this.f39343g).f159b, this.f39338a);
             cVar.f160c = a10;
             cVar.d = cVar2;
         }
-        return Math.min(i7, (int) (((a4.c) this.f39345g).f159b - this.f39341b));
+        return Math.min(i7, (int) (((a4.c) this.f39343g).f159b - this.f39339b));
     }
 
     public sm0(wa0 wa0Var) {
         this.d = new ArrayList(50);
-        this.f39343e = new ArrayList(50);
+        this.f39341e = new ArrayList(50);
         Paint paint = new Paint(1);
-        this.f39344f = paint;
-        this.f39340a = 250;
-        this.f39342c = wa0Var;
+        this.f39342f = paint;
+        this.f39338a = 250;
+        this.f39340c = wa0Var;
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.33f));
     }
 }

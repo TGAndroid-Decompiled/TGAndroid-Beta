@@ -6,27 +6,27 @@ import android.graphics.RectF;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class n0 extends FrameLayout {
-    public final RectF f3720a;
-    public final RectF f3721b;
-    public final t0 f3722c;
+    public final RectF f3723a;
+    public final RectF f3724b;
+    public final t0 f3725c;
 
     public n0(t0 t0Var, Context context) {
         super(context);
-        this.f3722c = t0Var;
-        this.f3720a = new RectF();
-        this.f3721b = new RectF();
+        this.f3725c = t0Var;
+        this.f3723a = new RectF();
+        this.f3724b = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        t0 t0Var = this.f3722c;
+        t0 t0Var = this.f3725c;
         o0 o0Var = t0Var.W1;
-        FrameLayout frameLayout = o0Var.f9659b;
-        RectF rectF = this.f3720a;
+        FrameLayout frameLayout = o0Var.f9648b;
+        RectF rectF = this.f3723a;
         if (jh.k.c(frameLayout, this, rectF)) {
             TextView textView = t0Var.X1;
-            RectF rectF2 = this.f3721b;
+            RectF rectF2 = this.f3724b;
             if (jh.k.c(textView, this, rectF2)) {
                 float L = rectF2.right - org.telegram.messenger.g0.L(32.0f);
                 float centerY = rectF2.centerY() - org.telegram.messenger.g0.L(16.0f);
@@ -34,7 +34,7 @@ public final class n0 extends FrameLayout {
                     canvas.save();
                     canvas.translate(L, centerY);
                     canvas.scale(org.telegram.messenger.g0.L(32.0f) / rectF.width(), org.telegram.messenger.g0.L(32.0f) / rectF.height());
-                    o0Var.f9659b.draw(canvas);
+                    o0Var.f9648b.draw(canvas);
                     canvas.restore();
                 }
             }

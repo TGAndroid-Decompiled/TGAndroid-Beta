@@ -16,10 +16,10 @@ import org.telegram.ui.Components.mx;
 import org.telegram.ui.Components.p5;
 import org.telegram.ui.Components.x31;
 public final class a0 implements mx {
-    public final g0 f57149a;
+    public final g0 f57153a;
 
     public a0(g0 g0Var) {
-        this.f57149a = g0Var;
+        this.f57153a = g0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class a0 implements mx {
 
     @Override
     public final boolean k() {
-        b editText = ((o2) this.f57149a.C0).getEditText();
+        b editText = ((n2) this.f57153a.C0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -69,11 +69,11 @@ public final class a0 implements mx {
 
     @Override
     public final void l(String str) {
-        o2 o2Var;
+        n2 n2Var;
         b editText;
         g6[] g6VarArr;
-        j jVar = this.f57149a.C0;
-        if (!(jVar instanceof o2) || (editText = (o2Var = (o2) jVar).getEditText()) == null) {
+        j jVar = this.f57153a.C0;
+        if (!(jVar instanceof n2) || (editText = (n2Var = (n2) jVar).getEditText()) == null) {
             return;
         }
         int selectionEnd = editText.getSelectionEnd();
@@ -81,10 +81,10 @@ public final class a0 implements mx {
             selectionEnd = 0;
         }
         try {
-            CharSequence m10 = j6.m(str, o2Var.getFontMetricsInt(), false, null, 0);
+            CharSequence m10 = j6.m(str, n2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (g6[]) ((Spanned) m10).getSpans(0, m10.length(), g6.class)) != null) {
                 for (g6 g6Var : g6VarArr) {
-                    g6Var.f23694b = 0.85f;
+                    g6Var.f23696b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -99,7 +99,7 @@ public final class a0 implements mx {
 
     @Override
     public final void n() {
-        g0 g0Var = this.f57149a;
+        g0 g0Var = this.f57153a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.A1);
         String M0 = hd.M0(2131752068, null);
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
@@ -118,7 +118,7 @@ public final class a0 implements mx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         p5 p5Var;
-        b editText = ((o2) this.f57149a.C0).getEditText();
+        b editText = ((n2) this.f57153a.C0).getEditText();
         if (editText == null) {
             return;
         }

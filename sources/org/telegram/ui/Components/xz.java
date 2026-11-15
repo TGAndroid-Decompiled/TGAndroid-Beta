@@ -14,19 +14,19 @@ import java.util.HashSet;
 public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
     public Matrix E;
     public g6 F;
-    public TextPaint f41804a;
-    public TextPaint f41805b;
-    public Paint f41806c;
+    public TextPaint f41796a;
+    public TextPaint f41797b;
+    public Paint f41798c;
     public Path d;
-    public float[] f41807e;
-    public oy0 f41808f;
+    public float[] f41799e;
+    public oy0 f41800f;
     public oy0 h;
-    public oy0 f41809n;
-    public LinearGradient f41810r;
-    public LinearGradient f41811s;
-    public Paint f41812w;
-    public Paint f41813x;
-    public Matrix f41814y;
+    public oy0 f41801n;
+    public LinearGradient f41802r;
+    public LinearGradient f41803s;
+    public Paint f41804w;
+    public Paint f41805x;
+    public Matrix f41806y;
 
     public static CharSequence a(CharSequence charSequence) {
         if ("ALL_CHATS".equals(charSequence.toString())) {
@@ -44,13 +44,13 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
         oy0 oy0Var;
         float f14;
         float f15;
-        Paint paint = this.f41806c;
+        Paint paint = this.f41798c;
         Matrix matrix = this.E;
-        Matrix matrix2 = this.f41814y;
+        Matrix matrix2 = this.f41806y;
         Path path = this.d;
-        oy0 oy0Var2 = this.f41808f;
+        oy0 oy0Var2 = this.f41800f;
         g6 g6Var = this.F;
-        oy0 oy0Var3 = this.f41809n;
+        oy0 oy0Var3 = this.f41801n;
         super.onDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
         float measuredWidth = getMeasuredWidth() / 2.0f;
@@ -58,9 +58,9 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
         oy0 oy0Var4 = this.h;
         if (oy0Var4 != null) {
             canvas.save();
-            float f16 = oy0Var4.f38105c;
+            float f16 = oy0Var4.f38103c;
             f10 = 15.32f;
-            CharSequence charSequence = g6Var.f34836i;
+            CharSequence charSequence = g6Var.f34840i;
             if (charSequence != null && charSequence.length() != 0) {
                 f15 = g6Var.c() + org.telegram.messenger.g0.L(15.32f);
             } else {
@@ -77,7 +77,7 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
             f11 = measuredWidth;
             f12 = 0.0f;
         }
-        CharSequence charSequence2 = g6Var.f34836i;
+        CharSequence charSequence2 = g6Var.f34840i;
         if (charSequence2 == null || charSequence2.length() == 0) {
             f13 = measuredHeight;
             oy0Var = oy0Var4;
@@ -87,7 +87,7 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
             f14 = 2.0f;
             f13 = measuredHeight;
             oy0Var = oy0Var4;
-            rect.set((int) (oy0Var4.f38105c + f11 + org.telegram.messenger.g0.L(4.66f)), (int) (measuredHeight - org.telegram.messenger.g0.L(9.0f)), (int) (g6Var.c() + oy0Var4.f38105c + f11 + org.telegram.messenger.g0.L(f10)), (int) (f13 + org.telegram.messenger.g0.L(9.0f)));
+            rect.set((int) (oy0Var4.f38103c + f11 + org.telegram.messenger.g0.L(4.66f)), (int) (measuredHeight - org.telegram.messenger.g0.L(9.0f)), (int) (g6Var.c() + oy0Var4.f38103c + f11 + org.telegram.messenger.g0.L(f10)), (int) (f13 + org.telegram.messenger.g0.L(9.0f)));
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(rect);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), paint);
@@ -96,7 +96,7 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
             g6Var.draw(canvas);
         }
         float L = org.telegram.messenger.g0.L(30.0f);
-        float f18 = (f11 - L) - oy0Var2.f38105c;
+        float f18 = (f11 - L) - oy0Var2.f38103c;
         canvas.save();
         canvas.translate(f18, (f13 - (oy0Var2.i() / f14)) + org.telegram.messenger.g0.L(1.0f));
         oy0Var2.d(canvas);
@@ -107,38 +107,38 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
             canvas.translate(f19 + L, (f13 - (oy0Var3.i() / f14)) + org.telegram.messenger.g0.L(1.0f));
             oy0Var3.d(canvas);
             canvas.restore();
-            f19 += L + oy0Var3.f38105c;
+            f19 += L + oy0Var3.f38103c;
         }
         float f20 = f19;
         float L2 = org.telegram.messenger.g0.L(12.0f) + (oy0Var.i() / f14) + f13;
-        canvas.drawRect(0.0f, L2, getMeasuredWidth(), 1.0f + L2, this.f41804a);
+        canvas.drawRect(0.0f, L2, getMeasuredWidth(), 1.0f + L2, this.f41796a);
         path.rewind();
         RectF rectF2 = org.telegram.messenger.g0.P;
         float f21 = f12 / f14;
         float f22 = measuredWidth + f21;
         rectF2.set((measuredWidth - f21) - org.telegram.messenger.g0.L(4.0f), L2 - org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f) + f22, L2);
-        path.addRoundRect(rectF2, this.f41807e, Path.Direction.CW);
+        path.addRoundRect(rectF2, this.f41799e, Path.Direction.CW);
         canvas.drawPath(path, paint);
         canvas.save();
         float max = Math.max(org.telegram.messenger.g0.L(8.0f), f18);
         matrix2.reset();
         matrix2.postTranslate(Math.min(f11, max + org.telegram.messenger.g0.L(8.0f)), 0.0f);
-        this.f41810r.setLocalMatrix(matrix2);
+        this.f41802r.setLocalMatrix(matrix2);
         float min = Math.min(getMeasuredWidth() - org.telegram.messenger.g0.L(8.0f), f20);
         matrix.reset();
         matrix.postTranslate(Math.max(f22, min - org.telegram.messenger.g0.L(88.0f)), 0.0f);
-        this.f41811s.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f41812w);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f41813x);
+        this.f41803s.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f41804w);
+        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f41805x);
         canvas.restore();
         canvas.restore();
     }
 
     @Override
     public final void updateColors() {
-        Paint paint = this.f41806c;
-        TextPaint textPaint = this.f41805b;
-        TextPaint textPaint2 = this.f41804a;
+        Paint paint = this.f41798c;
+        TextPaint textPaint = this.f41797b;
+        TextPaint textPaint2 = this.f41796a;
         if (textPaint2 != null && textPaint != null && paint != null) {
             int i7 = org.telegram.ui.ActionBar.j6.f29195vi;
             textPaint2.setColor(org.telegram.ui.ActionBar.j6.r1(0.8f, org.telegram.ui.ActionBar.j6.x0(null, i7, false)));
@@ -151,7 +151,7 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
                     g6Var.u(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28849d6, false));
                 }
                 int r12 = org.telegram.ui.ActionBar.j6.r1(0.8f, org.telegram.ui.ActionBar.j6.x0(null, i7, false));
-                oy0 oy0Var = this.f41808f;
+                oy0 oy0Var = this.f41800f;
                 if (oy0Var != null) {
                     oy0Var.n(r12);
                 }
@@ -159,7 +159,7 @@ public final class xz extends View implements org.telegram.ui.ActionBar.z5 {
                 if (oy0Var2 != null) {
                     oy0Var2.n(org.telegram.ui.ActionBar.j6.x0(null, i10, false));
                 }
-                oy0 oy0Var3 = this.f41809n;
+                oy0 oy0Var3 = this.f41801n;
                 if (oy0Var3 != null) {
                     oy0Var3.n(r12);
                 }

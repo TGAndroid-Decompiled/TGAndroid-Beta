@@ -37,14 +37,14 @@ public final class f extends k {
         if (groupCallMessage != null && (p0Var = groupCallMessage.visibleReaction) != null) {
             View view = e1Var.f58535a;
             if ((view instanceof c) && (gVar = hVar.Y0) != null) {
-                c40 c40Var = ((e20) gVar).f46533a;
+                c40 c40Var = ((e20) gVar).f46523a;
                 l0 l0Var = new l0(c40Var.getContext(), null, c40Var.F1, (c) view, null, 0.0f, 0.0f, p0Var, c40Var.f29679a, 1, false);
                 l0.B = l0Var;
-                i0 i0Var = l0Var.f5118i;
+                i0 i0Var = l0Var.f5121i;
                 i0Var.setTag(2131296591, 1);
                 c40Var.f29685c.addView(i0Var);
-                l0Var.f5128s = true;
-                l0Var.f5133y = System.currentTimeMillis();
+                l0Var.f5131s = true;
+                l0Var.f5136y = System.currentTimeMillis();
             }
         }
     }

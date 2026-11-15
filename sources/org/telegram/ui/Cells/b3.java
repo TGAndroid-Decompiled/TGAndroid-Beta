@@ -46,12 +46,12 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         LinearLayout linearLayout = new LinearLayout(context);
         this.f30036b = linearLayout;
         linearLayout.setOrientation(1);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = org.telegram.messenger.g0.L(24.0f);
         } else {
             i7 = 0;
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(24.0f);
@@ -64,7 +64,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         o5Var.setTextSize(1, 14.0f);
         o5Var.setTypeface(org.telegram.messenger.g0.o());
         o5Var.setMaxLines(5);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -81,7 +81,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.f30035a = linearLayout2;
         linearLayout2.setOrientation(0);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             linearLayout2.addView(linearLayout, c8.ja.d(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
             linearLayout2.addView(w8Var, c8.ja.d(0, -1.0f, 16, 0.0f, 0.0f, -2.0f, 0.0f));
             linearLayout2.addView(i9Var, c8.ja.d(36, 36.0f, 21, 0.0f, 0.0f, -2.0f, 0.0f));
@@ -96,7 +96,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         ImageView imageView = new ImageView(context);
         this.f30038e = imageView;
         imageView.setImageResource(2131230872);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 3;
         } else {
             i11 = 5;
@@ -106,7 +106,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         this.f30039f = imageView2;
         imageView2.setImageResource(2131232097);
         imageView2.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f));
-        addView(imageView2, c8.ja.d(36, 36.0f, (hd.f24101a0 ? 3 : 5) | 16, -4.0f, 0.0f, -4.0f, 0.0f));
+        addView(imageView2, c8.ja.d(36, 36.0f, (hd.f24104a0 ? 3 : 5) | 16, -4.0f, 0.0f, -4.0f, 0.0f));
         imageView2.setVisibility(8);
         setClipToPadding(false);
         setClipChildren(false);
@@ -126,7 +126,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         }
         int min = Math.min(3, size);
         org.telegram.ui.Components.w8 w8Var = this.f30040n;
-        if (min != w8Var.f41311a.f40334n) {
+        if (min != w8Var.f41314a.f40334n) {
             z10 = true;
         } else {
             z10 = false;
@@ -200,7 +200,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
         } else {
             i11 = 0;
         }
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         if (z12) {
             i12 = i11;
         } else {
@@ -215,7 +215,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.z
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));
         LinearLayout linearLayout = this.f30036b;
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(linearLayout.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));

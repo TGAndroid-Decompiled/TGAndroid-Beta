@@ -5,19 +5,19 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 public final class f71 extends WebView {
-    public final int f34538a = 0;
-    public final Object f34539b;
+    public final int f34537a = 0;
+    public final Object f34538b;
 
-    public f71(org.telegram.ui.jl0 jl0Var, Context context) {
+    public f71(org.telegram.ui.kl0 kl0Var, Context context) {
         super(context);
-        this.f34539b = jl0Var;
+        this.f34538b = kl0Var;
     }
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f34538a) {
+        switch (this.f34537a) {
             case 0:
-                org.telegram.messenger.g0.u((Context) this.f34539b, true);
+                org.telegram.messenger.g0.u((Context) this.f34538b, true);
                 super.onAttachedToWindow();
                 return;
             default:
@@ -28,9 +28,9 @@ public final class f71 extends WebView {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f34538a) {
+        switch (this.f34537a) {
             case 0:
-                org.telegram.messenger.g0.u((Context) this.f34539b, false);
+                org.telegram.messenger.g0.u((Context) this.f34538b, false);
                 super.onDetachedFromWindow();
                 return;
             default:
@@ -41,7 +41,7 @@ public final class f71 extends WebView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f34538a) {
+        switch (this.f34537a) {
             case 1:
                 super.onMeasure(i7, i10);
                 return;
@@ -53,9 +53,9 @@ public final class f71 extends WebView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34538a) {
+        switch (this.f34537a) {
             case 1:
-                ((ViewGroup) ((org.telegram.ui.jl0) this.f34539b).fragmentView).requestDisallowInterceptTouchEvent(true);
+                ((ViewGroup) ((org.telegram.ui.kl0) this.f34538b).fragmentView).requestDisallowInterceptTouchEvent(true);
                 return super.onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
@@ -64,6 +64,6 @@ public final class f71 extends WebView {
 
     public f71(Context context, Context context2) {
         super(context);
-        this.f34539b = context2;
+        this.f34538b = context2;
     }
 }

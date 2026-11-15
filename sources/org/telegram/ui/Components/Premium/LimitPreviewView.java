@@ -40,7 +40,7 @@ import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.h6;
 import org.telegram.ui.Components.my;
 import org.telegram.ui.z20;
-import tg.y1;
+import tg.x1;
 import ug.o;
 import ug.p;
 import ug.q;
@@ -747,7 +747,7 @@ public class LimitPreviewView extends LinearLayout implements z5 {
                     qVar2.f58262f = ofFloat;
                     ofFloat.addUpdateListener(new o(rVar, qVar2, 1));
                     qVar2.f58262f.addListener(new p(rVar, qVar2, 0));
-                    qVar2.f58262f.setInterpolator(er.f34421g);
+                    qVar2.f58262f.setInterpolator(er.f34420g);
                     qVar2.f58262f.setDuration(750L);
                     qVar2.f58262f.setStartDelay(((arrayList.size() - 1) - i23) * 60);
                     qVar2.f58262f.start();
@@ -828,12 +828,12 @@ public class LimitPreviewView extends LinearLayout implements z5 {
         this.f32641j0.setInterpolator(new OvershootInterpolator());
         if (this.f32628a0) {
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat3.addUpdateListener(new y1(this, 2));
+            ofFloat3.addUpdateListener(new x1(this, 2));
             ofFloat3.setDuration(500L);
             ofFloat3.start();
             this.f32641j0.setDuration(600L);
         } else if (z17) {
-            this.f32641j0.setInterpolator(er.f34422i);
+            this.f32641j0.setInterpolator(er.f34421i);
             this.f32641j0.setDuration(320L);
         } else if (z16) {
             this.f32641j0.setInterpolator(er.h);
@@ -940,7 +940,7 @@ public class LimitPreviewView extends LinearLayout implements z5 {
             if (rVar != null) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append((CharSequence) "d ").setSpan(new eq(i10, 0), 0, 1, 0);
-                if (m10.i(m10.f24934t0).q()) {
+                if (m10.i(m10.f24940t0).q()) {
                     str = "4 GB";
                 } else {
                     str = "2 GB";
@@ -1029,7 +1029,7 @@ public class LimitPreviewView extends LinearLayout implements z5 {
         textView.setText(String.format("%d", Integer.valueOf(i11)));
         textView.setGravity(16);
         q6.U(textView, j6.G6, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             q3Var.addView(h6Var, ja.d(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
             q3Var.addView(textView, ja.d(-2, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
         } else {
@@ -1051,7 +1051,7 @@ public class LimitPreviewView extends LinearLayout implements z5 {
         h6Var2.setText(String.format("%d", Integer.valueOf(i11)));
         h6Var2.setGravity(21);
         setPremiumCountColor(true);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             q3Var2.addView(textView2, ja.d(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
             q3Var2.addView(h6Var2, ja.d(-2, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
         } else {

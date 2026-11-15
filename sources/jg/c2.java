@@ -45,7 +45,7 @@ public final class c2 extends tj0 {
     public final TLRPC.StickerSetCovered[] f17038f;
     public final LongSparseArray h;
     public final LongSparseArray f17039n;
-    public final int f17036c = m10.f24934t0;
+    public final int f17036c = m10.f24940t0;
     public final SparseArray f17040r = new SparseArray();
     public final SparseArray f17041s = new SparseArray();
     public final SparseArray f17042w = new SparseArray();
@@ -86,7 +86,7 @@ public final class c2 extends tj0 {
         int i10 = this.f17036c;
         si b02 = si.b0(i10);
         boolean z17 = false;
-        ArrayList arrayList = b02.f26505v0[0];
+        ArrayList arrayList = b02.f26515v0[0];
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f17041s.get(i7);
         if (arrayList != null && arrayList.contains(Long.valueOf(stickerSetCovered.set.f28078id))) {
             z11 = true;

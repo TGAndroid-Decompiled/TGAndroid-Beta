@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class bg extends ft {
-    public kc f33274e2;
-    public final ChatActivityEnterView f33275f2;
+    public kc f33277e2;
+    public final ChatActivityEnterView f33278f2;
 
     public bg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context, e6Var);
-        this.f33275f2 = chatActivityEnterView;
+        this.f33278f2 = chatActivityEnterView;
     }
 
     @Override
     public final void E() {
-        cg cgVar = this.f33275f2.H3;
+        cg cgVar = this.f33278f2.H3;
         if (cgVar != null) {
             cgVar.i2();
         }
@@ -36,7 +36,7 @@ public abstract class bg extends ft {
 
     @Override
     public final void F() {
-        cg cgVar = this.f33275f2.H3;
+        cg cgVar = this.f33278f2.H3;
         if (cgVar != null) {
             cgVar.d();
         }
@@ -44,7 +44,7 @@ public abstract class bg extends ft {
 
     public final void J(Uri uri, String str) {
         boolean z10;
-        org.telegram.ui.an anVar = this.f33275f2.f32319x3;
+        org.telegram.ui.an anVar = this.f33278f2.f32319x3;
         if (anVar != null && anVar.z()) {
             z10 = true;
         } else {
@@ -54,7 +54,7 @@ public abstract class bg extends ft {
     }
 
     public final void K(File file, ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
         if (anVar != null && anVar.getParentActivity() != null) {
             org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) arrayList.get(0);
@@ -71,7 +71,7 @@ public abstract class bg extends ft {
     public final void L(ff ffVar, boolean z10, int i7, int i10) {
         org.telegram.messenger.gj threadMessage;
         org.telegram.messenger.gj threadMessage2;
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
         org.telegram.ui.bg0 bg0Var = chatActivityEnterView.M0;
         org.telegram.messenger.fw fwVar = null;
@@ -80,11 +80,11 @@ public abstract class bg extends ft {
             chatActivityEnterView.M0 = null;
         }
         org.telegram.ui.qm qmVar = chatActivityEnterView.D3;
-        if (qmVar != null && anVar != null && qmVar.f50647f) {
+        if (qmVar != null && anVar != null && qmVar.f50651f) {
             anVar.yc();
             return;
         }
-        t0.h hVar = (t0.h) ffVar.f34586b;
+        t0.h hVar = (t0.h) ffVar.f34590b;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             org.telegram.messenger.c cVar = chatActivityEnterView.S;
             Uri c10 = hVar.c();
@@ -120,12 +120,12 @@ public abstract class bg extends ft {
 
     @Override
     public final org.telegram.ui.ActionBar.e6 getResourcesProvider() {
-        return this.f33275f2.E4;
+        return this.f33278f2.E4;
     }
 
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
         if (anVar != null) {
             anVar.extendActionMode(menu);
@@ -137,7 +137,7 @@ public abstract class bg extends ft {
     @Override
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
         if (onCreateInputConnection == null) {
             return null;
@@ -171,7 +171,7 @@ public abstract class bg extends ft {
         } else {
             z10 = false;
         }
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         chatActivityEnterView.T = z10;
         super.onMeasure(i7, i10);
         if (chatActivityEnterView.T) {
@@ -193,7 +193,7 @@ public abstract class bg extends ft {
     @Override
     public final void onScrollChanged(int i7, int i10, int i11, int i12) {
         super.onScrollChanged(i7, i10, i11, i12);
-        cg cgVar = this.f33275f2.H3;
+        cg cgVar = this.f33278f2.H3;
         if (cgVar != null) {
             cgVar.m0();
         }
@@ -205,7 +205,7 @@ public abstract class bg extends ft {
         m60 m60Var;
         xe xeVar;
         super.onSelectionChanged(i7, i10);
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         cg cgVar = chatActivityEnterView.H3;
         if (cgVar != null) {
             cgVar.I();
@@ -231,7 +231,7 @@ public abstract class bg extends ft {
     @Override
     public boolean onTextContextMenuItem(int i7) {
         if (i7 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+            ChatActivityEnterView chatActivityEnterView = this.f33278f2;
             chatActivityEnterView.F2 = true;
             ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
             if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.J2 == null) {
@@ -244,12 +244,12 @@ public abstract class bg extends ft {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         if (!chatActivityEnterView.f32242m4 && chatActivityEnterView.f32223j4 == null) {
             if (!chatActivityEnterView.A0 && !chatActivityEnterView.E0()) {
-                if (this.f33274e2 == null) {
+                if (this.f33277e2 == null) {
                     kc kcVar = new kc(this);
-                    this.f33274e2 = kcVar;
+                    this.f33277e2 = kcVar;
                     kcVar.h = new Runnable(this) {
                         public final bg f42351b;
 
@@ -263,12 +263,12 @@ public abstract class bg extends ft {
                             bg bgVar = this.f42351b;
                             switch (i10) {
                                 case 0:
-                                    ChatActivityEnterView chatActivityEnterView2 = bgVar.f33275f2;
+                                    ChatActivityEnterView chatActivityEnterView2 = bgVar.f33278f2;
                                     int i11 = ChatActivityEnterView.N6;
                                     chatActivityEnterView2.M1();
                                     return;
                                 default:
-                                    ChatActivityEnterView chatActivityEnterView3 = bgVar.f33275f2;
+                                    ChatActivityEnterView chatActivityEnterView3 = bgVar.f33278f2;
                                     chatActivityEnterView3.T3 = false;
                                     chatActivityEnterView3.X0();
                                     return;
@@ -276,17 +276,17 @@ public abstract class bg extends ft {
                         }
                     };
                 }
-                kc kcVar2 = this.f33274e2;
+                kc kcVar2 = this.f33277e2;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 kcVar2.getClass();
                 RectF rectF = org.telegram.messenger.g0.P;
                 float f10 = 0;
                 rectF.set(f10, f10, measuredWidth, measuredHeight);
-                kcVar2.f36378i = false;
-                kcVar2.f36374c = 0;
+                kcVar2.f36366i = false;
+                kcVar2.f36362c = 0;
                 kcVar2.a(rectF);
-                return this.f33274e2.b(motionEvent);
+                return this.f33277e2.b(motionEvent);
             } else if (chatActivityEnterView.G0() && motionEvent.getAction() == 0) {
                 if (chatActivityEnterView.f32333z2 != 0) {
                     chatActivityEnterView.D1(0, false);
@@ -315,12 +315,12 @@ public abstract class bg extends ft {
                             bg bgVar = this.f42351b;
                             switch (i10) {
                                 case 0:
-                                    ChatActivityEnterView chatActivityEnterView2 = bgVar.f33275f2;
+                                    ChatActivityEnterView chatActivityEnterView2 = bgVar.f33278f2;
                                     int i11 = ChatActivityEnterView.N6;
                                     chatActivityEnterView2.M1();
                                     return;
                                 default:
-                                    ChatActivityEnterView chatActivityEnterView3 = bgVar.f33275f2;
+                                    ChatActivityEnterView chatActivityEnterView3 = bgVar.f33278f2;
                                     chatActivityEnterView3.T3 = false;
                                     chatActivityEnterView3.X0();
                                     return;
@@ -344,7 +344,7 @@ public abstract class bg extends ft {
 
     @Override
     public final boolean requestFocus(int i7, Rect rect) {
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         if (!chatActivityEnterView.A0 && !chatActivityEnterView.E0()) {
             return false;
         }
@@ -361,7 +361,7 @@ public abstract class bg extends ft {
     @Override
     public void setOffsetY(float f10) {
         super.setOffsetY(f10);
-        ChatActivityEnterView chatActivityEnterView = this.f33275f2;
+        ChatActivityEnterView chatActivityEnterView = this.f33278f2;
         if (chatActivityEnterView.U1.getForeground() != null) {
             st0 st0Var = chatActivityEnterView.U1;
             st0Var.invalidateDrawable(st0Var.getForeground());

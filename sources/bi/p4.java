@@ -9,14 +9,14 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.b41;
 import org.telegram.ui.Components.m60;
 public final class p4 implements x10 {
-    public final int f3787a;
-    public final a6 f3788b;
-    public final m60 f3789c;
+    public final int f3790a;
+    public final a6 f3791b;
+    public final m60 f3792c;
 
     public p4(a6 a6Var, m60 m60Var, int i7) {
-        this.f3787a = i7;
-        this.f3788b = a6Var;
-        this.f3789c = m60Var;
+        this.f3790a = i7;
+        this.f3791b = a6Var;
+        this.f3792c = m60Var;
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class p4 implements x10 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        switch (this.f3787a) {
+        switch (this.f3790a) {
             case 0:
                 long j3 = ((TL_stars.starGiftAttributeModel) b41Var.G).document.f28057id;
-                o5 o5Var = this.f3788b.d;
-                HashSet hashSet = o5Var.f3761j;
+                o5 o5Var = this.f3791b.d;
+                HashSet hashSet = o5Var.f3764j;
                 if (!hashSet.contains(Long.valueOf(j3))) {
                     if (hashSet.isEmpty()) {
-                        ArrayList arrayList = o5Var.f3758f;
+                        ArrayList arrayList = o5Var.f3761f;
                         int size = arrayList.size();
                         int i7 = 0;
                         while (i7 < size) {
@@ -51,15 +51,15 @@ public final class p4 implements x10 {
                     hashSet.remove(Long.valueOf(j3));
                 }
                 o5Var.h();
-                this.f3789c.u();
+                this.f3792c.u();
                 return;
             case 1:
                 int i10 = ((TL_stars.starGiftAttributeBackdrop) b41Var.G).backdrop_id;
-                o5 o5Var2 = this.f3788b.d;
-                HashSet hashSet2 = o5Var2.f3762k;
+                o5 o5Var2 = this.f3791b.d;
+                HashSet hashSet2 = o5Var2.f3765k;
                 if (!hashSet2.contains(Integer.valueOf(i10))) {
                     if (hashSet2.isEmpty()) {
-                        ArrayList arrayList2 = o5Var2.f3759g;
+                        ArrayList arrayList2 = o5Var2.f3762g;
                         int size2 = arrayList2.size();
                         int i11 = 0;
                         while (i11 < size2) {
@@ -77,12 +77,12 @@ public final class p4 implements x10 {
                     hashSet2.remove(Integer.valueOf(i10));
                 }
                 o5Var2.h();
-                this.f3789c.u();
+                this.f3792c.u();
                 return;
             default:
                 long j11 = ((TL_stars.starGiftAttributePattern) b41Var.G).document.f28057id;
-                o5 o5Var3 = this.f3788b.d;
-                HashSet hashSet3 = o5Var3.f3763l;
+                o5 o5Var3 = this.f3791b.d;
+                HashSet hashSet3 = o5Var3.f3766l;
                 if (!hashSet3.contains(Long.valueOf(j11))) {
                     if (hashSet3.isEmpty()) {
                         ArrayList arrayList3 = o5Var3.h;
@@ -103,7 +103,7 @@ public final class p4 implements x10 {
                     hashSet3.remove(Long.valueOf(j11));
                 }
                 o5Var3.h();
-                this.f3789c.u();
+                this.f3792c.u();
                 return;
         }
     }

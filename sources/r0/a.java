@@ -32,7 +32,7 @@ public final class a extends View.AccessibilityDelegate {
     public final AccessibilityNodeProvider getAccessibilityNodeProvider(View view) {
         cf a10 = this.f55638a.a(view);
         if (a10 != null) {
-            return (AccessibilityNodeProvider) a10.f33543a;
+            return (AccessibilityNodeProvider) a10.f33545a;
         }
         return null;
     }

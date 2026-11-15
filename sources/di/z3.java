@@ -8,28 +8,28 @@ import org.telegram.messenger.z10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class z3 implements z10 {
-    public final int f9826a;
-    public final int f9827b;
-    public final String f9828c;
+    public final int f9824a;
+    public final int f9825b;
+    public final String f9826c;
     public final Object d;
-    public final Object f9829e;
-    public final Object f9830f;
+    public final Object f9827e;
+    public final Object f9828f;
 
     public z3(Object obj, Object obj2, Object obj3, int i7, String str, int i10) {
-        this.f9826a = i10;
+        this.f9824a = i10;
         this.d = obj;
-        this.f9829e = obj2;
-        this.f9830f = obj3;
-        this.f9827b = i7;
-        this.f9828c = str;
+        this.f9827e = obj2;
+        this.f9828f = obj3;
+        this.f9825b = i7;
+        this.f9826c = str;
     }
 
     @Override
     public final void a(Object obj) {
         TLRPC.User user;
-        int i7 = this.f9826a;
-        Object obj2 = this.f9830f;
-        Object obj3 = this.f9829e;
+        int i7 = this.f9824a;
+        Object obj2 = this.f9828f;
+        Object obj3 = this.f9827e;
         Object obj4 = this.d;
         switch (i7) {
             case 0:
@@ -38,7 +38,7 @@ public final class z3 implements z10 {
                 ArrayList arrayList = (ArrayList) obj;
                 ((boolean[]) obj4)[0] = false;
                 if (arrayList != null) {
-                    new i1(context, e6Var, this.f9827b, this.f9828c, arrayList, false).show();
+                    new i1(context, e6Var, this.f9825b, this.f9826c, arrayList, false).show();
                     return;
                 }
                 return;
@@ -53,9 +53,9 @@ public final class z3 implements z10 {
                 } else {
                     user = null;
                 }
-                int i10 = this.f9827b;
+                int i10 = this.f9825b;
                 if (user != null && !q10.B(user)) {
-                    launchActivity.Y(i10, user, this.f9828c, bVar);
+                    launchActivity.Y(i10, user, this.f9826c, bVar);
                     return;
                 }
                 if (bVar != null) {

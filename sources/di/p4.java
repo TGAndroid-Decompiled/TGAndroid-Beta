@@ -11,12 +11,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 public final class p4 implements Comparator {
-    public final int f9225a;
-    public final Object f9226b;
+    public final int f9217a;
+    public final Object f9218b;
 
     public p4(Object obj, int i7) {
-        this.f9225a = i7;
-        this.f9226b = obj;
+        this.f9217a = i7;
+        this.f9218b = obj;
     }
 
     @Override
@@ -27,12 +27,12 @@ public final class p4 implements Comparator {
         int indexOf;
         int indexOf2;
         int i10;
-        switch (this.f9225a) {
+        switch (this.f9217a) {
             case 0:
-                float[] fArr = ((s4) this.f9226b).f9390r;
+                float[] fArr = ((s4) this.f9218b).f9376r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 1:
-                fi.s6 s6Var = (fi.s6) this.f9226b;
+                fi.s6 s6Var = (fi.s6) this.f9218b;
                 int i11 = s6Var.f12319a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
@@ -84,12 +84,12 @@ public final class p4 implements Comparator {
                 }
                 return (M2 ? 1 : 0) - (M ? 1 : 0);
             case 2:
-                ArrayList arrayList = (ArrayList) this.f9226b;
+                ArrayList arrayList = (ArrayList) this.f9218b;
                 ve veVar = (ve) obj;
                 ve veVar2 = (ve) obj2;
-                int i13 = veVar.f26968a;
-                if (i13 != 0 || veVar2.f26968a == 0) {
-                    if ((i13 != 0 && veVar2.f26968a == 0) || (indexOf = arrayList.indexOf(veVar)) > (indexOf2 = arrayList.indexOf(veVar2))) {
+                int i13 = veVar.f26969a;
+                if (i13 != 0 || veVar2.f26969a == 0) {
+                    if ((i13 != 0 && veVar2.f26969a == 0) || (indexOf = arrayList.indexOf(veVar)) > (indexOf2 = arrayList.indexOf(veVar2))) {
                         return 1;
                     }
                     if (indexOf >= indexOf2) {
@@ -98,7 +98,7 @@ public final class p4 implements Comparator {
                 }
                 return -1;
             case 3:
-                oi.c6 c6Var = (oi.c6) this.f9226b;
+                oi.c6 c6Var = (oi.c6) this.f9218b;
                 TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
                 TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
                 int b10 = c6Var.b(pagetablecell);
@@ -108,15 +108,15 @@ public final class p4 implements Comparator {
                 }
                 return Integer.compare(c6Var.a(pagetablecell), c6Var.a(pagetablecell2));
             case 4:
-                u2.v vVar = (u2.v) this.f9226b;
+                u2.v vVar = (u2.v) this.f9218b;
                 return vVar.c(obj2) - vVar.c(obj);
             case 5:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f9226b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f9218b;
                 return sparseIntArray.get(((ug.g) obj).f58084e, Integer.MAX_VALUE) - sparseIntArray.get(((ug.g) obj2).f58084e, Integer.MAX_VALUE);
             case 6:
-                return ((Collator) this.f9226b).compare((String) obj, (String) obj2);
+                return ((Collator) this.f9218b).compare((String) obj, (String) obj2);
             default:
-                int[] iArr = (int[]) this.f9226b;
+                int[] iArr = (int[]) this.f9218b;
                 Integer num = (Integer) obj;
                 Integer num2 = (Integer) obj2;
                 int i14 = Integer.MAX_VALUE;

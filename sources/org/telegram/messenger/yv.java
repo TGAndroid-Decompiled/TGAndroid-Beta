@@ -4,27 +4,27 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class yv implements Runnable {
-    public final int f27827a;
-    public final bw f27828b;
-    public final Context f27829c;
+    public final int f27837a;
+    public final bw f27838b;
+    public final Context f27839c;
     public final org.telegram.ui.ActionBar.t1 d;
 
     public yv(bw bwVar, Context context, org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        this.f27827a = i7;
-        this.f27828b = bwVar;
-        this.f27829c = context;
+        this.f27837a = i7;
+        this.f27838b = bwVar;
+        this.f27839c = context;
         this.d = t1Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27827a;
+        int i7 = this.f27837a;
         org.telegram.ui.ActionBar.t1 t1Var = this.d;
-        Context context = this.f27829c;
-        bw bwVar = this.f27828b;
+        Context context = this.f27839c;
+        bw bwVar = this.f27838b;
         switch (i7) {
             case 0:
-                bwVar.f22762n = false;
+                bwVar.f22766n = false;
                 if (!((Activity) context).isFinishing()) {
                     try {
                         t1Var.dismiss();
@@ -37,7 +37,7 @@ public final class yv implements Runnable {
                 return;
             default:
                 if (!((Activity) context).isFinishing()) {
-                    bwVar.f22762n = false;
+                    bwVar.f22766n = false;
                     try {
                         t1Var.dismiss();
                     } catch (Exception e11) {

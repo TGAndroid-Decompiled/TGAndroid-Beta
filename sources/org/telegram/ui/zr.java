@@ -48,8 +48,8 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
     public r0.k1 M0(View view, r0.k1 k1Var) {
         v80 v80Var = (v80) this.f54015b;
         i0.c I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        if (!v80Var.f52162a.equals(I0)) {
-            v80Var.f52162a = I0;
+        if (!v80Var.f52160a.equals(I0)) {
+            v80Var.f52160a = I0;
             v80Var.requestLayout();
         }
         int childCount = v80Var.getChildCount();
@@ -90,8 +90,8 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
                     }
-                    final org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) jg0Var.f48348y.get(i7 - jg0Var.J);
-                    final long B0 = org.telegram.messenger.gj.B0(gjVar.f23817k);
+                    final org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) jg0Var.f48333y.get(i7 - jg0Var.J);
+                    final long B0 = org.telegram.messenger.gj.B0(gjVar.f23819k);
                     final boolean E = org.telegram.messenger.m5.E(B0);
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
@@ -115,7 +115,7 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                     }
                     arrayList2.add(0);
                     CharSequence[] charSequenceArr = (CharSequence[]) arrayList.toArray(new CharSequence[arrayList2.size()]);
-                    Typeface typeface = org.telegram.messenger.g0.f23581a;
+                    Typeface typeface = org.telegram.messenger.g0.f23583a;
                     int size = arrayList3.size();
                     int[] iArr = new int[size];
                     for (int i13 = 0; i13 < size; i13++) {
@@ -164,7 +164,7 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                 uh0Var.getClass();
                 if (view instanceof th0) {
                     th0 th0Var = (th0) view;
-                    uh0Var.e0(th0Var.f51590e);
+                    uh0Var.e0(th0Var.f51591e);
                     th0Var.performHapticFeedback(0);
                 }
                 return false;
@@ -248,13 +248,13 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                 return;
             default:
                 x90 x90Var = (x90) obj2;
-                ArrayList arrayList = x90Var.f53132s;
+                ArrayList arrayList = x90Var.f53131s;
                 if (view != null && i7 >= 0 && i7 < arrayList.size()) {
                     s90 s90Var = (s90) arrayList.get(i7);
                     int i12 = s90Var.f56015a;
-                    int i13 = s90Var.f51162e;
+                    int i13 = s90Var.f51158e;
                     if (i12 != 3 && i12 != 4) {
-                        if (i12 == 5 && s90Var.f51163f == 1) {
+                        if (i12 == 5 && s90Var.f51159f == 1) {
                             SharedPreferences e12 = org.telegram.messenger.np.e1();
                             boolean z10 = e12.getBoolean("view_animations", true);
                             SharedPreferences.Editor edit = e12.edit();
@@ -267,10 +267,10 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                     } else {
                         boolean z12 = false;
                         if (org.telegram.messenger.qc.f()) {
-                            x90Var.f53128e = org.telegram.ui.Components.cc.a0(x90Var).M(new org.telegram.ui.Components.k9(0.1f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Y5, false)), org.telegram.messenger.hd.M0(2131748869, null)).j();
+                            x90Var.f53127e = org.telegram.ui.Components.cc.a0(x90Var).M(new org.telegram.ui.Components.k9(0.1f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Y5, false)), org.telegram.messenger.hd.M0(2131748869, null)).j();
                             return;
-                        } else if (s90Var.f56015a == 3 && Integer.bitCount(i13) > 1 && (!org.telegram.messenger.hd.f24101a0 ? f10 < view.getMeasuredWidth() - org.telegram.messenger.g0.L(75.0f) : f10 > org.telegram.messenger.g0.L(75.0f)) && (Z = x90Var.Z(i13)) != -1) {
-                            x90Var.f53130n[Z] = !zArr[Z];
+                        } else if (s90Var.f56015a == 3 && Integer.bitCount(i13) > 1 && (!org.telegram.messenger.hd.f24104a0 ? f10 < view.getMeasuredWidth() - org.telegram.messenger.g0.L(75.0f) : f10 > org.telegram.messenger.g0.L(75.0f)) && (Z = x90Var.Z(i13)) != -1) {
+                            x90Var.f53129n[Z] = !zArr[Z];
                             x90Var.d0();
                             x90Var.c0();
                             return;
@@ -321,11 +321,11 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                 TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = new TLRPC.TL_auth_resetLoginEmail();
                 tL_auth_resetLoginEmail.phone_number = ob0Var.M;
                 tL_auth_resetLoginEmail.phone_code_hash = ob0Var.N;
-                ob0Var.f49891a0.getConnectionsManager().sendRequest(tL_auth_resetLoginEmail, new fb0(ob0Var, bundle, tL_auth_resetLoginEmail, 1), 10);
+                ob0Var.f49881a0.getConnectionsManager().sendRequest(tL_auth_resetLoginEmail, new fb0(ob0Var, bundle, tL_auth_resetLoginEmail, 1), 10);
                 return;
             case 20:
                 wb0 wb0Var = (wb0) obj;
-                ce0.t0(wb0Var.E, wb0Var.f52534s, wb0Var.f52535w, wb0Var.f52536x);
+                ce0.t0(wb0Var.E, wb0Var.f52537s, wb0Var.f52538w, wb0Var.f52539x);
                 return;
             case 21:
                 pc0 pc0Var = (pc0) obj;
@@ -339,16 +339,16 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                 ((org.telegram.messenger.pw) obj).run();
                 return;
             case 28:
-                uh0 uh0Var = ((rh0) obj).f50956b;
+                uh0 uh0Var = ((rh0) obj).f50955b;
                 SparseArray sparseArray = uh0Var.J;
                 ArrayList arrayList = new ArrayList();
                 for (int i11 = 0; i11 < sparseArray.size(); i11++) {
                     sh0 sh0Var = (sh0) sparseArray.valueAt(i11);
-                    TLRPC.Document document = sh0Var.f51224e;
+                    TLRPC.Document document = sh0Var.f51220e;
                     if (document != null) {
                         arrayList.add(document);
                         yf.c cVar = uh0Var.getMediaDataController().A0;
-                        TLRPC.Document document2 = sh0Var.f51224e;
+                        TLRPC.Document document2 = sh0Var.f51220e;
                         ArrayList arrayList2 = cVar.f60627e;
                         if (document2 != null) {
                             if (!cVar.f60628f) {
@@ -367,7 +367,7 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                             }
                         }
                     }
-                    if (sh0Var.f51226g != null && (dVar = (yf.d) uh0Var.getMediaDataController().f26459a0.get(sh0Var.f51226g)) != null) {
+                    if (sh0Var.f51222g != null && (dVar = (yf.d) uh0Var.getMediaDataController().f26469a0.get(sh0Var.f51222g)) != null) {
                         dVar.f60631c = true;
                         dVar.a();
                         int i13 = dVar.f60629a;
@@ -378,11 +378,11 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                     }
                     if (sh0Var == uh0Var.H) {
                         uh0Var.N = null;
-                        uh0Var.H = (sh0) uh0Var.f51948b.get(0);
+                        uh0Var.H = (sh0) uh0Var.f51949b.get(0);
                         uh0Var.I = true;
                     }
-                    uh0Var.f51947a.remove(sh0Var);
-                    uh0Var.f51949c.remove(sh0Var);
+                    uh0Var.f51948a.remove(sh0Var);
+                    uh0Var.f51950c.remove(sh0Var);
                 }
                 uh0Var.getMediaDataController().A0.h();
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
@@ -402,13 +402,13 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                 }
                 uh0.b0(uh0Var);
                 uh0Var.i0();
-                uh0Var.f51950e.f();
+                uh0Var.f51951e.f();
                 t1Var.dismiss();
                 return;
             default:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
-                org.telegram.messenger.gz.f23978s = "";
-                org.telegram.messenger.gz.f23992x = false;
+                org.telegram.messenger.gz.f23981s = "";
+                org.telegram.messenger.gz.f23995x = false;
                 org.telegram.messenger.gz.y();
                 passcodeActivity.getMediaDataController().m();
                 int childCount = passcodeActivity.f42695c.getChildCount();
@@ -436,15 +436,15 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
                 u40 u40Var = (u40) this.f54015b;
                 w40 w40Var = u40Var.J;
                 w40Var.v0(u40Var.I);
-                if (u40Var.h == null && !u40Var.f51735f.e() && u40Var.b() == 0) {
-                    w40Var.f52422s.e(false, true);
+                if (u40Var.h == null && !u40Var.f51736f.e() && u40Var.b() == 0) {
+                    w40Var.f52425s.e(false, true);
                 }
                 u40Var.f();
                 return;
             default:
                 oh0 oh0Var = (oh0) this.f54015b;
-                if (oh0Var.f49972f == null && !oh0Var.h.e()) {
-                    oh0Var.f49973n.f42673c.c();
+                if (oh0Var.f49962f == null && !oh0Var.h.e()) {
+                    oh0Var.f49963n.f42673c.c();
                 }
                 oh0Var.f();
                 return;
@@ -461,7 +461,7 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
 
     @Override
     public void l(int i7) {
-        DataAutoDownloadActivity dataAutoDownloadActivity = (DataAutoDownloadActivity) ((l4) this.f54015b).f48827e;
+        DataAutoDownloadActivity dataAutoDownloadActivity = (DataAutoDownloadActivity) ((l4) this.f54015b).f48823e;
         org.telegram.messenger.y5 y5Var = (org.telegram.messenger.y5) dataAutoDownloadActivity.f42559c.get(i7);
         if (y5Var == dataAutoDownloadActivity.E) {
             dataAutoDownloadActivity.f42560e = 0;
@@ -480,7 +480,7 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
         } else {
             org.telegram.messenger.z5.q(DataAutoDownloadActivity.k0(dataAutoDownloadActivity)).S = dataAutoDownloadActivity.f42560e;
         }
-        SharedPreferences.Editor edit = org.telegram.messenger.np.s1(DataAutoDownloadActivity.l0(dataAutoDownloadActivity)).f25280f7.edit();
+        SharedPreferences.Editor edit = org.telegram.messenger.np.s1(DataAutoDownloadActivity.l0(dataAutoDownloadActivity)).f25283f7.edit();
         edit.putInt(dataAutoDownloadActivity.L, dataAutoDownloadActivity.f42560e);
         edit.commit();
         org.telegram.messenger.z5.q(DataAutoDownloadActivity.m0(dataAutoDownloadActivity)).g();
@@ -505,15 +505,15 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        if (((org.telegram.ui.Components.b41) obj).d == 1 && oxVar.f50074b != null) {
-            boolean z10 = !oxVar.f50075c;
-            oxVar.f50075c = z10;
+        if (((org.telegram.ui.Components.b41) obj).d == 1 && oxVar.f50051b != null) {
+            boolean z10 = !oxVar.f50052c;
+            oxVar.f50052c = z10;
             fi.b0 b0Var = oxVar.h;
             if (b0Var != null) {
-                b0Var.a(Boolean.valueOf(z10), Boolean.valueOf(oxVar.d), Boolean.valueOf(oxVar.f50076e));
+                b0Var.a(Boolean.valueOf(z10), Boolean.valueOf(oxVar.d), Boolean.valueOf(oxVar.f50053e));
             }
-            ((org.telegram.ui.Cells.q8) view).setChecked(oxVar.f50075c);
-            oxVar.f50077f.f39895g3.O(true);
+            ((org.telegram.ui.Cells.q8) view).setChecked(oxVar.f50052c);
+            oxVar.f50054f.f39892g3.O(true);
         }
     }
 
@@ -531,7 +531,7 @@ public final class zr implements cx, org.telegram.ui.Components.hj0, org.telegra
         if (org.telegram.messenger.g0.Q1()) {
             externalActionActivity.d.f0();
         }
-        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25542o0, fc0Var);
+        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25543o0, fc0Var);
     }
 
     @Override

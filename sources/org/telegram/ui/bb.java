@@ -6,13 +6,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.MediaController;
 public final class bb extends jb {
-    public final jh.l f45668h0;
-    public final lb f45669i0;
+    public final jh.l f45662h0;
+    public final lb f45663i0;
 
     public bb(lb lbVar, Context context) {
         super(lbVar, context);
-        this.f45669i0 = lbVar;
-        this.f45668h0 = new jh.l();
+        this.f45663i0 = lbVar;
+        this.f45662h0 = new jh.l();
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class bb extends jb {
         if (drawable instanceof org.telegram.ui.Components.ra0) {
             ((org.telegram.ui.Components.ra0) drawable).p();
         }
-        jh.l lVar = this.f45668h0;
+        jh.l lVar = this.f45662h0;
         ui.a c10 = lVar.c(drawable);
         org.telegram.messenger.g0.B(lVar.a(c10));
-        lb lbVar = this.f45669i0;
-        lbVar.f48929a.f58445a = c10;
+        lb lbVar = this.f45663i0;
+        lbVar.f48925a.f58445a = c10;
         lh.f fVar = lbVar.X;
         if (fVar != null) {
             fVar.invalidate();
@@ -50,10 +50,10 @@ public final class bb extends jb {
         super.onAttachedToWindow();
         org.telegram.messenger.gj gjVar = MediaController.B().f22377v0;
         if (gjVar != null && gjVar.h4() && gjVar.T != 0) {
-            long B0 = org.telegram.messenger.gj.B0(gjVar.f23817k);
-            lb lbVar = this.f45669i0;
-            if (B0 == (-lbVar.f48938f.f28051id)) {
-                MediaController.B().p0(lbVar.V0(false), lbVar.f48939f0, lbVar.f48937e0, true);
+            long B0 = org.telegram.messenger.gj.B0(gjVar.f23819k);
+            lb lbVar = this.f45663i0;
+            if (B0 == (-lbVar.f48934f.f28051id)) {
+                MediaController.B().p0(lbVar.V0(false), lbVar.f48935f0, lbVar.f48933e0, true);
             }
         }
     }
@@ -71,8 +71,8 @@ public final class bb extends jb {
         org.telegram.ui.ActionBar.k kVar4;
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
-        lb lbVar = this.f45669i0;
-        ui.a aVar = lbVar.f48929a.f58445a;
+        lb lbVar = this.f45663i0;
+        ui.a aVar = lbVar.f48925a.f58445a;
         if (aVar instanceof ui.b) {
             ((ui.b) aVar).b(size, size2);
         }
@@ -92,14 +92,14 @@ public final class bb extends jb {
             if (childAt != null && childAt.getVisibility() != 8) {
                 kVar4 = ((org.telegram.ui.ActionBar.e2) lbVar).actionBar;
                 if (childAt != kVar4) {
-                    if (childAt != lbVar.f48958w && childAt != lbVar.f48946n) {
+                    if (childAt != lbVar.f48954w && childAt != lbVar.f48942n) {
                         if (childAt == lbVar.I) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                         } else {
                             measureChildWithMargins(childAt, i7, 0, i10, 0);
                         }
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(org.telegram.messenger.g0.L(10.0f), View.MeasureSpec.getSize(i10)) + (lbVar.f48936e * 2), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(org.telegram.messenger.g0.L(10.0f), View.MeasureSpec.getSize(i10)) + (lbVar.f48932e * 2), 1073741824));
                     }
                 }
             }

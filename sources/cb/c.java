@@ -4,7 +4,7 @@ import a8.ja;
 import a8.sa;
 import aa.n;
 import aa.p;
-import ai.o0;
+import ai.p0;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,7 +59,6 @@ import fi.e9;
 import fi.f9;
 import fi.g3;
 import g.s;
-import gb.p0;
 import j$.util.DesugarCollections;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -86,6 +85,7 @@ import org.telegram.messenger.kc;
 import org.telegram.messenger.ns;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.o0;
 import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.ft0;
 import org.telegram.ui.Stories.ProfileStoriesView;
@@ -94,14 +94,14 @@ import org.telegram.ui.vv0;
 import q6.m;
 import q7.l1;
 import q7.m1;
-public final class c implements SuccessContinuation, o0, a0, androidx.activity.result.b, j, te.b, q0, i0, q, ft0, kc, WebMessageListenerBoundaryInterface, e9, w, OnSuccessListener, OnCompleteListener, ib.b {
-    public static volatile c f4863c;
-    public final int f4864a;
-    public final Object f4865b;
+public final class c implements SuccessContinuation, p0, a0, androidx.activity.result.b, j, te.b, q0, i0, q, ft0, kc, WebMessageListenerBoundaryInterface, e9, w, OnSuccessListener, OnCompleteListener, ib.b {
+    public static volatile c f4866c;
+    public final int f4867a;
+    public final Object f4868b;
 
     public c(f0 f0Var) {
-        this.f4864a = 13;
-        this.f4865b = new WeakReference(f0Var);
+        this.f4867a = 13;
+        this.f4868b = new WeakReference(f0Var);
     }
 
     public static o h(Looper looper, Object obj, String str) {
@@ -112,20 +112,20 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void E(float f10, int i7) {
-        ch.o oVar = (ch.o) this.f4865b;
-        oVar.f5172c.setLayerType(0, null);
+        ch.o oVar = (ch.o) this.f4868b;
+        oVar.f5175c.setLayerType(0, null);
         if (f10 == 0.0f && !oVar.P) {
-            oVar.f5172c.setVisibility(4);
+            oVar.f5175c.setVisibility(4);
             if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
                 oVar.F.setFocusableInTouchMode(false);
             }
         }
-        ns.e().k(ns.f25522k1, 512);
+        ns.e().k(ns.f25523k1, 512);
     }
 
     @Override
     public void F(boolean z10) {
-        te.a aVar = ((t) this.f4865b).f9435s;
+        te.a aVar = ((t) this.f4868b).f9435s;
         if (aVar != null) {
             aVar.a(z10, true);
         }
@@ -133,27 +133,27 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void G(int i7, float f10, float f11, te.c cVar) {
-        ((ch.o) this.f4865b).j0(f10);
+        ((ch.o) this.f4868b).j0(f10);
     }
 
     @Override
     public void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         ch0 B;
-        boolean[] zArr = (boolean[]) this.f4865b;
+        boolean[] zArr = (boolean[]) this.f4868b;
         if (z10 && (B = imageReceiver.B()) != null && !zArr[0]) {
             B.N(0, false, false);
-            g0.h3(new org.telegram.ui.Cells.o0(B, 0));
+            g0.h3(new o0(B, 0));
             zArr[0] = true;
         }
     }
 
     @Override
     public float U0() {
-        return i5.c.d(9.66f, ri.a.d(t.f0((t) this.f4865b).f15575b), 0);
+        return i5.c.d(9.66f, ri.a.d(t.f0((t) this.f4868b).f15575b), 0);
     }
 
     public void a(f3.j jVar) {
-        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f4865b;
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f4868b;
         long[] jArr = jVar.f10848e;
         if (jArr.length > 0 && !linkedHashMap.containsKey(Long.valueOf(jArr[0]))) {
             linkedHashMap.put(Long.valueOf(jVar.f10848e[0]), jVar);
@@ -162,14 +162,14 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void accept(Object obj, Object obj2) {
-        int i7 = this.f4864a;
-        Object obj3 = this.f4865b;
+        int i7 = this.f4867a;
+        Object obj3 = this.f4868b;
         switch (i7) {
             case 16:
                 d dVar = new d(0, (TaskCompletionSource) obj2);
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-                int i10 = d8.a.f7598a;
+                int i10 = d8.a.f7601a;
                 obtain.writeStrongBinder(dVar);
                 obtain.writeInt(1);
                 ((o8.a) obj3).writeToParcel(obtain, 0);
@@ -198,48 +198,48 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public int b1() {
-        return t.g0((t) this.f4865b).d;
+        return t.g0((t) this.f4868b).d;
     }
 
     @Override
     public void d(long j3, int i7, g3 g3Var) {
         int i10 = ProfileStoriesView.f43351t0;
-        ((av0) this.f4865b).f(true, false);
+        ((av0) this.f4868b).f(true, false);
         g3Var.run();
     }
 
     @Override
     public void e(k kVar, boolean z10) {
-        ((s) this.f4865b).g(kVar);
+        ((s) this.f4868b).g(kVar);
     }
 
     @Override
     public void f(Object obj) {
         Bundle extras;
-        switch (this.f4864a) {
+        switch (this.f4867a) {
             case 7:
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                j0 j0Var = (j0) this.f4865b;
+                j0 j0Var = (j0) this.f4868b;
                 androidx.fragment.app.f0 f0Var = (androidx.fragment.app.f0) j0Var.F.pollFirst();
                 if (f0Var == null) {
                     Log.w("FragmentManager", "No IntentSenders were started for " + this);
                     return;
                 }
-                String str = f0Var.f2339a;
-                int i7 = f0Var.f2340b;
-                androidx.fragment.app.s o4 = j0Var.f2353c.o(str);
+                String str = f0Var.f2342a;
+                int i7 = f0Var.f2343b;
+                androidx.fragment.app.s o4 = j0Var.f2356c.o(str);
                 if (o4 == null) {
                     Log.w("FragmentManager", "Intent Sender result delivered for unknown Fragment " + str);
                     return;
                 }
-                o4.x(i7, aVar.f1801a, aVar.f1802b);
+                o4.x(i7, aVar.f1808a, aVar.f1809b);
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f4865b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f4868b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f1802b;
-                int i10 = aVar2.f1801a;
+                Intent intent = aVar2.f1809b;
+                int i10 = aVar2.f1808a;
                 if (intent == null) {
                     extras = null;
                 } else {
@@ -270,22 +270,22 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void g(n6.a aVar) {
-        h1 h1Var = (h1) this.f4865b;
-        h1Var.f6009o.lock();
+        h1 h1Var = (h1) this.f4868b;
+        h1Var.f6012o.lock();
         try {
-            h1Var.f6007m = aVar;
+            h1Var.f6010m = aVar;
             h1Var.j();
         } finally {
-            h1Var.f6009o.unlock();
+            h1Var.f6012o.unlock();
         }
     }
 
     @Override
     public Object mo24get() {
-        g firebaseApp = (g) ((d9.o) this.f4865b).f7640b;
+        g firebaseApp = (g) ((d9.o) this.f4868b).f7643b;
         kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
-        p0 p0Var = p0.f13081a;
-        return p0.a(firebaseApp);
+        gb.p0 p0Var = gb.p0.f13081a;
+        return gb.p0.a(firebaseApp);
     }
 
     @Override
@@ -295,18 +295,18 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void i(int i7) {
-        h1 h1Var = (h1) this.f4865b;
-        Lock lock = h1Var.f6009o;
-        Lock lock2 = h1Var.f6009o;
+        h1 h1Var = (h1) this.f4868b;
+        Lock lock = h1Var.f6012o;
+        Lock lock2 = h1Var.f6012o;
         lock.lock();
         try {
-            if (h1Var.f6008n) {
-                h1Var.f6008n = false;
-                h1Var.f5999b.i(i7);
-                h1Var.f6007m = null;
-                h1Var.f6006l = null;
+            if (h1Var.f6011n) {
+                h1Var.f6011n = false;
+                h1Var.f6002b.i(i7);
+                h1Var.f6010m = null;
+                h1Var.f6009l = null;
             } else {
-                h1Var.f6008n = true;
+                h1Var.f6011n = true;
                 h1Var.d.onConnectionSuspended(i7);
             }
             lock2.unlock();
@@ -318,20 +318,20 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void j(Bundle bundle) {
-        h1 h1Var = (h1) this.f4865b;
-        h1Var.f6009o.lock();
+        h1 h1Var = (h1) this.f4868b;
+        h1Var.f6012o.lock();
         try {
-            h1Var.f6007m = n6.a.f21056f;
+            h1Var.f6010m = n6.a.f21056f;
             h1Var.j();
         } finally {
-            h1Var.f6009o.unlock();
+            h1Var.f6012o.unlock();
         }
     }
 
     @Override
     public i k(l lVar, long j3, long j10, IOException iOException, int i7) {
-        ((o2.d) this.f4865b).f21249a.y(iOException);
-        return b3.o.f2914e;
+        ((o2.d) this.f4868b).f21249a.y(iOException);
+        return b3.o.f2917e;
     }
 
     @Override
@@ -343,7 +343,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
         d4 d4Var4;
         f9Var.f11711b = null;
         f9Var.f11712c = null;
-        av0 av0Var = (av0) this.f4865b;
+        av0 av0Var = (av0) this.f4868b;
         vv0 vv0Var = av0Var.h;
         ArrayList arrayList = av0Var.f43379x;
         if (av0Var.O < 0.2f) {
@@ -351,7 +351,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
             f9Var.f11712c = null;
             f9Var.f11710a = vv0Var;
             f9Var.h = 0.0f;
-            f9Var.f11716i = g0.f23609q.y;
+            f9Var.f11716i = g0.f23611q.y;
             f9Var.f11715g = (View) av0Var.getParent();
             f9Var.d = av0Var.E;
             f9Var.f11721n = true;
@@ -395,7 +395,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
         f9Var.f11711b = null;
         f9Var.f11710a = av0Var;
         f9Var.h = 0.0f;
-        f9Var.f11716i = g0.f23609q.y;
+        f9Var.f11716i = g0.f23611q.y;
         f9Var.f11715g = (View) av0Var.getParent();
         if (d4Var != null && d4Var2 != null) {
             f9Var.f11714f = new i6(this, new RectF(d4Var.f11634m), d4Var, new RectF(d4Var2.f11634m), d4Var2);
@@ -407,8 +407,8 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void n() {
-        d3.l lVar = (d3.l) this.f4865b;
-        if (lVar.f7437s1 != null) {
+        d3.l lVar = (d3.l) this.f4868b;
+        if (lVar.f7440s1 != null) {
             lVar.R0(0, 1);
         }
     }
@@ -416,7 +416,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
     @Override
     public void o(Object obj) {
         CharSequence charSequence = (CharSequence) obj;
-        androidx.biometric.g0 g0Var = (androidx.biometric.g0) this.f4865b;
+        androidx.biometric.g0 g0Var = (androidx.biometric.g0) this.f4868b;
         Handler handler = g0Var.B0;
         sa saVar = g0Var.C0;
         handler.removeCallbacks(saVar);
@@ -429,16 +429,16 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public void onComplete(Task task) {
-        g6.c.h((g6.c) ((g6.j) this.f4865b).f12913c, "joinApplication", task);
+        g6.c.h((g6.c) ((g6.j) this.f4868b).f12913c, "joinApplication", task);
     }
 
     @Override
     public void onFirstFrameRendered() {
-        d3.l lVar = (d3.l) this.f4865b;
-        Surface surface = lVar.f7437s1;
+        d3.l lVar = (d3.l) this.f4868b;
+        Surface surface = lVar.f7440s1;
         if (surface != null) {
-            lVar.f7423c1.O(surface);
-            lVar.f7440v1 = true;
+            lVar.f7426c1.O(surface);
+            lVar.f7443v1 = true;
         }
     }
 
@@ -453,9 +453,9 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
         int i10;
         a2 a2Var;
         a1 b10;
-        g6.a aVar = (g6.a) this.f4865b;
+        g6.a aVar = (g6.a) this.f4868b;
         Bundle bundle = (Bundle) obj;
-        if (m0.f6295j) {
+        if (m0.f6298j) {
             Context context = aVar.f12872a;
             j6.s sVar = aVar.f12876f;
             m0 m0Var = new m0(context, sVar, aVar.f12874c, aVar.f12879j, aVar.f12877g);
@@ -485,17 +485,17 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
             }
             m0Var.h = i10;
             o5.t.b(context);
-            m0Var.f6301g = o5.t.a().c(m5.a.f20466e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f6443a);
+            m0Var.f6304g = o5.t.a().c(m5.a.f20466e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f6446a);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
-                m0Var.f6299e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
+                m0Var.f6302e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
             }
             SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(v, 0);
             if (i7 != 0) {
                 com.google.android.gms.common.api.internal.t b11 = com.google.android.gms.common.api.internal.u.b();
-                b11.f6071c = new ia.d(sVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"}, 1);
+                b11.f6074c = new ia.d(sVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"}, 1);
                 b11.d = new n6.c[]{y.f11161c};
-                b11.f6070b = false;
-                b11.f6069a = 8426;
+                b11.f6073b = false;
+                b11.f6072a = 8426;
                 Task e10 = sVar.e(0, b11.a());
                 ?? obj2 = new Object();
                 obj2.f20518b = m0Var;
@@ -506,27 +506,27 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
             }
             if (z10) {
                 m.g(sharedPreferences);
-                j6.b bVar = a2.f6179i;
+                j6.b bVar = a2.f6182i;
                 synchronized (a2.class) {
                     try {
-                        if (a2.f6181k == null) {
-                            a2.f6181k = new a2(sharedPreferences, m0Var, packageName);
+                        if (a2.f6184k == null) {
+                            a2.f6184k = new a2(sharedPreferences, m0Var, packageName);
                         }
-                        a2Var = a2.f6181k;
+                        a2Var = a2.f6184k;
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
-                String str = a2Var.f6184c;
-                SharedPreferences sharedPreferences2 = a2Var.f6183b;
-                HashSet hashSet = a2Var.f6186f;
+                String str = a2Var.f6187c;
+                SharedPreferences sharedPreferences2 = a2Var.f6186b;
+                HashSet hashSet = a2Var.f6189f;
                 String string = sharedPreferences2.getString("feature_usage_sdk_version", null);
                 String string2 = sharedPreferences2.getString("feature_usage_package_name", null);
                 hashSet.clear();
-                HashSet hashSet2 = a2Var.f6187g;
+                HashSet hashSet2 = a2Var.f6190g;
                 hashSet2.clear();
                 a2Var.h = 0L;
-                String str2 = a2.f6180j;
+                String str2 = a2.f6183j;
                 if (str2.equals(string) && str.equals(string2)) {
                     a2Var.h = sharedPreferences2.getLong("feature_usage_last_report_time", 0L);
                     long currentTimeMillis = System.currentTimeMillis();
@@ -548,9 +548,9 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
                         }
                     }
                     a2Var.c(hashSet3);
-                    m.g(a2Var.f6185e);
+                    m.g(a2Var.f6188e);
                     m.g(a2Var.d);
-                    a2Var.f6185e.post(a2Var.d);
+                    a2Var.f6188e.post(a2Var.d);
                 } else {
                     HashSet hashSet4 = new HashSet();
                     for (String str4 : sharedPreferences2.getAll().keySet()) {
@@ -573,15 +573,15 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     public Set q() {
         Set unmodifiableSet;
-        synchronized (((HashSet) this.f4865b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f4865b);
+        synchronized (((HashSet) this.f4868b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f4868b);
         }
         return unmodifiableSet;
     }
 
     @Override
     public void s() {
-        l2.i0 i0Var = ((d3.l) this.f4865b).Z;
+        l2.i0 i0Var = ((d3.l) this.f4868b).Z;
         if (i0Var != null) {
             i0Var.a();
         }
@@ -593,7 +593,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
-        for (f3.j jVar : ((LinkedHashMap) this.f4865b).values()) {
+        for (f3.j jVar : ((LinkedHashMap) this.f4868b).values()) {
             arrayList.add(jVar.f10846b);
             arrayList2.add(jVar.f10847c);
             arrayList3.add(jVar.d);
@@ -623,20 +623,20 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
     @Override
     public Task then(Object obj) {
         ia.b bVar = (ia.b) obj;
-        p pVar = ((n) this.f4865b).f826e;
+        p pVar = ((n) this.f4868b).f826e;
         if (bVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
             return Tasks.forResult(null);
         }
-        return Tasks.whenAll(p.b(pVar), pVar.f841m.h(null, pVar.f834e.f3090a));
+        return Tasks.whenAll(p.b(pVar), pVar.f841m.h(null, pVar.f834e.f3093a));
     }
 
     public void u() {
-        ((androidx.fragment.app.u) this.f4865b).d.R();
+        ((androidx.fragment.app.u) this.f4868b).d.R();
     }
 
     public void v(h6.m mVar) {
-        o3 o3Var = (o3) this.f4865b;
+        o3 o3Var = (o3) this.f4868b;
         o3Var.f19795b = mVar;
         Iterator it = ((LinkedList) o3Var.f19796c).iterator();
         while (it.hasNext()) {
@@ -648,9 +648,9 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
     @Override
     public void w(l lVar, long j3, long j10) {
         boolean z10;
-        o2.d dVar = (o2.d) this.f4865b;
-        synchronized (c3.b.f4085b) {
-            z10 = c3.b.f4086c;
+        o2.d dVar = (o2.d) this.f4868b;
+        synchronized (c3.b.f4088b) {
+            z10 = c3.b.f4089c;
         }
         if (!z10) {
             dVar.f21249a.y(new IOException(new ConcurrentModificationException()));
@@ -662,10 +662,10 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
     public void x(int i7) {
         boolean z10;
         TLRPC.TL_exportedNoPaidMessagesToken c10;
-        n0 n0Var = ((ci.i0) this.f4865b).f5391e;
+        n0 n0Var = ((ci.i0) this.f4868b).f5394e;
         if (n0Var != null && n0Var.d != i7) {
             boolean z11 = true;
-            if (n0Var.f5441c.d && i7 == 2) {
+            if (n0Var.f5444c.d && i7 == 2) {
                 i7 = 1;
             }
             n0Var.d = i7;
@@ -678,16 +678,16 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
             edit.putBoolean("qrNoPaidPermanent", z10).apply();
             int i10 = n0Var.d;
             if (i10 == 0) {
-                if (n0Var.f5444n != 0) {
-                    ConnectionsManager.getInstance(n0Var.f5439a).cancelRequest(n0Var.f5444n, true);
-                    n0Var.f5444n = 0;
+                if (n0Var.f5447n != 0) {
+                    ConnectionsManager.getInstance(n0Var.f5442a).cancelRequest(n0Var.f5447n, true);
+                    n0Var.f5447n = 0;
                     return;
                 }
                 return;
             }
             if (i10 == 2 && (c10 = n0Var.c()) != null) {
-                n0Var.f5443f = c10;
-                n0Var.f5440b.setFreeLink(n0Var.d(c10));
+                n0Var.f5446f = c10;
+                n0Var.f5443b.setFreeLink(n0Var.d(c10));
             }
             if (n0Var.d != 1) {
                 z11 = false;
@@ -698,7 +698,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
 
     @Override
     public boolean y(k kVar) {
-        Window.Callback callback = ((s) this.f4865b).f12712f.getCallback();
+        Window.Callback callback = ((s) this.f4868b).f12712f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, kVar);
             return true;
@@ -707,7 +707,7 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
     }
 
     public void z() {
-        f0 f0Var = (f0) ((WeakReference) this.f4865b).get();
+        f0 f0Var = (f0) ((WeakReference) this.f4868b).get();
         if (f0Var == null) {
             return;
         }
@@ -715,44 +715,44 @@ public final class c implements SuccessContinuation, o0, a0, androidx.activity.r
     }
 
     public c(e7.a aVar, v vVar) {
-        this.f4864a = 20;
-        this.f4865b = vVar;
+        this.f4867a = 20;
+        this.f4868b = vVar;
     }
 
     public c(Object obj, int i7) {
-        this.f4864a = i7;
-        this.f4865b = obj;
+        this.f4867a = i7;
+        this.f4868b = obj;
     }
 
     public c(ob.c cVar) {
-        this.f4864a = 22;
-        this.f4865b = (r) cVar.f21417b;
+        this.f4867a = 22;
+        this.f4868b = (r) cVar.f21417b;
     }
 
     public c(int i7) {
-        this.f4864a = i7;
+        this.f4867a = i7;
         switch (i7) {
             case 8:
-                this.f4865b = new CopyOnWriteArrayList();
+                this.f4868b = new CopyOnWriteArrayList();
                 return;
             case 12:
-                this.f4865b = Collections.newSetFromMap(new WeakHashMap());
+                this.f4868b = Collections.newSetFromMap(new WeakHashMap());
                 return;
             case 21:
-                this.f4865b = new LinkedHashMap();
+                this.f4868b = new LinkedHashMap();
                 return;
             case 24:
-                this.f4865b = new gc.b(0);
+                this.f4868b = new gc.b(0);
                 return;
             default:
-                this.f4865b = new HashSet();
+                this.f4868b = new HashSet();
                 return;
         }
     }
 
     public c(n nVar, String str) {
-        this.f4864a = 2;
-        this.f4865b = nVar;
+        this.f4867a = 2;
+        this.f4868b = nVar;
     }
 
     @Override

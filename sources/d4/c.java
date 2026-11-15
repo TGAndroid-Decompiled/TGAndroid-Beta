@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class c extends j {
-    public final int f7507i;
-    public final int f7508j;
-    public final int f7509k;
-    public List f7513o;
-    public List f7514p;
-    public int f7515q;
-    public int f7516r;
-    public boolean f7517s;
-    public boolean f7518t;
-    public byte f7519u;
+    public final int f7510i;
+    public final int f7511j;
+    public final int f7512k;
+    public List f7516o;
+    public List f7517p;
+    public int f7518q;
+    public int f7519r;
+    public boolean f7520s;
+    public boolean f7521t;
+    public byte f7522u;
     public byte v;
-    public boolean f7521x;
-    public long f7522y;
-    public static final int[] f7506z = {11, 1, 3, 12, 14, 5, 7, 9};
+    public boolean f7524x;
+    public long f7525y;
+    public static final int[] f7509z = {11, 1, 3, 12, 14, 5, 7, 9};
     public static final int[] A = {0, 4, 8, 12, 16, 20, 24, 28};
     public static final int[] B = {-1, -16711936, -16776961, -16711681, -65536, -256, -65281};
     public static final int[] C = {32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 225, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 233, 93, 237, 243, 250, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 231, 247, 209, 241, 9632};
@@ -27,10 +27,10 @@ public final class c extends j {
     public static final int[] F = {195, 227, 205, 204, 236, 210, 242, 213, 245, 123, 125, 92, 94, 95, 124, 126, 196, 228, 214, 246, 223, 165, 164, 9474, 197, 229, 216, 248, 9484, 9488, 9492, 9496};
     public static final boolean[] G = {false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false};
     public final x h = new x();
-    public final ArrayList f7511m = new ArrayList();
-    public b f7512n = new b(0, 4);
-    public int f7520w = 0;
-    public final long f7510l = 16000000;
+    public final ArrayList f7514m = new ArrayList();
+    public b f7515n = new b(0, 4);
+    public int f7523w = 0;
+    public final long f7513l = 16000000;
 
     public c(String str, int i7) {
         int i10;
@@ -39,40 +39,40 @@ public final class c extends j {
         } else {
             i10 = 3;
         }
-        this.f7507i = i10;
+        this.f7510i = i10;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         h2.a.l("Cea608Decoder", "Invalid channel. Defaulting to CC1.");
-                        this.f7509k = 0;
-                        this.f7508j = 0;
+                        this.f7512k = 0;
+                        this.f7511j = 0;
                     } else {
-                        this.f7509k = 1;
-                        this.f7508j = 1;
+                        this.f7512k = 1;
+                        this.f7511j = 1;
                     }
                 } else {
-                    this.f7509k = 0;
-                    this.f7508j = 1;
+                    this.f7512k = 0;
+                    this.f7511j = 1;
                 }
             } else {
-                this.f7509k = 1;
-                this.f7508j = 0;
+                this.f7512k = 1;
+                this.f7511j = 0;
             }
         } else {
-            this.f7509k = 0;
-            this.f7508j = 0;
+            this.f7512k = 0;
+            this.f7511j = 0;
         }
         l(0);
         k();
-        this.f7521x = true;
-        this.f7522y = -9223372036854775807L;
+        this.f7524x = true;
+        this.f7525y = -9223372036854775807L;
     }
 
     @Override
     public final d6.i f() {
-        List list = this.f7513o;
-        this.f7514p = list;
+        List list = this.f7516o;
+        this.f7517p = list;
         list.getClass();
         return new d6.i(list, 11);
     }
@@ -80,19 +80,19 @@ public final class c extends j {
     @Override
     public final void flush() {
         super.flush();
-        this.f7513o = null;
-        this.f7514p = null;
+        this.f7516o = null;
+        this.f7517p = null;
         l(0);
-        this.f7516r = 4;
-        this.f7512n.h = 4;
+        this.f7519r = 4;
+        this.f7515n.h = 4;
         k();
-        this.f7517s = false;
-        this.f7518t = false;
-        this.f7519u = (byte) 0;
+        this.f7520s = false;
+        this.f7521t = false;
+        this.f7522u = (byte) 0;
         this.v = (byte) 0;
-        this.f7520w = 0;
-        this.f7521x = true;
-        this.f7522y = -9223372036854775807L;
+        this.f7523w = 0;
+        this.f7524x = true;
+        this.f7525y = -9223372036854775807L;
     }
 
     @Override
@@ -112,17 +112,17 @@ public final class c extends j {
         if (c10 != null) {
             return c10;
         }
-        long j3 = this.f7510l;
+        long j3 = this.f7513l;
         if (j3 != -9223372036854775807L) {
-            long j10 = this.f7522y;
-            if (j10 != -9223372036854775807L && this.f7567e - j10 >= j3 && (jVar = (c4.j) this.f7565b.pollFirst()) != null) {
-                this.f7513o = Collections.EMPTY_LIST;
-                this.f7522y = -9223372036854775807L;
+            long j10 = this.f7525y;
+            if (j10 != -9223372036854775807L && this.f7570e - j10 >= j3 && (jVar = (c4.j) this.f7568b.pollFirst()) != null) {
+                this.f7516o = Collections.EMPTY_LIST;
+                this.f7525y = -9223372036854775807L;
                 d6.i f10 = f();
-                long j11 = this.f7567e;
+                long j11 = this.f7570e;
                 jVar.timeUs = j11;
-                jVar.f4109a = f10;
-                jVar.f4110b = j11;
+                jVar.f4112a = f10;
+                jVar.f4113b = j11;
                 return jVar;
             }
             return null;
@@ -132,14 +132,14 @@ public final class c extends j {
 
     @Override
     public final boolean i() {
-        if (this.f7513o != this.f7514p) {
+        if (this.f7516o != this.f7517p) {
             return true;
         }
         return false;
     }
 
     public final ArrayList j() {
-        ArrayList arrayList = this.f7511m;
+        ArrayList arrayList = this.f7514m;
         int size = arrayList.size();
         ArrayList arrayList2 = new ArrayList(size);
         int i7 = 2;
@@ -165,29 +165,29 @@ public final class c extends j {
     }
 
     public final void k() {
-        b bVar = this.f7512n;
-        bVar.f7505g = this.f7515q;
-        bVar.f7500a.clear();
-        bVar.f7501b.clear();
-        bVar.f7502c.setLength(0);
+        b bVar = this.f7515n;
+        bVar.f7508g = this.f7518q;
+        bVar.f7503a.clear();
+        bVar.f7504b.clear();
+        bVar.f7505c.setLength(0);
         bVar.d = 15;
-        bVar.f7503e = 0;
-        bVar.f7504f = 0;
-        ArrayList arrayList = this.f7511m;
+        bVar.f7506e = 0;
+        bVar.f7507f = 0;
+        ArrayList arrayList = this.f7514m;
         arrayList.clear();
-        arrayList.add(this.f7512n);
+        arrayList.add(this.f7515n);
     }
 
     public final void l(int i7) {
-        int i10 = this.f7515q;
+        int i10 = this.f7518q;
         if (i10 != i7) {
-            this.f7515q = i7;
+            this.f7518q = i7;
             if (i7 == 3) {
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f7511m;
+                    ArrayList arrayList = this.f7514m;
                     if (i11 < arrayList.size()) {
-                        ((b) arrayList.get(i11)).f7505g = i7;
+                        ((b) arrayList.get(i11)).f7508g = i7;
                         i11++;
                     } else {
                         return;
@@ -198,7 +198,7 @@ public final class c extends j {
                 if (i10 != 3 && i7 != 1 && i7 != 0) {
                     return;
                 }
-                this.f7513o = Collections.EMPTY_LIST;
+                this.f7516o = Collections.EMPTY_LIST;
             }
         }
     }

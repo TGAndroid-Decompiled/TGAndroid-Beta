@@ -20,7 +20,7 @@ public final class ab1 implements org.telegram.messenger.z10 {
                 userInfoActivity.K = (TL_account.TL_birthday) obj;
                 bi.v3 v3Var = userInfoActivity.f43447y;
                 if (v3Var != null) {
-                    v3Var.f39895g3.O(true);
+                    v3Var.f39892g3.O(true);
                 }
                 userInfoActivity.g0(true);
                 return;
@@ -34,7 +34,7 @@ public final class ab1 implements org.telegram.messenger.z10 {
                     userInfoActivity.g0(true);
                     bi.v3 v3Var2 = userInfoActivity.f43447y;
                     if (v3Var2 != null) {
-                        v3Var2.f39895g3.O(true);
+                        v3Var2.f39892g3.O(true);
                         return;
                     }
                     return;

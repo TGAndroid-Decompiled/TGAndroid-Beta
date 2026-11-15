@@ -1,19 +1,63 @@
 package ai;
+public final class u1 {
+    public final int f1559a;
+    public final c2 f1560b;
 
-import org.telegram.messenger.z10;
-public final class u1 implements z10 {
-    public final int f1563a;
-    public final Object f1564b;
-    public final Object f1565c;
-
-    public u1(int i7, Object obj, Object obj2) {
-        this.f1563a = i7;
-        this.f1564b = obj;
-        this.f1565c = obj2;
+    public u1(c2 c2Var, int i7) {
+        this.f1559a = i7;
+        this.f1560b = c2Var;
     }
 
-    @Override
-    public final void a(java.lang.Object r32) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.u1.a(java.lang.Object):void");
+    public final void a(final float f10) {
+        switch (this.f1559a) {
+            case 0:
+                final c2 c2Var = this.f1560b;
+                c2Var.f1146f.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                c2 c2Var2 = c2Var;
+                                if (!c2Var2.f1153j) {
+                                    c2Var2.d.h(f10);
+                                    return;
+                                }
+                                return;
+                            default:
+                                c2 c2Var3 = c2Var;
+                                if (!c2Var3.f1153j) {
+                                    c2Var3.d.h(f10);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final c2 c2Var2 = this.f1560b;
+                c2Var2.f1146f.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                c2 c2Var22 = c2Var2;
+                                if (!c2Var22.f1153j) {
+                                    c2Var22.d.h(f10);
+                                    return;
+                                }
+                                return;
+                            default:
+                                c2 c2Var3 = c2Var2;
+                                if (!c2Var3.f1153j) {
+                                    c2Var3.d.h(f10);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

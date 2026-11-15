@@ -137,7 +137,7 @@ public final class r implements RequestDelegate {
                     org.telegram.messenger.g0.h3(tVar);
                     return;
                 } else {
-                    vr.a0(i24).f27220a.c(new s5(h0Var2, hashSet, tVar, 16));
+                    vr.a0(i24).f27219a.c(new s5(h0Var2, hashSet, tVar, 16));
                     return;
                 }
             default:
@@ -146,12 +146,12 @@ public final class r implements RequestDelegate {
                 int i25 = this.d;
                 int i26 = this.f17254e;
                 TLObject tLObject2 = this.f17255f;
-                if (h7Var.f24068k) {
-                    a8.d("received chunk but definitely cancelled offset=" + h7Var.f24063e + " size=" + h7Var.f24062c + " token=" + h7Var.f24060a);
+                if (h7Var.f24071k) {
+                    a8.d("received chunk but definitely cancelled offset=" + h7Var.f24066e + " size=" + h7Var.f24065c + " token=" + h7Var.f24063a);
                     return;
                 }
-                if (h7Var.f24067j) {
-                    a8.d("received cancelled chunk after cancelRequests! offset=" + h7Var.f24063e + " size=" + h7Var.f24062c + " token=" + h7Var.f24060a);
+                if (h7Var.f24070j) {
+                    a8.d("received cancelled chunk after cancelRequests! offset=" + h7Var.f24066e + " size=" + h7Var.f24065c + " token=" + h7Var.f24063a);
                 }
                 if (!i7Var.G0.contains(h7Var)) {
                     if (i7Var.H0.contains(h7Var)) {
@@ -161,8 +161,8 @@ public final class r implements RequestDelegate {
                             h7 h7Var2 = (h7) i7Var.G0.get(i27);
                             if (h7Var2 != null && h7Var2 != h7Var) {
                                 i10 = 1;
-                                if (h7Var2.f24063e == h7Var.f24063e && h7Var2.f24062c == h7Var.f24062c) {
-                                    a8.d("received cancelled chunk faster than new one! received=" + h7Var.f24060a + " new=" + h7Var2.f24060a);
+                                if (h7Var2.f24066e == h7Var.f24066e && h7Var2.f24065c == h7Var.f24065c) {
+                                    a8.d("received cancelled chunk faster than new one! received=" + h7Var.f24063a + " new=" + h7Var2.f24063a);
                                     if (!z10) {
                                         i7Var.G0.set(i27, h7Var);
                                         z10 = true;
@@ -183,18 +183,18 @@ public final class r implements RequestDelegate {
                 int i28 = 0;
                 while (i28 < i7Var.H0.size()) {
                     h7 h7Var3 = (h7) i7Var.H0.get(i28);
-                    if (h7Var3 != null && h7Var3 != h7Var && h7Var3.f24063e == h7Var.f24063e && h7Var3.f24062c == h7Var.f24062c) {
-                        a8.d("received new chunk faster than cancelled one! received=" + h7Var.f24060a + " cancelled=" + h7Var3.f24060a);
+                    if (h7Var3 != null && h7Var3 != h7Var && h7Var3.f24066e == h7Var.f24066e && h7Var3.f24065c == h7Var.f24065c) {
+                        a8.d("received new chunk faster than cancelled one! received=" + h7Var.f24063a + " cancelled=" + h7Var3.f24063a);
                         i7Var.H0.remove(i28);
                         i28 += -1;
                     }
                     i28++;
                 }
-                if (r2.f26198a) {
+                if (r2.f26206a) {
                     StringBuilder sb2 = new StringBuilder("debug_loading: ");
                     sb2.append(i7Var.L0.getName());
                     sb2.append(" time=");
-                    sb2.append(System.currentTimeMillis() - h7Var.f24061b);
+                    sb2.append(System.currentTimeMillis() - h7Var.f24064b);
                     sb2.append(" dcId=");
                     sb2.append(i25);
                     sb2.append(" cdn=");
@@ -202,24 +202,24 @@ public final class r implements RequestDelegate {
                     sb2.append(" conType=");
                     sb2.append(i26);
                     sb2.append(" reqId");
-                    i5.c.r(h7Var.f24060a, sb2);
+                    i5.c.r(h7Var.f24063a, sb2);
                 }
                 if (h7Var == i7Var.f24309f0) {
-                    i5.c.t(i7Var.f24309f0.f24063e, new StringBuilder("frame get request completed "));
+                    i5.c.t(i7Var.f24309f0.f24066e, new StringBuilder("frame get request completed "));
                     i7Var.f24309f0 = null;
                 }
                 if (tL_error != null) {
-                    Runnable runnable = h7Var.f24069l;
+                    Runnable runnable = h7Var.f24072l;
                     if (runnable != null) {
                         runnable.run();
                     }
                     if (tL_error.code == -2000) {
                         i7Var.G0.remove(h7Var);
                         long j3 = i7Var.Q;
-                        long j10 = h7Var.f24062c;
+                        long j10 = h7Var.f24065c;
                         i7Var.Q = j3 - j10;
                         ArrayList arrayList3 = i7Var.O;
-                        long j11 = h7Var.f24063e;
+                        long j11 = h7Var.f24066e;
                         i7.n(j11, j10 + j11, arrayList3);
                         return;
                     } else if (r8.r(tL_error.text)) {
@@ -259,7 +259,7 @@ public final class r implements RequestDelegate {
                         i7Var.s(i26);
                         return;
                     }
-                    Runnable runnable2 = h7Var.f24069l;
+                    Runnable runnable2 = h7Var.f24072l;
                     if (runnable2 != null) {
                         runnable2.run();
                     }
@@ -281,10 +281,10 @@ public final class r implements RequestDelegate {
                     return;
                 } else {
                     if (tLObject instanceof TLRPC.TL_upload_file) {
-                        h7Var.f24064f = (TLRPC.TL_upload_file) tLObject;
+                        h7Var.f24067f = (TLRPC.TL_upload_file) tLObject;
                     } else if (tLObject instanceof TLRPC.TL_upload_webFile) {
                         TLRPC.TL_upload_webFile tL_upload_webFile = (TLRPC.TL_upload_webFile) tLObject;
-                        h7Var.f24065g = tL_upload_webFile;
+                        h7Var.f24068g = tL_upload_webFile;
                         if (i7Var.f24298b0 == 0 && (i7 = tL_upload_webFile.size) != 0) {
                             i7Var.f24298b0 = i7;
                         }
@@ -350,7 +350,7 @@ public final class r implements RequestDelegate {
                         i7Var.f24315h1 = elapsedRealtime;
                     }
                     i7Var.m(h7Var, tL_error);
-                    Runnable runnable3 = h7Var.f24069l;
+                    Runnable runnable3 = h7Var.f24072l;
                     if (runnable3 != null) {
                         runnable3.run();
                         return;

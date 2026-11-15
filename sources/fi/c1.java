@@ -213,45 +213,45 @@ public final class c1 implements Runnable {
                 b3.f fVar = (b3.f) vVar.f13510a.get();
                 if (fVar != null) {
                     int b10 = vVar.f13512c.b();
-                    b3.g gVar = fVar.f2881a;
+                    b3.g gVar = fVar.f2884a;
                     synchronized (gVar) {
                         synchronized (gVar) {
-                            int i11 = gVar.f2899n;
-                            if (i11 == 0 || gVar.f2891e) {
-                                if (i11 != b10 || gVar.f2900o == null) {
-                                    gVar.f2899n = b10;
+                            int i11 = gVar.f2902n;
+                            if (i11 == 0 || gVar.f2894e) {
+                                if (i11 != b10 || gVar.f2903o == null) {
+                                    gVar.f2902n = b10;
                                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                                        if (gVar.f2900o == null) {
-                                            Context context = gVar.f2888a;
+                                        if (gVar.f2903o == null) {
+                                            Context context = gVar.f2891a;
                                             String str2 = h2.l0.f13471a;
                                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                                     d = ha.d(networkCountryIso);
-                                                    gVar.f2900o = d;
+                                                    gVar.f2903o = d;
                                                 }
                                             }
                                             d = ha.d(Locale.getDefault().getCountry());
-                                            gVar.f2900o = d;
+                                            gVar.f2903o = d;
                                         }
-                                        gVar.f2897l = gVar.b(b10);
+                                        gVar.f2900l = gVar.b(b10);
                                         gVar.d.getClass();
                                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                                        if (gVar.f2893g > 0) {
+                                        if (gVar.f2896g > 0) {
                                             i7 = (int) (elapsedRealtime - gVar.h);
                                         } else {
                                             i7 = 0;
                                         }
-                                        gVar.d(gVar.f2894i, i7, gVar.f2897l);
+                                        gVar.d(gVar.f2897i, i7, gVar.f2900l);
                                         gVar.h = elapsedRealtime;
-                                        gVar.f2894i = 0L;
-                                        gVar.f2896k = 0L;
-                                        gVar.f2895j = 0L;
-                                        b3.t tVar = gVar.f2892f;
-                                        tVar.f2928a.clear();
-                                        tVar.f2930c = -1;
+                                        gVar.f2897i = 0L;
+                                        gVar.f2899k = 0L;
+                                        gVar.f2898j = 0L;
+                                        b3.t tVar = gVar.f2895f;
+                                        tVar.f2931a.clear();
+                                        tVar.f2933c = -1;
                                         tVar.d = 0;
-                                        tVar.f2931e = 0;
+                                        tVar.f2934e = 0;
                                         return;
                                     }
                                     return;

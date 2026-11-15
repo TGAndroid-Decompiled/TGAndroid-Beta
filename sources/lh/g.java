@@ -45,7 +45,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) frameLayout).f19521n;
                 if (bVar != null) {
-                    an anVar = ((ce) bVar).f46084b;
+                    an anVar = ((ce) bVar).f46073b;
                     if (i10 == 2) {
                         yeVar = new ye(anVar, 11);
                         z10 = true;
@@ -58,7 +58,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     Activity parentActivity = anVar.getParentActivity();
                     o4 parentLayout = anVar.getParentLayout();
-                    ol olVar = anVar.f45278m1;
+                    ol olVar = anVar.f45277m1;
                     e6 resourceProvider = anVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(g0.L(200.0f));
@@ -95,9 +95,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     g1Var.showAtLocation(olVar, 51, (int) width, (int) measuredHeight);
-                    anVar.f45197f9 = g1Var;
-                    anVar.w8(anVar.f45431y1, false);
-                    anVar.f45197f9.setOnDismissListener(new d0(anVar, 1));
+                    anVar.f45196f9 = g1Var;
+                    anVar.w8(anVar.f45430y1, false);
+                    anVar.f45196f9.setOnDismissListener(new d0(anVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {

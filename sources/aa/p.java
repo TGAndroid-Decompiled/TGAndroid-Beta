@@ -192,7 +192,7 @@ public final class p {
                 str2 = str11;
                 str3 = str14;
                 i10 = 4;
-                ((ba.e) o3Var.f19795b).f3091b.a(new androidx.car.app.utils.a(2, o3Var, ((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.d).f989b).getReference()).a(), ((f5.v) o3Var.f19798f).o(), str));
+                ((ba.e) o3Var.f19795b).f3094b.a(new ai.r((Object) o3Var, str, (Object) ((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.d).f989b).getReference()).a(), (Object) ((f5.v) o3Var.f19798f).o(), 3));
             }
         } else {
             str2 = str11;
@@ -202,44 +202,44 @@ public final class p {
             i10 = 4;
         }
         ca.f fVar3 = this.f837i;
-        ((ca.d) fVar3.f4836b).b();
-        fVar3.f4836b = ca.f.f4834c;
+        ((ca.d) fVar3.f4839b).b();
+        fVar3.f4839b = ca.f.f4837c;
         if (str != null) {
-            fVar3.f4836b = new ca.o(((ga.d) fVar3.f4835a).b(str, "userlog"));
+            fVar3.f4839b = new ca.o(((ga.d) fVar3.f4838a).b(str, "userlog"));
         }
         this.f840l.b(str);
         e0 e0Var = this.f841m;
         u uVar = e0Var.f800a;
-        Charset charset = u2.f7922a;
+        Charset charset = u2.f7925a;
         ?? obj = new Object();
-        obj.f7673a = "20.1.1";
+        obj.f7676a = "20.1.1";
         a aVar2 = uVar.f870c;
         String str16 = aVar2.f767a;
         if (str16 != null) {
-            obj.f7674b = str16;
+            obj.f7677b = str16;
             a0 a0Var2 = uVar.f869b;
             String str17 = a0Var2.c().f784a;
             if (str17 != null) {
                 obj.d = str17;
-                obj.f7676e = a0Var2.c().f785b;
-                obj.f7677f = a0Var2.c().f786c;
+                obj.f7679e = a0Var2.c().f785b;
+                obj.f7680f = a0Var2.c().f786c;
                 String str18 = aVar2.f771f;
                 if (str18 != null) {
                     obj.h = str18;
                     String str19 = aVar2.f772g;
                     if (str19 != null) {
-                        obj.f7679i = str19;
-                        obj.f7675c = i10;
-                        obj.f7683m = (byte) (obj.f7683m | 1);
+                        obj.f7682i = str19;
+                        obj.f7678c = i10;
+                        obj.f7686m = (byte) (obj.f7686m | 1);
                         ?? obj2 = new Object();
-                        obj2.f7810f = false;
+                        obj2.f7813f = false;
                         obj2.d = currentTimeMillis;
-                        obj2.f7816m = (byte) (((byte) (obj2.f7816m | 2)) | 1);
+                        obj2.f7819m = (byte) (((byte) (obj2.f7819m | 2)) | 1);
                         if (str != null) {
-                            obj2.f7807b = str;
+                            obj2.f7810b = str;
                             String str20 = u.f867g;
                             if (str20 != null) {
-                                obj2.f7806a = str20;
+                                obj2.f7809a = str20;
                                 String str21 = a0Var2.f776c;
                                 if (str21 != null) {
                                     String str22 = a0Var2.c().f784a;
@@ -252,17 +252,17 @@ public final class p {
                                     if (aVar3 == null) {
                                         h0Var.f56643c = new f5.a(h0Var);
                                     }
-                                    obj2.f7811g = new o0(str21, str18, str19, str22, str23, ((f5.a) h0Var.f56643c).f10926c);
+                                    obj2.f7814g = new o0(str21, str18, str19, str22, str23, ((f5.a) h0Var.f56643c).f10926c);
                                     ?? obj3 = new Object();
-                                    obj3.f7817a = 3;
-                                    obj3.f7820e = (byte) (obj3.f7820e | 1);
+                                    obj3.f7820a = 3;
+                                    obj3.f7823e = (byte) (obj3.f7823e | 1);
                                     if (str10 != null) {
-                                        obj3.f7818b = str10;
+                                        obj3.f7821b = str10;
                                         if (str2 != null) {
-                                            obj3.f7819c = str2;
+                                            obj3.f7822c = str2;
                                             obj3.d = g.h();
-                                            obj3.f7820e = (byte) (obj3.f7820e | 2);
-                                            obj2.f7812i = obj3.a();
+                                            obj3.f7823e = (byte) (obj3.f7823e | 2);
+                                            obj2.f7815i = obj3.a();
                                             StatFs statFs2 = new StatFs(Environment.getDataDirectory().getPath());
                                             int i11 = 7;
                                             if (!TextUtils.isEmpty(str12) && (num = (Integer) u.f866f.get(str12.toLowerCase(locale))) != null) {
@@ -274,30 +274,30 @@ public final class p {
                                             boolean g11 = g.g();
                                             int d2 = g.d();
                                             ?? obj4 = new Object();
-                                            obj4.f7861a = i11;
-                                            byte b10 = (byte) (obj4.f7868j | 1);
-                                            obj4.f7868j = b10;
+                                            obj4.f7864a = i11;
+                                            byte b10 = (byte) (obj4.f7871j | 1);
+                                            obj4.f7871j = b10;
                                             if (str5 != null) {
-                                                obj4.f7862b = str5;
-                                                obj4.f7863c = availableProcessors2;
+                                                obj4.f7865b = str5;
+                                                obj4.f7866c = availableProcessors2;
                                                 obj4.d = a11;
-                                                obj4.f7864e = blockCount2;
-                                                obj4.f7865f = g11;
-                                                obj4.f7866g = d2;
-                                                obj4.f7868j = (byte) (((byte) (((byte) (((byte) (((byte) (b10 | 2)) | 4)) | 8)) | 16)) | 32);
+                                                obj4.f7867e = blockCount2;
+                                                obj4.f7868f = g11;
+                                                obj4.f7869g = d2;
+                                                obj4.f7871j = (byte) (((byte) (((byte) (((byte) (((byte) (b10 | 2)) | 4)) | 8)) | 16)) | 32);
                                                 String str24 = str3;
                                                 if (str24 != null) {
                                                     obj4.h = str24;
                                                     String str25 = str4;
                                                     if (str25 != null) {
-                                                        obj4.f7867i = str25;
-                                                        obj2.f7813j = obj4.a();
-                                                        obj2.f7815l = 3;
-                                                        obj2.f7816m = (byte) (obj2.f7816m | 4);
-                                                        obj.f7680j = obj2.a();
+                                                        obj4.f7870i = str25;
+                                                        obj2.f7816j = obj4.a();
+                                                        obj2.f7818l = 3;
+                                                        obj2.f7819m = (byte) (obj2.f7819m | 4);
+                                                        obj.f7683j = obj2.a();
                                                         da.d0 a12 = obj.a();
                                                         ga.d dVar = e0Var.f801b.f12959b;
-                                                        t2 t2Var = a12.f7706k;
+                                                        t2 t2Var = a12.f7709k;
                                                         if (t2Var == null) {
                                                             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                                                 Log.d("FirebaseCrashlytics", "Could not get session for report", null);
@@ -305,7 +305,7 @@ public final class p {
                                                             }
                                                             return;
                                                         }
-                                                        String str26 = ((n0) t2Var).f7826b;
+                                                        String str26 = ((n0) t2Var).f7829b;
                                                         try {
                                                             ga.b.f12956g.getClass();
                                                             ga.b.g(dVar.b(str26, "report"), ea.a.f10562a.o(a12));
@@ -351,7 +351,7 @@ public final class p {
     }
 
     public final void e(String str) {
-        ExecutorService executorService = this.f834e.f3091b.f3087a;
+        ExecutorService executorService = this.f834e.f3094b.f3090a;
         ProfilingManager profilingManager = (ProfilingManager) this.f831a.getSystemService(ProfilingManager.class);
         Object[] objArr = {new ProfilingTrigger.Builder(7).build(), new ProfilingTrigger.Builder(8).build()};
         ArrayList arrayList = new ArrayList(2);
@@ -513,6 +513,6 @@ public final class p {
             bVar.b("Waiting for send/deleteUnsentReports to be called.");
             a10 = ba.a.a(onSuccessTask, this.f844p.getTask());
         }
-        a10.onSuccessTask(this.f834e.f3090a, new q4.q(3, this, task));
+        a10.onSuccessTask(this.f834e.f3093a, new q4.q(3, this, task));
     }
 }

@@ -27,7 +27,7 @@ public final class a6 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(6.0f));
         this.f13881j = new Path();
         this.f13874a = a0Var;
-        er erVar = er.f34421g;
+        er erVar = er.f34420g;
         this.d = new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 320L, erVar);
         this.f13877e = new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar);
         this.f13878f = new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar);

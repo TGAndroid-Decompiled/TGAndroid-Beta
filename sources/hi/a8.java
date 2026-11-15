@@ -135,7 +135,7 @@ public final class a8 implements View.OnClickListener {
                         }
                         P1.N = hashSet.size() + P1.N;
                         tL_contacts_setBlocked.limit = Math.max(tL_contacts_setBlocked.limit, hashSet.size());
-                        ConnectionsManager.getInstance(i14).sendRequest(tL_contacts_setBlocked, new ai.d1(b8Var, 6));
+                        ConnectionsManager.getInstance(i14).sendRequest(tL_contacts_setBlocked, new ai.e1(b8Var, 6));
                         return;
                     } else {
                         q8Var.I1 = i12;

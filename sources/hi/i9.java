@@ -40,7 +40,7 @@ public final class i9 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 gvVar.M = floatValue2;
                 gvVar.L = org.telegram.messenger.g0.T1(f11, f10, floatValue2);
-                gvVar.f33010b.invalidate();
+                gvVar.f33013b.invalidate();
                 return;
             case 2:
                 yb1 yb1Var = (yb1) obj;

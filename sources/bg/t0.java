@@ -8,29 +8,29 @@ import android.os.Build;
 import android.os.Looper;
 import android.view.ViewOutlineProvider;
 import org.telegram.ui.r3;
-import org.telegram.ui.xl0;
+import org.telegram.ui.yl0;
 public abstract class t0 {
-    public static final p0 f3332a = new p0(0);
-    public static final p0 f3333b = new p0(1);
-    public static Path f3334c;
+    public static final p0 f3335a = new p0(0);
+    public static final p0 f3336b = new p0(1);
+    public static Path f3337c;
     public static Outline d;
-    public static Rect f3335e;
+    public static Rect f3338e;
 
-    public static void a(Canvas canvas, xl0 xl0Var, r3 r3Var) {
+    public static void a(Canvas canvas, yl0 yl0Var, r3 r3Var) {
         Path path;
         Outline outline;
         Rect rect;
-        ViewOutlineProvider outlineProvider = xl0Var.getOutlineProvider();
-        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && xl0Var.getClipToOutline() && outlineProvider != null) {
+        ViewOutlineProvider outlineProvider = yl0Var.getOutlineProvider();
+        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && yl0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f3334c == null) {
-                    f3334c = new Path();
+                if (f3337c == null) {
+                    f3337c = new Path();
                     d = new Outline();
-                    f3335e = new Rect();
+                    f3338e = new Rect();
                 }
-                path = f3334c;
+                path = f3337c;
                 outline = d;
-                rect = f3335e;
+                rect = f3338e;
                 outline.setEmpty();
                 rect.setEmpty();
             } else {
@@ -39,7 +39,7 @@ public abstract class t0 {
                 rect = new Rect();
             }
             Path path2 = path;
-            outlineProvider.getOutline(xl0Var, outline);
+            outlineProvider.getOutline(yl0Var, outline);
             path2.rewind();
             if (!outline.isEmpty() && outline.getRect(rect)) {
                 float radius = outline.getRadius();

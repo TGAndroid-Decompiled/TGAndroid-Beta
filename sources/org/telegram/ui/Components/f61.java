@@ -6,22 +6,22 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 public final class f61 extends AsyncTask {
-    public int f34532a = 0;
-    public final i61 f34533b;
+    public int f34531a = 0;
+    public final i61 f34532b;
 
     public f61(i61 i61Var) {
-        this.f34533b = i61Var;
+        this.f34532b = i61Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Bitmap frameAtTime;
-        i61 i61Var = this.f34533b;
-        this.f34532a = ((Integer[]) objArr)[0].intValue();
+        i61 i61Var = this.f34532b;
+        this.f34531a = ((Integer[]) objArr)[0].intValue();
         Bitmap bitmap = null;
         if (!isCancelled()) {
             try {
-                frameAtTime = i61Var.f35470r.getFrameAtTime(i61Var.f35474y * this.f34532a * 1000, 2);
+                frameAtTime = i61Var.f35461r.getFrameAtTime(i61Var.f35465y * this.f34531a * 1000, 2);
             } catch (Exception e10) {
                 e = e10;
             }
@@ -53,10 +53,10 @@ public final class f61 extends AsyncTask {
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
         if (!isCancelled()) {
-            i61 i61Var = this.f34533b;
-            i61Var.f35472w.add(bitmap);
+            i61 i61Var = this.f34532b;
+            i61Var.f35463w.add(bitmap);
             i61Var.invalidate();
-            int i7 = this.f34532a;
+            int i7 = this.f34531a;
             if (i7 < i61Var.G) {
                 i61Var.b(i7 + 1);
             } else {

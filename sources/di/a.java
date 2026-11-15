@@ -9,24 +9,24 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.wr;
 public final class a implements Runnable {
-    public final int f8176a;
-    public final org.telegram.ui.ActionBar.e6 f8177b;
-    public final Context f8178c;
+    public final int f8179a;
+    public final org.telegram.ui.ActionBar.e6 f8180b;
+    public final Context f8181c;
 
     public a(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f8176a = i7;
-        this.f8178c = context;
-        this.f8177b = e6Var;
+        this.f8179a = i7;
+        this.f8181c = context;
+        this.f8180b = e6Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f8176a;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f8177b;
-        Context context = this.f8178c;
+        int i7 = this.f8179a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f8180b;
+        Context context = this.f8181c;
         switch (i7) {
             case 0:
-                new db(context, e6Var).show();
+                new cb(context, e6Var).show();
                 return;
             case 1:
                 org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
@@ -50,8 +50,8 @@ public final class a implements Runnable {
     }
 
     public a(bs bsVar, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
-        this.f8176a = 1;
-        this.f8177b = e6Var;
-        this.f8178c = context;
+        this.f8179a = 1;
+        this.f8180b = e6Var;
+        this.f8181c = context;
     }
 }

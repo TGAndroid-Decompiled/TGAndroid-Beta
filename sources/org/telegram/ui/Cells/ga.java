@@ -119,7 +119,7 @@ public abstract class ga extends uj0 implements is {
         if (!TextUtils.isEmpty(i6Var.d)) {
             org.telegram.ui.ActionBar.d6.a(false);
         }
-        SharedPreferences.Editor edit = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0).edit();
+        SharedPreferences.Editor edit = org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0).edit();
         if (this.f30344n3 != 1 && !i6Var.q()) {
             str = "lastDayTheme";
         } else {
@@ -217,7 +217,7 @@ public abstract class ga extends uj0 implements is {
         int i7;
         super.onDraw(canvas);
         if (this.f30337f3) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -225,7 +225,7 @@ public abstract class ga extends uj0 implements is {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;

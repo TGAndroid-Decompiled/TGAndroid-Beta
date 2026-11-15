@@ -138,7 +138,7 @@ public final class uf implements org.telegram.ui.sq0 {
         hi.g gVar;
         pc b12 = PhotoViewer.p1().b1();
         if (b12 != null && (gVar = b12.f14623f) != null) {
-            mt mtVar = gVar.f39056a;
+            mt mtVar = gVar.f39053a;
             mtVar.requestFocus();
             org.telegram.messenger.g0.J3(mtVar);
         }

@@ -20,8 +20,8 @@ public final class h0 {
     }
 
     public h0(android.support.v4.media.session.a0 a0Var) {
-        this.f10108a = (Uri) a0Var.f1706b;
-        this.f10109b = (String) a0Var.f1707c;
+        this.f10108a = (Uri) a0Var.f1713b;
+        this.f10109b = (String) a0Var.f1714c;
         this.f10110c = (Bundle) a0Var.d;
     }
 

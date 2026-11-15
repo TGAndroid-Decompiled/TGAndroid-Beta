@@ -4,20 +4,20 @@ import android.view.View;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.gj0;
 public final class a implements gj0 {
-    public final int f3364a;
+    public final int f3367a;
 
     public a(int i7) {
-        this.f3364a = i7;
+        this.f3367a = i7;
     }
 
     @Override
     public final void b(int i7, View view) {
-        switch (this.f3364a) {
+        switch (this.f3367a) {
             case 0:
                 int i10 = e.W1;
                 return;
             case 1:
-                int i11 = y.f3984w2;
+                int i11 = y.f3987w2;
                 return;
             case 2:
                 if (view instanceof org.telegram.ui.Cells.w) {

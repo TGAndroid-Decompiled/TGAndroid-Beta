@@ -81,7 +81,7 @@ public final class o extends ci implements is {
         this.Q = new d(this, 3);
         this.f21847n = i7;
         this.h = true;
-        this.f33610f = true;
+        this.f33612f = true;
         q3 q3Var = new q3(context, i7, e6Var, new k8.a(7, this, e6Var));
         this.f21848r = q3Var;
         q3Var.setAdaptiveLinkDialogs(false);
@@ -121,7 +121,7 @@ public final class o extends ci implements is {
             z10 = true;
         }
         if (!z10) {
-            ki kiVar = oVar.f33607b;
+            ki kiVar = oVar.f33609b;
             if (!kiVar.M1 && kiVar.Q2) {
                 i7 = org.telegram.messenger.g0.L(62.0f);
             }
@@ -143,14 +143,14 @@ public final class o extends ci implements is {
             oVar.W(true);
             return;
         }
-        ki kiVar = oVar.f33607b;
+        ki kiVar = oVar.f33609b;
         if (oVar.f21851x == null) {
-            ly lyVar = new ly(kiVar.f36436a2, true, false, false, oVar.getContext(), true, null, kiVar.f36482p3, true, oVar.f33606a, false, false);
+            ly lyVar = new ly(kiVar.f36424a2, true, false, false, oVar.getContext(), true, null, kiVar.f36470p3, true, oVar.f33608a, false, false);
             oVar.f21851x = lyVar;
             lyVar.setVisibility(8);
             ly lyVar2 = oVar.f21851x;
             lyVar2.f37009y2 = false;
-            lyVar2.setBottomInset(org.telegram.messenger.g0.f23604n);
+            lyVar2.setBottomInset(org.telegram.messenger.g0.f23606n);
             View view = oVar.f21851x.f36998w;
             if (view != null) {
                 view.setVisibility(8);
@@ -201,16 +201,16 @@ public final class o extends ci implements is {
     }
 
     public static void T(o oVar, int i7, int i10) {
-        ki kiVar = oVar.f33607b;
-        if (kiVar.f36436a2 == null) {
+        ki kiVar = oVar.f33609b;
+        if (kiVar.f36424a2 == null) {
             return;
         }
-        ki kiVar2 = new ki(oVar.getContext(), kiVar.f36436a2, false, false, true, oVar.f33606a);
+        ki kiVar2 = new ki(oVar.getContext(), kiVar.f36424a2, false, false, true, oVar.f33608a);
         kiVar2.X3 = new l(oVar, kiVar2);
-        kiVar2.f36447e2.i0();
+        kiVar2.f36435e2.i0();
         kiVar2.y1(1, true);
         kiVar2.V0(i7);
-        kiVar2.f36503u4 = new e(oVar, kiVar2);
+        kiVar2.f36491u4 = new e(oVar, kiVar2);
         kiVar2.T1 = new e(oVar, kiVar2);
         kiVar2.S1 = new m(oVar, kiVar2);
         kiVar2.e1();
@@ -295,10 +295,10 @@ public final class o extends ci implements is {
 
     private int getEmojiPanelHeight() {
         String str;
-        int Q = this.f33607b.f36482p3.Q();
+        int Q = this.f33609b.f36470p3.Q();
         if (Q <= 0) {
             SharedPreferences d12 = np.d1();
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             if (point.x > point.y) {
                 str = "kbd_height_land3";
             } else {
@@ -309,7 +309,7 @@ public final class o extends ci implements is {
         if (Q <= 0) {
             Q = org.telegram.messenger.g0.L(200.0f);
         }
-        return Q + org.telegram.messenger.g0.f23604n;
+        return Q + org.telegram.messenger.g0.f23606n;
     }
 
     @Override
@@ -319,8 +319,8 @@ public final class o extends ci implements is {
 
     @Override
     public final void I(ci ciVar) {
-        this.f33607b.V2.setTitle("");
-        this.f21848r.f39895g3.O(false);
+        this.f33609b.V2.setTitle("");
+        this.f21848r.f39892g3.O(false);
         a0(false);
         post(new d(this, 4));
     }
@@ -344,7 +344,7 @@ public final class o extends ci implements is {
         boolean s42 = np.s1(i11).s4();
         q3 q3Var = this.f21848r;
         if (!s42 && !m10.i(i11).q() && y4.d(q3Var.f21939t3, q3Var.f21941u3)) {
-            z1.u0(getContext(), new b(q3Var, 0), new d(this, 2), this.f33606a);
+            z1.u0(getContext(), new b(q3Var, 0), new d(this, 2), this.f33608a);
             return false;
         }
         if (q3Var.n3() && !q3Var.p3()) {
@@ -356,10 +356,10 @@ public final class o extends ci implements is {
                 }
             } else {
                 boolean s43 = np.s1(i11).s4();
-                ki kiVar = this.f33607b;
+                ki kiVar = this.f33609b;
                 if (!s43) {
-                    org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
-                    if ((e2Var instanceof an) && (qjVar2 = ((an) e2Var).f45118a0) != null) {
+                    org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
+                    if ((e2Var instanceof an) && (qjVar2 = ((an) e2Var).f45117a0) != null) {
                         qjVar2.i1(y4.g(q3Var.f21939t3), z10, i7, i10);
                         kiVar.a(true);
                         return true;
@@ -370,11 +370,11 @@ public final class o extends ci implements is {
                         ArrayList E2 = q3Var.E2();
                         ArrayList B2 = q3Var.B2();
                         ArrayList a10 = x4.a(i11, c32);
-                        org.telegram.ui.ActionBar.e2 e2Var2 = kiVar.f36436a2;
+                        org.telegram.ui.ActionBar.e2 e2Var2 = kiVar.f36424a2;
                         if (e2Var2 instanceof an) {
                             an anVar = (an) e2Var2;
                             gj gjVar3 = anVar.E5;
-                            gj gjVar4 = anVar.f45281m4;
+                            gj gjVar4 = anVar.f45280m4;
                             qm qmVar2 = anVar.C5;
                             long j92 = anVar.j9();
                             fwVar = anVar.Y8();
@@ -390,8 +390,8 @@ public final class o extends ci implements is {
                             gjVar2 = null;
                         }
                         ez.R(org.telegram.messenger.c.a(kiVar.H3), c32, E2, B2, a10, kiVar.b1(), gjVar2, gjVar, qmVar, z10, i7, i10, fwVar, j3, j10, 0L);
-                        org.telegram.ui.ActionBar.e2 e2Var3 = kiVar.f36436a2;
-                        if ((e2Var3 instanceof an) && (qjVar = ((an) e2Var3).f45118a0) != null && (cgVar = qjVar.H3) != null) {
+                        org.telegram.ui.ActionBar.e2 e2Var3 = kiVar.f36424a2;
+                        if ((e2Var3 instanceof an) && (qjVar = ((an) e2Var3).f45117a0) != null && (cgVar = qjVar.H3) != null) {
                             cgVar.M(null, z10, i7, i10, 0L);
                         }
                         kiVar.a(true);
@@ -415,7 +415,7 @@ public final class o extends ci implements is {
         } else {
             z10 = false;
         }
-        m60Var.j(z10, i7, null, str, new androidx.car.app.utils.a(this, aVar, pageBlock, m60Var2, 25));
+        m60Var.j(z10, i7, null, str, new ai.r(this, aVar, pageBlock, m60Var2, 26));
         m60Var.y().f29899a.setTypeface(org.telegram.messenger.g0.o1("fonts/mw_bold.ttf"));
         m60Var.y().f29899a.setTextSize(1, i10);
     }
@@ -425,7 +425,7 @@ public final class o extends ci implements is {
         if (q3Var == null || !q3Var.n3()) {
             return true;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f33606a);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f33608a);
         String M0 = hd.M0(2131753993, null);
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
         t1Var.S = M0;
@@ -441,12 +441,12 @@ public final class o extends ci implements is {
             public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i7) {
                 switch (r2) {
                     case 0:
-                        this.f21732b.f33607b.dismiss();
+                        this.f21732b.f33609b.dismiss();
                         return;
                     default:
                         o oVar = this.f21732b;
                         oVar.Y();
-                        oVar.f33607b.dismiss();
+                        oVar.f33609b.dismiss();
                         return;
                 }
             }
@@ -462,12 +462,12 @@ public final class o extends ci implements is {
             public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i7) {
                 switch (r2) {
                     case 0:
-                        this.f21732b.f33607b.dismiss();
+                        this.f21732b.f33609b.dismiss();
                         return;
                     default:
                         o oVar = this.f21732b;
                         oVar.Y();
-                        oVar.f33607b.dismiss();
+                        oVar.f33609b.dismiss();
                         return;
                 }
             }
@@ -518,12 +518,12 @@ public final class o extends ci implements is {
         }
         ly lyVar = this.f21851x;
         float f13 = 0.0f;
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         if (lyVar != null) {
             if (this.f21852y) {
                 float f14 = this.F - i7;
                 if (this.E) {
-                    f12 = -kiVar.f36463j4;
+                    f12 = -kiVar.f36451j4;
                 } else {
                     f12 = 0.0f;
                 }
@@ -540,14 +540,14 @@ public final class o extends ci implements is {
                 f10 = i7;
             } else {
                 if (!this.M && this.F <= 0) {
-                    i10 = org.telegram.messenger.g0.f23604n;
+                    i10 = org.telegram.messenger.g0.f23606n;
                 } else {
                     i10 = 0;
                 }
                 f10 = i10;
             }
             if (!z10 || this.E) {
-                f10 += kiVar.f36463j4;
+                f10 += kiVar.f36451j4;
             }
             v3Var.getBottomContainer().animate().cancel();
             v3Var.getBottomContainer().setTranslationY(-f10);
@@ -556,7 +556,7 @@ public final class o extends ci implements is {
                 f13 = i7;
             }
             if (!z11 || this.E) {
-                f13 += kiVar.f36463j4;
+                f13 += kiVar.f36451j4;
             }
             v3Var.setBottomGradientTranslationY(-f13);
             if (this.N != this.L) {
@@ -568,7 +568,7 @@ public final class o extends ci implements is {
     }
 
     public final boolean Y() {
-        org.telegram.ui.ActionBar.e2 e2Var = this.f33607b.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f33609b.f36424a2;
         if (e2Var instanceof an) {
             an anVar = (an) e2Var;
             q3 q3Var = this.f21848r;
@@ -576,8 +576,8 @@ public final class o extends ci implements is {
                 return false;
             }
             TL_iv.RichMessage m22 = q3Var.m2();
-            si.b0(org.telegram.messenger.c.a(this.f21847n).f22778a).Q1(anVar.a(), anVar.Q7(anVar.E5), "", null, null, null, null, 0L, false, false, m22);
-            qj qjVar = anVar.f45118a0;
+            si.b0(org.telegram.messenger.c.a(this.f21847n).f22782a).Q1(anVar.a(), anVar.Q7(anVar.E5), "", null, null, null, null, 0L, false, false, m22);
+            qj qjVar = anVar.f45117a0;
             if (qjVar != null) {
                 qjVar.setRichDraftPreview(m22);
                 return true;
@@ -596,10 +596,10 @@ public final class o extends ci implements is {
         } else {
             z11 = true;
         }
-        ki kiVar = this.f33607b;
-        kh khVar = kiVar.f36506v3;
-        if (kiVar.f36507v4 != z11) {
-            kiVar.f36507v4 = z11;
+        ki kiVar = this.f33609b;
+        kh khVar = kiVar.f36494v3;
+        if (kiVar.f36495v4 != z11) {
+            kiVar.f36495v4 = z11;
             if (kiVar.Q2) {
                 khVar.animate().cancel();
                 if (!z11) {
@@ -706,7 +706,7 @@ public final class o extends ci implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25497f5) {
+        if (i7 == ns.f25498f5) {
             d0();
         }
     }
@@ -716,8 +716,8 @@ public final class o extends ci implements is {
         int action = keyEvent.getAction();
         q3 q3Var = this.f21848r;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
-            if ((this.f33607b.f36436a2 instanceof an) && q3Var.u2() && Y()) {
-                org.telegram.messenger.k5.n(null, 2131746003, new cc(this.f21849s, this.f33606a), 2131623990, 36);
+            if ((this.f33609b.f36424a2 instanceof an) && q3Var.u2() && Y()) {
+                org.telegram.messenger.k5.n(null, 2131746003, new cc(this.f21849s, this.f33608a), 2131623990, 36);
                 return true;
             }
         } else if (!q3Var.k3(keyEvent)) {
@@ -769,7 +769,7 @@ public final class o extends ci implements is {
         if (v3Var == null) {
             return;
         }
-        int currentActionBarHeight = (((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - org.telegram.messenger.g0.L(44.0f)) / 2) + org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(8.0f);
+        int currentActionBarHeight = (((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - org.telegram.messenger.g0.L(44.0f)) / 2) + org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(8.0f);
         q3 q3Var = this.f21848r;
         if (q3Var.getChildCount() <= 0) {
             i7 = q3Var.getPaddingTop();
@@ -815,7 +815,7 @@ public final class o extends ci implements is {
             return Integer.MAX_VALUE;
         }
         q3Var.setTopGlowOffset(Math.max(0, i7));
-        int i11 = i7 - org.telegram.messenger.g0.f23603m;
+        int i11 = i7 - org.telegram.messenger.g0.f23605m;
         int L = org.telegram.messenger.g0.L(7.0f);
         if (i11 < org.telegram.messenger.g0.L(7.0f) || !z10) {
             i11 = L;
@@ -831,7 +831,7 @@ public final class o extends ci implements is {
 
     @Override
     public int getListTopPadding() {
-        return (this.f21848r.getPaddingTop() - org.telegram.messenger.g0.f23603m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        return (this.f21848r.getPaddingTop() - org.telegram.messenger.g0.f23605m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
     }
 
     public h9 getTextSelectionHelper() {
@@ -874,14 +874,14 @@ public final class o extends ci implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f21847n).c(this, ns.f25497f5);
+        ns.f(this.f21847n).c(this, ns.f25498f5);
         d0();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f21847n).n(this, ns.f25497f5);
+        ns.f(this.f21847n).n(this, ns.f25498f5);
     }
 
     @Override
@@ -934,7 +934,7 @@ public final class o extends ci implements is {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
         invalidate();
     }
 
@@ -952,7 +952,7 @@ public final class o extends ci implements is {
     @Override
     public final void y() {
         boolean z10;
-        if (this.f33607b.f36482p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        if (this.f33609b.f36470p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

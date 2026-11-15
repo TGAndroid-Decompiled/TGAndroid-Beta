@@ -76,8 +76,8 @@ public final class m extends FrameLayout {
     public m(vp0 vp0Var, Context context) {
         super(context);
         this.f13337a0 = vp0Var;
-        this.d = Utilities.j(gz.f23986u1, 6, 2);
-        this.f13340e = Utilities.j(gz.f23986u1, 6, 2);
+        this.d = Utilities.j(gz.f23989u1, 6, 2);
+        this.f13340e = Utilities.j(gz.f23989u1, 6, 2);
         this.I = false;
         this.J = false;
         this.W = new Rect();
@@ -129,11 +129,11 @@ public final class m extends FrameLayout {
         addView(cv0Var, ja.c(-1.0f, -1));
         cv0Var.setOnTouchListener(new a(0));
         cv0Var.e(true, false);
-        cv0Var.f33705b.setVisibility(8);
+        cv0Var.f33707b.setVisibility(8);
         cv0Var.d.setText(hd.M0(2131746698, null));
-        cv0Var.f33707e.setText(hd.G(np.s1(vp0Var.f13353b).U5, "ProfileBotPreviewEmptyText", new Object[0]));
+        cv0Var.f33709e.setText(hd.G(np.s1(vp0Var.f13353b).U5, "ProfileBotPreviewEmptyText", new Object[0]));
         String M0 = hd.M0(2131746702, null);
-        hi.d dVar = cv0Var.f33708f;
+        hi.d dVar = cv0Var.f33710f;
         dVar.i(M0, false, true);
         dVar.setVisibility(0);
         dVar.setOnClickListener(new b(this, 0));
@@ -148,7 +148,7 @@ public final class m extends FrameLayout {
         jVar.setGravity(17);
         jVar.setTypeface(g0.o());
         LinearLayout.LayoutParams t6 = ja.t(165, -2, 17, 0, 17, 0, 12);
-        z51 z51Var = cv0Var.f33704a;
+        z51 z51Var = cv0Var.f33706a;
         z51Var.addView(jVar, t6);
         hi.d dVar2 = new hi.d(context, e6Var, false);
         this.G = dVar2;
@@ -219,7 +219,7 @@ public final class m extends FrameLayout {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f11);
                 ofFloat.addUpdateListener(new f4(this, 1));
                 ofFloat.addListener(new v4(6, this, z10));
-                ofFloat.setInterpolator(er.f34420f);
+                ofFloat.setInterpolator(er.f34419f);
                 ofFloat.setDuration(200L);
                 ofFloat.start();
             }
@@ -343,20 +343,20 @@ public final class m extends FrameLayout {
         if (z10) {
             cv0Var.d.setVisibility(0);
             cv0Var.d.setText(hd.M0(2131746698, null));
-            cv0Var.f33707e.setText(hd.G(np.s1(i11).U5, "ProfileBotPreviewEmptyText", new Object[0]));
-            cv0Var.f33708f.i(hd.M0(2131746702, null), false, true);
+            cv0Var.f33709e.setText(hd.G(np.s1(i11).U5, "ProfileBotPreviewEmptyText", new Object[0]));
+            cv0Var.f33710f.i(hd.M0(2131746702, null), false, true);
             jVar2.setVisibility(8);
             dVar2.setVisibility(8);
         } else {
             cv0Var.d.setVisibility(8);
-            cv0Var.f33707e.setText(hd.a0(null, null, 2131746694, p21.O0(this.f13336a.E, null, null)));
-            cv0Var.f33708f.i(hd.M0(2131746702, null), false, true);
+            cv0Var.f33709e.setText(hd.a0(null, null, 2131746694, p21.O0(this.f13336a.E, null, null)));
+            cv0Var.f33710f.i(hd.M0(2131746702, null), false, true);
             jVar2.setVisibility(0);
             dVar2.setVisibility(0);
             dVar2.i(hd.M0(2131746696, null), false, true);
             dVar2.setOnClickListener(new b(this, 1));
         }
-        hi.d dVar3 = cv0Var.f33708f;
+        hi.d dVar3 = cv0Var.f33710f;
         if (this.f13345w.b() >= np.s1(i11).U5) {
             i12 = 8;
         }
@@ -375,7 +375,7 @@ public final class m extends FrameLayout {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         e eVar = this.f13341f;
-        eVar.setPadding(eVar.getPaddingLeft(), eVar.f39399f3, eVar.getPaddingRight(), this.K.getMeasuredHeight() + g0.L(42.0f));
+        eVar.setPadding(eVar.getPaddingLeft(), eVar.f39397f3, eVar.getPaddingRight(), this.K.getMeasuredHeight() + g0.L(42.0f));
     }
 
     public void setList(c6 c6Var) {

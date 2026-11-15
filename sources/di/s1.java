@@ -11,12 +11,12 @@ import org.telegram.messenger.u10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 public final class s1 implements u10 {
-    public final int f9377a;
-    public final is f9378b;
+    public final int f9363a;
+    public final is f9364b;
 
     public s1(is isVar, int i7) {
-        this.f9377a = i7;
-        this.f9378b = isVar;
+        this.f9363a = i7;
+        this.f9364b = isVar;
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class s1 implements u10 {
         int i7;
         hi.t tVar;
         float f10;
-        switch (this.f9377a) {
+        switch (this.f9363a) {
             case 0:
-                ((c6) this.f9378b).q2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((c6) this.f9364b).q2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                c6 c6Var = (c6) this.f9378b;
+                c6 c6Var = (c6) this.f9364b;
                 ArrayList arrayList = (ArrayList) obj;
                 s10 s10Var = (s10) obj2;
                 Runnable runnable = (Runnable) obj3;
@@ -52,7 +52,7 @@ public final class s1 implements u10 {
                 ConnectionsManager.getInstance(c6Var.f29679a).sendRequestTyped(craftstargift, new d3.b(1), new b2(c6Var, s10Var, arrayList, runnable, 0));
                 return;
             default:
-                hi.sa saVar = (hi.sa) this.f9378b;
+                hi.sa saVar = (hi.sa) this.f9364b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj3;

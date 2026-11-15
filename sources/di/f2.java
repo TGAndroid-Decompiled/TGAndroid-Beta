@@ -26,27 +26,27 @@ import org.telegram.ui.m80;
 import org.telegram.ui.n80;
 import org.telegram.ui.tp;
 public final class f2 implements Runnable {
-    public final int f8522a;
-    public final Object f8523b;
-    public final long f8524c;
+    public final int f8527a;
+    public final Object f8528b;
+    public final long f8529c;
     public final Object d;
-    public final Object f8525e;
+    public final Object f8530e;
 
-    public f2(v8 v8Var, Object obj, long j3, Object obj2, int i7) {
-        this.f8522a = i7;
-        this.d = v8Var;
-        this.f8523b = obj;
-        this.f8524c = j3;
-        this.f8525e = obj2;
+    public f2(u8 u8Var, Object obj, long j3, Object obj2, int i7) {
+        this.f8527a = i7;
+        this.d = u8Var;
+        this.f8528b = obj;
+        this.f8529c = j3;
+        this.f8530e = obj2;
     }
 
     private final void a() {
-        c40 c40Var = (c40) this.f8523b;
+        c40 c40Var = (c40) this.f8528b;
         org.telegram.ui.ActionBar.t1[] t1VarArr = (org.telegram.ui.ActionBar.t1[]) this.d;
-        TLRPC.User user = (TLRPC.User) this.f8525e;
+        TLRPC.User user = (TLRPC.User) this.f8530e;
         org.telegram.messenger.r3 r3Var = c40Var.V2;
-        if (r3Var != null && !c40Var.f45947n2) {
-            r3Var.a(this.f8524c);
+        if (r3Var != null && !c40Var.f45936n2) {
+            r3Var.a(this.f8529c);
             c40Var.Q0(true);
             k20 k20Var = c40Var.D3;
             if (k20Var != null) {
@@ -62,14 +62,14 @@ public final class f2 implements Runnable {
     }
 
     private final void b() {
-        TLObject tLObject = (TLObject) this.f8523b;
+        TLObject tLObject = (TLObject) this.f8528b;
         np npVar = (np) this.d;
-        tp tpVar = (tp) this.f8525e;
+        tp tpVar = (tp) this.f8530e;
         String str = LaunchActivity.C1;
         if (tLObject instanceof TL_stories.TL_stories_peerStories) {
             TL_stories.TL_stories_peerStories tL_stories_peerStories = (TL_stories.TL_stories_peerStories) tLObject;
             npVar.Y3(tL_stories_peerStories.users, false);
-            npVar.P1().d0(this.f8524c, tL_stories_peerStories.stories);
+            npVar.P1().d0(this.f8529c, tL_stories_peerStories.stories);
             tpVar.run();
             return;
         }
@@ -77,21 +77,21 @@ public final class f2 implements Runnable {
     }
 
     private final void c() {
-        n80 n80Var = (n80) this.f8523b;
+        n80 n80Var = (n80) this.f8528b;
         LaunchActivity launchActivity = n80Var.h;
         String str = (String) this.d;
-        org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f8525e;
+        org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f8530e;
         if (str != null) {
             org.telegram.messenger.c a10 = org.telegram.messenger.c.a(launchActivity.P);
-            int i7 = a10.f22778a;
+            int i7 = a10.f22782a;
             np s12 = np.s1(i7);
-            long j3 = this.f8524c;
+            long j3 = this.f8529c;
             long j10 = -j3;
             org.telegram.messenger.r3 g12 = s12.g1(j10, false, null);
             if (g12 != null) {
                 TLRPC.Chat M0 = np.s1(i7).M0(Long.valueOf(j10));
                 np.s1(i7).j1(j3);
-                org.telegram.ui.Components.voip.c2.l(M0, null, false, Boolean.valueOf(!g12.f26208b.rtmp_stream), launchActivity, e2Var, a10);
+                org.telegram.ui.Components.voip.c2.l(M0, null, false, Boolean.valueOf(!g12.f26216b.rtmp_stream), launchActivity, e2Var, a10);
                 return;
             }
             TLRPC.ChatFull N0 = np.s1(i7).N0(j10);
@@ -109,11 +109,11 @@ public final class f2 implements Runnable {
     }
 
     private final void d() {
-        PhotoViewer photoViewer = (PhotoViewer) this.f8523b;
+        PhotoViewer photoViewer = (PhotoViewer) this.f8528b;
         String str = (String) this.d;
-        ff ffVar = (ff) this.f8525e;
+        ff ffVar = (ff) this.f8530e;
         Drawable[] drawableArr = PhotoViewer.Z8;
-        long j3 = this.f8524c;
+        long j3 = this.f8529c;
         bi.i1 i1Var = new bi.i1(photoViewer, str, ffVar, j3, 7);
         if (photoViewer.E2) {
             Bitmap createBitmap = Bitmap.createBitmap(photoViewer.D2.getWidth(), photoViewer.D2.getHeight(), Bitmap.Config.ARGB_8888);
@@ -136,10 +136,10 @@ public final class f2 implements Runnable {
         TL_wallet.mnemonic_decryptedKeyPart mnemonic_decryptedkeypart;
         byte[] bArr2;
         byte[] bArr3;
-        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f8523b;
+        org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f8528b;
         TL_wallet.encryptedSecretPhrasePart[] encryptedsecretphrasepartArr = (TL_wallet.encryptedSecretPhrasePart[]) this.d;
-        long j3 = this.f8524c;
-        org.telegram.ui.Wallet.j jVar = (org.telegram.ui.Wallet.j) this.f8525e;
+        long j3 = this.f8529c;
+        org.telegram.ui.Wallet.j jVar = (org.telegram.ui.Wallet.j) this.f8530e;
         byte[] bArr4 = null;
         for (int i7 = 0; i7 < encryptedsecretphrasepartArr.length; i7++) {
             try {
@@ -267,11 +267,11 @@ public final class f2 implements Runnable {
     }
 
     private final void g() {
-        org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.f8523b;
-        z10 z10Var = (z10) this.f8525e;
+        org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.f8528b;
+        z10 z10Var = (z10) this.f8530e;
         String str = (String) this.d;
         if (z10Var != null) {
-            if (this.f8524c != p0Var.l()) {
+            if (this.f8529c != p0Var.l()) {
                 str = "STORAGE_CANCELED";
             }
             z10Var.a(str);
@@ -282,11 +282,11 @@ public final class f2 implements Runnable {
 
     private final void h() {
         org.telegram.ui.Wallet.i0 i0Var;
-        org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.f8523b;
+        org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.f8528b;
         org.telegram.ui.Wallet.i0 i0Var2 = (org.telegram.ui.Wallet.i0) this.d;
-        z10 z10Var = (z10) this.f8525e;
+        z10 z10Var = (z10) this.f8530e;
         try {
-            if (this.f8524c == p0Var.l()) {
+            if (this.f8529c == p0Var.l()) {
                 i0Var = i0Var2;
             } else {
                 i0Var = null;
@@ -304,43 +304,43 @@ public final class f2 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: di.f2.run():void");
     }
 
-    public f2(v8 v8Var, z10 z10Var, TL_stars.StarGift starGift, long j3) {
-        this.f8522a = 4;
-        this.d = v8Var;
-        this.f8525e = z10Var;
-        this.f8523b = starGift;
-        this.f8524c = j3;
+    public f2(u8 u8Var, z10 z10Var, TL_stars.StarGift starGift, long j3) {
+        this.f8527a = 4;
+        this.d = u8Var;
+        this.f8530e = z10Var;
+        this.f8528b = starGift;
+        this.f8529c = j3;
     }
 
     public f2(Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f8522a = i7;
-        this.f8523b = obj;
-        this.f8524c = j3;
+        this.f8527a = i7;
+        this.f8528b = obj;
+        this.f8529c = j3;
         this.d = obj2;
-        this.f8525e = obj3;
+        this.f8530e = obj3;
     }
 
     public f2(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f8522a = i7;
-        this.f8523b = obj;
+        this.f8527a = i7;
+        this.f8528b = obj;
         this.d = obj2;
-        this.f8524c = j3;
-        this.f8525e = obj3;
+        this.f8529c = j3;
+        this.f8530e = obj3;
     }
 
     public f2(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f8522a = i7;
-        this.f8523b = obj;
+        this.f8527a = i7;
+        this.f8528b = obj;
         this.d = obj2;
-        this.f8525e = obj3;
-        this.f8524c = j3;
+        this.f8530e = obj3;
+        this.f8529c = j3;
     }
 
     public f2(org.telegram.ui.Wallet.p0 p0Var, z10 z10Var, long j3, String str) {
-        this.f8522a = 25;
-        this.f8523b = p0Var;
-        this.f8525e = z10Var;
-        this.f8524c = j3;
+        this.f8527a = 25;
+        this.f8528b = p0Var;
+        this.f8530e = z10Var;
+        this.f8529c = j3;
         this.d = str;
     }
 }

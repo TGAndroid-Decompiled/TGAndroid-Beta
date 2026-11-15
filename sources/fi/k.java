@@ -84,25 +84,25 @@ public final class k extends v4.n0 {
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup = (q1Var = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList = currentMessagesGroup.f22710e;
                     yi currentPosition = q1Var.getCurrentPosition();
-                    if (currentPosition != null && currentPosition.f27754m != null) {
-                        Point point = org.telegram.messenger.g0.f23609q;
+                    if (currentPosition != null && currentPosition.f27756m != null) {
+                        Point point = org.telegram.messenger.g0.f23611q;
                         float max = Math.max(point.x, point.y) * 0.5f;
                         int extraInsetHeight = q1Var.getExtraInsetHeight();
                         int i10 = 0;
                         while (true) {
-                            if (i10 < currentPosition.f27754m.length) {
+                            if (i10 < currentPosition.f27756m.length) {
                                 extraInsetHeight += (int) Math.ceil(fArr[i10] * max);
                                 i10++;
                             } else {
-                                int round = (Math.round(org.telegram.messenger.g0.f23608p * 7.0f) * (currentPosition.d - currentPosition.f27746c)) + extraInsetHeight;
+                                int round = (Math.round(org.telegram.messenger.g0.f23610p * 7.0f) * (currentPosition.d - currentPosition.f27748c)) + extraInsetHeight;
                                 int size = arrayList.size();
                                 while (true) {
                                     if (i7 < size) {
                                         yi yiVar = (yi) arrayList.get(i7);
-                                        byte b10 = yiVar.f27746c;
-                                        byte b11 = currentPosition.f27746c;
-                                        if (b10 == b11 && ((yiVar.f27744a != currentPosition.f27744a || yiVar.f27745b != currentPosition.f27745b || b10 != b11 || yiVar.d != currentPosition.d) && b10 == b11)) {
-                                            round = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max * yiVar.f27748f), round);
+                                        byte b10 = yiVar.f27748c;
+                                        byte b11 = currentPosition.f27748c;
+                                        if (b10 == b11 && ((yiVar.f27746a != currentPosition.f27746a || yiVar.f27747b != currentPosition.f27747b || b10 != b11 || yiVar.d != currentPosition.d) && b10 == b11)) {
+                                            round = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max * yiVar.f27750f), round);
                                         } else {
                                             i7++;
                                         }
@@ -131,25 +131,25 @@ public final class k extends v4.n0 {
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup2 = (q1Var2 = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList2 = currentMessagesGroup2.f22710e;
                     yi currentPosition2 = q1Var2.getCurrentPosition();
-                    if (currentPosition2 != null && currentPosition2.f27754m != null) {
-                        Point point2 = org.telegram.messenger.g0.f23609q;
+                    if (currentPosition2 != null && currentPosition2.f27756m != null) {
+                        Point point2 = org.telegram.messenger.g0.f23611q;
                         float max2 = Math.max(point2.x, point2.y) * 0.5f;
                         int extraInsetHeight2 = q1Var2.getExtraInsetHeight();
                         int i12 = 0;
                         while (true) {
-                            if (i12 < currentPosition2.f27754m.length) {
+                            if (i12 < currentPosition2.f27756m.length) {
                                 extraInsetHeight2 += (int) Math.ceil(fArr2[i12] * max2);
                                 i12++;
                             } else {
-                                int round2 = (Math.round(org.telegram.messenger.g0.f23608p * 7.0f) * (currentPosition2.d - currentPosition2.f27746c)) + extraInsetHeight2;
+                                int round2 = (Math.round(org.telegram.messenger.g0.f23610p * 7.0f) * (currentPosition2.d - currentPosition2.f27748c)) + extraInsetHeight2;
                                 int size2 = arrayList2.size();
                                 while (true) {
                                     if (i11 < size2) {
                                         yi yiVar2 = (yi) arrayList2.get(i11);
-                                        byte b12 = yiVar2.f27746c;
-                                        byte b13 = currentPosition2.f27746c;
-                                        if (b12 == b13 && ((yiVar2.f27744a != currentPosition2.f27744a || yiVar2.f27745b != currentPosition2.f27745b || b12 != b13 || yiVar2.d != currentPosition2.d) && b12 == b13)) {
-                                            round2 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max2 * yiVar2.f27748f), round2);
+                                        byte b12 = yiVar2.f27748c;
+                                        byte b13 = currentPosition2.f27748c;
+                                        if (b12 == b13 && ((yiVar2.f27746a != currentPosition2.f27746a || yiVar2.f27747b != currentPosition2.f27747b || b12 != b13 || yiVar2.d != currentPosition2.d) && b12 == b13)) {
+                                            round2 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max2 * yiVar2.f27750f), round2);
                                         } else {
                                             i11++;
                                         }
@@ -243,25 +243,25 @@ public final class k extends v4.n0 {
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup3 = (q1Var3 = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList3 = currentMessagesGroup3.f22710e;
                     yi currentPosition3 = q1Var3.getCurrentPosition();
-                    if (currentPosition3 != null && currentPosition3.f27754m != null) {
-                        Point point3 = org.telegram.messenger.g0.f23609q;
+                    if (currentPosition3 != null && currentPosition3.f27756m != null) {
+                        Point point3 = org.telegram.messenger.g0.f23611q;
                         float max3 = Math.max(point3.x, point3.y) * 0.5f;
                         int extraInsetHeight3 = q1Var3.getExtraInsetHeight();
                         int i17 = 0;
                         while (true) {
-                            if (i17 < currentPosition3.f27754m.length) {
+                            if (i17 < currentPosition3.f27756m.length) {
                                 extraInsetHeight3 += (int) Math.ceil(fArr3[i17] * max3);
                                 i17++;
                             } else {
-                                int round3 = (Math.round(org.telegram.messenger.g0.f23608p * 7.0f) * (currentPosition3.d - currentPosition3.f27746c)) + extraInsetHeight3;
+                                int round3 = (Math.round(org.telegram.messenger.g0.f23610p * 7.0f) * (currentPosition3.d - currentPosition3.f27748c)) + extraInsetHeight3;
                                 int size3 = arrayList3.size();
                                 while (true) {
                                     if (i16 < size3) {
                                         yi yiVar3 = (yi) arrayList3.get(i16);
-                                        byte b17 = yiVar3.f27746c;
-                                        byte b18 = currentPosition3.f27746c;
-                                        if (b17 == b18 && ((yiVar3.f27744a != currentPosition3.f27744a || yiVar3.f27745b != currentPosition3.f27745b || b17 != b18 || yiVar3.d != currentPosition3.d) && b17 == b18)) {
-                                            round3 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max3 * yiVar3.f27748f), round3);
+                                        byte b17 = yiVar3.f27748c;
+                                        byte b18 = currentPosition3.f27748c;
+                                        if (b17 == b18 && ((yiVar3.f27746a != currentPosition3.f27746a || yiVar3.f27747b != currentPosition3.f27747b || b17 != b18 || yiVar3.d != currentPosition3.d) && b17 == b18)) {
+                                            round3 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max3 * yiVar3.f27750f), round3);
                                         } else {
                                             i16++;
                                         }
@@ -298,25 +298,25 @@ public final class k extends v4.n0 {
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup4 = (q1Var4 = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList4 = currentMessagesGroup4.f22710e;
                     yi currentPosition4 = q1Var4.getCurrentPosition();
-                    if (currentPosition4 != null && currentPosition4.f27754m != null) {
-                        Point point4 = org.telegram.messenger.g0.f23609q;
+                    if (currentPosition4 != null && currentPosition4.f27756m != null) {
+                        Point point4 = org.telegram.messenger.g0.f23611q;
                         float max4 = Math.max(point4.x, point4.y) * 0.5f;
                         int extraInsetHeight4 = q1Var4.getExtraInsetHeight();
                         int i19 = 0;
                         while (true) {
-                            if (i19 < currentPosition4.f27754m.length) {
+                            if (i19 < currentPosition4.f27756m.length) {
                                 extraInsetHeight4 += (int) Math.ceil(fArr4[i19] * max4);
                                 i19++;
                             } else {
-                                int round4 = (Math.round(org.telegram.messenger.g0.f23608p * 7.0f) * (currentPosition4.d - currentPosition4.f27746c)) + extraInsetHeight4;
+                                int round4 = (Math.round(org.telegram.messenger.g0.f23610p * 7.0f) * (currentPosition4.d - currentPosition4.f27748c)) + extraInsetHeight4;
                                 int size4 = arrayList4.size();
                                 while (true) {
                                     if (i18 < size4) {
                                         yi yiVar4 = (yi) arrayList4.get(i18);
-                                        byte b19 = yiVar4.f27746c;
-                                        byte b20 = currentPosition4.f27746c;
-                                        if (b19 == b20 && ((yiVar4.f27744a != currentPosition4.f27744a || yiVar4.f27745b != currentPosition4.f27745b || b19 != b20 || yiVar4.d != currentPosition4.d) && b19 == b20)) {
-                                            round4 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max4 * yiVar4.f27748f), round4);
+                                        byte b19 = yiVar4.f27748c;
+                                        byte b20 = currentPosition4.f27748c;
+                                        if (b19 == b20 && ((yiVar4.f27746a != currentPosition4.f27746a || yiVar4.f27747b != currentPosition4.f27747b || b19 != b20 || yiVar4.d != currentPosition4.d) && b19 == b20)) {
+                                            round4 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max4 * yiVar4.f27750f), round4);
                                         } else {
                                             i18++;
                                         }
@@ -355,14 +355,14 @@ public final class k extends v4.n0 {
                     }
                     if (RecyclerView.R(childAt) >= 0 && !(childAt instanceof org.telegram.ui.Cells.x3) && !(view instanceof org.telegram.ui.Cells.x3)) {
                         int bottom = childAt.getBottom();
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             L = 0.0f;
                         } else {
                             L = org.telegram.messenger.g0.L(72.0f);
                         }
                         float f10 = L;
                         float f11 = bottom;
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i7 = org.telegram.messenger.g0.L(72.0f);
                         } else {
                             i7 = 0;

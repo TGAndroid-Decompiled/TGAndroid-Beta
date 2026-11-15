@@ -33,9 +33,9 @@ public final class y extends b0 {
                 this.d = u41Var;
                 u41Var.r1();
                 u41 u41Var2 = this.d;
-                u41Var2.f39895g3.f38201r = false;
+                u41Var2.f39892g3.f38199r = false;
                 u41Var2.setClipToPadding(false);
-                this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f23604n);
+                this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f23606n);
                 this.d.j(new z4(this, 25));
                 this.f19528c.addView(this.d, 0, ja.c(-1.0f, -1));
                 org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, d0Var.J0);
@@ -65,11 +65,11 @@ public final class y extends b0 {
                     dVar.setBackground(background);
                     l6 o4 = q6.o(dVar, true);
                     o4.d = background;
-                    o4.f29372e = null;
-                    o4.f29373f = null;
+                    o4.f29373e = null;
+                    o4.f29374f = null;
                     if (background != null) {
                         k6 k6Var = new k6();
-                        o4.f29372e = k6Var;
+                        o4.f29373e = k6Var;
                         k6Var.c(i12, i11, 3, 0.125f, e6Var);
                         k6Var.f29348g = q6.t(background);
                     }
@@ -117,7 +117,7 @@ public final class y extends b0 {
                     }
                 });
                 f10.addView(dVar2, ja.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
-                this.f19528c.addView(f10, ja.f(-2.0f, -1, 80, 0, 0, 0, org.telegram.messenger.g0.f23604n));
+                this.f19528c.addView(f10, ja.f(-2.0f, -1, 80, 0, 0, 0, org.telegram.messenger.g0.f23606n));
                 a();
                 return;
             default:
@@ -127,9 +127,9 @@ public final class y extends b0 {
                 this.d = u41Var3;
                 u41Var3.r1();
                 u41 u41Var4 = this.d;
-                u41Var4.f39895g3.f38201r = false;
+                u41Var4.f39892g3.f38199r = false;
                 u41Var4.setClipToPadding(false);
-                this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f23604n);
+                this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f23606n);
                 this.f19528c.addView(d0Var.B1, ja.g());
                 this.f19528c.addView(this.d, 0, ja.c(-1.0f, -1));
                 this.f19528c.addView(d0Var.D1, ja.g());
@@ -164,7 +164,7 @@ public final class y extends b0 {
                 if (z10) {
                     d0Var.f19546t1.setVisibility(8);
                 }
-                this.f19528c.addView(d0Var.f19546t1, ja.f(48.0f, -1, 80, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f23604n));
+                this.f19528c.addView(d0Var.f19546t1, ja.f(48.0f, -1, 80, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f23606n));
                 a();
                 return;
         }
@@ -174,7 +174,7 @@ public final class y extends b0 {
     public float b() {
         switch (this.h) {
             case 0:
-                return m7.a(this.f19647n.n1.f57081e) * super.b();
+                return m7.a(this.f19647n.n1.f57085e) * super.b();
             default:
                 return super.b();
         }
@@ -185,7 +185,7 @@ public final class y extends b0 {
         switch (this.h) {
             case 0:
                 super.c();
-                this.f19647n.f19552z1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f23603m, b() + org.telegram.messenger.g0.L(4.0f)));
+                this.f19647n.f19552z1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f23605m, b() + org.telegram.messenger.g0.L(4.0f)));
                 return;
             default:
                 super.c();

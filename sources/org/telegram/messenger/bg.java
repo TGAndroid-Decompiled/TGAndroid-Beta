@@ -38,7 +38,7 @@ public final class bg implements Runnable {
                 return;
             case 3:
                 try {
-                    SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27222b.executeFast("REPLACE INTO web_recent_v3 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27221b.executeFast("REPLACE INTO web_recent_v3 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     executeFast.requery();
                     executeFast.bindString(1, "s_" + tL_messages_stickerSet.set.f28078id);
                     executeFast.bindInteger(2, 6);
@@ -62,7 +62,7 @@ public final class bg implements Runnable {
                 }
             default:
                 try {
-                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27222b.executeFast("REPLACE INTO stickersets2 VALUES(?, ?, ?, ?, ?)");
+                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27221b.executeFast("REPLACE INTO stickersets2 VALUES(?, ?, ?, ?, ?)");
                     executeFast2.requery();
                     NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tL_messages_stickerSet.getObjectSize());
                     tL_messages_stickerSet.serializeToStream(nativeByteBuffer2);

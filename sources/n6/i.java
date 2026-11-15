@@ -14,7 +14,7 @@ public class i extends p {
     public final Dialog O() {
         Dialog dialog = this.B0;
         if (dialog == null) {
-            this.f2411s0 = false;
+            this.f2414s0 = false;
             if (this.D0 == null) {
                 Context n10 = n();
                 q6.m.g(n10);

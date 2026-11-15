@@ -405,9 +405,9 @@ public abstract class g extends View implements i {
                 e eVar = this.R0;
                 if (eVar != null) {
                     getSelectedDate();
-                    j41 j41Var = (j41) ((ni0) eVar).f49570b;
+                    j41 j41Var = (j41) ((ni0) eVar).f49569b;
                     j41Var.f();
-                    j41Var.f48216b.f19456u0.d(false, false);
+                    j41Var.f48201b.f19456u0.d(false, false);
                 }
                 B();
                 invalidate();
@@ -607,7 +607,7 @@ public abstract class g extends View implements i {
                     this.f19458w = f12;
                 } else {
                     float f14 = this.U0;
-                    this.f19458w = (er.f34421g.getInterpolation(f13) * (f12 - f14)) + f14;
+                    this.f19458w = (er.f34420g.getInterpolation(f13) * (f12 - f14)) + f14;
                 }
                 invalidate();
             }
@@ -622,7 +622,7 @@ public abstract class g extends View implements i {
                         this.f19460x = f16;
                     } else {
                         float f18 = this.V0;
-                        this.f19460x = (er.f34421g.getInterpolation(f17) * (f16 - f18)) + f18;
+                        this.f19460x = (er.f34420g.getInterpolation(f17) * (f16 - f18)) + f18;
                     }
                     invalidate();
                 }
@@ -1156,7 +1156,7 @@ public abstract class g extends View implements i {
         if (!this.J) {
             setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i7));
         } else {
-            setMeasuredDimension(View.MeasureSpec.getSize(i7), g0.f23609q.y - g0.L(56.0f));
+            setMeasuredDimension(View.MeasureSpec.getSize(i7), g0.f23611q.y - g0.L(56.0f));
         }
         int measuredWidth = getMeasuredWidth();
         int i11 = this.Y0;

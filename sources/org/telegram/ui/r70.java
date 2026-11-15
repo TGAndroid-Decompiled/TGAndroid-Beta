@@ -5,22 +5,22 @@ import android.os.StatFs;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 public final class r70 implements Runnable {
-    public final int f50867a;
-    public final LaunchActivity f50868b;
-    public final int f50869c;
+    public final int f50866a;
+    public final LaunchActivity f50867b;
+    public final int f50868c;
 
     public r70(LaunchActivity launchActivity, int i7, int i10) {
-        this.f50867a = i10;
-        this.f50868b = launchActivity;
-        this.f50869c = i7;
+        this.f50866a = i10;
+        this.f50867b = launchActivity;
+        this.f50868c = i7;
     }
 
     @Override
     public final void run() {
         File z10;
-        int i7 = this.f50867a;
-        int i10 = this.f50869c;
-        LaunchActivity launchActivity = this.f50868b;
+        int i7 = this.f50866a;
+        int i10 = this.f50868c;
+        LaunchActivity launchActivity = this.f50867b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.C1;

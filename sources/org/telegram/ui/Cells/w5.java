@@ -35,7 +35,7 @@ public final class w5 extends FrameLayout {
         di.k4 k4Var = this.f31882e;
         org.telegram.ui.Components.i9 i9Var = this.f31879a;
         Drawable drawable = getResources().getDrawable(2131232451);
-        String str = ffVar.f27709c;
+        String str = ffVar.f27711c;
         int i7 = ffVar.C;
         String str2 = ffVar.I;
         if (str != null) {
@@ -46,7 +46,7 @@ public final class w5 extends FrameLayout {
                 k4Var.setVisibility(4);
                 setContentDescription(hd.M0(2131753962, null));
                 i9Var.h("thumb://" + i7 + ":" + str2, null, drawable);
-            } else if (ffVar.f27708b) {
+            } else if (ffVar.f27710b) {
                 k4Var.setVisibility(0);
                 this.d.setText(org.telegram.messenger.g0.g0(ffVar.E, false, false));
                 StringBuilder sb2 = new StringBuilder();
@@ -83,7 +83,7 @@ public final class w5 extends FrameLayout {
             i9Var.j(gc.i(photoSize2, jfVar.K), "80_80", drawable, jfVar);
             return;
         }
-        String str = jfVar.f27709c;
+        String str = jfVar.f27711c;
         if (str != null) {
             i9Var.h(str, null, drawable);
             return;

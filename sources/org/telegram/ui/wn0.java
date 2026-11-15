@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 public final class wn0 implements Runnable {
-    public final int f52939a;
-    public final PhotoViewer f52940b;
+    public final int f52938a;
+    public final PhotoViewer f52939b;
 
     public wn0(PhotoViewer photoViewer, int i7) {
-        this.f52939a = i7;
-        this.f52940b = photoViewer;
+        this.f52938a = i7;
+        this.f52939b = photoViewer;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f52939a;
-        PhotoViewer photoViewer = this.f52940b;
+        int i7 = this.f52938a;
+        PhotoViewer photoViewer = this.f52939b;
         switch (i7) {
             case 0:
                 photoViewer.f42837n7 = null;

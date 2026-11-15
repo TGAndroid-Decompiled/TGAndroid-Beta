@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class x6 implements Runnable {
-    public final int f41593a;
-    public final y7 f41594b;
-    public final m60 f41595c;
+    public final int f41596a;
+    public final y7 f41597b;
+    public final m60 f41598c;
     public final org.telegram.messenger.gj d;
 
     public x6(y7 y7Var, org.telegram.messenger.gj gjVar, m60 m60Var, int i7) {
-        this.f41593a = i7;
-        this.f41594b = y7Var;
+        this.f41596a = i7;
+        this.f41597b = y7Var;
         this.d = gjVar;
-        this.f41595c = m60Var;
+        this.f41598c = m60Var;
     }
 
     @Override
@@ -22,10 +22,10 @@ public final class x6 implements Runnable {
         ArrayList j3;
         TLRPC.TL_document tL_document;
         String a02;
-        int i7 = this.f41593a;
-        m60 m60Var = this.f41595c;
+        int i7 = this.f41596a;
+        m60 m60Var = this.f41598c;
         org.telegram.messenger.gj gjVar = this.d;
-        y7 y7Var = this.f41594b;
+        y7 y7Var = this.f41597b;
         switch (i7) {
             case 0:
                 y7Var.getClass();
@@ -51,14 +51,14 @@ public final class x6 implements Runnable {
                 y7Var.V0(gjVar);
                 return;
             case 5:
-                org.telegram.messenger.hp hpVar = y7Var.f41913q2;
+                org.telegram.messenger.hp hpVar = y7Var.f41905q2;
                 TLRPC.Document a10 = hpVar.a();
-                hpVar.f24202c.remove(gjVar);
+                hpVar.f24205c.remove(gjVar);
                 if (hpVar.a() != a10) {
                     hpVar.e();
                 }
-                y7Var.f41915r2.remove(gjVar);
-                y7Var.f41920u1.f();
+                y7Var.f41907r2.remove(gjVar);
+                y7Var.f41912u1.f();
                 m60Var.u();
                 y7Var.U0(false);
                 org.telegram.messenger.k5.n(null, 2131753911, new cc((FrameLayout) y7Var.f29682b, y7Var.J0), 2131624052, 36);
@@ -68,7 +68,7 @@ public final class x6 implements Runnable {
                 return;
             case 7:
                 long e10 = org.telegram.messenger.m10.i(y7Var.f29679a).e();
-                int i10 = org.telegram.messenger.m10.f24934t0;
+                int i10 = org.telegram.messenger.m10.f24940t0;
                 int i11 = y7Var.f29679a;
                 if (i10 != i11) {
                     y7Var.A2.O0(i11);
@@ -88,7 +88,7 @@ public final class x6 implements Runnable {
                     org.telegram.messenger.ez.C(y7Var.f29679a).q0(j3, e10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
                 } else {
                     org.telegram.messenger.ez C = org.telegram.messenger.ez.C(y7Var.f29679a);
-                    org.telegram.messenger.cz e11 = org.telegram.messenger.cz.e(tL_document, null, gjVar.f23817k.attachPath, e10, null, null, null, null, null, true, 0, 0, 0, y7Var.f41913q2, false);
+                    org.telegram.messenger.cz e11 = org.telegram.messenger.cz.e(tL_document, null, gjVar.f23819k.attachPath, e10, null, null, null, null, null, true, 0, 0, 0, y7Var.f41905q2, false);
                     e10 = e10;
                     C.r0(e11);
                 }
@@ -115,9 +115,9 @@ public final class x6 implements Runnable {
     }
 
     public x6(y7 y7Var, m60 m60Var, org.telegram.messenger.gj gjVar, int i7) {
-        this.f41593a = i7;
-        this.f41594b = y7Var;
-        this.f41595c = m60Var;
+        this.f41596a = i7;
+        this.f41597b = y7Var;
+        this.f41598c = m60Var;
         this.d = gjVar;
     }
 }

@@ -4,27 +4,27 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 public final class ef implements bi.w0 {
-    public final int f34283a;
-    public final gf f34284b;
-    public final FrameLayout f34285c;
+    public final int f34282a;
+    public final gf f34283b;
+    public final FrameLayout f34284c;
 
     public ef(gf gfVar, FrameLayout frameLayout, int i7) {
-        this.f34283a = i7;
-        this.f34284b = gfVar;
-        this.f34285c = frameLayout;
+        this.f34282a = i7;
+        this.f34283b = gfVar;
+        this.f34284c = frameLayout;
     }
 
     @Override
     public final void a(Canvas canvas) {
         org.telegram.ui.aj ajVar;
         org.telegram.ui.aj ajVar2;
-        switch (this.f34283a) {
+        switch (this.f34282a) {
             case 0:
-                gf gfVar = this.f34284b;
+                gf gfVar = this.f34283b;
                 gfVar.getClass();
                 int[] iArr = new int[2];
                 int[] iArr2 = new int[2];
-                this.f34285c.getLocationInWindow(iArr);
+                this.f34284c.getLocationInWindow(iArr);
                 ChatActivityEnterView chatActivityEnterView = gfVar.f34928a;
                 st0 st0Var = chatActivityEnterView.U1;
                 st0Var.getLocationInWindow(iArr2);
@@ -47,11 +47,11 @@ public final class ef implements bi.w0 {
                 canvas.restore();
                 return;
             default:
-                gf gfVar2 = this.f34284b;
+                gf gfVar2 = this.f34283b;
                 gfVar2.getClass();
                 int[] iArr3 = new int[2];
                 int[] iArr4 = new int[2];
-                this.f34285c.getLocationInWindow(iArr3);
+                this.f34284c.getLocationInWindow(iArr3);
                 ChatActivityEnterView chatActivityEnterView2 = gfVar2.f34928a;
                 st0 st0Var2 = chatActivityEnterView2.U1;
                 st0Var2.getLocationInWindow(iArr4);

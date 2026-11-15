@@ -32,30 +32,30 @@ import org.telegram.ui.yw;
 import ug.t1;
 import wg.c1;
 public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
-    public final int f3226a;
-    public final long f3227b;
-    public final Object f3228c;
+    public final int f3229a;
+    public final long f3230b;
+    public final Object f3231c;
     public final Object d;
-    public final Object f3229e;
+    public final Object f3232e;
 
     public e0(Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f3226a = i7;
-        this.f3228c = obj;
-        this.f3227b = j3;
+        this.f3229a = i7;
+        this.f3231c = obj;
+        this.f3230b = j3;
         this.d = obj2;
-        this.f3229e = obj3;
+        this.f3232e = obj3;
     }
 
     @Override
     public void L(int i7, int i10, boolean z10) {
-        an.A1((an) this.f3228c, (ArrayList) this.d, this.f3227b, (ok0) this.f3229e, z10, i7);
+        an.A1((an) this.f3231c, (ArrayList) this.d, this.f3230b, (ok0) this.f3232e, z10, i7);
     }
 
     @Override
     public void V(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        an anVar = (an) this.f3228c;
+        an anVar = (an) this.f3231c;
         TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3229e;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3232e;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             fileLocationArr[0] = photoSize2.location;
             fileLocationArr2[0] = photoSize.location;
@@ -76,33 +76,33 @@ public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        anVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new g0(anVar, fileLocationArr, str, fileLocationArr2, this.f3227b));
+        anVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new g0(anVar, fileLocationArr, str, fileLocationArr2, this.f3230b));
     }
 
     @Override
     public ScheduledFuture a(final cf cfVar) {
-        switch (this.f3226a) {
+        switch (this.f3229a) {
             case 7:
-                v9.f fVar = (v9.f) this.f3228c;
-                return fVar.f58754b.schedule(new v9.d(fVar, (Runnable) this.d, cfVar, 1), this.f3227b, (TimeUnit) this.f3229e);
+                v9.f fVar = (v9.f) this.f3231c;
+                return fVar.f58754b.schedule(new v9.d(fVar, (Runnable) this.d, cfVar, 1), this.f3230b, (TimeUnit) this.f3232e);
             default:
-                final v9.f fVar2 = (v9.f) this.f3228c;
+                final v9.f fVar2 = (v9.f) this.f3231c;
                 final Callable callable = (Callable) this.d;
                 return fVar2.f58754b.schedule(new Callable() {
                     @Override
                     public final Object call() {
                         return f.this.f58753a.submit(new t1(2, callable, cfVar));
                     }
-                }, this.f3227b, (TimeUnit) this.f3229e);
+                }, this.f3230b, (TimeUnit) this.f3232e);
         }
     }
 
     @Override
     public Bitmap d(BitmapFactory.Options options) {
-        x5 x5Var = (x5) this.f3228c;
+        x5 x5Var = (x5) this.f3231c;
         d7 d7Var = (d7) this.d;
-        long j3 = this.f3227b;
-        String str = (String) this.f3229e;
+        long j3 = this.f3230b;
+        String str = (String) this.f3232e;
         if (d7Var.K) {
             String str2 = d7Var.N;
             if (str2 != null) {
@@ -125,9 +125,9 @@ public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
 
     @Override
     public Object g() {
-        ia.c cVar = (ia.c) this.f3228c;
+        ia.c cVar = (ia.c) this.f3231c;
         Iterable iterable = (Iterable) this.d;
-        o5.i iVar = (o5.i) this.f3229e;
+        o5.i iVar = (o5.i) this.f3232e;
         v5.g gVar = (v5.g) ((v5.d) cVar.f15875c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
@@ -147,7 +147,7 @@ public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
                 a10.endTransaction();
             }
         }
-        gVar.c(new ai.c0(((x5.a) cVar.f15878g).s() + this.f3227b, iVar, 14));
+        gVar.c(new ai.d0(((x5.a) cVar.f15878g).s() + this.f3230b, iVar, 14));
         return null;
     }
 
@@ -163,29 +163,29 @@ public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f3226a) {
+        switch (this.f3229a) {
             case 1:
-                c6 c6Var = (c6) this.f3228c;
-                c1 c1Var = (c1) this.f3229e;
+                c6 c6Var = (c6) this.f3231c;
+                c1 c1Var = (c1) this.f3232e;
                 c6Var.getClass();
-                c6Var.r1(this.f3227b, ((TL_stars.starGiftDepositPayload[]) this.d)[0], t1Var.h(i7, true, true), c1Var);
+                c6Var.r1(this.f3230b, ((TL_stars.starGiftDepositPayload[]) this.d)[0], t1Var.h(i7, true, true), c1Var);
                 return;
             case 4:
-                r3 r3Var = (r3) this.f3228c;
-                Runnable runnable = (Runnable) this.f3229e;
+                r3 r3Var = (r3) this.f3231c;
+                Runnable runnable = (Runnable) this.f3232e;
                 boolean z10 = false;
                 c2 c2Var = ((c2[]) this.d)[0];
                 if (c2Var != null && c2Var.b()) {
                     z10 = true;
                 }
-                c40.B1(r3Var, z10, this.f3227b, runnable);
+                c40.B1(r3Var, z10, this.f3230b, runnable);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.f3229e;
-                ProfileActivity profileActivity = ((pv0) this.f3228c).f50383b;
+                TLRPC.User user = (TLRPC.User) this.f3232e;
+                ProfileActivity profileActivity = ((pv0) this.f3231c).f50374b;
                 profileActivity.N1 = true;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                long j3 = -this.f3227b;
+                long j3 = -this.f3230b;
                 k10.putLong("chat_id", j3);
                 if (profileActivity.getMessagesController().E(k10, (yw) this.d, null, null)) {
                     an anVar = new an(k10);
@@ -205,19 +205,19 @@ public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
     }
 
     public e0(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f3226a = i7;
-        this.f3228c = obj;
+        this.f3229a = i7;
+        this.f3231c = obj;
         this.d = obj2;
-        this.f3227b = j3;
-        this.f3229e = obj3;
+        this.f3230b = j3;
+        this.f3232e = obj3;
     }
 
     public e0(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f3226a = i7;
-        this.f3228c = obj;
+        this.f3229a = i7;
+        this.f3231c = obj;
         this.d = obj2;
-        this.f3229e = obj3;
-        this.f3227b = j3;
+        this.f3232e = obj3;
+        this.f3230b = j3;
     }
 
     @Override

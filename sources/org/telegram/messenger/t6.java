@@ -8,36 +8,36 @@ import android.view.ActionMode;
 import android.view.Menu;
 import org.telegram.ui.Components.y31;
 public final class t6 extends org.telegram.ui.Components.ft {
-    public final org.telegram.ui.Components.x4 f26622e2;
-    public int f26623f2;
-    public final org.telegram.ui.Components.g6 f26624g2;
-    public final int f26625h2;
-    public final org.telegram.ui.ActionBar.e6 f26626i2;
+    public final org.telegram.ui.Components.x4 f26631e2;
+    public int f26632f2;
+    public final org.telegram.ui.Components.g6 f26633g2;
+    public final int f26634h2;
+    public final org.telegram.ui.ActionBar.e6 f26635i2;
 
     public t6(Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7, org.telegram.ui.ActionBar.e6 e6Var2) {
         super(context, e6Var);
-        this.f26625h2 = i7;
-        this.f26626i2 = e6Var2;
-        this.f26622e2 = new org.telegram.ui.Components.x4(this);
+        this.f26634h2 = i7;
+        this.f26635i2 = e6Var2;
+        this.f26631e2 = new org.telegram.ui.Components.x4(this);
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(false, true, true);
-        this.f26624g2 = g6Var;
+        this.f26633g2 = g6Var;
         g6Var.n(0.2f, 160L, org.telegram.ui.Components.er.h);
         g6Var.w(g0.L(15.33f));
         g6Var.setCallback(this);
-        g6Var.f34829b = 5;
+        g6Var.f34833b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i7;
         super.dispatchDraw(canvas);
-        if (this.f26623f2 < 0) {
+        if (this.f26632f2 < 0) {
             i7 = org.telegram.ui.ActionBar.j6.f29070p7;
         } else {
             i7 = org.telegram.ui.ActionBar.j6.P5;
         }
-        int a10 = this.f26622e2.a(org.telegram.ui.ActionBar.j6.w0(i7, this.f26626i2), false);
-        org.telegram.ui.Components.g6 g6Var = this.f26624g2;
+        int a10 = this.f26631e2.a(org.telegram.ui.ActionBar.j6.w0(i7, this.f26635i2), false);
+        org.telegram.ui.Components.g6 g6Var = this.f26633g2;
         g6Var.u(a10);
         g6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
         g6Var.draw(canvas);
@@ -62,13 +62,13 @@ public final class t6 extends org.telegram.ui.Components.ft {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         super.onTextChanged(charSequence, i7, i10, i11);
-        org.telegram.ui.Components.g6 g6Var = this.f26624g2;
+        org.telegram.ui.Components.g6 g6Var = this.f26633g2;
         if (g6Var != null) {
-            this.f26623f2 = this.f26625h2 - charSequence.length();
+            this.f26632f2 = this.f26634h2 - charSequence.length();
             g6Var.a();
             String str = "";
-            if (this.f26623f2 <= 4) {
-                str = "" + this.f26623f2;
+            if (this.f26632f2 <= 4) {
+                str = "" + this.f26632f2;
             }
             g6Var.t(str, true, true);
         }
@@ -76,7 +76,7 @@ public final class t6 extends org.telegram.ui.Components.ft {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f26624g2 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f26633g2 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

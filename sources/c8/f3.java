@@ -1,6 +1,6 @@
 package c8;
 public final class f3 implements na.d {
-    public static final f3 f4281a = new Object();
+    public static final f3 f4284a = new Object();
 
     static {
         r.b.u(a8.p0.x(w.class, new s(1)));

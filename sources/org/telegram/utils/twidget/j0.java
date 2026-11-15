@@ -3,7 +3,7 @@ package org.telegram.utils.twidget;
 import android.content.Context;
 import android.os.Process;
 import android.text.TextUtils;
-import di.g9;
+import di.f9;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.np;
@@ -99,7 +99,7 @@ public final class j0 implements Runnable {
                                         } else {
                                             str = str2;
                                         }
-                                        a02.f27220a.c(new g9(a02, i12, j11, str, j10, (String) null));
+                                        a02.f27219a.c(new f9(a02, i12, j11, str, j10, (String) null));
                                         str2 = str2;
                                     }
                                 }

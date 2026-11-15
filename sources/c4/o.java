@@ -10,30 +10,30 @@ import h2.l0;
 import h2.x;
 import java.io.EOFException;
 public final class o implements i0 {
-    public final i0 f4118a;
-    public final k f4119b;
-    public m f4123g;
+    public final i0 f4121a;
+    public final k f4122b;
+    public m f4126g;
     public u h;
-    public boolean f4124i;
+    public boolean f4127i;
     public int d = 0;
-    public int f4121e = 0;
-    public byte[] f4122f = l0.f13472b;
-    public final x f4120c = new x();
+    public int f4124e = 0;
+    public byte[] f4125f = l0.f13472b;
+    public final x f4123c = new x();
 
     public o(i0 i0Var, k kVar) {
-        this.f4118a = i0Var;
-        this.f4119b = kVar;
+        this.f4121a = i0Var;
+        this.f4122b = kVar;
     }
 
     @Override
     public final void a(x xVar, int i7, int i10) {
-        if (this.f4123g == null) {
-            this.f4118a.a(xVar, i7, i10);
+        if (this.f4126g == null) {
+            this.f4121a.a(xVar, i7, i10);
             return;
         }
         h(i7);
-        xVar.k(this.f4121e, i7, this.f4122f);
-        this.f4121e += i7;
+        xVar.k(this.f4124e, i7, this.f4125f);
+        this.f4124e += i7;
     }
 
     @Override
@@ -53,18 +53,18 @@ public final class o implements i0 {
 
     @Override
     public final int f(e2.n nVar, int i7, boolean z10) {
-        if (this.f4123g == null) {
-            return this.f4118a.f(nVar, i7, z10);
+        if (this.f4126g == null) {
+            return this.f4121a.f(nVar, i7, z10);
         }
         h(i7);
-        int read = nVar.read(this.f4122f, this.f4121e, i7);
+        int read = nVar.read(this.f4125f, this.f4124e, i7);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.f4121e += read;
+        this.f4124e += read;
         return read;
     }
 
@@ -81,7 +81,7 @@ public final class o implements i0 {
         }
         ja.f(z10);
         boolean equals = uVar.equals(this.h);
-        k kVar = this.f4119b;
+        k kVar = this.f4122b;
         if (!equals) {
             this.h = uVar;
             if (kVar.L(uVar)) {
@@ -89,10 +89,10 @@ public final class o implements i0 {
             } else {
                 mVar = null;
             }
-            this.f4123g = mVar;
+            this.f4126g = mVar;
         }
-        m mVar2 = this.f4123g;
-        i0 i0Var = this.f4118a;
+        m mVar2 = this.f4126g;
+        i0 i0Var = this.f4121a;
         if (mVar2 == null) {
             i0Var.g(uVar);
             return;
@@ -107,14 +107,14 @@ public final class o implements i0 {
 
     public final void h(int i7) {
         byte[] bArr;
-        int length = this.f4122f.length;
-        int i10 = this.f4121e;
+        int length = this.f4125f.length;
+        int i10 = this.f4124e;
         if (length - i10 >= i7) {
             return;
         }
         int i11 = i10 - this.d;
         int max = Math.max(i11 * 2, i7 + i11);
-        byte[] bArr2 = this.f4122f;
+        byte[] bArr2 = this.f4125f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -122,8 +122,8 @@ public final class o implements i0 {
         }
         System.arraycopy(bArr2, this.d, bArr, 0, i11);
         this.d = 0;
-        this.f4121e = i11;
-        this.f4122f = bArr;
+        this.f4124e = i11;
+        this.f4125f = bArr;
     }
 
     @Override

@@ -87,7 +87,7 @@ public final class e0 implements Runnable {
                     if (obj instanceof gj) {
                         gjVar = (gj) obj;
                     }
-                    long j3 = E.f23272a;
+                    long j3 = E.f23279a;
                     if (j3 >= 0) {
                         i7 = 1;
                     } else if (org.telegram.messenger.t3.V(np.s1(i15).M0(Long.valueOf(-j3)))) {
@@ -100,8 +100,8 @@ public final class e0 implements Runnable {
                     }
                 }
                 ns.f(i15).k(142, str5, file);
-                fc fcVar = pbVar.f25919b;
-                fcVar.f23476s.c(new cg(fcVar, str5, this.f21650c, file, 5));
+                fc fcVar = pbVar.f25921b;
+                fcVar.f23479s.c(new cg(fcVar, str5, this.f21650c, file, 5));
                 return;
             case 2:
                 ij ijVar = (ij) obj4;
@@ -139,10 +139,10 @@ public final class e0 implements Runnable {
                     if (i17 < arrayList.size()) {
                         org.telegram.messenger.d5 d5Var = (org.telegram.messenger.d5) arrayList.get(i17);
                         ij ijVar3 = ijVar2;
-                        String lowerCase2 = org.telegram.messenger.g5.m(r62, d5Var.f23037i, d5Var.f23038j).toLowerCase();
+                        String lowerCase2 = org.telegram.messenger.g5.m(r62, d5Var.f23045i, d5Var.f23046j).toLowerCase();
                         ArrayList arrayList5 = arrayList;
                         String S02 = hd.E0().S0(lowerCase2, true, r62);
-                        TLRPC.User user = d5Var.f23041m;
+                        TLRPC.User user = d5Var.f23049m;
                         if (user != null) {
                             strArr = strArr2;
                             String lowerCase3 = org.telegram.messenger.g5.m(r62, user.first_name, user.last_name).toLowerCase();
@@ -163,7 +163,7 @@ public final class e0 implements Runnable {
                             String str7 = strArr[i19];
                             if ((str2 == null || (!str2.startsWith(str7) && !i5.c.A(" ", str7, str2))) && (str3 == null || (!str3.startsWith(str7) && !i5.c.A(" ", str7, str3)))) {
                                 str4 = str2;
-                                TLRPC.User user2 = d5Var.f23041m;
+                                TLRPC.User user2 = d5Var.f23049m;
                                 if (user2 != null && (n10 = q10.n(user2)) != null && n10.startsWith(str7)) {
                                     c10 = 2;
                                 } else if (!lowerCase2.startsWith(str7) && !i5.c.A(" ", str7, lowerCase2) && (S02 == null || (!S02.startsWith(str7) && !i5.c.A(" ", str7, S02)))) {
@@ -176,16 +176,16 @@ public final class e0 implements Runnable {
                                 c10 = 1;
                             }
                             String str8 = lowerCase2;
-                            if (c10 != 0 && (!d5Var.f23034e.isEmpty() || !d5Var.f23036g.isEmpty())) {
+                            if (c10 != 0 && (!d5Var.f23042e.isEmpty() || !d5Var.f23044g.isEmpty())) {
                                 if (c10 == 3) {
-                                    arrayList4.add(org.telegram.messenger.g0.r0(d5Var.f23037i, d5Var.f23038j, str7));
+                                    arrayList4.add(org.telegram.messenger.g0.r0(d5Var.f23045i, d5Var.f23046j, str7));
                                 } else if (c10 == 1) {
-                                    TLRPC.User user3 = d5Var.f23041m;
+                                    TLRPC.User user3 = d5Var.f23049m;
                                     arrayList4.add(org.telegram.messenger.g0.r0(user3.first_name, user3.last_name, str7));
                                 } else {
-                                    arrayList4.add(org.telegram.messenger.g0.r0("@" + q10.n(d5Var.f23041m), null, "@" + str7));
+                                    arrayList4.add(org.telegram.messenger.g0.r0("@" + q10.n(d5Var.f23049m), null, "@" + str7));
                                 }
-                                TLRPC.User user4 = d5Var.f23041m;
+                                TLRPC.User user4 = d5Var.f23049m;
                                 if (user4 != null) {
                                     longSparseIntArray.put(user4.f28200id, 1);
                                 }
@@ -268,7 +268,7 @@ public final class e0 implements Runnable {
                 ArrayList arrayList6 = (ArrayList) obj2;
                 an anVar2 = (an) obj;
                 boolean z11 = ChatAttachAlertPhotoLayout.f32365r1;
-                ki kiVar = chatAttachAlertPhotoLayout.f33607b;
+                ki kiVar = chatAttachAlertPhotoLayout.f33609b;
                 if (kiVar.A1 && !kiVar.B1) {
                     PhotoViewer.p1().I2(null, e2Var, null);
                     PhotoViewer p12 = PhotoViewer.p1();

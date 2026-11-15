@@ -49,10 +49,10 @@ public final class a implements View.OnTouchListener {
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = g4.f47292d1;
+                HashSet hashSet = g4.f47282d1;
                 return true;
             case 4:
-                int i11 = k4.f8905f;
+                int i11 = k4.f8906f;
                 return true;
             case 5:
                 int i12 = z2.f32098x;
@@ -64,12 +64,12 @@ public final class a implements View.OnTouchListener {
                 int i13 = lb.R0;
                 return true;
             case 8:
-                int i14 = an.f45108ld;
+                int i14 = an.f45107ld;
                 return true;
             case 9:
                 return true;
             case 10:
-                Pattern pattern = t4.f39507a;
+                Pattern pattern = t4.f39505a;
                 return true;
             case 11:
                 y7 y7Var = y7.T2;
@@ -87,13 +87,13 @@ public final class a implements View.OnTouchListener {
                 int i16 = ki.I4;
                 return true;
             case 15:
-                int i17 = dk.f33956h0;
+                int i17 = dk.f33943h0;
                 return true;
             case 16:
                 int i18 = dl.G0;
                 return true;
             case 17:
-                int i19 = ep.f34387g2;
+                int i19 = ep.f34386g2;
                 return true;
             case 18:
                 bu buVar = bu.S1;
@@ -102,22 +102,22 @@ public final class a implements View.OnTouchListener {
                 int i20 = ny.h;
                 return true;
             case 20:
-                int[] iArr = fc0.f34559j0;
+                int[] iArr = fc0.f34563j0;
                 return true;
             case 21:
                 int i21 = kg0.S;
                 return true;
             case 22:
-                int i22 = jm0.f36044b1;
+                int i22 = jm0.f36034b1;
                 return true;
             case 23:
                 int i23 = po0.U2;
                 return true;
             case 24:
-                int[] iArr2 = ys0.f42071t2;
+                int[] iArr2 = ys0.f42073t2;
                 return true;
             case 25:
-                int i24 = bw0.f33395r2;
+                int i24 = bw0.f33398r2;
                 return true;
             case 26:
                 int i25 = v01.f40207n0;

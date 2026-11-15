@@ -53,7 +53,7 @@ public final class v4 extends FrameLayout {
         this.d = L;
         i9Var.setBackground(L);
         i9Var.u(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f));
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i7 = 5;
         } else {
@@ -80,15 +80,15 @@ public final class v4 extends FrameLayout {
         h6Var.setEllipsizeByGradient(true);
         org.telegram.ui.ActionBar.q6.Y(h6Var, org.telegram.ui.ActionBar.j6.G6, e6Var);
         h6Var.setTypeface(org.telegram.messenger.g0.o());
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         h6Var.setGravity(i10);
-        h6Var.getDrawable().N = org.telegram.messenger.g0.f23609q.x;
+        h6Var.getDrawable().N = org.telegram.messenger.g0.f23611q.x;
         ns.i(h6Var);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i11 = 5;
         } else {
@@ -114,13 +114,13 @@ public final class v4 extends FrameLayout {
         h6Var2.setTextSize(org.telegram.messenger.g0.L(14.0f));
         h6Var2.setEllipsizeByGradient(true);
         org.telegram.ui.ActionBar.q6.Y(h6Var2, org.telegram.ui.ActionBar.j6.A6, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i14 = 5;
         } else {
             i14 = 3;
         }
         h6Var2.setGravity(i14);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         int i18 = (z12 ? 5 : 3) | 48;
         if (z12) {
             i15 = 16;
@@ -160,7 +160,7 @@ public final class v4 extends FrameLayout {
                 this.f31805s = tL_messageMediaVenue.title;
                 this.f31803n = charSequence;
             }
-            if (this.h && !hd.f24101a0 && z11) {
+            if (this.h && !hd.f24104a0 && z11) {
                 z15 = true;
             } else {
                 z15 = false;
@@ -170,7 +170,7 @@ public final class v4 extends FrameLayout {
         org.telegram.ui.Components.h6 h6Var2 = this.f31799b;
         if (tL_messageMediaVenue != null) {
             String str4 = tL_messageMediaVenue.address;
-            if (this.h && !hd.f24101a0 && z11) {
+            if (this.h && !hd.f24104a0 && z11) {
                 z14 = true;
             } else {
                 z14 = false;
@@ -221,11 +221,11 @@ public final class v4 extends FrameLayout {
                 int L = org.telegram.messenger.g0.L(42.0f);
                 int L2 = org.telegram.messenger.g0.L(42.0f);
                 fqVar.h = L;
-                fqVar.f34674n = L2;
+                fqVar.f34678n = L2;
                 int L3 = org.telegram.messenger.g0.L(24.0f);
                 int L4 = org.telegram.messenger.g0.L(24.0f);
-                fqVar.f34672e = L3;
-                fqVar.f34673f = L4;
+                fqVar.f34676e = L3;
+                fqVar.f34677f = L4;
                 i9Var.setImageDrawable(fqVar);
             }
         }
@@ -370,13 +370,13 @@ public final class v4 extends FrameLayout {
                 d = org.telegram.ui.ActionBar.j6.f28972k0;
             }
             Paint paint = d;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(72.0f);
             }
             float height = getHeight() - 1;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 width = getWidth() - org.telegram.messenger.g0.L(72.0f);
             } else {
                 width = getWidth();

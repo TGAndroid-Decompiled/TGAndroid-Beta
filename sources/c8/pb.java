@@ -15,11 +15,11 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.w61;
 public abstract class pb {
-    public static pg.i f4631a;
+    public static pg.i f4634a;
 
     public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
         boolean z12;
-        pg.i iVar = f4631a;
+        pg.i iVar = f4634a;
         if (iVar != null) {
             z12 = true;
         } else {
@@ -34,7 +34,7 @@ public abstract class pb {
                 frameLayout.f55043e = launchActivity.getSharedPreferences("floating_debug", 0);
                 frameLayout.G = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
                 ou ouVar = new ou(launchActivity, gVar);
-                ((GestureDetector) ouVar.f25804b).setIsLongpressEnabled(false);
+                ((GestureDetector) ouVar.f25806b).setIsLongpressEnabled(false);
                 w61 w61Var = new w61(frameLayout, launchActivity, ouVar, 2);
                 frameLayout.f55040a = w61Var;
                 ImageView imageView = new ImageView(launchActivity);
@@ -64,9 +64,9 @@ public abstract class pb {
                 frameLayout.d();
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
-                f4631a = frameLayout;
+                f4634a = frameLayout;
                 launchActivity.f42661v0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
-                pg.i iVar2 = f4631a;
+                pg.i iVar2 = f4634a;
                 iVar2.f55040a.setVisibility(0);
                 r1.g gVar2 = new r1.g(new r1.f(0.0f));
                 gVar2.f55748m = org.telegram.ui.Cells.y0.n(1000.0f, 750.0f, 0.75f);
@@ -74,11 +74,11 @@ public abstract class pb {
                 gVar2.h();
             } else {
                 iVar.getClass();
-                launchActivity.f42661v0.removeView(f4631a);
-                f4631a = null;
+                launchActivity.f42661v0.removeView(f4634a);
+                f4634a = null;
             }
             if (z11) {
-                gz.f23994x1 = z10;
+                gz.f23997x1 = z10;
                 gz.y();
             }
         }

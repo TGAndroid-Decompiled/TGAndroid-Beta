@@ -13,12 +13,12 @@ import org.telegram.ui.Components.pc0;
 import org.telegram.ui.Components.qc0;
 import org.telegram.ui.LaunchActivity;
 public abstract class ka {
-    public static int f4573a = 1500;
+    public static int f4576a = 1500;
 
     public static boolean a() {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         if (activity == null) {
             return false;
@@ -29,7 +29,7 @@ public abstract class ka {
     public static void b(String[] strArr, z10 z10Var) {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         if (activity == null) {
             return;
@@ -60,7 +60,7 @@ public abstract class ka {
     public static void c(int i7, int i10, String[] strArr, String[] strArr2, z10 z10Var) {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         if (activity == null) {
             return;
@@ -91,7 +91,7 @@ public abstract class ka {
     public static boolean d(String str) {
         Context context = LaunchActivity.H1;
         if (context == null) {
-            context = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            context = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         if (context != null && context.checkSelfPermission(str) == 0) {
             return true;
@@ -102,28 +102,28 @@ public abstract class ka {
     public static void e(String[] strArr, z10 z10Var) {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         if (activity == null) {
             return;
         }
-        int i7 = f4573a;
-        f4573a = i7 + 1;
+        int i7 = f4576a;
+        f4576a = i7 + 1;
         is[] isVarArr = {new qc0(i7, z10Var, isVarArr)};
-        ns.e().b(isVarArr[0], ns.f25552p5);
+        ns.e().b(isVarArr[0], ns.f25553p5);
         activity.requestPermissions(strArr, i7);
     }
 
     public static void f() {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         if (activity == null) {
             return;
         }
         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+        intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
         try {
             activity.startActivity(intent);
         } catch (Exception e10) {

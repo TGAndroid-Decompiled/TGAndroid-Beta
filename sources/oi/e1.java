@@ -67,7 +67,7 @@ public final class e1 extends ft implements org.telegram.ui.ActionBar.z5 {
     public e1(Context context, e6 e6Var) {
         super(context, e6Var);
         boolean z10;
-        this.f21656h2 = m10.f24934t0;
+        this.f21656h2 = m10.f24940t0;
         this.f21669u2 = -1;
         this.f21670v2 = true;
         this.f21671w2 = new InputFilter() {
@@ -90,7 +90,7 @@ public final class e1 extends ft implements org.telegram.ui.ActionBar.z5 {
         this.G2 = new b1(this, 1);
         this.N2 = new x0(this, 0);
         this.f21655g2 = e6Var;
-        this.f34691c2 = true;
+        this.f34695c2 = true;
         setBackground(null);
         setCursorWidth(1.5f);
         setGravity(8388659);
@@ -348,14 +348,14 @@ public final class e1 extends ft implements org.telegram.ui.ActionBar.z5 {
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
                     for (xy0 xy0Var : (xy0[]) spanned.getSpans(0, spanned.length(), xy0.class)) {
-                        int i11 = xy0Var.f41803b.f41484a;
+                        int i11 = xy0Var.f41795b.f41487a;
                         if ((65536 & i11) != 0) {
                             int spanStart = spanned.getSpanStart(xy0Var);
                             int spanEnd = spanned.getSpanEnd(xy0Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (u70Var == null) {
                                     u70Var = new u70(0);
-                                    u70Var.f39949n = false;
+                                    u70Var.f39946n = false;
                                 }
                                 u70Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i11) != 0) {
@@ -375,13 +375,13 @@ public final class e1 extends ft implements org.telegram.ui.ActionBar.z5 {
                                 } else {
                                     i10 = 0;
                                 }
-                                u70Var.f39950o = i10;
+                                u70Var.f39947o = i10;
                                 layout.getSelectionPath(spanStart, spanEnd, u70Var);
                             }
                         }
                     }
                     if (u70Var != null) {
-                        u70Var.f39949n = true;
+                        u70Var.f39946n = true;
                     }
                     this.f21666r2 = u70Var;
                 }
@@ -465,7 +465,7 @@ public final class e1 extends ft implements org.telegram.ui.ActionBar.z5 {
                 this.L2 = L;
                 if (L != null && this.f21654f2 != null) {
                     this.M2 = false;
-                    L.b().f23548a.m(true);
+                    L.b().f23550a.m(true);
                     org.telegram.messenger.g0.r(x0Var);
                     org.telegram.messenger.g0.i3(x0Var, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -485,7 +485,7 @@ public final class e1 extends ft implements org.telegram.ui.ActionBar.z5 {
                         z11 = false;
                     }
                     if (!z11 || z10) {
-                        f4Var.b().f23548a.m(false);
+                        f4Var.b().f23550a.m(false);
                         org.telegram.messenger.g0.r(x0Var);
                     }
                     if (z10) {

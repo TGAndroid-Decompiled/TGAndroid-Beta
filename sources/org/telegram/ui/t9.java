@@ -56,35 +56,35 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
     public final int X;
     public ValueAnimator Y;
     public float Z;
-    public f f51492a;
-    public float f51493a0;
-    public r9 f51494b;
-    public r1.g f51495b0;
-    public TextView f51496c;
-    public float f51497c0;
+    public f f51493a;
+    public float f51494a0;
+    public r9 f51495b;
+    public r1.g f51496b0;
+    public TextView f51497c;
+    public float f51498c0;
     public CameraView d;
-    public RectF f51498d0;
-    public final HandlerThread f51499e;
-    public final m4 f51500e0;
-    public Handler f51501f;
-    public float f51502f0;
-    public long f51503g0;
+    public RectF f51499d0;
+    public final HandlerThread f51500e;
+    public final m4 f51501e0;
+    public Handler f51502f;
+    public float f51503f0;
+    public long f51504g0;
     public TextView h;
-    public final Paint f51504n;
-    public final Paint f51505r;
-    public ImageView f51506s;
-    public AnimatorSet f51507w;
-    public float f51508x;
-    public boolean f51509y;
+    public final Paint f51505n;
+    public final Paint f51506r;
+    public ImageView f51507s;
+    public AnimatorSet f51508w;
+    public float f51509x;
+    public boolean f51510y;
 
     public t9(int i7) {
         super(null);
-        this.f51499e = new HandlerThread("ScanCamera");
-        this.f51504n = new Paint();
-        this.f51505r = new Paint(1);
+        this.f51500e = new HandlerThread("ScanCamera");
+        this.f51505n = new Paint();
+        this.f51506r = new Paint(1);
         new Path();
-        this.f51508x = 0.5f;
-        this.f51509y = false;
+        this.f51509x = 0.5f;
+        this.f51510y = false;
         this.E = null;
         this.F = 0.0f;
         this.G = new PointF[4];
@@ -106,11 +106,11 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
         this.V = null;
         this.W = null;
         this.Z = 0.0f;
-        this.f51493a0 = 0.0f;
-        this.f51497c0 = 0.0f;
-        this.f51500e0 = new m4(this, 2);
-        this.f51502f0 = 0.0f;
-        this.f51503g0 = 0L;
+        this.f51494a0 = 0.0f;
+        this.f51498c0 = 0.0f;
+        this.f51501e0 = new m4(this, 2);
+        this.f51503f0 = 0.0f;
+        this.f51504g0 = 0L;
         this.X = i7;
         if (f0()) {
             Utilities.f22416e.c(new j9(this, 5));
@@ -185,7 +185,7 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
     @Override
     public final View createView(Context context) {
         this.actionBar.setBackButtonImage(2131231240);
-        boolean z10 = this.f51509y;
+        boolean z10 = this.f51510y;
         int i7 = this.X;
         ei0 ei0Var = null;
         if (z10) {
@@ -210,15 +210,15 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                 org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f29224x8, view, kVar.K0);
                 kVar.addView(kVar.f29322w);
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) kVar.f29322w.getLayoutParams();
-                layoutParams.height = org.telegram.messenger.g0.f23603m;
+                layoutParams.height = org.telegram.messenger.g0.f23605m;
                 layoutParams.width = -1;
                 layoutParams.gravity = 51;
                 kVar.f29322w.setLayoutParams(layoutParams);
             }
         }
         this.actionBar.setActionBarMenuOnItemClick(new p9(this, 0));
-        this.f51504n.setColor(2130706432);
-        Paint paint = this.f51505r;
+        this.f51505n.setColor(2130706432);
+        Paint paint = this.f51506r;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL);
         q9 q9Var = new q9(this, context);
@@ -250,29 +250,29 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
         paint2.setPathEffect(org.telegram.ui.Components.u70.c());
         paint2.setColor(i0.a.o(-1, 40));
         r9 r9Var = new r9(context, paint2);
-        this.f51494b = r9Var;
+        this.f51495b = r9Var;
         r9Var.setGravity(1);
-        this.f51494b.setTextSize(1, 24.0f);
-        q9Var.addView(this.f51494b);
+        this.f51495b.setTextSize(1, 24.0f);
+        q9Var.addView(this.f51495b);
         TextView textView = new TextView(context);
-        this.f51496c = textView;
+        this.f51497c = textView;
         if (i7 == 3) {
             textView.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.D6, false));
         } else {
             org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.D6, null);
         }
-        this.f51496c.setGravity(1);
-        this.f51496c.setTextSize(1, 16.0f);
-        q9Var.addView(this.f51496c);
+        this.f51497c.setGravity(1);
+        this.f51497c.setTextSize(1, 16.0f);
+        q9Var.addView(this.f51497c);
         TextView textView2 = new TextView(context);
         this.h = textView2;
         textView2.setTextColor(-1);
         this.h.setGravity(81);
         this.h.setAlpha(0.0f);
         if (i7 == 0) {
-            this.f51494b.setText(org.telegram.messenger.hd.M0(2131747470, null));
-            this.f51496c.setText(org.telegram.messenger.hd.M0(2131747469, null));
-            org.telegram.ui.ActionBar.q6.U(this.f51494b, org.telegram.ui.ActionBar.j6.G6, null);
+            this.f51495b.setText(org.telegram.messenger.hd.M0(2131747470, null));
+            this.f51497c.setText(org.telegram.messenger.hd.M0(2131747469, null));
+            org.telegram.ui.ActionBar.q6.U(this.f51495b, org.telegram.ui.ActionBar.j6.G6, null);
             this.h.setTypeface(Typeface.MONOSPACE);
         } else {
             if (i7 != 1 && i7 != 3) {
@@ -287,24 +287,24 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                     if (indexOf == -1 || indexOf2 == -1 || indexOf == indexOf2) {
                         break;
                     }
-                    this.f51494b.setMovementMethod(new org.telegram.messenger.c0(false));
+                    this.f51495b.setMovementMethod(new org.telegram.messenger.c0(false));
                     spannableStringBuilder.replace(indexOf2, indexOf2 + 1, (CharSequence) " ");
                     spannableStringBuilder.replace(indexOf, i13, (CharSequence) " ");
                     spannableStringBuilder.setSpan(new org.telegram.ui.Components.f41(strArr[i11], 0), i13, indexOf2, 33);
                     spannableStringBuilder.setSpan(new org.telegram.ui.Components.y31(org.telegram.messenger.g0.o()), i13, indexOf2, 33);
                     i11++;
                 }
-                this.f51494b.setLinkTextColor(-1);
-                this.f51494b.setTextSize(1, 16.0f);
-                this.f51494b.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-                this.f51494b.setPadding(0, 0, 0, 0);
-                this.f51494b.setText(spannableStringBuilder);
+                this.f51495b.setLinkTextColor(-1);
+                this.f51495b.setTextSize(1, 16.0f);
+                this.f51495b.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+                this.f51495b.setPadding(0, 0, 0, 0);
+                this.f51495b.setText(spannableStringBuilder);
             } else {
-                this.f51494b.setText(org.telegram.messenger.hd.M0(2131753885, null));
+                this.f51495b.setText(org.telegram.messenger.hd.M0(2131753885, null));
             }
-            this.f51494b.setTextColor(-1);
+            this.f51495b.setTextColor(-1);
             if (i7 == 3) {
-                this.f51496c.setTextColor(-1711276033);
+                this.f51497c.setTextColor(-1711276033);
             }
             this.h.setTextSize(1, 16.0f);
             this.h.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f));
@@ -312,22 +312,22 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
             this.h.setText(org.telegram.messenger.hd.M0(2131753887, null));
             q9Var.addView(this.h);
             ImageView imageView = new ImageView(context);
-            this.f51506s = imageView;
+            this.f51507s = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.f51506s.setImageResource(2131232630);
-            this.f51506s.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.L(org.telegram.messenger.g0.L(60.0f), 587202559));
-            q9Var.addView(this.f51506s);
-            this.f51506s.setOnClickListener(new a(this, 10));
+            this.f51507s.setImageResource(2131232630);
+            this.f51507s.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.L(org.telegram.messenger.g0.L(60.0f), 587202559));
+            q9Var.addView(this.f51507s);
+            this.f51507s.setOnClickListener(new a(this, 10));
         }
         Activity parentActivity = getParentActivity();
         if (parentActivity instanceof LaunchActivity) {
             ei0Var = ((LaunchActivity) parentActivity).f42658t1;
         }
-        if (ei0Var != null && this.f51492a == null) {
+        if (ei0Var != null && this.f51493a == null) {
             f fVar = new f(ei0Var, 27);
-            ei0Var.f46796b.add(fVar);
+            ei0Var.f46786b.add(fVar);
             ei0Var.a();
-            this.f51492a = fVar;
+            this.f51493a = fVar;
         }
         this.fragmentView.setKeepScreenOn(true);
         return this.fragmentView;
@@ -363,8 +363,8 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
         if (f0()) {
             return arrayList;
         }
-        arrayList.add(new org.telegram.ui.ActionBar.s6(this.f51494b, 256, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.s6(this.f51496c, 256, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.D6));
+        arrayList.add(new org.telegram.ui.ActionBar.s6(this.f51495b, 256, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.s6(this.f51497c, 256, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.r6) null, org.telegram.ui.ActionBar.j6.D6));
         return arrayList;
     }
 
@@ -397,9 +397,9 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                     int width = bitmap.getWidth();
                     int height = bitmap.getHeight();
                     ld0Var.d = bitmap;
-                    b7.d dVar2 = (b7.d) ld0Var.f48976b;
-                    dVar2.f2945a = width;
-                    dVar2.f2946b = height;
+                    b7.d dVar2 = (b7.d) ld0Var.f48972b;
+                    dVar2.f2948a = width;
+                    dVar2.f2949b = height;
                     i12 = bitmap.getWidth();
                     i13 = bitmap.getHeight();
                 } else {
@@ -409,10 +409,10 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                     int height2 = size.getHeight();
                     if (wrap != null) {
                         if (wrap.capacity() >= width2 * height2) {
-                            ld0Var.f48977c = wrap;
-                            b7.d dVar3 = (b7.d) ld0Var.f48976b;
-                            dVar3.f2945a = width2;
-                            dVar3.f2946b = height2;
+                            ld0Var.f48973c = wrap;
+                            b7.d dVar3 = (b7.d) ld0Var.f48972b;
+                            dVar3.f2948a = width2;
+                            dVar3.f2949b = height2;
                             i12 = size.getWidth();
                             i13 = size.getWidth();
                         } else {
@@ -458,9 +458,9 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                         int width3 = e02.getWidth();
                         int height3 = e02.getHeight();
                         ld0Var2.d = e02;
-                        b7.d dVar4 = (b7.d) ld0Var2.f48976b;
-                        dVar4.f2945a = width3;
-                        dVar4.f2946b = height3;
+                        b7.d dVar4 = (b7.d) ld0Var2.f48972b;
+                        dVar4.f2948a = width3;
+                        dVar4.f2949b = height3;
                         i12 = e02.getWidth();
                         i13 = e02.getHeight();
                         SparseArray e13 = this.W.e1(ld0Var2);
@@ -495,9 +495,9 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                             int width4 = g02.getWidth();
                             int height4 = g02.getHeight();
                             ld0Var3.d = g02;
-                            b7.d dVar5 = (b7.d) ld0Var3.f48976b;
-                            dVar5.f2945a = width4;
-                            dVar5.f2946b = height4;
+                            b7.d dVar5 = (b7.d) ld0Var3.f48972b;
+                            dVar5.f2948a = width4;
+                            dVar5.f2949b = height4;
                             int width5 = e02.getWidth();
                             int height5 = e02.getHeight();
                             SparseArray e14 = this.W.e1(ld0Var3);
@@ -554,8 +554,8 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                     dVar = fVar;
                 }
                 android.support.v4.media.session.a0 p10 = this.V.p(new wf.b(new cc.g(dVar), 6));
-                bc.j[] jVarArr = (bc.j[]) p10.f1707c;
-                String str3 = (String) p10.f1706b;
+                bc.j[] jVarArr = (bc.j[]) p10.f1714c;
+                String str3 = (String) p10.f1713b;
                 if (jVarArr == null || jVarArr.length == 0) {
                     mVar2 = null;
                     pointFArr2 = null;
@@ -567,12 +567,12 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                     int i15 = 0;
                     while (i15 < length4) {
                         bc.j jVar = jVarArr[i15];
-                        float f20 = jVar.f3135a;
+                        float f20 = jVar.f3138a;
                         mVar = mVar3;
                         try {
-                            float f21 = jVar.f3136b;
+                            float f21 = jVar.f3139b;
                             f11 = Math.min(f11, f20);
-                            f10 = Math.max(f10, jVar.f3135a);
+                            f10 = Math.max(f10, jVar.f3138a);
                             f19 = Math.min(f19, f21);
                             f18 = Math.max(f18, f21);
                             i15++;
@@ -588,7 +588,7 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
                         pointFArr2 = new PointF[4];
                         while (i14 < 4) {
                             bc.j jVar2 = jVarArr[i14];
-                            pointFArr2[i14] = new PointF(jVar2.f3135a / i12, jVar2.f3136b / i13);
+                            pointFArr2[i14] = new PointF(jVar2.f3138a / i12, jVar2.f3139b / i13);
                             i14++;
                         }
                     } else {
@@ -632,14 +632,14 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
 
     public final void m0() {
         int height;
-        if (this.f51498d0 == null) {
-            this.f51498d0 = new RectF();
+        if (this.f51499d0 == null) {
+            this.f51499d0 = new RectF();
         }
         int width = this.fragmentView.getWidth();
         int min = (int) (Math.min(width, height) / 1.5f);
         float f10 = width;
         float height2 = this.fragmentView.getHeight();
-        this.f51498d0.set(((width - min) / 2.0f) / f10, ((height - min) / 2.0f) / height2, ((width + min) / 2.0f) / f10, ((height + min) / 2.0f) / height2);
+        this.f51499d0.set(((width - min) / 2.0f) / f10, ((height - min) / 2.0f) / height2, ((width + min) / 2.0f) / f10, ((height + min) / 2.0f) / height2);
     }
 
     @Override
@@ -675,14 +675,14 @@ public class t9 extends org.telegram.ui.ActionBar.e2 {
             cameraView.destroy(false, null);
             this.d = null;
         }
-        this.f51499e.quitSafely();
-        f fVar = this.f51492a;
+        this.f51500e.quitSafely();
+        f fVar = this.f51493a;
         if (fVar != null) {
-            ei0 ei0Var = (ei0) fVar.f46946b;
-            if (ei0Var.f46796b.remove(fVar)) {
+            ei0 ei0Var = (ei0) fVar.f46930b;
+            if (ei0Var.f46786b.remove(fVar)) {
                 ei0Var.a();
             }
-            this.f51492a = null;
+            this.f51493a = null;
         }
         u8.n nVar = this.W;
         if (nVar != null) {

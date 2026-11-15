@@ -6,21 +6,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
-    public final int f49882g0 = 1;
-    public final e2.r0 f49883h0;
-    public boolean f49884i0;
-    public final org.telegram.ui.ActionBar.e2 f49885j0;
+    public final int f49872g0 = 1;
+    public final e2.r0 f49873h0;
+    public boolean f49874i0;
+    public final org.telegram.ui.ActionBar.e2 f49875j0;
 
     public oa0(org.telegram.ui.Wallet.y5 y5Var, Context context) {
         super(context, null);
-        this.f49885j0 = y5Var;
-        this.f49883h0 = new Object();
+        this.f49875j0 = y5Var;
+        this.f49873h0 = new Object();
     }
 
     public void X() {
         long uptimeMillis = SystemClock.uptimeMillis();
         MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-        org.telegram.ui.Wallet.u5 u5Var = ((org.telegram.ui.Wallet.y5) this.f49885j0).f44747r0;
+        org.telegram.ui.Wallet.u5 u5Var = ((org.telegram.ui.Wallet.y5) this.f49875j0).f44747r0;
         if (u5Var != null) {
             u5Var.e(obtain);
         }
@@ -29,9 +29,9 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
     }
 
     public boolean Y() {
-        org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49885j0;
-        ai.q2 q2Var = y5Var.f44743o0;
-        if (q2Var != null && (q2Var.getParent() instanceof View) && ((View) y5Var.f44743o0.getParent()).getTop() <= y5Var.f38882a.getPaddingTop()) {
+        org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49875j0;
+        ai.r2 r2Var = y5Var.f44743o0;
+        if (r2Var != null && (r2Var.getParent() instanceof View) && ((View) y5Var.f44743o0.getParent()).getTop() <= y5Var.f38880a.getPaddingTop()) {
             return true;
         }
         return false;
@@ -40,22 +40,22 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
     public int b0(org.telegram.ui.Components.u41 u41Var, int i7) {
         int[] iArr = {0};
         org.telegram.ui.Components.ri riVar = new org.telegram.ui.Components.ri(iArr, 24);
-        this.f49884i0 = true;
+        this.f49874i0 = true;
         u41Var.j(riVar);
         try {
             u41Var.scrollBy(0, i7);
-            ArrayList arrayList = u41Var.f2826x0;
+            ArrayList arrayList = u41Var.f2829x0;
             if (arrayList != null) {
                 arrayList.remove(riVar);
             }
-            this.f49884i0 = false;
+            this.f49874i0 = false;
             return iArr[0];
         } catch (Throwable th2) {
-            ArrayList arrayList2 = u41Var.f2826x0;
+            ArrayList arrayList2 = u41Var.f2829x0;
             if (arrayList2 != null) {
                 arrayList2.remove(riVar);
             }
-            this.f49884i0 = false;
+            this.f49874i0 = false;
             throw th2;
         }
     }
@@ -67,9 +67,9 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public int getNestedScrollAxes() {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 1:
-                return this.f49883h0.b();
+                return this.f49873h0.b();
             default:
                 return super.getNestedScrollAxes();
         }
@@ -77,18 +77,18 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public final void k(int i7, View view) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
-                this.f49883h0.f10369a = 0;
+                this.f49873h0.f10369a = 0;
                 return;
             default:
-                e2.r0 r0Var = this.f49883h0;
+                e2.r0 r0Var = this.f49873h0;
                 if (i7 == 1) {
                     r0Var.f10370b = 0;
                 } else {
                     r0Var.f10369a = 0;
                 }
-                org.telegram.ui.Wallet.u5 u5Var = ((org.telegram.ui.Wallet.y5) this.f49885j0).f44747r0;
+                org.telegram.ui.Wallet.u5 u5Var = ((org.telegram.ui.Wallet.y5) this.f49875j0).f44747r0;
                 if (u5Var != null) {
                     org.telegram.ui.Wallet.l lVar = u5Var.f44560i;
                     bi.v3 v3Var = u5Var.f44556c;
@@ -107,9 +107,9 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
     public final void l(View view, int i7, int i10, int i11, int i12, int i13, int[] iArr) {
         ja0 ja0Var;
         org.telegram.ui.Components.u41 y02;
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
-                pa0 pa0Var = (pa0) this.f49885j0;
+                pa0 pa0Var = (pa0) this.f49875j0;
                 try {
                     if (view == pa0Var.R && (ja0Var = pa0Var.M0) != null && ja0Var.isAttachedToWindow()) {
                         org.telegram.ui.Components.uj0 currentListView = pa0Var.M0.getCurrentListView();
@@ -128,13 +128,13 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
                     return;
                 }
             default:
-                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49885j0;
-                if (!this.f49884i0 && i12 != 0 && (y02 = y5Var.y0()) != null) {
-                    if (view == y5Var.f38882a && Y()) {
+                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49875j0;
+                if (!this.f49874i0 && i12 != 0 && (y02 = y5Var.y0()) != null) {
+                    if (view == y5Var.f38880a && Y()) {
                         iArr[1] = b0(y02, i12) + iArr[1];
                         return;
                     } else if (view == y02 && i12 < 0) {
-                        iArr[1] = b0(y5Var.f38882a, i12) + iArr[1];
+                        iArr[1] = b0(y5Var.f38880a, i12) + iArr[1];
                         return;
                     } else {
                         return;
@@ -146,7 +146,7 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public final void m(View view, int i7, int i10, int i11, int i12, int i13) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
                 return;
             default:
@@ -157,9 +157,9 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public final boolean o(View view, View view2, int i7, int i10) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
-                if (((pa0) this.f49885j0).M0 != null && i7 == 2) {
+                if (((pa0) this.f49875j0).M0 != null && i7 == 2) {
                     return true;
                 }
                 return false;
@@ -173,13 +173,13 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
-                pa0 pa0Var = (pa0) this.f49885j0;
+                pa0 pa0Var = (pa0) this.f49875j0;
                 super.onLayout(z10, i7, i10, i11, i12);
                 if (z10) {
-                    pa0Var.s0(this.f49884i0);
-                    this.f49884i0 = false;
+                    pa0Var.s0(this.f49874i0);
+                    this.f49874i0 = false;
                     return;
                 }
                 pa0Var.K0(true);
@@ -192,10 +192,10 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 1:
                 int size = (int) (View.MeasureSpec.getSize(i10) * 0.75f);
-                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49885j0;
+                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49875j0;
                 if (y5Var.f44746r != size) {
                     y5Var.f44746r = size;
                     org.telegram.ui.Wallet.m5 m5Var = y5Var.f44731e;
@@ -218,9 +218,9 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
     @Override
     public boolean onNestedPreFling(View view, float f10, float f11) {
         org.telegram.ui.Wallet.u5 u5Var;
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 1:
-                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49885j0;
+                org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f49875j0;
                 if (view == y5Var.y0() && (u5Var = y5Var.f44747r0) != null) {
                     return u5Var.a((int) f10, (int) f11);
                 }
@@ -232,7 +232,7 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public void onStopNestedScroll(View view) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
                 return;
             default:
@@ -243,12 +243,12 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     @Override
     public final void r(View view, View view2, int i7, int i10) {
-        switch (this.f49882g0) {
+        switch (this.f49872g0) {
             case 0:
-                this.f49883h0.f10369a = i7;
+                this.f49873h0.f10369a = i7;
                 return;
             default:
-                e2.r0 r0Var = this.f49883h0;
+                e2.r0 r0Var = this.f49873h0;
                 if (i10 == 1) {
                     r0Var.f10370b = i7;
                     return;
@@ -266,9 +266,9 @@ public final class oa0 extends org.telegram.ui.Components.st0 implements r0.l {
 
     public oa0(pa0 pa0Var, Context context) {
         super(context, null);
-        this.f49885j0 = pa0Var;
-        this.f49884i0 = true;
-        this.f49883h0 = new Object();
+        this.f49875j0 = pa0Var;
+        this.f49874i0 = true;
+        this.f49873h0 = new Object();
     }
 
     private final void a0(View view) {

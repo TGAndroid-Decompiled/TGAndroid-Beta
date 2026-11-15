@@ -85,7 +85,7 @@ public final class t0 extends View {
         paint4.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint2.setTextSize(org.telegram.messenger.g0.N(14.66f));
-        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f23611q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f15131r = staticLayout;
         this.f15132s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
         this.f15133w = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
@@ -114,7 +114,7 @@ public final class t0 extends View {
         this.f15130n = ch0Var2;
         ch0Var2.setCallback(this);
         this.f15130n.start();
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.f15127c, org.telegram.messenger.g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.f15127c, org.telegram.messenger.g0.f23611q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f15134x = staticLayout;
         float f11 = 0.0f;
         if (staticLayout.getLineCount() > 0) {
@@ -266,7 +266,7 @@ public final class t0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (dcVar.f33917i) {
+            if (dcVar.f33904i) {
                 if (contains) {
                     if (this.H) {
                         Runnable runnable = this.R;

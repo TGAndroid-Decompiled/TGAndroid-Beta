@@ -288,7 +288,7 @@ public final class z3 {
                                 Boolean D = hi.d7.D(gjVar);
                                 if (D != null) {
                                     if (D.booleanValue()) {
-                                        i7 = gjVar.f23817k.fwd_from.channel_post;
+                                        i7 = gjVar.f23819k.fwd_from.channel_post;
                                     } else {
                                         i7 = gjVar.e1();
                                     }

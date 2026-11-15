@@ -16,33 +16,33 @@ public final class en extends org.telegram.ui.Cells.z5 {
 
     @Override
     public final void h(bi.u uVar, ActionMode actionMode) {
-        jn jnVar = (jn) this.H.f48827e;
-        if (!jnVar.f36096n && this.G == 11 && uVar.isFocused() && uVar.hasSelection()) {
+        jn jnVar = (jn) this.H.f48823e;
+        if (!jnVar.f36086n && this.G == 11 && uVar.isFocused() && uVar.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.an.C8(menu, ((org.telegram.ui.an) jnVar.f33607b.f36436a2).h, false, true, true, true);
+                org.telegram.ui.an.C8(menu, ((org.telegram.ui.an) jnVar.f33609b.f36424a2).h, false, true, true, true);
             }
         }
     }
 
     @Override
     public final void j(boolean z10) {
-        jn.R((jn) this.H.f48827e, this, z10);
+        jn.R((jn) this.H.f48823e, this, z10);
     }
 
     @Override
     public final void k(org.telegram.ui.Cells.z5 z5Var) {
-        jn.S((jn) this.H.f48827e, z5Var);
+        jn.S((jn) this.H.f48823e, z5Var);
     }
 
     @Override
     public final void l(bi.u uVar) {
-        ((jn) this.H.f48827e).f33607b.h1(uVar, true);
+        ((jn) this.H.f48823e).f33609b.h1(uVar, true);
     }
 
     @Override
     public final boolean m(ArrayList arrayList) {
-        jn jnVar = (jn) this.H.f48827e;
+        jn jnVar = (jn) this.H.f48823e;
         if (arrayList.isEmpty()) {
             return false;
         }
@@ -59,9 +59,9 @@ public final class en extends org.telegram.ui.Cells.z5 {
             i7++;
         }
         jnVar.n0();
-        jnVar.f36094l0 = (jnVar.f36110u0 + i7) - 1;
-        jnVar.f36107s.setItemAnimator(jnVar.f36112w);
-        jnVar.f36104r.f();
+        jnVar.f36084l0 = (jnVar.f36100u0 + i7) - 1;
+        jnVar.f36097s.setItemAnimator(jnVar.f36102w);
+        jnVar.f36094r.f();
         return true;
     }
 }

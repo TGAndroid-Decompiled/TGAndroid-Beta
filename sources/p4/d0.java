@@ -391,7 +391,7 @@ public class d0 {
     public final boolean o() {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             try {
-                return ((Boolean) t7.a(new org.telegram.ui.ActionBar.z(this, 10)).f4064b.get()).booleanValue();
+                return ((Boolean) t7.a(new org.telegram.ui.ActionBar.z(this, 10)).f4067b.get()).booleanValue();
             } catch (InterruptedException | ExecutionException e10) {
                 throw new IllegalStateException(e10);
             }

@@ -123,7 +123,7 @@ public final class gg extends FrameLayout implements org.telegram.ui.ActionBar.z
         this.T = new Paint(1);
         this.U = new Paint(1);
         this.V = new u5(this, 0L, 320L, erVar);
-        this.W = new u5(this, 0L, 260L, er.f34424k);
+        this.W = new u5(this, 0L, 260L, er.f34423k);
         this.f34930a0 = new u5(this, 0L, 60L, erVar);
         this.f34932b0 = new u5(this, 0L, 180L, erVar);
         this.f34935d0 = new Path();
@@ -370,7 +370,7 @@ public final class gg extends FrameLayout implements org.telegram.ui.ActionBar.z
 
     public final int h(float f10, float f11) {
         RectF rectF = this.f34949p0;
-        if (!rectF.isEmpty() && this.f34952r0.f39903c >= 0.8f) {
+        if (!rectF.isEmpty() && this.f34952r0.f39900c >= 0.8f) {
             RectF rectF2 = org.telegram.messenger.g0.P;
             rectF2.set(rectF);
             rectF2.inset(-org.telegram.messenger.g0.L(6.0f), -org.telegram.messenger.g0.L(6.0f));
@@ -559,7 +559,7 @@ public final class gg extends FrameLayout implements org.telegram.ui.ActionBar.z
                 org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(chatActivityEnterView.R);
                 long j10 = chatActivityEnterView.f32327y3;
                 org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
-                if (anVar != null && anVar.f45408w4) {
+                if (anVar != null && anVar.f45407w4) {
                     j3 = anVar.b();
                 } else {
                     j3 = 0;

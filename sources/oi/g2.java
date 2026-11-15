@@ -2,7 +2,7 @@ package oi;
 
 import android.text.SpannableString;
 import android.text.TextUtils;
-import di.m9;
+import di.l9;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Wallet.k8;
 public final class g2 implements Runnable {
@@ -33,15 +33,15 @@ public final class g2 implements Runnable {
                             String str = ((TL_iv.pageBlockPreformatted) aVar2.f21544b).language;
                             int i7 = y5Var.J + 1;
                             y5Var.J = i7;
-                            m9 m9Var = new m9(y5Var, i7, aVar2, obj, 2);
+                            l9 l9Var = new l9(y5Var, i7, aVar2, obj, 2);
                             qi.p pVar = qi.j.f55613a;
                             SpannableString spannableString = new SpannableString(obj);
                             String b10 = qi.p.b(str);
                             if (!b10.isEmpty() && spannableString.length() != 0) {
-                                qi.j.f55613a.d(spannableString.toString(), b10, new k8(14, spannableString, m9Var));
+                                qi.j.f55613a.d(spannableString.toString(), b10, new k8(14, spannableString, l9Var));
                                 return;
                             } else {
-                                org.telegram.messenger.g0.h3(new org.telegram.ui.web.e1(11, m9Var, spannableString));
+                                org.telegram.messenger.g0.h3(new org.telegram.ui.web.e1(11, l9Var, spannableString));
                                 return;
                             }
                         }

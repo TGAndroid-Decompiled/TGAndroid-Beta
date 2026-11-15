@@ -19,14 +19,14 @@ public final class e extends ja {
         super(context, null, false, false, 2, e6Var);
         this.U1 = r9Var;
         this.T1 = list;
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         this.G1 = false;
         this.F1 = org.telegram.messenger.g0.L(12.0f);
-        this.f35937p1.setTitle(O0());
+        this.f35932p1.setTitle(O0());
         O();
-        this.f35936o1.setPadding(this.f29717u0, org.telegram.messenger.g0.L(9.0f), this.f29717u0, org.telegram.messenger.g0.L(64.0f));
-        this.f35936o1.setOnItemClickListener(new a(0));
-        this.f35936o1.setOverScrollMode(2);
+        this.f35931o1.setPadding(this.f29717u0, org.telegram.messenger.g0.L(9.0f), this.f29717u0, org.telegram.messenger.g0.L(64.0f));
+        this.f35931o1.setOnItemClickListener(new a(0));
+        this.f35931o1.setOverScrollMode(2);
         hi.d dVar = new hi.d(context, e6Var, true);
         dVar.setOnClickListener(new ah.d(this, 3));
         dVar.i(hd.M0(2131747831, null), false, true);
@@ -41,9 +41,9 @@ public final class e extends ja {
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new b(this, 0), this.J0);
+        p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, true, new b(this, 0), this.J0);
         this.V1 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 

@@ -16,7 +16,7 @@ public final class q0 extends BroadcastReceiver {
         switch (this.f26047a) {
             case 0:
                 try {
-                    t0.f26601c = t0.f26602e.getActiveNetworkInfo();
+                    t0.f26610c = t0.f26611e.getActiveNetworkInfo();
                 } catch (Throwable unused) {
                 }
                 boolean p10 = t0.p();
@@ -36,17 +36,17 @@ public final class q0 extends BroadcastReceiver {
                 return;
             default:
                 if (intent.getAction().equals("android.intent.action.SCREEN_OFF")) {
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("screen off");
                     }
-                    ConnectionsManager.getInstance(m10.f24934t0).setAppPaused(true, true);
-                    t0.f26607w = false;
+                    ConnectionsManager.getInstance(m10.f24940t0).setAppPaused(true, true);
+                    t0.f26616w = false;
                 } else if (intent.getAction().equals("android.intent.action.SCREEN_ON")) {
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         a8.b("screen on");
                     }
-                    ConnectionsManager.getInstance(m10.f24934t0).setAppPaused(false, true);
-                    t0.f26607w = true;
+                    ConnectionsManager.getInstance(m10.f24940t0).setAppPaused(false, true);
+                    t0.f26616w = true;
                 }
                 ns.e().k(287, new Object[0]);
                 return;

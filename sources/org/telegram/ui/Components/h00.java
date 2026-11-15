@@ -61,9 +61,9 @@ public final class h00 implements View.OnLongClickListener {
                 return true;
             case 1:
                 fc0 fc0Var = (fc0) obj;
-                fc0Var.f34575r.setText("");
-                hi.y7.a(fc0Var.f34576s, true);
-                Drawable drawable = fc0Var.f34560a;
+                fc0Var.f34579r.setText("");
+                hi.y7.a(fc0Var.f34580s, true);
+                Drawable drawable = fc0Var.f34564a;
                 if (drawable instanceof ra0) {
                     ((ra0) drawable).x();
                 }
@@ -180,7 +180,7 @@ public final class h00 implements View.OnLongClickListener {
                 po0Var.F2.setInputMethodMode(2);
                 po0Var.F2.setSoftInputMode(0);
                 po0Var.F2.getContentView().setFocusableInTouchMode(true);
-                int i11 = org.telegram.messenger.gz.f23929a;
+                int i11 = org.telegram.messenger.gz.f23932a;
                 SharedPreferences.Editor edit = org.telegram.messenger.np.e1().edit();
                 edit.putInt("scheduledOrNoSoundHintShows", 3);
                 edit.apply();
@@ -188,7 +188,7 @@ public final class h00 implements View.OnLongClickListener {
                 po0Var.F2.setFocusable(true);
                 int[] iArr = new int[2];
                 u1Var.getLocationInWindow(iArr);
-                if (po0Var.d && (anVar = po0Var.f38341b2) != null && anVar.f45278m1.getMeasuredHeight() > org.telegram.messenger.g0.L(58.0f)) {
+                if (po0Var.d && (anVar = po0Var.f38341b2) != null && anVar.f45277m1.getMeasuredHeight() > org.telegram.messenger.g0.L(58.0f)) {
                     measuredHeight = u1Var.getMeasuredHeight() + iArr[1];
                 } else {
                     measuredHeight = (iArr[1] - linearLayout.getMeasuredHeight()) - org.telegram.messenger.g0.L(2.0f);

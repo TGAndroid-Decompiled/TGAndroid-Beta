@@ -30,8 +30,8 @@ public final class im implements Runnable {
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f24418f;
         long j3 = this.f24416c;
         synchronized (c10Var) {
-            arrayList = x00Var.f27447b;
-            arrayList2 = x00Var.f27448c;
+            arrayList = x00Var.f27448b;
+            arrayList2 = x00Var.f27449c;
         }
         if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
             ArrayList<TL_iv.RichMessage> arrayList3 = ((TLRPC.TL_messages_translatedRichMessage) tLObject).result;
@@ -53,7 +53,7 @@ public final class im implements Runnable {
         synchronized (c10Var) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 try {
-                    c10Var.f22791x.remove(arrayList.get(i11));
+                    c10Var.f22795x.remove(arrayList.get(i11));
                 } catch (Throwable th2) {
                     throw th2;
                 }

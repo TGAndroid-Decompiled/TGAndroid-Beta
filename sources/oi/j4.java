@@ -134,16 +134,16 @@ public final class j4 extends x implements org.telegram.ui.ActionBar.z5, g9, i0 
             int measuredWidth = getMeasuredWidth();
             int i7 = this.L;
             if (measuredWidth > 0 && i7 > 0) {
-                float f10 = org.telegram.messenger.g0.f23608p;
+                float f10 = org.telegram.messenger.g0.f23610p;
                 int i10 = (int) (measuredWidth / f10);
                 int i11 = (int) (i7 / f10);
                 String str = map.geo.lat + "_" + map.geo._long + "_" + i10 + "x" + i11;
                 if (!str.equals(this.J)) {
                     this.J = str;
-                    int i12 = np.s1(this.f21758n).f25343n3;
+                    int i12 = np.s1(this.f21758n).f25346n3;
                     this.I = i12;
                     if (i12 == 2) {
-                        imageReceiver.q0(gc.p(k20.b(map.geo, i10, i11, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f23608p)))), null, null, null, null, 0);
+                        imageReceiver.q0(gc.p(k20.b(map.geo, i10, i11, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f23610p)))), null, null, null, null, 0);
                         return;
                     }
                     TLRPC.GeoPoint geoPoint = map.geo;

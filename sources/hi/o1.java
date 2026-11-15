@@ -49,7 +49,7 @@ public final class o1 extends uj0 {
                 } else {
                     i11 = 1;
                 }
-                wi0Var.f41354b = i11;
+                wi0Var.f41357b = i11;
                 o1Var.f14792f3.d(i7, i10, false, false);
                 return;
             }
@@ -212,7 +212,7 @@ public final class o1 extends uj0 {
         if (o0Var instanceof v4.b0) {
             wi0 wi0Var = new wi0(this, (v4.b0) o0Var);
             this.f14792f3 = wi0Var;
-            wi0Var.f41359i = new ci.h(this, 1);
+            wi0Var.f41362i = new ci.h(this, 1);
             wi0Var.h = new di.z6(this, 17);
         }
     }

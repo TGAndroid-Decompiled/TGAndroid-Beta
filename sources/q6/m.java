@@ -105,7 +105,7 @@ public abstract class m {
     }
 
     public static com.google.android.gms.common.api.f l(Status status) {
-        if (status.f5913c != null) {
+        if (status.f5916c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);

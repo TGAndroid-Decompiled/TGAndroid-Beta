@@ -5,14 +5,14 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 public final class rh implements TextWatcher {
-    public boolean f38979a;
-    public boolean f38980b;
-    public final org.telegram.ui.ActionBar.e2 f38981c;
+    public boolean f38976a;
+    public boolean f38977b;
+    public final org.telegram.ui.ActionBar.e2 f38978c;
     public final ki d;
 
     public rh(ki kiVar, org.telegram.ui.ActionBar.e2 e2Var) {
         this.d = kiVar;
-        this.f38981c = e2Var;
+        this.f38978c = e2Var;
     }
 
     @Override
@@ -22,28 +22,28 @@ public final class rh implements TextWatcher {
         int i7;
         boolean z12;
         ki kiVar = this.d;
-        h6 h6Var = kiVar.f36500u1;
+        h6 h6Var = kiVar.f36488u1;
         ph phVar = kiVar.N2;
         int i10 = kiVar.H3;
-        h6 h6Var2 = kiVar.f36504v1;
-        if (this.f38980b != TextUtils.isEmpty(editable)) {
-            ci ciVar = kiVar.f36509w2;
+        h6 h6Var2 = kiVar.f36492v1;
+        if (this.f38977b != TextUtils.isEmpty(editable)) {
+            ci ciVar = kiVar.f36497w2;
             if (ciVar != null) {
                 ciVar.D(ciVar.getSelectedItemsCount());
             }
-            this.f38980b = !this.f38980b;
+            this.f38977b = !this.f38977b;
         }
         boolean z13 = false;
-        if (this.f38979a) {
+        if (this.f38976a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             org.telegram.messenger.j6.l(editable, phVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f38979a = false;
+            this.f38976a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         kiVar.G1 = codePointCount;
-        te.a aVar = kiVar.f36480p1;
+        te.a aVar = kiVar.f36468p1;
         if (codePointCount > 0) {
             z10 = true;
         } else {
@@ -89,9 +89,9 @@ public final class rh implements TextWatcher {
             kiVar.S2 = z11;
             kiVar.G2.invalidate();
         }
-        if (!kiVar.f36455g4 && !org.telegram.messenger.np.s1(i10).D3() && !org.telegram.messenger.m10.i(i10).q() && kiVar.G1 > org.telegram.messenger.np.s1(i10).U4 && kiVar.G1 < org.telegram.messenger.np.s1(i10).V4) {
-            kiVar.f36455g4 = true;
-            kiVar.D1(this.f38981c);
+        if (!kiVar.f36443g4 && !org.telegram.messenger.np.s1(i10).D3() && !org.telegram.messenger.m10.i(i10).q() && kiVar.G1 > org.telegram.messenger.np.s1(i10).U4 && kiVar.G1 < org.telegram.messenger.np.s1(i10).V4) {
+            kiVar.f36443g4 = true;
+            kiVar.D1(this.f38978c);
         }
         if (kiVar.X1) {
             if (phVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(phVar.getText().toString().trim())) {
@@ -105,7 +105,7 @@ public final class rh implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         if (i11 - i10 >= 1) {
-            this.f38979a = true;
+            this.f38976a = true;
         }
         ki kiVar = this.d;
         if (kiVar.C4 == null) {

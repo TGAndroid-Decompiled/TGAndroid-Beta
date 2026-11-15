@@ -14,12 +14,12 @@ public abstract class ds extends p41 {
     public boolean X;
     public final ArrayList Y;
     public boolean Z;
-    public boolean f34056a0;
-    public boolean f34057b0;
-    public int f34058c0;
-    public int f34059d0;
-    public String f34060e0;
-    public final fo f34061f0;
+    public boolean f34043a0;
+    public boolean f34044b0;
+    public int f34045c0;
+    public int f34046d0;
+    public String f34047e0;
+    public final fo f34048f0;
 
     public ds(uj0 uj0Var, Context context, int i7, int i10) {
         super(uj0Var, context, i7, 0, false, null, null);
@@ -29,8 +29,8 @@ public abstract class ds extends p41 {
         this.V = new ArrayList();
         this.Y = new ArrayList();
         em0 em0Var = (em0) this;
-        this.f34061f0 = new fo(em0Var, 8);
-        this.f38203w = new d(em0Var, 9);
+        this.f34048f0 = new fo(em0Var, 8);
+        this.f38201w = new d(em0Var, 9);
         this.Q = i7;
         this.R = i10;
         O(false);
@@ -43,7 +43,7 @@ public abstract class ds extends p41 {
     public final void X() {
         ArrayList arrayList = new ArrayList();
         int i7 = this.Q;
-        ArrayList arrayList2 = org.telegram.messenger.np.s1(i7).f25440y;
+        ArrayList arrayList2 = org.telegram.messenger.np.s1(i7).f25443y;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {

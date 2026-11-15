@@ -24,7 +24,7 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 Window window = (Window) this.f26046c;
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 if (sgVar != null) {
-                    org.telegram.ui.Components.ki kiVar = sgVar.f39302b;
+                    org.telegram.ui.Components.ki kiVar = sgVar.f39300b;
                     kiVar.G0 = -1;
                     kiVar.H0 = intValue;
                     kiVar.f29682b.invalidate();
@@ -48,7 +48,7 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 dv dvVar = (dv) this.f26045b;
                 View view = (View) this.f26046c;
                 dvVar.getClass();
-                dvVar.f23157a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dvVar.f23164a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (view != null) {
                     view.invalidate();
                     return;

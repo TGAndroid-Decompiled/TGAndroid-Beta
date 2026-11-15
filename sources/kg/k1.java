@@ -85,7 +85,7 @@ public final class k1 implements org.telegram.ui.ActionBar.q1, sw {
         final String str3 = (String) this.f17983e;
         final yw ywVar2 = (yw) this.f17984f;
         String str4 = LaunchActivity.C1;
-        final long j3 = ((ur) arrayList.get(0)).f26860a;
+        final long j3 = ((ur) arrayList.get(0)).f26861a;
         final TLRPC.Chat M0 = np.s1(launchActivity.P).M0(Long.valueOf(-j3));
         final int i11 = this.f17980a;
         if (M0 != null && (M0.creator || ((tL_chatAdminRights = M0.admin_rights) != null && tL_chatAdminRights.add_admins))) {
@@ -117,7 +117,7 @@ public final class k1 implements org.telegram.ui.ActionBar.q1, sw {
                     k10.putLong("chat_id", j10);
                     an anVar = new an(k10);
                     int i13 = i11;
-                    org.telegram.messenger.ns.f(i13).k(org.telegram.messenger.ns.f25572t, new Object[0]);
+                    org.telegram.messenger.ns.f(i13).k(org.telegram.messenger.ns.f25573t, new Object[0]);
                     org.telegram.messenger.np.s1(i13).n(j10, user, str3, anVar, null);
                     ((ActionBarLayout) LaunchActivity.this.M()).V(anVar, true, false);
                 }

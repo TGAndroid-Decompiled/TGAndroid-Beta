@@ -6,14 +6,14 @@ import org.telegram.messenger.d1;
 import zd.c1;
 import zd.j0;
 public final class n implements a {
-    public static final d1 f7976b = new d1("fpnvsdk", "FirebasePhoneNumberVerificationImpl");
-    public final d f7977a;
+    public static final d1 f7979b = new d1("fpnvsdk", "FirebasePhoneNumberVerificationImpl");
+    public final d f7980a;
 
     public n(Context context, d dVar, androidx.emoji2.text.n nVar, h hVar, String appId, String apiKey) {
         kotlin.jvm.internal.j.e(context, "context");
         kotlin.jvm.internal.j.e(appId, "appId");
         kotlin.jvm.internal.j.e(apiKey, "apiKey");
-        this.f7977a = dVar;
+        this.f7980a = dVar;
         c1 c1Var = new c1();
         ge.e eVar = j0.f61292a;
         n0.c(c1Var, ee.n.f10628a);

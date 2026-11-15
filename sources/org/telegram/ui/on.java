@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class on extends mq0 {
-    public final qn f50028a;
+    public final qn f50005a;
 
     public on(qn qnVar) {
-        this.f50028a = qnVar;
+        this.f50005a = qnVar;
     }
 
     @Override
@@ -15,12 +15,12 @@ public final class on extends mq0 {
 
     @Override
     public final void G() {
-        this.f50028a.f50668e.getImageReceiver().O0(true, true);
+        this.f50005a.f50667e.getImageReceiver().O0(true, true);
     }
 
     @Override
     public final boolean N() {
-        qn qnVar = this.f50028a;
+        qn qnVar = this.f50005a;
         long j3 = qnVar.C0;
         if (j3 == 0) {
             return true;
@@ -35,7 +35,7 @@ public final class on extends mq0 {
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f50028a.f50685s.p(str, str2, z10);
+        this.f50005a.f50684s.p(str, str2, z10);
     }
 
     @Override

@@ -24,7 +24,7 @@ public final class a00 extends Drawable {
         this.f32805c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f32807f = new u5(new wa0(this, 1), 200L, er.f34421g, 0);
+        this.f32807f = new u5(new wa0(this, 1), 200L, er.f34420g, 0);
         this.f32804b = i5.c.g(context, 2131231171);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);

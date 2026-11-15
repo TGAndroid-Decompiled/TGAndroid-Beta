@@ -27,27 +27,27 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
     public float M;
     public final OvershootInterpolator N;
     public float O;
-    public final Paint f41841a;
-    public final o9 f41842b;
-    public final o9 f41843c;
+    public final Paint f41833a;
+    public final o9 f41834b;
+    public final o9 f41835c;
     public float d;
-    public float f41844e;
-    public float f41845f;
+    public float f41836e;
+    public float f41837f;
     public x10 h;
-    public x10 f41846n;
-    public float f41847r;
-    public boolean f41848s;
-    public float f41849w;
-    public final LinearGradient f41850x;
-    public final Matrix f41851y;
+    public x10 f41838n;
+    public float f41839r;
+    public boolean f41840s;
+    public float f41841w;
+    public final LinearGradient f41842x;
+    public final Matrix f41843y;
 
     public y10(Context context, int i7) {
         super(context);
-        this.f41841a = new Paint(1);
-        this.f41842b = new o9(8);
-        this.f41843c = new o9(9);
-        this.f41847r = 1.0f;
-        this.f41851y = new Matrix();
+        this.f41833a = new Paint(1);
+        this.f41834b = new o9(8);
+        this.f41835c = new o9(9);
+        this.f41839r = 1.0f;
+        this.f41843y = new Matrix();
         this.E = 0.0f;
         new Random();
         this.J = new x10[4];
@@ -56,12 +56,12 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
         for (int i10 = 0; i10 < 4; i10++) {
             this.J[i10] = new x10(i10);
         }
-        this.f41842b.f37876b = org.telegram.messenger.g0.L(37.0f);
-        this.f41842b.f37875a = org.telegram.messenger.g0.L(32.0f);
-        this.f41843c.f37876b = org.telegram.messenger.g0.L(37.0f);
-        this.f41843c.f37875a = org.telegram.messenger.g0.L(32.0f);
-        this.f41842b.b();
-        this.f41843c.b();
+        this.f41834b.f37865b = org.telegram.messenger.g0.L(37.0f);
+        this.f41834b.f37864a = org.telegram.messenger.g0.L(32.0f);
+        this.f41835c.f37865b = org.telegram.messenger.g0.L(37.0f);
+        this.f41835c.f37864a = org.telegram.messenger.g0.L(32.0f);
+        this.f41834b.b();
+        this.f41835c.b();
         ch0 ch0Var = new ch0(2131624334, org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(30.0f), true, null);
         this.H = ch0Var;
         setWillNotDraw(false);
@@ -70,13 +70,13 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
         imageView.setAnimation(ch0Var);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        this.f41850x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f41842x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
     }
 
     private void setAmplitude(double d) {
         float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.f41844e = min;
-        this.f41845f = (min - this.d) / 265.0f;
+        this.f41836e = min;
+        this.f41837f = (min - this.d) / 265.0f;
     }
 
     public final void a() {
@@ -109,7 +109,7 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.ns.N4) {
             setAmplitude(((Float) objArr[0]).floatValue() * 4000.0f);
-        } else if (i7 == org.telegram.messenger.ns.f25595w2) {
+        } else if (i7 == org.telegram.messenger.ns.f25596w2) {
             a();
         }
     }
@@ -121,7 +121,7 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
         super.onAttachedToWindow();
         setAmplitude(0.0d);
         org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.N4);
-        org.telegram.messenger.ns.f(this.F).c(this, org.telegram.messenger.ns.f25595w2);
+        org.telegram.messenger.ns.f(this.F).c(this, org.telegram.messenger.ns.f25596w2);
         if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
             z10 = true;
         } else {
@@ -137,7 +137,7 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
         }
         ch0 ch0Var = this.H;
         ch0Var.P(i7);
-        ch0Var.N(ch0Var.f33579f - 1, false, true);
+        ch0Var.N(ch0Var.f33581f - 1, false, true);
         a();
     }
 
@@ -181,7 +181,7 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.N4);
-        org.telegram.messenger.ns.f(this.F).n(this, org.telegram.messenger.ns.f25595w2);
+        org.telegram.messenger.ns.f(this.F).n(this, org.telegram.messenger.ns.f25596w2);
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().unregisterStateListener(this);
         }
@@ -196,9 +196,9 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i7;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        s10 s10Var = s10.f39142f0;
+        s10 s10Var = s10.f39139f0;
         if (s10Var != null) {
-            if (s10Var.f39159y) {
+            if (s10Var.f39156y) {
                 i7 = 2131754901;
             } else {
                 i7 = 2131754816;
@@ -247,18 +247,18 @@ public final class y10 extends FrameLayout implements org.telegram.messenger.is,
     public void setState(int i7) {
         String M0;
         x10 x10Var = this.h;
-        if (x10Var != null && x10Var.f41507i == i7) {
+        if (x10Var != null && x10Var.f41510i == i7) {
             return;
         }
-        this.f41846n = x10Var;
+        this.f41838n = x10Var;
         x10 x10Var2 = this.J[i7];
         this.h = x10Var2;
         float f10 = 0.0f;
         if (x10Var != null) {
-            this.f41847r = 0.0f;
+            this.f41839r = 0.0f;
         } else {
-            this.f41847r = 1.0f;
-            int i10 = x10Var2.f41507i;
+            this.f41839r = 1.0f;
+            int i10 = x10Var2.f41510i;
             if (i10 != 3 && i10 != 2) {
                 f10 = 1.0f;
             }

@@ -79,7 +79,7 @@ public final class v {
         v vVar = x.c().v;
         if (vVar != null) {
             if (vVar != this && this.f56479n != 3) {
-                if (TextUtils.equals(((ComponentName) ((ou) c().d).f25804b).getPackageName(), "android") && m("android.media.intent.category.LIVE_AUDIO") && !m("android.media.intent.category.LIVE_VIDEO")) {
+                if (TextUtils.equals(((ComponentName) ((ou) c().d).f25806b).getPackageName(), "android") && m("android.media.intent.category.LIVE_AUDIO") && !m("android.media.intent.category.LIVE_VIDEO")) {
                     return true;
                 }
                 return false;
@@ -250,7 +250,7 @@ public final class v {
         sb2.append(", settingsIntent=");
         sb2.append(this.f56485t);
         sb2.append(", providerPackageName=");
-        sb2.append(((ComponentName) this.f56468a.d.f25804b).getPackageName());
+        sb2.append(((ComponentName) this.f56468a.d.f25806b).getPackageName());
         if (e()) {
             sb2.append(", members=[");
             int size = this.v.size();

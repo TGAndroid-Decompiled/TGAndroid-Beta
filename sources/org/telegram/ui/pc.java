@@ -5,15 +5,15 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class pc implements org.telegram.ui.ActionBar.e6 {
-    public final qc f50240a;
+    public final qc f50217a;
 
     public pc(qc qcVar) {
-        this.f50240a = qcVar;
+        this.f50217a = qcVar;
     }
 
     @Override
     public final boolean a() {
-        return this.f50240a.K;
+        return this.f50217a.K;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class pc implements org.telegram.ui.ActionBar.e6 {
     @Override
     public final Paint d(String str) {
         if (str.equals("paintDivider")) {
-            return this.f50240a.f50587z0;
+            return this.f50217a.f50578z0;
         }
         return org.telegram.ui.ActionBar.j6.V0(str);
     }
@@ -51,20 +51,20 @@ public final class pc implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        qc qcVar = this.f50240a;
-        Drawable drawable = qcVar.f50586y0;
-        Drawable drawable2 = qcVar.f50584x0;
+        qc qcVar = this.f50217a;
+        Drawable drawable = qcVar.f50577y0;
+        Drawable drawable2 = qcVar.f50575x0;
         if (str.equals("drawableMsgIn")) {
-            return qcVar.f50578t0;
+            return qcVar.f50569t0;
         }
         if (str.equals("drawableMsgInSelected")) {
-            return qcVar.f50579u0;
+            return qcVar.f50570u0;
         }
         if (str.equals("drawableMsgOut")) {
-            return qcVar.f50580v0;
+            return qcVar.f50571v0;
         }
         if (str.equals("drawableMsgOutSelected")) {
-            return qcVar.f50582w0;
+            return qcVar.f50573w0;
         }
         if (str.equals("drawableMsgOutCheckRead")) {
             drawable2.setColorFilter(h(org.telegram.ui.ActionBar.j6.Cb), PorterDuff.Mode.MULTIPLY);
@@ -73,7 +73,7 @@ public final class pc implements org.telegram.ui.ActionBar.e6 {
             drawable.setColorFilter(h(org.telegram.ui.ActionBar.j6.Cb), PorterDuff.Mode.MULTIPLY);
             return drawable;
         } else {
-            org.telegram.ui.ActionBar.e6 e6Var = qcVar.f50575r0;
+            org.telegram.ui.ActionBar.e6 e6Var = qcVar.f50566r0;
             if (e6Var != null) {
                 return e6Var.getDrawable(str);
             }
@@ -83,12 +83,12 @@ public final class pc implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final int h(int i7) {
-        qc qcVar = this.f50240a;
-        int indexOfKey = qcVar.f50577s0.indexOfKey(i7);
+        qc qcVar = this.f50217a;
+        int indexOfKey = qcVar.f50568s0.indexOfKey(i7);
         if (indexOfKey >= 0) {
-            return qcVar.f50577s0.valueAt(indexOfKey);
+            return qcVar.f50568s0.valueAt(indexOfKey);
         }
-        org.telegram.ui.ActionBar.e6 e6Var = qcVar.f50575r0;
+        org.telegram.ui.ActionBar.e6 e6Var = qcVar.f50566r0;
         if (e6Var != null) {
             return e6Var.h(i7);
         }

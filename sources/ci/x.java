@@ -20,16 +20,16 @@ import org.telegram.ui.Wallet.y5;
 import org.telegram.ui.Wallet.z9;
 import org.telegram.ui.d00;
 public final class x implements a20 {
-    public final int f5550a;
+    public final int f5553a;
 
     public x(int i7) {
-        this.f5550a = i7;
+        this.f5553a = i7;
     }
 
     @Override
     public final Object a(Object obj) {
         boolean z10 = true;
-        switch (this.f5550a) {
+        switch (this.f5553a) {
             case 0:
                 String str = (String) obj;
                 if (TextUtils.isEmpty(str) || (!str.startsWith("tg:") && !vf.c.g(Uri.parse(str), false, null))) {

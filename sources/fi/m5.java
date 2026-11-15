@@ -21,7 +21,7 @@ import org.telegram.ui.ed0;
 import org.telegram.ui.ef0;
 import org.telegram.ui.go;
 import org.telegram.ui.i21;
-import org.telegram.ui.jl0;
+import org.telegram.ui.kl0;
 import org.telegram.ui.la;
 public final class m5 implements RequestDelegate {
     public final int f12031a;
@@ -58,7 +58,7 @@ public final class m5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.o(19));
                 return;
             case 8:
-                org.telegram.messenger.p5 p5Var = org.telegram.messenger.d4.f23022s;
+                org.telegram.messenger.p5 p5Var = org.telegram.messenger.d4.f23030s;
                 return;
             case 9:
                 return;
@@ -87,7 +87,7 @@ public final class m5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.o(28));
                 return;
             case 18:
-                Pattern pattern2 = org.telegram.ui.Components.t4.f39507a;
+                Pattern pattern2 = org.telegram.ui.Components.t4.f39505a;
                 return;
             case 19:
                 int i12 = zv.I0;
@@ -99,10 +99,10 @@ public final class m5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.o(28));
                 return;
             case 22:
-                int i14 = ny0.f37753e;
+                int i14 = ny0.f37742e;
                 return;
             case 23:
-                int i15 = ed0.f46730w0;
+                int i15 = ed0.f46720w0;
                 return;
             case 24:
                 org.telegram.messenger.g0.h3(new ef0(tLObject, 5));
@@ -111,13 +111,13 @@ public final class m5 implements RequestDelegate {
                 int i16 = ak0.S;
                 return;
             case 26:
-                List list = jl0.f48380h1;
+                List list = kl0.f48672h1;
                 return;
             case 27:
                 RectF rectF = ProfileActivity.X6;
                 return;
             default:
-                int i17 = i21.f47886p1;
+                int i17 = i21.f47876p1;
                 return;
         }
     }

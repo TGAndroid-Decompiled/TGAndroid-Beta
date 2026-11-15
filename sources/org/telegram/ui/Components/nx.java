@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class nx extends a41 {
-    public static final int f37745b = 0;
+    public static final int f37734b = 0;
 
     static {
         a41.h(new a41());
@@ -18,7 +18,7 @@ public final class nx extends a41 {
         K.B = j3;
         K.G = stickerSetCovered;
         K.H = exVar;
-        K.f33175e = z10;
+        K.f33178e = z10;
         return K;
     }
 
@@ -29,16 +29,16 @@ public final class nx extends a41 {
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             bVar.setPack((TLRPC.TL_messages_stickerSet) obj);
         } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((ex) b41Var.H).f34447e;
+            TLRPC.Document document = ((ex) b41Var.H).f34446e;
             bVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
             bVar.f55055c.d(document, null, null, null, false, false);
         }
-        bVar.a(b41Var.f33175e, false);
+        bVar.a(b41Var.f33178e, false);
     }
 
     @Override
     public final boolean c(b41 b41Var, b41 b41Var2) {
-        if (b41Var.B == b41Var2.B && b41Var.f33175e == b41Var2.f33175e) {
+        if (b41Var.B == b41Var2.B && b41Var.f33178e == b41Var2.f33178e) {
             return true;
         }
         return false;

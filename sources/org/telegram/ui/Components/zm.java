@@ -22,7 +22,7 @@ public final class zm extends v4.c0 {
             k10 += org.telegram.messenger.g0.L(160.0f);
         }
         if (!jnVar.W0) {
-            k10 = org.telegram.messenger.k5.B(7.0f, jnVar.S0 - org.telegram.messenger.g0.f23603m, k10);
+            k10 = org.telegram.messenger.k5.B(7.0f, jnVar.S0 - org.telegram.messenger.g0.f23605m, k10);
         }
         if (jnVar.W0 && k10 == 0 && (i10 = jnVar.X0) >= 0) {
             jn.P(jnVar, i10);

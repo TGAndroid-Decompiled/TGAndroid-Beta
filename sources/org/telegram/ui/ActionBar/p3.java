@@ -98,7 +98,7 @@ public final class p3 {
             D0 = j6.D0();
         }
         if (z10 != D0.q()) {
-            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0);
+            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0);
             String str = "Blue";
             if (z10) {
                 string = sharedPreferences.getString("lastDarkTheme", "Dark Blue");
@@ -137,15 +137,15 @@ public final class p3 {
         n3 n3Var = new n3(z10Var, wallPaper, z10 ? 1 : 0, i7, j3);
         if (!z10) {
             org.telegram.messenger.j1 j1Var = new org.telegram.messenger.j1(n3Var, 2);
-            if (f10.f23026c == 0) {
+            if (f10.f23034c == 0) {
                 j1Var.onComplete(null);
                 return;
             }
-            org.telegram.messenger.d4.f23022s.c(new org.telegram.messenger.b4(25, f10.g(j3), j1Var));
+            org.telegram.messenger.d4.f23030s.c(new org.telegram.messenger.b4(25, f10.g(j3), j1Var));
         } else if (z10) {
             File i10 = org.telegram.messenger.t0.i();
             Locale locale = Locale.US;
-            org.telegram.messenger.d4.f23022s.c(new org.telegram.messenger.b4(18, new File(i10, r.b.j(j3, "pattern_", ".pgm.gz")), n3Var));
+            org.telegram.messenger.d4.f23030s.c(new org.telegram.messenger.b4(18, new File(i10, r.b.j(j3, "pattern_", ".pgm.gz")), n3Var));
         }
     }
 
@@ -173,7 +173,7 @@ public final class p3 {
                             } else {
                                 str2 = "lastDayCustomThemeAccentId";
                             }
-                            org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0).edit().putString(str, i6Var.m()).putInt(str2, i7).apply();
+                            org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0).edit().putString(str, i6Var.m()).putInt(str2, i7).apply();
                         }
                     }
                 }
@@ -381,7 +381,7 @@ public final class p3 {
                     resultCallback.onComplete(null);
                 }
             } else {
-                Bitmap bitmap = (Bitmap) org.telegram.messenger.d4.f(this.f29475g).f23024a.get(Long.valueOf(h7));
+                Bitmap bitmap = (Bitmap) org.telegram.messenger.d4.f(this.f29475g).f23032a.get(Long.valueOf(h7));
                 File file = new File(org.telegram.messenger.t0.h(), r.b.j(h7, "wallpaper_thumb_", ".png"));
                 if (bitmap == null && file.exists() && file.length() > 0) {
                     try {

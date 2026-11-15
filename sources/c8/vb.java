@@ -10,9 +10,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 public abstract class vb {
-    public static boolean f4734a = false;
-    public static Method f4735b = null;
-    public static boolean f4736c = false;
+    public static boolean f4737a = false;
+    public static Method f4738b = null;
+    public static boolean f4739c = false;
     public static Field d;
 
     public static boolean a(View view, KeyEvent keyEvent) {

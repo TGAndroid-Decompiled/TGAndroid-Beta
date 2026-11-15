@@ -7,23 +7,23 @@ import android.graphics.Paint;
 import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
 public final class o0 implements Runnable {
-    public final int f5453a;
-    public final z0 f5454b;
-    public final int f5455c;
+    public final int f5456a;
+    public final z0 f5457b;
+    public final int f5458c;
 
     public o0(z0 z0Var, int i7, int i10) {
-        this.f5453a = i10;
-        this.f5454b = z0Var;
-        this.f5455c = i7;
+        this.f5456a = i10;
+        this.f5457b = z0Var;
+        this.f5458c = i7;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f5453a) {
+        switch (this.f5456a) {
             case 0:
-                z0 z0Var = this.f5454b;
-                int i7 = this.f5455c;
+                z0 z0Var = this.f5457b;
+                int i7 = this.f5458c;
                 synchronized (z0.class) {
                     if (z0.O9 != null) {
                         bArr = z0.O9;
@@ -65,10 +65,10 @@ public final class o0 implements Runnable {
                 org.telegram.messenger.g0.h3(new p0(z0Var, createBitmap2, iArr, i7, 1));
                 return;
             case 1:
-                this.f5454b.F0(this.f5455c);
+                this.f5457b.F0(this.f5458c);
                 return;
             default:
-                this.f5454b.F0(this.f5455c);
+                this.f5457b.F0(this.f5458c);
                 return;
         }
     }

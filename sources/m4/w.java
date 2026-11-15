@@ -89,7 +89,7 @@ public final class w implements g0 {
                             throw new IllegalStateException();
                         }
                     } else {
-                        if (c(xVar, (byte[]) fVar.f7550b, Math.min(10, this.f20439i)) && c(xVar, null, this.f20439i)) {
+                        if (c(xVar, (byte[]) fVar.f7553b, Math.min(10, this.f20439i)) && c(xVar, null, this.f20439i)) {
                             fVar.J(0);
                             this.f20442l = -9223372036854775807L;
                             if (this.f20437f) {
@@ -120,7 +120,7 @@ public final class w implements g0 {
                             this.d = 0;
                         }
                     }
-                } else if (c(xVar, (byte[]) fVar.f7550b, 9)) {
+                } else if (c(xVar, (byte[]) fVar.f7553b, 9)) {
                     if (e()) {
                         i10 = 2;
                     } else {

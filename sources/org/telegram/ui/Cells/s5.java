@@ -33,7 +33,7 @@ public final class s5 extends FrameLayout {
         textView.setAlpha(1.0f);
         id0 id0Var = this.f31415c;
         id0Var.h = i7;
-        id0Var.f35612n = 100;
+        id0Var.f35599n = 100;
         id0Var.a((int) f10, false);
     }
 

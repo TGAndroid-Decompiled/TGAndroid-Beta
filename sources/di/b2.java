@@ -17,18 +17,18 @@ import org.telegram.ui.Components.d31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.di0;
 public final class b2 implements s10 {
-    public final int f8239a;
-    public final Object f8240b;
-    public final Object f8241c;
+    public final int f8242a;
+    public final Object f8243b;
+    public final Object f8244c;
     public final Object d;
-    public final Object f8242e;
+    public final Object f8245e;
 
     public b2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f8239a = i7;
-        this.f8240b = obj;
-        this.f8241c = obj2;
+        this.f8242a = i7;
+        this.f8243b = obj;
+        this.f8244c = obj2;
         this.d = obj3;
-        this.f8242e = obj4;
+        this.f8245e = obj4;
     }
 
     @Override
@@ -37,11 +37,11 @@ public final class b2 implements s10 {
         gj gjVar;
         org.telegram.ui.Components.cc k10;
         CharSequence P2;
-        int i7 = this.f8239a;
-        Object obj3 = this.f8242e;
+        int i7 = this.f8242a;
+        Object obj3 = this.f8245e;
         Object obj4 = this.d;
-        Object obj5 = this.f8241c;
-        Object obj6 = this.f8240b;
+        Object obj5 = this.f8244c;
+        Object obj6 = this.f8243b;
         switch (i7) {
             case 0:
                 c6 c6Var = (c6) obj6;
@@ -68,13 +68,13 @@ public final class b2 implements s10 {
                     }
                     np.s1(c6Var.f29679a).O3(updates, false);
                     if (gjVar != null) {
-                        TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGiftUnique) gjVar.f23817k.action).gift;
-                        s10Var.a(starGift, new androidx.car.app.utils.a(c6Var, gjVar, arrayList, starGift, 8));
+                        TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGiftUnique) gjVar.f23819k.action).gift;
+                        s10Var.a(starGift, new ai.r(c6Var, gjVar, arrayList, starGift, 9));
                         return;
                     }
                     s10Var.a(null, null);
-                    v8.y(c6Var.f29679a, false).O();
-                    m8 G = v8.y(c6Var.f29679a, false).G(m10.i(c6Var.f29679a).e(), false);
+                    u8.y(c6Var.f29679a, false).O();
+                    l8 G = u8.y(c6Var.f29679a, false).G(m10.i(c6Var.f29679a).e(), false);
                     if (G != null) {
                         G.k(arrayList, null);
                         return;
@@ -137,10 +137,10 @@ public final class b2 implements s10 {
                     d31Var.run();
                     return;
                 }
-                org.telegram.ui.ActionBar.u2 u2Var = di0.f46411a;
+                org.telegram.ui.ActionBar.u2 u2Var = di0.f46383a;
                 if (u2Var != null) {
                     u2Var.dismiss();
-                    di0.f46411a = null;
+                    di0.f46383a = null;
                 }
                 org.telegram.ui.Components.cc a10 = di0.a();
                 String M03 = hd.M0(2131753128, null);
@@ -158,7 +158,7 @@ public final class b2 implements s10 {
                 TLRPC.User user = (TLRPC.User) obj3;
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.e6 e6Var2 = v0Var.f52818e;
+                org.telegram.ui.ActionBar.e6 e6Var2 = v0Var.f52821e;
                 if (updates2 != null) {
                     np.s1(v0Var.N).O3(updates2, false);
                     v0Var.x(i7Var, "requested_chat_sent", org.telegram.ui.web.v0.A(str3, "req_id"));
@@ -170,7 +170,7 @@ public final class b2 implements s10 {
                     if (T != null) {
                         T.presentFragment(a0Var);
                     }
-                    org.telegram.ui.web.c0 c0Var = v0Var.f52815c;
+                    org.telegram.ui.web.c0 c0Var = v0Var.f52818c;
                     if (c0Var != null) {
                         c0Var.b();
                         return;

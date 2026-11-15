@@ -34,7 +34,7 @@ public abstract class h10 extends org.telegram.ui.ActionBar.u2 {
         while (true) {
             if (i10 < 3) {
                 LinearLayout f11 = org.telegram.messenger.k5.f(context, 0);
-                if (org.telegram.messenger.hd.f24101a0) {
+                if (org.telegram.messenger.hd.f24104a0) {
                     i7 = 5;
                 } else {
                     i7 = 3;
@@ -47,7 +47,7 @@ public abstract class h10 extends org.telegram.ui.ActionBar.u2 {
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 15.0f);
                 org.telegram.ui.ActionBar.q6.U(textView2, i11, null);
-                textView2.setGravity((org.telegram.messenger.hd.f24101a0 ? 5 : 3) | 16);
+                textView2.setGravity((org.telegram.messenger.hd.f24104a0 ? 5 : 3) | 16);
                 textView2.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
                 if (i10 != 0) {
                     if (i10 != 1) {
@@ -60,7 +60,7 @@ public abstract class h10 extends org.telegram.ui.ActionBar.u2 {
                 } else {
                     textView2.setText(org.telegram.messenger.hd.M0(2131749558, null));
                 }
-                if (org.telegram.messenger.hd.f24101a0) {
+                if (org.telegram.messenger.hd.f24104a0) {
                     f11.addView(textView2, c8.ja.o(-2, -2));
                     f11.addView(imageView2, c8.ja.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
                 } else {
@@ -71,11 +71,11 @@ public abstract class h10 extends org.telegram.ui.ActionBar.u2 {
             } else {
                 ?? frameLayout = new FrameLayout(context);
                 View view = new View(context);
-                frameLayout.f34773a = view;
+                frameLayout.f34777a = view;
                 view.setBackground(org.telegram.ui.ActionBar.y5.f(org.telegram.ui.ActionBar.j6.Fi, 4.0f));
                 frameLayout.addView(view, c8.ja.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
                 TextView textView3 = new TextView(context);
-                frameLayout.f34774b = textView3;
+                frameLayout.f34778b = textView3;
                 textView3.setLines(1);
                 textView3.setSingleLine(true);
                 textView3.setGravity(1);

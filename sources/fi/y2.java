@@ -49,7 +49,7 @@ public final class y2 implements z10 {
                 View view = (View) obj2;
                 Long l10 = (Long) obj;
                 b4 b4Var = z2Var.f12578a;
-                if (z10 && p0Var.f5188f != null) {
+                if (z10 && p0Var.f5191f != null) {
                     try {
                         b4Var.performHapticFeedback(0);
                     } catch (Exception unused) {
@@ -62,20 +62,20 @@ public final class y2 implements z10 {
                     p0Var = p0Var;
                 }
                 ch.l0.B = l0Var;
-                ch.i0 i0Var = l0Var.f5118i;
+                ch.i0 i0Var = l0Var.f5121i;
                 i0Var.setTag(2131296591, 1);
                 b4Var.addView(i0Var);
                 z3 z3Var = b4Var.f11543y1;
-                l0Var.f5128s = true;
-                l0Var.f5133y = System.currentTimeMillis();
-                if (p0Var.f5188f != null) {
-                    e10 = si.b0(b4Var.f11497m2).T(p0Var.f5188f);
-                    cz a10 = cz.a(b4Var.l1, p0Var.f5188f);
+                l0Var.f5131s = true;
+                l0Var.f5136y = System.currentTimeMillis();
+                if (p0Var.f5191f != null) {
+                    e10 = si.b0(b4Var.f11497m2).T(p0Var.f5191f);
+                    cz a10 = cz.a(b4Var.l1, p0Var.f5191f);
                     a10.H = z3Var.f12579a;
                     a10.Q = l10.longValue();
                     ez.C(b4Var.f11497m2).r0(a10);
                 } else {
-                    e10 = org.telegram.ui.Components.g5.e(b4Var.f11497m2, p0Var.f5189g);
+                    e10 = org.telegram.ui.Components.g5.e(b4Var.f11497m2, p0Var.f5192g);
                     String V = gj.V(e10, null, null);
                     if (V == null) {
                         if (b4Var.P1.getReactionsWindow() != null) {
@@ -85,19 +85,19 @@ public final class y2 implements z10 {
                         return;
                     }
                     cz a11 = cz.a(b4Var.l1, V);
-                    a11.f22997w = new ArrayList();
+                    a11.f23005w = new ArrayList();
                     TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-                    tL_messageEntityCustomEmoji.document_id = p0Var.f5189g;
+                    tL_messageEntityCustomEmoji.document_id = p0Var.f5192g;
                     tL_messageEntityCustomEmoji.offset = i7;
                     tL_messageEntityCustomEmoji.length = V.length();
-                    a11.f22997w.add(tL_messageEntityCustomEmoji);
+                    a11.f23005w.add(tL_messageEntityCustomEmoji);
                     a11.H = z3Var.f12579a;
                     a11.Q = l10.longValue();
                     ez.C(b4Var.f11497m2).r0(a11);
                 }
                 if (l10.longValue() <= 0) {
                     xb r10 = new cc(b4Var.M0, b4Var.f11493l0).r(e10, hd.M0(2131746389, null), hd.M0(2131743552, null), new c1(z2Var, 3));
-                    r10.f41643j = 5000;
+                    r10.f41635j = 5000;
                     r10.j();
                 }
                 if (b4Var.P1.getReactionsWindow() != null) {

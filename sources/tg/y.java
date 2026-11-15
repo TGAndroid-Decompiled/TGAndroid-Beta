@@ -8,7 +8,7 @@ import org.telegram.ui.Components.nt0;
 import org.telegram.ui.Components.u51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.tp0;
-public final class y extends g2 {
+public final class y extends f2 {
     public final g0 f57604z0;
 
     public y(g0 g0Var, Context context, PointF pointF, float f10, float f11, nt0 nt0Var, TLRPC.Document document, Object obj) {

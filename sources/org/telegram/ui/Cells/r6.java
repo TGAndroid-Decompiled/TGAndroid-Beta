@@ -143,7 +143,7 @@ public final class r6 extends FrameLayout {
             }
             i12 = 2131231044;
         }
-        Drawable mutate = org.telegram.messenger.t0.f26600b.getDrawable(i12).mutate();
+        Drawable mutate = org.telegram.messenger.t0.f26609b.getDrawable(i12).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.J7, false), PorterDuff.Mode.SRC_IN));
         float f10 = i7;
         int L = org.telegram.messenger.g0.L(f10);
@@ -163,8 +163,8 @@ public final class r6 extends FrameLayout {
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, L, new int[]{x02, i15}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         fq fqVar = new fq(q6Var, mutate);
         if (lowerCase != null && lowerCase.contains("fragment")) {
-            fqVar.f34672e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f10);
-            fqVar.f34673f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f10);
+            fqVar.f34676e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f10);
+            fqVar.f34677f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f10);
         }
         return fqVar;
     }
@@ -326,13 +326,13 @@ public final class r6 extends FrameLayout {
             } else {
                 i7 = 72;
             }
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f10 = org.telegram.messenger.g0.L(i7);
             }
             float f11 = f10;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i10 = org.telegram.messenger.g0.L(i7);
             }
             canvas.drawLine(f11, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);

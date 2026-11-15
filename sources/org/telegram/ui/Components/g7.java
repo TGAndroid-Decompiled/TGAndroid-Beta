@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MediaController;
 public final class g7 implements Runnable {
-    public final int f34861a;
-    public final h7 f34862b;
+    public final int f34865a;
+    public final h7 f34866b;
 
     public g7(h7 h7Var, int i7) {
-        this.f34861a = i7;
-        this.f34862b = h7Var;
+        this.f34865a = i7;
+        this.f34866b = h7Var;
     }
 
     @Override
@@ -15,15 +15,15 @@ public final class g7 implements Runnable {
         long U;
         long j3;
         float f10;
-        switch (this.f34861a) {
+        switch (this.f34865a) {
             case 0:
-                h7 h7Var = this.f34862b;
+                h7 h7Var = this.f34866b;
                 int i7 = h7Var.f35184w + 1;
                 h7Var.f35184w = i7;
                 if (i7 == 1) {
                     y7 y7Var = h7Var.I;
                     y7Var.B2 = -1;
-                    y7Var.C2 = MediaController.B().f22377v0.f23777b0;
+                    y7Var.C2 = MediaController.B().f22377v0.f23779b0;
                     h7Var.f35185x = System.currentTimeMillis();
                     org.telegram.messenger.g0.i3(this, 2000L);
                     org.telegram.messenger.g0.h3(h7Var.F);
@@ -35,7 +35,7 @@ public final class g7 implements Runnable {
                     return;
                 }
             default:
-                h7 h7Var2 = this.f34862b;
+                h7 h7Var2 = this.f34866b;
                 y7 y7Var2 = h7Var2.I;
                 u51 u51Var = MediaController.B().f22353j0;
                 if (u51Var == null) {

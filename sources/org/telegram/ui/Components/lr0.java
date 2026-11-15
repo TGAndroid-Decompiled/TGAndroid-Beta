@@ -57,7 +57,7 @@ public final class lr0 extends tj0 {
         boolean z16;
         boolean z17;
         ys0 ys0Var = this.f36894f;
-        org.telegram.ui.ActionBar.e2 e2Var = ys0Var.f42150y1;
+        org.telegram.ui.ActionBar.e2 e2Var = ys0Var.f42152y1;
         View view = e1Var.f58535a;
         if (view instanceof org.telegram.ui.Cells.pa) {
             org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
@@ -130,7 +130,7 @@ public final class lr0 extends tj0 {
                     }
                 }
                 TLRPC.User a22 = e2Var.getMessagesController().a2(Long.valueOf(chatParticipant.user_id));
-                if (org.telegram.messenger.q10.B(a22) && org.telegram.messenger.t3.h(e2Var.getMessagesController().M0(Long.valueOf(-ys0Var.f42114m1)))) {
+                if (org.telegram.messenger.q10.B(a22) && org.telegram.messenger.t3.h(e2Var.getMessagesController().M0(Long.valueOf(-ys0Var.f42116m1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -148,7 +148,7 @@ public final class lr0 extends tj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         ys0 ys0Var = this.f36894f;
         if (i7 == 20) {
-            p3 X = ys0.X(7, ys0Var.f42114m1, this.f36892c, ys0Var.I1);
+            p3 X = ys0.X(7, ys0Var.f42116m1, this.f36892c, ys0Var.I1);
             X.setLayoutParams(new v4.p0(-1, -1));
             return new v4.e1(X);
         }

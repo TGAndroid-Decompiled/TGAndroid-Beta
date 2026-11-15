@@ -1,25 +1,25 @@
 package bi;
 public final class d3 implements Runnable {
-    public final int f3439a;
-    public final c4 f3440b;
-    public final int f3441c;
+    public final int f3442a;
+    public final c4 f3443b;
+    public final int f3444c;
 
     public d3(c4 c4Var, int i7, int i10) {
-        this.f3439a = i10;
-        this.f3440b = c4Var;
-        this.f3441c = i7;
+        this.f3442a = i10;
+        this.f3443b = c4Var;
+        this.f3444c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f3439a) {
+        switch (this.f3442a) {
             case 0:
-                this.f3440b.f3413f.scrollBy(0, this.f3441c);
+                this.f3443b.f3416f.scrollBy(0, this.f3444c);
                 return;
             default:
-                v3 v3Var = this.f3440b.f3413f;
+                v3 v3Var = this.f3443b.f3416f;
                 if (v3Var != null) {
-                    v3Var.setSpanCount(this.f3441c);
+                    v3Var.setSpanCount(this.f3444c);
                     return;
                 }
                 return;

@@ -46,7 +46,7 @@ public final class aa1 extends org.telegram.ui.ActionBar.e2 {
         }
         arrayList2.clear();
         arrayList2.add(new z91(1, null));
-        ArrayList l10 = getMessagesController().f25383r7.l(-this.f44982c);
+        ArrayList l10 = getMessagesController().f25386r7.l(-this.f44982c);
         int i7 = 0;
         if (l10 != null) {
             int i10 = 0;

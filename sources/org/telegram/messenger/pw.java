@@ -47,13 +47,13 @@ public final class pw implements Runnable {
             case 1:
                 org.telegram.ui.an anVar = (org.telegram.ui.an) obj2;
                 mi0 mi0Var = (mi0) obj;
-                org.telegram.ui.ActionBar.g1 g1Var = anVar.f45197f9;
+                org.telegram.ui.ActionBar.g1 g1Var = anVar.f45196f9;
                 if (g1Var != null && anVar.fragmentView != null && !g1Var.isShowing()) {
                     Activity parentActivity = anVar.getParentActivity();
-                    Typeface typeface = g0.f23581a;
+                    Typeface typeface = g0.f23583a;
                     if (parentActivity != null && !parentActivity.isDestroyed() && !parentActivity.isFinishing()) {
-                        anVar.f45197f9.showAtLocation(anVar.A0, 51, i12, i11);
-                        anVar.ia(anVar.f45197f9);
+                        anVar.f45196f9.showAtLocation(anVar.A0, 51, i12, i11);
+                        anVar.ia(anVar.f45196f9);
                         if (z10 && mi0Var != null) {
                             mi0Var.r(true);
                         }
@@ -67,20 +67,20 @@ public final class pw implements Runnable {
                 org.telegram.ui.Components.hb hbVar = (org.telegram.ui.Components.hb) obj2;
                 ch.p0 p0Var = (ch.p0) obj;
                 org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
-                long j3 = p0Var.f5189g;
+                long j3 = p0Var.f5192g;
                 if (j3 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24934t0).f26495r.get(p0Var.f5188f);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24940t0).f26505r.get(p0Var.f5191f);
                     if (tL_availableReaction != null) {
                         e10 = tL_availableReaction.activate_animation;
                     } else {
                         return;
                     }
                 } else {
-                    e10 = org.telegram.ui.Components.g5.e(m10.f24934t0, j3);
+                    e10 = org.telegram.ui.Components.g5.e(m10.f24940t0, j3);
                 }
                 if (e10 != null && Q != null) {
                     org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(Q);
-                    int i13 = hbVar.f35217a.h;
+                    int i13 = hbVar.f35208a.h;
                     if (z10) {
                         qVar = new jg.q(i12, i11, Q, 10);
                     } else {

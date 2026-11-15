@@ -69,9 +69,9 @@ public final class k implements Runnable {
             case 2:
                 np npVar = (np) isVar;
                 if (z11) {
-                    arrayList = npVar.f25421w0;
+                    arrayList = npVar.f25424w0;
                 } else {
-                    arrayList = npVar.f25411v0;
+                    arrayList = npVar.f25414v0;
                 }
                 if (z10) {
                     if (!arrayList.contains(Long.valueOf(j3))) {

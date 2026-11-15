@@ -33,7 +33,7 @@ public class y {
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((ji.j) ((cf) this.f19897c).f33543a).getClass();
+            ((ji.j) ((cf) this.f19897c).f33545a).getClass();
             if (keyListener instanceof t1.e) {
                 return keyListener;
             }
@@ -99,7 +99,7 @@ public class y {
             cfVar.getClass();
             inputConnection = null;
         } else {
-            ji.j jVar = (ji.j) cfVar.f33543a;
+            ji.j jVar = (ji.j) cfVar.f33545a;
             jVar.getClass();
             if (!(inputConnection instanceof t1.b)) {
                 inputConnection = new t1.b((EditText) jVar.f17555b, inputConnection, editorInfo);
@@ -109,17 +109,17 @@ public class y {
     }
 
     public void d(boolean z10) {
-        t1.i iVar = (t1.i) ((ji.j) ((cf) this.f19897c).f33543a).f17556c;
+        t1.i iVar = (t1.i) ((ji.j) ((cf) this.f19897c).f33545a).f17556c;
         if (iVar.f56963c != z10) {
             if (iVar.f56962b != null) {
                 androidx.emoji2.text.l a10 = androidx.emoji2.text.l.a();
                 t1.h hVar = iVar.f56962b;
                 a10.getClass();
                 qb.a(hVar, "initCallback cannot be null");
-                ReentrantReadWriteLock reentrantReadWriteLock = a10.f2258a;
+                ReentrantReadWriteLock reentrantReadWriteLock = a10.f2261a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
-                    a10.f2259b.remove(hVar);
+                    a10.f2262b.remove(hVar);
                 } finally {
                     reentrantReadWriteLock.writeLock().unlock();
                 }

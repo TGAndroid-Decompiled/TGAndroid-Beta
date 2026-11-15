@@ -20,20 +20,20 @@ public final class hw0 extends org.telegram.ui.Cells.w6 {
         int i13;
         int i14;
         this.h = iw0Var;
-        this.f31888f = org.telegram.messenger.m10.f24934t0;
+        this.f31888f = org.telegram.messenger.m10.f24940t0;
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f31884a = textView;
         i5.c.v(textView, 1, 15.0f);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.L6, e6Var);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -46,13 +46,13 @@ public final class hw0 extends org.telegram.ui.Cells.w6 {
         org.telegram.ui.ActionBar.q6.G(z70Var, org.telegram.ui.ActionBar.j6.J6, e6Var);
         org.telegram.ui.ActionBar.q6.C(z70Var, org.telegram.ui.ActionBar.j6.K6, e6Var);
         z70Var.setMovementMethod(new org.telegram.messenger.c0(false));
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         z70Var.setGravity(i11);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             i12 = 5;
         } else {
             i12 = 3;
@@ -101,7 +101,7 @@ public final class hw0 extends org.telegram.ui.Cells.w6 {
                             default:
                                 hw0 hw0Var2 = this.f31813b;
                                 int i16 = hw0Var2.f31887e;
-                                ProfileActivity profileActivity = hw0Var2.h.f48138e;
+                                ProfileActivity profileActivity = hw0Var2.h.f48123e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;
@@ -131,7 +131,7 @@ public final class hw0 extends org.telegram.ui.Cells.w6 {
                             default:
                                 hw0 hw0Var2 = this.f31813b;
                                 int i16 = hw0Var2.f31887e;
-                                ProfileActivity profileActivity = hw0Var2.h.f48138e;
+                                ProfileActivity profileActivity = hw0Var2.h.f48123e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;

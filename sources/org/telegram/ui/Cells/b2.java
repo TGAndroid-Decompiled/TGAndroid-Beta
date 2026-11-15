@@ -79,7 +79,7 @@ public final class b2 extends z70 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new b00(org.telegram.ui.ActionBar.j6.f29070p7, ((org.telegram.ui.ka) this.N).f48657e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new b00(org.telegram.ui.ActionBar.j6.f29070p7, ((org.telegram.ui.ka) this.N).f48611e.getResourceProvider()), 0, indexOf, 33);
                     }
                     y31[] y31VarArr = (y31[]) charSequence.getSpans(0, charSequence.length(), y31.class);
                     for (int i7 = 0; i7 < y31VarArr.length; i7++) {

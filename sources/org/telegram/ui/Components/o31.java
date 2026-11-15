@@ -13,7 +13,7 @@ public final class o31 extends py {
     @Override
     public final boolean D1() {
         x31 x31Var = this.Y;
-        if (x31Var.f41549n.getAdapter() == x31Var.f41552w) {
+        if (x31Var.f41552n.getAdapter() == x31Var.f41555w) {
             return true;
         }
         return false;
@@ -21,7 +21,7 @@ public final class o31 extends py {
 
     @Override
     public final boolean Y0() {
-        return org.telegram.messenger.hd.f24101a0;
+        return org.telegram.messenger.hd.f24104a0;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class o31 extends py {
                 if (i11 >= r()) {
                     break;
                 }
-                n31 n31Var = x31Var.f41549n;
+                n31 n31Var = x31Var.f41552n;
                 View q10 = q(i11);
                 n31Var.getClass();
                 int R = RecyclerView.R(q10);
@@ -52,7 +52,7 @@ public final class o31 extends py {
                 }
                 i11++;
             }
-            if (i10 == 0 && (m10 = x31Var.f41550r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
+            if (i10 == 0 && (m10 = x31Var.f41553r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
                 i7 = m10.getTop() - org.telegram.messenger.g0.L(58.0f);
             }
         }

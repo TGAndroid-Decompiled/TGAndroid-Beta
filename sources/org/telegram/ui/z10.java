@@ -12,12 +12,12 @@ public final class z10 extends q4 {
     @Override
     public final void c() {
         c40 c40Var = this.V;
-        org.telegram.messenger.c cVar = c40Var.f45951o1;
-        a20 a20Var = c40Var.f45942m1;
+        org.telegram.messenger.c cVar = c40Var.f45940o1;
+        a20 a20Var = c40Var.f45931m1;
         long dialogId = a20Var.getDialogId();
         if (dialogId > 0) {
-            TLRPC.User a22 = org.telegram.messenger.np.s1(cVar.f22778a).a2(Long.valueOf(dialogId));
-            a20Var.H(null, org.telegram.messenger.gc.m(cVar.f22778a, 0, a22), org.telegram.messenger.gc.m(cVar.f22778a, 1, a22), false);
+            TLRPC.User a22 = org.telegram.messenger.np.s1(cVar.f22782a).a2(Long.valueOf(dialogId));
+            a20Var.H(null, org.telegram.messenger.gc.m(cVar.f22782a, 0, a22), org.telegram.messenger.gc.m(cVar.f22782a, 1, a22), false);
         }
     }
 }

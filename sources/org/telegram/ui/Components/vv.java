@@ -5,24 +5,24 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import j$.util.Objects;
 public final class vv extends rg.d {
-    public boolean f41157g3;
-    public final ly f41158h3;
+    public boolean f41160g3;
+    public final ly f41161h3;
 
     public vv(ly lyVar, Context context) {
         super(context, null);
-        this.f41158h3 = lyVar;
+        this.f41161h3 = lyVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.f41158h3.f36974o2.g();
+        this.f41161h3.f36974o2.g();
     }
 
     @Override
     public final void l0(int i7) {
         int i10;
-        ly lyVar = this.f41158h3;
+        ly lyVar = this.f41161h3;
         gy gyVar = lyVar.A0;
         if (lyVar.D0 != null) {
             zv zvVar = lyVar.C0;
@@ -34,7 +34,7 @@ public final class vv extends rg.d {
             zvVar.setUnderlineHeight(i10);
         }
         if (gyVar != null && getAdapter() == gyVar && gyVar.d == 0) {
-            gy gyVar2 = gyVar.P.f34744x;
+            gy gyVar2 = gyVar.P.f34748x;
             if (!gyVar2.R.H0.G && !gyVar2.E) {
                 if (lyVar.F0.N0() + 50 > gyVar.b()) {
                     fy fyVar = gyVar.P;
@@ -47,7 +47,7 @@ public final class vv extends rg.d {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        ly lyVar = this.f41158h3;
+        ly lyVar = this.f41161h3;
         if (!lyVar.f36946f) {
             org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
             vv vvVar = lyVar.E0;
@@ -63,12 +63,12 @@ public final class vv extends rg.d {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        ly lyVar = this.f41158h3;
+        ly lyVar = this.f41161h3;
         if (lyVar.J0 && lyVar.f37010z0.b() > 0) {
-            this.f41157g3 = true;
+            this.f41160g3 = true;
             lyVar.F0.h1(0, 0);
             lyVar.J0 = false;
-            this.f41157g3 = false;
+            this.f41160g3 = false;
         }
         super.onLayout(z10, i7, i10, i11, i12);
         lyVar.q(true);
@@ -76,7 +76,7 @@ public final class vv extends rg.d {
 
     @Override
     public final void requestLayout() {
-        if (this.f41157g3) {
+        if (this.f41160g3) {
             return;
         }
         super.requestLayout();

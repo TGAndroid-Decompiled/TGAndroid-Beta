@@ -123,7 +123,7 @@ public class a implements s0, e, k, i0, eg.a, l5.e, fg.a, ja.a, b, Continuation,
 
     @Override
     public void D0(String str) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("AudioRecorderV2 " + str);
         }
     }
@@ -476,23 +476,23 @@ public class a implements s0, e, k, i0, eg.a, l5.e, fg.a, ja.a, b, Continuation,
     @Override
     public b7.d W(Context context, String str, b7.c cVar) {
         b7.d dVar = new b7.d();
-        dVar.f2945a = cVar.D(context, str);
+        dVar.f2948a = cVar.D(context, str);
         int i7 = 1;
         int q10 = cVar.q(context, str, true);
-        dVar.f2946b = q10;
-        int i10 = dVar.f2945a;
+        dVar.f2949b = q10;
+        int i10 = dVar.f2948a;
         if (i10 == 0) {
             i10 = 0;
             if (q10 == 0) {
                 i7 = 0;
-                dVar.f2947c = i7;
+                dVar.f2950c = i7;
                 return dVar;
             }
         }
         if (q10 < i10) {
             i7 = -1;
         }
-        dVar.f2947c = i7;
+        dVar.f2950c = i7;
         return dVar;
     }
 

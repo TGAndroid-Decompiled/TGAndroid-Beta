@@ -70,7 +70,7 @@ public final class m implements View.OnLayoutChangeListener {
                     int paddingLeft = searchView.I.getPaddingLeft();
                     Rect rect = new Rect();
                     boolean a10 = r3.a(searchView);
-                    if (searchView.f1898g0) {
+                    if (searchView.f1905g0) {
                         i19 = resources.getDimensionPixelSize(2131165225) + resources.getDimensionPixelSize(2131165226);
                     }
                     searchAutoComplete.getDropDownBackground().getPadding(rect);

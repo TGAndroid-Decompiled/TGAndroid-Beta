@@ -26,10 +26,10 @@ public final class wl implements Runnable {
                 lmVar.a(chat);
                 return;
             case 2:
-                lmVar.f49005a.Na(chat);
+                lmVar.f49001a.Na(chat);
                 return;
             default:
-                org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(lmVar.f49005a);
+                org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(lmVar.f49001a);
                 if (chat == null) {
                     str = "";
                 } else {

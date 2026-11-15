@@ -53,16 +53,16 @@ public final class j extends w61 {
             int i11 = -org.telegram.messenger.g0.L(16.0f);
             y yVar = this.f59195g0;
             int i12 = yVar.f59286o2;
-            if (yVar.f35937p1.getVisibility() == 0) {
-                i7 = org.telegram.messenger.g0.L(16.0f) + org.telegram.messenger.g0.f23603m;
+            if (yVar.f35932p1.getVisibility() == 0) {
+                i7 = org.telegram.messenger.g0.L(16.0f) + org.telegram.messenger.g0.f23605m;
             } else {
                 i7 = 0;
             }
             int L = org.telegram.messenger.g0.L(10.0f) + Math.max(i11, i12 - i7);
             u0 u0Var = this.f59193e0;
             int i13 = u0Var.f59257p2;
-            if (u0Var.f59250i2.f39903c == 1.0f) {
-                i10 = org.telegram.messenger.g0.f23603m;
+            if (u0Var.f59250i2.f39900c == 1.0f) {
+                i10 = org.telegram.messenger.g0.f23605m;
             } else {
                 i10 = 0;
             }

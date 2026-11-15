@@ -14,24 +14,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.tgnet.tl.TL_update;
 public final class h00 extends c1 {
-    public static final int[] f24007n = new int[5];
-    public final a0.h f24008a;
-    public final a0.h f24009b;
-    public final LongSparseIntArray f24010c;
+    public static final int[] f24010n = new int[5];
+    public final a0.h f24011a;
+    public final a0.h f24012b;
+    public final LongSparseIntArray f24013c;
     public final LongSparseIntArray d;
-    public final a0.h f24011e;
-    public final LongSparseIntArray f24012f;
+    public final a0.h f24014e;
+    public final LongSparseIntArray f24015f;
     public final a0.h h;
 
     public h00(int i7) {
         super(i7);
-        this.f24008a = new a0.h();
-        this.f24009b = new a0.h();
-        this.f24010c = new LongSparseIntArray();
+        this.f24011a = new a0.h();
+        this.f24012b = new a0.h();
+        this.f24013c = new LongSparseIntArray();
         this.d = new LongSparseIntArray();
-        this.f24011e = new a0.h();
+        this.f24014e = new a0.h();
         new LongSparseIntArray();
-        this.f24012f = new LongSparseIntArray();
+        this.f24015f = new LongSparseIntArray();
         this.h = new a0.h();
     }
 
@@ -173,21 +173,21 @@ public final class h00 extends c1 {
         tL_messages_deleteTopicHistory.top_msg_id = i7;
         if (i10 == 0) {
             vr messagesStorage = getMessagesStorage();
-            messagesStorage.f27220a.c(new sp(1, j10, i7, messagesStorage));
+            messagesStorage.f27219a.c(new pp(1, j10, i7, messagesStorage));
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_deleteTopicHistory, new d00(this, j3, i7));
     }
 
     public final void d(ArrayList arrayList, long j3) {
-        ArrayList arrayList2 = (ArrayList) this.f24008a.f(j3);
-        a0.h hVar = (a0.h) this.f24009b.f(j3);
+        ArrayList arrayList2 = (ArrayList) this.f24011a.f(j3);
+        a0.h hVar = (a0.h) this.f24012b.f(j3);
         if (hVar != null && arrayList2 != null) {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 long intValue = ((Integer) arrayList.get(i7)).intValue();
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(intValue);
                 hVar.l(intValue);
                 if (tL_forumTopic != null) {
-                    this.f24011e.l(p(tL_forumTopic.top_message, j3));
+                    this.f24014e.l(p(tL_forumTopic.top_message, j3));
                     arrayList2.remove(tL_forumTopic);
                 }
             }
@@ -206,7 +206,7 @@ public final class h00 extends c1 {
     }
 
     public final TLRPC.TL_forumTopic f(long j3, long j10) {
-        a0.h hVar = (a0.h) this.f24009b.f(j3);
+        a0.h hVar = (a0.h) this.f24012b.f(j3);
         if (hVar != null) {
             TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(j10);
             if (tL_forumTopic == null && getMessagesController().y2(-j3)) {
@@ -235,8 +235,8 @@ public final class h00 extends c1 {
     public final void h(long j3) {
         int i7;
         int i10;
-        ArrayList arrayList = (ArrayList) this.f24008a.f(j3);
-        int[] iArr = f24007n;
+        ArrayList arrayList = (ArrayList) this.f24011a.f(j3);
+        int[] iArr = f24010n;
         Arrays.fill(iArr, 0);
         if (arrayList != null) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -275,7 +275,7 @@ public final class h00 extends c1 {
 
     public final CharSequence j(TLRPC.Chat chat, gj gjVar, TextPaint textPaint, Drawable[] drawableArr) {
         TLRPC.TL_forumTopic f10;
-        TLRPC.MessageReplyHeader messageReplyHeader = gjVar.f23817k.reply_to;
+        TLRPC.MessageReplyHeader messageReplyHeader = gjVar.f23819k.reply_to;
         if (messageReplyHeader != null) {
             int i7 = messageReplyHeader.reply_to_top_id;
             if (i7 == 0) {
@@ -311,12 +311,12 @@ public final class h00 extends c1 {
     }
 
     public final ArrayList l(long j3) {
-        return (ArrayList) this.f24008a.f(j3);
+        return (ArrayList) this.f24011a.f(j3);
     }
 
     public final void m(final long j3, final long j10, final d3.e0 e0Var) {
         vr messagesStorage = getMessagesStorage();
-        messagesStorage.f27220a.c(new a4(messagesStorage, -j3, new Consumer() {
+        messagesStorage.f27219a.c(new a4(messagesStorage, -j3, new Consumer() {
             @Override
             public final void accept(Object obj) {
                 h00 h00Var = h00.this;
@@ -340,7 +340,7 @@ public final class h00 extends c1 {
 
     public final void q(long j3, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         long j10 = -j3;
-        a0.h hVar = this.f24009b;
+        a0.h hVar = this.f24012b;
         a0.h hVar2 = (a0.h) hVar.f(j10);
         if (f(j10, tL_forumTopic.f28103id) != null) {
             return;
@@ -349,7 +349,7 @@ public final class h00 extends c1 {
             hVar2 = new a0.h();
             hVar.k(hVar2, j10);
         }
-        a0.h hVar3 = this.f24008a;
+        a0.h hVar3 = this.f24011a;
         ArrayList arrayList = (ArrayList) hVar3.f(j10);
         if (arrayList == null) {
             arrayList = k5.i(hVar3, j10);
@@ -395,7 +395,7 @@ public final class h00 extends c1 {
     public final void s(long j3, long j10) {
         ArrayList arrayList = new ArrayList(1);
         arrayList.add(ur.a(-j3, j10));
-        g0.h3(new wq(22, this, arrayList));
+        g0.h3(new pq(23, this, arrayList));
     }
 
     public final void t(long j3, int i7, boolean z10, org.telegram.ui.ActionBar.e2 e2Var) {
@@ -455,20 +455,20 @@ public final class h00 extends c1 {
 
     public final void x(long j3, long j10, int i7, int i10) {
         ?? obj = new Object();
-        obj.f23618a = i7;
-        obj.f23619b = i10;
-        obj.f23620c = j10;
+        obj.f23620a = i7;
+        obj.f23621b = i10;
+        obj.f23622c = j10;
         this.h.k(obj, j3);
     }
 
     public final void y(long j3, boolean z10) {
-        ArrayList arrayList = (ArrayList) this.f24008a.f(j3);
+        ArrayList arrayList = (ArrayList) this.f24011a.f(j3);
         if (arrayList != null) {
-            if (this.f24012f.get(j3, 0) > 0) {
+            if (this.f24015f.get(j3, 0) > 0) {
                 Collections.sort(arrayList, new gl(20));
             }
             if (z10) {
-                getNotificationCenter().k(ns.f25558q5, Long.valueOf(j3), Boolean.TRUE);
+                getNotificationCenter().k(ns.f25559q5, Long.valueOf(j3), Boolean.TRUE);
             }
         }
     }
@@ -481,7 +481,7 @@ public final class h00 extends c1 {
         tL_messages_editForumTopic.topic_id = i7;
         tL_messages_editForumTopic.flags |= 4;
         tL_messages_editForumTopic.closed = z10;
-        a0.h hVar = (a0.h) this.f24009b.f(j3);
+        a0.h hVar = (a0.h) this.f24012b.f(j3);
         if (hVar != null && (tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(i7)) != null) {
             tL_forumTopic.closed = z10;
             getMessagesStorage().f2(j10, tL_forumTopic, 8);

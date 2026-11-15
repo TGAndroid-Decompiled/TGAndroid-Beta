@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class sd extends AnimatorListenerAdapter {
-    public final int f39276a;
-    public final int f39277b;
-    public final ChatActivityEnterView f39278c;
+    public final int f39274a;
+    public final int f39275b;
+    public final ChatActivityEnterView f39276c;
 
     public sd(ChatActivityEnterView chatActivityEnterView, int i7, int i10) {
-        this.f39276a = i10;
-        this.f39278c = chatActivityEnterView;
-        this.f39277b = i7;
+        this.f39274a = i10;
+        this.f39276c = chatActivityEnterView;
+        this.f39275b = i7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f39276a) {
+        switch (this.f39274a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f39278c;
+                ChatActivityEnterView chatActivityEnterView = this.f39276c;
                 st0 st0Var = chatActivityEnterView.U1;
                 chatActivityEnterView.f32217i4 = false;
                 chatActivityEnterView.f32223j4 = null;
                 sf sfVar = chatActivityEnterView.V0;
                 if (sfVar != null) {
                     if (chatActivityEnterView.C6 == null) {
-                        sfVar.getLayoutParams().height = this.f39277b;
+                        sfVar.getLayoutParams().height = this.f39275b;
                     }
                     chatActivityEnterView.V0.setLayerType(0, null);
                 }
@@ -44,8 +44,8 @@ public final class sd extends AnimatorListenerAdapter {
                 chatActivityEnterView.f32291t4.e();
                 return;
             default:
-                int i7 = this.f39277b;
-                ChatActivityEnterView chatActivityEnterView2 = this.f39278c;
+                int i7 = this.f39275b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f39276c;
                 if (i7 == 0) {
                     chatActivityEnterView2.f32216i3 = 0;
                 }

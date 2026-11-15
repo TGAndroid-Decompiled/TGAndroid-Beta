@@ -3,25 +3,25 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class yq0 extends AnimatorListenerAdapter {
-    public final int f42062a;
-    public final ys0 f42063b;
+    public final int f42064a;
+    public final ys0 f42065b;
 
     public yq0(ys0 ys0Var, int i7) {
-        this.f42062a = i7;
-        this.f42063b = ys0Var;
+        this.f42064a = i7;
+        this.f42065b = ys0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f42062a) {
+        switch (this.f42064a) {
             case 0:
-                this.f42063b.O0 = null;
+                this.f42065b.O0 = null;
                 return;
             default:
-                ys0 ys0Var = this.f42063b;
-                org.telegram.ui.ActionBar.q0 q0Var = ys0Var.f42125q0;
-                tr0[] tr0VarArr = ys0Var.f42117n0;
-                ys0Var.f42104i1 = null;
+                ys0 ys0Var = this.f42065b;
+                org.telegram.ui.ActionBar.q0 q0Var = ys0Var.f42127q0;
+                tr0[] tr0VarArr = ys0Var.f42119n0;
+                ys0Var.f42106i1 = null;
                 int i7 = 4;
                 if (ys0Var.l1) {
                     tr0VarArr[1].setVisibility(8);
@@ -30,9 +30,9 @@ public final class yq0 extends AnimatorListenerAdapter {
                             i7 = 8;
                         }
                         ys0Var.setSearchItemVisibility(i7);
-                        ys0Var.f42129r0 = 0.0f;
+                        ys0Var.f42131r0 = 0.0f;
                     } else {
-                        ys0Var.f42129r0 = ys0Var.l0(0.0f);
+                        ys0Var.f42131r0 = ys0Var.l0(0.0f);
                         ys0Var.M1(0.0f);
                     }
                     ys0Var.I1(false);
@@ -53,7 +53,7 @@ public final class yq0 extends AnimatorListenerAdapter {
                     ys0Var.Y0();
                     ys0Var.u1();
                 }
-                ys0Var.f42107j1 = false;
+                ys0Var.f42109j1 = false;
                 ys0Var.B1 = false;
                 ys0Var.A1 = false;
                 ys0Var.setHeaderEnabled(true);

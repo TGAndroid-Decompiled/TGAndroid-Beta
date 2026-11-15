@@ -47,7 +47,7 @@ public final class p9 implements d6 {
                 }
                 if (this.f14881a.p0() && (arrayList = this.f14881a.f15104v2) != null && !arrayList.isEmpty()) {
                     sa saVar3 = this.f14881a;
-                    org.telegram.messenger.t0.f26600b.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) saVar3.f15104v2.get(saVar3.f15101u2)).commit();
+                    org.telegram.messenger.t0.f26609b.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) saVar3.f15104v2.get(saVar3.f15101u2)).commit();
                 }
                 this.f14881a.C0.switchCamera();
                 sa.Z(this.f14881a.C0.isFrontface());

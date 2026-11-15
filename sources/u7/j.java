@@ -41,10 +41,10 @@ public final class j extends a8.q implements j8.j {
     public final void n1(com.google.android.gms.common.api.internal.o oVar) {
         androidx.activity.n nVar = this.f57882b;
         synchronized (nVar) {
-            com.google.android.gms.common.api.internal.o oVar2 = (com.google.android.gms.common.api.internal.o) nVar.f1790c;
+            com.google.android.gms.common.api.internal.o oVar2 = (com.google.android.gms.common.api.internal.o) nVar.f1797c;
             if (oVar2 != oVar) {
-                oVar2.f6052b = null;
-                nVar.f1790c = oVar;
+                oVar2.f6055b = null;
+                nVar.f1797c = oVar;
             }
         }
     }

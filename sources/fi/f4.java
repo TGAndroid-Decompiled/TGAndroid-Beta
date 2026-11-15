@@ -99,7 +99,7 @@ public final class f4 implements ValueAnimator.AnimatorUpdateListener {
                 ((org.telegram.ui.Components.i9) this.f11702b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 9:
-                di.c1 c1Var = ((z50) this.f11702b).f42252e.f34204o1;
+                di.c1 c1Var = ((z50) this.f11702b).f42254e.f34191o1;
                 int i10 = c1Var.D1;
                 if (i10 != -1 && (view = c1Var.E1) != null) {
                     c1Var.k1(i10, view);
@@ -109,13 +109,13 @@ public final class f4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 10:
                 w61 w61Var = (w61) this.f11702b;
-                View[] viewArr = w61Var.f41297e;
-                if (w61Var.f41304y) {
+                View[] viewArr = w61Var.f41300e;
+                if (w61Var.f41307y) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    w61Var.f41296c = abs;
+                    w61Var.f41299c = abs;
                     l61 l61Var = w61Var.N;
                     if (l61Var != null) {
-                        l61Var.e(abs, w61Var.d, w61Var.f41295b);
+                        l61Var.e(abs, w61Var.d, w61Var.f41298b);
                     }
                 }
                 w61Var.u(false);
@@ -124,9 +124,9 @@ public final class f4 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.r1 r1Var = (org.telegram.ui.Components.voip.r1) this.f11702b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r1Var.K = floatValue;
-                org.telegram.ui.Components.voip.q1 q1Var = r1Var.f40908j0;
+                org.telegram.ui.Components.voip.q1 q1Var = r1Var.f40911j0;
                 if (q1Var != null) {
-                    ((pb1) q1Var).f50239b.f46693e0.d(r1Var.Q, floatValue);
+                    ((pb1) q1Var).f50216b.f46683e0.d(r1Var.Q, floatValue);
                 }
                 r1Var.invalidate();
                 return;

@@ -46,8 +46,8 @@ public final class q6 implements RequestDelegate {
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
                 if (tL_error != null) {
                     if (tL_error.text.equals("MESSAGE_ID_INVALID")) {
-                        rdVar.f26270b.remove(qdVar);
-                        rdVar.f26269a.l(qdVar.f26078a);
+                        rdVar.f26278b.remove(qdVar);
+                        rdVar.f26277a.l(qdVar.f26078a);
                         rdVar.l(qdVar, 1);
                         rdVar.G.delete(iArr[0]);
                         g0.h3(new kd(rdVar, qdVar, 1));
@@ -63,9 +63,9 @@ public final class q6 implements RequestDelegate {
                 for (int i10 = 0; i10 < updates.updates.size(); i10++) {
                     TLRPC.Update update = updates.updates.get(i10);
                     if (update instanceof TL_update.TL_updateEditMessage) {
-                        qdVar.h.f23817k = ((TL_update.TL_updateEditMessage) update).message;
+                        qdVar.h.f23819k = ((TL_update.TL_updateEditMessage) update).message;
                     } else if (update instanceof TL_update.TL_updateEditChannelMessage) {
-                        qdVar.h.f23817k = ((TL_update.TL_updateEditChannelMessage) update).message;
+                        qdVar.h.f23819k = ((TL_update.TL_updateEditChannelMessage) update).message;
                     }
                     z10 = true;
                 }
@@ -126,7 +126,7 @@ public final class q6 implements RequestDelegate {
                         vr messagesStorage2 = bwVar.getMessagesStorage();
                         byte[] bArr2 = messages_dhconfig.f28208p;
                         messagesStorage2.H();
-                        messagesStorage2.f27235y = bArr2;
+                        messagesStorage2.f27234y = bArr2;
                         vr messagesStorage3 = bwVar.getMessagesStorage();
                         int i13 = messages_dhconfig.f28207g;
                         messagesStorage3.H();
@@ -134,17 +134,17 @@ public final class q6 implements RequestDelegate {
                         vr messagesStorage4 = bwVar.getMessagesStorage();
                         int i14 = messages_dhconfig.version;
                         messagesStorage4.H();
-                        messagesStorage4.f27234x = i14;
+                        messagesStorage4.f27233x = i14;
                         vr messagesStorage5 = bwVar.getMessagesStorage();
                         vr messagesStorage6 = bwVar.getMessagesStorage();
                         messagesStorage6.H();
-                        int i15 = messagesStorage6.f27234x;
+                        int i15 = messagesStorage6.f27233x;
                         vr messagesStorage7 = bwVar.getMessagesStorage();
                         messagesStorage7.H();
                         int i16 = messagesStorage7.E;
                         vr messagesStorage8 = bwVar.getMessagesStorage();
                         messagesStorage8.H();
-                        messagesStorage5.f27220a.c(new l2.x(messagesStorage5, i15, i16, messagesStorage8.f27235y, 7));
+                        messagesStorage5.f27219a.c(new l2.x(messagesStorage5, i15, i16, messagesStorage8.f27234y, 7));
                     }
                     byte[] bArr3 = new byte[256];
                     for (int i17 = 0; i17 < 256; i17++) {
@@ -155,7 +155,7 @@ public final class q6 implements RequestDelegate {
                     BigInteger bigInteger = new BigInteger(1, bArr3);
                     vr messagesStorage9 = bwVar.getMessagesStorage();
                     messagesStorage9.H();
-                    byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage9.f27235y)).toByteArray();
+                    byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage9.f27234y)).toByteArray();
                     if (byteArray.length > 256) {
                         byte[] bArr4 = new byte[256];
                         System.arraycopy(byteArray, 1, bArr4, 0, 256);
@@ -168,7 +168,7 @@ public final class q6 implements RequestDelegate {
                     bwVar.getConnectionsManager().sendRequest(tL_messages_requestEncryption, new ao(bwVar, context, t1Var, bArr3, user2, 2), 2);
                     return;
                 }
-                bwVar.f22761f.clear();
+                bwVar.f22765f.clear();
                 g0.h3(new yv(bwVar, context, t1Var, 0));
                 return;
             default:
@@ -176,7 +176,7 @@ public final class q6 implements RequestDelegate {
                 gj gjVar = (gj) obj3;
                 String str2 = (String) obj2;
                 Runnable runnable = (Runnable) obj;
-                a0.h hVar = ezVar.f23395x;
+                a0.h hVar = ezVar.f23398x;
                 if (tL_error == null) {
                     hVar.k(0L, gjVar.D1());
                     ezVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);

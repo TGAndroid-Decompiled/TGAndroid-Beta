@@ -502,17 +502,17 @@ public final class a implements gh.a, l, d, eg.a, q, e, u9.e, w, u9.d, ii, o51, 
 
     @Override
     public void a() {
-        synchronized (b.f4084a) {
-            Object obj = b.f4085b;
+        synchronized (b.f4087a) {
+            Object obj = b.f4088b;
             synchronized (obj) {
-                if (b.f4086c) {
+                if (b.f4089c) {
                     return;
                 }
                 long a10 = b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     b.d = a10;
-                    b.f4086c = true;
+                    b.f4089c = true;
                 }
             }
         }
@@ -912,7 +912,7 @@ public final class a implements gh.a, l, d, eg.a, q, e, u9.e, w, u9.d, ii, o51, 
 
     @Override
     public boolean v() {
-        if (j6.A0().f42277i != null) {
+        if (j6.A0().f42279i != null) {
             return true;
         }
         return false;

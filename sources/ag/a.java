@@ -51,9 +51,9 @@ public final class a implements ServiceConnection {
                 x xVar2 = new x(10, eVar, componentName);
                 if (((vf.a) ((WeakReference) this.f1053b).get()) != null) {
                     c.f58808b = xVar2;
-                    if (np.s1(m10.f24934t0).O2() && (xVar = c.f58808b) != null) {
+                    if (np.s1(m10.f24940t0).O2() && (xVar = c.f58808b) != null) {
                         try {
-                            ((zf.c) ((e) xVar.f57596b)).i1();
+                            ((zf.c) ((e) xVar.f57597b)).i1();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -67,13 +67,13 @@ public final class a implements ServiceConnection {
                 return;
             case 1:
                 d9.c cVar = (d9.c) this.f1053b;
-                cVar.f7608b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
+                cVar.f7611b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
                 cVar.a().post(new d9.a(this, iBinder));
                 return;
             default:
                 u.g("BillingClientTesting", "Billing Override Service connected.");
                 f5.x xVar3 = (f5.x) this.f1053b;
-                int i10 = f.f6726b;
+                int i10 = f.f6729b;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideService");
                     if (queryLocalInterface2 instanceof g) {
@@ -110,7 +110,7 @@ public final class a implements ServiceConnection {
                 return;
             case 1:
                 d9.c cVar = (d9.c) this.f1053b;
-                cVar.f7608b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
+                cVar.f7611b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
                 cVar.a().post(new d9.b(this, 0));
                 return;
             default:

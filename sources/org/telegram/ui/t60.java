@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_stories;
 public final class t60 implements org.telegram.messenger.z10 {
-    public final int f51390a;
-    public final LaunchActivity f51391b;
-    public final g50 f51392c;
+    public final int f51391a;
+    public final LaunchActivity f51392b;
+    public final g50 f51393c;
     public final Long d;
 
     public t60(LaunchActivity launchActivity, g50 g50Var, Long l10, int i7) {
-        this.f51390a = i7;
-        this.f51391b = launchActivity;
-        this.f51392c = g50Var;
+        this.f51391a = i7;
+        this.f51392b = launchActivity;
+        this.f51393c = g50Var;
         this.d = l10;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f51390a;
+        int i7 = this.f51391a;
         Long l10 = this.d;
-        g50 g50Var = this.f51392c;
-        LaunchActivity launchActivity = this.f51391b;
+        g50 g50Var = this.f51393c;
+        LaunchActivity launchActivity = this.f51392b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i7) {
             case 0:

@@ -37,8 +37,8 @@ public final class m1 extends v4.j0 {
             default:
                 RecyclerView recyclerView = (RecyclerView) obj;
                 recyclerView.l(null);
-                recyclerView.f2822v0.f58504f = true;
-                boolean z10 = r2.f26198a;
+                recyclerView.f2825v0.f58504f = true;
+                boolean z10 = r2.f26206a;
                 recyclerView.d.h("notifyDataSetChanged()");
                 recyclerView.n0(true);
                 if (!recyclerView.d.g()) {
@@ -69,7 +69,7 @@ public final class m1 extends v4.j0 {
                 ug.l0 l0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) l0Var.d;
                 if (i10 >= 1) {
-                    boolean z10 = r2.f26198a;
+                    boolean z10 = r2.f26206a;
                     StringBuilder n10 = i5.c.n("onItemRangeChanged(", i7, ", ", i10, ", ");
                     n10.append(obj);
                     n10.append(")");
@@ -113,7 +113,7 @@ public final class m1 extends v4.j0 {
                 ug.l0 l0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) l0Var.d;
                 if (i10 >= 1) {
-                    boolean z10 = r2.f26198a;
+                    boolean z10 = r2.f26206a;
                     l0Var.h("onItemRangeInserted(" + i7 + ", " + i10 + ")");
                     arrayList.add(l0Var.i(1, i7, null, i10));
                     l0Var.f58197b = l0Var.f58197b | 1;
@@ -144,7 +144,7 @@ public final class m1 extends v4.j0 {
                 ug.l0 l0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) l0Var.d;
                 if (i7 != i10) {
-                    boolean z10 = r2.f26198a;
+                    boolean z10 = r2.f26206a;
                     l0Var.h("onItemRangeMoved(" + i7 + ", " + i10 + ", 1)");
                     arrayList.add(l0Var.i(8, i7, null, i10));
                     l0Var.f58197b = l0Var.f58197b | 8;
@@ -175,7 +175,7 @@ public final class m1 extends v4.j0 {
                 ug.l0 l0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) l0Var.d;
                 if (i10 >= 1) {
-                    boolean z10 = r2.f26198a;
+                    boolean z10 = r2.f26206a;
                     l0Var.h("onItemRangeRemoved(" + i7 + ", " + i10 + ")");
                     arrayList.add(l0Var.i(2, i7, null, i10));
                     l0Var.f58197b = l0Var.f58197b | 2;
@@ -193,7 +193,7 @@ public final class m1 extends v4.j0 {
         int[] iArr = RecyclerView.R0;
         RecyclerView recyclerView = (RecyclerView) this.f17205b;
         if (recyclerView.I && recyclerView.H) {
-            v4.f0 f0Var = recyclerView.f2811n;
+            v4.f0 f0Var = recyclerView.f2814n;
             WeakHashMap weakHashMap = r0.i0.f55671a;
             recyclerView.postOnAnimation(f0Var);
             return;

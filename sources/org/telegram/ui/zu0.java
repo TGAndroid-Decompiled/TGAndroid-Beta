@@ -25,8 +25,8 @@ public final class zu0 extends org.telegram.ui.Components.w4 {
         int f10 = i0.a.f(profileActivity.E5, i7, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29241y6, profileActivity.A0));
         super.setTextColor(f10);
         tw0 tw0Var = profileActivity.D6;
-        if (tw0Var != null && tw0Var.f51680c != (r12 = org.telegram.ui.ActionBar.j6.r1(1.4f, org.telegram.ui.ActionBar.j6.b(-0.02f, 0.15f, f10)))) {
-            tw0Var.f51680c = r12;
+        if (tw0Var != null && tw0Var.f51681c != (r12 = org.telegram.ui.ActionBar.j6.r1(1.4f, org.telegram.ui.ActionBar.j6.b(-0.02f, 0.15f, f10)))) {
+            tw0Var.f51681c = r12;
             tw0Var.invalidateSelf();
         }
     }

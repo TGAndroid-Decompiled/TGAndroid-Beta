@@ -196,8 +196,8 @@ public final class c3 extends AnimatorListenerAdapter {
                     zArr2[0] = true;
                     ((u30) this.f11592c).run();
                 }
-                r40Var.f38849f.setRotationY(0.0f);
-                r40Var.f38869r0.setRotationY(0.0f);
+                r40Var.f38847f.setRotationY(0.0f);
+                r40Var.f38867r0.setRotationY(0.0f);
                 r40Var.O0 = false;
                 r40Var.invalidate();
                 return;
@@ -216,7 +216,7 @@ public final class c3 extends AnimatorListenerAdapter {
                         bi.i2 i2Var = (bi.i2) view2;
                         FrameLayout frameLayout = i2Var.d;
                         frameLayout.invalidate();
-                        frameLayout.invalidateDrawable(i2Var.f3582e);
+                        frameLayout.invalidateDrawable(i2Var.f3585e);
                         return;
                     }
                     return;
@@ -257,11 +257,11 @@ public final class c3 extends AnimatorListenerAdapter {
                 if (fh0Var2 != null) {
                     fh0Var2.setVisibility(0);
                 }
-                yw.f53643z4 = false;
+                yw.f53608z4 = false;
                 return;
             default:
                 n11 n11Var = (n11) this.d;
-                n11Var.f49409t1 = null;
+                n11Var.f49408t1 = null;
                 n11Var.invalidate();
                 boolean[] zArr3 = (boolean[]) this.f11591b;
                 if (!zArr3[0]) {

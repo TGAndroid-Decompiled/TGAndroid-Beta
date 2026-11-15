@@ -6,21 +6,21 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import org.telegram.tgnet.TLRPC;
 public final class rt0 implements org.telegram.messenger.z10 {
-    public final int f51023a = 0;
-    public final boolean f51024b;
-    public final String f51025c;
+    public final int f51019a = 0;
+    public final boolean f51020b;
+    public final String f51021c;
     public final org.telegram.messenger.is d;
-    public final Object f51026e;
-    public final Object f51027f;
-    public final Object f51028g;
+    public final Object f51022e;
+    public final Object f51023f;
+    public final Object f51024g;
 
     public rt0(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z10, String str) {
         this.d = profileActivity;
-        this.f51026e = channelParticipant;
-        this.f51027f = user;
-        this.f51028g = chatParticipant;
-        this.f51024b = z10;
-        this.f51025c = str;
+        this.f51022e = channelParticipant;
+        this.f51023f = user;
+        this.f51024g = chatParticipant;
+        this.f51020b = z10;
+        this.f51021c = str;
     }
 
     @Override
@@ -28,10 +28,10 @@ public final class rt0 implements org.telegram.messenger.z10 {
         boolean z10;
         ArrayList<TLRPC.Document> arrayList;
         ArrayList<TLRPC.Document> arrayList2;
-        int i7 = this.f51023a;
-        Object obj2 = this.f51028g;
-        Object obj3 = this.f51027f;
-        Object obj4 = this.f51026e;
+        int i7 = this.f51019a;
+        Object obj2 = this.f51024g;
+        Object obj3 = this.f51023f;
+        Object obj4 = this.f51022e;
         org.telegram.messenger.is isVar = this.d;
         switch (i7) {
             case 0:
@@ -42,12 +42,12 @@ public final class rt0 implements org.telegram.messenger.z10 {
                 Integer num = (Integer) obj;
                 RectF rectF = ProfileActivity.X6;
                 profileActivity.getClass();
-                boolean z11 = this.f51024b;
+                boolean z11 = this.f51020b;
                 if (channelParticipant != null) {
                     profileActivity.Q4(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z11);
                     return;
                 } else {
-                    profileActivity.Q4(num.intValue(), user, chatParticipant, null, null, this.f51025c, z11);
+                    profileActivity.Q4(num.intValue(), user, chatParticipant, null, null, this.f51021c, z11);
                     return;
                 }
             default:
@@ -57,8 +57,8 @@ public final class rt0 implements org.telegram.messenger.z10 {
                 ArrayList arrayList3 = (ArrayList) obj2;
                 Runnable runnable = (Runnable) obj;
                 int i10 = n11Var.W;
-                boolean z12 = this.f51024b;
-                String str = this.f51025c;
+                boolean z12 = this.f51020b;
+                String str = this.f51021c;
                 if (z12) {
                     ArrayList s02 = org.telegram.messenger.si.b0(i10).s0(5);
                     for (int i11 = 0; i11 < s02.size(); i11++) {
@@ -72,7 +72,7 @@ public final class rt0 implements org.telegram.messenger.z10 {
                             }
                         }
                     }
-                    ArrayList arrayList4 = org.telegram.messenger.si.b0(i10).f26501t0[1];
+                    ArrayList arrayList4 = org.telegram.messenger.si.b0(i10).f26511t0[1];
                     for (int i13 = 0; i13 < arrayList4.size(); i13++) {
                         if ((arrayList4.get(i13) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i13)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i13)).documents) != null) {
                             for (int i14 = 0; i14 < arrayList.size(); i14++) {
@@ -88,9 +88,9 @@ public final class rt0 implements org.telegram.messenger.z10 {
                     return;
                 }
                 org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(i10);
-                String[] strArr = n11.f49362c2;
+                String[] strArr = n11.f49361c2;
                 di.i6 i6Var = new di.i6(n11Var, linkedHashSet, hashMap, arrayList3, runnable);
-                if (n11Var.f49365a0 == 3) {
+                if (n11Var.f49364a0 == 3) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -102,10 +102,10 @@ public final class rt0 implements org.telegram.messenger.z10 {
 
     public rt0(n11 n11Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
         this.d = n11Var;
-        this.f51024b = z10;
-        this.f51026e = linkedHashSet;
-        this.f51025c = str;
-        this.f51027f = hashMap;
-        this.f51028g = arrayList;
+        this.f51020b = z10;
+        this.f51022e = linkedHashSet;
+        this.f51021c = str;
+        this.f51023f = hashMap;
+        this.f51024g = arrayList;
     }
 }

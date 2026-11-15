@@ -42,21 +42,21 @@ import org.telegram.ui.ho;
 import org.telegram.ui.vs;
 import org.telegram.ui.xd;
 public final class m3 implements Runnable {
-    public final int f9026a;
-    public final boolean f9027b;
-    public final Object f9028c;
+    public final int f9048a;
+    public final boolean f9049b;
+    public final Object f9050c;
     public final Object d;
-    public final Object f9029e;
-    public final Object f9030f;
+    public final Object f9051e;
+    public final Object f9052f;
     public final Object h;
 
     public m3(int i7, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, boolean z10) {
-        this.f9026a = i7;
-        this.f9028c = obj;
+        this.f9048a = i7;
+        this.f9050c = obj;
         this.d = obj2;
-        this.f9029e = obj3;
-        this.f9030f = obj4;
-        this.f9027b = z10;
+        this.f9051e = obj3;
+        this.f9052f = obj4;
+        this.f9049b = z10;
         this.h = obj5;
     }
 
@@ -76,13 +76,13 @@ public final class m3 implements Runnable {
         char c10;
         char c11 = '\b';
         int i16 = 0;
-        switch (this.f9026a) {
+        switch (this.f9048a) {
             case 0:
-                c6 c6Var = (c6) this.f9028c;
+                c6 c6Var = (c6) this.f9050c;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-                z10 z10Var = (z10) this.f9029e;
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f9030f;
-                boolean z10 = this.f9027b;
+                z10 z10Var = (z10) this.f9051e;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f9052f;
+                boolean z10 = this.f9049b;
                 TLObject tLObject = (TLObject) this.h;
                 if (c6Var.getContext() != null) {
                     if (tL_error != null && z10Var != null && tL_error.text.startsWith("TMP_PASSWORD")) {
@@ -146,22 +146,22 @@ public final class m3 implements Runnable {
                 return;
             case 1:
                 Pair pair = (Pair) this.d;
-                ((l2.c1) this.f9028c).f18909b.h.r(((Integer) pair.first).intValue(), (x2.f0) pair.second, (x2.t) this.f9029e, (x2.b0) this.f9030f, (IOException) this.h, this.f9027b);
+                ((l2.c1) this.f9050c).f18909b.h.r(((Integer) pair.first).intValue(), (x2.f0) pair.second, (x2.t) this.f9051e, (x2.b0) this.f9052f, (IOException) this.h, this.f9049b);
                 return;
             case 2:
-                ((CameraController) this.f9028c).lambda$recordVideo$13(this.d, (CameraController.ICameraView) this.f9029e, (File) this.f9030f, this.f9027b, (Runnable) this.h);
+                ((CameraController) this.f9050c).lambda$recordVideo$13(this.d, (CameraController.ICameraView) this.f9051e, (File) this.f9052f, this.f9049b, (Runnable) this.h);
                 return;
             case 3:
-                xd xdVar = (xd) this.f9028c;
+                xd xdVar = (xd) this.f9050c;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
-                TwoStepVerificationActivity twoStepVerificationActivity2 = (TwoStepVerificationActivity) this.f9030f;
-                Activity activity = (Activity) this.f9029e;
-                boolean z11 = this.f9027b;
+                TwoStepVerificationActivity twoStepVerificationActivity2 = (TwoStepVerificationActivity) this.f9052f;
+                Activity activity = (Activity) this.f9051e;
+                boolean z11 = this.f9049b;
                 TLObject tLObject2 = (TLObject) this.h;
                 if (tL_error2 != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error2.text) && !tL_error2.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error2.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error2.text)) {
-                            ConnectionsManager.getInstance(xdVar.f53193p0).sendRequest(new TL_account.getPassword(), new l8(xdVar, twoStepVerificationActivity2, z11, 3), 8);
+                            ConnectionsManager.getInstance(xdVar.f53192p0).sendRequest(new TL_account.getPassword(), new k8(xdVar, twoStepVerificationActivity2, z11, 3), 8);
                             return;
                         }
                         if (twoStepVerificationActivity2 != null) {
@@ -184,7 +184,7 @@ public final class m3 implements Runnable {
                     int i18 = org.telegram.ui.ActionBar.j6.f28957j5;
                     org.telegram.ui.ActionBar.q6.U(textView, i18, null);
                     textView.setTextSize(1, 16.0f);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         i7 = 5;
                     } else {
                         i7 = 3;
@@ -197,13 +197,13 @@ public final class m3 implements Runnable {
                     linearLayout.addView(linearLayout2, c8.ja.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                     ImageView imageView = new ImageView(activity);
                     imageView.setImageResource(2131231623);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         i10 = org.telegram.messenger.g0.L(11.0f);
                     } else {
                         i10 = 0;
                     }
                     int L3 = org.telegram.messenger.g0.L(9.0f);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         L = 0;
                     } else {
                         L = org.telegram.messenger.g0.L(11.0f);
@@ -214,14 +214,14 @@ public final class m3 implements Runnable {
                     TextView textView2 = new TextView(activity);
                     org.telegram.ui.ActionBar.q6.U(textView2, i18, null);
                     textView2.setTextSize(1, 16.0f);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         i11 = 5;
                     } else {
                         i11 = 3;
                     }
                     textView2.setGravity(i11 | 48);
                     textView2.setText(org.telegram.messenger.g0.X2(hd.M0(2131751300, null)));
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         linearLayout2.addView(textView2, c8.ja.o(-1, -2));
                         linearLayout2.addView(imageView, c8.ja.r(-2, -2, 5));
                     } else {
@@ -232,13 +232,13 @@ public final class m3 implements Runnable {
                     linearLayout.addView(e10, c8.ja.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                     ImageView imageView2 = new ImageView(activity);
                     imageView2.setImageResource(2131231623);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         i12 = org.telegram.messenger.g0.L(11.0f);
                     } else {
                         i12 = 0;
                     }
                     int L4 = org.telegram.messenger.g0.L(9.0f);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         L2 = 0;
                     } else {
                         L2 = org.telegram.messenger.g0.L(11.0f);
@@ -248,14 +248,14 @@ public final class m3 implements Runnable {
                     TextView textView3 = new TextView(activity);
                     org.telegram.ui.ActionBar.q6.U(textView3, i18, null);
                     textView3.setTextSize(1, 16.0f);
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         i13 = 5;
                     } else {
                         i13 = 3;
                     }
                     textView3.setGravity(i13 | 48);
                     textView3.setText(org.telegram.messenger.g0.X2(hd.M0(2131751299, null)));
-                    if (hd.f24101a0) {
+                    if (hd.f24104a0) {
                         e10.addView(textView3, c8.ja.o(-1, -2));
                         i14 = 5;
                         e10.addView(imageView2, c8.ja.r(-2, -2, 5));
@@ -271,7 +271,7 @@ public final class m3 implements Runnable {
                         TextView textView4 = new TextView(activity);
                         org.telegram.ui.ActionBar.q6.U(textView4, i18, null);
                         textView4.setTextSize(1, 16.0f);
-                        if (hd.f24101a0) {
+                        if (hd.f24104a0) {
                             i15 = i14;
                         } else {
                             i15 = 3;
@@ -284,7 +284,7 @@ public final class m3 implements Runnable {
                         twoStepVerificationActivity2.showDialog(alertDialog$Builder.f28392a);
                         return;
                     } else {
-                        xdVar.f53190n0.showDialog(alertDialog$Builder.f28392a);
+                        xdVar.f53189n0.showDialog(alertDialog$Builder.f28392a);
                         return;
                     }
                 }
@@ -299,14 +299,14 @@ public final class m3 implements Runnable {
                 xdVar.J();
                 return;
             case 4:
-                an.X0((an) this.f9028c, (org.telegram.ui.Cells.q1) this.d, this.f9027b, (String) this.f9029e, (TLRPC.User[]) this.f9030f, (CharacterStyle) this.h);
+                an.X0((an) this.f9050c, (org.telegram.ui.Cells.q1) this.d, this.f9049b, (String) this.f9051e, (TLRPC.User[]) this.f9052f, (CharacterStyle) this.h);
                 return;
             case 5:
-                an anVar = (an) this.f9028c;
+                an anVar = (an) this.f9050c;
                 org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.d;
-                boolean[] zArr = (boolean[]) this.f9029e;
-                boolean z12 = this.f9027b;
-                gj gjVar = (gj) this.f9030f;
+                boolean[] zArr = (boolean[]) this.f9051e;
+                boolean z12 = this.f9049b;
+                gj gjVar = (gj) this.f9052f;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) this.h;
                 try {
                     t1Var.dismiss();
@@ -328,13 +328,13 @@ public final class m3 implements Runnable {
                 }
                 return;
             case 6:
-                eo eoVar = (eo) this.f9028c;
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f9030f;
-                boolean z13 = this.f9027b;
+                eo eoVar = (eo) this.f9050c;
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f9052f;
+                boolean z13 = this.f9049b;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.d;
-                go goVar = eoVar.f46888a;
-                ho hoVar = goVar.f47497i3;
-                hoVar.Q.remove(((TLRPC.TL_channels_toggleUsername) this.f9029e).username);
+                go goVar = eoVar.f46872a;
+                ho hoVar = goVar.f47487i3;
+                hoVar.Q.remove(((TLRPC.TL_channels_toggleUsername) this.f9051e).username);
                 if (((TLObject) this.h) instanceof TLRPC.TL_boolTrue) {
                     goVar.z1(tL_username, !z13, false);
                 } else if (tL_error3 != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error3.text)) {
@@ -346,14 +346,14 @@ public final class m3 implements Runnable {
                 hoVar.getMessagesController().u5(hoVar.Y, tL_username.username, tL_username.active);
                 return;
             case 7:
-                ((ly) this.f9028c).K((ph.a) this.d, (TLObject) this.h, (TLRPC.StickerSet) this.f9029e, (TLRPC.Document) this.f9030f, this.f9027b, true);
+                ((ly) this.f9050c).K((ph.a) this.d, (TLObject) this.h, (TLRPC.StickerSet) this.f9051e, (TLRPC.Document) this.f9052f, this.f9049b, true);
                 return;
             case 8:
-                vs vsVar = (vs) this.f9028c;
+                vs vsVar = (vs) this.f9050c;
                 TLObject tLObject3 = (TLObject) this.h;
-                hi.d dVar = (hi.d) this.f9029e;
-                boolean z14 = this.f9027b;
-                HashSet hashSet = (HashSet) this.f9030f;
+                hi.d dVar = (hi.d) this.f9051e;
+                boolean z14 = this.f9049b;
+                HashSet hashSet = (HashSet) this.f9052f;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.d;
                 if (tLObject3 instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject3;
@@ -403,12 +403,12 @@ public final class m3 implements Runnable {
                     return;
                 }
             default:
-                org.telegram.ui.Wallet.b8 b8Var = (org.telegram.ui.Wallet.b8) this.f9028c;
+                org.telegram.ui.Wallet.b8 b8Var = (org.telegram.ui.Wallet.b8) this.f9050c;
                 int[] iArr = (int[]) this.d;
-                int[] iArr2 = (int[]) this.f9029e;
-                int[] iArr3 = (int[]) this.f9030f;
+                int[] iArr2 = (int[]) this.f9051e;
+                int[] iArr3 = (int[]) this.f9052f;
                 int[] iArr4 = (int[]) this.h;
-                boolean z15 = this.f9027b;
+                boolean z15 = this.f9049b;
                 org.telegram.messenger.q5 q5Var = org.telegram.ui.Wallet.ea.f43808a;
                 int i20 = 0;
                 while (true) {
@@ -523,72 +523,72 @@ public final class m3 implements Runnable {
     }
 
     public m3(Object obj, Object obj2, Object obj3, Object obj4, Serializable serializable, boolean z10, int i7) {
-        this.f9026a = i7;
-        this.f9028c = obj;
+        this.f9048a = i7;
+        this.f9050c = obj;
         this.d = obj2;
-        this.f9029e = obj3;
-        this.f9030f = obj4;
+        this.f9051e = obj3;
+        this.f9052f = obj4;
         this.h = serializable;
-        this.f9027b = z10;
+        this.f9049b = z10;
     }
 
     public m3(xd xdVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, TLObject tLObject) {
-        this.f9026a = 3;
-        this.f9028c = xdVar;
+        this.f9048a = 3;
+        this.f9050c = xdVar;
         this.d = tL_error;
-        this.f9030f = twoStepVerificationActivity;
-        this.f9029e = activity;
-        this.f9027b = z10;
+        this.f9052f = twoStepVerificationActivity;
+        this.f9051e = activity;
+        this.f9049b = z10;
         this.h = tLObject;
     }
 
     public m3(an anVar, org.telegram.ui.ActionBar.t1 t1Var, boolean[] zArr, boolean z10, gj gjVar, TLRPC.TL_webPage tL_webPage) {
-        this.f9026a = 5;
-        this.f9028c = anVar;
+        this.f9048a = 5;
+        this.f9050c = anVar;
         this.d = t1Var;
-        this.f9029e = zArr;
-        this.f9027b = z10;
-        this.f9030f = gjVar;
+        this.f9051e = zArr;
+        this.f9049b = z10;
+        this.f9052f = gjVar;
         this.h = tL_webPage;
     }
 
     public m3(an anVar, org.telegram.ui.Cells.q1 q1Var, boolean z10, String str, TLRPC.User[] userArr, CharacterStyle characterStyle) {
-        this.f9026a = 4;
-        this.f9028c = anVar;
+        this.f9048a = 4;
+        this.f9050c = anVar;
         this.d = q1Var;
-        this.f9027b = z10;
-        this.f9029e = str;
-        this.f9030f = userArr;
+        this.f9049b = z10;
+        this.f9051e = str;
+        this.f9052f = userArr;
         this.h = characterStyle;
     }
 
     public m3(eo eoVar, TLRPC.TL_channels_toggleUsername tL_channels_toggleUsername, TLObject tLObject, TLRPC.TL_username tL_username, boolean z10, TLRPC.TL_error tL_error) {
-        this.f9026a = 6;
-        this.f9028c = eoVar;
-        this.f9029e = tL_channels_toggleUsername;
+        this.f9048a = 6;
+        this.f9050c = eoVar;
+        this.f9051e = tL_channels_toggleUsername;
         this.h = tLObject;
-        this.f9030f = tL_username;
-        this.f9027b = z10;
+        this.f9052f = tL_username;
+        this.f9049b = z10;
         this.d = tL_error;
     }
 
     public m3(ly lyVar, ph.a aVar, TLObject tLObject, TLRPC.StickerSet stickerSet, TLRPC.Document document, boolean z10) {
-        this.f9026a = 7;
-        this.f9028c = lyVar;
+        this.f9048a = 7;
+        this.f9050c = lyVar;
         this.d = aVar;
         this.h = tLObject;
-        this.f9029e = stickerSet;
-        this.f9030f = document;
-        this.f9027b = z10;
+        this.f9051e = stickerSet;
+        this.f9052f = document;
+        this.f9049b = z10;
     }
 
     public m3(vs vsVar, TLObject tLObject, hi.d dVar, boolean z10, HashSet hashSet, TLRPC.TL_error tL_error) {
-        this.f9026a = 8;
-        this.f9028c = vsVar;
+        this.f9048a = 8;
+        this.f9050c = vsVar;
         this.h = tLObject;
-        this.f9029e = dVar;
-        this.f9027b = z10;
-        this.f9030f = hashSet;
+        this.f9051e = dVar;
+        this.f9049b = z10;
+        this.f9052f = hashSet;
         this.d = tL_error;
     }
 }

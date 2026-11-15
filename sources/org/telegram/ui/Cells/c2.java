@@ -12,7 +12,7 @@ import android.view.ViewPropertyAnimator;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import di.wa;
+import di.va;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.i20;
 import org.telegram.messenger.m10;
@@ -42,7 +42,7 @@ public final class c2 extends FrameLayout {
     public final CheckBoxSquare f30094n;
     public final fp f30095r;
     public View f30096s;
-    public final wa f30097w;
+    public final va f30097w;
     public final org.telegram.ui.Components.i9 f30098x;
     public final org.telegram.ui.Components.t8 f30099y;
 
@@ -61,7 +61,7 @@ public final class c2 extends FrameLayout {
     public final boolean b() {
         fp fpVar = this.f30095r;
         if (fpVar != null) {
-            return fpVar.f34663a.f32441q;
+            return fpVar.f34667a.f32441q;
         }
         return this.f30094n.h;
     }
@@ -109,7 +109,7 @@ public final class c2 extends FrameLayout {
         if (this.K == null) {
             View view4 = new View(getContext());
             this.K = view4;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = 5;
             } else {
                 i7 = 3;
@@ -149,7 +149,7 @@ public final class c2 extends FrameLayout {
         } catch (Exception unused) {
             f10 = 0.0f;
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             left = (view.getRight() - f10) - org.telegram.messenger.g0.L(20.0f);
         } else {
             left = view.getLeft() + f10 + org.telegram.messenger.g0.L(4.0f);
@@ -240,7 +240,7 @@ public final class c2 extends FrameLayout {
                 paint = org.telegram.ui.ActionBar.j6.f28972k0;
             }
             Paint paint2 = paint;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f11 = 0.0f;
             } else {
                 f11 = L;
@@ -248,7 +248,7 @@ public final class c2 extends FrameLayout {
             float f12 = f11;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 L = 0;
             }
             canvas.drawLine(f12, measuredHeight, measuredWidth - L, getMeasuredHeight() - 1, paint2);
@@ -310,10 +310,10 @@ public final class c2 extends FrameLayout {
             int i13 = L / 2;
             textView.measure(View.MeasureSpec.makeMeasureSpec(i13, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             int measuredWidth2 = textView.getMeasuredWidth();
-            wa waVar = this.f30097w;
-            if (waVar != null) {
-                waVar.measure(View.MeasureSpec.makeMeasureSpec(i13, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-                measuredWidth2 = i20.D(11.0f, waVar.getMeasuredWidth(), measuredWidth2);
+            va vaVar = this.f30097w;
+            if (vaVar != null) {
+                vaVar.measure(View.MeasureSpec.makeMeasureSpec(i13, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                measuredWidth2 = i20.D(11.0f, vaVar.getMeasuredWidth(), measuredWidth2);
             }
             if (view2.getLayoutParams().width == -1) {
                 view2.measure(i20.c(8.0f, (L - ((int) Math.abs(view2.getTranslationX()))) - measuredWidth2, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
@@ -439,7 +439,7 @@ public final class c2 extends FrameLayout {
     public void setPad(int i7) {
         int i10;
         int i11 = i7 * 40;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = -1;
         } else {
             i10 = 1;
@@ -502,7 +502,7 @@ public final class c2 extends FrameLayout {
         } else {
             o4 = org.telegram.messenger.g5.o(tLObject);
         }
-        if (z10 && ((TLRPC.User) tLObject).f28200id == np.s1(m10.f24934t0).f25278f5) {
+        if (z10 && ((TLRPC.User) tLObject).f28200id == np.s1(m10.f24940t0).f25281f5) {
             o4 = hd.M0(2131752460, null);
         }
         if (this.I) {
@@ -541,14 +541,14 @@ public final class c2 extends FrameLayout {
                 a2Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
             } else {
                 a2Var.setRightPadding(org.telegram.messenger.g0.L(i10));
-                a2Var.setGravity((hd.f24101a0 ? 5 : 3) | 16);
+                a2Var.setGravity((hd.f24104a0 ? 5 : 3) | 16);
                 if (i7 == 2) {
-                    boolean z12 = hd.f24101a0;
+                    boolean z12 = hd.f24104a0;
                     addView(a2Var, c8.ja.d(-1, -2.0f, (z12 ? 5 : 3) | 16, z12 ? 8 : 29, 0.0f, z12 ? 29 : 8, 0.0f));
                 } else {
                     int i11 = a() ? 56 : 46;
                     i11 = i7 == 7 ? i11 + 39 : i11;
-                    boolean z13 = hd.f24101a0;
+                    boolean z13 = hd.f24104a0;
                     addView(a2Var, c8.ja.d(-1, -2.0f, (z13 ? 5 : 3) | 16, z13 ? i10 : (i10 - 17) + i11, 0.0f, z13 ? (i10 - 17) + i11 : i10, 0.0f));
                 }
             }
@@ -571,15 +571,15 @@ public final class c2 extends FrameLayout {
                 addView(b2Var, c8.ja.d(-1, -2.0f, 19, 29.0f, 0.0f, 0.0f, 0.0f));
                 b2Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
             } else {
-                b2Var.setGravity((hd.f24101a0 ? 5 : 3) | 16);
+                b2Var.setGravity((hd.f24104a0 ? 5 : 3) | 16);
                 if (i7 == 2) {
-                    boolean z14 = hd.f24101a0;
+                    boolean z14 = hd.f24104a0;
                     addView(b2Var, c8.ja.d(-1, -2.0f, (z14 ? 5 : 3) | 16, z14 ? 8 : 29, 0.0f, z14 ? 29 : 8, 0.0f));
                 } else {
                     int i12 = a() ? 56 : 46;
                     i12 = i7 == 7 ? i12 + 39 : i12;
                     int i13 = a() ? -2 : -1;
-                    boolean z15 = hd.f24101a0;
+                    boolean z15 = hd.f24104a0;
                     addView(b2Var, c8.ja.d(i13, -2.0f, (z15 ? 5 : 3) | 16, z15 ? i10 : (i10 - 17) + i12, 0.0f, z15 ? (i10 - 17) + i12 : i10, 0.0f));
                 }
             }
@@ -593,9 +593,9 @@ public final class c2 extends FrameLayout {
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity((hd.f24101a0 ? 3 : 5) | 16);
+        textView.setGravity((hd.f24104a0 ? 3 : 5) | 16);
         float f10 = i10;
-        addView(textView, c8.ja.d(-2, -1.0f, (hd.f24101a0 ? 3 : 5) | 48, f10, 0.0f, f10, 0.0f));
+        addView(textView, c8.ja.d(-2, -1.0f, (hd.f24104a0 ? 3 : 5) | 48, f10, 0.0f, f10, 0.0f));
         if (a()) {
             fp fpVar = new fp(21, context, e6Var);
             this.f30095r = fpVar;
@@ -605,7 +605,7 @@ public final class c2 extends FrameLayout {
             fpVar.setDrawBackgroundAsArc(10);
             this.F = 21;
             float f11 = 21;
-            boolean z16 = hd.f24101a0;
+            boolean z16 = hd.f24104a0;
             addView(fpVar, c8.ja.d(21, f11, (z16 ? 5 : 3) | 48, z16 ? 0 : i10, 16.0f, z16 ? i10 : 0, 0.0f));
         } else {
             if (i7 != 1 && i7 != 5) {
@@ -617,26 +617,26 @@ public final class c2 extends FrameLayout {
             this.F = 18;
             if (i7 == 5) {
                 float f12 = 18;
-                boolean z17 = hd.f24101a0;
+                boolean z17 = hd.f24104a0;
                 addView(checkBoxSquare, c8.ja.d(18, f12, (z17 ? 5 : 3) | 16, z17 ? 0 : i10, 0.0f, z17 ? i10 : 0, 0.0f));
             } else if (i7 == 3) {
                 addView(checkBoxSquare, c8.ja.d(18, 18, 51, 0.0f, 15.0f, 0.0f, 0.0f));
             } else if (i7 == 2) {
-                addView(checkBoxSquare, c8.ja.d(18, 18, (hd.f24101a0 ? 5 : 3) | 48, 0.0f, 15.0f, 0.0f, 0.0f));
+                addView(checkBoxSquare, c8.ja.d(18, 18, (hd.f24104a0 ? 5 : 3) | 48, 0.0f, 15.0f, 0.0f, 0.0f));
             } else {
                 float f13 = 18;
-                boolean z18 = hd.f24101a0;
+                boolean z18 = hd.f24104a0;
                 addView(checkBoxSquare, c8.ja.d(18, f13, (z18 ? 5 : 3) | 48, z18 ? 0 : i10, 16.0f, z18 ? i10 : 0, 0.0f));
             }
         }
         if (i7 == 6) {
-            wa waVar = new wa(this, context, 2131232161);
-            this.f30097w = waVar;
-            addView(waVar, c8.ja.i(-2.0f, -2.0f, 8388629, f10, 0.0f, i10 - 11, 0.0f));
+            va vaVar = new va(this, context, 2131232161);
+            this.f30097w = vaVar;
+            addView(vaVar, c8.ja.i(-2.0f, -2.0f, 8388629, f10, 0.0f, i10 - 11, 0.0f));
         } else if (i7 == 8) {
-            wa waVar2 = new wa(this, context, 0);
-            this.f30097w = waVar2;
-            addView(waVar2, c8.ja.i(-2.0f, -2.0f, 8388629, f10, 0.0f, i10 - 11, 0.0f));
+            va vaVar2 = new va(this, context, 0);
+            this.f30097w = vaVar2;
+            addView(vaVar2, c8.ja.i(-2.0f, -2.0f, 8388629, f10, 0.0f, i10 - 11, 0.0f));
         } else if (i7 == 7) {
             this.f30099y = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
             org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);

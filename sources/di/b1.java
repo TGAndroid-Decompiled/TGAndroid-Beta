@@ -20,10 +20,10 @@ public final class b1 extends p41 {
             return;
         }
         g1 g1Var = (g1) view;
-        d1 d1Var = g1Var.f8586w;
+        d1 d1Var = g1Var.f8603w;
         boolean f12 = this.Q.f1(d1Var);
-        g1Var.f8580c.f(f12, false);
-        g1Var.f8584r.a(f12, false);
-        g1Var.setOnClickListener(new ai.t2(11, this, d1Var));
+        g1Var.f8597c.f(f12, false);
+        g1Var.f8601r.a(f12, false);
+        g1Var.setOnClickListener(new ai.v2(11, this, d1Var));
     }
 }

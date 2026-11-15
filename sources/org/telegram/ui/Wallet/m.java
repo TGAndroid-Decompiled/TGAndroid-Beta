@@ -74,7 +74,7 @@ public final class m implements z10 {
             case 3:
                 d2 d2Var3 = (d2) obj4;
                 d2Var3.getClass();
-                org.telegram.messenger.g0.h3(new g7(6, d2Var3, (TL_wallet.tonConnectSession) obj3, (k) obj2, (String) obj));
+                org.telegram.messenger.g0.h3(new g7((Object) d2Var3, (Object) ((TL_wallet.tonConnectSession) obj3), (String) obj, (Object) ((k) obj2), 6));
                 return;
             case 4:
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj4;

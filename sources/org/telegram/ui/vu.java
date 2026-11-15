@@ -5,24 +5,24 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.widget.FrameLayout;
 public final class vu implements eh.a {
-    public final int f52293a;
-    public final org.telegram.ui.ActionBar.e2 f52294b;
-    public final FrameLayout f52295c;
+    public final int f52296a;
+    public final org.telegram.ui.ActionBar.e2 f52297b;
+    public final FrameLayout f52298c;
     public final Object d;
 
     public vu(org.telegram.ui.ActionBar.e2 e2Var, FrameLayout frameLayout, Object obj, int i7) {
-        this.f52293a = i7;
-        this.f52294b = e2Var;
-        this.f52295c = frameLayout;
+        this.f52296a = i7;
+        this.f52297b = e2Var;
+        this.f52298c = frameLayout;
         this.d = obj;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f52293a) {
+        switch (this.f52296a) {
             case 0:
             default:
-                aVar.f8087a = true;
+                aVar.f8090a = true;
                 return;
         }
     }
@@ -32,10 +32,10 @@ public final class vu implements eh.a {
         int i7;
         Canvas canvas2;
         RectF rectF2;
-        switch (this.f52293a) {
+        switch (this.f52296a) {
             case 0:
-                yw ywVar = (yw) this.f52294b;
-                rw rwVar = (rw) this.f52295c;
+                yw ywVar = (yw) this.f52297b;
+                rw rwVar = (rw) this.f52298c;
                 PointF pointF = (PointF) this.d;
                 hw hwVar = ywVar.D0;
                 if (hwVar != null) {
@@ -43,7 +43,7 @@ public final class vu implements eh.a {
                 } else {
                     i7 = 0;
                 }
-                xw[] xwVarArr = ywVar.f53673f0;
+                xw[] xwVarArr = ywVar.f53638f0;
                 int length = xwVarArr.length;
                 int i10 = 0;
                 while (i10 < length) {
@@ -51,17 +51,17 @@ public final class vu implements eh.a {
                     if (xwVar != null && xwVar.getVisibility() == 0 && xwVar.getAlpha() > 0.0f) {
                         float h42 = ywVar.h4();
                         if (xwVar.G != null && h42 > 0.0f) {
-                            if (jh.k.b(xwVar.f53331a, rwVar, pointF)) {
+                            if (jh.k.b(xwVar.f53335a, rwVar, pointF)) {
                                 canvas.save();
                                 canvas.clipRect(rectF);
                                 canvas.translate(pointF.x, pointF.y);
-                                xwVar.f53331a.dispatchDraw(canvas);
+                                xwVar.f53335a.dispatchDraw(canvas);
                                 canvas.restore();
                             } else {
                                 return;
                             }
                         } else {
-                            uw uwVar = xwVar.f53331a;
+                            uw uwVar = xwVar.f53335a;
                             canvas2 = canvas;
                             rectF2 = rectF;
                             ih.d.b(uwVar, canvas2, rectF2, uwVar, rwVar, 255 - i7);
@@ -86,21 +86,21 @@ public final class vu implements eh.a {
                 }
                 return;
             default:
-                z41 z41Var = (z41) this.f52294b;
+                z41 z41Var = (z41) this.f52297b;
                 a6 a6Var = (a6) this.d;
                 z31 z31Var = z41Var.T;
-                FrameLayout frameLayout = this.f52295c;
+                FrameLayout frameLayout = this.f52298c;
                 if (z31Var != null) {
                     ih.d.a(z31Var, canvas, rectF, z31Var, frameLayout);
                 }
-                sb sbVar = z41Var.f53856j0;
+                sb sbVar = z41Var.f53821j0;
                 if (sbVar != null) {
                     org.telegram.ui.Components.uj0 uj0Var = sbVar.G;
                     ih.d.a(uj0Var, canvas, rectF, uj0Var, frameLayout);
                 }
-                xd xdVar = z41Var.f53857k0;
-                if (xdVar != null && xdVar.getParent() == z41Var.f53855i0 && z41Var.f53857k0.getVisibility() == 0) {
-                    z41Var.f53857k0.d(canvas, rectF, a6Var);
+                xd xdVar = z41Var.f53822k0;
+                if (xdVar != null && xdVar.getParent() == z41Var.f53820i0 && z41Var.f53822k0.getVisibility() == 0) {
+                    z41Var.f53822k0.d(canvas, rectF, a6Var);
                     return;
                 }
                 return;

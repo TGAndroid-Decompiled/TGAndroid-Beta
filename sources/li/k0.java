@@ -5,7 +5,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import di.sb;
+import di.rb;
 import di.x2;
 import hi.lb;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public final class k0 implements mi.e {
     public final long f19594e;
     public final TLRPC.Chat f19595f;
     public j0 h;
-    public sb f19597i;
+    public rb f19597i;
     public String f19599k;
     public int f19600l;
     public boolean f19601m;
@@ -59,7 +59,7 @@ public final class k0 implements mi.e {
         this.d = i7;
         this.f19594e = j3;
         this.f19595f = np.s1(i7).M0(Long.valueOf(j3));
-        this.f19603o = np.s1(i7).f25280f7.getLong(p0.o(j3, "community_requests_last_view_time_"), 0L);
+        this.f19603o = np.s1(i7).f25283f7.getLong(p0.o(j3, "community_requests_last_view_time_"), 0L);
     }
 
     public final void a() {
@@ -80,7 +80,7 @@ public final class k0 implements mi.e {
     }
 
     public final void b(u41 u41Var) {
-        if (!this.f19601m && !this.f19602n && u41Var.f39894f3.N0() + 10 > u41Var.f39895g3.E.size()) {
+        if (!this.f19601m && !this.f19602n && u41Var.f39891f3.N0() + 10 > u41Var.f39892g3.E.size()) {
             d();
         }
     }
@@ -108,7 +108,7 @@ public final class k0 implements mi.e {
                         b41 K = b41.K(mi.g.class);
                         K.G = new mi.f(o4, a22, z11);
                         K.H = this;
-                        K.f33179j = !z10;
+                        K.f33182j = !z10;
                         arrayList.add(K);
                     }
                 }
@@ -137,7 +137,7 @@ public final class k0 implements mi.e {
         int i7 = this.d;
         long currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
         this.f19603o = currentTime;
-        np.s1(i7).f25280f7.edit().putLong("community_requests_last_view_time_" + this.f19594e, currentTime).apply();
+        np.s1(i7).f25283f7.edit().putLong("community_requests_last_view_time_" + this.f19594e, currentTime).apply();
         a();
     }
 
@@ -173,9 +173,9 @@ public final class k0 implements mi.e {
                 }
                 return;
             }
-            sb sbVar = this.f19597i;
-            if (sbVar != null) {
-                sbVar.run();
+            rb rbVar = this.f19597i;
+            if (rbVar != null) {
+                rbVar.run();
             }
             this.f19597i = null;
             t1 t1Var = new t1(3, this.f19591a, this.f19592b);
@@ -209,19 +209,19 @@ public final class k0 implements mi.e {
         }
         int i11 = this.d;
         SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, i7, m5.s(i11, j3)));
-        sb sbVar = this.f19597i;
-        if (sbVar != null) {
-            sbVar.run();
+        rb rbVar = this.f19597i;
+        if (rbVar != null) {
+            rbVar.run();
         }
-        this.f19597i = new sb(this, j3, z10, 2);
+        this.f19597i = new rb(this, j3, z10, 2);
         Context context = this.f19591a;
         e6 e6Var = this.f19592b;
         wb wbVar = new wb(context, e6Var, false);
         TLObject e22 = np.s1(i11).e2(j3);
-        w8 w8Var = wbVar.f41320a;
+        w8 w8Var = wbVar.f41323a;
         if (e22 != null) {
             w8Var.setCount(1);
-            w8Var.b(0, m10.f24934t0, e22);
+            w8Var.b(0, m10.f24940t0, e22);
             i10 = 1;
         } else {
             i10 = 0;
@@ -230,26 +230,26 @@ public final class k0 implements mi.e {
         w8Var.setScaleX(1.333f);
         w8Var.setScaleY(1.333f);
         w8Var.a(false);
-        z70 z70Var = wbVar.f41321b;
+        z70 z70Var = wbVar.f41324b;
         z70Var.setSingleLine(false);
         z70Var.setMaxLines(2);
         z70Var.setTextSize(1, 14.0f);
         z70Var.setText(X2);
         if (z70Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int L = org.telegram.messenger.g0.L(74 - ((3 - i10) * 12));
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 ((ViewGroup.MarginLayoutParams) z70Var.getLayoutParams()).rightMargin = L;
             } else {
                 ((ViewGroup.MarginLayoutParams) z70Var.getLayoutParams()).leftMargin = L;
             }
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             w8Var.setTranslationX(org.telegram.messenger.g0.L(32 - ((i10 - 1) * 12)));
         }
         vb vbVar = new vb(context, e6Var, true, true);
         vbVar.e(hd.M0(2131743885, null));
-        vbVar.f40369b = new x2(this, j3, 12);
-        vbVar.f40370c = this.f19597i;
+        vbVar.f40372b = new x2(this, j3, 12);
+        vbVar.f40373c = this.f19597i;
         wbVar.setButton(vbVar);
         this.f19593c.b(wbVar, 5000).j();
     }

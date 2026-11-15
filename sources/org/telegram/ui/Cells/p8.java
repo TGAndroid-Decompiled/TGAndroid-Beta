@@ -42,7 +42,7 @@ public final class p8 extends FrameLayout {
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
         i20.p(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -50,7 +50,7 @@ public final class p8 extends FrameLayout {
         textView.setGravity(i7 | 16);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -72,7 +72,7 @@ public final class p8 extends FrameLayout {
         this.f30878c = textView2;
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
         textView2.setTextSize(1, 13.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -83,7 +83,7 @@ public final class p8 extends FrameLayout {
         textView2.setSingleLine(true);
         textView2.setPadding(0, 0, 0, 0);
         textView2.setEllipsize(truncateAt);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -104,7 +104,7 @@ public final class p8 extends FrameLayout {
         Switch r22 = new Switch(context, null);
         this.d = r22;
         r22.setDrawIconType(1);
-        addView(r22, c8.ja.d(37, 40.0f, (hd.f24101a0 ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+        addView(r22, c8.ja.d(37, 40.0f, (hd.f24104a0 ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
     }
 
     public final void a(Runnable runnable, String str, boolean z10) {
@@ -136,7 +136,7 @@ public final class p8 extends FrameLayout {
             this.f30882r = bnVar;
             bnVar.setBackground(org.telegram.ui.ActionBar.j6.h0(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28941i6, false), 2, -1));
             bn bnVar2 = this.f30882r;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = 3;
             } else {
                 i7 = 5;
@@ -223,7 +223,7 @@ public final class p8 extends FrameLayout {
         float L;
         int i7;
         if (this.f30879e) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -231,7 +231,7 @@ public final class p8 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
@@ -253,7 +253,7 @@ public final class p8 extends FrameLayout {
         super.onLayout(z10, i7, i10, i11, i12);
         LinearLayout linearLayout = this.f30880f;
         if (linearLayout != null) {
-            boolean z11 = hd.f24101a0;
+            boolean z11 = hd.f24104a0;
             TextView textView = this.f30877b;
             if (z11) {
                 linearLayout.setTranslationX((textView.getLeft() - this.f30880f.getMeasuredWidth()) - org.telegram.messenger.g0.L(8.0f));

@@ -12,10 +12,10 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.Dictation.DictationLid;
 public final class tf implements Runnable {
-    public final ChatActivityEnterView f39693a;
+    public final ChatActivityEnterView f39690a;
 
     public tf(ChatActivityEnterView chatActivityEnterView) {
-        this.f39693a = chatActivityEnterView;
+        this.f39690a = chatActivityEnterView;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class tf implements Runnable {
         boolean z11;
         boolean z12;
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f39693a;
+        ChatActivityEnterView chatActivityEnterView = this.f39690a;
         ke keVar = chatActivityEnterView.f32262p4;
         Activity activity = chatActivityEnterView.f32311w3;
         cg cgVar = chatActivityEnterView.H3;
@@ -107,26 +107,26 @@ public final class tf implements Runnable {
             if (DictationAsr.B()) {
                 if (DictationAsr.x()) {
                     Context context = chatActivityEnterView.getContext();
-                    if (i10 >= 33 && ai.d.f1175c == 0 && !ai.d.d) {
+                    if (i10 >= 33 && ai.d.f1173c == 0 && !ai.d.d) {
                         org.telegram.messenger.g0.h3(new ai.a(context.getApplicationContext(), 0));
                     }
                 }
-                ArrayList b10 = ai.t0.b(chatActivityEnterView.getContext(), chatActivityEnterView.f32327y3);
+                ArrayList b10 = ai.u0.b(chatActivityEnterView.getContext(), chatActivityEnterView.f32327y3);
                 android.support.v4.media.session.a0 P = DictationAsr.P(b10, true);
                 if (P != null) {
-                    ai.s sVar = (ai.s) P.f1706b;
-                    if (System.currentTimeMillis() - org.telegram.messenger.np.e1().getLong("tinyasr_checked_" + sVar.f1530a, 0L) > 86400000) {
+                    ai.t tVar = (ai.t) P.f1713b;
+                    if (System.currentTimeMillis() - org.telegram.messenger.np.e1().getLong("tinyasr_checked_" + tVar.f1539a, 0L) > 86400000) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    boolean w10 = DictationAsr.w(sVar);
-                    if (w10 && !sVar.f1535g) {
-                        sVar.f1535g = true;
-                        DictationAsr.d.execute(new ai.p(sVar, 0));
+                    boolean w10 = DictationAsr.w(tVar);
+                    if (w10 && !tVar.f1544g) {
+                        tVar.f1544g = true;
+                        DictationAsr.d.execute(new ai.p(tVar, 0));
                     }
-                    if ((w10 || ai.i1.b()) && (!w10 || z10)) {
-                        DictationAsr.t(sVar);
+                    if ((w10 || ai.j1.b()) && (!w10 || z10)) {
+                        DictationAsr.t(tVar);
                     }
                     Context context2 = chatActivityEnterView.getContext();
                     ExecutorService executorService = DictationLid.f42585a;
@@ -166,7 +166,7 @@ public final class tf implements Runnable {
             }
             ig igVar = chatActivityEnterView.T1;
             if (igVar != null) {
-                igVar.f35622e = false;
+                igVar.f35609e = false;
             }
             chatActivityEnterView.f32155a1.getParent().requestDisallowInterceptTouchEvent(true);
             ChatActivityEnterView.RecordCircle recordCircle2 = chatActivityEnterView.f32302v2;

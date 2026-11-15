@@ -52,7 +52,7 @@ public class WalletEngine2 implements AutoCloseable {
     public final byte[] publicKey;
     private ScheduledFuture<?> resolutionTask;
     private final HttpTransport transport;
-    private final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor(new ai.x0(5));
+    private final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor(new ai.y0(5));
     private long nextAuxiliaryRequestId = -1;
 
     public static class HttpTransport {
@@ -390,7 +390,7 @@ public class WalletEngine2 implements AutoCloseable {
         }
 
         public void dispatch(SendPhase sendPhase, String str, String str2) {
-            org.telegram.messenger.g0.h3(new g7(2, this, sendPhase, str2, str));
+            org.telegram.messenger.g0.h3(new g7((Object) this, (Object) sendPhase, str, (Object) str2, 2));
         }
 
         public synchronized void failed(String str) {
@@ -472,7 +472,7 @@ public class WalletEngine2 implements AutoCloseable {
         this.publicKey = bArr2;
         HttpTransport httpTransport = new HttpTransport(i7);
         this.transport = httpTransport;
-        this.ptr = nativeCreate(i7, str, bArr2, httpTransport, org.telegram.messenger.t0.f26600b.getNoBackupFilesDir().getAbsolutePath() + "/wallet-engine");
+        this.ptr = nativeCreate(i7, str, bArr2, httpTransport, org.telegram.messenger.t0.f26609b.getNoBackupFilesDir().getAbsolutePath() + "/wallet-engine");
     }
 
     public static ImportedWalletProof createImportProof(i0 i0Var, String str, String str2, int i7) {
@@ -1343,7 +1343,7 @@ public class WalletEngine2 implements AutoCloseable {
                     Arrays.fill(bArr, (byte) 0);
                     str2 = i7;
                     str3 = null;
-                    org.telegram.messenger.g0.h3(new g7(14, this, s10Var, str2, str3));
+                    org.telegram.messenger.g0.h3(new g7((Object) this, (Object) s10Var, str3, (Object) str2, 14));
                     return;
                 }
             } catch (Throwable th2) {
@@ -1365,7 +1365,7 @@ public class WalletEngine2 implements AutoCloseable {
             Arrays.fill(bArr, (byte) 0);
             str3 = nativeSignMessage;
             str2 = null;
-            org.telegram.messenger.g0.h3(new g7(14, this, s10Var, str2, str3));
+            org.telegram.messenger.g0.h3(new g7((Object) this, (Object) s10Var, str3, (Object) str2, 14));
             return;
         }
         throw new IllegalStateException("Wallet engine is closed");

@@ -26,7 +26,7 @@ public final class x0 implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLiteDatabase = vrVar.f27222b;
+                        sQLiteDatabase = vrVar.f27221b;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);
                         if (sQLitePreparedStatement == null) {
@@ -69,7 +69,7 @@ public final class x0 implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement2 = null;
                 try {
                     try {
-                        sQLiteDatabase2 = vrVar2.f27222b;
+                        sQLiteDatabase2 = vrVar2.f27221b;
                     } catch (Exception e11) {
                         org.telegram.messenger.a8.g(e11, true);
                         if (sQLitePreparedStatement2 == null) {

@@ -14,12 +14,12 @@ public final class dq extends v4.k {
 
     @Override
     public final void O() {
-        this.G.f50715c.invalidate();
+        this.G.f50714c.invalidate();
     }
 
     @Override
     public final void P(v4.e1 e1Var) {
-        this.G.f50715c.invalidate();
+        this.G.f50714c.invalidate();
     }
 
     @Override

@@ -15,7 +15,7 @@ public final class b1 extends ChatActivityEnterView {
     @Override
     public final void P0(float f10) {
         f1 f1Var = this.O6;
-        f1Var.f3499q1.setInputBubbleHeight(f10);
+        f1Var.f3502q1.setInputBubbleHeight(f10);
         f1Var.I0();
     }
 

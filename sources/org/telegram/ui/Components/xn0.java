@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xn0 implements jg.f0 {
-    public final po0 f41742a;
+    public final po0 f41734a;
 
     public xn0(po0 po0Var) {
-        this.f41742a = po0Var;
+        this.f41734a = po0Var;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class xn0 implements jg.f0 {
             }
             i7++;
         }
-        po0 po0Var = this.f41742a;
+        po0 po0Var = this.f41734a;
         po0Var.A2 = arrayList;
         for (int i10 = 0; i10 < po0Var.A2.size(); i10++) {
             jg.g0 g0Var = (jg.g0) po0Var.A2.get(i10);

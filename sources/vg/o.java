@@ -64,10 +64,10 @@ public final class o implements Runnable {
                 z zVar = (z) obj;
                 zVar.getClass();
                 a0 a0Var = zVar.f59296r;
-                g1 g1Var = new g1(a0Var.f35940s1, a0Var.f29679a, null, null, null, a0Var.J0);
+                g1 g1Var = new g1(a0Var.f35935s1, a0Var.f29679a, null, null, null, a0Var.J0);
                 g1Var.F2 = true;
                 g1Var.Y1 = true;
-                a0Var.f35940s1.showDialog(g1Var);
+                a0Var.f35935s1.showDialog(g1Var);
                 return;
             case 7:
                 ((FrameLayout) obj).invalidate();
@@ -117,7 +117,7 @@ public final class o implements Runnable {
                 kVar.e(true);
                 return;
             default:
-                q40 q40Var = (q40) ((ff) obj).f34586b;
+                q40 q40Var = (q40) ((ff) obj).f34590b;
                 q40Var.f38506r0 = true;
                 a8.b("RoundVideo camera flip first frame: elapsedMs=" + q40.m(q40Var));
                 q40Var.w(true);

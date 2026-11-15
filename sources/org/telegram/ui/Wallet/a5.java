@@ -46,7 +46,7 @@ public final class a5 extends x2 {
             }
             this.f29682b.setBackground(null);
             this.f29682b.setPadding(0, 0, 0, 0);
-            this.f35936o1.setPadding(0, 0, 0, 0);
+            this.f35931o1.setPadding(0, 0, 0, 0);
         }
     }
 }

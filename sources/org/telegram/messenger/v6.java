@@ -5,41 +5,41 @@ import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class v6 implements TextWatcher {
-    public boolean f26935a;
-    public final int f26936b;
-    public final t6 f26937c;
+    public boolean f26936a;
+    public final int f26937b;
+    public final t6 f26938c;
     public final TextView[] d;
-    public final TLRPC.TL_factCheck f26938e;
+    public final TLRPC.TL_factCheck f26939e;
 
     public v6(int i7, t6 t6Var, TextView[] textViewArr, TLRPC.TL_factCheck tL_factCheck) {
-        this.f26936b = i7;
-        this.f26937c = t6Var;
+        this.f26937b = i7;
+        this.f26938c = t6Var;
         this.d = textViewArr;
-        this.f26938e = tL_factCheck;
+        this.f26939e = tL_factCheck;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
         int i10;
-        if (!this.f26935a) {
+        if (!this.f26936a) {
             int length = editable.length();
             boolean z10 = true;
-            int i11 = this.f26936b;
+            int i11 = this.f26937b;
             if (length > i11) {
-                this.f26935a = true;
+                this.f26936a = true;
                 editable.delete(i11, editable.length());
-                t6 t6Var = this.f26937c;
+                t6 t6Var = this.f26938c;
                 g0.E3(t6Var);
                 try {
                     t6Var.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                this.f26935a = false;
+                this.f26936a = false;
             }
             TextView[] textViewArr = this.d;
             if (textViewArr[0] != null) {
-                if (editable.length() <= 0 && this.f26938e != null) {
+                if (editable.length() <= 0 && this.f26939e != null) {
                     z10 = false;
                 }
                 TextView textView = textViewArr[0];

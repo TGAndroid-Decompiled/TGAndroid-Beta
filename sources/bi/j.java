@@ -29,16 +29,16 @@ import org.telegram.ui.Components.y7;
 import org.telegram.ui.an;
 import org.telegram.ui.v7;
 public final class j implements z10 {
-    public final int f3621a;
-    public final Object f3622b;
-    public final Object f3623c;
+    public final int f3624a;
+    public final Object f3625b;
+    public final Object f3626c;
     public final Object d;
 
     public j(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3621a = i7;
+        this.f3624a = i7;
         this.d = obj;
-        this.f3622b = obj2;
-        this.f3623c = obj3;
+        this.f3625b = obj2;
+        this.f3626c = obj3;
     }
 
     @Override
@@ -47,18 +47,18 @@ public final class j implements z10 {
         ArrayList<TLRPC.Document> arrayList;
         String str;
         TLRPC.ChatFull N0;
-        int i7 = this.f3621a;
+        int i7 = this.f3624a;
         int i10 = 0;
         boolean z10 = false;
-        Object obj2 = this.f3623c;
-        Object obj3 = this.f3622b;
+        Object obj2 = this.f3626c;
+        Object obj3 = this.f3625b;
         Object obj4 = this.d;
         switch (i7) {
             case 0:
                 y yVar = (y) obj4;
                 yVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new e(yVar.getContext(), (org.telegram.ui.ActionBar.e6) obj2, yVar.f3991h2, (List) obj).show();
+                new e(yVar.getContext(), (org.telegram.ui.ActionBar.e6) obj2, yVar.f3994h2, (List) obj).show();
                 return;
             case 1:
                 m0 m0Var = (m0) obj4;
@@ -66,8 +66,8 @@ public final class j implements z10 {
                 List list = (List) obj;
                 m0Var.getClass();
                 ((boolean[]) obj3)[0] = false;
-                if (m0Var.f3692i2 != null) {
-                    new e(m0Var.getContext(), e6Var, m0Var.f3692i2, list).show();
+                if (m0Var.f3695i2 != null) {
+                    new e(m0Var.getContext(), e6Var, m0Var.f3695i2, list).show();
                     m0Var.dismiss();
                     return;
                 }
@@ -179,8 +179,8 @@ public final class j implements z10 {
                     org.telegram.ui.Components.t4.I(anVar.getParentActivity(), anVar.a(), new a3.h(jnVar, tL_messageMediaToDo, l11, 29));
                     return;
                 }
-                jnVar.f36092k0.c(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
-                jnVar.f33607b.a(true);
+                jnVar.f36082k0.c(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
+                jnVar.f33609b.a(true);
                 return;
             case 10:
                 kx kxVar = (kx) obj4;
@@ -195,7 +195,7 @@ public final class j implements z10 {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet l02 = si.b0(kxVar.f36647a.G.f36941d1).l0(si.Z(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
+                        TLRPC.TL_messages_stickerSet l02 = si.b0(kxVar.f36635a.G.f36941d1).l0(si.Z(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                         if (l02 != null) {
                             arrayList = l02.documents;
                         } else {
@@ -262,8 +262,8 @@ public final class j implements z10 {
                     if (j0Var.X1.next_level_boosts <= 0) {
                         z10 = true;
                     }
-                    e3Var.f23257m = z10;
-                    e3Var.f23256l = true;
+                    e3Var.f23264m = z10;
+                    e3Var.f23263l = true;
                     e3Var.a(tL_premium_myBoosts);
                     j0Var.v1();
                     return;

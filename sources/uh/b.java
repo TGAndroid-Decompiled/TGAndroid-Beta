@@ -64,7 +64,7 @@ public final class b extends Drawable implements x5 {
         this.E = new te.a(view, er.h, 380L);
         g6 g6Var = new g6(false, false, false);
         this.f58408a = g6Var;
-        g6Var.f34829b = 21;
+        g6Var.f34833b = 21;
         g6Var.w(g0.L(11.0f));
         g6Var.setCallback(view);
         this.f58409b = new y8(i7, view, g0.L(18.0f), g0.L(8.33f), g0.N(1.0f));
@@ -121,20 +121,20 @@ public final class b extends Drawable implements x5 {
             f10 = 19.0f;
         }
         int L = g0.L(f10);
-        if (this.E.f57081e > 0.0f) {
-            g gVar = this.f58409b.f41934c.d;
-            float f11 = gVar.f57097c.f57107a;
-            int i11 = (int) gVar.f57099f.f57107a;
+        if (this.E.f57085e > 0.0f) {
+            g gVar = this.f58409b.f41926c.d;
+            float f11 = gVar.f57101c.f57111a;
+            int i11 = (int) gVar.f57103f.f57111a;
             int W1 = (bounds.right - L) - g0.W1(f11, g0.L(2.0f), g0.L(4.0f) + i11);
             if (f11 > 0.0f) {
                 y8 y8Var = this.f58409b;
-                y8Var.f41938i = (int) (this.E.f57081e * 255.0f);
+                y8Var.f41930i = (int) (this.E.f57085e * 255.0f);
                 y8Var.setBounds((bounds.right - L) - i11, bounds.bottom - g0.L(31.33f), bounds.right - L, bounds.bottom);
                 this.f58409b.c(canvas);
             }
             int L2 = bounds.bottom - g0.L(21.33f);
             g6 g6Var = this.f58408a;
-            g6Var.C = (int) (this.E.f57081e * 255.0f);
+            g6Var.C = (int) (this.E.f57085e * 255.0f);
             g6Var.setBounds(bounds.left, g0.L(15.0f) + L2, W1, L2 - g0.L(15.0f));
             this.f58408a.draw(canvas);
         }
@@ -166,7 +166,7 @@ public final class b extends Drawable implements x5 {
             }
             if (this.f58413n) {
                 if (this.f58415s == null) {
-                    this.f58415s = i5.c.g(t0.f26600b, 2131231745);
+                    this.f58415s = i5.c.g(t0.f26609b, 2131231745);
                 }
                 Drawable drawable = this.f58415s;
                 xa xaVar = this.H;
@@ -200,9 +200,9 @@ public final class b extends Drawable implements x5 {
 
     public final float d(float f10) {
         y8 y8Var = this.f58409b;
-        float c10 = this.f58408a.c() + y8Var.f41934c.d.f57099f.f57107a;
-        float L = y8Var.f41934c.d.f57097c.f57107a * g0.L(4.0f);
-        float f11 = this.E.f57081e;
+        float c10 = this.f58408a.c() + y8Var.f41926c.d.f57103f.f57111a;
+        float L = y8Var.f41926c.d.f57101c.f57111a * g0.L(4.0f);
+        float f11 = this.E.f57085e;
         return (f10 * f11) + (L * f11) + c10;
     }
 

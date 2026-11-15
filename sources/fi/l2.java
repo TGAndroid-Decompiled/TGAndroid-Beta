@@ -120,7 +120,7 @@ public final class l2 implements cg {
     @Override
     public final boolean g1() {
         r40 r40Var = this.f11985a.f11524t2;
-        if (r40Var != null && !r40Var.f38858j0) {
+        if (r40Var != null && !r40Var.f38856j0) {
             return true;
         }
         return false;

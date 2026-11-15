@@ -89,7 +89,7 @@ public final class s8 implements GestureDetector.OnGestureListener {
                 i9Var.f11845f0 = f13 + f11;
             }
             w8 w8Var = i9Var.f11870s;
-            xb xbVar2 = xb.f41635w;
+            xb xbVar2 = xb.f41627w;
             if (xbVar2 != null && xbVar2.h == w8Var) {
                 xbVar2.b();
             }
@@ -109,7 +109,7 @@ public final class s8 implements GestureDetector.OnGestureListener {
                 f12 = 0.3f;
                 i9Var.X -= f11 * f12;
                 w8 w8Var2 = i9Var.f11870s;
-                xbVar = xb.f41635w;
+                xbVar = xb.f41627w;
                 if (xbVar != null && xbVar.h == w8Var2) {
                     xbVar.b();
                 }
@@ -120,7 +120,7 @@ public final class s8 implements GestureDetector.OnGestureListener {
         f12 = 0.6f;
         i9Var.X -= f11 * f12;
         w8 w8Var22 = i9Var.f11870s;
-        xbVar = xb.f41635w;
+        xbVar = xb.f41627w;
         if (xbVar != null) {
             xbVar.b();
         }

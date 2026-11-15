@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import c8.ja;
 import com.google.android.gms.internal.vision.e2;
-import di.wa;
+import di.va;
 import hi.p5;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
@@ -22,7 +22,7 @@ import org.telegram.ui.Components.w61;
 import org.telegram.ui.sc1;
 public final class q extends u2 {
     public static final int f56743u1 = 0;
-    public final wa f56744m1;
+    public final va f56744m1;
     public final ImageView n1;
     public final k f56745o1;
     public final Path f56746p1;
@@ -58,26 +58,26 @@ public final class q extends u2 {
         kVar.f56680c = Color.alpha(-65536) / 255.0f;
         kVar.a();
         kVar.invalidate();
-        wa waVar = new wa(context, 6);
-        waVar.setOrientation(1);
+        va vaVar = new va(context, 6);
+        vaVar.setOrientation(1);
         o oVar = new o(this, context);
-        waVar.f9708b = oVar;
+        vaVar.f9622b = oVar;
         oVar.a(this.f56747q1);
-        waVar.f9709c = new n(this, context);
-        waVar.d = new p(this, context);
+        vaVar.f9623c = new n(this, context);
+        vaVar.d = new p(this, context);
         w61 w61Var = new w61(context, this.J0);
-        w61Var.setAdapter(new li.x(waVar, 4));
-        waVar.addView(w61Var, ja.l(1.0f, -1, 0));
-        waVar.addView(kVar, ja.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
+        w61Var.setAdapter(new li.x(vaVar, 4));
+        vaVar.addView(w61Var, ja.l(1.0f, -1, 0));
+        vaVar.addView(kVar, ja.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setGravity(16);
         linearLayout2.addView(imageView, ja.o(28, 28));
         linearLayout2.addView(w61Var.i(8, false), ja.q(-1, 40, 1.0f, 16, 12, 0, 12, 0));
         linearLayout2.addView(imageView2, ja.o(28, 28));
-        waVar.addView(linearLayout2, ja.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f56744m1 = waVar;
-        linearLayout.addView(waVar, ja.o(-1, 0));
+        vaVar.addView(linearLayout2, ja.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
+        this.f56744m1 = vaVar;
+        linearLayout.addView(vaVar, ja.o(-1, 0));
         j jVar = new j(this, context, linearLayout);
         jVar.addView(linearLayout);
         this.O = jVar;
@@ -93,16 +93,16 @@ public final class q extends u2 {
             }
             this.f56750t1 = true;
         }
-        wa waVar = this.f56744m1;
-        if (i10 != 5 && (findFocus = waVar.findFocus()) != null) {
+        va vaVar = this.f56744m1;
+        if (i10 != 5 && (findFocus = vaVar.findFocus()) != null) {
             findFocus.clearFocus();
             org.telegram.messenger.g0.v1(findFocus);
         }
         if (i10 != 3) {
-            ((o) waVar.f9708b).a(i7);
+            ((o) vaVar.f9622b).a(i7);
         }
         if (i10 != 0) {
-            n nVar = (n) waVar.f9709c;
+            n nVar = (n) vaVar.f9623c;
             if (i10 != 1) {
                 z10 = true;
             } else {
@@ -131,7 +131,7 @@ public final class q extends u2 {
             kVar.a();
             kVar.invalidate();
         }
-        p pVar = (p) waVar.d;
+        p pVar = (p) vaVar.d;
         pVar.f56739e = true;
         pVar.f56736a.b();
         pVar.f56737b.b();
@@ -163,9 +163,9 @@ public final class q extends u2 {
     public final void show() {
         boolean z10;
         androidx.activity.n nVar = this.f56749s1;
-        switch (nVar.f1788a) {
+        switch (nVar.f1795a) {
             default:
-                if (((Bitmap) nVar.f1790c) != null) {
+                if (((Bitmap) nVar.f1797c) != null) {
                     z10 = true;
                     break;
                 }

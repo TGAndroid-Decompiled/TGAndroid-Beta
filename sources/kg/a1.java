@@ -58,7 +58,7 @@ public final class a1 extends e2 implements is {
         if (this.f17861b != null) {
             this.f17861b.a(a0(), z10);
             u41 u41Var = this.f17860a;
-            if (u41Var != null && u41Var.f39895g3 != null) {
+            if (u41Var != null && u41Var.f39892g3 != null) {
                 boolean z12 = this.G;
                 if (this.f17868w != null && (this.f17869x != null || !TextUtils.isEmpty(this.f17870y))) {
                     z11 = true;
@@ -66,7 +66,7 @@ public final class a1 extends e2 implements is {
                     z11 = false;
                 }
                 if (z12 != z11) {
-                    this.f17860a.f39895g3.O(true);
+                    this.f17860a.f39892g3.O(true);
                 }
             }
         }
@@ -141,7 +141,7 @@ public final class a1 extends e2 implements is {
     public final void b0() {
         boolean z10;
         String trim;
-        if (this.f17861b.f29950y.f57082f) {
+        if (this.f17861b.f29950y.f57086f) {
             return;
         }
         if (this.f17869x == null && TextUtils.isEmpty(this.f17870y)) {
@@ -234,7 +234,7 @@ public final class a1 extends e2 implements is {
         }
         d0();
         u41 u41Var = this.f17860a;
-        if (u41Var != null && (p41Var = u41Var.f39895g3) != null) {
+        if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
             p41Var.O(true);
         }
         this.f17867s = true;
@@ -262,7 +262,7 @@ public final class a1 extends e2 implements is {
         this.f17863e.setSingleLine(false);
         this.f17863e.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
         x0 x0Var3 = this.f17863e;
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             i10 = 3;
         }
         x0Var3.setGravity(i10 | 48);
@@ -309,7 +309,7 @@ public final class a1 extends e2 implements is {
         u41Var.r1();
         this.f17860a.setSectionsDrawBackground(true);
         u41 u41Var2 = this.f17860a;
-        u41Var2.f39895g3.f38201r = false;
+        u41Var2.f39892g3.f38199r = false;
         frameLayout.addView(u41Var2, ja.c(-1.0f, -1));
         c0();
         this.fragmentView = frameLayout;
@@ -325,11 +325,11 @@ public final class a1 extends e2 implements is {
                 z0Var.setAlpha(0.0f);
                 this.h.setTranslationY(-org.telegram.messenger.g0.L(12.0f));
                 if (this.f17866r.getMeasuredWidth() <= 0) {
-                    measuredWidth = org.telegram.messenger.g0.f23609q.x;
+                    measuredWidth = org.telegram.messenger.g0.f23611q.x;
                 } else {
                     measuredWidth = this.f17866r.getMeasuredWidth();
                 }
-                float f10 = org.telegram.messenger.g0.f23608p;
+                float f10 = org.telegram.messenger.g0.f23610p;
                 int i7 = (int) (measuredWidth / f10);
                 int min = Math.min(2, (int) Math.ceil(f10));
                 v3 v3Var2 = this.f17866r;

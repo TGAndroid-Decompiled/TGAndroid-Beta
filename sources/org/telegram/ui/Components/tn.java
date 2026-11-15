@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class tn extends LinearLayout {
-    public final org.telegram.ui.ActionBar.e6 f39748a;
-    public final TextView f39749b;
-    public final ArrayList f39750c;
+    public final org.telegram.ui.ActionBar.e6 f39745a;
+    public final TextView f39746b;
+    public final ArrayList f39747c;
     public final ArrayList d;
 
     public tn(Activity activity, View view, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
@@ -23,9 +23,9 @@ public final class tn extends LinearLayout {
         int i12;
         int i13;
         ArrayList arrayList = new ArrayList();
-        this.f39750c = arrayList;
+        this.f39747c = arrayList;
         this.d = new ArrayList();
-        this.f39748a = e6Var;
+        this.f39745a = e6Var;
         int L = org.telegram.messenger.g0.L(18.0f);
         if (e6Var != null) {
             paint = e6Var.d("paintChatActionBackground");
@@ -39,7 +39,7 @@ public final class tn extends LinearLayout {
         setOrientation(1);
         if (i7 == 0) {
             TextView textView = new TextView(activity);
-            this.f39749b = textView;
+            this.f39746b = textView;
             textView.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.Zc, e6Var);
             textView.setGravity(1);
@@ -48,7 +48,7 @@ public final class tn extends LinearLayout {
             addView(textView, c8.ja.r(-2, -2, 49));
         } else if (i7 == 1) {
             TextView textView2 = new TextView(activity);
-            this.f39749b = textView2;
+            this.f39746b = textView2;
             textView2.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.Zc, e6Var);
             textView2.setGravity(1);
@@ -80,7 +80,7 @@ public final class tn extends LinearLayout {
         float f10 = 260.0f;
         textView3.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
         if (i7 != 2) {
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i10 = 5;
             } else {
                 i10 = 3;
@@ -98,7 +98,7 @@ public final class tn extends LinearLayout {
         int i16 = 0;
         while (i16 < 4) {
             LinearLayout e10 = org.telegram.messenger.k5.e(activity, 0);
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 i12 = 5;
             } else {
                 i12 = 3;
@@ -119,8 +119,8 @@ public final class tn extends LinearLayout {
             TextView textView4 = new TextView(activity);
             textView4.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.q6.U(textView4, i17, e6Var);
-            this.f39750c.add(textView4);
-            if (org.telegram.messenger.hd.f24101a0) {
+            this.f39747c.add(textView4);
+            if (org.telegram.messenger.hd.f24104a0) {
                 i13 = 5;
             } else {
                 i13 = 3;
@@ -160,7 +160,7 @@ public final class tn extends LinearLayout {
             } else {
                 textView4.setText(org.telegram.messenger.hd.M0(2131749448, null));
             }
-            if (org.telegram.messenger.hd.f24101a0) {
+            if (org.telegram.messenger.hd.f24104a0) {
                 e10.addView(textView4, c8.ja.o(-2, -2));
                 if (i7 == 0) {
                     e10.addView(imageView2, c8.ja.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));
@@ -185,14 +185,14 @@ public final class tn extends LinearLayout {
     }
 
     public void setStatusText(CharSequence charSequence) {
-        this.f39749b.setText(charSequence);
+        this.f39746b.setText(charSequence);
     }
 
     public void setTextColor(int i7) {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f39750c;
+            ArrayList arrayList = this.f39747c;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -202,7 +202,7 @@ public final class tn extends LinearLayout {
         while (true) {
             ArrayList arrayList2 = this.d;
             if (i10 < arrayList2.size()) {
-                ((ImageView) arrayList2.get(i10)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Zc, this.f39748a), PorterDuff.Mode.MULTIPLY));
+                ((ImageView) arrayList2.get(i10)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Zc, this.f39745a), PorterDuff.Mode.MULTIPLY));
                 i10++;
             } else {
                 return;

@@ -1,7 +1,7 @@
 package a3;
 
 import ab.d0;
-import ai.h1;
+import ai.i1;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,6 +47,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
+import jg.h1;
 import kg.x0;
 import ki.s2;
 import ki.y3;
@@ -105,12 +106,12 @@ import org.telegram.ui.Components.t4;
 import org.telegram.ui.Components.zi0;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.an;
-import org.telegram.ui.il0;
+import org.telegram.ui.jl0;
 import org.telegram.ui.sw;
 import org.telegram.ui.u91;
 import org.telegram.ui.v7;
 import org.telegram.ui.yw;
-public final class h implements p, SuccessContinuation, h1, androidx.car.app.utils.c, Continuation, sw, tr, d9, OnFailureListener, pi, q1, il0, cl, l0, gb0, r4 {
+public final class h implements p, SuccessContinuation, i1, androidx.car.app.utils.b, Continuation, sw, tr, d9, OnFailureListener, pi, q1, jl0, cl, l0, gb0, r4 {
     public final int f87a;
     public final Object f88b;
     public final Object f89c;
@@ -138,13 +139,13 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
         switch (this.f87a) {
             case 28:
                 dl dlVar = (dl) this.f89c;
-                dlVar.f33988o0.d((TLRPC.TL_messageMediaGeo) this.f88b, dlVar.f33989p0, z10, i7, ((Long) this.d).longValue());
-                dlVar.f33607b.a(true);
+                dlVar.f33975o0.d((TLRPC.TL_messageMediaGeo) this.f88b, dlVar.f33976p0, z10, i7, ((Long) this.d).longValue());
+                dlVar.f33609b.a(true);
                 return;
             default:
                 jn jnVar = (jn) this.f89c;
-                jnVar.f36092k0.c((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z10, i7, ((Long) this.d).longValue());
-                jnVar.f33607b.a(true);
+                jnVar.f36082k0.c((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z10, i7, ((Long) this.d).longValue());
+                jnVar.f33609b.a(true);
                 return;
         }
     }
@@ -168,7 +169,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
 
     @Override
     public void b(long j3, long j10) {
-        ai.s sVar = (ai.s) this.f89c;
+        ai.t tVar = (ai.t) this.f89c;
         long[] jArr = (long[]) this.d;
         long[] jArr2 = (long[]) DictationAsr.h.get((String) this.f88b);
         if (jArr2 != null) {
@@ -178,8 +179,8 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
             }
         }
         if (j10 > 0) {
-            if (sVar != null) {
-                sVar.f1536i = Math.min(1.0f, ((float) j3) / ((float) j10));
+            if (tVar != null) {
+                tVar.f1545i = Math.min(1.0f, ((float) j3) / ((float) j10));
             }
             long elapsedRealtime = SystemClock.elapsedRealtime();
             if (elapsedRealtime - jArr[0] > 100) {
@@ -216,7 +217,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
         for (int i13 = 0; i13 < j3.size(); i13++) {
             try {
                 ?? obj = new Object();
-                obj.f25764a = ((h6) j3.get(i13)).f24059c.toString();
+                obj.f25765a = ((h6) j3.get(i13)).f24062c.toString();
                 arrayList5.add(obj);
             } catch (Exception unused) {
             }
@@ -234,8 +235,8 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
             hashSet.clear();
             for (int i15 = 0; i15 < arrayList5.size(); i15++) {
                 oi oiVar = (oi) arrayList5.get(i15);
-                String str2 = oiVar.f25764a;
-                if (str2 != null && !str2.startsWith("animated_") && (arrayList4 = (ArrayList) x1Var.d.get(oiVar.f25764a)) != null) {
+                String str2 = oiVar.f25765a;
+                if (str2 != null && !str2.startsWith("animated_") && (arrayList4 = (ArrayList) x1Var.d.get(oiVar.f25765a)) != null) {
                     hashSet.addAll(arrayList4);
                 }
             }
@@ -247,13 +248,13 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
             i7 = 1;
             i10 = 0;
         } else {
-            HashMap hashMap = siVar.f26470e0;
+            HashMap hashMap = siVar.f26480e0;
             int i17 = 0;
             while (i17 < arrayList5.size()) {
                 oi oiVar2 = (oi) arrayList5.get(i17);
                 int i18 = i12;
-                String str3 = oiVar2.f25764a;
-                if (str3 == null || str3.startsWith("animated_") || (arrayList3 = (ArrayList) hashMap.get(oiVar2.f25764a)) == null || arrayList3.isEmpty()) {
+                String str3 = oiVar2.f25765a;
+                if (str3 == null || str3.startsWith("animated_") || (arrayList3 = (ArrayList) hashMap.get(oiVar2.f25765a)) == null || arrayList3.isEmpty()) {
                     i11 = i14;
                 } else {
                     i11 = i14;
@@ -271,11 +272,11 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
             }
             i7 = i14;
             i10 = i12;
-            ArrayList arrayList10 = siVar.f26501t0[i10];
+            ArrayList arrayList10 = siVar.f26511t0[i10];
             int i20 = i10;
             while (i20 < arrayList5.size()) {
                 oi oiVar3 = (oi) arrayList5.get(i20);
-                String str4 = oiVar3.f25764a;
+                String str4 = oiVar3.f25765a;
                 if (str4 != null && !str4.startsWith("animated_")) {
                     for (int i21 = i10; i21 < arrayList10.size(); i21++) {
                         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList10.get(i21);
@@ -290,7 +291,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                         }
                         for (int i22 = i10; i22 < arrayList2.size(); i22++) {
                             String V = gj.V(arrayList2.get(i22), null, null);
-                            if (V != null && V.contains(oiVar3.f25764a)) {
+                            if (V != null && V.contains(oiVar3.f25765a)) {
                                 arrayList9.add(arrayList2.get(i22));
                                 x1Var.f15323y++;
                             }
@@ -352,7 +353,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                     try {
                         bVar = new w.b(obj);
                     } catch (w.f e10) {
-                        androidx.car.app.utils.h.f(iOnDoneCallback, str, e10);
+                        androidx.car.app.utils.g.f(iOnDoneCallback, str, e10);
                         return;
                     }
                 }
@@ -473,7 +474,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
         ou ouVar = (ou) this.d;
         if (i7 == 1) {
             r4Var.L(2147483646, 0, zArr[0]);
-            ((u2) ouVar.f25804b).f29724y0.run();
+            ((u2) ouVar.f25806b).f29724y0.run();
         }
     }
 
@@ -484,12 +485,12 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 ((q8) this.f89c).N0((o8) this.f88b, (Runnable) this.d, true);
                 return;
             case 12:
-                jg.h1 h1Var = (jg.h1) this.f89c;
+                h1 h1Var = (h1) this.f89c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 h1Var.getClass();
                 ((boolean[]) this.f88b)[0] = true;
                 if (user != null) {
-                    SharedPreferences.Editor edit = np.s1(h1Var.f17124f).f25270e7.edit();
+                    SharedPreferences.Editor edit = np.s1(h1Var.f17124f).f25273e7.edit();
                     edit.putBoolean("inlinegeo_" + user.f28200id, true).commit();
                     h1Var.G();
                     return;
@@ -501,7 +502,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 org.telegram.ui.web.o oVar = (org.telegram.ui.web.o) this.d;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + t0.f26600b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + t0.f26609b.getPackageName()));
                     activity.startActivity(intent);
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -570,8 +571,8 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 TextView textView = qkVar.V;
                 String str = null;
                 if (x0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i12 = -qkVar.f38691w0;
-                    qkVar.f38691w0 = i12;
+                    int i12 = -qkVar.f38689w0;
+                    qkVar.f38689w0 = i12;
                     g0.F3(i12, x0Var, null);
                     return;
                 }
@@ -579,12 +580,12 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 if (!TextUtils.isEmpty(trim3)) {
                     str = trim3;
                 }
-                qkVar.f38687t0 = str;
-                qkVar.f38688u0 = !c2Var.b();
-                if (TextUtils.isEmpty(qkVar.f38687t0)) {
+                qkVar.f38685t0 = str;
+                qkVar.f38686u0 = !c2Var.b();
+                if (TextUtils.isEmpty(qkVar.f38685t0)) {
                     textView.setVisibility(8);
                 } else {
-                    textView.setText(qkVar.f38687t0);
+                    textView.setText(qkVar.f38685t0);
                     textView.setVisibility(0);
                 }
                 qkVar.k0();
@@ -637,7 +638,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
             int statusCode = ((com.google.android.gms.common.api.f) e10).getStatusCode();
             if (statusCode == 16) {
                 hVar = new w0.g(e10.getMessage());
-            } else if (b1.d.f2852b.contains(Integer.valueOf(statusCode))) {
+            } else if (b1.d.f2855b.contains(Integer.valueOf(statusCode))) {
                 hVar = new w0.j(e10.getMessage());
             } else {
                 hVar = new w0.h(2, "Get digital credential failed, failure: " + e10);
@@ -679,8 +680,8 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 if (arrayList.isEmpty()) {
                     return false;
                 }
-                long j10 = ((ur) arrayList.get(0)).f26860a;
-                Long l10 = (Long) d4.f(c6Var.f29679a).f23030r.get(tL_starGiftUnique.slug);
+                long j10 = ((ur) arrayList.get(0)).f26861a;
+                Long l10 = (Long) d4.f(c6Var.f29679a).f23038r.get(tL_starGiftUnique.slug);
                 if (l10 != null) {
                     j3 = l10.longValue();
                 } else {
@@ -697,16 +698,16 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f89c;
                 TL_keyboard.TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = (TL_keyboard.TL_inlineButtonTypeSwitchInline) this.d;
                 an anVar = chatActivityEnterView.f32319x3;
-                TLRPC.Message message = ((gj) this.f88b).f23817k;
+                TLRPC.Message message = ((gj) this.f88b).f23819k;
                 long j11 = message.from_id.user_id;
                 long j12 = message.via_bot_id;
                 if (j12 != 0) {
                     j11 = j12;
                 }
-                if (np.s1(chatActivityEnterView.S.f22778a).a2(Long.valueOf(j11)) == null) {
+                if (np.s1(chatActivityEnterView.S.f22782a).a2(Long.valueOf(j11)) == null) {
                     ywVar.finishFragment();
                 } else {
-                    long j13 = ((ur) arrayList.get(0)).f26860a;
+                    long j13 = ((ur) arrayList.get(0)).f26861a;
                     si.b0(chatActivityEnterView.R).Q1(j13, 0, "@" + q10.n(a22) + " " + tL_inlineButtonTypeSwitchInline.query, null, null, null, null, 0L, true, false, null);
                     if (j13 != chatActivityEnterView.f32327y3) {
                         if (!m5.C(j13)) {
@@ -716,7 +717,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                             } else {
                                 bundle.putLong("chat_id", -j13);
                             }
-                            if (np.s1(chatActivityEnterView.S.f22778a).E(bundle, ywVar, null, null)) {
+                            if (np.s1(chatActivityEnterView.S.f22782a).E(bundle, ywVar, null, null)) {
                                 if (anVar.presentFragment(new an(bundle), true)) {
                                     if (!g0.Q1()) {
                                         anVar.removeSelfFromStack();
@@ -750,10 +751,10 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
         this.f88b = str;
     }
 
-    public h(String str, ai.s sVar, long[] jArr) {
+    public h(String str, ai.t tVar, long[] jArr) {
         this.f87a = 2;
         this.f88b = str;
-        this.f89c = sVar;
+        this.f89c = tVar;
         this.d = jArr;
     }
 
@@ -764,15 +765,15 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
         String str = (String) this.f88b;
         d0 d0Var = (d0) this.d;
         String str2 = (String) obj;
-        ob.c c10 = FirebaseMessaging.c(firebaseMessaging.f7277b);
-        o9.g gVar = firebaseMessaging.f7276a;
+        ob.c c10 = FirebaseMessaging.c(firebaseMessaging.f7280b);
+        o9.g gVar = firebaseMessaging.f7279a;
         gVar.a();
         if ("[DEFAULT]".equals(gVar.f21398b)) {
             d = "";
         } else {
             d = gVar.d();
         }
-        String a10 = firebaseMessaging.f7282i.a();
+        String a10 = firebaseMessaging.f7285i.a();
         synchronized (c10) {
             String a11 = d0.a(System.currentTimeMillis(), str2, a10);
             if (a11 != null) {
@@ -782,7 +783,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
             }
         }
         if (firebaseMessaging.d.t() || d0Var == null || !str2.equals(d0Var.f915a)) {
-            o9.g gVar2 = firebaseMessaging.f7276a;
+            o9.g gVar2 = firebaseMessaging.f7279a;
             gVar2.a();
             String str3 = gVar2.f21398b;
             if ("[DEFAULT]".equals(str3)) {
@@ -800,7 +801,7 @@ public final class h implements p, SuccessContinuation, h1, androidx.car.app.uti
                 } else {
                     intent.setAction("com.google.firebase.messaging.NEW_TOKEN");
                 }
-                new ab.k(firebaseMessaging.f7277b).b(intent);
+                new ab.k(firebaseMessaging.f7280b).b(intent);
             }
         }
         return Tasks.forResult(str2);

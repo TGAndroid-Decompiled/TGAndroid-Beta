@@ -13,12 +13,12 @@ public class NotificationBadge$SonyHomeBadger implements zr {
     @Override
     public final void a(int i7) {
         boolean z10 = false;
-        if (t0.f26600b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
+        if (t0.f26609b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
             if (i7 < 0) {
                 return;
             }
             if (f22402b == null) {
-                f22402b = new AsyncQueryHandler(t0.f26600b.getApplicationContext().getContentResolver());
+                f22402b = new AsyncQueryHandler(t0.f26609b.getApplicationContext().getContentResolver());
             }
             String packageName = cs.d.getPackageName();
             String className = cs.d.getClassName();

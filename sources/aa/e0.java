@@ -63,9 +63,9 @@ public final class e0 {
     public static t0 a(t0 t0Var, ca.f fVar, o3 o3Var, Map map) {
         Map unmodifiableMap;
         s0 a10 = t0Var.a();
-        String n10 = ((ca.d) fVar.f4836b).n();
+        String n10 = ((ca.d) fVar.f4839b).n();
         if (n10 != null) {
-            a10.f7897e = new h1(n10);
+            a10.f7900e = new h1(n10);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", "No log data to include with this event.", null);
         }
@@ -91,10 +91,10 @@ public final class e0 {
         List f10 = f(unmodifiableMap);
         List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.f19797e).f989b).getReference()).a());
         if (!f10.isEmpty() || !f11.isEmpty()) {
-            u0 a11 = t0Var.f7907c.a();
-            a11.f7917b = f10;
-            a11.f7918c = f11;
-            a10.f7896c = a11.a();
+            u0 a11 = t0Var.f7910c.a();
+            a11.f7920b = f10;
+            a11.f7921c = f11;
+            a10.f7899c = a11.a();
         }
         return a10.a();
     }
@@ -107,19 +107,19 @@ public final class e0 {
             pVar.getClass();
             ?? obj = new Object();
             ca.b bVar = (ca.b) pVar;
-            String str = bVar.f4826e;
+            String str = bVar.f4829e;
             if (str != null) {
-                String str2 = bVar.f4824b;
+                String str2 = bVar.f4827b;
                 if (str2 != null) {
-                    obj.f7766a = new k1(str2, str);
-                    String str3 = bVar.f4825c;
+                    obj.f7769a = new k1(str2, str);
+                    String str3 = bVar.f4828c;
                     if (str3 != null) {
-                        obj.f7767b = str3;
+                        obj.f7770b = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
-                            obj.f7768c = str4;
-                            obj.d = bVar.f4827f;
-                            obj.f7769e = (byte) (obj.f7769e | 1);
+                            obj.f7771c = str4;
+                            obj.d = bVar.f4830f;
+                            obj.f7772e = (byte) (obj.f7772e | 1);
                             arrayList.add(obj.a());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -138,7 +138,7 @@ public final class e0 {
             return t0Var;
         }
         s0 a10 = t0Var.a();
-        a10.f7898f = new l1(arrayList);
+        a10.f7901f = new l1(arrayList);
         return a10.a();
     }
 
@@ -213,7 +213,7 @@ public final class e0 {
         byte b10;
         boolean z11;
         boolean equals = str.equals("crash");
-        long j3 = cVar.f4829b;
+        long j3 = cVar.f4832b;
         u uVar = this.f800a;
         Context context = uVar.f868a;
         int i7 = context.getResources().getConfiguration().orientation;
@@ -230,11 +230,11 @@ public final class e0 {
         }
         ab.c0 c0Var2 = c0Var;
         ?? obj = new Object();
-        obj.f7895b = str;
-        obj.f7894a = j3;
-        obj.f7899g = (byte) (obj.f7899g | 1);
+        obj.f7898b = str;
+        obj.f7897a = j3;
+        obj.f7902g = (byte) (obj.f7902g | 1);
         j2 b11 = x9.c.f59857a.b(context);
-        int i10 = ((e1) b11).f7726c;
+        int i10 = ((e1) b11).f7729c;
         if (i10 > 0) {
             if (i10 != 100) {
                 z11 = true;
@@ -299,18 +299,18 @@ public final class e0 {
                     if (a11 != null) {
                         w0 w0Var = new w0(unmodifiableList, c10, null, null, e10, a11);
                         if (b12 == 1) {
-                            obj.f7896c = new v0(w0Var, null, null, bool2, b11, a10, i7);
+                            obj.f7899c = new v0(w0Var, null, null, bool2, b11, a10, i7);
                             obj.d = uVar.b(i7);
                             t0 a12 = obj.a();
-                            Map map = cVar.f4830c;
+                            Map map = cVar.f4833c;
                             ca.f fVar = this.d;
                             o3 o3Var = this.f803e;
                             q2 b15 = b(a(a12, fVar, o3Var, map), o3Var);
                             if (!z10) {
-                                this.f805g.f3091b.a(new c0(this, b15, cVar, equals, 0));
+                                this.f805g.f3094b.a(new c0(this, b15, cVar, equals, 0));
                                 return;
                             } else {
-                                this.f801b.e(b15, cVar.f4828a, equals);
+                                this.f801b.e(b15, cVar.f4831a, equals);
                                 return;
                             }
                         }
@@ -365,18 +365,18 @@ public final class e0 {
                 ha.a aVar2 = this.f802c;
                 da.d0 d0Var = bVar2.f779a;
                 boolean z10 = true;
-                if (d0Var.f7702f != null && d0Var.f7703g != null) {
+                if (d0Var.f7705f != null && d0Var.f7706g != null) {
                     bVar = bVar2;
                 } else {
                     z b10 = this.f804f.b(true);
                     da.d0 d0Var2 = bVar2.f779a;
                     String str2 = b10.f886a;
                     da.c0 a10 = d0Var2.a();
-                    a10.f7676e = str2;
+                    a10.f7679e = str2;
                     da.d0 a11 = a10.a();
                     String str3 = b10.f887b;
                     da.c0 a12 = a11.a();
-                    a12.f7677f = str3;
+                    a12.f7680f = str3;
                     bVar = new b(a12.a(), bVar2.f780b, bVar2.f781c);
                 }
                 if (str == null) {

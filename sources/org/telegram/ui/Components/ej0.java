@@ -6,28 +6,28 @@ import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ej0 extends v4.n0 implements eh.a {
-    public final org.telegram.messenger.a20 f34328a;
-    public final uj0 f34329b;
-    public final int f34330c;
+    public final org.telegram.messenger.a20 f34327a;
+    public final uj0 f34328b;
+    public final int f34329c;
     public final boolean d;
 
     public ej0(uj0 uj0Var, org.telegram.messenger.a20 a20Var, int i7, boolean z10) {
-        this.f34329b = uj0Var;
-        this.f34328a = a20Var;
-        this.f34330c = i7;
+        this.f34328b = uj0Var;
+        this.f34327a = a20Var;
+        this.f34329c = i7;
         this.d = z10;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        aVar.f8087a = true;
+        aVar.f8090a = true;
     }
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f34329b.P0(canvas);
+        this.f34328b.P0(canvas);
         canvas.restore();
     }
 
@@ -36,8 +36,8 @@ public final class ej0 extends v4.n0 implements eh.a {
         int b10;
         boolean z10;
         int L;
-        if (((Boolean) this.f34328a.a(view)).booleanValue()) {
-            int i7 = this.f34330c;
+        if (((Boolean) this.f34327a.a(view)).booleanValue()) {
+            int i7 = this.f34329c;
             rect.right = i7;
             rect.left = i7;
             v4.e1 T = recyclerView.T(view);

@@ -45,7 +45,7 @@ public final class k7 extends FrameLayout {
         h6Var.setTypeface(org.telegram.messenger.g0.o());
         h6Var.setEllipsizeByGradient(true);
         org.telegram.ui.Components.g6 drawable = h6Var.getDrawable();
-        Point point = org.telegram.messenger.g0.f23609q;
+        Point point = org.telegram.messenger.g0.f23611q;
         drawable.N = point.x;
         addView(h6Var, c8.ja.d(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
         org.telegram.ui.Components.h6 h6Var2 = new org.telegram.ui.Components.h6(context, false, false, false);
@@ -59,14 +59,14 @@ public final class k7 extends FrameLayout {
         SpannableString spannableString = new SpannableString("x");
         this.h = spannableString;
         e80 e80Var = new e80(org.telegram.messenger.g0.L(200.0f), h6Var);
-        e80Var.f34256e = 0.8f;
+        e80Var.f34243e = 0.8f;
         e80Var.a(org.telegram.ui.ActionBar.j6.r1(0.4f, textColor), org.telegram.ui.ActionBar.j6.r1(0.08f, textColor));
         spannableString.setSpan(e80Var, 0, spannableString.length(), 33);
         int textColor2 = h6Var2.getTextColor();
         SpannableString spannableString2 = new SpannableString("x");
         this.f14520n = spannableString2;
         e80 e80Var2 = new e80(org.telegram.messenger.g0.L(140.0f), h6Var2);
-        e80Var2.f34256e = 0.8f;
+        e80Var2.f34243e = 0.8f;
         e80Var2.a(org.telegram.ui.ActionBar.j6.r1(0.4f, textColor2), org.telegram.ui.ActionBar.j6.r1(0.08f, textColor2));
         spannableString2.setSpan(e80Var2, 0, spannableString2.length(), 33);
         ImageView imageView3 = new ImageView(context);

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import tg.a2;
+import tg.z1;
 public final class a {
     public final String f57962a;
     public final Set f57963b;
@@ -58,7 +58,7 @@ public final class a {
             tc.a(cls2, "Null interface");
             hashSet.add(q.a(cls2));
         }
-        return new a(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new a2(obj, 6), hashSet3);
+        return new a(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new z1(obj, 6), hashSet3);
     }
 
     public final String toString() {

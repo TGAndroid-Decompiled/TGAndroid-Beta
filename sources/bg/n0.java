@@ -22,7 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.TreeSet;
 public abstract class n0 {
-    public static RenderEffect f3311a;
+    public static RenderEffect f3314a;
 
     public static RenderEffect a() {
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -111,12 +111,12 @@ public abstract class n0 {
     }
 
     public static RenderEffect d() {
-        if (f3311a == null) {
+        if (f3314a == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(3.0f);
-            f3311a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+            f3314a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
         }
-        return f3311a;
+        return f3314a;
     }
 
     public static Bitmap e(Bitmap bitmap) {

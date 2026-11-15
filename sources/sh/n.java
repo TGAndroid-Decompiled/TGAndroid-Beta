@@ -44,7 +44,7 @@ public final class n extends FrameLayout {
         g0.i3(new q2.d(mVar, 15), 1000L);
         i iVar2 = new i(e2Var, new h(mVar, 0), i10);
         this.f56898c = iVar2;
-        iVar2.f39895g3.f38201r = false;
+        iVar2.f39892g3.f38199r = false;
         iVar2.j(new w3(10, this, mVar));
         return this.f56898c;
     }
@@ -54,7 +54,7 @@ public final class n extends FrameLayout {
         super.dispatchDraw(canvas);
         int width = getWidth() - g0.L(11.0f);
         y8 y8Var = this.f56896a;
-        y8Var.setBounds(width - ((int) y8Var.f41934c.d.f57099f.f57107a), g0.L(12.0f), getWidth() - g0.L(11.0f), g0.L(24.0f) + g0.L(12.0f));
+        y8Var.setBounds(width - ((int) y8Var.f41926c.d.f57103f.f57111a), g0.L(12.0f), getWidth() - g0.L(11.0f), g0.L(24.0f) + g0.L(12.0f));
         y8Var.c(canvas);
     }
 

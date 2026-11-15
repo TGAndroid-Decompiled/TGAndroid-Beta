@@ -19,14 +19,14 @@ public final class f1 extends r0.b {
             if (recyclerView.getLayoutManager() != null) {
                 b0 b0Var = (b0) recyclerView.getLayoutManager();
                 RecyclerView recyclerView2 = b0Var.f58622b;
-                w0 w0Var = recyclerView2.f2796b;
+                w0 w0Var = recyclerView2.f2799b;
                 if (accessibilityEvent != null) {
                     boolean z10 = true;
                     if (!recyclerView2.canScrollVertically(1) && !b0Var.f58622b.canScrollVertically(-1) && !b0Var.f58622b.canScrollHorizontally(-1) && !b0Var.f58622b.canScrollHorizontally(1)) {
                         z10 = false;
                     }
                     accessibilityEvent.setScrollable(z10);
-                    h0 h0Var = b0Var.f58622b.f2825x;
+                    h0 h0Var = b0Var.f58622b.f2828x;
                     if (h0Var != null) {
                         accessibilityEvent.setItemCount(h0Var.b());
                     }
@@ -47,7 +47,7 @@ public final class f1 extends r0.b {
             if (recyclerView.getLayoutManager() != null) {
                 o0 layoutManager = recyclerView.getLayoutManager();
                 RecyclerView recyclerView2 = layoutManager.f58622b;
-                layoutManager.S(recyclerView2.f2796b, recyclerView2.f2822v0, cVar);
+                layoutManager.S(recyclerView2.f2799b, recyclerView2.f2825v0, cVar);
             }
         }
     }
@@ -59,7 +59,7 @@ public final class f1 extends r0.b {
 
     public final boolean e() {
         RecyclerView recyclerView = this.d;
-        if (!recyclerView.Z() && !recyclerView.f2822v0.f58505g) {
+        if (!recyclerView.Z() && !recyclerView.f2825v0.f58505g) {
             return false;
         }
         return true;

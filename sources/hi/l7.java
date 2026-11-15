@@ -21,7 +21,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
     public final d X1;
     public boolean Y1;
     public boolean Z1;
-    public ai.u1 f14589a2;
+    public ai.v1 f14589a2;
     public long f14590b2;
     public TLRPC.WebPage f14591c2;
     public boolean d2;
@@ -33,10 +33,10 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
     public boolean f14597j2;
     public boolean f14598k2;
 
-    public l7(Context context, e5 e5Var, x5 x5Var, ai.u1 u1Var) {
+    public l7(Context context, e5 e5Var, x5 x5Var, ai.v1 v1Var) {
         super(context, null, true, true, 2, e5Var);
         this.f14594g2 = new f7(this, 0);
-        this.f14589a2 = u1Var;
+        this.f14589a2 = v1Var;
         O();
         Y0();
         this.D1 = org.telegram.messenger.g0.L(4.0f);
@@ -71,7 +71,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
         c8.na.b(textView, 0.1f, 1.5f);
         k3Var.addView(textView, c8.ja.d(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
         h4 h4Var = new h4(12, this, textView);
-        textView.setOnClickListener(new ai.t2(21, this, h4Var));
+        textView.setOnClickListener(new ai.v2(21, this, h4Var));
         h4Var.run();
         i3Var.addTextChangedListener(new bi.v(7, this, h4Var));
         org.telegram.ui.Cells.k3 k3Var2 = new org.telegram.ui.Cells.k3(context, hd.M0(2131744636, null), true, false, -1, e5Var);
@@ -88,7 +88,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
         dVar.setOnClickListener(new e7(this, 1));
         dVar.setEnabled(f1(k3Var.getText().toString()));
         frameLayout.addView(dVar, c8.ja.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         this.J1 = true;
         this.Q0 = true;
         this.R0 = true;
@@ -97,11 +97,11 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
         h7Var.C = false;
         h7Var.o(er.h);
         h7Var.n(350L);
-        this.f35936o1.setItemAnimator(h7Var);
-        uj0 uj0Var = this.f35936o1;
+        this.f35931o1.setItemAnimator(h7Var);
+        uj0 uj0Var = this.f35931o1;
         int i10 = this.f29717u0;
         uj0Var.setPadding(i10, 0, i10, 0);
-        this.f35936o1.setOnItemClickListener(new fi.f0(this, context, x5Var, 2));
+        this.f35931o1.setOnItemClickListener(new fi.f0(this, context, x5Var, 2));
         di.f0 f0Var = this.T1;
         if (f0Var != null) {
             f0Var.O(false);
@@ -153,7 +153,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        di.f0 f0Var = new di.f0(this.f35936o1, getContext(), this.f29679a, 0, true, new q4(this, 1), this.J0, 1);
+        di.f0 f0Var = new di.f0(this.f35931o1, getContext(), this.f29679a, 0, true, new q4(this, 1), this.J0, 1);
         this.T1 = f0Var;
         return f0Var;
     }
@@ -165,7 +165,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25593w0 && this.f14590b2 != 0) {
+        if (i7 == ns.f25594w0 && this.f14590b2 != 0) {
             a0.h hVar = (a0.h) objArr[0];
             for (int i11 = 0; i11 < hVar.m(); i11++) {
                 TLRPC.WebPage webPage = (TLRPC.WebPage) hVar.n(i11);
@@ -192,7 +192,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
         org.telegram.messenger.g0.v1(this.U1.d);
         org.telegram.messenger.g0.v1(this.V1.d);
         super.dismiss();
-        ns.f(this.f29679a).n(this, ns.f25593w0);
+        ns.f(this.f29679a).n(this, ns.f25594w0);
     }
 
     public final void e1() {
@@ -225,16 +225,16 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
         }
         if (this.f14589a2 != null) {
             tg.h0 h0Var = new tg.h0();
-            h0Var.f57318c = this.U1.d.getText().toString();
+            h0Var.f57322c = this.U1.d.getText().toString();
             if (this.f14596i2) {
                 str = this.V1.d.getText().toString();
             } else {
                 str = null;
             }
-            h0Var.f57317b = str;
+            h0Var.f57321b = str;
             h0Var.d = this.f14591c2;
-            h0Var.f57319e = this.f14598k2;
-            h0Var.f57320f = this.f14597j2;
+            h0Var.f57323e = this.f14598k2;
+            h0Var.f57324f = this.f14597j2;
             this.f14589a2.a(h0Var);
             this.f14589a2 = null;
         }
@@ -244,7 +244,7 @@ public final class l7 extends org.telegram.ui.Components.ja implements is {
     @Override
     public final void show() {
         super.show();
-        ns.f(this.f29679a).c(this, ns.f25593w0);
+        ns.f(this.f29679a).c(this, ns.f25594w0);
         org.telegram.messenger.g0.i3(new f7(this, 2), 150L);
     }
 }

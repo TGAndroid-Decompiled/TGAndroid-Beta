@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 public final class hg0 extends org.telegram.ui.Components.tj0 {
-    public final Context f47709c;
+    public final Context f47699c;
     public final jg0 d;
 
     public hg0(jg0 jg0Var, Context context) {
         this.d = jg0Var;
-        this.f47709c = context;
+        this.f47699c = context;
     }
 
     @Override
@@ -73,7 +73,7 @@ public final class hg0 extends org.telegram.ui.Components.tj0 {
         jg0 jg0Var = this.d;
         if (i7 != 0) {
             int i10 = 1;
-            Context context = this.f47709c;
+            Context context = this.f47699c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     if (i7 != 4) {
@@ -95,10 +95,10 @@ public final class hg0 extends org.telegram.ui.Components.tj0 {
                         i10 = 2;
                     }
                     lg.f fVar = new lg.f(jg0Var.getResourceProvider());
-                    jg0Var.f48338d0 = fVar;
-                    view = new gg0(this, this.f47709c, i10, fVar, jg0Var.getResourceProvider());
+                    jg0Var.f48323d0 = fVar;
+                    view = new gg0(this, this.f47699c, i10, fVar, jg0Var.getResourceProvider());
                 } else {
-                    org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f47709c, org.telegram.ui.ActionBar.j6.G6, 16, 11, false, jg0Var.getResourceProvider());
+                    org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f47699c, org.telegram.ui.ActionBar.j6.G6, 16, 11, false, jg0Var.getResourceProvider());
                     n4Var.setHeight(43);
                     x6Var = n4Var;
                 }
@@ -108,7 +108,7 @@ public final class hg0 extends org.telegram.ui.Components.tj0 {
             }
             view = x6Var;
         } else {
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f47709c, 6, 2, false, jg0Var.getResourceProvider());
+            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f47699c, 6, 2, false, jg0Var.getResourceProvider());
             a5Var.setDividerColor(org.telegram.ui.ActionBar.j6.f28850d7);
             view = a5Var;
         }

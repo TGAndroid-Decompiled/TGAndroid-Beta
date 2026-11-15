@@ -1,6 +1,6 @@
 package org.telegram.messenger.video;
 
-import ai.k2;
+import ai.l2;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.SurfaceTexture;
@@ -230,7 +230,7 @@ public class VideoPlayerHolderBase {
         this.videoPlayer = u51Var2;
         u51Var2.E = this.allowMultipleInstances;
         u51Var2.K = new AnonymousClass2();
-        this.videoPlayer.f39919c = true;
+        this.videoPlayer.f39916c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -378,7 +378,7 @@ public class VideoPlayerHolderBase {
         boolean d02 = u51Var.d0();
         if (z10) {
             u51 u51Var2 = this.videoPlayer;
-            if (u51Var2.f39920c0) {
+            if (u51Var2.f39917c0) {
                 u51Var2.g0();
                 long S = this.videoPlayer.S();
                 this.videoPlayer.m0();
@@ -741,7 +741,7 @@ public class VideoPlayerHolderBase {
     }
 
     public void seekTo(long j3, boolean z10, Runnable runnable) {
-        this.dispatchQueue.postRunnable(new k2(this, j3, z10, runnable, 1));
+        this.dispatchQueue.postRunnable(new l2(this, j3, z10, runnable, 1));
     }
 
     public VideoPlayerHolderBase with(TextureView textureView) {

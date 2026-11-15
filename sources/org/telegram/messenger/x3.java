@@ -10,24 +10,24 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.tgnet.tl.TL_payments;
 public final class x3 implements s10 {
-    public final int f27458a;
-    public final Object f27459b;
-    public final Object f27460c;
+    public final int f27459a;
+    public final Object f27460b;
+    public final Object f27461c;
 
     public x3(int i7, Object obj, Object obj2) {
-        this.f27458a = i7;
-        this.f27459b = obj;
-        this.f27460c = obj2;
+        this.f27459a = i7;
+        this.f27460b = obj;
+        this.f27461c = obj2;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         ArrayList<TLRPC.Chat> arrayList;
         boolean z10;
-        switch (this.f27458a) {
+        switch (this.f27459a) {
             case 0:
-                d4 d4Var = (d4) this.f27459b;
-                org.telegram.ui.Components.bp bpVar = (org.telegram.ui.Components.bp) this.f27460c;
+                d4 d4Var = (d4) this.f27460b;
+                org.telegram.ui.Components.bp bpVar = (org.telegram.ui.Components.bp) this.f27461c;
                 TL_account.ChatThemes chatThemes = (TL_account.ChatThemes) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
@@ -40,7 +40,7 @@ public final class x3 implements s10 {
                     vr messagesStorage = d4Var.getMessagesStorage();
                     ArrayList<TLRPC.ChatTheme> arrayList3 = tl_chatThemes.themes;
                     messagesStorage.getClass();
-                    messagesStorage.I(new wq(3, messagesStorage, arrayList3));
+                    messagesStorage.I(new pq(5, messagesStorage, arrayList3));
                     d4Var.getMessagesStorage().m1(tl_chatThemes.users, tl_chatThemes.chats, true, true);
                     d4Var.getMessagesController().Y3(tl_chatThemes.users, false);
                     d4Var.getMessagesController().S3(tl_chatThemes.chats, false);
@@ -73,10 +73,10 @@ public final class x3 implements s10 {
                     return;
                 }
             case 1:
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f27460c;
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f27461c;
                 TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (!((CancellationToken) this.f27459b).isCancellationRequested()) {
+                if (!((CancellationToken) this.f27460b).isCancellationRequested()) {
                     if (auth_authorization != null && tL_error2 == null) {
                         taskCompletionSource.trySetResult(auth_authorization);
                         return;
@@ -87,11 +87,11 @@ public final class x3 implements s10 {
                 }
                 return;
             case 2:
-                final v9 v9Var = (v9) this.f27459b;
-                final s10 s10Var = (s10) this.f27460c;
+                final v9 v9Var = (v9) this.f27460b;
+                final s10 s10Var = (s10) this.f27461c;
                 final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState = (TL_payments.TL_StarGiftAuctionState) obj;
                 final TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                LongSparseArray longSparseArray = v9Var.f26951e;
+                LongSparseArray longSparseArray = v9Var.f26952e;
                 if (tL_StarGiftAuctionState != null) {
                     v9Var.getMessagesController().Y3(tL_StarGiftAuctionState.users, false);
                     v9Var.getMessagesController().S3(tL_StarGiftAuctionState.chats, false);
@@ -104,7 +104,7 @@ public final class x3 implements s10 {
                             v9 v9Var2 = v9.this;
                             v9Var2.getClass();
                             TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState2 = tL_StarGiftAuctionState;
-                            v9Var2.d(tL_StarGiftAuctionState2.gift.f28280id).f26420c = (ArrayList) obj3;
+                            v9Var2.d(tL_StarGiftAuctionState2.gift.f28280id).f26430c = (ArrayList) obj3;
                             v9Var2.f(tL_StarGiftAuctionState2.gift.f28280id, tL_StarGiftAuctionState2);
                             s10Var.a(tL_StarGiftAuctionState2, tL_error3);
                         }
@@ -117,8 +117,8 @@ public final class x3 implements s10 {
                 s10Var.a(tL_StarGiftAuctionState, tL_error3);
                 return;
             case 3:
-                np npVar = (np) this.f27459b;
-                li.i0 i0Var = (li.i0) this.f27460c;
+                np npVar = (np) this.f27460b;
+                li.i0 i0Var = (li.i0) this.f27461c;
                 TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
                 if (peerLinkRequests != null) {
@@ -141,8 +141,8 @@ public final class x3 implements s10 {
                 i0Var.a(null, tL_error4);
                 return;
             case 4:
-                np npVar2 = (np) this.f27459b;
-                hi.g7 g7Var = (hi.g7) this.f27460c;
+                np npVar2 = (np) this.f27460b;
+                hi.g7 g7Var = (hi.g7) this.f27461c;
                 TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
                 if (messages_chats != null) {
@@ -157,8 +157,8 @@ public final class x3 implements s10 {
                 g7Var.a(arrayList);
                 return;
             case 5:
-                np npVar3 = (np) this.f27459b;
-                org.telegram.ui.Components.kr krVar = (org.telegram.ui.Components.kr) this.f27460c;
+                np npVar3 = (np) this.f27460b;
+                org.telegram.ui.Components.kr krVar = (org.telegram.ui.Components.kr) this.f27461c;
                 TL_communities.ParticipantJoinedChats participantJoinedChats = (TL_communities.ParticipantJoinedChats) obj;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
                 if (participantJoinedChats != null) {
@@ -179,10 +179,10 @@ public final class x3 implements s10 {
                 krVar.a(participantJoinedChats, tL_error6);
                 return;
             case 6:
-                s10 s10Var2 = (s10) this.f27460c;
+                s10 s10Var2 = (s10) this.f27461c;
                 TL_account.Passkey passkey = (TL_account.Passkey) obj;
                 TLRPC.TL_error tL_error7 = (TLRPC.TL_error) obj2;
-                ((org.telegram.ui.ActionBar.t1) this.f27459b).dismiss();
+                ((org.telegram.ui.ActionBar.t1) this.f27460b).dismiss();
                 if (tL_error7 != null) {
                     s10Var2.a(null, tL_error7.text);
                     return;
@@ -191,9 +191,9 @@ public final class x3 implements s10 {
                     return;
                 }
             default:
-                f10 f10Var = (f10) this.f27460c;
+                f10 f10Var = (f10) this.f27461c;
                 TLRPC.TL_error tL_error8 = (TLRPC.TL_error) obj2;
-                j10 j10Var = ((i10) this.f27459b).f24269i;
+                j10 j10Var = ((i10) this.f27460b).f24269i;
                 if ((((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) && tL_error8 == null) {
                     z10 = true;
                 } else {

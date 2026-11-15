@@ -160,7 +160,7 @@ public final class r implements Runnable {
                 return;
             case 17:
                 ((p0) obj).B();
-                ((p8) obj2).f38882a.f39895g3.O(true);
+                ((p8) obj2).f38880a.f39892g3.O(true);
                 return;
             case 18:
                 p8 p8Var = (p8) obj;
@@ -188,7 +188,7 @@ public final class r implements Runnable {
                 int i11 = iArr[0] - 1;
                 iArr[0] = i11;
                 if (i11 == 0) {
-                    mc1Var.f49215a.G0(true);
+                    mc1Var.f49211a.G0(true);
                     return;
                 }
                 return;
@@ -196,8 +196,8 @@ public final class r implements Runnable {
                 rc1 rc1Var = (rc1) obj2;
                 String str = (String) obj;
                 rc1Var.d.clear();
-                rc1Var.f50920e.clear();
-                rc1Var.f50921f = true;
+                rc1Var.f50919e.clear();
+                rc1Var.f50920f = true;
                 rc1Var.F(str, "", true);
                 rc1Var.h = str;
                 rc1Var.f();
@@ -210,26 +210,26 @@ public final class r implements Runnable {
                 np.s1(WallpapersListActivity.u0(wallpapersListActivity)).Y3(tL_contacts_resolvedPeer.users, false);
                 np.s1(WallpapersListActivity.v0(wallpapersListActivity)).S3(tL_contacts_resolvedPeer.chats, false);
                 wallpapersListActivity.getMessagesStorage().m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                String str2 = rc1Var2.f50927y;
-                rc1Var2.f50927y = null;
+                String str2 = rc1Var2.f50926y;
+                rc1Var2.f50926y = null;
                 rc1Var2.F(str2, "", false);
                 return;
             case 24:
                 String str3 = (String) obj;
-                zc1 zc1Var = ((yc1) obj2).f53490a;
+                zc1 zc1Var = ((yc1) obj2).f53494a;
                 Activity parentActivity = zc1Var.getParentActivity();
-                gj gjVar = zc1Var.f53941n;
+                gj gjVar = zc1Var.f53906n;
                 if (parentActivity != null) {
-                    if (org.telegram.messenger.r2.f26198a) {
+                    if (org.telegram.messenger.r2.f26206a) {
                         org.telegram.messenger.a8.b(str3);
                     }
                     str3.getClass();
                     if (!str3.equals("share_game")) {
                         if (str3.equals("share_score")) {
-                            gjVar.f23817k.with_my_score = true;
+                            gjVar.f23819k.with_my_score = true;
                         }
                     } else {
-                        gjVar.f23817k.with_my_score = false;
+                        gjVar.f23819k.with_my_score = false;
                     }
                     zc1Var.showDialog(po0.N0(zc1Var.getParentActivity(), gjVar, null, false, zc1Var.h));
                     return;
@@ -237,7 +237,7 @@ public final class r implements Runnable {
                 return;
             case 25:
                 org.telegram.ui.web.v0 v0Var2 = (org.telegram.ui.web.v0) obj2;
-                ki.r rVar = v0Var2.f52826k0;
+                ki.r rVar = v0Var2.f52829k0;
                 rVar.f18518f = true;
                 rVar.k();
                 v0Var2.v((fi.i7) obj);
@@ -245,7 +245,7 @@ public final class r implements Runnable {
             case 26:
                 BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                if (botWebViewContainer$BotWebViewProxy != null && (v0Var = botWebViewContainer$BotWebViewProxy.f52558a) != null && (c0Var = v0Var.f52815c) != null) {
+                if (botWebViewContainer$BotWebViewProxy != null && (v0Var = botWebViewContainer$BotWebViewProxy.f52561a) != null && (c0Var = v0Var.f52818c) != null) {
                     c0Var.f(arrayList);
                     return;
                 }
@@ -253,13 +253,13 @@ public final class r implements Runnable {
             case 27:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 LongSparseArray longSparseArray = (LongSparseArray) obj;
-                za.f4816c.addAll(0, arrayList2);
+                za.f4819c.addAll(0, arrayList2);
                 for (int i12 = 0; i12 < longSparseArray.size(); i12++) {
                     za.d.put(longSparseArray.keyAt(i12), (org.telegram.ui.web.w0) longSparseArray.valueAt(i12));
                 }
-                za.f4815b = true;
-                za.f4814a = false;
-                ArrayList arrayList3 = za.f4817e;
+                za.f4818b = true;
+                za.f4817a = false;
+                ArrayList arrayList3 = za.f4820e;
                 if (arrayList3 != null) {
                     int size = arrayList3.size();
                     while (i10 < size) {
@@ -267,7 +267,7 @@ public final class r implements Runnable {
                         i10++;
                         ((z10) obj3).a(arrayList2);
                     }
-                    za.f4817e = null;
+                    za.f4820e = null;
                     return;
                 }
                 return;
@@ -276,10 +276,10 @@ public final class r implements Runnable {
                 ArrayList arrayList4 = x0Var.h;
                 arrayList4.clear();
                 arrayList4.addAll((ArrayList) obj);
-                x0Var.f52867n = false;
-                bi.v3 v3Var = x0Var.f38882a;
+                x0Var.f52870n = false;
+                bi.v3 v3Var = x0Var.f38880a;
                 if (v3Var != null) {
-                    v3Var.f39895g3.O(true);
+                    v3Var.f39892g3.O(true);
                     return;
                 }
                 return;

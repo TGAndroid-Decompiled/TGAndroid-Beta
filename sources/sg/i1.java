@@ -18,8 +18,8 @@ public final class i1 {
     }
 
     public static int b(nt0 nt0Var) {
-        int i7 = (int) nt0Var.f37713a;
-        int i10 = (int) nt0Var.f37714b;
+        int i7 = (int) nt0Var.f37702a;
+        int i10 = (int) nt0Var.f37703b;
         int[] iArr = new int[1];
         GLES20.glGenTextures(1, iArr, 0);
         int i11 = iArr[0];

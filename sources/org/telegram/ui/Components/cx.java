@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public final class cx implements View.OnClickListener {
-    public final int f33717a;
-    public final dx f33718b;
+    public final int f33719a;
+    public final dx f33720b;
 
     public cx(dx dxVar, int i7) {
-        this.f33717a = i7;
-        this.f33718b = dxVar;
+        this.f33719a = i7;
+        this.f33720b = dxVar;
     }
 
     @Override
@@ -24,11 +24,11 @@ public final class cx implements View.OnClickListener {
         int R;
         int i7;
         TLRPC.StickerSet stickerSet3;
-        int i10 = this.f33717a;
-        dx dxVar = this.f33718b;
+        int i10 = this.f33719a;
+        dx dxVar = this.f33720b;
         switch (i10) {
             case 0:
-                zw zwVar = dxVar.f34094x;
+                zw zwVar = dxVar.f34081x;
                 if (zwVar != null && (stickerSet = zwVar.f42431b) != null) {
                     ly lyVar = dxVar.H;
                     if (!lyVar.f37005x2) {
@@ -45,8 +45,8 @@ public final class cx implements View.OnClickListener {
                 }
                 return;
             case 1:
-                ug.q0 q0Var = dxVar.f34091r;
-                TextView textView = dxVar.f34090n;
+                ug.q0 q0Var = dxVar.f34078r;
+                TextView textView = dxVar.f34077n;
                 TextView textView2 = dxVar.h;
                 if (textView2 != null && textView2.getVisibility() == 0 && textView2.isEnabled()) {
                     textView2.performClick();
@@ -63,7 +63,7 @@ public final class cx implements View.OnClickListener {
             case 2:
                 ly lyVar2 = dxVar.H;
                 ArrayList arrayList2 = lyVar2.f36979q1;
-                zw zwVar2 = dxVar.f34094x;
+                zw zwVar2 = dxVar.f34081x;
                 if (zwVar2 != null && (stickerSet2 = zwVar2.f42431b) != null) {
                     zwVar2.f42434f = true;
                     vw vwVar = lyVar2.S;
@@ -71,13 +71,13 @@ public final class cx implements View.OnClickListener {
                     ArrayList arrayList3 = lyVar2.f36983r1;
                     yw ywVar = lyVar2.Q;
                     if (!arrayList2.contains(Long.valueOf(stickerSet2.f28078id))) {
-                        arrayList2.add(Long.valueOf(dxVar.f34094x.f42431b.f28078id));
+                        arrayList2.add(Long.valueOf(dxVar.f34081x.f42431b.f28078id));
                     }
                     dxVar.a(true);
                     int i12 = 0;
                     while (true) {
                         if (i12 < ywVar.getChildCount()) {
-                            if ((ywVar.getChildAt(i12) instanceof bx) && (R = RecyclerView.R((view2 = ywVar.getChildAt(i12)))) >= 0 && (i7 = vwVar.f41169x.get(R)) >= 0 && i7 < arrayList3.size() && arrayList3.get(i7) != null && dxVar.f34094x != null && ((zw) arrayList3.get(i7)).f42431b.f28078id == dxVar.f34094x.f42431b.f28078id) {
+                            if ((ywVar.getChildAt(i12) instanceof bx) && (R = RecyclerView.R((view2 = ywVar.getChildAt(i12)))) >= 0 && (i7 = vwVar.f41172x.get(R)) >= 0 && i7 < arrayList3.size() && arrayList3.get(i7) != null && dxVar.f34081x != null && ((zw) arrayList3.get(i7)).f42431b.f28078id == dxVar.f34081x.f42431b.f28078id) {
                                 num = Integer.valueOf(R);
                             } else {
                                 i12++;
@@ -90,9 +90,9 @@ public final class cx implements View.OnClickListener {
                     if (num != null) {
                         vwVar.E(num.intValue(), view2);
                     }
-                    if (dxVar.f34092s == null) {
+                    if (dxVar.f34079s == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
-                        TLRPC.StickerSet stickerSet4 = dxVar.f34094x.f42431b;
+                        TLRPC.StickerSet stickerSet4 = dxVar.f34081x.f42431b;
                         tL_inputStickerSetID2.f28071id = stickerSet4.f28078id;
                         tL_inputStickerSetID2.access_hash = stickerSet4.access_hash;
                         TLRPC.TL_messages_stickerSet m0 = org.telegram.messenger.si.b0(i11).m0(tL_inputStickerSetID2, true);
@@ -106,7 +106,7 @@ public final class cx implements View.OnClickListener {
                         }
                         org.telegram.messenger.ns.f(i11).c(dxVar, 64);
                         org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(i11);
-                        dxVar.f34092s = tL_inputStickerSetID2;
+                        dxVar.f34079s = tL_inputStickerSetID2;
                         b02.m0(tL_inputStickerSetID2, false);
                         return;
                     }
@@ -115,7 +115,7 @@ public final class cx implements View.OnClickListener {
                 return;
             case 3:
                 ly lyVar3 = dxVar.H;
-                zw zwVar3 = dxVar.f34094x;
+                zw zwVar3 = dxVar.f34081x;
                 if (zwVar3 != null && (stickerSet3 = zwVar3.f42431b) != null) {
                     zwVar3.f42434f = false;
                     ArrayList arrayList4 = lyVar3.f36979q1;
@@ -127,9 +127,9 @@ public final class cx implements View.OnClickListener {
                         qwVar.p(lyVar3.getEmojipacks());
                     }
                     lyVar3.V(lyVar3.R.I0());
-                    if (dxVar.f34093w == null) {
+                    if (dxVar.f34080w == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
-                        TLRPC.StickerSet stickerSet5 = dxVar.f34094x.f42431b;
+                        TLRPC.StickerSet stickerSet5 = dxVar.f34081x.f42431b;
                         tL_inputStickerSetID3.f28071id = stickerSet5.f28078id;
                         tL_inputStickerSetID3.access_hash = stickerSet5.access_hash;
                         TLRPC.TL_messages_stickerSet m02 = org.telegram.messenger.si.b0(i13).m0(tL_inputStickerSetID3, true);
@@ -149,7 +149,7 @@ public final class cx implements View.OnClickListener {
                         }
                         org.telegram.messenger.ns.f(i13).c(dxVar, 64);
                         org.telegram.messenger.si b03 = org.telegram.messenger.si.b0(i13);
-                        dxVar.f34093w = tL_inputStickerSetID3;
+                        dxVar.f34080w = tL_inputStickerSetID3;
                         b03.m0(tL_inputStickerSetID3, false);
                         return;
                     }

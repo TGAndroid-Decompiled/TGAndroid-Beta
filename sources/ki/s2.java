@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import di.v8;
+import di.u8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.Utilities;
@@ -25,7 +25,7 @@ import org.telegram.ui.Components.p5;
 import org.telegram.ui.Components.xb;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
-import org.telegram.ui.jl0;
+import org.telegram.ui.kl0;
 import org.telegram.ui.qj;
 import org.telegram.ui.yw;
 public final class s2 implements org.telegram.ui.web.c0 {
@@ -58,7 +58,7 @@ public final class s2 implements org.telegram.ui.web.c0 {
         k8.a aVar = new k8.a(15, false);
         aVar.f17788b = new q2(this, 0);
         xb V = new cc(x2Var.f18675r0, x2Var.G).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753087, q10.p(a22))), null, aVar);
-        V.f41643j = 5000;
+        V.f41635j = 5000;
         V.k(true);
     }
 
@@ -209,29 +209,29 @@ public final class s2 implements org.telegram.ui.web.c0 {
         o2 o2Var = x2Var.f18683x;
         w2 w2Var = x2Var.f18661f;
         org.telegram.ui.ActionBar.e2 lastFragment = ((LaunchActivity) x2Var.m0).M().getLastFragment();
-        jl0 jl0Var = null;
+        kl0 kl0Var = null;
         if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
             org.telegram.messenger.g0.v1(w2Var);
             org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, x2Var.getContext(), null);
             t1Var.r(150L);
-            v8.y(x2Var.I, false).X(null, inputInvoice, (TLRPC.TL_payments_paymentFormStars) tLObject, new di.s3(t1Var, 1), new ai.u1(27, this, str));
+            u8.y(x2Var.I, false).X(null, inputInvoice, (TLRPC.TL_payments_paymentFormStars) tLObject, new di.s3(t1Var, 1), new ai.v1(27, this, str));
             return;
         }
         if (tLObject instanceof TLRPC.PaymentForm) {
             TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
             np.s1(x2Var.I).Y3(paymentForm.users, false);
-            jl0Var = new jl0(paymentForm, null, str, lastFragment);
+            kl0Var = new kl0(paymentForm, null, str, lastFragment);
         } else if (tLObject instanceof TLRPC.PaymentReceipt) {
-            jl0Var = new jl0((TLRPC.PaymentReceipt) tLObject);
+            kl0Var = new kl0((TLRPC.PaymentReceipt) tLObject);
         }
-        if (jl0Var != null) {
+        if (kl0Var != null) {
             o2Var.e(o2Var.getTopActionBarOffsetY() + (-o2Var.getOffsetY()));
             org.telegram.messenger.g0.v1(w2Var);
             nb0 nb0Var = new nb0(this.f18547b);
             nb0Var.show();
-            jl0Var.f48384a1 = new a3.h((Object) this, (Object) nb0Var, str, 14);
-            jl0Var.Z0 = this.f18548c;
-            nb0Var.c(jl0Var);
+            kl0Var.f48676a1 = new a3.h((Object) this, (Object) nb0Var, str, 14);
+            kl0Var.Z0 = this.f18548c;
+            nb0Var.c(kl0Var);
         }
     }
 
@@ -262,7 +262,7 @@ public final class s2 implements org.telegram.ui.web.c0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.f18576e);
-            spannableStringBuilder.setSpan(new p5(obj.f18577f, 1.4f, tVarArr[0].f18560l.f34827a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new p5(obj.f18577f, 1.4f, tVarArr[0].f18560l.f34831a.getFontMetricsInt()), 0, 1, 33);
             tVarArr[0].f18560l.t(spannableStringBuilder, true, true);
         } else {
             tVarArr[0].f18560l.t(obj.f18576e, true, true);
@@ -316,7 +316,7 @@ public final class s2 implements org.telegram.ui.web.c0 {
             if (activity instanceof LaunchActivity) {
                 org.telegram.ui.ActionBar.e2 lastFragment = ((LaunchActivity) activity).M().getLastFragment();
                 if (lastFragment instanceof an) {
-                    qj qjVar = ((an) lastFragment).f45118a0;
+                    qj qjVar = ((an) lastFragment).f45117a0;
                     qjVar.setFieldText("@" + q10.n(user) + " " + str);
                     x2Var.o(false);
                     return;
@@ -353,7 +353,7 @@ public final class s2 implements org.telegram.ui.web.c0 {
             hd.M0(2131743885, null);
             aVar.f17788b = new q2(this, 1);
             xb V = new cc(frameLayout, e6Var).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753054, q10.p(a22))), null, aVar);
-            V.f41643j = 5000;
+            V.f41635j = 5000;
             V.k(true);
             return;
         }
@@ -362,7 +362,7 @@ public final class s2 implements org.telegram.ui.web.c0 {
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.H2(org.telegram.messenger.g0.k2(hd.M0(2131753055, null), new q2(this, 2)), true));
         xb P = new cc(frameLayout, e6Var).P(2131624012, spannableStringBuilder);
-        P.f41643j = 5000;
+        P.f41635j = 5000;
         P.k(true);
     }
 

@@ -7,43 +7,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class yn implements RequestDelegate {
-    public final int f27795a;
-    public final int f27796b;
-    public final Object f27797c;
+    public final int f27797a;
+    public final int f27798b;
+    public final Object f27799c;
     public final Object d;
 
     public yn(Object obj, int i7, Object obj2, int i10) {
-        this.f27795a = i10;
-        this.f27797c = obj;
-        this.f27796b = i7;
+        this.f27797a = i10;
+        this.f27799c = obj;
+        this.f27798b = i7;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27795a) {
+        switch (this.f27797a) {
             case 0:
-                np npVar = (np) this.f27797c;
+                np npVar = (np) this.f27799c;
                 String str = (String) this.d;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    boolean z10 = r2.f26198a;
-                    int i7 = this.f27796b;
+                    boolean z10 = r2.f26206a;
+                    int i7 = this.f27798b;
                     if (z10) {
                         a8.b("account " + npVar.currentAccount + " registered for push, push type: " + i7);
                     }
                     npVar.getUserConfig().d = true;
-                    gz.f23946g = str;
-                    gz.f23943f = i7;
+                    gz.f23949g = str;
+                    gz.f23946f = i7;
                     npVar.getUserConfig().v(false);
                 }
                 g0.h3(new tj(npVar, 4));
                 return;
             case 1:
-                i7 i7Var = (i7) this.f27797c;
+                i7 i7Var = (i7) this.f27799c;
                 h7 h7Var = (h7) this.d;
                 i7Var.f24351z0 = false;
                 boolean z11 = tLObject instanceof Vector;
-                int i10 = this.f27796b;
+                int i10 = this.f27798b;
                 if (z11) {
                     Vector vector = (Vector) tLObject;
                     if (!vector.objects.isEmpty()) {
@@ -70,13 +70,13 @@ public final class yn implements RequestDelegate {
                     return;
                 }
             case 2:
-                g0.h3(new l7((si) this.f27797c, (TLRPC.StickerSet) this.d, this.f27796b, 9));
+                g0.h3(new l7((si) this.f27799c, (TLRPC.StickerSet) this.d, this.f27798b, 9));
                 return;
             case 3:
-                si siVar = (si) this.f27797c;
+                si siVar = (si) this.f27799c;
                 z10 z10Var = (z10) this.d;
                 boolean z12 = tLObject instanceof TLRPC.TL_messages_stickerSet;
-                int i12 = this.f27796b;
+                int i12 = this.f27798b;
                 if (z12) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add((TLRPC.TL_messages_stickerSet) tLObject);
@@ -86,15 +86,15 @@ public final class yn implements RequestDelegate {
                 siVar.z1(i12, null, false, (int) (System.currentTimeMillis() / 1000), 0L, new qf(z10Var, 5));
                 return;
             default:
-                g0.h3(new cg((np) this.f27797c, tLObject, this.f27796b, (po) this.d));
+                g0.h3(new cg((np) this.f27799c, tLObject, this.f27798b, (po) this.d));
                 return;
         }
     }
 
     public yn(si siVar, TLRPC.StickerSet stickerSet, int i7) {
-        this.f27795a = 2;
-        this.f27797c = siVar;
+        this.f27797a = 2;
+        this.f27799c = siVar;
         this.d = stickerSet;
-        this.f27796b = i7;
+        this.f27798b = i7;
     }
 }

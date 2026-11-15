@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d9 extends org.telegram.ui.Components.a41 {
-    public static final int f46339b = 0;
+    public static final int f46311b = 0;
 
     static {
         org.telegram.ui.Components.a41.h(new org.telegram.ui.Components.a41());
@@ -32,13 +32,13 @@ public final class d9 extends org.telegram.ui.Components.a41 {
         f9 f9Var = (f9) b41Var.G;
         e9 e9Var = (e9) view;
         View.OnClickListener onClickListener = b41Var.D;
-        int i13 = e9Var.f46647a;
-        org.telegram.ui.Components.w8 w8Var = e9Var.f46648b;
+        int i13 = e9Var.f46637a;
+        org.telegram.ui.Components.w8 w8Var = e9Var.f46638b;
         org.telegram.ui.Cells.f6 f6Var = e9Var.d;
-        ImageView imageView = e9Var.f46649c;
-        boolean z13 = f9Var.f47092e;
-        ArrayList arrayList = f9Var.f47091c;
-        ArrayList arrayList2 = f9Var.f47090b;
+        ImageView imageView = e9Var.f46639c;
+        boolean z13 = f9Var.f47076e;
+        ArrayList arrayList = f9Var.f47075c;
+        ArrayList arrayList2 = f9Var.f47074b;
         if (z13) {
             i7 = 2131231915;
         } else {
@@ -46,7 +46,7 @@ public final class d9 extends org.telegram.ui.Components.a41 {
         }
         imageView.setImageResource(i7);
         TLRPC.Message message = (TLRPC.Message) arrayList.get(0);
-        if (org.telegram.messenger.hd.f24101a0) {
+        if (org.telegram.messenger.hd.f24104a0) {
             str = "\u202b";
         } else {
             str = "";
@@ -94,20 +94,20 @@ public final class d9 extends org.telegram.ui.Components.a41 {
             }
             obj = null;
         } else {
-            if (e9Var.f46651f == null) {
+            if (e9Var.f46641f == null) {
                 Drawable mutate4 = e9Var.getContext().getResources().getDrawable(2131231935).mutate();
                 i11 = 0;
                 mutate4.setBounds(0, 0, mutate4.getIntrinsicWidth(), mutate4.getIntrinsicHeight());
                 obj = null;
                 org.telegram.ui.ActionBar.q6.x(f6Var, mutate4, org.telegram.ui.ActionBar.j6.A6, null, PorterDuff.Mode.MULTIPLY);
-                e9Var.f46651f = mutate4;
+                e9Var.f46641f = mutate4;
             } else {
                 i11 = 0;
                 obj = null;
             }
-            spannableString.setSpan(new ImageSpan(e9Var.f46651f, i11), str.length(), str.length() + 1, 33);
+            spannableString.setSpan(new ImageSpan(e9Var.f46641f, i11), str.length(), str.length() + 1, 33);
         }
-        if (f9Var.f47089a != 0) {
+        if (f9Var.f47073a != 0) {
             StringBuilder sb2 = new StringBuilder();
             for (int i15 = 0; i15 < Math.min(3, arrayList2.size()); i15++) {
                 if (i15 > 0) {
@@ -153,8 +153,8 @@ public final class d9 extends org.telegram.ui.Components.a41 {
         }
         imageView.setTag(f9Var);
         imageView.setOnClickListener(onClickListener);
-        boolean z15 = b41Var.f33175e;
-        org.telegram.ui.Components.fp fpVar = e9Var.f46650e;
+        boolean z15 = b41Var.f33178e;
+        org.telegram.ui.Components.fp fpVar = e9Var.f46640e;
         if (fpVar == null) {
             return;
         }

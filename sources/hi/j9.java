@@ -92,7 +92,7 @@ public final class j9 implements s10 {
                         boolean z12 = obj instanceof ff;
                         if (z12) {
                             ff ffVar = (ff) obj;
-                            if (ffVar.f27708b && !ffVar.d()) {
+                            if (ffVar.f27710b && !ffVar.d()) {
                                 i10 = 1;
                             }
                             saVar.P1 = i10;

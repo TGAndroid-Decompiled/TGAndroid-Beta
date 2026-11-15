@@ -32,7 +32,7 @@ public final class w0 implements z10 {
                 og0 og0Var = c1Var.U1;
                 if (og0Var.R) {
                     og0Var.setLoading(false);
-                    if (c1Var.f35936o1.H) {
+                    if (c1Var.f35931o1.H) {
                         c1Var.k1();
                         return;
                     }

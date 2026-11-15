@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class y90 implements Runnable {
-    public final int f53477a;
-    public final pa0 f53478b;
+    public final int f53481a;
+    public final pa0 f53482b;
 
     public y90(pa0 pa0Var, int i7) {
-        this.f53477a = i7;
-        this.f53478b = pa0Var;
+        this.f53481a = i7;
+        this.f53482b = pa0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53477a) {
+        switch (this.f53481a) {
             case 0:
-                pa0.c0(this.f53478b);
+                pa0.c0(this.f53482b);
                 return;
             case 1:
-                pa0 pa0Var = this.f53478b;
+                pa0 pa0Var = this.f53482b;
                 org.telegram.messenger.ta taVar = pa0Var.G;
                 if (taVar != null) {
                     pa0Var.F.h(taVar);
@@ -24,15 +24,15 @@ public final class y90 implements Runnable {
                 }
                 return;
             case 2:
-                pa0.a0(this.f53478b);
+                pa0.a0(this.f53482b);
                 return;
             case 3:
-                pa0 pa0Var2 = this.f53478b;
+                pa0 pa0Var2 = this.f53482b;
                 pa0Var2.getLocationController().o(0, pa0Var2.m0, true);
-                pa0Var2.f50225y = false;
+                pa0Var2.f50202y = false;
                 return;
             case 4:
-                pa0 pa0Var3 = this.f53478b;
+                pa0 pa0Var3 = this.f53482b;
                 org.telegram.messenger.ea eaVar = pa0Var3.F;
                 if (eaVar != null) {
                     eaVar.o(org.telegram.messenger.g0.L(70.0f), 0, org.telegram.messenger.g0.L(70.0f), pa0Var3.t0());
@@ -52,13 +52,13 @@ public final class y90 implements Runnable {
                 pa0Var3.O = null;
                 return;
             case 5:
-                this.f53478b.D0();
+                this.f53482b.D0();
                 return;
             case 6:
-                this.f53478b.D0();
+                this.f53482b.D0();
                 return;
             default:
-                org.telegram.messenger.g0.h3(new y90(this.f53478b, 1));
+                org.telegram.messenger.g0.h3(new y90(this.f53482b, 1));
                 return;
         }
     }

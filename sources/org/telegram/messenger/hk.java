@@ -3,32 +3,32 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class hk implements z10 {
-    public final int f24163a = 2;
-    public final np f24164b;
-    public final Object f24165c;
+    public final int f24166a = 2;
+    public final np f24167b;
+    public final Object f24168c;
     public final int d;
-    public final Object f24166e;
-    public final Object f24167f;
-    public final Object f24168g;
+    public final Object f24169e;
+    public final Object f24170f;
+    public final Object f24171g;
 
     public hk(np npVar, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, TLRPC.Chat chat, Runnable runnable) {
-        this.f24164b = npVar;
-        this.f24166e = tL_messages_invitedUsers;
-        this.f24167f = iArr;
+        this.f24167b = npVar;
+        this.f24169e = tL_messages_invitedUsers;
+        this.f24170f = iArr;
         this.d = i7;
-        this.f24168g = chat;
-        this.f24165c = runnable;
+        this.f24171g = chat;
+        this.f24168c = runnable;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f24163a;
-        Object obj2 = this.f24165c;
-        Object obj3 = this.f24168g;
+        int i7 = this.f24166a;
+        Object obj2 = this.f24168c;
+        Object obj3 = this.f24171g;
         int i10 = this.d;
-        Object obj4 = this.f24167f;
-        Object obj5 = this.f24166e;
-        np npVar = this.f24164b;
+        Object obj4 = this.f24170f;
+        Object obj5 = this.f24169e;
+        np npVar = this.f24167b;
         switch (i7) {
             case 0:
                 vf.b bVar = (vf.b) obj5;
@@ -123,20 +123,20 @@ public final class hk implements z10 {
     }
 
     public hk(np npVar, vf.b bVar, org.telegram.ui.ActionBar.t1[] t1VarArr, org.telegram.ui.ActionBar.e2 e2Var, boolean[] zArr, int i7) {
-        this.f24164b = npVar;
-        this.f24166e = bVar;
-        this.f24167f = t1VarArr;
-        this.f24168g = e2Var;
-        this.f24165c = zArr;
+        this.f24167b = npVar;
+        this.f24169e = bVar;
+        this.f24170f = t1VarArr;
+        this.f24171g = e2Var;
+        this.f24168c = zArr;
         this.d = i7;
     }
 
     public hk(np npVar, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i7, tl tlVar) {
-        this.f24164b = npVar;
-        this.f24165c = zArr;
-        this.f24166e = botInfoArr;
-        this.f24167f = user;
+        this.f24167b = npVar;
+        this.f24168c = zArr;
+        this.f24169e = botInfoArr;
+        this.f24170f = user;
         this.d = i7;
-        this.f24168g = tlVar;
+        this.f24171g = tlVar;
     }
 }

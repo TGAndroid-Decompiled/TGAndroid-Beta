@@ -73,15 +73,15 @@ public class h7 {
         boolean z10;
         TLRPC.TL_recentStory tL_recentStory4;
         this.R = view;
-        s6 P1 = np.s1(m10.f24934t0).P1();
+        s6 P1 = np.s1(m10.f24940t0).P1();
         boolean z11 = false;
         if (motionEvent.getAction() == 0) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 TLRPC.Chat chat = null;
                 if (this.f11798x > 0) {
-                    user = np.s1(m10.f24934t0).a2(Long.valueOf(this.f11798x));
+                    user = np.s1(m10.f24940t0).a2(Long.valueOf(this.f11798x));
                 } else {
-                    chat = np.s1(m10.f24934t0).M0(Long.valueOf(-this.f11798x));
+                    chat = np.s1(m10.f24940t0).M0(Long.valueOf(-this.f11798x));
                     user = null;
                 }
                 if (c(chat, user)) {
@@ -89,17 +89,17 @@ public class h7 {
                 } else if (this.f11793r) {
                     z10 = !P1.h.isEmpty();
                 } else {
-                    if (this.f11798x <= 0 ? np.s1(m10.f24934t0).P1().K(this.f11798x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : np.s1(m10.f24934t0).P1().K(this.f11798x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
+                    if (this.f11798x <= 0 ? np.s1(m10.f24940t0).P1().K(this.f11798x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : np.s1(m10.f24940t0).P1().K(this.f11798x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
                         z11 = true;
                     }
                     z10 = z11;
                 }
-                if (this.f11798x != m10.i(m10.f24934t0).f24953n && z10) {
+                if (this.f11798x != m10.i(m10.f24940t0).f24959n && z10) {
                     dc dcVar = this.H;
                     if (dcVar == null) {
                         this.H = new dc(view, 1.5f, 5.0f);
                     } else {
-                        dcVar.f33911a = view;
+                        dcVar.f33898a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -120,10 +120,10 @@ public class h7 {
             }
         }
         if (motionEvent.getAction() == 2 && this.N) {
-            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f23588e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f23588e) {
+            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f23590e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f23590e) {
                 dc dcVar2 = this.H;
                 if (dcVar2 != null) {
-                    dcVar2.f33911a = view;
+                    dcVar2.f33898a = view;
                     dcVar2.c(false);
                 }
                 f6 f6Var3 = this.Q;
@@ -136,15 +136,15 @@ public class h7 {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             dc dcVar3 = this.H;
             if (dcVar3 != null) {
-                dcVar3.f33911a = view;
+                dcVar3.f33898a = view;
                 dcVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f11798x)) {
-                np s12 = np.s1(m10.f24934t0);
+                np s12 = np.s1(m10.f24940t0);
                 s6 P12 = s12.P1();
                 if (this.f11793r) {
                     f(0L);
-                } else if (this.f11798x != m10.i(m10.f24934t0).e()) {
+                } else if (this.f11798x != m10.i(m10.f24940t0).e()) {
                     if (P12.K(this.f11798x)) {
                         f(this.f11798x);
                     } else {

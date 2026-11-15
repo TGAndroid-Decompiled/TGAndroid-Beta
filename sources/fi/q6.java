@@ -36,12 +36,12 @@ public final class q6 implements z10 {
             default:
                 g20 g20Var = (g20) obj;
                 r6Var.G = g20Var;
-                r6Var.F.f23845r0 = g20Var;
-                r6Var.E = g20Var.f23649r / 1000;
+                r6Var.F.f23847r0 = g20Var;
+                r6Var.E = g20Var.f23651r / 1000;
                 if (g20Var.c()) {
                     MediaController.B().h0(r6Var.F, false, false, false);
                     return;
-                } else if (new File(r6Var.F.f23845r0.f23646o).renameTo(new File(r6Var.f12275e))) {
+                } else if (new File(r6Var.F.f23847r0.f23648o).renameTo(new File(r6Var.f12275e))) {
                     org.telegram.messenger.w7.G(r6Var.N.f12319a).h0(false, 33554432, r6Var.f12275e, false);
                     return;
                 } else {

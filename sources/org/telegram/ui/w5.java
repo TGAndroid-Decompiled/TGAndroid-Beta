@@ -23,23 +23,23 @@ public final class w5 extends rg.b {
 
     @Override
     public final int b() {
-        return this.d.f53415c.size();
+        return this.d.f53419c.size();
     }
 
     @Override
     public final int d(int i7) {
-        return ((x5) this.d.f53415c.get(i7)).f56015a;
+        return ((x5) this.d.f53419c.get(i7)).f56015a;
     }
 
     @Override
     public final void t(v4.e1 e1Var, int i7) {
         String m10;
         y5 y5Var = this.d;
-        ArrayList arrayList = y5Var.f53415c;
+        ArrayList arrayList = y5Var.f53419c;
         if (((x5) arrayList.get(i7)).f56015a == 2) {
             org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) e1Var.f58535a;
-            org.telegram.messenger.s2 s2Var = ((x5) arrayList.get(i7)).f53097c;
-            TLObject e22 = y5Var.getMessagesController().e2(s2Var.f26391a);
+            org.telegram.messenger.s2 s2Var = ((x5) arrayList.get(i7)).f53096c;
+            TLObject e22 = y5Var.getMessagesController().e2(s2Var.f26401a);
             boolean z10 = false;
             String str = null;
             if (e22 instanceof TLRPC.User) {
@@ -54,7 +54,7 @@ public final class w5 extends rg.b {
                 str = ((TLRPC.Chat) e22).title;
             }
             paVar.setSelfAsSavedMessages(true);
-            String f10 = org.telegram.messenger.u2.f(s2Var.f26392b);
+            String f10 = org.telegram.messenger.u2.f(s2Var.f26402b);
             if (i7 == arrayList.size() - 1 || ((x5) arrayList.get(i7 + 1)).f56015a == 2) {
                 z10 = true;
             }

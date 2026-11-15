@@ -25,7 +25,7 @@ public final class z0 {
             }
             int i10 = this.f58698c;
             if (i10 >= 1) {
-                recyclerView.f2819s0.b(this.f58696a, this.f58697b, i10, interpolator);
+                recyclerView.f2822s0.b(this.f58696a, this.f58697b, i10, interpolator);
                 int i11 = this.f58701g + 1;
                 this.f58701g = i11;
                 if (i11 > 10) {

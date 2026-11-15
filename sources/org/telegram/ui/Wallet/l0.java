@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Base64;
 import android.util.LruCache;
-import di.mb;
+import di.lb;
 import j$.util.DesugarCollections;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
@@ -386,8 +386,8 @@ public final class l0 {
     }
 
     public static boolean I(gj gjVar, TL_wallet.walletTransaction wallettransaction) {
-        if (gjVar != null && gjVar.f23817k != null && wallettransaction != null && gjVar.P3()) {
-            TLRPC.Message message = gjVar.f23817k;
+        if (gjVar != null && gjVar.f23819k != null && wallettransaction != null && gjVar.P3()) {
+            TLRPC.Message message = gjVar.f23819k;
             TLRPC.MessageAction messageAction = message.action;
             if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
                 TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
@@ -663,7 +663,7 @@ public final class l0 {
 
     public static String o(long j3, boolean z10) {
         if ((j3 > -10000000 && j3 < 10000000) || z10) {
-            return mb.P0(j3);
+            return lb.P0(j3);
         }
         if (R == null) {
             R = new DecimalFormat("0.##", new DecimalFormatSymbols(Locale.US));
@@ -722,7 +722,7 @@ public final class l0 {
         if (T != null && T.getContext() != null) {
             return T.getContext();
         }
-        return org.telegram.messenger.t0.f26600b;
+        return org.telegram.messenger.t0.f26609b;
     }
 
     public static l0 x(int i7) {
@@ -808,7 +808,7 @@ public final class l0 {
         synchronized (p0.f44289f) {
             try {
                 try {
-                    z10 = p0Var.r().f35366c;
+                    z10 = p0Var.r().f35357c;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                     z10 = true;
@@ -823,14 +823,14 @@ public final class l0 {
     }
 
     public final boolean K() {
-        if (this.f44088m && !gz.f23978s.isEmpty()) {
+        if (this.f44088m && !gz.f23981s.isEmpty()) {
             return true;
         }
         return false;
     }
 
     public final void L() {
-        ns.f(this.f44078a).k(ns.f25467a4, this);
+        ns.f(this.f44078a).k(ns.f25468a4, this);
     }
 
     public final void M(org.json.JSONObject r46) {
@@ -862,7 +862,7 @@ public final class l0 {
         }
         if (!TextUtils.isEmpty(str) && this.f44080c == null) {
             H("setting up wallet storage of " + str);
-            this.f44080c = new p0(this.f44078a, org.telegram.messenger.t0.f26600b, str);
+            this.f44080c = new p0(this.f44078a, org.telegram.messenger.t0.f26609b, str);
             H("storage public keys = " + this.f44080c.m().length);
         }
         d0 d0Var = this.f44090o;
@@ -1095,7 +1095,7 @@ public final class l0 {
     public final void W() {
         int i7;
         this.I = t();
-        ArrayList n10 = p0.n(org.telegram.messenger.t0.f26600b, m10.i(this.f44078a).e());
+        ArrayList n10 = p0.n(org.telegram.messenger.t0.f26609b, m10.i(this.f44078a).e());
         n10.remove(this.I);
         HashMap hashMap = new HashMap();
         ArrayList arrayList = this.G;
@@ -1116,13 +1116,13 @@ public final class l0 {
             String str = (String) obj2;
             h0 h0Var2 = (h0) hashMap.get(str);
             if (h0Var2 == null) {
-                h0Var2 = new h0(new p0(this.f44078a, org.telegram.messenger.t0.f26600b, str));
+                h0Var2 = new h0(new p0(this.f44078a, org.telegram.messenger.t0.f26609b, str));
             }
             p0 p0Var = h0Var2.f43894f;
             synchronized (p0.f44289f) {
                 try {
                     try {
-                        i7 = p0Var.r().f35365b;
+                        i7 = p0Var.r().f35356b;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);
                         i7 = 0;
@@ -1334,7 +1334,7 @@ public final class l0 {
             int i10 = j10.exp;
             double d = j10.rate;
             if (d > 0.0d && !Double.isNaN(d) && !Double.isInfinite(d)) {
-                double d2 = d * ((org.telegram.messenger.i0) np.s1(this.f44078a).f25448y7.f25855l.f13134b).f24257a;
+                double d2 = d * ((org.telegram.messenger.i0) np.s1(this.f44078a).f25451y7.f25857l.f13134b).f24257a;
                 boolean z14 = false;
                 int max = Math.max(0, Math.min(i10, 20));
                 BigDecimal movePointLeft = BigDecimal.valueOf(j3).multiply(BigDecimal.valueOf(d2)).movePointLeft(9);

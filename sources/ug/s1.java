@@ -15,7 +15,7 @@ import java.util.HashSet;
 import org.telegram.messenger.gz;
 import org.telegram.messenger.qc;
 import org.telegram.ui.ActionBar.z5;
-import tg.y1;
+import tg.x1;
 public class s1 extends View implements z5 {
     public r1 f58330a;
     public final s4.s0 f58331b;
@@ -66,12 +66,12 @@ public class s1 extends View implements z5 {
             f11 = 15.0f;
         }
         AnimatorSet animatorSet = new AnimatorSet();
-        y1 y1Var = new y1(this, 4);
+        x1 x1Var = new x1(this, 4);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f11);
-        ofFloat.addUpdateListener(y1Var);
+        ofFloat.addUpdateListener(x1Var);
         ofFloat.setDuration(600L);
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f11, 1.0f);
-        ofFloat2.addUpdateListener(y1Var);
+        ofFloat2.addUpdateListener(x1Var);
         ofFloat2.setDuration(2000L);
         animatorSet.playTogether(ofFloat, ofFloat2);
         animatorSet.start();

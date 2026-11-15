@@ -45,7 +45,7 @@ public final class v0 implements Runnable {
             case 6:
                 ArrayList arrayList = c1Var.f59148f2;
                 if (arrayList.isEmpty()) {
-                    arrayList.addAll(si.b0(c1Var.f29679a).f26482j1);
+                    arrayList.addAll(si.b0(c1Var.f29679a).f26492j1);
                     c1Var.o1(true, true);
                     return;
                 }
@@ -58,7 +58,7 @@ public final class v0 implements Runnable {
                 c1Var.p1(true, false);
                 return;
             case 9:
-                e2 e2Var = c1Var.f35940s1;
+                e2 e2Var = c1Var.f35935s1;
                 if (e2Var != 0) {
                     ?? obj = new Object();
                     obj.f28476a = true;

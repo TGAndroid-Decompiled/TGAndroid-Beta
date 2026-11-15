@@ -21,7 +21,7 @@ public final class f4 extends ListView {
     public f4(g4 g4Var) {
         super(g4Var.f28562a);
         int[] iArr = new int[8];
-        PathInterpolator pathInterpolator = bg.c0.f3214i;
+        PathInterpolator pathInterpolator = bg.c0.f3217i;
         bg.c0.a(pathInterpolator, -16777216, iArr);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, org.telegram.messenger.g0.L(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);

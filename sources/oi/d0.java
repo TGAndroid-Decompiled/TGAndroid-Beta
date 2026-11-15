@@ -282,11 +282,11 @@ public final class d0 extends x implements org.telegram.ui.ActionBar.z5 {
                     a0 a0Var5 = (a0) arrayList.get(i34);
                     int i35 = iArr[i34];
                     du duVar = a0Var5.f21561a;
-                    duVar.f23137e = Math.max(org.telegram.messenger.g0.L(34.0f), i35);
+                    duVar.f23144e = Math.max(org.telegram.messenger.g0.L(34.0f), i35);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) a0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
                         int i36 = layoutParams2.width;
-                        int i37 = duVar.f23137e;
+                        int i37 = duVar.f23144e;
                         if (i36 != i37) {
                             layoutParams2.width = i37;
                             a0Var5.setLayoutParams(layoutParams2);

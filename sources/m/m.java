@@ -247,7 +247,7 @@ public final class m extends Button implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((ic) getEmojiTextViewHelper().f19842b.f25804b).a(inputFilterArr));
+        super.setFilters(((ic) getEmojiTextViewHelper().f19842b.f25806b).a(inputFilterArr));
     }
 
     public void setSupportAllCaps(boolean z10) {

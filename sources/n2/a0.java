@@ -85,7 +85,7 @@ public final class a0 implements h2.o, g9.k, l5.g, j9, OnSuccessListener, q1 {
         Integer num = (Integer) obj;
         switch (this.f20696a) {
             case 14:
-                Typeface typeface = org.telegram.messenger.g0.f23581a;
+                Typeface typeface = org.telegram.messenger.g0.f23583a;
                 return "%s";
             default:
                 return "%" + (num.intValue() + 1) + "$s";
@@ -95,7 +95,7 @@ public final class a0 implements h2.o, g9.k, l5.g, j9, OnSuccessListener, q1 {
     @Override
     public void onSuccess(Object obj) {
         Void r12 = (Void) obj;
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
         a8.b("sms listener registered");
     }
 

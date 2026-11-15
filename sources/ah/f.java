@@ -23,13 +23,13 @@ public final class f extends FrameLayout {
         this.f1071b = textView;
         i5.c.v(textView, 1, 14.0f);
         q6.U(textView, j6.f28888f7, e6Var);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, ja.d(-1, -1.0f, (hd.f24101a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, ja.d(-1, -1.0f, (hd.f24104a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override

@@ -258,9 +258,9 @@ public final class k implements d0, u {
                     }
                     hVar.f55789o = uri;
                     if (iVar != null) {
-                        int i12 = iVar.f2904a;
+                        int i12 = iVar.f2907a;
                         i7 = i10;
-                        long j3 = iVar.f2905b;
+                        long j3 = iVar.f2908b;
                         if (i12 != 1) {
                             if (i12 == 2) {
                                 int i13 = 0;
@@ -408,7 +408,7 @@ public final class k implements d0, u {
                 i7++;
             }
             if (H) {
-                ((SparseArray) this.f55810w.f33543a).clear();
+                ((SparseArray) this.f55810w.f33545a).clear();
             }
         }
         return j3;

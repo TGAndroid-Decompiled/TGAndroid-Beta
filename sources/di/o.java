@@ -16,10 +16,10 @@ import org.telegram.ui.Components.b41;
 import org.telegram.ui.Components.gt0;
 import org.telegram.ui.xa1;
 public final class o implements y10, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.n6, org.telegram.ui.ActionBar.o6, gt0, g9.k, u9.d, NativeInstance.AudioLevelsCallback {
-    public final int f9135a;
+    public final int f9127a;
 
     public o(int i7) {
-        this.f9135a = i7;
+        this.f9127a = i7;
     }
 
     public static OnBackInvokedDispatcher c(Object obj) {
@@ -40,7 +40,7 @@ public final class o implements y10, org.telegram.ui.ActionBar.q1, org.telegram.
         h9.s1 f10;
         h9.s1 b10;
         int i7 = 0;
-        switch (this.f9135a) {
+        switch (this.f9127a) {
             case 7:
                 e2.x xVar = (e2.x) obj;
                 return xVar.f10478a + ": " + xVar.f10479b;
@@ -246,7 +246,7 @@ public final class o implements y10, org.telegram.ui.ActionBar.q1, org.telegram.
     }
 
     public Constructor b() {
-        switch (this.f9135a) {
+        switch (this.f9127a) {
             case 22:
                 if (!Boolean.TRUE.equals(Class.forName("androidx.media3.decoder.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
                     return null;
@@ -259,19 +259,19 @@ public final class o implements y10, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void f(int i7, View view) {
-        ((u8) view).setColor(i7);
+        ((t8) view).setColor(i7);
     }
 
     @Override
     public int g(View view) {
-        return ((u8) view).f9542y;
+        return ((t8) view).f9475y;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f9135a) {
+        switch (this.f9127a) {
             case 1:
-                int i10 = c6.f8306w3;
+                int i10 = c6.f8307w3;
                 return;
             case 2:
                 c6.d2(new xa1(6, null));
@@ -299,7 +299,7 @@ public final class o implements y10, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public RecyclerView n(View view) {
-        return ((jb) view).f8869a;
+        return ((ib) view).f8816a;
     }
 
     @Override
@@ -308,7 +308,7 @@ public final class o implements y10, org.telegram.ui.ActionBar.q1, org.telegram.
     }
 
     public o(is isVar, int i7) {
-        this.f9135a = i7;
+        this.f9127a = i7;
     }
 
     @Override

@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 public final class cw extends ImageView {
-    public final ly f33715a;
+    public final ly f33717a;
 
     public cw(ly lyVar, Context context) {
         super(context);
-        this.f33715a = lyVar;
+        this.f33717a = lyVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         mx mxVar;
         int action = motionEvent.getAction();
-        ly lyVar = this.f33715a;
+        ly lyVar = this.f33717a;
         if (action == 0) {
             lyVar.Q1 = true;
             lyVar.R1 = false;

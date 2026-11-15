@@ -16,11 +16,11 @@ public class SmsReceiver extends BroadcastReceiver {
         if (intent != null) {
             try {
                 String str = "";
-                SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("mainconfig", 0);
+                SharedPreferences sharedPreferences = t0.f26609b.getSharedPreferences("mainconfig", 0);
                 String string = sharedPreferences.getString("sms_hash", null);
                 if ("com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                    synchronized (g0.f23599k) {
-                        z10 = g0.f23597j;
+                    synchronized (g0.f23601k) {
+                        z10 = g0.f23599j;
                     }
                     if (z10) {
                         str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");

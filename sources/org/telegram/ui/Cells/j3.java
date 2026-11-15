@@ -71,7 +71,7 @@ public final class j3 implements TextWatcher {
                 return;
             default:
                 dc0 dc0Var = (dc0) this.d;
-                ah.i iVar = dc0Var.f46358c;
+                ah.i iVar = dc0Var.f46330c;
                 if (!this.f30482b) {
                     boolean z10 = true;
                     dc0Var.p(true);

@@ -294,7 +294,7 @@ public final class ao implements RequestDelegate {
                     g0.h3(new wj(bwVar, context, t1Var2, tLObject, bArr2, user, 8));
                     return;
                 }
-                bwVar.f22761f.clear();
+                bwVar.f22765f.clear();
                 g0.h3(new yv(bwVar, context, t1Var2, 1));
                 return;
             case 3:
@@ -312,7 +312,7 @@ public final class ao implements RequestDelegate {
                     }
                     if (encryptedChat.key_hash == null) {
                         byte[] bArr3 = encryptedChat.auth_key;
-                        Typeface typeface = g0.f23581a;
+                        Typeface typeface = g0.f23583a;
                         byte[] bArr4 = new byte[16];
                         System.arraycopy(Utilities.n(bArr3), 0, bArr4, 0, 16);
                         encryptedChat.key_hash = bArr4;
@@ -329,12 +329,12 @@ public final class ao implements RequestDelegate {
                             a8.g(th2, true);
                         }
                     }
-                    bwVar2.f22757a.remove(Integer.valueOf(encryptedChat.f28059id));
+                    bwVar2.f22761a.remove(Integer.valueOf(encryptedChat.f28059id));
                     int i12 = encryptedChat.layer;
-                    Typeface typeface2 = g0.f23581a;
+                    Typeface typeface2 = g0.f23583a;
                     encryptedChat.layer = (i12 & (-65536)) | 151;
                     vr messagesStorage = bwVar2.getMessagesStorage();
-                    messagesStorage.f27220a.c(new bq(messagesStorage, encryptedChat, 2));
+                    messagesStorage.f27219a.c(new aq(messagesStorage, encryptedChat, 2));
                 }
                 if (tL_error == null) {
                     String str2 = message.attachPath;
@@ -349,7 +349,7 @@ public final class ao implements RequestDelegate {
                     if (gjVar2 != null) {
                         TLRPC.EncryptedFile encryptedFile = messages_sentencryptedmessage.file;
                         if (encryptedFile instanceof TLRPC.TL_encryptedFile) {
-                            TLRPC.Message message2 = gjVar2.f23817k;
+                            TLRPC.Message message2 = gjVar2.f23819k;
                             TLRPC.MessageMedia messageMedia = message2.media;
                             if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && (photo = messageMedia.photo) != null) {
                                 TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) i5.c.h(1, photo.sizes);
@@ -400,8 +400,8 @@ public final class ao implements RequestDelegate {
                                         TLRPC.Document document4 = message2.media.document;
                                         fileLoader.getClass();
                                         if (file2.renameTo(w7.I(document4))) {
-                                            gjVar.f23876z0 = gjVar.f23872y0;
-                                            gjVar.f23872y0 = false;
+                                            gjVar.f23878z0 = gjVar.f23874y0;
+                                            gjVar.f23874y0 = false;
                                             message2.attachPath = "";
                                         }
                                     }
@@ -413,11 +413,11 @@ public final class ao implements RequestDelegate {
                             i10 = gjVar.o1();
                         }
                     }
-                    bwVar2.getMessagesStorage().f27220a.c(new cg(bwVar2, message, messages_sentencryptedmessage, i10, 17));
+                    bwVar2.getMessagesStorage().f27219a.c(new cg(bwVar2, message, messages_sentencryptedmessage, i10, 17));
                     return;
                 }
                 bwVar2.getMessagesStorage().N0(0, message);
-                g0.h3(new wq(17, bwVar2, message));
+                g0.h3(new pq(18, bwVar2, message));
                 return;
             default:
                 g0.h3(new wj((ez) c1Var, tLObject, (TLRPC.InputMedia) obj4, (qy) obj3, (String) obj2, (gj) obj));

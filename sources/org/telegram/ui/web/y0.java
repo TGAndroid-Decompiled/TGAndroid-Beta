@@ -14,9 +14,9 @@ import org.telegram.messenger.qz;
 import org.telegram.messenger.z10;
 import org.telegram.ui.x21;
 public final class y0 extends AsyncTask {
-    public final int f52880a = 1;
-    public final HashMap f52881b = new HashMap();
-    public Exception f52882c;
+    public final int f52883a = 1;
+    public final HashMap f52884b = new HashMap();
+    public Exception f52885c;
     public final z10 d;
 
     public y0(z10 z10Var) {
@@ -26,11 +26,11 @@ public final class y0 extends AsyncTask {
     @Override
     public final Object doInBackground(Object[] objArr) {
         BufferedReader bufferedReader;
-        switch (this.f52880a) {
+        switch (this.f52883a) {
             case 0:
                 try {
                     HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry : this.f52881b.entrySet()) {
+                    for (Map.Entry entry : this.f52884b.entrySet()) {
                         if (entry.getKey() != null && entry.getValue() != null) {
                             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                         }
@@ -47,13 +47,13 @@ public final class y0 extends AsyncTask {
                     httpURLConnection.disconnect();
                     return null;
                 } catch (Exception e10) {
-                    this.f52882c = e10;
+                    this.f52885c = e10;
                     return null;
                 }
             default:
                 try {
                     HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry2 : this.f52881b.entrySet()) {
+                    for (Map.Entry entry2 : this.f52884b.entrySet()) {
                         if (entry2.getKey() != null && entry2.getValue() != null) {
                             httpURLConnection2.setRequestProperty((String) entry2.getKey(), (String) entry2.getValue());
                         }
@@ -77,7 +77,7 @@ public final class y0 extends AsyncTask {
                         }
                     }
                 } catch (Exception e11) {
-                    this.f52882c = e11;
+                    this.f52885c = e11;
                     return null;
                 }
                 break;
@@ -86,12 +86,12 @@ public final class y0 extends AsyncTask {
 
     @Override
     public final void onPostExecute(Object obj) {
-        switch (this.f52880a) {
+        switch (this.f52883a) {
             case 0:
                 Bitmap bitmap = (Bitmap) obj;
                 x21 x21Var = (x21) this.d;
                 if (x21Var != null) {
-                    if (this.f52882c == null) {
+                    if (this.f52885c == null) {
                         x21Var.a(bitmap);
                         return;
                     } else {
@@ -104,7 +104,7 @@ public final class y0 extends AsyncTask {
                 String str = (String) obj;
                 z10 z10Var = this.d;
                 if (z10Var != null) {
-                    if (this.f52882c == null) {
+                    if (this.f52885c == null) {
                         z10Var.a(str);
                         return;
                     } else {

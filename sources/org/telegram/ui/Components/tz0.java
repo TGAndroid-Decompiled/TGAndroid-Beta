@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class tz0 extends tj0 {
-    public final Context f39839c;
+    public final Context f39836c;
     public int d;
-    public ArrayList f39840e = new ArrayList();
-    public ArrayList f39841f = new ArrayList();
+    public ArrayList f39837e = new ArrayList();
+    public ArrayList f39838f = new ArrayList();
     public org.telegram.ui.f0 h;
-    public String f39842n;
-    public final ThemeEditorView.EditorAlert f39843r;
+    public String f39839n;
+    public final ThemeEditorView.EditorAlert f39840r;
 
     public tz0(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f39843r = editorAlert;
-        this.f39839c = context;
+        this.f39840r = editorAlert;
+        this.f39836c = context;
     }
 
     public static CharSequence E(String str, String str2) {
@@ -64,10 +64,10 @@ public final class tz0 extends tj0 {
 
     @Override
     public final int b() {
-        if (this.f39840e.isEmpty()) {
+        if (this.f39837e.isEmpty()) {
             return 0;
         }
-        return this.f39840e.size() + 1;
+        return this.f39837e.size() + 1;
     }
 
     @Override
@@ -84,14 +84,14 @@ public final class tz0 extends tj0 {
         if (e1Var.f58539f == 0) {
             boolean z10 = true;
             int i10 = i7 - 1;
-            org.telegram.ui.ActionBar.s6 s6Var = (org.telegram.ui.ActionBar.s6) ((ArrayList) this.f39840e.get(i10)).get(0);
+            org.telegram.ui.ActionBar.s6 s6Var = (org.telegram.ui.ActionBar.s6) ((ArrayList) this.f39837e.get(i10)).get(0);
             if (s6Var.f29600e == org.telegram.ui.ActionBar.j6.Ee) {
                 c10 = 0;
             } else {
                 c10 = s6Var.c();
             }
             org.telegram.ui.Cells.t8 t8Var = (org.telegram.ui.Cells.t8) e1Var.f58535a;
-            t8Var.f31681a.setText((CharSequence) this.f39841f.get(i10));
+            t8Var.f31681a.setText((CharSequence) this.f39838f.get(i10));
             t8Var.f31682b = c10;
             if (c10 != 0) {
                 z10 = false;
@@ -104,7 +104,7 @@ public final class tz0 extends tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View t8Var;
-        Context context = this.f39839c;
+        Context context = this.f39836c;
         if (i7 != 0) {
             t8Var = new View(context);
             t8Var.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(56.0f)));

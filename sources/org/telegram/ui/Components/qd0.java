@@ -4,24 +4,24 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class qd0 implements TextureView.SurfaceTextureListener {
-    public final boolean f38638a;
-    public final u9 f38639b;
-    public final td0 f38640c;
+    public final boolean f38636a;
+    public final u9 f38637b;
+    public final td0 f38638c;
 
     public qd0(td0 td0Var, boolean z10, u9 u9Var) {
-        this.f38640c = td0Var;
-        this.f38638a = z10;
-        this.f38639b = u9Var;
+        this.f38638c = td0Var;
+        this.f38636a = z10;
+        this.f38637b = u9Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        td0 td0Var = this.f38640c;
-        TextureView textureView = td0Var.f39657j0;
+        td0 td0Var = this.f38638c;
+        TextureView textureView = td0Var.f39654j0;
         if (td0Var.m0 == null && surfaceTexture != null) {
-            wy wyVar = new wy(surfaceTexture, td0Var.D0, td0Var.I0, td0Var.f39675x0, this.f38638a, this.f38639b, i7, i10);
+            wy wyVar = new wy(surfaceTexture, td0Var.D0, td0Var.I0, td0Var.f39672x0, this.f38636a, this.f38637b, i7, i10);
             td0Var.m0 = wyVar;
-            if (!this.f38638a) {
+            if (!this.f38636a) {
                 wyVar.h(td0Var.K0, td0Var.L0);
                 wy wyVar2 = td0Var.m0;
                 Matrix transform = textureView.getTransform(null);
@@ -49,7 +49,7 @@ public final class qd0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        td0 td0Var = this.f38640c;
+        td0 td0Var = this.f38638c;
         wy wyVar = td0Var.m0;
         if (wyVar != null) {
             wyVar.postRunnable(new ty(wyVar, 0));
@@ -61,7 +61,7 @@ public final class qd0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        td0 td0Var = this.f38640c;
+        td0 td0Var = this.f38638c;
         wy wyVar = td0Var.m0;
         if (wyVar != null) {
             wyVar.postRunnable(new sy(wyVar, i7, i10, 1));

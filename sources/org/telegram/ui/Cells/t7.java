@@ -19,7 +19,7 @@ public final class t7 extends org.telegram.ui.Components.i9 {
         int L;
         v7 v7Var = this.I;
         w41 w41Var = v7Var.f31822w;
-        if (w41Var != null && (w41Var.f52430a instanceof TL_stats.TL_postInteractionCountersStory)) {
+        if (w41Var != null && (w41Var.f52433a instanceof TL_stats.TL_postInteractionCountersStory)) {
             float L2 = org.telegram.messenger.g0.L(1.0f);
             v7Var.f31820r.F.set(L2, L2, getMeasuredWidth() - L, getMeasuredHeight() - L);
             fi.h7 h7Var = v7Var.f31820r;
@@ -29,7 +29,7 @@ public final class t7 extends org.telegram.ui.Components.i9 {
             h7Var.f11790o = false;
             h7Var.f11800z = 1;
             h7Var.J = this.H;
-            fi.l7.h(0L, canvas, this.f35508a, h7Var);
+            fi.l7.h(0L, canvas, this.f35499a, h7Var);
             return;
         }
         super.onDraw(canvas);

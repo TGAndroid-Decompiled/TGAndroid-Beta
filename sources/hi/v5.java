@@ -64,7 +64,7 @@ public final class v5 implements Runnable {
                     }
                     if (x5Var.f15345e.d0()) {
                         org.telegram.messenger.g0.r(v5Var);
-                        org.telegram.messenger.g0.i3(v5Var, 1000.0f / org.telegram.messenger.g0.f23610r);
+                        org.telegram.messenger.g0.i3(v5Var, 1000.0f / org.telegram.messenger.g0.f23612r);
                     }
                     x5Var.J = S;
                     return;
@@ -92,7 +92,7 @@ public final class v5 implements Runnable {
                     x5Var2.G.setProgress(S2);
                     if (x5Var2.E.d0()) {
                         org.telegram.messenger.g0.r(v5Var2);
-                        org.telegram.messenger.g0.i3(v5Var2, 1000.0f / org.telegram.messenger.g0.f23610r);
+                        org.telegram.messenger.g0.i3(v5Var2, 1000.0f / org.telegram.messenger.g0.f23612r);
                         return;
                     }
                     return;
@@ -121,7 +121,7 @@ public final class v5 implements Runnable {
                     x5Var3.G.setProgress(S3);
                     if (x5Var3.f15371y.d0()) {
                         org.telegram.messenger.g0.r(v5Var3);
-                        org.telegram.messenger.g0.i3(v5Var3, 1000.0f / org.telegram.messenger.g0.f23610r);
+                        org.telegram.messenger.g0.i3(v5Var3, 1000.0f / org.telegram.messenger.g0.f23612r);
                         return;
                     }
                     return;
@@ -131,11 +131,11 @@ public final class v5 implements Runnable {
                 x5 x5Var4 = this.f15219b;
                 k51 k51Var = x5Var4.f15355n;
                 if (k51Var != null) {
-                    wy wyVar = k51Var.f36290b;
+                    wy wyVar = k51Var.f36280b;
                     if (wyVar != null) {
                         wyVar.postRunnable(new ty(wyVar, 0));
                     }
-                    k51Var.f36289a = null;
+                    k51Var.f36279a = null;
                     x5Var4.removeView(x5Var4.f15355n);
                     x5Var4.f15355n = null;
                     return;

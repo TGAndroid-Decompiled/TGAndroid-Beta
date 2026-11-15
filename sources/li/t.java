@@ -147,7 +147,7 @@ public final class t implements x10, r0.m, y10 {
                             ((p8) view4).getCheckBox().c(d0Var.f19544r1, true);
                             return;
                         } else {
-                            d0Var.f19548v1.d.f39895g3.O(false);
+                            d0Var.f19548v1.d.f39892g3.O(false);
                             return;
                         }
                     } else if (i13 == 100) {
@@ -171,7 +171,7 @@ public final class t implements x10, r0.m, y10 {
                         if (b10 != 1 && b10 != 2) {
                             if (b10 == 3) {
                                 e70 e70Var = new e70(d0Var.getContext(), chat, null, d0Var.f19547u1, d0Var.J0);
-                                e70Var.f34248t1 = new cc((FrameLayout) d0Var.f29682b, d0Var.J0);
+                                e70Var.f34235t1 = new cc((FrameLayout) d0Var.f29682b, d0Var.J0);
                                 e70Var.show();
                                 return;
                             } else if (b10 == 4) {
@@ -189,7 +189,7 @@ public final class t implements x10, r0.m, y10 {
                         }
                         if (e2Var instanceof an) {
                             an anVar = (an) e2Var;
-                            TLRPC.Chat chat3 = anVar.f45173e;
+                            TLRPC.Chat chat3 = anVar.f45172e;
                             TLRPC.User j10 = anVar.j();
                             if ((chat3 != null && chat3.f28051id == (-j3)) || (j10 != null && j10.f28200id == j3)) {
                                 d0Var.dismiss();
@@ -205,7 +205,7 @@ public final class t implements x10, r0.m, y10 {
                         if (t3.c0(chat)) {
                             if (t3.a(chat)) {
                                 an anVar2 = new an(bundle);
-                                qg.c.a(anVar2, ur.a(j3, np.s1(d0Var.f29679a).f25280f7.getLong(p0.o(chat.f28051id, "forumlasttopic"), 1L)));
+                                qg.c.a(anVar2, ur.a(j3, np.s1(d0Var.f29679a).f25283f7.getLong(p0.o(chat.f28051id, "forumlasttopic"), 1L)));
                                 e2Var.presentFragment(anVar2);
                             } else {
                                 e2Var.presentFragment(new u91(bundle));

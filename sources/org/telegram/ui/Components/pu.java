@@ -15,7 +15,7 @@ public final class pu extends View {
         if (p5Var != null) {
             TLRPC.Document document = p5Var.document;
             if (document == null) {
-                return g5.e(org.telegram.messenger.m10.f24934t0, p5Var.getDocumentId());
+                return g5.e(org.telegram.messenger.m10.f24940t0, p5Var.getDocumentId());
             }
             return document;
         }

@@ -22,7 +22,7 @@ public final class f {
         this.f43811b = l0Var;
         this.f43810a = l0Var.f44078a;
         try {
-            this.f43814f = org.telegram.messenger.t0.f26600b.getSharedPreferences("gram_wallet", 0).getString("currency", g());
+            this.f43814f = org.telegram.messenger.t0.f26609b.getSharedPreferences("gram_wallet", 0).getString("currency", g());
         } catch (Exception e10) {
             org.telegram.messenger.a8.e("[gram-wallet] failed to load currency prefs", e10);
         }
@@ -111,7 +111,7 @@ public final class f {
             this.f43812c = true;
             ConnectionsManager.getInstance(this.f43810a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new d3.b(1), new d(this, 0));
         } else {
-            Locale locale = hd.E0().f24129y;
+            Locale locale = hd.E0().f24132y;
             if (locale == null || TextUtils.isEmpty(locale.getLanguage())) {
                 str = "en";
             } else {

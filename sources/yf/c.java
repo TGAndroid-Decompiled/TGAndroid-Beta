@@ -1,6 +1,6 @@
 package yf;
 
-import ai.d1;
+import ai.e1;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public final class c {
 
     public c(int i7) {
         this.f60626c = i7;
-        this.f60624a = m10.i(i7).f24953n;
+        this.f60624a = m10.i(i7).f24959n;
         SharedPreferences d = d();
         try {
             f60622g = d.getLong("hash", 0L);
@@ -88,7 +88,7 @@ public final class c {
         if (this.f60625b == null) {
             this.f60625b = "ringtones_pref_" + this.f60624a;
         }
-        return t0.f26600b.getSharedPreferences(this.f60625b, 0);
+        return t0.f26609b.getSharedPreferences(this.f60625b, 0);
     }
 
     public final String e(long j3) {
@@ -133,7 +133,7 @@ public final class c {
                 obj.f60621c = i11;
                 arrayList.add(obj);
             } catch (Throwable th2) {
-                boolean z11 = r2.f26198a;
+                boolean z11 = r2.f26206a;
                 a8.g(th2, true);
             }
         }
@@ -152,7 +152,7 @@ public final class c {
         TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
         getsavedringtones.hash = f60622g;
         if (z11) {
-            ConnectionsManager.getInstance(this.f60626c).sendRequest(getsavedringtones, new d1(this, 27));
+            ConnectionsManager.getInstance(this.f60626c).sendRequest(getsavedringtones, new e1(this, 27));
             return;
         }
         if (!this.f60628f) {
@@ -186,7 +186,7 @@ public final class c {
             } else {
                 edit.putInt("count", i10);
                 edit.apply();
-                ns.f(this.f60626c).k(ns.f25491e5, new Object[0]);
+                ns.f(this.f60626c).k(ns.f25492e5, new Object[0]);
                 return;
             }
         }

@@ -1,9 +1,9 @@
 package org.telegram.messenger;
 public final class lt implements id.c {
-    public final et f24876a;
+    public final et f24882a;
 
     public lt(et etVar) {
-        this.f24876a = etVar;
+        this.f24882a = etVar;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class lt implements id.c {
     @Override
     public final void resumeWith(Object obj) {
         boolean z10 = obj instanceof gd.f;
-        et etVar = this.f24876a;
+        et etVar = this.f24882a;
         if (z10) {
             etVar.a(null, ((gd.f) obj).f13164a);
         } else {

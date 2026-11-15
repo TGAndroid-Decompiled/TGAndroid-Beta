@@ -14,10 +14,10 @@ public final class ad0 implements DialogInterface.OnDismissListener {
     public final void onDismiss(DialogInterface dialogInterface) {
         switch (this.f45031a) {
             case 0:
-                this.f45032b.f46759v0.finishFragment();
+                this.f45032b.f46749v0.finishFragment();
                 return;
             default:
-                this.f45032b.f46759v0.finishFragment();
+                this.f45032b.f46749v0.finishFragment();
                 return;
         }
     }

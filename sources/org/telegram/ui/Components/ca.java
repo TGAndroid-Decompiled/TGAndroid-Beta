@@ -27,6 +27,6 @@ public abstract class ca extends ja {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f35937p1.setTitle(charSequence);
+        this.f35932p1.setTitle(charSequence);
     }
 }

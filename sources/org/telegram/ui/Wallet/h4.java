@@ -24,7 +24,7 @@ public final class h4 implements org.telegram.ui.ActionBar.q1, x10, y10 {
         y5 y5Var = this.f43911a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
             y5Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

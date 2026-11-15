@@ -24,7 +24,7 @@ public final class b3 implements v4 {
         q3 q3Var = this.d;
         q3Var.f21922h4.remove(rVar);
         q3Var.f21939t3.remove(this.f21589b);
-        q3Var.f39895g3.O(true);
+        q3Var.f39892g3.O(true);
         q3Var.f21931p3.onContentChanged();
     }
 
@@ -42,7 +42,7 @@ public final class b3 implements v4 {
             ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f28057id;
         }
         q3Var.f21922h4.remove(rVar);
-        q3Var.f39895g3.O(false);
+        q3Var.f39892g3.O(false);
         q3Var.f21931p3.onContentChanged();
     }
 

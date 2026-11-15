@@ -25,7 +25,7 @@ public final class o7 extends FrameLayout implements org.telegram.ui.ActionBar.z
         if (org.telegram.messenger.g0.Q1()) {
             return (org.telegram.messenger.g0.L(490.0f) - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
         }
-        return (org.telegram.messenger.g0.f23609q.x - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
+        return (org.telegram.messenger.g0.f23611q.x - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
     }
 
     public final void b(int i7, boolean z10, boolean z11) {
@@ -122,7 +122,7 @@ public final class o7 extends FrameLayout implements org.telegram.ui.ActionBar.z
                 if (org.telegram.messenger.g0.Q1()) {
                     layoutParams.width = org.telegram.messenger.g0.L(490.0f) - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f30814e - 1));
                 } else {
-                    layoutParams.width = org.telegram.messenger.g0.f23609q.x - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f30814e - 1));
+                    layoutParams.width = org.telegram.messenger.g0.f23611q.x - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f30814e - 1));
                 }
             } else {
                 layoutParams.width = a10;

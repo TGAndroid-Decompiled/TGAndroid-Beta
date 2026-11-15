@@ -23,8 +23,8 @@ public final class h20 implements Runnable {
                 j20 j20Var = this.f35153b;
                 String str = this.f35154c;
                 int i7 = this.d;
-                if (j20Var.f35837e != null) {
-                    j20Var.f35837e = null;
+                if (j20Var.f35824e != null) {
+                    j20Var.f35824e = null;
                     org.telegram.messenger.g0.h3(new h20(j20Var, str, i7, 1));
                     return;
                 }
@@ -34,9 +34,9 @@ public final class h20 implements Runnable {
                 String str2 = this.f35154c;
                 int i10 = this.d;
                 ArrayList arrayList = null;
-                j20Var2.f35837e = null;
-                if (!org.telegram.messenger.t3.T(j20Var2.f35843x.Q1) && j20Var2.f35843x.R1 != null) {
-                    arrayList = new ArrayList(j20Var2.f35843x.R1.participants.participants);
+                j20Var2.f35824e = null;
+                if (!org.telegram.messenger.t3.T(j20Var2.f35830x.Q1) && j20Var2.f35830x.R1 != null) {
+                    arrayList = new ArrayList(j20Var2.f35830x.R1.participants.participants);
                 }
                 ArrayList arrayList2 = arrayList;
                 if (arrayList2 != null) {
@@ -45,9 +45,9 @@ public final class h20 implements Runnable {
                     j20Var2.h = false;
                 }
                 jg.z1 z1Var = j20Var2.d;
-                boolean w10 = org.telegram.messenger.t3.w(3, j20Var2.f35843x.Q1);
-                if (org.telegram.messenger.t3.T(j20Var2.f35843x.Q1)) {
-                    j3 = j20Var2.f35843x.Q1.f28051id;
+                boolean w10 = org.telegram.messenger.t3.w(3, j20Var2.f35830x.Q1);
+                if (org.telegram.messenger.t3.T(j20Var2.f35830x.Q1)) {
+                    j3 = j20Var2.f35830x.Q1.f28051id;
                 } else {
                     j3 = 0;
                 }

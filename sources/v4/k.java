@@ -30,7 +30,7 @@ public class k extends g1 {
     public long D = 0;
 
     static {
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
     }
 
     public float A(View view) {
@@ -324,17 +324,17 @@ public class k extends g1 {
                         G();
                         return;
                     } else {
-                        boolean z10 = r2.f26198a;
+                        boolean z10 = r2.f26206a;
                         throw new IllegalStateException("after animation is cancelled, item should not be in mMoveAnimations list");
                     }
                 }
-                boolean z11 = r2.f26198a;
+                boolean z11 = r2.f26206a;
                 throw new IllegalStateException("after animation is cancelled, item should not be in mChangeAnimations list");
             }
-            boolean z12 = r2.f26198a;
+            boolean z12 = r2.f26206a;
             throw new IllegalStateException("after animation is cancelled, item should not be in mAddAnimations list");
         }
-        boolean z13 = r2.f26198a;
+        boolean z13 = r2.f26206a;
         throw new IllegalStateException("after animation is cancelled, item should not be in mRemoveAnimations list");
     }
 

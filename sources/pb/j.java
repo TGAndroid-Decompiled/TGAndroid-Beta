@@ -76,7 +76,7 @@ public abstract class j {
 
     public static boolean a(Context context, n6.c[] cVarArr) {
         try {
-            return ((u6.a) Tasks.await(new com.google.android.gms.common.api.j(context, v6.e.f58727l, com.google.android.gms.common.api.b.f5914j, com.google.android.gms.common.api.i.f5924c).f(new s(cVarArr, 1)).addOnFailureListener(new b(21)))).f57861a;
+            return ((u6.a) Tasks.await(new com.google.android.gms.common.api.j(context, v6.e.f58727l, com.google.android.gms.common.api.b.f5917j, com.google.android.gms.common.api.i.f5927c).f(new s(cVarArr, 1)).addOnFailureListener(new b(21)))).f57861a;
         } catch (InterruptedException | ExecutionException e10) {
             Log.e("OptionalModuleUtils", "Failed to complete the task of features availability check", e10);
             return false;
@@ -113,16 +113,16 @@ public abstract class j {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new s(cVarArr, 0));
         q6.m.a("APIs must not be empty.", !arrayList.isEmpty());
-        com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(context, v6.e.f58727l, com.google.android.gms.common.api.b.f5914j, com.google.android.gms.common.api.i.f5924c);
+        com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(context, v6.e.f58727l, com.google.android.gms.common.api.b.f5917j, com.google.android.gms.common.api.i.f5927c);
         v6.a b10 = v6.a.b(arrayList, true);
         if (b10.f58722a.isEmpty()) {
             e10 = Tasks.forResult(new u6.c(0, false));
         } else {
             com.google.android.gms.common.api.internal.t b11 = u.b();
             b11.d = new n6.c[]{n7.b.d};
-            b11.f6070b = true;
-            b11.f6069a = 27304;
-            b11.f6071c = new x(4, jVar, b10);
+            b11.f6073b = true;
+            b11.f6072a = 27304;
+            b11.f6074c = new x(4, jVar, b10);
             e10 = jVar.e(0, b11.a());
         }
         e10.addOnFailureListener(new nb.a(21));

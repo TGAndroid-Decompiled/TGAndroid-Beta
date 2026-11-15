@@ -5,41 +5,41 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
 import java.lang.reflect.Method;
 public final class wp0 extends AnimatorListenerAdapter {
-    public final int f52970a;
-    public final org.telegram.ui.Components.sk0 f52971b;
+    public final int f52969a;
+    public final org.telegram.ui.Components.sk0 f52970b;
 
     public wp0(org.telegram.ui.Components.sk0 sk0Var, int i7) {
-        this.f52970a = i7;
-        this.f52971b = sk0Var;
+        this.f52969a = i7;
+        this.f52970b = sk0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f52970a) {
+        switch (this.f52969a) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f52971b.f39334b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f52970b.f39332b;
                 photoViewer.R1.getNextView().setText((CharSequence) null);
                 up0 up0Var = photoViewer.U1;
                 up0Var.m0 = false;
-                if (up0Var.f47810n0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) up0Var.f47812p0.getLayoutParams()).topMargin = up0Var.f47810n0;
-                    up0Var.f47810n0 = -1;
+                if (up0Var.f47800n0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) up0Var.f47802p0.getLayoutParams()).topMargin = up0Var.f47800n0;
+                    up0Var.f47800n0 = -1;
                     up0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((PhotoViewer) this.f52971b.f39334b).R1.setTranslationY(0.0f);
+                ((PhotoViewer) this.f52970b.f39332b).R1.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f52970a) {
+        switch (this.f52969a) {
             case 0:
-                up0 up0Var = ((PhotoViewer) this.f52971b.f39334b).U1;
-                Method method = up0Var.f47804g0;
+                up0 up0Var = ((PhotoViewer) this.f52970b.f39332b).U1;
+                Method method = up0Var.f47794g0;
                 if (method != null) {
                     try {
                         method.invoke(up0Var, null);

@@ -11,10 +11,10 @@ public final class qh0 extends pz {
 
     @Override
     public final int getAdditionalHeight() {
-        n90 n90Var;
+        o90 o90Var;
         vh0 vh0Var = this.V;
-        if (!vh0Var.I.isEmpty() && (n90Var = vh0Var.K) != null) {
-            return org.telegram.messenger.g0.L(8.0f) + n90Var.getMeasuredHeight();
+        if (!vh0Var.I.isEmpty() && (o90Var = vh0Var.K) != null) {
+            return org.telegram.messenger.g0.L(8.0f) + o90Var.getMeasuredHeight();
         }
         return 0;
     }

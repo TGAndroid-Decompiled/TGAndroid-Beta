@@ -301,7 +301,7 @@ public final class m extends q {
                         mediaInfo2 = qVar2.f11123a;
                     }
                     if (mediaInfo2 != null) {
-                        j3 = mediaInfo2.f5879e;
+                        j3 = mediaInfo2.f5882e;
                     } else {
                         j3 = 0;
                     }
@@ -312,7 +312,7 @@ public final class m extends q {
                             mediaInfo3 = qVar4.f11123a;
                         }
                         if (mediaInfo3 != null) {
-                            j10 = mediaInfo3.f5879e;
+                            j10 = mediaInfo3.f5882e;
                         }
                         return Math.min(longValue2, j10);
                     }
@@ -323,7 +323,7 @@ public final class m extends q {
                 long j12 = qVar.h;
                 int i7 = qVar.f11126e;
                 if (d != 0.0d && i7 == 2) {
-                    return e(d, j12, mediaInfo.f5879e);
+                    return e(d, j12, mediaInfo.f5882e);
                 }
                 return j12;
             }

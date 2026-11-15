@@ -71,7 +71,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.e2 {
         org.telegram.messenger.y5 y5Var;
         org.telegram.messenger.y5 y5Var2;
         String str;
-        SharedPreferences.Editor edit = org.telegram.messenger.np.s1(dataSettingsActivity.currentAccount).f25280f7.edit();
+        SharedPreferences.Editor edit = org.telegram.messenger.np.s1(dataSettingsActivity.currentAccount).f25283f7.edit();
         for (int i7 = 0; i7 < 3; i7++) {
             if (i7 == 0) {
                 y5Var = org.telegram.messenger.z5.q(dataSettingsActivity.currentAccount).N;
@@ -87,7 +87,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.e2 {
                 str = "roamingPreset";
             }
             y5Var.c(y5Var2);
-            y5Var.f27663g = y5Var2.b();
+            y5Var.f27665g = y5Var2.b();
             org.telegram.messenger.z5.q(dataSettingsActivity.currentAccount).Q = 3;
             edit.putInt("currentMobilePreset", 3);
             org.telegram.messenger.z5.q(dataSettingsActivity.currentAccount).R = 3;
@@ -191,7 +191,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.e2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        y6.f53430i0 = true;
+        y6.f53434i0 = true;
     }
 
     @Override
@@ -251,7 +251,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.e2 {
         org.telegram.messenger.y5 y5Var = downloadController.K;
         org.telegram.messenger.y5 y5Var2 = downloadController.M;
         org.telegram.messenger.y5 y5Var3 = downloadController.L;
-        if (y5Var.a(downloadController.o()) && downloadController.K.b() == downloadController.P.f27663g && y5Var3.a(downloadController.n()) && y5Var3.b() == downloadController.N.f27663g && y5Var2.a(downloadController.p()) && y5Var2.b() == downloadController.O.f27663g) {
+        if (y5Var.a(downloadController.o()) && downloadController.K.b() == downloadController.P.f27665g && y5Var3.a(downloadController.n()) && y5Var3.b() == downloadController.N.f27665g && y5Var2.a(downloadController.p()) && y5Var2.b() == downloadController.O.f27665g) {
             z11 = true;
         } else {
             z11 = false;
@@ -287,7 +287,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.e2 {
         int i14 = i13 + 8;
         this.U = i14;
         this.E = i13 + 7;
-        boolean z12 = org.telegram.messenger.r2.f26198a;
+        boolean z12 = org.telegram.messenger.r2.f26206a;
         this.H = i14;
         this.G = i13 + 9;
         this.I = i13 + 10;

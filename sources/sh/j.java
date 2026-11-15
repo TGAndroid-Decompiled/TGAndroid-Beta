@@ -21,7 +21,7 @@ public final class j extends a41 {
     @Override
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         if0 if0Var = (if0) view;
-        if0Var.a((TLObject) b41Var.G, b41Var.f33194z, true);
+        if0Var.a((TLObject) b41Var.G, b41Var.f33197z, true);
         if0Var.setOnClickListener(b41Var.D);
     }
 

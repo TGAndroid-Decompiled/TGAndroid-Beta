@@ -22,7 +22,7 @@ public final class l3 extends FrameLayout {
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setEllipsize(TextUtils.TruncateAt.END);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -31,7 +31,7 @@ public final class l3 extends FrameLayout {
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
         editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 16384);
-        addView(editTextBoldCursor, c8.ja.d(-1, -1.0f, (hd.f24101a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(editTextBoldCursor, c8.ja.d(-1, -1.0f, (hd.f24104a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public final void a(String str) {

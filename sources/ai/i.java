@@ -10,14 +10,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class i {
-    public static final h f1244c = new h("Enhance", null, 0, null, true);
+    public static final h f1241c = new h("Enhance", null, 0, null, true);
     public static final String[][] d = {new String[]{"Zen", "🧘"}, new String[]{"Corp", "💼"}, new String[]{"Viking", "⚔️"}, new String[]{"Short", "🎯"}, new String[]{"Tribal", "🥁"}, new String[]{"Biblical", "📜"}, new String[]{"Formal", "🤝"}};
-    public static boolean f1245e;
-    public final int f1246a;
-    public int f1247b = -1;
+    public static boolean f1242e;
+    public final int f1243a;
+    public int f1244b = -1;
 
     public i(int i7) {
-        this.f1246a = i7;
+        this.f1243a = i7;
         try {
             np.s1(i7).R1().b();
         } catch (Exception unused) {
@@ -29,10 +29,10 @@ public final class i {
         String str2;
         String str3;
         int indexOf;
-        if (hVar.f1235e) {
+        if (hVar.f1219e) {
             lowerCase = "enhance";
         } else {
-            lowerCase = hVar.f1232a.toLowerCase(Locale.ROOT);
+            lowerCase = hVar.f1216a.toLowerCase(Locale.ROOT);
         }
         String trim = str.trim();
         if (!trim.isEmpty()) {
@@ -97,22 +97,22 @@ public final class i {
     public final void a(final h hVar, final String str, final g gVar) {
         b();
         final long currentTimeMillis = System.currentTimeMillis();
-        if (!f1245e) {
-            boolean z10 = hVar.f1235e;
+        if (!f1242e) {
+            boolean z10 = hVar.f1219e;
             TL_aicompose.AiComposeTone aiComposeTone = hVar.d;
             if (z10 || aiComposeTone != null) {
                 TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = new TLRPC.TL_messages_composeMessageWithAI();
                 TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
                 tL_textWithEntities.text = str;
                 tL_messages_composeMessageWithAI.text = tL_textWithEntities;
-                if (hVar.f1235e) {
+                if (hVar.f1219e) {
                     tL_messages_composeMessageWithAI.tone = TL_aicompose.InputAiComposeTone.fromDefault("voice");
                 } else {
                     tL_messages_composeMessageWithAI.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
                 }
                 final boolean[] zArr = new boolean[1];
                 org.telegram.messenger.g0.i3(new e(this, zArr, hVar, str, gVar, currentTimeMillis, 0), 25000L);
-                this.f1247b = ConnectionsManager.getInstance(this.f1246a).sendRequestTyped(tL_messages_composeMessageWithAI, new d3.b(1), new s10() {
+                this.f1244b = ConnectionsManager.getInstance(this.f1243a).sendRequestTyped(tL_messages_composeMessageWithAI, new d3.b(1), new s10() {
                     @Override
                     public final void a(Object obj, Object obj2) {
                         String str2;
@@ -120,7 +120,7 @@ public final class i {
                         TLRPC.TL_textWithEntities tL_textWithEntities2;
                         TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
                         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                        i.this.f1247b = -1;
+                        i.this.f1244b = -1;
                         boolean[] zArr2 = zArr;
                         if (zArr2[0]) {
                             return;
@@ -130,7 +130,7 @@ public final class i {
                         long j3 = currentTimeMillis;
                         g gVar2 = gVar;
                         if (tL_composedMessageWithAI != null && (tL_textWithEntities2 = tL_composedMessageWithAI.result_text) != null && !TextUtils.isEmpty(tL_textWithEntities2.text)) {
-                            Log.d("Dictation", "AI server ok: " + hVar2.f1232a);
+                            Log.d("Dictation", "AI server ok: " + hVar2.f1216a);
                             org.telegram.messenger.g0.i3(new a1.e(10, gVar2, tL_composedMessageWithAI), Math.max(0L, 900 - (System.currentTimeMillis() - j3)));
                             return;
                         }
@@ -144,7 +144,7 @@ public final class i {
                         sb2.append(" → mock");
                         Log.d("Dictation", sb2.toString());
                         if (tL_error != null && (str3 = tL_error.text) != null && (str3.contains("PREMIUM") || tL_error.text.contains("FLOOD") || tL_error.text.contains("METHOD_INVALID"))) {
-                            i.f1245e = true;
+                            i.f1242e = true;
                         }
                         i.c(hVar2, str, gVar2, j3);
                     }
@@ -156,17 +156,17 @@ public final class i {
     }
 
     public final void b() {
-        if (this.f1247b >= 0) {
-            ConnectionsManager.getInstance(this.f1246a).cancelRequest(this.f1247b, true);
-            this.f1247b = -1;
+        if (this.f1244b >= 0) {
+            ConnectionsManager.getInstance(this.f1243a).cancelRequest(this.f1244b, true);
+            this.f1244b = -1;
         }
     }
 
     public final ArrayList d() {
         ArrayList arrayList = new ArrayList();
-        org.telegram.messenger.e R1 = np.s1(this.f1246a).R1();
+        org.telegram.messenger.e R1 = np.s1(this.f1243a).R1();
         if (R1 != null) {
-            ArrayList arrayList2 = R1.f23211b;
+            ArrayList arrayList2 = R1.f23218b;
             if (!arrayList2.isEmpty()) {
                 int size = arrayList2.size();
                 int i7 = 0;

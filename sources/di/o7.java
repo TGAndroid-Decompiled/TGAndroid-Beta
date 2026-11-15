@@ -5,25 +5,25 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class o7 implements Runnable {
-    public final int f9174a = 0;
-    public final boolean f9175b;
-    public final long f9176c;
+    public final int f9166a = 0;
+    public final boolean f9167b;
+    public final long f9168c;
     public final boolean d;
-    public final Object f9177e;
-    public final Object f9178f;
+    public final Object f9169e;
+    public final Object f9170f;
     public final TLObject h;
-    public final TLObject f9179n;
-    public final Object f9180r;
+    public final TLObject f9171n;
+    public final Object f9172r;
 
-    public o7(v8 v8Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, bi.f6 f6Var) {
-        this.f9177e = v8Var;
-        this.f9178f = zArr;
+    public o7(u8 u8Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, bi.f6 f6Var) {
+        this.f9169e = u8Var;
+        this.f9170f = zArr;
         this.h = starGift;
-        this.f9175b = z10;
+        this.f9167b = z10;
         this.d = z11;
-        this.f9176c = j3;
-        this.f9179n = tL_textWithEntities;
-        this.f9180r = f6Var;
+        this.f9168c = j3;
+        this.f9171n = tL_textWithEntities;
+        this.f9172r = f6Var;
     }
 
     @Override
@@ -32,13 +32,13 @@ public final class o7 implements Runnable {
     }
 
     public o7(hi.sa saVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z10, long j3, boolean z11, TLRPC.TL_error tL_error, hi.e1 e1Var) {
-        this.f9177e = saVar;
-        this.f9178f = tLObject;
+        this.f9169e = saVar;
+        this.f9170f = tLObject;
         this.h = tL_startLive;
-        this.f9175b = z10;
-        this.f9176c = j3;
+        this.f9167b = z10;
+        this.f9168c = j3;
         this.d = z11;
-        this.f9179n = tL_error;
-        this.f9180r = e1Var;
+        this.f9171n = tL_error;
+        this.f9172r = e1Var;
     }
 }

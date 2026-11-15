@@ -199,7 +199,7 @@ public class l extends TextView implements q9 {
                 this.I = null;
             }
         }
-        if (this.I != null || (this.f60034r && ((GestureDetector) ((ou) this.f60028a.d).f25804b).onTouchEvent(motionEvent))) {
+        if (this.I != null || (this.f60034r && ((GestureDetector) ((ou) this.f60028a.d).f25806b).onTouchEvent(motionEvent))) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -300,9 +300,9 @@ public class l extends TextView implements q9 {
                 path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
             }
             canvas.clipPath(path, Region.Op.DIFFERENCE);
-            org.telegram.messenger.j6.f24531n = this.f60037x;
+            org.telegram.messenger.j6.f24536n = this.f60037x;
             super.onDraw(canvas);
-            org.telegram.messenger.j6.f24531n = true;
+            org.telegram.messenger.j6.f24536n = true;
             canvas.restore();
             f fVar = (f) arrayList2.get(0);
             if (fVar.f59991m > 0.0f && fVar.f59992n > 0.0f) {
@@ -398,7 +398,7 @@ public class l extends TextView implements q9 {
             if (k10 != null) {
                 int w02 = j6.w0(j6.Ce, this.E);
                 k10.g(j6.r1(0.8f, w02), j6.r1(1.3f, w02), j6.r1(1.0f, w02), j6.r1(4.0f, w02));
-                k10.f33884x.setStrokeWidth(g0.N(1.25f));
+                k10.f33886x.setStrokeWidth(g0.N(1.25f));
                 o0Var.c(k10, null);
             }
         }

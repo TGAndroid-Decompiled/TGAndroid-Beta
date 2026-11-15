@@ -205,11 +205,11 @@ public class o extends FrameLayout implements a {
                 int i13 = 0;
                 while (i13 < size) {
                     e20 e20Var = (e20) arrayList.get(i13);
-                    float width = ((e20Var.f23228f / 2.0f) + e20Var.f23226c) * decodeFile.getWidth();
-                    float height = ((e20Var.f23229g / 2.0f) + e20Var.d) * decodeFile.getHeight();
+                    float width = ((e20Var.f23235f / 2.0f) + e20Var.f23233c) * decodeFile.getWidth();
+                    float height = ((e20Var.f23236g / 2.0f) + e20Var.d) * decodeFile.getHeight();
                     char c11 = c10;
-                    float width2 = e20Var.f23245y * decodeFile.getWidth();
-                    float height2 = e20Var.f23246z * decodeFile.getHeight();
+                    float width2 = e20Var.f23252y * decodeFile.getWidth();
+                    float height2 = e20Var.f23253z * decodeFile.getHeight();
                     float[] fArr = new float[4];
                     fArr[0] = width;
                     fArr[1] = height;
@@ -222,24 +222,24 @@ public class o extends FrameLayout implements a {
                         width3 = decodeFile.getHeight();
                         height3 = decodeFile.getWidth();
                     }
-                    if (e20Var.f23224a == 1) {
-                        e20Var.f23228f = ((e20Var.f23228f * i11) / bitmap.getWidth()) * f13 * f10;
-                        e20Var.f23229g = ((e20Var.f23229g * i12) / bitmap.getHeight()) * f13 * f10;
+                    if (e20Var.f23231a == 1) {
+                        e20Var.f23235f = ((e20Var.f23235f * i11) / bitmap.getWidth()) * f13 * f10;
+                        e20Var.f23236g = ((e20Var.f23236g * i12) / bitmap.getHeight()) * f13 * f10;
                     } else {
                         float f14 = i11;
                         float f15 = width3;
-                        e20Var.f23238q = (int) ((e20Var.f23238q / f14) * f15);
+                        e20Var.f23245q = (int) ((e20Var.f23245q / f14) * f15);
                         float f16 = i12;
                         float f17 = height3;
-                        e20Var.f23239r = (int) ((e20Var.f23239r / f16) * f17);
-                        e20Var.f23228f = ((e20Var.f23228f * f14) / f15) * f13 * f10;
-                        e20Var.f23229g = ((e20Var.f23229g * f16) / f17) * f13 * f10;
+                        e20Var.f23246r = (int) ((e20Var.f23246r / f16) * f17);
+                        e20Var.f23235f = ((e20Var.f23235f * f14) / f15) * f13 * f10;
+                        e20Var.f23236g = ((e20Var.f23236g * f16) / f17) * f13 * f10;
                     }
-                    e20Var.f23226c = (fArr[0] / bitmap.getWidth()) - (e20Var.f23228f / 2.0f);
-                    e20Var.d = (fArr[1] / bitmap.getHeight()) - (e20Var.f23229g / 2.0f);
-                    e20Var.f23245y = fArr[c11] / bitmap.getWidth();
-                    e20Var.f23246z = fArr[3] / bitmap.getHeight();
-                    e20Var.f23227e = (float) (e20Var.f23227e - ((f11 + f12) * 0.017453292519943295d));
+                    e20Var.f23233c = (fArr[0] / bitmap.getWidth()) - (e20Var.f23235f / 2.0f);
+                    e20Var.d = (fArr[1] / bitmap.getHeight()) - (e20Var.f23236g / 2.0f);
+                    e20Var.f23252y = fArr[c11] / bitmap.getWidth();
+                    e20Var.f23253z = fArr[3] / bitmap.getHeight();
+                    e20Var.f23234e = (float) (e20Var.f23234e - ((f11 + f12) * 0.017453292519943295d));
                     i13++;
                     i11 = i7;
                     i12 = i10;
@@ -341,16 +341,16 @@ public class o extends FrameLayout implements a {
         matrix.getValues(fArr);
         m mVar = this.M;
         float f12 = mVar.f21524f * cropWidth;
-        xeVar.f27495k = (int) mVar.h;
-        if (r2.f26198a) {
-            i5.c.r(xeVar.f27495k, new StringBuilder("set transformRotation = "));
+        xeVar.f27496k = (int) mVar.h;
+        if (r2.f26206a) {
+            i5.c.r(xeVar.f27496k, new StringBuilder("set transformRotation = "));
         }
         while (true) {
-            i7 = xeVar.f27495k;
+            i7 = xeVar.f27496k;
             if (i7 >= 0) {
                 break;
             }
-            xeVar.f27495k = i7 + 360;
+            xeVar.f27496k = i7 + 360;
         }
         if (i7 != 90 && i7 != 270) {
             m mVar2 = this.M;
@@ -363,30 +363,30 @@ public class o extends FrameLayout implements a {
         }
         int i11 = (int) f11;
         float f13 = i10;
-        xeVar.f27491e = (float) (ceil / Math.ceil(f13 * f12));
+        xeVar.f27492e = (float) (ceil / Math.ceil(f13 * f12));
         float f14 = i11;
         float ceil3 = (float) (ceil2 / Math.ceil(f12 * f14));
-        xeVar.f27492f = ceil3;
-        float f15 = xeVar.f27491e;
+        xeVar.f27493f = ceil3;
+        float f15 = xeVar.f27492e;
         if (f15 > 1.0f || ceil3 > 1.0f) {
             float max = Math.max(f15, ceil3);
-            xeVar.f27491e /= max;
-            xeVar.f27492f /= max;
+            xeVar.f27492e /= max;
+            xeVar.f27493f /= max;
         }
-        xeVar.f27490c = Math.min(f13 / cropAreaView.getCropWidth(), f14 / cropAreaView.getCropHeight()) * this.M.f21523e;
+        xeVar.f27491c = Math.min(f13 / cropAreaView.getCropWidth(), f14 / cropAreaView.getCropHeight()) * this.M.f21523e;
         float f16 = fArr[2] / f13;
         m mVar4 = this.M;
         float f17 = mVar4.f21523e;
-        xeVar.f27488a = f16 / f17;
-        xeVar.f27489b = (fArr[5] / f14) / f17;
+        xeVar.f27489a = f16 / f17;
+        xeVar.f27490b = (fArr[5] / f14) / f17;
         xeVar.d = mVar4.f21526i;
-        xeVar.f27497m = f17;
-        xeVar.f27496l = mVar4.f21527j;
-        xeVar.f27498o = cropWidth;
-        xeVar.f27499r = mVar4.f21528k;
-        xeVar.f27500s = ceil;
-        xeVar.f27501t = ceil2;
-        xeVar.f27502u = this.f21540y;
+        xeVar.f27498m = f17;
+        xeVar.f27497l = mVar4.f21527j;
+        xeVar.f27499o = cropWidth;
+        xeVar.f27500r = mVar4.f21528k;
+        xeVar.f27501s = ceil;
+        xeVar.f27502t = ceil2;
+        xeVar.f27503u = this.f21540y;
         xeVar.v = cropAreaView.getLockAspectRatio();
         xeVar.C = true;
     }
@@ -410,7 +410,7 @@ public class o extends FrameLayout implements a {
         }
         float f11 = max;
         if (!this.f21536r) {
-            i7 = g0.f23603m;
+            i7 = g0.f23605m;
         } else {
             i7 = 0;
         }

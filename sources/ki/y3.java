@@ -67,13 +67,13 @@ public final class y3 extends ci implements is {
             p10 = j6.m(p10, textPaint.getFontMetricsInt(), false, null, 0);
         } catch (Exception unused) {
         }
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         kiVar.V2.setTitle(p10);
         this.K.setSwipeOffsetY(0.0f);
         if (p2Var.getWebView() != null) {
             p2Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
         if (e2Var != null) {
             p2Var.setParentActivity(e2Var.getParentActivity());
         }
@@ -119,18 +119,18 @@ public final class y3 extends ci implements is {
             alertDialog$Builder.k(hd.M0(2131752916, null), new r3(this));
             alertDialog$Builder.h(hd.M0(2131752589, null), null);
             t1Var.show();
-            q6.U((TextView) t1Var.d(-1), org.telegram.ui.ActionBar.j6.f29090q7, this.f33606a);
+            q6.U((TextView) t1Var.d(-1), org.telegram.ui.ActionBar.j6.f29090q7, this.f33608a);
             return false;
         }
-        this.f33607b.dismiss();
+        this.f33609b.dismiss();
         return true;
     }
 
     public final void Q() {
-        ki kiVar = this.f33607b;
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
-        if ((e2Var instanceof an) && ((an) e2Var).f45278m1.Q() > org.telegram.messenger.g0.L(20.0f)) {
-            org.telegram.messenger.g0.v1(kiVar.f36436a2.getFragmentView());
+        ki kiVar = this.f33609b;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
+        if ((e2Var instanceof an) && ((an) e2Var).f45277m1.Q() > org.telegram.messenger.g0.L(20.0f)) {
+            org.telegram.messenger.g0.v1(kiVar.f36424a2.getFragmentView());
             org.telegram.messenger.g0.i3(new p3(this, 1), 250L);
             return;
         }
@@ -142,14 +142,14 @@ public final class y3 extends ci implements is {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         p2 p2Var = this.f18715n;
-        if (i7 == ns.f25615z1) {
+        if (i7 == ns.f25616z1) {
             if (this.f18720y == ((Long) objArr[0]).longValue()) {
                 p2Var.h();
                 this.I = true;
-                this.f33607b.dismiss();
+                this.f33609b.dismiss();
             }
-        } else if (i7 == ns.f25540n4) {
-            p2Var.f52828n.b(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28922h5, this.f33606a), 153);
+        } else if (i7 == ns.f25541n4) {
+            p2Var.f52831n.b(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28922h5, this.f33608a), 153);
         }
     }
 
@@ -227,9 +227,9 @@ public final class y3 extends ci implements is {
 
     @Override
     public final void p() {
-        ns.f(this.G).n(this, ns.f25615z1);
-        ns.e().n(this, ns.f25540n4);
-        org.telegram.ui.ActionBar.y s5 = this.f33607b.V2.s();
+        ns.f(this.G).n(this, ns.f25616z1);
+        ns.e().n(this, ns.f25541n4);
+        org.telegram.ui.ActionBar.y s5 = this.f33609b.V2.s();
         org.telegram.ui.ActionBar.q0 q0Var = this.L;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = q0Var.f29497b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
@@ -285,12 +285,12 @@ public final class y3 extends ci implements is {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
     }
 
     @Override
     public final void t() {
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         kiVar.A0(false);
         kiVar.getWindow().setSoftInputMode(48);
     }
@@ -301,7 +301,7 @@ public final class y3 extends ci implements is {
         this.Q = false;
         p2 p2Var = this.f18715n;
         boolean z10 = p2Var.S;
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         if (!z10) {
             org.telegram.messenger.g0.Q3(kiVar.V2.getBackButton(), 2131231240);
         }
@@ -323,11 +323,11 @@ public final class y3 extends ci implements is {
             }
             return;
         }
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         if (i7 == 2131296500) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.f18718w);
-            kiVar.f36436a2.presentFragment(new an(bundle));
+            kiVar.f36424a2.presentFragment(new an(bundle));
             kiVar.dismiss();
             return;
         }
@@ -344,7 +344,7 @@ public final class y3 extends ci implements is {
             p2Var.s(this.G, this.f18718w);
             ns.f(p2Var.N).d(new org.telegram.ui.web.q(p2Var, 1));
         } else if (i7 == 2131296495) {
-            ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(this.G).f26461b.bots;
+            ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(this.G).f26471b.bots;
             int size = arrayList.size();
             while (i10 < size) {
                 TLRPC.TL_attachMenuBot tL_attachMenuBot = arrayList.get(i10);
@@ -366,9 +366,9 @@ public final class y3 extends ci implements is {
         } else if (i7 == 2131296505) {
             int i11 = this.G;
             Context context = getContext();
-            cc ccVar = new cc(ta.a(getContext()), this.f33606a);
+            cc ccVar = new cc(ta.a(getContext()), this.f33608a);
             long j3 = this.f18718w;
-            int i12 = my0.f49340w1;
+            int i12 = my0.f49339w1;
             my0.J0(i11, context, j3, false, false, new ArrayList(), ccVar, null, new byte[0], null, null);
         }
     }
@@ -395,7 +395,7 @@ public final class y3 extends ci implements is {
             } else {
                 z11 = false;
             }
-            int Q = this.f33607b.f36482p3.Q() + i7;
+            int Q = this.f33609b.f36470p3.Q() + i7;
             setMeasuredDimension(getMeasuredWidth(), i7);
             this.P = true;
             o2Var.setSwipeOffsetAnimationDisallowed(true);

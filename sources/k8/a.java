@@ -119,14 +119,14 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     @Override
     public void A(oi.a aVar) {
         o oVar = (o) this.f17789c;
-        ki kiVar = oVar.f33607b;
-        e2 e2Var = kiVar.f36436a2;
+        ki kiVar = oVar.f33609b;
+        e2 e2Var = kiVar.f36424a2;
         if (e2Var != null && aVar != null && (aVar.f21544b instanceof TL_iv.pageBlockMap) && g0.J1(e2Var)) {
-            ki kiVar2 = new ki(oVar.getContext(), kiVar.f36436a2, false, false, false, null);
+            ki kiVar2 = new ki(oVar.getContext(), kiVar.f36424a2, false, false, false, null);
             kiVar2.X3 = new qb.a(16);
             kiVar2.K1 = true;
-            kiVar2.f36506v3.setVisibility(8);
-            kiVar2.f36503u4 = new h(oVar, aVar, kiVar2, 15);
+            kiVar2.f36494v3.setVisibility(8);
+            kiVar2.f36491u4 = new h(oVar, aVar, kiVar2, 15);
             kiVar2.e1();
             kiVar2.show();
         }
@@ -183,7 +183,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     public void F() {
         o oVar = (o) this.f17789c;
         if (oVar.getCurrentItemTop() != oVar.J) {
-            oVar.f33607b.M1(oVar, 0);
+            oVar.f33609b.M1(oVar, 0);
         }
         oVar.f0();
         o.P(oVar);
@@ -201,8 +201,8 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     @Override
     public void I() {
         d0 d0Var = (d0) this.f17789c;
-        d0Var.f19549w1.d.f39895g3.O(true);
-        d0Var.f19548v1.d.f39895g3.O(true);
+        d0Var.f19549w1.d.f39892g3.O(true);
+        d0Var.f19548v1.d.f39892g3.O(true);
     }
 
     public tg0 J0(int i7, long j3, boolean z10) {
@@ -246,7 +246,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
         Uri uri;
         byte[] bArr;
         ld0 ld0Var = (ld0) this.f17789c;
-        if (ld0Var != null && (((uri = (Uri) ld0Var.f48977c) != null && uri.equals(o0Var.f10274n)) || ((bArr = (byte[]) ld0Var.f48976b) != null && Arrays.equals(bArr, o0Var.f10271k)))) {
+        if (ld0Var != null && (((uri = (Uri) ld0Var.f48973c) != null && uri.equals(o0Var.f10274n)) || ((bArr = (byte[]) ld0Var.f48972b) != null && Arrays.equals(bArr, o0Var.f10271k)))) {
             y yVar = (y) ((ld0) this.f17789c).d;
             yVar.getClass();
             return yVar;
@@ -285,7 +285,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     @Override
     public void O(int i7) {
         o oVar = (o) this.f17789c;
-        oVar.f33607b.M1(oVar, i7);
+        oVar.f33609b.M1(oVar, i7);
         oVar.f0();
         o.P(oVar);
     }
@@ -354,12 +354,12 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     public void S0(int i7) {
         ew[] ewVarArr = (ew[]) this.f17788b;
         ew ewVar = ewVarArr[i7];
-        Integer num = ewVar.f23373c;
+        Integer num = ewVar.f23376c;
         if (num != null) {
             int i10 = i7 * 2;
             v0(ewVarArr[i10], num.intValue());
-            v0(ewVarArr[i10 + 1], ewVar.f23373c.intValue());
-            ewVar.f23373c = null;
+            v0(ewVarArr[i10 + 1], ewVar.f23376c.intValue());
+            ewVar.f23376c = null;
         }
     }
 
@@ -520,18 +520,18 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
 
     public long Z0(int i7, int i10, int i11) {
         ew ewVar = ((ew[]) this.f17788b)[i7];
-        Integer num = ewVar.f23373c;
+        Integer num = ewVar.f23376c;
         if (num != null) {
             int i12 = ewVar.d;
-            int i13 = ewVar.f23374e;
+            int i13 = ewVar.f23377e;
             if (i10 >= i12 && i11 <= i13) {
                 return num.intValue();
             }
         }
         int i14 = ewVar.d;
-        int i15 = ewVar.f23374e;
+        int i15 = ewVar.f23377e;
         if (i14 >= i10 && i15 <= i11) {
-            return ewVar.f23371a;
+            return ewVar.f23374a;
         }
         if ((i10 <= i14 && i11 >= i14) || (i10 >= i14 && i10 <= i15)) {
             S0(i7);
@@ -580,7 +580,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
 
     @Override
     public void b(e1 e1Var, boolean z10) {
-        ((o) this.f17789c).f33607b.h1(e1Var, z10);
+        ((o) this.f17789c).f33609b.h1(e1Var, z10);
     }
 
     @Override
@@ -599,18 +599,18 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
 
     public long b1(int i7, int i10, int i11) {
         ew ewVar = ((ew[]) this.f17788b)[i7];
-        Integer num = ewVar.f23373c;
+        Integer num = ewVar.f23376c;
         if (num != null) {
             int i12 = ewVar.d;
-            int i13 = ewVar.f23374e;
+            int i13 = ewVar.f23377e;
             if (i10 >= i12 && i11 <= i13) {
                 return num.intValue();
             }
         }
         int i14 = ewVar.d;
-        int i15 = ewVar.f23374e;
+        int i15 = ewVar.f23377e;
         if (i14 >= i10 && i15 <= i11) {
-            return ewVar.f23372b;
+            return ewVar.f23375b;
         }
         if ((i10 <= i14 && i11 >= i14) || (i10 >= i14 && i10 <= i15)) {
             S0(i7);
@@ -635,7 +635,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
         try {
             v7.f fVar = (v7.f) aVar.f20525a;
             fVar.t1(fVar.p1(), 1);
-            ((ea) this.f17789c).f23283c.remove(aVar);
+            ((ea) this.f17789c).f23290c.remove(aVar);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -653,7 +653,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
 
     @Override
     public void d(String str, String str2) {
-        ek0 ek0Var = ((nj0) this.f17789c).f49572a;
+        ek0 ek0Var = ((nj0) this.f17789c).f49571a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
             ek0Var.S1(true, str2, (ef0) this.f17788b, this, ek0Var.C1);
         } else {
@@ -665,7 +665,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     public y d0(byte[] bArr) {
         byte[] bArr2;
         ld0 ld0Var = (ld0) this.f17789c;
-        if (ld0Var != null && (bArr2 = (byte[]) ld0Var.f48976b) != null && Arrays.equals(bArr2, bArr)) {
+        if (ld0Var != null && (bArr2 = (byte[]) ld0Var.f48972b) != null && Arrays.equals(bArr2, bArr)) {
             y yVar = (y) ((ld0) this.f17789c).d;
             yVar.getClass();
             return yVar;
@@ -713,7 +713,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
             }
         }
         ow owVar = ywVar.A0;
-        if (owVar != null && owVar.getVisibility() == 0 && ywVar.A0.f35798n) {
+        if (owVar != null && owVar.getVisibility() == 0 && ywVar.A0.f35785n) {
             return false;
         }
         return ywVar.A4(view, i7, f10, ((xw) this.f17788b).d);
@@ -788,7 +788,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
 
     @Override
     public void i() {
-        Point point = g0.f23609q;
+        Point point = g0.f23611q;
         if (point.x > point.y) {
             ((yw) this.f17789c).finishPreviewFragment();
         }
@@ -804,7 +804,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
         o oVar = (o) this.f17789c;
         m60 m60Var = new m60(oVar, (e6) this.f17788b, view, false, false, true);
         m60Var.Q = true;
-        e2 e2Var = oVar.f33607b.f36436a2;
+        e2 e2Var = oVar.f33609b.f36424a2;
         oVar.getContext();
         oVar.I = e4.b(m60Var, e2Var, p3Var, true);
     }
@@ -813,7 +813,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     public void l(boolean z10, float f10) {
         h5.n1 = f10;
         ((TextView) this.f17788b).setText("Saturation " + (f10 * 5.0f));
-        st0 st0Var = ((h5) this.f17789c).f47612m1;
+        st0 st0Var = ((h5) this.f17789c).f47602m1;
         st0Var.M();
         st0Var.K();
     }
@@ -835,7 +835,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
         o oVar = (o) this.f17789c;
         m60 m60Var = new m60(oVar, (e6) this.f17788b, view, false, false, true);
         m60Var.Q = true;
-        oVar.I = e4.c(m60Var, oVar.f33607b.f36436a2, oVar.getContext(), (e6) this.f17788b, n3Var, true);
+        oVar.I = e4.c(m60Var, oVar.f33609b.f36424a2, oVar.getContext(), (e6) this.f17788b, n3Var, true);
     }
 
     @Override
@@ -869,7 +869,7 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
 
     @Override
     public void q(float f10) {
-        Point point = g0.f23609q;
+        Point point = g0.f23611q;
         if (point.x > point.y) {
             ((yw) this.f17789c).movePreviewFragment(f10);
         }
@@ -896,14 +896,14 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     public void t0(int i7, int i10, int i11) {
         ew[] ewVarArr = (ew[]) this.f17788b;
         ?? obj = new Object();
-        obj.f23373c = null;
+        obj.f23376c = null;
         ewVarArr[i7] = obj;
         obj.d = i10;
-        obj.f23374e = (i10 + i11) - 1;
+        obj.f23377e = (i10 + i11) - 1;
         if (i11 == 1) {
             long j3 = ((long[]) this.f17789c)[i10];
-            obj.f23371a = j3;
-            obj.f23372b = j3;
+            obj.f23374a = j3;
+            obj.f23375b = j3;
             return;
         }
         int i12 = i7 * 2;
@@ -917,8 +917,8 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
         ew ewVar3 = ewVarArr[i14];
         ewVar3.getClass();
         ewVar.getClass();
-        ewVar.f23371a = Math.max(ewVar2.f23371a, ewVar3.f23371a);
-        ewVarArr[i7].f23372b = Math.min(ewVarArr[i12].f23372b, ewVarArr[i14].f23372b);
+        ewVar.f23374a = Math.max(ewVar2.f23374a, ewVar3.f23374a);
+        ewVarArr[i7].f23375b = Math.min(ewVarArr[i12].f23375b, ewVarArr[i14].f23375b);
     }
 
     public String toString() {
@@ -956,11 +956,11 @@ public final class a implements j0, i, o3, pm0, dt, l1, jj0, tj0, ui.a, d, t {
     }
 
     public void v0(ew ewVar, int i7) {
-        ewVar.f23373c = Integer.valueOf(i7);
+        ewVar.f23376c = Integer.valueOf(i7);
         int i10 = ewVar.d;
         long j3 = i7;
-        ewVar.f23371a = j3;
-        ewVar.f23372b = j3;
+        ewVar.f23374a = j3;
+        ewVar.f23375b = j3;
         ((long[]) this.f17789c)[i10] = j3;
     }
 

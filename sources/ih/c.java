@@ -19,7 +19,7 @@ public final class c extends Drawable {
     public c() {
         this.f15938a = 1;
         this.d = 255;
-        this.f15939b = i5.c.g(t0.f26600b, 2131232698);
+        this.f15939b = i5.c.g(t0.f26609b, 2131232698);
     }
 
     @Override

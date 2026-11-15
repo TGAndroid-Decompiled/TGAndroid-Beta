@@ -28,7 +28,7 @@ public final class w4 extends FrameLayout implements org.telegram.ui.ActionBar.z
         j5Var.setLeftDrawable(2131231104);
         j5Var.setTypeface(org.telegram.messenger.g0.o());
         frameLayout.addView(j5Var, c8.ja.c(-1.0f, -1));
-        frameLayout.setOutlineProvider(bg.t0.f3333b);
+        frameLayout.setOutlineProvider(bg.t0.f3336b);
         frameLayout.setClipToOutline(true);
         c8.na.b(frameLayout, 0.02f, 1.2f);
     }

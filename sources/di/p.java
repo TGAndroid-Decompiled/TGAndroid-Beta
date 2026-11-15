@@ -25,7 +25,7 @@ public final class p extends mb0 {
                     tVar.f9412a0.setFocusable(true);
                     tVar.f9412a0.setFocusableInTouchMode(true);
                     int A1 = tVar.f9418e.A1(1);
-                    if (A1 >= 0 && A1 < tVar.f9418e.f39895g3.E.size()) {
+                    if (A1 >= 0 && A1 < tVar.f9418e.f39892g3.E.size()) {
                         tVar.f9418e.C0();
                         tVar.f9418e.y0(A1);
                     }
@@ -40,7 +40,7 @@ public final class p extends mb0 {
                     qVar2.setFocusable(true);
                     qVar2.setFocusableInTouchMode(true);
                     int A12 = u41Var.A1(3);
-                    if (A12 >= 0 && A12 < u41Var.f39895g3.E.size()) {
+                    if (A12 >= 0 && A12 < u41Var.f39892g3.E.size()) {
                         u41Var.C0();
                         u41Var.y0(A12);
                     }

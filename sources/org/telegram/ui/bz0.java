@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 public final class bz0 implements Runnable {
-    public final int f45864a;
-    public final SecretMediaViewer f45865b;
+    public final int f45853a;
+    public final SecretMediaViewer f45854b;
 
     public bz0(SecretMediaViewer secretMediaViewer, int i7) {
-        this.f45864a = i7;
-        this.f45865b = secretMediaViewer;
+        this.f45853a = i7;
+        this.f45854b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i7 = this.f45864a;
-        SecretMediaViewer secretMediaViewer = this.f45865b;
+        int i7 = this.f45853a;
+        SecretMediaViewer secretMediaViewer = this.f45854b;
         switch (i7) {
             case 0:
                 secretMediaViewer.J0 = null;
@@ -33,9 +33,9 @@ public final class bz0 implements Runnable {
                 org.telegram.messenger.g0.i3(new bz0(secretMediaViewer, 4), 50L);
                 return;
             case 1:
-                ai.j0 j0Var = secretMediaViewer.f43279e;
-                if (j0Var != null) {
-                    j0Var.setLayerType(0, null);
+                ai.k0 k0Var = secretMediaViewer.f43279e;
+                if (k0Var != null) {
+                    k0Var.setLayerType(0, null);
                     secretMediaViewer.f43279e.setVisibility(4);
                     secretMediaViewer.f43295l0 = 0;
                     secretMediaViewer.f43308s = false;
@@ -60,7 +60,7 @@ public final class bz0 implements Runnable {
                     }
                     if (U > 0) {
                         org.telegram.ui.Components.w51 w51Var = secretMediaViewer.P;
-                        if (!w51Var.f41271f) {
+                        if (!w51Var.f41274f) {
                             w51Var.h(false, ((float) S) / ((float) U));
                             secretMediaViewer.Q.invalidate();
                         }
@@ -123,7 +123,7 @@ public final class bz0 implements Runnable {
     }
 
     public bz0(SecretMediaViewer secretMediaViewer, uq0 uq0Var, int i7) {
-        this.f45864a = i7;
-        this.f45865b = secretMediaViewer;
+        this.f45853a = i7;
+        this.f45854b = secretMediaViewer;
     }
 }

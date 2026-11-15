@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class yi extends ci {
-    public di.c1 f42001n;
-    public int f42002r;
-    public gi.g f42003s;
-    public ha f42004w;
-    public int f42005x;
-    public q0.a f42006y;
+    public di.c1 f42003n;
+    public int f42004r;
+    public gi.g f42005s;
+    public ha f42006w;
+    public int f42007x;
+    public q0.a f42008y;
 
     @Override
     public final void B(int r9, int r10) {
@@ -16,23 +16,23 @@ public final class yi extends ci {
 
     @Override
     public final void I(ci ciVar) {
-        ki kiVar = this.f33607b;
+        ki kiVar = this.f33609b;
         try {
             kiVar.V2.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
         kiVar.V2.setTitle(org.telegram.messenger.hd.M0(2131745663, null));
-        this.f42003s.h1(0, 0);
+        this.f42005s.h1(0, 0);
     }
 
     @Override
     public final void K() {
-        this.f42001n.y0(0);
+        this.f42003n.y0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        di.c1 c1Var = this.f42001n;
+        di.c1 c1Var = this.f42003n;
         if (c1Var.getChildCount() <= 0) {
             c1Var.setTopGlowOffset(c1Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -55,7 +55,7 @@ public final class yi extends ci {
 
     @Override
     public int getListTopPadding() {
-        return this.f42001n.getPaddingTop();
+        return this.f42003n.getPaddingTop();
     }
 
     @Override
@@ -64,13 +64,13 @@ public final class yi extends ci {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f42006y = aVar;
+        this.f42008y = aVar;
     }
 
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33607b.f29682b.invalidate();
+        this.f33609b.f29682b.invalidate();
         invalidate();
     }
 }

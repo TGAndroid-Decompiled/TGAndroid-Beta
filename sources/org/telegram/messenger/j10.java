@@ -9,26 +9,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class j10 {
-    public final int f24501a;
-    public boolean f24503c;
+    public final int f24506a;
+    public boolean f24508c;
     public boolean d;
-    public boolean f24504e;
-    public boolean f24506g;
-    public final ArrayList f24502b = new ArrayList();
-    public final d10 f24505f = new d10(this, 0);
+    public boolean f24509e;
+    public boolean f24511g;
+    public final ArrayList f24507b = new ArrayList();
+    public final d10 f24510f = new d10(this, 0);
 
     public j10(int i7) {
-        this.f24501a = i7;
-        if (!this.f24503c && !this.d) {
+        this.f24506a = i7;
+        if (!this.f24508c && !this.d) {
             this.d = true;
-            vr.a0(i7).f27220a.c(new d10(this, 1));
+            vr.a0(i7).f27219a.c(new d10(this, 1));
         }
     }
 
     public final void a() {
-        this.f24502b.clear();
+        this.f24507b.clear();
         d();
-        ns.f(this.f24501a).k(ns.f25483d3, new Object[0]);
+        ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
         e();
     }
 
@@ -36,7 +36,7 @@ public final class j10 {
         ArrayList arrayList;
         int i7 = 0;
         while (true) {
-            arrayList = this.f24502b;
+            arrayList = this.f24507b;
             if (i7 >= arrayList.size()) {
                 break;
             }
@@ -50,7 +50,7 @@ public final class j10 {
         if (tL_updateNewAuthorization.unconfirmed) {
             arrayList.add(new i10(this, tL_updateNewAuthorization));
         }
-        ns.f(this.f24501a).k(ns.f25483d3, new Object[0]);
+        ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
         e();
         d();
     }
@@ -58,7 +58,7 @@ public final class j10 {
     public final void c(TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f24502b;
+            ArrayList arrayList = this.f24507b;
             if (i7 < arrayList.size()) {
                 i10 i10Var = (i10) arrayList.get(i7);
                 if (i10Var != null && i10Var.f24264a && i10Var.f24266c == tL_updateNewBotConnection.bot_id) {
@@ -68,7 +68,7 @@ public final class j10 {
                 i7++;
             } else {
                 arrayList.add(new i10(this, tL_updateNewBotConnection));
-                ns.f(this.f24501a).k(ns.f25483d3, new Object[0]);
+                ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
                 e();
                 d();
                 return;
@@ -77,22 +77,22 @@ public final class j10 {
     }
 
     public final void d() {
-        if (this.f24506g) {
+        if (this.f24511g) {
             return;
         }
         if (this.d) {
-            this.f24504e = true;
+            this.f24509e = true;
             return;
         }
-        this.f24506g = true;
-        vr.a0(this.f24501a).f27220a.c(new d10(this, 2));
+        this.f24511g = true;
+        vr.a0(this.f24506a).f27219a.c(new d10(this, 2));
     }
 
     public final void e() {
         i10 i10Var;
-        d10 d10Var = this.f24505f;
+        d10 d10Var = this.f24510f;
         g0.r(d10Var);
-        ArrayList arrayList = this.f24502b;
+        ArrayList arrayList = this.f24507b;
         if (!arrayList.isEmpty()) {
             int size = arrayList.size();
             int i7 = 0;
@@ -101,7 +101,7 @@ public final class j10 {
                 Object obj = arrayList.get(i7);
                 i7++;
                 j10 j10Var = ((i10) obj).f24269i;
-                j3 = Math.min(j3, (ConnectionsManager.getInstance(j10Var.f24501a).getCurrentTime() + np.s1(j10Var.f24501a).o4) - i10Var.d);
+                j3 = Math.min(j3, (ConnectionsManager.getInstance(j10Var.f24506a).getCurrentTime() + np.s1(j10Var.f24506a).o4) - i10Var.d);
             }
             if (j3 == Long.MAX_VALUE) {
                 return;
@@ -126,14 +126,14 @@ public final class j10 {
                         j10 j10Var = i10Var2.f24269i;
                         if (i10Var2.f24264a) {
                             TL_account.confirmBotConnection confirmbotconnection = new TL_account.confirmBotConnection();
-                            confirmbotconnection.bot_id = np.s1(j10Var.f24501a).o1(i10Var2.f24266c);
-                            ConnectionsManager.getInstance(j10Var.f24501a).sendRequestTyped(confirmbotconnection, new x3(7, i10Var2, f10Var));
+                            confirmbotconnection.bot_id = np.s1(j10Var.f24506a).o1(i10Var2.f24266c);
+                            ConnectionsManager.getInstance(j10Var.f24506a).sendRequestTyped(confirmbotconnection, new x3(7, i10Var2, f10Var));
                             return;
                         }
                         TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
                         changeauthorizationsettings.hash = i10Var2.f24265b;
                         changeauthorizationsettings.confirmed = true;
-                        ConnectionsManager.getInstance(j10Var.f24501a).sendRequest(changeauthorizationsettings, new RequestDelegate() {
+                        ConnectionsManager.getInstance(j10Var.f24506a).sendRequest(changeauthorizationsettings, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 switch (r3) {
@@ -161,9 +161,9 @@ public final class j10 {
                     if (i10Var2.f24264a) {
                         TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
                         updateconnectedbot.deleted = true;
-                        updateconnectedbot.bot = np.s1(j10Var2.f24501a).o1(i10Var2.f24266c);
+                        updateconnectedbot.bot = np.s1(j10Var2.f24506a).o1(i10Var2.f24266c);
                         updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                        ConnectionsManager.getInstance(j10Var2.f24501a).sendRequest(updateconnectedbot, new RequestDelegate() {
+                        ConnectionsManager.getInstance(j10Var2.f24506a).sendRequest(updateconnectedbot, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 switch (r3) {
@@ -189,7 +189,7 @@ public final class j10 {
                     }
                     TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
                     resetauthorization.hash = i10Var2.f24265b;
-                    ConnectionsManager.getInstance(j10Var2.f24501a).sendRequest(resetauthorization, new RequestDelegate() {
+                    ConnectionsManager.getInstance(j10Var2.f24506a).sendRequest(resetauthorization, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r3) {
@@ -222,7 +222,7 @@ public final class j10 {
             }
             int i11 = 0;
             while (true) {
-                ArrayList arrayList3 = this.f24502b;
+                ArrayList arrayList3 = this.f24507b;
                 if (i11 >= arrayList3.size()) {
                     break;
                 }
@@ -234,7 +234,7 @@ public final class j10 {
             }
             if (!hashSet.isEmpty()) {
                 d();
-                ns.f(this.f24501a).k(ns.f25483d3, new Object[0]);
+                ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
                 e();
             }
         }

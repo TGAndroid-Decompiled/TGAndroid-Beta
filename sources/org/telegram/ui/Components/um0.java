@@ -69,7 +69,7 @@ public final class um0 extends Drawable {
         kVar.w(org.telegram.messenger.g0.L(16.0f));
         c(false, 2.0f);
         kVar.u(-1);
-        kVar.f34829b = 17;
+        kVar.f34833b = 17;
         paint.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(1.66f)));
         path2.moveTo(org.telegram.messenger.g0.L(8.66f), -org.telegram.messenger.g0.L(6.33f));
         path2.lineTo(0.0f, 0.0f);
@@ -87,7 +87,7 @@ public final class um0 extends Drawable {
     }
 
     public final boolean a() {
-        if (!this.f40116j && this.f40118l.f39903c <= 0.0f) {
+        if (!this.f40116j && this.f40118l.f39900c <= 0.0f) {
             return false;
         }
         return true;
@@ -150,7 +150,7 @@ public final class um0 extends Drawable {
             canvas.save();
             float f11 = d * 0.4f;
             float f12 = 0.6f + f11;
-            if (bounds.width() < org.telegram.messenger.g0.f23609q.x * 0.7f) {
+            if (bounds.width() < org.telegram.messenger.g0.f23611q.x * 0.7f) {
                 f12 *= 0.75f;
                 if (this.f40109a) {
                     canvas.translate(-org.telegram.messenger.g0.L(45.0f), 0.0f);
@@ -203,7 +203,7 @@ public final class um0 extends Drawable {
                     this.f40112e.K(1);
                     this.f40112e.start();
                 }
-                float L = this.f40114g.f38105c + org.telegram.messenger.g0.L(54.0f);
+                float L = this.f40114g.f38103c + org.telegram.messenger.g0.L(54.0f);
                 RectF rectF2 = this.f40125s;
                 float f14 = L / 2.0f;
                 float centerX = bounds.centerX() - f14;
@@ -223,7 +223,7 @@ public final class um0 extends Drawable {
                 canvas.drawRoundRect(this.f40125s, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f40111c);
                 this.f40112e.setBounds(org.telegram.messenger.g0.L(11.0f) + ((int) this.f40125s.left), ((int) this.f40125s.centerY()) - (org.telegram.messenger.g0.L(24.0f) / 2), org.telegram.messenger.g0.L(35.0f) + ((int) this.f40125s.left), (org.telegram.messenger.g0.L(24.0f) / 2) + ((int) this.f40125s.centerY()));
                 this.f40112e.setAlpha((int) (255.0f * d2));
-                if (!this.f40112e.f33586l0) {
+                if (!this.f40112e.f33588l0) {
                     this.f40112e.H(true);
                 }
                 this.f40112e.draw(canvas);

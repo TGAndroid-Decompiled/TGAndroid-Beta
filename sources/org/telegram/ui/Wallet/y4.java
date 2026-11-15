@@ -155,7 +155,7 @@ public final class y4 extends w61 {
     }
 
     public final void J() {
-        if (this.f41295b >= this.f44722b0.size() - 2) {
+        if (this.f41298b >= this.f44722b0.size() - 2) {
             k0 k0Var = this.f44723c0;
             if (!k0Var.h) {
                 k0Var.h();
@@ -193,14 +193,14 @@ public final class y4 extends w61 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(this.f44724d0).c(this.f44721a0, ns.f25473b4);
+        ns.f(this.f44724d0).c(this.f44721a0, ns.f25474b4);
         J();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(this.f44724d0).n(this.f44721a0, ns.f25473b4);
+        ns.f(this.f44724d0).n(this.f44721a0, ns.f25474b4);
     }
 
     @Override
@@ -227,7 +227,7 @@ public final class y4 extends w61 {
             ((Runnable) childAt.getTag()).run();
         }
         J();
-        xb xbVar = xb.f41635w;
+        xb xbVar = xb.f41627w;
         if (xbVar != null) {
             xbVar.c(0L, false);
         }

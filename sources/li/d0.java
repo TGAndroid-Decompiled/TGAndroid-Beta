@@ -209,7 +209,7 @@ public final class d0 extends u2 implements is, te.b, p2 {
 
     @Override
     public final boolean H() {
-        if (!this.f19540m1.f57082f && !this.n1.f57082f) {
+        if (!this.f19540m1.f57086f && !this.n1.f57086f) {
             View currentView = this.f19541o1.getCurrentView();
             if (currentView instanceof b0) {
                 return ((b0) currentView).f19529e;
@@ -246,7 +246,7 @@ public final class d0 extends u2 implements is, te.b, p2 {
         String str2;
         int i7 = 0;
         if (!z10) {
-            arrayList.add(b41.E(99, (int) (org.telegram.messenger.g0.f23609q.y * 0.35f)));
+            arrayList.add(b41.E(99, (int) (org.telegram.messenger.g0.f23611q.y * 0.35f)));
             arrayList.add(b41.E(0, org.telegram.messenger.g0.L(56.0f)));
         }
         if (this.L1 != null) {
@@ -288,7 +288,7 @@ public final class d0 extends u2 implements is, te.b, p2 {
     @Override
     public final void L() {
         ns.f(this.f29679a).n(this, ns.T);
-        ns.f(this.f29679a).n(this, ns.f25559r);
+        ns.f(this.f29679a).n(this, ns.f25560r);
         super.L();
     }
 
@@ -312,9 +312,9 @@ public final class d0 extends u2 implements is, te.b, p2 {
         z zVar = this.f19548v1;
         if (i7 == i11) {
             if (((TLRPC.ChatFull) objArr[0]).f28052id == j3) {
-                zVar.d.f39895g3.O(true);
+                zVar.d.f39892g3.O(true);
             }
-        } else if (i7 == ns.f25559r) {
+        } else if (i7 == ns.f25560r) {
             Integer num = (Integer) objArr[0];
             int intValue = num.intValue();
             int i12 = np.D8;
@@ -337,8 +337,8 @@ public final class d0 extends u2 implements is, te.b, p2 {
         if (this.f19541o1.getCurrentPosition() > 0) {
             if (this.f19541o1.getCurrentPosition() == 2) {
                 te.a aVar = this.n1;
-                if (aVar.f57082f) {
-                    this.f19550x1.d.f39894f3.h1(1, this.P1.f15575b);
+                if (aVar.f57086f) {
+                    this.f19550x1.d.f39891f3.h1(1, this.P1.f15575b);
                     aVar.a(false, true);
                     this.f29713r0 = true;
                     v00 v00Var = this.f19552z1;
@@ -356,7 +356,7 @@ public final class d0 extends u2 implements is, te.b, p2 {
     @Override
     public final void r(t2 t2Var) {
         TLRPC.TL_forumTopic f10;
-        if (t2Var.getMessage() != null && (f10 = np.s1(this.f29679a).f25383r7.f(-t2Var.getDialogId(), gj.b2(this.f29679a, t2Var.getMessage().f23817k, true, false))) != null) {
+        if (t2Var.getMessage() != null && (f10 = np.s1(this.f29679a).f25386r7.f(-t2Var.getDialogId(), gj.b2(this.f29679a, t2Var.getMessage().f23819k, true, false))) != null) {
             qg.c.m(this.f19547u1, -t2Var.getDialogId(), f10, 0);
         }
     }
@@ -408,7 +408,7 @@ public final class d0 extends u2 implements is, te.b, p2 {
         this.J1 = w2Var;
         Context context = e2Var.getContext();
         ns.f(this.f29679a).c(this, ns.T);
-        ns.f(this.f29679a).c(this, ns.f25559r);
+        ns.f(this.f29679a).c(this, ns.f25560r);
         int i7 = j6.f28792a7;
         paint.setColor(j6.w0(i7, this.J0));
         Q(i7);
@@ -446,8 +446,8 @@ public final class d0 extends u2 implements is, te.b, p2 {
         u41Var.setClipToPadding(false);
         u41Var.setVisibility(8);
         u41Var.r1();
-        u41Var.f39895g3.f38201r = false;
-        u41Var.setPadding(0, org.telegram.messenger.g0.L(52.0f) + org.telegram.messenger.g0.f23603m, 0, org.telegram.messenger.g0.f23604n);
+        u41Var.f39892g3.f38199r = false;
+        u41Var.setPadding(0, org.telegram.messenger.g0.L(52.0f) + org.telegram.messenger.g0.f23605m, 0, org.telegram.messenger.g0.f23606n);
         zz zzVar = new zz(e2Var);
         this.A1 = zzVar;
         zzVar.setVisibility(8);

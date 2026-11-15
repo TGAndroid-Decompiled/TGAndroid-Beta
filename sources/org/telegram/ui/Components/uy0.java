@@ -28,24 +28,24 @@ public final class uy0 implements ValueAnimator.AnimatorUpdateListener {
             case 2:
                 vy0 vy0Var3 = this.f40193b;
                 vy0Var3.getClass();
-                vy0Var3.f41187f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vy0Var3.f41190f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 vy0Var3.invalidate();
                 return;
             case 3:
                 vy0 vy0Var4 = this.f40193b;
                 vy0Var4.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vy0Var4.f41190s = floatValue;
-                vy0Var4.f41192x = (int) ((vy0Var4.h * floatValue) + 0);
+                vy0Var4.f41193s = floatValue;
+                vy0Var4.f41195x = (int) ((vy0Var4.h * floatValue) + 0);
                 vy0Var4.invalidate();
                 return;
             default:
                 vy0 vy0Var5 = this.f40193b;
                 vy0Var5.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vy0Var5.f41191w = floatValue2;
-                int i7 = vy0Var5.f41189r;
-                vy0Var5.f41193y = i7 + ((int) Math.ceil((vy0Var5.f41188n - i7) * floatValue2));
+                vy0Var5.f41194w = floatValue2;
+                int i7 = vy0Var5.f41192r;
+                vy0Var5.f41196y = i7 + ((int) Math.ceil((vy0Var5.f41191n - i7) * floatValue2));
                 vy0Var5.invalidate();
                 return;
         }

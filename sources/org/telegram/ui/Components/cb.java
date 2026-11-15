@@ -58,7 +58,7 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
 
     public static boolean a() {
         if (!org.telegram.messenger.g0.Q1()) {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             if (point.x < point.y) {
                 return false;
             }
@@ -108,7 +108,7 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
         this.inOutOffset = f10;
         updatePosition();
         xb xbVar = this.bulletin;
-        if (xbVar != null && xbVar.f41644k) {
+        if (xbVar != null && xbVar.f41636k) {
             invalidate();
         }
     }
@@ -144,7 +144,7 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public void dispatchDraw(Canvas canvas) {
         xb xbVar = this.bulletin;
-        if (xbVar != null && xbVar.f41644k) {
+        if (xbVar != null && xbVar.f41636k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new wh.b(new s(this, 16));
             }
@@ -169,9 +169,9 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
         if (this.bulletin != null && i7 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (waVar = this.delegate) != null) {
-                float h = waVar.h(this.bulletin.f41636a) - getY();
+                float h = waVar.h(this.bulletin.f41628a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f41636a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f41628a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -247,13 +247,13 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
         xb xbVar;
         r1.g gVar;
         if (this.bulletin != null && (((waVar = this.delegate) == null || waVar.e()) && (gVar = (xbVar = this.bulletin).d) != null && gVar.f55742f)) {
-            f10 = xbVar.f41648o;
+            f10 = xbVar.f41640o;
         } else {
             wa waVar2 = this.delegate;
             if (waVar2 != null) {
                 xb xbVar2 = this.bulletin;
                 if (xbVar2 != null) {
-                    i7 = xbVar2.f41636a;
+                    i7 = xbVar2.f41628a;
                 } else {
                     i7 = 0;
                 }
@@ -283,7 +283,7 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
         if (waVar != null) {
             xb xbVar = this.bulletin;
             if (xbVar != null) {
-                i7 = xbVar.f41636a;
+                i7 = xbVar.f41628a;
             } else {
                 i7 = 0;
             }
@@ -422,7 +422,7 @@ public abstract class cb extends FrameLayout implements org.telegram.ui.ActionBa
             if (this.top) {
                 xb xbVar = this.bulletin;
                 if (xbVar != null) {
-                    i10 = xbVar.f41636a;
+                    i10 = xbVar.f41628a;
                 } else {
                     i10 = 0;
                 }

@@ -95,7 +95,7 @@ public class ThemeEditorView {
             this.f29682b.addView(lz0Var, c8.ja.e(-1, -1, 51));
             ?? h0Var = new v4.h0();
             h0Var.d = new ArrayList();
-            h0Var.f39459c = context;
+            h0Var.f39457c = context;
             HashMap hashMap = new HashMap();
             int size = arrayList.size();
             int i10 = 0;
@@ -168,16 +168,16 @@ public class ThemeEditorView {
             textView.setTypeface(org.telegram.messenger.g0.o());
             frameLayout2.addView(textView, c8.ja.e(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f36216b;
+                public final ThemeEditorView.EditorAlert f36206b;
 
                 {
-                    this.f36216b = this;
+                    this.f36206b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f36216b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f36206b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -229,16 +229,16 @@ public class ThemeEditorView {
             textView2.setTypeface(org.telegram.messenger.g0.o());
             frameLayout2.addView(textView2, c8.ja.e(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f36216b;
+                public final ThemeEditorView.EditorAlert f36206b;
 
                 {
-                    this.f36216b = this;
+                    this.f36206b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f36216b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f36206b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -295,16 +295,16 @@ public class ThemeEditorView {
             textView3.setTypeface(org.telegram.messenger.g0.o());
             frameLayout3.addView(textView3, c8.ja.e(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f36216b;
+                public final ThemeEditorView.EditorAlert f36206b;
 
                 {
-                    this.f36216b = this;
+                    this.f36206b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f36216b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f36206b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -359,16 +359,16 @@ public class ThemeEditorView {
             textView4.setTypeface(org.telegram.messenger.g0.o());
             linearLayout.addView(textView4, c8.ja.e(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f36216b;
+                public final ThemeEditorView.EditorAlert f36206b;
 
                 {
-                    this.f36216b = this;
+                    this.f36206b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f36216b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f36206b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -420,16 +420,16 @@ public class ThemeEditorView {
             textView5.setTypeface(org.telegram.messenger.g0.o());
             linearLayout.addView(textView5, c8.ja.e(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f36216b;
+                public final ThemeEditorView.EditorAlert f36206b;
 
                 {
-                    this.f36216b = this;
+                    this.f36206b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f36216b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f36206b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -560,8 +560,8 @@ public class ThemeEditorView {
         public final void L() {
             super.L();
             xz0 xz0Var = this.f32764q1;
-            if (xz0Var.f41816b.isFocused()) {
-                org.telegram.messenger.g0.v1(xz0Var.f41816b);
+            if (xz0Var.f41808b.isFocused()) {
+                org.telegram.messenger.g0.v1(xz0Var.f41808b);
             }
         }
 
@@ -679,9 +679,9 @@ public class ThemeEditorView {
         int i11;
         int round;
         if (z10) {
-            i11 = org.telegram.messenger.g0.f23609q.x;
+            i11 = org.telegram.messenger.g0.f23611q.x;
         } else {
-            i11 = org.telegram.messenger.g0.f23609q.y - i10;
+            i11 = org.telegram.messenger.g0.f23611q.y - i10;
             i10 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         }
         int i12 = i11 - i10;
@@ -729,7 +729,7 @@ public class ThemeEditorView {
         this.f32760o = i6Var;
         this.f32750c = new gz0(this, activity);
         this.f32755j = (WindowManager) activity.getSystemService("window");
-        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0);
+        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26609b.getSharedPreferences("themeconfig", 0);
         this.f32757l = sharedPreferences;
         int i7 = sharedPreferences.getInt("sidex", 1);
         int i10 = this.f32757l.getInt("sidey", 0);

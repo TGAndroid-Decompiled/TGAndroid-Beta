@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextWatcher;
 public final class qz0 implements TextWatcher {
-    public final int f38794a;
-    public final rz0 f38795b;
+    public final int f38792a;
+    public final rz0 f38793b;
 
     public qz0(rz0 rz0Var, int i7) {
-        this.f38795b = rz0Var;
-        this.f38794a = i7;
+        this.f38793b = rz0Var;
+        this.f38792a = i7;
     }
 
     @Override

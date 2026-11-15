@@ -17,9 +17,9 @@ public final class gq0 extends v4.n0 {
         if (view instanceof org.telegram.ui.Cells.n7) {
             org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) view;
             aq0 aq0Var = this.f35042a;
-            aq0Var.f39795n.getClass();
+            aq0Var.f39792n.getClass();
             int R = RecyclerView.R(n7Var);
-            int i7 = aq0Var.f39796r.J;
+            int i7 = aq0Var.f39793r.J;
             boolean z12 = true;
             if (R < i7) {
                 z10 = true;

@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class jl implements s10 {
-    public final int f24568a;
-    public final np f24569b;
-    public final s10 f24570c;
+    public final int f24573a;
+    public final np f24574b;
+    public final s10 f24575c;
 
     public jl(np npVar, s10 s10Var, int i7) {
-        this.f24568a = i7;
-        this.f24569b = npVar;
-        this.f24570c = s10Var;
+        this.f24573a = i7;
+        this.f24574b = npVar;
+        this.f24575c = s10Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         int i7;
-        switch (this.f24568a) {
+        switch (this.f24573a) {
             case 0:
                 TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                np npVar = this.f24569b;
+                np npVar = this.f24574b;
                 npVar.getClass();
-                s10 s10Var = this.f24570c;
+                s10 s10Var = this.f24575c;
                 if (messages_chats != null) {
                     ArrayList arrayList = new ArrayList(messages_chats.chats.size());
                     npVar.S3(messages_chats.chats, true);
@@ -46,7 +46,7 @@ public final class jl implements s10 {
             default:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                s10 s10Var2 = this.f24570c;
+                s10 s10Var2 = this.f24575c;
                 if (updates != null) {
                     ArrayList<TLRPC.Update> arrayList3 = updates.updates;
                     int size2 = arrayList3.size();
@@ -68,7 +68,7 @@ public final class jl implements s10 {
                             i7 = 0;
                         }
                     }
-                    np npVar2 = this.f24569b;
+                    np npVar2 = this.f24574b;
                     npVar2.O3(updates, false);
                     g0.h3(new l7(npVar2, s10Var2, i7, 13));
                     return;

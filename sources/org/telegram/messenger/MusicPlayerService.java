@@ -50,7 +50,7 @@ public class MusicPlayerService extends Service implements is {
     public static float d(gj gjVar, boolean z10) {
         if (z10) {
             if (gjVar != null) {
-                if (gj.R4(gjVar.f23817k) || gjVar.h4()) {
+                if (gj.R4(gjVar.f23819k) || gjVar.h4()) {
                     return MediaController.B().f22365q0;
                 }
                 return 1.0f;
@@ -99,7 +99,7 @@ public class MusicPlayerService extends Service implements is {
                     fileLocation2 = user.photo.photo_small;
                 }
                 if (fileLocation2 != null) {
-                    w7.G(m10.f24934t0);
+                    w7.G(m10.f24940t0);
                     File J = w7.J(fileLocation2, null, true, true);
                     if (J.exists()) {
                         float f10 = i10;
@@ -107,7 +107,7 @@ public class MusicPlayerService extends Service implements is {
                     } else if (z10) {
                         if (z11) {
                             this.f22397n = w7.r(null, fileLocation2);
-                            this.f22396f.q0(gc.l(m10.f24934t0, 0, user), "", null, null, null, 0);
+                            this.f22396f.q0(gc.l(m10.f24940t0, 0, user), "", null, null, null, 0);
                         } else {
                             this.f22397n = null;
                         }
@@ -121,7 +121,7 @@ public class MusicPlayerService extends Service implements is {
                     fileLocation = chat.photo.photo_small;
                 }
                 if (fileLocation != null) {
-                    w7.G(m10.f24934t0);
+                    w7.G(m10.f24940t0);
                     File J2 = w7.J(fileLocation, null, true, true);
                     if (J2.exists()) {
                         float f11 = i10;
@@ -148,7 +148,7 @@ public class MusicPlayerService extends Service implements is {
         } else {
             t8Var = new org.telegram.ui.Components.t8((TLRPC.Chat) tLObject);
         }
-        t8Var.f39602r = 1;
+        t8Var.f39600r = 1;
         float f12 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(g0.L(f12), g0.L(f12), Bitmap.Config.ARGB_8888);
         t8Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -162,17 +162,17 @@ public class MusicPlayerService extends Service implements is {
         String str2;
         int i11;
         float f10;
-        if (i7 == ns.f25500g2) {
+        if (i7 == ns.f25501g2) {
             gj gjVar = MediaController.B().f22377v0;
             if (gjVar != null) {
                 a(gjVar, false);
             } else {
                 stopSelf();
             }
-        } else if (i7 == ns.f25512i2) {
+        } else if (i7 == ns.f25513i2) {
             gj gjVar2 = MediaController.B().f22377v0;
             if (gjVar2 != null) {
-                long round = Math.round(((Float) objArr[1]).floatValue() * gjVar2.f23814j0) * 1000;
+                long round = Math.round(((Float) objArr[1]).floatValue() * gjVar2.f23816j0) * 1000;
                 f(round);
                 RemoteControlClient remoteControlClient = this.f22392a;
                 if (remoteControlClient != null) {
@@ -242,7 +242,7 @@ public class MusicPlayerService extends Service implements is {
         if (MediaController.B().B0) {
             android.support.v4.media.session.d0 d0Var = this.f22394c;
             d0Var.c(6, 0L, 1.0f);
-            d0Var.f1712e = 0L;
+            d0Var.f1719e = 0L;
         } else {
             gj gjVar = MediaController.B().f22377v0;
             if (gjVar != null && gjVar.I3()) {
@@ -273,7 +273,7 @@ public class MusicPlayerService extends Service implements is {
                 i7 = 2;
             }
             d0Var3.c(i7, j3, d(gjVar, z10));
-            d0Var3.f1712e = j10;
+            d0Var3.f1719e = j10;
             if (gjVar != null && gjVar.I3()) {
                 int i12 = gz.S0;
                 if (i12 != 1) {
@@ -310,8 +310,8 @@ public class MusicPlayerService extends Service implements is {
     public final void onCreate() {
         this.f22393b = (AudioManager) getSystemService("audio");
         for (int i7 = 0; i7 < 4; i7++) {
-            ns.f(i7).b(this, ns.f25512i2);
-            ns.f(i7).b(this, ns.f25500g2);
+            ns.f(i7).b(this, ns.f25513i2);
+            ns.f(i7).b(this, ns.f25501g2);
             ns.f(i7).b(this, ns.R1);
             ns.f(i7).b(this, ns.Y1);
         }
@@ -355,8 +355,8 @@ public class MusicPlayerService extends Service implements is {
             f22391w.q(false);
         }
         for (int i7 = 0; i7 < 4; i7++) {
-            ns.f(i7).n(this, ns.f25512i2);
-            ns.f(i7).n(this, ns.f25500g2);
+            ns.f(i7).n(this, ns.f25513i2);
+            ns.f(i7).n(this, ns.f25501g2);
             ns.f(i7).n(this, ns.R1);
             ns.f(i7).n(this, ns.Y1);
         }

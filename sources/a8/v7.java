@@ -17,7 +17,7 @@ public abstract class v7 {
     public static Task b(Intent intent) {
         c6.b bVar;
         GoogleSignInAccount googleSignInAccount;
-        org.telegram.messenger.d1 d1Var = d6.h.f7592a;
+        org.telegram.messenger.d1 d1Var = d6.h.f7595a;
         Status status = Status.h;
         if (intent == null) {
             bVar = new c6.b(null, status);
@@ -30,11 +30,11 @@ public abstract class v7 {
                 }
                 bVar = new c6.b(null, status);
             } else {
-                bVar = new c6.b(googleSignInAccount2, Status.f5907e);
+                bVar = new c6.b(googleSignInAccount2, Status.f5910e);
             }
         }
-        Status status3 = bVar.f4186a;
-        if (status3.b() && (googleSignInAccount = bVar.f4187b) != null) {
+        Status status3 = bVar.f4189a;
+        if (status3.b() && (googleSignInAccount = bVar.f4190b) != null) {
             return Tasks.forResult(googleSignInAccount);
         }
         return Tasks.forException(q6.m.l(status3));

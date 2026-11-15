@@ -30,22 +30,22 @@ import org.telegram.ui.ka1;
 import org.telegram.ui.pv0;
 import org.telegram.ui.yw;
 public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.messenger.kc, hj0, ap, w5.b, v5.e, ua.a {
-    public final int f8648a;
-    public final long f8649b;
-    public final Object f8650c;
+    public final int f8674a;
+    public final long f8675b;
+    public final Object f8676c;
     public final Object d;
 
     public h(Object obj, long j3, Object obj2, int i7) {
-        this.f8648a = i7;
-        this.f8650c = obj;
-        this.f8649b = j3;
+        this.f8674a = i7;
+        this.f8676c = obj;
+        this.f8675b = j3;
         this.d = obj2;
     }
 
     @Override
     public void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ResultCallback resultCallback = (ResultCallback) this.f8650c;
-        long j3 = this.f8649b;
+        ResultCallback resultCallback = (ResultCallback) this.f8676c;
+        long j3 = this.f8675b;
         File file = (File) this.d;
         org.telegram.messenger.ic p10 = imageReceiver.p();
         if (z10 && p10 != null && !p10.f24374c.isRecycled()) {
@@ -69,13 +69,13 @@ public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void a(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        org.telegram.messenger.g0.h3(new l((pv0) this.f8650c, this.f8649b, tL_chatAdminRights, str, z10, (yw) this.d));
+        org.telegram.messenger.g0.h3(new l((pv0) this.f8676c, this.f8675b, tL_chatAdminRights, str, z10, (yw) this.d));
     }
 
     @Override
     public Object apply(Object obj) {
         boolean z10;
-        String str = (String) this.f8650c;
+        String str = (String) this.f8676c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         int i7 = ((r5.c) this.d).f55896a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i7)});
@@ -86,7 +86,7 @@ public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.
                 z10 = false;
             }
             rawQuery.close();
-            long j3 = this.f8649b;
+            long j3 = this.f8675b;
             if (!z10) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("log_source", str);
@@ -105,7 +105,7 @@ public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void b(ua.b bVar) {
-        ((x9.a) bVar.get()).d((String) this.f8650c, this.f8649b, (da.p1) this.d);
+        ((x9.a) bVar.get()).d((String) this.f8676c, this.f8675b, (da.p1) this.d);
     }
 
     @Override
@@ -115,34 +115,34 @@ public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        ProfileActivity.h0((ProfileActivity) this.f8650c, (Context) this.d, this.f8649b, view, i7, f10, f11);
+        ProfileActivity.h0((ProfileActivity) this.f8676c, (Context) this.d, this.f8675b, view, i7, f10, f11);
     }
 
     @Override
     public Object g() {
-        ia.c cVar = (ia.c) this.f8650c;
-        long s5 = ((x5.a) cVar.f15878g).s() + this.f8649b;
+        ia.c cVar = (ia.c) this.f8676c;
+        long s5 = ((x5.a) cVar.f15878g).s() + this.f8675b;
         v5.g gVar = (v5.g) ((v5.d) cVar.f15875c);
         gVar.getClass();
-        gVar.c(new ai.c0(s5, (o5.i) this.d, 14));
+        gVar.c(new ai.d0(s5, (o5.i) this.d, 14));
         return null;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f8648a) {
+        switch (this.f8674a) {
             case 1:
-                c6 c6Var = (c6) this.f8650c;
+                c6 c6Var = (c6) this.f8676c;
                 vf.b h = t1Var.h(-1, true, true);
                 h.d();
                 TL_stars.deleteStarGift deletestargift = new TL_stars.deleteStarGift();
                 deletestargift.stargift = (TL_stars.InputSavedStarGift) this.d;
-                ConnectionsManager.getInstance(c6Var.f29679a).sendRequest(deletestargift, new o2(c6Var, h, this.f8649b, 0));
+                ConnectionsManager.getInstance(c6Var.f29679a).sendRequest(deletestargift, new o2(c6Var, h, this.f8675b, 0));
                 return;
             case 2:
-                hi.l8 l8Var = (hi.l8) this.f8650c;
+                hi.l8 l8Var = (hi.l8) this.f8676c;
                 ArrayList arrayList = (ArrayList) this.d;
-                l8Var.d.put(Long.valueOf(this.f8649b), arrayList);
+                l8Var.d.put(Long.valueOf(this.f8675b), arrayList);
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -159,16 +159,16 @@ public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.
             case 3:
             case 4:
             default:
-                c40 c40Var = (c40) this.f8650c;
-                np.s1(c40Var.f45951o1.f22778a).n(c40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.e2) c40Var.d2.M().getFragmentStack().get(c40Var.d2.M().getFragmentStack().size() - 1), new x2(c40Var, this.f8649b, 26));
+                c40 c40Var = (c40) this.f8676c;
+                np.s1(c40Var.f45940o1.f22782a).n(c40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.e2) c40Var.d2.M().getFragmentStack().get(c40Var.d2.M().getFragmentStack().size() - 1), new x2(c40Var, this.f8675b, 26));
                 return;
             case 5:
-                ar arVar = (ar) this.f8650c;
+                ar arVar = (ar) this.f8676c;
                 hi.d dVar = (hi.d) this.d;
                 if (!dVar.R) {
                     dVar.setLoading(true);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-                    getgroupcallstreamrtmpurl.peer = np.s1(arVar.f29679a).j1(this.f8649b);
+                    getgroupcallstreamrtmpurl.peer = np.s1(arVar.f29679a).j1(this.f8675b);
                     getgroupcallstreamrtmpurl.revoke = true;
                     ConnectionsManager.getInstance(arVar.f29679a).sendRequest(getgroupcallstreamrtmpurl, new wq(arVar, dVar, 0));
                     return;
@@ -179,14 +179,14 @@ public final class h implements ka1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((t) this.f8650c).u0(true, this.f8649b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+        ((t) this.f8676c).u0(true, this.f8675b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
     }
 
     public h(Object obj, Object obj2, long j3, int i7) {
-        this.f8648a = i7;
-        this.f8650c = obj;
+        this.f8674a = i7;
+        this.f8676c = obj;
         this.d = obj2;
-        this.f8649b = j3;
+        this.f8675b = j3;
     }
 
     @Override

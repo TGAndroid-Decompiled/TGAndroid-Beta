@@ -2,33 +2,26 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class fi implements Runnable {
-    public final int f23493a;
-    public final Object f23494b;
-    public final Object f23495c;
+    public final int f23496a;
+    public final Object f23497b;
+    public final Object f23498c;
 
     public fi(int i7, Object obj, Object obj2) {
-        this.f23493a = i7;
-        this.f23494b = obj;
-        this.f23495c = obj2;
+        this.f23496a = i7;
+        this.f23497b = obj;
+        this.f23498c = obj2;
     }
 
     @Override
     public final void run() {
-        SQLiteCursor queryFinalized;
-        TLRPC.ChatFull chatFull;
-        NativeByteBuffer byteBufferValue;
-        int i7 = this.f23493a;
-        SQLiteCursor sQLiteCursor = null;
-        Object obj = this.f23495c;
-        Object obj2 = this.f23494b;
+        int i7 = this.f23496a;
+        Object obj = this.f23498c;
+        Object obj2 = this.f23497b;
         switch (i7) {
             case 0:
                 z10 z10Var = (z10) obj2;
@@ -51,14 +44,14 @@ public final class fi implements Runnable {
                 siVar.B0.addAll((ArrayList) obj);
                 return;
             case 3:
-                ArrayList arrayList2 = ((si) ((androidx.activity.g) obj2).f1770c).B0;
+                ArrayList arrayList2 = ((si) ((androidx.activity.g) obj2).f1777c).B0;
                 arrayList2.clear();
                 arrayList2.addAll((ArrayList) obj);
                 ns.e().k(297, new Object[0]);
                 return;
             case 4:
                 gj gjVar = (gj) obj2;
-                gjVar.f23829n = (TLRPC.Document) obj;
+                gjVar.f23831n = (TLRPC.Document) obj;
                 ns.f(gjVar.K1).k(116, gjVar);
                 return;
             case 5:
@@ -182,7 +175,7 @@ public final class fi implements Runnable {
                 return;
             case 22:
                 np npVar10 = (np) obj2;
-                ((ai.f0) obj).a(npVar10.Y7);
+                ((ai.g0) obj).a(npVar10.Y7);
                 npVar10.X7 = false;
                 return;
             case 23:
@@ -200,7 +193,7 @@ public final class fi implements Runnable {
                 np npVar11 = (np) obj2;
                 gj gjVar2 = (gj) obj;
                 npVar11.getClass();
-                long B0 = gj.B0(gjVar2.f23817k);
+                long B0 = gj.B0(gjVar2.f23819k);
                 int e12 = gjVar2.e1();
                 a0.h hVar = npVar11.K0;
                 ArrayList arrayList4 = (ArrayList) hVar.f(B0);
@@ -215,86 +208,28 @@ public final class fi implements Runnable {
             case 26:
                 np npVar12 = (np) obj2;
                 TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) obj;
-                npVar12.f25387s1.clear();
-                npVar12.f25432x1.clear();
+                npVar12.f25390s1.clear();
+                npVar12.f25435x1.clear();
                 npVar12.Y3(updates_difference.users, false);
                 npVar12.S3(updates_difference.chats, false);
                 return;
             case 27:
                 gp gpVar = (gp) obj2;
                 TLObject tLObject = (TLObject) obj;
-                gpVar.f23896c = false;
+                gpVar.f23898c = false;
                 gpVar.d = true;
                 if (tLObject instanceof TL_account.TL_savedMusicIds) {
-                    gpVar.f23895b.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
+                    gpVar.f23897b.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
                 }
-                ns.f(gpVar.f23894a).k(245, new Object[0]);
+                ns.f(gpVar.f23896a).k(245, new Object[0]);
                 return;
             case 28:
-                xz.a((wz) obj2);
-                ((zq) obj).run();
+                ((u3) obj2).a((ArrayList) obj);
                 return;
             default:
-                vr vrVar = (vr) obj2;
-                TLRPC.ChatParticipants chatParticipants = (TLRPC.ChatParticipants) obj;
-                try {
-                    try {
-                        queryFinalized = vrVar.f27222b.queryFinalized("SELECT info, pinned, online, inviter FROM chat_settings_v2 WHERE uid = " + chatParticipants.chat_id, new Object[0]);
-                    } catch (Exception e10) {
-                        e = e10;
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
-                }
-                try {
-                    new ArrayList();
-                    if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
-                        TLRPC.ChatFull TLdeserialize = TLRPC.ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                        byteBufferValue.reuse();
-                        TLdeserialize.pinned_msg_id = queryFinalized.intValue(1);
-                        TLdeserialize.online_count = queryFinalized.intValue(2);
-                        TLdeserialize.inviterId = queryFinalized.longValue(3);
-                        chatFull = TLdeserialize;
-                    } else {
-                        chatFull = null;
-                    }
-                    queryFinalized.dispose();
-                    if (chatFull instanceof TLRPC.TL_chatFull) {
-                        chatFull.participants = chatParticipants;
-                        g0.h3(new rq(vrVar, chatFull, 1));
-                        SQLitePreparedStatement executeFast = vrVar.f27222b.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chatFull.getObjectSize());
-                        chatFull.serializeToStream(nativeByteBuffer);
-                        executeFast.bindLong(1, chatFull.f28052id);
-                        executeFast.bindByteBuffer(2, nativeByteBuffer);
-                        executeFast.bindInteger(3, chatFull.pinned_msg_id);
-                        executeFast.bindInteger(4, chatFull.online_count);
-                        executeFast.bindLong(5, chatFull.inviterId);
-                        executeFast.bindInteger(6, chatFull.invitesCount);
-                        executeFast.bindInteger(7, chatFull.participants_count);
-                        executeFast.step();
-                        executeFast.dispose();
-                        nativeByteBuffer.reuse();
-                        return;
-                    }
-                    return;
-                } catch (Exception e11) {
-                    e = e11;
-                    sQLiteCursor = queryFinalized;
-                    vrVar.o(e, true);
-                    if (sQLiteCursor != null) {
-                        sQLiteCursor.dispose();
-                        return;
-                    }
-                    return;
-                } catch (Throwable th3) {
-                    th = th3;
-                    sQLiteCursor = queryFinalized;
-                    if (sQLiteCursor != null) {
-                        sQLiteCursor.dispose();
-                    }
-                    throw th;
-                }
+                xz.a((wz) obj2);
+                ((yq) obj).run();
+                return;
         }
     }
 }

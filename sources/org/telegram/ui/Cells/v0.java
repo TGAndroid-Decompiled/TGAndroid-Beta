@@ -83,7 +83,7 @@ public final class v0 extends FrameLayout {
         ((v60) this.f31785e).B1 = true;
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(180L);
-        animatorSet.setInterpolator(er.f34421g);
+        animatorSet.setInterpolator(er.f34420g);
         Property property = View.ALPHA;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textViewArr[0], property, 1.0f, 0.0f);
         TextView textView = textViewArr[0];
@@ -247,7 +247,7 @@ public final class v0 extends FrameLayout {
         switch (this.f31782a) {
             case 1:
                 jz jzVar = (jz) this.f31785e;
-                if (motionEvent.getAction() == 0 && jzVar.f36210s1 != 0 && motionEvent.getY() < jzVar.f36210s1) {
+                if (motionEvent.getAction() == 0 && jzVar.f36200s1 != 0 && motionEvent.getY() < jzVar.f36200s1) {
                     jzVar.dismiss();
                     return true;
                 }
@@ -280,14 +280,14 @@ public final class v0 extends FrameLayout {
                 jz jzVar = (jz) this.f31785e;
                 di.c1 c1Var = jzVar.n1;
                 boolean z10 = true;
-                jzVar.f36211t1 = true;
+                jzVar.f36201t1 = true;
                 int i12 = jzVar.f29717u0;
-                setPadding(i12, org.telegram.messenger.g0.f23603m, i12, 0);
-                jzVar.f36211t1 = false;
+                setPadding(i12, org.telegram.messenger.g0.f23605m, i12, 0);
+                jzVar.f36201t1 = false;
                 int L = org.telegram.messenger.g0.L(48.0f);
                 int L2 = org.telegram.messenger.g0.L(48.0f);
                 int i13 = jzVar.f29716t0;
-                int b10 = (jzVar.f36206o1.b() * L2) + L + i13 + org.telegram.messenger.g0.f23603m;
+                int b10 = (jzVar.f36196o1.b() * L2) + L + i13 + org.telegram.messenger.g0.f23605m;
                 int i14 = size / 5;
                 if (b10 < i14 * 3.2d) {
                     i11 = 0;
@@ -301,9 +301,9 @@ public final class v0 extends FrameLayout {
                     i13 = i11;
                 }
                 if (c1Var.getPaddingTop() != i13) {
-                    jzVar.f36211t1 = true;
+                    jzVar.f36201t1 = true;
                     c1Var.setPadding(org.telegram.messenger.g0.L(10.0f), i13, org.telegram.messenger.g0.L(10.0f), 0);
-                    jzVar.f36211t1 = false;
+                    jzVar.f36201t1 = false;
                 }
                 if (b10 < size) {
                     z10 = false;
@@ -357,7 +357,7 @@ public final class v0 extends FrameLayout {
     public void requestLayout() {
         switch (this.f31782a) {
             case 1:
-                if (!((jz) this.f31785e).f36211t1) {
+                if (!((jz) this.f31785e).f36201t1) {
                     super.requestLayout();
                     return;
                 }

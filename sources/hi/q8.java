@@ -102,7 +102,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
         this.T1 = true;
         this.U1 = false;
         this.L1 = i7;
-        String string = np.s1(this.f29679a).f25280f7.getString("story_prv_contacts", null);
+        String string = np.s1(this.f29679a).f25283f7.getString("story_prv_contacts", null);
         if (string != null) {
             String[] split = string.split(",");
             arrayList3.clear();
@@ -113,7 +113,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
                 }
             }
         }
-        String string2 = np.s1(this.f29679a).f25280f7.getString("story_prv_grpcontacts", null);
+        String string2 = np.s1(this.f29679a).f25283f7.getString("story_prv_grpcontacts", null);
         if (string2 != null) {
             String[] split2 = string2.split(";");
             hashMap2.clear();
@@ -145,7 +145,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
         }
         boolean z12 = z11;
         ?? r23 = c11;
-        String string3 = np.s1(this.f29679a).f25280f7.getString("story_prv_everyoneexcept", null);
+        String string3 = np.s1(this.f29679a).f25283f7.getString("story_prv_everyoneexcept", null);
         if (string3 != null) {
             String[] split4 = string3.split(",");
             arrayList.clear();
@@ -156,7 +156,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
                 }
             }
         }
-        String string4 = np.s1(this.f29679a).f25280f7.getString("story_prv_grpeveryoneexcept", null);
+        String string4 = np.s1(this.f29679a).f25283f7.getString("story_prv_grpeveryoneexcept", null);
         if (string4 != null) {
             String[] split5 = string4.split(";");
             hashMap.clear();
@@ -175,7 +175,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
                 }
             }
         }
-        String string5 = np.s1(this.f29679a).f25280f7.getString("story_prv_excluded", null);
+        String string5 = np.s1(this.f29679a).f25283f7.getString("story_prv_excluded", null);
         if (string5 != null) {
             String[] split7 = string5.split(",");
             arrayList2.clear();
@@ -188,12 +188,12 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
         }
         this.f14925u1 = R0(arrayList3, hashMap2).size();
         this.f14921q1 = R0(arrayList, hashMap).size();
-        this.f14928x1 = !np.s1(this.f29679a).f25280f7.getBoolean("story_noforwards", r23);
-        this.f14929y1 = np.s1(this.f29679a).f25280f7.getBoolean("story_keep", z12);
+        this.f14928x1 = !np.s1(this.f29679a).f25283f7.getBoolean("story_noforwards", r23);
+        this.f14929y1 = np.s1(this.f29679a).f25283f7.getBoolean("story_keep", z12);
         P0(context);
         this.f14918m1.setAdapter(new p7(this, context, 0));
         vr a02 = vr.a0(this.f29679a);
-        a02.f27220a.c(new h4(13, this, a02));
+        a02.f27219a.c(new h4(13, this, a02));
         np.s1(this.f29679a).P1().S();
         np.s1(this.f29679a).P1().U();
     }
@@ -251,8 +251,8 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
     @Override
     public final void L() {
         ns.f(this.f29679a).n(this, ns.O);
-        ns.f(this.f29679a).n(this, ns.f25466a3);
-        ns.f(this.f29679a).n(this, ns.f25478c3);
+        ns.f(this.f29679a).n(this, ns.f25467a3);
+        ns.f(this.f29679a).n(this, ns.f25479c3);
         super.L();
     }
 
@@ -336,7 +336,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
     public final ArrayList O0() {
         TLRPC.User a22;
         ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = org.telegram.messenger.g5.r(this.f29679a).f23679f0;
+        ArrayList arrayList2 = org.telegram.messenger.g5.r(this.f29679a).f23681f0;
         if (arrayList2 == null || arrayList2.isEmpty()) {
             org.telegram.messenger.g5.r(this.f29679a).A(0L, false);
         }
@@ -355,8 +355,8 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
     public final void P0(Context context) {
         xb.a(this.f29685c, new bi.t(1));
         ns.f(this.f29679a).c(this, ns.O);
-        ns.f(this.f29679a).c(this, ns.f25466a3);
-        ns.f(this.f29679a).c(this, ns.f25478c3);
+        ns.f(this.f29679a).c(this, ns.f25467a3);
+        ns.f(this.f29679a).c(this, ns.f25479c3);
         int i7 = org.telegram.ui.ActionBar.j6.f28922h5;
         this.M1.setColor(org.telegram.ui.ActionBar.j6.w0(i7, this.J0));
         Q(i7);
@@ -512,7 +512,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
                 if (view2 instanceof l8) {
                     ((l8) view2).h(true);
                 }
-            } else if (i7 == ns.f25466a3) {
+            } else if (i7 == ns.f25467a3) {
                 View[] viewPages2 = i1Var.getViewPages();
                 while (i11 < viewPages2.length) {
                     View view3 = viewPages2[i11];
@@ -527,7 +527,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
                     }
                     i11++;
                 }
-            } else if (i7 == ns.f25478c3) {
+            } else if (i7 == ns.f25479c3) {
                 View[] viewPages3 = i1Var.getViewPages();
                 while (i11 < viewPages3.length) {
                     View view4 = viewPages3[i11];
@@ -597,7 +597,7 @@ public final class q8 extends org.telegram.ui.ActionBar.u2 implements is {
             sb3.append(",");
             sb3.append(TextUtils.join(",", (Iterable) entry2.getValue()));
         }
-        np.s1(this.f29679a).f25280f7.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb3.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb2.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f14928x1).putBoolean("story_keep", this.f14929y1).apply();
+        np.s1(this.f29679a).f25283f7.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb3.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb2.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f14928x1).putBoolean("story_keep", this.f14929y1).apply();
         super.dismiss();
     }
 

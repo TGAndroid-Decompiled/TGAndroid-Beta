@@ -125,7 +125,7 @@ public final class c {
             if (mediaInfo == null) {
                 i7 = -1;
             } else {
-                i7 = mediaInfo.f5877b;
+                i7 = mediaInfo.f5880b;
             }
             int i10 = e10.f11126e;
             int i11 = e10.f11127f;

@@ -147,7 +147,7 @@ public final class t implements Runnable {
                                 if (!arrayList4.isEmpty()) {
                                     for (int i21 = i14; i21 < arrayList4.size(); i21++) {
                                         gj gjVar2 = (gj) arrayList4.get(i21);
-                                        if (gjVar2 == null || gjVar == null || gjVar.e1() != gjVar2.e1() || gj.B0(gjVar.f23817k) != gj.B0(gjVar2.f23817k)) {
+                                        if (gjVar2 == null || gjVar == null || gjVar.e1() != gjVar2.e1() || gj.B0(gjVar.f23819k) != gj.B0(gjVar2.f23819k)) {
                                         }
                                     }
                                 }
@@ -210,7 +210,7 @@ public final class t implements Runnable {
                         if (z51Var != null) {
                             Object[] objArr = new Object[i10];
                             objArr[0] = h0Var2.f17083a0;
-                            ((TextView) z51Var.f53882b).setText(hd.a0(null, null, 2131745750, objArr));
+                            ((TextView) z51Var.f53847b).setText(hd.a0(null, null, 2131745750, objArr));
                         }
                         h0Var2.f();
                         h0Var2.P = i7;

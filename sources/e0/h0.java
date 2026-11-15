@@ -142,14 +142,14 @@ public final class h0 implements Handler.Callback, ServiceConnection {
                 IBinder iBinder = f0Var.f9886b;
                 g0 g0Var3 = (g0) this.f9906c.get(componentName);
                 if (g0Var3 != null) {
-                    int i10 = b.b.f2840a;
+                    int i10 = b.b.f2843a;
                     if (iBinder != null) {
-                        IInterface queryLocalInterface = iBinder.queryLocalInterface(b.c.f2841g);
+                        IInterface queryLocalInterface = iBinder.queryLocalInterface(b.c.f2844g);
                         if (queryLocalInterface != null && (queryLocalInterface instanceof b.c)) {
                             cVar = (b.c) queryLocalInterface;
                         } else {
                             ?? obj = new Object();
-                            obj.f2839a = iBinder;
+                            obj.f2842a = iBinder;
                             cVar = obj;
                         }
                     }

@@ -74,10 +74,10 @@ public final class s0 extends q5 {
         EGLContext eGLContext = this.d;
         if (eGLContext != null) {
             if (u9Var != null) {
-                synchronized (u9Var.f39971f) {
+                synchronized (u9Var.f39970f) {
                     try {
-                        if (u9Var.f39972g == eGLContext) {
-                            u9Var.f39972g = null;
+                        if (u9Var.f39971g == eGLContext) {
+                            u9Var.f39971g = null;
                         }
                     } finally {
                     }
@@ -93,10 +93,10 @@ public final class s0 extends q5 {
         }
         if (u9Var != null) {
             r0 r0Var = this.f56773y;
-            ArrayList arrayList = u9Var.f39970e;
+            ArrayList arrayList = u9Var.f39969e;
             arrayList.remove(r0Var);
             if (arrayList.isEmpty() && u9Var.d.isEmpty()) {
-                u9Var.f39978n.o();
+                u9Var.f39977n.o();
             }
         }
     }
@@ -121,13 +121,13 @@ public final class s0 extends q5 {
             r6 = false;
             boolean z10 = false;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-                if (r2.f26198a) {
+                if (r2.f26206a) {
                     i20.u(this.f56764b, new StringBuilder("eglGetDisplay failed "));
                 }
                 finish();
             } else {
                 if (!this.f56764b.eglInitialize(eglGetDisplay, new int[2])) {
-                    if (r2.f26198a) {
+                    if (r2.f26206a) {
                         i20.u(this.f56764b, new StringBuilder("eglInitialize failed "));
                     }
                     finish();
@@ -135,7 +135,7 @@ public final class s0 extends q5 {
                     int[] iArr = new int[1];
                     EGLConfig[] eGLConfigArr = new EGLConfig[1];
                     if (!this.f56764b.eglChooseConfig(this.f56765c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                        if (r2.f26198a) {
+                        if (r2.f26206a) {
                             i20.u(this.f56764b, new StringBuilder("eglChooseConfig failed "));
                         }
                         finish();
@@ -144,9 +144,9 @@ public final class s0 extends q5 {
                             EGLConfig eGLConfig = eGLConfigArr[0];
                             int[] iArr2 = {12440, 2, 12344};
                             if (u9Var != null) {
-                                synchronized (u9Var.f39971f) {
+                                synchronized (u9Var.f39970f) {
                                     try {
-                                        eGLContext = u9Var.f39972g;
+                                        eGLContext = u9Var.f39971g;
                                         if (eGLContext == null) {
                                             eGLContext = EGL10.EGL_NO_CONTEXT;
                                         }
@@ -159,21 +159,21 @@ public final class s0 extends q5 {
                             EGLContext eglCreateContext = this.f56764b.eglCreateContext(this.f56765c, eGLConfig, eGLContext, iArr2);
                             this.d = eglCreateContext;
                             if (eglCreateContext == null) {
-                                if (r2.f26198a) {
+                                if (r2.f26206a) {
                                     i20.u(this.f56764b, new StringBuilder("eglCreateContext failed "));
                                 }
                                 finish();
                             } else {
                                 if (u9Var != null) {
                                     u9Var.a(eglCreateContext);
-                                    u9Var.f39970e.add(this.f56773y);
+                                    u9Var.f39969e.add(this.f56773y);
                                 }
                                 if (surfaceTexture != null) {
                                     EGLSurface eglCreateWindowSurface = this.f56764b.eglCreateWindowSurface(this.f56765c, eGLConfig, surfaceTexture, null);
                                     this.f56766e = eglCreateWindowSurface;
                                     if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
                                         if (!this.f56764b.eglMakeCurrent(this.f56765c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
-                                            if (r2.f26198a) {
+                                            if (r2.f26206a) {
                                                 i20.u(this.f56764b, new StringBuilder("eglMakeCurrent failed "));
                                             }
                                             finish();
@@ -197,7 +197,7 @@ public final class s0 extends q5 {
                                                 e2.r0 b10 = v0.b(35633, (String) map2.get("vertex"));
                                                 int i10 = b10.f10369a;
                                                 if (b10.f10370b == 0) {
-                                                    if (r2.f26198a) {
+                                                    if (r2.f26206a) {
                                                         a8.d("Vertex shader compilation failed");
                                                     }
                                                     v0.c(i10, i7, obj.f56816a);
@@ -205,7 +205,7 @@ public final class s0 extends q5 {
                                                     e2.r0 b11 = v0.b(35632, str);
                                                     int i11 = b11.f10369a;
                                                     if (b11.f10370b == 0) {
-                                                        if (r2.f26198a) {
+                                                        if (r2.f26206a) {
                                                             a8.d("Fragment shader compilation failed");
                                                         }
                                                         v0.c(i10, i11, obj.f56816a);
@@ -219,7 +219,7 @@ public final class s0 extends q5 {
                                                         GLES20.glLinkProgram(i13);
                                                         int[] iArr3 = new int[1];
                                                         GLES20.glGetProgramiv(i13, 35714, iArr3, i7);
-                                                        if (iArr3[i7] == 0 && r2.f26198a) {
+                                                        if (iArr3[i7] == 0 && r2.f26206a) {
                                                             a8.d(GLES20.glGetProgramInfoLog(i13));
                                                         }
                                                         if (iArr3[i7] == 0) {
@@ -244,15 +244,15 @@ public final class s0 extends q5 {
                                             }
                                             i0Var.f56662r = DesugarCollections.unmodifiableMap(hashMap);
                                             nt0 nt0Var = i0Var.f56652g;
-                                            if (u0Var.h.getWidth() != nt0Var.f37713a || u0Var.h.getHeight() != nt0Var.f37714b) {
-                                                Bitmap createBitmap = Bitmap.createBitmap((int) nt0Var.f37713a, (int) nt0Var.f37714b, Bitmap.Config.ARGB_8888);
-                                                new Canvas(createBitmap).drawBitmap(u0Var.h, (Rect) null, new RectF(0.0f, 0.0f, nt0Var.f37713a, nt0Var.f37714b), (Paint) null);
+                                            if (u0Var.h.getWidth() != nt0Var.f37702a || u0Var.h.getHeight() != nt0Var.f37703b) {
+                                                Bitmap createBitmap = Bitmap.createBitmap((int) nt0Var.f37702a, (int) nt0Var.f37703b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap).drawBitmap(u0Var.h, (Rect) null, new RectF(0.0f, 0.0f, nt0Var.f37702a, nt0Var.f37703b), (Paint) null);
                                                 u0Var.h = createBitmap;
                                                 u0Var.f56788r = true;
                                             }
-                                            if (u0Var.f56787n != null && (bitmap.getWidth() != nt0Var.f37713a || u0Var.f56787n.getHeight() != nt0Var.f37714b)) {
-                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) nt0Var.f37713a, (int) nt0Var.f37714b, Bitmap.Config.ARGB_8888);
-                                                new Canvas(createBitmap2).drawBitmap(u0Var.f56787n, (Rect) null, new RectF(0.0f, 0.0f, nt0Var.f37713a, nt0Var.f37714b), (Paint) null);
+                                            if (u0Var.f56787n != null && (bitmap.getWidth() != nt0Var.f37702a || u0Var.f56787n.getHeight() != nt0Var.f37703b)) {
+                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) nt0Var.f37702a, (int) nt0Var.f37703b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap2).drawBitmap(u0Var.f56787n, (Rect) null, new RectF(0.0f, 0.0f, nt0Var.f37702a, nt0Var.f37703b), (Paint) null);
                                                 u0Var.f56787n = createBitmap2;
                                                 u0Var.f56788r = true;
                                             }
@@ -271,7 +271,7 @@ public final class s0 extends q5 {
                                             z10 = true;
                                         }
                                     } else {
-                                        if (r2.f26198a) {
+                                        if (r2.f26206a) {
                                             i20.u(this.f56764b, new StringBuilder("createWindowSurface failed "));
                                         }
                                         finish();
@@ -281,7 +281,7 @@ public final class s0 extends q5 {
                                 }
                             }
                         } else {
-                            if (r2.f26198a) {
+                            if (r2.f26206a) {
                                 a8.d("eglConfig not initialized");
                             }
                             finish();

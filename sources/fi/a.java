@@ -46,11 +46,11 @@ public final class a extends FrameLayout {
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         FrameLayout frameLayout = new FrameLayout(context);
         dh.j jVar = new dh.j();
-        jVar.f8160a = bVar;
+        jVar.f8163a = bVar;
         jVar.a();
-        jVar.f8165g.setColor(-14670806);
+        jVar.f8168g.setColor(-14670806);
         jVar.invalidateSelf();
-        jVar.f8164f = org.telegram.messenger.g0.L(1.0f);
+        jVar.f8167f = org.telegram.messenger.g0.L(1.0f);
         frameLayout.setBackground(jVar);
         addView(frameLayout, ja.e(40, 40, 17));
         ImageView e10 = i20.e(context, 2131231778);
@@ -126,7 +126,7 @@ public final class a extends FrameLayout {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f11395n = ofFloat;
             ofFloat.addUpdateListener(new ah.h(this, 12));
-            this.f11395n.addListener(new ai.i0(this, 8));
+            this.f11395n.addListener(new ai.j0(this, 8));
             i20.k(2.5f, this.f11395n);
             this.f11395n.setDuration(200L);
             this.f11395n.start();

@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import org.telegram.ui.Components.i90;
-public final class m2 extends i90 {
+import org.telegram.ui.Components.j90;
+public final class m2 extends j90 {
     public final b4 W;
 
     public m2(b4 b4Var, Context context, long j3, org.telegram.ui.ActionBar.e2 e2Var, org.telegram.ui.ActionBar.e6 e6Var) {

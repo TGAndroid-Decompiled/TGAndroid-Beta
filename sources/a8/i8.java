@@ -6,7 +6,7 @@ public abstract class i8 {
         cb.a aVar = new cb.a(str, str2);
         e2.j0 a10 = u9.a.a(cb.a.class);
         a10.f10125b = 1;
-        a10.f10128f = new tg.a2(aVar, 6);
+        a10.f10128f = new tg.z1(aVar, 6);
         return a10.b();
     }
 

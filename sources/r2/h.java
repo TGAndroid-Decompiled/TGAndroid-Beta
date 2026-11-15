@@ -52,12 +52,12 @@ public final class h {
         this.d = cfVar2;
         this.f55783i = list;
         this.f55785k = jVar;
-        j2.h createDataSource = ((j2.g) cfVar.f33543a).createDataSource();
+        j2.h createDataSource = ((j2.g) cfVar.f33545a).createDataSource();
         this.f55778b = createDataSource;
         if (c0Var != null) {
             createDataSource.addTransferListener(c0Var);
         }
-        this.f55779c = ((j2.g) cfVar.f33543a).createDataSource();
+        this.f55779c = ((j2.g) cfVar.f33545a).createDataSource();
         this.h = new m1("", uVarArr);
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < wVarArr.length; i7++) {
@@ -263,9 +263,9 @@ public final class h {
             return null;
         }
         ou ouVar = this.f55784j;
-        byte[] bArr = (byte[]) ((v) ouVar.f25804b).remove(uri);
+        byte[] bArr = (byte[]) ((v) ouVar.f25806b).remove(uri);
         if (bArr != null) {
-            byte[] bArr2 = (byte[]) ((v) ouVar.f25804b).put(uri, bArr);
+            byte[] bArr2 = (byte[]) ((v) ouVar.f25806b).put(uri, bArr);
             return null;
         }
         j2.m mVar = new j2.m(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 1);

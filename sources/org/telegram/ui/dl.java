@@ -2,32 +2,32 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class dl extends mq0 {
-    public final org.telegram.messenger.gj f46419a;
-    public final org.telegram.messenger.ff f46420b;
-    public final el f46421c;
+    public final org.telegram.messenger.gj f46391a;
+    public final org.telegram.messenger.ff f46392b;
+    public final el f46393c;
 
     public dl(el elVar, org.telegram.messenger.gj gjVar, org.telegram.messenger.ff ffVar) {
-        this.f46421c = elVar;
-        this.f46419a = gjVar;
-        this.f46420b = ffVar;
+        this.f46393c = elVar;
+        this.f46391a = gjVar;
+        this.f46392b = ffVar;
     }
 
     @Override
     public final uq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
-        return this.f46421c.f46862a.R.f45158cb.E(this.f46419a, fileLocation, i7, z10, false);
+        return this.f46393c.f46852a.R.f45157cb.E(this.f46391a, fileLocation, i7, z10, false);
     }
 
     @Override
     public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
-        jl jlVar = this.f46421c.f46862a;
-        org.telegram.messenger.gj gjVar = this.f46419a;
-        gjVar.f23840q = true;
-        org.telegram.messenger.ff ffVar = this.f46420b;
-        if (ffVar.h == null && !ffVar.f27708b) {
+        jl jlVar = this.f46393c.f46852a;
+        org.telegram.messenger.gj gjVar = this.f46391a;
+        gjVar.f23842q = true;
+        org.telegram.messenger.ff ffVar = this.f46392b;
+        if (ffVar.h == null && !ffVar.f27710b) {
             TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
             tL_photos_updateProfilePhoto.f28185id = tL_inputPhoto;
-            TLRPC.Photo photo = gjVar.f23817k.action.photo;
+            TLRPC.Photo photo = gjVar.f23819k.action.photo;
             tL_inputPhoto.f28070id = photo.f28075id;
             tL_inputPhoto.access_hash = photo.access_hash;
             tL_inputPhoto.file_reference = photo.file_reference;

@@ -1,57 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import org.webrtc.TextureViewRenderer;
 public final class fr implements Runnable {
     public final int f23539a;
-    public final Object f23540b;
-    public final long f23541c;
-    public final Object d;
+    public final int f23540b;
+    public final int f23541c;
+    public final int d;
+    public final int f23542e;
+    public final Object f23543f;
 
-    public fr(Object obj, Object obj2, long j3, int i7) {
-        this.f23539a = i7;
-        this.f23540b = obj;
-        this.d = obj2;
-        this.f23541c = j3;
-    }
-
-    private final void a() {
-        c10 c10Var = (c10) this.f23540b;
-        long j3 = this.f23541c;
-        x00 x00Var = (x00) this.d;
-        synchronized (c10Var) {
-            try {
-                ArrayList arrayList = (ArrayList) c10Var.I.get(Long.valueOf(j3));
-                if (arrayList != null) {
-                    arrayList.remove(x00Var);
-                    if (arrayList.isEmpty()) {
-                        c10Var.I.remove(Long.valueOf(j3));
-                    }
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
-        tL_messages_translateRichMessage.flags |= 1;
-        tL_messages_translateRichMessage.peer = c10Var.getMessagesController().j1(j3);
-        tL_messages_translateRichMessage.f28174id = x00Var.f27447b;
-        tL_messages_translateRichMessage.to_lang = c10.D(x00Var.d);
-        int sendRequest = c10Var.getConnectionsManager().sendRequest(tL_messages_translateRichMessage, new mj(c10Var, x00Var, j3, 12));
-        synchronized (c10Var) {
-            x00Var.f27450f = sendRequest;
-        }
+    public fr(Object obj, int i7, int i10, int i11, int i12, int i13) {
+        this.f23539a = i13;
+        this.f23543f = obj;
+        this.f23540b = i7;
+        this.f23541c = i10;
+        this.d = i11;
+        this.f23542e = i12;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fr.run():void");
-    }
-
-    public fr(c1 c1Var, long j3, Object obj, int i7) {
-        this.f23539a = i7;
-        this.f23540b = c1Var;
-        this.f23541c = j3;
-        this.d = obj;
+        switch (this.f23539a) {
+            case 0:
+                ((vr) this.f23543f).B1(this.f23540b, this.f23541c, this.d, this.f23542e);
+                return;
+            case 1:
+                org.telegram.ui.an.g0((org.telegram.ui.an) this.f23543f, this.f23540b, this.f23541c, this.d, this.f23542e);
+                return;
+            default:
+                TextureViewRenderer.a((TextureViewRenderer) this.f23543f, this.f23540b, this.f23541c, this.d, this.f23542e);
+                return;
+        }
     }
 }

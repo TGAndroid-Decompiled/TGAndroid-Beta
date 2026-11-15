@@ -3,7 +3,7 @@ package jg;
 import java.util.ArrayList;
 import org.telegram.messenger.pi;
 import org.telegram.ui.Cells.g2;
-import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.e90;
 public final class u0 implements pi, g2 {
     public final h1 f17297a;
 
@@ -26,13 +26,13 @@ public final class u0 implements pi, g2 {
         h1Var.L = null;
         h1Var.Q = null;
         h1Var.f();
-        d90 d90Var = h1Var.W;
+        e90 e90Var = h1Var.W;
         ArrayList arrayList2 = h1Var.O;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        d90Var.a(z10);
+        e90Var.a(z10);
     }
 }

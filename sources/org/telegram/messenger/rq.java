@@ -1,33 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.List;
 public final class rq implements Runnable {
-    public final int f26325a;
-    public final vr f26326b;
-    public final TLRPC.TL_chatFull f26327c;
+    public final int f26333a;
+    public final c1 f26334b;
+    public final long f26335c;
+    public final boolean d;
+    public final int f26336e;
+    public final Object f26337f;
 
-    public rq(vr vrVar, TLRPC.TL_chatFull tL_chatFull, int i7) {
-        this.f26325a = i7;
-        this.f26326b = vrVar;
-        this.f26327c = tL_chatFull;
+    public rq(c1 c1Var, long j3, List list, boolean z10, int i7, int i10) {
+        this.f26333a = i10;
+        this.f26334b = c1Var;
+        this.f26335c = j3;
+        this.f26337f = list;
+        this.d = z10;
+        this.f26336e = i7;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26325a;
-        TLRPC.TL_chatFull tL_chatFull = this.f26327c;
-        vr vrVar = this.f26326b;
-        switch (i7) {
-            case 0:
-                ns notificationCenter = vrVar.getNotificationCenter();
-                Boolean bool = Boolean.FALSE;
-                notificationCenter.k(30, tL_chatFull, 0, bool, bool);
-                return;
-            default:
-                ns notificationCenter2 = vrVar.getNotificationCenter();
-                Boolean bool2 = Boolean.FALSE;
-                notificationCenter2.k(30, tL_chatFull, 0, bool2, bool2);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.rq.run():void");
+    }
+
+    public rq(vr vrVar, boolean z10, String str, long j3, int i7, String str2) {
+        this.f26333a = 0;
+        this.f26334b = vrVar;
+        this.d = z10;
+        this.f26337f = str;
+        this.f26335c = j3;
+        this.f26336e = i7;
     }
 }

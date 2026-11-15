@@ -66,17 +66,17 @@ public final class b1 implements Runnable {
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
-                        t60Var.a(np.s1(cVar.f22778a).j1(gj.B1(joinaspeers.peers.get(0))), false, false, false);
+                        t60Var.a(np.s1(cVar.f22782a).j1(gj.B1(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
                     v60.D1 = joinaspeers.peers;
                     long j3 = this.f18207c;
                     v60.F1 = j3;
                     v60.E1 = SystemClock.elapsedRealtime();
-                    int i10 = cVar.f22778a;
+                    int i10 = cVar.f22782a;
                     v60.G1 = i10;
                     np.s1(i10).S3(joinaspeers.chats, false);
-                    np.s1(cVar.f22778a).Y3(joinaspeers.users, false);
+                    np.s1(cVar.f22782a).Y3(joinaspeers.users, false);
                     v60.L0(context2, j3, joinaspeers.peers, e2Var, this.f18208e, peer, t60Var);
                     return;
                 }

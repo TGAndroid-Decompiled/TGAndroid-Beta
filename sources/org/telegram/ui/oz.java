@@ -4,23 +4,23 @@ import android.text.TextUtils;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class oz extends v4.t0 {
-    public final zz f50091a;
+    public final zz f50068a;
 
     public oz(zz zzVar) {
-        this.f50091a = zzVar;
+        this.f50068a = zzVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         if (i7 == 1) {
-            org.telegram.messenger.g0.v1(this.f50091a.L.getCurrentFocus());
+            org.telegram.messenger.g0.v1(this.f50068a.L.getCurrentFocus());
         }
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         org.telegram.messenger.gj gjVar;
-        zz zzVar = this.f50091a;
+        zz zzVar = this.f50068a;
         rz rzVar = zzVar.f54091n0;
         v4.b0 b0Var = zzVar.f54088k0;
         te.a aVar = zzVar.f54073a;
@@ -50,12 +50,12 @@ public final class oz extends v4.t0 {
                             gjVar = o7Var.f30812b[0];
                         }
                         if (gjVar != null) {
-                            int i11 = gjVar.f23817k.date;
+                            int i11 = gjVar.f23819k.date;
                             rzVar.getClass();
                             String u10 = org.telegram.messenger.hd.u(i11, false);
-                            if (!TextUtils.equals(rzVar.f51057c, u10)) {
-                                rzVar.f51057c = u10;
-                                rzVar.f51055a.t(u10, true, true);
+                            if (!TextUtils.equals(rzVar.f51053c, u10)) {
+                                rzVar.f51053c = u10;
+                                rzVar.f51051a.t(u10, true, true);
                                 return;
                             }
                             return;
@@ -72,9 +72,9 @@ public final class oz extends v4.t0 {
                 CharSequence text = x3Var.getText();
                 if (!TextUtils.isEmpty(text) && x3Var.getAlpha() > 0.0f) {
                     String charSequence = text.toString();
-                    if (!TextUtils.equals(rzVar.f51057c, charSequence)) {
-                        rzVar.f51057c = charSequence;
-                        rzVar.f51055a.t(charSequence, true, true);
+                    if (!TextUtils.equals(rzVar.f51053c, charSequence)) {
+                        rzVar.f51053c = charSequence;
+                        rzVar.f51051a.t(charSequence, true, true);
                     }
                     if (i10 != 0) {
                         org.telegram.messenger.g0.r(izVar);

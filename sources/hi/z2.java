@@ -171,9 +171,9 @@ public final class z2 extends FrameLayout {
         boolean z10 = obj instanceof ff;
         if (z10) {
             ff ffVar = (ff) obj;
-            str = ffVar.f27709c;
+            str = ffVar.f27711c;
             if (str == null) {
-                if (ffVar.f27708b && !ffVar.d()) {
+                if (ffVar.f27710b && !ffVar.d()) {
                     str = "" + ffVar.C;
                 } else {
                     str = ffVar.I;
@@ -240,11 +240,11 @@ public final class z2 extends FrameLayout {
             return null;
         }
         int i7 = ffVar.C;
-        String str = ffVar.f27709c;
+        String str = ffVar.f27711c;
         if (str != null) {
             return BitmapFactory.decodeFile(str, options);
         }
-        if (ffVar.f27708b && !ffVar.d()) {
+        if (ffVar.f27710b && !ffVar.d()) {
             return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), i7, 1, options);
         }
         return MediaStore.Images.Thumbnails.getThumbnail(getContext().getContentResolver(), i7, 1, options);
@@ -379,7 +379,7 @@ public final class z2 extends FrameLayout {
                 if (getMeasuredWidth() > 0) {
                     i10 = getMeasuredWidth();
                 } else {
-                    i10 = org.telegram.messenger.g0.f23609q.x;
+                    i10 = org.telegram.messenger.g0.f23611q.x;
                 }
                 StaticLayout staticLayout = new StaticLayout(N0, this.f15493s, i10, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.G = staticLayout;
@@ -466,7 +466,7 @@ public final class z2 extends FrameLayout {
             if (getMeasuredWidth() > 0) {
                 i7 = getMeasuredWidth();
             } else {
-                i7 = org.telegram.messenger.g0.f23609q.x;
+                i7 = org.telegram.messenger.g0.f23611q.x;
             }
             StaticLayout staticLayout = new StaticLayout(str, this.f15492r, i7, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.f15496y = staticLayout;
@@ -537,7 +537,7 @@ public final class z2 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             y2 y2Var = this.K;
-            if (y2Var != null && y2Var.f34663a.f32441q) {
+            if (y2Var != null && y2Var.f34667a.f32441q) {
                 z10 = true;
             } else {
                 z10 = false;

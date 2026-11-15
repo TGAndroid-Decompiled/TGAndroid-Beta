@@ -7,23 +7,23 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 public final class aq0 implements ViewTreeObserver.OnPreDrawListener {
-    public final sq0 f45484a;
-    public final Integer f45485b;
-    public final PhotoViewer f45486c;
+    public final sq0 f45478a;
+    public final Integer f45479b;
+    public final PhotoViewer f45480c;
 
     public aq0(PhotoViewer photoViewer, sq0 sq0Var, Integer num) {
-        this.f45486c = photoViewer;
-        this.f45484a = sq0Var;
-        this.f45485b = num;
+        this.f45480c = photoViewer;
+        this.f45478a = sq0Var;
+        this.f45479b = num;
     }
 
     @Override
     public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f45486c;
+        PhotoViewer photoViewer = this.f45480c;
         photoViewer.f42781h0.getViewTreeObserver().removeOnPreDrawListener(this);
         photoViewer.G.setTranslationY(-org.telegram.messenger.g0.L(32.0f));
         ViewPropertyAnimator duration = photoViewer.G.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.f34420f;
+        org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.f34419f;
         duration.setInterpolator(erVar).start();
         photoViewer.O0.setTranslationY(-org.telegram.messenger.g0.L(32.0f));
         photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(erVar).start();

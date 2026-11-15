@@ -18,8 +18,8 @@ public final class f extends sh.c {
             imageReceiver.f();
             return;
         }
-        int min = Math.min(2, (int) Math.ceil(g0.f23608p));
-        int i7 = k20.f24629i;
+        int min = Math.min(2, (int) Math.ceil(g0.f23610p));
+        int i7 = k20.f24632i;
         imageReceiver.s0(gc.p(k20.a(geoPoint.lat, geoPoint._long, geoPoint.access_hash, 38, 38, 13, min)), null, null, null, null, null, 0);
     }
 

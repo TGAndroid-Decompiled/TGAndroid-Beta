@@ -5,29 +5,29 @@ import android.content.ClipboardManager;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class nb1 implements Runnable {
-    public final int f49539a;
-    public final int f49540b;
-    public final Object f49541c;
+    public final int f49538a;
+    public final int f49539b;
+    public final Object f49540c;
 
     public nb1(int i7, Object obj, int i10) {
-        this.f49539a = i10;
-        this.f49540b = i7;
-        this.f49541c = obj;
+        this.f49538a = i10;
+        this.f49539b = i7;
+        this.f49540c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
         int i7;
-        int i10 = this.f49539a;
-        int i11 = this.f49540b;
-        Object obj = this.f49541c;
+        int i10 = this.f49538a;
+        int i11 = this.f49539b;
+        Object obj = this.f49540c;
         switch (i10) {
             case 0:
                 ec1 ec1Var = (ec1) obj;
                 ec1Var.G.setSignalBarCount(i11);
                 if (i11 <= 1) {
-                    org.telegram.ui.Components.voip.y2 y2Var = ec1Var.f46721w;
+                    org.telegram.ui.Components.voip.y2 y2Var = ec1Var.f46711w;
                     if (y2Var.W != 3) {
                         y2Var.W = 3;
                         ValueAnimator ofInt = ValueAnimator.ofInt(y2Var.I, 255);
@@ -39,7 +39,7 @@ public final class nb1 implements Runnable {
                     ec1Var.G.c(true);
                     return;
                 }
-                org.telegram.ui.Components.voip.y2 y2Var2 = ec1Var.f46721w;
+                org.telegram.ui.Components.voip.y2 y2Var2 = ec1Var.f46711w;
                 if (y2Var2.W != 2) {
                     y2Var2.W = 2;
                     y2Var2.c();
@@ -113,7 +113,7 @@ public final class nb1 implements Runnable {
                 org.telegram.ui.Wallet.z9 z9Var = (org.telegram.ui.Wallet.z9) obj;
                 if (!z9Var.f44861r && i11 == z9Var.K) {
                     z9Var.M = false;
-                    z9Var.f38882a.f39895g3.O(true);
+                    z9Var.f38880a.f39892g3.O(true);
                     return;
                 }
                 return;
@@ -138,20 +138,20 @@ public final class nb1 implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.Q = duration;
-                duration.setInterpolator(org.telegram.ui.Components.er.f34420f);
+                duration.setInterpolator(org.telegram.ui.Components.er.f34419f);
                 jVar.Q.addUpdateListener(new tg.f(jVar, 5));
                 jVar.Q.addListener(new tg.g(jVar, 2));
                 jVar.Q.start();
                 return;
             case 10:
                 tp0 tp0Var = (tp0) obj;
-                sg.h1 h1Var = tp0Var.f57296u1;
+                sg.h1 h1Var = tp0Var.f57306u1;
                 tp0Var.s0(h1Var, null);
                 sg.k0.e(i11).j(h1Var.f56646c);
                 return;
             case 11:
                 org.telegram.messenger.ns.f(i11).k(215, Boolean.FALSE);
-                ((tg.f2) obj).h();
+                ((tg.e2) obj).h();
                 return;
             case 12:
                 org.telegram.ui.ActionBar.t1[] t1VarArr = (org.telegram.ui.ActionBar.t1[]) obj;
@@ -189,8 +189,8 @@ public final class nb1 implements Runnable {
     }
 
     public nb1(Object obj, int i7, int i10) {
-        this.f49539a = i10;
-        this.f49541c = obj;
-        this.f49540b = i7;
+        this.f49538a = i10;
+        this.f49540c = obj;
+        this.f49539b = i7;
     }
 }

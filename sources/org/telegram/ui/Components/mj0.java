@@ -4,23 +4,23 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 public final class mj0 extends f10 {
-    public View f37309a;
-    public final nj0 f37310b;
+    public View f37308a;
+    public final nj0 f37309b;
 
     public mj0(nj0 nj0Var) {
-        this.f37310b = nj0Var;
+        this.f37309b = nj0Var;
     }
 
     @Override
     public final boolean a() {
-        if (((uj0) this.f37310b.f37624b).X0 != null) {
+        if (((uj0) this.f37309b.f37613b).X0 != null) {
             return true;
         }
         return false;
     }
 
     public final void b(View view, MotionEvent motionEvent) {
-        uj0 uj0Var = (uj0) this.f37310b.f37624b;
+        uj0 uj0Var = (uj0) this.f37309b.f37613b;
         if (view != null) {
             if (uj0Var.U0 != null || uj0Var.V0 != null) {
                 float x10 = motionEvent.getX();
@@ -61,11 +61,11 @@ public final class mj0 extends f10 {
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
         hj0 hj0Var;
-        uj0 uj0Var = (uj0) this.f37310b.f37624b;
-        View view = this.f37309a;
+        uj0 uj0Var = (uj0) this.f37309b.f37613b;
+        View view = this.f37308a;
         if (view != null && (hj0Var = uj0Var.V0) != null && hj0Var.c1(view)) {
-            uj0Var.V0.r0(this.f37309a, motionEvent.getX(), motionEvent.getY());
-            this.f37309a = null;
+            uj0Var.V0.r0(this.f37308a, motionEvent.getX(), motionEvent.getY());
+            this.f37308a = null;
             return true;
         }
         return false;
@@ -79,7 +79,7 @@ public final class mj0 extends f10 {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         int i7;
-        uj0 uj0Var = (uj0) this.f37310b.f37624b;
+        uj0 uj0Var = (uj0) this.f37309b.f37613b;
         View view = uj0Var.M1;
         if (view != null && (i7 = uj0Var.N1) != -1) {
             ij0 ij0Var = uj0Var.W0;
@@ -107,10 +107,10 @@ public final class mj0 extends f10 {
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
         hj0 hj0Var;
-        View view = this.f37309a;
-        if (view != null && (hj0Var = ((uj0) this.f37310b.f37624b).V0) != null && hj0Var.c1(view)) {
-            b(this.f37309a, motionEvent);
-            this.f37309a = null;
+        View view = this.f37308a;
+        if (view != null && (hj0Var = ((uj0) this.f37309b.f37613b).V0) != null && hj0Var.c1(view)) {
+            b(this.f37308a, motionEvent);
+            this.f37308a = null;
             return true;
         }
         return false;
@@ -118,12 +118,12 @@ public final class mj0 extends f10 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        uj0 uj0Var = (uj0) this.f37310b.f37624b;
+        uj0 uj0Var = (uj0) this.f37309b.f37613b;
         View view = uj0Var.M1;
         if (view != null) {
             hj0 hj0Var = uj0Var.V0;
             if (hj0Var != null && hj0Var.c1(view)) {
-                this.f37309a = uj0Var.M1;
+                this.f37308a = uj0Var.M1;
                 return false;
             }
             b(uj0Var.M1, motionEvent);

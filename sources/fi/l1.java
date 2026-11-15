@@ -27,11 +27,11 @@ public final class l1 extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         this.f11978a = frameLayout;
         dh.j jVar = new dh.j();
-        jVar.f8160a = bVar;
+        jVar.f8163a = bVar;
         jVar.a();
-        jVar.f8165g.setColor(-14670806);
+        jVar.f8168g.setColor(-14670806);
         jVar.invalidateSelf();
-        jVar.f8164f = org.telegram.messenger.g0.L(1.0f);
+        jVar.f8167f = org.telegram.messenger.g0.L(1.0f);
         frameLayout.setBackground(jVar);
         addView(frameLayout, ja.e(40, 40, 17));
         View view = new View(context);

@@ -172,7 +172,7 @@ public final class w1 {
             int N1 = (int) q1Var.N1(motionEvent);
             sh.e eVar3 = this.f31861m;
             if (eVar3 != null) {
-                if (eVar3.Y && eVar3.f56859a.f57082f && eVar3.L.e(x10 - eVar3.M, N1 - eVar3.N, action)) {
+                if (eVar3.Y && eVar3.f56859a.f57086f && eVar3.L.e(x10 - eVar3.M, N1 - eVar3.N, action)) {
                     if (action == 0) {
                         q1Var.getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -188,7 +188,7 @@ public final class w1 {
                 }
             }
             if (q1Var.Q5.L0 && (eVar2 = this.f31862n) != null) {
-                if (eVar2.Y && eVar2.f56859a.f57082f && eVar2.L.e(x10 - eVar2.M, N1 - eVar2.N, action)) {
+                if (eVar2.Y && eVar2.f56859a.f57086f && eVar2.L.e(x10 - eVar2.M, N1 - eVar2.N, action)) {
                     if (action == 0) {
                         q1Var.getParent().requestDisallowInterceptTouchEvent(true);
                     }

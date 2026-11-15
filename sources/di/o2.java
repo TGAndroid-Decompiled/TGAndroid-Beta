@@ -17,35 +17,35 @@ import org.telegram.ui.Components.lh0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.tp;
 public final class o2 implements RequestDelegate {
-    public final int f9140a;
-    public final long f9141b;
-    public final Object f9142c;
+    public final int f9132a;
+    public final long f9133b;
+    public final Object f9134c;
     public final Object d;
 
     public o2(Object obj, long j3, Object obj2, int i7) {
-        this.f9140a = i7;
-        this.f9142c = obj;
-        this.f9141b = j3;
+        this.f9132a = i7;
+        this.f9134c = obj;
+        this.f9133b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f9140a;
-        long j3 = this.f9141b;
+        int i7 = this.f9132a;
+        long j3 = this.f9133b;
         Object obj = this.d;
-        Object obj2 = this.f9142c;
+        Object obj2 = this.f9134c;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.h3(new bi.r1((c6) obj2, (vf.b) obj, tLObject, this.f9141b, tL_error, 2));
+                org.telegram.messenger.g0.h3(new bi.r1((c6) obj2, (vf.b) obj, tLObject, this.f9133b, tL_error, 2));
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new f2((v8) obj2, (Object) tLObject, this.f9141b, (Object) ((z10) obj), 7));
+                org.telegram.messenger.g0.h3(new f2((u8) obj2, (Object) tLObject, this.f9133b, (Object) ((z10) obj), 7));
                 return;
             case 2:
-                t8 t8Var = (t8) obj2;
-                t8Var.getClass();
-                org.telegram.messenger.g0.h3(new bi.r1(t8Var, tLObject, (np) obj, tL_error, this.f9141b, 7));
+                s8 s8Var = (s8) obj2;
+                s8Var.getClass();
+                org.telegram.messenger.g0.h3(new bi.r1(s8Var, tLObject, (np) obj, tL_error, this.f9133b, 7));
                 return;
             case 3:
                 fi.e1 e1Var = (fi.e1) obj2;
@@ -80,7 +80,7 @@ public final class o2 implements RequestDelegate {
                 }
                 return;
             case 4:
-                ((ConferenceCall) obj2).lambda$requestLastBlock$3(this.f9141b, (Runnable) obj, tLObject, tL_error);
+                ((ConferenceCall) obj2).lambda$requestLastBlock$3(this.f9133b, (Runnable) obj, tLObject, tL_error);
                 return;
             case 5:
                 final lh0 lh0Var = (lh0) obj2;
@@ -117,7 +117,7 @@ public final class o2 implements RequestDelegate {
                     final hh0 hh0Var = new hh0(0, lh0Var, arrayList6);
                     if (org.telegram.messenger.t3.T(chat)) {
                         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                        tL_channels_getParticipants.limit = np.s1(i13).f25369q3;
+                        tL_channels_getParticipants.limit = np.s1(i13).f25372q3;
                         tL_channels_getParticipants.offset = 0;
                         tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
                         tL_channels_getParticipants.channel = np.s1(i13).h1(chat.f28051id);
@@ -320,7 +320,7 @@ public final class o2 implements RequestDelegate {
                 return;
             case 6:
                 String str = LaunchActivity.C1;
-                org.telegram.messenger.g0.h3(new f2(tLObject, (np) obj2, this.f9141b, (tp) obj, 21));
+                org.telegram.messenger.g0.h3(new f2(tLObject, (np) obj2, this.f9133b, (tp) obj, 21));
                 return;
             default:
                 np npVar = (np) obj2;
@@ -344,9 +344,9 @@ public final class o2 implements RequestDelegate {
     }
 
     public o2(Object obj, Object obj2, long j3, int i7) {
-        this.f9140a = i7;
-        this.f9142c = obj;
+        this.f9132a = i7;
+        this.f9134c = obj;
         this.d = obj2;
-        this.f9141b = j3;
+        this.f9133b = j3;
     }
 }

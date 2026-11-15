@@ -15,8 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import bi.t6;
 import di.i4;
-import di.r9;
-import di.yb;
+import di.q9;
+import di.xb;
 import hi.ha;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
@@ -52,7 +52,7 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.fs0;
 import org.telegram.ui.ss0;
 import org.telegram.ui.z51;
-import tg.i2;
+import tg.h2;
 public class g1 extends ja implements is {
     public boolean A2;
     public final int[] B2;
@@ -86,7 +86,7 @@ public class g1 extends ja implements is {
     public final nz f58096k2;
     public final z0 f58097l2;
     public ki.f f58098m2;
-    public yb f58099n2;
+    public xb f58099n2;
     public z51 f58100o2;
     public final e2 f58101p2;
     public Integer f58102q2;
@@ -126,7 +126,7 @@ public class g1 extends ja implements is {
                 fs0 fs0Var = this.Z1;
                 fs0Var.a((ss0) arrayList.get(i11), false);
                 fs0Var.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                ((ss0) arrayList.get(i11)).f51271e = i12;
+                ((ss0) arrayList.get(i11)).f51272e = i12;
                 i12 += fs0Var.getMeasuredHeight();
                 i11++;
             } else {
@@ -139,9 +139,9 @@ public class g1 extends ja implements is {
 
     @Override
     public final void U0(st0 st0Var) {
-        this.U1 = m10.f24934t0;
+        this.U1 = m10.f24940t0;
         q0 q0Var = new q0(getContext(), this.J0, false);
-        q0Var.b(PremiumPreviewFragment.t0(this.U1, null), new i2(this, 2), false);
+        q0Var.b(PremiumPreviewFragment.t0(this.U1, null), new h2(this, 2), false);
         this.H2 = new FrameLayout(getContext());
         View view = new View(getContext());
         q6.h(j6.f28850d7, view, this.J0);
@@ -244,13 +244,13 @@ public class g1 extends ja implements is {
     @Override
     public final void dismiss() {
         super.dismiss();
-        ns.e().k(ns.f25522k1, 4);
+        ns.e().k(ns.f25523k1, 4);
         ValueAnimator valueAnimator = this.E2;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         nz nzVar = this.f58096k2;
-        if (nzVar.f37763c) {
+        if (nzVar.f37752c) {
             nzVar.animate().alpha(0.0f).setDuration(150L).start();
         }
     }
@@ -359,7 +359,7 @@ public class g1 extends ja implements is {
                                     this.K2[1].setAlpha(0.0f);
                                     this.K2[1].setVisibility(0);
                                     ViewPropertyAnimator alpha = this.K2[1].animate().alpha(1.0f);
-                                    er erVar = er.f34420f;
+                                    er erVar = er.f34419f;
                                     i20.n(alpha, erVar, 200L);
                                     this.K2[0].animate().alpha(0.0f).setInterpolator(erVar).setDuration(200L).withEndAction(new b1(this, 2)).start();
                                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -482,9 +482,9 @@ public class g1 extends ja implements is {
         } else {
             view2.invalidate();
         }
-        yb ybVar = this.f58099n2;
-        if (ybVar != null) {
-            ybVar.m(100L);
+        xb xbVar = this.f58099n2;
+        if (xbVar != null) {
+            xbVar.m(100L);
         }
         this.E2.addUpdateListener(new d1(this, 0));
         this.E2.addListener(new y50(22, this, drawable));
@@ -497,19 +497,19 @@ public class g1 extends ja implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.f(m10.f24934t0).c(this, ns.B0);
+        ns.f(m10.f24940t0).c(this, ns.B0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.f(m10.f24934t0).n(this, ns.B0);
+        ns.f(m10.f24940t0).n(this, ns.B0);
     }
 
     @Override
     public final void show() {
         super.show();
-        ns.e().k(ns.f25517j1, 4);
+        ns.e().k(ns.f25518j1, 4);
         if (this.F2) {
             org.telegram.messenger.g0.i3(new b1(this, 1), 200L);
         }
@@ -517,12 +517,12 @@ public class g1 extends ja implements is {
 
     @Override
     public final boolean t(Dialog dialog) {
-        yb ybVar = this.f58099n2;
-        if (ybVar != null) {
-            ybVar.setDialogVisible(true);
+        xb xbVar = this.f58099n2;
+        if (xbVar != null) {
+            xbVar.setDialogVisible(true);
         }
         this.f58098m2.setPaused(true);
-        dialog.setOnDismissListener(new r9(this, 14));
+        dialog.setOnDismissListener(new q9(this, 14));
         dialog.show();
         return true;
     }
@@ -535,7 +535,7 @@ public class g1 extends ja implements is {
         this.C2 = 0.0f;
         O();
         this.f58101p2 = e2Var;
-        this.f35943v1 = 0.26f;
+        this.f35938v1 = 0.26f;
         this.V1 = user;
         this.U1 = i7;
         this.W1 = jVar;
@@ -554,8 +554,8 @@ public class g1 extends ja implements is {
         z0Var.f58389b = 0.0f;
         z0Var.f58390c = 0.0f;
         k1();
-        this.f35936o1.setPadding(org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f), 0);
-        this.f35936o1.setOnItemClickListener(new ml0(this, i7, e2Var, 1));
+        this.f35931o1.setPadding(org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f), 0);
+        this.f35931o1.setOnItemClickListener(new ml0(this, i7, e2Var, 1));
         si.b0(i7).o1();
         PremiumPreviewFragment.w0("profile");
         nz nzVar = new nz(getContext());

@@ -114,7 +114,7 @@ public final class w6 extends FrameLayout {
         this.f12467b.setDuration(350L);
         this.f12467b.setInterpolator(new AccelerateDecelerateInterpolator());
         this.f12467b.getCurrentPlayTime();
-        this.f12467b.addListener(new ai.i0(this, 16));
+        this.f12467b.addListener(new ai.j0(this, 16));
         this.f12467b.addUpdateListener(new ah.h(this, 23));
         this.f12467b.start();
         org.telegram.messenger.g0.i3(this.f12469e, (((v6) this.f12466a.get(this.d)).f12422c.r() * 2) + 100);

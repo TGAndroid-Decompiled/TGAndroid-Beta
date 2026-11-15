@@ -55,12 +55,12 @@ public abstract class m0 {
             }
             e1Var.f58543k = null;
             if ((e1Var.f58544l & 16) == 0) {
-                w0 w0Var = recyclerView.f2796b;
+                w0 w0Var = recyclerView.f2799b;
                 recyclerView.z0();
-                ld0 ld0Var = recyclerView.f2801e;
-                va vaVar = (va) ld0Var.f48977c;
-                ff ffVar = (ff) ld0Var.f48976b;
-                int indexOfChild = ((RecyclerView) ffVar.f34586b).indexOfChild(view);
+                ld0 ld0Var = recyclerView.f2804e;
+                va vaVar = (va) ld0Var.f48973c;
+                ff ffVar = (ff) ld0Var.f48972b;
+                int indexOfChild = ((RecyclerView) ffVar.f34590b).indexOfChild(view);
                 if (indexOfChild == -1) {
                     ld0Var.K(view);
                 } else if (vaVar.v(indexOfChild)) {
@@ -88,7 +88,7 @@ public abstract class m0 {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             ri0 ri0Var = (ri0) arrayList.get(i7);
-            ri0Var.f38985a.d(ri0Var.f38986b, ri0Var.f38987c, ri0Var.d, false);
+            ri0Var.f38982a.d(ri0Var.f38983b, ri0Var.f38984c, ri0Var.d, false);
         }
         arrayList.clear();
     }

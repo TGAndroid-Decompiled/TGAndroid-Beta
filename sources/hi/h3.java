@@ -17,7 +17,7 @@ public final class h3 extends org.telegram.ui.ActionBar.u2 {
     public h3(Context context, org.telegram.ui.ActionBar.e6 e6Var, String str, float f10) {
         super(1, context, e6Var, false);
         P(-14737633);
-        g3 g3Var = new g3(m10.f24934t0, context, new fi.b(), f10, str);
+        g3 g3Var = new g3(m10.f24940t0, context, new fi.b(), f10, str);
         this.f14368m1 = g3Var;
         g3Var.H.setVisibility(8);
         g3Var.setMultipleOnClick(false);
@@ -42,7 +42,7 @@ public final class h3 extends org.telegram.ui.ActionBar.u2 {
         if (z10) {
             height = 0.0f;
         } else {
-            height = (this.f29682b.getHeight() - g3Var.g()) + (org.telegram.messenger.g0.f23604n * 2.5f);
+            height = (this.f29682b.getHeight() - g3Var.g()) + (org.telegram.messenger.g0.f23606n * 2.5f);
         }
         this.f14370p1 = Boolean.valueOf(z10);
         if (z10) {

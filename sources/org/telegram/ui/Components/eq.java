@@ -12,19 +12,19 @@ public class eq extends ReplacementSpan {
     public float J;
     public boolean K;
     public Paint.FontMetricsInt L;
-    public boolean f34409a;
-    public int f34410b;
-    public Drawable f34411c;
+    public boolean f34408a;
+    public int f34409b;
+    public Drawable f34410c;
     public boolean d;
-    public boolean f34412e;
-    public boolean f34413f;
+    public boolean f34411e;
+    public boolean f34412f;
     public int h;
-    public int f34414n;
-    public float f34415r;
-    public float f34416s;
-    public float f34417w;
-    public float f34418x;
-    public int f34419y;
+    public int f34413n;
+    public float f34414r;
+    public float f34415s;
+    public float f34416w;
+    public float f34417x;
+    public int f34418y;
 
     public eq(int i7) {
         this(i7, 0);
@@ -38,7 +38,7 @@ public class eq extends ReplacementSpan {
         } else {
             z10 = false;
         }
-        this.f34412e = z10;
+        this.f34411e = z10;
     }
 
     public final void b(Paint.FontMetricsInt fontMetricsInt) {
@@ -54,11 +54,11 @@ public class eq extends ReplacementSpan {
 
     public final void c(int i7) {
         this.E = i7;
-        this.f34411c.setBounds(0, 0, i7, i7);
+        this.f34410c.setBounds(0, 0, i7, i7);
     }
 
     public final void d(float f10) {
-        this.f34415r = f10;
+        this.f34414r = f10;
     }
 
     @Override
@@ -67,8 +67,8 @@ public class eq extends ReplacementSpan {
     }
 
     public final void e(float f10) {
-        this.f34415r = 0.0f;
-        this.f34416s = f10;
+        this.f34414r = 0.0f;
+        this.f34415s = f10;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class eq extends ReplacementSpan {
             float abs = Math.abs(this.H) * Math.abs(this.I);
             int i11 = this.E;
             if (i11 == 0) {
-                i11 = this.f34411c.getIntrinsicWidth();
+                i11 = this.f34410c.getIntrinsicWidth();
             }
             return (int) (abs * i11);
         }
@@ -100,20 +100,20 @@ public class eq extends ReplacementSpan {
     }
 
     public eq(int i7, int i10) {
-        this(i10, org.telegram.messenger.t0.f26600b.getDrawable(i7).mutate());
+        this(i10, org.telegram.messenger.t0.f26609b.getDrawable(i7).mutate());
     }
 
     public eq(int i7, Drawable drawable) {
-        this.f34409a = true;
+        this.f34408a = true;
         this.d = true;
-        this.f34412e = true;
-        this.f34413f = false;
-        this.f34414n = 0;
-        this.f34418x = 1.0f;
+        this.f34411e = true;
+        this.f34412f = false;
+        this.f34413n = 0;
+        this.f34417x = 1.0f;
         this.H = 1.0f;
         this.I = 1.0f;
         this.J = 1.0f;
-        this.f34411c = drawable;
+        this.f34410c = drawable;
         if (drawable != null) {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         }

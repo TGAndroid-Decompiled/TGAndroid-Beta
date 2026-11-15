@@ -31,7 +31,7 @@ public final class e {
     public final c f59980m = new c(this, 0);
 
     public e(int i7, eh0 eh0Var, int i10, int i11) {
-        double d = 1.0d / ((int) g0.f23610r);
+        double d = 1.0d / ((int) g0.f23612r);
         this.f59970a = d;
         this.f59971b = d * 4.0d;
         this.f59972c = i7;
@@ -56,14 +56,14 @@ public final class e {
                 int o4 = gz.o();
                 if (o4 != 1) {
                     if (o4 != 2) {
-                        Point point = g0.f23609q;
+                        Point point = g0.f23611q;
                         min = Math.min(720, (int) (((point.x + point.y) / 2.0f) * 0.7f));
                     } else {
-                        Point point2 = g0.f23609q;
+                        Point point2 = g0.f23611q;
                         min = Math.min(1280, (int) (((point2.x + point2.y) / 2.0f) * 1.0f));
                     }
                 } else {
-                    Point point3 = g0.f23609q;
+                    Point point3 = g0.f23611q;
                     min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
                 if (viewGroup != null) {

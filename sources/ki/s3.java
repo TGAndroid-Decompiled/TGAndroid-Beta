@@ -43,7 +43,7 @@ public final class s3 extends AnimatorListenerAdapter {
             case 2:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f18550b;
                 actionBarOverlayLayout.N = null;
-                actionBarOverlayLayout.f1879w = false;
+                actionBarOverlayLayout.f1886w = false;
                 return;
             case 28:
                 l7 l7Var = (l7) this.f18550b;
@@ -80,7 +80,7 @@ public final class s3 extends AnimatorListenerAdapter {
             case 2:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f18550b;
                 actionBarOverlayLayout.N = null;
-                actionBarOverlayLayout.f1879w = false;
+                actionBarOverlayLayout.f1886w = false;
                 return;
             case 3:
                 ((ng.e) this.f18550b).h.setVisibility(8);
@@ -89,7 +89,7 @@ public final class s3 extends AnimatorListenerAdapter {
                 ((CropAreaView) this.f18550b).f32482d0 = null;
                 return;
             case 5:
-                HashMap hashMap = org.telegram.messenger.g0.f23602l0;
+                HashMap hashMap = org.telegram.messenger.g0.f23604l0;
                 if (hashMap != null) {
                     hashMap.remove((Window) this.f18550b);
                     return;
@@ -112,7 +112,7 @@ public final class s3 extends AnimatorListenerAdapter {
                 }
             case 8:
                 super.onAnimationEnd(animator);
-                ((du) this.f18550b).f23153w = null;
+                ((du) this.f18550b).f23160w = null;
                 return;
             case 9:
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f18550b;
@@ -178,20 +178,20 @@ public final class s3 extends AnimatorListenerAdapter {
                 return;
             case 14:
                 org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f18550b;
-                Runnable runnable2 = g4Var.f47315b0;
+                Runnable runnable2 = g4Var.f47305b0;
                 if (runnable2 != null) {
                     runnable2.run();
-                    g4Var.f47315b0 = null;
+                    g4Var.f47305b0 = null;
                     return;
                 }
                 return;
             case 15:
                 org.telegram.ui.t3 t3Var = (org.telegram.ui.t3) this.f18550b;
-                t3Var.f51341x = 1.0f;
+                t3Var.f51342x = 1.0f;
                 t3Var.A();
                 t3Var.u();
                 t3Var.r();
-                t3Var.f51332a.e();
+                t3Var.f51333a.e();
                 return;
             case 16:
                 q4 q4Var = (q4) this.f18550b;
@@ -200,22 +200,22 @@ public final class s3 extends AnimatorListenerAdapter {
                 return;
             case 17:
                 t4 t4Var = (t4) this.f18550b;
-                t4Var.f51349c = false;
+                t4Var.f51350c = false;
                 t4Var.invalidate();
                 return;
             case 18:
-                ((t5) this.f18550b).f51366i0.setVisibility(8);
+                ((t5) this.f18550b).f51367i0.setVisibility(8);
                 return;
             case 19:
             default:
                 super.onAnimationEnd(animator);
                 return;
             case 20:
-                ((t9) this.f18550b).f51507w = null;
+                ((t9) this.f18550b).f51508w = null;
                 return;
             case 21:
                 org.telegram.ui.Cells.j jVar = (org.telegram.ui.Cells.j) this.f18550b;
-                ((dw0) jVar).f46496f0.f48138e.f43078c.f58492r = false;
+                ((dw0) jVar).f46486f0.f48123e.f43078c.f58492r = false;
                 FrameLayout frameLayout = jVar.K;
                 if (frameLayout.getBackground() == null) {
                     frameLayout.setBackground(jVar.L);
@@ -281,12 +281,12 @@ public final class s3 extends AnimatorListenerAdapter {
                 return;
             case 19:
                 i8 i8Var = (i8) this.f18550b;
-                for (int i7 = 0; i7 < i8Var.f47940b.getChildCount(); i7++) {
-                    f8.a((f8) i8Var.f47940b.getChildAt(i7), i8Var.Q, i8Var.R);
+                for (int i7 = 0; i7 < i8Var.f47930b.getChildCount(); i7++) {
+                    f8.a((f8) i8Var.f47930b.getChildAt(i7), i8Var.Q, i8Var.R);
                 }
                 return;
             case 21:
-                ((dw0) ((org.telegram.ui.Cells.j) this.f18550b)).f46496f0.f48138e.f43078c.f58492r = true;
+                ((dw0) ((org.telegram.ui.Cells.j) this.f18550b)).f46486f0.f48123e.f43078c.f58492r = true;
                 return;
             default:
                 super.onAnimationStart(animator);

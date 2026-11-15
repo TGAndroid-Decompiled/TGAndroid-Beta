@@ -45,13 +45,13 @@ public final class q6 implements s10 {
                     if (TextUtils.isEmpty(v6Var.f15232n2) && !v6Var.d2) {
                         p41Var.V();
                         b41 c10 = b41.c(1, 2131232027, hd.M0(2131744609, null));
-                        c10.f33186q = true;
+                        c10.f33189q = true;
                         arrayList.add(c10);
                         p41Var.U();
                         L += org.telegram.messenger.g0.L(50.0f);
                     }
                     if (!v6Var.d2 && hpVar != null) {
-                        L += v6Var.d1(true, arrayList, hd.M0(2131753904, null), hpVar.f24202c, hpVar.f24204f, !hpVar.f24203e, 2);
+                        L += v6Var.d1(true, arrayList, hd.M0(2131753904, null), hpVar.f24205c, hpVar.f24207f, !hpVar.f24206e, 2);
                     }
                     String M0 = hd.M0(2131753907, null);
                     ArrayList arrayList2 = v6Var.Y1;
@@ -80,10 +80,10 @@ public final class q6 implements s10 {
                     if (TextUtils.isEmpty(v6Var.f15232n2)) {
                         String M03 = hd.M0(2131748243, null);
                         String M04 = hd.M0(2131748244, null);
-                        int i11 = ti.f39703b;
+                        int i11 = ti.f39700b;
                         b41 K = b41.K(ti.class);
-                        K.f33181l = M03;
-                        K.f33182m = M04;
+                        K.f33184l = M03;
+                        K.f33185m = M04;
                         arrayList.add(K);
                     } else {
                         String M05 = hd.M0(2131748243, null);
@@ -93,15 +93,15 @@ public final class q6 implements s10 {
                             i10 = 2131748242;
                         }
                         SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, i10, v6Var.f15232n2));
-                        int i12 = ti.f39703b;
+                        int i12 = ti.f39700b;
                         b41 K2 = b41.K(ti.class);
-                        K2.f33181l = M05;
-                        K2.f33182m = X2;
+                        K2.f33184l = M05;
+                        K2.f33185m = X2;
                         arrayList.add(K2);
                     }
                 }
                 arrayList.add(b41.C(null));
-                arrayList.add(b41.D(Math.max(0, org.telegram.messenger.g0.L(24.0f) + (((org.telegram.messenger.g0.f23609q.y - (org.telegram.messenger.g0.L(12.0f) + L)) - org.telegram.messenger.g0.f23603m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()))));
+                arrayList.add(b41.D(Math.max(0, org.telegram.messenger.g0.L(24.0f) + (((org.telegram.messenger.g0.f23611q.y - (org.telegram.messenger.g0.L(12.0f) + L)) - org.telegram.messenger.g0.f23605m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()))));
                 return;
             default:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;

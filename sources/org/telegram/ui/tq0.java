@@ -11,17 +11,17 @@ import android.widget.FrameLayout;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.UndoView;
 public final class tq0 extends FrameLayout {
-    public final PhotoViewer f51651a;
+    public final PhotoViewer f51652a;
 
     public tq0(PhotoViewer photoViewer, Activity activity) {
         super(activity);
-        this.f51651a = photoViewer;
+        this.f51652a = photoViewer;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        an anVar = this.f51651a.f42817l4;
+        an anVar = this.f51652a.f42817l4;
         if (anVar != null) {
             anVar.h8();
             UndoView undoView = anVar.N3;
@@ -40,7 +40,7 @@ public final class tq0 extends FrameLayout {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         keyEvent.getKeyCode();
-        PhotoViewer photoViewer = this.f51651a;
+        PhotoViewer photoViewer = this.f51652a;
         if (!photoViewer.f42865r && photoViewer.d2 != 1 && photoViewer.f42877s1 && photoViewer.G2 != null && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 0 && (keyEvent.getKeyCode() == 24 || keyEvent.getKeyCode() == 25)) {
             photoViewer.G2.B0(1.0f);
         }
@@ -50,7 +50,7 @@ public final class tq0 extends FrameLayout {
     @Override
     public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
         if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-            PhotoViewer photoViewer = this.f51651a;
+            PhotoViewer photoViewer = this.f51652a;
             if (photoViewer.R.x()) {
                 photoViewer.R.f(false);
             }
@@ -76,7 +76,7 @@ public final class tq0 extends FrameLayout {
     @Override
     public final void draw(Canvas canvas) {
         Drawable[] drawableArr = PhotoViewer.Z8;
-        this.f51651a.getClass();
+        this.f51652a.getClass();
         super.draw(canvas);
     }
 
@@ -92,7 +92,7 @@ public final class tq0 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        PhotoViewer photoViewer = this.f51651a;
+        PhotoViewer photoViewer = this.f51652a;
         photoViewer.C4.P();
         photoViewer.B4.P();
         photoViewer.D4.P();
@@ -102,7 +102,7 @@ public final class tq0 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        PhotoViewer photoViewer = this.f51651a;
+        PhotoViewer photoViewer = this.f51652a;
         photoViewer.C4.R();
         photoViewer.B4.R();
         photoViewer.D4.R();
@@ -117,7 +117,7 @@ public final class tq0 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f51651a.f42752e && super.onInterceptTouchEvent(motionEvent)) {
+        if (this.f51652a.f42752e && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -125,7 +125,7 @@ public final class tq0 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        PhotoViewer photoViewer = this.f51651a;
+        PhotoViewer photoViewer = this.f51652a;
         photoViewer.f42789i0.layout(getPaddingLeft(), 0, photoViewer.f42789i0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f42789i0.getMeasuredHeight());
         photoViewer.f42763f0.layout(getPaddingLeft(), 0, photoViewer.f42763f0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f42763f0.getMeasuredHeight());
         photoViewer.f42805k0.layout(getPaddingLeft(), photoViewer.f42763f0.getMeasuredHeight(), photoViewer.f42805k0.getMeasuredWidth(), photoViewer.f42805k0.getMeasuredHeight() + photoViewer.f42763f0.getMeasuredHeight());
@@ -153,13 +153,13 @@ public final class tq0 extends FrameLayout {
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
-        PhotoViewer photoViewer = this.f51651a;
-        if (!photoViewer.f42875s && org.telegram.messenger.g0.f23616y) {
-            int i11 = org.telegram.messenger.g0.f23609q.y;
+        PhotoViewer photoViewer = this.f51652a;
+        if (!photoViewer.f42875s && org.telegram.messenger.g0.f23618y) {
+            int i11 = org.telegram.messenger.g0.f23611q.y;
             if (size2 > i11) {
                 size2 = i11;
             }
-            size2 += org.telegram.messenger.g0.f23603m;
+            size2 += org.telegram.messenger.g0.f23605m;
         }
         setMeasuredDimension(size, size2);
         int i12 = size2 - photoViewer.f42886t2.bottom;
@@ -173,7 +173,7 @@ public final class tq0 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        PhotoViewer photoViewer = this.f51651a;
+        PhotoViewer photoViewer = this.f51652a;
         if (photoViewer.f42752e && PhotoViewer.c(photoViewer, motionEvent)) {
             return true;
         }

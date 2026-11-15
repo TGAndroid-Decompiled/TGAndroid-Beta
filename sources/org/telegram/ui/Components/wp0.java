@@ -16,7 +16,7 @@ public final class wp0 extends bi.i4 {
         float f10;
         float f11;
         ys0 ys0Var = this.W;
-        TextView textView = ys0Var.f42136t0;
+        TextView textView = ys0Var.f42138t0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f12 = 1.0f;

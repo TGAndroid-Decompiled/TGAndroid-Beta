@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class ax extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public int f33097a;
-    public boolean f33098b;
-    public final FrameLayout f33099c;
+    public int f33100a;
+    public boolean f33101b;
+    public final FrameLayout f33102c;
     public final ly d;
 
     public ax(ly lyVar, Context context) {
@@ -23,7 +23,7 @@ public final class ax extends FrameLayout implements org.telegram.ui.ActionBar.z
         org.telegram.ui.ActionBar.q6.Y(h6Var, i7, e6Var);
         h6Var.setGravity(17);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f33099c = frameLayout;
+        this.f33102c = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.y5.e(lyVar.z(org.telegram.ui.ActionBar.j6.Fi), 8.0f));
         frameLayout.addView(h6Var, c8.ja.e(-1, -2, 17));
         addView(frameLayout, c8.ja.c(-1.0f, -1));
@@ -42,14 +42,14 @@ public final class ax extends FrameLayout implements org.telegram.ui.ActionBar.z
     public final void updateColors() {
         try {
             int z10 = this.d.z(org.telegram.ui.ActionBar.j6.Fi);
-            FrameLayout frameLayout = this.f33099c;
+            FrameLayout frameLayout = this.f33102c;
             if (frameLayout != null) {
-                if (z10 == this.f33097a) {
-                    if (this.f33098b != org.telegram.ui.ActionBar.j6.I.q()) {
+                if (z10 == this.f33100a) {
+                    if (this.f33101b != org.telegram.ui.ActionBar.j6.I.q()) {
                     }
                 }
-                this.f33098b = org.telegram.ui.ActionBar.j6.I.q();
-                this.f33097a = z10;
+                this.f33101b = org.telegram.ui.ActionBar.j6.I.q();
+                this.f33100a = z10;
                 org.telegram.ui.ActionBar.j6.H1(frameLayout.getBackground(), z10, false);
                 org.telegram.ui.ActionBar.j6.H1(frameLayout.getBackground(), org.telegram.ui.ActionBar.y5.b(z10), true);
                 frameLayout.invalidate();

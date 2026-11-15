@@ -42,7 +42,7 @@ public final class q60 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        int size = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.f23603m;
+        int size = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.f23605m;
         v60 v60Var = this.f38534a;
         TextView textView = v60Var.f40282s1;
         measureChildWithMargins(textView, i7, 0, i10, 0);

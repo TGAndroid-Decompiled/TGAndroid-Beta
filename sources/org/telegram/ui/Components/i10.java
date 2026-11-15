@@ -9,31 +9,31 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import org.telegram.messenger.Utilities;
 public class i10 {
-    public boolean f35415a;
-    public boolean f35416b;
+    public boolean f35406a;
+    public boolean f35407b;
     public int d;
-    public int f35418e;
-    public int f35419f;
-    public int f35420g;
-    public Shader f35421i;
-    public boolean f35425m;
-    public final Paint f35417c = new Paint(1);
+    public int f35409e;
+    public int f35410f;
+    public int f35411g;
+    public Shader f35412i;
+    public boolean f35416m;
+    public final Paint f35408c = new Paint(1);
     public final RectF h = new RectF();
-    public final Matrix f35422j = new Matrix();
-    public Bitmap f35423k = null;
-    public final int[] f35424l = new int[4];
+    public final Matrix f35413j = new Matrix();
+    public Bitmap f35414k = null;
+    public final int[] f35415l = new int[4];
 
     public final int a() {
         int i7 = this.d;
-        int i10 = this.f35418e;
+        int i10 = this.f35409e;
         if (i10 != 0) {
             i7 = i0.a.f(0.5f, i7, i10);
         }
-        int i11 = this.f35419f;
+        int i11 = this.f35410f;
         if (i11 != 0) {
             i7 = i0.a.f(0.5f, i7, i11);
         }
-        int i12 = this.f35420g;
+        int i12 = this.f35411g;
         if (i12 != 0) {
             return i0.a.f(0.5f, i7, i12);
         }
@@ -58,76 +58,76 @@ public class i10 {
     public final void d(int i7, int i10, int i11, int i12) {
         float f10;
         float f11;
-        if (this.f35421i != null && this.d == i7 && this.f35418e == i10 && this.f35419f == i11 && this.f35420g == i12) {
+        if (this.f35412i != null && this.d == i7 && this.f35409e == i10 && this.f35410f == i11 && this.f35411g == i12) {
             return;
         }
         this.d = i7;
-        int[] iArr = this.f35424l;
+        int[] iArr = this.f35415l;
         iArr[0] = i7;
-        this.f35418e = i10;
+        this.f35409e = i10;
         iArr[1] = i10;
-        this.f35419f = i11;
+        this.f35410f = i11;
         iArr[2] = i11;
-        this.f35420g = i12;
+        this.f35411g = i12;
         iArr[3] = i12;
-        Paint paint = this.f35417c;
+        Paint paint = this.f35408c;
         if (i10 == 0) {
-            this.f35421i = null;
+            this.f35412i = null;
             paint.setShader(null);
             paint.setColor(i7);
         } else if (i11 == 0) {
-            if (this.f35415a && this.f35416b) {
+            if (this.f35406a && this.f35407b) {
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i7, i10}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f35421i = linearGradient;
+                this.f35412i = linearGradient;
                 paint.setShader(linearGradient);
             } else {
-                if (this.f35415a) {
+                if (this.f35406a) {
                     f11 = 80.0f;
                 } else {
                     f11 = 0.0f;
                 }
                 LinearGradient linearGradient2 = new LinearGradient(f11, 0.0f, 0.0f, 80.0f, new int[]{i7, i10}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f35421i = linearGradient2;
+                this.f35412i = linearGradient2;
                 paint.setShader(linearGradient2);
             }
-        } else if (this.f35425m) {
-            if (this.f35415a && this.f35416b) {
+        } else if (this.f35416m) {
+            if (this.f35406a && this.f35407b) {
                 LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i7, i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f35421i = linearGradient3;
+                this.f35412i = linearGradient3;
                 paint.setShader(linearGradient3);
             } else {
-                if (this.f35415a) {
+                if (this.f35406a) {
                     f10 = 80.0f;
                 } else {
                     f10 = 0.0f;
                 }
                 LinearGradient linearGradient4 = new LinearGradient(f10, 0.0f, 0.0f, 80.0f, new int[]{i7, i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f35421i = linearGradient4;
+                this.f35412i = linearGradient4;
                 paint.setShader(linearGradient4);
             }
         } else {
-            if (this.f35423k == null) {
-                this.f35423k = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+            if (this.f35414k == null) {
+                this.f35414k = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
             }
-            Utilities.generateGradient(this.f35423k, 0, 0.0f, iArr);
-            Bitmap bitmap = this.f35423k;
+            Utilities.generateGradient(this.f35414k, 0, 0.0f, iArr);
+            Bitmap bitmap = this.f35414k;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-            this.f35421i = bitmapShader;
+            this.f35412i = bitmapShader;
             paint.setShader(bitmapShader);
         }
         e();
     }
 
     public void e() {
-        if (this.f35421i == null) {
+        if (this.f35412i == null) {
             return;
         }
         RectF rectF = this.h;
-        Matrix matrix = this.f35422j;
+        Matrix matrix = this.f35413j;
         matrix.reset();
         matrix.postTranslate(rectF.left, rectF.top);
         matrix.preScale(rectF.width() / 60.0f, rectF.height() / 80.0f);
-        this.f35421i.setLocalMatrix(matrix);
+        this.f35412i.setLocalMatrix(matrix);
     }
 }

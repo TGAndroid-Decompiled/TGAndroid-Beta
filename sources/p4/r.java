@@ -60,10 +60,10 @@ public final class r {
         h2.d dVar = this.f54848g;
         if (dVar == null) {
             ?? obj2 = new Object();
-            obj2.f3345c = context;
-            obj2.f3344b = -1;
-            obj2.f3344b = intValue;
-            obj2.f3343a = true;
+            obj2.f3348c = context;
+            obj2.f3347b = -1;
+            obj2.f3347b = intValue;
+            obj2.f3346a = true;
             this.f54848g = new j2.i(obj2);
         } else {
             this.f54848g = new f5.v(dVar, intValue, 11);

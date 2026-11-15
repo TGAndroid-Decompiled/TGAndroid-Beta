@@ -154,7 +154,7 @@ public final class ha extends org.telegram.ui.ActionBar.e2 {
                         int[] iArr = haVar.f43948b;
                         ArrayList arrayList = haVar.d;
                         if (!haVar.f43957y && arrayList.size() == iArr.length) {
-                            boolean z10 = org.telegram.messenger.r2.f26198a;
+                            boolean z10 = org.telegram.messenger.r2.f26206a;
                             int size = arrayList.size();
                             int i13 = 0;
                             while (i13 < size) {
@@ -264,7 +264,7 @@ public final class ha extends org.telegram.ui.ActionBar.e2 {
                         int[] iArr2 = haVar.f43948b;
                         ArrayList arrayList3 = haVar.d;
                         if (!haVar.f43957y && arrayList3.size() == iArr2.length) {
-                            boolean z10 = org.telegram.messenger.r2.f26198a;
+                            boolean z10 = org.telegram.messenger.r2.f26206a;
                             int size2 = arrayList3.size();
                             int i132 = 0;
                             while (i132 < size2) {

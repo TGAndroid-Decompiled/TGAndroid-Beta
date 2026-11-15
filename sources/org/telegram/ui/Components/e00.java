@@ -4,23 +4,23 @@ import java.util.Iterator;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 public final class e00 implements org.telegram.ui.ActionBar.l0, te.i, org.telegram.ui.ActionBar.q1, at0 {
-    public final FragmentContextView f34125a;
+    public final FragmentContextView f34112a;
 
     public e00(FragmentContextView fragmentContextView) {
-        this.f34125a = fragmentContextView;
+        this.f34112a = fragmentContextView;
     }
 
     @Override
     public void c(org.telegram.messenger.qd qdVar) {
         float[] fArr = FragmentContextView.X0;
-        this.f34125a.k(qdVar);
+        this.f34112a.k(qdVar);
     }
 
     @Override
     public void f(te.j jVar) {
-        FragmentContextView fragmentContextView = this.f34125a;
+        FragmentContextView fragmentContextView = this.f34112a;
         te.j jVar2 = fragmentContextView.V0;
-        float f10 = 1.0f - jVar2.f57106a.d.f57097c.f57107a;
+        float f10 = 1.0f - jVar2.f57110a.d.f57101c.f57111a;
         fragmentContextView.d.setAlpha(f10);
         fragmentContextView.d.setScaleX(org.telegram.messenger.g0.T1(0.7f, 1.0f, f10));
         fragmentContextView.d.setScaleY(org.telegram.messenger.g0.T1(0.7f, 1.0f, f10));
@@ -28,9 +28,9 @@ public final class e00 implements org.telegram.ui.ActionBar.l0, te.i, org.telegr
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f57090a;
+            Object obj = eVar.f57094a;
             float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, c10);
-            nh.c cVar = ((p00) obj).f38139b;
+            nh.c cVar = ((p00) obj).f38137b;
             cVar.setAlpha(eVar.c());
             cVar.setScaleX(T1);
             cVar.setScaleY(T1);
@@ -44,7 +44,7 @@ public final class e00 implements org.telegram.ui.ActionBar.l0, te.i, org.telegr
             float[] fArr2 = FragmentContextView.X0;
             if (i7 < 6) {
                 MediaController B = MediaController.B();
-                FragmentContextView fragmentContextView = this.f34125a;
+                FragmentContextView fragmentContextView = this.f34112a;
                 float C = B.C(fragmentContextView.f32556a0);
                 float f10 = fArr2[i7];
                 MediaController.B().m0(fragmentContextView.f32556a0, f10);
@@ -57,7 +57,7 @@ public final class e00 implements org.telegram.ui.ActionBar.l0, te.i, org.telegr
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        FragmentContextView fragmentContextView = this.f34125a;
+        FragmentContextView fragmentContextView = this.f34112a;
         org.telegram.ui.ActionBar.e2 e2Var = fragmentContextView.h;
         if (e2Var instanceof org.telegram.ui.yw) {
             for (int i10 = 0; i10 < 4; i10++) {

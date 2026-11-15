@@ -166,7 +166,7 @@ public final class b0 implements u10 {
                             vVar = rVar.i(true);
                         }
                         if (vVar != null) {
-                            str3 = !TextUtils.isEmpty(rVar.f18519g) ? new String(vVar.f1968b.doFinal(Utilities.v(rVar.f18519g)), StandardCharsets.UTF_8) : rVar.f18519g;
+                            str3 = !TextUtils.isEmpty(rVar.f18519g) ? new String(vVar.f1975b.doFinal(Utilities.v(rVar.f18519g)), StandardCharsets.UTF_8) : rVar.f18519g;
                         } else if (!TextUtils.isEmpty(rVar.f18519g)) {
                             throw new RuntimeException("No cryptoObject found");
                         }
@@ -183,7 +183,7 @@ public final class b0 implements u10 {
                 qnVar.F0 = ((Boolean) obj).booleanValue();
                 qnVar.H0 = ((Boolean) obj2).booleanValue();
                 qnVar.I0 = ((Boolean) obj3).booleanValue();
-                v3 v3Var = qnVar.f50668e;
+                v3 v3Var = qnVar.f50667e;
                 if (qnVar.F0) {
                     f10 = 16.0f;
                 } else {
@@ -192,20 +192,20 @@ public final class b0 implements u10 {
                 int L = org.telegram.messenger.g0.L(f10);
                 boolean z12 = false;
                 if (v3Var.getRoundRadius()[0] != L) {
-                    ValueAnimator valueAnimator = v3Var.f35518y;
+                    ValueAnimator valueAnimator = v3Var.f35509y;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
                     ValueAnimator ofInt = ValueAnimator.ofInt(v3Var.getRoundRadius()[0], L);
-                    v3Var.f35518y = ofInt;
+                    v3Var.f35509y = ofInt;
                     ofInt.addUpdateListener(new f4(v3Var, 8));
-                    v3Var.f35518y.setDuration(200L);
-                    v3Var.f35518y.start();
+                    v3Var.f35509y.setDuration(200L);
+                    v3Var.f35509y.start();
                 }
                 ((org.telegram.ui.Cells.l8) view).setChecked(qnVar.F0);
                 qnVar.u0(false, true);
                 if (!qnVar.O0) {
-                    TLRPC.Chat chat = qnVar.f50693x0;
+                    TLRPC.Chat chat = qnVar.f50692x0;
                     if (chat.forum != qnVar.F0 || chat.forum_tabs != qnVar.H0 || chat.forum_sidebar != qnVar.I0) {
                         if (!org.telegram.messenger.t3.T(chat) && qnVar.F0) {
                             Context parentActivity = qnVar.getParentActivity();
@@ -213,18 +213,18 @@ public final class b0 implements u10 {
                                 parentActivity = LaunchActivity.H1;
                             }
                             if (parentActivity == null) {
-                                parentActivity = org.telegram.messenger.t0.f26600b;
+                                parentActivity = org.telegram.messenger.t0.f26609b;
                             }
                             if (parentActivity != null) {
                                 org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, parentActivity, null);
                                 qnVar.O0 = true;
                                 t1Var.r(250L);
-                                qnVar.getMessagesController().T(qnVar.getParentActivity(), qnVar.f50691w0, qnVar, new m2.d(21, qnVar, t1Var), null);
+                                qnVar.getMessagesController().T(qnVar.getParentActivity(), qnVar.f50690w0, qnVar, new m2.d(21, qnVar, t1Var), null);
                                 return;
                             }
                             return;
                         }
-                        TLRPC.Chat chat2 = qnVar.f50693x0;
+                        TLRPC.Chat chat2 = qnVar.f50692x0;
                         if (chat2.forum_tabs != qnVar.H0) {
                             z10 = true;
                         } else {
@@ -233,8 +233,8 @@ public final class b0 implements u10 {
                         if (chat2.forum_sidebar != qnVar.I0) {
                             z12 = true;
                         }
-                        qnVar.getMessagesController().b5(qnVar.f50691w0, qnVar.F0, qnVar.H0, qnVar.I0);
-                        TLRPC.Chat chat3 = qnVar.f50693x0;
+                        qnVar.getMessagesController().b5(qnVar.f50690w0, qnVar.F0, qnVar.H0, qnVar.I0);
+                        TLRPC.Chat chat3 = qnVar.f50692x0;
                         chat3.forum = qnVar.F0;
                         chat3.forum_tabs = qnVar.H0;
                         chat3.forum_sidebar = qnVar.I0;

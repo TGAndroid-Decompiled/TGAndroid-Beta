@@ -6,16 +6,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ij extends tj0 {
-    public final Context f35636c;
+    public final Context f35623c;
     public ArrayList d = new ArrayList();
-    public ArrayList f35637e = new ArrayList();
-    public hj f35638f;
+    public ArrayList f35624e = new ArrayList();
+    public hj f35625f;
     public int h;
-    public final mj f35639n;
+    public final mj f35626n;
 
     public ij(mj mjVar, Context context) {
-        this.f35639n = mjVar;
-        this.f35636c = context;
+        this.f35626n = mjVar;
+        this.f35623c = context;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class ij extends tj0 {
     @Override
     public final void f() {
         super.f();
-        this.f35639n.S();
+        this.f35626n.S();
     }
 
     @Override
@@ -70,19 +70,19 @@ public final class ij extends tj0 {
             Object E = E(i7);
             if (E instanceof org.telegram.messenger.d5) {
                 org.telegram.messenger.d5 d5Var = (org.telegram.messenger.d5) E;
-                user = d5Var.f23041m;
+                user = d5Var.f23049m;
                 if (user == null) {
-                    ljVar.setCurrentId(d5Var.f23031a);
-                    ljVar.a(null, (CharSequence) this.f35637e.get(i7 - 1), new ej(d5Var, 1), z10);
+                    ljVar.setCurrentId(d5Var.f23039a);
+                    ljVar.a(null, (CharSequence) this.f35624e.get(i7 - 1), new ej(d5Var, 1), z10);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                ljVar.a(user, (CharSequence) this.f35637e.get(i7 - 1), new fj(1, user), z10);
+                ljVar.a(user, (CharSequence) this.f35624e.get(i7 - 1), new fj(1, user), z10);
             }
-            boolean containsKey = this.f35639n.f37307x.containsKey(cj.a(E));
+            boolean containsKey = this.f35626n.f37306x.containsKey(cj.a(E));
             fp fpVar = ljVar.d;
             if (fpVar.getVisibility() != 0) {
                 fpVar.setVisibility(0);
@@ -94,7 +94,7 @@ public final class ij extends tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View ljVar;
-        Context context = this.f35636c;
+        Context context = this.f35623c;
         if (i7 != 0) {
             if (i7 != 1) {
                 ljVar = new View(context);
@@ -105,7 +105,7 @@ public final class ij extends tj0 {
                 ljVar.setTag(-33024);
             }
         } else {
-            ljVar = new lj(context, this.f35639n.f33606a);
+            ljVar = new lj(context, this.f35626n.f33608a);
         }
         return new v4.e1(ljVar);
     }

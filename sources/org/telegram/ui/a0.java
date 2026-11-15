@@ -16,11 +16,11 @@ public final class a0 implements Runnable {
     public final void run() {
         switch (this.f44891a) {
             case 0:
-                ((g4) this.f44893c).f47324i0.N.c(true, this.f44892b);
+                ((g4) this.f44893c).f47314i0.N.c(true, this.f44892b);
                 return;
             case 1:
                 org.telegram.ui.Components.qa qaVar = (org.telegram.ui.Components.qa) this.f44893c;
-                if (qaVar.f38592a.getTranslationX() == this.f44892b) {
+                if (qaVar.f38590a.getTranslationX() == this.f44892b) {
                     qaVar.E.b();
                     return;
                 }
@@ -28,19 +28,19 @@ public final class a0 implements Runnable {
             case 2:
                 org.telegram.ui.Components.voip.a1 a1Var = (org.telegram.ui.Components.voip.a1) this.f44893c;
                 float f10 = this.f44892b;
-                yb1 yb1Var = a1Var.f40488c;
+                yb1 yb1Var = a1Var.f40491c;
                 if (f10 > 0.0f) {
-                    int i7 = yb1Var.f40547x;
+                    int i7 = yb1Var.f40550x;
                     if (i7 < 2) {
                         yb1Var.c(i7 + 1, true);
                     }
                 } else {
-                    int i10 = yb1Var.f40547x;
+                    int i10 = yb1Var.f40550x;
                     if (i10 > 0) {
                         yb1Var.c(i10 - 1, true);
                     }
                 }
-                a1Var.f40487b = false;
+                a1Var.f40490b = false;
                 return;
             case 3:
                 HttpGetFileTask.b((HttpGetFileTask) this.f44893c, this.f44892b);

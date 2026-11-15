@@ -83,7 +83,7 @@ public final class s0 implements b3.l {
                     hVar = b0Var;
                 }
                 this.f59654c.C(hVar, this.f59652a, this.f59653b.f16769a.getResponseHeaders(), j3, j10, this.d);
-                if (this.f59662y.K != null && (oVar = (f3.o) this.f59654c.f48977c) != null) {
+                if (this.f59662y.K != null && (oVar = (f3.o) this.f59654c.f48973c) != null) {
                     f3.o a10 = oVar.a();
                     if (a10 instanceof y3.d) {
                         ((y3.d) a10).f60167t = true;
@@ -92,7 +92,7 @@ public final class s0 implements b3.l {
                 if (this.f59657n) {
                     ld0 ld0Var = this.f59654c;
                     long j11 = this.f59658r;
-                    f3.o oVar2 = (f3.o) ld0Var.f48977c;
+                    f3.o oVar2 = (f3.o) ld0Var.f48973c;
                     oVar2.getClass();
                     oVar2.d(j3, j11);
                     this.f59657n = false;
@@ -108,7 +108,7 @@ public final class s0 implements b3.l {
                         }
                         ld0 ld0Var2 = this.f59654c;
                         f3.s sVar = this.f59656f;
-                        f3.o oVar3 = (f3.o) ld0Var2.f48977c;
+                        f3.o oVar3 = (f3.o) ld0Var2.f48973c;
                         oVar3.getClass();
                         f3.l lVar = (f3.l) ld0Var2.d;
                         lVar.getClass();

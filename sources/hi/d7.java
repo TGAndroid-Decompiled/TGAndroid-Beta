@@ -119,7 +119,7 @@ public final class d7 {
     public Drawable f14171x0;
     public String f14172y;
     public TLRPC.InputDocument f14174z;
-    public final int f14123a = m10.f24934t0;
+    public final int f14123a = m10.f24940t0;
     public double f14142i = -1.0d;
     public float F = 1.0f;
     public float G = 1.0f;
@@ -161,11 +161,11 @@ public final class d7 {
         TLRPC.Peer peer;
         if (gjVar != null) {
             int i7 = gjVar.K1;
-            TLRPC.Message message = gjVar.f23817k;
+            TLRPC.Message message = gjVar.f23819k;
             if (message != null) {
                 TLRPC.Chat M0 = np.s1(i7).M0(Long.valueOf(-org.telegram.messenger.m5.o(message.peer_id)));
                 if ((M0 != null && M0.noforwards) || !org.telegram.messenger.t3.V(M0)) {
-                    TLRPC.MessageFwdHeader messageFwdHeader = gjVar.f23817k.fwd_from;
+                    TLRPC.MessageFwdHeader messageFwdHeader = gjVar.f23819k.fwd_from;
                     if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
                         long o4 = org.telegram.messenger.m5.o(peer);
                         TLRPC.Chat M02 = np.s1(i7).M0(Long.valueOf(-o4));
@@ -263,13 +263,13 @@ public final class d7 {
         d7Var.L = new File(ffVar.I);
         d7Var.Q = ffVar.J;
         d7Var.R = ffVar.K;
-        if (!ffVar.d() && ffVar.f27708b) {
+        if (!ffVar.d() && ffVar.f27710b) {
             z10 = true;
         } else {
             z10 = false;
         }
         d7Var.K = z10;
-        d7Var.N = ffVar.f27709c;
+        d7Var.N = ffVar.f27711c;
         long j3 = ffVar.E * 1000;
         d7Var.f14141h0 = j3;
         d7Var.Z = 0.0f;
@@ -442,9 +442,9 @@ public final class d7 {
             return 0L;
         }
         if (D.booleanValue()) {
-            return org.telegram.messenger.m5.o(gjVar.f23817k.fwd_from.from_id);
+            return org.telegram.messenger.m5.o(gjVar.f23819k.fwd_from.from_id);
         }
-        return gj.B0(gjVar.f23817k);
+        return gj.B0(gjVar.f23819k);
     }
 
     public static Bitmap q(b7 b7Var, int i7, int i10, int i11, boolean z10) {
@@ -558,21 +558,21 @@ public final class d7 {
         d7Var.f14145j0 = 1920;
         d7Var.f14175z0 = p((gj) arrayList.get(0));
         e20 e20Var = new e20();
-        e20Var.f23224a = (byte) 6;
-        e20Var.f23226c = 0.5f;
+        e20Var.f23231a = (byte) 6;
+        e20Var.f23233c = 0.5f;
         e20Var.d = 0.5f;
         ArrayList arrayList2 = new ArrayList();
         d7Var.T0 = arrayList2;
         arrayList2.add(e20Var);
         if (arrayList.size() == 1 && (gjVar = (gj) arrayList.get(0)) != null && ((i7 = gjVar.D) == 8 || i7 == 3 || i7 == 5)) {
-            TLRPC.Message message = gjVar.f23817k;
+            TLRPC.Message message = gjVar.f23819k;
             if (message != null && message.attachPath != null) {
-                d7Var.L = new File(gjVar.f23817k.attachPath);
+                d7Var.L = new File(gjVar.f23819k.attachPath);
             }
             File file = d7Var.L;
             if (file == null || !file.exists()) {
                 org.telegram.messenger.w7.G(d7Var.f14123a);
-                d7Var.L = org.telegram.messenger.w7.M(gjVar.f23817k, false, true);
+                d7Var.L = org.telegram.messenger.w7.M(gjVar.f23819k, false, true);
             }
             File file2 = d7Var.L;
             if (file2 != null && file2.exists()) {
@@ -653,19 +653,19 @@ public final class d7 {
         gj gjVar;
         TLRPC.Message message;
         ArrayList arrayList3 = this.T0;
-        if (!this.K && this.f14172y == null && this.f14154o0 == null && ((arrayList = this.v) == null || arrayList.size() != 1 || (gjVar = (gj) this.v.get(0)) == null || (message = gjVar.f23817k) == null || !(message.action instanceof TLRPC.TL_messageActionStarGiftUnique))) {
+        if (!this.K && this.f14172y == null && this.f14154o0 == null && ((arrayList = this.v) == null || arrayList.size() != 1 || (gjVar = (gj) this.v.get(0)) == null || (message = gjVar.f23819k) == null || !(message.action instanceof TLRPC.TL_messageActionStarGiftUnique))) {
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                     e20 e20Var = (e20) arrayList3.get(i7);
-                    byte b10 = e20Var.f23224a;
+                    byte b10 = e20Var.f23231a;
                     if (b10 == 0) {
-                        if (!u(e20Var.B, e20Var.f23231j)) {
+                        if (!u(e20Var.B, e20Var.f23238j)) {
                         }
                     } else {
-                        if (b10 == 1 && (arrayList2 = e20Var.f23232k) != null && !arrayList2.isEmpty()) {
-                            for (int i10 = 0; i10 < e20Var.f23232k.size(); i10++) {
-                                d20 d20Var = (d20) e20Var.f23232k.get(i10);
-                                if (!u(d20Var.document, d20Var.f23016a)) {
+                        if (b10 == 1 && (arrayList2 = e20Var.f23239k) != null && !arrayList2.isEmpty()) {
+                            for (int i10 = 0; i10 < e20Var.f23239k.size(); i10++) {
+                                d20 d20Var = (d20) e20Var.f23239k.get(i10);
+                                if (!u(d20Var.document, d20Var.f23024a)) {
                                 }
                             }
                             continue;
@@ -718,7 +718,7 @@ public final class d7 {
                         tL_inputPhoto.file_reference = new byte[0];
                     }
                     tL_messages_getAttachedStickers.media = tL_inputStickeredMediaPhoto;
-                    this.f14136e1 = ConnectionsManager.getInstance(this.f14123a).sendRequest(tL_messages_getAttachedStickers, new bi.l1(this, storyItem, tL_messages_getAttachedStickers, new ai.d1(this, 11), 7));
+                    this.f14136e1 = ConnectionsManager.getInstance(this.f14123a).sendRequest(tL_messages_getAttachedStickers, new bi.l1(this, storyItem, tL_messages_getAttachedStickers, new ai.e1(this, 11), 7));
                 }
             } else {
                 TLRPC.Document document = messageMedia.document;
@@ -734,7 +734,7 @@ public final class d7 {
                         tL_inputDocument.file_reference = new byte[0];
                     }
                     tL_messages_getAttachedStickers.media = tL_inputStickeredMediaDocument;
-                    this.f14136e1 = ConnectionsManager.getInstance(this.f14123a).sendRequest(tL_messages_getAttachedStickers, new bi.l1(this, storyItem, tL_messages_getAttachedStickers, new ai.d1(this, 11), 7));
+                    this.f14136e1 = ConnectionsManager.getInstance(this.f14123a).sendRequest(tL_messages_getAttachedStickers, new bi.l1(this, storyItem, tL_messages_getAttachedStickers, new ai.e1(this, 11), 7));
                 }
             }
         }
@@ -981,13 +981,13 @@ public final class d7 {
                     Object obj = arrayList.get(i7);
                     i7++;
                     e20 e20Var = (e20) obj;
-                    if (e20Var.f23224a == 2 && !TextUtils.isEmpty(e20Var.f23241t)) {
+                    if (e20Var.f23231a == 2 && !TextUtils.isEmpty(e20Var.f23248t)) {
                         try {
-                            new File(e20Var.f23241t).delete();
+                            new File(e20Var.f23248t).delete();
                         } catch (Exception e10) {
                             org.telegram.messenger.a8.g(e10, true);
                         }
-                        e20Var.f23241t = "";
+                        e20Var.f23248t = "";
                     }
                 }
             }
@@ -1058,7 +1058,7 @@ public final class d7 {
         }
         int[][] iArr = (int[][]) Array.newInstance(Integer.TYPE, Math.max(1, i7), 11);
         iArr[0] = new int[11];
-        androidx.car.app.utils.a aVar = new androidx.car.app.utils.a(17, this, iArr, z10Var, absolutePath);
+        ai.r rVar = new ai.r((Object) this, absolutePath, (Object) iArr, (Object) z10Var, 18);
         if (v()) {
             String[] strArr = new String[this.T.size()];
             for (int i11 = 0; i11 < this.T.size(); i11++) {
@@ -1070,11 +1070,11 @@ public final class d7 {
                 strArr[i11] = absolutePath2;
                 iArr[i11] = new int[11];
             }
-            Utilities.f22416e.c(new fi.s5(strArr, iArr, aVar, 11));
+            Utilities.f22416e.c(new fi.s5(strArr, iArr, rVar, 11));
         } else if (this.L == null) {
-            aVar.run();
+            rVar.run();
         } else {
-            Utilities.f22416e.c(new fi.s5(absolutePath, iArr, aVar, 12));
+            Utilities.f22416e.c(new fi.s5(absolutePath, iArr, rVar, 12));
         }
     }
 
@@ -1105,12 +1105,12 @@ public final class d7 {
                     if (this.N.startsWith("vthumb://")) {
                         long parseInt = Integer.parseInt(this.N.substring(9));
                         options.inJustDecodeBounds = true;
-                        MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f26600b.getContentResolver(), parseInt, 1, options);
+                        MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f26609b.getContentResolver(), parseInt, 1, options);
                         options.inSampleSize = d(options, 240, 240);
                         options.inJustDecodeBounds = false;
                         options.inPreferredConfig = Bitmap.Config.RGB_565;
                         options.inDither = true;
-                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f26600b.getContentResolver(), parseInt, 1, options);
+                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f26609b.getContentResolver(), parseInt, 1, options);
                     } else {
                         options.inJustDecodeBounds = true;
                         BitmapFactory.decodeFile(this.N);

@@ -45,7 +45,7 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
         float f10;
         CharSequence ellipsize;
         t8 t8Var = new t8((e6) null);
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         this.f59317l = 1.0f;
         this.f59318m = true;
         this.f59320o = 0.0f;
@@ -56,14 +56,14 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
         q1 q1Var = hVar.E;
         this.f59309b = q1Var;
         this.d = j3;
-        t8Var.f39600p = 1.0f;
+        t8Var.f39598p = 1.0f;
         if (m5.E(j3)) {
             TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(j3));
             t8Var.r(a22);
             if (q10.B(a22)) {
                 str2 = hd.M0(2131745901, null);
                 t8Var.g(1);
-                t8Var.f39600p = 0.75f;
+                t8Var.f39598p = 0.75f;
                 imageReceiver = imageReceiver2;
                 imageReceiver.r0(null, null, null, null, t8Var, 0L, null, a22, 0);
                 imageReceiver.J0(g0.L(g.f59343a / 2.0f));
@@ -72,7 +72,7 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
                 if (str2 == null && a23 != null) {
                     int L = g0.L(48);
                     TextPaint textPaint = new TextPaint(a23);
-                    this.h = new StaticLayout(TextUtils.ellipsize(str2, textPaint, g0.f23609q.x - L, TextUtils.TruncateAt.END), textPaint, (int) Math.ceil(textPaint.measureText(ellipsize, 0, ellipsize.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    this.h = new StaticLayout(TextUtils.ellipsize(str2, textPaint, g0.f23611q.x - L, TextUtils.TruncateAt.END), textPaint, (int) Math.ceil(textPaint.measureText(ellipsize, 0, ellipsize.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                     return;
                 }
             }

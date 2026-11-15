@@ -81,11 +81,11 @@ public final class n0 extends LinearLayout {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            arrayList3.add(np.s1(m10.f24934t0).M0(Long.valueOf(-m5.o(((TL_stories.TL_myBoost) obj).peer))));
+            arrayList3.add(np.s1(m10.f24940t0).M0(Long.valueOf(-m5.o(((TL_stories.TL_myBoost) obj).peer))));
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        er erVar = er.f34420f;
+        er erVar = er.f34419f;
         int size2 = arrayList3.size();
         int i13 = 0;
         while (true) {

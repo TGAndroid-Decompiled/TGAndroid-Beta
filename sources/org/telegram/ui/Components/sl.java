@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.camera.CameraView;
 public final class sl implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout f39335a;
+    public final ChatAttachAlertPhotoLayout f39333a;
 
     public sl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f39335a = chatAttachAlertPhotoLayout;
+        this.f39333a = chatAttachAlertPhotoLayout;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class sl implements CameraView.CameraViewDelegate {
         int i7;
         float f10;
         int i10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f39335a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f39333a;
         ImageView imageView = chatAttachAlertPhotoLayout.f32405s0;
         ImageView[] imageViewArr = chatAttachAlertPhotoLayout.T;
         String currentFlashMode = chatAttachAlertPhotoLayout.Q.getCameraSession().getCurrentFlashMode();

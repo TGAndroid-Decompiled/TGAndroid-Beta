@@ -46,13 +46,13 @@ public final class a extends FingerprintManager.AuthenticationCallback {
         Object obj = this.f17709b;
         switch (i7) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((c) obj).f21417b).d).f1970a;
-                if (weakReference.get() != null && ((z) weakReference.get()).f1981n) {
+                WeakReference weakReference = ((x) ((a0) ((c) obj).f21417b).d).f1977a;
+                if (weakReference.get() != null && ((z) weakReference.get()).f1988n) {
                     z zVar = (z) weakReference.get();
-                    if (zVar.f1988u == null) {
-                        zVar.f1988u = new androidx.lifecycle.z();
+                    if (zVar.f1995u == null) {
+                        zVar.f1995u = new androidx.lifecycle.z();
                     }
-                    z.h(zVar.f1988u, Boolean.TRUE);
+                    z.h(zVar.f1995u, Boolean.TRUE);
                     return;
                 }
                 return;
@@ -71,13 +71,13 @@ public final class a extends FingerprintManager.AuthenticationCallback {
         AlertDialog alertDialog;
         switch (this.f17708a) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((c) this.f17709b).f21417b).d).f1970a;
+                WeakReference weakReference = ((x) ((a0) ((c) this.f17709b).f21417b).d).f1977a;
                 if (weakReference.get() != null) {
                     z zVar = (z) weakReference.get();
-                    if (zVar.f1987t == null) {
-                        zVar.f1987t = new androidx.lifecycle.z();
+                    if (zVar.f1994t == null) {
+                        zVar.f1994t = new androidx.lifecycle.z();
                     }
-                    z.h(zVar.f1987t, charSequence);
+                    z.h(zVar.f1994t, charSequence);
                     return;
                 }
                 return;

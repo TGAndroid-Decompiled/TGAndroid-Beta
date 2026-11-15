@@ -96,8 +96,8 @@ public final class p6 extends View {
         float d = this.d.d(this.E);
         oy0 oy0Var = this.f14862r;
         if (oy0Var != null && this.f14863s != null && d > 0.0f) {
-            oy0Var.f38116p = getWidth() * 0.7f;
-            this.f14863s.f38116p = getWidth() * 0.7f;
+            oy0Var.f38114p = getWidth() * 0.7f;
+            this.f14863s.f38114p = getWidth() * 0.7f;
             float L = org.telegram.messenger.g0.L(5.0f);
             float L2 = org.telegram.messenger.g0.L(10.0f);
             float L3 = org.telegram.messenger.g0.L(32.0f);
@@ -109,7 +109,7 @@ public final class p6 extends View {
             } else {
                 f10 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f14862r.f38105c, this.f14863s.f38105c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
+            float max = Math.max(min, Math.max(this.f14862r.f38103c, this.f14863s.f38103c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
             if (this.f14861n) {
                 f11 = L3;
             } else {
@@ -195,11 +195,11 @@ public final class p6 extends View {
                     dcVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (dcVar.f33917i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (dcVar.f33904i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     dcVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (dcVar.f33917i && (t8Var = this.f14858c) != null && this.F != null) {
+                if (dcVar.f33904i && (t8Var = this.f14858c) != null && this.F != null) {
                     t8Var.a(new l6(this, 1));
                 }
                 dcVar.c(false);
@@ -208,7 +208,7 @@ public final class p6 extends View {
                 dcVar.c(false);
                 this.M = false;
             }
-            if (!this.M && !dcVar.f33917i) {
+            if (!this.M && !dcVar.f33904i) {
                 return false;
             }
             return true;

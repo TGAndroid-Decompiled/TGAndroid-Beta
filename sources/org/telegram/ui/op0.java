@@ -10,12 +10,12 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class op0 extends AnimatorListenerAdapter {
-    public final int f50043a;
-    public final PhotoViewer f50044b;
+    public final int f50020a;
+    public final PhotoViewer f50021b;
 
     public op0(PhotoViewer photoViewer, int i7) {
-        this.f50044b = photoViewer;
-        this.f50043a = i7;
+        this.f50021b = photoViewer;
+        this.f50020a = i7;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class op0 extends AnimatorListenerAdapter {
         sq0 sq0Var;
         int i10;
         boolean z11;
-        PhotoViewer photoViewer = this.f50044b;
+        PhotoViewer photoViewer = this.f50021b;
         int i11 = photoViewer.f42896u4;
         int i12 = 8;
         if (i11 == 1) {
@@ -71,7 +71,7 @@ public final class op0 extends AnimatorListenerAdapter {
         }
         photoViewer.f42853p6 = null;
         int i13 = photoViewer.f42896u4;
-        photoViewer.f42896u4 = this.f50043a;
+        photoViewer.f42896u4 = this.f50020a;
         hi.p3 p3Var = photoViewer.b1().M;
         if (photoViewer.f42896u4 != 0) {
             z10 = true;
@@ -112,7 +112,7 @@ public final class op0 extends AnimatorListenerAdapter {
         wq0 wq0Var = photoViewer.i7;
         if (wq0Var != null) {
             PhotoViewer photoViewer2 = wq0Var.d;
-            photoViewer2.d = wq0Var.f52985c;
+            photoViewer2.d = wq0Var.f52984c;
             WindowManager.LayoutParams layoutParams = photoViewer2.f42753e0;
             layoutParams.flags = -2147286784;
             layoutParams.softInputMode = 272;
@@ -120,12 +120,12 @@ public final class op0 extends AnimatorListenerAdapter {
             photoViewer2.f42763f0.setFocusable(false);
             photoViewer2.M0.setAlpha(255);
             photoViewer2.f42763f0.setAlpha(1.0f);
-            ArrayList arrayList = wq0Var.f52984b;
-            int i14 = wq0Var.f52983a;
-            photoViewer2.X1(null, null, null, null, arrayList, null, null, i14, wq0Var.f52985c.E((org.telegram.messenger.gj) arrayList.get(i14), null, wq0Var.f52983a, true, false));
+            ArrayList arrayList = wq0Var.f52983b;
+            int i14 = wq0Var.f52982a;
+            photoViewer2.X1(null, null, null, null, arrayList, null, null, i14, wq0Var.f52984c.E((org.telegram.messenger.gj) arrayList.get(i14), null, wq0Var.f52982a, true, false));
             photoViewer.i7 = null;
             eq0 eq0Var = new eq0();
-            eq0Var.f46898c = false;
+            eq0Var.f46882c = false;
             photoViewer.i3(false, false, eq0Var);
             photoViewer.i3(true, true, eq0Var);
             return;
@@ -138,9 +138,9 @@ public final class op0 extends AnimatorListenerAdapter {
         di.k4 k4Var2 = photoViewer.Q0;
         Property property2 = View.ALPHA;
         arrayList2.add(ObjectAnimator.ofFloat(k4Var2, property2, 1.0f));
-        tg.f2 f2Var = photoViewer.f42852p5;
-        if (f2Var != null) {
-            arrayList2.add(ObjectAnimator.ofFloat(f2Var, property2, 1.0f));
+        tg.e2 e2Var = photoViewer.f42852p5;
+        if (e2Var != null) {
+            arrayList2.add(ObjectAnimator.ofFloat(e2Var, property2, 1.0f));
         }
         fi.w2 w2Var = photoViewer.s5;
         if (w2Var != null) {

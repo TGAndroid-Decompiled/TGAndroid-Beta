@@ -161,7 +161,7 @@ public final class l extends r6.a {
                 String str = (String) obj;
                 if (str != null && bundle.containsKey(str)) {
                     android.support.v4.media.session.a0 a0Var = f11099e;
-                    String str2 = (String) ((HashMap) a0Var.f1706b).get(str);
+                    String str2 = (String) ((HashMap) a0Var.f1713b).get(str);
                     if (str2 != null) {
                         Integer num = (Integer) ((HashMap) a0Var.d).get(str);
                         if (num != null) {
@@ -257,7 +257,7 @@ public final class l extends r6.a {
                 String next = keys.next();
                 if (next != null && !"metadataType".equals(next)) {
                     android.support.v4.media.session.a0 a0Var = f11099e;
-                    String str = (String) ((HashMap) a0Var.f1707c).get(next);
+                    String str = (String) ((HashMap) a0Var.f1714c).get(next);
                     if (str != null) {
                         if (hashSet2.contains(str)) {
                             try {

@@ -174,7 +174,7 @@ public final class y4 extends tj0 {
                 boolean remove = c5Var.G.f11563p.remove(Long.valueOf(j3));
                 if (storyView != null) {
                     TLRPC.Reaction reaction3 = storyView.reaction;
-                    if (reaction3 != null && (str2 = ch.p0.d(reaction3).f5188f) != null && str2.equals("❤")) {
+                    if (reaction3 != null && (str2 = ch.p0.d(reaction3).f5191f) != null && str2.equals("❤")) {
                         j11 = 0;
                         z11 = true;
                     } else {
@@ -237,7 +237,7 @@ public final class y4 extends tj0 {
                     if (storyReaction instanceof TL_stories.TL_storyReaction) {
                         TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction;
                         TLRPC.Reaction reaction4 = tL_storyReaction.reaction;
-                        if (reaction4 != null && (str = ch.p0.d(reaction4).f5188f) != null && str.equals("❤")) {
+                        if (reaction4 != null && (str = ch.p0.d(reaction4).f5191f) != null && str.equals("❤")) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -343,7 +343,7 @@ public final class y4 extends tj0 {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.X2(hd.M0(2131750871, null)));
                     boolean D3 = np.s1(i11).D3();
-                    z70 z70Var2 = x4Var.f33707e;
+                    z70 z70Var2 = x4Var.f33709e;
                     if (!D3) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
                         spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.U2(hd.M0(2131750870, null), new Runnable() {
@@ -377,7 +377,7 @@ public final class y4 extends tj0 {
                         TextView textView = new TextView(x4Var.getContext());
                         textView.setText(M0);
                         int i12 = org.telegram.ui.ActionBar.j6.Ji;
-                        org.telegram.ui.ActionBar.e6 e6Var = x4Var.f33709n;
+                        org.telegram.ui.ActionBar.e6 e6Var = x4Var.f33711n;
                         org.telegram.ui.ActionBar.q6.U(textView, i12, e6Var);
                         textView.setPadding(org.telegram.messenger.g0.L(45.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(45.0f), org.telegram.messenger.g0.L(12.0f));
                         textView.setGravity(17);
@@ -396,7 +396,7 @@ public final class y4 extends tj0 {
                         org.telegram.ui.ActionBar.q6.j(v1Var, k02, M, g10, e6Var);
                         na.b(v1Var, 0.05f, 1.5f);
                         v1Var.addView(textView);
-                        z51 z51Var = x4Var.f33704a;
+                        z51 z51Var = x4Var.f33706a;
                         z51Var.setClipChildren(false);
                         z51Var.addView(v1Var, ja.t(-2, -2, 1, 0, 28, 0, 4));
                     }

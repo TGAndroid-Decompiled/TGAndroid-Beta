@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public final class mu extends tj0 {
-    public final wu f37379c;
+    public final wu f37378c;
 
     public mu(wu wuVar) {
-        this.f37379c = wuVar;
+        this.f37378c = wuVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class mu extends tj0 {
 
     public final int E(int i7) {
         int i10;
-        wu wuVar = this.f37379c;
-        iu iuVar = wuVar.f41448p1;
+        wu wuVar = this.f37378c;
+        iu iuVar = wuVar.f41451p1;
         if (wuVar.D1) {
             i10 = 2;
         } else {
@@ -39,7 +39,7 @@ public final class mu extends tj0 {
             }
             int size = arrayListArr[i11].size();
             if (iuVar.f40162c.length > 1) {
-                size = Math.min(wuVar.f41457y1.J * 2, size);
+                size = Math.min(wuVar.f41460y1.J * 2, size);
             }
             i10 += size + 2;
             i11++;
@@ -53,8 +53,8 @@ public final class mu extends tj0 {
         int i7;
         int min;
         ArrayList arrayList;
-        wu wuVar = this.f37379c;
-        iu iuVar = wuVar.f41448p1;
+        wu wuVar = this.f37378c;
+        iu iuVar = wuVar.f41451p1;
         if (!org.telegram.messenger.m10.i(wuVar.f29679a).q() && (arrayList = iuVar.f40161b) != null && arrayList.size() == 1 && org.telegram.messenger.gj.V3((TLRPC.TL_messages_stickerSet) iuVar.f40161b.get(0))) {
             r22 = 1;
         } else {
@@ -77,7 +77,7 @@ public final class mu extends tj0 {
                     if (arrayListArr.length == 1) {
                         min = arrayList2.size();
                     } else {
-                        min = Math.min(iuVar.f40164f.f41457y1.J * 2, arrayList2.size());
+                        min = Math.min(iuVar.f40164f.f41460y1.J * 2, arrayList2.size());
                     }
                     i7 = min + i7 + 1;
                 }
@@ -89,8 +89,8 @@ public final class mu extends tj0 {
 
     @Override
     public final int d(int i7) {
-        wu wuVar = this.f37379c;
-        iu iuVar = wuVar.f41448p1;
+        wu wuVar = this.f37378c;
+        iu iuVar = wuVar.f41451p1;
         int i10 = 0;
         if (i7 == 0) {
             return 0;
@@ -115,7 +115,7 @@ public final class mu extends tj0 {
             }
             int size = arrayListArr[i10].size();
             if (iuVar.f40162c.length > 1) {
-                size = Math.min(wuVar.f41457y1.J * 2, size);
+                size = Math.min(wuVar.f41460y1.J * 2, size);
             }
             int i13 = size + 1 + i12;
             if (i11 == i13) {
@@ -135,9 +135,9 @@ public final class mu extends tj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View view;
         View view2;
-        wu wuVar = this.f37379c;
+        wu wuVar = this.f37378c;
         if (i7 == 0) {
-            view = wuVar.f41447o1;
+            view = wuVar.f41450o1;
         } else {
             boolean z10 = true;
             if (i7 == 1) {
@@ -146,7 +146,7 @@ public final class mu extends tj0 {
                 view2 = view3;
             } else if (i7 == 2) {
                 Context context = wuVar.getContext();
-                if (wuVar.f41448p1.f40162c.length > 1) {
+                if (wuVar.f41451p1.f40162c.length > 1) {
                     z10 = false;
                 }
                 view2 = new su(wuVar, context, z10);

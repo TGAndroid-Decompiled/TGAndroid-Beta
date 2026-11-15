@@ -50,8 +50,8 @@ public final class n0 extends FrameLayout implements z5 {
             this.d = N;
             int L = org.telegram.messenger.g0.L(16.0f);
             int L2 = org.telegram.messenger.g0.L(16.0f);
-            N.f34672e = L;
-            N.f34673f = L2;
+            N.f34676e = L;
+            N.f34677f = L2;
             j6.B1(this.d, j6.w0(j6.Fi, e6Var), false);
             j6.B1(this.d, j6.w0(j6.Ji, e6Var), true);
             i9Var.setImageDrawable(this.d);
@@ -69,12 +69,12 @@ public final class n0 extends FrameLayout implements z5 {
             TLObject tLObject = o0Var.f17223f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (m10.i(m10.f24934t0).f().f28200id == user.f28200id) {
+                if (m10.i(m10.f24940t0).f().f28200id == user.f28200id) {
                     fq N3 = j6.N(org.telegram.messenger.g0.L(32.0f), 2131231000);
                     int L3 = org.telegram.messenger.g0.L(16.0f);
                     int L4 = org.telegram.messenger.g0.L(16.0f);
-                    N3.f34672e = L3;
-                    N3.f34673f = L4;
+                    N3.f34676e = L3;
+                    N3.f34677f = L4;
                     j6.B1(N3, j6.w0(i10, e6Var), false);
                     j6.B1(N3, j6.w0(i11, e6Var), true);
                     i9Var.setImageDrawable(N3);

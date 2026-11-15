@@ -40,7 +40,7 @@ public final class b0 extends TableLayout {
             float f12 = f11 * i7;
             canvas.drawLine(0.0f, f12, getWidth(), f12, c0Var.f60656r);
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             left = c0Var.f60653e.getRight();
         } else {
             left = c0Var.f60653e.getLeft();

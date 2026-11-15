@@ -303,7 +303,7 @@ public final class o6 {
             if (z10 && this.f44263r >= 1.0f) {
                 RectF rectF = this.f44260o;
                 if (!rectF.isEmpty() && this.f44261p.isAttachedToWindow() && l0.I(this.f44261p.getMessageObject(), this.f44252f)) {
-                    float centerY = (((rectF.centerY() - (Math.min(this.f44259n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f23608p;
+                    float centerY = (((rectF.centerY() - (Math.min(this.f44259n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f23610p;
                     c4 c4Var = this.f44261p.J0;
                     c4Var.l();
                     r1.g gVar = new r1.g(new r1.f(0.0f));
@@ -421,7 +421,7 @@ public final class o6 {
                     return;
                 }
                 rectF.set(da.a(w6Var, viewGroup));
-                rectF.offset(0.0f, kiVar.f36463j4 - kiVar.f36497t2);
+                rectF.offset(0.0f, kiVar.f36451j4 - kiVar.f36485t2);
             }
         }
     }

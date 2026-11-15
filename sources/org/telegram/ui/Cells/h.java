@@ -60,7 +60,7 @@ public final class h extends ClickableSpan {
                 return;
             case 3:
                 try {
-                    ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f30348b));
+                    ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f30348b));
                     if (cc.a((org.telegram.ui.la) this.f30349c)) {
                         cc.j((org.telegram.ui.la) this.f30349c).j();
                         return;
@@ -103,7 +103,7 @@ public final class h extends ClickableSpan {
                 }
                 return;
             case 9:
-                ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f30348b));
+                ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f30348b));
                 cc a02 = cc.a0(((ht0) this.f30349c).d);
                 String M0 = hd.M0(2131748921, null);
                 org.telegram.ui.ActionBar.e6 resourceProvider = ((ht0) this.f30349c).d.getResourceProvider();
@@ -113,14 +113,14 @@ public final class h extends ClickableSpan {
                 } else {
                     fb fbVar = new fb(a02.W(), resourceProvider);
                     fbVar.c(2131624346, 36, 36, "Wibe", "Circle");
-                    fbVar.f34552b.setText(M0);
+                    fbVar.f34556b.setText(M0);
                     b10 = a02.b(fbVar, 1500);
                 }
                 b10.j();
                 return;
             case 10:
                 try {
-                    ((ClipboardManager) org.telegram.messenger.t0.f26600b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f30348b));
+                    ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f30348b));
                     if (cc.a((w71) this.f30349c)) {
                         cc.j((w71) this.f30349c).j();
                         return;

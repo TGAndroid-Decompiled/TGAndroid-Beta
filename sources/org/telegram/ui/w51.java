@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.ThemeActivity;
 public final class w51 implements org.telegram.ui.Components.gj0 {
-    public final int f52437a;
-    public final Object f52438b;
-    public final Object f52439c;
+    public final int f52440a;
+    public final Object f52441b;
+    public final Object f52442c;
     public final Object d;
 
     public w51(Object obj, Object obj2, Object obj3, int i7) {
-        this.f52437a = i7;
-        this.f52438b = obj;
-        this.f52439c = obj2;
+        this.f52440a = i7;
+        this.f52441b = obj;
+        this.f52442c = obj2;
         this.d = obj3;
     }
 
@@ -24,11 +24,11 @@ public final class w51 implements org.telegram.ui.Components.gj0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.f52437a) {
+        switch (this.f52440a) {
             case 0:
-                e61 e61Var = (e61) this.f52439c;
+                e61 e61Var = (e61) this.f52442c;
                 b61 b61Var = (b61) this.d;
-                ThemeActivity themeActivity = ((c61) this.f52438b).f46038e;
+                ThemeActivity themeActivity = ((c61) this.f52441b).f46027e;
                 int i10 = themeActivity.f43393f;
                 if (i10 == 1) {
                     D0 = org.telegram.ui.ActionBar.j6.J;
@@ -44,7 +44,7 @@ public final class w51 implements org.telegram.ui.Components.gj0 {
                     }
                     themeActivity.presentFragment(new t71(i6Var, false, 1, false, z13));
                 } else {
-                    org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) e61Var.f46584e.get(i7);
+                    org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) e61Var.f46574e.get(i7);
                     if (!TextUtils.isEmpty(g6Var.f28614o) && g6Var.f28602a != org.telegram.ui.ActionBar.j6.f29025n) {
                         org.telegram.ui.ActionBar.d6.a(false);
                     }
@@ -94,7 +94,7 @@ public final class w51 implements org.telegram.ui.Components.gj0 {
                 }
                 return;
             default:
-                fx0.a0((fx0) this.f52438b, (Context) this.f52439c, (String) this.d, view, i7);
+                fx0.a0((fx0) this.f52441b, (Context) this.f52442c, (String) this.d, view, i7);
                 return;
         }
     }

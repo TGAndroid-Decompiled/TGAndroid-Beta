@@ -5,23 +5,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ta1 implements Runnable {
-    public final int f51517a;
-    public final xa1 f51518b;
-    public final TLRPC.TL_error f51519c;
+    public final int f51518a;
+    public final xa1 f51519b;
+    public final TLRPC.TL_error f51520c;
 
     public ta1(xa1 xa1Var, TLRPC.TL_error tL_error, int i7) {
-        this.f51517a = i7;
-        this.f51518b = xa1Var;
-        this.f51519c = tL_error;
+        this.f51518a = i7;
+        this.f51519b = xa1Var;
+        this.f51520c = tL_error;
     }
 
     @Override
     public final void run() {
         String G;
         String G2;
-        int i7 = this.f51517a;
-        TLRPC.TL_error tL_error = this.f51519c;
-        xa1 xa1Var = this.f51518b;
+        int i7 = this.f51518a;
+        TLRPC.TL_error tL_error = this.f51520c;
+        xa1 xa1Var = this.f51519b;
         switch (i7) {
             case 0:
                 xa1Var.B0();

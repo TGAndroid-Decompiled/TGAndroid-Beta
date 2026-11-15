@@ -16,16 +16,16 @@ public final class vw extends tj0 {
     public int F;
     public final ly G;
     public ArrayList h;
-    public int f41162c = -1;
+    public int f41165c = -1;
     public int d = -1;
-    public int f41163e = -1;
-    public int f41164f = -1;
-    public final ArrayList f41165n = new ArrayList();
-    public final SparseIntArray f41166r = new SparseIntArray();
-    public final SparseIntArray f41167s = new SparseIntArray();
-    public final SparseIntArray f41168w = new SparseIntArray();
-    public final SparseIntArray f41169x = new SparseIntArray();
-    public final ArrayList f41170y = new ArrayList();
+    public int f41166e = -1;
+    public int f41167f = -1;
+    public final ArrayList f41168n = new ArrayList();
+    public final SparseIntArray f41169r = new SparseIntArray();
+    public final SparseIntArray f41170s = new SparseIntArray();
+    public final SparseIntArray f41171w = new SparseIntArray();
+    public final SparseIntArray f41172x = new SparseIntArray();
+    public final ArrayList f41173y = new ArrayList();
 
     public vw(ly lyVar) {
         this.G = lyVar;
@@ -48,7 +48,7 @@ public final class vw extends tj0 {
         float f10;
         ly lyVar = this.G;
         ArrayList arrayList = lyVar.f36983r1;
-        int i10 = this.f41169x.get(i7);
+        int i10 = this.f41172x.get(i7);
         if (i10 >= 0 && i10 < arrayList.size()) {
             zw zwVar = (zw) arrayList.get(i10);
             if (!zwVar.h) {
@@ -57,7 +57,7 @@ public final class vw extends tj0 {
                 } else {
                     z10 = false;
                 }
-                int intValue = ((Integer) this.f41170y.get(i10)).intValue();
+                int intValue = ((Integer) this.f41173y.get(i10)).intValue();
                 lyVar.f36976p1.add(Long.valueOf(zwVar.f42431b.f28078id));
                 if (!org.telegram.messenger.m10.i(lyVar.f36941d1).q() && !lyVar.V0) {
                     z11 = false;
@@ -111,9 +111,9 @@ public final class vw extends tj0 {
         if (lyVar.U2) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f41165n);
+        ArrayList arrayList2 = new ArrayList(this.f41168n);
         org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(lyVar.f36941d1);
-        ArrayList arrayList3 = b02.f26501t0[1];
+        ArrayList arrayList3 = b02.f26511t0[1];
         arrayList.clear();
         int size = arrayList3.size();
         for (int i7 = 0; i7 < size; i7++) {
@@ -312,13 +312,13 @@ public final class vw extends tj0 {
         if (i7 == this.d) {
             return 4;
         }
-        if (i7 == this.f41162c || i7 == this.f41164f) {
+        if (i7 == this.f41165c || i7 == this.f41167f) {
             return 1;
         }
-        SparseIntArray sparseIntArray = this.f41166r;
+        SparseIntArray sparseIntArray = this.f41169r;
         if (sparseIntArray.indexOfKey(i7) >= 0) {
             int i10 = sparseIntArray.get(i7);
-            char[] cArr = org.telegram.messenger.k6.f24639a;
+            char[] cArr = org.telegram.messenger.k6.f24642a;
             if (i10 < 8) {
                 return 1;
             }
@@ -326,10 +326,10 @@ public final class vw extends tj0 {
         } else if (this.G.f36943e0 && i7 == 0) {
             return 2;
         } else {
-            if (this.f41168w.indexOfKey(i7) >= 0) {
+            if (this.f41171w.indexOfKey(i7) >= 0) {
                 return 3;
             }
-            if (this.f41169x.indexOfKey(i7) >= 0) {
+            if (this.f41172x.indexOfKey(i7) >= 0) {
                 return 6;
             }
             return 0;
@@ -363,18 +363,18 @@ public final class vw extends tj0 {
         boolean z10 = true;
         zw zwVar2 = null;
         if (i13 != 0) {
-            SparseIntArray sparseIntArray = this.f41166r;
+            SparseIntArray sparseIntArray = this.f41169r;
             if (i13 != 1) {
                 if (i13 != 5) {
                     if (i13 == 6) {
                         bx bxVar = (bx) view;
-                        int i15 = this.f41169x.get(i11);
+                        int i15 = this.f41172x.get(i11);
                         int i16 = mwVar.J * 3;
                         if (i15 >= 0 && i15 < arrayList.size()) {
                             zwVar2 = (zw) arrayList.get(i15);
                         }
                         if (zwVar2 != null) {
-                            bxVar.f33425a.setText("+" + ((zwVar2.f42432c.size() - i16) + 1));
+                            bxVar.f33428a.setText("+" + ((zwVar2.f42432c.size() - i16) + 1));
                             return;
                         }
                         return;
@@ -397,12 +397,12 @@ public final class vw extends tj0 {
                     org.telegram.messenger.si.b0(i12).m0(zwVar3.d, false);
                     zwVar3.d = null;
                 }
-                ug.q0 q0Var = dxVar.f34091r;
+                ug.q0 q0Var = dxVar.f34078r;
                 if (zwVar3 != null) {
-                    dxVar.f34094x = zwVar3;
-                    dxVar.f34095y = z10;
+                    dxVar.f34081x = zwVar3;
+                    dxVar.f34082y = z10;
                     dxVar.d.l(zwVar3.f42431b.title, false);
-                    TextView textView = dxVar.f34088e;
+                    TextView textView = dxVar.f34075e;
                     if (zwVar3.f42436i) {
                         i14 = 0;
                     }
@@ -420,10 +420,10 @@ public final class vw extends tj0 {
             org.telegram.ui.Cells.i8 i8Var = (org.telegram.ui.Cells.i8) view;
             i8Var.getClass();
             int i18 = sparseIntArray.get(i11);
-            if (i11 == this.f41162c) {
+            if (i11 == this.f41165c) {
                 i8Var.b(org.telegram.messenger.hd.M0(2131750835, null), 2131232097, org.telegram.messenger.hd.M0(2131754899, null), 0, 0);
                 return;
-            } else if (i11 == this.f41164f) {
+            } else if (i11 == this.f41167f) {
                 i8Var.a(0, org.telegram.messenger.hd.M0(2131746361, null));
                 return;
             } else if (i18 >= strArr.length) {
@@ -445,7 +445,7 @@ public final class vw extends tj0 {
         if (lyVar.f36943e0) {
             i11--;
         }
-        if (this.f41164f >= 0) {
+        if (this.f41167f >= 0) {
             i11--;
         }
         if (this.d >= 0) {
@@ -470,14 +470,14 @@ public final class vw extends tj0 {
         } else {
             int i19 = 0;
             while (true) {
-                String[][] strArr2 = org.telegram.messenger.k6.f24643f;
+                String[][] strArr2 = org.telegram.messenger.k6.f24646f;
                 if (i19 < 8) {
                     String[] strArr3 = strArr2[i19];
                     int length2 = strArr3.length + 1;
                     int i20 = (i11 - size) - 1;
                     if (i20 >= 0 && i11 < size + length2) {
                         String str4 = strArr3[i20];
-                        String str5 = (String) org.telegram.messenger.j6.f24527j.get(str4);
+                        String str5 = (String) org.telegram.messenger.j6.f24532j.get(str4);
                         if (str5 != null) {
                             str = ly.g(str4, str5);
                             str2 = str4;
@@ -499,7 +499,7 @@ public final class vw extends tj0 {
                 int i21 = mwVar.J * 3;
                 int i22 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f41170y;
+                    ArrayList arrayList2 = this.f41173y;
                     if (i22 >= arrayList2.size()) {
                         break;
                     }
@@ -571,7 +571,7 @@ public final class vw extends tj0 {
                                 org.telegram.ui.ActionBar.e6 e6Var = lyVar.f36931a2;
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f33425a = textView;
+                                frameLayout.f33428a = textView;
                                 textView.setTextSize(1, 13.0f);
                                 org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f28849d6, e6Var);
                                 int L = org.telegram.messenger.g0.L(11.0f);

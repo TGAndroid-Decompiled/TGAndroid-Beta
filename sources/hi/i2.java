@@ -50,7 +50,7 @@ public class i2 extends org.telegram.ui.ActionBar.u2 implements is {
         } else {
             i7 = C1;
         }
-        i1Var.f41295b = i7;
+        i1Var.f41298b = i7;
         i1Var.setAdapter(new j1(this, z10, context));
         this.f29682b.addView(i1Var, c8.ja.e(-1, -1, 87));
         new p3(this.f29682b, false, new d1(this, 0));
@@ -58,11 +58,11 @@ public class i2 extends org.telegram.ui.ActionBar.u2 implements is {
             h2 h2Var = new h2(context);
             this.f14407r1 = h2Var;
             h2Var.H = new d1(this, 1);
-            h2Var.G = i1Var.f41295b;
+            h2Var.G = i1Var.f41298b;
             h2Var.invalidate();
             this.f29682b.addView(h2Var, c8.ja.e(-1, -2, 87));
         }
-        ns.f(this.f29679a).c(this, ns.f25600x0);
+        ns.f(this.f29679a).c(this, ns.f25601x0);
         ns.f(this.f29679a).c(this, ns.B0);
         boolean z12 = org.telegram.messenger.a8.f22472j;
         if (!z10) {
@@ -115,7 +115,7 @@ public class i2 extends org.telegram.ui.ActionBar.u2 implements is {
 
     public final void M0(int i7) {
         if (I0(Integer.valueOf(i7))) {
-            if ((i7 != 1 || K0(new ai.v0(this, i7, 7))) && ((Boolean) this.B1.a(Integer.valueOf(i7))).booleanValue()) {
+            if ((i7 != 1 || K0(new ai.w0(this, i7, 7))) && ((Boolean) this.B1.a(Integer.valueOf(i7))).booleanValue()) {
                 dismiss();
             }
         }
@@ -137,7 +137,7 @@ public class i2 extends org.telegram.ui.ActionBar.u2 implements is {
     @Override
     public final int S() {
         if (this.f29682b.getMeasuredHeight() <= 0) {
-            return org.telegram.messenger.g0.f23609q.y;
+            return org.telegram.messenger.g0.f23611q.y;
         }
         return (int) (this.f29682b.getMeasuredHeight() - this.f14406q1.getY());
     }
@@ -145,7 +145,7 @@ public class i2 extends org.telegram.ui.ActionBar.u2 implements is {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         View[] viewPages;
-        int i11 = ns.f25600x0;
+        int i11 = ns.f25601x0;
         int i12 = ns.B0;
         if (i7 == i11 || i7 == i12) {
             for (View view : this.f14406q1.getViewPages()) {
@@ -164,7 +164,7 @@ public class i2 extends org.telegram.ui.ActionBar.u2 implements is {
 
     @Override
     public final void dismiss() {
-        ns.f(this.f29679a).n(this, ns.f25600x0);
+        ns.f(this.f29679a).n(this, ns.f25601x0);
         ns.f(this.f29679a).n(this, ns.B0);
         L0();
         super.dismiss();

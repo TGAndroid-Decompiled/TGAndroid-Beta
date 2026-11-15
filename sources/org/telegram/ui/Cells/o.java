@@ -36,15 +36,15 @@ public final class o extends View {
         TLRPC.Document document;
         org.telegram.ui.Components.g5 l10;
         String V;
-        if (p0Var.f5188f != null) {
-            tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24934t0).f26495r.get(p0Var.f5188f);
+        if (p0Var.f5191f != null) {
+            tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24940t0).f26505r.get(p0Var.f5191f);
         } else {
             tL_availableReaction = null;
         }
         if (tL_availableReaction == null) {
-            document = org.telegram.ui.Components.g5.e(m10.f24934t0, p0Var.f5189g);
+            document = org.telegram.ui.Components.g5.e(m10.f24940t0, p0Var.f5192g);
             if (document != null && (V = gj.V(document, null, null)) != null) {
-                tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24934t0).f26495r.get(V);
+                tL_availableReaction = (TLRPC.TL_availableReaction) si.b0(m10.f24940t0).f26505r.get(V);
             }
             tL_availableReaction2 = tL_availableReaction;
         } else {
@@ -73,9 +73,9 @@ public final class o extends View {
             return;
         }
         if (document == null) {
-            l10 = org.telegram.ui.Components.g5.m(2, p0Var.f5189g, null, m10.f24934t0);
+            l10 = org.telegram.ui.Components.g5.m(2, p0Var.f5192g, null, m10.f24940t0);
         } else {
-            l10 = org.telegram.ui.Components.g5.l(2, m10.f24934t0, document);
+            l10 = org.telegram.ui.Components.g5.l(2, m10.f24940t0, document);
         }
         if (this.f30783n != null) {
             l10.setColorFilter(new PorterDuffColorFilter(this.f30783n.intValue(), PorterDuff.Mode.MULTIPLY));
@@ -164,7 +164,7 @@ public final class o extends View {
                 if (obj instanceof ImageReceiver) {
                     ((ImageReceiver) obj).f22290p1 = porterDuffColorFilter;
                 } else if (obj instanceof ch.d) {
-                    ((ch.d) obj).f5044a.setColorFilter(porterDuffColorFilter2);
+                    ((ch.d) obj).f5047a.setColorFilter(porterDuffColorFilter2);
                 }
                 i10++;
             } else {

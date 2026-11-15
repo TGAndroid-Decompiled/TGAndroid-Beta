@@ -41,7 +41,7 @@ public final class zq implements TextWatcher {
                             } else {
                                 i19++;
                                 int i21 = i18 + i20;
-                                dr[] drVarArr = arVar.f45491f;
+                                dr[] drVarArr = arVar.f45485f;
                                 if (i21 < drVarArr.length) {
                                     drVarArr[i21].setText(obj.substring(i20, i20 + 1));
                                 }
@@ -52,11 +52,11 @@ public final class zq implements TextWatcher {
                     }
                     int i22 = i18 + 1;
                     if (i22 >= 0) {
-                        dr[] drVarArr2 = arVar.f45491f;
+                        dr[] drVarArr2 = arVar.f45485f;
                         if (i22 < drVarArr2.length) {
                             dr drVar = drVarArr2[i22];
                             drVar.setSelection(drVar.length());
-                            arVar.f45491f[i22].requestFocus();
+                            arVar.f45485f[i22].requestFocus();
                         }
                     }
                     if ((i18 == i17 - 1 || (i18 == i17 - 2 && length >= 2)) && arVar.getCode().length() == i17) {
@@ -68,7 +68,7 @@ public final class zq implements TextWatcher {
                 return;
             case 1:
                 be0 be0Var = (be0) this.d;
-                zd0 zd0Var = be0Var.f45689b;
+                zd0 zd0Var = be0Var.f45683b;
                 if (!be0Var.M) {
                     int selectionStart = zd0Var.getSelectionStart();
                     String obj2 = zd0Var.getText().toString();
@@ -122,7 +122,7 @@ public final class zq implements TextWatcher {
                 return;
             case 2:
                 bh0 bh0Var = (bh0) this.d;
-                if (!bh0Var.f45762z1) {
+                if (!bh0Var.f45756z1) {
                     int selectionStart2 = bh0Var.K1.getSelectionStart();
                     String obj3 = bh0Var.K1.getText().toString();
                     if (this.f54008b == 3) {
@@ -139,7 +139,7 @@ public final class zq implements TextWatcher {
                         }
                         i26 = i27;
                     }
-                    bh0Var.f45762z1 = true;
+                    bh0Var.f45756z1 = true;
                     String hintText2 = bh0Var.K1.getHintText();
                     if (hintText2 != null) {
                         int i28 = 0;
@@ -169,14 +169,14 @@ public final class zq implements TextWatcher {
                         zg0Var.setSelection(Math.min(selectionStart2, zg0Var.length()));
                     }
                     bh0Var.K1.invalidate();
-                    bh0Var.f45762z1 = false;
+                    bh0Var.f45756z1 = false;
                     bh0.I0(bh0Var);
                     return;
                 }
                 return;
             case 3:
                 ek0 ek0Var = (ek0) this.d;
-                if (!ek0Var.f46807b1) {
+                if (!ek0Var.f46797b1) {
                     org.telegram.ui.Components.y20 y20Var = (org.telegram.ui.Components.y20) ek0Var.Z[2];
                     int selectionStart3 = y20Var.getSelectionStart();
                     String obj4 = y20Var.getText().toString();
@@ -194,7 +194,7 @@ public final class zq implements TextWatcher {
                         }
                         i29 = i30;
                     }
-                    ek0Var.f46807b1 = true;
+                    ek0Var.f46797b1 = true;
                     String hintText3 = y20Var.getHintText();
                     if (hintText3 != null) {
                         int i31 = 0;
@@ -223,14 +223,14 @@ public final class zq implements TextWatcher {
                         y20Var.setSelection(Math.min(selectionStart3, y20Var.length()));
                     }
                     y20Var.invalidate();
-                    ek0Var.f46807b1 = false;
+                    ek0Var.f46797b1 = false;
                     return;
                 }
                 return;
             default:
-                jl0 jl0Var = (jl0) this.d;
-                if (!jl0Var.f48408o0) {
-                    org.telegram.ui.Components.y20 y20Var2 = (org.telegram.ui.Components.y20) jl0Var.f48396f[9];
+                kl0 kl0Var = (kl0) this.d;
+                if (!kl0Var.f48700o0) {
+                    org.telegram.ui.Components.y20 y20Var2 = (org.telegram.ui.Components.y20) kl0Var.f48688f[9];
                     int selectionStart4 = y20Var2.getSelectionStart();
                     String obj5 = y20Var2.getText().toString();
                     if (this.f54008b == 3) {
@@ -247,7 +247,7 @@ public final class zq implements TextWatcher {
                         }
                         i32 = i33;
                     }
-                    jl0Var.f48408o0 = true;
+                    kl0Var.f48700o0 = true;
                     String hintText4 = y20Var2.getHintText();
                     if (hintText4 != null) {
                         int i34 = 0;
@@ -276,7 +276,7 @@ public final class zq implements TextWatcher {
                         y20Var2.setSelection(Math.min(selectionStart4, y20Var2.length()));
                     }
                     y20Var2.invalidate();
-                    jl0Var.f48408o0 = false;
+                    kl0Var.f48700o0 = false;
                     return;
                 }
                 return;

@@ -47,7 +47,7 @@ public final class d implements Runnable {
                 e2 Q = LaunchActivity.Q();
                 ?? u2Var = new u2(Q.getParentActivity(), false);
                 if (Q.getFragmentView() instanceof st0) {
-                    u2Var.f47612m1 = (st0) Q.getFragmentView();
+                    u2Var.f47602m1 = (st0) Q.getFragmentView();
                 }
                 Activity parentActivity = Q.getParentActivity();
                 LinearLayout e10 = k5.e(parentActivity, 1);
@@ -57,13 +57,13 @@ public final class d implements Runnable {
                 q6.U(textView, i17, null);
                 i20.p(textView, 1, 16.0f, 1, 1);
                 textView.setSingleLine(true);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i7 = 3;
                 } else {
                     i7 = 5;
                 }
                 textView.setGravity(i7 | 48);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i10 = 3;
                 } else {
                     i10 = 5;
@@ -74,17 +74,17 @@ public final class d implements Runnable {
                 qm0Var.setReportChanges(true);
                 e10.addView(qm0Var, ja.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
                 TextView textView2 = new TextView(parentActivity);
-                textView2.setText("Alpha " + h5.f47611p1);
+                textView2.setText("Alpha " + h5.f47601p1);
                 q6.U(textView2, i17, null);
                 i20.p(textView2, 1, 16.0f, 1, 1);
                 textView2.setSingleLine(true);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i11 = 3;
                 } else {
                     i11 = 5;
                 }
                 textView2.setGravity(i11 | 48);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i12 = 3;
                 } else {
                     i12 = 5;
@@ -99,13 +99,13 @@ public final class d implements Runnable {
                 q6.U(textView3, i17, null);
                 i20.p(textView3, 1, 16.0f, 1, 1);
                 textView3.setSingleLine(true);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i13 = 3;
                 } else {
                     i13 = 5;
                 }
                 textView3.setGravity(i13 | 48);
-                if (hd.f24101a0) {
+                if (hd.f24104a0) {
                     i14 = 3;
                 } else {
                     i14 = 5;

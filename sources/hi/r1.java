@@ -34,7 +34,7 @@ public final class r1 extends tj0 {
         arrayList.clear();
         i2 i2Var = t1Var.f15141r;
         int i7 = i2.C1;
-        arrayList.addAll(new ArrayList(si.b0(i2Var.f29679a).f26481j0));
+        arrayList.addAll(new ArrayList(si.b0(i2Var.f29679a).f26491j0));
         if (z10) {
             r1Var.f();
         }
@@ -92,7 +92,7 @@ public final class r1 extends tj0 {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 int i11 = i2.C1;
                 tL_contacts_resolveUsername.username = np.s1(i2Var.f29679a).L3;
-                this.d = ConnectionsManager.getInstance(i2Var.f29679a).sendRequest(tL_contacts_resolveUsername, new ai.d1(this, 9));
+                this.d = ConnectionsManager.getInstance(i2Var.f29679a).sendRequest(tL_contacts_resolveUsername, new ai.e1(this, 9));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
@@ -225,7 +225,7 @@ public final class r1 extends tj0 {
             h2Var2.getPhotoImage().E0(7);
             if (h2Var2.f30361e0 == null) {
                 dc dcVar = new dc(h2Var2, 1.0f, 3.0f);
-                dcVar.f33914e = 120L;
+                dcVar.f33901e = 120L;
                 h2Var2.f30361e0 = dcVar;
             }
             h2Var2.setIsKeyboard(true);

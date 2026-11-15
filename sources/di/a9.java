@@ -1,36 +1,46 @@
 package di;
 
-import org.telegram.messenger.hd;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-public final class a9 implements Runnable {
+import org.telegram.ui.Components.et0;
+public final class a9 implements te.b, et0 {
     public final int f8208a;
-    public final an f8209b;
-    public final long f8210c;
-    public final TLRPC.Chat d;
+    public final lb f8209b;
 
-    public a9(an anVar, long j3, TLRPC.Chat chat, int i7) {
+    public a9(lb lbVar, int i7) {
         this.f8208a = i7;
-        this.f8209b = anVar;
-        this.f8210c = j3;
-        this.d = chat;
+        this.f8209b = lbVar;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f8208a;
-        TLRPC.Chat chat = this.d;
-        long j3 = this.f8210c;
-        an anVar = this.f8209b;
-        switch (i7) {
+    public void E(float f10, int i7) {
+        int i10 = this.f8208a;
+    }
+
+    @Override
+    public void G(int i7, float f10, float f11, te.c cVar) {
+        switch (this.f8208a) {
             case 0:
-                org.telegram.ui.Components.cc.a0(anVar).I(2131624226, hd.M0(2131744994, null), org.telegram.messenger.g0.X2(hd.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
+                this.f8209b.r1();
+                return;
+            case 1:
+                this.f8209b.r1();
                 return;
             default:
-                String str = LaunchActivity.C1;
-                org.telegram.ui.Components.cc.a0(anVar).I(2131624226, hd.M0(2131744994, null), org.telegram.messenger.g0.X2(hd.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
+                this.f8209b.X.setAlpha(f10);
                 return;
         }
+    }
+
+    @Override
+    public int b() {
+        return this.f8209b.f9016b0;
+    }
+
+    private final void a(float f10, int i7) {
+    }
+
+    private final void c(float f10, int i7) {
+    }
+
+    private final void d(float f10, int i7) {
     }
 }

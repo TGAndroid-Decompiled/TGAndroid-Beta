@@ -25,35 +25,35 @@ public final class b0 extends ViewGroup {
     public int[] I;
     public final zj J;
     public final f0 K;
-    public final ArrayList f40502a;
-    public final ArrayList f40503b;
-    public final ArrayList f40504c;
+    public final ArrayList f40505a;
+    public final ArrayList f40506b;
+    public final ArrayList f40507c;
     public final TextView d;
-    public final ImageView f40505e;
-    public final k f40506f;
+    public final ImageView f40508e;
+    public final k f40509f;
     public final int h;
-    public float f40507n;
-    public float f40508r;
-    public ValueAnimator f40509s;
-    public boolean f40510w;
-    public long f40511x;
-    public boolean f40512y;
+    public float f40510n;
+    public float f40511r;
+    public ValueAnimator f40512s;
+    public boolean f40513w;
+    public long f40514x;
+    public boolean f40515y;
 
     public b0(f0 f0Var, Context context) {
         super(context);
         this.K = f0Var;
-        this.f40502a = new ArrayList();
-        this.f40503b = new ArrayList();
-        this.f40504c = new ArrayList();
+        this.f40505a = new ArrayList();
+        this.f40506b = new ArrayList();
+        this.f40507c = new ArrayList();
         this.h = org.telegram.messenger.g0.L(2.0f);
-        this.f40508r = 1.0f;
+        this.f40511r = 1.0f;
         this.E = new a0(this, 1);
         this.J = new zj(this, 21);
         setBackgroundColor(-16777216);
         setChildrenDrawingOrderEnabled(true);
-        this.f40507n = f0Var.f40606c;
+        this.f40510n = f0Var.f40609c;
         ImageView imageView = new ImageView(context);
-        this.f40505e = imageView;
+        this.f40508e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(-1);
         imageView.setBackground(j6.L(org.telegram.messenger.g0.L(28.0f), 1711276032));
@@ -68,20 +68,20 @@ public final class b0 extends ViewGroup {
         textView.setVisibility(8);
         addView(textView);
         k kVar = new k(context);
-        this.f40506f = kVar;
+        this.f40509f = kVar;
         addView(kVar);
     }
 
     public static void a(b0 b0Var) {
         int width = b0Var.getWidth();
         int height = b0Var.getHeight();
-        if (b0Var.f40510w && !b0Var.f40512y && width > 0 && height > 0 && !b0Var.f40502a.isEmpty() && b0Var.F > 0.0f && b0Var.c() && Math.abs(Math.log((width / height) / b0Var.F)) > 0.06d) {
+        if (b0Var.f40513w && !b0Var.f40515y && width > 0 && height > 0 && !b0Var.f40505a.isEmpty() && b0Var.F > 0.0f && b0Var.c() && Math.abs(Math.log((width / height) / b0Var.F)) > 0.06d) {
             b0Var.g(true);
         }
     }
 
     public final void b() {
-        ArrayList arrayList = this.f40503b;
+        ArrayList arrayList = this.f40506b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -97,7 +97,7 @@ public final class b0 extends ViewGroup {
 
     public final boolean c() {
         Activity W = org.telegram.messenger.g0.W(getContext());
-        if (W != null && org.telegram.messenger.g0.H1(W) && SystemClock.elapsedRealtime() - this.f40511x > 1000) {
+        if (W != null && org.telegram.messenger.g0.H1(W) && SystemClock.elapsedRealtime() - this.f40514x > 1000) {
             return true;
         }
         return false;
@@ -108,7 +108,7 @@ public final class b0 extends ViewGroup {
         float f11;
         float f12;
         float[] fArr = e0Var.P;
-        float f13 = this.f40508r;
+        float f13 = this.f40511r;
         for (int i11 = 0; i11 < 4; i11++) {
             float f14 = e0Var.N[i11];
             fArr[i11] = com.google.android.gms.internal.vision.e2.z(e0Var.O[i11], f14, f13, f14);
@@ -152,7 +152,7 @@ public final class b0 extends ViewGroup {
             e0Var.measure(View.MeasureSpec.makeMeasureSpec(max, 1073741824), View.MeasureSpec.makeMeasureSpec(max2, 1073741824));
         }
         e0Var.layout(round, round2, max + round, max2 + round2);
-        float f26 = this.f40508r;
+        float f26 = this.f40511r;
         float f27 = e0Var.Q;
         float f28 = ((e0Var.R - f27) * f26) + f27;
         e0Var.setAlpha(f28);
@@ -165,7 +165,7 @@ public final class b0 extends ViewGroup {
         int width = getWidth();
         int height = getHeight();
         if (width != 0 && height != 0) {
-            ArrayList arrayList = this.f40503b;
+            ArrayList arrayList = this.f40506b;
             int size = arrayList.size();
             int i7 = 0;
             int i10 = 0;
@@ -174,7 +174,7 @@ public final class b0 extends ViewGroup {
                 i10++;
                 d((e0) obj, width, height);
             }
-            ArrayList arrayList2 = this.f40502a;
+            ArrayList arrayList2 = this.f40505a;
             int size2 = arrayList2.size();
             while (i7 < size2) {
                 Object obj2 = arrayList2.get(i7);
@@ -186,7 +186,7 @@ public final class b0 extends ViewGroup {
     }
 
     public final boolean f(int i7, int i10) {
-        if (Math.abs(Math.log((i7 / i10) / this.f40507n)) < 0.06d) {
+        if (Math.abs(Math.log((i7 / i10) / this.f40510n)) < 0.06d) {
             return true;
         }
         return false;
@@ -202,7 +202,7 @@ public final class b0 extends ViewGroup {
         float f12;
         int i10;
         boolean z13;
-        ArrayList arrayList = this.f40502a;
+        ArrayList arrayList = this.f40505a;
         int size = arrayList.size();
         float[] fArr = new float[size];
         float[] fArr2 = new float[size];
@@ -212,8 +212,8 @@ public final class b0 extends ViewGroup {
             e0 e0Var = (e0) arrayList.get(i11);
             float f13 = e0Var.K;
             fArr[i11] = f13;
-            s3 s3Var = e0Var.f40569b;
-            if (s3Var != null && s3Var.f26394b) {
+            s3 s3Var = e0Var.f40572b;
+            if (s3Var != null && s3Var.f26404b) {
                 f12 = 2.0f;
             } else {
                 f12 = 1.0f;
@@ -236,13 +236,13 @@ public final class b0 extends ViewGroup {
         if (z14) {
             f10 = 0.0f;
         } else {
-            f10 = this.f40507n;
+            f10 = this.f40510n;
         }
         wi.j a10 = jd.a(fArr, fArr2, 0.45f, 2.35f, iArr, f10);
         int width = getWidth();
         int height = getHeight();
         float f14 = 0.001f;
-        if (Math.abs(a10.f59412a - this.f40507n) <= 0.001f && width > 0 && height > 0 && !f(width, height) && c()) {
+        if (Math.abs(a10.f59412a - this.f40510n) <= 0.001f && width > 0 && height > 0 && !f(width, height) && c()) {
             float f15 = width / height;
             a10 = jd.a(fArr, fArr2, f15, f15, iArr, 0.0f);
             z11 = true;
@@ -250,7 +250,7 @@ public final class b0 extends ViewGroup {
             z11 = false;
         }
         this.F = a10.f59412a;
-        if (org.telegram.messenger.r2.f26198a) {
+        if (org.telegram.messenger.r2.f26206a) {
             StringBuilder sb2 = new StringBuilder("group call pip: mosaic ");
             sb2.append(Arrays.toString(fArr));
             if (z11) {
@@ -273,7 +273,7 @@ public final class b0 extends ViewGroup {
             Object obj = arrayList.get(i12);
             i12++;
             e0 e0Var2 = (e0) obj;
-            float f16 = this.f40508r;
+            float f16 = this.f40511r;
             float f17 = f14;
             float[] fArr3 = e0Var2.N;
             for (int i13 = 0; i13 < 4; i13++) {
@@ -285,14 +285,14 @@ public final class b0 extends ViewGroup {
             f14 = f17;
         }
         float f20 = f14;
-        ArrayList arrayList2 = this.f40503b;
+        ArrayList arrayList2 = this.f40506b;
         int size3 = arrayList2.size();
         int i14 = 0;
         while (i14 < size3) {
             Object obj2 = arrayList2.get(i14);
             i14++;
             e0 e0Var3 = (e0) obj2;
-            float f21 = this.f40508r;
+            float f21 = this.f40511r;
             float[] fArr4 = e0Var3.N;
             float[] fArr5 = e0Var3.O;
             int i15 = 0;
@@ -331,38 +331,38 @@ public final class b0 extends ViewGroup {
         arrayList.clear();
         arrayList.addAll(arrayList3);
         this.I = null;
-        if (!z11 && Math.abs(a10.f59412a - this.f40507n) > f20) {
+        if (!z11 && Math.abs(a10.f59412a - this.f40510n) > f20) {
             z12 = true;
         } else {
             z12 = false;
         }
         if (z12) {
-            this.f40507n = a10.f59412a;
-            wi.n nVar = this.K.f40604a;
+            this.f40510n = a10.f59412a;
+            wi.n nVar = this.K.f40607a;
             if (nVar != null) {
                 nVar.c();
             }
         }
         k();
-        ValueAnimator valueAnimator = this.f40509s;
+        ValueAnimator valueAnimator = this.f40512s;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f40509s.cancel();
-            this.f40509s = null;
+            this.f40512s.cancel();
+            this.f40512s = null;
         }
-        this.f40512y = false;
+        this.f40515y = false;
         a0 a0Var = this.E;
         org.telegram.messenger.g0.r(a0Var);
         if (z10) {
-            this.f40508r = 0.0f;
+            this.f40511r = 0.0f;
             if (z12 && getWidth() > 0 && getHeight() > 0 && !f(getWidth(), getHeight())) {
-                this.f40512y = true;
+                this.f40515y = true;
                 org.telegram.messenger.g0.i3(a0Var, 500L);
             } else {
                 h();
             }
         } else {
-            this.f40508r = 1.0f;
+            this.f40511r = 1.0f;
             b();
         }
         e();
@@ -373,7 +373,7 @@ public final class b0 extends ViewGroup {
         int[] iArr = this.I;
         if (iArr == null || iArr.length != i7) {
             int[] iArr2 = new int[i7];
-            ArrayList arrayList = this.f40504c;
+            ArrayList arrayList = this.f40507c;
             int size = arrayList.size();
             int i11 = 0;
             int i12 = 0;
@@ -386,7 +386,7 @@ public final class b0 extends ViewGroup {
                     i11++;
                 }
             }
-            ArrayList arrayList2 = this.f40503b;
+            ArrayList arrayList2 = this.f40506b;
             int size2 = arrayList2.size();
             int i13 = 0;
             while (i13 < size2) {
@@ -398,7 +398,7 @@ public final class b0 extends ViewGroup {
                     i11++;
                 }
             }
-            ArrayList arrayList3 = this.f40502a;
+            ArrayList arrayList3 = this.f40505a;
             int size3 = arrayList3.size();
             int i14 = 0;
             while (i14 < size3) {
@@ -427,39 +427,39 @@ public final class b0 extends ViewGroup {
     }
 
     public final void h() {
-        this.f40512y = false;
+        this.f40515y = false;
         org.telegram.messenger.g0.r(this.E);
-        ValueAnimator valueAnimator = this.f40509s;
+        ValueAnimator valueAnimator = this.f40512s;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f40509s.cancel();
+            this.f40512s.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f40509s = ofFloat;
+        this.f40512s = ofFloat;
         ofFloat.setDuration(420L);
-        this.f40509s.setInterpolator(er.h);
-        this.f40509s.addUpdateListener(new hi.j3(this, 16));
-        this.f40509s.addListener(new w9(this, 12));
-        this.f40509s.start();
+        this.f40512s.setInterpolator(er.h);
+        this.f40512s.addUpdateListener(new hi.j3(this, 16));
+        this.f40512s.addListener(new w9(this, 12));
+        this.f40512s.start();
     }
 
     public final void i() {
-        if (!this.f40510w) {
+        if (!this.f40513w) {
             return;
         }
         int i7 = 0;
-        this.f40510w = false;
+        this.f40513w = false;
         org.telegram.messenger.g0.r(this.J);
-        this.f40506f.b();
-        this.f40512y = false;
+        this.f40509f.b();
+        this.f40515y = false;
         org.telegram.messenger.g0.r(this.E);
-        ValueAnimator valueAnimator = this.f40509s;
+        ValueAnimator valueAnimator = this.f40512s;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f40509s.cancel();
-            this.f40509s = null;
+            this.f40512s.cancel();
+            this.f40512s = null;
         }
-        ArrayList arrayList = this.f40502a;
+        ArrayList arrayList = this.f40505a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -469,7 +469,7 @@ public final class b0 extends ViewGroup {
             e0Var.b();
             removeView(e0Var);
         }
-        ArrayList arrayList2 = this.f40503b;
+        ArrayList arrayList2 = this.f40506b;
         int size2 = arrayList2.size();
         int i11 = 0;
         while (i11 < size2) {
@@ -479,7 +479,7 @@ public final class b0 extends ViewGroup {
             e0Var2.b();
             removeView(e0Var2);
         }
-        ArrayList arrayList3 = this.f40504c;
+        ArrayList arrayList3 = this.f40507c;
         int size3 = arrayList3.size();
         while (i7 < size3) {
             Object obj3 = arrayList3.get(i7);
@@ -491,7 +491,7 @@ public final class b0 extends ViewGroup {
         arrayList.clear();
         arrayList2.clear();
         arrayList3.clear();
-        this.f40508r = 1.0f;
+        this.f40511r = 1.0f;
     }
 
     public final void j(boolean r25) {
@@ -502,7 +502,7 @@ public final class b0 extends ViewGroup {
         int width = getWidth();
         int height = getHeight();
         if (width != 0 && height != 0) {
-            ArrayList arrayList = this.f40502a;
+            ArrayList arrayList = this.f40505a;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
@@ -539,13 +539,13 @@ public final class b0 extends ViewGroup {
         int L = org.telegram.messenger.g0.L(6.0f);
         int L2 = org.telegram.messenger.g0.L(6.0f);
         int L3 = org.telegram.messenger.g0.L(6.0f);
-        ImageView imageView = this.f40505e;
+        ImageView imageView = this.f40508e;
         imageView.layout(L, L2, imageView.getMeasuredWidth() + L3, imageView.getMeasuredHeight() + org.telegram.messenger.g0.L(6.0f));
         int i13 = i11 - i7;
         TextView textView = this.d;
         int measuredWidth = (i13 - textView.getMeasuredWidth()) / 2;
         textView.layout(measuredWidth, org.telegram.messenger.g0.L(8.0f), textView.getMeasuredWidth() + measuredWidth, textView.getMeasuredHeight() + org.telegram.messenger.g0.L(8.0f));
-        this.f40506f.layout(0, 0, i13, i12 - i10);
+        this.f40509f.layout(0, 0, i13, i12 - i10);
         e();
     }
 
@@ -554,18 +554,18 @@ public final class b0 extends ViewGroup {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         setMeasuredDimension(size, size2);
-        this.f40505e.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
+        this.f40508e.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
         this.d.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(64.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        this.f40506f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        this.f40509f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         k();
-        if (this.f40512y && i7 > 0 && i10 > 0 && f(i7, i10)) {
+        if (this.f40515y && i7 > 0 && i10 > 0 && f(i7, i10)) {
             post(this.E);
-        } else if (!this.f40512y) {
+        } else if (!this.f40515y) {
             post(new a0(this, 0));
         }
     }

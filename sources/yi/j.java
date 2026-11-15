@@ -1,8 +1,7 @@
 package yi;
 
 import a8.p0;
-import ai.e0;
-import ai.x0;
+import ai.y0;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
@@ -55,8 +54,8 @@ public final class j {
     public boolean f60773y;
     public volatile i f60774z;
     public final Handler f60758i = new Handler(Looper.getMainLooper());
-    public final ExecutorService f60759j = Executors.newSingleThreadExecutor(new x0(9));
-    public final ExecutorService f60760k = Executors.newSingleThreadExecutor(new x0(10));
+    public final ExecutorService f60759j = Executors.newSingleThreadExecutor(new y0(9));
+    public final ExecutorService f60760k = Executors.newSingleThreadExecutor(new y0(10));
     public final Object f60761l = new Object();
     public final ArrayList f60762m = new ArrayList();
     public int G = 1;
@@ -276,10 +275,10 @@ public final class j {
             if (iVar != null) {
                 this.f60760k.execute(new c(this, iVar, exc));
             }
-            MediaController mediaController = ((le) this.f60756f.f17555b).f24823a;
+            MediaController mediaController = ((le) this.f60756f.f17555b).f24829a;
             String[] strArr = MediaController.W1;
             a8.e("AudioRecorderV2 failed", exc);
-            ns.f(mediaController.f22352i1).k(ns.f25533m2, Integer.valueOf(mediaController.f22350h1));
+            ns.f(mediaController.f22352i1).k(ns.f25534m2, Integer.valueOf(mediaController.f22350h1));
             mediaController.x(false);
             org.telegram.utils.recorder.audio.d dVar = this.f60763n;
             if (dVar != null) {
@@ -343,7 +342,7 @@ public final class j {
                             yi.b bVar2 = jVar.h;
                             bVar2.b("final trim completed: source=" + iVar2.f60749b.getName() + ", output=" + file.getName() + ", trim=" + j11 + ".." + j12 + ", bytes=" + file.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
                             jVar.a(iVar3, file.length());
-                            handler.post(new e0(jVar, j12, j11, 4));
+                            handler.post(new ai.f0(jVar, j12, j11, 4));
                             return;
                         }
                         throw new IllegalStateException("Unable to trim final Opus output");
@@ -373,8 +372,8 @@ public final class j {
         if (j3 < this.f60754c) {
             b bVar = this.h;
             bVar.b("recording rejected as too short: durationMs=" + j3);
-            MediaController mediaController = ((le) this.f60756f.f17555b).f24823a;
-            ns.f(mediaController.f22352i1).k(ns.f25575t2, Integer.valueOf(mediaController.f22350h1), Boolean.FALSE, Integer.valueOf((int) j3));
+            MediaController mediaController = ((le) this.f60756f.f17555b).f24829a;
+            ns.f(mediaController.f22352i1).k(ns.f25576t2, Integer.valueOf(mediaController.f22350h1), Boolean.FALSE, Integer.valueOf((int) j3));
             mediaController.x(false);
             k(2);
             s(10);
@@ -436,8 +435,8 @@ public final class j {
     public final void m() {
         l e10 = e();
         ji.j jVar = this.f60756f;
-        MediaController mediaController = ((le) jVar.f17555b).f24823a;
-        int i7 = e10.f2963a;
+        MediaController mediaController = ((le) jVar.f17555b).f24829a;
+        int i7 = e10.f2966a;
         e0.g gVar = (e0.g) jVar.f17556c;
         int i10 = gVar.f9887a;
         gVar.f9887a = i7;
@@ -447,11 +446,11 @@ public final class j {
                 System.currentTimeMillis();
                 String[] strArr = MediaController.W1;
                 if (!mediaController.J1) {
-                    ns.f(mediaController.f22352i1).k(ns.f25528l2, Integer.valueOf(mediaController.f22350h1), Boolean.TRUE);
+                    ns.f(mediaController.f22352i1).k(ns.f25529l2, Integer.valueOf(mediaController.f22350h1), Boolean.TRUE);
                 }
             } else if (!z10 && i10 == 6) {
                 mediaController.Y(true);
-                ns.f(mediaController.f22352i1).k(ns.f25549p2, new Object[0]);
+                ns.f(mediaController.f22352i1).k(ns.f25550p2, new Object[0]);
             }
             if (gVar.f9888b) {
                 if (i7 == 3 || i7 == 5) {

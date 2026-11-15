@@ -65,7 +65,7 @@ public final class r6 implements is {
             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerSelf)) {
                 this.K = org.telegram.messenger.m5.n(inputPeer);
             } else {
-                this.K = m10.i(s6Var.f12319a).f24953n;
+                this.K = m10.i(s6Var.f12319a).f24959n;
             }
         }
     }
@@ -103,9 +103,9 @@ public final class r6 implements is {
         ns.f(i7).n(this, ns.U1);
         ns.f(i7).n(this, ns.V1);
         ns.f(i7).n(this, ns.W1);
-        ns.f(i7).n(this, ns.f25477c2);
-        ns.f(i7).n(this, ns.f25465a2);
-        ns.f(i7).n(this, ns.f25471b2);
+        ns.f(i7).n(this, ns.f25478c2);
+        ns.f(i7).n(this, ns.f25466a2);
+        ns.f(i7).n(this, ns.f25472b2);
         boolean z10 = this.J;
         long j3 = this.K;
         if (!z10 && (arrayList = (ArrayList) s6Var.f12320b.f(j3)) != null) {
@@ -195,7 +195,7 @@ public final class r6 implements is {
             }
             this.M = null;
         }
-        ns.f(i7).k(ns.f25591v5, new Object[0]);
+        ns.f(i7).k(ns.f25592v5, new Object[0]);
         if (d7Var != null && !d7Var.h && !this.d) {
             d7Var.i(false);
             this.d = true;
@@ -234,9 +234,9 @@ public final class r6 implements is {
         ns.f(this.N.f12319a).b(this, ns.U1);
         ns.f(this.N.f12319a).b(this, ns.V1);
         ns.f(this.N.f12319a).b(this, ns.W1);
-        ns.f(this.N.f12319a).b(this, ns.f25477c2);
-        ns.f(this.N.f12319a).b(this, ns.f25465a2);
-        ns.f(this.N.f12319a).b(this, ns.f25471b2);
+        ns.f(this.N.f12319a).b(this, ns.f25478c2);
+        ns.f(this.N.f12319a).b(this, ns.f25466a2);
+        ns.f(this.N.f12319a).b(this, ns.f25472b2);
         boolean E = this.f12274c.E();
         this.f12279s = E;
         if (E) {
@@ -252,11 +252,11 @@ public final class r6 implements is {
             this.f12275e = w10.getAbsolutePath();
             Utilities.f22419i.c(new f6(4, this, w10));
         }
-        Intent intent = new Intent(org.telegram.messenger.t0.f26600b, StoryUploadingService.class);
+        Intent intent = new Intent(org.telegram.messenger.t0.f26609b, StoryUploadingService.class);
         intent.putExtra("path", this.f12275e);
         intent.putExtra("currentAccount", this.N.f12319a);
         try {
-            org.telegram.messenger.t0.f26600b.startService(intent);
+            org.telegram.messenger.t0.f26609b.startService(intent);
         } catch (Throwable th2) {
             org.telegram.messenger.a8.g(th2, true);
         }
@@ -266,7 +266,7 @@ public final class r6 implements is {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         s6 s6Var = this.N;
         int i11 = s6Var.f12319a;
-        if (i7 == ns.f25465a2) {
+        if (i7 == ns.f25466a2) {
             if (objArr[0] == this.F) {
                 this.f12275e = (String) objArr[1];
                 e();
@@ -274,7 +274,7 @@ public final class r6 implements is {
             }
             return;
         }
-        int i12 = ns.f25471b2;
+        int i12 = ns.f25472b2;
         int i13 = ns.A5;
         if (i7 == i12) {
             if (objArr[0] == this.F) {
@@ -293,7 +293,7 @@ public final class r6 implements is {
                     this.f12282y = longValue2;
                 }
             }
-        } else if (i7 == ns.f25477c2) {
+        } else if (i7 == ns.f25478c2) {
             if (objArr[0] == this.F) {
                 if (!this.f12273b) {
                     hi.d7 d7Var = this.f12274c;
@@ -341,7 +341,7 @@ public final class r6 implements is {
         if (this.f12279s) {
             g20 g20Var = this.G;
             if (g20Var != null) {
-                j3 = g20Var.f23648q;
+                j3 = g20Var.f23650q;
             }
             j3 = Math.max(1, (int) j3);
         }

@@ -23,7 +23,7 @@ public final class v4 extends FrameLayout {
         h6 h6Var2 = this.f40254c;
         int y10 = org.telegram.messenger.i20.y(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
         if (this.f40252a) {
-            i13 = org.telegram.messenger.g0.f23603m;
+            i13 = org.telegram.messenger.g0.f23605m;
         } else {
             i13 = 0;
         }

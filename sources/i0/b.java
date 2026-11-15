@@ -211,7 +211,7 @@ public final class b implements n6, o6, ih.b, g9.k, q1, y10, kt0, lt0, j9, o, p,
     public void f(int i7, View view) {
         Drawable background = view.getBackground();
         if (background instanceof fq) {
-            Drawable drawable = ((fq) background).f34669a;
+            Drawable drawable = ((fq) background).f34673a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i7);
                 view.invalidate();
@@ -223,7 +223,7 @@ public final class b implements n6, o6, ih.b, g9.k, q1, y10, kt0, lt0, j9, o, p,
     public int g(View view) {
         Drawable background = view.getBackground();
         if (background instanceof fq) {
-            Drawable drawable = ((fq) background).f34669a;
+            Drawable drawable = ((fq) background).f34673a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }

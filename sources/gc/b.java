@@ -3,7 +3,7 @@ package gc;
 import a3.s;
 import a8.p0;
 import a8.t9;
-import ai.v0;
+import ai.w0;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -71,8 +71,8 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.g9;
 import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Components.cm0;
-import org.telegram.ui.Components.f90;
 import org.telegram.ui.Components.ft0;
+import org.telegram.ui.Components.g90;
 import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.r4;
 import org.telegram.ui.Components.s51;
@@ -86,7 +86,7 @@ import sg.h1;
 import sg.k0;
 import tg.l1;
 import u2.j;
-public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnCompleteListener, v, g0, r4, d1, ua {
+public class b implements g90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnCompleteListener, v, g0, r4, d1, ua {
     public final int f13133a;
     public Object f13134b;
 
@@ -252,7 +252,7 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
         if (aVar != null) {
             aVar.a(z10, true);
         }
-        o00 o00Var = fVar.f50103s;
+        o00 o00Var = fVar.f50080s;
         if (o00Var != null) {
             o00Var.invalidate();
         }
@@ -269,7 +269,7 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
             f10 = i7 / (i7 - i13);
             i13 = 0;
         } else {
-            int i15 = bVar.f4869a;
+            int i15 = bVar.f4872a;
             if (i13 >= i15) {
                 int i16 = i15 - 1;
                 f10 = ((i15 - 1) - i7) / (i13 - i7);
@@ -283,7 +283,7 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
         if (i17 < 0) {
             f11 = f12 / (i10 - i17);
         } else {
-            int i18 = bVar.f4870b;
+            int i18 = bVar.f4873b;
             if (i17 >= i18) {
                 f11 = ((i18 - 1) - i10) / (i17 - i10);
                 i14 = i18 - 1;
@@ -445,7 +445,7 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
         k8.a aVar = u0Var.f20881b1;
         Handler handler = (Handler) aVar.f17788b;
         if (handler != null) {
-            handler.post(new v0(aVar, i7, 15));
+            handler.post(new w0(aVar, i7, 15));
         }
     }
 
@@ -667,10 +667,10 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
     }
 
     public float m0(hc.c cVar, hc.c cVar2) {
-        int i7 = (int) cVar.f3136b;
-        int i10 = (int) cVar2.f3136b;
-        float F0 = F0((int) cVar.f3135a, i7, (int) cVar2.f3135a, i10);
-        float F02 = F0((int) cVar2.f3135a, i10, (int) cVar.f3135a, i7);
+        int i7 = (int) cVar.f3139b;
+        int i10 = (int) cVar2.f3139b;
+        float F0 = F0((int) cVar.f3138a, i7, (int) cVar2.f3138a, i10);
+        float F02 = F0((int) cVar2.f3138a, i10, (int) cVar.f3138a, i7);
         if (Float.isNaN(F0)) {
             return F02 / 7.0f;
         }
@@ -842,11 +842,11 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
         int i12 = (int) (f11 * f10);
         int max = Math.max(0, i7 - i12);
         cc.b bVar = (cc.b) this.f13134b;
-        int min = Math.min(bVar.f4869a - 1, i7 + i12) - max;
+        int min = Math.min(bVar.f4872a - 1, i7 + i12) - max;
         float f12 = 3.0f * f10;
         if (min >= f12) {
             int max2 = Math.max(0, i10 - i12);
-            int min2 = Math.min(bVar.f4870b - 1, i10 + i12) - max2;
+            int min2 = Math.min(bVar.f4873b - 1, i10 + i12) - max2;
             if (min2 >= f12) {
                 cc.b bVar2 = (cc.b) this.f13134b;
                 hc.b bVar3 = new hc.b(bVar2, max, max2, min, min2, f10);
@@ -940,7 +940,7 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
                     }
                     arrayList.add(i7 + 1, aVar2);
                     q3Var.v4();
-                    q3Var.f39895g3.O(false);
+                    q3Var.f39892g3.O(false);
                     d2 d2Var2 = q3Var.R3;
                     if (d2Var2 != null) {
                         d2Var2.h();
@@ -952,7 +952,7 @@ public class b implements f90, l1, s51, wa, i6.a, ft0, q, y1, yz, x0, OnComplete
     }
 
     public long z0(TimeUnit timeUnit) {
-        return timeUnit.convert(((l0) this.f13134b).f24785c, TimeUnit.SECONDS);
+        return timeUnit.convert(((l0) this.f13134b).f24791c, TimeUnit.SECONDS);
     }
 
     public b(j6.s sVar, String[] strArr) {

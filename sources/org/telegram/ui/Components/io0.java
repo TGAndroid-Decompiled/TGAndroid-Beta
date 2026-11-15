@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class io0 extends tj0 {
-    public final Context f35687c;
+    public final Context f35674c;
     public final ArrayList d = new ArrayList();
-    public final a0.h f35688e = new a0.h();
-    public final po0 f35689f;
+    public final a0.h f35675e = new a0.h();
+    public final po0 f35676f;
 
     public io0(po0 po0Var, Context context) {
-        this.f35689f = po0Var;
-        this.f35687c = context;
+        this.f35676f = po0Var;
+        this.f35674c = context;
         E();
     }
 
@@ -29,10 +29,10 @@ public final class io0 extends tj0 {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         ArrayList arrayList = this.d;
         arrayList.clear();
-        a0.h hVar = this.f35688e;
+        a0.h hVar = this.f35675e;
         hVar.b();
-        po0 po0Var = this.f35689f;
-        long j3 = org.telegram.messenger.m10.i(po0Var.f29679a).f24953n;
+        po0 po0Var = this.f35676f;
+        long j3 = org.telegram.messenger.m10.i(po0Var.f29679a).f24959n;
         if (po0Var.V1) {
             TLRPC.Dialog dialog = new TLRPC.Dialog();
             dialog.f28055id = Long.MAX_VALUE;
@@ -45,7 +45,7 @@ public final class io0 extends tj0 {
             hVar.k(dialog2, dialog2.f28055id);
         }
         ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = org.telegram.messenger.np.s1(po0Var.f29679a).f25440y;
+        ArrayList arrayList3 = org.telegram.messenger.np.s1(po0Var.f29679a).f25443y;
         for (int i7 = 0; i7 < arrayList3.size(); i7++) {
             TLRPC.Dialog dialog3 = (TLRPC.Dialog) arrayList3.get(i7);
             if (dialog3 instanceof TLRPC.TL_dialog) {
@@ -75,7 +75,7 @@ public final class io0 extends tj0 {
         arrayList.addAll(arrayList2);
         org.telegram.ui.an anVar = po0Var.f38341b2;
         if (anVar != null) {
-            int i10 = anVar.f45117a;
+            int i10 = anVar.f45116a;
             if (i10 != 1) {
                 if (i10 == 2) {
                     while (!arrayList.isEmpty() && arrayList.size() < 80) {
@@ -117,8 +117,8 @@ public final class io0 extends tj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View go0Var;
         float f10;
-        po0 po0Var = this.f35689f;
-        Context context = this.f35687c;
+        po0 po0Var = this.f35676f;
+        Context context = this.f35674c;
         if (i7 != 0) {
             go0Var = new View(context);
             if (po0Var.d2 && po0Var.f38349k2[1] != null) {

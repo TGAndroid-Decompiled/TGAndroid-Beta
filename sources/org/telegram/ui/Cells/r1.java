@@ -96,8 +96,8 @@ public final class r1 {
         int L = (int) (u2Var.L0 - org.telegram.messenger.g0.L(13.0f));
         int L2 = q1Var.f30962e7 - org.telegram.messenger.g0.L(62.0f);
         ch.q0 q0Var = q1Var.O;
-        if (!q0Var.f5204p) {
-            L2 -= q0Var.f5202n;
+        if (!q0Var.f5207p) {
+            L2 -= q0Var.f5205n;
         }
         if (q1Var.f31216x7) {
             if (q1Var.G3()) {
@@ -189,7 +189,7 @@ public final class r1 {
             } else {
                 z11 = false;
             }
-            int i13 = q1Var.f31120q8.f34359x;
+            int i13 = q1Var.f31120q8.f34358x;
             int i14 = 0;
             while (i14 < this.f31335g.size()) {
                 n1 n1Var = (n1) this.f31335g.get(i14);

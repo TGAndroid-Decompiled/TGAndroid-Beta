@@ -21,8 +21,8 @@ public final class w2 extends View implements z5 {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.f23604n);
-        setTranslationY(org.telegram.messenger.g0.f23604n);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.f23606n);
+        setTranslationY(org.telegram.messenger.g0.f23606n);
     }
 
     @Override

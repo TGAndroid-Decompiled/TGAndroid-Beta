@@ -137,12 +137,12 @@ public class UndoView extends FrameLayout implements org.telegram.ui.ActionBar.z
                         } else {
                             s12.E0.l(longValue);
                             if (!z10) {
-                                s12.f25440y.add(dialog);
+                                s12.f25443y.add(dialog);
                                 s12.U4(null);
                             }
                         }
                         if (!z10) {
-                            s12.getNotificationCenter().k(org.telegram.messenger.ns.f25566s, Boolean.TRUE);
+                            s12.getNotificationCenter().k(org.telegram.messenger.ns.f25567s, Boolean.TRUE);
                         }
                     }
                     g(this.L, longValue);
@@ -477,7 +477,7 @@ public class UndoView extends FrameLayout implements org.telegram.ui.ActionBar.z
     public UndoView(Context context, org.telegram.ui.ActionBar.e2 e2Var, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f32775a = 0;
-        this.f32794y = org.telegram.messenger.m10.f24934t0;
+        this.f32794y = org.telegram.messenger.m10.f24940t0;
         this.L = -1;
         this.U = 1;
         this.f32778b0 = new ArrayList();

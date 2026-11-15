@@ -13,7 +13,7 @@ public final class uj extends lh.e {
     public final void setVisibility(int i7) {
         boolean z10;
         super.setVisibility(i7);
-        m6.n nVar = this.M.f45239id;
+        m6.n nVar = this.M.f45238id;
         boolean z11 = false;
         if (i7 == 0) {
             z10 = true;

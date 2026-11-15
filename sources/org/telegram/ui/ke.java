@@ -4,24 +4,24 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ke implements org.telegram.messenger.z10 {
-    public final int f48688a;
-    public final an f48689b;
+    public final int f48642a;
+    public final an f48643b;
 
     public ke(an anVar, int i7) {
-        this.f48688a = i7;
-        this.f48689b = anVar;
+        this.f48642a = i7;
+        this.f48643b = anVar;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f48688a;
-        an anVar = this.f48689b;
+        int i7 = this.f48642a;
+        an anVar = this.f48643b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.lj ljVar = (org.telegram.messenger.lj) obj;
-                an anVar2 = this.f48689b;
-                anVar2.f45422x5 = ljVar;
-                anVar2.G5.f23817k.suggested_post = ljVar.c();
+                an anVar2 = this.f48643b;
+                anVar2.f45421x5 = ljVar;
+                anVar2.G5.f23819k.suggested_post = ljVar.c();
                 anVar2.gc(true, null, anVar2.G5, null, null, true, 0, null, false, 0L, null, true);
                 return;
             case 1:
@@ -95,30 +95,30 @@ public final class ke implements org.telegram.messenger.z10 {
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
                     anVar.S1 = tL_premium_boostsStatus;
-                    anVar.getMessagesController().G0().b(anVar.f45259k6, tL_premium_boostsStatus, new ke(anVar, 4));
+                    anVar.getMessagesController().G0().b(anVar.f45258k6, tL_premium_boostsStatus, new ke(anVar, 4));
                     return;
                 }
                 return;
             case 7:
                 Long l10 = (Long) obj;
-                org.telegram.ui.Components.p11 p11Var = anVar.f45202g2;
+                org.telegram.ui.Components.p11 p11Var = anVar.f45201g2;
                 if (p11Var != null) {
                     p11Var.n(l10.longValue(), true);
                     return;
                 }
                 return;
             case 8:
-                er erVar = anVar.f45188f0;
-                erVar.f46901c.add(((org.telegram.ui.ActionBar.q0) obj).getIconView());
+                er erVar = anVar.f45187f0;
+                erVar.f46885c.add(((org.telegram.ui.ActionBar.q0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();
-                int i10 = an.f45108ld;
+                int i10 = an.f45107ld;
                 anVar.db(intValue);
                 return;
             default:
                 int intValue2 = ((Integer) obj).intValue();
-                int i11 = an.f45108ld;
+                int i11 = an.f45107ld;
                 anVar.db(intValue2);
                 return;
         }

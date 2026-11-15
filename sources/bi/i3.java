@@ -26,9 +26,9 @@ public final class i3 extends po0 {
         if (z10 && (a02 = cc.a0(this.V2)) != null) {
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
-                if (j3 == m10.i(this.f29679a).f24953n) {
+                if (j3 == m10.i(this.f29679a).f24959n) {
                     xb G = a02.G(2131624191, 5000, org.telegram.messenger.g0.X2(hd.a0(null, null, 2131749802, new Object[0])));
-                    G.f41651r = false;
+                    G.f41643r = false;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat M0 = np.s1(this.f29679a).M0(Long.valueOf(-j3));
@@ -38,16 +38,16 @@ public final class i3 extends po0 {
                         str = M0.title;
                     }
                     xb G2 = a02.G(2131624029, 5000, org.telegram.messenger.g0.X2(hd.a0(null, null, 2131749806, str)));
-                    G2.f41651r = false;
+                    G2.f41643r = false;
                     G2.j();
                 } else {
                     xb G3 = a02.G(2131624029, 5000, org.telegram.messenger.g0.X2(hd.a0(null, null, 2131749806, np.s1(this.f29679a).a2(Long.valueOf(j3)).first_name)));
-                    G3.f41651r = false;
+                    G3.f41643r = false;
                     G3.j();
                 }
             } else {
                 xb Q = a02.Q(2131624029, 36, org.telegram.messenger.g0.X2(hd.G(hVar.m(), "GiftCollectionSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f41651r = false;
+                Q.f41643r = false;
                 Q.j();
             }
             try {

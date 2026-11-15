@@ -36,7 +36,7 @@ public abstract class i4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.H1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f26600b;
+            W = org.telegram.messenger.t0.f26609b;
         }
         final Context context = W;
         TLRPC.User f10 = m10.i(i7).f();
@@ -85,7 +85,7 @@ public abstract class i4 {
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f26600b;
+        Context context = org.telegram.messenger.t0.f26609b;
         if (context != null) {
             for (int i7 = 0; i7 < 4; i7++) {
                 context.getSharedPreferences("botemojistatus_" + i7, 0).edit().clear().apply();
@@ -130,7 +130,7 @@ public abstract class i4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.H1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f26600b;
+            W = org.telegram.messenger.t0.f26609b;
         }
         ConnectionsManager.getInstance(i7).getCurrentTime();
         TLRPC.User f10 = m10.i(i7).f();

@@ -64,10 +64,10 @@ public final class q71 {
         this.f38543i = new RectF();
         this.f38544j = new float[8];
         this.f38545k = new Runnable(this) {
-            public final q71 f37863b;
+            public final q71 f37852b;
 
             {
-                this.f37863b = this;
+                this.f37852b = this;
             }
 
             @Override
@@ -75,10 +75,10 @@ public final class q71 {
                 org.telegram.utils.twidget.y0 y0Var;
                 switch (r2) {
                     case 0:
-                        this.f37863b.k(false, false, false);
+                        this.f37852b.k(false, false, false);
                         return;
                     case 1:
-                        q71 q71Var = this.f37863b;
+                        q71 q71Var = this.f37852b;
                         if (q71Var.f38556w && q71Var.f38557x) {
                             q71Var.a(q71Var.f38547m.f(SystemClock.uptimeMillis()));
                             q71Var.o();
@@ -86,7 +86,7 @@ public final class q71 {
                         }
                         return;
                     default:
-                        q71 q71Var2 = this.f37863b;
+                        q71 q71Var2 = this.f37852b;
                         if (q71Var2.f38549o != null && (y0Var = q71Var2.f38550p) != null) {
                             org.telegram.utils.twidget.j1 d = y0Var.d();
                             org.telegram.utils.twidget.j1 j1Var = q71Var2.f38549o;
@@ -102,10 +102,10 @@ public final class q71 {
             }
         };
         this.f38546l = new Runnable(this) {
-            public final q71 f37863b;
+            public final q71 f37852b;
 
             {
-                this.f37863b = this;
+                this.f37852b = this;
             }
 
             @Override
@@ -113,10 +113,10 @@ public final class q71 {
                 org.telegram.utils.twidget.y0 y0Var;
                 switch (r2) {
                     case 0:
-                        this.f37863b.k(false, false, false);
+                        this.f37852b.k(false, false, false);
                         return;
                     case 1:
-                        q71 q71Var = this.f37863b;
+                        q71 q71Var = this.f37852b;
                         if (q71Var.f38556w && q71Var.f38557x) {
                             q71Var.a(q71Var.f38547m.f(SystemClock.uptimeMillis()));
                             q71Var.o();
@@ -124,7 +124,7 @@ public final class q71 {
                         }
                         return;
                     default:
-                        q71 q71Var2 = this.f37863b;
+                        q71 q71Var2 = this.f37852b;
                         if (q71Var2.f38549o != null && (y0Var = q71Var2.f38550p) != null) {
                             org.telegram.utils.twidget.j1 d = y0Var.d();
                             org.telegram.utils.twidget.j1 j1Var = q71Var2.f38549o;
@@ -141,10 +141,10 @@ public final class q71 {
         };
         this.f38547m = new Object();
         this.f38548n = new Runnable(this) {
-            public final q71 f37863b;
+            public final q71 f37852b;
 
             {
-                this.f37863b = this;
+                this.f37852b = this;
             }
 
             @Override
@@ -152,10 +152,10 @@ public final class q71 {
                 org.telegram.utils.twidget.y0 y0Var;
                 switch (r2) {
                     case 0:
-                        this.f37863b.k(false, false, false);
+                        this.f37852b.k(false, false, false);
                         return;
                     case 1:
-                        q71 q71Var = this.f37863b;
+                        q71 q71Var = this.f37852b;
                         if (q71Var.f38556w && q71Var.f38557x) {
                             q71Var.a(q71Var.f38547m.f(SystemClock.uptimeMillis()));
                             q71Var.o();
@@ -163,7 +163,7 @@ public final class q71 {
                         }
                         return;
                     default:
-                        q71 q71Var2 = this.f37863b;
+                        q71 q71Var2 = this.f37852b;
                         if (q71Var2.f38549o != null && (y0Var = q71Var2.f38550p) != null) {
                             org.telegram.utils.twidget.j1 d = y0Var.d();
                             org.telegram.utils.twidget.j1 j1Var = q71Var2.f38549o;
@@ -304,7 +304,7 @@ public final class q71 {
 
     public final float i(float f10) {
         int i7;
-        if (org.telegram.messenger.hd.f24101a0 && (i7 = this.R) > 0) {
+        if (org.telegram.messenger.hd.f24104a0 && (i7 = this.R) > 0) {
             return (i7 / this.f38538b) - f10;
         }
         return f10;

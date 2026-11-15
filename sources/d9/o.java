@@ -1,11 +1,11 @@
 package d9;
 public final class o implements n, he.b, ib.b, q5.b {
-    public final int f7639a;
-    public final Object f7640b;
+    public final int f7642a;
+    public final Object f7643b;
 
     public o(Object obj, int i7) {
-        this.f7639a = i7;
-        this.f7640b = obj;
+        this.f7642a = i7;
+        this.f7643b = obj;
     }
 
     public static o b(Object obj) {
@@ -17,16 +17,16 @@ public final class o implements n, he.b, ib.b, q5.b {
 
     @Override
     public Object a() {
-        return this.f7640b;
+        return this.f7643b;
     }
 
     @Override
     public Object mo24get() {
-        switch (this.f7639a) {
+        switch (this.f7642a) {
             case 2:
-                return this.f7640b;
+                return this.f7643b;
             default:
-                return this.f7640b;
+                return this.f7643b;
         }
     }
 }

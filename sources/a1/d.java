@@ -14,7 +14,7 @@ import bi.p1;
 import c8.ja;
 import ch.p0;
 import com.google.android.gms.tasks.OnFailureListener;
-import di.v8;
+import di.u8;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -117,8 +117,8 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 return;
             case 11:
                 jn jnVar = (jn) this.f40b;
-                jnVar.f36092k0.c((TLRPC.TL_messageMediaPoll) this.f41c, jnVar.P, jnVar.n1, (ArrayList) this.d, z10, i7, ((Long) this.f42e).longValue());
-                jnVar.f33607b.a(true);
+                jnVar.f36082k0.c((TLRPC.TL_messageMediaPoll) this.f41c, jnVar.P, jnVar.n1, (ArrayList) this.d, z10, i7, ((Long) this.f42e).longValue());
+                jnVar.f33609b.a(true);
                 return;
             case 12:
                 ls lsVar = (ls) this.f40b;
@@ -156,7 +156,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 g0.h3(new ai.b(list, (s10) this.f40b, (TLRPC.TL_inputStorePaymentStarsTopup) this.f41c, (TL_stars.TL_starsTopupOption) this.d, (Activity) this.f42e, 7));
                 return;
             default:
-                g0.h3(new p1((v8) this.f40b, list, (t1) this.f41c, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.d, fVar, (Activity) this.f42e, 3));
+                g0.h3(new p1((u8) this.f40b, list, (t1) this.f41c, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.d, fVar, (Activity) this.f42e, 3));
                 return;
         }
     }
@@ -175,8 +175,8 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 if (E0 != null) {
                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
                         try {
-                            if (!((oi) arrayList.get(i7)).f25764a.startsWith("animated_")) {
-                                String c10 = j6.c(((oi) arrayList.get(i7)).f25764a);
+                            if (!((oi) arrayList.get(i7)).f25765a.startsWith("animated_")) {
+                                String c10 = j6.c(((oi) arrayList.get(i7)).f25765a);
                                 for (int i10 = 0; i10 < E0.effects.size(); i10++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = E0.effects.get(i10);
                                     if (!hashSet.contains(Long.valueOf(tL_availableEffect.f28082id)) && (tL_availableEffect.emoticon.contains(c10) || c10.contains(tL_availableEffect.emoticon))) {
@@ -203,7 +203,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 Runnable runnable2 = (Runnable) this.f42e;
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    String str2 = ((oi) arrayList.get(i11)).f25764a;
+                    String str2 = ((oi) arrayList.get(i11)).f25765a;
                     if (hashMap != null) {
                         arrayList3 = (ArrayList) hashMap.get(str2);
                     } else {
@@ -298,7 +298,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                     } else {
                         bh0Var.E1 = str4;
                     }
-                    lb0 lb0Var2 = bh0Var.f45751o1;
+                    lb0 lb0Var2 = bh0Var.f45745o1;
                     if (lb0Var2 != null) {
                         lb0Var2.getEditText().setText(str);
                     } else {
@@ -394,7 +394,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 String str = (String) obj2;
                 nb0 nb0Var = (nb0) obj;
                 x2 x2Var = ((s2) obj4).d;
-                long j10 = ((ur) arrayList.get(0)).f26860a;
+                long j10 = ((ur) arrayList.get(0)).f26861a;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
                 if (m5.C(j10)) {
                     k10.putInt("enc_id", (int) (j10 & 4294967295L));
@@ -420,7 +420,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                             x2Var.R0 = true;
                         }
                         m4 m4Var = new m4(new an(k10));
-                        m4Var.f29383b = true;
+                        m4Var.f29384b = true;
                         lastFragment.presentFragment(m4Var);
                     }
                 }
@@ -430,9 +430,9 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 ArrayList arrayList2 = (ArrayList) obj3;
                 TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj2;
                 gj gjVar = (gj) obj;
-                if (arrayList.size() <= 1 && ((ur) arrayList.get(0)).f26860a != m10.i(y7Var.f29679a).e() && charSequence == null && arrayList2 != null) {
+                if (arrayList.size() <= 1 && ((ur) arrayList.get(0)).f26861a != m10.i(y7Var.f29679a).e() && charSequence == null && arrayList2 != null) {
                     ur urVar = (ur) arrayList.get(0);
-                    long j11 = urVar.f26860a;
+                    long j11 = urVar.f26861a;
                     Bundle k11 = a8.p0.k("scrollToTopOnResume", true);
                     if (m5.C(j11)) {
                         k11.putInt("enc_id", (int) (j11 & 4294967295L));
@@ -442,12 +442,12 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                         k11.putLong("chat_id", -j11);
                     }
                     an anVar = new an(k11);
-                    if (urVar.f26861b != 0) {
+                    if (urVar.f26862b != 0) {
                         qg.c.a(anVar, urVar);
                     }
                     if (y7Var.A2.u0(anVar, true, false)) {
                         anVar.hc(arrayList2);
-                        if (urVar.f26861b != 0) {
+                        if (urVar.f26862b != 0) {
                             ywVar.removeSelfFromStack();
                         }
                     } else {
@@ -456,7 +456,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 } else {
                     int i12 = 0;
                     while (i12 < arrayList.size()) {
-                        long j12 = ((ur) arrayList.get(i12)).f26860a;
+                        long j12 = ((ur) arrayList.get(i12)).f26861a;
                         if (charSequence != null) {
                             j3 = j12;
                             ez.C(y7Var.f29679a).r0(cz.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
@@ -468,7 +468,7 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                             tL_document = tL_document2;
                         } else {
                             tL_document = tL_document2;
-                            ez.C(y7Var.f29679a).r0(cz.e(tL_document, null, gjVar.f23817k.attachPath, j3, null, null, null, null, null, z11, i7, 0, 0, y7Var.f41913q2, false));
+                            ez.C(y7Var.f29679a).r0(cz.e(tL_document, null, gjVar.f23819k.attachPath, j3, null, null, null, null, null, z11, i7, 0, 0, y7Var.f41905q2, false));
                         }
                         i12++;
                         tL_document2 = tL_document;
@@ -477,12 +477,12 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                     e2 Q = LaunchActivity.Q();
                     if (Q != null) {
                         cc a02 = cc.a0(Q);
-                        if (arrayList.size() == 1 && ((ur) arrayList.get(0)).f26860a == m10.i(y7Var.f29679a).e()) {
+                        if (arrayList.size() == 1 && ((ur) arrayList.get(0)).f26861a == m10.i(y7Var.f29679a).e()) {
                             H = hd.M0(2131750498, null);
-                        } else if (arrayList.size() == 1 && ((ur) arrayList.get(0)).f26860a > 0) {
-                            H = hd.a0(null, null, 2131750497, m5.t(((ur) arrayList.get(0)).f26860a));
-                        } else if (arrayList.size() == 1 && ((ur) arrayList.get(0)).f26860a < 0) {
-                            H = hd.a0(null, null, 2131750502, m5.t(((ur) arrayList.get(0)).f26860a));
+                        } else if (arrayList.size() == 1 && ((ur) arrayList.get(0)).f26861a > 0) {
+                            H = hd.a0(null, null, 2131750497, m5.t(((ur) arrayList.get(0)).f26861a));
+                        } else if (arrayList.size() == 1 && ((ur) arrayList.get(0)).f26861a < 0) {
+                            H = hd.a0(null, null, 2131750502, m5.t(((ur) arrayList.get(0)).f26861a));
                         } else {
                             H = hd.H(',', "FwdMessageToManyChats", arrayList.size());
                         }
@@ -494,8 +494,8 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                 TLRPC.User user2 = (TLRPC.User) obj3;
                 String str2 = (String) obj2;
                 nb0 nb0Var2 = (nb0) obj;
-                ki kiVar = ((qh) obj4).f38655e;
-                long j13 = ((ur) arrayList.get(0)).f26860a;
+                ki kiVar = ((qh) obj4).f38653e;
+                long j13 = ((ur) arrayList.get(0)).f26861a;
                 Bundle k12 = a8.p0.k("scrollToTopOnResume", true);
                 if (m5.C(j13)) {
                     k12.putInt("enc_id", (int) (j13 & 4294967295L));
@@ -505,12 +505,12 @@ public final class d implements OnFailureListener, p, q1, sw, org.telegram.ui.Ac
                     k12.putLong("chat_id", -j13);
                 }
                 k12.putString("start_text", "@" + q10.n(user2) + " " + str2);
-                e2 e2Var = kiVar.f36436a2;
+                e2 e2Var = kiVar.f36424a2;
                 if (np.s1(kiVar.H3).E(k12, e2Var, null, null)) {
                     nb0Var2.dismiss();
                     kiVar.a(true);
                     m4 m4Var2 = new m4(new an(k12));
-                    m4Var2.f29383b = true;
+                    m4Var2.f29384b = true;
                     e2Var.presentFragment(m4Var2);
                 }
                 return true;

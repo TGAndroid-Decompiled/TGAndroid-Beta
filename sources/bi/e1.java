@@ -8,21 +8,21 @@ import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.n7;
 import org.telegram.ui.Components.wa;
-import org.telegram.ui.Components.x80;
 import org.telegram.ui.Components.xb;
 import org.telegram.ui.Components.xl;
+import org.telegram.ui.Components.y80;
 public final class e1 implements wa {
-    public final int f3451a;
-    public final Object f3452b;
+    public final int f3454a;
+    public final Object f3455b;
 
     public e1(Object obj, int i7) {
-        this.f3451a = i7;
-        this.f3452b = obj;
+        this.f3454a = i7;
+        this.f3455b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
                 return true;
             case 1:
@@ -53,11 +53,11 @@ public final class e1 implements wa {
     @Override
     public final void b(xb xbVar) {
         fi.u3 u3Var;
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
-                cb cbVar = xbVar.f41639e;
-                f1 f1Var = (f1) this.f3452b;
-                fh.g c10 = f1Var.f3498p1.c(cbVar, null, true);
+                cb cbVar = xbVar.f41631e;
+                f1 f1Var = (f1) this.f3455b;
+                fh.g c10 = f1Var.f3501p1.c(cbVar, null, true);
                 gh.e eVar = new gh.e(f1Var.J0);
                 eVar.f13313e = new g0.e(11);
                 float N = org.telegram.messenger.g0.N(0.5f);
@@ -71,7 +71,7 @@ public final class e1 implements wa {
             case 1:
                 return;
             case 2:
-                if (xbVar.f41636a == 2 && (u3Var = ((fi.e3) this.f3452b).f11671y.A1) != null) {
+                if (xbVar.f41628a == 2 && (u3Var = ((fi.e3) this.f3455b).f11671y.A1) != null) {
                     i9 i9Var = ((z8) u3Var).d;
                     i9Var.Y0 = true;
                     i9Var.V();
@@ -93,18 +93,18 @@ public final class e1 implements wa {
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f3451a;
+        int i7 = this.f3454a;
     }
 
     @Override
     public final void d(xb xbVar) {
         fi.u3 u3Var;
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
             case 1:
                 return;
             case 2:
-                if (xbVar.f41636a == 2 && (u3Var = ((fi.e3) this.f3452b).f11671y.A1) != null) {
+                if (xbVar.f41628a == 2 && (u3Var = ((fi.e3) this.f3455b).f11671y.A1) != null) {
                     i9 i9Var = ((z8) u3Var).d;
                     i9Var.Y0 = false;
                     i9Var.V();
@@ -126,7 +126,7 @@ public final class e1 implements wa {
 
     @Override
     public final boolean e() {
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
                 return true;
             case 1:
@@ -158,48 +158,48 @@ public final class e1 implements wa {
     public final int f(int i7) {
         int editTextHeight;
         int L;
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
                 return 0;
             case 1:
-                return (int) ((ch.b0) ((ai.j0) this.f3452b).f1266c).f5026u;
+                return (int) ((ch.b0) ((ai.k0) this.f3455b).f1273c).f5029u;
             case 2:
-                if (((fi.e3) this.f3452b).f11671y.f11480h2) {
+                if (((fi.e3) this.f3455b).f11671y.f11480h2) {
                     return 0;
                 }
                 return org.telegram.messenger.g0.L(64.0f);
             case 3:
-                return ((fi.c5) this.f3452b).f11603r.getPaddingBottom();
+                return ((fi.c5) this.f3455b).f11603r.getPaddingBottom();
             case 4:
                 return 0;
             case 5:
-                editTextHeight = ((sa) this.f3452b).f15048d1.getEditTextHeight();
+                editTextHeight = ((sa) this.f3455b).f15048d1.getEditTextHeight();
                 L = org.telegram.messenger.g0.L(12.0f);
                 break;
             case 6:
-                return ((n7) this.f3452b).f37471e.f41928y1.getHeight();
+                return ((n7) this.f3455b).f37470e.f41920y1.getHeight();
             case 7:
-                wa waVar = (wa) this.f3452b;
+                wa waVar = (wa) this.f3455b;
                 if (waVar == null) {
                     return 0;
                 }
                 return waVar.f(i7);
             case 8:
                 editTextHeight = org.telegram.messenger.g0.L(126.0f);
-                L = ((xl) this.f3452b).f41723c.f33607b.R();
+                L = ((xl) this.f3455b).f41715c.f33609b.R();
                 break;
             case 9:
-                editTextHeight = x80.Z((x80) this.f3452b).d;
+                editTextHeight = y80.Z((y80) this.f3455b).d;
                 L = org.telegram.messenger.g0.L(72.0f);
                 break;
             case 10:
-                FrameLayout frameLayout = ((bw0) this.f3452b).f33421w1;
+                FrameLayout frameLayout = ((bw0) this.f3455b).f33424w1;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             default:
-                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f3452b;
+                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f3455b;
                 if (v0Var.getParent() instanceof ki.x3) {
                     ki.x3 x3Var = (ki.x3) v0Var.getParent();
                     return (int) ((x3Var.getSwipeOffsetY() + x3Var.getOffsetY()) - x3Var.getTopActionBarOffsetY());
@@ -211,7 +211,7 @@ public final class e1 implements wa {
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
                 return false;
             case 1:
@@ -230,7 +230,7 @@ public final class e1 implements wa {
             case 6:
                 return false;
             case 7:
-                wa waVar = (wa) this.f3452b;
+                wa waVar = (wa) this.f3455b;
                 if (waVar != null && waVar.g(i7)) {
                     return true;
                 }
@@ -248,9 +248,9 @@ public final class e1 implements wa {
 
     @Override
     public final int h(int i7) {
-        switch (this.f3451a) {
+        switch (this.f3454a) {
             case 0:
-                return org.telegram.messenger.g0.f23603m;
+                return org.telegram.messenger.g0.f23605m;
             case 1:
                 return 0;
             case 2:
@@ -258,15 +258,15 @@ public final class e1 implements wa {
             case 3:
                 return 0;
             case 4:
-                return (int) (((fi.n5) this.f3452b).f12076a + org.telegram.messenger.g0.L(58.0f));
+                return (int) (((fi.n5) this.f3455b).f12076a + org.telegram.messenger.g0.L(58.0f));
             case 5:
                 return 0;
             case 6:
                 return 0;
             case 7:
-                wa waVar = (wa) this.f3452b;
+                wa waVar = (wa) this.f3455b;
                 if (waVar == null) {
-                    return org.telegram.messenger.g0.f23603m;
+                    return org.telegram.messenger.g0.f23605m;
                 }
                 return waVar.h(i7);
             case 8:

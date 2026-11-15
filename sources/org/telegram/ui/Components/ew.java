@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class ew implements c5.h {
-    public final boolean f34442a;
-    public final ly f34443b;
+    public final boolean f34441a;
+    public final ly f34442b;
 
     public ew(ly lyVar, boolean z10) {
-        this.f34443b = lyVar;
-        this.f34442a = z10;
+        this.f34442b = lyVar;
+        this.f34441a = z10;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
         int i10;
-        ly lyVar = this.f34443b;
+        ly lyVar = this.f34442b;
         bw bwVar = lyVar.h;
         boolean z11 = false;
         if (bwVar != null) {
@@ -35,7 +35,7 @@ public final class ew implements c5.h {
             z10 = false;
         }
         lyVar.M(z10, true);
-        if (i7 == 2 && (this.f34442a || lyVar.f36999w0)) {
+        if (i7 == 2 && (this.f34441a || lyVar.f36999w0)) {
             z11 = true;
         }
         lyVar.R(z11, true);
@@ -67,7 +67,7 @@ public final class ew implements c5.h {
         int i11;
         int i12;
         int i13;
-        ly lyVar = this.f34443b;
+        ly lyVar = this.f34442b;
         yx yxVar3 = lyVar.H0;
         yx yxVar4 = lyVar.f36975p0;
         yx yxVar5 = lyVar.W;

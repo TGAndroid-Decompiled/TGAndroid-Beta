@@ -24,9 +24,9 @@ public final class ll implements Comparator {
                 org.telegram.messenger.ve veVar = (org.telegram.messenger.ve) obj;
                 org.telegram.messenger.ve veVar2 = (org.telegram.messenger.ve) obj2;
                 boolean z10 = ChatAttachAlertPhotoLayout.f32365r1;
-                int i10 = veVar.f26968a;
-                if (i10 != 0 || veVar2.f26968a == 0) {
-                    if ((i10 != 0 && veVar2.f26968a == 0) || (indexOf = arrayList.indexOf(veVar)) > (indexOf2 = arrayList.indexOf(veVar2))) {
+                int i10 = veVar.f26969a;
+                if (i10 != 0 || veVar2.f26969a == 0) {
+                    if ((i10 != 0 && veVar2.f26969a == 0) || (indexOf = arrayList.indexOf(veVar)) > (indexOf2 = arrayList.indexOf(veVar2))) {
                         return 1;
                     }
                     if (indexOf >= indexOf2) {

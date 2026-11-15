@@ -134,7 +134,7 @@ public final class l extends x2.a {
         dVar.f56189r = this;
         Map map = Collections.EMPTY_MAP;
         ja.k(uri, "The uri must be set.");
-        b3.r rVar = new b3.r(((j2.g) dVar.f56183a.f33543a).createDataSource(), new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, dVar.f56184b.s0());
+        b3.r rVar = new b3.r(((j2.g) dVar.f56183a.f33545a).createDataSource(), new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, dVar.f56184b.s0());
         if (dVar.h == null) {
             z10 = true;
         } else {
@@ -143,7 +143,7 @@ public final class l extends x2.a {
         ja.p(z10);
         b3.o oVar = new b3.o("DefaultHlsPlaylistTracker:MultivariantPlaylist");
         dVar.h = oVar;
-        oVar.f(rVar, dVar, dVar.f56185c.R4(rVar.f2921c));
+        oVar.f(rVar, dVar, dVar.f56185c.R4(rVar.f2924c));
     }
 
     @Override

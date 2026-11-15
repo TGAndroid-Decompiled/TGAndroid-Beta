@@ -18,7 +18,7 @@ public final class j extends MediaRouter2$TransferCallback {
         k kVar = this.f56399a;
         q qVar = (q) kVar.f56407w.remove(routingController);
         if (qVar != null) {
-            e eVar = (e) kVar.f56406s.f34586b;
+            e eVar = (e) kVar.f56406s.f34590b;
             if (qVar == eVar.f56356e) {
                 v c10 = eVar.c();
                 if (eVar.e() != c10) {
@@ -37,7 +37,7 @@ public final class j extends MediaRouter2$TransferCallback {
         v vVar;
         this.f56399a.f56407w.remove(routingController);
         if (routingController2 == this.f56399a.f56405r.getSystemController()) {
-            e eVar = (e) this.f56399a.f56406s.f34586b;
+            e eVar = (e) this.f56399a.f56406s.f34590b;
             v c10 = eVar.c();
             if (eVar.e() != c10) {
                 eVar.j(c10, 3);
@@ -53,7 +53,7 @@ public final class j extends MediaRouter2$TransferCallback {
         int i7 = 0;
         String id2 = r2.j.d(selectedRoutes.get(0)).getId();
         this.f56399a.f56407w.put(routingController2, new g(this.f56399a, routingController2, id2));
-        e eVar2 = (e) this.f56399a.f56406s.f34586b;
+        e eVar2 = (e) this.f56399a.f56406s.f34590b;
         ArrayList arrayList = eVar2.f56360j;
         int size = arrayList.size();
         while (true) {

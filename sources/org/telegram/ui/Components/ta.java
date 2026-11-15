@@ -8,14 +8,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import java.util.WeakHashMap;
 public final class ta extends Dialog {
-    public final sa f39619a;
-    public final WindowManager.LayoutParams f39620b;
+    public final sa f39616a;
+    public final WindowManager.LayoutParams f39617b;
 
     public ta(Context context, bi.t tVar) {
         super(context);
         org.telegram.messenger.g0.S(getWindow());
         sa saVar = new sa(this, context);
-        this.f39619a = saVar;
+        this.f39616a = saVar;
         setContentView(saVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
         WeakHashMap weakHashMap = r0.i0.f55671a;
@@ -32,7 +32,7 @@ public final class ta extends Dialog {
             window.setWindowAnimations(2131755178);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f39620b = attributes;
+            this.f39617b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -53,7 +53,7 @@ public final class ta extends Dialog {
     }
 
     public static sa a(Context context) {
-        return new ta(context, null).f39619a;
+        return new ta(context, null).f39616a;
     }
 
     @Override

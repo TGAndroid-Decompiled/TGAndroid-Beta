@@ -32,7 +32,7 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.z70;
 import org.telegram.ui.fs0;
 public final class t0 extends ja implements u9 {
-    public static final int f3870c2 = 0;
+    public static final int f3873c2 = 0;
     public final long T1;
     public final n0 U1;
     public final LinearLayout V1;
@@ -40,8 +40,8 @@ public final class t0 extends ja implements u9 {
     public final TextView X1;
     public final q0 Y1;
     public r9 Z1;
-    public p41 f3871a2;
-    public int f3872b2;
+    public p41 f3874a2;
+    public int f3875b2;
 
     public t0(Context context, org.telegram.ui.ActionBar.e6 e6Var, long j3, TL_stars.StarGift starGift, ArrayList arrayList, Runnable runnable, boolean z10) {
         super(context, null, false, false, 1, e6Var);
@@ -54,7 +54,7 @@ public final class t0 extends ja implements u9 {
         long j10 = starGift.f28280id;
         this.T1 = j10;
         this.F1 = org.telegram.messenger.g0.L(6.0f);
-        this.f35943v1 = 0.2f;
+        this.f35938v1 = 0.2f;
         v0(i0.a.f(0.1f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28940i5, this.J0), org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28922h5, this.J0)));
         O();
         LinearLayout linearLayout = new LinearLayout(context);
@@ -74,10 +74,10 @@ public final class t0 extends ja implements u9 {
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
         this.f29682b.addView(dVar, d);
-        uj0 uj0Var = this.f35936o1;
+        uj0 uj0Var = this.f35931o1;
         int i11 = this.f29717u0;
         uj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
-        this.f3871a2.O(false);
+        this.f3874a2.O(false);
         int i12 = z10 ? 220 : 208;
         this.Z1 = v9.c(this.f29679a).l(j10, this);
         o0 o0Var = new o0(this, context, e6Var, new a3.f(this, 18), new o(2), new o(2), new o(2), new o(2), new o(2), new o(2), i12);
@@ -139,13 +139,13 @@ public final class t0 extends ja implements u9 {
         linearLayout2.setGravity(17);
         linearLayout2.setClickable(true);
         i2 i2Var = new i2(this.f29679a, context2, e6Var2);
-        i2Var.f3581d0 = true;
+        i2Var.f3584d0 = true;
         org.telegram.ui.ActionBar.e6 e6Var3 = e6Var2;
         i2Var.h(starGift, true, false, false, false, false);
         i2Var.setImageSize(org.telegram.messenger.g0.L(84.0f));
         i2Var.setImageLayer(7);
         i2Var.K.setVisibility(8);
-        i2Var.f3582e.g(r12);
+        i2Var.f3585e.g(r12);
         i2Var.setRibbonTextOneOf(this.Z1.d.availability_total);
         linearLayout2.addView(i2Var, c8.ja.l(0.0f, 116, 116));
         ImageView imageView = new ImageView(context);
@@ -156,12 +156,12 @@ public final class t0 extends ja implements u9 {
         q0 q0Var = new q0(this, context, this.f29679a, e6Var3);
         this.Y1 = q0Var;
         q0Var.d.removeView(q0Var.E);
-        q0Var.f3581d0 = true;
+        q0Var.f3584d0 = true;
         q0Var.h(starGift, true, false, false, false, false);
         q0Var.setImageSize(org.telegram.messenger.g0.L(100.0f));
         q0Var.setImageLayer(7);
         q0Var.K.setVisibility(8);
-        q0Var.f3582e.g(r12);
+        q0Var.f3585e.g(r12);
         q0Var.setRibbonTextOneOf(this.Z1.d.availability_total);
         q0Var.setRibbonText(hd.M0(2131750319, r12));
         linearLayout2.addView(q0Var, c8.ja.l(0.0f, 116, 116));
@@ -181,10 +181,10 @@ public final class t0 extends ja implements u9 {
         frameLayout.setBackground(d02);
         org.telegram.ui.ActionBar.l6 o4 = org.telegram.ui.ActionBar.q6.o(frameLayout, true);
         o4.d = d02;
-        o4.f29372e = r12;
-        o4.f29373f = r12;
+        o4.f29373e = r12;
+        o4.f29374f = r12;
         org.telegram.ui.ActionBar.k6 k6Var = new org.telegram.ui.ActionBar.k6();
-        o4.f29372e = k6Var;
+        o4.f29373e = k6Var;
         k6Var.c(i16, i17, 3, 0.2f, e6Var3);
         k6Var.f29348g = org.telegram.ui.ActionBar.q6.t(d02);
         TextView textView4 = new TextView(context);
@@ -226,14 +226,14 @@ public final class t0 extends ja implements u9 {
         textView6.setText(hd.H(',', "Gift2AvailabilitySold", starGift.availability_total - starGift.availability_remains));
         s0Var.addView(textView6, c8.ja.d(-1, -1.0f, 5, 11.0f, 0.0f, 11.0f, 0.0f));
         r9 r9Var = this.Z1;
-        if (r9Var == null || r9Var.f26262f == null) {
+        if (r9Var == null || r9Var.f26270f == null) {
             z70Var = null;
         } else {
             z70Var = new z70(context, null);
             z70Var.setTextSize(1, 13.0f);
             z70Var.setGravity(17);
             org.telegram.ui.ActionBar.q6.U(z70Var, i14, e6Var3);
-            z70Var.setText(org.telegram.messenger.g0.W2(hd.V(null, null, 2131750358, hd.E(starGift.availability_total, ','), Integer.valueOf(this.Z1.f26262f.total_rounds), Integer.valueOf(starGift.gifts_per_round), org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(hd.M0(2131750357, null), new f0(context, e6Var3, starGift, 1)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)))));
+            z70Var.setText(org.telegram.messenger.g0.W2(hd.V(null, null, 2131750358, hd.E(starGift.availability_total, ','), Integer.valueOf(this.Z1.f26270f.total_rounds), Integer.valueOf(starGift.gifts_per_round), org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(hd.M0(2131750357, null), new f0(context, e6Var3, starGift, 1)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)))));
             org.telegram.ui.ActionBar.q6.G(z70Var, org.telegram.ui.ActionBar.j6.J6, e6Var3);
         }
         if (z10) {
@@ -252,27 +252,27 @@ public final class t0 extends ja implements u9 {
                 org.telegram.ui.ActionBar.q6.U(textView8, i17, e6Var3);
                 linearLayout.addView(textView8, c8.ja.t(-1, -2, 17, 20, 0, 20, 16));
                 fs0 fs0Var = new fs0(context, e6Var3);
-                fs0Var.f47186a.l(hd.M0(2131749815, null), false);
-                fs0Var.f47187b.setText(hd.M0(2131749814, null));
+                fs0Var.f47176a.l(hd.M0(2131749815, null), false);
+                fs0Var.f47177b.setText(hd.M0(2131749814, null));
                 fs0Var.d.setVisibility(8);
-                ImageView imageView2 = fs0Var.f47188c;
+                ImageView imageView2 = fs0Var.f47178c;
                 imageView2.setImageResource(2131232122);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
                 org.telegram.ui.ActionBar.q6.s(imageView2, i17, e6Var3, mode);
                 linearLayout.addView(fs0Var, c8.ja.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
                 fs0 fs0Var2 = new fs0(context, e6Var3);
-                fs0Var2.f47186a.l(hd.M0(2131749813, null), false);
-                fs0Var2.f47187b.setText(hd.M0(2131749812, null));
+                fs0Var2.f47176a.l(hd.M0(2131749813, null), false);
+                fs0Var2.f47177b.setText(hd.M0(2131749812, null));
                 fs0Var2.d.setVisibility(8);
-                ImageView imageView3 = fs0Var2.f47188c;
+                ImageView imageView3 = fs0Var2.f47178c;
                 imageView3.setImageResource(2131231800);
                 org.telegram.ui.ActionBar.q6.s(imageView3, i17, e6Var3, mode);
                 linearLayout.addView(fs0Var2, c8.ja.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
                 fs0 fs0Var3 = new fs0(context, e6Var3);
-                fs0Var3.f47186a.l(hd.M0(2131749811, null), false);
-                fs0Var3.f47187b.setText(hd.M0(2131749810, null));
+                fs0Var3.f47176a.l(hd.M0(2131749811, null), false);
+                fs0Var3.f47177b.setText(hd.M0(2131749810, null));
                 fs0Var3.d.setVisibility(8);
-                ImageView imageView4 = fs0Var3.f47188c;
+                ImageView imageView4 = fs0Var3.f47178c;
                 imageView4.setImageResource(2131231911);
                 org.telegram.ui.ActionBar.q6.s(imageView4, i17, e6Var3, mode);
                 linearLayout.addView(fs0Var3, c8.ja.k(6.0f, 0.0f, 6.0f, 14.0f, -1, -2));
@@ -295,11 +295,11 @@ public final class t0 extends ja implements u9 {
             dVar.i(hd.M0(2131750345, null), false, true);
         }
         r9 r9Var3 = this.Z1;
-        if (r9Var3 != null && r9Var3.f26262f != null) {
+        if (r9Var3 != null && r9Var3.f26270f != null) {
             if (r9Var3.g(currentTime)) {
-                dVar.g(hd.a0(null, null, 2131750335, hd.c0(this.Z1.f26262f.start_date - currentTime)), false);
+                dVar.g(hd.a0(null, null, 2131750335, hd.c0(this.Z1.f26270f.start_date - currentTime)), false);
             } else {
-                dVar.g(hd.a0(null, null, 2131750321, hd.c0(this.Z1.f26262f.end_date - currentTime)), false);
+                dVar.g(hd.a0(null, null, 2131750321, hd.c0(this.Z1.f26270f.end_date - currentTime)), false);
             }
         }
         dVar.setOnClickListener(new a0(this, j3, context, e6Var3, runnable, 1));
@@ -307,9 +307,9 @@ public final class t0 extends ja implements u9 {
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new b(this, 4), this.J0);
-        this.f3871a2 = p41Var;
-        p41Var.f38201r = false;
+        p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, true, new b(this, 4), this.J0);
+        this.f3874a2 = p41Var;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -334,8 +334,8 @@ public final class t0 extends ja implements u9 {
         super.s0();
         try {
             int f10 = i0.a.f(0.1f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28940i5, this.J0), org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28922h5, this.J0));
-            if (f10 != this.f3872b2) {
-                this.f3872b2 = f10;
+            if (f10 != this.f3875b2) {
+                this.f3875b2 = f10;
                 v0(f10);
             }
         } catch (Exception e10) {

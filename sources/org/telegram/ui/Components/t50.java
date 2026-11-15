@@ -6,10 +6,10 @@ import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t50 extends tj0 {
-    public final a60 f39544c;
+    public final a60 f39542c;
 
     public t50(a60 a60Var) {
-        this.f39544c = a60Var;
+        this.f39542c = a60Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class t50 extends tj0 {
     }
 
     public final TLObject E(int i7) {
-        a60 a60Var = this.f39544c;
+        a60 a60Var = this.f39542c;
         if (a60Var.f32873h2 != null) {
             TLRPC.Dialog dialog = (TLRPC.Dialog) a60Var.f32874i2.get(i7 - a60Var.T1);
             if (org.telegram.messenger.m5.E(dialog.f28055id)) {
@@ -35,12 +35,12 @@ public final class t50 extends tj0 {
 
     @Override
     public final int b() {
-        return this.f39544c.X1;
+        return this.f39542c.X1;
     }
 
     @Override
     public final int d(int i7) {
-        a60 a60Var = this.f39544c;
+        a60 a60Var = this.f39542c;
         if (i7 == a60Var.S1) {
             return 1;
         }
@@ -80,7 +80,7 @@ public final class t50 extends tj0 {
                 } else {
                     j3 = 0;
                 }
-                a60 a60Var = this.f39544c;
+                a60 a60Var = this.f39542c;
                 boolean z12 = false;
                 if (i7 != a60Var.U1) {
                     z10 = true;
@@ -127,7 +127,7 @@ public final class t50 extends tj0 {
         boolean z10;
         Context context = viewGroup.getContext();
         if (i7 != 2) {
-            a60 a60Var = this.f39544c;
+            a60 a60Var = this.f39542c;
             if (i7 != 3) {
                 if (i7 != 4) {
                     if (i7 != 5) {
@@ -139,7 +139,7 @@ public final class t50 extends tj0 {
                     } else {
                         s50 s50Var = new s50(context, null, 0, null, 0);
                         s50Var.setLayoutParams(new v4.p0(-1, -1));
-                        s50Var.f33707e.setVisibility(8);
+                        s50Var.f33709e.setVisibility(8);
                         org.telegram.ui.zr zrVar = a60Var.f32873h2;
                         xh.l lVar = s50Var.d;
                         if (zrVar != null) {

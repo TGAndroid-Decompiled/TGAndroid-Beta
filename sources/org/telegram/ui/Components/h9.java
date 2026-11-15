@@ -63,7 +63,7 @@ public final class h9 extends GradientDrawable {
         }
         c8.ga gaVar = gaVarArr[0];
         if (gaVar != null) {
-            gaVar.b(x40Var.f41563a, x40Var.f41564b);
+            gaVar.b(x40Var.f41566a, x40Var.f41567b);
             if (!z10) {
                 gaVarArr[0].a();
                 gaVarArr[0] = null;
@@ -98,7 +98,7 @@ public final class h9 extends GradientDrawable {
 
     public static Rect e(GradientDrawable.Orientation orientation, int i7, int i10) {
         Rect rect = new Rect();
-        switch (f9.f34550a[orientation.ordinal()]) {
+        switch (f9.f34549a[orientation.ordinal()]) {
             case 1:
                 int i11 = i7 / 2;
                 rect.left = i11;
@@ -191,7 +191,7 @@ public final class h9 extends GradientDrawable {
             a0.f fVar2 = this.d;
             if (i10 < i7) {
                 x40 x40Var = (x40) fVar.f(i10);
-                if (x40Var.f41563a == width && x40Var.f41564b == height) {
+                if (x40Var.f41566a == width && x40Var.f41567b == height) {
                     Bitmap bitmap = (Bitmap) fVar.i(i10);
                     if (bitmap != null) {
                         canvas.drawBitmap(bitmap, (Rect) null, bounds, this.f35199f);
@@ -241,7 +241,7 @@ public final class h9 extends GradientDrawable {
         for (int i10 = 0; i10 < i7; i10++) {
             x40 x40Var = (x40) fVar.f(i10);
             float f11 = f10;
-            float sqrt = (float) Math.sqrt(Math.pow(height - x40Var.f41564b, 2.0d) + Math.pow(width - x40Var.f41563a, 2.0d));
+            float sqrt = (float) Math.sqrt(Math.pow(height - x40Var.f41567b, 2.0d) + Math.pow(width - x40Var.f41566a, 2.0d));
             if (sqrt < f11 && (bitmap = (Bitmap) fVar.i(i10)) != null && ((bool = (Boolean) this.f35197c.get(x40Var)) == null || !bool.booleanValue())) {
                 bitmap2 = bitmap;
                 f10 = sqrt;
@@ -291,7 +291,7 @@ public final class h9 extends GradientDrawable {
         this.f35198e.add(runnableArr);
         for (int i7 = 0; i7 < x40VarArr.length; i7++) {
             x40 x40Var = x40VarArr[i7];
-            if (x40Var.f41563a != 0 && x40Var.f41564b != 0) {
+            if (x40Var.f41566a != 0 && x40Var.f41567b != 0) {
                 org.telegram.messenger.p5 p5Var = Utilities.f22416e;
                 b9 b9Var = new b9(this, x40Var, runnableArr, i7, gaVarArr);
                 runnableArr[i7] = b9Var;

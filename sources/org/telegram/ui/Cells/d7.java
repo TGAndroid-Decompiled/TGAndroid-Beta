@@ -21,7 +21,7 @@ public final class d7 extends FrameLayout {
 
     public d7(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f30150f = m10.f24934t0;
+        this.f30150f = m10.f24940t0;
         this.h = e6Var;
         setWillNotDraw(false);
         org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
@@ -71,9 +71,9 @@ public final class d7 extends FrameLayout {
         qg.a aVar = new qg.a(qg.a.f55558k[0]);
         j70 j70Var = new j70(1, null);
         j70Var.a("");
-        j70Var.f35910i = 1.8f;
+        j70Var.f35897i = 1.8f;
         fq fqVar = new fq(aVar, j70Var, 0, 0);
-        fqVar.f34678x = true;
+        fqVar.f34682x = true;
         i9Var.setImageDrawable(fqVar);
     }
 }

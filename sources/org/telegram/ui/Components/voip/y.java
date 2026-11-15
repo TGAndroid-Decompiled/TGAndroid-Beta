@@ -25,42 +25,42 @@ public final class y extends View implements z5 {
     public int G;
     public float H;
     public final z I;
-    public final ImageReceiver f41051a;
-    public final ImageReceiver f41052b;
-    public final t8 f41053c;
+    public final ImageReceiver f41054a;
+    public final ImageReceiver f41055b;
+    public final t8 f41056c;
     public final o9 d;
-    public final o9 f41054e;
-    public final Paint f41055f;
+    public final o9 f41057e;
+    public final Paint f41058f;
     public final Paint h;
-    public float f41056n;
-    public float f41057r;
-    public float f41058s;
-    public float f41059w;
-    public float f41060x;
-    public final b40[] f41061y;
+    public float f41059n;
+    public float f41060r;
+    public float f41061s;
+    public float f41062w;
+    public float f41063x;
+    public final b40[] f41064y;
 
     public y(z zVar, Context context) {
         super(context);
         this.I = zVar;
-        this.f41051a = new ImageReceiver(null);
-        this.f41052b = new ImageReceiver(null);
-        this.f41053c = new t8((e6) null);
+        this.f41054a = new ImageReceiver(null);
+        this.f41055b = new ImageReceiver(null);
+        this.f41056c = new t8((e6) null);
         Paint paint = new Paint(1);
-        this.f41055f = paint;
+        this.f41058f = paint;
         Paint paint2 = new Paint(1);
         this.h = paint2;
-        this.f41061y = new b40[3];
+        this.f41064y = new b40[3];
         this.G = -1;
         this.H = 1.0f;
         o9 o9Var = new o9(9);
         this.d = o9Var;
         o9 o9Var2 = new o9(12);
-        this.f41054e = o9Var2;
-        o9Var.f37875a = org.telegram.messenger.g0.L(76.0f);
-        o9Var.f37876b = org.telegram.messenger.g0.L(92.0f);
+        this.f41057e = o9Var2;
+        o9Var.f37864a = org.telegram.messenger.g0.L(76.0f);
+        o9Var.f37865b = org.telegram.messenger.g0.L(92.0f);
         o9Var.b();
-        o9Var2.f37875a = org.telegram.messenger.g0.L(80.0f);
-        o9Var2.f37876b = org.telegram.messenger.g0.L(95.0f);
+        o9Var2.f37864a = org.telegram.messenger.g0.L(80.0f);
+        o9Var2.f37865b = org.telegram.messenger.g0.L(95.0f);
         o9Var2.b();
         paint.setColor(i0.a.f(0.0f, j6.x0(null, j6.f28915gh, false), j6.x0(null, j6.f28932hh, false)));
         paint.setAlpha(102);
@@ -70,10 +70,10 @@ public final class y extends View implements z5 {
     public static void a(y yVar, boolean z10) {
         int i7;
         TLRPC.GroupCallParticipant groupCallParticipant;
-        b40[] b40VarArr = yVar.f41061y;
-        o0 o0Var = yVar.I.f41097o0;
-        if (!o0Var.f40820k && ((groupCallParticipant = o0Var.h) == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute)) {
-            if (o0Var.f40815e) {
+        b40[] b40VarArr = yVar.f41064y;
+        o0 o0Var = yVar.I.f41100o0;
+        if (!o0Var.f40823k && ((groupCallParticipant = o0Var.h) == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute)) {
+            if (o0Var.f40818e) {
                 i7 = 1;
             } else {
                 i7 = 0;
@@ -89,11 +89,11 @@ public final class y extends View implements z5 {
             b40VarArr[i7] = new b40(i7);
             int i10 = yVar.G;
             if (i10 == 2) {
-                b40VarArr[i10].f45582g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{j6.x0(null, j6.Zh, false), j6.x0(null, j6.f28823bi, false), j6.x0(null, j6.f28803ai, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                b40VarArr[i10].f45576g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{j6.x0(null, j6.Zh, false), j6.x0(null, j6.f28823bi, false), j6.x0(null, j6.f28803ai, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else if (i10 == 1) {
-                b40VarArr[i10].f45582g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{j6.x0(null, j6.f29213wh, false), j6.x0(null, j6.f29251yh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                b40VarArr[i10].f45576g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{j6.x0(null, j6.f29213wh, false), j6.x0(null, j6.f29251yh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else {
-                b40VarArr[i10].f45582g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{j6.x0(null, j6.Ah, false), j6.x0(null, j6.f29271zh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                b40VarArr[i10].f45576g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{j6.x0(null, j6.Ah, false), j6.x0(null, j6.f29271zh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             }
         }
         b40 b40Var = b40VarArr[yVar.G];
@@ -114,15 +114,15 @@ public final class y extends View implements z5 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41051a.P();
-        this.f41052b.P();
+        this.f41054a.P();
+        this.f41055b.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41051a.R();
-        this.f41052b.R();
+        this.f41054a.R();
+        this.f41055b.R();
     }
 
     @Override
@@ -132,30 +132,30 @@ public final class y extends View implements z5 {
         b40 b40Var2;
         super.onDraw(canvas);
         RectF rectF = org.telegram.messenger.g0.P;
-        v vVar = this.I.f41078a;
+        v vVar = this.I.f41081a;
         rectF.set(vVar.getX() + vVar.P, vVar.getY() + vVar.O, (vVar.getX() + vVar.getMeasuredWidth()) - vVar.P, vVar.getY() + vVar.getMeasuredHeight() + vVar.O);
         float f11 = rectF.left;
         float f12 = rectF.top;
         float width = rectF.width();
         float height = rectF.height();
-        ImageReceiver imageReceiver = this.f41052b;
+        ImageReceiver imageReceiver = this.f41055b;
         imageReceiver.y0(f11, f12, width, height);
-        imageReceiver.J0((int) vVar.f40828b);
+        imageReceiver.J0((int) vVar.f40831b);
         imageReceiver.h(canvas, null);
-        float f13 = vVar.f40828b;
+        float f13 = vVar.f40831b;
         canvas.drawRoundRect(rectF, f13, f13, this.h);
-        float f14 = this.f41057r;
-        float f15 = this.f41056n;
+        float f14 = this.f41060r;
+        float f15 = this.f41059n;
         if (f14 != f15) {
-            float f16 = this.f41058s;
+            float f16 = this.f41061s;
             float f17 = (16.0f * f16) + f15;
-            this.f41056n = f17;
+            this.f41059n = f17;
             if (f16 > 0.0f) {
                 if (f17 > f14) {
-                    this.f41056n = f14;
+                    this.f41059n = f14;
                 }
             } else if (f17 < f14) {
-                this.f41056n = f14;
+                this.f41059n = f14;
             }
         }
         float f18 = this.H;
@@ -168,39 +168,39 @@ public final class y extends View implements z5 {
                 this.F = null;
             }
         }
-        float f19 = (this.f41056n * 0.8f) + 1.0f;
+        float f19 = (this.f41059n * 0.8f) + 1.0f;
         canvas.save();
-        canvas.scale(f19, f19, this.f41059w, this.f41060x);
+        canvas.scale(f19, f19, this.f41062w, this.f41063x);
         b40 b40Var3 = this.E;
         if (b40Var3 != null) {
-            b40Var3.b((int) (this.f41060x - org.telegram.messenger.g0.L(100.0f)), (int) (this.f41059w - org.telegram.messenger.g0.L(100.0f)), org.telegram.messenger.g0.L(200.0f), 16L, this.f41056n);
+            b40Var3.b((int) (this.f41063x - org.telegram.messenger.g0.L(100.0f)), (int) (this.f41062w - org.telegram.messenger.g0.L(100.0f)), org.telegram.messenger.g0.L(200.0f), 16L, this.f41059n);
         }
-        float f20 = this.f41056n;
-        o9 o9Var = this.f41054e;
+        float f20 = this.f41059n;
+        o9 o9Var = this.f41057e;
         o9Var.e(f20, 1.0f);
-        float f21 = this.f41056n;
+        float f21 = this.f41059n;
         o9 o9Var2 = this.d;
         o9Var2.e(f21, 1.0f);
         for (int i7 = 0; i7 < 2; i7++) {
-            Paint paint = this.f41055f;
+            Paint paint = this.f41058f;
             if (i7 == 0 && (b40Var2 = this.F) != null) {
-                paint.setShader(b40Var2.f45582g);
+                paint.setShader(b40Var2.f45576g);
                 f10 = 1.0f - this.H;
             } else {
                 if (i7 == 1 && (b40Var = this.E) != null) {
-                    paint.setShader(b40Var.f45582g);
+                    paint.setShader(b40Var.f45576g);
                     f10 = this.H;
                 }
             }
             paint.setAlpha((int) (f10 * 76.0f));
-            o9Var.a(this.f41059w, this.f41060x, canvas, paint);
-            o9Var2.a(this.f41059w, this.f41060x, canvas, paint);
+            o9Var.a(this.f41062w, this.f41063x, canvas, paint);
+            o9Var2.a(this.f41062w, this.f41063x, canvas, paint);
         }
         canvas.restore();
-        float f22 = (this.f41056n * 0.2f) + 1.0f;
+        float f22 = (this.f41059n * 0.2f) + 1.0f;
         canvas.save();
-        canvas.scale(f22, f22, this.f41059w, this.f41060x);
-        this.f41051a.h(canvas, null);
+        canvas.scale(f22, f22, this.f41062w, this.f41063x);
+        this.f41054a.h(canvas, null);
         canvas.restore();
         invalidate();
     }
@@ -210,24 +210,24 @@ public final class y extends View implements z5 {
         float f10;
         super.onMeasure(i7, i10);
         float L = org.telegram.messenger.g0.L(157.0f);
-        this.f41059w = getMeasuredWidth() >> 1;
+        this.f41062w = getMeasuredWidth() >> 1;
         float measuredHeight = getMeasuredHeight() >> 1;
         if (c40.E5) {
             f10 = 0.0f;
         } else {
             f10 = (-getMeasuredHeight()) * 0.12f;
         }
-        this.f41060x = measuredHeight + f10;
+        this.f41063x = measuredHeight + f10;
         float f11 = L / 2.0f;
-        ImageReceiver imageReceiver = this.f41051a;
+        ImageReceiver imageReceiver = this.f41054a;
         imageReceiver.J0((int) f11);
-        imageReceiver.y0(this.f41059w - f11, this.f41060x - f11, L, L);
+        imageReceiver.y0(this.f41062w - f11, this.f41063x - f11, L, L);
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f41055f.setColor(i0.a.f(0.0f, j6.x0(null, j6.f28915gh, false), j6.x0(null, j6.f28932hh, false)));
+            this.f41058f.setColor(i0.a.f(0.0f, j6.x0(null, j6.f28915gh, false), j6.x0(null, j6.f28932hh, false)));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

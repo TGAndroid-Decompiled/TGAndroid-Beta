@@ -1,8 +1,8 @@
 package ji;
 
-import ai.b2;
-import ai.m0;
-import ai.s;
+import ai.c2;
+import ai.n0;
+import ai.t;
 import org.telegram.messenger.z10;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class g implements z10 {
@@ -19,9 +19,9 @@ public final class g implements z10 {
     @Override
     public final void a(Object obj) {
         boolean z10;
-        b2 b2Var;
+        c2 c2Var;
         p pVar;
-        b2 b2Var2;
+        c2 c2Var2;
         Integer num = (Integer) obj;
         switch (this.f17547a) {
             case 0:
@@ -32,7 +32,7 @@ public final class g implements z10 {
                     return;
                 }
                 String str = this.f17549c[num.intValue() - 1];
-                s H = DictationAsr.H(str);
+                t H = DictationAsr.H(str);
                 if (H != null && !DictationAsr.w(H)) {
                     z10 = true;
                 } else {
@@ -66,10 +66,10 @@ public final class g implements z10 {
                 }
                 p pVar2 = mVar.h;
                 if (pVar2 != null) {
-                    pVar2.setLanguage(m0.l(str));
+                    pVar2.setLanguage(n0.l(str));
                 }
-                if (mVar.f17573c == 2 && (b2Var = mVar.f17578f) != null) {
-                    b2Var.p(str);
+                if (mVar.f17573c == 2 && (c2Var = mVar.f17578f) != null) {
+                    c2Var.p(str);
                 }
                 mVar.t();
                 return;
@@ -80,7 +80,7 @@ public final class g implements z10 {
                     return;
                 }
                 String str2 = this.f17549c[num.intValue() - 1];
-                s H2 = DictationAsr.H(str2);
+                t H2 = DictationAsr.H(str2);
                 z11 = (H2 == null || DictationAsr.w(H2)) ? false : false;
                 DictationAsr.S(str2);
                 DictationAsr.s(H2);
@@ -89,14 +89,14 @@ public final class g implements z10 {
                     mVar2.M.clear();
                     mVar2.n();
                 }
-                String l10 = m0.l(str2);
+                String l10 = n0.l(str2);
                 mVar2.f17585l0 = l10;
                 e eVar = mVar2.K;
                 if (eVar != null) {
                     eVar.setLanguage(l10);
                 }
-                if (mVar2.f17573c == 2 && (b2Var2 = mVar2.f17578f) != null) {
-                    b2Var2.p(str2);
+                if (mVar2.f17573c == 2 && (c2Var2 = mVar2.f17578f) != null) {
+                    c2Var2.p(str2);
                 }
                 mVar2.t();
                 return;

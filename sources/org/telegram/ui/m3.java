@@ -7,19 +7,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class m3 implements pq0 {
-    public final TLRPC.WebPage f49096a;
-    public final List f49097b;
-    public final g4 f49098c;
+    public final TLRPC.WebPage f49092a;
+    public final List f49093b;
+    public final g4 f49094c;
 
     public m3(g4 g4Var, TLRPC.WebPage webPage, List list) {
-        this.f49098c = g4Var;
-        this.f49096a = webPage;
-        this.f49097b = list;
+        this.f49094c = g4Var;
+        this.f49092a = webPage;
+        this.f49093b = list;
     }
 
     @Override
     public final boolean a(int i7) {
-        if (i7 < this.f49097b.size() && i7 >= 0 && d4.g(this.f49096a, get(i7))) {
+        if (i7 < this.f49093b.size() && i7 >= 0 && d4.g(this.f49092a, get(i7))) {
             return true;
         }
         return false;
@@ -29,10 +29,10 @@ public final class m3 implements pq0 {
     public final File b(int i7) {
         TLRPC.Document a10;
         TLRPC.PhotoSize w10;
-        if (i7 < this.f49097b.size() && i7 >= 0) {
+        if (i7 < this.f49093b.size() && i7 >= 0) {
             TL_iv.PageBlock pageBlock = get(i7);
             boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-            TLRPC.WebPage webPage = this.f49096a;
+            TLRPC.WebPage webPage = this.f49092a;
             if (z10) {
                 TLRPC.Photo e10 = d4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 if (e10 != null && (w10 = org.telegram.messenger.w7.w(e10.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
@@ -56,10 +56,10 @@ public final class m3 implements pq0 {
 
     @Override
     public final TLObject d(int i7) {
-        if (i7 < this.f49097b.size() && i7 >= 0) {
+        if (i7 < this.f49093b.size() && i7 >= 0) {
             TL_iv.PageBlock pageBlock = get(i7);
             boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-            TLRPC.WebPage webPage = this.f49096a;
+            TLRPC.WebPage webPage = this.f49092a;
             if (z10) {
                 return d4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
             }
@@ -72,8 +72,8 @@ public final class m3 implements pq0 {
 
     @Override
     public final boolean e(int i7) {
-        if (i7 < this.f49097b.size() && i7 >= 0 && !d4.g(this.f49096a, get(i7))) {
-            e4 e4Var = this.f49098c.f47336v0[0].f48550c;
+        if (i7 < this.f49093b.size() && i7 >= 0 && !d4.g(this.f49092a, get(i7))) {
+            e4 e4Var = this.f49094c.f47326v0[0].f48504c;
             TL_iv.PageBlock pageBlock = get(i7);
             e4Var.getClass();
             if (e4.I(pageBlock) == 5) {
@@ -112,30 +112,30 @@ public final class m3 implements pq0 {
 
     @Override
     public final Object g() {
-        return this.f49096a;
+        return this.f49092a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i7) {
-        return (TL_iv.PageBlock) this.f49097b.get(i7);
+        return (TL_iv.PageBlock) this.f49093b.get(i7);
     }
 
     @Override
     public final List getAll() {
-        return this.f49097b;
+        return this.f49093b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
-        g4 g4Var = this.f49098c;
-        int childCount = g4Var.f47336v0[0].f48549b.getChildCount();
+        g4 g4Var = this.f49094c;
+        int childCount = g4Var.f47326v0[0].f48503b.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
-            View childAt = g4Var.f47336v0[0].f48549b.getChildAt(i7);
+            View childAt = g4Var.f47326v0[0].f48503b.getChildAt(i7);
             if (childAt instanceof o2) {
                 o2 o2Var = (o2) childAt;
-                int indexOf = o2Var.f49763e.items.indexOf(pageBlock);
+                int indexOf = o2Var.f49753e.items.indexOf(pageBlock);
                 if (indexOf != -1) {
-                    o2Var.f49761b.x(indexOf, false);
+                    o2Var.f49751b.x(indexOf, false);
                     return;
                 }
             }
@@ -149,6 +149,6 @@ public final class m3 implements pq0 {
 
     @Override
     public final int j() {
-        return this.f49097b.size();
+        return this.f49093b.size();
     }
 }

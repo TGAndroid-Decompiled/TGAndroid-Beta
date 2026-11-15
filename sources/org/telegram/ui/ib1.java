@@ -7,35 +7,35 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class ib1 extends org.telegram.ui.Components.aj0 {
-    public final Context f48019c;
-    public final jg.z1 f48021f;
+    public final Context f48009c;
+    public final jg.z1 f48011f;
     public Runnable h;
-    public boolean f48022n;
-    public final int f48024s;
-    public final UsersSelectActivity f48025w;
+    public boolean f48012n;
+    public final int f48014s;
+    public final UsersSelectActivity f48015w;
     public ArrayList d = new ArrayList();
-    public ArrayList f48020e = new ArrayList();
-    public final ArrayList f48023r = new ArrayList();
+    public ArrayList f48010e = new ArrayList();
+    public final ArrayList f48013r = new ArrayList();
 
     public ib1(UsersSelectActivity usersSelectActivity, Context context) {
         boolean z10;
         boolean z11;
-        this.f48025w = usersSelectActivity;
-        this.f48019c = context;
+        this.f48015w = usersSelectActivity;
+        this.f48009c = context;
         if (usersSelectActivity.G) {
-            this.f48024s = 0;
+            this.f48014s = 0;
         } else {
             int i7 = usersSelectActivity.f43458y;
             if (i7 == 2) {
-                this.f48024s = (!usersSelectActivity.J ? 1 : 0) + 5;
+                this.f48014s = (!usersSelectActivity.J ? 1 : 0) + 5;
             } else if (i7 == 0) {
                 if (usersSelectActivity.K) {
-                    this.f48024s = 7;
+                    this.f48014s = 7;
                 } else {
-                    this.f48024s = 5;
+                    this.f48014s = 5;
                 }
             } else {
-                this.f48024s = 0;
+                this.f48014s = 0;
             }
         }
         int i10 = usersSelectActivity.f43458y;
@@ -49,7 +49,7 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
         } else {
             z11 = false;
         }
-        ArrayList arrayList = usersSelectActivity.getMessagesController().f25440y;
+        ArrayList arrayList = usersSelectActivity.getMessagesController().f25443y;
         int size = arrayList.size();
         int i11 = 0;
         boolean z12 = false;
@@ -59,7 +59,7 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
                 if (org.telegram.messenger.m5.E(dialog.f28055id)) {
                     TLRPC.User a22 = usersSelectActivity.getMessagesController().a2(Long.valueOf(dialog.f28055id));
                     if (a22 != null && ((usersSelectActivity.H || !org.telegram.messenger.q10.B(a22)) && (!a22.bot || z10))) {
-                        this.f48023r.add(a22);
+                        this.f48013r.add(a22);
                         if (org.telegram.messenger.q10.B(a22)) {
                             z12 = true;
                         }
@@ -67,7 +67,7 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
                 } else {
                     TLRPC.Chat M0 = usersSelectActivity.getMessagesController().M0(Long.valueOf(-dialog.f28055id));
                     if (z11 && M0 != null) {
-                        this.f48023r.add(M0);
+                        this.f48013r.add(M0);
                     }
                 }
             }
@@ -75,10 +75,10 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
             z12 = z12;
         }
         if (!z12 && usersSelectActivity.H) {
-            this.f48023r.add(0, usersSelectActivity.getMessagesController().a2(Long.valueOf(usersSelectActivity.getUserConfig().f24953n)));
+            this.f48013r.add(0, usersSelectActivity.getMessagesController().a2(Long.valueOf(usersSelectActivity.getUserConfig().f24959n)));
         }
         jg.z1 z1Var = new jg.z1(false);
-        this.f48021f = z1Var;
+        this.f48011f = z1Var;
         z1Var.f17357p = false;
         z1Var.f17344a = new ni0(this, 23);
     }
@@ -117,7 +117,7 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
             Utilities.f22418g.a(this.h);
             this.h = null;
         }
-        UsersSelectActivity usersSelectActivity = this.f48025w;
+        UsersSelectActivity usersSelectActivity = this.f48015w;
         int i7 = usersSelectActivity.f43458y;
         if (i7 == 2 && !usersSelectActivity.I) {
             z10 = false;
@@ -131,9 +131,9 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
         }
         if (str == null) {
             this.d.clear();
-            this.f48020e.clear();
-            this.f48021f.f(null, null);
-            this.f48021f.g(null, true, false, false, false, 0L, false, 0, 0);
+            this.f48010e.clear();
+            this.f48011f.f(null, null);
+            this.f48011f.g(null, true, false, false, false, 0L, false, 0, 0);
             f();
             return;
         }
@@ -145,12 +145,12 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
 
     @Override
     public final int b() {
-        if (this.f48022n) {
+        if (this.f48012n) {
             int size = this.d.size();
-            jg.z1 z1Var = this.f48021f;
+            jg.z1 z1Var = this.f48011f;
             return z1Var.f17347e.size() + z1Var.d.size() + size;
         }
-        UsersSelectActivity usersSelectActivity = this.f48025w;
+        UsersSelectActivity usersSelectActivity = this.f48015w;
         int i7 = 0;
         if (!usersSelectActivity.G) {
             int i10 = usersSelectActivity.f43458y;
@@ -160,14 +160,14 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
                 i7 = usersSelectActivity.K ? 7 : 5;
             }
         }
-        return this.f48023r.size() + i7;
+        return this.f48013r.size() + i7;
     }
 
     @Override
     public final int d(int i7) {
         int i10;
-        if (!this.f48022n) {
-            UsersSelectActivity usersSelectActivity = this.f48025w;
+        if (!this.f48012n) {
+            UsersSelectActivity usersSelectActivity = this.f48015w;
             if (!usersSelectActivity.G ? !((i10 = usersSelectActivity.f43458y) != 2 ? i10 != 0 || (!usersSelectActivity.K ? !(i7 == 0 || i7 == 4) : !(i7 == 0 || i7 == 6)) : i7 != 0 && i7 != (!usersSelectActivity.J ? 1 : 0) + 4) : i7 == 0) {
                 return 2;
             }
@@ -183,7 +183,7 @@ public final class ib1 extends org.telegram.ui.Components.aj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View h4Var;
-        Context context = this.f48019c;
+        Context context = this.f48009c;
         if (i7 != 1) {
             h4Var = new org.telegram.ui.Cells.x3(context, null);
         } else {

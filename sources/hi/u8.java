@@ -77,7 +77,7 @@ public final class u8 implements View.OnClickListener {
                         float f11 = iArr[1];
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        aa aaVar = new aa(saVar2, saVar2.f15039b, z12, canvas, (saVar2.f15067j1.getMeasuredWidth() / 2.0f) + f10, (saVar2.f15067j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f23604n, paint, createBitmap, paint2, f10, f11);
+                        aa aaVar = new aa(saVar2, saVar2.f15039b, z12, canvas, (saVar2.f15067j1.getMeasuredWidth() / 2.0f) + f10, (saVar2.f15067j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f23606n, paint, createBitmap, paint2, f10, f11);
                         saVar2.D2 = aaVar;
                         aaVar.setOnTouchListener(new gi.a(2));
                         saVar2.E2 = 0.0f;
@@ -95,7 +95,7 @@ public final class u8 implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = saVar2.F2;
                         if (z12) {
-                            erVar = er.f34422i;
+                            erVar = er.f34421i;
                         } else {
                             erVar = er.h;
                         }
@@ -157,7 +157,7 @@ public final class u8 implements View.OnClickListener {
                             l3Var.H = M0;
                         } else {
                             org.telegram.ui.Components.g6 g6Var = l3Var.I;
-                            if (!hd.f24101a0 && z13) {
+                            if (!hd.f24104a0 && z13) {
                                 z11 = true;
                             }
                             g6Var.t(M0, z11, true);

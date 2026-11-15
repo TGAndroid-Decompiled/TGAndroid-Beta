@@ -34,14 +34,14 @@ public final class p2 extends ki {
             case 2:
                 an anVar = (an) obj;
                 p2 p2Var2 = anVar.Y1;
-                if (p2Var2 != null && (p2Var2.isShowing() || this.f36493s2)) {
+                if (p2Var2 != null && (p2Var2.isShowing() || this.f36481s2)) {
                     Activity parentActivity = anVar.getParentActivity();
                     i7 = ((org.telegram.ui.ActionBar.e2) anVar).classGuid;
                     org.telegram.messenger.g0.a3(parentActivity, i7);
                 }
                 super.L();
                 anVar.wa(false, true);
-                ol olVar = anVar.f45278m1;
+                ol olVar = anVar.f45277m1;
                 if (olVar != null) {
                     WeakHashMap weakHashMap = r0.i0.f55671a;
                     r0.y.c(olVar);
@@ -95,17 +95,17 @@ public final class p2 extends ki {
                 return;
             case 2:
                 an anVar = (an) obj;
-                boolean z10 = this.f36493s2;
-                boolean O = this.f36509w2.O();
+                boolean z10 = this.f36481s2;
+                boolean O = this.f36497w2.O();
                 if (!O) {
                     anVar.S3 = false;
-                    qj qjVar2 = anVar.f45118a0;
+                    qj qjVar2 = anVar.f45117a0;
                     if (qjVar2 != null) {
                         if (!z10) {
                             qjVar2.S();
                         }
-                        if (anVar.f45118a0.getEditField() != null) {
-                            anVar.f45118a0.getEditField().clearFocus();
+                        if (anVar.f45117a0.getEditField() != null) {
+                            anVar.f45117a0.getEditField().clearFocus();
                         }
                     }
                 }
@@ -114,8 +114,8 @@ public final class p2 extends ki {
                     if (p2Var4 != null) {
                         p2Var4.A0(false);
                     }
-                    if (O && (qjVar = anVar.f45118a0) != null && qjVar.getEditField() != null) {
-                        anVar.f45118a0.getEditField().requestFocus();
+                    if (O && (qjVar = anVar.f45117a0) != null && qjVar.getEditField() != null) {
+                        anVar.f45117a0.getEditField().requestFocus();
                     }
                     p2 p2Var5 = anVar.Y1;
                     if (p2Var5 != null && p2Var5.isShowing()) {
@@ -124,7 +124,7 @@ public final class p2 extends ki {
                         org.telegram.messenger.g0.a3(parentActivity, i7);
                     }
                     anVar.wa(false, false);
-                    ol olVar = anVar.f45278m1;
+                    ol olVar = anVar.f45277m1;
                     if (olVar != null) {
                         WeakHashMap weakHashMap = r0.i0.f55671a;
                         r0.y.c(olVar);

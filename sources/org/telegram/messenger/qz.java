@@ -18,18 +18,18 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 public abstract class qz {
-    public static final double[] f26170a = new double[128];
-    public static final Pattern f26171b;
+    public static final double[] f26178a = new double[128];
+    public static final Pattern f26179b;
 
     static {
         int i7 = 0;
         while (true) {
-            double[] dArr = f26170a;
+            double[] dArr = f26178a;
             if (i7 < dArr.length) {
                 dArr[i7] = Math.pow(10.0d, i7);
                 i7++;
             } else {
-                f26171b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+                f26179b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
                 return;
             }
         }
@@ -66,12 +66,12 @@ public abstract class qz {
 
     public static Bitmap c(float f10, int i7, int i10, int i11, int i12, int i13) {
         try {
-            InputStream openRawResource = t0.f26600b.getResources().openRawResource(i7);
+            InputStream openRawResource = t0.f26609b.getResources().openRawResource(i7);
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             nz nzVar = new nz(i10, i11, Integer.valueOf(i12), false, f10, i13);
             xMLReader.setContentHandler(nzVar);
             xMLReader.parse(new InputSource(openRawResource));
-            Bitmap bitmap = nzVar.f25674b;
+            Bitmap bitmap = nzVar.f25675b;
             if (openRawResource != null) {
                 openRawResource.close();
             }
@@ -92,7 +92,7 @@ public abstract class qz {
             nz nzVar = new nz(i7, i10, null, false);
             xMLReader.setContentHandler(nzVar);
             xMLReader.parse(new InputSource(new StringReader(str)));
-            return nzVar.f25674b;
+            return nzVar.f25675b;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -107,7 +107,7 @@ public abstract class qz {
             nzVar.F = true;
             xMLReader.setContentHandler(nzVar);
             xMLReader.parse(new InputSource(fileInputStream));
-            Bitmap bitmap = nzVar.f25674b;
+            Bitmap bitmap = nzVar.f25675b;
             fileInputStream.close();
             return bitmap;
         } catch (Exception e10) {
@@ -122,7 +122,7 @@ public abstract class qz {
             nz nzVar = new nz(i7, i10, null, false);
             xMLReader.setContentHandler(nzVar);
             xMLReader.parse(new InputSource(filterInputStream));
-            return nzVar.f25674b;
+            return nzVar.f25675b;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -134,8 +134,8 @@ public abstract class qz {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             nz nzVar = new nz(0, 0, num, true);
             xMLReader.setContentHandler(nzVar);
-            xMLReader.parse(new InputSource(t0.f26600b.getResources().openRawResource(i7)));
-            return nzVar.f25675c;
+            xMLReader.parse(new InputSource(t0.f26609b.getResources().openRawResource(i7)));
+            return nzVar.f25676c;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -148,7 +148,7 @@ public abstract class qz {
             nz nzVar = new nz(0, 0, null, true);
             xMLReader.setContentHandler(nzVar);
             xMLReader.parse(new InputSource(new StringReader(str)));
-            return nzVar.f25675c;
+            return nzVar.f25676c;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -302,7 +302,7 @@ public abstract class qz {
             if (trim.isEmpty()) {
                 list = Collections.EMPTY_LIST;
             } else {
-                String[] split = f26171b.split(trim);
+                String[] split = f26179b.split(trim);
                 ArrayList arrayList = new ArrayList(split.length);
                 for (String str2 : split) {
                     String trim2 = str2.trim();

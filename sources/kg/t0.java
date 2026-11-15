@@ -32,7 +32,7 @@ public final class t0 implements Runnable {
                 a1 a1Var2 = this.f18104b;
                 pa0 pa0Var = this.f18105c;
                 try {
-                    List<Address> fromLocationName = new Geocoder(a1Var2.getParentActivity(), hd.E0().f24129y).getFromLocationName(a1Var2.f17870y, 1);
+                    List<Address> fromLocationName = new Geocoder(a1Var2.getParentActivity(), hd.E0().f24132y).getFromLocationName(a1Var2.f17870y, 1);
                     if (!fromLocationName.isEmpty()) {
                         Address address = fromLocationName.get(0);
                         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();

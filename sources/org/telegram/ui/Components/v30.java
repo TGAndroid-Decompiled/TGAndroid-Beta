@@ -30,9 +30,9 @@ public final class v30 extends AnimatorListenerAdapter {
                 return;
             default:
                 r40 r40Var3 = this.f40249b;
-                if (animator.equals(r40Var3.f38847e0)) {
+                if (animator.equals(r40Var3.f38845e0)) {
                     r40Var3.d(true);
-                    r40Var3.f38853g1 = false;
+                    r40Var3.f38851g1 = false;
                     r40Var3.setVisibility(4);
                     return;
                 }

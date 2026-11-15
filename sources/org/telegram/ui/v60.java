@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class v60 implements sw {
-    public final int f52141a = 0;
-    public final LaunchActivity f52142b;
-    public final TLRPC.User f52143c;
+    public final int f52139a = 0;
+    public final LaunchActivity f52140b;
+    public final TLRPC.User f52141c;
     public final String d;
-    public final int f52144e;
+    public final int f52142e;
 
     public v60(LaunchActivity launchActivity, String str, int i7, TLRPC.User user) {
-        this.f52142b = launchActivity;
+        this.f52140b = launchActivity;
         this.d = str;
-        this.f52144e = i7;
-        this.f52143c = user;
+        this.f52142e = i7;
+        this.f52141c = user;
     }
 
     @Override
     public final boolean H() {
-        switch (this.f52141a) {
+        switch (this.f52139a) {
             case 0:
                 return false;
             default:
@@ -30,7 +30,7 @@ public final class v60 implements sw {
 
     @Override
     public final boolean P(yw ywVar) {
-        switch (this.f52141a) {
+        switch (this.f52139a) {
             case 0:
                 return false;
             default:
@@ -40,15 +40,15 @@ public final class v60 implements sw {
 
     @Override
     public final boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, u91 u91Var) {
-        int i11 = this.f52141a;
-        int i12 = this.f52144e;
+        int i11 = this.f52139a;
+        int i12 = this.f52142e;
         String str = this.d;
-        TLRPC.User user = this.f52143c;
-        LaunchActivity launchActivity = this.f52142b;
+        TLRPC.User user = this.f52141c;
+        LaunchActivity launchActivity = this.f52140b;
         switch (i11) {
             case 0:
                 String str2 = LaunchActivity.C1;
-                long j3 = ((org.telegram.messenger.ur) arrayList.get(0)).f26860a;
+                long j3 = ((org.telegram.messenger.ur) arrayList.get(0)).f26861a;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
                 tL_inputMediaGame.f28113id = tL_inputGameShortName;
@@ -70,7 +70,7 @@ public final class v60 implements sw {
                 return true;
             default:
                 String str3 = LaunchActivity.C1;
-                long j10 = ((org.telegram.messenger.ur) arrayList.get(0)).f26860a;
+                long j10 = ((org.telegram.messenger.ur) arrayList.get(0)).f26861a;
                 Bundle k11 = a8.p0.k("scrollToTopOnResume", true);
                 if (org.telegram.messenger.m5.C(j10)) {
                     k11.putInt("enc_id", (int) (j10 & 4294967295L));
@@ -92,9 +92,9 @@ public final class v60 implements sw {
     }
 
     public v60(LaunchActivity launchActivity, TLRPC.User user, String str, int i7) {
-        this.f52142b = launchActivity;
-        this.f52143c = user;
+        this.f52140b = launchActivity;
+        this.f52141c = user;
         this.d = str;
-        this.f52144e = i7;
+        this.f52142e = i7;
     }
 }

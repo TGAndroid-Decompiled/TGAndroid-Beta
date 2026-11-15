@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class xv extends g.p {
-    public final ly f41770c;
+    public final ly f41762c;
 
     public xv(ly lyVar) {
-        this.f41770c = lyVar;
+        this.f41762c = lyVar;
     }
 
     @Override
     public final int i(int i7) {
-        ly lyVar = this.f41770c;
+        ly lyVar = this.f41762c;
         gy gyVar = lyVar.A0;
         v4.h0 adapter = lyVar.E0.getAdapter();
         dy dyVar = lyVar.f37010z0;
@@ -18,7 +18,7 @@ public final class xv extends g.p {
             if (i7 == 0) {
                 return dyVar.d;
             }
-            if (i7 == dyVar.f34104s || (dyVar.h.get(i7) != null && !(dyVar.h.get(i7) instanceof TLRPC.Document))) {
+            if (i7 == dyVar.f34091s || (dyVar.h.get(i7) != null && !(dyVar.h.get(i7) instanceof TLRPC.Document))) {
                 return dyVar.d;
             }
             return 1;

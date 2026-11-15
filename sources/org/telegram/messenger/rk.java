@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class rk implements Runnable {
-    public final int f26300a;
-    public final np f26301b;
-    public final int f26302c;
+    public final int f26308a;
+    public final np f26309b;
+    public final int f26310c;
 
     public rk(np npVar, int i7, int i10) {
-        this.f26300a = i10;
-        this.f26301b = npVar;
-        this.f26302c = i7;
+        this.f26308a = i10;
+        this.f26309b = npVar;
+        this.f26310c = i7;
     }
 
     @Override

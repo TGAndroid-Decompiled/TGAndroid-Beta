@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class qh0 {
-    public int f50622a;
-    public boolean f50623b;
-    public int f50624c;
+    public int f50613a;
+    public boolean f50614b;
+    public int f50615c;
     public long d;
-    public boolean f50625e;
-    public boolean f50626f;
+    public boolean f50616e;
+    public boolean f50617f;
 }

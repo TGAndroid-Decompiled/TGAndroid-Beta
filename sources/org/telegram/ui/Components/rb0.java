@@ -11,10 +11,10 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.n6, org.telegram.ui.ActionBar.o6, kt0, lt0, org.telegram.messenger.j9, org.telegram.messenger.nc, eb0 {
-    public final int f38944a;
+    public final int f38941a;
 
     public rb0(int i7) {
-        this.f38944a = i7;
+        this.f38941a = i7;
     }
 
     public static BlendMode i() {
@@ -27,14 +27,14 @@ public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.tel
 
     @Override
     public void A(ImageReceiver imageReceiver) {
-        int i7 = this.f38944a;
+        int i7 = this.f38941a;
     }
 
     @Override
     public void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         ch0 B;
         boolean z13;
-        switch (this.f38944a) {
+        switch (this.f38941a) {
             case 0:
                 if (z10 && !z11 && (B = imageReceiver.B()) != null) {
                     B.start();
@@ -62,7 +62,7 @@ public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.tel
 
     @Override
     public void O(int i7, Drawable drawable) {
-        int i10 = this.f38944a;
+        int i10 = this.f38941a;
     }
 
     @Override
@@ -74,7 +74,7 @@ public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.tel
 
     @Override
     public String e(int i7) {
-        switch (this.f38944a) {
+        switch (this.f38941a) {
             case 25:
                 return String.format("%02d", Integer.valueOf(i7));
             default:
@@ -99,7 +99,7 @@ public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.tel
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f38944a) {
+        switch (this.f38941a) {
             case 4:
                 t1Var.dismiss();
                 return;
@@ -128,7 +128,7 @@ public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.tel
                 t1Var.dismiss();
                 return;
             case 16:
-                int i10 = bw0.f33395r2;
+                int i10 = bw0.f33398r2;
                 return;
             case 17:
                 t1Var.dismiss();
@@ -149,13 +149,13 @@ public final class rb0 implements org.telegram.messenger.kc, gh.d, r0.m, org.tel
 
     @Override
     public int j(org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        Bitmap bitmap = ci.u.f5498a;
-        return (((int) a8.p0.f(ci.c1.f5329b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
+        Bitmap bitmap = ci.u.f5501a;
+        return (((int) a8.p0.f(ci.c1.f5332b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
     }
 
     @Override
     public Object o(Object obj) {
-        switch (this.f38944a) {
+        switch (this.f38941a) {
             case 10:
                 Integer num = (Integer) obj;
                 int i7 = po0.U2;

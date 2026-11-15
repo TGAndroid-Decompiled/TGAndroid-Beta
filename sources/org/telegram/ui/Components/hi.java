@@ -15,21 +15,21 @@ public final class hi extends tj0 {
     public int J;
     public int K;
     public final ki L;
-    public final Context f35258c;
+    public final Context f35249c;
     public int d;
-    public int f35259e;
-    public int f35260f;
+    public int f35250e;
+    public int f35251f;
     public final ArrayList h = new ArrayList();
-    public int f35261n;
-    public int f35262r;
-    public int f35263s;
-    public int f35264w;
-    public int f35265x;
-    public int f35266y;
+    public int f35252n;
+    public int f35253r;
+    public int f35254s;
+    public int f35255w;
+    public int f35256x;
+    public int f35257y;
 
     public hi(ki kiVar, Context context) {
         this.L = kiVar;
-        this.f35258c = context;
+        this.f35249c = context;
     }
 
     @Override
@@ -41,8 +41,8 @@ public final class hi extends tj0 {
     public final int b() {
         int i7 = this.K;
         ki kiVar = this.L;
-        if (kiVar.F3 == null && (kiVar.f36436a2 instanceof org.telegram.ui.an) && !kiVar.C1) {
-            return org.telegram.messenger.si.b0(kiVar.H3).f26484k1.size() + i7;
+        if (kiVar.F3 == null && (kiVar.f36424a2 instanceof org.telegram.ui.an) && !kiVar.C1) {
+            return org.telegram.messenger.si.b0(kiVar.H3).f26494k1.size() + i7;
         }
         return i7;
     }
@@ -52,7 +52,7 @@ public final class hi extends tj0 {
         if (i7 >= this.K) {
             return 1;
         }
-        if (i7 >= this.f35259e && i7 < this.f35260f) {
+        if (i7 >= this.f35250e && i7 < this.f35251f) {
             return 1;
         }
         return 0;
@@ -64,23 +64,23 @@ public final class hi extends tj0 {
         int i7 = 0;
         this.K = 0;
         this.d = -1;
-        this.f35261n = -1;
-        this.f35263s = -1;
-        this.f35264w = -1;
-        this.f35265x = -1;
-        this.f35266y = -1;
+        this.f35252n = -1;
+        this.f35254s = -1;
+        this.f35255w = -1;
+        this.f35256x = -1;
+        this.f35257y = -1;
         this.E = -1;
         this.F = -1;
         this.G = -1;
         this.I = -1;
         this.J = -1;
         this.H = -1;
-        this.f35259e = -1;
-        this.f35260f = -1;
-        this.f35262r = -1;
+        this.f35250e = -1;
+        this.f35251f = -1;
+        this.f35253r = -1;
         ki kiVar = this.L;
         int i10 = kiVar.H3;
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36436a2;
+        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
         boolean z10 = true;
         if (kiVar.C1) {
             this.K = 1;
@@ -89,7 +89,7 @@ public final class hi extends tj0 {
             if (i11 == 0 || c8.zc.a(i11, 16)) {
                 int i12 = this.K;
                 this.K = i12 + 1;
-                this.f35261n = i12;
+                this.f35252n = i12;
             }
             int i13 = kiVar.D1;
             if (i13 == 0 || c8.zc.a(i13, 8192)) {
@@ -107,7 +107,7 @@ public final class hi extends tj0 {
             if (i17 == 0 || c8.zc.a(i17, 8)) {
                 int i18 = this.K;
                 this.K = i18 + 1;
-                this.f35263s = i18;
+                this.f35254s = i18;
             }
             int i19 = kiVar.D1;
             if (i19 == 0 || c8.zc.a(i19, 64)) {
@@ -124,18 +124,18 @@ public final class hi extends tj0 {
         } else if (!(e2Var instanceof org.telegram.ui.an)) {
             this.d = 0;
             this.K = 2;
-            this.f35261n = 1;
+            this.f35252n = 1;
             if (kiVar.R1) {
                 this.K = 3;
-                this.f35263s = 2;
+                this.f35254s = 2;
             }
         } else if (kiVar.F3 != null) {
             int i23 = kiVar.E3;
             if (i23 == -1) {
                 this.d = 0;
-                this.f35261n = 1;
+                this.f35252n = 1;
                 this.K = 3;
-                this.f35263s = 2;
+                this.f35254s = 2;
             } else {
                 if (i23 == 0) {
                     this.K = 1;
@@ -144,18 +144,18 @@ public final class hi extends tj0 {
                 if (i23 == 1) {
                     int i24 = this.K;
                     this.K = i24 + 1;
-                    this.f35261n = i24;
+                    this.f35252n = i24;
                 }
                 if (i23 == 2) {
                     int i25 = this.K;
                     this.K = i25 + 1;
-                    this.f35263s = i25;
+                    this.f35254s = i25;
                 }
             }
         } else {
             TLRPC.User j3 = ((org.telegram.ui.an) e2Var).j();
             if (e2Var instanceof org.telegram.ui.an) {
-                chat = ((org.telegram.ui.an) e2Var).f45173e;
+                chat = ((org.telegram.ui.an) e2Var).f45172e;
             } else {
                 chat = null;
             }
@@ -165,11 +165,11 @@ public final class hi extends tj0 {
             int i26 = this.K;
             this.d = i26;
             this.K = i26 + 2;
-            this.f35261n = i26 + 1;
-            if (((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i10).f25448y7.f25852j0.f14544b).f24006c && ((org.telegram.ui.an) e2Var).f45204g4 == 0 && ki.g1(j3)) {
+            this.f35252n = i26 + 1;
+            if (((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i10).f25451y7.f25854j0.f14544b).f24009c && ((org.telegram.ui.an) e2Var).f45203g4 == 0 && ki.g1(j3)) {
                 int i27 = this.K;
                 this.K = i27 + 1;
-                this.f35262r = i27;
+                this.f35253r = i27;
             }
             boolean z11 = kiVar.O3;
             if (z11) {
@@ -179,7 +179,7 @@ public final class hi extends tj0 {
             }
             if (z11) {
                 org.telegram.messenger.np.s1(i10);
-                boolean z12 = org.telegram.messenger.r2.f26198a;
+                boolean z12 = org.telegram.messenger.r2.f26206a;
                 int i29 = this.K;
                 this.K = i29 + 1;
                 this.J = i29;
@@ -187,40 +187,40 @@ public final class hi extends tj0 {
             if (kiVar.M3) {
                 int i30 = this.K;
                 this.K = i30 + 1;
-                this.f35264w = i30;
+                this.f35255w = i30;
             }
             if (kiVar.O3) {
                 int i31 = this.K;
                 this.K = i31 + 1;
-                this.f35266y = i31;
+                this.f35257y = i31;
             }
             int i32 = this.K;
             int i33 = i32 + 1;
             this.K = i33;
-            this.f35263s = i32;
+            this.f35254s = i32;
             if (kiVar.N3) {
                 this.K = i32 + 2;
-                this.f35265x = i33;
+                this.f35256x = i33;
             }
-            if ((e2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) e2Var).f45204g4 == 0 && j3 != null && !z10 && !j3.bot && !kg.v1.f(i10).f18124b.isEmpty()) {
+            if ((e2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) e2Var).f45203g4 == 0 && j3 != null && !z10 && !j3.bot && !kg.v1.f(i10).f18124b.isEmpty()) {
                 int i34 = this.K;
                 this.K = i34 + 1;
                 this.E = i34;
             }
             if ((kiVar.J3 || kiVar.K3) && !z10 && ((chat == null || !org.telegram.messenger.t3.p0(chat)) && (e2Var instanceof org.telegram.ui.an) && !((org.telegram.ui.an) e2Var).c() && !((org.telegram.ui.an) e2Var).z())) {
                 org.telegram.ui.an anVar = (org.telegram.ui.an) e2Var;
-                if (anVar.f45204g4 != 5) {
-                    this.f35259e = this.K;
+                if (anVar.f45203g4 != 5) {
+                    this.f35250e = this.K;
                     ArrayList arrayList = this.h;
                     arrayList.clear();
-                    ArrayList<TLRPC.TL_attachMenuBot> arrayList2 = org.telegram.messenger.si.b0(i10).f26461b.bots;
+                    ArrayList<TLRPC.TL_attachMenuBot> arrayList2 = org.telegram.messenger.si.b0(i10).f26471b.bots;
                     int size = arrayList2.size();
                     while (i7 < size) {
                         TLRPC.TL_attachMenuBot tL_attachMenuBot = arrayList2.get(i7);
                         i7++;
                         TLRPC.TL_attachMenuBot tL_attachMenuBot2 = tL_attachMenuBot;
                         if (tL_attachMenuBot2.show_in_attach_menu) {
-                            TLObject tLObject = anVar.f45173e;
+                            TLObject tLObject = anVar.f45172e;
                             if (tLObject == null) {
                                 tLObject = anVar.j();
                             }
@@ -231,7 +231,7 @@ public final class hi extends tj0 {
                     }
                     int size2 = arrayList.size() + this.K;
                     this.K = size2;
-                    this.f35260f = size2;
+                    this.f35251f = size2;
                 }
             }
         }
@@ -246,7 +246,7 @@ public final class hi extends tj0 {
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View eiVar;
-        Context context = this.f35258c;
+        Context context = this.f35249c;
         ki kiVar = this.L;
         if (i7 != 0) {
             eiVar = new di(kiVar, context);

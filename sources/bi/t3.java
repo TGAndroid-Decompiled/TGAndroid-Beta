@@ -12,10 +12,10 @@ import org.telegram.ui.Components.b41;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.wp0;
 public final class t3 implements x10, y10 {
-    public final c4 f3876a;
+    public final c4 f3879a;
 
     public t3(c4 c4Var) {
-        this.f3876a = c4Var;
+        this.f3879a = c4Var;
     }
 
     @Override
@@ -30,10 +30,10 @@ public final class t3 implements x10, y10 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        c4 c4Var = this.f3876a;
-        wp0 wp0Var = c4Var.f3409a;
-        int i7 = c4Var.f3410b;
-        if (c4Var.f3412e != null) {
+        c4 c4Var = this.f3879a;
+        wp0 wp0Var = c4Var.f3412a;
+        int i7 = c4Var.f3413b;
+        if (c4Var.f3415e != null) {
             Object obj3 = b41Var.G;
             if (obj3 instanceof TL_stars.SavedStarGift) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
@@ -44,25 +44,25 @@ public final class t3 implements x10, y10 {
                         if (!z10 && savedStarGift.unsaved) {
                             savedStarGift.unsaved = false;
                             TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                            savestargift.stargift = c4Var.f3412e.h(savedStarGift);
+                            savestargift.stargift = c4Var.f3415e.h(savedStarGift);
                             savestargift.unsave = savedStarGift.unsaved;
                             ConnectionsManager.getInstance(i7).sendRequest(savestargift, null, 64);
                         }
-                        if (c4Var.f3412e.o(savedStarGift, z11, true)) {
-                            cc.a0(wp0Var.f3607a).Q(2131623982, 36, hd.H(',', "GiftsPinLimit", np.s1(i7).L6)).j();
+                        if (c4Var.f3415e.o(savedStarGift, z11, true)) {
+                            cc.a0(wp0Var.f3610a).Q(2131623982, 36, hd.H(',', "GiftsPinLimit", np.s1(i7).L6)).j();
                         }
                         if (!z10) {
-                            c4Var.f3413f.v0(0);
+                            c4Var.f3416f.v0(0);
                             return;
                         }
                         return;
                     }
                     return;
                 }
-                di.c6 c6Var = new di.c6(c4Var.getContext(), c4Var.f3410b, wp0Var.f3609c, c4Var.f3411c, null);
-                c6Var.f8319g3 = new o3(c4Var, 2);
+                di.c6 c6Var = new di.c6(c4Var.getContext(), c4Var.f3413b, wp0Var.f3612c, c4Var.f3414c, null);
+                c6Var.f8320g3 = new o3(c4Var, 2);
                 c6Var.N2 = new ab.g(5, c4Var, savedStarGift);
-                c6Var.k2(savedStarGift, c4Var.f3412e);
+                c6Var.k2(savedStarGift, c4Var.f3415e);
                 c6Var.show();
             }
         }

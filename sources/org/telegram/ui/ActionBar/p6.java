@@ -71,26 +71,26 @@ public final class p6 implements q0.a {
                 l6 o4 = q6.o(view, false);
                 if (o4 != null) {
                     for (int i10 = 0; i10 < 6; i10++) {
-                        k6 k6Var = o4.f29369a[i10];
+                        k6 k6Var = o4.f29370a[i10];
                         if (k6Var != null) {
                             q6.f(k6Var, hashSet);
                         }
                     }
-                    if (o4.f29370b != null) {
-                        for (int i11 = 0; i11 < o4.f29370b.size(); i11++) {
-                            q6.f((k6) o4.f29370b.get(i11), hashSet);
+                    if (o4.f29371b != null) {
+                        for (int i11 = 0; i11 < o4.f29371b.size(); i11++) {
+                            q6.f((k6) o4.f29371b.get(i11), hashSet);
                         }
                     }
-                    if (o4.f29371c != null) {
-                        for (int i12 = 0; i12 < o4.f29371c.size(); i12++) {
-                            q6.f((k6) o4.f29371c.get(i12), hashSet);
+                    if (o4.f29372c != null) {
+                        for (int i12 = 0; i12 < o4.f29372c.size(); i12++) {
+                            q6.f((k6) o4.f29372c.get(i12), hashSet);
                         }
                     }
-                    k6 k6Var2 = o4.f29372e;
+                    k6 k6Var2 = o4.f29373e;
                     if (k6Var2 != null) {
                         q6.f(k6Var2, hashSet);
                     }
-                    k6 k6Var3 = o4.f29373f;
+                    k6 k6Var3 = o4.f29374f;
                     if (k6Var3 != null) {
                         q6.f(k6Var3, hashSet);
                     }

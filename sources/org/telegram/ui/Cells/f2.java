@@ -32,7 +32,7 @@ public final class f2 extends org.telegram.ui.Components.j6 {
                 h2Var2.invalidate();
                 return;
             case 1:
-                an.f45109md = f10;
+                an.f45108md = f10;
                 an anVar = (an) this.f30212c;
                 anVar.i7.setSaturation(f10);
                 anVar.h7.setColorFilter(new ColorMatrixColorFilter(anVar.i7));
@@ -46,7 +46,7 @@ public final class f2 extends org.telegram.ui.Components.j6 {
                 float f12 = 1.0f - f10;
                 titleTextView.setTranslationX(org.telegram.messenger.g0.L(-52.0f) * f12);
                 backButton.setTranslationX(org.telegram.messenger.g0.L(-52.0f) * f12);
-                org.telegram.ui.ActionBar.q0 q0Var = y7Var.f41898f2;
+                org.telegram.ui.ActionBar.q0 q0Var = y7Var.f41890f2;
                 if (q0Var != null && q0Var.getSearchContainer() != null) {
                     q0Var.getSearchContainer().setClipChildren(false);
                     q0Var.getSearchContainer().setClipToPadding(false);
@@ -74,10 +74,10 @@ public final class f2 extends org.telegram.ui.Components.j6 {
                 return;
             case 3:
                 iz izVar = (iz) this.f30212c;
-                izVar.f35813x0 = f10;
+                izVar.f35800x0 = f10;
                 int i7 = izVar.V;
-                org.telegram.ui.ActionBar.e6 e6Var = izVar.f35781a;
-                izVar.U.setColor(i0.a.f(f10, org.telegram.ui.ActionBar.j6.w0(i7, e6Var), org.telegram.ui.ActionBar.j6.w0(izVar.f35787d0, e6Var)));
+                org.telegram.ui.ActionBar.e6 e6Var = izVar.f35768a;
+                izVar.U.setColor(i0.a.f(f10, org.telegram.ui.ActionBar.j6.w0(i7, e6Var), org.telegram.ui.ActionBar.j6.w0(izVar.f35774d0, e6Var)));
                 di.c1 c1Var = izVar.G;
                 c1Var.g1();
                 c1Var.invalidate();
@@ -86,7 +86,7 @@ public final class f2 extends org.telegram.ui.Components.j6 {
             case 4:
                 x61 x61Var = (x61) obj;
                 x61 x61Var2 = (x61) this.f30212c;
-                x61Var2.f41607y = f10;
+                x61Var2.f41610y = f10;
                 x61Var2.invalidate();
                 return;
             case 5:
@@ -117,16 +117,16 @@ public final class f2 extends org.telegram.ui.Components.j6 {
                 h2 h2Var = (h2) obj;
                 return Float.valueOf(((h2) this.f30212c).f30366i0);
             case 1:
-                return Float.valueOf(an.f45109md);
+                return Float.valueOf(an.f45108md);
             case 2:
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
                 return Float.valueOf(((org.telegram.ui.Components.y7) this.f30212c).L2);
             case 3:
                 iz izVar = (iz) obj;
-                return Float.valueOf(((iz) this.f30212c).f35813x0);
+                return Float.valueOf(((iz) this.f30212c).f35800x0);
             case 4:
                 x61 x61Var = (x61) obj;
-                return Float.valueOf(((x61) this.f30212c).f41607y);
+                return Float.valueOf(((x61) this.f30212c).f41610y);
             case 5:
                 s71 s71Var = (s71) obj;
                 return Float.valueOf(((s71) this.f30212c).F);

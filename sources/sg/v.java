@@ -108,11 +108,11 @@ public final class v {
                 m0 m0Var = this.f56798g;
                 float a10 = t9.a((float) m0Var.f56710a, (float) m0Var.f56711b, 0.0f, 0.0f);
                 m0 m0Var2 = this.f56798g;
-                float max = Math.max(a10, t9.a((float) m0Var2.f56710a, (float) m0Var2.f56711b, nt0Var.f37713a, 0.0f));
+                float max = Math.max(a10, t9.a((float) m0Var2.f56710a, (float) m0Var2.f56711b, nt0Var.f37702a, 0.0f));
                 m0 m0Var3 = this.f56798g;
-                float a11 = t9.a((float) m0Var3.f56710a, (float) m0Var3.f56711b, 0.0f, nt0Var.f37714b);
+                float a11 = t9.a((float) m0Var3.f56710a, (float) m0Var3.f56711b, 0.0f, nt0Var.f37703b);
                 m0 m0Var4 = this.f56798g;
-                float max2 = Math.max(max, Math.max(a11, t9.a((float) m0Var4.f56710a, (float) m0Var4.f56711b, nt0Var.f37713a, nt0Var.f37714b))) / 0.84f;
+                float max2 = Math.max(max, Math.max(a11, t9.a((float) m0Var4.f56710a, (float) m0Var4.f56711b, nt0Var.f37702a, nt0Var.f37703b))) / 0.84f;
                 ValueAnimator valueAnimator = this.f56808r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();

@@ -8,19 +8,19 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.view.View;
 public final class pp0 extends AnimatorListenerAdapter {
-    public final int f50333a;
-    public final PhotoViewer f50334b;
+    public final int f50324a;
+    public final PhotoViewer f50325b;
 
     public pp0(PhotoViewer photoViewer, int i7) {
-        this.f50334b = photoViewer;
-        this.f50333a = i7;
+        this.f50325b = photoViewer;
+        this.f50324a = i7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
         int i7;
-        PhotoViewer photoViewer = this.f50334b;
+        PhotoViewer photoViewer = this.f50325b;
         lq0 lq0Var = photoViewer.X4;
         org.telegram.ui.Components.k51 k51Var = null;
         photoViewer.f42862q6 = null;
@@ -65,19 +65,19 @@ public final class pp0 extends AnimatorListenerAdapter {
             if (photoViewer.f42877s1) {
                 k51Var = (org.telegram.ui.Components.k51) photoViewer.C2;
             }
-            gd0Var.b(n10, i11, z10, false, gVar, k51Var, lq0Var.f49027c);
+            gd0Var.b(n10, i11, z10, false, gVar, k51Var, lq0Var.f49023c);
             photoViewer.D1.a();
             int q10 = photoViewer.C4.q();
             int o4 = photoViewer.C4.o();
-            org.telegram.messenger.xe xeVar = lq0Var.f49027c;
+            org.telegram.messenger.xe xeVar = lq0Var.f49023c;
             if (xeVar != null) {
-                int i12 = xeVar.f27495k;
+                int i12 = xeVar.f27496k;
                 if (i12 == 90 || i12 == 270) {
                     o4 = q10;
                     q10 = o4;
                 }
-                q10 = (int) (q10 * xeVar.f27491e);
-                o4 = (int) (o4 * xeVar.f27492f);
+                q10 = (int) (q10 * xeVar.f27492e);
+                o4 = (int) (o4 * xeVar.f27493f);
             }
             float f10 = q10;
             float f11 = o4;
@@ -92,7 +92,7 @@ public final class pp0 extends AnimatorListenerAdapter {
             photoViewer.f42741c6 = (rect.left / 2) - (rect.right / 2);
             int i13 = -org.telegram.messenger.g0.L(56.0f);
             if (!photoViewer.f42875s) {
-                i7 = org.telegram.messenger.g0.f23603m / 2;
+                i7 = org.telegram.messenger.g0.f23605m / 2;
             } else {
                 i7 = 0;
             }
@@ -102,7 +102,7 @@ public final class pp0 extends AnimatorListenerAdapter {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         photoViewer.f42853p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.V0, View.TRANSLATION_Y, org.telegram.messenger.g0.L(48.0f), 0.0f), ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.k6.f36302g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.D1, View.ALPHA, 0.0f, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.V0, View.TRANSLATION_Y, org.telegram.messenger.g0.L(48.0f), 0.0f), ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.k6.f36292g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.D1, View.ALPHA, 0.0f, 1.0f));
         photoViewer.f42853p6.setDuration(200L);
         photoViewer.f42853p6.addListener(new xx(this, 12));
         photoViewer.f42853p6.start();

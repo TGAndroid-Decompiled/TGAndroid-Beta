@@ -277,15 +277,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     public b7.d W(Context context, String str, b7.c cVar) {
         b7.d dVar = new b7.d();
         int q10 = cVar.q(context, str, true);
-        dVar.f2946b = q10;
+        dVar.f2949b = q10;
         if (q10 != 0) {
-            dVar.f2947c = 1;
+            dVar.f2950c = 1;
             return dVar;
         }
         int D = cVar.D(context, str);
-        dVar.f2945a = D;
+        dVar.f2948a = D;
         if (D != 0) {
-            dVar.f2947c = -1;
+            dVar.f2950c = -1;
         }
         return dVar;
     }

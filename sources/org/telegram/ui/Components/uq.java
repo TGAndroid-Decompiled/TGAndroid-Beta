@@ -101,13 +101,13 @@ public final class uq extends tj0 {
             if (i7 != 2) {
                 if (i7 != 3) {
                     boolean z10 = vqVar.X1;
-                    ?? q2Var = new ai.q2(context, 6);
-                    q2Var.setOrientation(1);
+                    ?? r2Var = new ai.r2(context, 6);
+                    r2Var.setOrientation(1);
                     ?? imageView = new ImageView(context);
                     imageView.setAutoRepeat(true);
                     imageView.f(2131624328, 112, 112, null);
                     imageView.d();
-                    q2Var.addView(imageView, c8.ja.t(112, 112, 49, 0, 24, 0, 0));
+                    r2Var.addView(imageView, c8.ja.t(112, 112, 49, 0, 24, 0, 0));
                     TextView textView = new TextView(context);
                     textView.setTypeface(org.telegram.messenger.g0.o());
                     if (z10) {
@@ -118,7 +118,7 @@ public final class uq extends tj0 {
                     textView.setText(a02);
                     textView.setTextSize(1, 20.0f);
                     org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
-                    q2Var.addView(textView, c8.ja.t(-2, -2, 1, 0, 14, 0, 7));
+                    r2Var.addView(textView, c8.ja.t(-2, -2, 1, 0, 14, 0, 7));
                     TextView textView2 = new TextView(context);
                     textView2.setTextSize(1, 14.0f);
                     textView2.setGravity(1);
@@ -130,8 +130,8 @@ public final class uq extends tj0 {
                     }
                     textView2.setText(a03);
                     textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
-                    q2Var.addView(textView2, c8.ja.t(-2, -2, 1, 28, 0, 28, 17));
-                    frameLayout = q2Var;
+                    r2Var.addView(textView2, c8.ja.t(-2, -2, 1, 28, 0, 28, 17));
+                    frameLayout = r2Var;
                 } else {
                     frameLayout = new org.telegram.ui.Cells.h4(context, 1, 0, false);
                 }

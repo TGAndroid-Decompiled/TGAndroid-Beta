@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
 public final class vx0 extends org.telegram.ui.Components.tj0 {
-    public final Context f52322c;
+    public final Context f52325c;
     public final zx0 d;
 
     public vx0(zx0 zx0Var, Context context) {
         this.d = zx0Var;
-        this.f52322c = context;
+        this.f52325c = context;
     }
 
     @Override
@@ -74,7 +74,7 @@ public final class vx0 extends org.telegram.ui.Components.tj0 {
         org.telegram.ui.ActionBar.o4 o4Var;
         yx0 yx0Var;
         zx0 zx0Var = this.d;
-        Context context = this.f52322c;
+        Context context = this.f52325c;
         if (i7 == 0) {
             o4Var = ((org.telegram.ui.ActionBar.e2) zx0Var).parentLayout;
             org.telegram.ui.Cells.z9 z9Var = new org.telegram.ui.Cells.z9(context, o4Var, 2);

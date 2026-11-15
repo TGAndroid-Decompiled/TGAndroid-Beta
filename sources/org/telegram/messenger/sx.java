@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class sx implements Runnable {
-    public final int f26586a = 0;
-    public final ez f26587b;
-    public final TLRPC.TL_error f26588c;
+    public final int f26595a = 0;
+    public final ez f26596b;
+    public final TLRPC.TL_error f26597c;
     public final TLObject d;
-    public final boolean f26589e;
-    public final TLObject f26590f;
+    public final boolean f26598e;
+    public final TLObject f26599f;
     public final Object h;
-    public final Object f26591n;
+    public final Object f26600n;
 
     public sx(ez ezVar, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2) {
-        this.f26587b = ezVar;
-        this.f26588c = tL_error;
+        this.f26596b = ezVar;
+        this.f26597c = tL_error;
         this.d = tLObject;
-        this.f26589e = z10;
+        this.f26598e = z10;
         this.h = arrayList;
-        this.f26591n = arrayList2;
-        this.f26590f = tLObject2;
+        this.f26600n = arrayList2;
+        this.f26599f = tLObject2;
     }
 
     @Override
@@ -67,15 +67,15 @@ public final class sx implements Runnable {
         int i16;
         a0.h hVar4;
         a0.h hVar5 = null;
-        switch (this.f26586a) {
+        switch (this.f26595a) {
             case 0:
-                ez ezVar = this.f26587b;
-                TLRPC.TL_error tL_error3 = this.f26588c;
+                ez ezVar = this.f26596b;
+                TLRPC.TL_error tL_error3 = this.f26597c;
                 TLObject tLObject = this.d;
-                boolean z14 = this.f26589e;
+                boolean z14 = this.f26598e;
                 ArrayList arrayList6 = (ArrayList) this.h;
-                ArrayList arrayList7 = (ArrayList) this.f26591n;
-                TLObject tLObject2 = this.f26590f;
+                ArrayList arrayList7 = (ArrayList) this.f26600n;
+                TLObject tLObject2 = this.f26599f;
                 if (tL_error3 == null) {
                     SparseArray sparseArray3 = new SparseArray();
                     a0.h hVar6 = new a0.h();
@@ -195,12 +195,12 @@ public final class sx implements Runnable {
                                                 J1 = null;
                                             } else {
                                                 i15 = 0;
-                                                J1 = gj.J1(((gj) arrayList6.get(0)).f23817k);
+                                                J1 = gj.J1(((gj) arrayList6.get(0)).f23819k);
                                             }
                                             if (arrayList6.isEmpty()) {
                                                 valueOf = null;
                                             } else {
-                                                valueOf = Integer.valueOf(gj.I1(((gj) arrayList6.get(i15)).f23817k));
+                                                valueOf = Integer.valueOf(gj.I1(((gj) arrayList6.get(i15)).f23819k));
                                             }
                                             f10.j(update, J1, valueOf.intValue());
                                             TLRPC.Message message7 = ((TL_update.TL_updateQuickReplyMessage) update).message;
@@ -275,7 +275,7 @@ public final class sx implements Runnable {
                     while (i21 < arrayList6.size()) {
                         gj gjVar2 = (gj) arrayList6.get(i21);
                         String str2 = (String) arrayList7.get(i21);
-                        TLRPC.Message message8 = gjVar2.f23817k;
+                        TLRPC.Message message8 = gjVar2.f23819k;
                         int i22 = message8.f28072id;
                         char c13 = c11;
                         ArrayList arrayList12 = new ArrayList();
@@ -286,7 +286,7 @@ public final class sx implements Runnable {
                             gj.B0(message);
                             arrayList12.add(message);
                             if ((message.flags & 33554432) != 0) {
-                                TLRPC.Message message9 = gjVar2.f23817k;
+                                TLRPC.Message message9 = gjVar2.f23819k;
                                 c10 = c12;
                                 message9.ttl_period = message.ttl_period;
                                 message9.flags |= 33554432;
@@ -403,7 +403,7 @@ public final class sx implements Runnable {
                             final int i25 = i13;
                             arrayList11 = arrayList15;
                             ezVar = ezVar3;
-                            ezVar.getMessagesStorage().f27220a.c(new Runnable() {
+                            ezVar.getMessagesStorage().f27219a.c(new Runnable() {
                                 @Override
                                 public final void run() {
                                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iy.run():void");
@@ -445,15 +445,15 @@ public final class sx implements Runnable {
                     int i26 = 0;
                     while (i26 < arrayList6.size()) {
                         gj gjVar5 = (gj) arrayList6.get(i26);
-                        TLRPC.Message message11 = gjVar5.f23817k;
+                        TLRPC.Message message11 = gjVar5.f23819k;
                         ezVar.getMessagesStorage().N0(r12, message11);
                         int i27 = i7;
                         message11.send_state = i27;
                         if (r12 == 0 && tL_error != null && (str = tL_error.text) != null && str.startsWith("ALLOW_PAYMENT_REQUIRED_")) {
-                            di.v8.y(ezVar.currentAccount, false);
-                            message11.errorAllowedPriceStars = di.v8.o(tLObject2);
+                            di.u8.y(ezVar.currentAccount, false);
+                            message11.errorAllowedPriceStars = di.u8.o(tLObject2);
                             message11.errorNewPriceStars = Long.parseLong(tL_error.text.substring(23));
-                            di.v8.y(ezVar.currentAccount, false).d0(Arrays.asList(gjVar5));
+                            di.u8.y(ezVar.currentAccount, false).d0(Arrays.asList(gjVar5));
                             ezVar.getMessagesStorage().X1(gj.B0(message11), message11);
                         }
                         ezVar.getNotificationCenter().k(23, Integer.valueOf(message11.f28072id));
@@ -466,13 +466,13 @@ public final class sx implements Runnable {
                 }
                 return;
             default:
-                ez ezVar4 = this.f26587b;
-                TLRPC.TL_error tL_error6 = this.f26588c;
+                ez ezVar4 = this.f26596b;
+                TLRPC.TL_error tL_error6 = this.f26597c;
                 TLRPC.Message message12 = (TLRPC.Message) this.h;
                 TLObject tLObject3 = this.d;
-                gj gjVar6 = (gj) this.f26591n;
-                boolean z19 = this.f26589e;
-                TLObject tLObject4 = this.f26590f;
+                gj gjVar6 = (gj) this.f26600n;
+                boolean z19 = this.f26598e;
+                TLObject tLObject4 = this.f26599f;
                 if (tL_error6 == null) {
                     String str3 = message12.attachPath;
                     TLRPC.Updates updates2 = (TLRPC.Updates) tLObject3;
@@ -481,8 +481,8 @@ public final class sx implements Runnable {
                     ArrayList arrayList18 = new ArrayList();
                     arrayList18.add(message12);
                     ezVar4.getMessagesStorage().j1(arrayList18, false, true, false, 0, false, 0, 0L);
-                    h00 h00Var = ezVar4.getMessagesController().f25383r7;
-                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) h00Var.f24011e.f(h00.p(message12.f28072id, -message12.dialog_id));
+                    h00 h00Var = ezVar4.getMessagesController().f25386r7;
+                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) h00Var.f24014e.f(h00.p(message12.f28072id, -message12.dialog_id));
                     if (tL_forumTopic != null) {
                         tL_forumTopic.topMessage = message12;
                         h00Var.y(-message12.dialog_id, true);
@@ -498,12 +498,12 @@ public final class sx implements Runnable {
     }
 
     public sx(ez ezVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, gj gjVar, String str, HashMap hashMap, boolean z10, TLObject tLObject2) {
-        this.f26587b = ezVar;
-        this.f26588c = tL_error;
+        this.f26596b = ezVar;
+        this.f26597c = tL_error;
         this.h = message;
         this.d = tLObject;
-        this.f26591n = gjVar;
-        this.f26589e = z10;
-        this.f26590f = tLObject2;
+        this.f26600n = gjVar;
+        this.f26598e = z10;
+        this.f26599f = tLObject2;
     }
 }

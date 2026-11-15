@@ -66,7 +66,7 @@ public final class w extends v4.h0 {
                 }
                 if (i7 == i10 && !gjVar.n5()) {
                     bg0Var.Q = q1Var;
-                    Point point = org.telegram.messenger.g0.f23609q;
+                    Point point = org.telegram.messenger.g0.f23611q;
                     q1Var.z3(point.x, point.y);
                     bg0Var.R = gjVar.e1();
                     return;
@@ -85,7 +85,7 @@ public final class w extends v4.h0 {
                 return new v4.e1(dbVar);
             default:
                 bg0 bg0Var = (bg0) this.f15269f;
-                ag0 ag0Var = new ag0(bg0Var, this.d, bg0Var.f45716c, (org.telegram.ui.ActionBar.e6) this.f15268e);
+                ag0 ag0Var = new ag0(bg0Var, this.d, bg0Var.f45710c, (org.telegram.ui.ActionBar.e6) this.f15268e);
                 ag0Var.setDelegate(new nb.a(19));
                 return new v4.e1(ag0Var);
         }

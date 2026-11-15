@@ -29,9 +29,9 @@ public final class v9 implements jg.f0, org.telegram.ui.ActionBar.q1 {
                     arrayList2.add((TLRPC.User) g0Var.f17077a);
                 }
             }
-            bi.v3 v3Var = z9Var.f38882a;
+            bi.v3 v3Var = z9Var.f38880a;
             if (v3Var != null) {
-                v3Var.f39895g3.O(true);
+                v3Var.f39892g3.O(true);
             }
         }
     }
@@ -41,7 +41,7 @@ public final class v9 implements jg.f0, org.telegram.ui.ActionBar.q1 {
         z9 z9Var = this.f44610a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
             z9Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

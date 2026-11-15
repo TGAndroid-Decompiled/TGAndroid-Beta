@@ -38,7 +38,7 @@ public final class a0 extends LinearLayout {
                 if (u5Var == null) {
                     e10 = 0.0f;
                 } else {
-                    e10 = u5Var.e(false, c0Var.f33441f);
+                    e10 = u5Var.e(false, c0Var.f33444f);
                 }
                 double d = e10;
                 int floor = (int) Math.floor(d);

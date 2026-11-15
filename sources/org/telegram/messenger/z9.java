@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import android.os.Bundle;
 public final class z9 implements com.google.android.gms.common.api.k {
-    public final oa f27898a;
+    public final oa f27908a;
 
     public z9(oa oaVar) {
-        this.f27898a = oaVar;
+        this.f27908a = oaVar;
     }
 
     @Override
     public final void onConnected(Bundle bundle) {
-        rd rdVar = (rd) this.f27898a;
+        rd rdVar = (rd) this.f27908a;
         rdVar.M = true;
         try {
             ((h6.m) t0.j()).checkLocationSettings(rdVar.O, new ld(rdVar, 1));
@@ -21,6 +21,6 @@ public final class z9 implements com.google.android.gms.common.api.k {
 
     @Override
     public final void onConnectionSuspended(int i7) {
-        this.f27898a.getClass();
+        this.f27908a.getClass();
     }
 }

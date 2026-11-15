@@ -66,7 +66,7 @@ public final class b extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
         this.I = new te.a(0, zVar, erVar, 380L, false);
         this.J = new te.a(0, new z(this, 22), erVar, 380L, false);
         this.d = anVar;
-        this.f56856y = ((j0) anVar.getMessagesController().f25448y7.I.f15881b).f24493c;
+        this.f56856y = ((j0) anVar.getMessagesController().f25451y7.I.f15881b).f24498c;
         u uVar = new u(this, activity, e6Var, 3);
         this.f56846a = uVar;
         uVar.setAllowTextEntitiesIntersection(true);
@@ -117,10 +117,10 @@ public final class b extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
 
     public static void a(b bVar) {
         j5 j5Var = bVar.f56850f;
-        t00.d(j5Var, bVar.I.f57081e);
+        t00.d(j5Var, bVar.I.f57085e);
         int i7 = j6.A6;
         an anVar = bVar.d;
-        j5Var.setTextColor(i0.a.f(bVar.J.f57081e, j6.w0(i7, anVar.getResourceProvider()), j6.w0(j6.f29070p7, anVar.getResourceProvider())));
+        j5Var.setTextColor(i0.a.f(bVar.J.f57085e, j6.w0(i7, anVar.getResourceProvider()), j6.w0(j6.f29070p7, anVar.getResourceProvider())));
     }
 
     @Override
@@ -206,7 +206,7 @@ public final class b extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
             w2 w2Var = this.f56847b;
             ((Drawable) w2Var.f12460c).setColorFilter(porterDuffColorFilter);
             ((Drawable) w2Var.d).setColorFilter(porterDuffColorFilter);
-            ((Drawable) this.f56848c.f36017c).setColorFilter(porterDuffColorFilter);
+            ((Drawable) this.f56848c.f36007c).setColorFilter(porterDuffColorFilter);
             u uVar = this.f56846a;
             uVar.setCursorColor(i7);
             uVar.setHandlesColor(i7);
@@ -220,7 +220,7 @@ public final class b extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
         try {
             j5 j5Var = this.f56850f;
             if (j5Var != null && (anVar = this.d) != null) {
-                j5Var.setTextColor(i0.a.f(this.J.f57081e, j6.w0(j6.A6, anVar.getResourceProvider()), j6.w0(j6.f29070p7, anVar.getResourceProvider())));
+                j5Var.setTextColor(i0.a.f(this.J.f57085e, j6.w0(j6.A6, anVar.getResourceProvider()), j6.w0(j6.f29070p7, anVar.getResourceProvider())));
             }
         } catch (Exception e10) {
             a8.g(e10, true);

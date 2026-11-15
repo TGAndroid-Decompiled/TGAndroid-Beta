@@ -23,7 +23,7 @@ public final class e9 implements ActionMode.Callback {
 
     public void b(Menu menu) {
         boolean z10;
-        hd.E0().f24129y.getLanguage();
+        hd.E0().f24132y.getLanguage();
         MenuItem findItem = menu.findItem(3);
         if (findItem == null) {
             return;
@@ -74,11 +74,11 @@ public final class e9 implements ActionMode.Callback {
                         }
                     } else if (itemId == 3) {
                         if (u9Var.f31754k0 != null) {
-                            String language = hd.E0().f24129y.getLanguage();
+                            String language = hd.E0().f24132y.getLanguage();
                             org.telegram.ui.s sVar = u9Var.f31754k0;
                             CharSequence r11 = u9Var.r();
                             f fVar2 = new f(this, 10);
-                            org.telegram.ui.g4 g4Var = sVar.f51060a;
+                            org.telegram.ui.g4 g4Var = sVar.f51056a;
                             p21.V0(g4Var.M, g4Var.N, (String) this.f30190b, language, r11, null, fVar2);
                         }
                         u9Var.u();
@@ -195,7 +195,7 @@ public final class e9 implements ActionMode.Callback {
                             if (t9Var != null) {
                                 context = t9Var.getContext();
                             } else {
-                                context = org.telegram.messenger.t0.f26600b;
+                                context = org.telegram.messenger.t0.f26609b;
                             }
                         } catch (Exception unused) {
                         }

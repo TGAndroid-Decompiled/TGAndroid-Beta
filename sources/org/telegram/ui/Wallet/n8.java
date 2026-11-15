@@ -24,10 +24,10 @@ public final class n8 extends a41 {
         float f10;
         float f11;
         o8 o8Var = (o8) view;
-        String charSequence = b41Var.f33181l.toString();
+        String charSequence = b41Var.f33184l.toString();
         long j3 = b41Var.B;
-        int i7 = b41Var.f33194z;
-        boolean z11 = b41Var.f33186q;
+        int i7 = b41Var.f33197z;
+        boolean z11 = b41Var.f33189q;
         TextView textView = o8Var.f44272c;
         TextView textView2 = o8Var.f44271b;
         textView2.setText(f8.c0(charSequence));

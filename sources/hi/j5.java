@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.telegram.ui.Components.er;
 public final class j5 extends LinearLayout {
     public final TextView f14462a;
-    public final ai.j0 f14463b;
+    public final ai.k0 f14463b;
     public ImageView f14464c;
     public ImageView d;
     public float f14465e;
@@ -26,9 +26,9 @@ public final class j5 extends LinearLayout {
         int i7 = org.telegram.ui.ActionBar.j6.f28941i6;
         e5 e5Var = m5Var.f14685q1;
         setBackground(org.telegram.ui.ActionBar.j6.h0(org.telegram.ui.ActionBar.j6.w0(i7, e5Var), 2, -1));
-        ai.j0 j0Var = new ai.j0(this, context);
-        this.f14463b = j0Var;
-        addView(j0Var, c8.ja.t(-2, -2, 19, 16, 0, 16, 0));
+        ai.k0 k0Var = new ai.k0(this, context);
+        this.f14463b = k0Var;
+        addView(k0Var, c8.ja.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
         this.f14464c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -37,13 +37,13 @@ public final class j5 extends LinearLayout {
         int i10 = org.telegram.ui.ActionBar.j6.E8;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
         org.telegram.ui.ActionBar.q6.s(imageView2, i10, e5Var, mode);
-        j0Var.addView(this.f14464c, c8.ja.e(-2, -2, 17));
+        k0Var.addView(this.f14464c, c8.ja.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
         org.telegram.ui.ActionBar.q6.s(this.d, i10, e5Var, mode);
         this.d.setVisibility(8);
-        j0Var.addView(this.d, c8.ja.e(-2, -2, 17));
+        k0Var.addView(this.d, c8.ja.e(-2, -2, 17));
         TextView textView = new TextView(context);
         this.f14462a = textView;
         org.telegram.ui.ActionBar.q6.U(textView, i10, e5Var);
@@ -74,7 +74,7 @@ public final class j5 extends LinearLayout {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.h = ofFloat;
             ofFloat.addUpdateListener(new ch.u(2, this, z10));
-            this.h.addListener(new ai.i0(this, 23));
+            this.h.addListener(new ai.j0(this, 23));
             this.h.setInterpolator(er.h);
             this.h.setDuration(420L);
             this.h.start();

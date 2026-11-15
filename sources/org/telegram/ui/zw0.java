@@ -29,12 +29,12 @@ public final class zw0 extends View {
 
     public final boolean a() {
         ww0 ww0Var = this.f54037b;
-        if (!ww0Var.f53016b || this.h < 1.0f) {
+        if (!ww0Var.f53015b || this.h < 1.0f) {
             return false;
         }
-        if (ww0Var.f53017c.B() != null) {
-            this.f54037b.f53017c.B().N(0, false, false);
-            this.f54037b.f53017c.B().H(true);
+        if (ww0Var.f53016c.B() != null) {
+            this.f54037b.f53016c.B().N(0, false, false);
+            this.f54037b.f53016c.B().H(true);
         }
         this.f54042r = true;
         this.h = 0.0f;
@@ -44,23 +44,23 @@ public final class zw0 extends View {
 
     public final void b(ww0 ww0Var) {
         if (this.f54037b != ww0Var && ww0Var != null) {
-            ArrayList arrayList = ww0Var.f53018e;
+            ArrayList arrayList = ww0Var.f53017e;
             if (this.f54042r) {
                 this.f54038c = ww0Var;
                 return;
             }
             if (this.f54040f) {
-                for (int i7 = 0; i7 < this.f54037b.f53018e.size(); i7++) {
-                    ((yw0) this.f54037b.f53018e.get(i7)).H0(null);
+                for (int i7 = 0; i7 < this.f54037b.f53017e.size(); i7++) {
+                    ((yw0) this.f54037b.f53017e.get(i7)).H0(null);
                 }
                 this.f54040f = false;
             }
             ww0 ww0Var2 = this.f54037b;
-            ArrayList arrayList2 = ww0Var2.f53022j;
+            ArrayList arrayList2 = ww0Var2.f53021j;
             arrayList2.remove(this);
-            if (arrayList2.isEmpty() && ww0Var2.f53021i) {
+            if (arrayList2.isEmpty() && ww0Var2.f53020i) {
                 ww0Var2.b(true);
-                ww0Var2.f53021i = false;
+                ww0Var2.f53020i = false;
             }
             this.f54037b = ww0Var;
             if (!this.f54040f) {
@@ -75,34 +75,34 @@ public final class zw0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f54037b.f53022j.add(this);
+        this.f54037b.f53021j.add(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (this.f54040f) {
-            for (int i7 = 0; i7 < this.f54037b.f53018e.size(); i7++) {
-                ((yw0) this.f54037b.f53018e.get(i7)).H0(null);
+            for (int i7 = 0; i7 < this.f54037b.f53017e.size(); i7++) {
+                ((yw0) this.f54037b.f53017e.get(i7)).H0(null);
             }
             this.f54040f = false;
         }
         ww0 ww0Var = this.f54037b;
-        ArrayList arrayList = ww0Var.f53022j;
+        ArrayList arrayList = ww0Var.f53021j;
         arrayList.remove(this);
-        if (arrayList.isEmpty() && ww0Var.f53021i) {
+        if (arrayList.isEmpty() && ww0Var.f53020i) {
             ww0Var.b(true);
-            ww0Var.f53021i = false;
+            ww0Var.f53020i = false;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f54037b.f53016b) {
+        if (this.f54037b.f53015b) {
             boolean z10 = true;
             if (!this.f54040f) {
-                for (int i7 = 0; i7 < this.f54037b.f53018e.size(); i7++) {
-                    ((yw0) this.f54037b.f53018e.get(i7)).H0(this);
+                for (int i7 = 0; i7 < this.f54037b.f53017e.size(); i7++) {
+                    ((yw0) this.f54037b.f53017e.get(i7)).H0(this);
                 }
                 this.f54040f = true;
                 if (!this.f54039e) {
@@ -137,12 +137,12 @@ public final class zw0 extends View {
                 }
             }
             float f11 = jx.f();
-            this.f54037b.f53017c.y0((getWidth() - org.telegram.messenger.g0.L(f11)) / 2.0f, Math.max(0.0f, pointF.y - (org.telegram.messenger.g0.L(f11) * 0.5f)), org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11));
+            this.f54037b.f53016c.y0((getWidth() - org.telegram.messenger.g0.L(f11)) / 2.0f, Math.max(0.0f, pointF.y - (org.telegram.messenger.g0.L(f11) * 0.5f)), org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11));
             canvas.save();
             canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
             ww0 ww0Var = null;
-            this.f54037b.f53017c.h(canvas, null);
-            this.f54037b.f53017c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            this.f54037b.f53016c.h(canvas, null);
+            this.f54037b.f53016c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
             canvas.restore();
             int L = org.telegram.messenger.g0.L(110.0f);
             int size = this.f54037b.d.size() - 1;

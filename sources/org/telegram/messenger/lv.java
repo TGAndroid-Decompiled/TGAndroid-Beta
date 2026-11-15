@@ -8,15 +8,15 @@ import java.util.IdentityHashMap;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_iv;
 public final class lv {
-    public final TL_iv.RichText f24892a;
-    public final IdentityHashMap f24893b;
-    public final int f24894c;
+    public final TL_iv.RichText f24898a;
+    public final IdentityHashMap f24899b;
+    public final int f24900c;
     public final int d;
 
     public lv(TL_iv.RichText richText, IdentityHashMap identityHashMap, int i7, int i10) {
-        this.f24892a = richText;
-        this.f24893b = identityHashMap;
-        this.f24894c = i7;
+        this.f24898a = richText;
+        this.f24899b = identityHashMap;
+        this.f24900c = i7;
         this.d = i10;
     }
 
@@ -37,12 +37,12 @@ public final class lv {
 
     public final TL_iv.RichText b(int i7, int i10) {
         int max = Math.max(0, i7);
-        int i11 = this.f24894c;
+        int i11 = this.f24900c;
         int min = Math.min(i11, i10);
         if (max >= min) {
             return null;
         }
-        TL_iv.RichText richText = this.f24892a;
+        TL_iv.RichText richText = this.f24898a;
         if (max == 0 && min == i11) {
             return richText;
         }
@@ -53,7 +53,7 @@ public final class lv {
         int[] iArr;
         int i11;
         int i12;
-        if (richText != null && (iArr = (int[]) this.f24893b.get(richText)) != null && (i11 = iArr[0]) != (i12 = iArr[1]) && i12 > i7 && i11 < i10) {
+        if (richText != null && (iArr = (int[]) this.f24899b.get(richText)) != null && (i11 = iArr[0]) != (i12 = iArr[1]) && i12 > i7 && i11 < i10) {
             if (i7 > i11 || i12 > i10) {
                 if (richText instanceof TL_iv.textPlain) {
                     String str = ((TL_iv.textPlain) richText).text;

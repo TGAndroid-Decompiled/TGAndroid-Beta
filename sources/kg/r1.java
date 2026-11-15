@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import bi.x4;
 import c8.ja;
-import di.r9;
+import di.q9;
 import fi.m5;
 import hi.g7;
 import java.util.ArrayList;
@@ -85,10 +85,10 @@ public final class r1 extends e2 implements is {
         String M0 = hd.M0(2131752683, null);
         String M02 = hd.M0(2131752670, null);
         b41 b41Var = new b41(2);
-        b41Var.f33181l = M0;
-        b41Var.f33184o = M02;
-        b41Var.f33182m = "RestrictedEmoji";
-        b41Var.f33183n = "📝";
+        b41Var.f33184l = M0;
+        b41Var.f33187o = M02;
+        b41Var.f33185m = "RestrictedEmoji";
+        b41Var.f33186n = "📝";
         arrayList.add(b41Var);
         p41Var.V();
         v1 f10 = v1.f(r1Var.currentAccount);
@@ -113,7 +113,7 @@ public final class r1 extends e2 implements is {
         }
         if (arrayList2.size() + (i10 ^ 1) + (i11 ^ 1) < np.s1(f10.f18123a).C5) {
             b41 c10 = b41.c(1, 2131232423, hd.M0(2131752682, null));
-            c10.f33186q = true;
+            c10.f33189q = true;
             arrayList.add(c10);
         }
         r1Var.d = p41Var.M();
@@ -289,7 +289,7 @@ public final class r1 extends e2 implements is {
             r10 = 0;
             t1Var.P = new g7(x0Var, 11);
             t1VarArr[0] = t1Var;
-            t1Var.setOnDismissListener(new r9(x0Var, 6));
+            t1Var.setOnDismissListener(new q9(x0Var, 6));
             t1VarArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
@@ -348,7 +348,7 @@ public final class r1 extends e2 implements is {
         u41Var.r1();
         this.f18082a.setSectionsDrawBackground(true);
         u41 u41Var2 = this.f18082a;
-        u41Var2.f39895g3.f38201r = false;
+        u41Var2.f39892g3.f38199r = false;
         u41Var2.E1(new s10(this) {
             public final r1 f17967b;
 
@@ -377,7 +377,7 @@ public final class r1 extends e2 implements is {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         u41 u41Var;
         p41 p41Var;
-        if (i7 == ns.F1 && (u41Var = this.f18082a) != null && (p41Var = u41Var.f39895g3) != null) {
+        if (i7 == ns.F1 && (u41Var = this.f18082a) != null && (p41Var = u41Var.f39892g3) != null) {
             p41Var.O(true);
         }
     }
@@ -405,7 +405,7 @@ public final class r1 extends e2 implements is {
         }
         this.f18082a.z1(!arrayList.isEmpty());
         boolean contains = arrayList.contains(Integer.valueOf(u1Var.f18113a));
-        b41Var.f33175e = contains;
+        b41Var.f33178e = contains;
         q1Var.d.a(contains, true);
         if (this.simpleActionBar.v() == arrayList.isEmpty()) {
             if (arrayList.isEmpty()) {

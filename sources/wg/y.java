@@ -2,7 +2,7 @@ package wg;
 
 import android.graphics.Canvas;
 import android.view.ViewGroup;
-import di.v8;
+import di.u8;
 import fi.i4;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,14 +98,14 @@ public final class y extends ja implements is {
         this.f59291t2 = true;
         this.f59292u2 = new r(this, 0);
         this.f59288q2 = prepaidGiveaway;
-        this.f35943v1 = 0.15f;
+        this.f35938v1 = 0.15f;
         this.f29718v0 = false;
         this.f29720w0 = false;
         this.U0 = false;
         this.f29717u0 = 0;
         b1();
-        ((ViewGroup.MarginLayoutParams) this.f35937p1.getLayoutParams()).leftMargin = 0;
-        ((ViewGroup.MarginLayoutParams) this.f35937p1.getLayoutParams()).rightMargin = 0;
+        ((ViewGroup.MarginLayoutParams) this.f35932p1.getLayoutParams()).leftMargin = 0;
+        ((ViewGroup.MarginLayoutParams) this.f35932p1.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
             int i12 = yg.d.f60661w;
             this.d2 = 3;
@@ -115,17 +115,17 @@ public final class y extends ja implements is {
         kVar.o(er.h);
         kVar.C = false;
         kVar.f58564m = false;
-        this.f35936o1.setItemAnimator(kVar);
-        uj0 uj0Var = this.f35936o1;
+        this.f35931o1.setItemAnimator(kVar);
+        uj0 uj0Var = this.f35931o1;
         int i13 = this.f29717u0;
         uj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(68.0f));
-        this.f35936o1.setOnScrollListener(new Object());
-        this.f35936o1.setOnItemClickListener(new i4(23, this, e2Var));
+        this.f35931o1.setOnScrollListener(new Object());
+        this.f35931o1.setOnItemClickListener(new i4(23, this, e2Var));
         TLRPC.Chat M0 = np.s1(this.f29679a).M0(Long.valueOf(-j3));
         this.X1 = M0;
         xg.b bVar = this.f59275c2;
         ArrayList arrayList = this.T1;
-        uj0 uj0Var2 = this.f35936o1;
+        uj0 uj0Var2 = this.f35931o1;
         s sVar = new s(this);
         s sVar2 = new s(this);
         s sVar3 = new s(this);
@@ -142,7 +142,7 @@ public final class y extends ja implements is {
         j1(false);
         this.f29682b.addView(aVar, c8.ja.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         q.j(this.f29679a, M0, new t(this, 5));
-        ns.f(this.f29679a).c(this, ns.f25603x3);
+        ns.f(this.f29679a).c(this, ns.f25604x3);
     }
 
     @Override
@@ -186,7 +186,7 @@ public final class y extends ja implements is {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         uj0 uj0Var;
-        if (i7 == ns.f25603x3 && (uj0Var = this.f35936o1) != null && uj0Var.H) {
+        if (i7 == ns.f25604x3 && (uj0Var = this.f35931o1) != null && uj0Var.H) {
             k1(true, true);
         }
     }
@@ -197,7 +197,7 @@ public final class y extends ja implements is {
         if (iVar != null) {
             iVar.run();
         }
-        ns.f(this.f29679a).n(this, ns.f25603x3);
+        ns.f(this.f29679a).n(this, ns.f25604x3);
     }
 
     public final int e1() {
@@ -237,7 +237,7 @@ public final class y extends ja implements is {
     }
 
     public final TL_stars.TL_starsGiveawayOption g1(long j3) {
-        ArrayList v = v8.y(this.f29679a, false).v();
+        ArrayList v = u8.y(this.f29679a, false).v();
         if (v != null) {
             for (int i7 = 0; i7 < v.size(); i7++) {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) v.get(i7);

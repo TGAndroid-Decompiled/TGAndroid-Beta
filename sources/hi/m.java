@@ -139,7 +139,7 @@ public abstract class m extends FrameLayout {
         Paint paint3 = new Paint(3);
         this.J = paint3;
         this.O = -4;
-        this.V = m10.f24934t0;
+        this.V = m10.f24940t0;
         this.f14620d0 = new e(this, 0);
         this.f14624f0 = new dc(this, 1.0f, 3.0f);
         this.f14632n0 = new e(this, 1);
@@ -159,19 +159,19 @@ public abstract class m extends FrameLayout {
         this.S = new org.telegram.ui.Components.y9(u9Var, this, 0, !g());
         this.T = new org.telegram.ui.Components.y9(u9Var, this, 8, false);
         this.R = new org.telegram.ui.Components.y9(u9Var, this, 9, false);
-        jVar.f8169l = true;
+        jVar.f8172l = true;
         int i16 = org.telegram.ui.ActionBar.j6.f28849d6;
-        jVar.f8160a = new f(e6Var, i16, 0.0f, 0);
+        jVar.f8163a = new f(e6Var, i16, 0.0f, 0);
         jVar.a();
-        jVar.f8165g.setColor(0);
+        jVar.f8168g.setColor(0);
         jVar.invalidateSelf();
-        jVar2.f8169l = true;
-        jVar2.f8160a = new f(e6Var, i16, 0.0f, 1);
+        jVar2.f8172l = true;
+        jVar2.f8163a = new f(e6Var, i16, 0.0f, 1);
         jVar2.a();
-        jVar2.f8165g.setColor(0);
+        jVar2.f8168g.setColor(0);
         jVar2.invalidateSelf();
         paint.setColor(Integer.MIN_VALUE);
-        this.M = new p3(frameLayout, false, new ai.f0(this, 20));
+        this.M = new p3(frameLayout, false, new ai.g0(this, 20));
         g gVar = new g(this, context, st0Var, getEditTextStyle(), new fi.b(), e6Var, u9Var);
         this.f14623f = gVar;
         gVar.T = true;
@@ -224,7 +224,7 @@ public abstract class m extends FrameLayout {
         int L = org.telegram.messenger.g0.L(36.0f);
         int L2 = org.telegram.messenger.g0.L(36.0f);
         fqVar.h = L;
-        fqVar.f34674n = L2;
+        fqVar.f34678n = L2;
         jVar3.setImageDrawable(fqVar);
         jVar3.setScaleType(ImageView.ScaleType.CENTER);
         jVar3.setContentDescription(hd.M0(2131751354, null));
@@ -276,7 +276,7 @@ public abstract class m extends FrameLayout {
     }
 
     public int a() {
-        return org.telegram.messenger.g0.f23604n;
+        return org.telegram.messenger.g0.f23606n;
     }
 
     public int b() {
@@ -329,7 +329,7 @@ public abstract class m extends FrameLayout {
                             this.M.b(false);
                             gVar.getEditText().setForceCursorEnd(true);
                             gVar.getEditText().requestFocus();
-                            mt mtVar = gVar.f39056a;
+                            mt mtVar = gVar.f39053a;
                             mtVar.requestFocus();
                             org.telegram.messenger.g0.J3(mtVar);
                             gVar.getEditText().setScrollY(0);
@@ -426,7 +426,7 @@ public abstract class m extends FrameLayout {
     }
 
     public int getEditTextHeight() {
-        return (int) this.f14642v0.f39903c;
+        return (int) this.f14642v0.f39900c;
     }
 
     public int getEditTextHeightClosedKeyboard() {
@@ -442,7 +442,7 @@ public abstract class m extends FrameLayout {
     }
 
     public float getOver2Alpha() {
-        return this.M0.f39903c;
+        return this.M0.f39900c;
     }
 
     public int getSelectionLength() {
@@ -526,7 +526,7 @@ public abstract class m extends FrameLayout {
 
     public final boolean p() {
         g gVar = this.f14623f;
-        boolean z10 = gVar.f39066y;
+        boolean z10 = gVar.f39063y;
         p3 p3Var = this.M;
         if (z10 && gVar.getEmojiView() != null) {
             if (p3Var.c()) {
@@ -539,10 +539,10 @@ public abstract class m extends FrameLayout {
                 gVar.d.t(false);
             }
             return true;
-        } else if (gVar.f39059e) {
+        } else if (gVar.f39056e) {
             gVar.k(true);
             return true;
-        } else if ((!gVar.f39064w && !p3Var.c()) || p3Var.d) {
+        } else if ((!gVar.f39061w && !p3Var.c()) || p3Var.d) {
             return false;
         } else {
             gVar.d();
@@ -626,7 +626,7 @@ public abstract class m extends FrameLayout {
         }
         g gVar = this.f14623f;
         boolean z10 = false;
-        if (gVar.f39059e) {
+        if (gVar.f39056e) {
             i7 = Math.max(0, gVar.getEmojiPadding() + a());
         } else if (gVar.O) {
             i7 = Math.max(0, gVar.getKeyboardHeight() + a());
@@ -671,7 +671,7 @@ public abstract class m extends FrameLayout {
 
     public void y() {
         if (this.N != null) {
-            float translationY = ((View) getParent()).getTranslationY() - this.f14642v0.f39903c;
+            float translationY = ((View) getParent()).getTranslationY() - this.f14642v0.f39900c;
             if (this.N.getY() != translationY) {
                 this.N.setTranslationY(translationY);
                 this.N.invalidate();

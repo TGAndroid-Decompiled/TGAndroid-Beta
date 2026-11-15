@@ -27,9 +27,9 @@ public final class z extends b0 {
         this.d = u41Var;
         u41Var.r1();
         u41 u41Var2 = this.d;
-        u41Var2.f39895g3.f38201r = false;
+        u41Var2.f39892g3.f38199r = false;
         u41Var2.setClipToPadding(false);
-        this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f23604n);
+        this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f23606n);
         org.telegram.messenger.g0.E2(this.f19527b);
         this.f19528c.addView(d0Var.A1, ja.g());
         this.f19528c.addView(this.d, ja.g());
@@ -73,18 +73,18 @@ public final class z extends b0 {
         }
         d0Var.f19545s1 = dVar;
         dVar.setOnClickListener(new p5(this, 14));
-        this.f19528c.addView(dVar, ja.f(48.0f, -1, 80, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f23604n));
+        this.f19528c.addView(dVar, ja.f(48.0f, -1, 80, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f23606n));
         a();
     }
 
     @Override
     public final float b() {
-        return m7.a(this.f19649r.f19540m1.f57081e) * super.b();
+        return m7.a(this.f19649r.f19540m1.f57085e) * super.b();
     }
 
     @Override
     public final void c() {
         super.c();
-        this.f19649r.f19551y1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f23603m, b() + org.telegram.messenger.g0.L(4.0f)));
+        this.f19649r.f19551y1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f23605m, b() + org.telegram.messenger.g0.L(4.0f)));
     }
 }

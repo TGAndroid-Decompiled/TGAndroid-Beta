@@ -11,12 +11,12 @@ import org.telegram.messenger.gj;
 import org.telegram.ui.xz;
 import org.telegram.ui.zz;
 public final class xz extends org.telegram.ui.Components.tj0 {
-    public final Context f53351c;
+    public final Context f53355c;
     public final zz d;
 
     public xz(zz zzVar, Context context) {
         this.d = zzVar;
-        this.f53351c = context;
+        this.f53355c = context;
     }
 
     @Override
@@ -72,8 +72,8 @@ public final class xz extends org.telegram.ui.Components.tj0 {
                         o7Var.c(i11, arrayList.indexOf(gjVar), gjVar);
                         if (zzVar.f54093p0.g0()) {
                             int e12 = gjVar.e1();
-                            szVar.f51305a = org.telegram.messenger.gj.B0(gjVar.f23817k);
-                            szVar.f51306b = e12;
+                            szVar.f51306a = org.telegram.messenger.gj.B0(gjVar.f23819k);
+                            szVar.f51307b = e12;
                             o7Var.b(i11, zzVar.f54093p0.l(szVar), true);
                         } else {
                             o7Var.b(i11, false, true);
@@ -100,11 +100,11 @@ public final class xz extends org.telegram.ui.Components.tj0 {
                 z12 = false;
             }
             t2Var.P = zzVar.f54094q0;
-            t2Var.f0(org.telegram.messenger.gj.B0(gjVar2.f23817k), gjVar2, gjVar2.f23817k.date, false, false);
+            t2Var.f0(org.telegram.messenger.gj.B0(gjVar2.f23819k), gjVar2, gjVar2.f23819k.date, false, false);
             if (zzVar.f54093p0.g0()) {
                 int e13 = gjVar2.e1();
-                szVar.f51305a = org.telegram.messenger.gj.B0(gjVar2.f23817k);
-                szVar.f51306b = e13;
+                szVar.f51306a = org.telegram.messenger.gj.B0(gjVar2.f23819k);
+                szVar.f51307b = e13;
                 t2Var.e0(zzVar.f54093p0.l(szVar), z12);
                 return;
             }
@@ -119,7 +119,7 @@ public final class xz extends org.telegram.ui.Components.tj0 {
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
         nz nzVar;
         nz nzVar2;
-        Context context = this.f53351c;
+        Context context = this.f53355c;
         if (i7 != 0) {
             if (i7 != 2) {
                 nzVar2 = new nz(1, context, this);
@@ -134,7 +134,7 @@ public final class xz extends org.telegram.ui.Components.tj0 {
             final ?? frameLayout = new FrameLayout(context);
             Paint paint = new Paint();
             frameLayout.f30816n = paint;
-            frameLayout.f30818s = org.telegram.messenger.m10.f24934t0;
+            frameLayout.f30818s = org.telegram.messenger.m10.f24940t0;
             frameLayout.f30817r = 1;
             paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ci, false));
             frameLayout.f30812b = new org.telegram.messenger.gj[6];
@@ -156,9 +156,9 @@ public final class xz extends org.telegram.ui.Components.tj0 {
                             int i11 = o7Var.f30813c[intValue];
                             gj gjVar = o7Var.f30812b[intValue];
                             org.telegram.ui.f fVar = (org.telegram.ui.f) m7Var;
-                            zz zzVar = ((xz) fVar.f46946b).d;
+                            zz zzVar = ((xz) fVar.f46930b).d;
                             if (zzVar.f54093p0.g0()) {
-                                zz zzVar2 = ((xz) fVar.f46946b).d;
+                                zz zzVar2 = ((xz) fVar.f46930b).d;
                                 SpannableStringBuilder[] spannableStringBuilderArr = zz.f54072t0;
                                 zzVar2.f(i11, o7Var, gjVar, intValue);
                                 return true;

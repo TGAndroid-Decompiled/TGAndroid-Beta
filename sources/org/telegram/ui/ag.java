@@ -14,7 +14,7 @@ public final class ag implements org.telegram.messenger.pr {
             case 0:
                 an anVar = this.f45043b;
                 if (anVar.getParentActivity() != null && anVar.fragmentView != null && i7 > 0) {
-                    org.telegram.ui.Components.cc.a0(anVar).m(org.telegram.ui.Components.bc.f33238r, i7, 0, 0, anVar.Aa).j();
+                    org.telegram.ui.Components.cc.a0(anVar).m(org.telegram.ui.Components.bc.f33241r, i7, 0, 0, anVar.Aa).j();
                     return;
                 }
                 return;

@@ -15,17 +15,17 @@ import android.widget.ImageView;
 import java.util.HashMap;
 import org.telegram.messenger.BringAppForegroundService;
 public final class yt implements j71 {
-    public final bu f42153a;
+    public final bu f42155a;
 
     public yt(bu buVar) {
-        this.f42153a = buVar;
+        this.f42155a = buVar;
     }
 
     @Override
     public final TextureView a(View view, boolean z10, float f10, int i7, boolean z11) {
-        bu buVar = this.f42153a;
-        FrameLayout frameLayout = buVar.f33378p1;
-        Activity activity = buVar.f33382t1;
+        bu buVar = this.f42155a;
+        FrameLayout frameLayout = buVar.f33381p1;
+        Activity activity = buVar.f33385t1;
         if (z10) {
             frameLayout.setVisibility(0);
             frameLayout.setAlpha(1.0f);
@@ -68,7 +68,7 @@ public final class yt implements j71 {
 
     @Override
     public final void b() {
-        bu buVar = this.f42153a;
+        bu buVar = this.f42155a;
         if (buVar.n1.f()) {
             buVar.L();
         }
@@ -76,11 +76,11 @@ public final class yt implements j71 {
 
     @Override
     public final void d() {
-        bu buVar = this.f42153a;
-        xt xtVar = buVar.f33376m1;
+        bu buVar = this.f42155a;
+        xt xtVar = buVar.f33379m1;
         xtVar.setVisibility(0);
-        buVar.f33383u1.setVisibility(0);
-        buVar.f33384v1.setVisibility(4);
+        buVar.f33386u1.setVisibility(0);
+        buVar.f33387v1.setVisibility(4);
         xtVar.setKeepScreenOn(true);
         m71 m71Var = buVar.n1;
         m71Var.setVisibility(4);
@@ -101,7 +101,7 @@ public final class yt implements j71 {
 
     @Override
     public final void e(m71 m71Var, boolean z10) {
-        Activity activity = this.f42153a.f33382t1;
+        Activity activity = this.f42155a.f33385t1;
         if (z10) {
             try {
                 activity.getWindow().addFlags(128);
@@ -120,12 +120,12 @@ public final class yt implements j71 {
 
     @Override
     public final TextureView f(View view, boolean z10, int i7, int i10, boolean z11) {
-        bu buVar = this.f42153a;
+        bu buVar = this.f42155a;
         m71 m71Var = buVar.n1;
-        int[] iArr = buVar.f33388z1;
+        int[] iArr = buVar.f33391z1;
         if (z10) {
             view.setTranslationY(0.0f);
-            TextureView textureView = new TextureView(buVar.f33382t1);
+            TextureView textureView = new TextureView(buVar.f33385t1);
             buVar.O0(textureView, i7, i10);
             return textureView;
         } else if (z11) {
@@ -157,7 +157,7 @@ public final class yt implements j71 {
 
     @Override
     public final ViewGroup g() {
-        return this.f42153a.f29685c;
+        return this.f42155a.f29685c;
     }
 
     @Override
@@ -168,30 +168,30 @@ public final class yt implements j71 {
     @Override
     public final void i(boolean z10, e71 e71Var, float f10, boolean z11) {
         if (z10) {
-            bu buVar = this.f42153a;
-            if (buVar.f33382t1 != null) {
+            bu buVar = this.f42155a;
+            if (buVar.f33385t1 != null) {
                 try {
                     buVar.f29682b.setSystemUiVisibility(0);
-                    bu buVar2 = this.f42153a;
+                    bu buVar2 = this.f42155a;
                     int i7 = buVar2.G1;
                     if (i7 != -2) {
-                        buVar2.f33382t1.setRequestedOrientation(i7);
+                        buVar2.f33385t1.setRequestedOrientation(i7);
                     }
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
             }
-            if (this.f42153a.f33378p1.getVisibility() == 0) {
-                ViewGroup viewGroup = this.f42153a.f29682b;
+            if (this.f42155a.f33381p1.getVisibility() == 0) {
+                ViewGroup viewGroup = this.f42155a.f29682b;
                 viewGroup.setTranslationY(org.telegram.messenger.g0.L(10.0f) + viewGroup.getMeasuredHeight());
-                this.f42153a.Z.setAlpha(0);
+                this.f42155a.Z.setAlpha(0);
             }
-            this.f42153a.setOnShowListener(null);
+            this.f42155a.setOnShowListener(null);
             if (z11) {
-                TextureView textureView = this.f42153a.n1.getTextureView();
-                View controlsView = this.f42153a.n1.getControlsView();
-                ImageView textureImageView = this.f42153a.n1.getTextureImageView();
-                pi0 I0 = bu.I0(this.f42153a, true, f10);
+                TextureView textureView = this.f42155a.n1.getTextureView();
+                View controlsView = this.f42155a.n1.getControlsView();
+                ImageView textureImageView = this.f42155a.n1.getTextureImageView();
+                pi0 I0 = bu.I0(this.f42155a, true, f10);
                 float width = I0.f38314c / textureView.getWidth();
                 AnimatorSet animatorSet = new AnimatorSet();
                 Property property = View.SCALE_X;
@@ -206,10 +206,10 @@ public final class yt implements j71 {
                 ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(textureView, property2, width);
                 ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(textureView, property3, I0.f38312a);
                 ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(textureView, property4, I0.f38313b);
-                ViewGroup viewGroup2 = this.f42153a.f29682b;
+                ViewGroup viewGroup2 = this.f42155a.f29682b;
                 ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(viewGroup2, property4, org.telegram.messenger.g0.L(10.0f) + viewGroup2.getMeasuredHeight());
-                ObjectAnimator ofInt = ObjectAnimator.ofInt(this.f42153a.Z, k6.d, 0);
-                FrameLayout frameLayout = this.f42153a.f33378p1;
+                ObjectAnimator ofInt = ObjectAnimator.ofInt(this.f42155a.Z, k6.d, 0);
+                FrameLayout frameLayout = this.f42155a.f33381p1;
                 Property property5 = View.ALPHA;
                 animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ofFloat9, ofInt, ObjectAnimator.ofFloat(frameLayout, property5, 0.0f), ObjectAnimator.ofFloat(controlsView, property5, 0.0f));
                 animatorSet.setInterpolator(new DecelerateInterpolator());
@@ -218,27 +218,27 @@ public final class yt implements j71 {
                 animatorSet.start();
                 return;
             }
-            if (this.f42153a.f33378p1.getVisibility() == 0) {
-                this.f42153a.f33378p1.setAlpha(1.0f);
-                this.f42153a.f33378p1.setVisibility(4);
+            if (this.f42155a.f33381p1.getVisibility() == 0) {
+                this.f42155a.f33381p1.setAlpha(1.0f);
+                this.f42155a.f33381p1.setVisibility(4);
             }
             e71Var.run();
-            this.f42153a.L();
+            this.f42155a.L();
             return;
         }
-        if (org.telegram.messenger.t0.f26608x) {
+        if (org.telegram.messenger.t0.f26617x) {
             try {
-                this.f42153a.f33382t1.startService(new Intent(org.telegram.messenger.t0.f26600b, BringAppForegroundService.class));
+                this.f42155a.f33385t1.startService(new Intent(org.telegram.messenger.t0.f26609b, BringAppForegroundService.class));
             } catch (Throwable th2) {
                 org.telegram.messenger.a8.g(th2, true);
             }
         }
         if (z11) {
-            bu buVar3 = this.f42153a;
+            bu buVar3 = this.f42155a;
             buVar3.setOnShowListener(buVar3.M1);
-            pi0 I02 = bu.I0(this.f42153a, false, f10);
-            TextureView textureView2 = this.f42153a.n1.getTextureView();
-            ImageView textureImageView2 = this.f42153a.n1.getTextureImageView();
+            pi0 I02 = bu.I0(this.f42155a, false, f10);
+            TextureView textureView2 = this.f42155a.n1.getTextureView();
+            ImageView textureImageView2 = this.f42155a.n1.getTextureImageView();
             float f11 = I02.f38314c / textureView2.getLayoutParams().width;
             textureImageView2.setScaleX(f11);
             textureImageView2.setScaleY(f11);
@@ -249,16 +249,16 @@ public final class yt implements j71 {
             textureView2.setTranslationX(I02.f38312a);
             textureView2.setTranslationY(I02.f38313b);
         } else {
-            this.f42153a.J0();
+            this.f42155a.J0();
         }
-        bu buVar4 = this.f42153a;
+        bu buVar4 = this.f42155a;
         buVar4.f29694f0 = true;
         buVar4.show();
         if (z11) {
-            bu buVar5 = this.f42153a;
+            bu buVar5 = this.f42155a;
             buVar5.K1 = 4;
             buVar5.Z.setAlpha(1);
-            ViewGroup viewGroup3 = this.f42153a.f29682b;
+            ViewGroup viewGroup3 = this.f42155a.f29682b;
             viewGroup3.setTranslationY(org.telegram.messenger.g0.L(10.0f) + viewGroup3.getMeasuredHeight());
         }
     }

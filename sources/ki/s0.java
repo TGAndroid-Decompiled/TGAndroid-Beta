@@ -58,7 +58,7 @@ public final class s0 {
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f26600b;
+        Context context = org.telegram.messenger.t0.f26609b;
         if (context == null) {
             return;
         }
@@ -154,7 +154,7 @@ public final class s0 {
             activity = org.telegram.messenger.g0.W(this.f18538a);
         }
         if (activity == null) {
-            return org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26600b);
+            return org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26609b);
         }
         return activity;
     }
@@ -212,7 +212,7 @@ public final class s0 {
                                 boolean a10 = s0Var.a();
                                 org.telegram.ui.web.o oVar2 = oVar;
                                 if (!a10) {
-                                    ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.u1(24, s0Var, oVar2));
+                                    ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.v1(24, s0Var, oVar2));
                                     return;
                                 }
                                 s0Var.d = true;
@@ -263,7 +263,7 @@ public final class s0 {
                             boolean a10 = s0Var.a();
                             org.telegram.ui.web.o oVar2 = oVar;
                             if (!a10) {
-                                ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.u1(24, s0Var, oVar2));
+                                ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.v1(24, s0Var, oVar2));
                                 return;
                             }
                             s0Var.d = true;
@@ -304,7 +304,7 @@ public final class s0 {
     public final void j(z10 z10Var) {
         JSONObject jSONObject = new JSONObject();
         if (this.f18541e && a() && d()) {
-            LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26600b.getSystemService("location");
+            LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26609b.getSystemService("location");
             List<String> providers = locationManager.getProviders(true);
             Location location = null;
             for (int size = providers.size() - 1; size >= 0; size--) {
@@ -316,7 +316,7 @@ public final class s0 {
             if (location == null && !locationManager.isProviderEnabled("gps")) {
                 Context context = LaunchActivity.H1;
                 if (context == null) {
-                    context = org.telegram.messenger.t0.f26600b;
+                    context = org.telegram.messenger.t0.f26609b;
                 }
                 if (context != null) {
                     try {
@@ -402,7 +402,7 @@ public final class s0 {
                             case 0:
                                 s0 s0Var = this.f18471b;
                                 if (!s0Var.a()) {
-                                    ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.u1(25, s0Var, mp0Var));
+                                    ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.v1(25, s0Var, mp0Var));
                                     return;
                                 }
                                 s0Var.d = true;
@@ -447,7 +447,7 @@ public final class s0 {
                         case 0:
                             s0 s0Var = this.f18471b;
                             if (!s0Var.a()) {
-                                ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.u1(25, s0Var, mp0Var));
+                                ka.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.v1(25, s0Var, mp0Var));
                                 return;
                             }
                             s0Var.d = true;

@@ -114,7 +114,7 @@ public abstract class sq {
             }
             switch (c10) {
                 case 0:
-                    return org.telegram.messenger.hd.a0(null, null, 2131751725, Integer.valueOf(((org.telegram.messenger.j0) org.telegram.messenger.np.s1(i7).f25448y7.N.f15881b).f24493c), b(treeSet));
+                    return org.telegram.messenger.hd.a0(null, null, 2131751725, Integer.valueOf(((org.telegram.messenger.j0) org.telegram.messenger.np.s1(i7).f25451y7.N.f15881b).f24498c), b(treeSet));
                 case 1:
                     String c11 = c(str, treeSet);
                     if (c11 == null) {
@@ -165,7 +165,7 @@ public abstract class sq {
             return;
         }
         TreeSet treeSet = new TreeSet();
-        HashSet<String> hashSet = ((org.telegram.messenger.o0) org.telegram.messenger.np.s1(i7).f25448y7.f25850i0.f14544b).f25689c;
+        HashSet<String> hashSet = ((org.telegram.messenger.o0) org.telegram.messenger.np.s1(i7).f25451y7.f25852i0.f14544b).f25690c;
         if (hashSet != null) {
             for (String str2 : hashSet) {
                 if (!TextUtils.isEmpty(str2)) {

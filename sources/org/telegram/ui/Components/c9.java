@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import org.telegram.messenger.Utilities;
 public final class c9 implements g9 {
-    public final h9 f33527a;
-    public final c8.ga[] f33528b;
-    public final Runnable[] f33529c;
+    public final h9 f33530a;
+    public final c8.ga[] f33531b;
+    public final Runnable[] f33532c;
     public final x40[] d;
 
     public c9(h9 h9Var, c8.ga[] gaVarArr, Runnable[] runnableArr, x40[] x40VarArr) {
-        this.f33527a = h9Var;
-        this.f33528b = gaVarArr;
-        this.f33529c = runnableArr;
+        this.f33530a = h9Var;
+        this.f33531b = gaVarArr;
+        this.f33532c = runnableArr;
         this.d = x40VarArr;
     }
 
     @Override
     public final void dispose() {
-        h9 h9Var = this.f33527a;
-        c8.ga[] gaVarArr = this.f33528b;
-        Runnable[] runnableArr = this.f33529c;
+        h9 h9Var = this.f33530a;
+        c8.ga[] gaVarArr = this.f33531b;
+        Runnable[] runnableArr = this.f33532c;
         x40[] x40VarArr = this.d;
         gaVarArr[0] = null;
         if (h9Var.f35198e.contains(runnableArr)) {

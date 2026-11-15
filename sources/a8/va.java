@@ -65,7 +65,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, ho, zi.y0 
     @Override
     public void J() {
         ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        SharedPreferences sharedPreferences = np.s1(ProfileActivity.k1(profileActivity)).f25270e7;
+        SharedPreferences sharedPreferences = np.s1(ProfileActivity.k1(profileActivity)).f25273e7;
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j3 = this.f693b;
         sb2.append(at.v(j3, profileActivity.f43109g1, false));
@@ -223,7 +223,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, ho, zi.y0 
             case 2:
             case 3:
             default:
-                ((AtomicLong) ((tg.x) this.f694c).f57597c).set(this.f693b);
+                ((AtomicLong) ((tg.x) this.f694c).f57598c).set(this.f693b);
                 return;
             case 4:
                 if (exc instanceof com.google.android.gms.common.api.f) {

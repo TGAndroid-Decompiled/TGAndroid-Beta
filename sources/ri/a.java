@@ -49,17 +49,17 @@ public final class a {
             fVar2.h = dVar.d(3);
             dh.c cVar2 = new dh.c(fVar, fVar2, cVar);
             this.f56042c = cVar2;
-            cVar2.f8096j = qVar;
-            cVar2.f8097k = true;
+            cVar2.f8099j = qVar;
+            cVar2.f8100k = true;
             ui.d dVar2 = new ui.d(fVar, fVar2);
             this.f56043e = dVar2;
             dh.c cVar3 = new dh.c(fVar2, fVar2, cVar);
             this.f56044f = cVar3;
-            cVar3.f8096j = qVar;
+            cVar3.f8099j = qVar;
             dh.c cVar4 = new dh.c(dVar2, fVar2, cVar);
             this.d = cVar4;
-            cVar4.f8096j = qVar;
-            cVar4.f8097k = true;
+            cVar4.f8099j = qVar;
+            cVar4.f8100k = true;
             this.f56048k = dVar.d(1);
             return;
         }
@@ -69,7 +69,7 @@ public final class a {
         this.f56046i = null;
         dh.c cVar5 = new dh.c(cVar, cVar, cVar);
         this.f56042c = cVar5;
-        cVar5.f8096j = qVar;
+        cVar5.f8099j = qVar;
         this.f56043e = null;
         this.d = cVar5;
         this.f56044f = cVar5;

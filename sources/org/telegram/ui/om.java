@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public final class om {
-    public int f50014a;
-    public int f50015b;
-    public int f50016c;
+    public int f49991a;
+    public int f49992b;
+    public int f49993c;
 }

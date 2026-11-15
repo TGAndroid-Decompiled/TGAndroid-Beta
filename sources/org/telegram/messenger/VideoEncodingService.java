@@ -25,8 +25,8 @@ public class VideoEncodingService extends Service implements is {
             ns.f(this.f22426c).n(this, i7);
         }
         if (kfVar != null) {
-            gj gjVar = kfVar.f24684a;
-            if (gjVar != null && gj.t3(gjVar.f23817k)) {
+            gj gjVar = kfVar.f24687a;
+            if (gjVar != null && gj.t3(gjVar.f23819k)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -47,9 +47,9 @@ public class VideoEncodingService extends Service implements is {
             qVar.f9943p = true;
         }
         this.f22425b = kfVar;
-        int i12 = kfVar.f24686c;
+        int i12 = kfVar.f24689c;
         this.f22426c = i12;
-        this.d = kfVar.f24684a.f23817k.attachPath;
+        this.d = kfVar.f24687a.f23819k.attachPath;
         ns.f(i12).b(this, i11);
         ns.f(this.f22426c).b(this, i10);
         ns.f(this.f22426c).b(this, i7);
@@ -63,7 +63,7 @@ public class VideoEncodingService extends Service implements is {
             if (MediaController.B().f22334b0 == null) {
                 return;
             }
-            new e0.i0(t0.f26600b).e(null, 4, this.f22424a.b());
+            new e0.i0(t0.f26609b).e(null, 4, this.f22424a.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
@@ -110,12 +110,12 @@ public class VideoEncodingService extends Service implements is {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.i0(t0.f26600b).b(4, null);
+        new e0.i0(t0.f26609b).b(4, null);
         ns.f(this.f22426c).n(this, ns.W1);
         ns.f(this.f22426c).n(this, ns.V1);
         ns.f(this.f22426c).n(this, ns.U1);
         this.f22425b = null;
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("VideoEncodingService: destroy video service");
         }
     }
@@ -129,7 +129,7 @@ public class VideoEncodingService extends Service implements is {
         f22423e = this;
         if (this.f22424a == null) {
             at.i();
-            e0.q qVar = new e0.q(t0.f26600b, at.f22557k0);
+            e0.q qVar = new e0.q(t0.f26609b, at.f22557k0);
             this.f22424a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();

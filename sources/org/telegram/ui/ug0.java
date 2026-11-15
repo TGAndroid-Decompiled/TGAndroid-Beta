@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class ug0 implements Runnable {
-    public final int f51942a;
-    public final bh0 f51943b;
+    public final int f51943a;
+    public final bh0 f51944b;
 
     public ug0(bh0 bh0Var, int i7) {
-        this.f51942a = i7;
-        this.f51943b = bh0Var;
+        this.f51943a = i7;
+        this.f51944b = bh0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51942a) {
+        switch (this.f51943a) {
             case 0:
-                org.telegram.messenger.g0.v1(this.f51943b.f45750m1);
+                org.telegram.messenger.g0.v1(this.f51944b.f45744m1);
                 return;
             default:
-                org.telegram.messenger.g0.J3(this.f51943b.n1.getEditText());
+                org.telegram.messenger.g0.J3(this.f51944b.n1.getEditText());
                 return;
         }
     }

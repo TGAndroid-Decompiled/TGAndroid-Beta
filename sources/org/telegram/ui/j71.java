@@ -38,7 +38,7 @@ public final class j71 extends org.telegram.ui.Components.i9 {
                 if (drawable instanceof BitmapDrawable) {
                     if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
                         canvas.save();
-                        float f10 = 2.0f / org.telegram.messenger.g0.f23608p;
+                        float f10 = 2.0f / org.telegram.messenger.g0.f23610p;
                         canvas.scale(f10, f10);
                         this.H.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f10), (int) Math.ceil(getMeasuredHeight() / f10));
                         this.H.draw(canvas);
@@ -60,10 +60,10 @@ public final class j71 extends org.telegram.ui.Components.i9 {
                 this.H.draw(canvas);
             }
         }
-        if (t71Var.f51419c2) {
-            if (!t71Var.f51416c.isFinished() && t71Var.f51416c.computeScrollOffset()) {
-                if (t71Var.f51416c.getStartX() < t71Var.Y1 && t71Var.f51416c.getStartX() > 0) {
-                    t71Var.Z1 = t71Var.f51416c.getCurrX();
+        if (t71Var.f51420c2) {
+            if (!t71Var.f51417c.isFinished() && t71Var.f51417c.computeScrollOffset()) {
+                if (t71Var.f51417c.getStartX() < t71Var.Y1 && t71Var.f51417c.getStartX() > 0) {
+                    t71Var.Z1 = t71Var.f51417c.getCurrX();
                 }
                 t71Var.a1();
                 invalidate();
@@ -78,9 +78,9 @@ public final class j71 extends org.telegram.ui.Components.i9 {
             super.onDraw(canvas);
         }
         if (t71Var.O1) {
-            float f12 = t71Var.f51453p1;
+            float f12 = t71Var.f51454p1;
             if (f12 > 0.0f) {
-                canvas.drawColor(i0.a.o(-16777216, (int) (f12 * 255.0f * t71Var.f51455q1)));
+                canvas.drawColor(i0.a.o(-16777216, (int) (f12 * 255.0f * t71Var.f51456q1)));
             }
         }
     }
@@ -89,7 +89,7 @@ public final class j71 extends org.telegram.ui.Components.i9 {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         t71 t71Var = this.L;
-        org.telegram.ui.Components.z61 z61Var = t71Var.f51473x1;
+        org.telegram.ui.Components.z61 z61Var = t71Var.f51474x1;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         z61Var.getClass();
@@ -99,31 +99,31 @@ public final class j71 extends org.telegram.ui.Components.i9 {
             setScaleX(a10);
             setScaleY(t71Var.A1);
         }
-        if (t71Var.f51412b == 2) {
+        if (t71Var.f51413b == 2) {
             getMeasuredWidth();
             getMeasuredHeight();
         }
         int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
         if (t71Var.d2 != measuredWidth2) {
-            t71Var.f51419c2 = false;
+            t71Var.f51420c2 = false;
             Bitmap bitmap = t71Var.E1;
             if (bitmap != null) {
                 int measuredHeight2 = (int) ((getMeasuredHeight() / t71Var.E1.getHeight()) * bitmap.getWidth());
                 if (measuredHeight2 - getMeasuredWidth() > 100) {
-                    t71Var.f51419c2 = true;
-                    t71Var.f51415b2 = (int) ((t71Var.E1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
+                    t71Var.f51420c2 = true;
+                    t71Var.f51416b2 = (int) ((t71Var.E1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
                     float measuredWidth3 = (measuredHeight2 - getMeasuredWidth()) / 2.0f;
                     t71Var.Z1 = measuredWidth3;
-                    t71Var.f51411a2 = measuredWidth3;
+                    t71Var.f51412a2 = measuredWidth3;
                     t71Var.Y1 = measuredWidth3 * 2.0f;
                     u(measuredHeight2, getMeasuredHeight());
-                    this.f35516w = true;
+                    this.f35507w = true;
                     t71Var.a1();
                 }
             }
-            if (!t71Var.f51419c2) {
+            if (!t71Var.f51420c2) {
                 u(-1, -1);
-                this.f35516w = false;
+                this.f35507w = false;
             }
         }
         t71Var.d2 = measuredWidth2;

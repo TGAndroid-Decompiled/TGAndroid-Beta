@@ -233,7 +233,7 @@ public final class a2 extends FrameLayout implements org.telegram.messenger.x5, 
             canvas2 = canvas;
         } else {
             canvas2 = canvas;
-            canvas2.drawRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), imageReceiver.A(), g4.f47303q1);
+            canvas2.drawRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), imageReceiver.A(), g4.f47293q1);
         }
         imageReceiver.h(canvas2, null);
         if (imageReceiver.R0) {

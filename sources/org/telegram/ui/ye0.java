@@ -28,7 +28,7 @@ public final class ye0 extends org.telegram.ui.Components.po0 {
             a02 = org.telegram.messenger.hd.a0(null, null, 2131749187, org.telegram.messenger.hd.G(i7, "Chats", new Object[0]));
         }
         org.telegram.ui.Components.xb Q = org.telegram.ui.Components.cc.a0(cf0Var).Q(2131624029, 36, org.telegram.messenger.g0.X2(a02));
-        Q.f41651r = false;
+        Q.f41643r = false;
         Q.k(true);
     }
 }

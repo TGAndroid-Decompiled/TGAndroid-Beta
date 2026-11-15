@@ -14,25 +14,25 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.yw;
 public final class q implements View.OnClickListener {
-    public final int f3793a;
-    public final long f3794b;
-    public final Object f3795c;
+    public final int f3796a;
+    public final long f3797b;
+    public final Object f3798c;
 
     public q(Object obj, long j3, int i7) {
-        this.f3793a = i7;
-        this.f3795c = obj;
-        this.f3794b = j3;
+        this.f3796a = i7;
+        this.f3798c = obj;
+        this.f3797b = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f3793a) {
+        switch (this.f3796a) {
             case 0:
-                y yVar = (y) this.f3795c;
+                y yVar = (y) this.f3798c;
                 yVar.getClass();
                 org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
                 if (T != null) {
-                    long j3 = this.f3794b;
+                    long j3 = this.f3797b;
                     if (!q10.A(j3)) {
                         Bundle bundle = new Bundle();
                         if (j3 > 0) {
@@ -49,27 +49,27 @@ public final class q implements View.OnClickListener {
                         return;
                     }
                 }
-                Runnable runnable = yVar.f3993j2;
+                Runnable runnable = yVar.f3996j2;
                 if (runnable != null) {
                     runnable.run();
                 }
                 yVar.dismiss();
                 return;
             case 1:
-                s2 s2Var = (s2) this.f3795c;
+                s2 s2Var = (s2) this.f3798c;
                 s2Var.getClass();
                 org.telegram.ui.ActionBar.e2 T2 = LaunchActivity.T();
                 if (T2 != null) {
                     s2Var.dismiss();
-                    T2.presentFragment(ProfileActivity.C4(this.f3794b));
+                    T2.presentFragment(ProfileActivity.C4(this.f3797b));
                     return;
                 }
                 return;
             case 2:
-                fi.b4 b4Var = (fi.b4) this.f3795c;
+                fi.b4 b4Var = (fi.b4) this.f3798c;
                 b4Var.getClass();
                 Bundle bundle2 = new Bundle();
-                long j10 = this.f3794b;
+                long j10 = this.f3797b;
                 if (j10 >= 0) {
                     bundle2.putLong("user_id", j10);
                 } else {
@@ -78,16 +78,16 @@ public final class q implements View.OnClickListener {
                 b4Var.f11522t0.N(new ProfileActivity(bundle2, null));
                 return;
             case 3:
-                e70 e70Var = (e70) this.f3795c;
+                e70 e70Var = (e70) this.f3798c;
                 e70Var.dismiss();
                 TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
                 tL_messages_importChatInvite.hash = e70Var.n1;
-                ConnectionsManager.getInstance(e70Var.f29679a).sendRequestTyped(tL_messages_importChatInvite, null, new v5(e70Var, this.f3794b, tL_messages_importChatInvite), 2);
+                ConnectionsManager.getInstance(e70Var.f29679a).sendRequestTyped(tL_messages_importChatInvite, null, new v5(e70Var, this.f3797b, tL_messages_importChatInvite), 2);
                 return;
             case 4:
-                yw ywVar = (yw) this.f3795c;
+                yw ywVar = (yw) this.f3798c;
                 np messagesController = ywVar.getMessagesController();
-                long j11 = this.f3794b;
+                long j11 = this.f3797b;
                 boolean r22 = messagesController.r2(j11, 0L, null);
                 if (!r22) {
                     ywVar.getNotificationsController().T(j11, 3, 0L);
@@ -98,9 +98,9 @@ public final class q implements View.OnClickListener {
                 ywVar.finishPreviewFragment();
                 return;
             default:
-                z10 z10Var = ((sh.m) this.f3795c).f56892f;
+                z10 z10Var = ((sh.m) this.f3798c).f56892f;
                 if (z10Var != null) {
-                    z10Var.a(Long.valueOf(this.f3794b));
+                    z10Var.a(Long.valueOf(this.f3797b));
                     return;
                 }
                 return;

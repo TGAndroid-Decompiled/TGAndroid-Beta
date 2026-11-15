@@ -14,7 +14,7 @@ import org.telegram.ui.Components.u41;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.y31;
 public final class l5 extends a41 {
-    public static final int f3676b = 0;
+    public static final int f3679b = 0;
 
     static {
         a41.h(new a41());
@@ -24,23 +24,23 @@ public final class l5 extends a41 {
     public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         m5 m5Var = (m5) view;
         TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) b41Var.G;
-        int i7 = b41Var.f33194z;
-        String str = (String) b41Var.f33181l;
-        boolean z11 = b41Var.f33175e;
+        int i7 = b41Var.f33197z;
+        String str = (String) b41Var.f33184l;
+        boolean z11 = b41Var.f33178e;
         org.telegram.ui.ActionBar.e6 e6Var = m5Var.P;
         fh0 fh0Var = m5Var.f29901c;
-        k5 k5Var = m5Var.f3716b0;
-        if (k5Var == null || m5Var.f3715a0 != stargiftattributepattern.document.f28057id) {
-            m5Var.f3715a0 = stargiftattributepattern.document.f28057id;
+        k5 k5Var = m5Var.f3719b0;
+        if (k5Var == null || m5Var.f3718a0 != stargiftattributepattern.document.f28057id) {
+            m5Var.f3718a0 = stargiftattributepattern.document.f28057id;
             if (k5Var != null) {
                 k5Var.n(fh0Var);
             }
             ?? g5Var = new org.telegram.ui.Components.g5(3, m5Var.W, stargiftattributepattern.document);
-            m5Var.f3716b0 = g5Var;
+            m5Var.f3719b0 = g5Var;
             org.telegram.ui.ActionBar.q6.x(m5Var, g5Var, org.telegram.ui.ActionBar.j6.E8, e6Var, PorterDuff.Mode.SRC_IN);
         }
         if (fh0Var.isAttachedToWindow()) {
-            m5Var.f3716b0.a(fh0Var);
+            m5Var.f3719b0.a(fh0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
         if (!TextUtils.isEmpty(str)) {
@@ -54,7 +54,7 @@ public final class l5 extends a41 {
             spannableStringBuilder2.setSpan(new y31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        m5Var.j(spannableStringBuilder, 0, m5Var.f3716b0);
+        m5Var.j(spannableStringBuilder, 0, m5Var.f3719b0);
         m5Var.setChecked(z11);
     }
 

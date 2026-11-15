@@ -9,21 +9,21 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.RadioButton;
 public final class j60 extends org.telegram.ui.Components.tj0 {
-    public final int f48231c;
+    public final int f48216c;
     public final Context d;
-    public final boolean f48232e;
-    public final org.telegram.ui.ActionBar.e2 f48233f;
+    public final boolean f48217e;
+    public final org.telegram.ui.ActionBar.e2 f48218f;
 
     public j60(org.telegram.ui.ActionBar.e2 e2Var, Context context, boolean z10, int i7) {
-        this.f48231c = i7;
-        this.f48233f = e2Var;
+        this.f48216c = i7;
+        this.f48218f = e2Var;
         this.d = context;
-        this.f48232e = z10;
+        this.f48217e = z10;
     }
 
     @Override
     public final boolean D(v4.e1 e1Var) {
-        switch (this.f48231c) {
+        switch (this.f48216c) {
             case 0:
                 int i7 = e1Var.f58539f;
                 if (i7 != 0 && i7 != 4 && i7 != 5 && i7 != 2) {
@@ -42,10 +42,10 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
     public final int b() {
         int i7;
         int i10;
-        switch (this.f48231c) {
+        switch (this.f48216c) {
             case 0:
-                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f48233f;
-                if (this.f48232e) {
+                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f48218f;
+                if (this.f48217e) {
                     ArrayList arrayList = languageSelectActivity.f42618e;
                     if (arrayList == null) {
                         return 0;
@@ -74,16 +74,16 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
                 }
                 return size;
             default:
-                oy0 oy0Var = (oy0) this.f48233f;
+                oy0 oy0Var = (oy0) this.f48218f;
                 int i11 = 0;
-                if (this.f48232e) {
-                    ArrayList arrayList2 = oy0Var.f50088f;
+                if (this.f48217e) {
+                    ArrayList arrayList2 = oy0Var.f50065f;
                     if (arrayList2 == null) {
                         return 0;
                     }
                     return arrayList2.size();
                 }
-                if (oy0Var.f50087e >= 0) {
+                if (oy0Var.f50064e >= 0) {
                     i11 = 1;
                 }
                 return i11 + oy0Var.h.size();
@@ -111,7 +111,7 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
         float f12;
         org.telegram.ui.Cells.x6 x6Var;
         org.telegram.ui.Cells.n4 n4Var;
-        int i14 = this.f48231c;
+        int i14 = this.f48216c;
         Context context = this.d;
         switch (i14) {
             case 0:
@@ -143,7 +143,7 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
                     org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
                     org.telegram.messenger.i20.p(textView, 1, 16.0f, 1, 1);
                     textView.setSingleLine(true);
-                    if (org.telegram.messenger.hd.f24101a0) {
+                    if (org.telegram.messenger.hd.f24104a0) {
                         i10 = 5;
                     } else {
                         i10 = 3;
@@ -151,7 +151,7 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
                     textView.setGravity(i10 | 16);
                     TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                     textView.setEllipsize(truncateAt);
-                    boolean z10 = org.telegram.messenger.hd.f24101a0;
+                    boolean z10 = org.telegram.messenger.hd.f24104a0;
                     if (z10) {
                         i11 = 5;
                     } else {
@@ -174,7 +174,7 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
                     frameLayout.f30013b = textView2;
                     org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
                     textView2.setTextSize(1, 13.0f);
-                    if (org.telegram.messenger.hd.f24101a0) {
+                    if (org.telegram.messenger.hd.f24104a0) {
                         i12 = 5;
                     } else {
                         i12 = 3;
@@ -185,7 +185,7 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
                     textView2.setSingleLine(true);
                     textView2.setPadding(0, 0, 0, 0);
                     textView2.setEllipsize(truncateAt);
-                    boolean z11 = org.telegram.messenger.hd.f24101a0;
+                    boolean z11 = org.telegram.messenger.hd.f24104a0;
                     if (z11) {
                         i13 = 5;
                     } else {
@@ -205,11 +205,11 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
                     frameLayout.f30014c = radioButton;
                     radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
                     org.telegram.ui.ActionBar.q6.O(radioButton, org.telegram.ui.ActionBar.j6.f28905g7, org.telegram.ui.ActionBar.j6.h7, null);
-                    if (!org.telegram.messenger.hd.f24101a0) {
+                    if (!org.telegram.messenger.hd.f24104a0) {
                         i15 = 3;
                     }
                     frameLayout.addView(radioButton, c8.ja.d(20, 20.0f, i15 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
-                    frameLayout.f30017n = org.telegram.messenger.hd.f24101a0;
+                    frameLayout.f30017n = org.telegram.messenger.hd.f24104a0;
                     frameLayout.setClipChildren(false);
                     x6Var = frameLayout;
                 }
@@ -232,7 +232,7 @@ public final class j60 extends org.telegram.ui.Components.tj0 {
 
     @Override
     public void y(v4.e1 e1Var) {
-        switch (this.f48231c) {
+        switch (this.f48216c) {
             case 0:
                 View view = e1Var.f58535a;
                 if (view instanceof org.telegram.ui.Cells.a9) {

@@ -130,8 +130,8 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             View view = this.Q;
             if (view != null) {
                 view.setTranslationX((1.0f - this.f28385f) * getMeasuredWidth());
-                this.Q.setAlpha(1.0f - ye0Var.f41980b);
-                float f14 = (-(this.Q.getMeasuredHeight() - org.telegram.messenger.g0.L(16.0f))) * ye0Var.f41980b;
+                this.Q.setAlpha(1.0f - ye0Var.f41982b);
+                float f14 = (-(this.Q.getMeasuredHeight() - org.telegram.messenger.g0.L(16.0f))) * ye0Var.f41982b;
                 this.Q.setTranslationY(f14);
                 setTranslationY(f14);
             }
@@ -684,15 +684,15 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         }
         if ((i10 & 1) > 0) {
             ?? frameLayout = new FrameLayout(context);
-            frameLayout.f41979a = new SparseIntArray();
-            frameLayout.f41981c = -1.0f;
+            frameLayout.f41981a = new SparseIntArray();
+            frameLayout.f41983c = -1.0f;
             Paint paint = new Paint(1);
-            frameLayout.f41984n = paint;
-            frameLayout.f41985r = new Paint();
-            frameLayout.f41986s = 0;
-            frameLayout.f41987w = new Path();
-            frameLayout.f41988x = new RectF();
-            frameLayout.f41989y = new ArrayList();
+            frameLayout.f41986n = paint;
+            frameLayout.f41987r = new Paint();
+            frameLayout.f41988s = 0;
+            frameLayout.f41989w = new Path();
+            frameLayout.f41990x = new RectF();
+            frameLayout.f41991y = new ArrayList();
             frameLayout.H = -1;
             frameLayout.I = new h2.f((int[]) null);
             frameLayout.K = -1;

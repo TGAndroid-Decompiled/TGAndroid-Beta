@@ -1,6 +1,6 @@
 package aa;
 
-import ai.i1;
+import ai.j1;
 import android.util.Log;
 import java.io.File;
 import java.io.IOException;
@@ -45,8 +45,8 @@ public final class s implements Callable {
                 }
                 return Boolean.valueOf(z10);
             case 1:
-                ai.s[] sVarArr = DictationAsr.f42579a;
-                return Integer.valueOf(DictationAsr.u("silero_vad.onnx", i1.f((ArrayList) this.f853b, "silero-vad"), null));
+                ai.t[] tVarArr = DictationAsr.f42579a;
+                return Integer.valueOf(DictationAsr.u("silero_vad.onnx", j1.f((ArrayList) this.f853b, "silero-vad"), null));
             case 2:
                 return new e5.f((JsReplyProxyBoundaryInterface) this.f853b);
             default:

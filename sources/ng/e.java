@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ja;
-import di.mb;
+import di.lb;
 import j6.o;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -116,7 +116,7 @@ public class e extends FrameLayout {
         int L = g0.L(4.0f);
         this.J = j6.k0(L, L, L, L, j6.w0(j6.f28922h5, e6Var), j6.w0(j6.f28941i6, e6Var), -16777216);
         fq fqVar = new fq(this.I, this.J, g0.L(3.0f), g0.L(3.0f));
-        fqVar.f34678x = true;
+        fqVar.f34682x = true;
         setBackground(fqVar);
     }
 
@@ -222,7 +222,7 @@ public class e extends FrameLayout {
                     }
                 } else if (i10 == 2) {
                     if (i21 == 0) {
-                        charSequence = mb.a1(false, i5.c.l(j11, ' ', new StringBuilder("XTR ")), 0.7f, null);
+                        charSequence = lb.a1(false, i5.c.l(j11, ' ', new StringBuilder("XTR ")), 0.7f, null);
                     } else {
                         charSequence = "≈" + r1.i().f(((float) j11) / f10, "USD");
                     }
@@ -232,11 +232,11 @@ public class e extends FrameLayout {
                         charSequence = String.format("%d", Long.valueOf(j11));
                     } else {
                         int i23 = 0;
-                        while (f11 >= 1000.0f && i23 < g0.f23593g0.length - 1) {
+                        while (f11 >= 1000.0f && i23 < g0.f23595g0.length - 1) {
                             f11 /= 1000.0f;
                             i23++;
                         }
-                        charSequence = String.format("%.2f", Float.valueOf(f11)) + g0.f23593g0[i23];
+                        charSequence = String.format("%.2f", Float.valueOf(f11)) + g0.f23595g0[i23];
                     }
                 }
                 o5Var.setText(charSequence);
@@ -250,7 +250,7 @@ public class e extends FrameLayout {
                     if (i21 == 0) {
                         i24 = 2131752249;
                     }
-                    textView3.setText(mb.a1(false, hd.a0(null, null, i24, aVar.d), 0.7f, null));
+                    textView3.setText(lb.a1(false, hd.a0(null, null, i24, aVar.d), 0.7f, null));
                 } else {
                     textView3.setText(aVar.d);
                 }

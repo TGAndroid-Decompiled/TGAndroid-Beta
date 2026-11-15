@@ -116,7 +116,7 @@ public final class r5 implements Runnable {
                 ai.o oVar = (ai.o) obj;
                 int i12 = f7Var.f11708a;
                 vr vrVar = f7Var.f11709b;
-                SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+                SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
                 int i13 = 0;
                 while (i13 < arrayList.size()) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -162,7 +162,7 @@ public final class r5 implements Runnable {
                                 }
                             }
                         }
-                        if (org.telegram.messenger.r2.f26198a) {
+                        if (org.telegram.messenger.r2.f26206a) {
                             org.telegram.messenger.a8.b("StoriesStorage delete dialogs " + TextUtils.join(",", arrayList3));
                         }
                         Locale locale = Locale.US;
@@ -186,7 +186,7 @@ public final class r5 implements Runnable {
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                final HashMap hashMap = si.b0(n11Var.W).f26495r;
+                final HashMap hashMap = si.b0(n11Var.W).f26505r;
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean d = org.telegram.messenger.j6.d(str);
@@ -226,7 +226,7 @@ public final class r5 implements Runnable {
                                 }
                                 n11Var3.A1 = true;
                                 n11Var3.z(true, z15);
-                                f01 f01Var = n11Var3.f49382g0;
+                                f01 f01Var = n11Var3.f49381g0;
                                 if (f01Var != null) {
                                     f01Var.d(true);
                                 }
@@ -255,8 +255,8 @@ public final class r5 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i16 = 0;
-                                n11Var3.f49388j0.v0(0);
-                                int i17 = n11Var3.f49365a0;
+                                n11Var3.f49387j0.v0(0);
+                                int i17 = n11Var3.f49364a0;
                                 if (i17 == 1 || i17 == 14 || i17 == 11 || i17 == 2) {
                                     ArrayList arrayList16 = arrayList8;
                                     if (!arrayList16.isEmpty()) {
@@ -279,7 +279,7 @@ public final class r5 implements Runnable {
                                     ArrayList arrayList18 = n11Var3.C1;
                                     ?? obj5 = new Object();
                                     long longValue2 = l10.longValue();
-                                    obj5.f5189g = longValue2;
+                                    obj5.f5192g = longValue2;
                                     obj5.h = longValue2;
                                     arrayList18.add(obj5);
                                 }
@@ -295,12 +295,12 @@ public final class r5 implements Runnable {
                                     i16++;
                                     n11Var3.E1.addAll((ArrayList) obj6);
                                 }
-                                n11Var3.f49403r0.E(true ^ z16);
+                                n11Var3.f49402r0.E(true ^ z16);
                             }
                         });
                     }
                 };
-                int i16 = n11Var.f49365a0;
+                int i16 = n11Var.f49364a0;
                 if (i16 == 13) {
                     Utilities.u(0, new z10() {
                         @Override
@@ -308,7 +308,7 @@ public final class r5 implements Runnable {
                             switch (r4) {
                                 case 0:
                                     n11 n11Var2 = n11Var;
-                                    org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49362c2, str, false, new xi0(16, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49361c2, str, false, new xi0(16, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     n11 n11Var3 = n11Var;
@@ -319,7 +319,7 @@ public final class r5 implements Runnable {
                                         yz0Var.a(new ArrayList());
                                         return;
                                     }
-                                    Utilities.f22418g.c(new org.telegram.messenger.bm(str2, b02.s0(5), b02.f26501t0[1], yz0Var, 16));
+                                    Utilities.f22418g.c(new org.telegram.messenger.bm(str2, b02.s0(5), b02.f26511t0[1], yz0Var, 16));
                                     return;
                             }
                         }
@@ -356,7 +356,7 @@ public final class r5 implements Runnable {
                                         return;
                                     default:
                                         n11 n11Var2 = n11Var;
-                                        org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49362c2, str, false, new a1.d(n11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49361c2, str, false, new a1.d(n11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -391,7 +391,7 @@ public final class r5 implements Runnable {
                                         return;
                                     default:
                                         n11 n11Var2 = n11Var;
-                                        org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49362c2, str, false, new a1.d(n11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49361c2, str, false, new a1.d(n11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -406,7 +406,7 @@ public final class r5 implements Runnable {
                             switch (r4) {
                                 case 0:
                                     n11 n11Var2 = n11Var;
-                                    org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49362c2, str, false, new xi0(16, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.si.b0(n11Var2.W).V(n11.f49361c2, str, false, new xi0(16, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     n11 n11Var3 = n11Var;
@@ -417,7 +417,7 @@ public final class r5 implements Runnable {
                                         yz0Var.a(new ArrayList());
                                         return;
                                     }
-                                    Utilities.f22418g.c(new org.telegram.messenger.bm(str2, b02.s0(5), b02.f26501t0[1], yz0Var, 16));
+                                    Utilities.f22418g.c(new org.telegram.messenger.bm(str2, b02.s0(5), b02.f26511t0[1], yz0Var, 16));
                                     return;
                             }
                         }
@@ -467,7 +467,7 @@ public final class r5 implements Runnable {
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
                 sg.i0 i0Var = ((sg.s0) obj3).E.f56784c;
                 nt0 nt0Var = i0Var.f56652g;
-                sg.h0 h = i0Var.h(new RectF(0.0f, 0.0f, nt0Var.f37713a, nt0Var.f37714b), false, z12, z11);
+                sg.h0 h = i0Var.h(new RectF(0.0f, 0.0f, nt0Var.f37702a, nt0Var.f37703b), false, z12, z11);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f56642b;
                 }

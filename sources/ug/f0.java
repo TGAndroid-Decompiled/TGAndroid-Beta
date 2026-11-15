@@ -32,7 +32,7 @@ public final class f0 extends FrameLayout {
         this.f58074a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         q6.s(imageView, j6.Ck, e6Var, PorterDuff.Mode.SRC_IN);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -43,7 +43,7 @@ public final class f0 extends FrameLayout {
         j5Var.setWidthWrapContent(true);
         q6.X(j5Var, j6.f28957j5, e6Var);
         j5Var.setTextSize(14);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         int i12 = (z10 ? 5 : 3) | 16;
         if (z10) {
             f10 = 30.0f;

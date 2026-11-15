@@ -15,19 +15,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class dy extends tj0 {
-    public final Context f34099c;
+    public final Context f34086c;
     public int d;
-    public final SparseArray f34100e = new SparseArray();
-    public final HashMap f34101f = new HashMap();
+    public final SparseArray f34087e = new SparseArray();
+    public final HashMap f34088f = new HashMap();
     public final SparseArray h = new SparseArray();
-    public final SparseArray f34102n = new SparseArray();
-    public final SparseIntArray f34103r = new SparseIntArray();
-    public int f34104s;
-    public final ly f34105w;
+    public final SparseArray f34089n = new SparseArray();
+    public final SparseIntArray f34090r = new SparseIntArray();
+    public int f34091s;
+    public final ly f34092w;
 
     public dy(ly lyVar, Context context) {
-        this.f34105w = lyVar;
-        this.f34099c = context;
+        this.f34092w = lyVar;
+        this.f34086c = context;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class dy extends tj0 {
     }
 
     public final int E(Object obj) {
-        Integer num = (Integer) this.f34101f.get(obj);
+        Integer num = (Integer) this.f34088f.get(obj);
         if (num == null) {
             return -1;
         }
@@ -46,7 +46,7 @@ public final class dy extends tj0 {
     public final int F(int i7) {
         int indexOf;
         int i10;
-        ly lyVar = this.f34105w;
+        ly lyVar = this.f34092w;
         ArrayList arrayList = lyVar.f36944e1;
         Object obj = this.h.get(i7);
         if (!"search".equals(obj) && !"trend1".equals(obj) && !"trend2".equals(obj)) {
@@ -56,16 +56,16 @@ public final class dy extends tj0 {
             if (this.d == 0) {
                 int measuredWidth = lyVar.getMeasuredWidth();
                 if (measuredWidth == 0) {
-                    measuredWidth = org.telegram.messenger.g0.f23609q.x;
+                    measuredWidth = org.telegram.messenger.g0.f23611q.x;
                 }
                 this.d = measuredWidth / org.telegram.messenger.g0.L(72.0f);
             }
-            int i11 = this.f34103r.get(i7, Integer.MIN_VALUE);
+            int i11 = this.f34090r.get(i7, Integer.MIN_VALUE);
             if (i11 == Integer.MIN_VALUE) {
                 indexOf = arrayList.size() - 1;
                 i10 = lyVar.F1;
             } else {
-                Object obj2 = this.f34100e.get(i11);
+                Object obj2 = this.f34087e.get(i11);
                 if (obj2 instanceof String) {
                     if ("premium".equals(obj2)) {
                         return lyVar.J1;
@@ -97,7 +97,7 @@ public final class dy extends tj0 {
 
     @Override
     public final int b() {
-        int i7 = this.f34104s;
+        int i7 = this.f34091s;
         if (i7 != 0) {
             return i7 + 1;
         }
@@ -149,7 +149,7 @@ public final class dy extends tj0 {
         TLRPC.Chat chat;
         String str;
         int i11;
-        ly lyVar = this.f34105w;
+        ly lyVar = this.f34092w;
         int i12 = lyVar.f36941d1;
         int i13 = e1Var.f58539f;
         View view = e1Var.f58535a;
@@ -163,7 +163,7 @@ public final class dy extends tj0 {
                     if (i13 != 3) {
                         if (i13 == 5) {
                             org.telegram.ui.Cells.i8 i8Var = (org.telegram.ui.Cells.i8) view;
-                            if (org.telegram.messenger.si.b0(i12).f26499s0) {
+                            if (org.telegram.messenger.si.b0(i12).f26509s0) {
                                 i11 = 2131750832;
                             } else {
                                 i11 = 2131750833;
@@ -174,7 +174,7 @@ public final class dy extends tj0 {
                         return;
                     }
                     org.telegram.ui.Cells.g8 g8Var = (org.telegram.ui.Cells.g8) view;
-                    if (i7 != this.f34104s - 1) {
+                    if (i7 != this.f34091s - 1) {
                         z10 = false;
                     }
                     g8Var.setIsLast(z10);
@@ -211,40 +211,40 @@ public final class dy extends tj0 {
                         i8Var2.a(0, stickerSet.title);
                         if (tL_messages_stickerSet.set.creator && !lyVar.T2) {
                             i8Var2.setEdit(new View.OnClickListener(this) {
-                                public final dy f33720b;
+                                public final dy f33722b;
 
                                 {
-                                    this.f33720b = this;
+                                    this.f33722b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view2) {
                                     switch (r3) {
                                         case 0:
-                                            this.f33720b.f34105w.f36993u1.d(tL_messages_stickerSet.set, null, true);
+                                            this.f33722b.f34092w.f36993u1.d(tL_messages_stickerSet.set, null, true);
                                             return;
                                         default:
-                                            this.f33720b.f34105w.f36993u1.d(tL_messages_stickerSet.set, null, false);
+                                            this.f33722b.f34092w.f36993u1.d(tL_messages_stickerSet.set, null, false);
                                             return;
                                     }
                                 }
                             });
                         }
                         i8Var2.setHeaderOnClick(new View.OnClickListener(this) {
-                            public final dy f33720b;
+                            public final dy f33722b;
 
                             {
-                                this.f33720b = this;
+                                this.f33722b = this;
                             }
 
                             @Override
                             public final void onClick(View view2) {
                                 switch (r3) {
                                     case 0:
-                                        this.f33720b.f34105w.f36993u1.d(tL_messages_stickerSet.set, null, true);
+                                        this.f33722b.f34092w.f36993u1.d(tL_messages_stickerSet.set, null, true);
                                         return;
                                     default:
-                                        this.f33720b.f34105w.f36993u1.d(tL_messages_stickerSet.set, null, false);
+                                        this.f33722b.f34092w.f36993u1.d(tL_messages_stickerSet.set, null, false);
                                         return;
                                 }
                             }
@@ -266,13 +266,13 @@ public final class dy extends tj0 {
                 }
             }
             org.telegram.ui.Cells.m3 m3Var = (org.telegram.ui.Cells.m3) view;
-            if (i7 == this.f34104s) {
-                int i15 = this.f34103r.get(i7 - 1, Integer.MIN_VALUE);
+            if (i7 == this.f34091s) {
+                int i15 = this.f34090r.get(i7 - 1, Integer.MIN_VALUE);
                 if (i15 == Integer.MIN_VALUE) {
                     m3Var.setHeight(1);
                     return;
                 }
-                Object obj2 = this.f34100e.get(i15);
+                Object obj2 = this.f34087e.get(i15);
                 if (obj2 instanceof TLRPC.TL_messages_stickerSet) {
                     arrayList = ((TLRPC.TL_messages_stickerSet) obj2).documents;
                 } else if (obj2 instanceof String) {
@@ -302,15 +302,15 @@ public final class dy extends tj0 {
         }
         TLRPC.Document document = (TLRPC.Document) sparseArray.get(i7);
         org.telegram.ui.Cells.y7 y7Var = (org.telegram.ui.Cells.y7) view;
-        y7Var.d(document, null, this.f34102n.get(i7), null, false, false);
+        y7Var.d(document, null, this.f34089n.get(i7), null, false, false);
         y7Var.setRecent(lyVar.f36963k1.contains(document));
     }
 
     @Override
     public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        ly lyVar = this.f34105w;
+        ly lyVar = this.f34092w;
         org.telegram.ui.ActionBar.e6 e6Var = lyVar.f36931a2;
-        Context context = this.f34099c;
+        Context context = this.f34086c;
         FrameLayout frameLayout = null;
         switch (i7) {
             case 0:
@@ -320,7 +320,7 @@ public final class dy extends tj0 {
                 frameLayout = new org.telegram.ui.Cells.m3(context);
                 break;
             case 2:
-                org.telegram.ui.Cells.i8 i8Var = new org.telegram.ui.Cells.i8(this.f34099c, false, false, lyVar.f36931a2, lyVar.f36961j2);
+                org.telegram.ui.Cells.i8 i8Var = new org.telegram.ui.Cells.i8(this.f34086c, false, false, lyVar.f36931a2, lyVar.f36961j2);
                 i8Var.setOnIconClickListener(new n2(17, this, i8Var));
                 frameLayout = i8Var;
                 break;
@@ -340,17 +340,17 @@ public final class dy extends tj0 {
                 textView2.setText(org.telegram.messenger.hd.M0(2131752116, null).toUpperCase());
                 linearLayout.addView(textView2, c8.ja.t(-2, 28, 51, 17, 10, 14, 8));
                 linearLayout.setAddOnClickListener(new View.OnClickListener(this) {
-                    public final dy f33107b;
+                    public final dy f33110b;
 
                     {
-                        this.f33107b = this;
+                        this.f33110b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                ly lyVar2 = this.f33107b.f34105w;
+                                ly lyVar2 = this.f33110b.f34092w;
                                 mx mxVar = lyVar2.f36993u1;
                                 if (mxVar != null) {
                                     mxVar.y(lyVar2.K1.f28052id);
@@ -358,10 +358,10 @@ public final class dy extends tj0 {
                                 }
                                 return;
                             case 1:
-                                ly lyVar3 = this.f33107b.f34105w;
-                                ArrayList arrayList = org.telegram.messenger.si.b0(lyVar3.f36941d1).f26501t0[0];
+                                ly lyVar3 = this.f33110b.f34092w;
+                                ArrayList arrayList = org.telegram.messenger.si.b0(lyVar3.f36941d1).f26511t0[0];
                                 if (!arrayList.isEmpty()) {
-                                    org.telegram.messenger.np.s1(lyVar3.f36941d1).f25289g7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28078id).commit();
+                                    org.telegram.messenger.np.s1(lyVar3.f36941d1).f25292g7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28078id).commit();
                                     dy dyVar = lyVar3.f37010z0;
                                     if (dyVar != null) {
                                         dyVar.p(1, 2);
@@ -371,7 +371,7 @@ public final class dy extends tj0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.e2 e2Var = this.f33107b.f34105w.Z1;
+                                org.telegram.ui.ActionBar.e2 e2Var = this.f33110b.f34092w.Z1;
                                 if (e2Var instanceof org.telegram.ui.an) {
                                     ((org.telegram.ui.an) e2Var).Ba();
                                     return;
@@ -389,19 +389,19 @@ public final class dy extends tj0 {
                 frameLayout = view;
                 break;
             case 5:
-                org.telegram.ui.Cells.i8 i8Var2 = new org.telegram.ui.Cells.i8(this.f34099c, false, false, lyVar.f36931a2, lyVar.f36961j2);
+                org.telegram.ui.Cells.i8 i8Var2 = new org.telegram.ui.Cells.i8(this.f34086c, false, false, lyVar.f36931a2, lyVar.f36961j2);
                 i8Var2.setOnIconClickListener(new View.OnClickListener(this) {
-                    public final dy f33107b;
+                    public final dy f33110b;
 
                     {
-                        this.f33107b = this;
+                        this.f33110b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                ly lyVar2 = this.f33107b.f34105w;
+                                ly lyVar2 = this.f33110b.f34092w;
                                 mx mxVar = lyVar2.f36993u1;
                                 if (mxVar != null) {
                                     mxVar.y(lyVar2.K1.f28052id);
@@ -409,10 +409,10 @@ public final class dy extends tj0 {
                                 }
                                 return;
                             case 1:
-                                ly lyVar3 = this.f33107b.f34105w;
-                                ArrayList arrayList = org.telegram.messenger.si.b0(lyVar3.f36941d1).f26501t0[0];
+                                ly lyVar3 = this.f33110b.f34092w;
+                                ArrayList arrayList = org.telegram.messenger.si.b0(lyVar3.f36941d1).f26511t0[0];
                                 if (!arrayList.isEmpty()) {
-                                    org.telegram.messenger.np.s1(lyVar3.f36941d1).f25289g7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28078id).commit();
+                                    org.telegram.messenger.np.s1(lyVar3.f36941d1).f25292g7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28078id).commit();
                                     dy dyVar = lyVar3.f37010z0;
                                     if (dyVar != null) {
                                         dyVar.p(1, 2);
@@ -422,7 +422,7 @@ public final class dy extends tj0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.e2 e2Var = this.f33107b.f34105w.Z1;
+                                org.telegram.ui.ActionBar.e2 e2Var = this.f33110b.f34092w.Z1;
                                 if (e2Var instanceof org.telegram.ui.an) {
                                     ((org.telegram.ui.an) e2Var).Ba();
                                     return;
@@ -457,17 +457,17 @@ public final class dy extends tj0 {
                 org.telegram.ui.ActionBar.q6.j(linearLayout2, d02, K, null, e6Var);
                 c8.na.b(linearLayout2, 0.1f, 1.5f);
                 linearLayout2.setOnClickListener(new View.OnClickListener(this) {
-                    public final dy f33107b;
+                    public final dy f33110b;
 
                     {
-                        this.f33107b = this;
+                        this.f33110b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                ly lyVar2 = this.f33107b.f34105w;
+                                ly lyVar2 = this.f33110b.f34092w;
                                 mx mxVar = lyVar2.f36993u1;
                                 if (mxVar != null) {
                                     mxVar.y(lyVar2.K1.f28052id);
@@ -475,10 +475,10 @@ public final class dy extends tj0 {
                                 }
                                 return;
                             case 1:
-                                ly lyVar3 = this.f33107b.f34105w;
-                                ArrayList arrayList = org.telegram.messenger.si.b0(lyVar3.f36941d1).f26501t0[0];
+                                ly lyVar3 = this.f33110b.f34092w;
+                                ArrayList arrayList = org.telegram.messenger.si.b0(lyVar3.f36941d1).f26511t0[0];
                                 if (!arrayList.isEmpty()) {
-                                    org.telegram.messenger.np.s1(lyVar3.f36941d1).f25289g7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28078id).commit();
+                                    org.telegram.messenger.np.s1(lyVar3.f36941d1).f25292g7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28078id).commit();
                                     dy dyVar = lyVar3.f37010z0;
                                     if (dyVar != null) {
                                         dyVar.p(1, 2);
@@ -488,7 +488,7 @@ public final class dy extends tj0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.e2 e2Var = this.f33107b.f34105w.Z1;
+                                org.telegram.ui.ActionBar.e2 e2Var = this.f33110b.f34092w.Z1;
                                 if (e2Var instanceof org.telegram.ui.an) {
                                     ((org.telegram.ui.an) e2Var).Ba();
                                     return;

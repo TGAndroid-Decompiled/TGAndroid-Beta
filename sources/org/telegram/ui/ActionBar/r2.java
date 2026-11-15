@@ -78,9 +78,9 @@ public abstract class r2 extends FrameLayout implements z5 {
             ofFloat.addUpdateListener(new p2(this, 1));
             this.h.playTogether(ObjectAnimator.ofFloat(u2Var.f29682b, "translationY", 0.0f), ofFloat);
             this.h.setDuration((int) ((Math.max(0.0f, translationY) / org.telegram.messenger.g0.a1(false, 0.8f)) * 250.0f));
-            this.h.setInterpolator(er.f34420f);
+            this.h.setInterpolator(er.f34419f);
             this.h.addListener(new q2(this, 0));
-            ns.e().k(ns.f25517j1, 512);
+            ns.e().k(ns.f25518j1, 512);
             this.h.start();
             return;
         }
@@ -257,7 +257,7 @@ public abstract class r2 extends FrameLayout implements z5 {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 0.0f);
                         ofFloat.addUpdateListener(new p2(this, 2));
                         ofFloat.addListener(new q2(this, 1));
-                        ofFloat.setInterpolator(er.f34420f);
+                        ofFloat.setInterpolator(er.f34419f);
                         ofFloat.setDuration(220L);
                         ofFloat.start();
                     } else {

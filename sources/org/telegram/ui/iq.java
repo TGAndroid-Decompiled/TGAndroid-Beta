@@ -12,7 +12,7 @@ public final class iq extends org.telegram.ui.Components.h10 {
     @Override
     public final void J0() {
         qq qqVar = this.n1;
-        qqVar.getMessagesController().S(qqVar.getParentActivity(), qqVar.f50738n, qqVar, new w0(this, 27));
+        qqVar.getMessagesController().S(qqVar.getParentActivity(), qqVar.f50737n, qqVar, new w0(this, 27));
     }
 
     @Override

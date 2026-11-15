@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class ky0 implements View.OnClickListener {
-    public final int f48792a;
-    public final Object f48793b;
+    public final int f48788a;
+    public final Object f48789b;
 
     public ky0(Object obj, int i7) {
-        this.f48792a = i7;
-        this.f48793b = obj;
+        this.f48788a = i7;
+        this.f48789b = obj;
     }
 
     @Override
@@ -21,19 +21,19 @@ public final class ky0 implements View.OnClickListener {
         org.telegram.ui.Cells.q1[] cells;
         org.telegram.ui.Cells.c2 c2Var;
         float f10;
-        switch (this.f48792a) {
+        switch (this.f48788a) {
             case 0:
-                iy0 iy0Var = (iy0) ((di.k4) this.f48793b).f8909e;
+                iy0 iy0Var = (iy0) ((di.k4) this.f48789b).f8910e;
                 if (iy0Var != null) {
                     iy0Var.run();
                     return;
                 }
                 return;
             case 1:
-                ((qy0) this.f48793b).dismiss();
+                ((qy0) this.f48789b).dismiss();
                 return;
             case 2:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f48793b;
+                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f48789b;
                 if (saveToGallerySettingsActivity.d) {
                     LongSparseArray m10 = saveToGallerySettingsActivity.getUserConfig().m(saveToGallerySettingsActivity.f43258a);
                     org.telegram.messenger.ov ovVar = saveToGallerySettingsActivity.f43260c;
@@ -43,13 +43,13 @@ public final class ky0 implements View.OnClickListener {
                 saveToGallerySettingsActivity.finishFragment();
                 return;
             case 3:
-                ((org.telegram.ui.Components.p20) this.f48793b).dismiss();
+                ((org.telegram.ui.Components.p20) this.f48789b).dismiss();
                 return;
             case 4:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f48793b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f48789b;
                 org.telegram.messenger.gj gjVar = secretMediaViewer.f43285g0;
                 if (gjVar != null) {
-                    TLRPC.Message message = gjVar.f23817k;
+                    TLRPC.Message message = gjVar.f23819k;
                     if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
                         hi.l3 l3Var = secretMediaViewer.f43305r;
                         if (l3Var.W) {
@@ -64,7 +64,7 @@ public final class ky0 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                x11 x11Var = (x11) this.f48793b;
+                x11 x11Var = (x11) this.f48789b;
                 if (x11Var.W1 instanceof TLRPC.User) {
                     hi.d dVar = x11Var.d2;
                     if (!dVar.R) {
@@ -76,7 +76,7 @@ public final class ky0 implements View.OnClickListener {
                 }
                 return;
             case 6:
-                SessionsActivity sessionsActivity = ((w21) this.f48793b).f52372f;
+                SessionsActivity sessionsActivity = ((w21) this.f48789b).f52375f;
                 if (sessionsActivity.getParentActivity() != null) {
                     if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                         sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
@@ -87,14 +87,14 @@ public final class ky0 implements View.OnClickListener {
                 }
                 return;
             case 7:
-                d61 d61Var = (d61) this.f48793b;
+                d61 d61Var = (d61) this.f48789b;
                 org.telegram.messenger.gz.H0 = !org.telegram.messenger.gz.H0;
                 SharedPreferences.Editor edit = org.telegram.messenger.np.e1().edit();
                 edit.putBoolean("compactMode", org.telegram.messenger.gz.H0);
                 edit.apply();
                 org.telegram.ui.ActionBar.j6.k(false, false);
-                d61Var.f46317c.setChecked(org.telegram.messenger.gz.H0);
-                org.telegram.ui.Cells.z9 z9Var = d61Var.f46315a;
+                d61Var.f46289c.setChecked(org.telegram.messenger.gz.H0);
+                org.telegram.ui.Cells.z9 z9Var = d61Var.f46287a;
                 for (org.telegram.ui.Cells.q1 q1Var : z9Var.getCells()) {
                     q1Var.getMessageObject().S1 = false;
                     q1Var.H1();
@@ -104,15 +104,15 @@ public final class ky0 implements View.OnClickListener {
                 org.telegram.messenger.ns.e().k(276, new Object[0]);
                 return;
             case 8:
-                ((e81) this.f48793b).c(true);
+                ((e81) this.f48789b).c(true);
                 return;
             case 9:
-                ((e81) ((di.f4) this.f48793b).f8532c).c(true);
+                ((e81) ((di.f4) this.f48789b).f8537c).c(true);
                 return;
             case 10:
-                l81 l81Var = (l81) this.f48793b;
-                ArrayList arrayList = l81Var.f48899f;
-                HashSet hashSet = l81Var.f48904x;
+                l81 l81Var = (l81) this.f48789b;
+                ArrayList arrayList = l81Var.f48895f;
+                HashSet hashSet = l81Var.f48900x;
                 if (!hashSet.isEmpty()) {
                     TLRPC.User a22 = l81Var.getMessagesController().a2(Long.valueOf(l81Var.getUserConfig().e()));
                     ArrayList arrayList2 = new ArrayList();
@@ -131,11 +131,11 @@ public final class ky0 implements View.OnClickListener {
                 }
                 return;
             default:
-                wc1 wc1Var = (wc1) this.f48793b;
-                wc1Var.f52545a.c(!c2Var.b(), true);
-                wc1Var.f52547c.setEnabled(wc1Var.f52545a.b());
-                ViewPropertyAnimator animate = wc1Var.f52547c.animate();
-                if (wc1Var.f52545a.b()) {
+                wc1 wc1Var = (wc1) this.f48789b;
+                wc1Var.f52548a.c(!c2Var.b(), true);
+                wc1Var.f52550c.setEnabled(wc1Var.f52548a.b());
+                ViewPropertyAnimator animate = wc1Var.f52550c.animate();
+                if (wc1Var.f52548a.b()) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.5f;

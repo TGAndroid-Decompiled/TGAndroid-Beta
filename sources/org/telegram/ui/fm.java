@@ -18,12 +18,12 @@ public final class fm extends org.telegram.ui.Components.po0 {
     @Override
     public final void L() {
         int i7;
-        an anVar = this.W2.f49005a;
+        an anVar = this.W2.f49001a;
         Activity parentActivity = anVar.getParentActivity();
         i7 = ((org.telegram.ui.ActionBar.e2) anVar).classGuid;
         org.telegram.messenger.g0.a3(parentActivity, i7);
         super.L();
-        if (anVar.f45118a0.getVisibility() == 0) {
+        if (anVar.f45117a0.getVisibility() == 0) {
             anVar.fragmentView.requestLayout();
         }
     }
@@ -31,25 +31,25 @@ public final class fm extends org.telegram.ui.Components.po0 {
     @Override
     public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         lm lmVar = this.W2;
-        an anVar = lmVar.f49005a;
-        int i10 = an.f45108ld;
+        an anVar = lmVar.f49001a;
+        int i10 = an.f45107ld;
         anVar.h8();
-        if (lmVar.f49005a.N3 != null && z10) {
+        if (lmVar.f49001a.N3 != null && z10) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f28055id != lmVar.f49005a.getUserConfig().e() || !org.telegram.ui.Components.cc.a0(lmVar.f49005a).g0(i7, ((TLRPC.Dialog) hVar.n(0)).f28055id)) {
-                    lmVar.f49005a.N3.k(((TLRPC.Dialog) hVar.n(0)).f28055id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f28055id != lmVar.f49001a.getUserConfig().e() || !org.telegram.ui.Components.cc.a0(lmVar.f49001a).g0(i7, ((TLRPC.Dialog) hVar.n(0)).f28055id)) {
+                    lmVar.f49001a.N3.k(((TLRPC.Dialog) hVar.n(0)).f28055id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            lmVar.f49005a.N3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+            lmVar.f49001a.N3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void S0(final View view) {
         hi.la laVar;
-        an anVar = this.W2.f49005a;
+        an anVar = this.W2.f49001a;
         org.telegram.messenger.bj bjVar = null;
         if (view instanceof org.telegram.ui.Cells.c7) {
             laVar = hi.na.b((org.telegram.ui.Cells.c7) view);

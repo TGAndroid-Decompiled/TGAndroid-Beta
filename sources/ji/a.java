@@ -87,7 +87,7 @@ public final class a implements Runnable {
                                 obj.d = nVar;
                                 obj.f989b = new float[4];
                                 bg0Var2.m0 = obj;
-                                bg0Var2.f45730n0 = nVar;
+                                bg0Var2.f45724n0 = nVar;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
                             tL_message.out = true;
@@ -98,7 +98,7 @@ public final class a implements Runnable {
                             tL_message.entities.addAll(si.b0(chatActivityEnterView.R).W(charSequenceArr, true, true));
                             tL_message.message = charSequenceArr[0].toString();
                             gj gjVar = chatActivityEnterView.B3;
-                            if (gjVar != null && !gjVar.f23836p) {
+                            if (gjVar != null && !gjVar.f23838p) {
                                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                                 gj gjVar2 = chatActivityEnterView.C3;
                                 if (gjVar2 != null) {
@@ -111,14 +111,14 @@ public final class a implements Runnable {
                             }
                             gj gjVar3 = new gj(chatActivityEnterView.R, tL_message, false, false);
                             gj gjVar4 = chatActivityEnterView.B3;
-                            if (gjVar4 != null && !gjVar4.f23836p) {
+                            if (gjVar4 != null && !gjVar4.f23838p) {
                                 gjVar3.C = gjVar4;
                             }
                             gjVar3.B0 = true;
                             gjVar3.W2 = Boolean.TRUE;
                             gjVar3.D = 0;
                             gjVar3.n0(null);
-                            gjVar3.f23865w1 = true;
+                            gjVar3.f23867w1 = true;
                             chatActivityEnterView.M0.r(k5.j(gjVar3));
                             yc ycVar = new yc(chatActivityEnterView, zArr, fVar, trim);
                             chatActivityEnterView.M0.s(heVar, true, new e0(ycVar, 6));

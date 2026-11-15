@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class ka implements Runnable {
-    public final int f24668a = 0;
-    public final int f24669b;
-    public final int f24670c;
+    public final int f24671a = 0;
+    public final int f24672b;
+    public final int f24673c;
     public final Object d;
-    public final Object f24671e;
-    public final Object f24672f;
+    public final Object f24674e;
+    public final Object f24675f;
     public final Object h;
-    public final Object f24673n;
+    public final Object f24676n;
 
     public ka(na naVar, int[] iArr, ma maVar, TLRPC.messages_Messages messages_messages, ArrayList arrayList, int i7, int i10) {
         this.d = naVar;
-        this.f24671e = iArr;
-        this.f24672f = maVar;
+        this.f24674e = iArr;
+        this.f24675f = maVar;
         this.h = messages_messages;
-        this.f24673n = arrayList;
-        this.f24669b = i7;
-        this.f24670c = i10;
+        this.f24676n = arrayList;
+        this.f24672b = i7;
+        this.f24673c = i10;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        int i7 = this.f24668a;
-        int i10 = this.f24669b;
-        Object obj = this.f24673n;
-        int i11 = this.f24670c;
+        int i7 = this.f24671a;
+        int i10 = this.f24672b;
+        Object obj = this.f24676n;
+        int i11 = this.f24673c;
         Object obj2 = this.h;
-        Object obj3 = this.f24672f;
-        Object obj4 = this.f24671e;
+        Object obj3 = this.f24675f;
+        Object obj4 = this.f24674e;
         Object obj5 = this.d;
         int i12 = 2;
         switch (i7) {
@@ -40,14 +40,14 @@ public final class ka implements Runnable {
                 ma maVar = (ma) obj3;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                int i13 = ((na) obj5).f25176a;
+                int i13 = ((na) obj5).f25179a;
                 int i14 = ((int[]) obj4)[0];
                 int i15 = maVar.d;
-                HashMap hashMap = maVar.f24998b;
+                HashMap hashMap = maVar.f25004b;
                 if (i14 == i15) {
                     maVar.d = -1;
-                    maVar.f25001f = false;
-                    maVar.f25002g = messages_messages.next_rate;
+                    maVar.f25007f = false;
+                    maVar.f25008g = messages_messages.next_rate;
                     int size = arrayList.size();
                     int i16 = 0;
                     while (i16 < size) {
@@ -55,16 +55,16 @@ public final class ka implements Runnable {
                         i16++;
                         gj gjVar = (gj) obj6;
                         int i17 = i12;
-                        la laVar = new la(gjVar.f23817k);
+                        la laVar = new la(gjVar.f23819k);
                         Integer num = (Integer) hashMap.get(laVar);
                         if (num == null) {
-                            int i18 = maVar.f25004j;
-                            maVar.f25004j = i18 - 1;
+                            int i18 = maVar.f25010j;
+                            maVar.f25010j = i18 - 1;
                             num = Integer.valueOf(i18);
                             hashMap.put(laVar, num);
-                            maVar.f24997a.add(gjVar);
+                            maVar.f25003a.add(gjVar);
                         }
-                        TLRPC.Message message = gjVar.f23817k;
+                        TLRPC.Message message = gjVar.f23819k;
                         message.realId = message.f28072id;
                         message.f28072id = num.intValue();
                         i12 = i17;
@@ -73,7 +73,7 @@ public final class ka implements Runnable {
                     if (!messages_messages.messages.isEmpty()) {
                         TLRPC.Message message2 = (TLRPC.Message) i5.c.h(1, messages_messages.messages);
                         maVar.h = message2.realId;
-                        maVar.f25003i = message2.peer_id;
+                        maVar.f25009i = message2.peer_id;
                     }
                     vr.a0(i13).m1(messages_messages.users, messages_messages.chats, true, true);
                     np.s1(i13).Y3(messages_messages.users, false);
@@ -83,8 +83,8 @@ public final class ka implements Runnable {
                     } else {
                         z10 = false;
                     }
-                    maVar.f25008n = z10;
-                    maVar.f25007m = Math.max(messages_messages.count, messages_messages.messages.size());
+                    maVar.f25014n = z10;
+                    maVar.f25013m = Math.max(messages_messages.count, messages_messages.messages.size());
                     ns f10 = ns.f(i13);
                     Integer valueOf = Integer.valueOf(arrayList.size());
                     Integer valueOf2 = Integer.valueOf(i19);
@@ -109,10 +109,10 @@ public final class ka implements Runnable {
                     f10.k(14, objArr);
                     ns f11 = ns.f(i13);
                     Integer valueOf5 = Integer.valueOf(i10);
-                    Integer valueOf6 = Integer.valueOf(maVar.f25007m);
-                    Boolean valueOf7 = Boolean.valueOf(maVar.f25008n);
+                    Integer valueOf6 = Integer.valueOf(maVar.f25013m);
+                    Boolean valueOf7 = Boolean.valueOf(maVar.f25014n);
                     Integer valueOf8 = Integer.valueOf(maVar.b());
-                    Integer valueOf9 = Integer.valueOf(maVar.f25006l);
+                    Integer valueOf9 = Integer.valueOf(maVar.f25012l);
                     Object[] objArr2 = new Object[6];
                     objArr2[0] = valueOf5;
                     objArr2[1] = valueOf6;
@@ -136,7 +136,7 @@ public final class ka implements Runnable {
                     zArr[0] = true;
                     siVar.g1(stickerSet.f28078id, false);
                     stickerSet.archived = false;
-                    int i20 = this.f24669b;
+                    int i20 = this.f24672b;
                     arrayListArr[i20].add(i11, tL_messages_stickerSet);
                     siVar.J.k(tL_messages_stickerSet, stickerSet.f28078id);
                     siVar.K.k(tL_messages_stickerSet, stickerSet.f28078id);
@@ -180,21 +180,21 @@ public final class ka implements Runnable {
 
     public ka(si siVar, boolean[] zArr, TLRPC.StickerSet stickerSet, int i7, int i10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, Runnable runnable) {
         this.d = siVar;
-        this.f24671e = zArr;
-        this.f24672f = stickerSet;
-        this.f24669b = i7;
-        this.f24670c = i10;
+        this.f24674e = zArr;
+        this.f24675f = stickerSet;
+        this.f24672b = i7;
+        this.f24673c = i10;
         this.h = tL_messages_stickerSet;
-        this.f24673n = runnable;
+        this.f24676n = runnable;
     }
 
     public ka(p4.c1 c1Var, p4.v vVar, p4.i1 i1Var, p4.d0 d0Var, int i7, int i10, p4.a1 a1Var) {
         this.d = c1Var;
-        this.f24671e = vVar;
-        this.f24672f = i1Var;
+        this.f24674e = vVar;
+        this.f24675f = i1Var;
         this.h = d0Var;
-        this.f24669b = i7;
-        this.f24670c = i10;
-        this.f24673n = a1Var;
+        this.f24672b = i7;
+        this.f24673c = i10;
+        this.f24676n = a1Var;
     }
 }

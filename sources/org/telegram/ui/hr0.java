@@ -9,10 +9,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class hr0 implements org.telegram.ui.Components.mx {
-    public final nr0 f47816a;
+    public final nr0 f47806a;
 
     public hr0(nr0 nr0Var) {
-        this.f47816a = nr0Var;
+        this.f47806a = nr0Var;
     }
 
     @Override
@@ -53,9 +53,9 @@ public final class hr0 implements org.telegram.ui.Components.mx {
         } else {
             z10 = false;
         }
-        nr0 nr0Var = this.f47816a;
+        nr0 nr0Var = this.f47806a;
         nr0Var.C0 = z10;
-        nr0Var.f49621e.requestLayout();
+        nr0Var.f49611e.requestLayout();
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class hr0 implements org.telegram.ui.Components.mx {
 
     @Override
     public final boolean k() {
-        EditTextBoldCursor editField = this.f47816a.f49619c0.getEditField();
+        EditTextBoldCursor editField = this.f47806a.f49609c0.getEditField();
         if (editField == null) {
             return false;
         }
@@ -75,7 +75,7 @@ public final class hr0 implements org.telegram.ui.Components.mx {
 
     @Override
     public final void l(String str) {
-        EditTextBoldCursor editField = this.f47816a.f49619c0.getEditField();
+        EditTextBoldCursor editField = this.f47806a.f49609c0.getEditField();
         if (editField == null) {
             return;
         }
@@ -96,7 +96,7 @@ public final class hr0 implements org.telegram.ui.Components.mx {
     @Override
     public final void n() {
         org.telegram.ui.ActionBar.e6 e6Var;
-        nr0 nr0Var = this.f47816a;
+        nr0 nr0Var = this.f47806a;
         Activity parentActivity = nr0Var.getParentActivity();
         e6Var = ((org.telegram.ui.ActionBar.e2) nr0Var).resourceProvider;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, parentActivity, e6Var);
@@ -117,8 +117,8 @@ public final class hr0 implements org.telegram.ui.Components.mx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.p5 p5Var;
-        nr0 nr0Var = this.f47816a;
-        EditTextBoldCursor editField = nr0Var.f49619c0.getEditField();
+        nr0 nr0Var = this.f47806a;
+        EditTextBoldCursor editField = nr0Var.f49609c0.getEditField();
         if (editField == null) {
             return;
         }
@@ -145,7 +145,7 @@ public final class hr0 implements org.telegram.ui.Components.mx {
 
     @Override
     public final boolean z() {
-        return this.f47816a.C0;
+        return this.f47806a.C0;
     }
 
     @Override

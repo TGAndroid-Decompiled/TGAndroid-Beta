@@ -101,7 +101,7 @@ public class NotificationImageProvider extends ContentProvider implements is {
                         }
                         while (!file.exists()) {
                             if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
-                                if (r2.f26198a) {
+                                if (r2.f26206a) {
                                     a8.l("Waiting for " + str2 + " to download timed out");
                                 }
                                 if (!TextUtils.isEmpty(queryParameter2)) {

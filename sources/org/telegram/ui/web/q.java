@@ -5,30 +5,30 @@ import org.json.JSONObject;
 import org.telegram.messenger.a8;
 import org.telegram.ui.LaunchActivity;
 public final class q implements Runnable {
-    public final int f52752a;
-    public final v0 f52753b;
+    public final int f52755a;
+    public final v0 f52756b;
 
     public q(v0 v0Var, int i7) {
-        this.f52752a = i7;
-        this.f52753b = v0Var;
+        this.f52755a = i7;
+        this.f52756b = v0Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f52752a) {
+        switch (this.f52755a) {
             case 0:
-                c0 c0Var = this.f52753b.f52815c;
+                c0 c0Var = this.f52756b.f52818c;
                 if (c0Var != null) {
                     c0Var.b();
                 }
                 LaunchActivity.J();
                 return;
             case 1:
-                v0 v0Var = this.f52753b;
+                v0 v0Var = this.f52756b;
                 if (v0Var.T) {
                     v0Var.T = false;
-                    c0 c0Var2 = v0Var.f52815c;
+                    c0 c0Var2 = v0Var.f52818c;
                     if (c0Var2 != null) {
                         c0Var2.t(false);
                     }
@@ -37,17 +37,17 @@ public final class q implements Runnable {
                 v0Var.O = false;
                 v0Var.Q = 0L;
                 v0Var.U = false;
-                s0 s0Var = v0Var.f52811a;
+                s0 s0Var = v0Var.f52814a;
                 if (s0Var != null) {
                     s0Var.onResume();
-                    v0Var.f52811a.reload();
+                    v0Var.f52814a.reload();
                     return;
                 }
                 return;
             default:
-                v0 v0Var2 = this.f52753b;
+                v0 v0Var2 = this.f52756b;
                 i7 i7Var = v0Var2.K0;
-                ki.s0 s0Var2 = v0Var2.f52827l0;
+                ki.s0 s0Var2 = v0Var2.f52830l0;
                 s0Var2.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {

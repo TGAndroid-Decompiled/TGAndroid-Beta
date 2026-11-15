@@ -346,7 +346,7 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f342b) == null) {
-            this.f342b = (LocationManager) org.telegram.messenger.t0.f26600b.getSystemService("location");
+            this.f342b = (LocationManager) org.telegram.messenger.t0.f26609b.getSystemService("location");
         }
         try {
             ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (pd) this.f343c);

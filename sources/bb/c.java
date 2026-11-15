@@ -5,14 +5,14 @@ public enum c implements qa.b {
     IOS(2),
     WEB(3);
     
-    public final int f3101a;
+    public final int f3104a;
 
     c(int i7) {
-        this.f3101a = i7;
+        this.f3104a = i7;
     }
 
     @Override
     public final int a() {
-        return this.f3101a;
+        return this.f3104a;
     }
 }

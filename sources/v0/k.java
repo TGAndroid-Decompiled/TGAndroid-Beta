@@ -42,8 +42,8 @@ public final class k implements i {
         Bundle bundle = bVar.f58446a;
         x xVar = bVar.f58448c;
         Bundle bundle2 = new Bundle();
-        bundle2.putCharSequence("androidx.credentials.BUNDLE_KEY_USER_ID", (String) xVar.f57596b);
-        CharSequence charSequence = (CharSequence) xVar.f57597c;
+        bundle2.putCharSequence("androidx.credentials.BUNDLE_KEY_USER_ID", (String) xVar.f57597b);
+        CharSequence charSequence = (CharSequence) xVar.f57598c;
         if (!TextUtils.isEmpty(charSequence)) {
             bundle2.putCharSequence("androidx.credentials.BUNDLE_KEY_USER_DISPLAY_NAME", charSequence);
         }

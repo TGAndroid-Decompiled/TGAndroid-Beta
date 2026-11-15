@@ -52,7 +52,7 @@ public final class o1 extends FrameLayout implements z5 {
         q6.U(textView, j6.G6, e6Var);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextSize(1, 16.0f);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             f10 = 40.0f;
         } else {
@@ -70,7 +70,7 @@ public final class o1 extends FrameLayout implements z5 {
         textView2.setEllipsize(truncateAt);
         q6.U(textView2, j6.f29260z6, e6Var);
         textView2.setTextSize(1, 15.0f);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             f12 = 40.0f;
         } else {
@@ -94,7 +94,7 @@ public final class o1 extends FrameLayout implements z5 {
     public final void onDraw(Canvas canvas) {
         int L;
         float f10;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             L = getMeasuredWidth() - org.telegram.messenger.g0.L(65.0f);
         } else {
             L = org.telegram.messenger.g0.L(9.0f);
@@ -112,7 +112,7 @@ public final class o1 extends FrameLayout implements z5 {
             }
             Paint paint = W0;
             float f12 = 78.0f;
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 78.0f;
@@ -120,7 +120,7 @@ public final class o1 extends FrameLayout implements z5 {
             float L2 = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f12 = 0.0f;
             }
             canvas.drawRect(L2, measuredHeight, width - org.telegram.messenger.g0.L(f12), getMeasuredHeight(), paint);
@@ -142,13 +142,13 @@ public final class o1 extends FrameLayout implements z5 {
         Path path = this.f18026f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             measuredWidth = org.telegram.messenger.g0.N(29.66f);
         } else {
             measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.N(24.33f);
         }
         path.moveTo(measuredWidth, measuredHeight - org.telegram.messenger.g0.N(5.66f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = -1;
         } else {
             i11 = 1;

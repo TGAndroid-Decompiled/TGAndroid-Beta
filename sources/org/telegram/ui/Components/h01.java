@@ -15,7 +15,7 @@ public abstract class h01 extends View {
         this.f35140c = e6Var;
         i01 i01Var = new i01(i7, this, e6Var, false);
         this.f35138a = i01Var;
-        i01Var.f35410s = new ro0(this, 19);
+        i01Var.f35401s = new ro0(this, 19);
     }
 
     @Override

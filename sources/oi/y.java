@@ -83,7 +83,7 @@ public final class y implements s9 {
                 return 0;
             default:
                 hk0 hk0Var = (hk0) this.f22130c;
-                return (hk0Var.T - hk0Var.f35285k0) + ((org.telegram.utils.twidget.o1) this.f22129b).f54355b;
+                return (hk0Var.T - hk0Var.f35276k0) + ((org.telegram.utils.twidget.o1) this.f22129b).f54355b;
         }
     }
 

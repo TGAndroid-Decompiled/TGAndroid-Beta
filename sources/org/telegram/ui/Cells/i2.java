@@ -20,7 +20,7 @@ public final class i2 extends FrameLayout {
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
         this.f30428a = j5Var;
         j5Var.setTextSize(16);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -54,7 +54,7 @@ public final class i2 extends FrameLayout {
         int i13 = i11 - i7;
         org.telegram.ui.ActionBar.j5 j5Var = this.f30428a;
         int textHeight = ((i12 - i10) - j5Var.getTextHeight()) / 2;
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         ImageView imageView = this.f30429b;
         if (z11) {
             int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
@@ -73,7 +73,7 @@ public final class i2 extends FrameLayout {
             L = org.telegram.messenger.g0.L(f10);
         }
         j5Var.layout(L, textHeight, j5Var.getMeasuredWidth() + L, j5Var.getMeasuredHeight() + textHeight);
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             measuredWidth = (org.telegram.messenger.g0.L(this.d) - imageView.getMeasuredWidth()) / 2;
         } else {
             measuredWidth = (i13 - imageView.getMeasuredWidth()) - org.telegram.messenger.g0.L(25.0f);

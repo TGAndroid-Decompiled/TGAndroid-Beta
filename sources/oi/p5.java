@@ -30,7 +30,7 @@ public final class p5 implements View.OnClickListener {
                 if (aVar != null && aVar.f21546e) {
                     boolean z10 = !aVar.f21547f;
                     aVar.f21547f = z10;
-                    ((CheckBoxBase) y5Var.f22144e.f3748b).f(-1, z10, true);
+                    ((CheckBoxBase) y5Var.f22144e.f3751b).f(-1, z10, true);
                     v5 v5Var = y5Var.E;
                     if (v5Var != null) {
                         a aVar2 = y5Var.f22151y;

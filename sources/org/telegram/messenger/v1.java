@@ -10,17 +10,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class v1 {
-    public static volatile v1[] f26919f = new v1[4];
-    public static final Object[] f26920g = new Object[4];
-    public final int f26921a;
-    public long f26922b;
-    public t1 f26923c;
+    public static volatile v1[] f26920f = new v1[4];
+    public static final Object[] f26921g = new Object[4];
+    public final int f26922a;
+    public long f26923b;
+    public t1 f26924c;
     public final Set d;
-    public boolean f26924e;
+    public boolean f26925e;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f26920g[i7] = new Object();
+            f26921g[i7] = new Object();
         }
     }
 
@@ -28,9 +28,9 @@ public final class v1 {
         v1 v1Var;
         Exception exc;
         u1 u1Var;
-        this.f26921a = i7;
-        SharedPreferences sharedPreferences = np.s1(i7).f25280f7;
-        this.f26922b = sharedPreferences.getLong("bday_check", 0L);
+        this.f26922a = i7;
+        SharedPreferences sharedPreferences = np.s1(i7).f25283f7;
+        this.f26923b = sharedPreferences.getLong("bday_check", 0L);
         u1 u1Var2 = null;
         String string = sharedPreferences.getString("bday_contacts", null);
         if (string != null) {
@@ -39,7 +39,7 @@ public final class v1 {
                 int readInt32 = serializedData.readInt32(true);
                 if (readInt32 != 290452237) {
                     try {
-                        int i10 = u1.f26770b;
+                        int i10 = u1.f26772b;
                     } catch (Exception e10) {
                         exc = e10;
                         v1Var = this;
@@ -54,14 +54,14 @@ public final class v1 {
                 e = e11;
                 v1Var = this;
             }
-            if (u1Var != null && !u1Var.f26771a.isEmpty()) {
+            if (u1Var != null && !u1Var.f26773a.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < u1Var.f26771a.size(); i11++) {
-                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f26771a.get(i11)).contact_id));
+                for (int i11 = 0; i11 < u1Var.f26773a.size(); i11++) {
+                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f26773a.get(i11)).contact_id));
                 }
                 v1Var = this;
                 try {
-                    vr.a0(i7).f27220a.c(new cg(v1Var, i7, arrayList, u1Var, 2));
+                    vr.a0(i7).f27219a.c(new cg(v1Var, i7, arrayList, u1Var, 2));
                 } catch (Exception e12) {
                     e = e12;
                     exc = e;
@@ -77,13 +77,13 @@ public final class v1 {
 
     public static v1 a(int i7) {
         v1 v1Var;
-        v1 v1Var2 = f26919f[i7];
+        v1 v1Var2 = f26920f[i7];
         if (v1Var2 == null) {
-            synchronized (f26920g[i7]) {
+            synchronized (f26921g[i7]) {
                 try {
-                    v1Var = f26919f[i7];
+                    v1Var = f26920f[i7];
                     if (v1Var == null) {
-                        v1[] v1VarArr = f26919f;
+                        v1[] v1VarArr = f26920f;
                         v1 v1Var3 = new v1(i7);
                         v1VarArr[i7] = v1Var3;
                         v1Var = v1Var3;
@@ -118,19 +118,19 @@ public final class v1 {
     }
 
     public final t1 b() {
-        t1 t1Var = this.f26923c;
-        if (t1Var == null || this.d.contains(t1Var.f26614a)) {
+        t1 t1Var = this.f26924c;
+        if (t1Var == null || this.d.contains(t1Var.f26623a)) {
             return null;
         }
-        return this.f26923c;
+        return this.f26924c;
     }
 
     public final boolean c(long j3) {
-        t1 t1Var = this.f26923c;
+        t1 t1Var = this.f26924c;
         if (t1Var != null && t1Var.a(j3)) {
             return true;
         }
-        TLRPC.UserFull b22 = np.s1(this.f26921a).b2(j3);
+        TLRPC.UserFull b22 = np.s1(this.f26922a).b2(j3);
         if (b22 != null && e(b22.birthday) && !q10.b(b22)) {
             return true;
         }

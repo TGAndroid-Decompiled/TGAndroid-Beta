@@ -6,27 +6,27 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public class o9 {
-    public float f37875a;
-    public float f37876b;
-    public final Path f37877c;
+    public float f37864a;
+    public float f37865b;
+    public final Path f37866c;
     public final Paint d;
-    public final float[] f37878e;
-    public final float[] f37879f;
-    public final float[] f37880g;
+    public final float[] f37867e;
+    public final float[] f37868f;
+    public final float[] f37869g;
     public final float[] h;
-    public final float[] f37881i;
-    public final float[] f37882j;
-    public final float[] f37883k;
-    public final float[] f37884l;
-    public final Random f37885m;
-    public final float f37886n;
-    public final float f37887o;
-    public final float f37888p;
-    public final Matrix f37889q;
-    public final int f37890r;
-    public float f37891s;
-    public float f37892t;
-    public float f37893u;
+    public final float[] f37870i;
+    public final float[] f37871j;
+    public final float[] f37872k;
+    public final float[] f37873l;
+    public final Random f37874m;
+    public final float f37875n;
+    public final float f37876o;
+    public final float f37877p;
+    public final Matrix f37878q;
+    public final int f37879r;
+    public float f37880s;
+    public float f37881t;
+    public float f37882u;
 
     public o9(int i7) {
         this(i7, 512);
@@ -34,16 +34,16 @@ public class o9 {
 
     public final void a(float f10, float f11, Canvas canvas, Paint paint) {
         int i7;
-        if (!org.telegram.messenger.qc.e(this.f37890r)) {
+        if (!org.telegram.messenger.qc.e(this.f37879r)) {
             return;
         }
-        Path path = this.f37877c;
+        Path path = this.f37866c;
         path.reset();
         int i10 = 0;
         while (true) {
-            float f12 = this.f37886n;
+            float f12 = this.f37875n;
             if (i10 < f12) {
-                float[] fArr = this.f37881i;
+                float[] fArr = this.f37870i;
                 float f13 = fArr[i10];
                 int i11 = i10 + 1;
                 if (i11 < f12) {
@@ -52,28 +52,28 @@ public class o9 {
                     i7 = 0;
                 }
                 float f14 = fArr[i7];
-                float[] fArr2 = this.f37878e;
+                float[] fArr2 = this.f37867e;
                 float f15 = 1.0f - f13;
-                float[] fArr3 = this.f37880g;
+                float[] fArr3 = this.f37869g;
                 float f16 = (fArr3[i10] * f13) + (fArr2[i10] * f15);
                 float f17 = 1.0f - f14;
                 float f18 = (fArr3[i7] * f14) + (fArr2[i7] * f17);
-                float[] fArr4 = this.f37879f;
+                float[] fArr4 = this.f37868f;
                 float f19 = fArr4[i10] * f15;
                 float[] fArr5 = this.h;
                 float f20 = (fArr5[i7] * f14) + (fArr4[i7] * f17);
-                float max = (((Math.max(f16, f18) - Math.min(f16, f18)) / 2.0f) + Math.min(f16, f18)) * this.f37887o * this.f37888p;
-                Matrix matrix = this.f37889q;
+                float max = (((Math.max(f16, f18) - Math.min(f16, f18)) / 2.0f) + Math.min(f16, f18)) * this.f37876o * this.f37877p;
+                Matrix matrix = this.f37878q;
                 matrix.reset();
                 matrix.setRotate((fArr5[i10] * f13) + f19, f10, f11);
-                float[] fArr6 = this.f37883k;
+                float[] fArr6 = this.f37872k;
                 fArr6[0] = f10;
                 float f21 = f11 - f16;
                 fArr6[1] = f21;
                 fArr6[2] = f10 + max;
                 fArr6[3] = f21;
                 matrix.mapPoints(fArr6);
-                float[] fArr7 = this.f37884l;
+                float[] fArr7 = this.f37873l;
                 fArr7[0] = f10;
                 float f22 = f11 - f18;
                 fArr7[1] = f22;
@@ -97,62 +97,62 @@ public class o9 {
     }
 
     public final void b() {
-        for (int i7 = 0; i7 < this.f37886n; i7++) {
-            c(this.f37878e, this.f37879f, i7);
-            c(this.f37880g, this.h, i7);
-            this.f37881i[i7] = 0.0f;
+        for (int i7 = 0; i7 < this.f37875n; i7++) {
+            c(this.f37867e, this.f37868f, i7);
+            c(this.f37869g, this.h, i7);
+            this.f37870i[i7] = 0.0f;
         }
     }
 
     public final void c(float[] fArr, float[] fArr2, int i7) {
-        float f10 = this.f37886n;
-        float f11 = this.f37876b;
-        float f12 = this.f37875a;
-        Random random = this.f37885m;
+        float f10 = this.f37875n;
+        float f11 = this.f37865b;
+        float f12 = this.f37864a;
+        Random random = this.f37874m;
         fArr[i7] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f11 - f12)) + f12;
         fArr2[i7] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f10) * 0.05f) + ((360.0f / f10) * i7);
-        this.f37882j[i7] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+        this.f37871j[i7] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
     }
 
     public final void d(boolean z10, float f10) {
-        this.f37891s = f10;
-        if (!org.telegram.messenger.qc.e(this.f37890r)) {
+        this.f37880s = f10;
+        if (!org.telegram.messenger.qc.e(this.f37879r)) {
             return;
         }
         if (z10) {
-            float f11 = this.f37891s;
-            float f12 = this.f37892t;
+            float f11 = this.f37880s;
+            float f12 = this.f37881t;
             if (f11 > f12) {
-                this.f37893u = (f11 - f12) / 205.0f;
+                this.f37882u = (f11 - f12) / 205.0f;
                 return;
             } else {
-                this.f37893u = (f11 - f12) / 275.0f;
+                this.f37882u = (f11 - f12) / 275.0f;
                 return;
             }
         }
-        float f13 = this.f37891s;
-        float f14 = this.f37892t;
+        float f13 = this.f37880s;
+        float f14 = this.f37881t;
         if (f13 > f14) {
-            this.f37893u = (f13 - f14) / 320.0f;
+            this.f37882u = (f13 - f14) / 320.0f;
         } else {
-            this.f37893u = (f13 - f14) / 375.0f;
+            this.f37882u = (f13 - f14) / 375.0f;
         }
     }
 
     public final void e(float f10, float f11) {
-        if (org.telegram.messenger.qc.e(this.f37890r)) {
-            for (int i7 = 0; i7 < this.f37886n; i7++) {
-                float[] fArr = this.f37881i;
+        if (org.telegram.messenger.qc.e(this.f37879r)) {
+            for (int i7 = 0; i7 < this.f37875n; i7++) {
+                float[] fArr = this.f37870i;
                 float f12 = fArr[i7];
-                float f13 = this.f37882j[i7];
+                float f13 = this.f37871j[i7];
                 float f14 = (f13 * f10 * 8.2f * f11) + (0.8f * f13) + f12;
                 fArr[i7] = f14;
                 if (f14 >= 1.0f) {
                     fArr[i7] = 0.0f;
-                    float[] fArr2 = this.f37880g;
-                    this.f37878e[i7] = fArr2[i7];
+                    float[] fArr2 = this.f37869g;
+                    this.f37867e[i7] = fArr2[i7];
                     float[] fArr3 = this.h;
-                    this.f37879f[i7] = fArr3[i7];
+                    this.f37868f[i7] = fArr3[i7];
                     c(fArr2, fArr3, i7);
                 }
             }
@@ -160,44 +160,44 @@ public class o9 {
     }
 
     public final void f(long j3) {
-        float f10 = this.f37891s;
-        float f11 = this.f37892t;
+        float f10 = this.f37880s;
+        float f11 = this.f37881t;
         if (f10 != f11) {
-            float f12 = this.f37893u;
+            float f12 = this.f37882u;
             float f13 = (((float) j3) * f12) + f11;
-            this.f37892t = f13;
+            this.f37881t = f13;
             if (f12 > 0.0f) {
                 if (f13 > f10) {
-                    this.f37892t = f10;
+                    this.f37881t = f10;
                 }
             } else if (f13 < f10) {
-                this.f37892t = f10;
+                this.f37881t = f10;
             }
         }
     }
 
     public o9(int i7, int i10) {
         float f10;
-        this.f37877c = new Path();
+        this.f37866c = new Path();
         this.d = new Paint(1);
-        this.f37883k = new float[4];
-        this.f37884l = new float[4];
-        this.f37885m = new Random();
-        this.f37888p = 1.0f;
-        this.f37889q = new Matrix();
-        this.f37886n = i7;
-        this.f37887o = (float) (Math.tan(3.141592653589793d / (f10 * 2.0f)) * 1.3333333333333333d);
-        this.f37878e = new float[i7];
-        this.f37879f = new float[i7];
-        this.f37880g = new float[i7];
+        this.f37872k = new float[4];
+        this.f37873l = new float[4];
+        this.f37874m = new Random();
+        this.f37877p = 1.0f;
+        this.f37878q = new Matrix();
+        this.f37875n = i7;
+        this.f37876o = (float) (Math.tan(3.141592653589793d / (f10 * 2.0f)) * 1.3333333333333333d);
+        this.f37867e = new float[i7];
+        this.f37868f = new float[i7];
+        this.f37869g = new float[i7];
         this.h = new float[i7];
-        this.f37881i = new float[i7];
-        this.f37882j = new float[i7];
-        for (int i11 = 0; i11 < this.f37886n; i11++) {
-            c(this.f37878e, this.f37879f, i11);
-            c(this.f37880g, this.h, i11);
-            this.f37881i[i11] = 0.0f;
+        this.f37870i = new float[i7];
+        this.f37871j = new float[i7];
+        for (int i11 = 0; i11 < this.f37875n; i11++) {
+            c(this.f37867e, this.f37868f, i11);
+            c(this.f37869g, this.h, i11);
+            this.f37870i[i11] = 0.0f;
         }
-        this.f37890r = i10;
+        this.f37879r = i10;
     }
 }

@@ -52,8 +52,8 @@ public abstract class q {
             if (!TextUtils.isEmpty(str)) {
                 if (str.length() <= 524288) {
                     com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-                    b10.f6071c = new b0(e0Var, str2, str, 1);
-                    b10.f6069a = 8405;
+                    b10.f6074c = new b0(e0Var, str2, str, 1);
+                    b10.f6072a = 8405;
                     e0Var.e(1, b10.a()).addOnFailureListener(new va(mVar, j3, 4));
                     return;
                 }

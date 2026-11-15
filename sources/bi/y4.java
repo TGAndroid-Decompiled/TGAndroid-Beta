@@ -8,20 +8,20 @@ import org.telegram.messenger.y10;
 import org.telegram.ui.Components.b41;
 import org.telegram.ui.Components.u41;
 public final class y4 extends u41 {
-    public final int f4013n3;
+    public final int f4016n3;
 
     public y4(Context context, int i7, int i10, boolean z10, s10 s10Var, x10 x10Var, y10 y10Var, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
         super(context, i7, i10, z10, s10Var, x10Var, y10Var, e6Var);
-        this.f4013n3 = i11;
+        this.f4016n3 = i11;
     }
 
     @Override
     public Integer V0(int i7) {
-        switch (this.f4013n3) {
+        switch (this.f4016n3) {
             case 0:
                 return 0;
             case 7:
-                b41 G = this.f39895g3.G(i7);
+                b41 G = this.f39892g3.G(i7);
                 if (G != null && G.d == 2) {
                     return 0;
                 }
@@ -33,24 +33,24 @@ public final class y4 extends u41 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f4013n3) {
+        switch (this.f4016n3) {
             case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 3:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 5:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 6:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23609q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f23611q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -60,7 +60,7 @@ public final class y4 extends u41 {
 
     @Override
     public boolean u1(View view) {
-        switch (this.f4013n3) {
+        switch (this.f4016n3) {
             case 8:
                 if (view instanceof org.telegram.ui.Wallet.v3) {
                     org.telegram.ui.Wallet.v3 v3Var = (org.telegram.ui.Wallet.v3) view;
@@ -76,11 +76,11 @@ public final class y4 extends u41 {
 
     public y4(Context context, int i7, int i10, boolean z10, s10 s10Var, x10 x10Var, y10 y10Var, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12) {
         super(context, i7, i10, z10, s10Var, x10Var, y10Var, e6Var, i11, i12);
-        this.f4013n3 = 8;
+        this.f4016n3 = 8;
     }
 
     public y4(org.telegram.ui.ActionBar.e2 e2Var, s10 s10Var, x10 x10Var, y10 y10Var, int i7) {
         super(e2Var, s10Var, x10Var, y10Var);
-        this.f4013n3 = i7;
+        this.f4016n3 = i7;
     }
 }

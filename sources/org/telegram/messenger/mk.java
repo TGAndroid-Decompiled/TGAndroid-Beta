@@ -6,28 +6,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class mk implements RequestDelegate {
-    public final int f25048a;
-    public final np f25049b;
-    public final int f25050c;
+    public final int f25054a;
+    public final np f25055b;
+    public final int f25056c;
     public final long d;
-    public final long f25051e;
+    public final long f25057e;
 
     public mk(int i7, long j3, long j10, np npVar) {
-        this.f25048a = 0;
-        this.f25049b = npVar;
+        this.f25054a = 0;
+        this.f25055b = npVar;
         this.d = j3;
-        this.f25050c = i7;
-        this.f25051e = j10;
+        this.f25056c = i7;
+        this.f25057e = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.Chat chat;
-        switch (this.f25048a) {
+        switch (this.f25054a) {
             case 0:
-                np npVar = this.f25049b;
+                np npVar = this.f25055b;
                 long j3 = this.d;
-                long j10 = this.f25051e;
+                long j10 = this.f25057e;
                 if (tLObject != null) {
                     TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) tLObject;
                     a0.h hVar = new a0.h();
@@ -62,11 +62,11 @@ public final class mk implements RequestDelegate {
                     }
                     npVar.getMessagesStorage().m1(updates_channeldifference.users, updates_channeldifference.chats, true, true);
                     g0.h3(new fi(16, npVar, updates_channeldifference));
-                    npVar.getMessagesStorage().f27220a.c(new ok(npVar, arrayList, j3, updates_channeldifference, chat2, hVar, this.f25050c, j10));
+                    npVar.getMessagesStorage().f27219a.c(new ok(npVar, arrayList, j3, updates_channeldifference, chat2, hVar, this.f25056c, j10));
                     return;
                 } else if (tL_error != null) {
                     g0.h3(new wl(npVar, tL_error, j3, 0));
-                    npVar.f25226a1.e(j3);
+                    npVar.f25229a1.e(j3);
                     if (j10 != 0) {
                         npVar.getMessagesStorage().q1(j10);
                         return;
@@ -76,19 +76,19 @@ public final class mk implements RequestDelegate {
                     return;
                 }
             case 1:
-                g0.h3(new tk(this.f25049b, this.f25050c, this.d, this.f25051e, 0));
+                g0.h3(new tk(this.f25055b, this.f25056c, this.d, this.f25057e, 0));
                 return;
             default:
-                g0.h3(new tk(this.f25049b, this.f25050c, this.d, this.f25051e, 2));
+                g0.h3(new tk(this.f25055b, this.f25056c, this.d, this.f25057e, 2));
                 return;
         }
     }
 
     public mk(np npVar, int i7, long j3, long j10, int i10) {
-        this.f25048a = i10;
-        this.f25049b = npVar;
-        this.f25050c = i7;
+        this.f25054a = i10;
+        this.f25055b = npVar;
+        this.f25056c = i7;
         this.d = j3;
-        this.f25051e = j10;
+        this.f25057e = j10;
     }
 }

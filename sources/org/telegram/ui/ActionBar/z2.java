@@ -78,7 +78,7 @@ public final class z2 {
         this.f29926p = org.telegram.messenger.g0.B(i7) < 0.721f;
         org.telegram.ui.g4 g4Var = b3Var.J;
         if (g4Var != null) {
-            ArrayList arrayList = g4Var.f47320e0;
+            ArrayList arrayList = g4Var.f47310e0;
             if (!arrayList.isEmpty()) {
                 Object h = i5.c.h(1, arrayList);
                 if ((h instanceof TLRPC.WebPage) && ((page = ((TLRPC.WebPage) h).cached_page) == null || page.local == null)) {
@@ -216,7 +216,7 @@ public final class z2 {
         }
         oy0 oy0Var = this.v;
         if (oy0Var != null) {
-            oy0Var.f38116p = (int) ((rectF.width() - org.telegram.messenger.g0.L(100.0f)) - f17);
+            oy0Var.f38114p = (int) ((rectF.width() - org.telegram.messenger.g0.L(100.0f)) - f17);
             f14 = 1.0f;
             oy0Var.c(rectF.left + org.telegram.messenger.g0.L(60.0f) + i10, rectF.centerY(), org.telegram.messenger.k5.A(1.0f, this.f29932w, f11, f12), f23, canvas2);
         } else {
@@ -224,7 +224,7 @@ public final class z2 {
         }
         float width = rectF.width() - org.telegram.messenger.g0.L(100.0f);
         oy0 oy0Var2 = this.f29931u;
-        oy0Var2.f38116p = (int) (width - f15);
+        oy0Var2.f38114p = (int) (width - f15);
         float L5 = i10 + rectF.left + org.telegram.messenger.g0.L(60.0f);
         float centerY = rectF.centerY();
         if (this.v == null) {

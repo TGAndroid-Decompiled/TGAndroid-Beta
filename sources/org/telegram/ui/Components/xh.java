@@ -15,18 +15,18 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 public final class xh extends st0 {
-    public int f41695g0;
-    public final RectF f41696h0;
-    public boolean f41697i0;
-    public float f41698j0;
-    public final wh f41699k0;
-    public final ki f41700l0;
+    public int f41687g0;
+    public final RectF f41688h0;
+    public boolean f41689i0;
+    public float f41690j0;
+    public final wh f41691k0;
+    public final ki f41692l0;
 
     public xh(ki kiVar, Context context) {
         super(context, null);
-        this.f41700l0 = kiVar;
-        this.f41696h0 = new RectF();
-        this.f41699k0 = new wh(this, this);
+        this.f41692l0 = kiVar;
+        this.f41688h0 = new RectF();
+        this.f41691k0 = new wh(this, this);
     }
 
     @Override
@@ -46,15 +46,15 @@ public final class xh extends st0 {
         int i7;
         ci ciVar;
         canvas.save();
-        ki kiVar = this.f41700l0;
-        ci ciVar2 = kiVar.f36509w2;
-        im imVar = kiVar.f36467l2;
-        if ((ciVar2 == imVar || (ciVar = kiVar.f36513x2) == imVar || (ciVar2 == kiVar.f36447e2 && ciVar == null)) && ciVar2 != null) {
+        ki kiVar = this.f41692l0;
+        ci ciVar2 = kiVar.f36497w2;
+        im imVar = kiVar.f36455l2;
+        if ((ciVar2 == imVar || (ciVar = kiVar.f36501x2) == imVar || (ciVar2 == kiVar.f36435e2 && ciVar == null)) && ciVar2 != null) {
             canvas.save();
-            float f17 = kiVar.f36463j4;
-            boolean z10 = kiVar.f36439b2;
-            ai.j0 j0Var = kiVar.M2;
-            kh khVar = kiVar.f36454g3;
+            float f17 = kiVar.f36451j4;
+            boolean z10 = kiVar.f36427b2;
+            ai.k0 k0Var = kiVar.M2;
+            kh khVar = kiVar.f36442g3;
             canvas.translate(0.0f, f17);
             int alpha2 = (int) (ciVar2.getAlpha() * 255.0f);
             int j3 = ciVar2.j();
@@ -65,14 +65,14 @@ public final class xh extends st0 {
                 f10 = 0.0f;
             }
             int L4 = L3 + ((int) (f10 * org.telegram.messenger.g0.L(26.0f)));
-            if (j0Var != null) {
-                f11 = j0Var.getAlpha() * j0Var.getMeasuredHeight();
+            if (k0Var != null) {
+                f11 = k0Var.getAlpha() * k0Var.getMeasuredHeight();
             } else {
                 f11 = 0.0f;
             }
             int i10 = L4 + ((int) f11);
             int c12 = (kiVar.c1(0) - kiVar.f29716t0) - i10;
-            if (kiVar.B0 == 1 || kiVar.f36490r3 != null) {
+            if (kiVar.B0 == 1 || kiVar.f36478r3 != null) {
                 c12 = (int) (ciVar2.getTranslationY() + c12);
             }
             int L5 = org.telegram.messenger.g0.L(20.0f) + c12;
@@ -93,44 +93,44 @@ public final class xh extends st0 {
             } else {
                 float f18 = i10;
                 f12 = 1.0f;
-                if (ciVar2 == kiVar.f36462j2) {
+                if (ciVar2 == kiVar.f36450j2) {
                     L = org.telegram.messenger.g0.L(11.0f);
                 } else {
-                    if (ciVar2 == kiVar.f36456h2) {
+                    if (ciVar2 == kiVar.f36444h2) {
                         L2 = org.telegram.messenger.g0.L(3.0f);
-                    } else if (ciVar2 == kiVar.f36459i2) {
+                    } else if (ciVar2 == kiVar.f36447i2) {
                         L2 = org.telegram.messenger.g0.L(3.0f);
                     } else {
                         L = org.telegram.messenger.g0.L(4.0f);
                     }
                     f13 = f18 - L2;
                     float alpha3 = kiVar.V2.getAlpha();
-                    int i12 = (int) (((i11 - f13) + org.telegram.messenger.g0.f23603m) * alpha3);
+                    int i12 = (int) (((i11 - f13) + org.telegram.messenger.g0.f23605m) * alpha3);
                     c12 -= i12;
                     L5 -= i12;
                     f14 = 1.0f - alpha3;
                 }
                 f13 = f18 + L;
                 float alpha32 = kiVar.V2.getAlpha();
-                int i122 = (int) (((i11 - f13) + org.telegram.messenger.g0.f23603m) * alpha32);
+                int i122 = (int) (((i11 - f13) + org.telegram.messenger.g0.f23605m) * alpha32);
                 c12 -= i122;
                 L5 -= i122;
                 f14 = 1.0f - alpha32;
             }
             if (!z10) {
-                int i13 = org.telegram.messenger.g0.f23603m;
+                int i13 = org.telegram.messenger.g0.f23605m;
                 c12 += i13;
                 L5 += i13;
             }
-            if (kiVar.f36509w2.h()) {
-                d12 = kiVar.f36509w2.getCustomBackground();
+            if (kiVar.f36497w2.h()) {
+                d12 = kiVar.f36497w2.getCustomBackground();
             } else {
                 d12 = kiVar.d1(true);
             }
             kiVar.f29715s0.setAlpha(alpha2);
             kiVar.f29715s0.setBounds(0, c12, getMeasuredWidth(), org.telegram.messenger.g0.L(45.0f) + getMeasuredHeight() + kiVar.f29716t0);
             kiVar.f29715s0.draw(canvas);
-            RectF rectF = this.f41696h0;
+            RectF rectF = this.f41688h0;
             if (j3 == 2) {
                 org.telegram.ui.ActionBar.j6.f29140t0.setColor(d12);
                 org.telegram.ui.ActionBar.j6.f29140t0.setAlpha(alpha2);
@@ -139,21 +139,21 @@ public final class xh extends st0 {
             } else {
                 f15 = 24.0f;
             }
-            if ((f14 != f12 && j3 != 2) || kiVar.f36509w2.g()) {
+            if ((f14 != f12 && j3 != 2) || kiVar.f36497w2.g()) {
                 Paint paint = org.telegram.ui.ActionBar.j6.f29140t0;
-                if (kiVar.f36509w2.g()) {
-                    d12 = kiVar.f36509w2.getCustomActionBarBackground();
+                if (kiVar.f36497w2.g()) {
+                    d12 = kiVar.f36497w2.getCustomActionBarBackground();
                 }
                 paint.setColor(d12);
                 org.telegram.ui.ActionBar.j6.f29140t0.setAlpha(alpha2);
                 rectF.set(kiVar.f29717u0, kiVar.f29716t0 + c12, getMeasuredWidth() - kiVar.f29717u0, org.telegram.messenger.g0.L(f15) + kiVar.f29716t0 + c12);
             }
-            if (kiVar.f36509w2.g()) {
-                org.telegram.ui.ActionBar.j6.f29140t0.setColor(kiVar.f36509w2.getCustomActionBarBackground());
+            if (kiVar.f36497w2.g()) {
+                org.telegram.ui.ActionBar.j6.f29140t0.setColor(kiVar.f36497w2.getCustomActionBarBackground());
                 org.telegram.ui.ActionBar.j6.f29140t0.setAlpha(alpha2);
                 int c13 = kiVar.c1(0);
                 if (!z10) {
-                    c13 += org.telegram.messenger.g0.f23603m;
+                    c13 += org.telegram.messenger.g0.f23605m;
                 }
                 rectF.set(kiVar.f29717u0, (org.telegram.messenger.g0.L(12.0f) + kiVar.f29716t0 + c12) * f14, getMeasuredWidth() - kiVar.f29717u0, org.telegram.messenger.g0.L(12.0f) + c13);
                 canvas.save();
@@ -166,8 +166,8 @@ public final class xh extends st0 {
                 if (j3 == 2) {
                     w02 = 536870912;
                     f16 = f14;
-                } else if (kiVar.f36509w2.g()) {
-                    int customActionBarBackground = kiVar.f36509w2.getCustomActionBarBackground();
+                } else if (kiVar.f36497w2.g()) {
+                    int customActionBarBackground = kiVar.f36497w2.getCustomActionBarBackground();
                     if (i0.a.h(customActionBarBackground) < 0.5d) {
                         i7 = -1;
                     } else {
@@ -222,15 +222,15 @@ public final class xh extends st0 {
         int w02;
         float alpha;
         ci ciVar;
-        ki kiVar = this.f41700l0;
-        boolean z11 = kiVar.f36439b2;
-        ai.j0 j0Var = kiVar.M2;
-        fh.g gVar = kiVar.f36517y2;
-        kh khVar = kiVar.f36454g3;
+        ki kiVar = this.f41692l0;
+        boolean z11 = kiVar.f36427b2;
+        ai.k0 k0Var = kiVar.M2;
+        fh.g gVar = kiVar.f36505y2;
+        kh khVar = kiVar.f36442g3;
         o7 o7Var = kiVar.V2;
         if ((view instanceof ci) && view.getAlpha() > 0.0f) {
             canvas.save();
-            canvas.translate(0.0f, kiVar.f36463j4);
+            canvas.translate(0.0f, kiVar.f36451j4);
             int alpha2 = (int) (view.getAlpha() * 255.0f);
             ci ciVar2 = (ci) view;
             int j10 = ciVar2.j();
@@ -241,19 +241,19 @@ public final class xh extends st0 {
                 i10 = 0;
             }
             int i12 = L5 + i10;
-            if (j0Var != null) {
-                f14 = j0Var.getAlpha() * j0Var.getMeasuredHeight();
+            if (k0Var != null) {
+                f14 = k0Var.getAlpha() * k0Var.getMeasuredHeight();
             } else {
                 f14 = 0.0f;
             }
             int i13 = i12 + ((int) f14);
-            if (ciVar2 == kiVar.f36509w2) {
+            if (ciVar2 == kiVar.f36497w2) {
                 i11 = 0;
             } else {
                 i11 = 1;
             }
             int c12 = (kiVar.c1(i11) - kiVar.f29716t0) - i13;
-            if (kiVar.B0 == 1 || kiVar.f36490r3 != null) {
+            if (kiVar.B0 == 1 || kiVar.f36478r3 != null) {
                 c12 = (int) (view.getTranslationY() + c12);
             }
             int L6 = org.telegram.messenger.g0.L(20.0f) + c12;
@@ -275,12 +275,12 @@ public final class xh extends st0 {
                 f15 = 0.0f;
                 if (kiVar.f29716t0 + c12 < i14) {
                     float f19 = i13;
-                    if (ciVar2 == kiVar.f36462j2) {
+                    if (ciVar2 == kiVar.f36450j2) {
                         L3 = org.telegram.messenger.g0.L(11.0f);
                     } else {
-                        if (ciVar2 == kiVar.f36456h2) {
+                        if (ciVar2 == kiVar.f36444h2) {
                             L4 = org.telegram.messenger.g0.L(3.0f);
-                        } else if (ciVar2 == kiVar.f36459i2) {
+                        } else if (ciVar2 == kiVar.f36447i2) {
                             L4 = org.telegram.messenger.g0.L(3.0f);
                         } else {
                             L3 = org.telegram.messenger.g0.L(4.0f);
@@ -304,25 +304,25 @@ public final class xh extends st0 {
                 f17 = 1.0f;
             }
             if (!z11) {
-                int i16 = org.telegram.messenger.g0.f23603m;
+                int i16 = org.telegram.messenger.g0.f23605m;
                 c12 += i16;
                 L6 += i16;
                 L7 -= i16;
             }
             int i17 = L7;
-            if (kiVar.f36509w2.h()) {
-                d12 = kiVar.f36509w2.getCustomBackground();
+            if (kiVar.f36497w2.h()) {
+                d12 = kiVar.f36497w2.getCustomBackground();
             } else {
                 d12 = kiVar.d1(true);
             }
-            ci ciVar3 = kiVar.f36509w2;
-            im imVar = kiVar.f36467l2;
-            if (ciVar3 != imVar && (ciVar = kiVar.f36513x2) != imVar && (ciVar3 != kiVar.f36447e2 || ciVar != null)) {
+            ci ciVar3 = kiVar.f36497w2;
+            im imVar = kiVar.f36455l2;
+            if (ciVar3 != imVar && (ciVar = kiVar.f36501x2) != imVar && (ciVar3 != kiVar.f36435e2 || ciVar != null)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            RectF rectF = this.f41696h0;
+            RectF rectF = this.f41688h0;
             if (z10) {
                 kiVar.f29715s0.setAlpha(alpha2);
                 f18 = 24.0f;
@@ -337,7 +337,7 @@ public final class xh extends st0 {
                 f18 = 24.0f;
             }
             ciVar2.F(((kiVar.f29716t0 + c12) - view.getTop()) - view.getTranslationY(), f17);
-            if (view != kiVar.f36450f2 && view != kiVar.f36474n2 && view != kiVar.f36453g2) {
+            if (view != kiVar.f36438f2 && view != kiVar.f36462n2 && view != kiVar.f36441g2) {
                 canvas.save();
                 drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
@@ -382,7 +382,7 @@ public final class xh extends st0 {
             }
             canvas.save();
             float x10 = o7Var.getX();
-            ci ciVar4 = kiVar.f36509w2;
+            ci ciVar4 = kiVar.f36497w2;
             if (ciVar4 != null) {
                 int j11 = ciVar4.j();
                 int L9 = org.telegram.messenger.g0.L(13.0f);
@@ -392,14 +392,14 @@ public final class xh extends st0 {
                     f11 = 0.0f;
                 }
                 int L10 = L9 + ((int) (f11 * org.telegram.messenger.g0.L(26.0f)));
-                if (j0Var != null) {
-                    f12 = j0Var.getAlpha() * j0Var.getMeasuredHeight();
+                if (k0Var != null) {
+                    f12 = k0Var.getAlpha() * k0Var.getMeasuredHeight();
                 } else {
                     f12 = 0.0f;
                 }
                 int i18 = L10 + ((int) f12);
                 int c13 = (kiVar.c1(0) - kiVar.f29716t0) - i18;
-                if (kiVar.B0 == 1 || kiVar.f36490r3 != null) {
+                if (kiVar.B0 == 1 || kiVar.f36478r3 != null) {
                     c13 = (int) (ciVar4.getTranslationY() + c13);
                 }
                 int L11 = org.telegram.messenger.g0.L(20.0f) + c13;
@@ -410,24 +410,24 @@ public final class xh extends st0 {
                 }
                 if (j11 != 2 && c13 + kiVar.f29716t0 < i7) {
                     float f20 = i18;
-                    if (ciVar4 == kiVar.f36462j2) {
+                    if (ciVar4 == kiVar.f36450j2) {
                         L = org.telegram.messenger.g0.L(11.0f);
                     } else {
-                        if (ciVar4 == kiVar.f36456h2) {
+                        if (ciVar4 == kiVar.f36444h2) {
                             L2 = org.telegram.messenger.g0.L(3.0f);
-                        } else if (ciVar4 == kiVar.f36459i2) {
+                        } else if (ciVar4 == kiVar.f36447i2) {
                             L2 = org.telegram.messenger.g0.L(3.0f);
                         } else {
                             L = org.telegram.messenger.g0.L(4.0f);
                         }
                         f13 = f20 - L2;
-                        L11 -= (int) (o7Var.getAlpha() * ((i7 - f13) + org.telegram.messenger.g0.f23603m));
+                        L11 -= (int) (o7Var.getAlpha() * ((i7 - f13) + org.telegram.messenger.g0.f23605m));
                     }
                     f13 = f20 + L;
-                    L11 -= (int) (o7Var.getAlpha() * ((i7 - f13) + org.telegram.messenger.g0.f23603m));
+                    L11 -= (int) (o7Var.getAlpha() * ((i7 - f13) + org.telegram.messenger.g0.f23605m));
                 }
                 if (!z11) {
-                    L11 += org.telegram.messenger.g0.f23603m;
+                    L11 += org.telegram.messenger.g0.f23605m;
                 }
                 f10 = L11;
             } else {
@@ -453,10 +453,10 @@ public final class xh extends st0 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        wh whVar = this.f41699k0;
+        wh whVar = this.f41691k0;
         whVar.f28646b = this;
         whVar.c();
-        ki kiVar = this.f41700l0;
+        ki kiVar = this.f41692l0;
         kiVar.C2.setAdjustPanLayoutHelper(whVar);
         kiVar.N2.setAdjustPanLayoutHelper(whVar);
     }
@@ -464,42 +464,42 @@ public final class xh extends st0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41699k0.d();
+        this.f41691k0.d();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        boolean z10 = this.f41700l0.f36439b2;
+        boolean z10 = this.f41692l0.f36427b2;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         float f10;
-        ki kiVar = this.f41700l0;
+        ki kiVar = this.f41692l0;
         int[] iArr = kiVar.Z3;
-        if (kiVar.f36509w2.o(motionEvent)) {
+        if (kiVar.f36497w2.o(motionEvent)) {
             return true;
         }
         if (motionEvent.getAction() == 0) {
             int i7 = 0;
             if (iArr[0] != 0) {
                 float y10 = motionEvent.getY();
-                ai.j0 j0Var = kiVar.M2;
+                ai.k0 k0Var = kiVar.M2;
                 int i10 = iArr[0] - (kiVar.f29716t0 * 2);
                 int L = org.telegram.messenger.g0.L(13.0f);
-                kh khVar = kiVar.f36454g3;
+                kh khVar = kiVar.f36442g3;
                 if (khVar != null) {
                     i7 = org.telegram.messenger.g0.L(khVar.getAlpha() * 26.0f);
                 }
                 int i11 = i10 - (L + i7);
-                if (j0Var != null) {
-                    f10 = j0Var.getAlpha() * j0Var.getMeasuredHeight();
+                if (k0Var != null) {
+                    f10 = k0Var.getAlpha() * k0Var.getMeasuredHeight();
                 } else {
                     f10 = 0.0f;
                 }
                 int L2 = org.telegram.messenger.g0.L(20.0f) + (i11 - ((int) f10));
-                if (!kiVar.f36439b2) {
-                    L2 += org.telegram.messenger.g0.f23603m;
+                if (!kiVar.f36427b2) {
+                    L2 += org.telegram.messenger.g0.f23605m;
                 }
                 if (y10 < L2 && kiVar.V2.getAlpha() == 0.0f) {
                     kiVar.o0();
@@ -527,8 +527,8 @@ public final class xh extends st0 {
         int i13;
         int i14;
         xh xhVar = this;
-        ki kiVar = xhVar.f41700l0;
-        boolean z10 = kiVar.f36439b2;
+        ki kiVar = xhVar.f41692l0;
+        boolean z10 = kiVar.f36427b2;
         org.telegram.ui.ActionBar.q0 q0Var = kiVar.Y2;
         if (xhVar.getLayoutParams().height > 0) {
             size = xhVar.getLayoutParams().height;
@@ -536,30 +536,30 @@ public final class xh extends st0 {
             size = View.MeasureSpec.getSize(i10);
         }
         if (!z10) {
-            xhVar.f41697i0 = true;
+            xhVar.f41689i0 = true;
             int i15 = kiVar.f29717u0;
             xhVar.setPadding(i15, 0, i15, 0);
-            xhVar.f41697i0 = false;
+            xhVar.f41689i0 = false;
         }
         int size2 = View.MeasureSpec.getSize(i7) - (kiVar.f29717u0 * 2);
         if (org.telegram.messenger.g0.Q1()) {
             q0Var.setAdditionalYOffset(-org.telegram.messenger.g0.L(3.0f));
         } else {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             if (point.x > point.y) {
                 q0Var.setAdditionalYOffset(0);
             } else {
                 q0Var.setAdditionalYOffset(-org.telegram.messenger.g0.L(3.0f));
             }
         }
-        ((FrameLayout.LayoutParams) kiVar.f36445d3.getLayoutParams()).height = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        xhVar.f41697i0 = true;
-        int min = (int) (size2 / Math.min(4.5f, kiVar.f36518y3.b()));
+        ((FrameLayout.LayoutParams) kiVar.f36433d3.getLayoutParams()).height = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        xhVar.f41689i0 = true;
+        int min = (int) (size2 / Math.min(4.5f, kiVar.f36506y3.b()));
         if (kiVar.W3 != min) {
             kiVar.W3 = min;
             org.telegram.messenger.g0.h3(new dg(xhVar, 24));
         }
-        xhVar.f41697i0 = false;
+        xhVar.f41689i0 = false;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
         int size3 = View.MeasureSpec.getSize(i7);
         int size4 = View.MeasureSpec.getSize(makeMeasureSpec);
@@ -568,41 +568,41 @@ public final class xh extends st0 {
         ph phVar = kiVar.N2;
         nh nhVar = kiVar.C2;
         int i17 = size3 - (i16 * 2);
-        if (!nhVar.O && org.telegram.messenger.g0.L(20.0f) >= 0 && !nhVar.f39059e && !nhVar.P) {
-            xhVar.f41697i0 = true;
+        if (!nhVar.O && org.telegram.messenger.g0.L(20.0f) >= 0 && !nhVar.f39056e && !nhVar.P) {
+            xhVar.f41689i0 = true;
             nhVar.j();
-            xhVar.f41697i0 = false;
+            xhVar.f41689i0 = false;
         }
-        if (!phVar.O && org.telegram.messenger.g0.L(20.0f) >= 0 && !phVar.f39059e && !phVar.P) {
-            xhVar.f41697i0 = true;
+        if (!phVar.O && org.telegram.messenger.g0.L(20.0f) >= 0 && !phVar.f39056e && !phVar.P) {
+            xhVar.f41689i0 = true;
             phVar.j();
-            xhVar.f41697i0 = false;
+            xhVar.f41689i0 = false;
         }
-        if (kiVar.f36456h2 != null && org.telegram.messenger.g0.L(20.0f) >= 0) {
-            jn jnVar3 = kiVar.f36456h2;
-            if (!jnVar3.H && !jnVar3.f36075b1 && !jnVar3.f36085g1 && !jnVar3.f36089i1) {
-                xhVar.f41697i0 = true;
+        if (kiVar.f36444h2 != null && org.telegram.messenger.g0.L(20.0f) >= 0) {
+            jn jnVar3 = kiVar.f36444h2;
+            if (!jnVar3.H && !jnVar3.f36065b1 && !jnVar3.f36075g1 && !jnVar3.f36079i1) {
+                xhVar.f41689i0 = true;
                 jnVar3.f0();
-                xhVar.f41697i0 = false;
+                xhVar.f41689i0 = false;
             }
         }
-        if (kiVar.f36459i2 != null && org.telegram.messenger.g0.L(20.0f) >= 0) {
-            jn jnVar4 = kiVar.f36459i2;
-            if (!jnVar4.H && !jnVar4.f36075b1 && !jnVar4.f36085g1 && !jnVar4.f36089i1) {
-                xhVar.f41697i0 = true;
+        if (kiVar.f36447i2 != null && org.telegram.messenger.g0.L(20.0f) >= 0) {
+            jn jnVar4 = kiVar.f36447i2;
+            if (!jnVar4.H && !jnVar4.f36065b1 && !jnVar4.f36075g1 && !jnVar4.f36079i1) {
+                xhVar.f41689i0 = true;
                 jnVar4.f0();
-                xhVar.f41697i0 = false;
+                xhVar.f41689i0 = false;
             }
         }
         if (org.telegram.messenger.g0.L(20.0f) >= 0) {
             if (kiVar.d) {
-                ci ciVar = kiVar.f36509w2;
-                jn jnVar5 = kiVar.f36456h2;
-                if (ciVar == jnVar5 && jnVar5.F != null && jnVar5.f36089i1) {
+                ci ciVar = kiVar.f36497w2;
+                jn jnVar5 = kiVar.f36444h2;
+                if (ciVar == jnVar5 && jnVar5.F != null && jnVar5.f36079i1) {
                     L0 = org.telegram.messenger.g0.L(120.0f);
                 } else {
-                    jn jnVar6 = kiVar.f36459i2;
-                    if (ciVar == jnVar6 && jnVar6.F != null && jnVar6.f36089i1) {
+                    jn jnVar6 = kiVar.f36447i2;
+                    if (ciVar == jnVar6 && jnVar6.F != null && jnVar6.f36079i1) {
                         L0 = org.telegram.messenger.g0.L(120.0f);
                     } else {
                         L0 = 0;
@@ -628,29 +628,29 @@ public final class xh extends st0 {
             if (i12 > 0) {
                 i14 = 0;
             } else {
-                i14 = org.telegram.messenger.g0.f23604n;
+                i14 = org.telegram.messenger.g0.f23606n;
             }
             int max = Math.max(i14, L0);
-            xhVar.f41697i0 = true;
-            ci ciVar2 = kiVar.f36509w2;
-            if (ciVar2.f33610f) {
-                ciVar2.f33609e = org.telegram.messenger.g0.L(62.0f) + max;
-                kiVar.f36509w2.B(i17, size4);
+            xhVar.f41689i0 = true;
+            ci ciVar2 = kiVar.f36497w2;
+            if (ciVar2.f33612f) {
+                ciVar2.f33611e = org.telegram.messenger.g0.L(62.0f) + max;
+                kiVar.f36497w2.B(i17, size4);
             } else {
-                ciVar2.f33609e = org.telegram.messenger.g0.f23604n;
+                ciVar2.f33611e = org.telegram.messenger.g0.f23606n;
                 ciVar2.B(i17, size4 - L0);
             }
-            ci ciVar3 = kiVar.f36513x2;
+            ci ciVar3 = kiVar.f36501x2;
             if (ciVar3 != null) {
-                if (ciVar3.f33610f) {
-                    ciVar3.f33609e = org.telegram.messenger.g0.L(62.0f) + max;
-                    kiVar.f36513x2.B(i17, size4);
+                if (ciVar3.f33612f) {
+                    ciVar3.f33611e = org.telegram.messenger.g0.L(62.0f) + max;
+                    kiVar.f36501x2.B(i17, size4);
                 } else {
-                    ciVar3.f33609e = org.telegram.messenger.g0.f23604n;
+                    ciVar3.f33611e = org.telegram.messenger.g0.f23606n;
                     ciVar3.B(i17, size4 - L0);
                 }
             }
-            xhVar.f41697i0 = false;
+            xhVar.f41689i0 = false;
         }
         int childCount = xhVar.getChildCount();
         int i18 = 0;
@@ -659,23 +659,23 @@ public final class xh extends st0 {
             View childAt = xhVar.getChildAt(i19);
             if (childAt == null || childAt.getVisibility() == 8) {
                 i11 = i19;
-            } else if (childAt == kiVar.f36498t3) {
+            } else if (childAt == kiVar.f36486t3) {
                 i11 = i19;
                 xhVar.measureChildWithMargins(childAt, i7, 0, makeMeasureSpec, 0);
             } else {
                 i11 = i19;
-                int i20 = org.telegram.messenger.g0.f23603m;
-                int i21 = org.telegram.messenger.g0.f23604n;
+                int i20 = org.telegram.messenger.g0.f23605m;
+                int i21 = org.telegram.messenger.g0.f23606n;
                 if (childAt instanceof ci) {
                     ci ciVar4 = (ci) childAt;
                     if (ciVar4.h) {
                         i20 = 0;
                     }
-                    if (ciVar4.f33610f) {
+                    if (ciVar4.f33612f) {
                         i21 = 0;
                     }
                 }
-                if (!nhVar.l(childAt) && !phVar.l(childAt) && (((jnVar = kiVar.f36456h2) == null || childAt != jnVar.F) && ((jnVar2 = kiVar.f36459i2) == null || childAt != jnVar2.F))) {
+                if (!nhVar.l(childAt) && !phVar.l(childAt) && (((jnVar = kiVar.f36444h2) == null || childAt != jnVar.F) && ((jnVar2 = kiVar.f36447i2) == null || childAt != jnVar2.F))) {
                     measureChildWithMargins(childAt, i7, 0, makeMeasureSpec, i20 + i21);
                 } else if (z10) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + size4, 1073741824));
@@ -688,9 +688,9 @@ public final class xh extends st0 {
                     } else {
                         f10 = 320.0f;
                     }
-                    childAt.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size4 - org.telegram.messenger.g0.f23603m)), 1073741824));
+                    childAt.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size4 - org.telegram.messenger.g0.f23605m)), 1073741824));
                 } else {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size4 - org.telegram.messenger.g0.f23603m), 1073741824));
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size4 - org.telegram.messenger.g0.f23605m), 1073741824));
                 }
             }
             i18 = i11 + 1;
@@ -718,7 +718,7 @@ public final class xh extends st0 {
         } else {
             i13 = 0;
         }
-        fh.g gVar = this.f41700l0.f36517y2;
+        fh.g gVar = this.f41692l0.f36505y2;
         if (gVar != null) {
             gVar.t(org.telegram.messenger.g0.L(29.0f), org.telegram.messenger.g0.L(29.0f), i14, i13, true);
         }
@@ -726,8 +726,8 @@ public final class xh extends st0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ki kiVar = this.f41700l0;
-        if (!kiVar.f36509w2.o(motionEvent)) {
+        ki kiVar = this.f41692l0;
+        if (!kiVar.f36497w2.o(motionEvent)) {
             if (!kiVar.J && super.onTouchEvent(motionEvent)) {
                 return true;
             }
@@ -738,7 +738,7 @@ public final class xh extends st0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f41697i0) {
+        if (this.f41689i0) {
             return;
         }
         super.requestLayout();
@@ -746,30 +746,30 @@ public final class xh extends st0 {
 
     @Override
     public final void setTranslationY(float f10) {
-        ki kiVar = this.f41700l0;
-        kh khVar = kiVar.f36506v3;
-        float f11 = f10 + kiVar.f36463j4;
+        ki kiVar = this.f41692l0;
+        kh khVar = kiVar.f36494v3;
+        float f11 = f10 + kiVar.f36451j4;
         int i7 = kiVar.B0;
         if (i7 == 0) {
-            this.f41698j0 = f11;
+            this.f41690j0 = f11;
         }
         if (i7 == 1) {
             if (f11 < 0.0f) {
-                kiVar.f36509w2.setTranslationY(f11);
+                kiVar.f36497w2.setTranslationY(f11);
                 if (kiVar.O2 != 0 || kiVar.R2) {
-                    kiVar.f36454g3.setTranslationY((kiVar.f36475n3 + f11) - kiVar.f36463j4);
+                    kiVar.f36442g3.setTranslationY((kiVar.f36463n3 + f11) - kiVar.f36451j4);
                 }
                 khVar.setTranslationY(0.0f);
                 f11 = 0.0f;
             } else {
-                kiVar.f36509w2.setTranslationY(0.0f);
-                khVar.setTranslationY(((f11 / this.f41698j0) * khVar.getMeasuredHeight()) + (-f11));
+                kiVar.f36497w2.setTranslationY(0.0f);
+                khVar.setTranslationY(((f11 / this.f41690j0) * khVar.getMeasuredHeight()) + (-f11));
             }
             kiVar.f29682b.invalidate();
         }
-        super.setTranslationY((f11 - kiVar.f36463j4) + kiVar.f36497t2);
+        super.setTranslationY((f11 - kiVar.f36451j4) + kiVar.f36485t2);
         if (kiVar.B0 != 1) {
-            kiVar.f36509w2.m(kiVar.f36463j4);
+            kiVar.f36497w2.m(kiVar.f36451j4);
         }
     }
 

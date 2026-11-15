@@ -7,35 +7,35 @@ import java.util.ArrayDeque;
 import java.util.List;
 import java.util.concurrent.Executor;
 public final class e implements k0 {
-    public final x f7380a;
-    public final y f7381b;
-    public final d0 f7382c;
+    public final x f7383a;
+    public final y f7384b;
+    public final d0 f7385c;
     public final ArrayDeque d;
-    public Surface f7383e;
-    public e2.u f7384f;
-    public long f7385g;
+    public Surface f7386e;
+    public e2.u f7387f;
+    public long f7388g;
     public i0 h;
-    public Executor f7386i;
-    public v f7387j;
+    public Executor f7389i;
+    public v f7390j;
 
     public e(x xVar, y yVar, h2.g0 g0Var) {
-        this.f7380a = xVar;
-        this.f7381b = yVar;
-        xVar.f7487l = g0Var;
-        this.f7382c = new d0(new q4.q(this), xVar, yVar);
+        this.f7383a = xVar;
+        this.f7384b = yVar;
+        xVar.f7490l = g0Var;
+        this.f7385c = new d0(new q4.q(this), xVar, yVar);
         this.d = new ArrayDeque();
-        this.f7384f = new e2.u(new e2.t());
-        this.f7385g = -9223372036854775807L;
-        this.h = i0.f7411k;
-        this.f7386i = new b(0);
-        this.f7387j = new Object();
+        this.f7387f = new e2.u(new e2.t());
+        this.f7388g = -9223372036854775807L;
+        this.h = i0.f7414k;
+        this.f7389i = new b(0);
+        this.f7390j = new Object();
     }
 
     @Override
     public final boolean a() {
-        d0 d0Var = this.f7382c;
-        long j3 = d0Var.f7377j;
-        if (j3 != -9223372036854775807L && d0Var.f7376i == j3) {
+        d0 d0Var = this.f7385c;
+        long j3 = d0Var.f7380j;
+        if (j3 != -9223372036854775807L && d0Var.f7379i == j3) {
             return true;
         }
         return false;
@@ -43,36 +43,36 @@ public final class e implements k0 {
 
     @Override
     public final Surface b() {
-        Surface surface = this.f7383e;
+        Surface surface = this.f7386e;
         surface.getClass();
         return surface;
     }
 
     @Override
     public final void c(v vVar) {
-        this.f7387j = vVar;
+        this.f7390j = vVar;
     }
 
     @Override
     public final void d(float f10) {
-        this.f7380a.h(f10);
+        this.f7383a.h(f10);
     }
 
     @Override
     public final void e(cb.c cVar) {
         this.h = cVar;
-        this.f7386i = m9.r.f20591a;
+        this.f7389i = m9.r.f20591a;
     }
 
     @Override
     public final void f() {
-        this.f7381b.b();
-        x xVar = this.f7380a;
+        this.f7384b.b();
+        x xVar = this.f7383a;
         xVar.d = false;
-        xVar.f7484i = -9223372036854775807L;
-        c0 c0Var = xVar.f7479b;
+        xVar.f7487i = -9223372036854775807L;
+        c0 c0Var = xVar.f7482b;
         c0Var.d = false;
-        z zVar = c0Var.f7353c;
+        z zVar = c0Var.f7356c;
         if (zVar != null) {
             zVar.b();
         }
@@ -81,14 +81,14 @@ public final class e implements k0 {
 
     @Override
     public final void g(Surface surface, h2.y yVar) {
-        this.f7383e = surface;
-        this.f7380a.g(surface);
+        this.f7386e = surface;
+        this.f7383a.g(surface);
     }
 
     @Override
     public final void h() {
-        this.f7381b.b();
-        this.f7380a.d();
+        this.f7384b.b();
+        this.f7383a.d();
     }
 
     @Override
@@ -103,35 +103,35 @@ public final class e implements k0 {
 
     @Override
     public final void k() {
-        d0 d0Var = this.f7382c;
+        d0 d0Var = this.f7385c;
         if (d0Var.h == -9223372036854775807L) {
             d0Var.h = Long.MIN_VALUE;
-            d0Var.f7376i = Long.MIN_VALUE;
+            d0Var.f7379i = Long.MIN_VALUE;
         }
-        d0Var.f7377j = d0Var.h;
+        d0Var.f7380j = d0Var.h;
     }
 
     @Override
     public final void l(int i7) {
-        c0 c0Var = this.f7380a.f7479b;
-        if (c0Var.f7358j == i7) {
+        c0 c0Var = this.f7383a.f7482b;
+        if (c0Var.f7361j == i7) {
             return;
         }
-        c0Var.f7358j = i7;
+        c0Var.f7361j = i7;
         c0Var.d(true);
     }
 
     @Override
     public final void m() {
-        this.f7383e = null;
-        this.f7380a.g(null);
+        this.f7386e = null;
+        this.f7383a.g(null);
     }
 
     @Override
     public final boolean n(long j3, i iVar) {
         this.d.add(iVar);
-        d0 d0Var = this.f7382c;
-        h2.s sVar = d0Var.f7374f;
+        d0 d0Var = this.f7385c;
+        h2.s sVar = d0Var.f7377f;
         int i7 = sVar.f13507c;
         long[] jArr = (long[]) sVar.f13508e;
         if (i7 == jArr.length) {
@@ -156,8 +156,8 @@ public final class e implements k0 {
         ((long[]) sVar.f13508e)[i12] = j3;
         sVar.f13507c++;
         d0Var.h = j3;
-        d0Var.f7377j = -9223372036854775807L;
-        this.f7386i.execute(new ch.w(this, 2));
+        d0Var.f7380j = -9223372036854775807L;
+        this.f7389i.execute(new ch.w(this, 2));
         return true;
     }
 
@@ -166,25 +166,25 @@ public final class e implements k0 {
         boolean z11;
         boolean z12 = false;
         if (z10) {
-            x xVar = this.f7380a;
-            xVar.f7479b.b();
+            x xVar = this.f7383a;
+            xVar.f7482b.b();
             xVar.h = -9223372036854775807L;
-            xVar.f7482f = -9223372036854775807L;
-            xVar.f7481e = Math.min(xVar.f7481e, 1);
-            xVar.f7484i = -9223372036854775807L;
-            xVar.f7489n = false;
+            xVar.f7485f = -9223372036854775807L;
+            xVar.f7484e = Math.min(xVar.f7484e, 1);
+            xVar.f7487i = -9223372036854775807L;
+            xVar.f7492n = false;
         }
-        this.f7381b.b();
-        d0 d0Var = this.f7382c;
+        this.f7384b.b();
+        d0 d0Var = this.f7385c;
         h2.j0 j0Var = d0Var.d;
-        h2.s sVar = d0Var.f7374f;
+        h2.s sVar = d0Var.f7377f;
         sVar.f13505a = 0;
         sVar.f13506b = -1;
         sVar.f13507c = 0;
         d0Var.h = -9223372036854775807L;
-        d0Var.f7376i = -9223372036854775807L;
-        d0Var.f7377j = -9223372036854775807L;
-        h2.j0 j0Var2 = d0Var.f7373e;
+        d0Var.f7379i = -9223372036854775807L;
+        d0Var.f7380j = -9223372036854775807L;
+        h2.j0 j0Var2 = d0Var.f7376e;
         if (j0Var2.p() > 0) {
             if (j0Var2.p() > 0) {
                 z11 = true;
@@ -197,7 +197,7 @@ public final class e implements k0 {
             }
             Object i7 = j0Var2.i();
             i7.getClass();
-            d0Var.f7379l = ((Long) i7).longValue();
+            d0Var.f7382l = ((Long) i7).longValue();
         }
         if (j0Var.p() > 0) {
             if (j0Var.p() > 0) {
@@ -222,20 +222,20 @@ public final class e implements k0 {
     @Override
     public final void q(long j3, long j10) {
         try {
-            this.f7382c.a(j3, j10);
+            this.f7385c.a(j3, j10);
         } catch (l2.l e10) {
-            throw new j0(e10, this.f7384f);
+            throw new j0(e10, this.f7387f);
         }
     }
 
     @Override
     public final void r(boolean z10) {
-        this.f7380a.c(z10);
+        this.f7383a.c(z10);
     }
 
     @Override
     public final boolean s(boolean z10) {
-        return this.f7380a.b(z10);
+        return this.f7383a.b(z10);
     }
 
     @Override
@@ -250,9 +250,9 @@ public final class e implements k0 {
         ja.p(list.isEmpty());
         int i10 = uVar.f10457z;
         int i11 = uVar.A;
-        e2.u uVar2 = this.f7384f;
+        e2.u uVar2 = this.f7387f;
         int i12 = uVar2.f10457z;
-        d0 d0Var = this.f7382c;
+        d0 d0Var = this.f7385c;
         if (i10 != i12 || i11 != uVar2.A) {
             h2.j0 j0Var = d0Var.d;
             long j12 = d0Var.h;
@@ -264,16 +264,16 @@ public final class e implements k0 {
             j0Var.a(new x1(i10, i11), j10);
         }
         float f10 = uVar.D;
-        if (f10 != this.f7384f.D) {
-            this.f7380a.f(f10);
+        if (f10 != this.f7387f.D) {
+            this.f7383a.f(f10);
         }
-        this.f7384f = uVar;
-        if (j3 != this.f7385g) {
-            if (d0Var.f7374f.f13507c == 0) {
-                d0Var.f7371b.e(i7);
-                d0Var.f7379l = j3;
+        this.f7387f = uVar;
+        if (j3 != this.f7388g) {
+            if (d0Var.f7377f.f13507c == 0) {
+                d0Var.f7374b.e(i7);
+                d0Var.f7382l = j3;
             } else {
-                h2.j0 j0Var2 = d0Var.f7373e;
+                h2.j0 j0Var2 = d0Var.f7376e;
                 long j13 = d0Var.h;
                 if (j13 == -9223372036854775807L) {
                     j11 = -4611686018427387904L;
@@ -282,7 +282,7 @@ public final class e implements k0 {
                 }
                 j0Var2.a(Long.valueOf(j3), j11);
             }
-            this.f7385g = j3;
+            this.f7388g = j3;
         }
     }
 
@@ -293,9 +293,9 @@ public final class e implements k0 {
 
     @Override
     public final void w() {
-        x xVar = this.f7380a;
-        if (xVar.f7481e == 0) {
-            xVar.f7481e = 1;
+        x xVar = this.f7383a;
+        if (xVar.f7484e == 0) {
+            xVar.f7484e = 1;
         }
     }
 

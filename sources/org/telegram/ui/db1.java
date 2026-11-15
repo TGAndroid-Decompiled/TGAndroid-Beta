@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class db1 extends org.telegram.ui.Components.a41 {
-    public static final int f46352b = 0;
+    public static final int f46324b = 0;
 
     static {
         org.telegram.ui.Components.a41.h(new org.telegram.ui.Components.a41());
@@ -16,17 +16,17 @@ public final class db1 extends org.telegram.ui.Components.a41 {
     public final void b(View view, org.telegram.ui.Components.b41 b41Var, boolean z10, org.telegram.ui.Components.p41 p41Var, org.telegram.ui.Components.u41 u41Var) {
         float f10;
         eb1 eb1Var = (eb1) view;
-        int i7 = b41Var.f33180k;
-        CharSequence charSequence = b41Var.f33181l;
-        CharSequence charSequence2 = b41Var.f33182m;
-        boolean z11 = b41Var.f33186q;
-        boolean z12 = b41Var.f33187r;
-        int i10 = b41Var.f33194z;
-        TextView textView = eb1Var.f46669e;
-        ImageView imageView = eb1Var.f46670f;
+        int i7 = b41Var.f33183k;
+        CharSequence charSequence = b41Var.f33184l;
+        CharSequence charSequence2 = b41Var.f33185m;
+        boolean z11 = b41Var.f33189q;
+        boolean z12 = b41Var.f33190r;
+        int i10 = b41Var.f33197z;
+        TextView textView = eb1Var.f46659e;
+        ImageView imageView = eb1Var.f46660f;
         eb1Var.h = z11;
-        eb1Var.f46671n = z12;
-        eb1Var.f46667b.setImageResource(i7);
+        eb1Var.f46661n = z12;
+        eb1Var.f46657b.setImageResource(i7);
         int i11 = 8;
         if (i10 != 0) {
             imageView.setVisibility(0);
@@ -46,7 +46,7 @@ public final class db1 extends org.telegram.ui.Components.a41 {
             f10 = 10.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        eb1Var.f46668c.setPadding(0, L, 0, L);
+        eb1Var.f46658c.setPadding(0, L, 0, L);
         eb1Var.updateColors();
     }
 

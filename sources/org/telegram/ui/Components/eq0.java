@@ -9,7 +9,7 @@ public final class eq0 extends v4.s {
 
     @Override
     public final int o0(int i7, v4.w0 w0Var, v4.b1 b1Var) {
-        if (this.Q.f42130r1) {
+        if (this.Q.f42132r1) {
             i7 = 0;
         }
         return super.o0(i7, w0Var, b1Var);

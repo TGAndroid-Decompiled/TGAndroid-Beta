@@ -27,7 +27,7 @@ public final class h5 extends c5.a {
     @Override
     public final Object e(c5.l lVar, int i7) {
         k5 k5Var = this.f11775e;
-        g5 g5Var = new g5(this, this.f11774c, this.d, k5Var.I, new ai.f0(this, 17));
+        g5 g5Var = new g5(this, this.f11774c, this.d, k5Var.I, new ai.g0(this, 17));
         g5Var.setTag(Integer.valueOf(i7));
         g5Var.setShadowDrawable(k5Var.f11934s);
         g5Var.setPadding(0, org.telegram.messenger.g0.L(16.0f), 0, 0);

@@ -3,10 +3,10 @@ package bi;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import di.bb;
-import di.m8;
-import di.ra;
-import di.v8;
+import di.ab;
+import di.l8;
+import di.qa;
+import di.u8;
 import j$.util.Collection;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.z70;
 import org.telegram.ui.LaunchActivity;
 public final class s2 extends ja implements is {
-    public static final int f3841u2 = 0;
+    public static final int f3844u2 = 0;
     public final int T1;
     public p41 U1;
     public List V1;
@@ -42,26 +42,26 @@ public final class s2 extends ja implements is {
     public final long X1;
     public final boolean Y1;
     public final String Z1;
-    public final bb f3842a2;
-    public final v1 f3843b2;
-    public final FrameLayout f3844c2;
+    public final ab f3845a2;
+    public final v1 f3846b2;
+    public final FrameLayout f3847c2;
     public final LinearLayout d2;
-    public final oy f3845e2;
-    public final z1 f3846f2;
-    public final w1 f3847g2;
-    public final w1 f3848h2;
-    public final ArrayList f3849i2;
-    public final m8 f3850j2;
-    public int f3851k2;
-    public int f3852l2;
-    public int f3853m2;
-    public int f3854n2;
-    public boolean f3855o2;
-    public boolean f3856p2;
-    public boolean f3857q2;
-    public ra f3858r2;
-    public final z70 f3859s2;
-    public boolean f3860t2;
+    public final oy f3848e2;
+    public final z1 f3849f2;
+    public final w1 f3850g2;
+    public final w1 f3851h2;
+    public final ArrayList f3852i2;
+    public final l8 f3853j2;
+    public int f3854k2;
+    public int f3855l2;
+    public int f3856m2;
+    public int f3857n2;
+    public boolean f3858o2;
+    public boolean f3859p2;
+    public boolean f3860q2;
+    public qa f3861r2;
+    public final z70 f3862s2;
+    public boolean f3863t2;
 
     public s2(LaunchActivity launchActivity, int i7, long j3) {
         this(launchActivity, i7, j3, null, null);
@@ -69,9 +69,9 @@ public final class s2 extends ja implements is {
 
     @Override
     public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35936o1, getContext(), this.T1, 0, true, new b(this, 5), this.J0);
+        p41 p41Var = new p41(this.f35931o1, getContext(), this.T1, 0, true, new b(this, 5), this.J0);
         this.U1 = p41Var;
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         return p41Var;
     }
 
@@ -103,7 +103,7 @@ public final class s2 extends ja implements is {
         float f14;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings3;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings4;
-        v1 v1Var = this.f3843b2;
+        v1 v1Var = this.f3846b2;
         long j10 = this.X1;
         long j11 = 0;
         boolean z17 = this.Y1;
@@ -112,17 +112,17 @@ public final class s2 extends ja implements is {
             z10 = false;
         } else {
             arrayList.add(b41.k(v1Var));
-            arrayList.add(b41.k(this.f3844c2));
-            ArrayList arrayList3 = this.f3849i2;
+            arrayList.add(b41.k(this.f3847c2));
+            ArrayList arrayList3 = this.f3852i2;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 int size = arrayList3.size();
                 int i7 = 0;
                 while (i7 < size) {
                     Object obj = arrayList3.get(i7);
                     i7++;
-                    int i10 = h2.f3561b;
+                    int i10 = h2.f3564b;
                     b41 K = b41.K(h2.class);
-                    K.f33190u = 1;
+                    K.f33193u = 1;
                     K.G = (ug.j) obj;
                     arrayList.add(K);
                     j11 = j11;
@@ -131,20 +131,20 @@ public final class s2 extends ja implements is {
             } else {
                 j3 = 0;
                 b41 q10 = b41.q(1, 34);
-                q10.f33190u = 1;
+                q10.f33193u = 1;
                 arrayList.add(q10);
                 b41 q11 = b41.q(2, 34);
-                q11.f33190u = 1;
+                q11.f33193u = 1;
                 arrayList.add(q11);
                 b41 q12 = b41.q(3, 34);
-                q12.f33190u = 1;
+                q12.f33193u = 1;
                 arrayList.add(q12);
             }
             z10 = true;
         }
         int i11 = this.T1;
-        v8 y10 = v8.y(i11, false);
-        if (this.f3855o2) {
+        u8 y10 = u8.y(i11, false);
+        if (this.f3858o2) {
             arrayList2 = y10.J;
         } else {
             arrayList2 = y10.I;
@@ -157,9 +157,9 @@ public final class s2 extends ja implements is {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new aa.m(3)).collect(Collectors.toCollection(new lk(1)));
         }
         int i13 = (j10 > m10.i(i11).e() ? 1 : (j10 == m10.i(i11).e() ? 0 : -1));
-        m8 m8Var = this.f3850j2;
-        if (i13 != 0 && m8Var != null) {
-            ArrayList arrayList4 = m8Var.f9051l;
+        l8 l8Var = this.f3853j2;
+        if (i13 != 0 && l8Var != null) {
+            ArrayList arrayList4 = l8Var.f9001l;
             int size2 = arrayList4.size();
             int i14 = 0;
             while (i14 < size2) {
@@ -172,7 +172,7 @@ public final class s2 extends ja implements is {
             }
         }
         z11 = false;
-        if (!np.s1(i11).Z5 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.W1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && m8Var != null && !m8Var.f9051l.isEmpty()))) {
+        if (!np.s1(i11).Z5 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.W1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && l8Var != null && !l8Var.f9001l.isEmpty()))) {
             if (!z10) {
                 arrayList.add(b41.k(v1Var));
             } else {
@@ -187,40 +187,40 @@ public final class s2 extends ja implements is {
                 }
             }
             ArrayList arrayList5 = new ArrayList();
-            this.f3852l2 = -1;
-            this.f3851k2 = -1;
+            this.f3855l2 = -1;
+            this.f3854k2 = -1;
             if (!arrayList2.isEmpty()) {
-                this.f3851k2 = arrayList5.size();
+                this.f3854k2 = arrayList5.size();
                 arrayList5.add(hd.M0(2131749950, null));
             }
             TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.W1;
             if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z11) {
-                this.f3852l2 = arrayList5.size();
+                this.f3855l2 = arrayList5.size();
                 arrayList5.add(hd.M0(2131749946, null));
             }
-            this.f3853m2 = arrayList5.size();
+            this.f3856m2 = arrayList5.size();
             arrayList5.add(hd.M0(2131749949, null));
-            if (this.f3856p2 && !this.f3857q2) {
-                this.f3857q2 = true;
-                this.f3854n2 = this.f3853m2;
+            if (this.f3859p2 && !this.f3860q2) {
+                this.f3860q2 = true;
+                this.f3857n2 = this.f3856m2;
             }
-            int i16 = this.f3854n2;
+            int i16 = this.f3857n2;
             n1 n1Var = new n1(this, 0);
-            int i17 = q2.f3802b;
+            int i17 = q2.f3805b;
             b41 K2 = b41.K(q2.class);
             K2.d = 1;
             K2.G = arrayList5;
-            K2.f33194z = i16;
+            K2.f33197z = i16;
             K2.H = n1Var;
             arrayList.add(K2);
-            if (this.f3854n2 == this.f3853m2 && !z17 && i12 >= 0) {
+            if (this.f3857n2 == this.f3856m2 && !z17 && i12 >= 0) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            if (z12 != this.f3860t2) {
-                this.f3860t2 = z12;
-                ViewPropertyAnimator animate = this.f3847g2.animate();
+            if (z12 != this.f3863t2) {
+                this.f3863t2 = z12;
+                ViewPropertyAnimator animate = this.f3850g2.animate();
                 float f15 = 0.0f;
                 float f16 = 1.0f;
                 if (!z12) {
@@ -243,7 +243,7 @@ public final class s2 extends ja implements is {
                 ViewPropertyAnimator duration = scaleX.scaleY(f13).setDuration(380L);
                 er erVar = er.h;
                 duration.setInterpolator(erVar).start();
-                ViewPropertyAnimator animate2 = this.f3848h2.animate();
+                ViewPropertyAnimator animate2 = this.f3851h2.animate();
                 if (z12) {
                     f15 = 1.0f;
                 }
@@ -259,9 +259,9 @@ public final class s2 extends ja implements is {
                 }
                 scaleX2.scaleY(f16).setDuration(380L).setInterpolator(erVar).start();
             }
-            if (m8Var != null && this.f3854n2 == this.f3852l2) {
+            if (l8Var != null && this.f3857n2 == this.f3855l2) {
                 arrayList2 = new ArrayList();
-                ArrayList arrayList6 = m8Var.f9051l;
+                ArrayList arrayList6 = l8Var.f9001l;
                 int size3 = arrayList6.size();
                 int i18 = 0;
                 while (i18 < size3) {
@@ -276,10 +276,10 @@ public final class s2 extends ja implements is {
             int i19 = 0;
             for (int i20 = 0; i20 < arrayList2.size(); i20++) {
                 TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList2.get(i20);
-                int i21 = this.f3854n2;
-                if (i21 == this.f3851k2 || i21 == this.f3852l2 || (i21 == this.f3853m2 && (starGift3.availability_resale > j3 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
-                    if (!starGift3.sold_out && starGift3.availability_resale > j3 && i21 != this.f3853m2) {
-                        if (i21 == this.f3852l2) {
+                int i21 = this.f3857n2;
+                if (i21 == this.f3854k2 || i21 == this.f3855l2 || (i21 == this.f3856m2 && (starGift3.availability_resale > j3 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
+                    if (!starGift3.sold_out && starGift3.availability_resale > j3 && i21 != this.f3856m2) {
+                        if (i21 == this.f3855l2) {
                             z15 = true;
                         } else {
                             z15 = false;
@@ -296,8 +296,8 @@ public final class s2 extends ja implements is {
                     } else {
                         starGift = starGift3;
                     }
-                    int i23 = this.f3854n2;
-                    if (i23 == this.f3852l2) {
+                    int i23 = this.f3857n2;
+                    if (i23 == this.f3855l2) {
                         z13 = true;
                     } else {
                         z13 = false;
@@ -311,28 +311,28 @@ public final class s2 extends ja implements is {
                     i19++;
                 }
             }
-            int i24 = this.f3854n2;
-            int i25 = this.f3852l2;
-            if (i24 == i25 && m8Var != null && !m8Var.f9049j) {
-                m8Var.a();
+            int i24 = this.f3857n2;
+            int i25 = this.f3855l2;
+            if (i24 == i25 && l8Var != null && !l8Var.f8999j) {
+                l8Var.a();
                 b41 q13 = b41.q(4, 34);
-                q13.f33190u = 1;
+                q13.f33193u = 1;
                 arrayList.add(q13);
                 b41 q14 = b41.q(5, 34);
-                q14.f33190u = 1;
+                q14.f33193u = 1;
                 arrayList.add(q14);
                 b41 q15 = b41.q(6, 34);
-                q15.f33190u = 1;
+                q15.f33193u = 1;
                 arrayList.add(q15);
             } else if (i24 != i25 && y10.C) {
                 b41 q16 = b41.q(4, 34);
-                q16.f33190u = 1;
+                q16.f33193u = 1;
                 arrayList.add(q16);
                 b41 q17 = b41.q(5, 34);
-                q17.f33190u = 1;
+                q17.f33193u = 1;
                 arrayList.add(q17);
                 b41 q18 = b41.q(6, 34);
-                q18.f33190u = 1;
+                q18.f33193u = 1;
                 arrayList.add(q18);
             }
             if (i19 < 9) {
@@ -353,7 +353,7 @@ public final class s2 extends ja implements is {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         p41 p41Var;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if (i7 == ns.f25520j5) {
+        if (i7 == ns.f25521j5) {
             f1();
         } else if (i7 == ns.F3) {
             p41 p41Var2 = this.U1;
@@ -387,7 +387,7 @@ public final class s2 extends ja implements is {
                         p41Var3.O(true);
                     }
                 }
-                ArrayList arrayList = this.f3849i2;
+                ArrayList arrayList = this.f3852i2;
                 if (arrayList == null || arrayList.isEmpty()) {
                     f1();
                     p41 p41Var4 = this.U1;
@@ -405,7 +405,7 @@ public final class s2 extends ja implements is {
                     p41Var5.O(true);
                 }
             }
-        } else if (i7 == ns.G3 && objArr[1] == this.f3850j2 && (p41Var = this.U1) != null) {
+        } else if (i7 == ns.G3 && objArr[1] == this.f3853j2 && (p41Var = this.U1) != null) {
             p41Var.O(true);
         }
     }
@@ -414,7 +414,7 @@ public final class s2 extends ja implements is {
     public final void dismiss() {
         super.dismiss();
         int i7 = this.T1;
-        ns.f(i7).n(this, ns.f25520j5);
+        ns.f(i7).n(this, ns.f25521j5);
         ns.f(i7).n(this, ns.F3);
         ns.f(i7).n(this, ns.E0);
         ns.f(i7).n(this, ns.I3);
@@ -422,14 +422,14 @@ public final class s2 extends ja implements is {
     }
 
     public final void e1(boolean z10) {
-        this.f3855o2 = z10;
+        this.f3858o2 = z10;
         this.U1.O(false);
     }
 
     public final void f1() {
         List list;
         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        ArrayList arrayList = this.f3849i2;
+        ArrayList arrayList = this.f3852i2;
         arrayList.clear();
         if (arrayList.isEmpty() && (list = this.V1) != null && !list.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();

@@ -40,8 +40,8 @@ public final class e {
     }
 
     public static double e(c cVar, c cVar2) {
-        double d = cVar.f3135a - cVar2.f3135a;
-        double d2 = cVar.f3136b - cVar2.f3136b;
+        double d = cVar.f3138a - cVar2.f3138a;
+        double d2 = cVar.f3139b - cVar2.f3139b;
         return (d2 * d2) + (d * d);
     }
 

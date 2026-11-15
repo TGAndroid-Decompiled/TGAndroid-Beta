@@ -129,12 +129,12 @@ public final class f implements a, dh.b, si.a {
         }
         if (Build.VERSION.SDK_INT >= 31 && (gVar = this.d) != null) {
             int i7 = this.f58439e;
-            if (gVar.f8121a && gVar.f8129k != 0) {
-                dh.f fVar = (dh.f) gVar.f8128j.get(0);
-                if ((i7 == -2 || i7 == -4) && (eVar = fVar.f8119c) != null) {
-                    return eVar.f8112e;
+            if (gVar.f8124a && gVar.f8132k != 0) {
+                dh.f fVar = (dh.f) gVar.f8131j.get(0);
+                if ((i7 == -2 || i7 == -4) && (eVar = fVar.f8122c) != null) {
+                    return eVar.f8115e;
                 }
-                return fVar.f8118b.f8112e;
+                return fVar.f8121b.f8115e;
             }
             return 1;
         }

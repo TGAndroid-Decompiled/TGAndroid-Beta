@@ -37,8 +37,8 @@ public final class w3 implements View.OnLayoutChangeListener {
                 return;
             default:
                 ((qm0) this.f29804b).setProgress(org.telegram.ui.h5.n1);
-                ((qm0) this.f29805c).setProgress(org.telegram.ui.h5.f47610o1);
-                ((qm0) this.d).setProgress(org.telegram.ui.h5.f47611p1);
+                ((qm0) this.f29805c).setProgress(org.telegram.ui.h5.f47600o1);
+                ((qm0) this.d).setProgress(org.telegram.ui.h5.f47601p1);
                 return;
         }
     }

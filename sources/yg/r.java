@@ -14,8 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ja;
-import di.qa;
-import di.yb;
+import di.pa;
+import di.xb;
 import n2.o0;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
@@ -30,7 +30,7 @@ import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.z70;
 import ug.r1;
 public final class r extends FrameLayout {
-    public final yb f60689a;
+    public final xb f60689a;
     public final o f60690b;
     public final TextView f60691c;
     public final z70 d;
@@ -43,18 +43,18 @@ public final class r extends FrameLayout {
         super(context);
         this.f60692e = e6Var;
         LinearLayout f10 = k5.f(context, 1);
-        yb ybVar = new yb(context, 1, 0, 5);
-        this.f60689a = ybVar;
+        xb xbVar = new xb(context, 1, 0, 5);
+        this.f60689a = xbVar;
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i7 = j6.Dk;
         canvas.drawColor(i0.a.f(0.5f, j6.w0(i7, e6Var), j6.w0(j6.f28922h5, e6Var)));
-        ybVar.setBackgroundBitmap(createBitmap);
-        vg.f fVar = ybVar.f58893b;
+        xbVar.setBackgroundBitmap(createBitmap);
+        vg.f fVar = xbVar.f58893b;
         fVar.f58877z = i7;
         fVar.A = j6.Ck;
         fVar.b();
-        f10.addView(ybVar, ja.r(160, 160, 1));
+        f10.addView(xbVar, ja.r(160, 160, 1));
         o oVar = new o(this, context);
         this.f60690b = oVar;
         this.h = new Paint[20];
@@ -64,9 +64,9 @@ public final class r extends FrameLayout {
         r1Var.K = false;
         r1Var.L = true;
         r1Var.H = true;
-        r1Var.f58314l = new qa(this, 5);
+        r1Var.f58314l = new pa(this, 5);
         r1Var.c();
-        ybVar.setStarParticlesView(oVar);
+        xbVar.setStarParticlesView(oVar);
         TextView textView = new TextView(context);
         this.f60691c = textView;
         i20.o(textView, 1, 22.0f);
@@ -129,8 +129,8 @@ public final class r extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        yb ybVar = this.f60689a;
-        float measuredHeight = (ybVar.getMeasuredHeight() / 2.0f) + ybVar.getTop();
+        xb xbVar = this.f60689a;
+        float measuredHeight = (xbVar.getMeasuredHeight() / 2.0f) + xbVar.getTop();
         o oVar = this.f60690b;
         oVar.setTranslationY(measuredHeight - (oVar.getMeasuredHeight() / 2.0f));
     }
@@ -168,8 +168,8 @@ public final class r extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        yb ybVar = this.f60689a;
-        final float f11 = ybVar.f58893b.f58864l;
+        xb xbVar = this.f60689a;
+        final float f11 = xbVar.f58893b.f58864l;
         if (z10) {
             f10 = 1.0f;
         } else {
@@ -177,9 +177,9 @@ public final class r extends FrameLayout {
         }
         this.f60694n = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
-        g0.r(ybVar.f58901f0);
-        ybVar.d();
-        ybVar.l();
+        g0.r(xbVar.f58901f0);
+        xbVar.d();
+        xbVar.l();
         this.f60694n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {

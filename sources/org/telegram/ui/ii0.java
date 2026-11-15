@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ii0 extends org.telegram.ui.Components.st0 {
-    public final int f48060g0;
-    public final FrameLayout f48061h0;
-    public final org.telegram.ui.ActionBar.e2 f48062i0;
+    public final int f48050g0;
+    public final FrameLayout f48051h0;
+    public final org.telegram.ui.ActionBar.e2 f48052i0;
 
     public ii0(org.telegram.ui.ActionBar.e2 e2Var, Context context, FrameLayout frameLayout, int i7) {
         super(context, null);
-        this.f48060g0 = i7;
-        this.f48062i0 = e2Var;
-        this.f48061h0 = frameLayout;
+        this.f48050g0 = i7;
+        this.f48052i0 = e2Var;
+        this.f48051h0 = frameLayout;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class ii0 extends org.telegram.ui.Components.st0 {
         int measuredHeight;
         org.telegram.ui.ActionBar.w4 w4Var;
         int measuredHeight2;
-        switch (this.f48060g0) {
+        switch (this.f48050g0) {
             case 0:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f48062i0;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f48052i0;
                 int visibility = passcodeActivity.f42701w.getVisibility();
-                FrameLayout frameLayout = this.f48061h0;
+                FrameLayout frameLayout = this.f48051h0;
                 if (visibility != 8 && Q() >= org.telegram.messenger.g0.L(20.0f)) {
                     if (passcodeActivity.q0()) {
                         int measuredWidth = getMeasuredWidth();
@@ -53,9 +53,9 @@ public final class ii0 extends org.telegram.ui.Components.st0 {
                 R();
                 return;
             default:
-                k0 k0Var = (k0) this.f48061h0;
-                xa1 xa1Var = (xa1) this.f48062i0;
-                if (xa1Var.f53149f0.getVisibility() != 8 && Q() >= org.telegram.messenger.g0.L(20.0f)) {
+                k0 k0Var = (k0) this.f48051h0;
+                xa1 xa1Var = (xa1) this.f48052i0;
+                if (xa1Var.f53148f0.getVisibility() != 8 && Q() >= org.telegram.messenger.g0.L(20.0f)) {
                     if (xa1Var.A0()) {
                         int measuredWidth5 = getMeasuredWidth();
                         measuredHeight2 = Q() + (getMeasuredHeight() - org.telegram.messenger.g0.L(230.0f));
@@ -65,7 +65,7 @@ public final class ii0 extends org.telegram.ui.Components.st0 {
                         measuredHeight2 = getMeasuredHeight();
                         k0Var.layout(0, 0, measuredWidth6, measuredHeight2);
                     }
-                } else if (xa1Var.f53149f0.getVisibility() != 8) {
+                } else if (xa1Var.f53148f0.getVisibility() != 8) {
                     int measuredWidth7 = getMeasuredWidth();
                     measuredHeight2 = getMeasuredHeight() - org.telegram.messenger.g0.L(230.0f);
                     k0Var.layout(0, 0, measuredWidth7, measuredHeight2);
@@ -74,7 +74,7 @@ public final class ii0 extends org.telegram.ui.Components.st0 {
                     measuredHeight2 = getMeasuredHeight();
                     k0Var.layout(0, 0, measuredWidth8, measuredHeight2);
                 }
-                xa1Var.f53149f0.layout(0, measuredHeight2, getMeasuredWidth(), org.telegram.messenger.g0.L(230.0f) + measuredHeight2);
+                xa1Var.f53148f0.layout(0, measuredHeight2, getMeasuredWidth(), org.telegram.messenger.g0.L(230.0f) + measuredHeight2);
                 return;
         }
     }
@@ -83,18 +83,18 @@ public final class ii0 extends org.telegram.ui.Components.st0 {
     public final void onMeasure(int i7, int i10) {
         int i11;
         org.telegram.ui.ActionBar.w4 w4Var;
-        switch (this.f48060g0) {
+        switch (this.f48050g0) {
             case 0:
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
                 setMeasuredDimension(size, size2);
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f48062i0;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f48052i0;
                 if (passcodeActivity.f42701w.getVisibility() != 8 && Q() < org.telegram.messenger.g0.L(20.0f)) {
                     i11 = size2 - org.telegram.messenger.g0.L(230.0f);
                 } else {
                     i11 = size2;
                 }
-                this.f48061h0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, 1073741824));
+                this.f48051h0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, 1073741824));
                 passcodeActivity.f42701w.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(230.0f), 1073741824));
                 w4Var = ((org.telegram.ui.ActionBar.e2) passcodeActivity).simpleActionBar;
                 View view = w4Var != null ? ((org.telegram.ui.ActionBar.e2) passcodeActivity).simpleActionBar : ((org.telegram.ui.ActionBar.e2) passcodeActivity).actionBar;
@@ -107,12 +107,12 @@ public final class ii0 extends org.telegram.ui.Components.st0 {
                 int size3 = View.MeasureSpec.getSize(i7);
                 int size4 = View.MeasureSpec.getSize(i10);
                 setMeasuredDimension(size3, size4);
-                xa1 xa1Var = (xa1) this.f48062i0;
-                if (xa1Var.f53149f0.getVisibility() != 8 && Q() < org.telegram.messenger.g0.L(20.0f)) {
+                xa1 xa1Var = (xa1) this.f48052i0;
+                if (xa1Var.f53148f0.getVisibility() != 8 && Q() < org.telegram.messenger.g0.L(20.0f)) {
                     size4 -= org.telegram.messenger.g0.L(230.0f);
                 }
-                ((k0) this.f48061h0).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
-                xa1Var.f53149f0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(230.0f), 1073741824));
+                ((k0) this.f48051h0).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
+                xa1Var.f53148f0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(230.0f), 1073741824));
                 return;
         }
     }

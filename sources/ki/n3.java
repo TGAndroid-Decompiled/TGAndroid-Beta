@@ -93,8 +93,8 @@ public final class n3 extends p00 implements is {
         if (tLObject instanceof TL_payments.connectedStarRefBots) {
             TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
             di.b0 d = di.e0.g(n3Var.currentAccount).d(j3);
-            ArrayList arrayList = d.f8235e;
-            int i7 = d.f8232a;
+            ArrayList arrayList = d.f8238e;
+            int i7 = d.f8235a;
             np.s1(i7).Y3(connectedstarrefbots.users, false);
             for (int i10 = 0; i10 < connectedstarrefbots.connected_bots.size(); i10++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i10);
@@ -105,7 +105,7 @@ public final class n3 extends p00 implements is {
                     } else if (((TL_payments.connectedBotStarRef) arrayList.get(i11)).bot_id == connectedbotstarref.bot_id) {
                         if (connectedbotstarref.revoked) {
                             arrayList.remove(i11);
-                            d.f8234c = Math.max(d.f8234c - 1, 0);
+                            d.f8237c = Math.max(d.f8237c - 1, 0);
                         } else {
                             arrayList.set(i11, connectedbotstarref);
                         }
@@ -114,14 +114,14 @@ public final class n3 extends p00 implements is {
                     }
                 }
             }
-            ns.f(i7).k(ns.L3, Long.valueOf(d.f8233b));
+            ns.f(i7).k(ns.L3, Long.valueOf(d.f8236b));
             d.a();
             di.c0 e10 = di.e0.g(n3Var.currentAccount).e(j3);
-            e10.f8283c = 0;
+            e10.f8284c = 0;
             e10.d = false;
-            e10.f8287i = false;
-            e10.f8285f = 0L;
-            e10.f8288j = null;
+            e10.f8288i = false;
+            e10.f8286f = 0L;
+            e10.f8289j = null;
             e10.h = false;
             e10.a();
             n3Var.W.O(true);
@@ -140,7 +140,7 @@ public final class n3 extends p00 implements is {
                 H.l(2131232073, hd.M0(2131746708, null), new kg.t1(7, n3Var, a22), a22.bot_has_main_app);
                 H.l(2131232073, hd.M0(2131752912, null), new kg.t1(8, n3Var, connectedbotstarref), !a22.bot_has_main_app);
                 H.c(2131232205, hd.M0(2131751762, null), new n(n3Var, connectedbotstarref, a22, 3), false);
-                H.m(2131232196, new androidx.car.app.utils.a(n3Var, context, a22, connectedbotstarref, 23), hd.M0(2131749005, null), !connectedbotstarref.revoked, true);
+                H.m(2131232196, new ai.r(n3Var, context, a22, connectedbotstarref, 24), hd.M0(2131749005, null), !connectedbotstarref.revoked, true);
                 H.V(5);
                 H.Z();
                 return true;
@@ -220,8 +220,8 @@ public final class n3 extends p00 implements is {
             eq eqVar = new eq(2131231970, 0);
             eqVar.I = 0.937f;
             eqVar.J = 0.937f;
-            eqVar.f34415r = -org.telegram.messenger.g0.L(1.33f);
-            eqVar.f34416s = org.telegram.messenger.g0.L(1.0f);
+            eqVar.f34414r = -org.telegram.messenger.g0.L(1.33f);
+            eqVar.f34415s = org.telegram.messenger.g0.L(1.0f);
             eqVar.H = 0.8f;
             scaleType = scaleType2;
             spannableStringBuilder.setSpan(eqVar, 0, 1, 33);
@@ -417,11 +417,11 @@ public final class n3 extends p00 implements is {
         f10.addView(z70Var, ja.t(-1, -2, 49, 14, 12, 14, 2));
         org.telegram.ui.ActionBar.u2 u2Var2 = u2Var;
         u2Var2.O = f10;
-        androidx.car.app.utils.a aVar = new androidx.car.app.utils.a(connectedbotstarref, u2Var2, e6Var, a22, 22);
+        ai.r rVar = new ai.r(connectedbotstarref, u2Var2, e6Var, a22, 23);
         if (!connectedbotstarref.revoked) {
-            textView7.setOnClickListener(new p5(aVar, 11));
+            textView7.setOnClickListener(new p5(rVar, 11));
         }
-        e3 e3Var = new e3(connectedbotstarref, i7, u2Var2, context, j3, e6Var, aVar);
+        e3 e3Var = new e3(connectedbotstarref, i7, u2Var2, context, j3, e6Var, rVar);
         org.telegram.ui.ActionBar.u2 u2Var3 = u2Var2;
         dVar.setOnClickListener(e3Var);
         u2Var3.setOnDismissListener(new hi.f1(6));
@@ -436,7 +436,7 @@ public final class n3 extends p00 implements is {
         } else {
             connectedbotstarref2 = connectedbotstarref;
         }
-        linearLayout.setOnClickListener(new ai.t2(27, u2Var3, connectedbotstarref2));
+        linearLayout.setOnClickListener(new ai.v2(27, u2Var3, connectedbotstarref2));
         u2Var3.Q(j6.f28922h5);
         org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
         if (!org.telegram.messenger.g0.Q1() && T != null && !org.telegram.messenger.g0.u1(T)) {
@@ -466,18 +466,18 @@ public final class n3 extends p00 implements is {
         fVar.f58877z = j6.Wk;
         fVar.A = j6.Xk;
         fVar.b();
-        this.U.setStarParticlesView(this.f50099e);
+        this.U.setStarParticlesView(this.f50076e);
         this.T.addView(this.U, ja.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         j0(hd.M0(2131752472, null), org.telegram.messenger.g0.X2(hd.M0(2131752473, null)), this.T, null);
-        this.f50098c.setOnItemClickListener(new fi.i4(2, this, context));
-        this.f50098c.setOnItemLongClickListener(new ab.g(27, this, context));
+        this.f50075c.setOnItemClickListener(new fi.i4(2, this, context));
+        this.f50075c.setOnItemLongClickListener(new ab.g(27, this, context));
         v4.k kVar = new v4.k();
         kVar.f58564m = false;
         kVar.C = false;
         kVar.o(er.h);
         kVar.n(350L);
-        this.f50098c.setItemAnimator(kVar);
-        this.f50098c.setOnScrollListener(new z4(this, 21));
+        this.f50075c.setItemAnimator(kVar);
+        this.f50075c.setOnScrollListener(new z4(this, 21));
         return this.fragmentView;
     }
 
@@ -501,7 +501,7 @@ public final class n3 extends p00 implements is {
 
     @Override
     public final v4.h0 k0() {
-        x5 x5Var = new x5(this, this.f50098c, getParentActivity(), this.currentAccount, this.classGuid, new q4(this, 21), getResourceProvider(), 5);
+        x5 x5Var = new x5(this, this.f50075c, getParentActivity(), this.currentAccount, this.classGuid, new q4(this, 21), getResourceProvider(), 5);
         this.W = x5Var;
         return x5Var;
     }

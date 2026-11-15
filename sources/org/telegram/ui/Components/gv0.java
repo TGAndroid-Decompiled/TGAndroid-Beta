@@ -19,7 +19,7 @@ public final class gv0 implements ValueAnimator.AnimatorUpdateListener {
         switch (this.f35074a) {
             case 0:
                 hv0 hv0Var = (hv0) this.f35076c;
-                hv0Var.f35353b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hv0Var.f35344b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 hv0Var.invalidate();
                 ((wk0) this.f35075b).invalidate();
                 return;

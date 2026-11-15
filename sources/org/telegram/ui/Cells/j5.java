@@ -35,7 +35,7 @@ public final class j5 extends FrameLayout {
         org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
         this.d = i9Var;
         i9Var.getImageReceiver().J0(org.telegram.messenger.g0.L(8.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -52,13 +52,13 @@ public final class j5 extends FrameLayout {
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10 | 48);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i11 = 5;
         } else {
@@ -82,13 +82,13 @@ public final class j5 extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i12 = 5;
         } else {
             i12 = 3;
         }
         textView2.setGravity(i12 | 48);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i13 = 5;
         } else {
@@ -112,13 +112,13 @@ public final class j5 extends FrameLayout {
         i20.p(textView3, 1, 14.0f, 1, 1);
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i14 = 5;
         } else {
             i14 = 3;
         }
         textView3.setGravity(i14 | 48);
-        boolean z12 = hd.f24101a0;
+        boolean z12 = hd.f24104a0;
         int i18 = (z12 ? 5 : 3) | 48;
         if (z12) {
             f14 = 10.0f;
@@ -154,7 +154,7 @@ public final class j5 extends FrameLayout {
         if (org.telegram.messenger.g0.Q1()) {
             min = org.telegram.messenger.g0.Q0();
         } else {
-            Point point = org.telegram.messenger.g0.f23609q;
+            Point point = org.telegram.messenger.g0.f23611q;
             min = Math.min(point.x, point.y);
         }
         float f16 = 640;
@@ -164,7 +164,7 @@ public final class j5 extends FrameLayout {
         org.telegram.ui.Components.i9 i9Var = this.d;
         int i15 = 3;
         if (webDocument != null && webDocument.mime_type.startsWith("image/")) {
-            boolean z10 = hd.f24101a0;
+            boolean z10 = hd.f24104a0;
             if (z10) {
                 i11 = 5;
             } else {
@@ -182,7 +182,7 @@ public final class j5 extends FrameLayout {
                 f11 = 10.0f;
             }
             textView.setLayoutParams(c8.ja.d(-1, -2.0f, i16, f10, 9.0f, f11, 0.0f));
-            boolean z11 = hd.f24101a0;
+            boolean z11 = hd.f24104a0;
             if (z11) {
                 i12 = 5;
             } else {
@@ -200,7 +200,7 @@ public final class j5 extends FrameLayout {
                 f13 = 10.0f;
             }
             textView2.setLayoutParams(c8.ja.d(-1, -2.0f, i17, f12, 33.0f, f13, 0.0f));
-            boolean z12 = hd.f24101a0;
+            boolean z12 = hd.f24104a0;
             if (z12) {
                 i15 = 5;
             }
@@ -221,19 +221,19 @@ public final class j5 extends FrameLayout {
             i9Var.getImageReceiver().r0(gc.p(k20.c(webDocument)), com.google.android.gms.internal.vision.e2.j(i13, "_", i14), null, null, null, -1L, null, obj, 1);
             return;
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setLayoutParams(c8.ja.d(-1, -2.0f, i7 | 48, 17.0f, 9.0f, 17.0f, 0.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView2.setLayoutParams(c8.ja.d(-1, -2.0f, i10 | 48, 17.0f, 33.0f, 17.0f, 0.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i15 = 5;
         }
         textView3.setLayoutParams(c8.ja.d(-1, -2.0f, i15 | 48, 17.0f, 90.0f, 17.0f, 9.0f));

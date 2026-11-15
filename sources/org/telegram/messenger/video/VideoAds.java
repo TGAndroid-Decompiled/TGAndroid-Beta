@@ -115,10 +115,10 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             g6Var.setCallback(view);
-            g6Var.f34829b = 17;
+            g6Var.f34833b = 17;
             g6Var.w(g0.L(12.0f));
             g6Var.x(g0.o1("fonts/num.otf"));
-            g6Var.N = g0.f23609q.x;
+            g6Var.N = g0.f23611q.x;
             g6Var.u(-1);
             er erVar = er.h;
             this.showCrossAnimated = new u5(view, 0L, 420L, erVar);
@@ -385,7 +385,7 @@ public class VideoAds {
         d dVar = new d(this, 0);
         Objects.requireNonNull(m60Var);
         a aVar = new a(m60Var, 1);
-        int i10 = my0.f49340w1;
+        int i10 = my0.f49339w1;
         if (context == null) {
             return;
         }
@@ -423,7 +423,7 @@ public class VideoAds {
 
     public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         logSponsoredClicked(tL_sponsoredMessage);
-        vf.c.s(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, np.s1(m10.f24934t0).f25269e6, false, false);
+        vf.c.s(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, np.s1(m10.f24940t0).f25272e6, false, false);
     }
 
     public void lambda$show$2(CloseDrawable closeDrawable, View view) {
@@ -448,7 +448,7 @@ public class VideoAds {
     public void lambda$show$3(xb xbVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         xb xbVar2 = this.bulletin;
         if (xbVar2 != null && xbVar2 == xbVar) {
-            xbVar2.f41643j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            xbVar2.f41635j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             xbVar2.i(true);
         }
     }
@@ -478,7 +478,7 @@ public class VideoAds {
                 }
             } else if (j10 <= 0) {
                 xb xbVar4 = this.bulletin;
-                xbVar4.f41643j = (int) j11;
+                xbVar4.f41635j = (int) j11;
                 xbVar4.i(true);
             } else {
                 g0.i3(runnable, j10);
@@ -512,7 +512,7 @@ public class VideoAds {
     public void lambda$show$7(m60 m60Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
         m60Var.u();
         logSponsoredClicked(tL_sponsoredMessage);
-        vf.c.s(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, np.s1(this.currentAccount).f25269e6, false, false);
+        vf.c.s(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, np.s1(this.currentAccount).f25272e6, false, false);
     }
 
     public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
@@ -586,7 +586,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        e6 e6Var = this.bulletinFactory.f33534c;
+        e6 e6Var = this.bulletinFactory.f33536c;
         AdLayout adLayout = new AdLayout(W, e6Var) {
             {
                 VideoAds.this = this;
@@ -608,7 +608,7 @@ public class VideoAds {
         j5 j5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i7 = j6.Fi;
-        j5Var.i(new AdOptionsDrawable(W2, j6.w0(i7, this.bulletinFactory.f33534c)));
+        j5Var.i(new AdOptionsDrawable(W2, j6.w0(i7, this.bulletinFactory.f33536c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
@@ -632,12 +632,12 @@ public class VideoAds {
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(j6.w0(i7, this.bulletinFactory.f33534c));
+        closeDrawable.setColor(j6.w0(i7, this.bulletinFactory.f33536c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new e(0, this, closeDrawable));
         final xb b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f41654u = false;
+        b10.f41646u = false;
         b10.i(false);
         final ki.n nVar = new ki.n(this, b10, tL_sponsoredMessage, 14);
         final long[] jArr = new long[1];
@@ -651,12 +651,12 @@ public class VideoAds {
         };
         g0.i3(nVar, tL_sponsoredMessage.min_display_duration * 1000);
         xb xbVar2 = this.bulletin;
-        xbVar2.f41651r = false;
+        xbVar2.f41643r = false;
         xbVar2.v = new ki.n(this, b10, new boolean[1], 15);
         adLayout.titleTextView.setRightDrawableOnClick(new g(this, b10, tL_sponsoredMessage, W, e6Var, adLayout, z10Var, 0));
         xb xbVar3 = this.bulletin;
         e eVar = new e(1, this, tL_sponsoredMessage);
-        cb cbVar = xbVar3.f41639e;
+        cb cbVar = xbVar3.f41631e;
         if (cbVar != null) {
             cbVar.setOnClickListener(eVar);
         }
@@ -687,7 +687,7 @@ public class VideoAds {
 
             @Override
             public Activity getParentActivity() {
-                Activity W = g0.W(t0.f26600b);
+                Activity W = g0.W(t0.f26609b);
                 if (W == null) {
                     return LaunchActivity.H1;
                 }
@@ -720,7 +720,7 @@ public class VideoAds {
         tL_messages_clickSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
         tL_messages_clickSponsoredMessage.media = false;
         tL_messages_clickSponsoredMessage.fullscreen = false;
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
@@ -730,7 +730,7 @@ public class VideoAds {
         }
         TLRPC.TL_messages_viewSponsoredMessage tL_messages_viewSponsoredMessage = new TLRPC.TL_messages_viewSponsoredMessage();
         tL_messages_viewSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
-        boolean z10 = r2.f26198a;
+        boolean z10 = r2.f26206a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_viewSponsoredMessage, null);
     }
 

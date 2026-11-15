@@ -8,12 +8,12 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 public final class fu extends ReplacementSpan {
-    public final du f23548a;
-    public final TL_iv.textButton f23549b;
-    public final RectF f23550c = new RectF();
+    public final du f23550a;
+    public final TL_iv.textButton f23551b;
+    public final RectF f23552c = new RectF();
     public float d;
-    public boolean f23551e;
-    public int f23552f;
+    public boolean f23553e;
+    public int f23554f;
     public View h;
 
     public fu(org.telegram.messenger.iv r21, int r22, org.telegram.tgnet.tl.TL_iv.textButton r23, java.lang.Boolean r24) {
@@ -22,22 +22,22 @@ public final class fu extends ReplacementSpan {
 
     public final void a(View view) {
         this.h = view;
-        this.f23548a.f23134a.i(view);
+        this.f23550a.f23141a.i(view);
     }
 
     public final void b(View view) {
         this.h = null;
-        this.f23548a.f23134a.f(view);
+        this.f23550a.f23141a.f(view);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         int i14;
         float f11;
-        du duVar = this.f23548a;
-        int i15 = duVar.f23134a.f24228s;
+        du duVar = this.f23550a;
+        int i15 = duVar.f23141a.f24228s;
         int i16 = 0;
-        if (i15 > 0 && this.f23552f > 0) {
+        if (i15 > 0 && this.f23554f > 0) {
             i14 = 1;
         } else {
             i14 = 0;
@@ -49,7 +49,7 @@ public final class fu extends ReplacementSpan {
             while (true) {
                 if (i17 >= length) {
                     break;
-                } else if ((evVarArr[i17].f23368b & 15) == 14) {
+                } else if ((evVarArr[i17].f23371b & 15) == 14) {
                     i14 = 1;
                     break;
                 } else {
@@ -64,14 +64,14 @@ public final class fu extends ReplacementSpan {
             f11 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + i12;
         }
         canvas.save();
-        if (!duVar.f23150s) {
+        if (!duVar.f23157s) {
             i16 = g0.L(1.0f);
         }
         int round = Math.round(f10 + i16);
         int ceil = (int) Math.ceil((f11 - (duVar.c() / 2.0f)) + (i14 ^ 1));
         float f12 = round;
         float f13 = ceil;
-        this.f23550c.set(f12, f13, round + duVar.f23137e, duVar.c() + ceil);
+        this.f23552c.set(f12, f13, round + duVar.f23144e, duVar.c() + ceil);
         canvas.translate(f12, f13);
         duVar.a(canvas);
         canvas.restore();
@@ -86,7 +86,7 @@ public final class fu extends ReplacementSpan {
         int i14;
         int i15;
         int i16 = 0;
-        if (this.f23551e && fontMetricsInt != null) {
+        if (this.f23553e && fontMetricsInt != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -118,8 +118,8 @@ public final class fu extends ReplacementSpan {
         }
         int L = g0.L(8.0f);
         int L2 = g0.L(10.0f);
-        du duVar = this.f23548a;
-        if (fontMetricsInt != null && duVar.f23150s) {
+        du duVar = this.f23550a;
+        if (fontMetricsInt != null && duVar.f23157s) {
             float f10 = this.d;
             int i17 = (int) (((-L2) - L) * f10);
             fontMetricsInt.top = i17;
@@ -135,7 +135,7 @@ public final class fu extends ReplacementSpan {
             fontMetricsInt.descent = i13;
             fontMetricsInt.bottom = i14;
             fontMetricsInt.leading = i15;
-            int i19 = this.f23552f;
+            int i19 = this.f23554f;
             int i20 = i13 - i12;
             if (i19 > i20) {
                 int i21 = i19 - i20;
@@ -147,8 +147,8 @@ public final class fu extends ReplacementSpan {
                 fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
             }
         }
-        int i24 = duVar.f23137e;
-        if (!duVar.f23150s) {
+        int i24 = duVar.f23144e;
+        if (!duVar.f23157s) {
             i16 = g0.L(1.0f) * 2;
         }
         return i24 + i16;

@@ -5,21 +5,21 @@ import j$.util.function.Predicate$CC;
 import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
 public final class h60 implements Predicate {
-    public final int f47620a;
-    public final Object f47621b;
+    public final int f47610a;
+    public final Object f47611b;
 
     public h60(Object obj, int i7) {
-        this.f47620a = i7;
-        this.f47621b = obj;
+        this.f47610a = i7;
+        this.f47611b = obj;
     }
 
     public Predicate and(Predicate predicate) {
-        int i7 = this.f47620a;
+        int i7 = this.f47610a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f47620a) {
+        switch (this.f47610a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -32,31 +32,31 @@ public final class h60 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i7 = this.f47620a;
+        int i7 = this.f47610a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f47620a) {
+        switch (this.f47610a) {
             case 0:
-                String str = (String) this.f47621b;
+                String str = (String) this.f47611b;
                 String str2 = (String) obj;
                 if (str2 != null && str2.equals(str)) {
                     return true;
                 }
                 return false;
             case 1:
-                return PhoneNumberUtils.compare((String) this.f47621b, (String) obj);
+                return PhoneNumberUtils.compare((String) this.f47611b, (String) obj);
             case 2:
-                String str3 = (String) this.f47621b;
+                String str3 = (String) this.f47611b;
                 String str4 = (String) obj;
                 if (str4 != null && str4.equals(str3)) {
                     return true;
                 }
                 return false;
             default:
-                return an.E1((an) this.f47621b, (TLRPC.MessageEntity) obj);
+                return an.E1((an) this.f47611b, (TLRPC.MessageEntity) obj);
         }
     }
 }

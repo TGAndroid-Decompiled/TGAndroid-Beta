@@ -10,7 +10,7 @@ import java.util.List;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.Wallet.k8;
 import org.telegram.ui.ld0;
-import tg.a2;
+import tg.z1;
 public final class p implements e0 {
     public final h5 f59627a;
     public final wf.b f59628b;
@@ -233,7 +233,7 @@ public final class p implements e0 {
                             e2.u uVar = new e2.u(tVar);
                             k8 k8Var = new k8(28, this, uVar);
                             wf.b bVar = this.f59628b;
-                            a2 a2Var = new a2(k8Var, 14);
+                            z1 z1Var = new z1(k8Var, 14);
                             ld0 ld0Var = new ld0(7);
                             qb.a aVar = new qb.a(4);
                             if (this.f59629c.L(uVar)) {
@@ -275,7 +275,7 @@ public final class p implements e0 {
                             }
                             e2.l0 l0Var3 = new e2.l0("", new e2.a0(zVar), g0Var2, new e2.f0(e0Var), e2.o0.L, h0Var3);
                             g0Var2.getClass();
-                            aVarArr[i11] = new x0(l0Var3, bVar, a2Var, ld0Var.s(l0Var3), aVar, 1048576, uVar2);
+                            aVarArr[i11] = new x0(l0Var3, bVar, z1Var, ld0Var.s(l0Var3), aVar, 1048576, uVar2);
                         } else {
                             wf.b bVar2 = this.f59628b;
                             bVar2.getClass();

@@ -23,18 +23,18 @@ public final class g90 extends org.telegram.ui.Cells.k3 {
         boolean isEmpty = TextUtils.isEmpty(editable);
         i90 i90Var = this.G;
         if (isEmpty) {
-            i90Var.f47993s.setText("");
+            i90Var.f47983s.setText("");
             return;
         }
         try {
             long parseLong = Long.parseLong(editable.toString());
-            if (parseLong > i90Var.getMessagesController().f25241b6) {
+            if (parseLong > i90Var.getMessagesController().f25244b6) {
                 this.F = true;
-                parseLong = i90Var.getMessagesController().f25241b6;
+                parseLong = i90Var.getMessagesController().f25244b6;
                 setText(Long.toString(parseLong));
                 this.F = false;
             }
-            TextView textView = i90Var.f47993s;
+            TextView textView = i90Var.f47983s;
             if (i90Var.getConnectionsManager().isTestBackend()) {
                 i7 = 2131746152;
             } else {
@@ -42,7 +42,7 @@ public final class g90 extends org.telegram.ui.Cells.k3 {
             }
             org.telegram.messenger.r1 i11 = org.telegram.messenger.r1.i();
             i10 = ((org.telegram.ui.ActionBar.e2) i90Var).currentAccount;
-            textView.setText(org.telegram.messenger.hd.a0(null, null, i7, i11.f((long) ((parseLong / 1000.0d) * org.telegram.messenger.np.s1(i10).f25259d6), "USD")));
+            textView.setText(org.telegram.messenger.hd.a0(null, null, i7, i11.f((long) ((parseLong / 1000.0d) * org.telegram.messenger.np.s1(i10).f25262d6), "USD")));
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }

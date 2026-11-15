@@ -52,8 +52,8 @@ public final class pm implements mx {
             z10 = false;
         }
         jn jnVar = this.f38331a;
-        jnVar.f36089i1 = z10;
-        jnVar.f33607b.f36482p3.requestLayout();
+        jnVar.f36079i1 = z10;
+        jnVar.f33609b.f36470p3.requestLayout();
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class pm implements mx {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.z5 z5Var = this.f38331a.f36087h1;
+        org.telegram.ui.Cells.z5 z5Var = this.f38331a.f36077h1;
         if (z5Var == null || (editField = z5Var.getEditField()) == null) {
             return false;
         }
@@ -75,7 +75,7 @@ public final class pm implements mx {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.z5 z5Var = this.f38331a.f36087h1;
+        org.telegram.ui.Cells.z5 z5Var = this.f38331a.f36077h1;
         if (z5Var == null || (editField = z5Var.getEditField()) == null) {
             return;
         }
@@ -96,7 +96,7 @@ public final class pm implements mx {
     @Override
     public final void n() {
         jn jnVar = this.f38331a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, jnVar.getContext(), jnVar.f33606a);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, jnVar.getContext(), jnVar.f33608a);
         String M0 = org.telegram.messenger.hd.M0(2131752068, null);
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
         t1Var.S = M0;
@@ -115,7 +115,7 @@ public final class pm implements mx {
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         EditTextBoldCursor editField;
         p5 p5Var;
-        org.telegram.ui.Cells.z5 z5Var = this.f38331a.f36087h1;
+        org.telegram.ui.Cells.z5 z5Var = this.f38331a.f36077h1;
         if (z5Var == null || (editField = z5Var.getEditField()) == null) {
             return;
         }
@@ -142,7 +142,7 @@ public final class pm implements mx {
 
     @Override
     public final boolean z() {
-        return this.f38331a.f36089i1;
+        return this.f38331a.f36079i1;
     }
 
     @Override

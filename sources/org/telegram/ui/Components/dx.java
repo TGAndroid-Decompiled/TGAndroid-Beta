@@ -23,26 +23,26 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
     public int F;
     public AnimatorSet G;
     public final ly H;
-    public int f34085a;
-    public int f34086b;
-    public final fh0 f34087c;
+    public int f34072a;
+    public int f34073b;
+    public final fh0 f34074c;
     public final org.telegram.ui.ActionBar.j5 d;
-    public final TextView f34088e;
-    public final FrameLayout f34089f;
+    public final TextView f34075e;
+    public final FrameLayout f34076f;
     public final TextView h;
-    public final TextView f34090n;
-    public final ug.q0 f34091r;
-    public TLRPC.TL_inputStickerSetID f34092s;
-    public TLRPC.TL_inputStickerSetID f34093w;
-    public zw f34094x;
-    public boolean f34095y;
+    public final TextView f34077n;
+    public final ug.q0 f34078r;
+    public TLRPC.TL_inputStickerSetID f34079s;
+    public TLRPC.TL_inputStickerSetID f34080w;
+    public zw f34081x;
+    public boolean f34082y;
 
     public dx(ly lyVar, Context context) {
         super(context);
         this.H = lyVar;
         org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
         ?? imageView = new ImageView(context);
-        this.f34087c = imageView;
+        this.f34074c = imageView;
         imageView.f(2131624315, 24, 24, null);
         int i7 = org.telegram.ui.ActionBar.j6.Lf;
         org.telegram.ui.ActionBar.e6 e6Var = lyVar.f36931a2;
@@ -55,7 +55,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         j5Var.setTypeface(org.telegram.messenger.g0.o());
         j5Var.setOnClickListener(new cx(this, 0));
         TextView textView = new TextView(context);
-        this.f34088e = textView;
+        this.f34075e = textView;
         textView.setTextSize(1, 11.0f);
         org.telegram.ui.ActionBar.q6.U(textView, i7, e6Var);
         textView.setTypeface(org.telegram.messenger.g0.o());
@@ -71,7 +71,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         addView(j5Var, c8.ja.i(-2.0f, -1.0f, 8388611, 15.0f, 15.0f, 0.0f, 0.0f));
         addView(textView, c8.ja.i(-2.0f, -2.0f, 8388611, 15.0f, 10.0f, 0.0f, 0.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f34089f = frameLayout;
+        this.f34076f = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), 0);
         frameLayout.setClipToPadding(false);
         frameLayout.setOnClickListener(new cx(this, 1));
@@ -89,7 +89,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         textView2.setOnClickListener(new cx(this, 2));
         frameLayout.addView(textView2, c8.ja.h(-2.0f, 26.0f, 8388661));
         TextView textView3 = new TextView(context);
-        this.f34090n = textView3;
+        this.f34077n = textView3;
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(org.telegram.messenger.g0.o());
         textView3.setText(org.telegram.messenger.hd.M0(2131744855, null));
@@ -101,7 +101,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         textView3.setOnClickListener(new cx(this, 3));
         frameLayout.addView(textView3, c8.ja.h(-2.0f, 26.0f, 8388661));
         ug.q0 q0Var = new ug.q0(org.telegram.messenger.g0.L(16.0f), context, e6Var, false);
-        this.f34091r = q0Var;
+        this.f34078r = q0Var;
         q0Var.setIcon(2131624315);
         q0Var.b(org.telegram.messenger.hd.M0(2131743876, null), new cx(this, 4), false);
         try {
@@ -117,7 +117,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
             q0Var.getChildAt(0).setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
         } catch (Exception unused) {
         }
-        this.f34089f.addView(this.f34091r, c8.ja.h(-2.0f, 26.0f, 8388661));
+        this.f34076f.addView(this.f34078r, c8.ja.h(-2.0f, 26.0f, 8388661));
         setWillNotDraw(false);
     }
 
@@ -157,7 +157,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         float f31;
         float f32;
         float f33;
-        zw zwVar = this.f34094x;
+        zw zwVar = this.f34081x;
         if (zwVar == null) {
             return;
         }
@@ -168,9 +168,9 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         } else {
             z11 = true;
         }
-        if (!this.f34094x.f42433e && !org.telegram.messenger.m10.i(lyVar.f36941d1).q() && !lyVar.V0) {
+        if (!this.f34081x.f42433e && !org.telegram.messenger.m10.i(lyVar.f36941d1).q() && !lyVar.V0) {
             i7 = 1;
-        } else if (this.f34094x.f42435g) {
+        } else if (this.f34081x.f42435g) {
             if (z11) {
                 i7 = 3;
             } else {
@@ -203,7 +203,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         } else {
             z14 = false;
         }
-        ug.q0 q0Var = this.f34091r;
+        ug.q0 q0Var = this.f34078r;
         q0Var.setEnabled(z14);
         if (i7 == 2) {
             z15 = true;
@@ -217,10 +217,10 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         } else {
             z16 = false;
         }
-        TextView textView2 = this.f34090n;
+        TextView textView2 = this.f34077n;
         textView2.setEnabled(z16);
         org.telegram.ui.ActionBar.j5 j5Var = this.d;
-        fh0 fh0Var = this.f34087c;
+        fh0 fh0Var = this.f34074c;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.G = animatorSet2;
@@ -445,15 +445,15 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         ly lyVar = this.H;
         int i11 = lyVar.f36941d1;
         if (i7 == org.telegram.messenger.ns.B0) {
-            if (this.f34092s != null && (o03 = org.telegram.messenger.si.b0(i11).o0(this.f34092s.f28071id)) != null && o03.set != null) {
+            if (this.f34079s != null && (o03 = org.telegram.messenger.si.b0(i11).o0(this.f34079s.f28071id)) != null && o03.set != null) {
                 org.telegram.ui.ActionBar.e2 e2Var = lyVar.Z1;
                 if (e2Var == null) {
                     e2Var = new bi.t6(this, 8);
                 }
                 wu.J0(e2Var, o03, true, null, new fo(this, 15));
-                this.f34092s = null;
+                this.f34079s = null;
             }
-            if (this.f34093w != null && (o02 = org.telegram.messenger.si.b0(i11).o0(this.f34093w.f28071id)) != null && o02.set != null) {
+            if (this.f34080w != null && (o02 = org.telegram.messenger.si.b0(i11).o0(this.f34080w.f28071id)) != null && o02.set != null) {
                 org.telegram.ui.ActionBar.e2 e2Var2 = lyVar.Z1;
                 if (e2Var2 == null) {
                     e2Var2 = new bi.t6(this, 8);
@@ -464,7 +464,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
                 if (e2Var3.getFragmentView() != null) {
                     org.telegram.messenger.si.b0(e2Var3.getCurrentAccount()).g2(e2Var3.getFragmentView().getContext(), o02, null, 0, e2Var3, null, true, true, vsVar, false);
                 }
-                this.f34093w = null;
+                this.f34080w = null;
             }
         }
     }
@@ -478,7 +478,7 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        if (this.f34095y) {
+        if (this.f34082y) {
             if (this.E == null) {
                 Paint paint = new Paint(1);
                 this.E = paint;
@@ -497,8 +497,8 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
         super.onLayout(z10, i7, i10, i11, i12);
-        int L = org.telegram.messenger.g0.L(11.0f) + this.f34089f.getWidth();
-        TextView textView = this.f34088e;
+        int L = org.telegram.messenger.g0.L(11.0f) + this.f34076f.getWidth();
+        TextView textView = this.f34075e;
         if (textView.getVisibility() == 0) {
             i13 = textView.getMeasuredWidth();
         } else {
@@ -542,20 +542,20 @@ public final class dx extends FrameLayout implements org.telegram.ui.ActionBar.z
         try {
             int z10 = lyVar.z(org.telegram.ui.ActionBar.j6.Fi);
             int z11 = lyVar.z(org.telegram.ui.ActionBar.j6.Hi);
-            if (z10 == this.f34085a) {
-                if (z11 != this.f34086b) {
+            if (z10 == this.f34072a) {
+                if (z11 != this.f34073b) {
                 }
                 invalidate();
             }
-            this.f34085a = z10;
-            this.f34086b = z11;
+            this.f34072a = z10;
+            this.f34073b = z11;
             TextView textView = this.h;
             if (textView != null) {
                 org.telegram.ui.ActionBar.j6.H1(textView.getBackground(), z10, false);
                 org.telegram.ui.ActionBar.j6.H1(textView.getBackground(), z11, true);
                 textView.invalidate();
             }
-            TextView textView2 = this.f34090n;
+            TextView textView2 = this.f34077n;
             if (textView2 != null) {
                 org.telegram.ui.ActionBar.j6.H1(textView2.getBackground(), z10 & 452984831, true);
                 textView2.invalidate();

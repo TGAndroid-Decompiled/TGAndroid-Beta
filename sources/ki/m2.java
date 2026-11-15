@@ -37,15 +37,15 @@ public final class m2 extends AnimatorListenerAdapter {
                 k10Var.N = this.f18453c;
                 k10Var.G.setColorFilter(new PorterDuffColorFilter(k10Var.M, PorterDuff.Mode.MULTIPLY));
                 k10Var.F.setColor(k10Var.M);
-                k10Var.f36231r.setColor(k10Var.N);
+                k10Var.f36221r.setColor(k10Var.N);
                 k10Var.K.d(i0.a.o(k10Var.N, 38));
                 return;
             case 2:
                 ys0 ys0Var = (ys0) this.d;
-                tr0[] tr0VarArr = ys0Var.f42117n0;
+                tr0[] tr0VarArr = ys0Var.f42119n0;
                 ys0Var.M1.e();
-                ys0Var.f42130r1 = false;
-                int[] iArr = ys0Var.f42123p1;
+                ys0Var.f42132r1 = false;
+                int[] iArr = ys0Var.f42125p1;
                 int i10 = this.f18453c;
                 int i11 = this.f18452b;
                 iArr[i11] = i10;
@@ -54,16 +54,16 @@ public final class m2 extends AnimatorListenerAdapter {
                     if (tr0Var != null && tr0Var.h != null && (((i7 = tr0Var.F) == 0 || ys0.z0(i7)) && (adapter = tr0VarArr[i12].h.getAdapter()) != null)) {
                         int b10 = adapter.b();
                         if (i12 == 0) {
-                            ys0Var.f42144w1[0].g(false);
+                            ys0Var.f42146w1[0].g(false);
                         }
-                        tr0VarArr[i12].f39799x.y1(iArr[i11]);
+                        tr0VarArr[i12].f39796x.y1(iArr[i11]);
                         tr0VarArr[i12].h.a0();
                         if (adapter.b() == b10) {
                             org.telegram.messenger.g0.a4(tr0VarArr[i12].h);
                         } else {
                             adapter.f();
                         }
-                        tr0VarArr[i12].f39795n.setVisibility(8);
+                        tr0VarArr[i12].f39792n.setVisibility(8);
                     }
                 }
                 ys0Var.j1();

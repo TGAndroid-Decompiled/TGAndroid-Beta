@@ -37,7 +37,7 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                 FrameLayout frameLayout2 = jVar.K;
                 Float f12 = (Float) valueAnimator.getAnimatedValue();
                 ((Float) valueAnimator.getAnimatedValue()).getClass();
-                Typeface typeface = org.telegram.messenger.g0.f23581a;
+                Typeface typeface = org.telegram.messenger.g0.f23583a;
                 float min = Math.min((f12.floatValue() - ((Float) ((AtomicReference) obj2).getAndSet(f12)).floatValue()) * 1000.0f * 8.0f, 250.0f);
                 while (min > 0.0f) {
                     float min2 = Math.min(min, 18.0f);

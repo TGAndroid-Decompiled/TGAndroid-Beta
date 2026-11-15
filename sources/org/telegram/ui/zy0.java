@@ -26,7 +26,7 @@ public final class zy0 extends org.telegram.ui.Components.h6 {
         u5Var.e(false, f10);
         int i7 = org.telegram.ui.ActionBar.j6.f29241y6;
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f54071x;
-        setTextColor(i0.a.f(u5Var.f39903c, saveToGallerySettingsActivity.getThemedColor(i7), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.j6.f29031n6)));
+        setTextColor(i0.a.f(u5Var.f39900c, saveToGallerySettingsActivity.getThemedColor(i7), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.j6.f29031n6)));
         super.dispatchDraw(canvas);
     }
 

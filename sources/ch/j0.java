@@ -62,13 +62,13 @@ public final class j0 extends i9 {
             this.H = true;
             return;
         }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f33586l0) {
+        if (getImageReceiver().B() != null && getImageReceiver().B().f33588l0) {
             this.H = true;
         }
-        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f33586l0) {
+        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f33588l0) {
             l0 l0Var = this.L;
-            if (l0Var.f5112a == 2 && !l0Var.f5134z) {
-                getImageReceiver().B().N(getImageReceiver().B().f33577e[0] - 1, false, false);
+            if (l0Var.f5115a == 2 && !l0Var.f5137z) {
+                getImageReceiver().B().N(getImageReceiver().B().f33579e[0] - 1, false, false);
             } else {
                 getImageReceiver().B().N(0, false, false);
                 getImageReceiver().B().start();

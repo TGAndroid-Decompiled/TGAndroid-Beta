@@ -47,7 +47,7 @@ public abstract class v7 extends FrameLayout {
         t7 t7Var = new t7(this, context, e6Var);
         this.f31814a = t7Var;
         setClipChildren(false);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (!z10) {
             i7 = 8388611;
         } else {
@@ -75,7 +75,7 @@ public abstract class v7 extends FrameLayout {
         j5Var.setTextSize(16);
         j5Var.setMaxLines(1);
         j5Var.setTextColor(-16777216);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -85,7 +85,7 @@ public abstract class v7 extends FrameLayout {
         this.f31816c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-16777216);
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             f14.addView((View) j5Var, c8.ja.q(0, -2, 1.0f, 0, 0, 0, 16, 0));
             f14.addView(textView, c8.ja.r(-2, -2, 80));
         } else {
@@ -110,7 +110,7 @@ public abstract class v7 extends FrameLayout {
         textView4.setTextColor(-16777216);
         textView4.setGravity(16);
         LinearLayout f15 = org.telegram.messenger.k5.f(context, 0);
-        if (!hd.f24101a0) {
+        if (!hd.f24104a0) {
             f15.addView(textView2, c8.ja.q(0, -2, 1.0f, 0, 0, 0, 8, 0));
             f15.addView(textView4, c8.ja.r(-2, -2, 16));
             f15.addView(textView3, c8.ja.t(-2, -2, 16, 10, 0, 0, 0));
@@ -120,7 +120,7 @@ public abstract class v7 extends FrameLayout {
             f15.addView(textView2, c8.ja.q(0, -2, 1.0f, 0, 8, 0, 0, 0));
         }
         linearLayout.addView(f15, c8.ja.d(-1, -2.0f, 8388659, 0.0f, 3.0f, 0.0f, 9.0f));
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (!z11) {
             f12 = 72.0f;
         } else {
@@ -148,14 +148,14 @@ public abstract class v7 extends FrameLayout {
         int intrinsicWidth = mutate2.getIntrinsicWidth();
         int intrinsicHeight = mutate2.getIntrinsicHeight();
         fqVar.h = intrinsicWidth;
-        fqVar.f34674n = intrinsicHeight;
+        fqVar.f34678n = intrinsicHeight;
         textView4.setCompoundDrawablesWithIntrinsicBounds(fqVar, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         fq fqVar2 = new fq(null, mutate2, 0, org.telegram.messenger.g0.L(1.0f));
         int intrinsicWidth2 = mutate2.getIntrinsicWidth();
         int intrinsicHeight2 = mutate2.getIntrinsicHeight();
         fqVar2.h = intrinsicWidth2;
-        fqVar2.f34674n = intrinsicHeight2;
+        fqVar2.f34678n = intrinsicHeight2;
         textView3.setCompoundDrawablesWithIntrinsicBounds(fqVar2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         setWillNotDraw(false);
@@ -168,7 +168,7 @@ public abstract class v7 extends FrameLayout {
             int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28850d7, this.f31821s);
             Paint paint = this.h;
             paint.setColor(w02);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 canvas.drawRect(0.0f, getHeight() - 1, getWidth() - org.telegram.messenger.g0.L(72), getHeight(), paint);
             } else {
                 canvas.drawRect(org.telegram.messenger.g0.L(72), getHeight() - 1, getWidth(), getHeight(), paint);
@@ -195,15 +195,15 @@ public abstract class v7 extends FrameLayout {
     }
 
     public void setData(s41 s41Var) {
-        TLRPC.User user = s41Var.f51098a;
+        TLRPC.User user = s41Var.f51094a;
         org.telegram.ui.Components.t8 t8Var = this.f31819n;
         t8Var.r(user);
-        TLRPC.User user2 = s41Var.f51098a;
+        TLRPC.User user2 = s41Var.f51094a;
         t7 t7Var = this.f31814a;
         t7Var.f(user2, t8Var);
         t7Var.setRoundRadius(org.telegram.messenger.g0.L(46.0f) >> 1);
-        this.f31815b.k(s41Var.f51098a.first_name);
-        this.f31817e.setText(s41Var.f51099b);
+        this.f31815b.k(s41Var.f51094a.first_name);
+        this.f31817e.setText(s41Var.f51095b);
         this.f31816c.setVisibility(8);
         this.d.setVisibility(8);
         this.f31818f.setVisibility(8);

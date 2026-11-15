@@ -19,31 +19,31 @@ public final class m1 extends View {
     public Runnable J;
     public boolean K;
     public l1 L;
-    public final Paint f57433a;
-    public final Paint f57434b;
-    public final Path f57435c;
+    public final Paint f57446a;
+    public final Paint f57447b;
+    public final Path f57448c;
     public final ou d;
-    public final RectF f57436e;
-    public boolean f57437f;
+    public final RectF f57449e;
+    public boolean f57450f;
     public boolean h;
-    public float f57438n;
-    public float f57439r;
-    public long f57440s;
-    public boolean f57441w;
-    public final u5 f57442x;
-    public final u5 f57443y;
+    public float f57451n;
+    public float f57452r;
+    public long f57453s;
+    public boolean f57454w;
+    public final u5 f57455x;
+    public final u5 f57456y;
 
     public m1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f57433a = paint;
+        this.f57446a = paint;
         Paint paint2 = new Paint(1);
-        this.f57434b = paint2;
-        this.f57435c = new Path();
-        this.f57436e = new RectF();
-        this.f57441w = true;
-        this.f57442x = new u5(this);
-        this.f57443y = new u5(this);
+        this.f57447b = paint2;
+        this.f57448c = new Path();
+        this.f57449e = new RectF();
+        this.f57454w = true;
+        this.f57455x = new u5(this);
+        this.f57456y = new u5(this);
         this.E = new u5(this);
         this.I = new sg.h1(1.0f, 0.016773745f, -1);
         this.K = true;
@@ -58,9 +58,9 @@ public final class m1 extends View {
         if (z10) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((f10 - f12) - org.telegram.messenger.g0.L(6.0f), (f11 - f12) - org.telegram.messenger.g0.L(6.0f), f10 + f12 + org.telegram.messenger.g0.L(6.0f), f11 + f12 + org.telegram.messenger.g0.L(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f57439r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f57452r * 255.0f), 31);
         }
-        canvas.drawCircle(f10, f11, f12, this.f57434b);
+        canvas.drawCircle(f10, f11, f12, this.f57447b);
         if (z10) {
             canvas.restore();
         }
@@ -81,16 +81,16 @@ public final class m1 extends View {
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         int height = (int) (getHeight() * 0.3f);
-        this.f57436e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
+        this.f57449e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f25804b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f25806b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f57437f = false;
+        this.f57450f = false;
         invalidate();
         return onTouchEvent;
     }
@@ -119,7 +119,7 @@ public final class m1 extends View {
     }
 
     public void setShowPreview(boolean z10) {
-        this.f57441w = z10;
+        this.f57454w = z10;
         invalidate();
     }
 

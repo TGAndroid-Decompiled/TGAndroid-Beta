@@ -6,11 +6,11 @@ import android.text.method.LinkMovementMethod;
 import android.view.MotionEvent;
 import android.widget.TextView;
 public final class c0 extends LinkMovementMethod {
-    public final int f22779a;
+    public final int f22783a;
 
     @Override
     public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        switch (this.f22779a) {
+        switch (this.f22783a) {
             case 0:
                 try {
                     boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
@@ -58,6 +58,6 @@ public final class c0 extends LinkMovementMethod {
     }
 
     public c0(boolean z10) {
-        this.f22779a = 0;
+        this.f22783a = 0;
     }
 }

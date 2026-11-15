@@ -14,7 +14,7 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.ja;
-import di.jc;
+import di.ic;
 import j$.util.Map;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,7 +93,7 @@ public abstract class u0 extends FrameLayout implements is {
         this.G = -1;
         this.H = true;
         this.J = new h6.m(29);
-        int i7 = m10.f24934t0;
+        int i7 = m10.f24940t0;
         this.O = i7;
         this.U = new ArrayList();
         final c2 c2Var = (c2) this;
@@ -155,7 +155,7 @@ public abstract class u0 extends FrameLayout implements is {
         }, new b(), 2);
         this.f12382e = x5Var;
         c1Var.setAdapter(x5Var);
-        x5Var.f38201r = false;
+        x5Var.f38199r = false;
         c1Var.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(7.5f));
         c1Var.setClipToPadding(false);
         addView(c1Var, ja.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
@@ -225,7 +225,7 @@ public abstract class u0 extends FrameLayout implements is {
         }, null);
         this.f12388n = p41Var;
         b61Var.setAdapter(p41Var);
-        p41Var.f38201r = false;
+        p41Var.f38199r = false;
         b61Var.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
         b61Var.setClipToPadding(false);
         addView(b61Var, ja.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
@@ -244,7 +244,7 @@ public abstract class u0 extends FrameLayout implements is {
         u0Var.S = l10.longValue();
         xb I = new cc(u0Var.f12377b, new b()).I(2131624227, u0Var.getStarsToastTitle(), u0Var.getStarsToastSubtitle());
         boolean z10 = false;
-        I.f41651r = false;
+        I.f41643r = false;
         I.k(true);
         long j3 = 0;
         u0Var.S = 0L;
@@ -575,11 +575,11 @@ public abstract class u0 extends FrameLayout implements is {
         }
         i0 i0Var = new i0(0);
         int i10 = this.O;
-        jc jcVar = new jc(getContext(), i10, this.N, null, null, arrayList, !z10, true, e10, i0Var);
+        ic icVar = new ic(getContext(), i10, this.N, null, null, arrayList, !z10, true, e10, i0Var);
         c2 c2Var = (c2) this;
-        jcVar.K1 = c2Var;
-        jcVar.M1 = new di.z6(c2Var, 5);
-        jcVar.show();
+        icVar.K1 = c2Var;
+        icVar.M1 = new di.z6(c2Var, 5);
+        icVar.show();
     }
 
     public final void l(int i7, int i10, boolean z10, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, long j10, boolean z11) {
@@ -817,7 +817,7 @@ public abstract class u0 extends FrameLayout implements is {
         sendgroupcallmessage.random_id = Utilities.f22414b.nextLong();
         sendgroupcallmessage.flags |= 2;
         sendgroupcallmessage.send_as = np.s1(i10).j1(j3);
-        ConnectionsManager.getInstance(m10.f24934t0).sendRequest(sendgroupcallmessage, new RequestDelegate() {
+        ConnectionsManager.getInstance(m10.f24940t0).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 boolean z11 = tLObject instanceof TLRPC.Updates;
@@ -852,7 +852,7 @@ public abstract class u0 extends FrameLayout implements is {
                     }
                     np.s1(u0Var.O).O3(updates, false);
                 } else if (tL_error != null) {
-                    org.telegram.messenger.g0.h3(new di.g9(u0Var, i12, tL_error, j10, j3, tL_textWithEntities));
+                    org.telegram.messenger.g0.h3(new di.f9(u0Var, i12, tL_error, j10, j3, tL_textWithEntities));
                 }
             }
         });
@@ -881,7 +881,7 @@ public abstract class u0 extends FrameLayout implements is {
                 this.U.add(groupcalldonor2);
             }
         }
-        int currentTime = ConnectionsManager.getInstance(m10.f24934t0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(m10.f24940t0).getCurrentTime();
         if (j3 != this.N && !f()) {
             i7 = j11;
             z10 = false;
@@ -938,35 +938,35 @@ public abstract class u0 extends FrameLayout implements is {
         int[] iArr;
         xb xbVar = this.f12376a0;
         a0 a0Var = this.f12383e0;
-        if (xbVar == null || !xbVar.f41645l) {
+        if (xbVar == null || !xbVar.f41637l) {
             b bVar = new b();
             rb rbVar = new rb(getContext(), bVar);
             this.f12378b0 = rbVar;
             rbVar.c(2131624227, new String[0]);
-            this.f12378b0.f38942b.setText(getStarsToastTitle());
+            this.f12378b0.f38939b.setText(getStarsToastTitle());
             vb vbVar = new vb(getContext(), bVar, true, false);
             this.f12380c0 = vbVar;
             vbVar.e(hd.M0(2131745023, null));
-            this.f12380c0.f40369b = new z((c2) this, 0);
+            this.f12380c0.f40372b = new z((c2) this, 0);
             qb qbVar = new qb(getContext(), bVar);
             this.f12381d0 = qbVar;
-            qbVar.f38606b = 5000L;
+            qbVar.f38604b = 5000L;
             qbVar.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.xj, bVar));
             this.f12380c0.addView(this.f12381d0, ja.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-            this.f12380c0.f40371e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
+            this.f12380c0.f40374e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
             this.f12378b0.setButton(this.f12380c0);
             xb f10 = xb.f(this.f12377b, this.f12378b0, -1);
             this.f12376a0 = f10;
-            f10.f41651r = false;
+            f10.f41643r = false;
             f10.k(true);
             this.f12376a0.v = a0Var;
         }
         this.S++;
         h(getDefaultPeerId());
         i(getTotalMyStars(), (int) this.S, getDefaultPeerId());
-        this.f12378b0.f38942b.setText(getStarsToastTitle());
-        this.f12378b0.f38943c.setText(getStarsToastSubtitle());
-        this.f12381d0.f38606b = 5000L;
+        this.f12378b0.f38939b.setText(getStarsToastTitle());
+        this.f12378b0.f38940c.setText(getStarsToastSubtitle());
+        this.f12381d0.f38604b = 5000L;
         org.telegram.messenger.g0.r(a0Var);
         org.telegram.messenger.g0.i3(a0Var, 5000L);
         long j3 = this.S;

@@ -4,26 +4,26 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class od implements Runnable {
-    public final int f25742a;
-    public final long f25743b;
-    public final Object f25744c;
+    public final int f25743a;
+    public final long f25744b;
+    public final Object f25745c;
 
     public od(Object obj, long j3, int i7) {
-        this.f25742a = i7;
-        this.f25744c = obj;
-        this.f25743b = j3;
+        this.f25743a = i7;
+        this.f25745c = obj;
+        this.f25744b = j3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25742a;
-        long j3 = this.f25743b;
-        Object obj = this.f25744c;
+        int i7 = this.f25743a;
+        long j3 = this.f25744b;
+        Object obj = this.f25745c;
         switch (i7) {
             case 0:
                 rd rdVar = (rd) obj;
-                ArrayList arrayList = rdVar.f26270b;
-                a0.h hVar = rdVar.f26269a;
+                ArrayList arrayList = rdVar.f26278b;
+                a0.h hVar = rdVar.f26277a;
                 qd qdVar = (qd) hVar.f(j3);
                 hVar.l(j3);
                 if (qdVar != null) {
@@ -48,13 +48,13 @@ public final class od implements Runnable {
                 return;
             default:
                 fz fzVar = (fz) obj;
-                fzVar.f23578e = SystemClock.elapsedRealtime();
-                fzVar.f23577c = false;
+                fzVar.f23580e = SystemClock.elapsedRealtime();
+                fzVar.f23579c = false;
                 if (j3 == -1) {
                     fzVar.d = false;
-                    fzVar.f23576b = 0L;
+                    fzVar.f23578b = 0L;
                 } else {
-                    fzVar.f23576b = j3;
+                    fzVar.f23578b = j3;
                     fzVar.d = true;
                 }
                 ns.e().k(278, fzVar);

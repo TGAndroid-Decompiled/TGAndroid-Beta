@@ -3,18 +3,18 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_account;
 public final class mi0 implements org.telegram.messenger.s10 {
-    public final int f49239a;
-    public final PasskeysActivity f49240b;
+    public final int f49235a;
+    public final PasskeysActivity f49236b;
 
     public mi0(PasskeysActivity passkeysActivity, int i7) {
-        this.f49239a = i7;
-        this.f49240b = passkeysActivity;
+        this.f49235a = i7;
+        this.f49236b = passkeysActivity;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f49239a;
-        PasskeysActivity passkeysActivity = this.f49240b;
+        int i7 = this.f49235a;
+        PasskeysActivity passkeysActivity = this.f49236b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
@@ -23,21 +23,21 @@ public final class mi0 implements org.telegram.messenger.s10 {
                 passkeysActivity.addPasskeyRow = -1;
                 String M0 = org.telegram.messenger.hd.M0(2131747629, null);
                 org.telegram.ui.Components.b41 b41Var = new org.telegram.ui.Components.b41(2);
-                b41Var.f33181l = M0;
-                b41Var.f33180k = 2131624114;
+                b41Var.f33184l = M0;
+                b41Var.f33183k = 2131624114;
                 arrayList.add(b41Var);
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     g40 g40Var = new g40(passkeysActivity, 16);
-                    int i11 = oi0.f49976b;
+                    int i11 = oi0.f49966b;
                     org.telegram.ui.Components.b41 K = org.telegram.ui.Components.b41.K(oi0.class);
                     K.G = (TL_account.Passkey) arrayList2.get(i10);
                     K.D = g40Var;
                     arrayList.add(K);
                 }
-                if (arrayList2.size() + 1 <= ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().f25448y7.f25871z.f15881b).f24493c) {
+                if (arrayList2.size() + 1 <= ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().f25451y7.f25873z.f15881b).f24498c) {
                     passkeysActivity.addPasskeyRow = arrayList.size();
                     org.telegram.ui.Components.b41 c10 = org.telegram.ui.Components.b41.c(-1, 2131231845, org.telegram.messenger.hd.M0(2131747650, null));
-                    c10.f33186q = true;
+                    c10.f33189q = true;
                     arrayList.add(c10);
                 }
                 arrayList.add(org.telegram.ui.Components.b41.C(org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131747635, null), new ef0(passkeysActivity, 4)), true)));

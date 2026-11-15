@@ -479,7 +479,7 @@ public final class e extends l2.b implements Handler.Callback {
                                 } else {
                                     u uVar2 = (u) aVar.f17789c;
                                     if (uVar2 != null) {
-                                        iVar.f4108r = uVar2.f10455x;
+                                        iVar.f4111r = uVar2.f10455x;
                                         iVar.c();
                                         this.N &= !iVar.isKeyFrame();
                                     } else {

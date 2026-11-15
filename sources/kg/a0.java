@@ -95,7 +95,7 @@ public final class a0 {
                 str = hd.M0(2131752777, null);
             }
             b41 f10 = b41.f(hd.M0(2131752778, null), str, 101);
-            f10.f33177g = z10;
+            f10.f33180g = z10;
             arrayList.add(f10);
         }
         boolean z11 = this.f17854i;
@@ -142,7 +142,7 @@ public final class a0 {
                 str3 = hd.M0(2131752779, null);
             }
             b41 f11 = b41.f(hd.M0(2131752780, null), str3, 103);
-            f11.f33177g = z10;
+            f11.f33180g = z10;
             arrayList.add(f11);
         }
         p41Var.U();
@@ -188,7 +188,7 @@ public final class a0 {
             arrayList = this.f17855j;
         }
         if (!arrayList.isEmpty()) {
-            np s12 = np.s1(m10.f24934t0);
+            np s12 = np.s1(m10.f24940t0);
             tL_inputBusinessBotRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -197,7 +197,7 @@ public final class a0 {
             }
         }
         if (!this.h) {
-            np s13 = np.s1(m10.f24934t0);
+            np s13 = np.s1(m10.f24940t0);
             tL_inputBusinessBotRecipients.flags |= 64;
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 Long l11 = (Long) arrayList2.get(i10);
@@ -248,7 +248,7 @@ public final class a0 {
             arrayList = this.f17855j;
         }
         if (!arrayList.isEmpty()) {
-            np s12 = np.s1(m10.f24934t0);
+            np s12 = np.s1(m10.f24940t0);
             tL_businessBotRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -258,7 +258,7 @@ public final class a0 {
             }
         }
         if (!this.h) {
-            np s13 = np.s1(m10.f24934t0);
+            np s13 = np.s1(m10.f24940t0);
             tL_businessBotRecipients.flags |= 64;
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 Long l11 = (Long) arrayList2.get(i10);
@@ -316,7 +316,7 @@ public final class a0 {
             arrayList = this.f17855j;
         }
         if (!arrayList.isEmpty()) {
-            np s12 = np.s1(m10.f24934t0);
+            np s12 = np.s1(m10.f24940t0);
             tL_inputBusinessRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -366,7 +366,7 @@ public final class a0 {
             arrayList = this.f17855j;
         }
         if (!arrayList.isEmpty()) {
-            np s12 = np.s1(m10.f24934t0);
+            np s12 = np.s1(m10.f24940t0);
             tL_businessRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -433,8 +433,8 @@ public final class a0 {
             } else if (b41Var.f56015a != 11) {
                 return false;
             } else {
-                boolean z13 = b41Var.f33191w;
-                String B1 = np.s1(this.f17849b).B1(b41Var.f33192x, false);
+                boolean z13 = b41Var.f33194w;
+                String B1 = np.s1(this.f17849b).B1(b41Var.f33195x, false);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f17848a, this.f17850c);
                 if (!z13) {
                     i7 = 2131752686;

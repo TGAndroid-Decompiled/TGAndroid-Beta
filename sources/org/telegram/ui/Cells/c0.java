@@ -44,7 +44,7 @@ public final class c0 {
         if (this.v) {
             float f10 = this.f30081w;
             if (f10 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f23610r) / 100.0f) + f10;
+                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f23612r) / 100.0f) + f10;
                 this.f30081w = min;
                 this.f30081w = Utilities.i(min, 1.0f, 0.0f);
                 this.f30062a.run();

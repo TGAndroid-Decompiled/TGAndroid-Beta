@@ -45,7 +45,7 @@ public final class a8 {
     }
 
     public static void b(String str) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             h();
             Log.d("tmessages", str);
             if (j().f22475a != null) {
@@ -68,7 +68,7 @@ public final class a8 {
     }
 
     public static void d(String str) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             h();
             Log.e("tmessages", str);
             if (j().f22475a != null) {
@@ -78,7 +78,7 @@ public final class a8 {
     }
 
     public static void e(String str, Throwable th2) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             h();
             Log.e("tmessages", str, th2);
             if (j().f22475a != null) {
@@ -92,9 +92,9 @@ public final class a8 {
     }
 
     public static void g(Throwable th2, boolean z10) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             if (!(th2 instanceof InterruptedException) && !(th2 instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th2 instanceof z7) && z10) {
-                Typeface typeface = g0.f23581a;
+                Typeface typeface = g0.f23583a;
                 t0.a(th2);
             }
             if (th2.getMessage() != null && th2.getMessage().contains("disk image is malformed") && !f22472j) {
@@ -102,11 +102,11 @@ public final class a8 {
                 f22472j = true;
                 File file = new File(t0.h(), "malformed_database/");
                 file.mkdirs();
-                vr a02 = vr.a0(m10.f24934t0);
+                vr a02 = vr.a0(m10.f24940t0);
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(a02.f27224c);
+                arrayList.add(a02.f27223c);
                 arrayList.add(a02.d);
-                arrayList.add(a02.f27227e);
+                arrayList.add(a02.f27226e);
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     try {
                         g0.E((File) arrayList.get(i7), new File(file, ((File) arrayList.get(i7)).getName()));
@@ -130,7 +130,7 @@ public final class a8 {
     }
 
     public static void i(Throwable th2, boolean z10) {
-        if (!r2.f26198a) {
+        if (!r2.f26206a) {
             return;
         }
         if (th2 instanceof OutOfMemoryError) {
@@ -138,7 +138,7 @@ public final class a8 {
             c(false);
         }
         if (z10 && !(th2 instanceof InterruptedException) && !(th2 instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th2 instanceof z7)) {
-            Typeface typeface = g0.f23581a;
+            Typeface typeface = g0.f23583a;
             t0.a(th2);
         }
         h();
@@ -170,7 +170,7 @@ public final class a8 {
                         obj.f22481i = null;
                         f22473k = obj;
                         a8Var = obj;
-                        if (r2.f26198a) {
+                        if (r2.f26206a) {
                             obj.k();
                             a8Var = obj;
                         }
@@ -185,7 +185,7 @@ public final class a8 {
     }
 
     public static void l(String str) {
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             h();
             Log.w("tmessages", str);
             if (j().f22475a != null) {

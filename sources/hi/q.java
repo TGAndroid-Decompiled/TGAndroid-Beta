@@ -25,9 +25,9 @@ public final class q extends Drawable {
         this.f14892i = iaVar2;
         ch0 ch0Var = new ch0(2131623976, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
         this.h = ch0Var;
-        ch0Var.f33590p0 = true;
+        ch0Var.f33592p0 = true;
         paint.setColor(-2406842);
-        ch0Var.f33571a0 = true;
+        ch0Var.f33573a0 = true;
         ch0Var.Q(-2406842, "Cup Red");
         ch0Var.Q(-2406842, "Box");
         ch0Var.o();

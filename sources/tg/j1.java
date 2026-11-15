@@ -8,12 +8,12 @@ import org.telegram.messenger.is;
 import org.telegram.messenger.ns;
 import org.telegram.ui.Components.uj0;
 public final class j1 extends uj0 implements is {
-    public final Path f57398f3;
-    public q0.a f57399g3;
+    public final Path f57403f3;
+    public q0.a f57404g3;
 
     public j1(Context context) {
         super(context, null);
-        this.f57398f3 = new Path();
+        this.f57403f3 = new Path();
         setWillNotDraw(false);
         setLayoutManager(new v4.b0());
         setAdapter(new v4.h0());
@@ -35,15 +35,15 @@ public final class j1 extends uj0 implements is {
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f57399g3;
+        q0.a aVar = this.f57404g3;
         if (aVar != null) {
-            Path path = this.f57398f3;
+            Path path = this.f57403f3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f57399g3 != null) {
+        if (this.f57404g3 != null) {
             canvas.restore();
         }
     }
@@ -66,7 +66,7 @@ public final class j1 extends uj0 implements is {
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f57399g3 = aVar;
+        this.f57404g3 = aVar;
         invalidate();
     }
 }

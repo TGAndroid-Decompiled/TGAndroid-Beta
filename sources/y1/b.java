@@ -11,6 +11,6 @@ public final class b extends q {
     public b(q initialExtras) {
         super(9);
         j.e(initialExtras, "initialExtras");
-        ((LinkedHashMap) this.f6112a).putAll((LinkedHashMap) initialExtras.f6112a);
+        ((LinkedHashMap) this.f6115a).putAll((LinkedHashMap) initialExtras.f6115a);
     }
 }

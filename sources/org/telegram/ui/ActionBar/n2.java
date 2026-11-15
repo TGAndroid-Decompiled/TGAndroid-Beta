@@ -33,7 +33,7 @@ public final class n2 extends FrameLayout {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         q6.s(imageView, j6.J5, e6Var, PorterDuff.Mode.MULTIPLY);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -43,7 +43,7 @@ public final class n2 extends FrameLayout {
         this.f29400c = imageView2;
         imageView2.setScaleType(scaleType);
         q6.s(imageView2, j6.h7, e6Var, PorterDuff.Mode.SRC_IN);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 3;
         } else {
             i11 = 5;
@@ -77,7 +77,7 @@ public final class n2 extends FrameLayout {
         }
         q6.U(o5Var, j6.f28957j5, e6Var);
         o5Var.setTextSize(1, 16.0f);
-        addView(o5Var, ja.e(-2, -2, (hd.f24101a0 ? 5 : 3) | 16));
+        addView(o5Var, ja.e(-2, -2, (hd.f24104a0 ? 5 : 3) | 16));
     }
 
     public final void a(CharSequence charSequence, int i7, Drawable drawable, boolean z10) {
@@ -112,22 +112,22 @@ public final class n2 extends FrameLayout {
         }
         imageView.setVisibility(0);
         if (z10) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f11 = 21.0f;
             } else {
                 f11 = 72.0f;
             }
             int L3 = org.telegram.messenger.g0.L(f11);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f14 = 72.0f;
             }
             o5Var.setPadding(L3, 0, org.telegram.messenger.g0.L(f14), 0);
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(5.0f);
             }
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i10 = org.telegram.messenger.g0.L(5.0f);
             } else {
                 i10 = 5;
@@ -135,13 +135,13 @@ public final class n2 extends FrameLayout {
             imageView.setPadding(L, 0, i10, 0);
             return;
         }
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f10 = 16.0f;
         } else {
             f10 = 72.0f;
         }
         int L4 = org.telegram.messenger.g0.L(f10);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f13 = 72.0f;
         }
         o5Var.setPadding(L4, 0, org.telegram.messenger.g0.L(f13), 0);

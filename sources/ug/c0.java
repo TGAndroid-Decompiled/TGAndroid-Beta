@@ -38,7 +38,7 @@ import org.telegram.ui.Components.pz;
 import org.telegram.ui.Components.tj0;
 import org.telegram.ui.Components.y31;
 import org.telegram.ui.Components.z70;
-import tg.i2;
+import tg.h2;
 public final class c0 extends tj0 {
     public final j0 f58054c;
 
@@ -363,7 +363,7 @@ public final class c0 extends tj0 {
                         switch (r2) {
                             case 0:
                                 j0 j0Var2 = this.f58033b.f58054c;
-                                wg.l.I0(j0Var2.f35940s1, j0Var2.J0, j0Var2.W1, null);
+                                wg.l.I0(j0Var2.f35935s1, j0Var2.J0, j0Var2.W1, null);
                                 return;
                             case 1:
                                 j0 j0Var3 = this.f58033b.f58054c;
@@ -406,7 +406,7 @@ public final class c0 extends tj0 {
                             switch (r2) {
                                 case 0:
                                     j0 j0Var2 = this.f58033b.f58054c;
-                                    wg.l.I0(j0Var2.f35940s1, j0Var2.J0, j0Var2.W1, null);
+                                    wg.l.I0(j0Var2.f35935s1, j0Var2.J0, j0Var2.W1, null);
                                     return;
                                 case 1:
                                     j0 j0Var3 = this.f58033b.f58054c;
@@ -452,7 +452,7 @@ public final class c0 extends tj0 {
                 eqVar.a(i16);
                 eqVar.c(org.telegram.messenger.g0.L(18.0f));
                 eqVar.F = org.telegram.messenger.g0.L(11.0f);
-                eqVar.f34415r = -org.telegram.messenger.g0.L(5.0f);
+                eqVar.f34414r = -org.telegram.messenger.g0.L(5.0f);
                 spannableString.setSpan(eqVar, 0, spannableString.length(), 33);
                 z70Var.setText(TextUtils.concat(X2, " ", org.telegram.messenger.g0.K2(spannableStringBuilder, spannableString, ">")));
                 z70Var.setTextSize(1, 14.0f);
@@ -476,7 +476,7 @@ public final class c0 extends tj0 {
                         switch (r2) {
                             case 0:
                                 j0 j0Var2 = this.f58033b.f58054c;
-                                wg.l.I0(j0Var2.f35940s1, j0Var2.J0, j0Var2.W1, null);
+                                wg.l.I0(j0Var2.f35935s1, j0Var2.J0, j0Var2.W1, null);
                                 return;
                             case 1:
                                 j0 j0Var3 = this.f58033b.f58054c;
@@ -494,7 +494,7 @@ public final class c0 extends tj0 {
                         }
                     }
                 });
-                g80Var.setOnClickListener(new i2(z70Var, 1));
+                g80Var.setOnClickListener(new h2(z70Var, 1));
                 if (j0Var.s1()) {
                     hi.d dVar = new hi.d(context, j0Var.J0, true);
                     dVar.i(hd.M0(2131751767, null), false, true);
@@ -510,7 +510,7 @@ public final class c0 extends tj0 {
                             switch (r2) {
                                 case 0:
                                     j0 j0Var2 = this.f58033b.f58054c;
-                                    wg.l.I0(j0Var2.f35940s1, j0Var2.J0, j0Var2.W1, null);
+                                    wg.l.I0(j0Var2.f35935s1, j0Var2.J0, j0Var2.W1, null);
                                     return;
                                 case 1:
                                     j0 j0Var3 = this.f58033b.f58054c;

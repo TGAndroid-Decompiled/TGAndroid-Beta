@@ -147,8 +147,8 @@ public final class l0 {
             h0Var = h0.d;
         } else {
             android.support.v4.media.session.a0 a0Var2 = new android.support.v4.media.session.a0(21, false);
-            a0Var2.f1706b = (Uri) bundle5.getParcelable(h0.f10105e);
-            a0Var2.f1707c = bundle5.getString(h0.f10106f);
+            a0Var2.f1713b = (Uri) bundle5.getParcelable(h0.f10105e);
+            a0Var2.f1714c = bundle5.getString(h0.f10106f);
             a0Var2.d = h2.l0.o(bundle5.getBundle(h0.f10107g));
             h0Var = new h0(a0Var2);
         }

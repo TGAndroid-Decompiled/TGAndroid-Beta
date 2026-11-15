@@ -13,7 +13,7 @@ public final class zi implements ij0, dj {
     @Override
     public void a(TLRPC.User user, boolean z10, int i7, long j3) {
         mj mjVar = this.f42367a;
-        mjVar.f33607b.a(true);
+        mjVar.f33609b.a(true);
         mjVar.K.a(user, z10, i7, j3);
     }
 
@@ -21,7 +21,7 @@ public final class zi implements ij0, dj {
     public boolean b(int i7, View view) {
         Object O;
         mj mjVar = this.f42367a;
-        v4.h0 adapter = mjVar.f37305s.getAdapter();
+        v4.h0 adapter = mjVar.f37304s.getAdapter();
         ij ijVar = mjVar.G;
         if (adapter == ijVar) {
             O = ijVar.E(i7);

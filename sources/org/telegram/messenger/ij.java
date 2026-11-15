@@ -33,7 +33,7 @@ public final class ij {
                             break;
                         }
                         gj gjVar2 = (gj) arrayList.get(i10);
-                        if (gjVar2 != null && gjVar.e1() == gjVar2.e1() && gj.B0(gjVar.f23817k) == gj.B0(gjVar2.f23817k)) {
+                        if (gjVar2 != null && gjVar.e1() == gjVar2.e1() && gj.B0(gjVar.f23819k) == gj.B0(gjVar2.f23819k)) {
                             arrayList2.set(i7, gjVar2);
                             z10 = true;
                             break;

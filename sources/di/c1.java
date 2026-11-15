@@ -18,27 +18,27 @@ import org.telegram.messenger.ns;
 import org.telegram.ui.Components.bt0;
 import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.cm0;
-import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.dl;
 import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.f60;
 import org.telegram.ui.Components.gz;
 import org.telegram.ui.Components.hm;
 import org.telegram.ui.Components.il0;
 import org.telegram.ui.Components.im;
 import org.telegram.ui.Components.iz;
-import org.telegram.ui.Components.ja0;
 import org.telegram.ui.Components.jy;
 import org.telegram.ui.Components.jz;
+import org.telegram.ui.Components.ka0;
 import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.ly;
 import org.telegram.ui.Components.mi0;
 import org.telegram.ui.Components.mj;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u90;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.ul0;
 import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.v90;
 import org.telegram.ui.Components.ve;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.PhotoViewer;
@@ -48,25 +48,25 @@ import org.telegram.ui.mp;
 import org.telegram.ui.pw;
 import org.telegram.ui.qq;
 public final class c1 extends uj0 {
-    public final int f8289f3;
-    public final Object f8290g3;
+    public final int f8290f3;
+    public final Object f8291g3;
 
     public c1(int i7, Context context, Object obj) {
         super(context, null);
-        this.f8289f3 = i7;
-        this.f8290g3 = obj;
+        this.f8290f3 = i7;
+        this.f8291g3 = obj;
     }
 
     @Override
     public boolean E0(float f10) {
         int i7;
         int i10;
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 4:
-                ki kiVar = ((kg.g0) this.f8290g3).f33607b;
+                ki kiVar = ((kg.g0) this.f8291g3).f33609b;
                 int L = org.telegram.messenger.g0.L(30.0f) + kiVar.Z3[0];
-                if (!kiVar.f36439b2) {
-                    i7 = org.telegram.messenger.g0.f23603m;
+                if (!kiVar.f36427b2) {
+                    i7 = org.telegram.messenger.g0.f23605m;
                 } else {
                     i7 = 0;
                 }
@@ -75,10 +75,10 @@ public final class c1 extends uj0 {
                 }
                 return true;
             case 15:
-                ki kiVar2 = ((mj) this.f8290g3).f33607b;
+                ki kiVar2 = ((mj) this.f8291g3).f33609b;
                 int L2 = org.telegram.messenger.g0.L(30.0f) + kiVar2.Z3[0];
-                if (!kiVar2.f36439b2) {
-                    i10 = org.telegram.messenger.g0.f23603m;
+                if (!kiVar2.f36427b2) {
+                    i10 = org.telegram.messenger.g0.f23605m;
                 } else {
                     i10 = 0;
                 }
@@ -93,15 +93,15 @@ public final class c1 extends uj0 {
 
     @Override
     public boolean F0(View view) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 7:
-                if (view != ((org.telegram.ui.y6) this.f8290g3).X) {
+                if (view != ((org.telegram.ui.y6) this.f8291g3).X) {
                     return true;
                 }
                 return false;
             case 19:
-                iz izVar = (iz) this.f8290g3;
-                if (izVar.isEnabled() && !((pw) izVar.K).f50385b.f53703l2) {
+                iz izVar = (iz) this.f8291g3;
+                if (izVar.isEnabled() && !((pw) izVar.K).f50376b.f53668l2) {
                     return true;
                 }
                 return false;
@@ -112,14 +112,14 @@ public final class c1 extends uj0 {
 
     @Override
     public boolean H0(View view, float f10, float f11) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 0:
-                ((i1) this.f8290g3).getClass();
+                ((i1) this.f8291g3).getClass();
                 return true;
             case 13:
-                return ((org.telegram.ui.Components.ja) this.f8290g3).J0(view, f10, f11);
+                return ((org.telegram.ui.Components.ja) this.f8291g3).J0(view, f10, f11);
             case 19:
-                if (((iz) this.f8290g3).f35798n) {
+                if (((iz) this.f8291g3).f35785n) {
                     int L = org.telegram.messenger.g0.L(6.0f);
                     RectF rectF = ((gz) view).f35112f;
                     float f12 = L;
@@ -129,9 +129,9 @@ public final class c1 extends uj0 {
                 }
                 return true;
             case 29:
-                if (((v61) this.f8290g3).f40308n) {
+                if (((v61) this.f8291g3).f40308n) {
                     int L2 = org.telegram.messenger.g0.L(6.0f);
-                    RectF rectF2 = ((t61) view).f39560c;
+                    RectF rectF2 = ((t61) view).f39558c;
                     float f13 = L2;
                     if (rectF2.left - f13 < f10 && rectF2.right + f13 > f10) {
                         return false;
@@ -145,9 +145,9 @@ public final class c1 extends uj0 {
 
     @Override
     public boolean R0() {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 28:
-                if (getAdapter() != null && ((e51) this.f8290g3).C1 && getAdapter().b() <= 2) {
+                if (getAdapter() != null && ((e51) this.f8291g3).C1 && getAdapter().b() <= 2) {
                     return true;
                 }
                 return false;
@@ -158,7 +158,7 @@ public final class c1 extends uj0 {
 
     @Override
     public Integer V0(int i7) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 1:
                 return 0;
             case 24:
@@ -170,10 +170,10 @@ public final class c1 extends uj0 {
 
     @Override
     public void addView(View view, int i7, ViewGroup.LayoutParams layoutParams) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 29:
                 super.addView(view, i7, layoutParams);
-                if (((v61) this.f8290g3).W) {
+                if (((v61) this.f8291g3).W) {
                     view.setScaleX(0.3f);
                     view.setScaleY(0.3f);
                     view.setAlpha(0.0f);
@@ -196,15 +196,15 @@ public final class c1 extends uj0 {
         bj bjVar;
         ArrayList arrayList;
         c1 c1Var;
-        da0 da0Var;
+        ea0 ea0Var;
         int i7;
         c1 c1Var2;
         boolean z11;
         bj currentMessagesGroup;
         bj currentMessagesGroup2;
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 1:
-                fi.c2 c2Var = (fi.c2) this.f8290g3;
+                fi.c2 c2Var = (fi.c2) this.f8291g3;
                 int i10 = -1;
                 if (!c2Var.f12386g0) {
                     int i11 = 0;
@@ -229,7 +229,7 @@ public final class c1 extends uj0 {
                 super.dispatchDraw(canvas);
                 return;
             case 5:
-                ve veVar = (ve) this.f8290g3;
+                ve veVar = (ve) this.f8291g3;
                 c1 c1Var3 = veVar.f18609c;
                 if (c1Var3.getLayoutManager() != null && c1Var3.getAdapter() != null && c1Var3.getAdapter().b() != 0) {
                     float L = veVar.h - org.telegram.messenger.g0.L(8.0f);
@@ -248,11 +248,11 @@ public final class c1 extends uj0 {
                 return;
             case 8:
                 super.dispatchDraw(canvas);
-                ((org.telegram.ui.i8) this.f8290g3).G = false;
+                ((org.telegram.ui.i8) this.f8291g3).G = false;
                 return;
             case 21:
-                da0 da0Var2 = (da0) this.f8290g3;
-                org.telegram.ui.v8 v8Var = da0Var2.f33896b;
+                ea0 ea0Var2 = (ea0) this.f8291g3;
+                org.telegram.ui.v8 v8Var = ea0Var2.f34256b;
                 boolean z12 = false;
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
                     View childAt2 = getChildAt(i12);
@@ -270,10 +270,10 @@ public final class c1 extends uj0 {
                 }
                 int i14 = 0;
                 while (i14 < 3) {
-                    ja0 ja0Var = da0Var2.f33900d0;
-                    ArrayList arrayList2 = ja0Var.F;
-                    c1 c1Var4 = da0Var2.f33902f;
-                    ja0Var.F.clear();
+                    ka0 ka0Var = ea0Var2.f34260d0;
+                    ArrayList arrayList2 = ka0Var.F;
+                    c1 c1Var4 = ea0Var2.f34262f;
+                    ka0Var.F.clear();
                     int i15 = 2;
                     if (i14 != 2 || c1Var4.W1) {
                         int i16 = z12 ? 1 : 0;
@@ -303,10 +303,10 @@ public final class c1 extends uj0 {
                                             int backgroundDrawableRight = q1Var.getBackgroundDrawableRight() + q1Var.getLeft();
                                             int backgroundDrawableTop = q1Var.getBackgroundDrawableTop() + q1Var.getPaddingTop() + q1Var.getTop();
                                             int backgroundDrawableBottom = q1Var.getBackgroundDrawableBottom() + q1Var.getPaddingTop() + q1Var.getTop();
-                                            if ((q1Var.getCurrentPosition().f27753l & 4) == 0) {
+                                            if ((q1Var.getCurrentPosition().f27755l & 4) == 0) {
                                                 backgroundDrawableTop -= org.telegram.messenger.g0.L(10.0f);
                                             }
-                                            if ((q1Var.getCurrentPosition().f27753l & 8) == 0) {
+                                            if ((q1Var.getCurrentPosition().f27755l & 8) == 0) {
                                                 backgroundDrawableBottom = org.telegram.messenger.g0.L(10.0f) + backgroundDrawableBottom;
                                             }
                                             int i17 = backgroundDrawableBottom;
@@ -343,7 +343,7 @@ public final class c1 extends uj0 {
                                         arrayList = arrayList2;
                                         c1Var2 = c1Var4;
                                         z11 = z13;
-                                        da0Var = da0Var2;
+                                        ea0Var = ea0Var2;
                                         i7 = i22;
                                     } else {
                                         aj ajVar2 = bjVar3.f22717m;
@@ -380,7 +380,7 @@ public final class c1 extends uj0 {
                                             arrayList = arrayList2;
                                             c1Var = c1Var4;
                                         }
-                                        da0Var = da0Var2;
+                                        ea0Var = ea0Var2;
                                         bj bjVar4 = bjVar;
                                         i7 = i22;
                                         c1Var2 = c1Var;
@@ -406,7 +406,7 @@ public final class c1 extends uj0 {
                                     }
                                     i22 = i7 + 1;
                                     c1Var4 = c1Var2;
-                                    da0Var2 = da0Var;
+                                    ea0Var2 = ea0Var;
                                     arrayList2 = arrayList;
                                     z13 = z11;
                                 }
@@ -414,16 +414,16 @@ public final class c1 extends uj0 {
                         }
                     }
                     i14++;
-                    da0Var2 = da0Var2;
+                    ea0Var2 = ea0Var2;
                     z12 = false;
                 }
                 super.dispatchDraw(canvas);
                 return;
             case 25:
-                hw hwVar = (hw) this.f8290g3;
-                v4.b0 b0Var = hwVar.f36051f0;
-                v4.k kVar = hwVar.f36049d0;
-                cm0 cm0Var = hwVar.f36050e0;
+                hw hwVar = (hw) this.f8291g3;
+                v4.b0 b0Var = hwVar.f36041f0;
+                v4.k kVar = hwVar.f36039d0;
+                cm0 cm0Var = hwVar.f36040e0;
                 if (cm0Var != null && kVar != null && b0Var != null && cm0Var.f17099n0) {
                     canvas.save();
                     invalidate();
@@ -462,8 +462,8 @@ public final class c1 extends uj0 {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         bi.g2 g2Var;
         v4.e1 K;
-        int i7 = this.f8289f3;
-        Object obj = this.f8290g3;
+        int i7 = this.f8290f3;
+        Object obj = this.f8291g3;
         switch (i7) {
             case 1:
                 if (((fi.c2) obj).f12386g0) {
@@ -478,7 +478,7 @@ public final class c1 extends uj0 {
             case 16:
                 if (motionEvent.getActionMasked() == 0) {
                     dl dlVar = (dl) obj;
-                    if (motionEvent.getY() < dlVar.f33995t0 && (g2Var = dlVar.K) != null && g2Var.getVisibility() == 0 && (K = K(0)) != null && motionEvent.getY() >= org.telegram.messenger.g0.L(32.0f) + Math.max(0, K.f58535a.getTop())) {
+                    if (motionEvent.getY() < dlVar.f33982t0 && (g2Var = dlVar.K) != null && g2Var.getVisibility() == 0 && (K = K(0)) != null && motionEvent.getY() >= org.telegram.messenger.g0.L(32.0f) + Math.max(0, K.f58535a.getTop())) {
                         return false;
                     }
                 }
@@ -489,15 +489,15 @@ public final class c1 extends uj0 {
                     if (motionEvent.getAction() == 1 && mi0Var.getPullingLeftProgress() > 0.95f) {
                         mi0.a(mi0Var);
                     } else if (mi0Var.C0 != 0.0f) {
-                        ValueAnimator valueAnimator = mi0Var.f37302z0;
+                        ValueAnimator valueAnimator = mi0Var.f37301z0;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
                         }
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(mi0Var.C0, 0.0f);
-                        mi0Var.f37302z0 = ofFloat;
+                        mi0Var.f37301z0 = ofFloat;
                         ofFloat.addUpdateListener(new f60(mi0Var, 5));
-                        mi0Var.f37302z0.setDuration(150L);
-                        mi0Var.f37302z0.start();
+                        mi0Var.f37301z0.setDuration(150L);
+                        mi0Var.f37301z0.start();
                     }
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -519,14 +519,14 @@ public final class c1 extends uj0 {
 
     @Override
     public void invalidate() {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 1:
                 super.invalidate();
-                ((fi.c2) this.f8290g3).invalidate();
+                ((fi.c2) this.f8291g3).invalidate();
                 return;
             case 12:
                 super.invalidate();
-                View view = ((qq) this.f8290g3).fragmentView;
+                View view = ((qq) this.f8291g3).fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -540,10 +540,10 @@ public final class c1 extends uj0 {
 
     @Override
     public void k0(int i7) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 21:
                 if (i7 == 0) {
-                    ((da0) this.f8290g3).f33901e.V();
+                    ((ea0) this.f8291g3).f34261e.V();
                     return;
                 }
                 return;
@@ -555,27 +555,27 @@ public final class c1 extends uj0 {
     @Override
     public void l0(int i7) {
         boolean z10;
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 4:
                 return;
             case 17:
-                im imVar = (im) this.f8290g3;
+                im imVar = (im) this.f8291g3;
                 imVar.invalidate();
-                imVar.f33607b.M1(imVar, i7);
-                hm hmVar = imVar.f35665w;
+                imVar.f33609b.M1(imVar, i7);
+                hm hmVar = imVar.f35652w;
                 boolean z11 = true;
                 int i10 = 0;
-                if (hmVar.f35307y == null) {
+                if (hmVar.f35298y == null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (!z10) {
                     boolean[] d = hmVar.d();
-                    if (d.length == hmVar.f35307y.length) {
+                    if (d.length == hmVar.f35298y.length) {
                         while (true) {
                             if (i10 < d.length) {
-                                if (d[i10] == hmVar.f35307y[i10]) {
+                                if (d[i10] == hmVar.f35298y[i10]) {
                                     i10++;
                                 }
                             } else {
@@ -585,7 +585,7 @@ public final class c1 extends uj0 {
                     }
                     z10 = z11;
                 } else {
-                    hmVar.f35307y = hmVar.d();
+                    hmVar.f35298y = hmVar.d();
                 }
                 if (z10) {
                     hmVar.invalidate();
@@ -593,7 +593,7 @@ public final class c1 extends uj0 {
                 }
                 return;
             case 21:
-                ((da0) this.f8290g3).f33901e.G();
+                ((ea0) this.f8291g3).f34261e.G();
                 return;
             default:
                 return;
@@ -602,10 +602,10 @@ public final class c1 extends uj0 {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 10:
                 super.onAttachedToWindow();
-                jg.l1 l1Var = ((an) this.f8290g3).f45137b4;
+                jg.l1 l1Var = ((an) this.f8291g3).f45136b4;
                 if (l1Var != null) {
                     ns.f(l1Var.f17185r).c(l1Var, 326);
                     return;
@@ -619,10 +619,10 @@ public final class c1 extends uj0 {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 10:
                 super.onDetachedFromWindow();
-                jg.l1 l1Var = ((an) this.f8290g3).f45137b4;
+                jg.l1 l1Var = ((an) this.f8291g3).f45136b4;
                 if (l1Var != null) {
                     org.telegram.messenger.g0.r(l1Var.F);
                     ns.f(l1Var.f17185r).n(l1Var, 326);
@@ -638,32 +638,32 @@ public final class c1 extends uj0 {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 2:
                 org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-                hi.t1 t1Var = (hi.t1) this.f8290g3;
+                hi.t1 t1Var = (hi.t1) this.f8291g3;
                 boolean q10 = p10.q(motionEvent, t1Var.f15136b, t1Var.f15139f, this.f40069o2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                     return false;
                 }
                 return true;
             case 3:
-                if (((hi.d3) this.f8290g3).L) {
+                if (((hi.d3) this.f8291g3).L) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
             case 11:
-                if (((mp) this.f8290g3).I) {
+                if (((mp) this.f8291g3).I) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
             case 14:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((yi) this.f8290g3).f33607b.Z3[0] - org.telegram.messenger.g0.L(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((yi) this.f8291g3).f33609b.Z3[0] - org.telegram.messenger.g0.L(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
             case 17:
-                if (((im) this.f8290g3).K != null) {
+                if (((im) this.f8291g3).K != null) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -676,21 +676,21 @@ public final class c1 extends uj0 {
                         z10 = true;
                     }
                     parent.requestDisallowInterceptTouchEvent(z10);
-                    ((ly) this.f8290g3).h.requestDisallowInterceptTouchEvent(true);
+                    ((ly) this.f8291g3).h.requestDisallowInterceptTouchEvent(true);
                 }
                 return super.onInterceptTouchEvent(motionEvent);
             case 26:
-                boolean q11 = org.telegram.ui.ns.p().q(motionEvent, ((bt0) this.f8290g3).f33369m1, null, this.f40069o2);
+                boolean q11 = org.telegram.ui.ns.p().q(motionEvent, ((bt0) this.f8291g3).f33372m1, null, this.f40069o2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !q11) {
                     return false;
                 }
                 return true;
             case 27:
-                bw0 bw0Var = (bw0) this.f8290g3;
+                bw0 bw0Var = (bw0) this.f8291g3;
                 if (bw0Var.M1) {
                     return super.onInterceptTouchEvent(motionEvent);
                 }
-                boolean q12 = org.telegram.ui.ns.p().q(motionEvent, bw0Var.n1, bw0Var.f33402h2, this.f40069o2);
+                boolean q12 = org.telegram.ui.ns.p().q(motionEvent, bw0Var.n1, bw0Var.f33405h2, this.f40069o2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !q12) {
                     return false;
                 }
@@ -704,22 +704,22 @@ public final class c1 extends uj0 {
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
         gj gjVar;
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 0:
-                ((i1) this.f8290g3).I0();
+                ((i1) this.f8291g3).I0();
                 super.onLayout(z10, i7, i10, i11, i12);
                 return;
             case 9:
-                org.telegram.ui.lb lbVar = (org.telegram.ui.lb) this.f8290g3;
-                if (lbVar.f48958w != null && lbVar.f48962y != null && (i13 = lbVar.O0) >= 0) {
+                org.telegram.ui.lb lbVar = (org.telegram.ui.lb) this.f8291g3;
+                if (lbVar.f48954w != null && lbVar.f48958y != null && (i13 = lbVar.O0) >= 0) {
                     if (lbVar.N0 != 0) {
                         int i14 = 0;
                         while (true) {
                             org.telegram.ui.ib ibVar = lbVar.F;
                             if (i14 < ibVar.d) {
-                                if (i14 >= ibVar.f48012f && i14 < ibVar.h) {
-                                    ArrayList arrayList = ibVar.f48013n.f48949p0;
-                                    gjVar = (gj) arrayList.get((arrayList.size() - (i14 - ibVar.f48012f)) - 1);
+                                if (i14 >= ibVar.f48002f && i14 < ibVar.h) {
+                                    ArrayList arrayList = ibVar.f48003n.f48945p0;
+                                    gjVar = (gj) arrayList.get((arrayList.size() - (i14 - ibVar.f48002f)) - 1);
                                 } else {
                                     gjVar = null;
                                 }
@@ -731,14 +731,14 @@ public final class c1 extends uj0 {
                             }
                         }
                     }
-                    lbVar.f48962y.i1(i13, lbVar.P0, true);
+                    lbVar.f48958y.i1(i13, lbVar.P0, true);
                     lbVar.O0 = -1;
                     lbVar.N0 = 0L;
                 }
                 super.onLayout(z10, i7, i10, i11, i12);
                 return;
             case 13:
-                ((org.telegram.ui.Components.ja) this.f8290g3).I0();
+                ((org.telegram.ui.Components.ja) this.f8291g3).I0();
                 super.onLayout(z10, i7, i10, i11, i12);
                 return;
             case 14:
@@ -747,39 +747,39 @@ public final class c1 extends uj0 {
                 return;
             case 16:
                 super.onLayout(z10, i7, i10, i11, i12);
-                dl dlVar = (dl) this.f8290g3;
+                dl dlVar = (dl) this.f8291g3;
                 dl.a0(dlVar);
                 dlVar.i0();
                 return;
             case 21:
-                da0 da0Var = (da0) this.f8290g3;
-                int i15 = da0Var.f33894a;
-                if (da0Var.L) {
+                ea0 ea0Var = (ea0) this.f8291g3;
+                int i15 = ea0Var.f34254a;
+                if (ea0Var.L) {
                     if (i15 != 0) {
                         v0(0);
                     }
-                    da0Var.L = false;
+                    ea0Var.L = false;
                 }
                 super.onLayout(z10, i7, i10, i11, i12);
-                da0Var.j();
-                c1 c1Var = da0Var.f33902f;
-                if (da0Var.V) {
+                ea0Var.j();
+                c1 c1Var = ea0Var.f34262f;
+                if (ea0Var.V) {
                     if (c1Var.computeVerticalScrollRange() > c1Var.computeVerticalScrollExtent()) {
-                        da0Var.postDelayed(new u90(da0Var, 0), 0L);
+                        ea0Var.postDelayed(new v90(ea0Var, 0), 0L);
                     }
-                    da0Var.V = false;
+                    ea0Var.V = false;
                 }
-                if (da0Var.O && i15 == 0) {
-                    int i16 = da0Var.M;
-                    int i17 = da0Var.N;
-                    da0Var.O = false;
+                if (ea0Var.O && i15 == 0) {
+                    int i16 = ea0Var.M;
+                    int i17 = ea0Var.N;
+                    ea0Var.O = false;
                     post(new jg.q(this, i16, i17, 14));
                     return;
                 }
                 return;
             case 23:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((il0) this.f8290g3).a();
+                ((il0) this.f8291g3).a();
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -789,7 +789,7 @@ public final class c1 extends uj0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 1:
                 int size = View.MeasureSpec.getSize(i7);
                 View.MeasureSpec.getSize(i10);
@@ -803,19 +803,19 @@ public final class c1 extends uj0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 11:
-                if (((mp) this.f8290g3).I) {
+                if (((mp) this.f8291g3).I) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
             case 14:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((yi) this.f8290g3).f33607b.Z3[0] - org.telegram.messenger.g0.L(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((yi) this.f8291g3).f33609b.Z3[0] - org.telegram.messenger.g0.L(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
             case 17:
-                if (((im) this.f8290g3).K != null) {
+                if (((im) this.f8291g3).K != null) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -826,27 +826,27 @@ public final class c1 extends uj0 {
 
     @Override
     public void requestLayout() {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 6:
-                if (!((org.telegram.ui.h1) this.f8290g3).f47577r) {
+                if (!((org.telegram.ui.h1) this.f8291g3).f47567r) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 20:
-                if (!((jz) this.f8290g3).f36211t1) {
+                if (!((jz) this.f8291g3).f36201t1) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 26:
-                if (!((bt0) this.f8290g3).f33373r1) {
+                if (!((bt0) this.f8291g3).f33376r1) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 27:
-                if (!((bw0) this.f8290g3).f33397b2) {
+                if (!((bw0) this.f8291g3).f33400b2) {
                     super.requestLayout();
                     return;
                 }
@@ -859,14 +859,14 @@ public final class c1 extends uj0 {
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 19:
                 super.setAlpha(f10);
-                ((iz) this.f8290g3).invalidate();
+                ((iz) this.f8291g3).invalidate();
                 return;
             case 29:
                 super.setAlpha(f10);
-                ((v61) this.f8290g3).invalidate();
+                ((v61) this.f8291g3).invalidate();
                 return;
             default:
                 super.setAlpha(f10);
@@ -876,7 +876,7 @@ public final class c1 extends uj0 {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f8289f3) {
+        switch (this.f8290f3) {
             case 28:
                 super.setTranslationY(f10);
                 getLocationInWindow(new int[2]);
@@ -889,14 +889,14 @@ public final class c1 extends uj0 {
 
     public c1(Object obj, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
         super(context, e6Var);
-        this.f8289f3 = i7;
-        this.f8290g3 = obj;
+        this.f8290f3 = i7;
+        this.f8291g3 = obj;
     }
 
     public c1(ly lyVar, Context context, jy jyVar) {
         super(context, null);
-        this.f8289f3 = 18;
-        this.f8290g3 = lyVar;
+        this.f8290f3 = 18;
+        this.f8291g3 = lyVar;
         setNestedScrollingEnabled(true);
         setSelectorRadius(org.telegram.messenger.g0.L(4.0f));
         org.telegram.ui.ActionBar.q6.l(this, 20, org.telegram.ui.ActionBar.j6.f28941i6, this.f40069o2);

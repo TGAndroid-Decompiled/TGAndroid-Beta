@@ -4,46 +4,46 @@ import android.widget.FrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 public final class mk0 implements OnCompleteListener, org.telegram.ui.ActionBar.q1, ss {
-    public final int f49246a;
-    public final jl0 f49247b;
+    public final int f49242a;
+    public final kl0 f49243b;
 
-    public mk0(jl0 jl0Var, int i7) {
-        this.f49246a = i7;
-        this.f49247b = jl0Var;
+    public mk0(kl0 kl0Var, int i7) {
+        this.f49242a = i7;
+        this.f49243b = kl0Var;
     }
 
     @Override
     public void e(ps psVar) {
-        switch (this.f49246a) {
+        switch (this.f49242a) {
             case 2:
-                jl0 jl0Var = this.f49247b;
-                jl0Var.B0 = psVar;
-                jl0Var.f48396f[4].setText(psVar.f50358a);
+                kl0 kl0Var = this.f49243b;
+                kl0Var.B0 = psVar;
+                kl0Var.f48688f[4].setText(psVar.f50349a);
                 return;
             default:
-                jl0 jl0Var2 = this.f49247b;
-                jl0Var2.B0 = psVar;
-                jl0Var2.f48396f[4].setText(psVar.f50358a);
-                jl0Var2.C0 = psVar.d;
+                kl0 kl0Var2 = this.f49243b;
+                kl0Var2.B0 = psVar;
+                kl0Var2.f48688f[4].setText(psVar.f50349a);
+                kl0Var2.C0 = psVar.d;
                 return;
         }
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f49246a) {
+        switch (this.f49242a) {
             case 1:
-                jl0 jl0Var = this.f49247b;
-                jl0Var.O0(jl0Var.S0[0]);
+                kl0 kl0Var = this.f49243b;
+                kl0Var.O0(kl0Var.S0[0]);
                 return;
             case 2:
             default:
-                jl0 jl0Var2 = this.f49247b;
-                jl0Var2.J0(true);
-                jl0Var2.F0();
+                kl0 kl0Var2 = this.f49243b;
+                kl0Var2.J0(true);
+                kl0Var2.F0();
                 return;
             case 3:
-                this.f49247b.G0(true);
+                this.f49243b.G0(true);
                 return;
         }
     }
@@ -51,7 +51,7 @@ public final class mk0 implements OnCompleteListener, org.telegram.ui.ActionBar.
     @Override
     public void onComplete(Task task) {
         if (task.isSuccessful()) {
-            FrameLayout frameLayout = this.f49247b.P;
+            FrameLayout frameLayout = this.f49243b.P;
             if (frameLayout != null) {
                 frameLayout.setVisibility(0);
                 return;

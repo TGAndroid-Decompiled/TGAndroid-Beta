@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ja;
-import org.telegram.ui.bn0;
+import org.telegram.ui.cn0;
 public final class v4 extends FrameLayout {
     public final int f29754a = 0;
     public int f29755b;
@@ -15,9 +15,9 @@ public final class v4 extends FrameLayout {
     public Object f29758f;
     public final Object h;
 
-    public v4(bn0 bn0Var, Context context) {
+    public v4(cn0 cn0Var, Context context) {
         super(context);
-        this.h = bn0Var;
+        this.h = cn0Var;
     }
 
     public j5 a() {
@@ -191,10 +191,10 @@ public final class v4 extends FrameLayout {
         switch (this.f29754a) {
             case 1:
                 super.setTranslationX(f10);
-                bn0 bn0Var = (bn0) this.h;
-                v4[] v4VarArr = bn0Var.f45795n;
-                if (bn0Var.f45797s && (v4Var = v4VarArr[0]) == this) {
-                    bn0Var.h.i(Math.abs(v4Var.getTranslationX()) / v4VarArr[0].getMeasuredWidth(), v4VarArr[1].f29755b);
+                cn0 cn0Var = (cn0) this.h;
+                v4[] v4VarArr = cn0Var.f46188n;
+                if (cn0Var.f46190s && (v4Var = v4VarArr[0]) == this) {
+                    cn0Var.h.i(Math.abs(v4Var.getTranslationX()) / v4VarArr[0].getMeasuredWidth(), v4VarArr[1].f29755b);
                     return;
                 }
                 return;

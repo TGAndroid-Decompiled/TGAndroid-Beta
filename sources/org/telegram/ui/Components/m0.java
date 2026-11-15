@@ -35,7 +35,7 @@ public final class m0 implements DialogInterface.OnDismissListener {
                 return;
             case 5:
                 ft ftVar = (ft) obj;
-                ftVar.f34690b2 = null;
+                ftVar.f34694b2 = null;
                 ftVar.requestFocus();
                 return;
             case 6:

@@ -3,29 +3,29 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListener {
-    public final e2.r0 f32943g0;
-    public View f32944h0;
-    public za0 f32945i0;
-    public org.telegram.ui.ActionBar.r2 f32946j0;
-    public int f32947k0;
-    public boolean f32948l0;
+    public final e2.r0 f32946g0;
+    public View f32947h0;
+    public za0 f32948i0;
+    public org.telegram.ui.ActionBar.r2 f32949j0;
+    public int f32950k0;
+    public boolean f32951l0;
 
     public ab0(Context context) {
         super(context, null);
-        this.f32943g0 = new Object();
+        this.f32946g0 = new Object();
     }
 
     public final void X() {
-        View view = this.f32944h0;
-        if (view != null && this.f32945i0 != null) {
-            this.f32947k0 = (view.getMeasuredHeight() - this.f32944h0.getPaddingBottom()) - this.f32945i0.getMeasuredHeight();
+        View view = this.f32947h0;
+        if (view != null && this.f32948i0 != null) {
+            this.f32950k0 = (view.getMeasuredHeight() - this.f32947h0.getPaddingBottom()) - this.f32948i0.getMeasuredHeight();
         }
     }
 
     @Override
     public final void k(int i7, View view) {
-        this.f32943g0.f10369a = 0;
-        org.telegram.ui.ActionBar.r2 r2Var = this.f32946j0;
+        this.f32946g0.f10369a = 0;
+        org.telegram.ui.ActionBar.r2 r2Var = this.f32949j0;
         if (r2Var != null) {
             r2Var.onStopNestedScroll(view);
         }
@@ -34,9 +34,9 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
     @Override
     public final void l(View view, int i7, int i10, int i11, int i12, int i13, int[] iArr) {
         za0 za0Var;
-        if (view == this.f32944h0 && (za0Var = this.f32945i0) != null && ((org.telegram.ui.t7) za0Var).getListView() != null) {
-            uj0 listView = ((org.telegram.ui.t7) this.f32945i0).getListView();
-            if (this.f32945i0.getTop() == this.f32947k0) {
+        if (view == this.f32947h0 && (za0Var = this.f32948i0) != null && ((org.telegram.ui.t7) za0Var).getListView() != null) {
+            uj0 listView = ((org.telegram.ui.t7) this.f32948i0).getListView();
+            if (this.f32948i0.getTop() == this.f32950k0) {
                 iArr[1] = i12;
                 listView.scrollBy(0, i12);
             }
@@ -54,8 +54,8 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32948l0 = true;
-        za0 za0Var = this.f32945i0;
+        this.f32951l0 = true;
+        za0 za0Var = this.f32948i0;
         if (za0Var != null) {
             za0Var.addOnLayoutChangeListener(this);
         }
@@ -64,8 +64,8 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32948l0 = false;
-        za0 za0Var = this.f32945i0;
+        this.f32951l0 = false;
+        za0 za0Var = this.f32948i0;
         if (za0Var != null) {
             za0Var.removeOnLayoutChangeListener(this);
         }
@@ -84,18 +84,18 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
 
     @Override
     public final void r(View view, View view2, int i7, int i10) {
-        this.f32943g0.f10369a = i7;
+        this.f32946g0.f10369a = i7;
     }
 
     @Override
     public final void s(View view, int i7, int i10, int[] iArr, int i11) {
         za0 za0Var;
         int max;
-        if (view == this.f32944h0 && (za0Var = this.f32945i0) != null && ((org.telegram.ui.t7) za0Var).getListView() != null) {
-            int top = this.f32945i0.getTop();
+        if (view == this.f32947h0 && (za0Var = this.f32948i0) != null && ((org.telegram.ui.t7) za0Var).getListView() != null) {
+            int top = this.f32948i0.getTop();
             if (i10 < 0) {
-                if (top <= this.f32947k0) {
-                    uj0 listView = ((org.telegram.ui.t7) this.f32945i0).getListView();
+                if (top <= this.f32950k0) {
+                    uj0 listView = ((org.telegram.ui.t7) this.f32948i0).getListView();
                     int L0 = ((v4.b0) listView.getLayoutManager()).L0();
                     int i12 = -1;
                     if (L0 != -1) {
@@ -117,14 +117,14 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
                         return;
                     }
                     return;
-                } else if (this.f32946j0 != null && !this.f32944h0.canScrollVertically(i10)) {
-                    this.f32946j0.onNestedScroll(view, 0, 0, i7, i10);
+                } else if (this.f32949j0 != null && !this.f32947h0.canScrollVertically(i10)) {
+                    this.f32949j0.onNestedScroll(view, 0, 0, i7, i10);
                     return;
                 } else {
                     return;
                 }
             }
-            org.telegram.ui.ActionBar.r2 r2Var = this.f32946j0;
+            org.telegram.ui.ActionBar.r2 r2Var = this.f32949j0;
             if (r2Var != null) {
                 r2Var.onNestedPreScroll(view, i7, i10, iArr);
             }
@@ -132,13 +132,13 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
     }
 
     public void setBottomSheetContainerView(org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f32946j0 = r2Var;
+        this.f32949j0 = r2Var;
     }
 
     public void setChildLayout(za0 za0Var) {
-        if (this.f32945i0 != za0Var) {
-            this.f32945i0 = za0Var;
-            if (this.f32948l0 && za0Var != null) {
+        if (this.f32948i0 != za0Var) {
+            this.f32948i0 = za0Var;
+            if (this.f32951l0 && za0Var != null) {
                 org.telegram.ui.t7 t7Var = (org.telegram.ui.t7) za0Var;
                 if (t7Var.getListView() != null) {
                     t7Var.getListView().addOnLayoutChangeListener(this);
@@ -149,7 +149,7 @@ public abstract class ab0 extends st0 implements r0.l, View.OnLayoutChangeListen
     }
 
     public void setTargetListView(View view) {
-        this.f32944h0 = view;
+        this.f32947h0 = view;
         X();
     }
 

@@ -7,20 +7,20 @@ import java.util.List;
 import org.telegram.ui.Components.fz0;
 import org.telegram.ui.Components.u11;
 public final class n implements Runnable {
-    public final int f57455a;
-    public final g0 f57456b;
+    public final int f57457a;
+    public final g0 f57458b;
 
     public n(g0 g0Var, int i7) {
-        this.f57455a = i7;
-        this.f57456b = g0Var;
+        this.f57457a = i7;
+        this.f57458b = g0Var;
     }
 
     @Override
     public final void run() {
         int e10;
-        switch (this.f57455a) {
+        switch (this.f57457a) {
             case 0:
-                g0 g0Var = this.f57456b;
+                g0 g0Var = this.f57458b;
                 fz0 fz0Var = g0Var.K0;
                 if (fz0Var != null) {
                     g0Var.K0 = null;
@@ -29,25 +29,25 @@ public final class n implements Runnable {
                 }
                 return;
             case 1:
-                g0 g0Var2 = this.f57456b;
-                if (g0Var2.f57283o0 != null) {
-                    g0Var2.f57287q0.postRunnable(new n(g0Var2, 3), 200L);
+                g0 g0Var2 = this.f57458b;
+                if (g0Var2.f57293o0 != null) {
+                    g0Var2.f57297q0.postRunnable(new n(g0Var2, 3), 200L);
                     return;
                 }
                 return;
             case 2:
-                m1 m1Var = this.f57456b.V0;
+                m1 m1Var = this.f57458b.V0;
                 if (m1Var != null) {
                     m1Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                g0.Y(this.f57456b);
+                g0.Y(this.f57458b);
                 return;
             default:
-                g0 g0Var3 = this.f57456b;
-                boolean z10 = sg.k0.e(g0Var3.f57306z1).f56695k;
+                g0 g0Var3 = this.f57458b;
+                boolean z10 = sg.k0.e(g0Var3.f57316z1).f56695k;
                 int i7 = 0;
                 while (true) {
                     List list = sg.g.f56622c;

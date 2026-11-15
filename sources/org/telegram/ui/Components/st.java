@@ -12,9 +12,9 @@ import android.widget.TextView;
 public final class st extends xh.l {
     public final n2.o0 V;
     public a80 W;
-    public boolean f39406a0;
-    public boolean f39407b0;
-    public boolean f39408c0;
+    public boolean f39404a0;
+    public boolean f39405b0;
+    public boolean f39406c0;
 
     public st(Context context) {
         super(context, null, true);
@@ -46,14 +46,14 @@ public final class st extends xh.l {
     public final void onDraw(Canvas canvas) {
         float paddingLeft;
         canvas.save();
-        if (!this.f39406a0) {
+        if (!this.f39404a0) {
             float f10 = 0.0f;
-            if (this.f39407b0) {
+            if (this.f39405b0) {
                 paddingLeft = 0.0f;
             } else {
                 paddingLeft = getPaddingLeft();
             }
-            if (!this.f39408c0) {
+            if (!this.f39406c0) {
                 f10 = getPaddingTop();
             }
             canvas.translate(paddingLeft, f10);
@@ -110,17 +110,17 @@ public final class st extends xh.l {
 
     @Override
     public void setDisablePaddingsOffset(boolean z10) {
-        this.f39406a0 = z10;
+        this.f39404a0 = z10;
     }
 
     @Override
     public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f39407b0 = z10;
+        this.f39405b0 = z10;
     }
 
     @Override
     public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f39408c0 = z10;
+        this.f39406c0 = z10;
     }
 
     @Override

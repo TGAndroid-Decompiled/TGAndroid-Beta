@@ -26,9 +26,9 @@ public final class c extends q {
             o0Var = new o0(b10, aVar);
         } else {
             ?? obj2 = new Object();
-            obj2.f3550b = b10;
+            obj2.f3553b = b10;
             Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
-            obj2.f3551c = new y6(1, -1, aVar.f59093a, 1);
+            obj2.f3554c = new y6(1, -1, aVar.f59093a, 1);
             n6.e.f21070b.getClass();
             if (n6.e.a(b10) >= 200400000) {
                 str = "com.google.android.gms.vision.ica";

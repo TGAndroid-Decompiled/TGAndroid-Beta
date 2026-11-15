@@ -101,8 +101,8 @@ public final class j2 extends AnimatorListenerAdapter {
                 return;
             case 3:
                 uu uuVar = (uu) obj;
-                uuVar.f26869b0 = i13;
-                uuVar.f26870c0 = 0.0f;
+                uuVar.f26870b0 = i13;
+                uuVar.f26871c0 = 0.0f;
                 View view = uuVar.W;
                 if (view != null) {
                     view.invalidate();
@@ -142,11 +142,11 @@ public final class j2 extends AnimatorListenerAdapter {
                 ((g6) obj).u(i13);
                 return;
             case 8:
-                ((t7) obj).f39565a[i13].setVisibility(8);
+                ((t7) obj).f39563a[i13].setVisibility(8);
                 return;
             case 9:
                 dx dxVar = (dx) obj;
-                ug.q0 q0Var = dxVar.f34091r;
+                ug.q0 q0Var = dxVar.f34078r;
                 if (i13 == 1) {
                     i7 = 0;
                 } else {
@@ -160,7 +160,7 @@ public final class j2 extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 textView.setVisibility(i10);
-                TextView textView2 = dxVar.f34090n;
+                TextView textView2 = dxVar.f34077n;
                 if (i13 == 3) {
                     i12 = 0;
                 }
@@ -180,25 +180,25 @@ public final class j2 extends AnimatorListenerAdapter {
             case 11:
                 qf0 qf0Var = (qf0) obj;
                 qf0Var.I = null;
-                qf0Var.Q.f40394e1.delete(i13);
+                qf0Var.Q.f40397e1.delete(i13);
                 return;
             case 12:
                 xp xpVar = (xp) obj;
-                ((xi0) xpVar.d).f41706b.remove(i13);
+                ((xi0) xpVar.d).f41698b.remove(i13);
                 xi0 xi0Var = (xi0) xpVar.d;
                 xi0Var.d = true;
-                xi0Var.f41705a.invalidate();
+                xi0Var.f41697a.invalidate();
                 return;
             case 13:
                 ar0 ar0Var = (ar0) obj;
-                ar0Var.f33047e.S1.remove(i13);
-                ar0Var.f33044a.invalidate();
+                ar0Var.f33050e.S1.remove(i13);
+                ar0Var.f33047a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.d1 d1Var = (org.telegram.ui.Components.voip.d1) obj;
-                d1Var.f40548y = -1;
-                d1Var.f40546w = i13;
-                d1Var.f40545s = 0.0f;
+                d1Var.f40551y = -1;
+                d1Var.f40549w = i13;
+                d1Var.f40548s = 0.0f;
                 d1Var.V = null;
                 d1Var.e();
                 return;
@@ -210,9 +210,9 @@ public final class j2 extends AnimatorListenerAdapter {
         switch (this.f18370a) {
             case 9:
                 dx dxVar = (dx) this.f18372c;
-                dxVar.f34091r.setVisibility(0);
+                dxVar.f34078r.setVisibility(0);
                 dxVar.h.setVisibility(0);
-                dxVar.f34090n.setVisibility(0);
+                dxVar.f34077n.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

@@ -66,55 +66,55 @@ public final class iv {
     public cu W;
     public int X;
     public IdentityHashMap Y;
-    public final int f24440a;
-    public final gj f24441b;
-    public TL_iv.RichMessage f24442c;
+    public final int f24445a;
+    public final gj f24446b;
+    public TL_iv.RichMessage f24447c;
     public boolean d;
-    public final ArrayList f24443e;
-    public final ArrayList f24444f;
-    public final ArrayList f24445g;
+    public final ArrayList f24448e;
+    public final ArrayList f24449f;
+    public final ArrayList f24450g;
     public final ArrayList h;
-    public Drawable f24446i;
-    public final HashMap f24447j;
-    public final HashMap f24448k;
-    public final ArrayList f24449l;
-    public final HashMap f24450m;
-    public final ArrayList f24451n;
-    public final ArrayList f24452o;
-    public final ArrayList f24453p;
-    public Object f24454q;
-    public tg0 f24455r;
-    public boolean f24456s;
-    public float f24457t;
-    public boolean f24458u;
+    public Drawable f24451i;
+    public final HashMap f24452j;
+    public final HashMap f24453k;
+    public final ArrayList f24454l;
+    public final HashMap f24455m;
+    public final ArrayList f24456n;
+    public final ArrayList f24457o;
+    public final ArrayList f24458p;
+    public Object f24459q;
+    public tg0 f24460r;
+    public boolean f24461s;
+    public float f24462t;
+    public boolean f24463u;
     public boolean v;
-    public final TextPaint f24459w;
-    public final TextPaint f24460x;
-    public final ek0 f24461y;
-    public final h6.m f24462z;
+    public final TextPaint f24464w;
+    public final TextPaint f24465x;
+    public final ek0 f24466y;
+    public final h6.m f24467z;
 
     public iv(gj gjVar, int i7, iv ivVar) {
-        this.f24443e = new ArrayList();
-        this.f24444f = new ArrayList();
-        this.f24445g = new ArrayList();
+        this.f24448e = new ArrayList();
+        this.f24449f = new ArrayList();
+        this.f24450g = new ArrayList();
         this.h = new ArrayList();
-        this.f24447j = new HashMap();
-        this.f24448k = new HashMap();
-        this.f24449l = new ArrayList();
-        this.f24450m = new HashMap();
-        this.f24451n = new ArrayList();
-        this.f24452o = new ArrayList();
-        this.f24453p = new ArrayList();
-        this.f24454q = "";
-        this.f24457t = 1.0f;
-        this.f24459w = new TextPaint(1);
-        this.f24460x = new TextPaint(1);
-        this.f24461y = new ek0(null);
-        this.f24462z = new h6.m(29);
+        this.f24452j = new HashMap();
+        this.f24453k = new HashMap();
+        this.f24454l = new ArrayList();
+        this.f24455m = new HashMap();
+        this.f24456n = new ArrayList();
+        this.f24457o = new ArrayList();
+        this.f24458p = new ArrayList();
+        this.f24459q = "";
+        this.f24462t = 1.0f;
+        this.f24464w = new TextPaint(1);
+        this.f24465x = new TextPaint(1);
+        this.f24466y = new ek0(null);
+        this.f24467z = new h6.m(29);
         this.K = new RectF();
-        this.f24441b = gjVar;
+        this.f24446b = gjVar;
         this.B = i7;
-        this.f24440a = gjVar.K1;
+        this.f24445a = gjVar.K1;
         J(ivVar);
     }
 
@@ -220,7 +220,7 @@ public final class iv {
             int spanStart = spannableStringBuilder.getSpanStart(evVar);
             int spanEnd = spannableStringBuilder.getSpanEnd(evVar);
             if (spanEnd > spanStart) {
-                int i10 = evVar.f23368b;
+                int i10 = evVar.f23371b;
                 if ((i10 & 16) != 0) {
                     i7 = 1;
                 } else {
@@ -249,7 +249,7 @@ public final class iv {
                 }
                 if (i7 != 0) {
                     ?? obj = new Object();
-                    obj.f41484a = i7;
+                    obj.f41487a = i7;
                     spannableStringBuilder.setSpan(new xy0(obj, 0), spanStart, spanEnd, 33);
                 }
             }
@@ -334,7 +334,7 @@ public final class iv {
 
     public static wy0 z(int i7) {
         ?? obj = new Object();
-        obj.f41484a = i7;
+        obj.f41487a = i7;
         return obj;
     }
 
@@ -351,12 +351,12 @@ public final class iv {
         if (F()) {
             int i7 = 0;
             while (true) {
-                ArrayList arrayList = this.f24451n;
+                ArrayList arrayList = this.f24456n;
                 if (i7 >= arrayList.size()) {
                     break;
                 }
                 org.telegram.ui.Cells.s9 s9Var = (org.telegram.ui.Cells.s9) arrayList.get(i7);
-                if ((s9Var instanceof hv) && (l5Var = ((hv) s9Var).F) != null && !l5Var.f36726a.isEmpty()) {
+                if ((s9Var instanceof hv) && (l5Var = ((hv) s9Var).F) != null && !l5Var.f36714a.isEmpty()) {
                     return true;
                 }
                 i7++;
@@ -366,7 +366,7 @@ public final class iv {
     }
 
     public final boolean D() {
-        gj gjVar = this.f24441b;
+        gj gjVar = this.f24446b;
         if (gjVar != null && gjVar.P2() && !gjVar.P3()) {
             return true;
         }
@@ -374,7 +374,7 @@ public final class iv {
     }
 
     public final boolean E() {
-        gj gjVar = this.f24441b;
+        gj gjVar = this.f24446b;
         if (gjVar != null && gjVar.P3()) {
             return true;
         }
@@ -382,7 +382,7 @@ public final class iv {
     }
 
     public final boolean F() {
-        tg0 tg0Var = this.f24455r;
+        tg0 tg0Var = this.f24460r;
         if (tg0Var != null && tg0Var.h) {
             return false;
         }
@@ -414,7 +414,7 @@ public final class iv {
     }
 
     public final boolean I() {
-        TL_iv.RichMessage richMessage = this.f24442c;
+        TL_iv.RichMessage richMessage = this.f24447c;
         if (richMessage != null && richMessage.rtl) {
             return true;
         }
@@ -431,14 +431,14 @@ public final class iv {
         this.A = 0;
         this.C = 0;
         View view = this.Q;
-        ArrayList arrayList = this.f24445g;
+        ArrayList arrayList = this.f24450g;
         if (view != null) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 cu cuVar = (cu) arrayList.get(i11);
                 View view2 = cuVar.W;
                 if (view2 != null && view2 == view) {
                     cuVar.V();
-                    CheckBoxBase checkBoxBase = cuVar.f22939r;
+                    CheckBoxBase checkBoxBase = cuVar.f22947r;
                     if (checkBoxBase != null) {
                         checkBoxBase.f32436l = false;
                     }
@@ -446,58 +446,58 @@ public final class iv {
                 }
             }
         }
-        this.f24443e.clear();
-        this.f24444f.clear();
+        this.f24448e.clear();
+        this.f24449f.clear();
         arrayList.clear();
         this.h.clear();
-        this.f24447j.clear();
-        this.f24448k.clear();
-        this.f24449l.clear();
-        this.f24450m.clear();
-        this.f24451n.clear();
-        this.f24452o.clear();
-        this.f24453p.clear();
-        this.f24454q = "";
+        this.f24452j.clear();
+        this.f24453k.clear();
+        this.f24454l.clear();
+        this.f24455m.clear();
+        this.f24456n.clear();
+        this.f24457o.clear();
+        this.f24458p.clear();
+        this.f24459q = "";
         this.M = gz.W0;
-        this.N = g0.f23608p;
-        this.f24459w.setTextSize(g0.L(gz.W0));
-        this.f24460x.setTextSize(g0.L(gz.W0));
+        this.N = g0.f23610p;
+        this.f24464w.setTextSize(g0.L(gz.W0));
+        this.f24465x.setTextSize(g0.L(gz.W0));
         this.d = false;
-        this.f24442c = null;
-        gj gjVar = this.f24441b;
-        if (gjVar != null && gjVar.f23817k != null && gjVar.E0() != null) {
+        this.f24447c = null;
+        gj gjVar = this.f24446b;
+        if (gjVar != null && gjVar.f23819k != null && gjVar.E0() != null) {
             TL_iv.RichMessage E0 = gjVar.E0();
-            this.f24442c = E0;
+            this.f24447c = E0;
             this.d = E0.part;
             this.P = ivVar;
-            for (int i12 = 0; i12 < this.f24442c.blocks.size(); i12++) {
-                TL_iv.PageBlock pageBlock = this.f24442c.blocks.get(i12);
-                cu j3 = j(pageBlock, 0, new Rect(), 0, O(i12, this.f24442c.blocks));
+            for (int i12 = 0; i12 < this.f24447c.blocks.size(); i12++) {
+                TL_iv.PageBlock pageBlock = this.f24447c.blocks.get(i12);
+                cu j3 = j(pageBlock, 0, new Rect(), 0, O(i12, this.f24447c.blocks));
                 if ((j3 instanceof xu) && (((z12 = pageBlock instanceof TL_iv.pageBlockParagraph)) || org.telegram.ui.g4.I(pageBlock))) {
                     xu xuVar = (xu) j3;
                     if (i12 == 0 && z12) {
                         i7 = 0;
                     } else {
-                        i7 = xuVar.f27603a0;
+                        i7 = xuVar.f27605a0;
                     }
-                    if (i12 == this.f24442c.blocks.size() - 1) {
+                    if (i12 == this.f24447c.blocks.size() - 1) {
                         i10 = 0;
                     } else {
-                        i10 = xuVar.f27604b0;
+                        i10 = xuVar.f27606b0;
                     }
                     xuVar.j0(i7, i10);
                 }
             }
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 cu cuVar2 = (cu) arrayList.get(i13);
-                if ((cuVar2 instanceof xu) && cuVar2.f22941w > 0) {
-                    if (i13 > 0 && ((cu) arrayList.get(i13 - 1)).f22941w > 0) {
+                if ((cuVar2 instanceof xu) && cuVar2.f22949w > 0) {
+                    if (i13 > 0 && ((cu) arrayList.get(i13 - 1)).f22949w > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     int i14 = i13 + 1;
-                    if (i14 < arrayList.size() && ((cu) arrayList.get(i14)).f22941w > 0) {
+                    if (i14 < arrayList.size() && ((cu) arrayList.get(i14)).f22949w > 0) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -517,11 +517,11 @@ public final class iv {
                 }
             }
             this.P = null;
-            if (this.f24455r != null) {
+            if (this.f24460r != null) {
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
-                    ((cu) arrayList.get(i15)).L = this.f24455r;
+                    ((cu) arrayList.get(i15)).L = this.f24460r;
                 }
-                this.f24455r.k(p());
+                this.f24460r.k(p());
             }
             if (view != null) {
                 for (int i16 = 0; i16 < arrayList.size(); i16++) {
@@ -534,7 +534,7 @@ public final class iv {
     }
 
     public final boolean L(TL_iv.RichMessage richMessage, int i7) {
-        if (this.f24442c == richMessage && this.M == gz.W0 && Math.abs(this.N - g0.f23608p) <= 0.1f && i7 == this.B) {
+        if (this.f24447c == richMessage && this.M == gz.W0 && Math.abs(this.N - g0.f23610p) <= 0.1f && i7 == this.B) {
             return false;
         }
         return true;
@@ -554,7 +554,7 @@ public final class iv {
                 Object obj = arrayList2.get(i10);
                 i10++;
                 yt ytVar = (yt) obj;
-                if (i7 >= ytVar.f27813a && i7 <= ytVar.f27814b) {
+                if (i7 >= ytVar.f27823a && i7 <= ytVar.f27824b) {
                     arrayList.add(ytVar);
                 }
             }
@@ -567,15 +567,15 @@ public final class iv {
         ArrayList arrayList;
         this.A = 0;
         this.C = 0;
-        ArrayList arrayList2 = this.f24451n;
+        ArrayList arrayList2 = this.f24456n;
         arrayList2.clear();
-        ArrayList arrayList3 = this.f24452o;
+        ArrayList arrayList3 = this.f24457o;
         arrayList3.clear();
-        ArrayList arrayList4 = this.f24453p;
+        ArrayList arrayList4 = this.f24458p;
         arrayList4.clear();
         int i7 = 0;
         while (true) {
-            arrayList = this.f24445g;
+            arrayList = this.f24450g;
             if (i7 >= arrayList.size()) {
                 break;
             }
@@ -587,14 +587,14 @@ public final class iv {
             if (cuVar instanceof wu) {
                 wu wuVar = (wu) cuVar;
                 int i11 = this.C;
-                int i12 = wuVar.f27399f0;
-                int i13 = wuVar.f27398e0;
-                Rect rect = wuVar.f22934b;
+                int i12 = wuVar.f27400f0;
+                int i13 = wuVar.f27399e0;
+                Rect rect = wuVar.f22942b;
                 int max = Math.max(i12, Math.min(i13, Math.max(0, (i11 - rect.left) - rect.right)));
-                wuVar.f27400g0 = max;
+                wuVar.f27401g0 = max;
                 px0 px0Var = wuVar.Y;
                 px0Var.setRenderWidth(max);
-                wuVar.f27401h0 = px0Var.getRenderHeight();
+                wuVar.f27402h0 = px0Var.getRenderHeight();
             }
         }
         StringBuilder sb2 = new StringBuilder();
@@ -605,7 +605,7 @@ public final class iv {
             cuVar2.N = i14;
             cuVar2.O = 0;
             cuVar2.R = S;
-            Rect rect2 = cuVar2.f22934b;
+            Rect rect2 = cuVar2.f22942b;
             cuVar2.Z(rect2.left, rect2.top + i14, i15);
             if (S) {
                 org.telegram.ui.Cells.s9[] L = cuVar2.L();
@@ -631,7 +631,7 @@ public final class iv {
             }
         }
         this.A = i14;
-        this.f24454q = sb2;
+        this.f24459q = sb2;
     }
 
     public final void S(int i7, int i10) {
@@ -640,13 +640,13 @@ public final class iv {
             this.T = i10;
             int i11 = 0;
             while (true) {
-                ArrayList arrayList = this.f24445g;
+                ArrayList arrayList = this.f24450g;
                 if (i11 < arrayList.size()) {
                     cu cuVar = (cu) arrayList.get(i11);
                     if (cuVar instanceof iu) {
                         iu iuVar = (iu) cuVar;
                         hv hvVar = iuVar.Y;
-                        hvVar.f24223c = (g0.L(53.0f) + (iuVar.T - iuVar.f22933a.S)) - hvVar.f24225f;
+                        hvVar.f24223c = (g0.L(53.0f) + (iuVar.T - iuVar.f22941a.S)) - hvVar.f24225f;
                     }
                     i11++;
                 } else {
@@ -663,7 +663,7 @@ public final class iv {
 
     public final void U(CharacterStyle characterStyle, final SpannableStringBuilder spannableStringBuilder, int i7, int i10) {
         if (characterStyle instanceof ev) {
-            int i11 = ((ev) characterStyle).f23368b;
+            int i11 = ((ev) characterStyle).f23371b;
             ev[] evVarArr = (ev[]) spannableStringBuilder.getSpans(i7, i10, ev.class);
             if (evVarArr != null && evVarArr.length > 0) {
                 Arrays.sort(evVarArr, Comparator$CC.comparingInt(new ToIntFunction() {
@@ -707,10 +707,10 @@ public final class iv {
     }
 
     public final void W(tg0 tg0Var) {
-        this.f24455r = tg0Var;
+        this.f24460r = tg0Var;
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f24445g;
+            ArrayList arrayList = this.f24450g;
             if (i7 < arrayList.size()) {
                 ((cu) arrayList.get(i7)).L = tg0Var;
                 arrayList.get(i7);
@@ -725,7 +725,7 @@ public final class iv {
     public final void X() {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f24445g;
+            ArrayList arrayList = this.f24450g;
             if (i7 < arrayList.size()) {
                 ((cu) arrayList.get(i7)).d0();
                 i7++;
@@ -736,7 +736,7 @@ public final class iv {
     }
 
     public final boolean Y() {
-        ArrayList arrayList = this.f24445g;
+        ArrayList arrayList = this.f24450g;
         if (arrayList.isEmpty()) {
             return false;
         }
@@ -756,7 +756,7 @@ public final class iv {
             this.Q = view;
             int i7 = 0;
             while (true) {
-                ArrayList arrayList = this.f24445g;
+                ArrayList arrayList = this.f24450g;
                 if (i7 < arrayList.size()) {
                     ((cu) arrayList.get(i7)).m(view);
                     i7++;
@@ -773,7 +773,7 @@ public final class iv {
         boolean z10;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f24451n;
+            ArrayList arrayList = this.f24456n;
             if (i10 < arrayList.size()) {
                 org.telegram.ui.Cells.s9 s9Var = (org.telegram.ui.Cells.s9) arrayList.get(i10);
                 if ((s9Var instanceof hv) && (view = (hvVar = (hv) s9Var).T) != null) {
@@ -809,7 +809,7 @@ public final class iv {
             this.Q = null;
             int i7 = 0;
             while (true) {
-                ArrayList arrayList = this.f24445g;
+                ArrayList arrayList = this.f24450g;
                 if (i7 >= arrayList.size()) {
                     break;
                 }
@@ -817,7 +817,7 @@ public final class iv {
                 View view3 = cuVar.W;
                 if (view3 != null && view3 == view) {
                     cuVar.V();
-                    CheckBoxBase checkBoxBase = cuVar.f22939r;
+                    CheckBoxBase checkBoxBase = cuVar.f22947r;
                     if (checkBoxBase != null) {
                         checkBoxBase.f32436l = false;
                     }
@@ -847,7 +847,7 @@ public final class iv {
         } else {
             i11 = org.telegram.ui.ActionBar.j6.Xc;
         }
-        this.f24459w.linkColor = org.telegram.ui.ActionBar.j6.w0(i11, this.D);
+        this.f24464w.linkColor = org.telegram.ui.ActionBar.j6.w0(i11, this.D);
         boolean z12 = this.d;
         int min = Math.min(this.A, g0.L(900.0f));
         if (z12) {
@@ -872,7 +872,7 @@ public final class iv {
         if (z12) {
             RectF rectF = g0.P;
             rectF.set(-i7, min - g0.L(32.0f), this.C + i10, min);
-            this.f24462z.m(canvas, rectF, 3, 1.0f);
+            this.f24467z.m(canvas, rectF, 3, 1.0f);
             canvas.restore();
             if (E()) {
                 i12 = org.telegram.ui.ActionBar.j6.Ob;
@@ -887,17 +887,17 @@ public final class iv {
             if (dcVar == null) {
                 this.G = new org.telegram.ui.Components.dc(this.Q, 1.5f, 2.0f);
             } else {
-                View view = dcVar.f33911a;
+                View view = dcVar.f33898a;
                 View view2 = this.Q;
                 if (view != view2) {
-                    dcVar.f33911a = view2;
+                    dcVar.f33898a = view2;
                 }
             }
             if (this.H == null) {
                 this.H = new Paint(1);
             }
             this.H.setColor(org.telegram.ui.ActionBar.j6.r1(0.1f, w02));
-            float f13 = this.I.f38105c;
+            float f13 = this.I.f38103c;
             int i14 = this.C;
             float f14 = (((i14 + i13) + this.T) / 2.0f) - this.S;
             float L = g0.L(4.0f) + min;
@@ -918,12 +918,12 @@ public final class iv {
             if (d80Var2 == null && z11) {
                 d80 d80Var3 = new d80();
                 this.J = d80Var3;
-                d80Var3.f33884x.setStrokeWidth(g0.L(1.25f));
+                d80Var3.f33886x.setStrokeWidth(g0.L(1.25f));
                 this.J.D = true;
             } else if (d80Var2 != null && z11 && (d80Var2.c() || this.J.d())) {
                 d80 d80Var4 = this.J;
-                d80Var4.f33865b = -1L;
-                d80Var4.f33866c = -1L;
+                d80Var4.f33867b = -1L;
+                d80Var4.f33868c = -1L;
             }
             d80 d80Var5 = this.J;
             if (d80Var5 != null) {
@@ -995,14 +995,14 @@ public final class iv {
             while (i14 < size) {
                 int i15 = i14 + 1;
                 yt ytVar = (yt) arrayList.get(i14);
-                int r10 = r(ytVar.f27813a, x1Var);
-                int i16 = ytVar.f27814b;
-                ArrayList arrayList2 = this.f24445g;
+                int r10 = r(ytVar.f27823a, x1Var);
+                int i16 = ytVar.f27824b;
+                ArrayList arrayList2 = this.f24450g;
                 float f28 = 4.0f;
-                if (i16 >= 0 && i16 < arrayList2.size() && x1Var != null && (this.f24456s || this.f24458u)) {
+                if (i16 >= 0 && i16 < arrayList2.size() && x1Var != null && (this.f24461s || this.f24463u)) {
                     float max = Math.max(f26, Math.min(f27, x1Var.L1));
                     cu cuVar = (cu) arrayList2.get(i16);
-                    int d = i5.c.d(4.0f, cuVar.f22934b.bottom, i13);
+                    int d = i5.c.d(4.0f, cuVar.f22942b.bottom, i13);
                     float f29 = cuVar.P + cuVar.Q;
                     if (cuVar.S) {
                         i12 = d;
@@ -1023,9 +1023,9 @@ public final class iv {
                             cu cuVar2 = (cu) arrayList2.get(i17);
                             boolean S = cuVar2.S();
                             float f32 = f28;
-                            Rect rect = cuVar2.f22934b;
+                            Rect rect = cuVar2.f22942b;
                             if (S) {
-                                if (x1Var != null && (this.f24456s || this.f24458u)) {
+                                if (x1Var != null && (this.f24461s || this.f24463u)) {
                                     I2 = g0.W1(Math.max(0.0f, Math.min(f27, x1Var.L1)), cuVar2.Q, cuVar2.O);
                                 } else {
                                     I2 = cuVar2.I();
@@ -1056,29 +1056,29 @@ public final class iv {
                         }
                     }
                 }
-                int i20 = ytVar.f27814b;
-                ArrayList arrayList3 = this.f24445g;
+                int i20 = ytVar.f27824b;
+                ArrayList arrayList3 = this.f24450g;
                 float f33 = 1.0f;
-                for (int i21 = ytVar.f27813a; i21 < Math.min(i20 + 1, arrayList3.size()); i21++) {
+                for (int i21 = ytVar.f27823a; i21 < Math.min(i20 + 1, arrayList3.size()); i21++) {
                     cu cuVar3 = (cu) arrayList3.get(i21);
                     if (cuVar3.S()) {
                         f33 = cuVar3.z() * f33;
                     }
                 }
                 int L = g0.L(3.0f) * ytVar.d;
-                int i22 = ytVar.f27816e + L;
-                int i23 = L + ytVar.f27817f;
+                int i22 = ytVar.f27826e + L;
+                int i23 = L + ytVar.f27827f;
                 if (i11 - r10 > i22 + i23) {
                     r10 += i22;
                     i11 -= i23;
                 }
                 RectF rectF = g0.P;
-                rectF.set(ytVar.f27815c, r10, this.C - g0.L(ytVar.d * 12), i11);
+                rectF.set(ytVar.f27825c, r10, this.C - g0.L(ytVar.d * 12), i11);
                 canvas3.save();
                 canvas3.scale(f33, f33, rectF.centerX(), rectF.centerY());
                 float floor = (float) Math.floor(gz.Y0 / 3.0f);
-                this.f24461y.d(canvas3, rectF, floor, floor, floor, 1.0f, false, false);
-                this.f24461y.f(canvas3, rectF, 1.0f);
+                this.f24466y.d(canvas3, rectF, floor, floor, floor, 1.0f, false, false);
+                this.f24466y.f(canvas3, rectF, 1.0f);
                 canvas3.restore();
                 size = size;
                 i14 = i15;
@@ -1088,8 +1088,8 @@ public final class iv {
             }
         }
         int i24 = 0;
-        while (i24 < this.f24445g.size()) {
-            cu cuVar4 = (cu) this.f24445g.get(i24);
+        while (i24 < this.f24450g.size()) {
+            cu cuVar4 = (cu) this.f24450g.get(i24);
             if ((cuVar4 instanceof su) && (cuVar4.R || cuVar4.S)) {
                 su suVar = (su) cuVar4;
                 int r11 = suVar.X.r();
@@ -1101,7 +1101,7 @@ public final class iv {
                 }
                 int max2 = Math.max(r11, i10);
                 if (max2 > 0) {
-                    if (x1Var != null && (this.f24456s || this.f24458u)) {
+                    if (x1Var != null && (this.f24461s || this.f24463u)) {
                         z14 = true;
                     } else {
                         z14 = false;
@@ -1149,32 +1149,32 @@ public final class iv {
                             RectF rectF2 = g0.P;
                             rectF2.set(L2, L4, L3, L5);
                             float floor2 = (float) Math.floor(gz.Y0 / 2.0f);
-                            this.f24461y.d(canvas3, rectF2, floor2, floor2, floor2, f21, false, false);
-                            if (this.f24446i == null) {
-                                this.f24446i = t0.f26600b.getDrawable(2131231966).mutate();
+                            this.f24466y.d(canvas3, rectF2, floor2, floor2, floor2, f21, false, false);
+                            if (this.f24451i == null) {
+                                this.f24451i = t0.f26609b.getDrawable(2131231966).mutate();
                             }
-                            this.f24446i.setColorFilter(this.f24461y.i(), PorterDuff.Mode.SRC_IN);
-                            this.f24446i.setAlpha((int) (f21 * 255.0f));
-                            int intrinsicWidth = this.f24446i.getIntrinsicWidth();
-                            int intrinsicHeight = this.f24446i.getIntrinsicHeight();
+                            this.f24451i.setColorFilter(this.f24466y.i(), PorterDuff.Mode.SRC_IN);
+                            this.f24451i.setAlpha((int) (f21 * 255.0f));
+                            int intrinsicWidth = this.f24451i.getIntrinsicWidth();
+                            int intrinsicHeight = this.f24451i.getIntrinsicHeight();
                             canvas3.save();
                             canvas3.clipRect(L2, L4, L3, L5);
                             int i25 = (int) L2;
                             int i26 = (int) L4;
                             i7 = i24;
-                            this.f24446i.setBounds(g0.L(8.0f) + i25, g0.L(7.0f) + i26, k5.C(8.0f, i25, intrinsicWidth), k5.C(7.0f, i26, intrinsicHeight));
-                            canvas3.scale(-1.0f, -1.0f, this.f24446i.getBounds().centerX(), this.f24446i.getBounds().centerY());
-                            this.f24446i.draw(canvas3);
+                            this.f24451i.setBounds(g0.L(8.0f) + i25, g0.L(7.0f) + i26, k5.C(8.0f, i25, intrinsicWidth), k5.C(7.0f, i26, intrinsicHeight));
+                            canvas3.scale(-1.0f, -1.0f, this.f24451i.getBounds().centerX(), this.f24451i.getBounds().centerY());
+                            this.f24451i.draw(canvas3);
                             canvas3.restore();
                             canvas3.save();
                             canvas3.clipRect(L2, L4, L3, L5);
                             int i27 = (int) L3;
                             int i28 = (int) L5;
-                            this.f24446i.setBounds(k5.z(8.0f, i27, intrinsicWidth), k5.z(7.0f, i28, intrinsicHeight), i27 - g0.L(8.0f), i28 - g0.L(7.0f));
-                            canvas3.scale(1.0f, -1.0f, this.f24446i.getBounds().centerX(), this.f24446i.getBounds().centerY());
-                            this.f24446i.draw(canvas3);
+                            this.f24451i.setBounds(k5.z(8.0f, i27, intrinsicWidth), k5.z(7.0f, i28, intrinsicHeight), i27 - g0.L(8.0f), i28 - g0.L(7.0f));
+                            canvas3.scale(1.0f, -1.0f, this.f24451i.getBounds().centerX(), this.f24451i.getBounds().centerY());
+                            this.f24451i.draw(canvas3);
                             canvas3.restore();
-                            this.f24446i.setAlpha(255);
+                            this.f24451i.setAlpha(255);
                             i24 = i7 + 1;
                         }
                     }
@@ -1183,8 +1183,8 @@ public final class iv {
             i7 = i24;
             i24 = i7 + 1;
         }
-        gj gjVar = this.f24441b;
-        if (!this.O && (gjVar == null || !np.s1(this.f24440a).f25400t7.A(gjVar))) {
+        gj gjVar = this.f24446b;
+        if (!this.O && (gjVar == null || !np.s1(this.f24445a).f25403t7.A(gjVar))) {
             z11 = false;
         } else {
             z11 = true;
@@ -1207,21 +1207,21 @@ public final class iv {
                 view.invalidate();
             }
         }
-        if (x1Var == null || (!this.f24456s && !this.f24458u)) {
+        if (x1Var == null || (!this.f24461s && !this.f24463u)) {
             f13 = 1.0f;
             f14 = 1.0f;
         } else {
             f13 = 1.0f;
             f14 = Math.max(0.0f, Math.min(1.0f, x1Var.L1));
         }
-        this.f24457t = f14;
+        this.f24462t = f14;
         int i29 = (f14 > f13 ? 1 : (f14 == f13 ? 0 : -1));
         if (i29 >= 0) {
-            this.f24456s = false;
-            this.f24458u = false;
+            this.f24461s = false;
+            this.f24463u = false;
         }
-        boolean z15 = this.f24456s;
-        if (!z15 && !this.f24458u) {
+        boolean z15 = this.f24461s;
+        if (!z15 && !this.f24463u) {
             z12 = z10;
         } else {
             z12 = false;
@@ -1232,12 +1232,12 @@ public final class iv {
             z13 = false;
         }
         if (z13) {
-            ArrayList arrayList4 = this.f24445g;
+            ArrayList arrayList4 = this.f24450g;
             for (int i30 = 0; i30 < arrayList4.size(); i30++) {
                 cu cuVar5 = (cu) arrayList4.get(i30);
                 if (cuVar5 instanceof iu) {
                     iu iuVar2 = (iu) cuVar5;
-                    iuVar2.f24438e0 = g0.T1(iuVar2.P, iuVar2.N, f14) + iuVar2.I();
+                    iuVar2.f24443e0 = g0.T1(iuVar2.P, iuVar2.N, f14) + iuVar2.I();
                     int i31 = i30 + 1;
                     while (true) {
                         if (i31 < arrayList4.size()) {
@@ -1255,32 +1255,32 @@ public final class iv {
                             break;
                         }
                     }
-                    iuVar2.f24439f0 = f19;
+                    iuVar2.f24444f0 = f19;
                 }
             }
         }
-        ArrayList arrayList5 = this.f24445g;
+        ArrayList arrayList5 = this.f24450g;
         for (int i32 = 0; i32 < arrayList5.size(); i32++) {
             cu cuVar7 = (cu) arrayList5.get(i32);
             if (cuVar7 instanceof yu) {
                 yu yuVar = (yu) cuVar7;
-                if (yuVar.f27823i0) {
+                if (yuVar.f27833i0) {
                     f17 = 1.0f;
                 } else {
                     f17 = 0.0f;
                 }
-                if (yuVar.f27822h0) {
+                if (yuVar.f27832h0) {
                     f18 = 1.0f;
                 } else {
                     f18 = 0.0f;
                 }
-                yuVar.f27824j0 = g0.T1(f17, f18, f14);
-                yuVar.f27825k0 = g0.W1(f14, yuVar.Q, yuVar.O);
+                yuVar.f27834j0 = g0.T1(f17, f18, f14);
+                yuVar.f27835k0 = g0.W1(f14, yuVar.Q, yuVar.O);
             }
         }
         int i33 = 0;
-        while (i33 < this.f24445g.size()) {
-            cu cuVar8 = (cu) this.f24445g.get(i33);
+        while (i33 < this.f24450g.size()) {
+            cu cuVar8 = (cu) this.f24450g.get(i33);
             if (cuVar8.R || cuVar8.S) {
                 float T12 = g0.T1(cuVar8.P, cuVar8.N, f14);
                 boolean z16 = cuVar8 instanceof ju;
@@ -1307,8 +1307,8 @@ public final class iv {
                             float f36 = -3.4028235E38f;
                             float f37 = Float.MAX_VALUE;
                             for (iuVar = cuVar8.M; iuVar != null; iuVar = iuVar.M) {
-                                f36 = Math.max(f36, iuVar.f24438e0);
-                                f37 = Math.min(f37, iuVar.f24439f0);
+                                f36 = Math.max(f36, iuVar.f24443e0);
+                                f37 = Math.min(f37, iuVar.f24444f0);
                             }
                             if (f37 <= f36) {
                                 canvas3.restore();
@@ -1345,7 +1345,7 @@ public final class iv {
         if (F()) {
             int i7 = 0;
             while (true) {
-                ArrayList arrayList = this.f24445g;
+                ArrayList arrayList = this.f24450g;
                 if (i7 < arrayList.size()) {
                     cu cuVar = (cu) arrayList.get(i7);
                     if (cuVar.R) {
@@ -1394,7 +1394,7 @@ public final class iv {
             if (z11) {
                 spannableStringBuilder2 = l(pageCaption.credit, R);
             }
-            this.f24445g.add(new gu(this, rect, this.B, spannableStringBuilder, spannableStringBuilder2));
+            this.f24450g.add(new gu(this, rect, this.B, spannableStringBuilder, spannableStringBuilder2));
         }
     }
 
@@ -1476,11 +1476,11 @@ public final class iv {
                     if (str != null) {
                         String lowerCase = str.toLowerCase();
                         if (!(textanchor.text instanceof TL_iv.textEmpty)) {
-                            this.f24448k.put(lowerCase, textanchor);
+                            this.f24453k.put(lowerCase, textanchor);
                         } else {
-                            HashMap hashMap = this.f24447j;
+                            HashMap hashMap = this.f24452j;
                             if (!hashMap.containsKey(lowerCase)) {
-                                hashMap.put(lowerCase, Integer.valueOf(this.f24445g.size()));
+                                hashMap.put(lowerCase, Integer.valueOf(this.f24450g.size()));
                             }
                         }
                     }
@@ -1529,7 +1529,7 @@ public final class iv {
                             boolean a11 = c8.zc.a(i7, 13);
                             int i20 = i7 & 15;
                             if (i20 >= 1 && i20 <= 6) {
-                                TextPaint textPaint = new TextPaint(this.f24459w);
+                                TextPaint textPaint = new TextPaint(this.f24464w);
                                 new ev(this, i7, true).a(textPaint);
                                 size = new org.telegram.ui.Components.p5(textcustomemoji.document_id, 0.85f, textPaint.getFontMetricsInt());
                             } else {
@@ -1640,7 +1640,7 @@ public final class iv {
     }
 
     public final ArrayList p() {
-        ArrayList arrayList = this.f24445g;
+        ArrayList arrayList = this.f24450g;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             ((cu) arrayList.get(i7)).p(arrayList2);
@@ -1653,8 +1653,8 @@ public final class iv {
 
     public final int r(int i7, org.telegram.ui.Cells.x1 x1Var) {
         int I;
-        ArrayList arrayList = this.f24445g;
-        if (i7 >= 0 && i7 < arrayList.size() && x1Var != null && (this.f24456s || this.f24458u)) {
+        ArrayList arrayList = this.f24450g;
+        if (i7 >= 0 && i7 < arrayList.size() && x1Var != null && (this.f24461s || this.f24463u)) {
             float max = Math.max(0.0f, Math.min(1.0f, x1Var.L1));
             cu cuVar = (cu) arrayList.get(i7);
             return Math.round(g0.T1(cuVar.P, cuVar.N, max));
@@ -1667,7 +1667,7 @@ public final class iv {
                 return i10;
             }
             if (S) {
-                if (x1Var != null && (this.f24456s || this.f24458u)) {
+                if (x1Var != null && (this.f24461s || this.f24463u)) {
                     I = g0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), cuVar2.Q, cuVar2.O);
                 } else {
                     I = cuVar2.I();
@@ -1679,7 +1679,7 @@ public final class iv {
     }
 
     public final TLRPC.Document s(long j3) {
-        TL_iv.RichMessage richMessage = this.f24442c;
+        TL_iv.RichMessage richMessage = this.f24447c;
         if (richMessage == null) {
             return null;
         }
@@ -1716,7 +1716,7 @@ public final class iv {
     }
 
     public final TLRPC.Photo v(long j3) {
-        TL_iv.RichMessage richMessage = this.f24442c;
+        TL_iv.RichMessage richMessage = this.f24447c;
         if (richMessage == null) {
             return null;
         }
@@ -1739,33 +1739,33 @@ public final class iv {
     }
 
     public iv(int i7, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f24443e = new ArrayList();
-        this.f24444f = new ArrayList();
-        this.f24445g = new ArrayList();
+        this.f24448e = new ArrayList();
+        this.f24449f = new ArrayList();
+        this.f24450g = new ArrayList();
         this.h = new ArrayList();
-        this.f24447j = new HashMap();
-        this.f24448k = new HashMap();
-        this.f24449l = new ArrayList();
-        this.f24450m = new HashMap();
-        this.f24451n = new ArrayList();
-        this.f24452o = new ArrayList();
-        this.f24453p = new ArrayList();
-        this.f24454q = "";
-        this.f24457t = 1.0f;
+        this.f24452j = new HashMap();
+        this.f24453k = new HashMap();
+        this.f24454l = new ArrayList();
+        this.f24455m = new HashMap();
+        this.f24456n = new ArrayList();
+        this.f24457o = new ArrayList();
+        this.f24458p = new ArrayList();
+        this.f24459q = "";
+        this.f24462t = 1.0f;
         TextPaint textPaint = new TextPaint(1);
-        this.f24459w = textPaint;
+        this.f24464w = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f24460x = textPaint2;
-        this.f24461y = new ek0(null);
-        this.f24462z = new h6.m(29);
+        this.f24465x = textPaint2;
+        this.f24466y = new ek0(null);
+        this.f24467z = new h6.m(29);
         this.K = new RectF();
-        this.f24441b = null;
-        this.f24440a = i7;
+        this.f24446b = null;
+        this.f24445a = i7;
         this.B = i10;
         this.D = e6Var;
         int i11 = gz.W0;
         this.M = i11;
-        this.N = g0.f23608p;
+        this.N = g0.f23610p;
         textPaint.setTextSize(g0.L(i11));
         textPaint2.setTextSize(g0.L(this.M));
     }

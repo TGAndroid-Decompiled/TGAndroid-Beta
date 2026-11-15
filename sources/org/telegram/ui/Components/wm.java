@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class wm implements mx {
-    public final org.telegram.messenger.z10 f41404a;
-    public final fi.p2 f41405b;
+    public final org.telegram.messenger.z10 f41407a;
+    public final fi.p2 f41408b;
 
     public wm(org.telegram.messenger.z10 z10Var, fi.p2 p2Var) {
-        this.f41404a = z10Var;
-        this.f41405b = p2Var;
+        this.f41407a = z10Var;
+        this.f41408b = p2Var;
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class wm implements mx {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, int i7) {
-        this.f41404a.a(new th.h(obj, document));
-        this.f41405b.a(true);
+        this.f41407a.a(new th.h(obj, document));
+        this.f41408b.a(true);
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class wm implements mx {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f41404a.a(new th.h(null, document));
-        this.f41405b.a(true);
+        this.f41407a.a(new th.h(null, document));
+        this.f41408b.a(true);
     }
 
     @Override

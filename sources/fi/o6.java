@@ -147,7 +147,7 @@ public final class o6 implements RequestDelegate {
                                             z11 = false;
                                         }
                                         storyItem.pinned = z11;
-                                        storyItem.dialogId = m10.i(i10).f24953n;
+                                        storyItem.dialogId = m10.i(i10).f24959n;
                                         storyItem.attachPath = r6Var.f12275e;
                                         storyItem.firstFramePath = str;
                                         storyItem.f28290id = tL_updateStoryID.f28310id;

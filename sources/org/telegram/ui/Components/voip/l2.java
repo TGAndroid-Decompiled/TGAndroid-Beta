@@ -10,32 +10,32 @@ import android.widget.TextView;
 import org.telegram.messenger.i20;
 import org.telegram.ui.Components.er;
 public final class l2 extends FrameLayout {
-    public TextView[] f40760a;
-    public TextView f40761b;
-    public FrameLayout f40762c;
+    public TextView[] f40763a;
+    public TextView f40764b;
+    public FrameLayout f40765c;
     public p2 d;
-    public CharSequence f40763e;
-    public boolean f40764f;
+    public CharSequence f40766e;
+    public boolean f40767f;
     public ValueAnimator h;
-    public boolean f40765n;
+    public boolean f40768n;
 
     public final void a(View view, View view2, Runnable runnable) {
         view.setVisibility(0);
         view2.setVisibility(0);
         view2.setTranslationY(org.telegram.messenger.g0.L(15.0f));
         view2.setAlpha(0.0f);
-        this.f40764f = true;
+        this.f40767f = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.h = ofFloat;
         ofFloat.addUpdateListener(new ch.v(18, view2, view));
         this.h.addListener(new jg.j0((FrameLayout) this, view, view2, (Object) runnable, 3));
-        this.h.setDuration(250L).setInterpolator(er.f34420f);
+        this.h.setDuration(250L).setInterpolator(er.f34419f);
         this.h.start();
     }
 
     public final void b(String str, boolean z10, boolean z11) {
         View view = this.d;
-        View[] viewArr = this.f40760a;
+        View[] viewArr = this.f40763a;
         if (z10) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             SpannableString spannableString = new SpannableString(".");
@@ -51,14 +51,14 @@ public final class l2 extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f40764f = false;
+            this.f40767f = false;
             viewArr[0].setText(str);
             viewArr[0].setVisibility(0);
             viewArr[1].setVisibility(8);
             view.setVisibility(8);
-        } else if (this.f40764f) {
-            this.f40763e = str;
-        } else if (this.f40765n) {
+        } else if (this.f40767f) {
+            this.f40766e = str;
+        } else if (this.f40768n) {
             viewArr[0].setText(str);
             a(view, viewArr[0], null);
         } else if (!viewArr[0].getText().equals(str)) {
@@ -68,7 +68,7 @@ public final class l2 extends FrameLayout {
     }
 
     public final void c(boolean z10) {
-        FrameLayout frameLayout = this.f40762c;
+        FrameLayout frameLayout = this.f40765c;
         if (z10) {
             if (frameLayout.getVisibility() != 0) {
                 frameLayout.setVisibility(0);
@@ -76,16 +76,16 @@ public final class l2 extends FrameLayout {
                 frameLayout.setScaleY(0.6f);
                 frameLayout.setScaleX(0.6f);
                 frameLayout.animate().setListener(null).cancel();
-                i20.n(frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), er.f34424k, 300L);
+                i20.n(frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), er.f34423k, 300L);
             }
         } else if (frameLayout.getVisibility() == 8) {
         } else {
-            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(er.f34420f).setListener(new k2(this, 1)).setDuration(300L).start();
+            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(er.f34419f).setListener(new k2(this, 1)).setDuration(300L).start();
         }
     }
 
     public final void d(boolean z10, boolean z11) {
-        TextView textView = this.f40761b;
+        TextView textView = this.f40764b;
         int i7 = 0;
         if (!z11) {
             textView.animate().setListener(null).cancel();
@@ -107,11 +107,11 @@ public final class l2 extends FrameLayout {
 
     public final void e(boolean z10) {
         p2 p2Var = this.d;
-        View[] viewArr = this.f40760a;
+        View[] viewArr = this.f40763a;
         if (TextUtils.isEmpty(viewArr[0].getText())) {
             z10 = false;
         }
-        if (this.f40765n) {
+        if (this.f40768n) {
             return;
         }
         p2Var.a();
@@ -120,15 +120,15 @@ public final class l2 extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f40765n = true;
-            this.f40764f = false;
+            this.f40768n = true;
+            this.f40767f = false;
             viewArr[0].setVisibility(8);
             viewArr[1].setVisibility(8);
             p2Var.setVisibility(0);
-        } else if (this.f40764f) {
-            this.f40763e = "timer";
+        } else if (this.f40767f) {
+            this.f40766e = "timer";
         } else {
-            this.f40765n = true;
+            this.f40768n = true;
             a(viewArr[0], p2Var, null);
         }
     }

@@ -16,7 +16,7 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.z70;
 import org.telegram.ui.z51;
 public final class q2 extends a41 {
-    public static final int f3802b = 0;
+    public static final int f3805b = 0;
 
     static {
         a41.h(new a41());
@@ -28,16 +28,16 @@ public final class q2 extends a41 {
         r2 r2Var = (r2) view;
         int i7 = b41Var.d;
         ArrayList arrayList = (ArrayList) b41Var.G;
-        int i10 = b41Var.f33194z;
+        int i10 = b41Var.f33197z;
         z10 z10Var = (z10) b41Var.H;
-        z51 z51Var = r2Var.f3819a;
+        z51 z51Var = r2Var.f3822a;
         ArrayList arrayList2 = r2Var.d;
-        if (r2Var.f3825r == i7) {
+        if (r2Var.f3828r == i7) {
             z11 = true;
         } else {
             z11 = false;
         }
-        r2Var.f3825r = i7;
+        r2Var.f3828r = i7;
         if (arrayList2.size() != arrayList.size()) {
             int i11 = 0;
             int i12 = 0;
@@ -75,9 +75,9 @@ public final class q2 extends a41 {
                 i12++;
             }
         }
-        r2Var.f3820b = i10;
+        r2Var.f3823b = i10;
         if (!z11) {
-            r2Var.f3821c.e(true, i10);
+            r2Var.f3824c.e(true, i10);
         }
         z51Var.invalidate();
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
@@ -87,7 +87,7 @@ public final class q2 extends a41 {
 
     @Override
     public final boolean c(b41 b41Var, b41 b41Var2) {
-        if (b41Var.f33194z == b41Var2.f33194z && b41Var.H == b41Var2.H && e(b41Var, b41Var2)) {
+        if (b41Var.f33197z == b41Var2.f33197z && b41Var.H == b41Var2.H && e(b41Var, b41Var2)) {
             return true;
         }
         return false;

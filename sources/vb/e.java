@@ -7,7 +7,7 @@ public final class e implements Callable {
 
     @Override
     public final Object call() {
-        k8.a aVar = MobileVisionBase.f7298e;
+        k8.a aVar = MobileVisionBase.f7301e;
         return null;
     }
 }

@@ -5,7 +5,7 @@ public final class o implements com.google.android.gms.common.api.b {
     public final int f60529a;
 
     public o(b7.l lVar) {
-        this.f60529a = lVar.f2963a;
+        this.f60529a = lVar.f2966a;
     }
 
     public final boolean equals(Object obj) {

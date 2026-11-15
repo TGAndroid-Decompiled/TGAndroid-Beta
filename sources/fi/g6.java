@@ -34,7 +34,7 @@ public final class g6 {
     }
 
     public final boolean a() {
-        if ((this.f11744c || this.f11749j.i(this.f11743b)) && this.f11746f && this.h.size() < ((org.telegram.messenger.j0) np.s1(this.f11742a).f25448y7.f25867u.f15881b).f24493c) {
+        if ((this.f11744c || this.f11749j.i(this.f11743b)) && this.f11746f && this.h.size() < ((org.telegram.messenger.j0) np.s1(this.f11742a).f25451y7.f25869u.f15881b).f24498c) {
             return true;
         }
         return false;
@@ -79,12 +79,12 @@ public final class g6 {
             int i7 = this.f11742a;
             if (!z10) {
                 vr a02 = vr.a0(i7);
-                a02.f27220a.c(new org.telegram.messenger.a4(a02, j3, new e6(this), 23));
+                a02.f27219a.c(new org.telegram.messenger.a4(a02, j3, new e6(this), 23));
                 return;
             }
             TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
             tL_getAlbums.peer = np.s1(i7).j1(j3);
-            ConnectionsManager.getInstance(i7).sendRequest(tL_getAlbums, new ai.d1(this, 8));
+            ConnectionsManager.getInstance(i7).sendRequest(tL_getAlbums, new ai.e1(this, 8));
         }
     }
 
@@ -107,7 +107,7 @@ public final class g6 {
     public final void f(boolean z10) {
         int i7 = this.f11742a;
         vr a02 = vr.a0(i7);
-        org.telegram.messenger.p5 p5Var = a02.f27220a;
+        org.telegram.messenger.p5 p5Var = a02.f27219a;
         long j3 = this.f11743b;
         p5Var.c(new org.telegram.messenger.a4(a02, j3, this.h, 26));
         if (z10) {

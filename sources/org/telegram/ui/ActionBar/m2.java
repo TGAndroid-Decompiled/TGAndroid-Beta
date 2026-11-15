@@ -6,19 +6,19 @@ import android.animation.AnimatorSet;
 import android.view.WindowManager;
 import org.telegram.messenger.ns;
 public final class m2 extends AnimatorListenerAdapter {
-    public final int f29377a;
-    public final u2 f29378b;
+    public final int f29378a;
+    public final u2 f29379b;
 
     public m2(u2 u2Var, int i7) {
-        this.f29377a = i7;
-        this.f29378b = u2Var;
+        this.f29378a = i7;
+        this.f29379b = u2Var;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f29377a) {
+        switch (this.f29378a) {
             case 0:
-                u2 u2Var = this.f29378b;
+                u2 u2Var = this.f29379b;
                 AnimatorSet animatorSet = u2Var.A0;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     u2Var.A0 = null;
@@ -27,7 +27,7 @@ public final class m2 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                u2 u2Var2 = this.f29378b;
+                u2 u2Var2 = this.f29379b;
                 AnimatorSet animatorSet2 = u2Var2.A0;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     u2Var2.A0 = null;
@@ -40,8 +40,8 @@ public final class m2 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f29377a;
-        u2 u2Var = this.f29378b;
+        int i7 = this.f29378a;
+        u2 u2Var = this.f29379b;
         switch (i7) {
             case 0:
                 AnimatorSet animatorSet = u2Var.A0;

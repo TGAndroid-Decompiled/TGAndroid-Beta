@@ -60,10 +60,10 @@ public final class a51 extends org.telegram.ui.ActionBar.u2 {
         textView2.setMovementMethod(new org.telegram.messenger.c0(false));
         int i10 = org.telegram.ui.ActionBar.j6.f28977k5;
         textView2.setLinkTextColor(org.telegram.ui.ActionBar.j6.x0(null, i10, false));
-        textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131754242, d1Var.f23010b, Integer.valueOf(d1Var.f23009a)));
+        textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131754242, d1Var.f23018b, Integer.valueOf(d1Var.f23017a)));
         textView2.setGravity(49);
         linearLayout.addView(textView2, c8.ja.t(-2, -2, 49, 23, 0, 23, 5));
-        String str = d1Var.f23011c;
+        String str = d1Var.f23019c;
         if (!TextUtils.isEmpty(str)) {
             TextView textView3 = new TextView(getContext());
             textView3.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
@@ -84,30 +84,30 @@ public final class a51 extends org.telegram.ui.ActionBar.u2 {
         view.setTag(1);
         m01Var.addView(view, layoutParams);
         hi.d dVar = new hi.d(context, null, true);
-        File g11 = org.telegram.messenger.t0.f26599a.g();
+        File g11 = org.telegram.messenger.t0.f26608a.g();
         if (g11 != null) {
             dVar.i(org.telegram.messenger.hd.a0(null, null, 2131754225, new Object[0]), false, true);
             dVar.setOnClickListener(new vv0(8, this, g11));
         } else {
             dVar.i(org.telegram.messenger.hd.a0(null, null, 2131754227, new Object[0]), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final a51 f41876b;
+                public final a51 f41868b;
 
                 {
-                    this.f41876b = this;
+                    this.f41868b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26599a).q()) {
+                            if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26608a).q()) {
                                 org.telegram.messenger.h1.e().b(false);
                             }
-                            this.f41876b.dismiss();
+                            this.f41868b.dismiss();
                             return;
                         default:
-                            this.f41876b.dismiss();
+                            this.f41868b.dismiss();
                             return;
                     }
                 }
@@ -117,23 +117,23 @@ public final class a51 extends org.telegram.ui.ActionBar.u2 {
         hi.d dVar2 = new hi.d(context, null, false);
         dVar2.i(org.telegram.messenger.hd.M0(2131754224, null), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final a51 f41876b;
+            public final a51 f41868b;
 
             {
-                this.f41876b = this;
+                this.f41868b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26599a).q()) {
+                        if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26608a).q()) {
                             org.telegram.messenger.h1.e().b(false);
                         }
-                        this.f41876b.dismiss();
+                        this.f41868b.dismiss();
                         return;
                     default:
-                        this.f41876b.dismiss();
+                        this.f41868b.dismiss();
                         return;
                 }
             }

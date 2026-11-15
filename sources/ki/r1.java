@@ -2,7 +2,7 @@ package ki;
 
 import android.os.SystemClock;
 import android.text.TextUtils;
-import di.v7;
+import di.u7;
 import java.io.Serializable;
 import org.telegram.messenger.gj;
 import org.telegram.messenger.np;
@@ -37,7 +37,7 @@ public final class r1 implements org.telegram.ui.ActionBar.q1 {
             x11.m(gjVar);
             return;
         }
-        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.Message message = gjVar.f23819k;
         int i7 = this.f18527a;
         if (!z10) {
             if (TextUtils.isEmpty(str)) {
@@ -52,7 +52,7 @@ public final class r1 implements org.telegram.ui.ActionBar.q1 {
             ns.f(i7).k(ns.A1, gjVar, null, null, Boolean.TRUE, Boolean.FALSE);
             return;
         }
-        org.telegram.messenger.g0.i3(new v7(gjVar, message, str, iArr, i7, this.f18528b), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.f18529c)));
+        org.telegram.messenger.g0.i3(new u7(gjVar, message, str, iArr, i7, this.f18528b), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.f18529c)));
     }
 
     @Override

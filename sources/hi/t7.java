@@ -49,7 +49,7 @@ public final class t7 extends tj0 {
         } else {
             View view2 = new View(u7Var.getContext());
             if (i7 == 0) {
-                L = (org.telegram.messenger.g0.f23609q.y + org.telegram.messenger.g0.f23603m) - org.telegram.messenger.g0.L(306.0f);
+                L = (org.telegram.messenger.g0.f23611q.y + org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(306.0f);
             } else {
                 L = org.telegram.messenger.g0.L(54.0f);
             }

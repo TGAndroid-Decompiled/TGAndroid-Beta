@@ -15,16 +15,16 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 public final class f80 extends Drawable {
-    public final Bitmap f34542a;
-    public final Paint f34543b = new Paint(2);
-    public long f34544c;
+    public final Bitmap f34541a;
+    public final Paint f34542b = new Paint(2);
+    public long f34543c;
     public LinearGradient d;
-    public final Matrix f34545e;
-    public float f34546f;
-    public float f34547g;
+    public final Matrix f34544e;
+    public float f34545f;
+    public float f34546g;
     public final i9 h;
-    public int f34548i;
-    public int f34549j;
+    public int f34547i;
+    public int f34548j;
 
     public f80(i9 i9Var, String str, int i7, int i10) {
         Bitmap bitmap;
@@ -41,14 +41,14 @@ public final class f80 extends Drawable {
             org.telegram.messenger.a8.g(e10, true);
             bitmap = null;
         }
-        this.f34542a = bitmap;
+        this.f34541a = bitmap;
         this.h = i9Var;
-        this.f34545e = new Matrix();
+        this.f34544e = new Matrix();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f34542a;
+        Bitmap bitmap = this.f34541a;
         if (bitmap == null) {
             return;
         }
@@ -56,16 +56,16 @@ public final class f80 extends Drawable {
         int i10 = org.telegram.ui.ActionBar.j6.f28940i5;
         int x02 = org.telegram.ui.ActionBar.j6.x0(null, i7, false);
         int x03 = org.telegram.ui.ActionBar.j6.x0(null, i10, false);
-        int i11 = this.f34548i;
-        Paint paint = this.f34543b;
-        Matrix matrix = this.f34545e;
-        if (i11 != x02 || this.f34549j != x03) {
-            this.f34548i = x02;
-            this.f34549j = x03;
+        int i11 = this.f34547i;
+        Paint paint = this.f34542b;
+        Matrix matrix = this.f34544e;
+        if (i11 != x02 || this.f34548j != x03) {
+            this.f34547i = x02;
+            this.f34548j = x03;
             int w02 = org.telegram.messenger.g0.w0(x03, x02);
             paint.setColor(x03);
             float L = org.telegram.messenger.g0.L(500.0f);
-            this.f34547g = L;
+            this.f34546g = L;
             LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{x03, w02, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
             this.d = linearGradient;
             linearGradient.setLocalMatrix(matrix);
@@ -75,17 +75,17 @@ public final class f80 extends Drawable {
         Rect bounds = getBounds();
         canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f34544c - elapsedRealtime);
+        long abs = Math.abs(this.f34543c - elapsedRealtime);
         if (abs > 17) {
             abs = 16;
         }
-        this.f34544c = elapsedRealtime;
-        this.f34546f = a8.p0.f((float) abs, this.f34547g, 1800.0f, this.f34546f);
+        this.f34543c = elapsedRealtime;
+        this.f34545f = a8.p0.f((float) abs, this.f34546g, 1800.0f, this.f34545f);
         while (true) {
-            float f10 = this.f34546f;
-            float f11 = this.f34547g * 2.0f;
+            float f10 = this.f34545f;
+            float f11 = this.f34546g * 2.0f;
             if (f10 >= f11) {
-                this.f34546f = f10 - f11;
+                this.f34545f = f10 - f11;
             } else {
                 matrix.setTranslate(f10, 0.0f);
                 this.d.setLocalMatrix(matrix);

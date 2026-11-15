@@ -127,7 +127,7 @@ public class CropAreaView extends ViewGroup {
         float f14;
         float f15 = this.W;
         if (!this.f32479b0) {
-            i7 = g0.f23603m;
+            i7 = g0.f23605m;
         } else {
             i7 = 0;
         }
@@ -384,7 +384,7 @@ public class CropAreaView extends ViewGroup {
         int x10 = (int) (motionEvent.getX() - ((ViewGroup) getParent()).getX());
         int y10 = (int) (motionEvent.getY() - ((ViewGroup) getParent()).getY());
         if (!this.f32479b0) {
-            i7 = g0.f23603m;
+            i7 = g0.f23605m;
         } else {
             i7 = 0;
         }

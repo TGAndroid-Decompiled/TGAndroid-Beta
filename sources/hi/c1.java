@@ -136,12 +136,12 @@ public abstract class c1 extends CameraView {
 
     public static void t(boolean z10) {
         int i7 = 0;
-        boolean p10 = p(org.telegram.messenger.t0.f26600b, false);
-        if (np.s1(m10.f24934t0).J3) {
+        boolean p10 = p(org.telegram.messenger.t0.f26609b, false);
+        if (np.s1(m10.f24940t0).J3) {
             try {
                 TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                 TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                tL_inputAppEvent.time = ConnectionsManager.getInstance(m10.f24934t0).getCurrentTime();
+                tL_inputAppEvent.time = ConnectionsManager.getInstance(m10.f24940t0).getCurrentTime();
                 tL_inputAppEvent.type = "android_dual_camera";
                 TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
                 TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
@@ -156,11 +156,11 @@ public abstract class c1 extends CameraView {
                 }
                 tL_inputAppEvent.peer = (z10 ? 1 : 0) | i7;
                 tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(m10.f24934t0).sendRequest(tL_help_saveAppLog, new fi.m5(4));
+                ConnectionsManager.getInstance(m10.f24940t0).sendRequest(tL_help_saveAppLog, new fi.m5(4));
             } catch (Exception unused) {
             }
         }
-        org.telegram.messenger.t0.f26599a.getClass();
+        org.telegram.messenger.t0.f26608a.getClass();
     }
 
     @Override
@@ -235,7 +235,7 @@ public abstract class c1 extends CameraView {
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
         if (this.F) {
-            if (q(getContext()) && np.e1().getBoolean("dualcam", p(org.telegram.messenger.t0.f26600b, false))) {
+            if (q(getContext()) && np.e1().getBoolean("dualcam", p(org.telegram.messenger.t0.f26609b, false))) {
                 this.I = true;
                 w();
                 this.dual = true;

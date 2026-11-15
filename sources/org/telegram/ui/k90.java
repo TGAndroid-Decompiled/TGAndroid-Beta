@@ -4,19 +4,19 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class k90 implements Runnable {
-    public final int f48650a;
-    public final ProfileActivity f48651b;
+    public final int f48604a;
+    public final ProfileActivity f48605b;
 
     public k90(ProfileActivity profileActivity, int i7) {
-        this.f48650a = i7;
-        this.f48651b = profileActivity;
+        this.f48604a = i7;
+        this.f48605b = profileActivity;
     }
 
     @Override
     public final void run() {
         iw0 iw0Var;
-        int i7 = this.f48650a;
-        ProfileActivity profileActivity = this.f48651b;
+        int i7 = this.f48604a;
+        ProfileActivity profileActivity = this.f48605b;
         switch (i7) {
             case 0:
                 uv0 uv0Var = profileActivity.O;

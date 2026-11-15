@@ -6,53 +6,53 @@ import java.util.HashMap;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ux implements Runnable {
-    public final int f26886a = 0;
-    public final ez f26887b;
-    public final TLObject f26888c;
+    public final int f26887a = 0;
+    public final ez f26888b;
+    public final TLObject f26889c;
     public final gj d;
-    public final String f26889e;
-    public final qy f26890f;
+    public final String f26890e;
+    public final qy f26891f;
     public final boolean h;
-    public final qy f26891n;
-    public final Object f26892r;
-    public final HashMap f26893s;
-    public final boolean f26894w;
-    public final Object f26895x;
-    public final TLObject f26896y;
+    public final qy f26892n;
+    public final Object f26893r;
+    public final HashMap f26894s;
+    public final boolean f26895w;
+    public final Object f26896x;
+    public final TLObject f26897y;
 
     public ux(ez ezVar, TLObject tLObject, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLObject tLObject2, gj gjVar, String str, qy qyVar, boolean z10, qy qyVar2, Object obj, HashMap hashMap, boolean z11) {
-        this.f26887b = ezVar;
-        this.f26888c = tLObject;
-        this.f26896y = tL_messages_addPollAnswer;
-        this.f26895x = tLObject2;
+        this.f26888b = ezVar;
+        this.f26889c = tLObject;
+        this.f26897y = tL_messages_addPollAnswer;
+        this.f26896x = tLObject2;
         this.d = gjVar;
-        this.f26889e = str;
-        this.f26890f = qyVar;
+        this.f26890e = str;
+        this.f26891f = qyVar;
         this.h = z10;
-        this.f26891n = qyVar2;
-        this.f26892r = obj;
-        this.f26893s = hashMap;
-        this.f26894w = z11;
+        this.f26892n = qyVar2;
+        this.f26893r = obj;
+        this.f26894s = hashMap;
+        this.f26895w = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f26886a) {
+        switch (this.f26887a) {
             case 0:
-                TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer = (TLRPC.TL_messages_addPollAnswer) this.f26896y;
-                TLObject tLObject = (TLObject) this.f26895x;
-                ez ezVar = this.f26887b;
+                TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer = (TLRPC.TL_messages_addPollAnswer) this.f26897y;
+                TLObject tLObject = (TLObject) this.f26896x;
+                ez ezVar = this.f26888b;
                 ezVar.getClass();
-                TLObject tLObject2 = this.f26888c;
+                TLObject tLObject2 = this.f26889c;
                 boolean z10 = tLObject2 instanceof TLRPC.TL_messageMediaDocument;
                 gj gjVar = this.d;
-                String str = this.f26889e;
-                qy qyVar = this.f26890f;
+                String str = this.f26890e;
+                qy qyVar = this.f26891f;
                 boolean z11 = this.h;
-                qy qyVar2 = this.f26891n;
-                Object obj = this.f26892r;
-                HashMap hashMap = this.f26893s;
-                boolean z12 = this.f26894w;
+                qy qyVar2 = this.f26892n;
+                Object obj = this.f26893r;
+                HashMap hashMap = this.f26894s;
+                boolean z12 = this.f26895w;
                 if (z10) {
                     TLRPC.Document document = ((TLRPC.TL_messageMediaDocument) tLObject2).document;
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
@@ -82,14 +82,14 @@ public final class ux implements Runnable {
                     return;
                 }
             default:
-                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f26895x;
+                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f26896x;
                 Context context = e2Var.getContext();
                 org.telegram.ui.ActionBar.e6 resourceProvider = e2Var.getResourceProvider();
-                cg.a i7 = cg.a.i(((TLRPC.TL_inputMediaStakeDice) this.f26896y).ton_amount, cg.b.f4988b);
-                ez ezVar2 = this.f26887b;
-                TLObject tLObject3 = this.f26888c;
+                cg.a i7 = cg.a.i(((TLRPC.TL_inputMediaStakeDice) this.f26897y).ton_amount, cg.b.f4991b);
+                ez ezVar2 = this.f26888b;
+                TLObject tLObject3 = this.f26889c;
                 gj gjVar2 = this.d;
-                new ii.e(context, resourceProvider, i7, false, new lw(ezVar2, tLObject3, gjVar2, this.f26889e, this.f26890f, this.h, this.f26891n, this.f26892r, this.f26893s, this.f26894w, 0)).show();
+                new ii.e(context, resourceProvider, i7, false, new lw(ezVar2, tLObject3, gjVar2, this.f26890e, this.f26891f, this.h, this.f26892n, this.f26893r, this.f26894s, this.f26895w, 0)).show();
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(gjVar2);
                 ezVar2.f(arrayList);
@@ -98,17 +98,17 @@ public final class ux implements Runnable {
     }
 
     public ux(ez ezVar, org.telegram.ui.ActionBar.e2 e2Var, TLRPC.TL_inputMediaStakeDice tL_inputMediaStakeDice, TLObject tLObject, gj gjVar, String str, qy qyVar, boolean z10, qy qyVar2, Object obj, HashMap hashMap, boolean z11) {
-        this.f26887b = ezVar;
-        this.f26895x = e2Var;
-        this.f26896y = tL_inputMediaStakeDice;
-        this.f26888c = tLObject;
+        this.f26888b = ezVar;
+        this.f26896x = e2Var;
+        this.f26897y = tL_inputMediaStakeDice;
+        this.f26889c = tLObject;
         this.d = gjVar;
-        this.f26889e = str;
-        this.f26890f = qyVar;
+        this.f26890e = str;
+        this.f26891f = qyVar;
         this.h = z10;
-        this.f26891n = qyVar2;
-        this.f26892r = obj;
-        this.f26893s = hashMap;
-        this.f26894w = z11;
+        this.f26892n = qyVar2;
+        this.f26893r = obj;
+        this.f26894s = hashMap;
+        this.f26895w = z11;
     }
 }

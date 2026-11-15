@@ -70,7 +70,7 @@ public final class b2 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.b0 b0Var = (org.telegram.ui.Components.b0) obj;
-                hi.s4 s4Var = ((org.telegram.ui.Components.c0) obj2).f33442n;
+                hi.s4 s4Var = ((org.telegram.ui.Components.c0) obj2).f33445n;
                 if (s4Var == null) {
                     return false;
                 }
@@ -173,26 +173,26 @@ public final class b2 implements View.OnLongClickListener {
                 i41 i41Var = (i41) obj2;
                 ng.f fVar = (ng.f) obj;
                 j41 j41Var = i41Var.d;
-                oz ozVar = i41Var.f47899a;
-                if (!ozVar.f38123c) {
+                oz ozVar = i41Var.f47889a;
+                if (!ozVar.f38121c) {
                     return false;
                 }
                 j41Var.f();
-                ArrayList arrayList = j41Var.f48220n;
-                lg.g gVar = j41Var.f48217c;
+                ArrayList arrayList = j41Var.f48205n;
+                lg.g gVar = j41Var.f48202c;
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    ((i41) arrayList.get(i10)).f47899a.setChecked(false);
-                    ((i41) arrayList.get(i10)).f47900b.f21149n = false;
-                    if (j41Var.f48221r.f48832c > 0 && i10 < gVar.d.size()) {
+                    ((i41) arrayList.get(i10)).f47889a.setChecked(false);
+                    ((i41) arrayList.get(i10)).f47890b.f21149n = false;
+                    if (j41Var.f48206r.f48828c > 0 && i10 < gVar.d.size()) {
                         ((ng.f) gVar.d.get(i10)).f21149n = false;
                     }
                 }
                 ozVar.setChecked(true);
                 fVar.f21149n = true;
-                j41Var.f48216b.z();
-                if (j41Var.f48221r.f48832c > 0) {
-                    ((ng.f) gVar.d.get(i41Var.f47901c)).f21149n = true;
+                j41Var.f48201b.z();
+                if (j41Var.f48206r.f48828c > 0) {
+                    ((ng.f) gVar.d.get(i41Var.f47891c)).f21149n = true;
                     gVar.z();
                 }
                 return true;

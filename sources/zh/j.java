@@ -111,7 +111,7 @@ public final class j extends ViewGroup {
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        Point point = g0.f23609q;
+        Point point = g0.f23611q;
         int i13 = point.x;
         int i14 = point.y;
         k kVar = this.f61430e;

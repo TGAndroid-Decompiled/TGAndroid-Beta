@@ -12,19 +12,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class i8 extends st0 {
-    public final e2.r0 f35500g0;
-    public final q8 f35501h0;
-    public boolean f35502i0;
-    public boolean f35503j0;
-    public float f35504k0;
-    public float f35505l0;
+    public final e2.r0 f35491g0;
+    public final q8 f35492h0;
+    public boolean f35493i0;
+    public boolean f35494j0;
+    public float f35495k0;
+    public float f35496l0;
     public final q8 m0;
 
     public i8(q8 q8Var, Context context) {
         super(context, null);
         this.m0 = q8Var;
-        this.f35501h0 = q8Var;
-        this.f35500g0 = new Object();
+        this.f35492h0 = q8Var;
+        this.f35491g0 = new Object();
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class i8 extends st0 {
                 float x10 = q8Var.f38562a.getX() + q8Var.f38571r.getX();
                 float y10 = q8Var.f38562a.getY() + q8Var.f38571r.getY();
                 int i7 = q8Var.d - q8Var.f38566c;
-                float T1 = org.telegram.messenger.g0.T1(y10, org.telegram.messenger.g0.f23603m + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - q8Var.f38566c) >> 1), q8Var.O);
+                float T1 = org.telegram.messenger.g0.T1(y10, org.telegram.messenger.g0.f23605m + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - q8Var.f38566c) >> 1), q8Var.O);
                 canvas.translate(x10, T1);
                 q8Var.f38562a.draw(canvas);
                 RectF rectF = org.telegram.messenger.g0.P;
@@ -50,16 +50,16 @@ public final class i8 extends st0 {
                 float f12 = x10 + j8Var.E;
                 float f13 = T1 + j8Var.F;
                 kc kcVar = q8Var.L;
-                float f14 = j8Var.f38248y;
+                float f14 = j8Var.f38246y;
                 kcVar.getClass();
                 rectF.set((int) (f12 - f14), (int) (f13 - f14), (int) (f12 + f14), (int) (f13 + f14));
-                kcVar.f36378i = false;
-                kcVar.f36374c = 0;
+                kcVar.f36366i = false;
+                kcVar.f36362c = 0;
                 kcVar.a(rectF);
                 canvas.restore();
             }
             canvas.restoreToCount(save);
-            float f15 = q8Var.f38562a.f38245s.f39903c;
+            float f15 = q8Var.f38562a.f38243s.f39900c;
             if (q8Var.f38568e.getVisibility() == 0) {
                 f10 = q8Var.f38568e.getAlpha();
             } else {
@@ -111,7 +111,7 @@ public final class i8 extends st0 {
 
     @Override
     public final int getNestedScrollAxes() {
-        return this.f35500g0.b();
+        return this.f35491g0.b();
     }
 
     @Override
@@ -130,7 +130,7 @@ public final class i8 extends st0 {
         float f10;
         org.telegram.ui.ActionBar.k kVar;
         Q();
-        if (View.MeasureSpec.getSize(i7) > View.MeasureSpec.getSize(i10) + this.f39419f) {
+        if (View.MeasureSpec.getSize(i7) > View.MeasureSpec.getSize(i10) + this.f39417f) {
             z10 = true;
         } else {
             z10 = false;
@@ -167,7 +167,7 @@ public final class i8 extends st0 {
             ((ViewGroup.MarginLayoutParams) q8Var.W.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(18.0f);
         }
         boolean z12 = q8Var.M;
-        if (this.f39419f >= org.telegram.messenger.g0.L(20.0f)) {
+        if (this.f39417f >= org.telegram.messenger.g0.L(20.0f)) {
             z11 = true;
         } else {
             z11 = false;
@@ -193,7 +193,7 @@ public final class i8 extends st0 {
                     f10 = 0.0f;
                 }
                 q8Var.N = ValueAnimator.ofFloat(f12, f10);
-                float f13 = ((q8Var.d - q8Var.f38566c) - org.telegram.messenger.g0.f23603m) * q8Var.F;
+                float f13 = ((q8Var.d - q8Var.f38566c) - org.telegram.messenger.g0.f23605m) * q8Var.F;
                 if (z13) {
                     q8Var.f38562a.setExpanded(false);
                     f13 = q8Var.f38571r.getTranslationY();
@@ -229,7 +229,7 @@ public final class i8 extends st0 {
 
     @Override
     public final void onNestedPreScroll(View view, int i7, int i10, int[] iArr) {
-        q8 q8Var = this.f35501h0;
+        q8 q8Var = this.f35492h0;
         if (q8Var.O <= 0.0f && !q8Var.V && i10 > 0 && q8Var.F > 0.0f) {
             q8Var.i0();
             q8Var.n0(true, Utilities.i(q8Var.F - (i10 / q8Var.d), 1.0f, 0.0f));
@@ -239,7 +239,7 @@ public final class i8 extends st0 {
 
     @Override
     public final void onNestedScroll(View view, int i7, int i10, int i11, int i12) {
-        q8 q8Var = this.f35501h0;
+        q8 q8Var = this.f35492h0;
         if (q8Var.O <= 0.0f && !q8Var.V && i12 != 0) {
             q8Var.i0();
             q8Var.n0(true, Utilities.i(q8Var.F - (i12 / q8Var.d), 1.0f, 0.0f));
@@ -248,13 +248,13 @@ public final class i8 extends st0 {
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i7) {
-        this.f35500g0.f10369a = i7;
-        this.f35501h0.i0();
+        this.f35491g0.f10369a = i7;
+        this.f35492h0.i0();
     }
 
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i7) {
-        q8 q8Var = this.f35501h0;
+        q8 q8Var = this.f35492h0;
         if (q8Var.O <= 0.0f && !q8Var.V) {
             return true;
         }
@@ -264,8 +264,8 @@ public final class i8 extends st0 {
     @Override
     public final void onStopNestedScroll(View view) {
         boolean z10;
-        this.f35500g0.f10369a = 0;
-        q8 q8Var = this.f35501h0;
+        this.f35491g0.f10369a = 0;
+        q8 q8Var = this.f35492h0;
         if (q8Var.F > 0.5f) {
             z10 = true;
         } else {
@@ -287,24 +287,24 @@ public final class i8 extends st0 {
                     k8Var.getHitRect(rect);
                     rect.offset(0, (int) q8Var.f38571r.getY());
                     if (q8Var.O == 0.0f && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        this.f35502i0 = true;
+                        this.f35493i0 = true;
                         motionEvent.getX();
-                        this.f35505l0 = motionEvent.getY();
+                        this.f35496l0 = motionEvent.getY();
                     }
-                } else if (motionEvent.getAction() == 2 && ((z11 = this.f35502i0) || this.f35503j0)) {
+                } else if (motionEvent.getAction() == 2 && ((z11 = this.f35493i0) || this.f35494j0)) {
                     if (z11) {
-                        if (Math.abs(this.f35505l0 - motionEvent.getY()) > org.telegram.messenger.g0.f23588e) {
-                            this.f35502i0 = false;
-                            this.f35503j0 = true;
-                            this.f35504k0 = q8Var.F;
+                        if (Math.abs(this.f35496l0 - motionEvent.getY()) > org.telegram.messenger.g0.f23590e) {
+                            this.f35493i0 = false;
+                            this.f35494j0 = true;
+                            this.f35495k0 = q8Var.F;
                             motionEvent.getX();
-                            this.f35505l0 = motionEvent.getY();
+                            this.f35496l0 = motionEvent.getY();
                         }
                     } else {
-                        q8Var.n0(true, Utilities.i(((-(this.f35505l0 - motionEvent.getY())) / q8Var.d) + this.f35504k0, 1.0f, 0.0f));
+                        q8Var.n0(true, Utilities.i(((-(this.f35496l0 - motionEvent.getY())) / q8Var.d) + this.f35495k0, 1.0f, 0.0f));
                     }
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    if (this.f35503j0) {
+                    if (this.f35494j0) {
                         if (q8Var.F > 0.5f) {
                             z10 = true;
                         } else {
@@ -312,11 +312,11 @@ public final class i8 extends st0 {
                         }
                         q8Var.l0(z10, false, false);
                     }
-                    this.f35502i0 = false;
-                    this.f35503j0 = false;
+                    this.f35493i0 = false;
+                    this.f35494j0 = false;
                 }
             }
-            if (!this.f35503j0 && !super.onTouchEvent(motionEvent) && !this.f35502i0) {
+            if (!this.f35494j0 && !super.onTouchEvent(motionEvent) && !this.f35493i0) {
                 return false;
             }
         }

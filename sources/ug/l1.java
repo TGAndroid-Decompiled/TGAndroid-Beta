@@ -69,7 +69,7 @@ public class l1 extends ViewGroup {
         q6.U(textView, j6.G6, null);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setSingleLine();
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -81,7 +81,7 @@ public class l1 extends ViewGroup {
         textView2.setTextColor(-1);
         textView2.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
         textView2.setTypeface(org.telegram.messenger.g0.o());
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -94,7 +94,7 @@ public class l1 extends ViewGroup {
         q6.U(textView3, i13, null);
         textView3.getPaint().setStrikeThruText(true);
         textView3.setSingleLine();
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -105,7 +105,7 @@ public class l1 extends ViewGroup {
         textView4.setTextSize(1, 14.0f);
         q6.U(textView4, i13, null);
         textView4.setSingleLine();
-        addView(textView4, ja.d(-2, -2.0f, (hd.f24101a0 ? 5 : 3) | 80, 0.0f, 0.0f, 0.0f, 8.0f));
+        addView(textView4, ja.d(-2, -2.0f, (hd.f24104a0 ? 5 : 3) | 80, 0.0f, 0.0f, 0.0f, 8.0f));
         TextView textView5 = new TextView(context);
         this.f58204c = textView5;
         textView5.setTextSize(1, 15.0f);
@@ -125,7 +125,7 @@ public class l1 extends ViewGroup {
         Rect rect = org.telegram.messenger.g0.Q;
         rect.right = view.getMeasuredWidth() + rect.left;
         rect.bottom = view.getMeasuredHeight() + rect.top;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             int i7 = rect.right;
             rect.right = getWidth() - rect.left;
             rect.left = getWidth() - i7;
@@ -223,7 +223,7 @@ public class l1 extends ViewGroup {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.N) {
-            boolean z10 = hd.f24101a0;
+            boolean z10 = hd.f24104a0;
             TextView textView = this.f58203b;
             if (z10) {
                 canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, j6.f28972k0);

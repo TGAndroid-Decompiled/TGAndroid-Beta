@@ -21,7 +21,7 @@ public final class d2 extends FrameLayout {
         int i10 = org.telegram.ui.ActionBar.j6.G6;
         org.telegram.ui.ActionBar.q6.Y(h6Var, i10, e6Var);
         h6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -40,7 +40,7 @@ public final class d2 extends FrameLayout {
 
     public final void a() {
         float c10 = this.f30133a.getDrawable().c() + org.telegram.messenger.g0.L(1.0f);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         View view = this.f30134b;
         if (z10) {
             view.setTranslationX(-c10);

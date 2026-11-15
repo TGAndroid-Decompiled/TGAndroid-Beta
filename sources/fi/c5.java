@@ -42,7 +42,7 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
     public final i9 L;
     public final n4 M;
     public final o4 N;
-    public final ai.f0 O;
+    public final ai.g0 O;
     public final o4 P;
     public final s4 Q;
     public boolean R;
@@ -67,12 +67,12 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
     public final y4 f11606x;
     public final qy f11607y;
 
-    public c5(i9 i9Var, Context context, o4 o4Var, ai.f0 f0Var) {
+    public c5(i9 i9Var, Context context, o4 o4Var, ai.g0 g0Var) {
         super(context);
         this.f11600e = 96;
         this.P = new o4();
         this.N = o4Var;
-        this.O = f0Var;
+        this.O = g0Var;
         b bVar = i9Var.E;
         this.f11604s = bVar;
         this.L = i9Var;
@@ -154,7 +154,7 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
         b5 b5Var;
         int i10;
         if (storyItem != null) {
-            SparseArray sparseArray = (SparseArray) np.s1(i7).f25299i0.f12339x.f(storyItem.dialogId);
+            SparseArray sparseArray = (SparseArray) np.s1(i7).f25302i0.f12339x.f(storyItem.dialogId);
             if (sparseArray == null) {
                 b5Var = null;
             } else {
@@ -175,7 +175,7 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
             b5 b5Var2 = new b5(i7, j3, storyItem);
             b5Var2.c();
             if (sparseArray == null) {
-                a0.h hVar = np.s1(i7).f25299i0.f12339x;
+                a0.h hVar = np.s1(i7).f25302i0.f12339x;
                 long j10 = storyItem.dialogId;
                 sparseArray = new SparseArray();
                 hVar.k(sparseArray, j10);
@@ -224,10 +224,10 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
         int R;
         float f10;
         int i11 = 0;
-        if (i7 == ns.f25591v5) {
+        if (i7 == ns.f25592v5) {
             if (this.E.f11900b != null) {
                 int i12 = this.f11605w;
-                TL_stories.PeerStories y10 = np.s1(i12).f25299i0.y(m10.i(i12).f24953n);
+                TL_stories.PeerStories y10 = np.s1(i12).f25302i0.y(m10.i(i12).f24959n);
                 if (y10 != null) {
                     while (i11 < y10.stories.size()) {
                         TL_stories.StoryItem storyItem = y10.stories.get(i11);
@@ -243,7 +243,7 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
                     }
                 }
             }
-        } else if (i7 != ns.f25466a3) {
+        } else if (i7 != ns.f25467a3) {
         } else {
             while (true) {
                 j4 j4Var = this.f11603r;
@@ -411,9 +411,9 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 s4Var.f12314x = ofFloat;
                 ofFloat.addUpdateListener(new ah.h(s4Var, 21));
-                s4Var.f12314x.addListener(new ai.i0(s4Var, 15));
+                s4Var.f12314x.addListener(new ai.j0(s4Var, 15));
                 s4Var.f12314x.setDuration(250L);
-                s4Var.f12314x.setInterpolator(er.f34420f);
+                s4Var.f12314x.setInterpolator(er.f34419f);
                 s4Var.f12314x.start();
             }
         }
@@ -450,8 +450,8 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
         }
         this.f11606x.E();
         int i7 = this.f11605w;
-        ns.f(i7).c(this, ns.f25591v5);
-        ns.f(i7).c(this, ns.f25466a3);
+        ns.f(i7).c(this, ns.f25592v5);
+        ns.f(i7).c(this, ns.f25467a3);
         setTag(2131296351, new bi.e1(this, 3));
     }
 
@@ -464,8 +464,8 @@ public abstract class c5 extends FrameLayout implements org.telegram.ui.ActionBa
             b5Var.f11565r.remove(this);
         }
         int i7 = this.f11605w;
-        ns.f(i7).n(this, ns.f25591v5);
-        ns.f(i7).n(this, ns.f25466a3);
+        ns.f(i7).n(this, ns.f25592v5);
+        ns.f(i7).n(this, ns.f25467a3);
         setTag(2131296351, null);
     }
 

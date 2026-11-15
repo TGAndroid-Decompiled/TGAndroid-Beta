@@ -1,75 +1,119 @@
 package di;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.is;
-import org.telegram.messenger.ns;
-import org.telegram.ui.Components.pz;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.u41;
-public final class jb extends FrameLayout implements is {
-    public final u41 f8869a;
-    public final org.telegram.ui.ActionBar.e6 f8870b;
-    public final int f8871c;
+import org.telegram.ui.Components.wj0;
+public final class jb extends n61 {
+    public final Context f8878a;
+    public final int f8879b;
+    public final boolean f8880c;
     public final int d;
-    public final boolean f8872e;
-    public final long f8873f;
-    public final ib h;
+    public final org.telegram.ui.ActionBar.e6 f8881e;
+    public final long f8882f;
+    public wj0 f8883g;
+    public ri.q h;
+    public final ArrayList f8884i = new ArrayList();
 
-    public jb(Context context, boolean z10, long j3, int i7, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.d = i7;
-        this.f8872e = z10;
-        this.f8871c = i10;
-        this.f8873f = j3;
-        this.f8870b = e6Var;
-        this.h = new ib(i10, i7, j3, z10);
-        u41 u41Var = new u41(context, i10, i11, true, new bi.b(this, 23), new z6(this, 1), null, e6Var);
-        this.f8869a = u41Var;
-        addView(u41Var, c8.ja.c(-1.0f, -1));
-        u41Var.setOnScrollListener(new bi.z4(this, 10));
+    public jb(Context context, int i7, boolean z10, long j3, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f8878a = context;
+        this.f8879b = i7;
+        this.f8880c = z10;
+        this.d = i10;
+        this.f8881e = e6Var;
+        this.f8882f = j3;
+        i();
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = ns.f25617z3;
-        u41 u41Var = this.f8869a;
-        if (i7 == i11) {
-            u41Var.f39895g3.O(true);
-            if (u41Var.canScrollVertically(1)) {
-                for (int i12 = 0; i12 < u41Var.getChildCount(); i12++) {
-                    if (!(u41Var.getChildAt(i12) instanceof pz)) {
-                    }
+    public final void b(View view, int i7, int i10) {
+        wj0 wj0Var = this.f8883g;
+        if (wj0Var != null) {
+            wj0Var.J(view);
+        }
+    }
+
+    @Override
+    public final View d(int i7) {
+        ib ibVar = new ib(this.f8878a, this.f8880c, this.f8882f, i7, this.f8879b, this.d, this.f8881e);
+        if (this.f8883g != null) {
+            ibVar.setClipChildren(false);
+            ibVar.setClipToPadding(false);
+            u41 u41Var = ibVar.f8816a;
+            u41Var.setClipToPadding(false);
+            u41Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
+            u41Var.f39892g3.f38199r = false;
+            u41Var.setCaptureSectionsDecoratorAllowed(true);
+            u41Var.setOverScrollMode(0);
+            ri.q qVar = this.h;
+            if (qVar != null) {
+                qVar.b(u41Var);
+            }
+        }
+        return ibVar;
+    }
+
+    @Override
+    public final int e() {
+        return this.f8884i.size();
+    }
+
+    @Override
+    public final CharSequence g(int i7) {
+        int h = h(i7);
+        if (h != 0) {
+            if (h != 1) {
+                if (h != 2) {
+                    return "";
                 }
+                return hd.M0(2131744918, null);
+            }
+            return hd.M0(2131744919, null);
+        }
+        return hd.M0(2131744920, null);
+    }
+
+    @Override
+    public final int h(int i7) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.f8884i;
+            if (i7 < arrayList.size()) {
+                return ((b41) arrayList.get(i7)).f33197z;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public final void i() {
+        ArrayList arrayList = this.f8884i;
+        arrayList.clear();
+        long j3 = this.f8882f;
+        int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+        int i10 = this.f8879b;
+        if (i7 == 0) {
+            u8 y10 = u8.y(i10, this.f8880c);
+            arrayList.add(b41.D(0));
+            if (y10.N(1)) {
+                arrayList.add(b41.D(1));
+            }
+            if (y10.N(2)) {
+                arrayList.add(b41.D(2));
                 return;
             }
-            this.h.run();
-        } else if (i7 == ns.D3 && ((Long) objArr[0]).longValue() == this.f8873f) {
-            u41Var.f39895g3.O(true);
+            return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        int i7 = (this.f8873f > 0L ? 1 : (this.f8873f == 0L ? 0 : -1));
-        int i10 = this.f8871c;
-        if (i7 != 0) {
-            ns.f(i10).c(this, ns.D3);
-        } else {
-            ns.f(i10).c(this, ns.f25617z3);
+        e0 g10 = e0.g(i10);
+        arrayList.add(b41.D(0));
+        if (!g10.k(j3).f8380a[1].isEmpty()) {
+            arrayList.add(b41.D(1));
         }
-        this.f8869a.f39895g3.O(false);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        int i7 = (this.f8873f > 0L ? 1 : (this.f8873f == 0L ? 0 : -1));
-        int i10 = this.f8871c;
-        if (i7 != 0) {
-            ns.f(i10).n(this, ns.D3);
-        } else {
-            ns.f(i10).n(this, ns.f25617z3);
+        if (!g10.k(j3).f8380a[2].isEmpty()) {
+            arrayList.add(b41.D(2));
         }
     }
 }

@@ -6,21 +6,21 @@ import android.os.SystemClock;
 import android.view.TextureView;
 import android.view.View;
 public final class n40 extends TextureView {
-    public final int f37450a;
-    public final Object f37451b;
+    public final int f37449a;
+    public final Object f37450b;
 
     public n40(int i7, Context context, Object obj) {
         super(context);
-        this.f37450a = i7;
-        this.f37451b = obj;
+        this.f37449a = i7;
+        this.f37450b = obj;
     }
 
     @Override
     public void invalidate() {
         zi.u0 u0Var;
-        switch (this.f37450a) {
+        switch (this.f37449a) {
             case 0:
-                q40 q40Var = (q40) this.f37451b;
+                q40 q40Var = (q40) this.f37450b;
                 if (!q40Var.J0 && (u0Var = q40Var.R) != null && u0Var.f61738a == 3) {
                     q40Var.J0 = true;
                     try {
@@ -40,13 +40,13 @@ public final class n40 extends TextureView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f37450a) {
+        switch (this.f37449a) {
             case 1:
                 View.MeasureSpec.getSize(i7);
                 super.onMeasure(i7, i10);
                 return;
             case 2:
-                xh.e eVar = (xh.e) this.f37451b;
+                xh.e eVar = (xh.e) this.f37450b;
                 setMeasuredDimension(eVar.f59975g, eVar.h);
                 return;
             default:
@@ -57,10 +57,10 @@ public final class n40 extends TextureView {
 
     @Override
     public void setTransform(Matrix matrix) {
-        switch (this.f37450a) {
+        switch (this.f37449a) {
             case 1:
                 super.setTransform(matrix);
-                wy wyVar = ((td0) this.f37451b).m0;
+                wy wyVar = ((td0) this.f37450b).m0;
                 if (wyVar != null) {
                     int width = getWidth();
                     int height = getHeight();

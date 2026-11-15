@@ -24,13 +24,13 @@ public final class z8 extends FrameLayout {
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -44,13 +44,13 @@ public final class z8 extends FrameLayout {
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 3;
         } else {
             i11 = 5;
         }
         textView2.setGravity(i11 | 16);
-        addView(textView2, c8.ja.d(-2, -1.0f, (hd.f24101a0 ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(textView2, c8.ja.d(-2, -1.0f, (hd.f24104a0 ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public final void a(String str, String str2, boolean z10) {

@@ -17,7 +17,7 @@ public final class b extends u1 {
         m.d dVar;
         switch (this.f18774s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.f18775w).f1839y;
+                c cVar = ((ActionMenuItemView) this.f18775w).f1846y;
                 if (cVar != null && (dVar = ((m.e) cVar).f19683a.K) != null) {
                     return dVar.a();
                 }
@@ -37,8 +37,8 @@ public final class b extends u1 {
         switch (this.f18774s) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.f18775w;
-                j jVar = actionMenuItemView.f1837w;
-                if (jVar != null && jVar.a(actionMenuItemView.f1834n) && (b10 = b()) != null && b10.a()) {
+                j jVar = actionMenuItemView.f1844w;
+                if (jVar != null && jVar.a(actionMenuItemView.f1841n) && (b10 = b()) != null && b10.a()) {
                     return true;
                 }
                 return false;

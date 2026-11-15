@@ -88,7 +88,7 @@ public final class s1 {
             } else if (q1Var.Q5.P3()) {
                 i10 = q1Var.getExtraTextX() + org.telegram.messenger.g0.L(12.0f) + q1Var.N6;
                 if (q1Var.Q5.D == 19) {
-                    i10 -= Math.max(0, (org.telegram.messenger.g0.L(14.0f) + (Math.max(q1Var.X7, q1Var.Z7) + i10)) - org.telegram.messenger.g0.f23609q.x);
+                    i10 -= Math.max(0, (org.telegram.messenger.g0.L(14.0f) + (Math.max(q1Var.X7, q1Var.Z7) + i10)) - org.telegram.messenger.g0.f23611q.x);
                 }
             } else {
                 if (q1Var.C6) {
@@ -115,7 +115,7 @@ public final class s1 {
                 i14 = org.telegram.messenger.g0.W1(x1Var.L1, x1Var.U2, i14);
             }
             if (this.f31397n && q1Var.getPrimaryMessageObject() != null) {
-                boolean z10 = q1Var.getPrimaryMessageObject().f23785c3;
+                boolean z10 = q1Var.getPrimaryMessageObject().f23787c3;
             }
             boolean z11 = x1Var.f31918a3;
             if (this.f31403t == null) {
@@ -139,14 +139,14 @@ public final class s1 {
             if (oy0Var != null) {
                 oy0Var.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f), f15, p10, canvas);
                 if (this.d != null) {
-                    rectF.set((int) (org.telegram.messenger.g0.L(10.0f) + this.f31388c.f38105c + org.telegram.messenger.g0.L(4.0f)), org.telegram.messenger.g0.L(4.33f), org.telegram.messenger.g0.L(10.0f) + L2 + this.d.f38105c, org.telegram.messenger.g0.L(21.66f));
+                    rectF.set((int) (org.telegram.messenger.g0.L(10.0f) + this.f31388c.f38103c + org.telegram.messenger.g0.L(4.0f)), org.telegram.messenger.g0.L(4.33f), org.telegram.messenger.g0.L(10.0f) + L2 + this.d.f38103c, org.telegram.messenger.g0.L(21.66f));
                     dc dcVar2 = this.f31389e;
                     if (dcVar2 != null) {
                         f14 = dcVar2.a(0.1f);
                     }
                     canvas.save();
                     canvas.scale(f14, f14, rectF.centerX(), rectF.centerY());
-                    canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(17.0f), org.telegram.messenger.g0.L(17.0f), this.f31403t.f34344g);
+                    canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(17.0f), org.telegram.messenger.g0.L(17.0f), this.f31403t.f34343g);
                     this.d.c(org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(12.0f), f15, p10, canvas);
                     canvas.restore();
                 }

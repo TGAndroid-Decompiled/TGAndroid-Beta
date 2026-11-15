@@ -32,7 +32,7 @@ public final class r0 {
         Paint paint = new Paint();
         this.f31329i = paint;
         this.f31325c = new ArrayList();
-        this.f31326e = 1000.0f / org.telegram.messenger.g0.f23610r;
+        this.f31326e = 1000.0f / org.telegram.messenger.g0.f23612r;
         this.d = 25;
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint.setColor(-1);

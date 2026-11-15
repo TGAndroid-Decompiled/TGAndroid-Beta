@@ -26,7 +26,7 @@ public final class d1 implements z10 {
                     k2Var.clearAnimation();
                     float f10 = 0.0f;
                     if (i2Var.d) {
-                        int i10 = org.telegram.messenger.g0.f23609q.y;
+                        int i10 = org.telegram.messenger.g0.f23611q.y;
                         int i11 = i2Var.f29693f;
                         f10 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - i2Var.f14414y1, (-i11) / 3.0f));
                     }

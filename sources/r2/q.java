@@ -103,8 +103,8 @@ public final class q implements b3.j, b3.m, d1, f3.q, z0 {
         }
         this.f55858s = oVar;
         androidx.activity.n nVar2 = new androidx.activity.n(6);
-        nVar2.f1790c = null;
-        nVar2.f1789b = false;
+        nVar2.f1797c = null;
+        nVar2.f1796b = false;
         nVar2.d = null;
         this.f55861y = nVar2;
         this.N = new int[0];
@@ -501,7 +501,7 @@ public final class q implements b3.j, b3.m, d1, f3.q, z0 {
             oVar.b();
             return true;
         }
-        oVar.f2918c = null;
+        oVar.f2921c = null;
         G();
         return true;
     }
@@ -809,7 +809,7 @@ public final class q implements b3.j, b3.m, d1, f3.q, z0 {
             byte[] bArr2 = dVar.f55771x;
             bArr2.getClass();
             uri.getClass();
-            byte[] bArr3 = (byte[]) ((v) ouVar.f25804b).put(uri, bArr2);
+            byte[] bArr3 = (byte[]) ((v) ouVar.f25806b).put(uri, bArr2);
         }
         long j11 = fVar.f60115a;
         j2.m mVar = fVar.f60116b;

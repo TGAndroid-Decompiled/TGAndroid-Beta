@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 public final class mq extends org.telegram.ui.Components.tj0 {
-    public final Context f49309c;
+    public final Context f49308c;
     public final qq d;
 
     public mq(qq qqVar, Context context) {
         this.d = qqVar;
-        this.f49309c = context;
+        this.f49308c = context;
     }
 
     @Override
@@ -46,37 +46,37 @@ public final class mq extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.d.f50719d1;
+        return this.d.f50718d1;
     }
 
     @Override
     public final int d(int i7) {
         qq qqVar = this.d;
-        if (i7 != qqVar.f50767z0 && i7 != qqVar.A0 && i7 != qqVar.f50756v0 && i7 != qqVar.f50752t0) {
+        if (i7 != qqVar.f50766z0 && i7 != qqVar.A0 && i7 != qqVar.f50755v0 && i7 != qqVar.f50751t0) {
             if ((i7 >= qqVar.E0 && i7 < qqVar.F0) || ((i7 >= qqVar.X0 && i7 < qqVar.Y0) || (i7 >= qqVar.U0 && i7 < qqVar.V0))) {
                 return 0;
             }
             if (i7 != qqVar.C0 && i7 != qqVar.G0 && i7 != qqVar.H0) {
-                if (i7 != qqVar.D0 && i7 != qqVar.S && i7 != qqVar.N0 && i7 != qqVar.f50750s0 && i7 != qqVar.f50742p0) {
-                    if (i7 != qqVar.f50714b1 && i7 != qqVar.P0 && i7 != qqVar.R0 && i7 != qqVar.f50754u0 && i7 != qqVar.f50765y0 && i7 != qqVar.K0 && i7 != qqVar.M0 && i7 != qqVar.f50733j1 && i7 != qqVar.f50740o0 && i7 != qqVar.f50747r0) {
-                        if (i7 == qqVar.f50717c1) {
+                if (i7 != qqVar.D0 && i7 != qqVar.S && i7 != qqVar.N0 && i7 != qqVar.f50749s0 && i7 != qqVar.f50741p0) {
+                    if (i7 != qqVar.f50713b1 && i7 != qqVar.P0 && i7 != qqVar.R0 && i7 != qqVar.f50753u0 && i7 != qqVar.f50764y0 && i7 != qqVar.K0 && i7 != qqVar.M0 && i7 != qqVar.f50732j1 && i7 != qqVar.f50739o0 && i7 != qqVar.f50746r0) {
+                        if (i7 == qqVar.f50716c1) {
                             return 4;
                         }
                         if (i7 == qqVar.B0) {
                             return 6;
                         }
-                        if (i7 != qqVar.f50726g0 && i7 != qqVar.f50728h0 && i7 != qqVar.m0 && i7 != qqVar.f50730i0 && i7 != qqVar.f50732j0 && i7 != qqVar.T && i7 != qqVar.f50721e0 && i7 != qqVar.f50724f0 && i7 != qqVar.f50736l0 && i7 != qqVar.Q0) {
-                            if (i7 != qqVar.Z0 && i7 != qqVar.T0 && i7 != qqVar.W0 && i7 != qqVar.f50727g1) {
+                        if (i7 != qqVar.f50725g0 && i7 != qqVar.f50727h0 && i7 != qqVar.m0 && i7 != qqVar.f50729i0 && i7 != qqVar.f50731j0 && i7 != qqVar.T && i7 != qqVar.f50720e0 && i7 != qqVar.f50723f0 && i7 != qqVar.f50735l0 && i7 != qqVar.Q0) {
+                            if (i7 != qqVar.Z0 && i7 != qqVar.T0 && i7 != qqVar.W0 && i7 != qqVar.f50726g1) {
                                 if (i7 == qqVar.O0) {
                                     return 9;
                                 }
-                                if (i7 == qqVar.f50711a1) {
+                                if (i7 == qqVar.f50710a1) {
                                     return 10;
                                 }
-                                if (i7 == qqVar.f50725f1) {
+                                if (i7 == qqVar.f50724f1) {
                                     return 11;
                                 }
-                                if (i7 != qqVar.f50762x0 && i7 != qqVar.J0 && i7 != qqVar.L0) {
+                                if (i7 != qqVar.f50761x0 && i7 != qqVar.J0 && i7 != qqVar.L0) {
                                     if (qqVar.u0(i7)) {
                                         return 13;
                                     }
@@ -86,8 +86,8 @@ public final class mq extends org.telegram.ui.Components.tj0 {
                                     if (i7 == qqVar.S0) {
                                         return 15;
                                     }
-                                    if (i7 != qqVar.f50729h1 && i7 != qqVar.f50731i1 && i7 != qqVar.f50739n0) {
-                                        if (i7 != qqVar.f50744q0) {
+                                    if (i7 != qqVar.f50728h1 && i7 != qqVar.f50730i1 && i7 != qqVar.f50738n0) {
+                                        if (i7 != qqVar.f50743q0) {
                                             return 0;
                                         }
                                         return 17;
@@ -123,7 +123,7 @@ public final class mq extends org.telegram.ui.Components.tj0 {
         org.telegram.ui.Components.wt0 wt0Var2;
         int i11 = 2;
         int i12 = 0;
-        Context context = this.f49309c;
+        Context context = this.f49308c;
         qq qqVar = this.d;
         switch (i7) {
             case 0:
@@ -136,12 +136,12 @@ public final class mq extends org.telegram.ui.Components.tj0 {
                 if (i13 == 0 || i13 == 3) {
                     i11 = 6;
                 }
-                if (qqVar.f50722e1 == 0) {
+                if (qqVar.f50721e1 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f49309c, i10, i11, z10, null);
+                org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f49308c, i10, i11, z10, null);
                 a5Var.setDelegate(new lq(this, 0));
                 wt0Var2 = a5Var;
                 wt0Var = wt0Var2;
@@ -157,11 +157,11 @@ public final class mq extends org.telegram.ui.Components.tj0 {
                 break;
             case 4:
                 org.telegram.ui.Cells.y8 y8Var = new org.telegram.ui.Cells.y8(context);
-                if (qqVar.f50749s) {
+                if (qqVar.f50748s) {
                     y8Var.setText(org.telegram.messenger.hd.M0(2131748238, null));
                     wt0Var = y8Var;
                     break;
-                } else if (qqVar.f50758w) {
+                } else if (qqVar.f50757w) {
                     y8Var.setText(org.telegram.messenger.hd.M0(2131748237, null));
                     wt0Var = y8Var;
                     break;
@@ -171,7 +171,7 @@ public final class mq extends org.telegram.ui.Components.tj0 {
                     break;
                 }
             case 5:
-                org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f49309c, org.telegram.ui.ActionBar.j6.L6, 21, 11, false, null);
+                org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f49308c, org.telegram.ui.ActionBar.j6.L6, 21, 11, false, null);
                 n4Var.setHeight(43);
                 wt0Var2 = n4Var;
                 wt0Var = wt0Var2;
@@ -192,7 +192,7 @@ public final class mq extends org.telegram.ui.Components.tj0 {
             case 9:
             default:
                 org.telegram.ui.Components.wt0 wt0Var3 = new org.telegram.ui.Components.wt0(context, null);
-                wt0Var3.b(qqVar.f50743p1, null, org.telegram.messenger.hd.M0(2131745305, "SlowmodeOff"), org.telegram.messenger.hd.a0(null, null, 2131745304, 5), org.telegram.messenger.hd.a0(null, null, 2131745304, 10), org.telegram.messenger.hd.a0(null, null, 2131745304, 30), org.telegram.messenger.hd.a0(null, null, 2131745306, 1), org.telegram.messenger.hd.a0(null, null, 2131745306, 5), org.telegram.messenger.hd.a0(null, null, 2131745306, 15), org.telegram.messenger.hd.a0(null, null, 2131745309, 1));
+                wt0Var3.b(qqVar.f50742p1, null, org.telegram.messenger.hd.M0(2131745305, "SlowmodeOff"), org.telegram.messenger.hd.a0(null, null, 2131745304, 5), org.telegram.messenger.hd.a0(null, null, 2131745304, 10), org.telegram.messenger.hd.a0(null, null, 2131745304, 30), org.telegram.messenger.hd.a0(null, null, 2131745306, 1), org.telegram.messenger.hd.a0(null, null, 2131745306, 5), org.telegram.messenger.hd.a0(null, null, 2131745306, 15), org.telegram.messenger.hd.a0(null, null, 2131745309, 1));
                 wt0Var3.setCallback(new lq(this, 1));
                 wt0Var = wt0Var3;
                 break;
@@ -215,12 +215,12 @@ public final class mq extends org.telegram.ui.Components.tj0 {
                 wt0Var = pzVar;
                 break;
             case 12:
-                org.telegram.ui.Cells.l8 l8Var = new org.telegram.ui.Cells.l8(23, this.f49309c, qqVar.getResourceProvider(), false, true);
+                org.telegram.ui.Cells.l8 l8Var = new org.telegram.ui.Cells.l8(23, this.f49308c, qqVar.getResourceProvider(), false, true);
                 l8Var.f30661w = 50;
                 wt0Var = l8Var;
                 break;
             case 13:
-                org.telegram.ui.Cells.c2 c2Var = new org.telegram.ui.Cells.c2(this.f49309c, 4, 21, false, qqVar.getResourceProvider());
+                org.telegram.ui.Cells.c2 c2Var = new org.telegram.ui.Cells.c2(this.f49308c, 4, 21, false, qqVar.getResourceProvider());
                 c2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
                 c2Var.getCheckBoxRound().b(org.telegram.ui.ActionBar.j6.V6, org.telegram.ui.ActionBar.j6.f28905g7, org.telegram.ui.ActionBar.j6.f28979k7);
                 c2Var.setEnabled(true);
@@ -229,7 +229,7 @@ public final class mq extends org.telegram.ui.Components.tj0 {
             case 15:
                 org.telegram.ui.Components.wt0 wt0Var4 = new org.telegram.ui.Components.wt0(context, null);
                 Drawable[] drawableArr = {qqVar.getParentActivity().getDrawable(2131231930), qqVar.getParentActivity().getDrawable(2131231931), qqVar.getParentActivity().getDrawable(2131231931), qqVar.getParentActivity().getDrawable(2131231931), qqVar.getParentActivity().getDrawable(2131231931)};
-                int i14 = qqVar.f50751s1;
+                int i14 = qqVar.f50750s1;
                 if (i14 > 0) {
                     i12 = i14 - 1;
                 }

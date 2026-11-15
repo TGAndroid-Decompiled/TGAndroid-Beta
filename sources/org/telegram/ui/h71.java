@@ -7,18 +7,18 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import org.telegram.messenger.Utilities;
 public final class h71 extends mq0 {
-    public final org.telegram.messenger.ff f47637a;
-    public final i71 f47638b;
+    public final org.telegram.messenger.ff f47627a;
+    public final i71 f47628b;
 
     public h71(i71 i71Var, org.telegram.messenger.ff ffVar) {
-        this.f47638b = i71Var;
-        this.f47637a = ffVar;
+        this.f47628b = i71Var;
+        this.f47627a = ffVar;
     }
 
     @Override
     public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
-        t71 t71Var = this.f47638b.f47937a;
-        org.telegram.messenger.ff ffVar = this.f47637a;
+        t71 t71Var = this.f47628b.f47927a;
+        org.telegram.messenger.ff ffVar = this.f47627a;
         if (ffVar.h != null) {
             File z12 = org.telegram.messenger.w7.z(4);
             File file = new File(z12, Utilities.f22414b.nextInt() + ".jpg");
@@ -33,9 +33,9 @@ public final class h71 extends mq0 {
             t71Var.D1 = new pc1(file2, file2, "");
             t71Var.E1 = K;
             t71Var.d2 = 0;
-            t71Var.f51477z0.requestLayout();
+            t71Var.f51478z0.requestLayout();
             t71Var.g1(false);
-            t71Var.f51476y1 = null;
+            t71Var.f51477y1 = null;
             t71Var.n1();
         }
     }

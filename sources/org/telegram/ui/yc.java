@@ -39,7 +39,7 @@ public final class yc extends RadialProgressView {
                 return;
             case 1:
                 super.setAlpha(f10);
-                ((c50) this.P).f46020e.invalidate();
+                ((c50) this.P).f46009e.invalidate();
                 return;
             case 2:
                 super.setAlpha(f10);

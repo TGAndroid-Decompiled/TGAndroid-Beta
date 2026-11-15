@@ -6,24 +6,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class hv extends jg.m {
-    public final xw f47827c0;
-    public final yw f47828d0;
+    public final xw f47817c0;
+    public final yw f47818d0;
 
     public hv(yw ywVar, yw ywVar2, Context context, int i7, int i10, boolean z10, ArrayList arrayList, int i11, TLRPC.RequestPeerType requestPeerType, xw xwVar) {
         super(ywVar2, context, i7, i10, z10, arrayList, i11, requestPeerType);
-        this.f47828d0 = ywVar;
-        this.f47827c0 = xwVar;
+        this.f47818d0 = ywVar;
+        this.f47817c0 = xwVar;
     }
 
     @Override
     public final void K() {
-        this.f47828d0.presentFragment(new k());
+        this.f47818d0.presentFragment(new k());
     }
 
     @Override
     public final void L() {
         int i7;
-        yw ywVar = this.f47828d0;
+        yw ywVar = this.f47818d0;
         org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, ywVar.getParentActivity(), null);
         TLRPC.RequestPeerType requestPeerType = ywVar.H;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
@@ -56,13 +56,13 @@ public final class hv extends jg.m {
     @Override
     public final void M(TLRPC.User user) {
         int i7;
-        i7 = ((org.telegram.ui.ActionBar.e2) this.f47828d0).currentAccount;
+        i7 = ((org.telegram.ui.ActionBar.e2) this.f47818d0).currentAccount;
         org.telegram.messenger.np.s1(i7).x3(null, user, null, 0, null, false, false);
     }
 
     @Override
     public final boolean T() {
-        if (this.f47828d0.T0 == 0) {
+        if (this.f47818d0.T0 == 0) {
             return true;
         }
         return false;
@@ -78,9 +78,9 @@ public final class hv extends jg.m {
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
-        yw ywVar = this.f47828d0;
+        yw ywVar = this.f47818d0;
         if (ywVar.T0 == 15) {
-            org.telegram.ui.ActionBar.q0 q0Var = ywVar.f53697k0;
+            org.telegram.ui.ActionBar.q0 q0Var = ywVar.f53662k0;
             if (this.V) {
                 i7 = 8;
             } else {
@@ -92,20 +92,20 @@ public final class hv extends jg.m {
 
     @Override
     public final void l(org.telegram.ui.Cells.t2 t2Var) {
-        xw xwVar = this.f47827c0;
-        xwVar.f53331a.getClass();
-        this.f47828d0.A4(t2Var, RecyclerView.R(t2Var), 0.0f, xwVar.d);
+        xw xwVar = this.f47817c0;
+        xwVar.f53335a.getClass();
+        this.f47818d0.A4(t2Var, RecyclerView.R(t2Var), 0.0f, xwVar.d);
     }
 
     @Override
     public final void r(org.telegram.ui.Cells.t2 t2Var) {
         int i7;
         if (t2Var.getMessage() != null) {
-            yw ywVar = this.f47828d0;
+            yw ywVar = this.f47818d0;
             i7 = ((org.telegram.ui.ActionBar.e2) ywVar).currentAccount;
-            TLRPC.TL_forumTopic f10 = ywVar.getMessagesController().f25383r7.f(-t2Var.getDialogId(), org.telegram.messenger.gj.b2(i7, t2Var.getMessage().f23817k, true, false));
+            TLRPC.TL_forumTopic f10 = ywVar.getMessagesController().f25386r7.f(-t2Var.getDialogId(), org.telegram.messenger.gj.b2(i7, t2Var.getMessage().f23819k, true, false));
             if (f10 != null) {
-                if (ywVar.f53712n2) {
+                if (ywVar.f53677n2) {
                     ywVar.a4(t2Var.getDialogId(), f10.f28103id, false, null);
                 } else {
                     qg.c.m(ywVar, -t2Var.getDialogId(), f10, 0);

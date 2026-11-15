@@ -13,7 +13,7 @@ public final class h1 extends TLRPC.TL_messageMediaStory {
         this.f28073id = inputSerializedData.readInt32(z10);
         this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         this.via_mention = inputSerializedData.readBool(z10);
-        this.peer = np.s1(m10.f24934t0).z1(this.user_id);
+        this.peer = np.s1(m10.f24940t0).z1(this.user_id);
     }
 
     @Override

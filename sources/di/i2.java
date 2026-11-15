@@ -28,20 +28,20 @@ import org.telegram.ui.eg;
 import org.telegram.ui.fq0;
 import org.telegram.ui.sw;
 public final class i2 implements z10 {
-    public final int f8786a;
-    public final Object f8787b;
-    public final Object f8788c;
+    public final int f8784a;
+    public final Object f8785b;
+    public final Object f8786c;
     public final Object d;
-    public final Object f8789e;
-    public final Object f8790f;
+    public final Object f8787e;
+    public final Object f8788f;
 
     public i2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f8786a = i7;
-        this.f8787b = obj;
-        this.f8788c = obj2;
+        this.f8784a = i7;
+        this.f8785b = obj;
+        this.f8786c = obj2;
         this.d = obj3;
-        this.f8789e = obj4;
-        this.f8790f = obj5;
+        this.f8787e = obj4;
+        this.f8788f = obj5;
     }
 
     @Override
@@ -49,13 +49,13 @@ public final class i2 implements z10 {
         boolean z10;
         final TLRPC.UserFull userFull;
         ?? r15;
-        int i7 = this.f8786a;
+        int i7 = this.f8784a;
         String str = "";
-        Object obj2 = this.f8789e;
-        Object obj3 = this.f8790f;
+        Object obj2 = this.f8787e;
+        Object obj3 = this.f8788f;
         Object obj4 = this.d;
-        Object obj5 = this.f8788c;
-        Object obj6 = this.f8787b;
+        Object obj5 = this.f8786c;
+        Object obj6 = this.f8785b;
         int i10 = 0;
         switch (i7) {
             case 0:
@@ -98,7 +98,7 @@ public final class i2 implements z10 {
                 J.k();
                 J.c(2131232045, hd.M0(2131751717, null), new org.telegram.ui.o1(anVar, I, str2), false);
                 J.c(2131231780, hd.M0(2131754375, null), new fq0(xVar, 28), false);
-                if (tL_contact == null && (user == null || !anVar.getContactsController().f23680g0.containsKey(Long.valueOf(user.f28200id)))) {
+                if (tL_contact == null && (user == null || !anVar.getContactsController().f23682g0.containsKey(Long.valueOf(user.f28200id)))) {
                     I.c(2131232100, hd.M0(2131754377, null), new bi.n3(I, J, 5), false);
                     I.k();
                 }
@@ -232,24 +232,24 @@ public final class i2 implements z10 {
                 String str3 = (String) obj4;
                 cj cjVar = (cj) obj3;
                 Long l10 = (Long) obj;
-                int i11 = anVar2.f45204g4;
-                Object obj7 = this.f8789e;
+                int i11 = anVar2.f45203g4;
+                Object obj7 = this.f8787e;
                 if (i11 == 1) {
-                    org.telegram.ui.Components.t4.J(anVar2.getParentActivity(), anVar2.f45259k6, new a1.d(anVar2, tL_document, str3, obj7, 7), anVar2.Aa);
+                    org.telegram.ui.Components.t4.J(anVar2.getParentActivity(), anVar2.f45258k6, new a1.d(anVar2, tL_document, str3, obj7, 7), anVar2.Aa);
                 } else {
-                    anVar2.getSendMessagesHelper().v0(tL_document, str3, anVar2.f45259k6, anVar2.E5, anVar2.f45281m4, null, anVar2.C5, cjVar, true, 0, 0, false, obj7, anVar2.Y8(), l10.longValue(), anVar2.j9(), anVar2.f45422x5);
+                    anVar2.getSendMessagesHelper().v0(tL_document, str3, anVar2.f45258k6, anVar2.E5, anVar2.f45280m4, null, anVar2.C5, cjVar, true, 0, 0, false, obj7, anVar2.Y8(), l10.longValue(), anVar2.j9(), anVar2.f45421x5);
                     tL_document = tL_document;
                 }
                 anVar2.D9(false);
-                anVar2.f45118a0.m(tL_document);
-                anVar2.f45118a0.setFieldText("");
+                anVar2.f45117a0.m(tL_document);
+                anVar2.f45117a0.setFieldText("");
                 return;
             case 4:
                 ArrayList arrayList2 = (ArrayList) obj4;
                 ArrayList arrayList3 = (ArrayList) obj2;
                 ArrayList arrayList4 = (ArrayList) obj3;
                 Runnable runnable = (Runnable) obj;
-                lx lxVar = ((kx) obj6).f36647a;
+                lx lxVar = ((kx) obj6).f36635a;
                 String str4 = lxVar.f36924w;
                 ArrayList arrayList5 = lxVar.f36922r;
                 ArrayList arrayList6 = lxVar.h;
@@ -277,8 +277,8 @@ public final class i2 implements z10 {
                         Object obj8 = arrayList3.get(i12);
                         i12++;
                         ex exVar = (ex) obj8;
-                        if (longSparseIntArray.indexOfKey(exVar.f34446c.f28078id) < 0) {
-                            longSparseIntArray.append(exVar.f34446c.f28078id, 1);
+                        if (longSparseIntArray.indexOfKey(exVar.f34445c.f28078id) < 0) {
+                            longSparseIntArray.append(exVar.f34445c.f28078id, 1);
                             arrayList7.add(exVar);
                         }
                     }
@@ -287,8 +287,8 @@ public final class i2 implements z10 {
                         Object obj9 = arrayList4.get(i10);
                         i10++;
                         ex exVar2 = (ex) obj9;
-                        if (longSparseIntArray.indexOfKey(exVar2.f34446c.f28078id) < 0) {
-                            longSparseIntArray.append(exVar2.f34446c.f28078id, 1);
+                        if (longSparseIntArray.indexOfKey(exVar2.f34445c.f28078id) < 0) {
+                            longSparseIntArray.append(exVar2.f34445c.f28078id, 1);
                             arrayList7.add(exVar2);
                         }
                     }

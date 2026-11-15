@@ -1,7 +1,7 @@
 package pb;
 
 import a8.r7;
-import ai.j0;
+import ai.k0;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
@@ -83,7 +83,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
                 int i10 = length - 1;
                 if (editable.getSpanFlags(objArr[i10]) == 17) {
                     bg.n nVar = objArr[i10];
-                    if (nVar.f3309a == i7) {
+                    if (nVar.f3312a == i7) {
                         return nVar;
                     }
                 }
@@ -188,7 +188,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
                 bg.n[] nVarArr = (bg.n[]) editable.getSpans(0, editable.length(), bg.n.class);
                 for (int length2 = nVarArr.length - 1; length2 >= 0; length2--) {
                     bg.n nVar = nVarArr[length2];
-                    if (editable.getSpanFlags(nVar) == 17 && ((i7 = nVar.f3309a) == 2 || i7 == 3)) {
+                    if (editable.getSpanFlags(nVar) == 17 && ((i7 = nVar.f3312a) == 2 || i7 == 3)) {
                         obj = nVar;
                         break;
                     }
@@ -615,7 +615,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
                     x6.b.a(byteArrayOutputStream);
                     m8.e eVar = new m8.e(new String(byteArrayOutputStream.toByteArray(), "UTF-8"));
                     ?? obj = new Object();
-                    obj.f23459a = eVar;
+                    obj.f23462a = eVar;
                     return obj;
                 }
             }
@@ -634,7 +634,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
     public ta newCameraUpdateLatLng(bb bbVar) {
         LatLng latLng = new LatLng(bbVar.f22677a, bbVar.f22678b);
         try {
-            l8.a aVar = b1.f4207a;
+            l8.a aVar = b1.f4210a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
             Parcel p12 = aVar.p1();
             v7.b.b(p12, latLng);
@@ -649,9 +649,9 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
 
     @Override
     public ta newCameraUpdateLatLngBounds(va vaVar, int i7) {
-        LatLngBounds latLngBounds = ((ca) vaVar).f22811a;
+        LatLngBounds latLngBounds = ((ca) vaVar).f22815a;
         try {
-            l8.a aVar = b1.f4207a;
+            l8.a aVar = b1.f4210a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
             Parcel p12 = aVar.p1();
             v7.b.b(p12, latLngBounds);
@@ -669,7 +669,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
     public ta newCameraUpdateLatLngZoom(bb bbVar, float f10) {
         LatLng latLng = new LatLng(bbVar.f22677a, bbVar.f22678b);
         try {
-            l8.a aVar = b1.f4207a;
+            l8.a aVar = b1.f4210a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
             Parcel p12 = aVar.p1();
             v7.b.b(p12, latLng);
@@ -720,7 +720,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.e, fm0, com.goo
     @Override
     public ya onCreateMapView(Context context) {
         r7 r7Var = new r7(13, (byte) 0);
-        r7Var.f617b = new j0(r7Var, context);
+        r7Var.f617b = new k0(r7Var, context);
         return r7Var;
     }
 

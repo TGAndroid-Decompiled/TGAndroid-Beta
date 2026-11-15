@@ -34,7 +34,7 @@ public final class u6 extends FrameLayout {
         this.f31729a = textView;
         org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
         textView.setTextSize(1, 16.0f);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -44,7 +44,7 @@ public final class u6 extends FrameLayout {
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        boolean z10 = hd.f24101a0;
+        boolean z10 = hd.f24104a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -66,13 +66,13 @@ public final class u6 extends FrameLayout {
         org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
         i20.p(textView2, 1, 13.0f, 1, 1);
         textView2.setSingleLine(true);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView2.setGravity(i11);
-        boolean z11 = hd.f24101a0;
+        boolean z11 = hd.f24104a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -93,7 +93,7 @@ public final class u6 extends FrameLayout {
         this.f31731c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         org.telegram.ui.ActionBar.q6.s(imageView, org.telegram.ui.ActionBar.j6.f29014m6, null, PorterDuff.Mode.MULTIPLY);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             i13 = 5;
         } else {
             i13 = 3;
@@ -164,13 +164,13 @@ public final class u6 extends FrameLayout {
         textView.setText(charSequence);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
         float f13 = 71.0f;
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f10 = 16.0f;
         } else {
             f10 = 71.0f;
         }
         layoutParams.leftMargin = org.telegram.messenger.g0.L(f10);
-        if (hd.f24101a0) {
+        if (hd.f24104a0) {
             f11 = 71.0f;
         } else {
             f11 = 16.0f;
@@ -193,13 +193,13 @@ public final class u6 extends FrameLayout {
             textView2.setVisibility(0);
             layoutParams.topMargin = org.telegram.messenger.g0.L(10.0f);
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) textView2.getLayoutParams();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 f12 = 16.0f;
             } else {
                 f12 = 71.0f;
             }
             layoutParams2.leftMargin = org.telegram.messenger.g0.L(f12);
-            if (!hd.f24101a0) {
+            if (!hd.f24104a0) {
                 f13 = 16.0f;
             }
             layoutParams2.rightMargin = org.telegram.messenger.g0.L(f13);
@@ -224,7 +224,7 @@ public final class u6 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(this.f31732e);
@@ -232,7 +232,7 @@ public final class u6 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24101a0) {
+            if (hd.f24104a0) {
                 i7 = org.telegram.messenger.g0.L(this.f31732e);
             } else {
                 i7 = 0;

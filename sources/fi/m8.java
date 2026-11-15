@@ -130,10 +130,10 @@ public abstract class m8 extends FrameLayout implements View.OnClickListener {
                         ?? tLObject = new TLObject();
                         tLObject.f14885c = tL_mediaAreaWeather.emoji;
                         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-                        tg.m0 m0Var = new tg.m0(getContext(), org.telegram.messenger.g0.f23608p);
-                        m0Var.setMaxWidth(org.telegram.messenger.g0.f23609q.x);
+                        tg.m0 m0Var = new tg.m0(getContext(), org.telegram.messenger.g0.f23610p);
+                        m0Var.setMaxWidth(org.telegram.messenger.g0.f23611q.x);
                         m0Var.setIsVideo(true);
-                        m0Var.d(m10.f24934t0, tLObject.f14885c);
+                        m0Var.d(m10.f24940t0, tLObject.f14885c);
                         m0Var.setText(tLObject.a());
                         m0Var.e(3, tL_mediaAreaWeather.color);
                         p8Var = new l8(getContext(), m0Var, mediaArea);

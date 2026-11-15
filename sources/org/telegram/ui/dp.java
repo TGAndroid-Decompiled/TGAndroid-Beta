@@ -3,23 +3,23 @@ package org.telegram.ui;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class dp implements Runnable {
-    public final int f46445a;
-    public final mp f46446b;
+    public final int f46435a;
+    public final mp f46436b;
 
     public dp(mp mpVar, int i7) {
-        this.f46445a = i7;
-        this.f46446b = mpVar;
+        this.f46435a = i7;
+        this.f46436b = mpVar;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i7 = this.f46445a;
-        mp mpVar = this.f46446b;
+        int i7 = this.f46435a;
+        mp mpVar = this.f46436b;
         int i10 = 1;
         switch (i7) {
             case 0:
-                TLRPC.User user = mpVar.f49299w;
+                TLRPC.User user = mpVar.f49298w;
                 jp jpVar = mpVar.Y0;
                 if (jpVar != null) {
                     if (mpVar.L) {
@@ -30,7 +30,7 @@ public final class dp implements Runnable {
                     jpVar.b(0, tL_chatAdminRights, null, mpVar.T);
                 }
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                k10.putLong("chat_id", mpVar.f49301x.f28051id);
+                k10.putLong("chat_id", mpVar.f49300x.f28051id);
                 if (!mpVar.getMessagesController().E(k10, mpVar, null, null)) {
                     mpVar.y0(false);
                     return;
@@ -38,12 +38,12 @@ public final class dp implements Runnable {
                 an anVar = new an(k10);
                 mpVar.presentFragment(anVar, true);
                 if (org.telegram.ui.Components.cc.a(anVar)) {
-                    boolean z10 = mpVar.f49269a1;
+                    boolean z10 = mpVar.f49268a1;
                     if (z10 && mpVar.L) {
                         String str = user.first_name;
                         org.telegram.ui.Components.fb fbVar = new org.telegram.ui.Components.fb(anVar.getParentActivity(), anVar.Aa);
                         fbVar.d(2131624049, "Shield");
-                        org.telegram.messenger.k5.q("UserAddedAsAdminHint", null, 2131743768, new Object[]{str}, fbVar.f34552b);
+                        org.telegram.messenger.k5.q("UserAddedAsAdminHint", null, 2131743768, new Object[]{str}, fbVar.f34556b);
                         org.telegram.ui.Components.xb.g(anVar, fbVar, 1500).j();
                         return;
                     } else if (!z10 && !mpVar.M && mpVar.L) {
@@ -58,10 +58,10 @@ public final class dp implements Runnable {
                 mpVar.w0(false);
                 return;
             default:
-                if (mpVar.f49292r) {
-                    long j3 = mpVar.f49287n;
+                if (mpVar.f49291r) {
+                    long j3 = mpVar.f49286n;
                     org.telegram.ui.ActionBar.t1[] t1VarArr = {new org.telegram.ui.ActionBar.t1(3, mpVar.getParentActivity(), null)};
-                    mpVar.getMessagesController().d5(mpVar.f49294s, j3, true, false, true, new xf(t1VarArr, 2), new xf(t1VarArr, 3));
+                    mpVar.getMessagesController().d5(mpVar.f49293s, j3, true, false, true, new xf(t1VarArr, 2), new xf(t1VarArr, 3));
                     t1VarArr[0].r(300L);
                 }
                 jp jpVar2 = mpVar.Y0;

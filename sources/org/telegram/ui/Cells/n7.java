@@ -133,7 +133,7 @@ public class n7 extends FrameLayout {
         g6Var.w(org.telegram.messenger.g0.L(12.0f));
         g6Var.u(-1);
         g6Var.x(org.telegram.messenger.g0.o());
-        g6Var.N = org.telegram.messenger.g0.f23609q.x;
+        g6Var.N = org.telegram.messenger.g0.f23611q.x;
         setWillNotDraw(false);
     }
 
@@ -243,9 +243,9 @@ public class n7 extends FrameLayout {
             if ((imageReceiver == null || imageReceiver.R0) && this.h && this.P != null) {
                 float L = org.telegram.messenger.g0.L(5.33f);
                 oy0 oy0Var = this.P;
-                oy0Var.f38116p = (int) (rectF.width() - (2.0f * L));
-                oy0Var.f38120t = org.telegram.messenger.g0.L(14.0f);
-                oy0Var.f38103a.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.j6.r1(0.4f * f10, -16777216));
+                oy0Var.f38114p = (int) (rectF.width() - (2.0f * L));
+                oy0Var.f38118t = org.telegram.messenger.g0.L(14.0f);
+                oy0Var.f38101a.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.j6.r1(0.4f * f10, -16777216));
                 float f12 = rectF.left + L;
                 float f13 = rectF.top;
                 if (this.f30762r <= 2) {
@@ -427,7 +427,7 @@ public class n7 extends FrameLayout {
         if (this.f30751g0) {
             return 100;
         }
-        if (!this.f30748e0 || gjVar == null || (storyItem = gjVar.f23822l) == null) {
+        if (!this.f30748e0 || gjVar == null || (storyItem = gjVar.f23824l) == null) {
             return -1;
         }
         if (storyItem.parsedPrivacy == null) {
@@ -558,7 +558,7 @@ public class n7 extends FrameLayout {
         this.f30756l0 = f11;
         this.m0 = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(c8.i9.a(this.m0 * 0.3f, 250.0f, 550.0f));
-        duration.setInterpolator(er.f34423j);
+        duration.setInterpolator(er.f34422j);
         duration.addUpdateListener(new r(this, 5));
         duration.addListener(new ki.s3(this, 29));
         duration.start();

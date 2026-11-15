@@ -37,40 +37,40 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
     public TLRPC.WallPaper U;
     public long V;
     public int W;
-    public final float f33123a;
-    public boolean f33124a0;
-    public final float f33125b;
-    public final float f33126c;
+    public final float f33126a;
+    public boolean f33127a0;
+    public final float f33128b;
+    public final float f33129c;
     public final float d;
-    public final float f33127e;
-    public a01 f33128f;
+    public final float f33130e;
+    public a01 f33131f;
     public a01 h;
-    public float f33129n;
-    public final Paint f33130r;
-    public final Paint f33131s;
-    public final RectF f33132w;
-    public final Path f33133x;
-    public final org.telegram.ui.ActionBar.e6 f33134y;
+    public float f33132n;
+    public final Paint f33133r;
+    public final Paint f33134s;
+    public final RectF f33135w;
+    public final Path f33136x;
+    public final org.telegram.ui.ActionBar.e6 f33137y;
 
     public b01(int i7, int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f33123a = org.telegram.messenger.g0.L(8.0f);
-        this.f33125b = org.telegram.messenger.g0.L(6.0f);
-        this.f33126c = org.telegram.messenger.g0.L(4.0f);
+        this.f33126a = org.telegram.messenger.g0.L(8.0f);
+        this.f33128b = org.telegram.messenger.g0.L(6.0f);
+        this.f33129c = org.telegram.messenger.g0.L(4.0f);
         this.d = org.telegram.messenger.g0.L(21.0f);
-        this.f33127e = org.telegram.messenger.g0.L(41.0f);
-        this.f33128f = new a01(this);
-        this.f33129n = 1.0f;
+        this.f33130e = org.telegram.messenger.g0.L(41.0f);
+        this.f33131f = new a01(this);
+        this.f33132n = 1.0f;
         Paint paint = new Paint(1);
-        this.f33130r = paint;
-        this.f33131s = new Paint(1);
-        this.f33132w = new RectF();
-        this.f33133x = new Path();
+        this.f33133r = paint;
+        this.f33134s = new Paint(1);
+        this.f33135w = new RectF();
+        this.f33136x = new Path();
         this.S = new org.telegram.ui.ActionBar.r4(0, true, false, null);
         this.T = new org.telegram.ui.ActionBar.r4(0, false, false, null);
         this.L = i10;
         this.J = i7;
-        this.f33134y = e6Var;
+        this.f33137y = e6Var;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.Q = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(8.0f));
@@ -113,7 +113,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
         }
         TextPaint textPaint = new TextPaint(129);
         this.F = textPaint;
-        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Of, this.f33134y));
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Of, this.f33137y));
         this.F.setTextSize(org.telegram.messenger.g0.L(c()));
         this.F.setTypeface(org.telegram.messenger.g0.o());
         int L = org.telegram.messenger.g0.L(52.0f);
@@ -142,7 +142,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
         if (this.I.getImageReceiver().B() != null) {
             org.telegram.messenger.g0.r(this.K);
             this.I.setVisibility(0);
-            if (!this.I.getImageReceiver().B().f33586l0) {
+            if (!this.I.getImageReceiver().B().f33588l0) {
                 this.I.getImageReceiver().B().N(0, true, false);
                 this.I.getImageReceiver().B().start();
             }
@@ -155,7 +155,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25514i4) {
+        if (i7 == org.telegram.messenger.ns.f25515i4) {
             invalidate();
         }
     }
@@ -170,31 +170,31 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
         }
         if (this.O != null) {
             canvas.save();
-            canvas.clipPath(this.f33133x);
+            canvas.clipPath(this.f33136x);
             this.O.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.O.draw(canvas);
             canvas.restore();
         }
-        if (this.f33129n != 1.0f && (a01Var2 = this.h) != null) {
+        if (this.f33132n != 1.0f && (a01Var2 = this.h) != null) {
             a01Var2.b(canvas, 1.0f);
         }
-        float f10 = this.f33129n;
+        float f10 = this.f33132n;
         if (f10 != 0.0f) {
-            this.f33128f.b(canvas, f10);
+            this.f33131f.b(canvas, f10);
         }
-        if (this.f33129n != 1.0f && (a01Var = this.h) != null) {
+        if (this.f33132n != 1.0f && (a01Var = this.h) != null) {
             a01Var.a(canvas, 1.0f);
         }
-        float f11 = this.f33129n;
+        float f11 = this.f33132n;
         if (f11 != 0.0f) {
-            this.f33128f.a(canvas, f11);
+            this.f33131f.a(canvas, f11);
         }
-        float f12 = this.f33129n;
+        float f12 = this.f33132n;
         if (f12 != 1.0f) {
             float f13 = f12 + 0.10666667f;
-            this.f33129n = f13;
+            this.f33132n = f13;
             if (f13 >= 1.0f) {
-                this.f33129n = 1.0f;
+                this.f33132n = 1.0f;
             }
             invalidate();
         }
@@ -212,7 +212,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f33124a0 = z10;
+            this.f33127a0 = z10;
             if (z10) {
                 f10 = 1.0f;
             }
@@ -220,7 +220,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
             invalidate();
             return;
         }
-        if (this.f33124a0 != z10) {
+        if (this.f33127a0 != z10) {
             float f11 = this.N;
             ValueAnimator valueAnimator2 = this.E;
             if (valueAnimator2 != null) {
@@ -236,13 +236,13 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
             this.E.setDuration(250L);
             this.E.start();
         }
-        this.f33124a0 = z10;
+        this.f33127a0 = z10;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25515i4);
         this.P = true;
         org.telegram.ui.dn dnVar = this.O;
         if (dnVar != null) {
@@ -254,7 +254,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25514i4);
+        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25515i4);
         this.P = false;
         org.telegram.ui.dn dnVar = this.O;
         if (dnVar != null) {
@@ -267,7 +267,7 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setSelected(this.f33124a0);
+        accessibilityNodeInfo.setSelected(this.f33127a0);
     }
 
     @Override
@@ -301,20 +301,20 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
         if (i7 == i11 && i10 == i12) {
             return;
         }
-        float f10 = this.f33126c;
-        RectF rectF = this.f33132w;
+        float f10 = this.f33129c;
+        RectF rectF = this.f33135w;
         rectF.set(f10, f10, i7 - f10, i10 - f10);
-        Path path = this.f33133x;
+        Path path = this.f33136x;
         path.reset();
-        float f11 = this.f33125b;
+        float f11 = this.f33128b;
         path.addRoundRect(rectF, f11, f11, Path.Direction.CW);
     }
 
     @Override
     public void setBackgroundColor(int i7) {
         int i10 = org.telegram.ui.ActionBar.j6.f28940i5;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f33134y;
-        this.f33131s.setColor(org.telegram.ui.ActionBar.j6.w0(i10, e6Var));
+        org.telegram.ui.ActionBar.e6 e6Var = this.f33137y;
+        this.f33134s.setColor(org.telegram.ui.ActionBar.j6.w0(i10, e6Var));
         TextPaint textPaint = this.F;
         if (textPaint != null) {
             textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Of, e6Var));
@@ -335,9 +335,9 @@ public class b01 extends FrameLayout implements org.telegram.messenger.is, org.t
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f33134y;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f33137y;
         try {
-            this.f33131s.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28940i5, e6Var));
+            this.f33134s.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28940i5, e6Var));
             TextPaint textPaint = this.F;
             if (textPaint != null) {
                 textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Of, e6Var));

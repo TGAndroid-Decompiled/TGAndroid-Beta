@@ -14,7 +14,7 @@ public final class fr0 extends ss0 {
         super.f();
         ys0 ys0Var = this.h;
         tr0 g02 = ys0Var.g0(0);
-        if (g02 != null && g02.f39795n.getVisibility() == 0) {
+        if (g02 != null && g02.f39792n.getVisibility() == 0) {
             ys0Var.L.f();
         }
     }

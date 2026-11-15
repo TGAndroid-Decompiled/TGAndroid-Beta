@@ -60,7 +60,7 @@ public final class g extends rt {
                 emojiView.f37009y2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (mVar instanceof pc) {
-                    emojiView.setPadding(0, 0, 0, org.telegram.messenger.g0.f23604n);
+                    emojiView.setPadding(0, 0, 0, org.telegram.messenger.g0.f23606n);
                     emojiView.f36936c = 3;
                 }
                 emojiView.updateColors();
@@ -126,7 +126,7 @@ public final class g extends rt {
                 this.W = new org.telegram.ui.Components.y9(this.f14329c0, ntVar2, 7, false);
             }
             mVar.h(this.W, canvas, mVar.f14649z0, org.telegram.messenger.g0.L(29.0f), false, 0.0f, -ntVar2.getY(), false);
-            jVar.f8170m = org.telegram.messenger.g0.L(29.0f);
+            jVar.f8173m = org.telegram.messenger.g0.L(29.0f);
             jVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, org.telegram.messenger.g0.L(29.0f) + ((int) rectF.bottom));
             jVar.draw(canvas);
         } else {
@@ -201,7 +201,7 @@ public final class g extends rt {
                     mVar.f14625g0 = ofInt;
                     ofInt.setDuration(240L);
                     mVar.f14625g0.setInterpolator(er.h);
-                    mVar.f14625g0.addListener(new ai.i0(this, 18));
+                    mVar.f14625g0.addListener(new ai.j0(this, 18));
                     mVar.f14625g0.start();
                     return false;
                 }

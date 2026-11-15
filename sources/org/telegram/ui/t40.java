@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t40 implements Runnable {
-    public final int f51352a;
-    public final u40 f51353b;
-    public final String f51354c;
+    public final int f51353a;
+    public final u40 f51354b;
+    public final String f51355c;
 
     public t40(u40 u40Var, String str, int i7) {
-        this.f51352a = i7;
-        this.f51353b = u40Var;
-        this.f51354c = str;
+        this.f51353a = i7;
+        this.f51354b = u40Var;
+        this.f51355c = str;
     }
 
     @Override
@@ -25,17 +25,17 @@ public final class t40 implements Runnable {
         boolean z11;
         char c10;
         Object obj;
-        switch (this.f51352a) {
+        switch (this.f51353a) {
             case 0:
-                u40 u40Var = this.f51353b;
-                String str2 = this.f51354c;
+                u40 u40Var = this.f51354b;
+                String str2 = this.f51355c;
                 u40Var.getClass();
                 org.telegram.messenger.g0.h3(new t40(u40Var, str2, 1));
                 return;
             case 1:
-                u40 u40Var2 = this.f51353b;
-                String str3 = this.f51354c;
-                jg.z1 z1Var = u40Var2.f51735f;
+                u40 u40Var2 = this.f51354b;
+                String str3 = this.f51355c;
+                jg.z1 z1Var = u40Var2.f51736f;
                 w40 w40Var = u40Var2.J;
                 if (!w40Var.P && !w40Var.Q) {
                     z10 = false;
@@ -49,9 +49,9 @@ public final class t40 implements Runnable {
                 p5Var.c(t40Var);
                 return;
             default:
-                u40 u40Var3 = this.f51353b;
-                String str4 = this.f51354c;
-                ArrayList arrayList2 = u40Var3.f51737r;
+                u40 u40Var3 = this.f51354b;
+                String str4 = this.f51355c;
+                ArrayList arrayList2 = u40Var3.f51738r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     org.telegram.messenger.g0.h3(new tp(u40Var3, new ArrayList(), new ArrayList(), 10));

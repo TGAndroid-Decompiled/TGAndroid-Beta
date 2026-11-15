@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.os.AsyncTask;
 import java.util.concurrent.CountDownLatch;
 public final class l71 extends AsyncTask {
-    public final String f36733a;
-    public final CountDownLatch f36734b = new CountDownLatch(1);
-    public final String[] f36735c = new String[2];
+    public final String f36721a;
+    public final CountDownLatch f36722b = new CountDownLatch(1);
+    public final String[] f36723c = new String[2];
     public String d;
-    public final m71 f36736e;
+    public final m71 f36724e;
 
     public l71(m71 m71Var, String str) {
-        this.f36736e = m71Var;
-        this.f36733a = str;
+        this.f36724e = m71Var;
+        this.f36721a = str;
     }
 
     @Override
@@ -23,9 +23,9 @@ public final class l71 extends AsyncTask {
     public final void onPostExecute(Object obj) {
         String[] strArr = (String[]) obj;
         String str = strArr[0];
-        m71 m71Var = this.f36736e;
+        m71 m71Var = this.f36724e;
         if (str != null) {
-            if (org.telegram.messenger.r2.f26198a) {
+            if (org.telegram.messenger.r2.f26206a) {
                 StringBuilder sb2 = new StringBuilder("start play youtube video ");
                 sb2.append(strArr[1]);
                 sb2.append(" ");

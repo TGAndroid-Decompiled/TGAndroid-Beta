@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class ot0 extends org.telegram.ui.Components.tj0 {
-    public final Context f50057c;
+    public final Context f50034c;
     public final pt0 d;
 
     public ot0(pt0 pt0Var, Context context) {
         this.d = pt0Var;
-        this.f50057c = context;
+        this.f50034c = context;
     }
 
     @Override
@@ -25,22 +25,22 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
 
     @Override
     public final int b() {
-        return this.d.f50364e;
+        return this.d.f50355e;
     }
 
     @Override
     public final int d(int i7) {
         pt0 pt0Var = this.d;
-        if (i7 == pt0Var.f50370x) {
+        if (i7 == pt0Var.f50361x) {
             return 4;
         }
-        if (i7 == pt0Var.f50366n) {
+        if (i7 == pt0Var.f50357n) {
             return 3;
         }
-        if (i7 == pt0Var.f50365f) {
+        if (i7 == pt0Var.f50356f) {
             return 2;
         }
-        if (i7 != pt0Var.h && i7 != pt0Var.f50369w) {
+        if (i7 != pt0Var.h && i7 != pt0Var.f50360w) {
             return 0;
         }
         return 1;
@@ -60,7 +60,7 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
                 if (i11 != 2) {
                     if (i11 == 3) {
                         org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
-                        if (i7 == pt0Var.f50366n) {
+                        if (i7 == pt0Var.f50357n) {
                             if (i10 == 1) {
                                 n4Var.setText(org.telegram.messenger.hd.G(pt0Var.getMessagesController().I0, "BlockedUsersCount", new Object[0]));
                                 return;
@@ -93,7 +93,7 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
                 y8Var.setFixedSize(8);
                 y8Var.setText(null);
                 return;
-            } else if (i7 == pt0Var.f50369w) {
+            } else if (i7 == pt0Var.f50360w) {
                 y8Var.setFixedSize(12);
                 y8Var.setText("");
                 return;
@@ -103,7 +103,7 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
         }
         org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) view;
         if (i10 == 1) {
-            long keyAt = pt0Var.getMessagesController().H0.keyAt(i7 - pt0Var.f50367r);
+            long keyAt = pt0Var.getMessagesController().H0.keyAt(i7 - pt0Var.f50358r);
             a5Var.setTag(Long.valueOf(keyAt));
             if (keyAt > 0) {
                 TLRPC.User a22 = pt0Var.getMessagesController().a2(Long.valueOf(keyAt));
@@ -118,7 +118,7 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
                             M02 = org.telegram.messenger.hd.M0(2131747832, null);
                         }
                     }
-                    if (i7 != pt0Var.f50368s - 1) {
+                    if (i7 != pt0Var.f50359s - 1) {
                         z10 = true;
                     }
                     a5Var.c(a22, null, M02, z10);
@@ -138,7 +138,7 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
                 } else {
                     M0 = org.telegram.messenger.hd.M0(2131748638, null);
                 }
-                if (i7 != pt0Var.f50368s - 1) {
+                if (i7 != pt0Var.f50359s - 1) {
                     z10 = true;
                 }
                 a5Var.c(M03, null, M0, z10);
@@ -154,11 +154,11 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
         org.telegram.ui.Cells.n4 n4Var;
         FrameLayout y8Var;
         if (i7 != 0) {
-            Context context = this.f50057c;
+            Context context = this.f50034c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     if (i7 != 4) {
-                        org.telegram.ui.Cells.n4 n4Var2 = new org.telegram.ui.Cells.n4(this.f50057c, org.telegram.ui.ActionBar.j6.L6, 21, 11, false, null);
+                        org.telegram.ui.Cells.n4 n4Var2 = new org.telegram.ui.Cells.n4(this.f50034c, org.telegram.ui.ActionBar.j6.L6, 21, 11, false, null);
                         n4Var2.setHeight(43);
                         n4Var = n4Var2;
                     } else {
@@ -175,7 +175,7 @@ public final class ot0 extends org.telegram.ui.Components.tj0 {
             }
             n4Var = y8Var;
         } else {
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f50057c, 7, 6, true, null);
+            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f50034c, 7, 6, true, null);
             a5Var.setDelegate(new ni0(this, 9));
             n4Var = a5Var;
         }

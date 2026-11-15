@@ -26,7 +26,7 @@ public final class sq0 extends ul0 {
         gr0 gr0Var;
         boolean z11;
         ys0 ys0Var = this.J;
-        org.telegram.ui.ActionBar.q0 q0Var = ys0Var.f42125q0;
+        org.telegram.ui.ActionBar.q0 q0Var = ys0Var.f42127q0;
         if (q0Var == null) {
             return false;
         }
@@ -39,7 +39,7 @@ public final class sq0 extends ul0 {
         }
         ys0Var.X0 = z10;
         ys0Var.B1(false);
-        int i7 = ys0Var.f42117n0[0].F;
+        int i7 = ys0Var.f42119n0[0].F;
         if (i7 == 11) {
             ks0 ks0Var = ys0Var.V;
             if (ks0Var != null) {
@@ -49,7 +49,7 @@ public final class sq0 extends ul0 {
             return true;
         }
         if (i7 == 12 && (gr0Var = ys0Var.W) != null) {
-            org.telegram.ui.bn bnVar = gr0Var.f46216a;
+            org.telegram.ui.bn bnVar = gr0Var.f46179a;
             org.telegram.ui.ak akVar = bnVar.D1;
             if (akVar != null) {
                 akVar.e(p0Var, true);
@@ -60,7 +60,7 @@ public final class sq0 extends ul0 {
                 z11 = true;
             }
             bnVar.H3 = z11;
-            bnVar.f45340r0 = z11;
+            bnVar.f45339r0 = z11;
             bnVar.Pc(false);
             bnVar.qd();
         }
@@ -81,9 +81,9 @@ public final class sq0 extends ul0 {
             z11 = false;
         }
         g(z11);
-        org.telegram.ui.ActionBar.q0 q0Var = ys0Var.f42122p0;
+        org.telegram.ui.ActionBar.q0 q0Var = ys0Var.f42124p0;
         if (q0Var != null) {
-            if (a() && ys0Var.f42150y1.getUserConfig().q()) {
+            if (a() && ys0Var.f42152y1.getUserConfig().q()) {
                 i10 = 2131232444;
             } else {
                 i10 = 2131232487;
@@ -99,7 +99,7 @@ public final class sq0 extends ul0 {
                 }
             }
         }
-        org.telegram.ui.ActionBar.q0 q0Var2 = ys0Var.f42125q0;
+        org.telegram.ui.ActionBar.q0 q0Var2 = ys0Var.f42127q0;
         if (q0Var2 != null) {
             if (sq0Var != null && sq0Var.a() && ys0Var.getSelectedTab() == 11) {
                 i7 = 2131745868;

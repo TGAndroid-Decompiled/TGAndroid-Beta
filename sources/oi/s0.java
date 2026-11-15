@@ -22,7 +22,7 @@ public final class s0 extends a41 {
         a aVar = (a) b41Var.G;
         t0Var.f22106a = aVar;
         t0Var.f22003w = (o2) b41Var.H;
-        t0Var.f22004x = hd.f24101a0;
+        t0Var.f22004x = hd.f24104a0;
         t0Var.c(aVar);
     }
 

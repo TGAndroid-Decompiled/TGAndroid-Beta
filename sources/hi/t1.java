@@ -30,7 +30,7 @@ public final class t1 extends u1 implements is {
         s1 s1Var = new s1(this);
         this.f15138e = s1Var;
         c1Var.setLayoutManager(s1Var);
-        c1Var.i(new ai.h0(this, 1));
+        c1Var.i(new ai.i0(this, 1));
         c1Var.setClipToPadding(true);
         c1Var.setVerticalScrollBarEnabled(false);
         bi.b6 b6Var = new bi.b6(this, 9);
@@ -104,7 +104,7 @@ public final class t1 extends u1 implements is {
     public final void onMeasure(int i7, int i10) {
         int i11 = i2.C1;
         int i12 = this.f15141r.f29717u0;
-        setPadding(i12, 0, i12, org.telegram.messenger.g0.f23604n);
+        setPadding(i12, 0, i12, org.telegram.messenger.g0.f23606n);
         super.onMeasure(i7, i10);
     }
 }

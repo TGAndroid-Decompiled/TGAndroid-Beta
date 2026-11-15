@@ -84,9 +84,9 @@ public final class hz extends c1 {
         } catch (Exception unused) {
         }
         if (i7 == 0) {
-            sharedPreferences = t0.f26600b.getSharedPreferences("stats", 0);
+            sharedPreferences = t0.f26609b.getSharedPreferences("stats", 0);
         } else {
-            sharedPreferences = t0.f26600b.getSharedPreferences("stats" + i7, 0);
+            sharedPreferences = t0.f26609b.getSharedPreferences("stats" + i7, 0);
         }
         boolean z11 = false;
         for (int i13 = 0; i13 < 3; i13++) {

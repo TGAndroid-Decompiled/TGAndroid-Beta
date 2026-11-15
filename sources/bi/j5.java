@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 public final class j5 extends org.telegram.ui.ActionBar.z0 {
     public final int W;
-    public long f3632a0;
-    public h5 f3633b0;
+    public long f3635a0;
+    public h5 f3636b0;
 
     public j5(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(0, context, e6Var, false, false);

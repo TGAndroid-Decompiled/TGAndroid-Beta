@@ -25,7 +25,7 @@ public final class i0 implements wa {
 
     @Override
     public final int h(int i7) {
-        return org.telegram.messenger.g0.f23603m;
+        return org.telegram.messenger.g0.f23605m;
     }
 
     @Override

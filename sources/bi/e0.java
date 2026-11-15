@@ -16,20 +16,20 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.n31;
 public final class e0 implements Runnable {
-    public final int f3446a;
-    public final int f3447b;
-    public final long f3448c;
+    public final int f3449a;
+    public final int f3450b;
+    public final long f3451c;
     public final Object d;
-    public final Object f3449e;
-    public final Object f3450f;
+    public final Object f3452e;
+    public final Object f3453f;
 
     public e0(Context context, int i7, r9 r9Var, long j3, Runnable runnable) {
-        this.f3446a = 0;
+        this.f3449a = 0;
         this.d = context;
-        this.f3447b = i7;
-        this.f3449e = r9Var;
-        this.f3448c = j3;
-        this.f3450f = runnable;
+        this.f3450b = i7;
+        this.f3452e = r9Var;
+        this.f3451c = j3;
+        this.f3453f = runnable;
     }
 
     @Override
@@ -44,19 +44,19 @@ public final class e0 implements Runnable {
         org.telegram.utils.twidget.b bVar = null;
         r2 = null;
         TL_stories.StoryItem storyItem = null;
-        switch (this.f3446a) {
+        switch (this.f3449a) {
             case 0:
-                new u6((Context) this.d, this.f3447b, ((r9) this.f3449e).d, null, this.f3448c, (Runnable) this.f3450f, false, false).show();
+                new u6((Context) this.d, this.f3450b, ((r9) this.f3452e).d, null, this.f3451c, (Runnable) this.f3453f, false, false).show();
                 return;
             case 1:
-                di.d0 d0Var = (di.d0) this.f3449e;
-                int i10 = this.f3447b;
-                TLObject tLObject = (TLObject) this.f3450f;
-                long j3 = this.f3448c;
-                int i11 = ((di.e0) this.d).f8434a;
+                di.d0 d0Var = (di.d0) this.f3452e;
+                int i10 = this.f3450b;
+                TLObject tLObject = (TLObject) this.f3453f;
+                long j3 = this.f3451c;
+                int i11 = ((di.e0) this.d).f8430a;
                 boolean[] zArr = d0Var.d;
-                boolean[] zArr2 = d0Var.f8389b;
-                ArrayList[] arrayListArr = d0Var.f8388a;
+                boolean[] zArr2 = d0Var.f8381b;
+                ArrayList[] arrayListArr = d0Var.f8380a;
                 zArr[i10] = false;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
@@ -69,14 +69,14 @@ public final class e0 implements Runnable {
                         z10 = true;
                     }
                     zArr2[i10] = z10;
-                    boolean[] zArr3 = d0Var.f8391e;
+                    boolean[] zArr3 = d0Var.f8383e;
                     if ((starsStatus.flags & 1) == 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     zArr3[i10] = z11;
-                    String[] strArr = d0Var.f8390c;
+                    String[] strArr = d0Var.f8382c;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -87,21 +87,21 @@ public final class e0 implements Runnable {
                 return;
             case 2:
                 hi.d dVar = (hi.d) this.d;
-                int i12 = this.f3447b;
-                org.telegram.ui.ActionBar.u2[] u2VarArr = (org.telegram.ui.ActionBar.u2[]) this.f3450f;
-                long j10 = this.f3448c;
+                int i12 = this.f3450b;
+                org.telegram.ui.ActionBar.u2[] u2VarArr = (org.telegram.ui.ActionBar.u2[]) this.f3453f;
+                long j10 = this.f3451c;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) this.f3449e).f28281id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) this.f3452e).f28281id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 ConnectionsManager.getInstance(i12).sendRequest(tL_fulfillStarsSubscription, new di.v(i12, 1, j10, dVar, u2VarArr));
                 return;
             case 3:
                 fi.s6 s6Var = (fi.s6) this.d;
-                TLObject tLObject2 = (TLObject) this.f3449e;
-                int i13 = this.f3447b;
-                String str2 = (String) this.f3450f;
-                long j11 = this.f3448c;
+                TLObject tLObject2 = (TLObject) this.f3452e;
+                int i13 = this.f3450b;
+                String str2 = (String) this.f3453f;
+                long j11 = this.f3451c;
                 int i14 = s6Var.f12319a;
                 HashSet hashSet = s6Var.f12336t;
                 if (tLObject2 != null) {
@@ -141,10 +141,10 @@ public final class e0 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.d;
-                TLRPC.User user = (TLRPC.User) this.f3449e;
-                int i15 = this.f3447b;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f3450f;
-                long j12 = this.f3448c;
+                TLRPC.User user = (TLRPC.User) this.f3452e;
+                int i15 = this.f3450b;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f3453f;
+                long j12 = this.f3451c;
                 if (user != null) {
                     q1Var.f31053l7[i15].r(user);
                     q1Var.f31041k7[i15].i0(user, q1Var.f31053l7[i15], null);
@@ -159,10 +159,10 @@ public final class e0 implements Runnable {
                 }
             default:
                 org.telegram.utils.twidget.l1 l1Var = (org.telegram.utils.twidget.l1) this.d;
-                long j13 = this.f3448c;
-                int i16 = this.f3447b;
-                String str4 = (String) this.f3449e;
-                String str5 = (String) this.f3450f;
+                long j13 = this.f3451c;
+                int i16 = this.f3450b;
+                String str4 = (String) this.f3452e;
+                String str5 = (String) this.f3453f;
                 if (l1Var.f54318w) {
                     org.telegram.utils.twidget.d1.f54204a.execute(new n31(l1Var, j13, 2));
                     return;
@@ -236,20 +236,20 @@ public final class e0 implements Runnable {
     }
 
     public e0(Object obj, Object obj2, int i7, Object obj3, long j3, int i10) {
-        this.f3446a = i10;
+        this.f3449a = i10;
         this.d = obj;
-        this.f3449e = obj2;
-        this.f3447b = i7;
-        this.f3450f = obj3;
-        this.f3448c = j3;
+        this.f3452e = obj2;
+        this.f3450b = i7;
+        this.f3453f = obj3;
+        this.f3451c = j3;
     }
 
     public e0(org.telegram.utils.twidget.l1 l1Var, long j3, int i7, String str, String str2) {
-        this.f3446a = 5;
+        this.f3449a = 5;
         this.d = l1Var;
-        this.f3448c = j3;
-        this.f3447b = i7;
-        this.f3449e = str;
-        this.f3450f = str2;
+        this.f3451c = j3;
+        this.f3450b = i7;
+        this.f3452e = str;
+        this.f3453f = str2;
     }
 }

@@ -7,12 +7,12 @@ import java.util.Arrays;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.PhotoViewer;
 public final class gu implements View.OnClickListener {
-    public final int f47523a;
-    public final yw f47524b;
+    public final int f47513a;
+    public final yw f47514b;
 
     public gu(yw ywVar, int i7) {
-        this.f47523a = i7;
-        this.f47524b = ywVar;
+        this.f47513a = i7;
+        this.f47514b = ywVar;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class gu implements View.OnClickListener {
         CharSequence charSequence;
         qv qvVar;
         qv qvVar2;
-        int i7 = this.f47523a;
+        int i7 = this.f47513a;
         int i10 = 0;
-        yw ywVar = this.f47524b;
+        yw ywVar = this.f47514b;
         switch (i7) {
             case 0:
                 if (ywVar.m4() && (arrayList = ywVar.F2) != null && !arrayList.isEmpty() && ywVar.getParentActivity() != null) {
@@ -32,14 +32,14 @@ public final class gu implements View.OnClickListener {
                     if (kvVar != null) {
                         charSequence = kvVar.getFieldText();
                     } else {
-                        charSequence = ffVar.f27707a;
+                        charSequence = ffVar.f27709a;
                     }
                     ArrayList arrayList2 = ywVar.F2;
                     int size = arrayList2.size();
                     while (i10 < size) {
                         Object obj = arrayList2.get(i10);
                         i10++;
-                        ((org.telegram.messenger.ff) obj).f27707a = charSequence;
+                        ((org.telegram.messenger.ff) obj).f27709a = charSequence;
                     }
                     PhotoViewer.p1().I2(null, ywVar, ywVar.getResourceProvider());
                     PhotoViewer.p1().f42854p7 = true;
@@ -86,11 +86,11 @@ public final class gu implements View.OnClickListener {
             case 4:
                 ywVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("community_id", ywVar.f53648a3);
+                bundle.putLong("community_id", ywVar.f53613a3);
                 ywVar.presentFragment(new li.r(bundle));
                 return;
             case 5:
-                yw ywVar2 = this.f47524b;
+                yw ywVar2 = this.f47514b;
                 ArrayList arrayList4 = ywVar2.K2;
                 if (ywVar2.E2 != null && !arrayList4.isEmpty()) {
                     ywVar2.O2 = false;
@@ -134,7 +134,7 @@ public final class gu implements View.OnClickListener {
                 yw.y0(ywVar);
                 return;
             case 15:
-                ywVar.showDialog((org.telegram.ui.ActionBar.u2) org.telegram.ui.Components.t4.l(ywVar.getParentActivity(), org.telegram.messenger.hd.M0(2131751238, null), org.telegram.messenger.hd.M0(2131751243, null), null, new ju(ywVar, 1), new eu(ywVar, 3), false, false, ywVar.getResourceProvider()).f25804b);
+                ywVar.showDialog((org.telegram.ui.ActionBar.u2) org.telegram.ui.Components.t4.l(ywVar.getParentActivity(), org.telegram.messenger.hd.M0(2131751238, null), org.telegram.messenger.hd.M0(2131751243, null), null, new ju(ywVar, 1), new eu(ywVar, 3), false, false, ywVar.getResourceProvider()).f25806b);
                 return;
             case 16:
                 yw.D0(ywVar);

@@ -1,6 +1,6 @@
 package ji;
 
-import ai.v2;
+import ai.x2;
 import android.util.Log;
 import java.util.Locale;
 import org.telegram.ui.an;
@@ -69,7 +69,7 @@ public final class f implements Runnable {
                 mVar3.s();
                 an anVar = mVar3.f17571b.f34928a.f32319x3;
                 if (anVar != null) {
-                    anVar.presentFragment(new v2());
+                    anVar.presentFragment(new x2());
                     return;
                 }
                 return;

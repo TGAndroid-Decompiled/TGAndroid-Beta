@@ -24,7 +24,7 @@ public final class zs implements Runnable {
                 }
                 return;
             default:
-                y6.f53432k0 = null;
+                y6.f53436k0 = null;
                 DataSettingsActivity dataSettingsActivity2 = this.f54019b;
                 zs zsVar = new zs(dataSettingsActivity2, 1);
                 org.telegram.messenger.g0.i3(zsVar, 100L);

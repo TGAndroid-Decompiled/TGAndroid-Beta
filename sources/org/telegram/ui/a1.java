@@ -313,7 +313,7 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.g9, o
             String str = pageblockchannel.channel.title;
             int L = (size - org.telegram.messenger.g0.L(52.0f)) - this.f44903r;
             TL_iv.pageBlockChannel pageblockchannel2 = this.G;
-            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.ou0.f38088a;
+            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.ou0.f38086a;
             if (alignmentArr.length >= 5) {
                 alignment = alignmentArr[3];
             } else {
@@ -330,8 +330,8 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.g9, o
             }
             z2 z2Var = this.f44902n;
             if (z2Var != null) {
-                z2Var.f53812s = i11;
-                z2Var.f53813w = this.f44905w;
+                z2Var.f53777s = i11;
+                z2Var.f53778w = this.f44905w;
             }
         }
     }
@@ -375,7 +375,7 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.g9, o
         }
         TLRPC.Chat M0 = org.telegram.messenger.np.s1(((g4) n50Var).Y).M0(Long.valueOf(pageblockchannel.channel.f28051id));
         if (M0 != null && !M0.min) {
-            n50Var.f49453n = M0;
+            n50Var.f49452n = M0;
             if (M0.left && !M0.kicked) {
                 a(0, false);
             } else {
@@ -383,8 +383,8 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.g9, o
             }
         } else {
             TLRPC.Chat chat = pageblockchannel.channel;
-            if (!n50Var.f49454r && org.telegram.messenger.t3.t0(chat)) {
-                n50Var.f49454r = true;
+            if (!n50Var.f49453r && org.telegram.messenger.t3.t0(chat)) {
+                n50Var.f49453r = true;
                 int i11 = ((g4) n50Var).Y;
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = chat.username;

@@ -10,25 +10,25 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.r4;
 public final class t0 implements e6 {
-    public final TextPaint f57562a;
-    public final TextPaint f57563b;
-    public final TextPaint f57564c;
+    public final TextPaint f57564a;
+    public final TextPaint f57565b;
+    public final TextPaint f57566c;
     public final Paint d;
-    public final Paint f57565e;
-    public final c5 f57566f;
+    public final Paint f57567e;
+    public final c5 f57568f;
 
     public t0(c5 c5Var) {
-        this.f57566f = c5Var;
+        this.f57568f = c5Var;
         TextPaint textPaint = new TextPaint();
-        this.f57562a = textPaint;
+        this.f57564a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        this.f57563b = textPaint2;
+        this.f57565b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f57564c = textPaint3;
+        this.f57566c = textPaint3;
         new Paint(3);
         this.d = new Paint(3);
         Paint paint = new Paint(3);
-        this.f57565e = paint;
+        this.f57567e = paint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, gz.W0) - 2));
         textPaint2.setTextSize(org.telegram.messenger.g0.L(Math.max(16, gz.W0) - 2));
         textPaint3.setTextSize(org.telegram.messenger.g0.L(15.0f));
@@ -38,7 +38,7 @@ public final class t0 implements e6 {
 
     @Override
     public final boolean a() {
-        return this.f57566f.C0;
+        return this.f57568f.C0;
     }
 
     @Override
@@ -89,15 +89,15 @@ public final class t0 implements e6 {
         }
         switch (c10) {
             case 0:
-                return this.f57563b;
+                return this.f57565b;
             case 1:
-                return this.f57564c;
+                return this.f57566c;
             case 2:
-                return this.f57565e;
+                return this.f57567e;
             case 3:
                 return this.d;
             case 4:
-                return this.f57562a;
+                return this.f57564a;
             default:
                 return j6.V0(str);
         }
@@ -120,7 +120,7 @@ public final class t0 implements e6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        c5 c5Var = this.f57566f;
+        c5 c5Var = this.f57568f;
         t0 t0Var = c5Var.E0;
         if (str.equals("drawableMsgIn")) {
             if (c5Var.F0 == null) {
@@ -170,7 +170,7 @@ public final class t0 implements e6 {
 
     @Override
     public final int h(int i7) {
-        return this.f57566f.D0.get(i7, j6.x0(null, i7, false));
+        return this.f57568f.D0.get(i7, j6.x0(null, i7, false));
     }
 
     @Override

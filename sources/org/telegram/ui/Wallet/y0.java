@@ -270,7 +270,7 @@ public final class y0 {
         }
         if ((vVar instanceof rc.n) && (y0Var = ((rc.n) vVar).f55946b) != null) {
             StringBuilder m10 = r.b.m(str, ", HTTP ");
-            m10.append(y0Var.f6681b);
+            m10.append(y0Var.f6684b);
             return m10.toString();
         }
         return str;

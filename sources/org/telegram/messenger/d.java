@@ -7,12 +7,12 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 public final class d implements s10 {
-    public final int f23001a;
-    public final Object f23002b;
+    public final int f23009a;
+    public final Object f23010b;
 
     public d(Object obj, int i7) {
-        this.f23001a = i7;
-        this.f23002b = obj;
+        this.f23009a = i7;
+        this.f23010b = obj;
     }
 
     @Override
@@ -21,27 +21,27 @@ public final class d implements s10 {
         String str;
         boolean z10;
         int i7;
-        switch (this.f23001a) {
+        switch (this.f23009a) {
             case 0:
-                e eVar = (e) this.f23002b;
+                e eVar = (e) this.f23010b;
                 TL_aicompose.Tones tones = (TL_aicompose.Tones) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                ArrayList arrayList2 = eVar.f23211b;
-                eVar.f23214f = -1;
-                eVar.f23215g = System.currentTimeMillis();
+                ArrayList arrayList2 = eVar.f23218b;
+                eVar.f23221f = -1;
+                eVar.f23222g = System.currentTimeMillis();
                 if (tones instanceof TL_aicompose.TL_tones) {
-                    np.s1(eVar.f23210a).Y3(tones.users, false);
+                    np.s1(eVar.f23217a).Y3(tones.users, false);
                     arrayList2.clear();
                     TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
                     arrayList2.addAll(tL_tones.tones);
-                    eVar.f23212c = tL_tones.hash;
+                    eVar.f23219c = tL_tones.hash;
                     eVar.d();
                     eVar.c();
                     return;
                 }
                 return;
             case 1:
-                d4 d4Var = (d4) this.f23002b;
+                d4 d4Var = (d4) this.f23010b;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (updates != null) {
@@ -52,7 +52,7 @@ public final class d implements s10 {
                     return;
                 }
             case 2:
-                v9 v9Var = (v9) this.f23002b;
+                v9 v9Var = (v9) this.f23010b;
                 TL_payments.StarGiftActiveAuctions starGiftActiveAuctions = (TL_payments.StarGiftActiveAuctions) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 v9Var.getClass();
@@ -73,7 +73,7 @@ public final class d implements s10 {
                 }
                 return;
             case 3:
-                si siVar = (si) this.f23002b;
+                si siVar = (si) this.f23010b;
                 TLRPC.contacts_TopPeers contacts_toppeers = (TLRPC.contacts_TopPeers) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
                 if (contacts_toppeers instanceof TLRPC.TL_contacts_topPeers) {
@@ -85,22 +85,22 @@ public final class d implements s10 {
                         TLRPC.TL_topPeerCategoryPeers tL_topPeerCategoryPeers = tL_contacts_topPeers.categories.get(i11);
                         TLRPC.TopPeerCategory topPeerCategory = tL_topPeerCategoryPeers.category;
                         if (topPeerCategory instanceof TLRPC.TL_topPeerCategoryBotsInline) {
-                            siVar.f26484k1 = tL_topPeerCategoryPeers.peers;
+                            siVar.f26494k1 = tL_topPeerCategoryPeers.peers;
                             siVar.getUserConfig().F = currentTimeMillis;
                         } else if (topPeerCategory instanceof TLRPC.TL_topPeerCategoryBotsApp) {
-                            siVar.f26486m1 = tL_topPeerCategoryPeers.peers;
+                            siVar.f26496m1 = tL_topPeerCategoryPeers.peers;
                             siVar.getUserConfig().H = currentTimeMillis;
                         } else if (topPeerCategory instanceof TLRPC.TL_topPeerCategoryBotsGuestChat) {
                             siVar.l1 = tL_topPeerCategoryPeers.peers;
                             siVar.getUserConfig().G = currentTimeMillis;
                         } else {
-                            siVar.f26482j1 = tL_topPeerCategoryPeers.peers;
+                            siVar.f26492j1 = tL_topPeerCategoryPeers.peers;
                             long e10 = siVar.getUserConfig().e();
                             int i12 = 0;
                             while (true) {
-                                if (i12 < siVar.f26482j1.size()) {
-                                    if (((TLRPC.TL_topPeer) siVar.f26482j1.get(i12)).peer.user_id == e10) {
-                                        siVar.f26482j1.remove(i12);
+                                if (i12 < siVar.f26492j1.size()) {
+                                    if (((TLRPC.TL_topPeer) siVar.f26492j1.get(i12)).peer.user_id == e10) {
+                                        siVar.f26492j1.remove(i12);
                                     } else {
                                         i12++;
                                     }
@@ -115,11 +115,11 @@ public final class d implements s10 {
                     siVar.getNotificationCenter().k(82, new Object[0]);
                     siVar.getNotificationCenter().k(83, new Object[0]);
                     siVar.getNotificationCenter().k(84, new Object[0]);
-                    siVar.getMessagesStorage().f27220a.c(new x4(27, siVar, tL_contacts_topPeers));
+                    siVar.getMessagesStorage().f27219a.c(new x4(27, siVar, tL_contacts_topPeers));
                     return;
                 } else if (contacts_toppeers instanceof TLRPC.TL_contacts_topPeersDisabled) {
                     siVar.getUserConfig().W = false;
-                    siVar.getUserConfig().f24960s = (int) (System.currentTimeMillis() / 1000);
+                    siVar.getUserConfig().f24966s = (int) (System.currentTimeMillis() / 1000);
                     siVar.getUserConfig().v(false);
                     siVar.F();
                     return;
@@ -127,7 +127,7 @@ public final class d implements s10 {
                     return;
                 }
             case 4:
-                q0.a aVar = (q0.a) this.f23002b;
+                q0.a aVar = (q0.a) this.f23010b;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 int i13 = 0;
                 if (((TLRPC.TL_error) obj2) == null && messages_messages != null && (arrayList = messages_messages.messages) != null && !arrayList.isEmpty()) {
@@ -136,7 +136,7 @@ public final class d implements s10 {
                 g0.h3(new vm(aVar, i13, 1));
                 return;
             case 5:
-                li.a aVar2 = (li.a) this.f23002b;
+                li.a aVar2 = (li.a) this.f23010b;
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
                 if (tL_error5 != null) {
@@ -147,7 +147,7 @@ public final class d implements s10 {
                     return;
                 }
             case 6:
-                w2 w2Var = (w2) this.f23002b;
+                w2 w2Var = (w2) this.f23010b;
                 TL_account.WebBrowserSettings webBrowserSettings = (TL_account.WebBrowserSettings) obj;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
                 if (webBrowserSettings instanceof TL_account.TL_webBrowserSettings) {
@@ -177,7 +177,7 @@ public final class d implements s10 {
                     return;
                 }
             default:
-                ez ezVar = (ez) this.f23002b;
+                ez ezVar = (ez) this.f23010b;
                 TLRPC.Updates updates3 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error7 = (TLRPC.TL_error) obj2;
                 if (updates3 != null) {

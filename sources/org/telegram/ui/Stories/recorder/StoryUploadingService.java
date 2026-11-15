@@ -41,7 +41,7 @@ public class StoryUploadingService extends Service implements is {
                 qVar.f9942o = round;
                 qVar.f9943p = z10;
                 try {
-                    new i0(t0.f26600b).e(null, 33, this.f43381a.b());
+                    new i0(t0.f26609b).e(null, 33, this.f43381a.b());
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
@@ -63,10 +63,10 @@ public class StoryUploadingService extends Service implements is {
             stopForeground(true);
         } catch (Exception unused) {
         }
-        new i0(t0.f26600b).b(33, null);
+        new i0(t0.f26609b).b(33, null);
         ns.e().n(this, ns.B5);
         ns.f(this.d).n(this, ns.A5);
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("upload story destroy");
         }
     }
@@ -76,7 +76,7 @@ public class StoryUploadingService extends Service implements is {
         int i11 = ns.A5;
         this.f43382b = intent.getStringExtra("path");
         int i12 = this.d;
-        int intExtra = intent.getIntExtra("currentAccount", m10.f24934t0);
+        int intExtra = intent.getIntExtra("currentAccount", m10.f24940t0);
         this.d = intExtra;
         if (!m10.r(intExtra)) {
             stopSelf();
@@ -95,12 +95,12 @@ public class StoryUploadingService extends Service implements is {
             stopSelf();
             return 2;
         }
-        if (r2.f26198a) {
+        if (r2.f26206a) {
             a8.b("start upload story");
         }
         if (this.f43381a == null) {
             at.i();
-            q qVar = new q(t0.f26600b, null);
+            q qVar = new q(t0.f26609b, null);
             this.f43381a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
@@ -122,7 +122,7 @@ public class StoryUploadingService extends Service implements is {
             a8.g(th2, true);
         }
         try {
-            new i0(t0.f26600b).e(null, 33, this.f43381a.b());
+            new i0(t0.f26609b).e(null, 33, this.f43381a.b());
         } catch (Throwable th3) {
             a8.g(th3, true);
         }

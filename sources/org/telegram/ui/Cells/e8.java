@@ -19,13 +19,13 @@ public final class e8 extends a41 {
         boolean z10;
         f8 f8Var = (f8) view;
         boolean z11 = false;
-        if (b41Var != null && b41Var.f33175e) {
+        if (b41Var != null && b41Var.f33178e) {
             z10 = true;
         } else {
             z10 = false;
         }
         f8Var.b(z10, true);
-        if ((uj0Var instanceof u41) && ((u41) uj0Var).f39898k3) {
+        if ((uj0Var instanceof u41) && ((u41) uj0Var).f39895k3) {
             z11 = true;
         }
         f8Var.c(z11);
@@ -46,7 +46,7 @@ public final class e8 extends a41 {
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
                     u41 u41Var2;
                     v4.y yVar;
-                    if (motionEvent.getAction() == 0 && (yVar = (u41Var2 = u41.this).f39896h3) != null) {
+                    if (motionEvent.getAction() == 0 && (yVar = (u41Var2 = u41.this).f39893h3) != null) {
                         yVar.t(u41Var2.T(f8Var));
                         return false;
                     }

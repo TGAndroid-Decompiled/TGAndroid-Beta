@@ -64,7 +64,7 @@ public final class l1 extends ScrollView {
                 super.onMeasure(i7, i10);
                 return;
             case 4:
-                ((ek0) this.f29358b).f46845t0 = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.L(30.0f);
+                ((ek0) this.f29358b).f46835t0 = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.L(30.0f);
                 super.onMeasure(i7, i10);
                 return;
         }
@@ -84,7 +84,7 @@ public final class l1 extends ScrollView {
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
         switch (this.f29357a) {
             case 3:
-                int i7 = ((ce0) this.f29358b).f46085a;
+                int i7 = ((ce0) this.f29358b).f46074a;
                 if (i7 == 1 || i7 == 2 || i7 == 4) {
                     rect.bottom = org.telegram.messenger.g0.L(40.0f) + rect.bottom;
                 }

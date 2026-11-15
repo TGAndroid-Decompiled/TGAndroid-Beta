@@ -79,7 +79,7 @@ public final class k5 extends FrameLayout {
             obj.f11899a = (TL_stories.StoryItem) arrayList.get(i10);
             arrayList2.add(obj);
         }
-        ArrayList F = np.s1(this.f11933r.h).f25299i0.F(m10.i(m10.f24934t0).e());
+        ArrayList F = np.s1(this.f11933r.h).f25302i0.F(m10.i(m10.f24940t0).e());
         if (F != null) {
             for (int i11 = 0; i11 < F.size(); i11++) {
                 ?? obj2 = new Object();
@@ -145,7 +145,7 @@ public final class k5 extends FrameLayout {
         int i11;
         int i12 = 0;
         if (this.f11933r.f11833b) {
-            i11 = org.telegram.messenger.g0.f23603m;
+            i11 = org.telegram.messenger.g0.f23605m;
         } else {
             i11 = 0;
         }
@@ -154,8 +154,8 @@ public final class k5 extends FrameLayout {
         ((FrameLayout.LayoutParams) d5Var.getLayoutParams()).topMargin = i11;
         this.f11932n = d5Var.getFinalHeight();
         this.f11928b = org.telegram.messenger.g0.L(20.0f) + i11;
-        ((FrameLayout.LayoutParams) this.f11930e.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23603m;
-        float L = (((org.telegram.messenger.g0.L(20.0f) + i11) + this.f11932n) + org.telegram.messenger.g0.L(24.0f)) - org.telegram.messenger.g0.f23603m;
+        ((FrameLayout.LayoutParams) this.f11930e.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23605m;
+        float L = (((org.telegram.messenger.g0.L(20.0f) + i11) + this.f11932n) + org.telegram.messenger.g0.L(24.0f)) - org.telegram.messenger.g0.f23605m;
         this.d = L;
         this.f11929c = size - L;
         while (true) {
@@ -234,7 +234,7 @@ public final class k5 extends FrameLayout {
                         f9Var.f11712c = null;
                     }
                     y8 y8Var = i9Var.f11861o0;
-                    int i13 = gjVar.f23822l.f28290id;
+                    int i13 = gjVar.f23824l.f28290id;
                     i9 i9Var2 = y8Var.O0;
                     int i14 = 0;
                     while (true) {

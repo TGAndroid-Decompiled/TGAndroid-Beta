@@ -42,13 +42,13 @@ public final class h3 extends ClickableSpan {
                         switch (r2) {
                             case 0:
                                 di.c0 c0Var2 = c0Var;
-                                if (c0Var2.f8286g != 3) {
-                                    c0Var2.f8286g = 3;
-                                    c0Var2.f8283c = 0;
+                                if (c0Var2.f8287g != 3) {
+                                    c0Var2.f8287g = 3;
+                                    c0Var2.f8284c = 0;
                                     c0Var2.d = false;
-                                    c0Var2.f8287i = false;
-                                    c0Var2.f8285f = 0L;
-                                    c0Var2.f8288j = null;
+                                    c0Var2.f8288i = false;
+                                    c0Var2.f8286f = 0L;
+                                    c0Var2.f8289j = null;
                                     c0Var2.h = false;
                                     c0Var2.a();
                                     return;
@@ -56,13 +56,13 @@ public final class h3 extends ClickableSpan {
                                 return;
                             case 1:
                                 di.c0 c0Var3 = c0Var;
-                                if (c0Var3.f8286g != 2) {
-                                    c0Var3.f8286g = 2;
-                                    c0Var3.f8283c = 0;
+                                if (c0Var3.f8287g != 2) {
+                                    c0Var3.f8287g = 2;
+                                    c0Var3.f8284c = 0;
                                     c0Var3.d = false;
-                                    c0Var3.f8287i = false;
-                                    c0Var3.f8285f = 0L;
-                                    c0Var3.f8288j = null;
+                                    c0Var3.f8288i = false;
+                                    c0Var3.f8286f = 0L;
+                                    c0Var3.f8289j = null;
                                     c0Var3.h = false;
                                     c0Var3.a();
                                     return;
@@ -70,13 +70,13 @@ public final class h3 extends ClickableSpan {
                                 return;
                             default:
                                 di.c0 c0Var4 = c0Var;
-                                if (c0Var4.f8286g != 1) {
-                                    c0Var4.f8286g = 1;
-                                    c0Var4.f8283c = 0;
+                                if (c0Var4.f8287g != 1) {
+                                    c0Var4.f8287g = 1;
+                                    c0Var4.f8284c = 0;
                                     c0Var4.d = false;
-                                    c0Var4.f8287i = false;
-                                    c0Var4.f8285f = 0L;
-                                    c0Var4.f8288j = null;
+                                    c0Var4.f8288i = false;
+                                    c0Var4.f8286f = 0L;
+                                    c0Var4.f8289j = null;
                                     c0Var4.h = false;
                                     c0Var4.a();
                                     return;
@@ -96,13 +96,13 @@ public final class h3 extends ClickableSpan {
                         switch (r2) {
                             case 0:
                                 di.c0 c0Var2 = c0Var;
-                                if (c0Var2.f8286g != 3) {
-                                    c0Var2.f8286g = 3;
-                                    c0Var2.f8283c = 0;
+                                if (c0Var2.f8287g != 3) {
+                                    c0Var2.f8287g = 3;
+                                    c0Var2.f8284c = 0;
                                     c0Var2.d = false;
-                                    c0Var2.f8287i = false;
-                                    c0Var2.f8285f = 0L;
-                                    c0Var2.f8288j = null;
+                                    c0Var2.f8288i = false;
+                                    c0Var2.f8286f = 0L;
+                                    c0Var2.f8289j = null;
                                     c0Var2.h = false;
                                     c0Var2.a();
                                     return;
@@ -110,13 +110,13 @@ public final class h3 extends ClickableSpan {
                                 return;
                             case 1:
                                 di.c0 c0Var3 = c0Var;
-                                if (c0Var3.f8286g != 2) {
-                                    c0Var3.f8286g = 2;
-                                    c0Var3.f8283c = 0;
+                                if (c0Var3.f8287g != 2) {
+                                    c0Var3.f8287g = 2;
+                                    c0Var3.f8284c = 0;
                                     c0Var3.d = false;
-                                    c0Var3.f8287i = false;
-                                    c0Var3.f8285f = 0L;
-                                    c0Var3.f8288j = null;
+                                    c0Var3.f8288i = false;
+                                    c0Var3.f8286f = 0L;
+                                    c0Var3.f8289j = null;
                                     c0Var3.h = false;
                                     c0Var3.a();
                                     return;
@@ -124,13 +124,13 @@ public final class h3 extends ClickableSpan {
                                 return;
                             default:
                                 di.c0 c0Var4 = c0Var;
-                                if (c0Var4.f8286g != 1) {
-                                    c0Var4.f8286g = 1;
-                                    c0Var4.f8283c = 0;
+                                if (c0Var4.f8287g != 1) {
+                                    c0Var4.f8287g = 1;
+                                    c0Var4.f8284c = 0;
                                     c0Var4.d = false;
-                                    c0Var4.f8287i = false;
-                                    c0Var4.f8285f = 0L;
-                                    c0Var4.f8288j = null;
+                                    c0Var4.f8288i = false;
+                                    c0Var4.f8286f = 0L;
+                                    c0Var4.f8289j = null;
                                     c0Var4.h = false;
                                     c0Var4.a();
                                     return;
@@ -148,13 +148,13 @@ public final class h3 extends ClickableSpan {
                         switch (r2) {
                             case 0:
                                 di.c0 c0Var2 = c0Var;
-                                if (c0Var2.f8286g != 3) {
-                                    c0Var2.f8286g = 3;
-                                    c0Var2.f8283c = 0;
+                                if (c0Var2.f8287g != 3) {
+                                    c0Var2.f8287g = 3;
+                                    c0Var2.f8284c = 0;
                                     c0Var2.d = false;
-                                    c0Var2.f8287i = false;
-                                    c0Var2.f8285f = 0L;
-                                    c0Var2.f8288j = null;
+                                    c0Var2.f8288i = false;
+                                    c0Var2.f8286f = 0L;
+                                    c0Var2.f8289j = null;
                                     c0Var2.h = false;
                                     c0Var2.a();
                                     return;
@@ -162,13 +162,13 @@ public final class h3 extends ClickableSpan {
                                 return;
                             case 1:
                                 di.c0 c0Var3 = c0Var;
-                                if (c0Var3.f8286g != 2) {
-                                    c0Var3.f8286g = 2;
-                                    c0Var3.f8283c = 0;
+                                if (c0Var3.f8287g != 2) {
+                                    c0Var3.f8287g = 2;
+                                    c0Var3.f8284c = 0;
                                     c0Var3.d = false;
-                                    c0Var3.f8287i = false;
-                                    c0Var3.f8285f = 0L;
-                                    c0Var3.f8288j = null;
+                                    c0Var3.f8288i = false;
+                                    c0Var3.f8286f = 0L;
+                                    c0Var3.f8289j = null;
                                     c0Var3.h = false;
                                     c0Var3.a();
                                     return;
@@ -176,13 +176,13 @@ public final class h3 extends ClickableSpan {
                                 return;
                             default:
                                 di.c0 c0Var4 = c0Var;
-                                if (c0Var4.f8286g != 1) {
-                                    c0Var4.f8286g = 1;
-                                    c0Var4.f8283c = 0;
+                                if (c0Var4.f8287g != 1) {
+                                    c0Var4.f8287g = 1;
+                                    c0Var4.f8284c = 0;
                                     c0Var4.d = false;
-                                    c0Var4.f8287i = false;
-                                    c0Var4.f8285f = 0L;
-                                    c0Var4.f8288j = null;
+                                    c0Var4.f8288i = false;
+                                    c0Var4.f8286f = 0L;
+                                    c0Var4.f8289j = null;
                                     c0Var4.h = false;
                                     c0Var4.a();
                                     return;

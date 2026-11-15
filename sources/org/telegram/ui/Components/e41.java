@@ -4,18 +4,18 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public final class e41 extends MetricAffectingSpan {
-    public final CharSequence f34186a;
-    public final int f34187b;
-    public final int f34188c;
+    public final CharSequence f34173a;
+    public final int f34174b;
+    public final int f34175c;
     public final byte d;
-    public final wy0 f34189e;
+    public final wy0 f34176e;
 
     public e41(CharSequence charSequence, int i7, int i10, byte b10, wy0 wy0Var) {
-        this.f34186a = charSequence;
-        this.f34187b = i7;
-        this.f34188c = i10;
+        this.f34173a = charSequence;
+        this.f34174b = i7;
+        this.f34175c = i10;
         this.d = b10;
-        this.f34189e = wy0Var;
+        this.f34176e = wy0Var;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class e41 extends MetricAffectingSpan {
         } else {
             textPaint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Vc, false));
         }
-        wy0 wy0Var = this.f34189e;
+        wy0 wy0Var = this.f34176e;
         if (wy0Var != null) {
             wy0Var.a(textPaint);
             return;
@@ -42,7 +42,7 @@ public final class e41 extends MetricAffectingSpan {
     public final void updateMeasureState(TextPaint textPaint) {
         textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.gz.W0 - 1));
         textPaint.setFlags(textPaint.getFlags() | 128);
-        wy0 wy0Var = this.f34189e;
+        wy0 wy0Var = this.f34176e;
         if (wy0Var != null) {
             wy0Var.a(textPaint);
         } else {

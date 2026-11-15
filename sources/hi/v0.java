@@ -40,7 +40,7 @@ public final class v0 extends View {
         paint.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(6.0f)));
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint.setColor(-1);
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(hd.N0("StoryDraftSaved"), textPaint, point.x, TextUtils.TruncateAt.END), textPaint, org.telegram.messenger.g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(hd.N0("StoryDraftSaved"), textPaint, point.x, TextUtils.TruncateAt.END), textPaint, org.telegram.messenger.g0.f23611q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f15208c = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f10 = staticLayout.getLineWidth(0);
@@ -76,7 +76,7 @@ public final class v0 extends View {
         }
         canvas.save();
         if (this.f15211n) {
-            f10 = er.f34424k.getInterpolation(d);
+            f10 = er.f34423k.getInterpolation(d);
         } else {
             f10 = 1.0f;
         }

@@ -9,41 +9,41 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.jt0;
 public final class r4 implements RequestDelegate {
-    public final int f26230a;
-    public final Object f26231b;
-    public final Object f26232c;
+    public final int f26238a;
+    public final Object f26239b;
+    public final Object f26240c;
 
     public r4(int i7, Object obj, Object obj2) {
-        this.f26230a = i7;
-        this.f26231b = obj;
-        this.f26232c = obj2;
+        this.f26238a = i7;
+        this.f26239b = obj;
+        this.f26240c = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int indexOf;
-        switch (this.f26230a) {
+        switch (this.f26238a) {
             case 0:
-                g5 g5Var = (g5) this.f26231b;
-                jt0 jt0Var = (jt0) this.f26232c;
+                g5 g5Var = (g5) this.f26239b;
+                jt0 jt0Var = (jt0) this.f26240c;
                 if (tL_error == null) {
-                    g5Var.f23670a0.clear();
+                    g5Var.f23672a0.clear();
                     g5Var.Z.clear();
-                    g5Var.f23687n0 = 0;
-                    g5Var.f23689s = false;
-                    g5Var.f23676e = false;
+                    g5Var.f23689n0 = 0;
+                    g5Var.f23691s = false;
+                    g5Var.f23678e = false;
                     g5Var.h = false;
-                    g5Var.f23671b = false;
-                    g5Var.f23688r = false;
-                    g5Var.f23690w = "";
+                    g5Var.f23673b = false;
+                    g5Var.f23690r = false;
+                    g5Var.f23692w = "";
                     g0.h3(new b4(28, g5Var, jt0Var));
                     return;
                 }
                 g0.h3(jt0Var);
                 return;
             case 1:
-                g5 g5Var2 = (g5) this.f26231b;
-                TLRPC.User user = (TLRPC.User) this.f26232c;
+                g5 g5Var2 = (g5) this.f26239b;
+                TLRPC.User user = (TLRPC.User) this.f26240c;
                 if (tL_error == null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                     TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
@@ -67,8 +67,8 @@ public final class r4 implements RequestDelegate {
                             if (!TextUtils.isEmpty(user2.phone)) {
                                 g5.m(0, user2.first_name, user2.last_name);
                                 g5Var2.getMessagesStorage().f(user2.phone, "");
-                                d5 d5Var = (d5) g5Var2.f23670a0.get(user2.phone);
-                                if (d5Var != null && (indexOf = d5Var.f23036g.indexOf(user2.phone)) != -1) {
+                                d5 d5Var = (d5) g5Var2.f23672a0.get(user2.phone);
+                                if (d5Var != null && (indexOf = d5Var.f23044g.indexOf(user2.phone)) != -1) {
                                     d5Var.h.set(indexOf, 0);
                                 }
                             }
@@ -79,16 +79,16 @@ public final class r4 implements RequestDelegate {
                 }
                 return;
             case 2:
-                g5 g5Var3 = (g5) this.f26231b;
-                SharedPreferences.Editor editor = (SharedPreferences.Editor) this.f26232c;
+                g5 g5Var3 = (g5) this.f26239b;
+                SharedPreferences.Editor editor = (SharedPreferences.Editor) this.f26240c;
                 if (tLObject instanceof Vector) {
                     g0.h3(new mg(g5Var3, editor, (Vector) tLObject, 14));
                     return;
                 }
                 return;
             case 3:
-                si siVar = (si) this.f26231b;
-                TLRPC.TL_messages_saveGif tL_messages_saveGif = (TLRPC.TL_messages_saveGif) this.f26232c;
+                si siVar = (si) this.f26239b;
+                TLRPC.TL_messages_saveGif tL_messages_saveGif = (TLRPC.TL_messages_saveGif) this.f26240c;
                 siVar.getClass();
                 if (tL_error != null && r8.r(tL_error.text)) {
                     siVar.getFileRefController().u(new Object[]{tL_messages_saveGif}, "gif");
@@ -96,11 +96,11 @@ public final class r4 implements RequestDelegate {
                 }
                 return;
             case 4:
-                g0.h3(new kg((si) this.f26231b, tLObject, (TLRPC.Document) this.f26232c, 1));
+                g0.h3(new kg((si) this.f26239b, tLObject, (TLRPC.Document) this.f26240c, 1));
                 return;
             case 5:
-                si siVar2 = (si) this.f26231b;
-                Runnable runnable = (Runnable) this.f26232c;
+                si siVar2 = (si) this.f26239b;
+                Runnable runnable = (Runnable) this.f26240c;
                 siVar2.getClass();
                 int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
                 if (tLObject instanceof TLRPC.TL_attachMenuBotsNotModified) {
@@ -115,11 +115,11 @@ public final class r4 implements RequestDelegate {
                 }
                 return;
             case 6:
-                g0.h3(new kg((np) this.f26231b, tLObject, (ArrayList) this.f26232c, 7));
+                g0.h3(new kg((np) this.f26239b, tLObject, (ArrayList) this.f26240c, 7));
                 return;
             case 7:
-                np npVar = (np) this.f26231b;
-                Runnable runnable2 = (Runnable) this.f26232c;
+                np npVar = (np) this.f26239b;
+                Runnable runnable2 = (Runnable) this.f26240c;
                 npVar.getClass();
                 if (tL_error == null) {
                     npVar.O3((TLRPC.Updates) tLObject, false);
@@ -131,11 +131,11 @@ public final class r4 implements RequestDelegate {
                 }
                 return;
             case 8:
-                g0.h3(new bm((tv) this.f26231b, tLObject, (ArrayList) this.f26232c, tL_error, 22));
+                g0.h3(new bm((tv) this.f26239b, tLObject, (ArrayList) this.f26240c, tL_error, 22));
                 return;
             case 9:
-                ez ezVar = (ez) this.f26231b;
-                Runnable runnable3 = (Runnable) this.f26232c;
+                ez ezVar = (ez) this.f26239b;
+                Runnable runnable3 = (Runnable) this.f26240c;
                 if (tLObject != null) {
                     ezVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                     if (runnable3 != null) {
@@ -147,7 +147,7 @@ public final class r4 implements RequestDelegate {
                 ezVar.getClass();
                 return;
             default:
-                g0.i3(new n10((p10) this.f26231b, (String) this.f26232c, tL_error, tLObject, 0), 2L);
+                g0.i3(new n10((p10) this.f26239b, (String) this.f26240c, tL_error, tLObject, 0), 2L);
                 return;
         }
     }

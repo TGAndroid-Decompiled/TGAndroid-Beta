@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import di.a9;
+import di.z8;
 import fi.b7;
 import fi.d7;
 import fi.f7;
@@ -55,15 +55,15 @@ import org.telegram.ui.qq;
 import org.telegram.ui.yw;
 import org.telegram.ui.zr;
 public final class m1 implements Runnable {
-    public final int f3695a;
-    public final long f3696b;
-    public final Object f3697c;
+    public final int f3698a;
+    public final long f3699b;
+    public final Object f3700c;
     public final Object d;
 
     public m1(Object obj, long j3, Object obj2, int i7) {
-        this.f3695a = i7;
-        this.f3697c = obj;
-        this.f3696b = j3;
+        this.f3698a = i7;
+        this.f3700c = obj;
+        this.f3699b = j3;
         this.d = obj2;
     }
 
@@ -77,7 +77,7 @@ public final class m1 implements Runnable {
         boolean z13;
         int i10;
         fm fmVar;
-        int i11 = this.f3695a;
+        int i11 = this.f3698a;
         boolean z14 = false;
         r4 = 0;
         r4 = 0;
@@ -85,9 +85,9 @@ public final class m1 implements Runnable {
         int i12 = 0;
         z14 = false;
         z14 = false;
-        long j3 = this.f3696b;
+        long j3 = this.f3699b;
         Object obj = this.d;
-        Object obj2 = this.f3697c;
+        Object obj2 = this.f3700c;
         switch (i11) {
             case 0:
                 s2 s2Var = (s2) obj2;
@@ -158,7 +158,7 @@ public final class m1 implements Runnable {
                         if (i14 < arrayList.size()) {
                             long j10 = ((fi.n) arrayList.get(i14)).f12049c;
                             ywVar = ywVar2;
-                            if (j10 != m10.i(qVar.f12193f).f24953n && s6Var.L(j10)) {
+                            if (j10 != m10.i(qVar.f12193f).f24959n && s6Var.L(j10)) {
                                 z10 = false;
                             } else {
                                 i14++;
@@ -232,7 +232,7 @@ public final class m1 implements Runnable {
                     if (a22 != null && (s6Var2.O(a22) || a22.self)) {
                         s6Var2.g(peerStories);
                         f7 f7Var = s6Var2.f12327k;
-                        f7Var.f11709b.f27220a.c(new d7(f7Var, peerStories, 1));
+                        f7Var.f11709b.f27219a.c(new d7(f7Var, peerStories, 1));
                     }
                     StringBuilder t6 = a8.p0.t(j3, "StoriesController processAllStoriesResponse dialogId=", " overwrite stories ");
                     t6.append(tL_stories_peerStories.stories.stories.size());
@@ -313,7 +313,7 @@ public final class m1 implements Runnable {
             case 9:
                 ArrayList arrayList5 = (ArrayList) obj;
                 vr vrVar = ((f7) obj2).f11709b;
-                SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+                SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
                 try {
                     String join = TextUtils.join(", ", arrayList5);
                     Locale locale = Locale.US;
@@ -334,7 +334,7 @@ public final class m1 implements Runnable {
                 return;
             case 12:
                 ((long[]) obj2)[0] = j3;
-                ((ai.f1) obj).run();
+                ((ai.g1) obj).run();
                 return;
             case 13:
                 ((VideoFramesRewinder) obj2).lambda$new$1((ArrayList) obj, j3);
@@ -350,20 +350,20 @@ public final class m1 implements Runnable {
                 return;
             case 17:
                 an anVar = (an) obj2;
-                anVar.getMessagesController().p0(this.f3696b, ((gj) obj).e1(), anVar.f45259k6);
+                anVar.getMessagesController().p0(this.f3699b, ((gj) obj).e1(), anVar.f45258k6);
                 return;
             case 18:
-                an anVar2 = ((lm) obj2).f49005a;
+                an anVar2 = ((lm) obj2).f49001a;
                 i10 = ((org.telegram.ui.ActionBar.e2) anVar2).currentAccount;
-                org.telegram.ui.Components.t4.q0(ez.C(i10).q0((ArrayList) obj, this.f3696b, false, false, true, 0, 0, null, -1, 0L, anVar2.j9(), anVar2.f45422x5), anVar2, null);
+                org.telegram.ui.Components.t4.q0(ez.C(i10).q0((ArrayList) obj, this.f3699b, false, false, true, 0, 0, null, -1, 0L, anVar2.j9(), anVar2.f45421x5), anVar2, null);
                 return;
             case 19:
                 qq qqVar = (qq) obj2;
                 TLRPC.User user = (TLRPC.User) obj;
                 qqVar.getMessagesController().f0(qqVar.N, user);
                 qqVar.A0(j3);
-                if (qqVar.f50738n != null && user != null && cc.a(qqVar)) {
-                    cc.D(qqVar, user, qqVar.f50738n.title).j();
+                if (qqVar.f50737n != null && user != null && cc.a(qqVar)) {
+                    cc.D(qqVar, user, qqVar.f50737n.title).j();
                     return;
                 }
                 return;
@@ -391,9 +391,9 @@ public final class m1 implements Runnable {
                 hm hmVar = (hm) obj2;
                 fm fmVar2 = (fm) obj;
                 im imVar = hmVar.Q;
-                if (!imVar.f35663r.J1 && hmVar.E == j3 && (fmVar = hmVar.G) == fmVar2) {
+                if (!imVar.f35650r.J1 && hmVar.E == j3 && (fmVar = hmVar.G) == fmVar2) {
                     imVar.K = fmVar;
-                    imVar.N = fmVar.f34624a.f35003a;
+                    imVar.N = fmVar.f34628a.f35003a;
                     imVar.L = false;
                     hmVar.H = 0.0f;
                     hmVar.invalidate();
@@ -425,7 +425,7 @@ public final class m1 implements Runnable {
                 d70.Hd((d70) obj2, j3, (TLRPC.Chat) obj);
                 return;
             case 25:
-                ((ys0) obj2).f42150y1.presentFragment(an.ta(((gj) obj).e1(), j3));
+                ((ys0) obj2).f42152y1.presentFragment(an.ta(((gj) obj).e1(), j3));
                 return;
             case 26:
                 av0.A1((av0) obj2, (TLRPC.TL_messages_emojiGroups) obj, j3);
@@ -472,7 +472,7 @@ public final class m1 implements Runnable {
                 }
                 org.telegram.messenger.r3 r3Var = c40Var.V2;
                 if (r3Var != null && i12 != 0) {
-                    HashMap hashMap = r3Var.f26215k;
+                    HashMap hashMap = r3Var.f26223k;
                     Long valueOf = Long.valueOf(j3);
                     ?? obj4 = new Object();
                     obj4.f26052a = i12;
@@ -492,7 +492,7 @@ public final class m1 implements Runnable {
                     T3.presentFragment(ua2);
                     TLRPC.Chat M0 = np.s1(launchActivity.P).M0(Long.valueOf(-l10.longValue()));
                     if (M0 != null) {
-                        org.telegram.messenger.g0.i3(new a9(ua2, this.f3696b, M0, 1), 250L);
+                        org.telegram.messenger.g0.i3(new z8(ua2, this.f3699b, M0, 1), 250L);
                         return;
                     }
                     return;
@@ -502,9 +502,9 @@ public final class m1 implements Runnable {
     }
 
     public m1(Object obj, Object obj2, long j3, int i7) {
-        this.f3695a = i7;
-        this.f3697c = obj;
+        this.f3698a = i7;
+        this.f3700c = obj;
         this.d = obj2;
-        this.f3696b = j3;
+        this.f3699b = j3;
     }
 }

@@ -59,7 +59,7 @@ public final class y {
             int indexOf = arrayList.indexOf(c10);
             arrayList.remove(c10);
             ns.f(this.f18143a).k(ns.J1, new Object[0]);
-            cc.a0(vVar).U(hd.M0(2131752715, null), true, new ai.z0(this, indexOf, c10, 19), new s5((Object) this, (Object) str, (Object) c10, 25)).j();
+            cc.a0(vVar).U(hd.M0(2131752715, null), true, new ai.a1(this, indexOf, c10, 19), new s5((Object) this, (Object) str, (Object) c10, 25)).j();
         }
     }
 
@@ -115,7 +115,7 @@ public final class y {
                 int i7 = this.f18143a;
                 if (z10) {
                     vr a02 = vr.a0(i7);
-                    a02.f27220a.c(new m6(this, a02, z11, 5));
+                    a02.f27219a.c(new m6(this, a02, z11, 5));
                     return;
                 }
                 ConnectionsManager.getInstance(i7).sendRequest(new TL_account.getBusinessChatLinks(), new x(this, 0));
@@ -126,6 +126,6 @@ public final class y {
     public final void f() {
         ArrayList arrayList = new ArrayList(this.f18144b);
         vr a02 = vr.a0(this.f18143a);
-        a02.f27220a.c(new hi.y0(a02, arrayList, 1));
+        a02.f27219a.c(new hi.y0(a02, arrayList, 1));
     }
 }

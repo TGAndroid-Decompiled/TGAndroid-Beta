@@ -172,7 +172,7 @@ public class uj0 extends RecyclerView implements eh.a {
     public static boolean a1(View view) {
         if (view instanceof oj0) {
             ys0 ys0Var = (ys0) ((oj0) view);
-            if (ys0Var.f42086c2 && ys0Var.f42099g2 > 0) {
+            if (ys0Var.f42088c2 && ys0Var.f42101g2 > 0) {
                 return true;
             }
             return false;
@@ -658,7 +658,7 @@ public class uj0 extends RecyclerView implements eh.a {
     public final void N0(Canvas canvas, View view) {
         boolean z10;
         boolean z11;
-        if (this.S2 == null && view != null && u1(view) && ((Boolean) this.H2.f34328a.a(view)).booleanValue() && i1(view)) {
+        if (this.S2 == null && view != null && u1(view) && ((Boolean) this.H2.f34327a.a(view)).booleanValue() && i1(view)) {
             int R = RecyclerView.R(view);
             boolean z12 = false;
             if (R == -1) {
@@ -947,9 +947,9 @@ public class uj0 extends RecyclerView implements eh.a {
     @Override
     public final void c(dh.a aVar, RectF rectF) {
         if (Build.VERSION.SDK_INT < 29) {
-            aVar.f8087a = true;
+            aVar.f8090a = true;
         } else if (Y0() && getOverScrollMode() != 2) {
-            aVar.f8087a = true;
+            aVar.f8090a = true;
         } else {
             int itemDecorationCount = getItemDecorationCount();
             for (int i7 = 0; i7 < itemDecorationCount; i7++) {
@@ -1040,13 +1040,13 @@ public class uj0 extends RecyclerView implements eh.a {
         float f10;
         xi0 xi0Var = this.f40066m2;
         if (xi0Var != null) {
-            uj0 uj0Var = xi0Var.f41705a;
-            if (xi0Var.d || xi0Var.f41708e) {
+            uj0 uj0Var = xi0Var.f41697a;
+            if (xi0Var.d || xi0Var.f41700e) {
                 for (int i7 = 0; i7 < uj0Var.getChildCount(); i7++) {
                     View childAt = uj0Var.getChildAt(i7);
                     int R = RecyclerView.R(childAt);
-                    if (R >= 0 && !xi0Var.f41707c.contains(childAt)) {
-                        Float f11 = (Float) xi0Var.f41706b.get(R, null);
+                    if (R >= 0 && !xi0Var.f41699c.contains(childAt)) {
+                        Float f11 = (Float) xi0Var.f41698b.get(R, null);
                         if (f11 == null) {
                             childAt.setAlpha(1.0f);
                         } else {
@@ -1077,7 +1077,7 @@ public class uj0 extends RecyclerView implements eh.a {
                         View view2 = (View) this.f40068o1.get(i11);
                         int save = canvas.save();
                         int intValue = ((Integer) view2.getTag()).intValue();
-                        if (org.telegram.messenger.hd.f24101a0) {
+                        if (org.telegram.messenger.hd.f24104a0) {
                             f10 = getWidth() - view2.getWidth();
                         } else {
                             f10 = 0.0f;
@@ -1091,7 +1091,7 @@ public class uj0 extends RecyclerView implements eh.a {
             } else if (i10 == 2 && this.f40052f1 != null && (view = this.f40072q1) != null && view.getAlpha() != 0.0f) {
                 int save2 = canvas.save();
                 int intValue2 = ((Integer) this.f40072q1.getTag()).intValue();
-                if (org.telegram.messenger.hd.f24101a0) {
+                if (org.telegram.messenger.hd.f24104a0) {
                     f12 = getWidth() - this.f40072q1.getWidth();
                 }
                 canvas.translate(f12, intValue2);
@@ -1332,7 +1332,7 @@ public class uj0 extends RecyclerView implements eh.a {
         if (this.L2 != null && i7 >= 0) {
             for (int i10 = 0; i10 < this.L2.size(); i10++) {
                 long longValue = ((Long) this.L2.get(i10)).longValue();
-                Typeface typeface = org.telegram.messenger.g0.f23581a;
+                Typeface typeface = org.telegram.messenger.g0.f23583a;
                 int i11 = (int) (longValue >> 32);
                 int i12 = (int) longValue;
                 if (i7 >= i11 && i7 <= i12) {
@@ -1354,7 +1354,7 @@ public class uj0 extends RecyclerView implements eh.a {
             return n9Var.u(view);
         }
         ej0 ej0Var = this.H2;
-        if (ej0Var != null && ((Boolean) ej0Var.f34328a.a(view)).booleanValue()) {
+        if (ej0Var != null && ((Boolean) ej0Var.f34327a.a(view)).booleanValue()) {
             return true;
         }
         return false;
@@ -1539,7 +1539,7 @@ public class uj0 extends RecyclerView implements eh.a {
         }
         if (this.f40081u2) {
             this.f40081u2 = false;
-            org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25522k1, 512);
+            org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25523k1, 512);
         }
     }
 
@@ -1550,7 +1550,7 @@ public class uj0 extends RecyclerView implements eh.a {
                 n1(this, true);
             }
             if (this.f40043a1 != null) {
-                int i7 = org.telegram.ui.an.f45108ld;
+                int i7 = org.telegram.ui.an.f45107ld;
                 return true;
             } else if (super.onInterceptTouchEvent(motionEvent)) {
                 return true;
@@ -1696,9 +1696,9 @@ public class uj0 extends RecyclerView implements eh.a {
         } else {
             z10 = false;
         }
-        e10 e10Var = (e10) ffVar.f34586b;
-        e10Var.f34157t = z10;
-        e10Var.f34158u = j3;
+        e10 e10Var = (e10) ffVar.f34590b;
+        e10Var.f34144t = z10;
+        e10Var.f34145u = j3;
     }
 
     public final void q1(int i7, int i10, int i11, int i12) {
@@ -1907,9 +1907,9 @@ public class uj0 extends RecyclerView implements eh.a {
         this.W0 = ij0Var;
         ff ffVar = this.L1;
         boolean z10 = ij0Var != null;
-        e10 e10Var = (e10) ffVar.f34586b;
-        e10Var.f34157t = z10;
-        e10Var.f34158u = longPressTimeout;
+        e10 e10Var = (e10) ffVar.f34590b;
+        e10Var.f34144t = z10;
+        e10Var.f34145u = longPressTimeout;
     }
 
     @Override
@@ -1946,7 +1946,7 @@ public class uj0 extends RecyclerView implements eh.a {
             }
             n9 n9Var = this.S2;
             if (n9Var != null) {
-                uj0 uj0Var = n9Var.f37490a;
+                uj0 uj0Var = n9Var.f37489a;
                 if (n9Var.L != z10) {
                     n9Var.L = z10;
                     uj0Var.a0();
@@ -1965,7 +1965,7 @@ public class uj0 extends RecyclerView implements eh.a {
             this.V2 = sj0Var;
             n9 n9Var = this.S2;
             if (n9Var != null) {
-                uj0 uj0Var = n9Var.f37490a;
+                uj0 uj0Var = n9Var.f37489a;
                 if (n9Var.M != sj0Var) {
                     n9Var.M = sj0Var;
                     uj0Var.a0();
@@ -2165,7 +2165,7 @@ public class uj0 extends RecyclerView implements eh.a {
         this.f40077s2 = new jg.m1(this, 1);
         this.D2 = new zj(this, 13);
         this.T2 = true;
-        this.V2 = sj0.f39329a;
+        this.V2 = sj0.f39327a;
         this.W2 = org.telegram.ui.ActionBar.j6.f28792a7;
         this.Y2 = new Path();
         this.f40069o2 = e6Var;

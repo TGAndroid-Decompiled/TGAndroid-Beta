@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import android.graphics.drawable.Drawable;
 public final class ut implements kc {
-    public final vt f26865a;
+    public final vt f26866a;
 
     public ut(vt vtVar) {
-        this.f26865a = vtVar;
+        this.f26866a = vtVar;
     }
 
     @Override
     public final void A(ImageReceiver imageReceiver) {
-        vt vtVar = this.f26865a;
+        vt vtVar = this.f26866a;
         vtVar.m(vtVar.T, true);
     }
 

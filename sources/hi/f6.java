@@ -147,7 +147,7 @@ public final class f6 extends View implements m2 {
         this.U = new PointF(-org.telegram.messenger.g0.N(9.666667f), org.telegram.messenger.g0.N(2.3333333f));
         this.V = new PointF(-org.telegram.messenger.g0.N(2.8333333f), org.telegram.messenger.g0.N(8.666667f));
         this.W = new PointF(org.telegram.messenger.g0.N(9.666667f), org.telegram.messenger.g0.N(-3.6666667f));
-        this.f14288i0 = new org.telegram.ui.Components.u5(this, 0L, 200L, er.f34420f);
+        this.f14288i0 = new org.telegram.ui.Components.u5(this, 0L, 200L, er.f34419f);
         this.f14293n0 = new org.telegram.ui.Components.u5(this, 0L, 350L, erVar);
         this.f14294o0 = -1.0f;
         this.f14295p0 = true;
@@ -157,7 +157,7 @@ public final class f6 extends View implements m2 {
         this.f14302u0 = new org.telegram.ui.Components.u5(this, 0L, 350L, erVar);
         this.C0 = new org.telegram.ui.Components.u5(this, 0L, 350L, erVar);
         this.D0 = new org.telegram.ui.Components.u5(this, 0L, 650L, erVar);
-        this.E0 = new org.telegram.ui.Components.u5(this, 0L, 160L, er.f34422i);
+        this.E0 = new org.telegram.ui.Components.u5(this, 0L, 160L, er.f34421i);
         this.F0 = new org.telegram.ui.Components.u5(this, 0L, 750L, erVar);
         this.G0 = new org.telegram.ui.Components.u5(this, 0L, 650L, erVar);
         this.H0 = new org.telegram.ui.Components.u5(this, 0L, 320L, erVar);
@@ -216,11 +216,11 @@ public final class f6 extends View implements m2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         fq fqVar = new fq(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(6.0f), -13750737), mutate);
         this.f14279c = fqVar;
-        fqVar.f34678x = false;
+        fqVar.f34682x = false;
         int L = org.telegram.messenger.g0.L(24.0f);
         int L2 = org.telegram.messenger.g0.L(24.0f);
-        fqVar.f34672e = L;
-        fqVar.f34673f = L2;
+        fqVar.f34676e = L;
+        fqVar.f34677f = L2;
         Drawable mutate2 = activity.getResources().getDrawable(2131232286).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -277,7 +277,7 @@ public final class f6 extends View implements m2 {
         } else {
             j3 = 310;
         }
-        this.O.f39906g = j3;
+        this.O.f39903g = j3;
         this.N += f10;
         invalidate();
     }
@@ -335,12 +335,12 @@ public final class f6 extends View implements m2 {
             }
         }
         ve veVar = MediaController.f22323a2;
-        if (veVar != null && (arrayList = veVar.f26971e) != null && !arrayList.isEmpty()) {
+        if (veVar != null && (arrayList = veVar.f26972e) != null && !arrayList.isEmpty()) {
             ffVar = (ff) arrayList.get(0);
         } else {
             ffVar = null;
         }
-        if (ffVar != null && (str = ffVar.f27709c) != null) {
+        if (ffVar != null && (str = ffVar.f27711c) != null) {
             imageReceiver.r0(gc.g(str), "80_80", null, null, fqVar, 0L, null, null, 0);
             return;
         }
@@ -348,7 +348,7 @@ public final class f6 extends View implements m2 {
             int i7 = ffVar.C;
             String str2 = ffVar.I;
             if (str2 != null) {
-                if (ffVar.f27708b) {
+                if (ffVar.f27710b) {
                     imageReceiver.r0(gc.g("vthumb://" + i7 + ":" + str2), "80_80", null, null, fqVar, 0L, null, null, 0);
                     return;
                 }
@@ -448,7 +448,7 @@ public final class f6 extends View implements m2 {
         c6 c6Var2 = this.M0;
         if (action == 0) {
             this.f14307x0 = true;
-            if (dcVar2.f33917i || dcVar3.f33917i) {
+            if (dcVar2.f33904i || dcVar3.f33904i) {
                 z14 = true;
             }
             this.f14309y0 = z14;
@@ -457,7 +457,7 @@ public final class f6 extends View implements m2 {
             if (Math.abs(i7 - this.f14289j0) < org.telegram.messenger.g0.L(50.0f)) {
                 org.telegram.messenger.g0.i3(c6Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (dcVar3.f33917i) {
+            if (dcVar3.f33904i) {
                 org.telegram.messenger.g0.i3(c6Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -469,7 +469,7 @@ public final class f6 extends View implements m2 {
                     ((p9) this.f14275a).b();
                 }
                 if (this.f14300s0 && this.A0) {
-                    float i10 = Utilities.i(((this.f14290k0 - org.telegram.messenger.g0.L(48.0f)) - y10) / (org.telegram.messenger.g0.f23609q.y / 2.0f), 1.0f, 0.0f);
+                    float i10 = Utilities.i(((this.f14290k0 - org.telegram.messenger.g0.L(48.0f)) - y10) / (org.telegram.messenger.g0.f23611q.y / 2.0f), 1.0f, 0.0f);
                     sa saVar = ((p9) this.f14275a).f14881a;
                     saVar.W0.b(true, i10);
                     saVar.i0(false);
@@ -485,10 +485,10 @@ public final class f6 extends View implements m2 {
                 org.telegram.messenger.g0.r(c6Var2);
                 org.telegram.messenger.g0.r(c6Var);
                 boolean z15 = this.f14300s0;
-                if (!z15 && dcVar.f33917i) {
+                if (!z15 && dcVar.f33904i) {
                     ((p9) this.f14275a).c();
                 } else if (z15 && this.A0) {
-                    if (dcVar.f33917i) {
+                    if (dcVar.f33904i) {
                         this.A0 = false;
                         this.H0.e(true, 1.0f);
                         i3 i3Var = ((p9) this.f14275a).f14881a.U0;
@@ -500,7 +500,7 @@ public final class f6 extends View implements m2 {
                         this.f14303v0 = true;
                         ((p9) this.f14275a).e(false);
                     }
-                } else if (dcVar2.f33917i) {
+                } else if (dcVar2.f33904i) {
                     if (b()) {
                         ((p9) this.f14275a).a();
                     } else if (!this.f14295p0 && !this.f14300s0 && !this.A0) {
@@ -520,7 +520,7 @@ public final class f6 extends View implements m2 {
                     }
                 }
                 this.A0 = false;
-                if (dcVar3.f33917i) {
+                if (dcVar3.f33904i) {
                     d(180.0f);
                     ((p9) this.f14275a).b();
                 }

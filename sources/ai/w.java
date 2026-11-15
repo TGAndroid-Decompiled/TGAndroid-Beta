@@ -1,63 +1,45 @@
 package ai;
 
-import android.content.Context;
-import org.telegram.ui.Dictation.DictationAsr;
+import java.util.ArrayList;
 public final class w {
-    public boolean f1599a;
-    public boolean f1600b;
-    public long f1601c;
-    public final Object d;
-    public final Object f1602e;
-    public Object f1603f;
-    public Object f1604g;
-    public Object h;
+    public final z f1578a;
+    public final t f1579b;
+    public final String f1580c;
+    public final r1 d;
+    public volatile int[] f1583g;
+    public int f1584i;
+    public boolean f1585j;
+    public volatile boolean f1586k;
+    public volatile boolean f1587l;
+    public volatile String f1589n;
+    public o1 f1590o;
+    public final StringBuilder f1581e = new StringBuilder();
+    public final ArrayList f1582f = new ArrayList();
+    public String h = "";
+    public volatile int f1588m = -1;
 
-    public w(Context context, d3.x xVar) {
-        this.d = context.getApplicationContext();
-        this.f1602e = xVar;
-        this.f1601c = 15000L;
-        this.h = new d3.y();
-        this.f1604g = h2.g0.f13448a;
+    public w(z zVar, android.support.v4.media.session.a0 a0Var, r1 r1Var) {
+        this.f1578a = zVar;
+        this.f1579b = (t) a0Var.f1713b;
+        this.f1580c = (String) a0Var.f1714c;
+        this.d = r1Var;
     }
 
-    public static w c(android.support.v4.media.session.a0 a0Var, n2 n2Var) {
-        long nativeSessionNew;
-        long k10 = DictationAsr.k((s) a0Var.f1706b);
-        if (k10 == 0) {
-            return null;
+    public final void a(java.lang.String r13) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.w.a(java.lang.String):void");
+    }
+
+    public final void b(Runnable runnable) {
+        String sb2 = this.f1581e.toString();
+        String str = this.h;
+        boolean z10 = this.f1585j;
+        int i7 = this.f1584i;
+        ArrayList arrayList = this.f1582f;
+        int size = arrayList.size();
+        int[] iArr = new int[size];
+        for (int i10 = 0; i10 < size; i10++) {
+            iArr[i10] = ((Integer) arrayList.get(i10)).intValue();
         }
-        w wVar = new w(a0Var, n2Var);
-        String str = (String) a0Var.f1707c;
-        nativeSessionNew = DictationAsr.nativeSessionNew(k10, str, str.split(",")[0]);
-        wVar.f1601c = nativeSessionNew;
-        if (nativeSessionNew == 0) {
-            DictationAsr.M((s) a0Var.f1706b);
-            return null;
-        }
-        return wVar;
-    }
-
-    public void a() {
-        String nativeSessionFinish;
-        long j3 = this.f1601c;
-        if (j3 != 0) {
-            nativeSessionFinish = DictationAsr.nativeSessionFinish(j3);
-            b(nativeSessionFinish);
-            DictationAsr.nativeSessionFree(this.f1601c);
-            this.f1601c = 0L;
-            DictationAsr.M((s) this.f1602e);
-        }
-    }
-
-    public void b(java.lang.String r18) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.w.b(java.lang.String):void");
-    }
-
-    public w(android.support.v4.media.session.a0 a0Var, n2 n2Var) {
-        this.f1604g = new StringBuilder();
-        this.h = "";
-        this.d = a0Var;
-        this.f1602e = (s) a0Var.f1706b;
-        this.f1603f = n2Var;
+        org.telegram.messenger.g0.h3(new v(this, iArr, sb2, str, z10, i7, runnable));
     }
 }
